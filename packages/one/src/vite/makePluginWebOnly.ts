@@ -1,16 +1,16 @@
-import type { Plugin } from "vite";
+import type { Plugin } from 'vite'
 
 export function makePluginWebOnly(plugin: Plugin) {
-  const og = plugin.transform as any;
+  const og = plugin.transform as any
 
   if (og) {
     plugin.transform = function (this, ...args) {
-      if (this.environment.name !== "client") {
-        return;
+      if (this.environment.name !== 'client') {
+        return
       }
-      return og.call(this, ...args);
-    };
+      return og.call(this, ...args)
+    }
   }
 
-  return plugin;
+  return plugin
 }

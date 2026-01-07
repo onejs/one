@@ -8,14 +8,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-"use strict";
-var React = require("react"),
-  didWarnAboutUsingAct = !1;
+'use strict'
+var React = require('react'),
+  didWarnAboutUsingAct = !1
 exports.act = function (callback) {
   !1 === didWarnAboutUsingAct &&
     ((didWarnAboutUsingAct = !0),
     console.error(
-      "`ReactDOMTestUtils.act` is deprecated in favor of `React.act`. Import `act` from `react` instead of `react-dom/test-utils`. See https://react.dev/warnings/react-dom-test-utils for more info.",
-    ));
-  return React.act(callback);
-};
+      '`ReactDOMTestUtils.act` is deprecated in favor of `React.act`. Import `act` from `react` instead of `react-dom/test-utils`. See https://react.dev/warnings/react-dom-test-utils for more info.'
+    ))
+  return React.act(callback)
+}

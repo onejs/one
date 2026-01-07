@@ -3,8 +3,8 @@ export declare function getPathnameFromFilePath(
   params?: {},
   strict?: boolean,
   options?: {
-    preserveExtensions?: boolean;
-    includeIndex?: boolean;
-  },
-): string;
+    preserveExtensions?: boolean
+    includeIndex?: boolean
+  }
+): string
 //# sourceMappingURL=getPathnameFromFilePath.d.ts.map

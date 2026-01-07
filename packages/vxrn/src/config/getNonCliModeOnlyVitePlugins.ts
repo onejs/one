@@ -1,5 +1,5 @@
-import type { PluginOption } from "vite";
-import { defaultDepOptimizePlugin } from "../plugins/defaultDepOptimizePlugin";
+import type { PluginOption } from 'vite'
+import { defaultDepOptimizePlugin } from '../plugins/defaultDepOptimizePlugin'
 
 /**
  * Configs that should (currently) apply when using VxRN in non-CLI mode (vxrn-vite-plugin.ts).
@@ -13,5 +13,5 @@ import { defaultDepOptimizePlugin } from "../plugins/defaultDepOptimizePlugin";
 export function getNonCliModeOnlyVitePlugins(): PluginOption[] {
   return [
     defaultDepOptimizePlugin(), // In CLI mode this is done by `getViteServerConfig` in dev or config building logic in `vxrn/src/exports/build.ts` on build.
-  ];
+  ]
 }

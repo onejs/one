@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-const getIsScrolled = () => window.scrollY > 10;
+const getIsScrolled = () => window.scrollY > 10
 export const useIsScrolled = () => {
-  const [x, setX] = useState(false);
+  const [x, setX] = useState(false)
 
   useEffect(() => {
-    setX(getIsScrolled);
+    setX(getIsScrolled)
 
-    const controller = new AbortController();
+    const controller = new AbortController()
 
     window.addEventListener(
-      "scroll",
+      'scroll',
       () => {
-        setX(getIsScrolled);
+        setX(getIsScrolled)
       },
       {
         signal: controller.signal,
-      },
-    );
+      }
+    )
 
     return () => {
-      controller.abort();
-    };
-  }, []);
+      controller.abort()
+    }
+  }, [])
 
-  return x;
-};
+  return x
+}

@@ -3,7 +3,7 @@
  */
 export function patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
   manifestHandlerMiddleware: any,
-  mainModuleName: string,
+  mainModuleName: string
 ) {
   // (`ExpoGoManifestHandlerMiddleware` extends `ManifestMiddleware`)
   //
@@ -13,8 +13,9 @@ export function patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
   // `ManifestMiddleware._resolveProjectSettingsAsync`
   //   ↑ `mainModuleName`
   // `ManifestMiddleware.resolveMainModuleName`
-  const origResolveMainModuleName =
-    manifestHandlerMiddleware.resolveMainModuleName.bind(manifestHandlerMiddleware);
+  const origResolveMainModuleName = manifestHandlerMiddleware.resolveMainModuleName.bind(
+    manifestHandlerMiddleware
+  )
   manifestHandlerMiddleware.resolveMainModuleName = (props) => {
     return origResolveMainModuleName({
       ...props,
@@ -22,6 +23,6 @@ export function patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
         ...props.pkg,
         main: mainModuleName,
       },
-    });
-  };
+    })
+  }
 }

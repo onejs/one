@@ -1,7 +1,7 @@
-import type { PluginObj } from "@babel/core";
+import type { PluginObj } from '@babel/core'
 type PluginOptions = {
-  env?: Record<string, string | undefined>;
-};
+  env?: Record<string, string | undefined>
+}
 /**
  * A Babel plugin to replace `import.meta.env` and `import.meta.env.*` with the provided env variables.
  *
@@ -10,7 +10,7 @@ type PluginOptions = {
 export declare const importMetaEnvPlugin: (
   api: object,
   options: PluginOptions | null | undefined,
-  dirname: string,
-) => PluginObj<import("@babel/core").PluginPass>;
-export default importMetaEnvPlugin;
+  dirname: string
+) => PluginObj<import('@babel/core').PluginPass>
+export default importMetaEnvPlugin
 //# sourceMappingURL=import-meta-env-plugin.d.ts.map

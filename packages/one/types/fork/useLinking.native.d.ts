@@ -5,10 +5,10 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  */
-import { type NavigationContainerRef, type ParamListBase } from "@react-navigation/core";
-import type { LinkingOptions } from "@react-navigation/native";
-import * as React from "react";
-type Options = LinkingOptions<ParamListBase>;
+import { type NavigationContainerRef, type ParamListBase } from '@react-navigation/core'
+import type { LinkingOptions } from '@react-navigation/native'
+import * as React from 'react'
+type Options = LinkingOptions<ParamListBase>
 export declare function useLinking(
   ref: React.RefObject<NavigationContainerRef<ParamListBase>>,
   {
@@ -21,56 +21,59 @@ export declare function useLinking(
     getStateFromPath,
     getActionFromState,
   }: Options,
-  onUnhandledLinking: (lastUnhandledLining: string | undefined) => void,
+  onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
 ): {
   getInitialState: () => PromiseLike<
     | (Partial<
         Omit<
           Readonly<{
-            key: string;
-            index: number;
-            routeNames: string[];
-            history?: unknown[];
-            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
-            type: string;
-            stale: false;
+            key: string
+            index: number
+            routeNames: string[]
+            history?: unknown[]
+            routes: import('@react-navigation/routers').NavigationRoute<
+              ParamListBase,
+              string
+            >[]
+            type: string
+            stale: false
           }>,
-          "stale" | "routes"
+          'stale' | 'routes'
         >
       > &
         Readonly<{
-          stale?: true;
-          routes: import("@react-navigation/routers").PartialRoute<
-            import("@react-navigation/routers").Route<string, object | undefined>
-          >[];
+          stale?: true
+          routes: import('@react-navigation/routers').PartialRoute<
+            import('@react-navigation/routers').Route<string, object | undefined>
+          >[]
         }> & {
           state?: Partial<
             Omit<
               Readonly<{
-                key: string;
-                index: number;
-                routeNames: string[];
-                history?: unknown[];
-                routes: import("@react-navigation/routers").NavigationRoute<
+                key: string
+                index: number
+                routeNames: string[]
+                history?: unknown[]
+                routes: import('@react-navigation/routers').NavigationRoute<
                   ParamListBase,
                   string
-                >[];
-                type: string;
-                stale: false;
+                >[]
+                type: string
+                stale: false
               }>,
-              "stale" | "routes"
+              'stale' | 'routes'
             >
           > &
             Readonly<{
-              stale?: true;
-              routes: import("@react-navigation/routers").PartialRoute<
-                import("@react-navigation/routers").Route<string, object | undefined>
-              >[];
+              stale?: true
+              routes: import('@react-navigation/routers').PartialRoute<
+                import('@react-navigation/routers').Route<string, object | undefined>
+              >[]
             }> &
-            /*elided*/ any;
+            /*elided*/ any
         })
     | undefined
-  >;
-};
-export {};
+  >
+}
+export {}
 //# sourceMappingURL=useLinking.native.d.ts.map

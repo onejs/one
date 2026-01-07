@@ -1,6 +1,6 @@
-import type { InlineConfig } from "vite";
-import type { VXRNOptionsFilled } from "./getOptionsFilled";
-export declare const dedupe: string[];
+import type { InlineConfig } from 'vite'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
+export declare const dedupe: string[]
 /**
  * Returns fundamental Vite configs.
  *
@@ -13,6 +13,6 @@ export declare const dedupe: string[];
  * is added to prevent misuse. We can remove it later when things are settled.
  */
 export declare function getBaseViteConfig(
-  config: Pick<VXRNOptionsFilled, "root" | "mode">,
-): Promise<Omit<InlineConfig, "plugins">>;
+  config: Pick<VXRNOptionsFilled, 'root' | 'mode'>
+): Promise<Omit<InlineConfig, 'plugins'>>
 //# sourceMappingURL=getBaseViteConfigOnly.d.ts.map

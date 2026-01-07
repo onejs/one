@@ -1,21 +1,24 @@
-import { Link, useLoader } from "one";
-import { H1, H2, Paragraph, SizableText, XStack, YStack } from "tamagui";
-import { TopNav } from "~/components/TopNav";
-import { authors } from "~/data/authors";
-import { Container } from "~/features/site/Containers";
-import { HeadInfo } from "~/features/site/HeadInfo";
+import { Link, useLoader } from 'one'
+import { H1, H2, Paragraph, SizableText, XStack, YStack } from 'tamagui'
+import { TopNav } from '~/components/TopNav'
+import { authors } from '~/data/authors'
+import { Container } from '~/features/site/Containers'
+import { HeadInfo } from '~/features/site/HeadInfo'
 
 export async function loader() {
-  const { getAllFrontmatter } = await import("@vxrn/mdx");
-  const frontmatters = getAllFrontmatter("data/blog");
+  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const frontmatters = getAllFrontmatter('data/blog')
   const sortedFrontmatters = frontmatters
     .filter((x) => !x.draft)
-    .sort((a, b) => Number(new Date(b.publishedAt || "")) - Number(new Date(a.publishedAt || "")));
-  return { frontmatters: sortedFrontmatters };
+    .sort(
+      (a, b) =>
+        Number(new Date(b.publishedAt || '')) - Number(new Date(a.publishedAt || ''))
+    )
+  return { frontmatters: sortedFrontmatters }
 }
 
 export default function BlogIndex() {
-  const { frontmatters } = useLoader(loader);
+  const { frontmatters } = useLoader(loader)
 
   return (
     <>
@@ -33,26 +36,26 @@ export default function BlogIndex() {
 
           <YStack gap="$4">
             {frontmatters.map((post) => {
-              const author = post.by ? authors[post.by as keyof typeof authors] : null;
+              const author = post.by ? authors[post.by as keyof typeof authors] : null
               const date = post.publishedAt
-                ? new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
+                ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
                   })
-                : null;
+                : null
 
               return (
-                <Link key={post.slug} href={`/blog/${post.slug.replace("blog/", "")}`}>
+                <Link key={post.slug} href={`/blog/${post.slug.replace('blog/', '')}`}>
                   <YStack
                     p="$5"
                     hoverStyle={{
-                      borderColor: "$color8",
-                      backgroundColor: "$background025",
+                      borderColor: '$color8',
+                      backgroundColor: '$background025',
                     }}
                     pressStyle={{
-                      borderColor: "$color8",
-                      backgroundColor: "$background05",
+                      borderColor: '$color8',
+                      backgroundColor: '$background05',
                     }}
                     animation="100ms"
                   >
@@ -85,11 +88,11 @@ export default function BlogIndex() {
                     </YStack>
                   </YStack>
                 </Link>
-              );
+              )
             })}
           </YStack>
         </YStack>
       </Container>
     </>
-  );
+  )
 }

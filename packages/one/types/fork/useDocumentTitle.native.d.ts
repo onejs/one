@@ -4,5 +4,5 @@
  *
  * No changes are made except of formatting.
  */
-export declare function useDocumentTitle(): void;
+export declare function useDocumentTitle(): void
 //# sourceMappingURL=useDocumentTitle.native.d.ts.map

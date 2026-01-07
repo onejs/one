@@ -1,5 +1,5 @@
-import { Text } from "react-native";
+import { Text } from 'react-native'
 
 export default function MyFirstPost() {
-  return <Text>My First Post</Text>;
+  return <Text>My First Post</Text>
 }

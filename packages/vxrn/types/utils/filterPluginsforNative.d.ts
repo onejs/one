@@ -1,4 +1,4 @@
-import type { Plugin } from "vite";
+import type { Plugin } from 'vite'
 /**
  * Filter out plugins and plugin hooks that are not needed for (or will even break) React Native.
  */
@@ -7,7 +7,7 @@ export declare function filterPluginsForNative(
   {
     isNative,
   }: {
-    isNative: boolean;
-  },
-): Plugin[];
+    isNative: boolean
+  }
+): Plugin[]
 //# sourceMappingURL=filterPluginsForNative.d.ts.map

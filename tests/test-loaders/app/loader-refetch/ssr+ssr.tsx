@@ -1,25 +1,25 @@
-import { Link, useLoader, useLoaderState } from "one";
-import { Button, Text, YStack } from "tamagui";
+import { Link, useLoader, useLoaderState } from 'one'
+import { Button, Text, YStack } from 'tamagui'
 
-let ssrCallCount = 0;
+let ssrCallCount = 0
 
 export function loader({ path }: { path: string }) {
-  ssrCallCount++;
-  const url = new URL(path, "http://localhost");
-  const q = url.searchParams.get("q") || "ssr-default";
-  const isServer = typeof window === "undefined";
+  ssrCallCount++
+  const url = new URL(path, 'http://localhost')
+  const q = url.searchParams.get('q') || 'ssr-default'
+  const isServer = typeof window === 'undefined'
 
   return {
-    mode: "ssr",
+    mode: 'ssr',
     query: q,
     callCount: ssrCallCount,
     timestamp: Date.now(),
-    executedOn: isServer ? "server" : "client",
-  };
+    executedOn: isServer ? 'server' : 'client',
+  }
 }
 
 export default () => {
-  const { data, refetch, state } = useLoaderState(loader);
+  const { data, refetch, state } = useLoaderState(loader)
 
   return (
     <YStack gap="$4" p="$4">
@@ -36,9 +36,9 @@ export default () => {
         New SSR Search Params
       </Link>
 
-      <Button id="ssr-refetch" onPress={refetch} disabled={state === "loading"}>
-        {state === "loading" ? "Loading..." : "Refetch SSR"}
+      <Button id="ssr-refetch" onPress={refetch} disabled={state === 'loading'}>
+        {state === 'loading' ? 'Loading...' : 'Refetch SSR'}
       </Button>
     </YStack>
-  );
-};
+  )
+}

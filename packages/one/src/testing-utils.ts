@@ -1,55 +1,55 @@
-import path from "node:path";
-import { getReactNavigationConfig } from "./getReactNavigationConfig";
-import { getRoutes } from "./router/getRoutes";
+import path from 'node:path'
+import { getReactNavigationConfig } from './getReactNavigationConfig'
+import { getRoutes } from './router/getRoutes'
 
-export type ReactComponent = () => React.ReactElement<any, any> | null;
+export type ReactComponent = () => React.ReactElement<any, any> | null
 export type FileStub =
   | (Record<string, unknown> & {
-      default: ReactComponent;
-      unstable_settings?: Record<string, any>;
+      default: ReactComponent
+      unstable_settings?: Record<string, any>
     })
-  | ReactComponent;
-export type NativeIntentStub = any;
+  | ReactComponent
+export type NativeIntentStub = any
 export type MemoryContext = Record<string, FileStub | NativeIntentStub> & {
-  "+native-intent"?: NativeIntentStub;
-};
+  '+native-intent'?: NativeIntentStub
+}
 
-const validExtensions = [".js", ".jsx", ".ts", ".tsx"];
+const validExtensions = ['.js', '.jsx', '.ts', '.tsx']
 
 export function inMemoryContext(context: MemoryContext) {
   return Object.assign(
     (id: string) => {
-      id = id.replace(/^\.\//, "").replace(/\.\w*$/, "");
-      return typeof context[id] === "function" ? { default: context[id] } : context[id];
+      id = id.replace(/^\.\//, '').replace(/\.\w*$/, '')
+      return typeof context[id] === 'function' ? { default: context[id] } : context[id]
     },
     {
       resolve: (key: string) => key,
-      id: "0",
+      id: '0',
       keys: () =>
         Object.keys(context).map((key) => {
-          const ext = path.extname(key);
-          key = key.replace(/^\.\//, "");
-          key = key.startsWith("/") ? key : `./${key}`;
-          key = validExtensions.includes(ext) ? key : `${key}.js`;
+          const ext = path.extname(key)
+          key = key.replace(/^\.\//, '')
+          key = key.startsWith('/') ? key : `./${key}`
+          key = validExtensions.includes(ext) ? key : `${key}.js`
 
-          return key;
+          return key
         }),
-    },
-  );
+    }
+  )
 }
 
-type MockContextConfig = string[]; // Array of filenames to mock as empty components, e.g () => null
+type MockContextConfig = string[] // Array of filenames to mock as empty components, e.g () => null
 
 export function getMockContext(context: MockContextConfig) {
   if (Array.isArray(context)) {
     return inMemoryContext(
-      Object.fromEntries(context.map((filename) => [filename, { default: () => null }])),
-    );
+      Object.fromEntries(context.map((filename) => [filename, { default: () => null }]))
+    )
   }
 
-  throw new Error("Invalid context");
+  throw new Error('Invalid context')
 }
 
 export function getMockConfig(context: MockContextConfig, metaOnly = true) {
-  return getReactNavigationConfig(getRoutes(getMockContext(context))!, metaOnly);
+  return getReactNavigationConfig(getRoutes(getMockContext(context))!, metaOnly)
 }

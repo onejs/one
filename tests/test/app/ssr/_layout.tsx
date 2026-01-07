@@ -1,3 +1,3 @@
-import { Slot } from "one";
+import { Slot } from 'one'
 
-export default () => <Slot />;
+export default () => <Slot />

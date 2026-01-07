@@ -1,6 +1,6 @@
-import { parse } from "es-module-lexer";
-import { mergeConfig, type Plugin, type UserConfig } from "vite";
-import { isNativeEnvironment } from "../utils/environmentUtils";
+import { parse } from 'es-module-lexer'
+import { mergeConfig, type Plugin, type UserConfig } from 'vite'
+import { isNativeEnvironment } from '../utils/environmentUtils'
 
 /**
  * Get the list of platform-specific extensions for a given platform.
@@ -12,22 +12,22 @@ import { isNativeEnvironment } from "../utils/environmentUtils";
  * * https://reactnative.dev/docs/platform-specific-code#platform-specific-extensions
  * * https://v5.vite.dev/config/shared-options.html#resolve-extensions
  */
-const getNativeExtensions = (platform: "ios" | "android") => {
+const getNativeExtensions = (platform: 'ios' | 'android') => {
   return [
     `.${platform}.tsx`,
     `.${platform}.ts`,
     `.${platform}.jsx`,
     `.${platform}.js`,
-    ".native.js",
-    ".native.ts",
-    ".native.tsx",
-    ".tsx",
-    ".ts",
-    ".js",
-    ".jsx",
-    ".json",
-  ];
-};
+    '.native.js',
+    '.native.ts',
+    '.native.tsx',
+    '.tsx',
+    '.ts',
+    '.js',
+    '.jsx',
+    '.json',
+  ]
+}
 
 /**
  * Supporting the ["react-native" community condition](https://nodejs.org/docs/latest-v19.x/api/packages.html#community-conditions-definitions) in dependencies' `package.json`.
@@ -36,7 +36,7 @@ const getNativeExtensions = (platform: "ios" | "android") => {
  * * https://reactnative.dev/blog/2023/06/21/0.72-metro-package-exports-symlinks#package-exports-support-beta
  * * https://v5.vite.dev/config/shared-options.html#resolve-conditions
  */
-export const conditions = ["react-native", "import", "require"];
+export const conditions = ['react-native', 'import', 'require']
 
 /**
  * Supporting the "react-native" field in dependencies' `package.json`.
@@ -61,16 +61,16 @@ export const conditions = ["react-native", "import", "require"];
  * See:
  * * https://v5.vite.dev/config/shared-options.html#resolve-mainfields
  */
-export const mainFields = ["react-native", "module", "jsnext:main", "jsnext"];
+export const mainFields = ['react-native', 'module', 'jsnext:main', 'jsnext']
 
 export function reactNativeCommonJsPlugin(options: {
-  root: string;
-  port: number;
-  mode: "build" | "serve";
+  root: string
+  port: number
+  mode: 'build' | 'serve'
 }): Plugin {
   return {
-    name: "native",
-    enforce: "pre",
+    name: 'native',
+    enforce: 'pre',
 
     config: async () => {
       const sharedNativeConfig = {
@@ -78,7 +78,9 @@ export function reactNativeCommonJsPlugin(options: {
         base: undefined,
 
         define: {
-          "process.env.REACT_NATIVE_SERVER_PUBLIC_PORT": JSON.stringify(`${options.port}`),
+          'process.env.REACT_NATIVE_SERVER_PUBLIC_PORT': JSON.stringify(
+            `${options.port}`
+          ),
         },
 
         build: {
@@ -103,7 +105,7 @@ export function reactNativeCommonJsPlugin(options: {
               // Ensure that as many resources as possible are inlined.
               // inlineDynamicImports: true,
               // this fixes some warnings but breaks import { default as config }
-              exports: "named",
+              exports: 'named',
               // ensures we have clean names for our require paths
               entryFileNames: () => `[name].js`,
             },
@@ -113,11 +115,11 @@ export function reactNativeCommonJsPlugin(options: {
                 name: `force-export-all`,
                 async transform(code, id) {
                   if (!isNativeEnvironment(this.environment)) {
-                    return;
+                    return
                   }
 
-                  if (id.includes("?commonjs")) {
-                    return;
+                  if (id.includes('?commonjs')) {
+                    return
                   }
 
                   // if (!id.includes('/node_modules/')) {
@@ -125,76 +127,76 @@ export function reactNativeCommonJsPlugin(options: {
                   // }
 
                   try {
-                    const [foundImports, foundExports] = parse(code);
+                    const [foundImports, foundExports] = parse(code)
 
                     // build a rough mapping of identifiers to moduleName
-                    const idToModule: Record<string, string> = {};
+                    const idToModule: Record<string, string> = {}
                     for (const imp of foundImports) {
                       if (imp.n) {
-                        const line = code.slice(imp.ss, imp.se);
-                        const imports = getAllImportedIdentifiers(line);
+                        const line = code.slice(imp.ss, imp.se)
+                        const imports = getAllImportedIdentifiers(line)
                         for (const id of imports) {
-                          idToModule[id] = imp.n;
+                          idToModule[id] = imp.n
                         }
                       }
                     }
 
                     // moduleName => export identifiers
-                    const toReExport: Record<string, string[]> = {};
+                    const toReExport: Record<string, string[]> = {}
                     for (const exp of foundExports) {
-                      const expName = exp.ln || exp.n;
+                      const expName = exp.ln || exp.n
 
                       if (RESERVED_WORDS.has(expName)) {
-                        continue;
+                        continue
                       }
 
-                      const moduleName = idToModule[expName];
+                      const moduleName = idToModule[expName]
                       if (moduleName) {
-                        toReExport[moduleName] ||= [];
-                        toReExport[moduleName].push(expName);
+                        toReExport[moduleName] ||= []
+                        toReExport[moduleName].push(expName)
                       }
                     }
 
-                    let forceExports = ``;
+                    let forceExports = ``
 
                     // lets handle export * as since es-module-lexer doesn't :/
-                    let found = 0;
-                    for (const line of code.split("\n")) {
-                      if (line.startsWith("export * from")) {
+                    let found = 0
+                    for (const line of code.split('\n')) {
+                      if (line.startsWith('export * from')) {
                         const [_, exportedName] =
-                          line.match(/export \* from ['"]([^'"]+)['"]/) || [];
+                          line.match(/export \* from ['"]([^'"]+)['"]/) || []
                         if (exportedName) {
-                          found++;
-                          const name = `__vxrnExp${found}`;
+                          found++
+                          const name = `__vxrnExp${found}`
                           forceExports += `
                             import * as ${name} from '${exportedName}';
                             globalThis.__forceExport${name} = ${name}
                             Object.assign(exports, globalThis.__forceExport${name});
-                          `;
-                          continue;
+                          `
+                          continue
                         }
                       }
                     }
 
                     forceExports += Object.keys(toReExport)
                       .map((path) => {
-                        const exportedNames = toReExport[path];
+                        const exportedNames = toReExport[path]
 
-                        found++;
-                        const name = `__vxrnExp${found}`;
+                        found++
+                        const name = `__vxrnExp${found}`
                         return `
                           import * as ${name} from '${path}';
-                          globalThis.__forceExport${name} = [${exportedNames.map((n) => (n === "default" ? name : `${name}.${n}`)).join(",")}]
-                        `;
+                          globalThis.__forceExport${name} = [${exportedNames.map((n) => (n === 'default' ? name : `${name}.${n}`)).join(',')}]
+                        `
                       })
-                      .join(";");
+                      .join(';')
 
                     return {
-                      code: code + "\n" + forceExports,
-                      moduleSideEffects: "no-treeshake",
-                    };
+                      code: code + '\n' + forceExports,
+                      moduleSideEffects: 'no-treeshake',
+                    }
                   } catch (err) {
-                    console.warn(`Error forcing exports, probably ok`, id);
+                    console.warn(`Error forcing exports, probably ok`, id)
                   }
                 },
               },
@@ -208,11 +210,11 @@ export function reactNativeCommonJsPlugin(options: {
 
           esbuildOptions: {
             loader: {
-              ".js": "jsx",
+              '.js': 'jsx',
             },
           },
         },
-      } satisfies UserConfig;
+      } satisfies UserConfig
 
       // per-environment config:
 
@@ -220,22 +222,22 @@ export function reactNativeCommonJsPlugin(options: {
         environments: {
           ios: mergeConfig(sharedNativeConfig, {
             define: {
-              "process.env.REACT_NATIVE_PLATFORM": JSON.stringify(`ios`),
+              'process.env.REACT_NATIVE_PLATFORM': JSON.stringify(`ios`),
             },
 
             resolve: {
-              extensions: getNativeExtensions("ios"),
+              extensions: getNativeExtensions('ios'),
               conditions,
               mainFields,
             },
 
             optimizeDeps: {
               esbuildOptions: {
-                resolveExtensions: getNativeExtensions("ios"),
+                resolveExtensions: getNativeExtensions('ios'),
 
                 plugins: [
                   {
-                    name: "react-native-assets",
+                    name: 'react-native-assets',
                     setup(build) {
                       build.onResolve(
                         {
@@ -243,11 +245,11 @@ export function reactNativeCommonJsPlugin(options: {
                         },
                         async ({ path, namespace }) => {
                           return {
-                            path: "",
+                            path: '',
                             external: true,
-                          };
-                        },
-                      );
+                          }
+                        }
+                      )
                     },
                   },
                 ],
@@ -257,89 +259,89 @@ export function reactNativeCommonJsPlugin(options: {
 
           android: mergeConfig(sharedNativeConfig, {
             define: {
-              "process.env.REACT_NATIVE_PLATFORM": JSON.stringify(`android`),
+              'process.env.REACT_NATIVE_PLATFORM': JSON.stringify(`android`),
             },
 
             resolve: {
-              extensions: getNativeExtensions("android"),
+              extensions: getNativeExtensions('android'),
               conditions,
               mainFields,
             },
 
             optimizeDeps: {
               esbuildOptions: {
-                resolveExtensions: getNativeExtensions("android"),
+                resolveExtensions: getNativeExtensions('android'),
               },
             },
           } satisfies UserConfig),
         },
-      };
+      }
     },
-  };
+  }
 }
 
 function getAllImportedIdentifiers(importStatement: string): string[] {
-  const importRegex = /{([^}]+)}/;
-  const match = importStatement.match(importRegex);
+  const importRegex = /{([^}]+)}/
+  const match = importStatement.match(importRegex)
 
   if (!match) {
-    return [];
+    return []
   }
 
-  const imports = match[1];
+  const imports = match[1]
 
   return imports
-    .split(",")
+    .split(',')
     .map((name) => {
-      const parts = name.split(/\s+as\s+/);
-      return parts[parts.length - 1].trim();
+      const parts = name.split(/\s+as\s+/)
+      return parts[parts.length - 1].trim()
     })
-    .filter(Boolean);
+    .filter(Boolean)
 }
 
 /**
  * List of reserved words in JS. From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words.
  */
 const RESERVED_WORDS = new Set([
-  "toString",
+  'toString',
 
-  "break",
-  "case",
-  "catch",
-  "class",
-  "const",
-  "continue",
-  "debugger",
-  "default",
-  "delete",
-  "do",
-  "else",
-  "export",
-  "extends",
-  "false",
-  "finally",
-  "for",
-  "function",
-  "if",
-  "import",
-  "in",
-  "instanceof",
-  "new",
-  "null",
-  "return",
-  "super",
-  "switch",
-  "this",
-  "throw",
-  "true",
-  "try",
-  "typeof",
-  "var",
-  "void",
-  "while",
-  "with",
-  "let",
-  "static",
-  "yield",
-  "enum",
-]);
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'let',
+  'static',
+  'yield',
+  'enum',
+])

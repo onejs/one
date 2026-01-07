@@ -1,27 +1,27 @@
-import React from "react";
+import React from 'react'
 /** Props passed to a page's `ErrorBoundary` export. */
 export type ErrorBoundaryProps = {
   /** Retry rendering the component by clearing the `error` state. */
-  retry: () => Promise<void>;
+  retry: () => Promise<void>
   /** The error that was thrown. */
-  error: Error;
-};
+  error: Error
+}
 export declare class Try extends React.Component<
   {
-    catch: React.ComponentType<ErrorBoundaryProps>;
-    children: React.ReactNode;
+    catch: React.ComponentType<ErrorBoundaryProps>
+    children: React.ReactNode
   },
   {
-    error?: Error;
+    error?: Error
   }
 > {
   state: {
-    error: undefined;
-  };
+    error: undefined
+  }
   static getDerivedStateFromError(error: Error): {
-    error: Error;
-  };
-  retry: () => Promise<void>;
+    error: Error
+  }
+  retry: () => Promise<void>
   render():
     | string
     | number
@@ -39,8 +39,8 @@ export declare class Try extends React.Component<
         | null
         | undefined
       >
-    | import("react/jsx-runtime").JSX.Element
+    | import('react/jsx-runtime').JSX.Element
     | null
-    | undefined;
+    | undefined
 }
 //# sourceMappingURL=Try.d.ts.map

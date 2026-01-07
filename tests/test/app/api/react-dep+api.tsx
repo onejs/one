@@ -1,16 +1,16 @@
-import { isResponse } from "one";
-import { sharedFn } from "~/features/api/shared";
+import { isResponse } from 'one'
+import { sharedFn } from '~/features/api/shared'
 
 export default () => {
   if (!sharedFn()) {
-    return null;
+    return null
   }
 
   if (isResponse(global)) {
-    return null;
+    return null
   }
 
   return {
-    hello: "world",
-  };
-};
+    hello: 'world',
+  }
+}

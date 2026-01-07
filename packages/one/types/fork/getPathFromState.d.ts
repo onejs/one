@@ -5,15 +5,15 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  */
-import { type AdditionalOptions } from "./getPathFromState-mods";
-import type { NavigationState, PartialState } from "@react-navigation/routers";
-import type { PathConfigMap } from "@react-navigation/core";
+import { type AdditionalOptions } from './getPathFromState-mods'
+import type { NavigationState, PartialState } from '@react-navigation/routers'
+import type { PathConfigMap } from '@react-navigation/core'
 type Options<ParamList extends {}> = {
-  path?: string;
-  initialRouteName?: string;
-  screens: PathConfigMap<ParamList>;
-} & AdditionalOptions;
-export type State = NavigationState | Omit<PartialState<NavigationState>, "stale">;
+  path?: string
+  initialRouteName?: string
+  screens: PathConfigMap<ParamList>
+} & AdditionalOptions
+export type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
 /**
  * Utility to serialize a navigation state object to a path string.
  *
@@ -45,14 +45,14 @@ export type State = NavigationState | Omit<PartialState<NavigationState>, "stale
  */
 export declare function getPathFromState<ParamList extends {}>(
   state: State,
-  options?: Options<ParamList>,
-): string;
+  options?: Options<ParamList>
+): string
 export declare function getPathDataFromState<ParamList extends {}>(
   state: State,
-  options?: Options<ParamList>,
+  options?: Options<ParamList>
 ): {
-  path: string;
-  params: Record<string, any>;
-};
-export default getPathFromState;
+  path: string
+  params: Record<string, any>
+}
+export default getPathFromState
 //# sourceMappingURL=getPathFromState.d.ts.map

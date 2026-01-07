@@ -1,11 +1,11 @@
-import { createMiddleware, setResponseHeaders } from "one";
+import { createMiddleware, setResponseHeaders } from 'one'
 
 export default createMiddleware(({ request }) => {
-  if (request.url.includes("intercept")) {
-    return Response.json({ didIntercept: true });
+  if (request.url.includes('intercept')) {
+    return Response.json({ didIntercept: true })
   }
 
   setResponseHeaders((headers) => {
-    headers.append("test-header", "test-value");
-  });
-});
+    headers.append('test-header', 'test-value')
+  })
+})

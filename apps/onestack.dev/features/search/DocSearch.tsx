@@ -1,6 +1,6 @@
-import "@docsearch/css";
-import type { DocSearchModalProps } from "@docsearch/react";
-import { DocSearchModal } from "@docsearch/react";
+import '@docsearch/css'
+import type { DocSearchModalProps } from '@docsearch/react'
+import { DocSearchModal } from '@docsearch/react'
 
 export default function DocSearch(props: DocSearchModalProps) {
   return (
@@ -14,7 +14,7 @@ export default function DocSearch(props: DocSearchModalProps) {
       </style>
       <DocSearchModal {...props} />
     </>
-  );
+  )
 }
 
 const docSearchCSS = `
@@ -118,4 +118,4 @@ font-family: sans-serif;
   --docsearch-key-gradient: linear-gradient(-26.5deg, #161618, #4a4a4a);
 }
 
-`;
+`

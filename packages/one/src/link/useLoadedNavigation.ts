@@ -1,62 +1,66 @@
-import { type NavigationProp, type NavigationState, useNavigation } from "@react-navigation/native";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  type NavigationProp,
+  type NavigationState,
+  useNavigation,
+} from '@react-navigation/native'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useOneRouter } from "../router/router";
+import { useOneRouter } from '../router/router'
 
 type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
-  getState(): NavigationState | undefined;
-};
+  getState(): NavigationState | undefined
+}
 
 /** Returns a callback which is invoked when the navigation state has loaded. */
 export function useLoadedNavigation() {
-  const { navigationRef } = useOneRouter();
-  const navigation = useNavigation();
-  const isMounted = useRef(true);
-  const pending = useRef<((navigation: GenericNavigation) => void)[]>([]);
+  const { navigationRef } = useOneRouter()
+  const navigation = useNavigation()
+  const isMounted = useRef(true)
+  const pending = useRef<((navigation: GenericNavigation) => void)[]>([])
 
   useEffect(() => {
-    isMounted.current = true;
+    isMounted.current = true
     return () => {
-      isMounted.current = false;
-    };
-  }, []);
+      isMounted.current = false
+    }
+  }, [])
 
   const flush = useCallback(() => {
     if (isMounted.current) {
-      const pendingCallbacks = pending.current;
-      pending.current = [];
+      const pendingCallbacks = pending.current
+      pending.current = []
       pendingCallbacks.forEach((callback) => {
-        callback(navigation as GenericNavigation);
-      });
+        callback(navigation as GenericNavigation)
+      })
     }
-  }, [navigation]);
+  }, [navigation])
 
   useEffect(() => {
     if (navigationRef.current) {
-      flush();
+      flush()
     }
-  }, [flush, navigationRef]);
+  }, [flush, navigationRef])
 
   const push = useCallback(
     (fn: (navigation: GenericNavigation) => void) => {
-      pending.current.push(fn);
+      pending.current.push(fn)
       if (navigationRef.current) {
-        flush();
+        flush()
       }
     },
-    [flush, navigationRef],
-  );
+    [flush, navigationRef]
+  )
 
-  return push;
+  return push
 }
 
 export function useOptionalNavigation(): GenericNavigation | null {
-  const [navigation, setNavigation] = useState<GenericNavigation | null>(null);
-  const loadNavigation = useLoadedNavigation();
+  const [navigation, setNavigation] = useState<GenericNavigation | null>(null)
+  const loadNavigation = useLoadedNavigation()
 
   useEffect(() => {
-    loadNavigation((nav) => setNavigation(nav));
-  }, [loadNavigation]);
+    loadNavigation((nav) => setNavigation(nav))
+  }, [loadNavigation])
 
-  return navigation;
+  return navigation
 }

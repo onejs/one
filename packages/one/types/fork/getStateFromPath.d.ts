@@ -5,35 +5,35 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  */
-import type { NavigationState, PartialState } from "@react-navigation/routers";
-import type { PathConfigMap } from "@react-navigation/core";
-import { type AdditionalRouteConfig } from "./getStateFromPath-mods";
+import type { NavigationState, PartialState } from '@react-navigation/routers'
+import type { PathConfigMap } from '@react-navigation/core'
+import { type AdditionalRouteConfig } from './getStateFromPath-mods'
 type Options<ParamList extends {}> = {
-  path?: string;
-  initialRouteName?: string;
-  screens: PathConfigMap<ParamList>;
-};
-type ParseConfig = Record<string, (value: string) => any>;
+  path?: string
+  initialRouteName?: string
+  screens: PathConfigMap<ParamList>
+}
+type ParseConfig = Record<string, (value: string) => any>
 export type RouteConfig = {
-  screen: string;
-  regex?: RegExp;
-  path: string;
-  pattern: string;
-  routeNames: string[];
-  parse?: ParseConfig;
-} & AdditionalRouteConfig;
+  screen: string
+  regex?: RegExp
+  path: string
+  pattern: string
+  routeNames: string[]
+  parse?: ParseConfig
+} & AdditionalRouteConfig
 export type InitialRouteConfig = {
-  initialRouteName: string;
-  parentScreens: string[];
-};
+  initialRouteName: string
+  parentScreens: string[]
+}
 type ResultState = PartialState<NavigationState> & {
-  state?: ResultState;
-};
+  state?: ResultState
+}
 export type ParsedRoute = {
-  name: string;
-  path?: string;
-  params?: Record<string, any> | undefined;
-};
+  name: string
+  path?: string
+  params?: Record<string, any> | undefined
+}
 /**
  * Utility to parse a path string to initial state object accepted by the container.
  * This is useful for deep linking when we need to handle the incoming URL.
@@ -57,7 +57,7 @@ export type ParsedRoute = {
  */
 export declare function getStateFromPath<ParamList extends {}>(
   path: string,
-  options?: Options<ParamList>,
-): ResultState | undefined;
-export {};
+  options?: Options<ParamList>
+): ResultState | undefined
+export {}
 //# sourceMappingURL=getStateFromPath.d.ts.map

@@ -1,5 +1,5 @@
-import { useParams } from "one";
-import { Text, View } from "tamagui";
+import { useParams } from 'one'
+import { Text, View } from 'tamagui'
 
 export default function ParamSSR() {
   return (
@@ -13,5 +13,5 @@ export default function ParamSSR() {
       <Text>Param SSR</Text>
       <Text id="param">{JSON.stringify(useParams())}</Text>
     </View>
-  );
+  )
 }

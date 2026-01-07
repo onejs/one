@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { isWeb, View } from "tamagui";
-import { Slot, Stack, usePathname } from "one";
-import { NavigationRouteContext } from "@react-navigation/core";
-import { ToggleThemeButton } from "~/code/theme/ToggleThemeButton";
-import { Logo } from "~/code/brand/Logo";
+import { useContext } from 'react'
+import { isWeb, View } from 'tamagui'
+import { Slot, Stack, usePathname } from 'one'
+import { NavigationRouteContext } from '@react-navigation/core'
+import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
+import { Logo } from '~/code/brand/Logo'
 
 export default function FeedLayout() {
-  const routeContext = useContext(NavigationRouteContext);
-  const { name } = routeContext || {}; // Note: we can't use `usePathname()` here since its value will update every time the tab switches and will cause unnecessary re-renders
+  const routeContext = useContext(NavigationRouteContext)
+  const { name } = routeContext || {} // Note: we can't use `usePathname()` here since its value will update every time the tab switches and will cause unnecessary re-renders
 
   return (
     <View flex={1}>
@@ -23,20 +23,20 @@ export default function FeedLayout() {
                   <View px="$2">
                     <ToggleThemeButton />
                   </View>
-                );
+                )
               },
-            };
+            }
           }}
         >
           <Stack.Screen
             name="index"
             options={
-              name === "index"
+              name === 'index'
                 ? {
-                    title: "Feed",
+                    title: 'Feed',
                     gestureEnabled: true,
                     headerLeft() {
-                      return <Logo mr="$4" />;
+                      return <Logo mr="$4" />
                     },
                   }
                 : { headerShown: false }
@@ -46,5 +46,5 @@ export default function FeedLayout() {
         </Stack>
       )}
     </View>
-  );
+  )
 }

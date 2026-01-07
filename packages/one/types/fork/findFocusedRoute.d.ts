@@ -7,10 +7,13 @@
  *
  * No modifications currently, copied so we can access without importing any React Native code in Node.js environments.
  */
-import type { InitialState } from "@react-navigation/routers";
+import type { InitialState } from '@react-navigation/routers'
 export declare function findFocusedRoute(state: InitialState):
-  | (Omit<import("@react-navigation/routers").Route<string, object | undefined>, "key"> & {
-      state?: InitialState;
+  | (Omit<
+      import('@react-navigation/routers').Route<string, object | undefined>,
+      'key'
+    > & {
+      state?: InitialState
     })
-  | undefined;
+  | undefined
 //# sourceMappingURL=findFocusedRoute.d.ts.map

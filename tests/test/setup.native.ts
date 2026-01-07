@@ -3,13 +3,13 @@
 
 declare global {
   var __setupFileRan: {
-    client?: boolean;
-    server?: boolean;
-    native?: boolean;
-  };
+    client?: boolean
+    server?: boolean
+    native?: boolean
+  }
 }
 
-globalThis.__setupFileRan = globalThis.__setupFileRan || {};
-globalThis.__setupFileRan.native = true;
+globalThis.__setupFileRan = globalThis.__setupFileRan || {}
+globalThis.__setupFileRan.native = true
 
-console.log("[setup.native.ts] Native setup file ran");
+console.log('[setup.native.ts] Native setup file ran')

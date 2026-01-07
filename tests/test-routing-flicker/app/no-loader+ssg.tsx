@@ -1,5 +1,5 @@
-import { Link } from "one";
-import { Text, YStack, H1, Paragraph } from "tamagui";
+import { Link } from 'one'
+import { Text, YStack, H1, Paragraph } from 'tamagui'
 
 // This page has NO loader - tests navigation from loader pages to non-loader pages
 export default function NoLoaderPage() {
@@ -7,7 +7,8 @@ export default function NoLoaderPage() {
     <YStack padding="$4" gap="$4">
       <H1 id="no-loader-title">No Loader Page</H1>
       <Paragraph id="no-loader-description">
-        This SSG page has no loader function. It is statically generated with no dynamic data.
+        This SSG page has no loader function. It is statically generated with no dynamic
+        data.
       </Paragraph>
 
       <Text id="no-loader-marker">Static content only - no useLoader</Text>
@@ -41,5 +42,5 @@ export default function NoLoaderPage() {
         </Link>
       </YStack>
     </YStack>
-  );
+  )
 }

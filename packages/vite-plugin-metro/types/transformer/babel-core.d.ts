@@ -3,5 +3,5 @@ export {
   type TransformOptions,
   transformFromAstSync,
   transformSync,
-} from "@babel/core";
+} from '@babel/core'
 //# sourceMappingURL=babel-core.d.ts.map

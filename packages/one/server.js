@@ -1,8 +1,8 @@
 // empty for native
 
-export const requestAsyncLocalStore = null;
+export const requestAsyncLocalStore = null
 
-export const asyncHeadersCache = new WeakMap();
+export const asyncHeadersCache = new WeakMap()
 
 export async function setResponseHeaders(cb) {}
 

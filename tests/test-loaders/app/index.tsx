@@ -1,23 +1,23 @@
-import { useLoader } from "one";
-import { useAnimatedStyle } from "react-native-reanimated";
-import { H2, Paragraph, Square, YStack } from "tamagui";
+import { useLoader } from 'one'
+import { useAnimatedStyle } from 'react-native-reanimated'
+import { H2, Paragraph, Square, YStack } from 'tamagui'
 
 export async function loader() {
   return {
-    test: "hello",
-  };
+    test: 'hello',
+  }
 }
 
 export default () => {
-  const data = useLoader(loader);
+  const data = useLoader(loader)
 
   // testing babel reanimated
   useAnimatedStyle(() => {
-    "worklet";
+    'worklet'
     return {
-      backgroundColor: "red",
-    };
-  });
+      backgroundColor: 'red',
+    }
+  })
 
   return (
     <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
@@ -35,5 +35,5 @@ export default () => {
         }}
       />
     </YStack>
-  );
-};
+  )
+}

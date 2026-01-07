@@ -1,45 +1,53 @@
-import { Image } from "@tamagui/image-next";
-import { useState } from "react";
-import type { TabLayout, TabsTabProps, ViewProps } from "tamagui";
-import { AnimatePresence, ScrollView, SizableText, Tabs, XStack, YStack, styled } from "tamagui";
-import { Code } from "./Code";
-import { PACKAGE_MANAGERS, useBashCommand } from "./useBashCommand";
+import { Image } from '@tamagui/image-next'
+import { useState } from 'react'
+import type { TabLayout, TabsTabProps, ViewProps } from 'tamagui'
+import {
+  AnimatePresence,
+  ScrollView,
+  SizableText,
+  Tabs,
+  XStack,
+  YStack,
+  styled,
+} from 'tamagui'
+import { Code } from './Code'
+import { PACKAGE_MANAGERS, useBashCommand } from './useBashCommand'
 
 export function RovingTabs({ className, children, code, size, ...rest }) {
   const { showTabs, transformedCommand, selectedPackageManager, setPackageManager } =
-    useBashCommand(code || children, className);
+    useBashCommand(code || children, className)
 
   const [tabState, setTabState] = useState<{
     // Layout of the Tab user might intend to select (hovering / focusing)
-    intentAt: TabLayout | null;
+    intentAt: TabLayout | null
     // Layout of the Tab user selected
-    activeAt: TabLayout | null;
+    activeAt: TabLayout | null
     // Used to get the direction of activation for animating the active indicator
-    prevActiveAt: TabLayout | null;
+    prevActiveAt: TabLayout | null
   }>({
     intentAt: null,
     activeAt: null,
     prevActiveAt: null,
-  });
+  })
 
   const setIntentIndicator = (intentAt: TabLayout | null) =>
-    setTabState((prevTabState) => ({ ...prevTabState, intentAt }));
+    setTabState((prevTabState) => ({ ...prevTabState, intentAt }))
   const setActiveIndicator = (activeAt: TabLayout | null) =>
     setTabState((prevTabState) => ({
       ...prevTabState,
       prevActiveAt: tabState.activeAt,
       activeAt,
-    }));
+    }))
 
-  const { activeAt, intentAt, prevActiveAt } = tabState;
+  const { activeAt, intentAt, prevActiveAt } = tabState
 
-  const handleOnInteraction: TabsTabProps["onInteraction"] = (type, layout) => {
-    if (type === "select") {
-      setActiveIndicator(layout);
+  const handleOnInteraction: TabsTabProps['onInteraction'] = (type, layout) => {
+    if (type === 'select') {
+      setActiveIndicator(layout)
     } else {
-      setIntentIndicator(layout);
+      setIntentIndicator(layout)
     }
-  };
+  }
 
   const content = (
     <Code
@@ -54,7 +62,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
     >
       {showTabs ? transformedCommand : children}
     </Code>
-  );
+  )
 
   return (
     <>
@@ -94,7 +102,12 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
                 )}
               </AnimatePresence>
 
-              <Tabs.List disablePassBorderRadius loop={false} aria-label="package manager" gap="$2">
+              <Tabs.List
+                disablePassBorderRadius
+                loop={false}
+                aria-label="package manager"
+                gap="$2"
+              >
                 <>
                   {PACKAGE_MANAGERS.map((pkgManager) => (
                     <Tab
@@ -110,8 +123,8 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
 
             <Tabs.Content value={selectedPackageManager} forceMount>
               <ScrollView
-                style={{ width: "100%" }}
-                contentContainerStyle={{ minWidth: "100%" }}
+                style={{ width: '100%' }}
+                contentContainerStyle={{ minWidth: '100%' }}
                 horizontal
                 showsHorizontalScrollIndicator={false}
               >
@@ -122,8 +135,8 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
         </Tabs>
       ) : (
         <ScrollView
-          style={{ width: "100%" }}
-          contentContainerStyle={{ minWidth: "100%" }}
+          style={{ width: '100%' }}
+          contentContainerStyle={{ minWidth: '100%' }}
           horizontal
           showsHorizontalScrollIndicator={false}
         >
@@ -131,7 +144,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
         </ScrollView>
       )}
     </>
-  );
+  )
 }
 
 function Tab({
@@ -140,12 +153,12 @@ function Tab({
   logo,
   onInteraction,
 }: {
-  active?: boolean;
-  pkgManager: string;
-  logo?: string;
-  onInteraction: TabsTabProps["onInteraction"];
+  active?: boolean
+  pkgManager: string
+  logo?: string
+  onInteraction: TabsTabProps['onInteraction']
 }) {
-  const imageName = logo ?? pkgManager;
+  const imageName = logo ?? pkgManager
   return (
     <Tabs.Tab
       unstyled
@@ -162,8 +175,8 @@ function Tab({
     >
       <XStack gap="$1.5" ai="center" jc="center">
         <Image
-          scale={imageName === "pnpm" ? 0.7 : 0.8}
-          y={imageName === "pnpm" ? 0 : 0}
+          scale={imageName === 'pnpm' ? 0.7 : 0.8}
+          y={imageName === 'pnpm' ? 0 : 0}
           src={`/logos/${imageName}.svg`}
           width={16}
           height={16}
@@ -172,14 +185,14 @@ function Tab({
         <SizableText
           y={-0.5}
           size="$3"
-          col={active ? "$color12" : "$color11"}
+          col={active ? '$color12' : '$color11'}
           o={active ? 1 : 0.75}
         >
           {pkgManager}
         </SizableText>
       </XStack>
     </Tabs.Tab>
-  );
+  )
 }
 
 function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
@@ -197,12 +210,12 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
         o: 0,
       }}
       {...(active && {
-        bg: "$color8",
+        bg: '$color8',
         o: 0.6,
       })}
       {...props}
     />
-  );
+  )
 }
 
 const AnimatedYStack = styled(YStack, {
@@ -210,11 +223,11 @@ const AnimatedYStack = styled(YStack, {
   x: 0,
   o: 1,
 
-  animation: "100ms",
+  animation: '100ms',
   variants: {
     // 1 = right, 0 = nowhere, -1 = left
     direction: {
-      ":number": (direction) => ({
+      ':number': (direction) => ({
         enterStyle: {
           x: direction > 0 ? -10 : -10,
           opacity: 0,
@@ -227,4 +240,4 @@ const AnimatedYStack = styled(YStack, {
       }),
     },
   } as const,
-});
+})

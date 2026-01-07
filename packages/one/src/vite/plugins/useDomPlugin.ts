@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  **/
 
-import { extname } from "node:path";
-import * as swc from "@swc/core";
-import type { Plugin } from "vite";
+import { extname } from 'node:path'
+import * as swc from '@swc/core'
+import type { Plugin } from 'vite'
 
 // PLAN
 // see if we can use react server dom for the bridge between 'use dom' and native
@@ -32,25 +32,25 @@ import type { Plugin } from "vite";
 
 export function useDOMPlugin(): Plugin {
   return {
-    name: "one-vite-dom-plugin",
+    name: 'one-vite-dom-plugin',
 
     async transform(code, id, options) {
-      if (!code.includes("use dom")) {
-        return;
+      if (!code.includes('use dom')) {
+        return
       }
 
-      const ext = extname(id);
-      const mod = swc.parseSync(code, parseOpts(ext));
+      const ext = extname(id)
+      const mod = swc.parseSync(code, parseOpts(ext))
 
-      let hasUseDom = false;
+      let hasUseDom = false
 
       for (let i = 0; i < mod.body.length; ++i) {
-        const item = mod.body[i]!;
-        if (item.type === "ExpressionStatement") {
-          if (item.expression.type === "StringLiteral") {
-            if (item.expression.value === "use dom") {
-              hasUseDom = true;
-              break;
+        const item = mod.body[i]!
+        if (item.type === 'ExpressionStatement') {
+          if (item.expression.type === 'StringLiteral') {
+            if (item.expression.value === 'use dom') {
+              hasUseDom = true
+              break
             }
           }
         } else {
@@ -60,25 +60,25 @@ export function useDOMPlugin(): Plugin {
       }
 
       if (!hasUseDom) {
-        return;
+        return
       }
 
       // does have use dom - lets transform
     },
-  };
+  }
 }
 
 const parseOpts = (ext: string) => {
-  if (ext === ".ts" || ext === ".tsx") {
+  if (ext === '.ts' || ext === '.tsx') {
     return {
-      syntax: "typescript",
-      tsx: ext.endsWith("x"),
-    } as const;
+      syntax: 'typescript',
+      tsx: ext.endsWith('x'),
+    } as const
   }
   // We hoped to use 'typescript' for everything, but it fails in some cases.
   // https://github.com/dai-shi/waku/issues/677
   return {
-    syntax: "ecmascript",
-    jsx: ext.endsWith("x"),
-  } as const;
-};
+    syntax: 'ecmascript',
+    jsx: ext.endsWith('x'),
+  } as const
+}

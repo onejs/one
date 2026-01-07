@@ -1,24 +1,24 @@
-import { Paragraph, XStack, YStack, type YStackProps } from "tamagui";
-import { Badge } from "../features/docs/Badge";
+import { Paragraph, XStack, YStack, type YStackProps } from 'tamagui'
+import { Badge } from '../features/docs/Badge'
 
 // These are the currently supported versions for One
 // Update these when new versions are supported
 export const supportedVersions = {
-  reactNative: "0.81",
-  expo: "54",
-  metro: "0.83",
-  vite: "7",
-  react: "19",
-  reactNavigation: "7",
-} as const;
+  reactNative: '0.81',
+  expo: '54',
+  metro: '0.83',
+  vite: '7',
+  react: '19',
+  reactNavigation: '7',
+} as const
 
 type VersionRowProps = {
-  name: string;
-  version: string;
-  variant?: "blue" | "green" | "purple" | "red" | "pink";
-};
+  name: string
+  version: string
+  variant?: 'blue' | 'green' | 'purple' | 'red' | 'pink'
+}
 
-const VersionRow = ({ name, version, variant = "blue" }: VersionRowProps) => (
+const VersionRow = ({ name, version, variant = 'blue' }: VersionRowProps) => (
   <XStack ai="center" jc="space-between" gap="$4">
     <Paragraph size="$4" color="$color11">
       {name}
@@ -27,7 +27,7 @@ const VersionRow = ({ name, version, variant = "blue" }: VersionRowProps) => (
       {version}
     </Badge>
   </XStack>
-);
+)
 
 export const SupportedVersions = (props: YStackProps) => {
   return (
@@ -36,9 +36,13 @@ export const SupportedVersions = (props: YStackProps) => {
         Supported Versions
       </Paragraph>
       <VersionRow name="React" version={supportedVersions.react} variant="blue" />
-      <VersionRow name="React Native" version={supportedVersions.reactNative} variant="green" />
+      <VersionRow
+        name="React Native"
+        version={supportedVersions.reactNative}
+        variant="green"
+      />
       <VersionRow name="Expo SDK" version={supportedVersions.expo} variant="purple" />
       <VersionRow name="Metro" version={supportedVersions.metro} variant="blue" />
     </YStack>
-  );
-};
+  )
+}

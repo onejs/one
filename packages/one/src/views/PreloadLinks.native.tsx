@@ -1,3 +1,3 @@
 export function PreloadLinks() {
-  return null;
+  return null
 }

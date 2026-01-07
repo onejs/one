@@ -1,97 +1,97 @@
-import { createDebugger } from "@vxrn/debug";
-import FSExtra from "fs-extra";
-import path, { dirname, extname, join, sep } from "node:path";
+import { createDebugger } from '@vxrn/debug'
+import FSExtra from 'fs-extra'
+import path, { dirname, extname, join, sep } from 'node:path'
 
-const { debug } = createDebugger(`vxrn:scanDepsToOptimize`);
+const { debug } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
-  prebundleDeps: string[];
-  hasReanimated: boolean;
-  hasNativewind: boolean;
-};
+  prebundleDeps: string[]
+  hasReanimated: boolean
+  hasNativewind: boolean
+}
 
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [
-  "fsevents",
-  "@swc/core",
-  "@swc/core-darwin-arm64",
-  "@swc/core-darwin-x64",
-  "@swc/core-linux-arm-gnueabihf",
-  "@swc/core-linux-arm64-gnu",
-  "@swc/core-linux-arm64-musl",
-  "@swc/core-linux-x64-gnu",
-  "@swc/core-linux-x64-musl",
-  "@swc/core-win32-arm64-msvc",
-  "@swc/core-win32-ia32-msvc",
-  "@swc/core-win32-x64-msvc",
-  "lightningcss",
+  'fsevents',
+  '@swc/core',
+  '@swc/core-darwin-arm64',
+  '@swc/core-darwin-x64',
+  '@swc/core-linux-arm-gnueabihf',
+  '@swc/core-linux-arm64-gnu',
+  '@swc/core-linux-arm64-musl',
+  '@swc/core-linux-x64-gnu',
+  '@swc/core-linux-x64-musl',
+  '@swc/core-win32-arm64-msvc',
+  '@swc/core-win32-ia32-msvc',
+  '@swc/core-win32-x64-msvc',
+  'lightningcss',
 
   // this breaks fileToUrlPath in upstreams, like @discordjs/client
-  "url",
+  'url',
 
-  "sharp",
+  'sharp',
 
-  "@sentry/react-native",
+  '@sentry/react-native',
 
   // not ever to be used in app
-  "@expo/cli",
-  "expo-structured-headers",
+  '@expo/cli',
+  'expo-structured-headers',
 
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
-  "@shopify/react-native-skia",
+  '@shopify/react-native-skia',
 
   // web breaks trying to scan deps
-  "react-native-bottom-tabs",
+  'react-native-bottom-tabs',
 
-  "@react-native/virtualized-lists", // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
+  '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
 
   // Native only, we don't expect SSR to use these packages.
   // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
-  "@vxrn/react-native-prebuilt",
-  "@vxrn/vite-native-hmr",
-  "@vxrn/compiler",
-  "@vxrn/vite-native-client",
-  "react-native-ios-utilities",
-  "react-native-ios-modal",
-  "react-native-ios-context-menu",
-  "react-native-haptic-feedback",
-  "react-native-sortables",
-  "react-native-image-colors",
-  "react-native-fast-image",
-  "react-native-device-info",
+  '@vxrn/react-native-prebuilt',
+  '@vxrn/vite-native-hmr',
+  '@vxrn/compiler',
+  '@vxrn/vite-native-client',
+  'react-native-ios-utilities',
+  'react-native-ios-modal',
+  'react-native-ios-context-menu',
+  'react-native-haptic-feedback',
+  'react-native-sortables',
+  'react-native-image-colors',
+  'react-native-fast-image',
+  'react-native-device-info',
 
   // CLI shouldn't be used in SSR runtime
-  "@tamagui/cli",
+  '@tamagui/cli',
 
   // Should be used on native only
-  "@tamagui/core/native-test",
+  '@tamagui/core/native-test',
 
-  "@storybook/react",
+  '@storybook/react',
 
   // Stuff we had in fleek
-  "@nandorojo/galeria",
-  "expo-video",
-  "@react-navigation/elements",
-  "@react-native/debugger-shell",
-  "@hot-updater/react-native",
-  "@hot-updater/plugin-core",
-  "expo/internal/unstable-autolinking-exports",
-  "validator",
-  "zlib",
-];
+  '@nandorojo/galeria',
+  'expo-video',
+  '@react-navigation/elements',
+  '@react-native/debugger-shell',
+  '@hot-updater/react-native',
+  '@hot-updater/plugin-core',
+  'expo/internal/unstable-autolinking-exports',
+  'validator',
+  'zlib',
+]
 
-export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST);
+export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
 
 export const INCLUDE_LIST = [
   // ReferenceError: exports is not defined - at eval (.../node_modules/inline-style-prefixer/lib/createPrefixer.js:3:23)
-  "inline-style-prefixer",
-  "react-native-vector-icons",
-  "jotai",
-];
+  'inline-style-prefixer',
+  'react-native-vector-icons',
+  'jotai',
+]
 
-export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST);
+export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
 
 /**
  * Since:
@@ -119,117 +119,119 @@ export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST);
  * [^3]: https://vite.dev/guide/dep-pre-bundling.html
  */
 
-const rootOptions = {};
+const rootOptions = {}
 
 export async function scanDepsToOptimize(
   packageJsonPath: string,
   options: {
-    filter?: (id: string | unknown) => boolean;
-    parentDepNames?: string[];
-    proceededDeps?: Map<string, string[]>;
+    filter?: (id: string | unknown) => boolean
+    parentDepNames?: string[]
+    proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
-    pkgJsonContent?: any;
-  } = rootOptions,
+    pkgJsonContent?: any
+  } = rootOptions
 ): Promise<ScanDepsResult> {
-  const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options;
+  const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
 
   if (options === rootOptions) {
-    console.info(`[one] Scanning node_modules to auto-optimize...`);
+    console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
-  const currentRoot = path.dirname(packageJsonPath);
+  const currentRoot = path.dirname(packageJsonPath)
 
-  const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath));
-  const deps = Object.keys(pkgJson.dependencies || {});
+  const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
+  const deps = Object.keys(pkgJson.dependencies || {})
 
-  let hasReanimated = !!pkgJson.dependencies?.["react-native-reanimated"];
+  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
 
   const prebundleDeps = (
     await Promise.all(
       deps.map(async (dep): Promise<string[]> => {
         // skip circular deps
         if (parentDepNames.includes(dep)) {
-          return [];
+          return []
         }
-        const cachedResult = proceededDeps.get(dep);
+        const cachedResult = proceededDeps.get(dep)
         if (cachedResult) {
-          return cachedResult;
+          return cachedResult
         }
         if (EXCLUDE_LIST_SET.has(dep)) {
-          return [];
+          return []
         }
-        const localPath = await findDepPkgJsonPath(dep, currentRoot);
+        const localPath = await findDepPkgJsonPath(dep, currentRoot)
 
-        if (!localPath) return [];
+        if (!localPath) return []
 
-        const depPkgJsonPath = await FSExtra.realpath(localPath);
+        const depPkgJsonPath = await FSExtra.realpath(localPath)
 
         if (options.filter && !options.filter(depPkgJsonPath)) {
-          return [];
+          return []
         }
 
-        const depPkgJson = await readPackageJsonSafe(depPkgJsonPath);
+        const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        if (depPkgJson.dependencies?.["react-native-reanimated"]) {
-          hasReanimated = true;
+        if (depPkgJson.dependencies?.['react-native-reanimated']) {
+          hasReanimated = true
         }
 
         const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
           parentDepNames: [...parentDepNames, dep],
           pkgJsonContent: depPkgJson,
           proceededDeps,
-        });
+        })
 
         if (subDeps.hasReanimated) {
-          hasReanimated = true;
+          hasReanimated = true
         }
 
         const shouldPreBundle =
           subDeps.prebundleDeps.length >
             0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
-          INCLUDE_LIST_SET.has(dep) /* If this dep is in the include list, then pre-bundle it */ ||
-          hasRequiredDep(depPkgJson, "react") ||
-          hasRequiredDep(depPkgJson, "react-native") ||
-          hasRequiredDep(depPkgJson, "expo-modules-core") ||
+          INCLUDE_LIST_SET.has(
+            dep
+          ) /* If this dep is in the include list, then pre-bundle it */ ||
+          hasRequiredDep(depPkgJson, 'react') ||
+          hasRequiredDep(depPkgJson, 'react-native') ||
+          hasRequiredDep(depPkgJson, 'expo-modules-core') ||
           // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
-          dep.startsWith("@expo/") ||
-          dep.startsWith("expo-");
+          dep.startsWith('@expo/') ||
+          dep.startsWith('expo-')
 
-        debug?.(`${dep} shouldPreBundle? ${shouldPreBundle}`);
+        debug?.(`${dep} shouldPreBundle? ${shouldPreBundle}`)
 
         const depsToPreBundle = await (async () => {
           if (!shouldPreBundle) {
-            return [];
+            return []
           }
 
-          const depPkgJsonExports = depPkgJson.exports || {};
+          const depPkgJsonExports = depPkgJson.exports || {}
           // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
           const definedExports = Object.keys(depPkgJsonExports)
             .filter((k) => {
-              const expData = depPkgJsonExports[k];
-              const imp = typeof expData === "string" ? expData : expData?.import;
-              if (typeof imp !== "string") {
+              const expData = depPkgJsonExports[k]
+              const imp = typeof expData === 'string' ? expData : expData?.import
+              if (typeof imp !== 'string') {
                 // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
                 // Note that by doing this, nested exports will be skipped as well.
-                return false;
+                return false
               }
-              if (!imp.endsWith(".js")) {
+              if (!imp.endsWith('.js')) {
                 // Skipping since non-js exports cannot be pre-bundled.
-                return false;
+                return false
               }
 
               // Only include exports that are named safely.
               // This is a conservative approach; we might have a better way to make the judgment.
               if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
-                return false;
+                return false
               }
 
               // make sure it
 
-              return true;
+              return true
             })
-            .map((k) => k.replace(/^\.\/?/, ""))
-            .map((k) => `${dep}/${k}`);
+            .map((k) => k.replace(/^\.\/?/, ''))
+            .map((k) => `${dep}/${k}`)
 
           /**
            * A dirty workaround for packages that are using entry points that are not explicitly defined,
@@ -237,63 +239,64 @@ export async function scanDepsToOptimize(
            */
           const specialExports = (() => {
             switch (dep) {
-              case "react-native-vector-icons":
+              case 'react-native-vector-icons':
                 return [
-                  "AntDesign",
-                  "Entypo",
-                  "EvilIcons",
-                  "Feather",
-                  "FontAwesome",
-                  "FontAwesome5",
-                  "FontAwesome5Pro",
-                  "Fontisto",
-                  "Foundation",
-                  "Ionicons",
-                  "MaterialCommunityIcons",
-                  "MaterialIcons",
-                  "Octicons",
-                  "SimpleLineIcons",
-                  "Zocial",
-                ].map((n) => `${dep}/${n}`);
+                  'AntDesign',
+                  'Entypo',
+                  'EvilIcons',
+                  'Feather',
+                  'FontAwesome',
+                  'FontAwesome5',
+                  'FontAwesome5Pro',
+                  'Fontisto',
+                  'Foundation',
+                  'Ionicons',
+                  'MaterialCommunityIcons',
+                  'MaterialIcons',
+                  'Octicons',
+                  'SimpleLineIcons',
+                  'Zocial',
+                ].map((n) => `${dep}/${n}`)
 
               default:
-                return [];
+                return []
             }
-          })();
+          })()
 
-          const mainExport = depPkgJson["main"] || depPkgJson["module"] || definedExports["."];
+          const mainExport =
+            depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
 
           const exports = [...definedExports, ...specialExports].filter(
-            (d) => !EXCLUDE_LIST_SET.has(d),
-          );
+            (d) => !EXCLUDE_LIST_SET.has(d)
+          )
           if (mainExport) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
-              exports.unshift(dep);
+              exports.unshift(dep)
             }
           }
 
-          return exports;
-        })();
+          return exports
+        })()
 
-        const result = [...depsToPreBundle, ...subDeps.prebundleDeps];
+        const result = [...depsToPreBundle, ...subDeps.prebundleDeps]
 
-        debug?.(`final result ${JSON.stringify(result, null, 2)}`);
+        debug?.(`final result ${JSON.stringify(result, null, 2)}`)
 
-        proceededDeps.set(dep, result);
-        return result;
-      }),
+        proceededDeps.set(dep, result)
+        return result
+      })
     )
   )
     .flat()
-    .filter((dep, index, arr) => arr.indexOf(dep) === index);
+    .filter((dep, index, arr) => arr.indexOf(dep) === index)
 
-  const hasNativewind = !!pkgJson.dependencies?.["nativewind"];
+  const hasNativewind = !!pkgJson.dependencies?.['nativewind']
 
   if ((hasNativewind || hasReanimated) && options === rootOptions) {
     if (hasReanimated)
       console.info(
-        `[one] Enabled babel plugins: ${[hasReanimated ? "Reanimated" : "", hasNativewind ? "Nativewind" : ""].filter(Boolean).join(", ")}`,
-      );
+        `[one] Enabled babel plugins: ${[hasReanimated ? 'Reanimated' : '', hasNativewind ? 'Nativewind' : ''].filter(Boolean).join(', ')}`
+      )
   }
 
   return {
@@ -301,52 +304,55 @@ export async function scanDepsToOptimize(
     hasReanimated,
     // only check if set in root, dont want to enable css mode too easily
     hasNativewind,
-  };
+  }
 }
 
 // vite will fail if there's a main export but it actually doesn't exist
 // this ensures we actually check using an algorithm similar to node/vite
 // probably can find a better one that matches their more accurately
 async function checkIfExportExists(pathIn: string) {
-  const paths = [pathIn, ...(extname(pathIn) ? [] : [pathIn + ".js", pathIn + sep + "index.js"])];
+  const paths = [
+    pathIn,
+    ...(extname(pathIn) ? [] : [pathIn + '.js', pathIn + sep + 'index.js']),
+  ]
   for (const path of paths) {
     if (await FSExtra.pathExists(path)) {
-      return true;
+      return true
     }
   }
-  return false;
+  return false
 }
 
 async function readPackageJsonSafe(packageJsonPath: string) {
   try {
-    return await FSExtra.readJson(packageJsonPath);
+    return await FSExtra.readJson(packageJsonPath)
   } catch (e) {
     console.error(
-      `[scanDepsToPreBundleForSsr] Error reading package.json from ${packageJsonPath}: ${e}`,
-    );
-    return {};
+      `[scanDepsToPreBundleForSsr] Error reading package.json from ${packageJsonPath}: ${e}`
+    )
+    return {}
   }
 }
 
 export async function findDepPkgJsonPath(dep, dependent) {
-  let root = dependent;
+  let root = dependent
   while (root) {
-    const possiblePkgJson = path.join(root, "node_modules", dep, "package.json");
+    const possiblePkgJson = path.join(root, 'node_modules', dep, 'package.json')
 
     if (await FSExtra.pathExists(possiblePkgJson)) {
-      return possiblePkgJson;
+      return possiblePkgJson
     }
 
-    const nextRoot = path.dirname(root);
-    if (nextRoot === root) break;
-    root = nextRoot;
+    const nextRoot = path.dirname(root)
+    if (nextRoot === root) break
+    root = nextRoot
   }
 
   console.error(
-    `[findDepPkgJsonPath] Could not find package.json for ${dep}, which is a dependency of ${dependent}`,
-  );
+    `[findDepPkgJsonPath] Could not find package.json for ${dep}, which is a dependency of ${dependent}`
+  )
 
-  return undefined;
+  return undefined
 }
 
 /**
@@ -354,9 +360,13 @@ export async function findDepPkgJsonPath(dep, dependent) {
  * - If the dependency is in `dependencies`, it's a required dependency.
  * - If the dependency is in `peerDependencies` and is not marked as optional, it's a required dependency.
  */
-function hasRequiredDep(pkgJson: Record<string, Record<string, any> | undefined>, depName: string) {
+function hasRequiredDep(
+  pkgJson: Record<string, Record<string, any> | undefined>,
+  depName: string
+) {
   return !!(
     pkgJson.dependencies?.[depName] ||
-    (pkgJson.peerDependencies?.[depName] && !pkgJson.peerDependenciesMeta?.[depName]?.optional)
-  );
+    (pkgJson.peerDependencies?.[depName] &&
+      !pkgJson.peerDependenciesMeta?.[depName]?.optional)
+  )
 }

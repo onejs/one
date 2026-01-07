@@ -12,5 +12,5 @@ export function ExternalIcon(props) {
         fill="var(--color)"
       />
     </svg>
-  );
+  )
 }

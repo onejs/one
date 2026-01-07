@@ -4,76 +4,76 @@
  * Licensed under the MIT License
  */
 
-import { ChildProcess } from "node:child_process";
-import process from "node:process";
+import { ChildProcess } from 'node:child_process'
+import process from 'node:process'
 
-import colors from "picocolors";
+import colors from 'picocolors'
 
-const debug = ((..._: any) => {}) as typeof console.debug;
+const debug = ((..._: any) => {}) as typeof console.debug
 
-type AsyncExitHook = (signal: NodeJS.Signals) => void | Promise<void>;
+type AsyncExitHook = (signal: NodeJS.Signals) => void | Promise<void>
 
-const PRE_EXIT_SIGNALS: NodeJS.Signals[] = ["SIGHUP", "SIGINT", "SIGTERM", "SIGBREAK"];
+const PRE_EXIT_SIGNALS: NodeJS.Signals[] = ['SIGHUP', 'SIGINT', 'SIGTERM', 'SIGBREAK']
 
 // We create a queue since Node.js throws an error if we try to append too many listeners:
 // (node:4405) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 SIGINT listeners added to [process]. Use emitter.setMaxListeners() to increase limit
-const queue: AsyncExitHook[] = [];
+const queue: AsyncExitHook[] = []
 
-let unsubscribe: (() => void) | null = null;
+let unsubscribe: (() => void) | null = null
 
 /** Add functions that run before the process exits. Returns a function for removing the listeners. */
 export function installExitHooks(asyncExitHook: AsyncExitHook): () => void {
   // We need to instantiate the master listener the first time the queue is used.
   if (!queue.length) {
     // Track the master listener so we can remove it later.
-    unsubscribe = attachMasterListener();
+    unsubscribe = attachMasterListener()
   }
 
-  queue.push(asyncExitHook);
+  queue.push(asyncExitHook)
 
   return () => {
-    const index = queue.indexOf(asyncExitHook);
+    const index = queue.indexOf(asyncExitHook)
     if (index >= 0) {
-      queue.splice(index, 1);
+      queue.splice(index, 1)
     }
     // Clean up the master listener if we don't need it anymore.
     if (!queue.length) {
-      unsubscribe?.();
+      unsubscribe?.()
     }
-  };
+  }
 }
 
 // Create a function that runs before the process exits and guards against running multiple times.
 function createExitHook(signal: NodeJS.Signals) {
   return guardAsync(async () => {
-    debug(`pre-exit (signal: ${signal}, queue length: ${queue.length})`);
+    debug(`pre-exit (signal: ${signal}, queue length: ${queue.length})`)
 
     for (const [index, hookAsync] of Object.entries(queue)) {
       try {
-        await hookAsync(signal);
+        await hookAsync(signal)
       } catch (error: any) {
-        debug(`Error in exit hook: %O (queue: ${index})`, error);
+        debug(`Error in exit hook: %O (queue: ${index})`, error)
       }
     }
 
-    debug(`post-exit (code: ${process.exitCode ?? 0})`);
+    debug(`post-exit (code: ${process.exitCode ?? 0})`)
 
-    process.exit();
-  });
+    process.exit()
+  })
 }
 
 function attachMasterListener() {
-  const hooks: [NodeJS.Signals, () => any][] = [];
+  const hooks: [NodeJS.Signals, () => any][] = []
   for (const signal of PRE_EXIT_SIGNALS) {
-    const hook = createExitHook(signal);
-    hooks.push([signal, hook]);
-    process.on(signal, hook);
+    const hook = createExitHook(signal)
+    hooks.push([signal, hook])
+    process.on(signal, hook)
   }
   return () => {
     for (const [signal, hook] of hooks) {
-      process.removeListener(signal, hook);
+      process.removeListener(signal, hook)
     }
-  };
+  }
 }
 
 /**
@@ -82,50 +82,56 @@ function attachMasterListener() {
  *
  * @see https://nodejs.org/docs/latest-v18.x/api/process.html#processgetactiveresourcesinfo
  */
-export function ensureProcessExitsAfterDelay(waitUntilExitMs = 10000, startedAtMs = Date.now()) {
+export function ensureProcessExitsAfterDelay(
+  waitUntilExitMs = 10000,
+  startedAtMs = Date.now()
+) {
   // Create a list of the expected active resources before exiting.
   // Note, the order is undeterministic
   const expectedResources = [
-    process.stdout.isTTY ? "TTYWrap" : "PipeWrap",
-    process.stderr.isTTY ? "TTYWrap" : "PipeWrap",
-    process.stdin.isTTY ? "TTYWrap" : "PipeWrap",
-  ];
+    process.stdout.isTTY ? 'TTYWrap' : 'PipeWrap',
+    process.stderr.isTTY ? 'TTYWrap' : 'PipeWrap',
+    process.stdin.isTTY ? 'TTYWrap' : 'PipeWrap',
+  ]
   // Check active resources, besides the TTYWrap/PipeWrap (process.stdin, process.stdout, process.stderr)
-  const activeResources = process.getActiveResourcesInfo() as string[];
+  const activeResources = process.getActiveResourcesInfo() as string[]
   // Filter the active resource list by subtracting the expected resources, in undeterministic order
   const unexpectedActiveResources = activeResources.filter((activeResource) => {
-    const index = expectedResources.indexOf(activeResource);
+    const index = expectedResources.indexOf(activeResource)
     if (index >= 0) {
-      expectedResources.splice(index, 1);
-      return false;
+      expectedResources.splice(index, 1)
+      return false
     }
 
-    return true;
-  });
+    return true
+  })
 
-  const canExitProcess = !unexpectedActiveResources.length;
+  const canExitProcess = !unexpectedActiveResources.length
   if (canExitProcess) {
-    return debug("no active resources detected, process can safely exit");
+    return debug('no active resources detected, process can safely exit')
   }
   debug(
     `process is trying to exit, but is stuck on unexpected active resources:`,
-    unexpectedActiveResources,
-  );
+    unexpectedActiveResources
+  )
 
   // Check if the process needs to be force-closed
-  const elapsedTime = Date.now() - startedAtMs;
+  const elapsedTime = Date.now() - startedAtMs
   if (elapsedTime > waitUntilExitMs) {
-    debug("active handles detected past the exit delay, forcefully exiting:", activeResources);
-    tryWarnActiveProcesses();
-    return process.exit(0);
+    debug(
+      'active handles detected past the exit delay, forcefully exiting:',
+      activeResources
+    )
+    tryWarnActiveProcesses()
+    return process.exit(0)
   }
 
   const timeoutId = setTimeout(() => {
     // Ensure the timeout is cleared before checking the active resources
-    clearTimeout(timeoutId);
+    clearTimeout(timeoutId)
     // Check if the process can exit
-    ensureProcessExitsAfterDelay(waitUntilExitMs, startedAtMs);
-  }, 100);
+    ensureProcessExitsAfterDelay(waitUntilExitMs, startedAtMs)
+  }, 100)
 }
 
 /**
@@ -141,48 +147,50 @@ export function ensureProcessExitsAfterDelay(waitUntilExitMs = 10000, startedAtM
  * ```
  */
 function tryWarnActiveProcesses() {
-  let activeProcesses: string[] = [];
+  let activeProcesses: string[] = []
 
   try {
     const children: ChildProcess[] = process
       // @ts-expect-error - This is an internal method, not designed to be exposed. It's also our only way to get this info
       ._getActiveHandles()
-      .filter((handle: any) => handle instanceof ChildProcess);
+      .filter((handle: any) => handle instanceof ChildProcess)
 
     if (children.length) {
-      activeProcesses = children.map((child) => child.spawnargs.join(" "));
+      activeProcesses = children.map((child) => child.spawnargs.join(' '))
     }
   } catch (error) {
-    debug("failed to get active process information:", error);
+    debug('failed to get active process information:', error)
   }
 
   if (!activeProcesses.length) {
-    warn("Something prevented Expo from exiting, forcefully exiting now.");
+    warn('Something prevented Expo from exiting, forcefully exiting now.')
   } else {
     const singularOrPlural =
-      activeProcesses.length === 1 ? "1 process" : `${activeProcesses.length} processes`;
+      activeProcesses.length === 1 ? '1 process' : `${activeProcesses.length} processes`
 
-    warn(`Detected ${singularOrPlural} preventing process from exiting, forcefully exiting now.`);
-    warn("  - " + activeProcesses.join("\n  - "));
+    warn(
+      `Detected ${singularOrPlural} preventing process from exiting, forcefully exiting now.`
+    )
+    warn('  - ' + activeProcesses.join('\n  - '))
   }
 }
 
 /** memoizes an async function to prevent subsequent calls that might be invoked before the function has finished resolving. */
 export function guardAsync<V, T extends (...args: any[]) => Promise<V>>(fn: T): T {
-  let invoked = false;
-  let returnValue: V;
+  let invoked = false
+  let returnValue: V
 
   const guard: any = async (...args: any[]): Promise<V> => {
     if (!invoked) {
-      invoked = true;
-      returnValue = await fn(...args);
+      invoked = true
+      returnValue = await fn(...args)
     }
 
-    return returnValue;
-  };
+    return returnValue
+  }
 
-  return guard;
+  return guard
 }
 export function warn(...message: string[]): void {
-  console.warn(...message.map((value) => colors.yellow(value)));
+  console.warn(...message.map((value) => colors.yellow(value)))
 }

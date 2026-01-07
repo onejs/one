@@ -1,5 +1,5 @@
-import { Text } from "react-native";
+import { Text } from 'react-native'
 
 export function TestComponent1() {
-  return <Text testID="TestComponent1">TestComponent1.native</Text>;
+  return <Text testID="TestComponent1">TestComponent1.native</Text>
 }

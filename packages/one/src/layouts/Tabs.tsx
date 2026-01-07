@@ -4,13 +4,13 @@ import {
   type BottomTabNavigationEventMap,
   type BottomTabNavigationOptions,
   createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
-import type { ParamListBase, TabNavigationState } from "@react-navigation/native";
-import { Platform, Pressable } from "react-native";
+} from '@react-navigation/bottom-tabs'
+import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
+import { Platform, Pressable } from 'react-native'
 
-import type { OneRouter } from "../interfaces/router";
-import { Link } from "../link/Link";
-import { withLayoutContext } from "./withLayoutContext";
+import type { OneRouter } from '../interfaces/router'
+import { Link } from '../link/Link'
+import { withLayoutContext } from './withLayoutContext'
 
 const TabBar = ({ state, ...restProps }: BottomTabBarProps) => {
   /**
@@ -20,8 +20,8 @@ const TabBar = ({ state, ...restProps }: BottomTabBarProps) => {
   // TODO due to adding onlyMatching, we can remove this now i think (need to make sure)
 
   const filteredRoutes = state.routes.filter(
-    (r) => r.name !== "+not-found" && !r.name.startsWith("_sitemap"),
-  );
+    (r) => r.name !== '+not-found' && !r.name.startsWith('_sitemap')
+  )
 
   return (
     <BottomTabBar
@@ -31,15 +31,15 @@ const TabBar = ({ state, ...restProps }: BottomTabBarProps) => {
       }}
       {...restProps}
     />
-  );
-};
+  )
+}
 
 // This is the only way to access the navigator.
-const BottomTabNavigator = createBottomTabNavigator().Navigator;
+const BottomTabNavigator = createBottomTabNavigator().Navigator
 
 type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & {
-  href?: OneRouter.Href | null;
-};
+  href?: OneRouter.Href | null
+}
 
 export const Tabs = withLayoutContext<
   BottomTabNavigationOptionsWithHref,
@@ -51,10 +51,10 @@ export const Tabs = withLayoutContext<
   (screens) => {
     // Support the `href` shortcut prop.
     return screens.map((screen) => {
-      if (typeof screen.options !== "function" && screen.options?.href !== undefined) {
-        const { href, ...options } = screen.options;
+      if (typeof screen.options !== 'function' && screen.options?.href !== undefined) {
+        const { href, ...options } = screen.options
         if (options.tabBarButton) {
-          throw new Error("Cannot use `href` and `tabBarButton` together.");
+          throw new Error('Cannot use `href` and `tabBarButton` together.')
         }
         return {
           ...screen,
@@ -62,28 +62,32 @@ export const Tabs = withLayoutContext<
             ...options,
             tabBarButton: (props) => {
               if (href == null) {
-                return null;
+                return null
               }
               const children =
-                Platform.OS === "web" ? props.children : <Pressable>{props.children}</Pressable>;
+                Platform.OS === 'web' ? (
+                  props.children
+                ) : (
+                  <Pressable>{props.children}</Pressable>
+                )
               return (
                 <Link
                   {...(props as any)}
-                  style={[{ display: "flex" }, props.style]}
+                  style={[{ display: 'flex' }, props.style]}
                   href={href}
-                  asChild={Platform.OS !== "web"}
+                  asChild={Platform.OS !== 'web'}
                   // biome-ignore lint/correctness/noChildrenProp: children prop needed for asChild pattern
                   children={children}
                 />
-              );
+              )
             },
           },
-        };
+        }
       }
-      return screen;
-    });
+      return screen
+    })
   },
-  { props: { tabBar: TabBar } },
-);
+  { props: { tabBar: TabBar } }
+)
 
-export default Tabs;
+export default Tabs

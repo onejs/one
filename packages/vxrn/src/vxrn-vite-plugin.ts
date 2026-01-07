@@ -1,21 +1,21 @@
-import { mergeConfig, type PluginOption } from "vite";
-import { getBaseViteConfig } from "./config/getBaseViteConfigOnly";
-import { getAdditionalViteConfig } from "./config/getAdditionalViteConfig";
-import { getBaseVitePlugins } from "./config/getBaseVitePlugins";
-import { getNonCliModeOnlyVitePlugins } from "./config/getNonCliModeOnlyVitePlugins";
-import { getReactNativePlugins } from "./config/getReactNativePlugins";
+import { mergeConfig, type PluginOption } from 'vite'
+import { getBaseViteConfig } from './config/getBaseViteConfigOnly'
+import { getAdditionalViteConfig } from './config/getAdditionalViteConfig'
+import { getBaseVitePlugins } from './config/getBaseVitePlugins'
+import { getNonCliModeOnlyVitePlugins } from './config/getNonCliModeOnlyVitePlugins'
+import { getReactNativePlugins } from './config/getReactNativePlugins'
 import type {
   MetroPluginOptions,
   ExpoManifestRequestHandlerPluginPluginOptions,
-} from "@vxrn/vite-plugin-metro";
+} from '@vxrn/vite-plugin-metro'
 
 /**
  * This is considered private API for now, and may change anytime.
  */
 type VxrnPluginOptions = {
   /** Passing a non-null value will enable metro mode. */
-  metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null;
-};
+  metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null
+}
 
 /**
  * [Experimental] VxRN as a Vite plugin.
@@ -29,46 +29,46 @@ type VxrnPluginOptions = {
 export function vxrn(options?: VxrnPluginOptions): PluginOption {
   return [
     {
-      name: "vxrn-config",
+      name: 'vxrn-config',
       config: async (config, { mode: modeIn }) => {
         const mode = (() => {
           switch (modeIn) {
-            case "development":
-            case "dev":
-              return "development";
-            case "production":
-            case "prod":
-              return "production";
+            case 'development':
+            case 'dev':
+              return 'development'
+            case 'production':
+            case 'prod':
+              return 'production'
             default:
               console.warn(
-                `[vxrn-config] Unrecognized mode "${modeIn}". Defaulting to "development".`,
-              );
-              return "development";
+                `[vxrn-config] Unrecognized mode "${modeIn}". Defaulting to "development".`
+              )
+              return 'development'
           }
-        })();
+        })()
 
-        let root = config.root;
+        let root = config.root
 
         if (!root) {
-          root = process.cwd();
+          root = process.cwd()
           console.warn(
-            `[vxrn-config] \`config.root\` is empty, using current working directory (process.cwd()): ${root}`,
-          );
+            `[vxrn-config] \`config.root\` is empty, using current working directory (process.cwd()): ${root}`
+          )
         }
 
         const baseConfig = await getBaseViteConfig({
           root,
           mode,
-        });
+        })
 
-        const additionalConfig = getAdditionalViteConfig();
-        return mergeConfig(baseConfig, additionalConfig);
+        const additionalConfig = getAdditionalViteConfig()
+        return mergeConfig(baseConfig, additionalConfig)
       },
     },
     ...getBaseVitePlugins(),
     ...getNonCliModeOnlyVitePlugins(),
     ...getReactNativePlugins({}, { metro: options?.metro || null }),
-  ];
+  ]
 }
 
-export default vxrn;
+export default vxrn

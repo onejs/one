@@ -9,12 +9,12 @@ by: nate
   **One is a unified cross-platform React web and React Native framework that lives
   entirely in a Vite plugin**. One v1 is almost here - we've just released 1.0.0-rc.1,
   marking it ready for production use. With over 1,800 commits since the announcement of
-  the alpha about a year ago we're incredibly proud of the simple, robust framework it's
+  the alpha about a year ago, we're incredibly proud of the simple, robust framework it's
   become.
 </IntroParagraph>
 
 One makes building apps for both web and native a delight, bringing simplicity and sanity to
-what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes. **Achieving a 100 Lighthouse performance score while sharing code between web and native has turned from a pipe-dream into the expectation with One**.
+what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes. Thanks to a lot of work spent on render modes, Vite setup, and profile-guided optimizations, **One makes it possible for the first time to get 100 on your web Lighthouse performance score, even while sharing nearly all your code with native**.
 
 **One is a great framework even if you are only targeting web**. In a world haunted by the complexity of RSC, One has always taken a simple-is-better stance, while still giving you best-in-class features:
 
@@ -23,13 +23,20 @@ what typically is an incredibly messy affair. Where before you'd need two framew
 - Global and per-page **[render modes](/docs/routing-modes)** - SSR, SSG, SPA - for flexibility and performance.
 - **[Typed loaders](/docs/routing-loader)** for easy and simple data loading.
 - **Lock-in-free**: build to a `dist` folder, built-in Hono production server.
-- <New /> **[Metro-mode](/docs/metro-mode)**: use Metro for native, for maximum compatibility.
-- <New /> **[Middleware](/docs/routing-middlewares)** for request interception and shared context.
+- <New /> **[Metro-mode](/docs/metro-mode)**: use Metro for native, for maximum
+  compatibility.
+- <New /> **[Middleware](/docs/routing-middlewares)** for request interception and shared
+  context.
 - <New /> **[Sitemaps](/docs/configuration#sitemap)** with per-route overrides.
-- <New /> **[Deploy to Vercel or Cloudflare](/docs/guides-deployment)** workers with a single config option.
-- <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and getServerData](/docs/helpers-utility-functions)** for advanced data loading.
+- <New /> **[Deploy to Vercel or Cloudflare](/docs/guides-deployment)** workers with a
+  single config option.
+- <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and
+  getServerData](/docs/helpers-utility-functions)** for advanced data loading.
 - <New /> Automatic **NativeWind** and **Reanimated** detection and support.
-- <New /> **[Advanced loading strategies](/docs/configuration#web)** that significantly improve Lighthouse scores.
+- <New /> **[Advanced loading strategies](/docs/configuration#web)** that significantly
+  improve Lighthouse scores.
+
+For the full changelog, see [the release notes](https://github.com/onejs/one/releases).
 
 ## Getting Started
 
@@ -41,41 +48,21 @@ npx one
 
 Pick a starter and you're up and running. From there, check out the [introduction](/docs/introduction), [routing guide](/docs/routing), or [deployment docs](/docs/guides-deployment).
 
-## What's new in RC1
-
-Since the v1 announcement, here are some highlights:
-
-- **React Native 0.81 + Expo 54** support
-- **Prebuild without Expo** via `npx one prebuild --expo false`
-- **`--platform` flag** for iOS or Android-only prebuild
-- **Vercel + Cloudflare Workers** deployment targets
-- **Metro mode** with full HMR, DevTools, and production builds
-
-For the full changelog, see [the release notes](https://github.com/onejs/one/releases).
-
 ## Thanks
 
-One wouldn't be possible without our core team:
+One started as a fork of [Expo Router](https://expo.dev/router), built on top of [vxrn](https://vxrn.dev). Thank you to the Expo team for their incredible work.
 
-- [Pokai Chang](https://github.com/pockiiie) and [Quan Nguyen](https://github.com/anhquan291) - for countless hours of contributions, bug fixes, and helping shape One into what it is today.
+A huge thank you to [Pokai Chang](https://github.com/pockiiie), who did the vast majority of the work bringing One to v1. From countless bug fixes to major features, Pokai has been instrumental in making One what it is today.
+
+Thanks also to [Quan Nguyen](https://github.com/anhquan291) for helping out along the way. And to those who helped get One off the ground: [Fatih Aygün](https://github.com/cyco130), [Hiroshi Ogawa](https://github.com/hi-ogawa), [Matias Capeletto](https://github.com/patak-dev), and Dan Maier (for the `one` package name).
 
 One builds on excellent open source work:
 
 - [Vite](https://vitejs.dev)
 - [React Navigation](https://reactnavigation.org)
 - [Expo](https://expo.dev)
-- [Hono](https://hono.dev)
 - [Remix](https://remix.run)
 - [Software Mansion](https://swmansion.com) — react-native-screens, gesture-handler, reanimated
-
-And thank you to folks who helped directly:
-
-- [Fatih Aygün](https://github.com/cyco130)
-- [Hiroshi Ogawa](https://github.com/hi-ogawa)
-- [Matias Capeletto](https://github.com/patak-dev)
-- Dan Maier (for the `one` package name)
-
-One started as a fork of [Expo Router](https://expo.dev/router), built on top of [vxrn](https://vxrn.dev). It maintains nearly full API compatibility with Expo Router, while adding features One needs (typed routes, loaders on web + native, per-route render modes, middleware, and broader deployment targets).
 
 ## Community
 
@@ -84,7 +71,3 @@ We'd love to have you involved:
 - [Join our Discord](https://discord.gg/one) to chat, ask questions, or share what you're building
 - [Open an issue](https://github.com/onejs/one/issues) if you hit a bug (repros help a lot!)
 - Contributions welcome — docs, examples, bug fixes, or just helping others in Discord
-
-```bash
-npx one
-```

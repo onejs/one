@@ -1,38 +1,38 @@
-import { useState, useEffect } from "react";
-import { Link } from "one";
+import { useState, useEffect } from 'react'
+import { Link } from 'one'
 
 export default function APITestPage() {
-  const [basicResult, setBasicResult] = useState<string>("Loading...");
-  const [paramsResult, setParamsResult] = useState<string>("Loading...");
-  const [postResult, setPostResult] = useState<string>("Not tested");
+  const [basicResult, setBasicResult] = useState<string>('Loading...')
+  const [paramsResult, setParamsResult] = useState<string>('Loading...')
+  const [postResult, setPostResult] = useState<string>('Not tested')
 
   useEffect(() => {
     // Test basic API
-    fetch("/api/hello")
+    fetch('/api/hello')
       .then((r) => r.json())
       .then((d) => setBasicResult(JSON.stringify(d)))
-      .catch((e) => setBasicResult(`Error: ${e.message}`));
+      .catch((e) => setBasicResult(`Error: ${e.message}`))
 
     // Test API with params
-    fetch("/api/echo/test-value?query=hello")
+    fetch('/api/echo/test-value?query=hello')
       .then((r) => r.json())
       .then((d) => setParamsResult(JSON.stringify(d)))
-      .catch((e) => setParamsResult(`Error: ${e.message}`));
-  }, []);
+      .catch((e) => setParamsResult(`Error: ${e.message}`))
+  }, [])
 
   const testPost = async () => {
     try {
-      const response = await fetch("/api/hello", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: "One Test" }),
-      });
-      const data = await response.json();
-      setPostResult(JSON.stringify(data));
+      const response = await fetch('/api/hello', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'One Test' }),
+      })
+      const data = await response.json()
+      setPostResult(JSON.stringify(data))
     } catch (e: any) {
-      setPostResult(`Error: ${e.message}`);
+      setPostResult(`Error: ${e.message}`)
     }
-  };
+  }
 
   return (
     <div>
@@ -60,5 +60,5 @@ export default function APITestPage() {
         Back to Home
       </Link>
     </div>
-  );
+  )
 }

@@ -1,44 +1,50 @@
-import { useState } from "react";
-import { Adapt, Popover, Sheet, YStack, type TextProps } from "tamagui";
-import { Badge } from "../features/docs/Badge";
-import { SupportedVersions } from "./SupportedVersions";
+import { useState } from 'react'
+import { Adapt, Popover, Sheet, YStack, type TextProps } from 'tamagui'
+import { Badge } from '../features/docs/Badge'
+import { SupportedVersions } from './SupportedVersions'
 
 const badgeStatuses = {
   stable: {
-    theme: "green",
-    text: "Stable",
+    theme: 'green',
+    text: 'Stable',
   },
-  "mostly-stable": {
-    theme: "blue",
-    text: "Mostly Stable",
+  'mostly-stable': {
+    theme: 'blue',
+    text: 'Mostly Stable',
   },
   developing: {
-    theme: "purple",
-    text: "Developing",
+    theme: 'purple',
+    text: 'Developing',
   },
   early: {
-    theme: "red",
-    text: "Early",
+    theme: 'red',
+    text: 'Early',
   },
   beta: {
-    theme: "pink",
-    text: "Beta",
+    theme: 'pink',
+    text: 'Beta',
   },
-} as const;
+} as const
 
 export const StatusBadgePopover = ({
   is,
   text,
   ...rest
 }: TextProps & {
-  is: keyof typeof badgeStatuses;
-  text?: string;
+  is: keyof typeof badgeStatuses
+  text?: string
 }) => {
-  const [open, setOpen] = useState(false);
-  const info = badgeStatuses[is];
+  const [open, setOpen] = useState(false)
+  const info = badgeStatuses[is]
 
   return (
-    <Popover open={open} onOpenChange={setOpen} size="$5" allowFlip stayInFrame={{ padding: 10 }}>
+    <Popover
+      open={open}
+      onOpenChange={setOpen}
+      size="$5"
+      allowFlip
+      stayInFrame={{ padding: 10 }}
+    >
       <Popover.Trigger asChild>
         <Badge
           alignSelf="flex-start"
@@ -86,7 +92,7 @@ export const StatusBadgePopover = ({
         enterStyle={{ y: -10, opacity: 0 }}
         exitStyle={{ y: -10, opacity: 0 }}
         animation={[
-          "quick",
+          'quick',
           {
             opacity: {
               overshootClamping: true,
@@ -102,5 +108,5 @@ export const StatusBadgePopover = ({
         <SupportedVersions />
       </Popover.Content>
     </Popover>
-  );
-};
+  )
+}

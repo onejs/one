@@ -1,48 +1,48 @@
-import { Link, useLoader } from "one";
-import { Text, YStack, H1, Paragraph } from "tamagui";
+import { Link, useLoader } from 'one'
+import { Text, YStack, H1, Paragraph } from 'tamagui'
 
 // Dynamic route WITHOUT +ssg suffix - uses defaultRenderMode from config
 const PAGES: Record<string, { title: string; content: string }> = {
-  "page-one": {
-    title: "Page One",
+  'page-one': {
+    title: 'Page One',
     content:
-      "This is the first page using default render mode. It has dynamic content loaded via useLoader.",
+      'This is the first page using default render mode. It has dynamic content loaded via useLoader.',
   },
-  "page-two": {
-    title: "Page Two",
+  'page-two': {
+    title: 'Page Two',
     content:
-      "This is the second page using default render mode. Navigate between pages to test for flicker.",
+      'This is the second page using default render mode. Navigate between pages to test for flicker.',
   },
-  "page-three": {
-    title: "Page Three",
+  'page-three': {
+    title: 'Page Three',
     content:
-      "This is the third page using default render mode. All pages share the same dynamic route.",
+      'This is the third page using default render mode. All pages share the same dynamic route.',
   },
-};
+}
 
 export async function generateStaticParams() {
-  return Object.keys(PAGES).map((slug) => ({ slug }));
+  return Object.keys(PAGES).map((slug) => ({ slug }))
 }
 
 export async function loader({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+  const slug = params.slug
   const page = PAGES[slug] || {
-    title: "Unknown Page",
-    content: "This page was not found.",
-  };
+    title: 'Unknown Page',
+    content: 'This page was not found.',
+  }
 
   // simulate realistic loader delay
-  await new Promise((resolve) => setTimeout(resolve, 150));
+  await new Promise((resolve) => setTimeout(resolve, 150))
 
   return {
     slug,
     ...page,
     allSlugs: Object.keys(PAGES),
-  };
+  }
 }
 
 export default function DefaultModeSlugPage() {
-  const data = useLoader(loader);
+  const data = useLoader(loader)
 
   return (
     <YStack padding="$4" gap="$4">
@@ -88,5 +88,5 @@ export default function DefaultModeSlugPage() {
         Slug: {data.slug}
       </Text>
     </YStack>
-  );
+  )
 }

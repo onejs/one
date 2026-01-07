@@ -1,23 +1,23 @@
-import { Heart, Repeat, Reply } from "@tamagui/lucide-icons";
-import { Link, usePathname } from "one";
-import { Paragraph, SizableText, XStack, YStack } from "tamagui";
-import { Card } from "../ui/Card";
-import { Image } from "../ui/Image";
+import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
+import { Link, usePathname } from 'one'
+import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
+import { Card } from '../ui/Card'
+import { Image } from '../ui/Image'
 
 type FeedItem = {
-  id: number;
-  content: string;
-  createdAt: Date | null;
+  id: number
+  content: string
+  createdAt: Date | null
   user: {
-    name: string;
-    avatar: string | null;
-  } | null;
-  likesCount?: number;
-  repliesCount?: number;
-  repostsCount?: number;
-  disableLink?: boolean;
-  isReply?: boolean;
-};
+    name: string
+    avatar: string | null
+  } | null
+  likesCount?: number
+  repliesCount?: number
+  repostsCount?: number
+  disableLink?: boolean
+  isReply?: boolean
+}
 
 const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
   return (
@@ -27,17 +27,17 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
         {count}
       </SizableText>
     </XStack>
-  );
-};
+  )
+}
 
 export const FeedCard = (props: FeedItem) => {
-  const pathname = usePathname() as "/" | "/notifications" | "/profile"; // Note: this is not ideal since the pathname will change based on the current (active) route. We need something like useLocalPathname(). Also link will break if the FeedCard is used outside of these routes while not `disableLink`.
+  const pathname = usePathname() as '/' | '/notifications' | '/profile' // Note: this is not ideal since the pathname will change based on the current (active) route. We need something like useLocalPathname(). Also link will break if the FeedCard is used outside of these routes while not `disableLink`.
 
-  if (!props.user) return null;
+  if (!props.user) return null
 
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar || ""} />
+      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar || ''} />
       <YStack f={1} gap="$2">
         <Paragraph size="$5" fow="bold">
           {props.user.name}
@@ -47,7 +47,7 @@ export const FeedCard = (props: FeedItem) => {
           size="$4"
           whiteSpace="pre-wrap"
           $gtSm={{
-            size: "$5",
+            size: '$5',
           }}
         >
           {props.content}
@@ -61,7 +61,7 @@ export const FeedCard = (props: FeedItem) => {
         ) : null}
       </YStack>
     </Card>
-  );
+  )
 
   return props.disableLink ? (
     content
@@ -69,14 +69,16 @@ export const FeedCard = (props: FeedItem) => {
     <Link
       asChild
       href={{
-        pathname: `${pathname === "/" ? "" : pathname}/post/[id]`,
+        pathname: `${pathname === '/' ? '' : pathname}/post/[id]`,
         params: {
           id: props.id.toString(),
-          ...(typeof document === "undefined" ? ({ preloadTitle: props.content } as any) : {}),
+          ...(typeof document === 'undefined'
+            ? ({ preloadTitle: props.content } as any)
+            : {}),
         },
       }}
     >
       {content}
     </Link>
-  );
-};
+  )
+}

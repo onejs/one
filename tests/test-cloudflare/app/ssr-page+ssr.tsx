@@ -1,18 +1,18 @@
-import { Link, useLoader } from "one";
+import { Link, useLoader } from 'one'
 
 export async function loader({ request }: { request?: Request }) {
   // Handle SSR build where request may not be available
-  const url = request ? new URL(request.url) : null;
+  const url = request ? new URL(request.url) : null
   return {
-    message: "Hello from SSR loader!",
+    message: 'Hello from SSR loader!',
     timestamp: Date.now(),
-    path: url?.pathname ?? "/ssr-page",
+    path: url?.pathname ?? '/ssr-page',
     query: url ? Object.fromEntries(url.searchParams.entries()) : {},
-  };
+  }
 }
 
 export default function SSRPage() {
-  const data = useLoader(loader);
+  const data = useLoader(loader)
 
   return (
     <div>
@@ -27,5 +27,5 @@ export default function SSRPage() {
         Back to Home
       </Link>
     </div>
-  );
+  )
 }

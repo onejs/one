@@ -8,9 +8,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-"use strict";
+'use strict'
 var ReactSharedInternals =
-  require("react").__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+  require('react').__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE
 exports.c = function (size) {
-  return ReactSharedInternals.H.useMemoCache(size);
-};
+  return ReactSharedInternals.H.useMemoCache(size)
+}

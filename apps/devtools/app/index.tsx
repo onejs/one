@@ -1,42 +1,42 @@
-import { Globe, Smartphone } from "@tamagui/lucide-icons";
-import { onOpenUrl } from "@tauri-apps/plugin-deep-link";
-import { useEffect } from "react";
-import { styled, Tabs, Text, View, XStack, YStack } from "tamagui";
-import { AppTab } from "~/features/app/AppTab";
-import { DataTab } from "~/features/data/DataTab";
-import { RovingTabs } from "~/features/ui/RovingTabs";
+import { Globe, Smartphone } from '@tamagui/lucide-icons'
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
+import { useEffect } from 'react'
+import { styled, Tabs, Text, View, XStack, YStack } from 'tamagui'
+import { AppTab } from '~/features/app/AppTab'
+import { DataTab } from '~/features/data/DataTab'
+import { RovingTabs } from '~/features/ui/RovingTabs'
 
 export function HomePage() {
   // this is one way we could communicate between the node cli and the devtools
   useEffect(() => {
     try {
       onOpenUrl(([urlString]) => {
-        const url = new URL(urlString);
+        const url = new URL(urlString)
 
         switch (url.host) {
-          case "open-app": {
-            const port = url.searchParams.get("port");
-            console.warn("got message to open app port", port);
+          case 'open-app': {
+            const port = url.searchParams.get('port')
+            console.warn('got message to open app port', port)
 
-            break;
+            break
           }
         }
-      });
+      })
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, []);
+  }, [])
 
   return (
     <YStack data-tauri-drag-region f={1}>
       <RovingTabs
         initialTab="one"
         tabs={[
-          { label: "Home", value: "one" },
-          { label: "Data", value: "data" },
-          { label: "App", value: "app" },
-          { label: "Logs", value: "logs" },
-          { label: "REPL", value: "repl" },
+          { label: 'Home', value: 'one' },
+          { label: 'Data', value: 'data' },
+          { label: 'App', value: 'app' },
+          { label: 'Logs', value: 'logs' },
+          { label: 'REPL', value: 'repl' },
         ]}
       >
         <Tabs.Content f={1} data-tauri-drag-region value="one">
@@ -60,7 +60,7 @@ export function HomePage() {
         </Tabs.Content>
       </RovingTabs>
     </YStack>
-  );
+  )
 }
 
 const ActionCard = ({ name, Icon }: { name: string; Icon?: any }) => {
@@ -72,22 +72,22 @@ const ActionCard = ({ name, Icon }: { name: string; Icon?: any }) => {
         {name}
       </Text>
     </Card>
-  );
-};
+  )
+}
 
 const Card = styled(View, {
-  cur: "pointer",
-  gap: "$4",
-  ai: "center",
-  jc: "center",
-  w: "30%",
+  cur: 'pointer',
+  gap: '$4',
+  ai: 'center',
+  jc: 'center',
+  w: '30%',
   f: 1,
-  bg: "$background02",
-  p: "$6",
-  br: "$4",
+  bg: '$background02',
+  p: '$6',
+  br: '$4',
   mih: 150,
 
   hoverStyle: {
-    bg: "$color4",
+    bg: '$color4',
   },
-});
+})

@@ -4,4 +4,4 @@ export {
   type TransformOptions,
   transformFromAstSync,
   transformSync,
-} from "@babel/core";
+} from '@babel/core'

@@ -1,4 +1,4 @@
-export * from "./devServerClient";
+export * from './devServerClient'
 
-import { client } from "./devServerClient";
-export default client;
+import { client } from './devServerClient'
+export default client

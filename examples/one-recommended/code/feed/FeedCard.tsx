@@ -1,23 +1,23 @@
-import { Heart, Repeat, Reply } from "@tamagui/lucide-icons";
-import { Link } from "one";
-import { isWeb, Paragraph, SizableText, XStack, YStack } from "tamagui";
-import { Card } from "../ui/Card";
-import { Image } from "../ui/Image";
+import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
+import { Link } from 'one'
+import { isWeb, Paragraph, SizableText, XStack, YStack } from 'tamagui'
+import { Card } from '../ui/Card'
+import { Image } from '../ui/Image'
 
 type FeedItem = {
-  id: number;
-  content: string;
-  createdAt: Date | null;
+  id: number
+  content: string
+  createdAt: Date | null
   user: {
-    name: string;
-    avatar: string | null;
-  } | null;
-  likesCount?: number;
-  repliesCount?: number;
-  repostsCount?: number;
-  disableLink?: boolean;
-  isReply?: boolean;
-};
+    name: string
+    avatar: string | null
+  } | null
+  likesCount?: number
+  repliesCount?: number
+  repostsCount?: number
+  disableLink?: boolean
+  isReply?: boolean
+}
 
 const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
   return (
@@ -27,17 +27,17 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
         {count}
       </SizableText>
     </XStack>
-  );
-};
+  )
+}
 
 export const FeedCard = (props: FeedItem) => {
   if (!props.user) {
-    return null;
+    return null
   }
 
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} rounded={100} mt="$2" src={props.user.avatar || ""} />
+      <Image width={32} height={32} rounded={100} mt="$2" src={props.user.avatar || ''} />
       <YStack flex={1} gap="$2">
         <Paragraph size="$5" fontWeight="bold">
           {props.user.name}
@@ -47,7 +47,7 @@ export const FeedCard = (props: FeedItem) => {
           size="$4"
           whiteSpace="pre-wrap"
           $sm={{
-            size: "$4",
+            size: '$4',
           }}
         >
           {props.content}
@@ -61,7 +61,7 @@ export const FeedCard = (props: FeedItem) => {
         ) : null}
       </YStack>
     </Card>
-  );
+  )
 
   return props.disableLink ? (
     content
@@ -78,5 +78,5 @@ export const FeedCard = (props: FeedItem) => {
     >
       {content}
     </Link>
-  );
-};
+  )
+}

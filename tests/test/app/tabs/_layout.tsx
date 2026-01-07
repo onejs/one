@@ -1,5 +1,5 @@
-import { Tabs, TabList, TabSlot, TabTrigger } from "one/ui";
-import { View, Text, StyleSheet } from "react-native";
+import { Tabs, TabList, TabSlot, TabTrigger } from 'one/ui'
+import { View, Text, StyleSheet } from 'react-native'
 
 export default function TabsLayout() {
   return (
@@ -14,7 +14,7 @@ export default function TabsLayout() {
         </TabTrigger>
       </TabList>
     </Tabs>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabList: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     padding: 10,
   },
-});
+})

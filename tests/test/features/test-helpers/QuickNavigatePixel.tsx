@@ -1,45 +1,45 @@
-import { useCallback } from "react";
-import { Pressable } from "react-native";
-import { useRouter } from "one";
-import * as Clipboard from "expo-clipboard";
-import { useSafeAreaInsets, initialWindowMetrics } from "react-native-safe-area-context";
+import { useCallback } from 'react'
+import { Pressable } from 'react-native'
+import { useRouter } from 'one'
+import * as Clipboard from 'expo-clipboard'
+import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
 
 export function QuickNavigatePixel() {
   const safeAreaInsets = (() => {
     try {
-      const insets = useSafeAreaInsets();
-      if (insets) return insets;
+      const insets = useSafeAreaInsets()
+      if (insets) return insets
     } catch {}
 
     // Fallback so this component will still work even if the safe area context is not available
     // or broken.
-    return initialWindowMetrics?.insets;
-  })();
+    return initialWindowMetrics?.insets
+  })()
 
-  const router = useRouter();
+  const router = useRouter()
 
   const navigate = useCallback(async () => {
     try {
-      const target = await Clipboard.getStringAsync();
+      const target = await Clipboard.getStringAsync()
 
       if (!target) {
-        console.warn("QuickNavigatePixel: Nothing in clipboard");
-        return;
+        console.warn('QuickNavigatePixel: Nothing in clipboard')
+        return
       }
 
-      router.navigate(target as any);
+      router.navigate(target as any)
     } catch (e) {
       console.warn(
-        `QuickNavigatePixel: Failed to navigate ${e instanceof Error ? e.message : "Unknown error"}`,
-      );
+        `QuickNavigatePixel: Failed to navigate ${e instanceof Error ? e.message : 'Unknown error'}`
+      )
     }
-  }, []);
+  }, [])
 
   return (
     <Pressable
       testID="quick-navigate-pixel"
       style={{
-        position: "absolute",
+        position: 'absolute',
 
         // Need to be in the safe area to be tappable
         bottom: (safeAreaInsets?.bottom || 0) + 1,
@@ -54,5 +54,5 @@ export function QuickNavigatePixel() {
       }}
       onPress={navigate}
     ></Pressable>
-  );
+  )
 }

@@ -6,43 +6,43 @@
  */
 
 // @modified - end: use vitest instead of jest
-import type { InitialState } from "@react-navigation/routers";
-import { produce } from "immer";
+import type { InitialState } from '@react-navigation/routers'
+import { produce } from 'immer'
 // @modified - start: use vitest instead of jest
 // import { expect, test } from '@jest/globals';
-import { expect, test } from "vitest";
+import { expect, test } from 'vitest'
 
-import { findFocusedRoute } from "../findFocusedRoute";
-import { getPathFromState } from "../getPathFromState";
-import { getStateFromPath } from "../getStateFromPath";
+import { findFocusedRoute } from '../findFocusedRoute'
+import { getPathFromState } from '../getPathFromState'
+import { getStateFromPath } from '../getStateFromPath'
 
 const changePath = <T extends InitialState>(state: T, path: string): T =>
   produce(state, (draftState) => {
-    const route = findFocusedRoute(draftState);
+    const route = findFocusedRoute(draftState)
     // @ts-expect-error: immer won't mutate this
-    route.path = path;
-  });
+    route.path = path
+  })
 
-test("returns undefined for invalid path", () => {
-  expect(getStateFromPath<object>("//")).toBeUndefined();
-});
+test('returns undefined for invalid path', () => {
+  expect(getStateFromPath<object>('//')).toBeUndefined()
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("converts path string to initial state", () => {
-  const path = "foo/bar/baz%20qux?author=jane%20%26%20co&valid=true";
+test.skip('converts path string to initial state', () => {
+  const path = 'foo/bar/baz%20qux?author=jane%20%26%20co&valid=true'
   const state = {
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
           routes: [
             {
-              name: "bar",
+              name: 'bar',
               state: {
                 routes: [
                   {
-                    name: "baz qux",
-                    params: { author: "jane & co", valid: "true" },
+                    name: 'baz qux',
+                    params: { author: 'jane & co', valid: 'true' },
                     path,
                   },
                 ],
@@ -52,103 +52,108 @@ test.skip("converts path string to initial state", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path)).toEqual(state);
+  expect(getStateFromPath<object>(path)).toEqual(state)
   expect(getStateFromPath<object>(getPathFromState<object>(state))).toEqual(
-    changePath(state, "/foo/bar/baz%20qux?author=jane%20%26%20co&valid=true"),
-  );
-});
+    changePath(state, '/foo/bar/baz%20qux?author=jane%20%26%20co&valid=true')
+  )
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("decodes encoded params in path", () => {
-  const path = "/foo/bar/bar_%23_foo";
+test.skip('decodes encoded params in path', () => {
+  const path = '/foo/bar/bar_%23_foo'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Bar: {
-            path: "/bar/:id",
+            path: '/bar/:id',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "bar_#_foo" },
+              name: 'Bar',
+              params: { id: 'bar_#_foo' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config)!, config)).toEqual(path);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config)!, config)
+  ).toEqual(path)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("decodes encoded params in path that have encoded /", () => {
-  const path = "/foo/bar/bar_%2F_foo";
+test.skip('decodes encoded params in path that have encoded /', () => {
+  const path = '/foo/bar/bar_%2F_foo'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Bar: {
-            path: "/bar/:id",
+            path: '/bar/:id',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "bar_/_foo" },
+              name: 'Bar',
+              params: { id: 'bar_/_foo' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config)!, config)).toEqual(path);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config)!, config)
+  ).toEqual(path)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("converts path string to initial state with config", () => {
-  const path = "/foo/bar/sweet/apple/baz/jane?count=10&answer=42&valid=true";
+test.skip('converts path string to initial state with config', () => {
+  const path = '/foo/bar/sweet/apple/baz/jane?count=10&answer=42&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Bar: {
-            path: "bar/:type/:fruit",
+            path: 'bar/:type/:fruit',
             screens: {
               Baz: {
-                path: "baz/:author",
+                path: 'baz/:author',
                 parse: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toUpperCase()),
                   count: Number,
                   valid: Boolean,
                 },
@@ -161,25 +166,25 @@ test.skip("converts path string to initial state with config", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { fruit: "apple", type: "sweet" },
+              name: 'Bar',
+              params: { fruit: 'apple', type: 'sweet' },
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     params: {
-                      author: "Jane",
+                      author: 'Jane',
                       count: 10,
-                      answer: "42",
+                      answer: '42',
                       valid: true,
                     },
                     path,
@@ -191,92 +196,95 @@ test.skip("converts path string to initial state with config", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles leading slash when converting", () => {
-  const path = "/foo/bar/?count=42";
+test('handles leading slash when converting', () => {
+  const path = '/foo/bar/?count=42'
 
   expect(getStateFromPath<object>(path)).toEqual({
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
           routes: [
             {
-              name: "bar",
-              params: { count: "42" },
+              name: 'bar',
+              params: { count: '42' },
               path,
             },
           ],
         },
       },
     ],
-  });
-});
+  })
+})
 
-test("handles ending slash when converting", () => {
-  const path = "foo/bar/?count=42";
+test('handles ending slash when converting', () => {
+  const path = 'foo/bar/?count=42'
 
   expect(getStateFromPath<object>(path)).toEqual({
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
           routes: [
             {
-              name: "bar",
-              params: { count: "42" },
+              name: 'bar',
+              params: { count: '42' },
               path,
             },
           ],
         },
       },
     ],
-  });
-});
+  })
+})
 
-test("handles route without param", () => {
-  const path = "foo/bar";
+test('handles route without param', () => {
+  const path = 'foo/bar'
   const state = {
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
-          routes: [{ name: "bar", path }],
+          routes: [{ name: 'bar', path }],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path)).toEqual(state);
+  expect(getStateFromPath<object>(path)).toEqual(state)
   expect(getStateFromPath<object>(getPathFromState<object>(state))).toEqual(
-    changePath(state, "/foo/bar"),
-  );
-});
+    changePath(state, '/foo/bar')
+  )
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("converts path string to initial state with config with nested screens", () => {
-  const path = "/foe/bar/sweet/apple/baz/jane?count=10&answer=42&valid=true";
+test.skip('converts path string to initial state with config with nested screens', () => {
+  const path = '/foe/bar/sweet/apple/baz/jane?count=10&answer=42&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             exact: true,
             screens: {
               Bar: {
-                path: "bar/:type/:fruit",
+                path: 'bar/:type/:fruit',
                 screens: {
                   Baz: {
-                    path: "baz/:author",
+                    path: 'baz/:author',
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -291,29 +299,29 @@ test.skip("converts path string to initial state with config with nested screens
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Bar",
-                    params: { fruit: "apple", type: "sweet" },
+                    name: 'Bar',
+                    params: { fruit: 'apple', type: 'sweet' },
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           params: {
-                            author: "Jane",
+                            author: 'Jane',
                             count: 10,
-                            answer: "42",
+                            answer: '42',
                             valid: true,
                           },
                           path,
@@ -328,28 +336,31 @@ test.skip("converts path string to initial state with config with nested screens
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("converts path string to initial state with config with nested screens and unused parse functions", () => {
-  const path = "/foe/baz/jane?count=10&answer=42&valid=true";
+test.skip('converts path string to initial state with config with nested screens and unused parse functions', () => {
+  const path = '/foe/baz/jane?count=10&answer=42&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             exact: true,
             screens: {
               Baz: {
-                path: "baz/:author",
+                path: 'baz/:author',
                 parse: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toUpperCase()),
                   count: Number,
                   valid: Boolean,
                   id: Boolean,
@@ -360,24 +371,24 @@ test.skip("converts path string to initial state with config with nested screens
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     params: {
-                      author: "Jane",
+                      author: 'Jane',
                       count: 10,
-                      answer: "42",
+                      answer: '42',
                       valid: true,
                     },
                     path,
@@ -389,40 +400,42 @@ test.skip("converts path string to initial state with config with nested screens
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/foe/baz/Jane?count=10&answer=42&valid=true"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/foe/baz/Jane?count=10&answer=42&valid=true'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles nested object with unused configs and with parse in it", () => {
-  const path = "/bar/sweet/apple/foe/bis/jane?count=10&answer=42&valid=true";
+test.skip('handles nested object with unused configs and with parse in it', () => {
+  const path = '/bar/sweet/apple/foe/bis/jane?count=10&answer=42&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
                 screens: {
                   Baz: {
                     screens: {
                       Bos: {
-                        path: "bos",
+                        path: 'bos',
                         exact: true,
                       },
                       Bis: {
-                        path: "bis/:author",
+                        path: 'bis/:author',
                         stringify: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toLowerCase()),
                         },
                         parse: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toUpperCase()),
                           count: Number,
                           valid: Boolean,
                         },
@@ -436,33 +449,33 @@ test.skip("handles nested object with unused configs and with parse in it", () =
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Foe",
+                    name: 'Foe',
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           state: {
                             routes: [
                               {
-                                name: "Bis",
+                                name: 'Bis',
                                 params: {
-                                  author: "Jane",
+                                  author: 'Jane',
                                   count: 10,
-                                  answer: "42",
+                                  answer: '42',
                                   valid: true,
                                 },
                                 path,
@@ -480,29 +493,31 @@ test.skip("handles nested object with unused configs and with parse in it", () =
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles parse in nested object for second route depth", () => {
-  const path = "/baz";
+test('handles parse in nested object for second route depth', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             exact: true,
           },
           Bar: {
-            path: "bar",
+            path: 'bar',
             exact: true,
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
                 exact: true,
               },
             },
@@ -510,36 +525,38 @@ test("handles parse in nested object for second route depth", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz", path }],
+                routes: [{ name: 'Baz', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles parse in nested object for second route depth and and path and parse in roots", () => {
-  const path = "/baz";
+test('handles parse in nested object for second route depth and and path and parse in roots', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id",
+        path: 'foo/:id',
         parse: {
           id: Number,
         },
@@ -547,11 +564,11 @@ test("handles parse in nested object for second route depth and and path and par
           id: (id: number) => `id=${id}`,
         },
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
                 exact: true,
               },
             },
@@ -559,218 +576,230 @@ test("handles parse in nested object for second route depth and and path and par
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz", path }],
+                routes: [{ name: 'Baz', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles path at top level", () => {
-  const path = "/foo/fruits/apple";
+test.skip('handles path at top level', () => {
+  const path = '/foo/fruits/apple'
   const config = {
-    path: "foo",
+    path: 'foo',
     screens: {
       Foo: {
         screens: {
-          Fruits: "fruits/:fruit",
+          Fruits: 'fruits/:fruit',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Fruits",
-              params: { fruit: "apple" },
+              name: 'Fruits',
+              params: { fruit: 'apple' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles initialRouteName at top level", () => {
-  const path = "/baz";
+test('handles initialRouteName at top level', () => {
+  const path = '/baz'
   const config = {
-    initialRouteName: "Boo",
+    initialRouteName: 'Boo',
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     index: 1,
     routes: [
-      { name: "Boo" },
+      { name: 'Boo' },
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz", path }],
+                routes: [{ name: 'Baz', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles initialRouteName inside a screen", () => {
-  const path = "/baz";
+test('handles initialRouteName inside a screen', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        initialRouteName: "Foe",
+        initialRouteName: 'Foe',
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
             },
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz", path }],
+                routes: [{ name: 'Baz', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles initialRouteName included in path", () => {
-  const path = "/baz";
+test('handles initialRouteName included in path', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        initialRouteName: "Foe",
+        initialRouteName: 'Foe',
         screens: {
           Foe: {
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
-          Bar: "bar",
+          Bar: 'bar',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
-                routes: [{ name: "Baz", path }],
+                routes: [{ name: 'Baz', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles two initialRouteNames", () => {
-  const path = "/bar/sweet/apple/foe/bis/jane?answer=42&count=10&valid=true";
+test.skip('handles two initialRouteNames', () => {
+  const path = '/bar/sweet/apple/foe/bis/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
                 screens: {
                   Baz: {
-                    initialRouteName: "Bos",
+                    initialRouteName: 'Bos',
                     screens: {
                       Bos: {
-                        path: "bos",
+                        path: 'bos',
                         exact: true,
                       },
                       Bis: {
-                        path: "bis/:author",
+                        path: 'bis/:author',
                         stringify: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toLowerCase()),
                         },
                         parse: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toUpperCase()),
                           count: Number,
                           valid: Boolean,
                         },
@@ -784,34 +813,34 @@ test.skip("handles two initialRouteNames", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Foe",
+                    name: 'Foe',
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           state: {
                             index: 1,
                             routes: [
-                              { name: "Bos" },
+                              { name: 'Bos' },
                               {
-                                name: "Bis",
+                                name: 'Bis',
                                 params: {
-                                  answer: "42",
-                                  author: "Jane",
+                                  answer: '42',
+                                  author: 'Jane',
                                   count: 10,
                                   valid: true,
                                 },
@@ -830,39 +859,43 @@ test.skip("handles two initialRouteNames", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("accepts initialRouteName without config for it", () => {
-  const path = "/bar/sweet/apple/foe/bis/jane?answer=42&count=10&valid=true";
+test.skip('accepts initialRouteName without config for it', () => {
+  const path = '/bar/sweet/apple/foe/bis/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
                 screens: {
                   Baz: {
-                    initialRouteName: "Bas",
+                    initialRouteName: 'Bas',
                     screens: {
                       Bos: {
-                        path: "bos",
+                        path: 'bos',
                         exact: true,
                       },
                       Bis: {
-                        path: "bis/:author",
+                        path: 'bis/:author',
                         stringify: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toLowerCase()),
                         },
                         parse: {
-                          author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                          author: (author: string) =>
+                            author.replace(/^\w/, (c) => c.toUpperCase()),
                           count: Number,
                           valid: Boolean,
                         },
@@ -876,34 +909,34 @@ test.skip("accepts initialRouteName without config for it", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Foe",
+                    name: 'Foe',
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           state: {
                             index: 1,
                             routes: [
-                              { name: "Bas" },
+                              { name: 'Bas' },
                               {
-                                name: "Bis",
+                                name: 'Bis',
                                 params: {
-                                  answer: "42",
-                                  author: "Jane",
+                                  answer: '42',
+                                  author: 'Jane',
                                   count: 10,
                                   valid: true,
                                 },
@@ -922,216 +955,218 @@ test.skip("accepts initialRouteName without config for it", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("returns undefined if no matching screen is present (top level path)", () => {
-  const path = "/foo/bar";
+test('returns undefined if no matching screen is present (top level path)', () => {
+  const path = '/foo/bar'
   const config = {
-    path: "qux",
+    path: 'qux',
     screens: {
       Foo: {
         screens: {
-          Foe: "foo",
+          Foe: 'foo',
           Bar: {
             screens: {
-              Baz: "bar",
+              Baz: 'bar',
             },
           },
         },
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toBeUndefined();
-});
+  expect(getStateFromPath<object>(path, config)).toBeUndefined()
+})
 
-test("returns undefined if no matching screen is present", () => {
-  const path = "/baz";
+test('returns undefined if no matching screen is present', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toBeUndefined();
-});
+  expect(getStateFromPath<object>(path, config)).toBeUndefined()
+})
 
-test("returns undefined if path is empty and no matching screen is present", () => {
-  const path = "";
+test('returns undefined if path is empty and no matching screen is present', () => {
+  const path = ''
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toBeUndefined();
-});
+  expect(getStateFromPath<object>(path, config)).toBeUndefined()
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("returns matching screen if path is empty", () => {
-  const path = "";
+test.skip('returns matching screen if path is empty', () => {
+  const path = ''
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Qux: "",
-              Baz: "baz",
+              Qux: '',
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Qux", path }],
+                routes: [{ name: 'Qux', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, ""),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, ''))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("returns matching screen if path is only slash", () => {
-  const path = "/";
+test.skip('returns matching screen if path is only slash', () => {
+  const path = '/'
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
-              Qux: "",
-              Baz: "baz",
+              Qux: '',
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Qux", path: "" }],
+                routes: [{ name: 'Qux', path: '' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, ""),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, ''))
+})
 
-test("returns matching screen with params if path is empty", () => {
-  const path = "?foo=42";
+test('returns matching screen with params if path is empty', () => {
+  const path = '?foo=42'
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
               Qux: {
-                path: "",
+                path: '',
                 parse: { foo: Number },
               },
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Qux", params: { foo: 42 }, path }],
+                routes: [{ name: 'Qux', params: { foo: 42 }, path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/?foo=42"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/?foo=42'))
+})
 
 test("doesn't match nested screen if path is empty", () => {
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
-            path: "bar",
+            path: 'bar',
             screens: {
               Qux: {
-                path: "",
+                path: '',
                 parse: { foo: Number },
               },
             },
@@ -1139,26 +1174,26 @@ test("doesn't match nested screen if path is empty", () => {
         },
       },
     },
-  };
+  }
 
-  const path = "";
+  const path = ''
 
-  expect(getStateFromPath<object>(path, config)).toBeUndefined();
-});
+  expect(getStateFromPath<object>(path, config)).toBeUndefined()
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("chooses more exhaustive pattern", () => {
-  const path = "/foo/5";
+test.skip('chooses more exhaustive pattern', () => {
+  const path = '/foo/5'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
@@ -1166,20 +1201,20 @@ test.skip("chooses more exhaustive pattern", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bis",
+              name: 'Bis',
               params: { id: 5 },
               path,
             },
@@ -1187,67 +1222,71 @@ test.skip("chooses more exhaustive pattern", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("handles same paths beginnings", () => {
-  const path = "/foos";
+test('handles same paths beginnings', () => {
+  const path = '/foos'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos",
+            path: 'foos',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bis",
+              name: 'Bis',
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles same paths beginnings with params", () => {
-  const path = "/foos/5";
+test.skip('handles same paths beginnings with params', () => {
+  const path = '/foos/5'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
@@ -1255,20 +1294,20 @@ test.skip("handles same paths beginnings with params", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bis",
+              name: 'Bis',
               params: { id: 5 },
               path,
             },
@@ -1276,31 +1315,33 @@ test.skip("handles same paths beginnings with params", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles not taking path with too many segments", () => {
-  const path = "/foos/5";
+test.skip('handles not taking path with too many segments', () => {
+  const path = '/foos/5'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip",
+            path: 'foos/:id/:nip',
             parse: {
               id: Number,
               pwd: Number,
@@ -1309,20 +1350,20 @@ test.skip("handles not taking path with too many segments", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bis",
+              name: 'Bis',
               params: { id: 5 },
               path,
             },
@@ -1330,31 +1371,33 @@ test.skip("handles not taking path with too many segments", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles differently ordered params v1", () => {
-  const path = "/foos/5/res/20";
+test.skip('handles differently ordered params v1', () => {
+  const path = '/foos/5/res/20'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/res/:pwd",
+            path: 'foos/:id/res/:pwd',
             parse: {
               id: Number,
               pwd: Number,
@@ -1363,20 +1406,20 @@ test.skip("handles differently ordered params v1", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 20 },
               path,
             },
@@ -1384,31 +1427,33 @@ test.skip("handles differently ordered params v1", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles differently ordered params v2", () => {
-  const path = "/5/20/foos/res";
+test.skip('handles differently ordered params v2', () => {
+  const path = '/5/20/foos/res'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: ":id/:pwd/foos/res",
+            path: ':id/:pwd/foos/res',
             parse: {
               id: Number,
               pwd: Number,
@@ -1417,20 +1462,20 @@ test.skip("handles differently ordered params v2", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 20 },
               path,
             },
@@ -1438,31 +1483,33 @@ test.skip("handles differently ordered params v2", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles differently ordered params v3", () => {
-  const path = "/foos/5/20/res";
+test.skip('handles differently ordered params v3', () => {
+  const path = '/foos/5/20/res'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:pwd/res",
+            path: 'foos/:id/:pwd/res',
             parse: {
               id: Number,
               pwd: Number,
@@ -1471,20 +1518,20 @@ test.skip("handles differently ordered params v3", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 20 },
               path,
             },
@@ -1492,31 +1539,33 @@ test.skip("handles differently ordered params v3", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles differently ordered params v4", () => {
-  const path = "5/foos/res/20";
+test.skip('handles differently ordered params v4', () => {
+  const path = '5/foos/res/20'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foos/:id",
+            path: 'foos/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: ":id/foos/res/:pwd",
+            path: ':id/foos/res/:pwd',
             parse: {
               id: Number,
               pwd: Number,
@@ -1525,20 +1574,20 @@ test.skip("handles differently ordered params v4", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 20 },
               path,
             },
@@ -1546,33 +1595,33 @@ test.skip("handles differently ordered params v4", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/5/foos/res/20"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/5/foos/res/20'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles simple optional params", () => {
-  const path = "/foos/5";
+test.skip('handles simple optional params', () => {
+  const path = '/foos/5'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?",
+            path: 'foos/:id/:nip?',
             parse: {
               id: Number,
               nip: Number,
@@ -1581,20 +1630,20 @@ test.skip("handles simple optional params", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5 },
               path,
             },
@@ -1602,31 +1651,33 @@ test.skip("handles simple optional params", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle 2 optional params at the end v1", () => {
-  const path = "/foos/5";
+test.skip('handle 2 optional params at the end v1', () => {
+  const path = '/foos/5'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd?",
+            path: 'foos/:id/:nip?/:pwd?',
             parse: {
               id: Number,
               nip: Number,
@@ -1635,20 +1686,20 @@ test.skip("handle 2 optional params at the end v1", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5 },
               path,
             },
@@ -1656,31 +1707,33 @@ test.skip("handle 2 optional params at the end v1", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle 2 optional params at the end v2", () => {
-  const path = "/foos/5/10";
+test.skip('handle 2 optional params at the end v2', () => {
+  const path = '/foos/5/10'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd?",
+            path: 'foos/:id/:nip?/:pwd?',
             parse: {
               id: Number,
               nip: Number,
@@ -1689,20 +1742,20 @@ test.skip("handle 2 optional params at the end v2", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, nip: 10 },
               path,
             },
@@ -1710,31 +1763,33 @@ test.skip("handle 2 optional params at the end v2", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle 2 optional params at the end v3", () => {
-  const path = "/foos/5/10/15";
+test.skip('handle 2 optional params at the end v3', () => {
+  const path = '/foos/5/10/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd?",
+            path: 'foos/:id/:nip?/:pwd?',
             parse: {
               id: Number,
               nip: Number,
@@ -1744,20 +1799,20 @@ test.skip("handle 2 optional params at the end v3", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, nip: 10, pwd: 15 },
               path,
             },
@@ -1765,31 +1820,33 @@ test.skip("handle 2 optional params at the end v3", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the middle v1", () => {
-  const path = "/foos/5/10";
+test.skip('handle optional params in the middle v1', () => {
+  const path = '/foos/5/10'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd",
+            path: 'foos/:id/:nip?/:pwd',
             parse: {
               id: Number,
               nip: Number,
@@ -1799,20 +1856,20 @@ test.skip("handle optional params in the middle v1", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 10 },
               path,
             },
@@ -1820,31 +1877,33 @@ test.skip("handle optional params in the middle v1", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the middle v2", () => {
-  const path = "/foos/5/10/15";
+test.skip('handle optional params in the middle v2', () => {
+  const path = '/foos/5/10/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd",
+            path: 'foos/:id/:nip?/:pwd',
             parse: {
               id: Number,
               nip: Number,
@@ -1854,20 +1913,20 @@ test.skip("handle optional params in the middle v2", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, nip: 10, pwd: 15 },
               path,
             },
@@ -1875,31 +1934,33 @@ test.skip("handle optional params in the middle v2", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the middle v3", () => {
-  const path = "/foos/5/10/15";
+test.skip('handle optional params in the middle v3', () => {
+  const path = '/foos/5/10/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:id/:nip?/:pwd/:smh",
+            path: 'foos/:id/:nip?/:pwd/:smh',
             parse: {
               id: Number,
               nip: Number,
@@ -1910,20 +1971,20 @@ test.skip("handle optional params in the middle v3", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { id: 5, pwd: 10, smh: 15 },
               path,
             },
@@ -1931,31 +1992,33 @@ test.skip("handle optional params in the middle v3", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the middle v4", () => {
-  const path = "/foos/5/10";
+test.skip('handle optional params in the middle v4', () => {
+  const path = '/foos/5/10'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:nip?/:pwd/:smh?/:id",
+            path: 'foos/:nip?/:pwd/:smh?/:id',
             parse: {
               id: Number,
               nip: Number,
@@ -1966,20 +2029,20 @@ test.skip("handle optional params in the middle v4", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { pwd: 5, id: 10 },
               path,
             },
@@ -1987,31 +2050,33 @@ test.skip("handle optional params in the middle v4", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the middle v5", () => {
-  const path = "/foos/5/10/15";
+test.skip('handle optional params in the middle v5', () => {
+  const path = '/foos/5/10/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: "foos/:nip?/:pwd/:smh?/:id",
+            path: 'foos/:nip?/:pwd/:smh?/:id',
             parse: {
               id: Number,
               nip: Number,
@@ -2022,20 +2087,20 @@ test.skip("handle optional params in the middle v5", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { nip: 5, pwd: 10, id: 15 },
               path,
             },
@@ -2043,31 +2108,33 @@ test.skip("handle optional params in the middle v5", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the beginning v1", () => {
-  const path = "5/10/foos/15";
+test.skip('handle optional params in the beginning v1', () => {
+  const path = '5/10/foos/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: ":nip?/:pwd/foos/:smh?/:id",
+            path: ':nip?/:pwd/foos/:smh?/:id',
             parse: {
               id: Number,
               nip: Number,
@@ -2078,20 +2145,20 @@ test.skip("handle optional params in the beginning v1", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { nip: 5, pwd: 10, id: 15 },
               path,
             },
@@ -2099,33 +2166,33 @@ test.skip("handle optional params in the beginning v1", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/5/10/foos/15"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/5/10/foos/15'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handle optional params in the beginning v2", () => {
-  const path = "5/10/foos/15";
+test.skip('handle optional params in the beginning v2', () => {
+  const path = '5/10/foos/15'
 
   const config = {
     screens: {
       Foe: {
-        path: "/",
-        initialRouteName: "Foo",
+        path: '/',
+        initialRouteName: 'Foo',
         screens: {
-          Foo: "foo",
+          Foo: 'foo',
           Bis: {
-            path: "foo/:id",
+            path: 'foo/:id',
             parse: {
               id: Number,
             },
           },
           Bas: {
-            path: ":nip?/:smh?/:pwd/foos/:id",
+            path: ':nip?/:smh?/:pwd/foos/:id',
             parse: {
               id: Number,
               nip: Number,
@@ -2136,20 +2203,20 @@ test.skip("handle optional params in the beginning v2", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foe",
+        name: 'Foe',
         state: {
           index: 1,
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
             },
             {
-              name: "Bas",
+              name: 'Bas',
               params: { nip: 5, pwd: 10, id: 15 },
               path,
             },
@@ -2157,173 +2224,175 @@ test.skip("handle optional params in the beginning v2", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/5/10/foos/15"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/5/10/foos/15'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("merges parent patterns if needed", () => {
-  const path = "foo/42/baz/babel";
+test.skip('merges parent patterns if needed', () => {
+  const path = 'foo/42/baz/babel'
 
   const config = {
     screens: {
       Foo: {
-        path: "foo/:bar",
+        path: 'foo/:bar',
         parse: {
           bar: Number,
         },
         screens: {
-          Baz: "baz/:qux",
+          Baz: 'baz/:qux',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         params: { bar: 42 },
         state: {
           routes: [
             {
-              name: "Baz",
-              params: { qux: "babel" },
+              name: 'Baz',
+              params: { qux: 'babel' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/foo/42/baz/babel"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/foo/42/baz/babel'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("ignores extra slashes in the pattern", () => {
-  const path = "/bar/42";
+test.skip('ignores extra slashes in the pattern', () => {
+  const path = '/bar/42'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar//:id/",
+            path: '/bar//:id/',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "42" },
+              name: 'Bar',
+              params: { id: '42' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at root", () => {
-  const path = "/test/bar/42/whatever";
+test.skip('matches wildcard patterns at root', () => {
+  const path = '/test/bar/42/whatever'
   const config = {
     screens: {
-      404: "*",
+      404: '*',
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
-    routes: [{ name: "404", path }],
-  };
+    routes: [{ name: '404', path }],
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/404"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/404'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at nested level", () => {
-  const path = "/bar/42/whatever/baz/initt";
+test.skip('matches wildcard patterns at nested level', () => {
+  const path = '/bar/42/whatever/baz/initt'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              404: "*",
+              404: '*',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "42" },
+              name: 'Bar',
+              params: { id: '42' },
               state: {
-                routes: [{ name: "404", path }],
+                routes: [{ name: '404', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/bar/42/404"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/bar/42/404'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at nested level with exact", () => {
-  const path = "/whatever";
+test.skip('matches wildcard patterns at nested level with exact', () => {
+  const path = '/whatever'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
               404: {
-                path: "*",
+                path: '*',
                 exact: true,
               },
             },
@@ -2332,149 +2401,151 @@ test.skip("matches wildcard patterns at nested level with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "404", path }],
+                routes: [{ name: '404', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/404"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/404'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("tries to match wildcard patterns at the end", () => {
-  const path = "/bar/42/test";
+test.skip('tries to match wildcard patterns at the end', () => {
+  const path = '/bar/42/test'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              404: "*",
-              UserProfile: ":userSlug",
-              Test: "test",
+              404: '*',
+              UserProfile: ':userSlug',
+              Test: 'test',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "42" },
+              name: 'Bar',
+              params: { id: '42' },
               state: {
-                routes: [{ name: "Test", path }],
+                routes: [{ name: 'Test', path }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("uses nearest parent wildcard match for unmatched paths", () => {
-  const path = "/bar/42/baz/test";
+test.skip('uses nearest parent wildcard match for unmatched paths', () => {
+  const path = '/bar/42/baz/test'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
-          404: "*",
+          404: '*',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
-          routes: [{ name: "404", path }],
+          routes: [{ name: '404', path }],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/404"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/404'))
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches screen with overlapping initial path and wildcard", () => {
-  const path = "/bar/42/baz/test/whatever";
+test.skip('matches screen with overlapping initial path and wildcard', () => {
+  const path = '/bar/42/baz/test/whatever'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
-          Baz: "/bar/:id/*",
+          Baz: '/bar/:id/*',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
-          routes: [{ name: "Baz", params: { id: "42" }, path }],
+          routes: [{ name: 'Baz', params: { id: '42' }, path }],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(
-    changePath(state, "/bar/42/Baz"),
-  );
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(changePath(state, '/bar/42/Baz'))
+})
 
-test("throws if two screens map to the same pattern", () => {
-  const path = "/bar/42/baz/test";
+test('throws if two screens map to the same pattern', () => {
+  const path = '/bar/42/baz/test'
 
   expect(() =>
     getStateFromPath<object>(path, {
@@ -2482,19 +2553,19 @@ test("throws if two screens map to the same pattern", () => {
         Foo: {
           screens: {
             Bar: {
-              path: "/bar/:id/",
+              path: '/bar/:id/',
               screens: {
-                Baz: "baz",
+                Baz: 'baz',
               },
             },
-            Bax: "/bar/:id/baz",
+            Bax: '/bar/:id/baz',
           },
         },
       },
-    }),
+    })
   ).toThrow(
-    "Found conflicting screens with the same pattern. The pattern 'bar/:id/baz' resolves to both 'Foo > Bax' and 'Foo > Bar > Baz'. Patterns must be unique and cannot resolve to more than one screen.",
-  );
+    "Found conflicting screens with the same pattern. The pattern 'bar/:id/baz' resolves to both 'Foo > Bax' and 'Foo > Bar > Baz'. Patterns must be unique and cannot resolve to more than one screen."
+  )
 
   expect(() =>
     getStateFromPath<object>(path, {
@@ -2502,20 +2573,20 @@ test("throws if two screens map to the same pattern", () => {
         Foo: {
           screens: {
             Bar: {
-              path: "/bar/:id/",
+              path: '/bar/:id/',
               screens: {
-                Baz: "",
+                Baz: '',
               },
             },
           },
         },
       },
-    }),
-  ).not.toThrow();
-});
+    })
+  ).not.toThrow()
+})
 
-test("correctly applies initialRouteName for config with similar route names", () => {
-  const path = "/weekly-earnings";
+test('correctly applies initialRouteName for config with similar route names', () => {
+  const path = '/weekly-earnings'
 
   const config = {
     screens: {
@@ -2523,36 +2594,36 @@ test("correctly applies initialRouteName for config with similar route names", (
         screens: {
           HomeTab: {
             screens: {
-              Home: "",
-              WeeklyEarnings: "weekly-earnings",
-              EventDetails: "event-details/:eventId",
+              Home: '',
+              WeeklyEarnings: 'weekly-earnings',
+              EventDetails: 'event-details/:eventId',
             },
           },
           EarningsTab: {
-            initialRouteName: "Earnings",
-            path: "earnings",
+            initialRouteName: 'Earnings',
+            path: 'earnings',
             screens: {
-              Earnings: "",
-              WeeklyEarnings: "weekly-earnings",
+              Earnings: '',
+              WeeklyEarnings: 'weekly-earnings',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "RootTabs",
+        name: 'RootTabs',
         state: {
           routes: [
             {
-              name: "HomeTab",
+              name: 'HomeTab',
               state: {
                 routes: [
                   {
-                    name: "WeeklyEarnings",
+                    name: 'WeeklyEarnings',
                     path,
                   },
                 ],
@@ -2562,55 +2633,57 @@ test("correctly applies initialRouteName for config with similar route names", (
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
-test("correctly applies initialRouteName for config with similar route names v2", () => {
-  const path = "/earnings/weekly-earnings";
+test('correctly applies initialRouteName for config with similar route names v2', () => {
+  const path = '/earnings/weekly-earnings'
 
   const config = {
     screens: {
       RootTabs: {
         screens: {
           HomeTab: {
-            initialRouteName: "Home",
+            initialRouteName: 'Home',
             screens: {
-              Home: "",
-              WeeklyEarnings: "weekly-earnings",
+              Home: '',
+              WeeklyEarnings: 'weekly-earnings',
             },
           },
           EarningsTab: {
-            initialRouteName: "Earnings",
-            path: "earnings",
+            initialRouteName: 'Earnings',
+            path: 'earnings',
             screens: {
-              Earnings: "",
-              WeeklyEarnings: "weekly-earnings",
+              Earnings: '',
+              WeeklyEarnings: 'weekly-earnings',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "RootTabs",
+        name: 'RootTabs',
         state: {
           routes: [
             {
-              name: "EarningsTab",
+              name: 'EarningsTab',
               state: {
                 index: 1,
                 routes: [
                   {
-                    name: "Earnings",
+                    name: 'Earnings',
                   },
                   {
-                    name: "WeeklyEarnings",
+                    name: 'WeeklyEarnings',
                     path,
                   },
                 ],
@@ -2620,22 +2693,24 @@ test("correctly applies initialRouteName for config with similar route names v2"
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-  expect(getStateFromPath<object>(getPathFromState<object>(state, config), config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+  expect(
+    getStateFromPath<object>(getPathFromState<object>(state, config), config)
+  ).toEqual(state)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("throws when invalid properties are specified in the config", () => {
+test.skip('throws when invalid properties are specified in the config', () => {
   expect(() =>
-    getStateFromPath<object>("", {
+    getStateFromPath<object>('', {
       path: 42,
-      Foo: "foo",
+      Foo: 'foo',
       Bar: {
-        path: "bar",
+        path: 'bar',
       },
-    } as any),
+    } as any)
   ).toThrowErrorMatchingInlineSnapshot(`
     "Found invalid properties in the configuration:
     - path (expected 'string', got 'number')
@@ -2650,22 +2725,22 @@ test.skip("throws when invalid properties are specified in the config", () => {
     If you want to specify configuration for screens, you need to specify them under a 'screens' property.
 
     See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration."
-  `);
+  `)
 
   expect(() =>
-    getStateFromPath<object>("", {
+    getStateFromPath<object>('', {
       screens: {
-        Foo: "foo",
+        Foo: 'foo',
         Bar: {
-          path: "bar",
+          path: 'bar',
         },
         Baz: {
           Qux: {
-            path: "qux",
+            path: 'qux',
           },
         },
       },
-    } as any),
+    } as any)
   ).toThrowErrorMatchingInlineSnapshot(`
 "Found invalid properties in the configuration:
 - Qux (extraneous)
@@ -2682,16 +2757,16 @@ You can only specify the following properties:
 If you want to specify configuration for screens, you need to specify them under a 'screens' property.
 
 See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration."
-`);
+`)
 
   expect(() =>
-    getStateFromPath<object>("", {
-      path: "foo/:id",
-    } as any),
+    getStateFromPath<object>('', {
+      path: 'foo/:id',
+    } as any)
   ).toThrowErrorMatchingInlineSnapshot(
-    `"Found invalid path 'foo/:id'. The 'path' in the top-level configuration cannot contain patterns for params."`,
-  );
-});
+    `"Found invalid path 'foo/:id'. The 'path' in the top-level configuration cannot contain patterns for params."`
+  )
+})
 
 // Valid characters according to
 // https://datatracker.ietf.org/doc/html/rfc3986#section-3.3 (see pchar definition)
@@ -2699,33 +2774,33 @@ See https://reactnavigation.org/docs/configuring-links for more details on how t
 // User09-A_Z~!$&'()*+,;=:@__#?# - should encode only last ones #?#
 // query params after '?' should be encoded fully with encodeURIComponent
 // @modify: TODO: temporally disable failing test
-test.skip("encodes special characters in params", () => {
-  const paramWithValidSymbols = `User09-A_Z~!$&'()*+,;=:@__`;
-  const invalidSymbols = "#?[]{}%<>||";
-  const queryString = "user#email@gmail.com=2&4";
+test.skip('encodes special characters in params', () => {
+  const paramWithValidSymbols = `User09-A_Z~!$&'()*+,;=:@__`
+  const invalidSymbols = '#?[]{}%<>||'
+  const queryString = 'user#email@gmail.com=2&4'
 
   const path = `users/id/${paramWithValidSymbols}${encodeURIComponent(
-    invalidSymbols,
-  )}?query=${encodeURIComponent(queryString)}`;
+    invalidSymbols
+  )}?query=${encodeURIComponent(queryString)}`
   const config = {
-    path: "users",
+    path: 'users',
     screens: {
       Users: {
         screens: {
-          User: "id/:id",
+          User: 'id/:id',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Users",
+        name: 'Users',
         state: {
           routes: [
             {
-              name: "User",
+              name: 'User',
               params: {
                 id: `${paramWithValidSymbols}${invalidSymbols}`,
                 query: queryString,
@@ -2735,370 +2810,379 @@ test.skip("encodes special characters in params", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(`/${path}`);
+  expect(getPathFromState<object>(state, config)).toBe(`/${path}`)
   expect(getPathFromState<object>(getStateFromPath<object>(path, config)!, config)).toBe(
-    `/${path}`,
-  );
-});
+    `/${path}`
+  )
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("resolves nested path params with same name to correct screen", () => {
-  const path = "/foo/42/bar/43";
+test.skip('resolves nested path params with same name to correct screen', () => {
+  const path = '/foo/42/bar/43'
 
   const config = {
-    initialRouteName: "Foo",
+    initialRouteName: 'Foo',
     screens: {
       Foo: {
-        path: "foo/:id",
+        path: 'foo/:id',
         screens: {
           Bar: {
-            path: "bar/:id",
+            path: 'bar/:id',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
-        params: { id: "42" },
+        name: 'Foo',
+        params: { id: '42' },
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "43" },
+              name: 'Bar',
+              params: { id: '43' },
               path,
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getStateFromPath<object>(path, config)).toEqual(state);
-});
+  expect(getStateFromPath<object>(path, config)).toEqual(state)
+})
 
-test("parses / same as empty string", () => {
+test('parses / same as empty string', () => {
   const config = {
     screens: {
       Foo: {
-        path: "/",
+        path: '/',
       },
       Bar: {
-        path: "bar",
+        path: 'bar',
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>("/", config)).toEqual(getStateFromPath<object>("", config));
-});
+  expect(getStateFromPath<object>('/', config)).toEqual(
+    getStateFromPath<object>('', config)
+  )
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches regexp patterns when provided", () => {
+test.skip('matches regexp patterns when provided', () => {
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id(\\d+)",
+        path: 'foo/:id(\\d+)',
         parse: {
           id: Number,
         },
       },
       Bar: {
-        path: "foo/:id([a-z]+)",
+        path: 'foo/:id([a-z]+)',
       },
       Baz: {
-        path: "foo/:id(\\d+)/:name([a-z]+)",
+        path: 'foo/:id(\\d+)/:name([a-z]+)',
       },
       Qux: {
-        path: "foo/:id(@[a-z]+)",
+        path: 'foo/:id(@[a-z]+)',
         parse: {
           id: (id: string) => id.slice(1),
         },
       },
       Quy: {
-        path: "foo/bar/:category",
+        path: 'foo/bar/:category',
       },
       Quz: {
-        path: "foo/bar/:special([a-z]+)",
+        path: 'foo/bar/:special([a-z]+)',
       },
       Quu: {
-        path: "foo/bar/baz",
+        path: 'foo/bar/baz',
       },
       NotFound: {
-        path: "foo/bar/*",
+        path: 'foo/bar/*',
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>("foo/42", config)).toEqual({
+  expect(getStateFromPath<object>('foo/42', config)).toEqual({
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         params: { id: 42 },
-        path: "foo/42",
+        path: 'foo/42',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/bar", config)).toEqual({
+  expect(getStateFromPath<object>('foo/bar', config)).toEqual({
     routes: [
       {
-        name: "Bar",
-        params: { id: "bar" },
-        path: "foo/bar",
+        name: 'Bar',
+        params: { id: 'bar' },
+        path: 'foo/bar',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/42/bar", config)).toEqual({
+  expect(getStateFromPath<object>('foo/42/bar', config)).toEqual({
     routes: [
       {
-        name: "Baz",
-        params: { id: "42", name: "bar" },
-        path: "foo/42/bar",
+        name: 'Baz',
+        params: { id: '42', name: 'bar' },
+        path: 'foo/42/bar',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/@bar", config)).toEqual({
+  expect(getStateFromPath<object>('foo/@bar', config)).toEqual({
     routes: [
       {
-        name: "Qux",
-        params: { id: "bar" },
-        path: "foo/@bar",
+        name: 'Qux',
+        params: { id: 'bar' },
+        path: 'foo/@bar',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/@bar", config)).toEqual({
+  expect(getStateFromPath<object>('foo/@bar', config)).toEqual({
     routes: [
       {
-        name: "Qux",
-        params: { id: "bar" },
-        path: "foo/@bar",
+        name: 'Qux',
+        params: { id: 'bar' },
+        path: 'foo/@bar',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/42a", config)).toBeUndefined();
+  expect(getStateFromPath<object>('foo/42a', config)).toBeUndefined()
 
-  expect(getStateFromPath<object>("foo/bar/123", config)).toEqual({
+  expect(getStateFromPath<object>('foo/bar/123', config)).toEqual({
     routes: [
       {
-        name: "Quy",
-        params: { category: "123" },
-        path: "foo/bar/123",
+        name: 'Quy',
+        params: { category: '123' },
+        path: 'foo/bar/123',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/bar/test", config)).toEqual({
+  expect(getStateFromPath<object>('foo/bar/test', config)).toEqual({
     routes: [
       {
-        name: "Quz",
-        params: { special: "test" },
-        path: "foo/bar/test",
+        name: 'Quz',
+        params: { special: 'test' },
+        path: 'foo/bar/test',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/bar/baz", config)).toEqual({
+  expect(getStateFromPath<object>('foo/bar/baz', config)).toEqual({
     routes: [
       {
-        name: "Quu",
-        path: "foo/bar/baz",
+        name: 'Quu',
+        path: 'foo/bar/baz',
       },
     ],
-  });
+  })
 
-  expect(getStateFromPath<object>("foo/bar/hello/world", config)).toEqual({
-    routes: [{ name: "NotFound", path: "foo/bar/hello/world" }],
-  });
-});
+  expect(getStateFromPath<object>('foo/bar/hello/world', config)).toEqual({
+    routes: [{ name: 'NotFound', path: 'foo/bar/hello/world' }],
+  })
+})
 
 test("regexp pattern doesn't match slash", () => {
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id([a-z]+\\/)",
+        path: 'foo/:id([a-z]+\\/)',
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>("foo/bar/", config)).toBeUndefined();
+  expect(getStateFromPath<object>('foo/bar/', config)).toBeUndefined()
 
-  expect(getStateFromPath<object>("foo/bar/baz", config)).toBeUndefined();
+  expect(getStateFromPath<object>('foo/bar/baz', config)).toBeUndefined()
 
-  expect(getStateFromPath<object>("foo/bar/baz/qux", config)).toBeUndefined();
-});
+  expect(getStateFromPath<object>('foo/bar/baz/qux', config)).toBeUndefined()
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles alias for paths", () => {
+test.skip('handles alias for paths', () => {
   const config = {
     screens: {
       Foo: {
-        path: "foo",
-        alias: ["first"],
+        path: 'foo',
+        alias: ['first'],
         screens: {
           Baz: {
-            path: "baz/:id?",
+            path: 'baz/:id?',
             parse: {
-              id: (value: string) => value.replace(/@/, ""),
+              id: (value: string) => value.replace(/@/, ''),
             },
             alias: [
               {
-                path: "second/:id",
+                path: 'second/:id',
                 exact: true,
               },
-              "third",
+              'third',
               {
-                path: "fourth/:id",
+                path: 'fourth/:id',
                 parse: {
-                  id: (value: string) => value.replace(/\$/, ""),
+                  id: (value: string) => value.replace(/\$/, ''),
                 },
               },
             ],
           },
           Qux: {
-            path: "qux/:id",
+            path: 'qux/:id',
           },
         },
       },
     },
-  };
+  }
 
-  expect(getStateFromPath<object>("foo", config)).toEqual({
-    routes: [{ name: "Foo", path: "foo" }],
-  });
+  expect(getStateFromPath<object>('foo', config)).toEqual({
+    routes: [{ name: 'Foo', path: 'foo' }],
+  })
 
-  expect(getPathFromState<object>(getStateFromPath<object>("foo", config)!, config)).toBe("/foo");
+  expect(getPathFromState<object>(getStateFromPath<object>('foo', config)!, config)).toBe(
+    '/foo'
+  )
 
-  expect(getStateFromPath<object>("first", config)).toEqual({
-    routes: [{ name: "Foo", path: "first" }],
-  });
-
-  expect(getPathFromState<object>(getStateFromPath<object>("first", config)!, config)).toBe("/foo");
-
-  expect(getStateFromPath<object>("foo/baz/@$test", config)).toEqual({
-    routes: [
-      {
-        name: "Foo",
-        state: {
-          routes: [
-            {
-              name: "Baz",
-              params: { id: "$test" },
-              path: "foo/baz/@$test",
-            },
-          ],
-        },
-      },
-    ],
-  });
+  expect(getStateFromPath<object>('first', config)).toEqual({
+    routes: [{ name: 'Foo', path: 'first' }],
+  })
 
   expect(
-    getPathFromState<object>(getStateFromPath<object>("foo/baz/@$test", config)!, config),
-  ).toBe("/foo/baz/$test");
+    getPathFromState<object>(getStateFromPath<object>('first', config)!, config)
+  ).toBe('/foo')
 
-  expect(getStateFromPath<object>("second/42", config)).toEqual({
+  expect(getStateFromPath<object>('foo/baz/@$test', config)).toEqual({
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Baz",
-              params: { id: "42" },
-              path: "second/42",
+              name: 'Baz',
+              params: { id: '$test' },
+              path: 'foo/baz/@$test',
             },
           ],
         },
       },
     ],
-  });
-
-  expect(getPathFromState<object>(getStateFromPath<object>("second/42", config)!, config)).toBe(
-    "/foo/baz/42",
-  );
-
-  expect(getStateFromPath<object>("foo/third", config)).toEqual({
-    routes: [
-      {
-        name: "Foo",
-        state: {
-          routes: [
-            {
-              name: "Baz",
-              path: "foo/third",
-            },
-          ],
-        },
-      },
-    ],
-  });
-
-  expect(getPathFromState<object>(getStateFromPath<object>("foo/third", config)!, config)).toBe(
-    "/foo/baz",
-  );
-
-  expect(getStateFromPath<object>("foo/fourth/@$test", config)).toEqual({
-    routes: [
-      {
-        name: "Foo",
-        state: {
-          routes: [
-            {
-              name: "Baz",
-              params: { id: "@test" },
-              path: "foo/fourth/@$test",
-            },
-          ],
-        },
-      },
-    ],
-  });
+  })
 
   expect(
-    getPathFromState<object>(getStateFromPath<object>("foo/fourth/@$test", config)!, config),
-  ).toBe("/foo/baz/@test");
+    getPathFromState<object>(getStateFromPath<object>('foo/baz/@$test', config)!, config)
+  ).toBe('/foo/baz/$test')
 
-  expect(getStateFromPath<object>("foo/qux/42", config)).toEqual({
+  expect(getStateFromPath<object>('second/42', config)).toEqual({
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Qux",
-              params: { id: "42" },
-              path: "foo/qux/42",
+              name: 'Baz',
+              params: { id: '42' },
+              path: 'second/42',
             },
           ],
         },
       },
     ],
-  });
+  })
 
-  expect(getPathFromState<object>(getStateFromPath<object>("foo/qux/42", config)!, config)).toBe(
-    "/foo/qux/42",
-  );
-});
+  expect(
+    getPathFromState<object>(getStateFromPath<object>('second/42', config)!, config)
+  ).toBe('/foo/baz/42')
+
+  expect(getStateFromPath<object>('foo/third', config)).toEqual({
+    routes: [
+      {
+        name: 'Foo',
+        state: {
+          routes: [
+            {
+              name: 'Baz',
+              path: 'foo/third',
+            },
+          ],
+        },
+      },
+    ],
+  })
+
+  expect(
+    getPathFromState<object>(getStateFromPath<object>('foo/third', config)!, config)
+  ).toBe('/foo/baz')
+
+  expect(getStateFromPath<object>('foo/fourth/@$test', config)).toEqual({
+    routes: [
+      {
+        name: 'Foo',
+        state: {
+          routes: [
+            {
+              name: 'Baz',
+              params: { id: '@test' },
+              path: 'foo/fourth/@$test',
+            },
+          ],
+        },
+      },
+    ],
+  })
+
+  expect(
+    getPathFromState<object>(
+      getStateFromPath<object>('foo/fourth/@$test', config)!,
+      config
+    )
+  ).toBe('/foo/baz/@test')
+
+  expect(getStateFromPath<object>('foo/qux/42', config)).toEqual({
+    routes: [
+      {
+        name: 'Foo',
+        state: {
+          routes: [
+            {
+              name: 'Qux',
+              params: { id: '42' },
+              path: 'foo/qux/42',
+            },
+          ],
+        },
+      },
+    ],
+  })
+
+  expect(
+    getPathFromState<object>(getStateFromPath<object>('foo/qux/42', config)!, config)
+  ).toBe('/foo/qux/42')
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("throws if screen has alias but no path", () => {
+test.skip('throws if screen has alias but no path', () => {
   expect(() =>
-    getStateFromPath<object>("", {
+    getStateFromPath<object>('', {
       screens: {
         Foo: {
-          alias: ["bar"],
+          alias: ['bar'],
         },
       },
-    }),
+    })
   ).toThrow(
-    `Screen 'Foo' doesn't specify a 'path'. A 'path' needs to be specified in order to use 'alias'.`,
-  );
-});
+    `Screen 'Foo' doesn't specify a 'path'. A 'path' needs to be specified in order to use 'alias'.`
+  )
+})

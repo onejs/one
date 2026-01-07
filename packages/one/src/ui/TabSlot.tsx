@@ -1,21 +1,21 @@
-import { type ComponentProps, type ReactElement, useState } from "react";
-import { Platform, StyleSheet } from "react-native";
-import { ScreenContainer, Screen } from "react-native-screens";
+import { type ComponentProps, type ReactElement, useState } from 'react'
+import { Platform, StyleSheet } from 'react-native'
+import { ScreenContainer, Screen } from 'react-native-screens'
 
-import { TabContext, type TabsDescriptor } from "./TabContext";
-import type { TabListProps } from "./TabList";
-import { useNavigatorContext } from "../views/Navigator";
+import { TabContext, type TabsDescriptor } from './TabContext'
+import type { TabListProps } from './TabList'
+import { useNavigatorContext } from '../views/Navigator'
 
 export type TabSlotProps = ComponentProps<typeof ScreenContainer> & {
   /**
    * Remove inactive screens.
    */
-  detachInactiveScreens?: boolean;
+  detachInactiveScreens?: boolean
   /**
    * Override how the `Screen` component is rendered.
    */
-  renderFn?: typeof defaultTabsSlotRender;
-};
+  renderFn?: typeof defaultTabsSlotRender
+}
 
 /**
  * Options provided to the `UseTabSlotOptions`.
@@ -24,20 +24,20 @@ export type TabsSlotRenderOptions = {
   /**
    * Index of screen.
    */
-  index: number;
+  index: number
   /**
    * Whether the screen is focused.
    */
-  isFocused: boolean;
+  isFocused: boolean
   /**
    * Whether the screen has been loaded.
    */
-  loaded: boolean;
+  loaded: boolean
   /**
    * Should the screen be unloaded when inactive.
    */
-  detachInactiveScreens: boolean;
-};
+  detachInactiveScreens: boolean
+}
 
 /**
  * Returns a `ReactElement` of the current tab.
@@ -52,16 +52,16 @@ export type TabsSlotRenderOptions = {
  * ```
  */
 export function useTabSlot({
-  detachInactiveScreens = ["android", "ios", "web"].includes(Platform.OS),
+  detachInactiveScreens = ['android', 'ios', 'web'].includes(Platform.OS),
   style,
   renderFn = defaultTabsSlotRender,
 }: TabSlotProps = {}) {
-  const { state, descriptors } = useNavigatorContext();
-  const focusedRouteKey = state.routes[state.index].key;
-  const [loaded, setLoaded] = useState({ [focusedRouteKey]: true });
+  const { state, descriptors } = useNavigatorContext()
+  const focusedRouteKey = state.routes[state.index].key
+  const [loaded, setLoaded] = useState({ [focusedRouteKey]: true })
 
   if (!loaded[focusedRouteKey]) {
-    setLoaded({ ...loaded, [focusedRouteKey]: true });
+    setLoaded({ ...loaded, [focusedRouteKey]: true })
   }
 
   return (
@@ -71,7 +71,7 @@ export function useTabSlot({
       style={[styles.screenContainer, style]}
     >
       {state.routes.map((route, index) => {
-        const descriptor = descriptors[route.key] as unknown as TabsDescriptor;
+        const descriptor = descriptors[route.key] as unknown as TabsDescriptor
 
         return (
           <TabContext.Provider key={descriptor.route.key} value={descriptor.options}>
@@ -82,10 +82,10 @@ export function useTabSlot({
               detachInactiveScreens,
             })}
           </TabContext.Provider>
-        );
+        )
       })}
     </ScreenContainer>
-  );
+  )
 }
 
 /**
@@ -104,7 +104,7 @@ export function useTabSlot({
  * ```
  */
 export function TabSlot(props: TabSlotProps) {
-  return useTabSlot(props);
+  return useTabSlot(props)
 }
 
 /**
@@ -112,17 +112,17 @@ export function TabSlot(props: TabSlotProps) {
  */
 export function defaultTabsSlotRender(
   descriptor: TabsDescriptor,
-  { isFocused, loaded, detachInactiveScreens }: TabsSlotRenderOptions,
+  { isFocused, loaded, detachInactiveScreens }: TabsSlotRenderOptions
 ) {
-  const { lazy = true, unmountOnBlur, freezeOnBlur } = descriptor.options;
+  const { lazy = true, unmountOnBlur, freezeOnBlur } = descriptor.options
 
   if (unmountOnBlur && !isFocused) {
-    return null;
+    return null
   }
 
   if (lazy && !loaded && !isFocused) {
     // Don't render a lazy screen if we've never navigated to it
-    return null;
+    return null
   }
 
   return (
@@ -135,21 +135,21 @@ export function defaultTabsSlotRender(
     >
       {descriptor.render()}
     </Screen>
-  );
+  )
 }
 
 /**
  * @hidden
  */
 export function isTabSlot(child: ReactElement<any>): child is ReactElement<TabListProps> {
-  return child.type === TabSlot;
+  return child.type === TabSlot
 }
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    position: "relative",
-    height: "100%",
+    position: 'relative',
+    height: '100%',
   },
   screenContainer: {
     flexShrink: 0,
@@ -157,14 +157,14 @@ const styles = StyleSheet.create({
   },
   focused: {
     zIndex: 1,
-    display: "flex",
+    display: 'flex',
     flexShrink: 0,
     flexGrow: 1,
   },
   unfocused: {
     zIndex: -1,
-    display: "none",
+    display: 'none',
     flexShrink: 1,
     flexGrow: 0,
   },
-});
+})

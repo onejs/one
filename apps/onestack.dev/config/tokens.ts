@@ -1,19 +1,19 @@
-import { createTokens } from "tamagui";
+import { createTokens } from 'tamagui'
 
 export const size = {
   $0: 0,
-  "$0.25": 2,
-  "$0.5": 4,
-  "$0.75": 8,
+  '$0.25': 2,
+  '$0.5': 4,
+  '$0.75': 8,
   $1: 20,
-  "$1.5": 24,
+  '$1.5': 24,
   $2: 28,
-  "$2.5": 32,
+  '$2.5': 32,
   $3: 36,
-  "$3.5": 40,
+  '$3.5': 40,
   $4: 44,
   $true: 44,
-  "$4.5": 48,
+  '$4.5': 48,
   $5: 52,
   $6: 64,
   $7: 74,
@@ -30,39 +30,39 @@ export const size = {
   $18: 244,
   $19: 264,
   $20: 284,
-};
-
-type SizeKeysIn = keyof typeof size;
-type Sizes = {
-  [Key in SizeKeysIn extends `$${infer Key}` ? Key : SizeKeysIn]: number;
-};
-type SizeKeys = `${keyof Sizes extends `${infer K}` ? K : never}`;
-
-const spaces = Object.entries(size).map(([k, v]) => {
-  return [k, sizeToSpace(v)] as const;
-});
-
-function sizeToSpace(v: number) {
-  if (v === 0) return 0;
-  if (v === 2) return 0.5;
-  if (v === 4) return 1;
-  if (v === 8) return 1.5;
-  if (v <= 16) return Math.round(v * 0.333);
-  return Math.floor(v * 0.7 - 12);
 }
 
-const spacesNegative = spaces.slice(1).map(([k, v]) => [`-${k.slice(1)}`, -v]);
+type SizeKeysIn = keyof typeof size
+type Sizes = {
+  [Key in SizeKeysIn extends `$${infer Key}` ? Key : SizeKeysIn]: number
+}
+type SizeKeys = `${keyof Sizes extends `${infer K}` ? K : never}`
+
+const spaces = Object.entries(size).map(([k, v]) => {
+  return [k, sizeToSpace(v)] as const
+})
+
+function sizeToSpace(v: number) {
+  if (v === 0) return 0
+  if (v === 2) return 0.5
+  if (v === 4) return 1
+  if (v === 8) return 1.5
+  if (v <= 16) return Math.round(v * 0.333)
+  return Math.floor(v * 0.7 - 12)
+}
+
+const spacesNegative = spaces.slice(1).map(([k, v]) => [`-${k.slice(1)}`, -v])
 
 type SizeKeysWithNegatives =
-  | Exclude<`-${SizeKeys extends `$${infer Key}` ? Key : SizeKeys}`, "-0">
-  | SizeKeys;
+  | Exclude<`-${SizeKeys extends `$${infer Key}` ? Key : SizeKeys}`, '-0'>
+  | SizeKeys
 
 const space: {
-  [Key in SizeKeysWithNegatives]: Key extends keyof Sizes ? Sizes[Key] : number;
+  [Key in SizeKeysWithNegatives]: Key extends keyof Sizes ? Sizes[Key] : number
 } = {
   ...Object.fromEntries(spaces),
   ...Object.fromEntries(spacesNegative),
-} as any;
+} as any
 
 const zIndex = {
   0: 0,
@@ -71,7 +71,7 @@ const zIndex = {
   3: 300,
   4: 400,
   5: 500,
-};
+}
 
 const radius = {
   0: 0,
@@ -88,7 +88,7 @@ const radius = {
   10: 34,
   11: 42,
   12: 50,
-};
+}
 
 export const tokens = createTokens({
   color: {},
@@ -96,4 +96,4 @@ export const tokens = createTokens({
   zIndex,
   space,
   size,
-});
+})

@@ -1,16 +1,16 @@
-import path from "node:path";
+import path from 'node:path'
 
-import type { HmrOptions, Plugin, ResolvedConfig, UserConfig } from "vite";
-import { isNativeEnvironment } from "../utils/environmentUtils";
-import { getResolvedConfig, setResolvedConfig } from "./getResolvedConfigSubset";
+import type { HmrOptions, Plugin, ResolvedConfig, UserConfig } from 'vite'
+import { isNativeEnvironment } from '../utils/environmentUtils'
+import { getResolvedConfig, setResolvedConfig } from './getResolvedConfigSubset'
 
-let config: ResolvedConfig | null;
+let config: ResolvedConfig | null
 
-const isObject = (x: any): x is object => x && typeof x === "object";
+const isObject = (x: any): x is object => x && typeof x === 'object'
 
 export function getServerConfigPlugin() {
   return {
-    name: "get-server-config",
+    name: 'get-server-config',
 
     configResolved(conf) {
       setResolvedConfig({
@@ -18,9 +18,9 @@ export function getServerConfigPlugin() {
         mode: conf.mode,
         server: conf.server,
         define: conf.define,
-      });
+      })
     },
-  } satisfies Plugin;
+  } satisfies Plugin
 }
 
 /**
@@ -28,58 +28,58 @@ export function getServerConfigPlugin() {
  * @server-only
  */
 export function nativeClientInjectPlugin(): Plugin {
-  let injectConfigValues: (code: string) => string;
+  let injectConfigValues: (code: string) => string
 
   return {
-    name: "vite:native-client-inject",
+    name: 'vite:native-client-inject',
 
     async buildStart() {
-      const config = getResolvedConfig();
+      const config = getResolvedConfig()
 
-      const resolvedServerHostname = config.server.host || "127.0.0.1";
-      const resolvedServerPort = config.server!.port! || 5173;
-      const devBase = config.base || "/";
+      const resolvedServerHostname = config.server.host || '127.0.0.1'
+      const resolvedServerPort = config.server!.port! || 5173
+      const devBase = config.base || '/'
 
-      const serverHost = `${resolvedServerHostname}:${resolvedServerPort}${devBase}`;
+      const serverHost = `${resolvedServerHostname}:${resolvedServerPort}${devBase}`
 
-      let hmrConfig = config.server!.hmr;
-      hmrConfig = isObject(hmrConfig) ? (hmrConfig as HmrOptions) : undefined;
+      let hmrConfig = config.server!.hmr
+      hmrConfig = isObject(hmrConfig) ? (hmrConfig as HmrOptions) : undefined
 
-      const host = hmrConfig?.host || null;
-      const protocol = hmrConfig?.protocol || null;
-      const timeout = hmrConfig?.timeout || 30000;
-      const overlay = hmrConfig?.overlay !== false;
-      const isHmrServerSpecified = !!hmrConfig?.server;
+      const host = hmrConfig?.host || null
+      const protocol = hmrConfig?.protocol || null
+      const timeout = hmrConfig?.timeout || 30000
+      const overlay = hmrConfig?.overlay !== false
+      const isHmrServerSpecified = !!hmrConfig?.server
 
       // hmr.clientPort -> hmr.port
       // -> (24678 if middleware mode and HMR server is not specified) -> new URL(import.meta.url).port
-      let port = hmrConfig?.clientPort || hmrConfig?.port || null;
+      let port = hmrConfig?.clientPort || hmrConfig?.port || null
       if (config.server.middlewareMode && !isHmrServerSpecified) {
-        port ||= 24678;
+        port ||= 24678
       }
 
-      let directTarget = hmrConfig?.host || resolvedServerHostname;
-      directTarget += `:${hmrConfig?.port || resolvedServerPort}`;
-      directTarget += devBase;
+      let directTarget = hmrConfig?.host || resolvedServerHostname
+      directTarget += `:${hmrConfig?.port || resolvedServerPort}`
+      directTarget += devBase
 
-      let hmrBase = devBase;
+      let hmrBase = devBase
       if (hmrConfig?.path) {
-        hmrBase = path.posix.join(hmrBase, hmrConfig.path);
+        hmrBase = path.posix.join(hmrBase, hmrConfig.path)
       }
 
-      const serializedDefines = serializeDefine(config.define || {});
+      const serializedDefines = serializeDefine(config.define || {})
 
-      const modeReplacement = escapeReplacement(config.mode!);
-      const baseReplacement = escapeReplacement(devBase);
-      const definesReplacement = () => serializedDefines;
-      const serverHostReplacement = escapeReplacement(serverHost);
-      const hmrProtocolReplacement = escapeReplacement(protocol);
-      const hmrHostnameReplacement = escapeReplacement(host);
-      const hmrPortReplacement = escapeReplacement(port);
-      const hmrDirectTargetReplacement = escapeReplacement(directTarget);
-      const hmrBaseReplacement = escapeReplacement(hmrBase);
-      const hmrTimeoutReplacement = escapeReplacement(timeout);
-      const hmrEnableOverlayReplacement = escapeReplacement(overlay);
+      const modeReplacement = escapeReplacement(config.mode!)
+      const baseReplacement = escapeReplacement(devBase)
+      const definesReplacement = () => serializedDefines
+      const serverHostReplacement = escapeReplacement(serverHost)
+      const hmrProtocolReplacement = escapeReplacement(protocol)
+      const hmrHostnameReplacement = escapeReplacement(host)
+      const hmrPortReplacement = escapeReplacement(port)
+      const hmrDirectTargetReplacement = escapeReplacement(directTarget)
+      const hmrBaseReplacement = escapeReplacement(hmrBase)
+      const hmrTimeoutReplacement = escapeReplacement(timeout)
+      const hmrEnableOverlayReplacement = escapeReplacement(overlay)
 
       injectConfigValues = (code: string) => {
         return code
@@ -93,32 +93,32 @@ export function nativeClientInjectPlugin(): Plugin {
           .replace(`__HMR_DIRECT_TARGET__`, hmrDirectTargetReplacement)
           .replace(`__HMR_BASE__`, hmrBaseReplacement)
           .replace(`__HMR_TIMEOUT__`, hmrTimeoutReplacement)
-          .replace(`__HMR_ENABLE_OVERLAY__`, hmrEnableOverlayReplacement);
-      };
+          .replace(`__HMR_ENABLE_OVERLAY__`, hmrEnableOverlayReplacement)
+      }
     },
 
     applyToEnvironment(environment) {
-      return isNativeEnvironment(environment);
+      return isNativeEnvironment(environment)
     },
 
     transform(code, id) {
-      if (id.includes("vite-native-client/dist/esm/client.")) {
-        return injectConfigValues(code);
+      if (id.includes('vite-native-client/dist/esm/client.')) {
+        return injectConfigValues(code)
       }
     },
-  };
+  }
 }
 
 function escapeReplacement(value: string | number | boolean | null) {
-  const jsonValue = JSON.stringify(value);
-  return () => jsonValue;
+  const jsonValue = JSON.stringify(value)
+  return () => jsonValue
 }
 
 function serializeDefine(define: Record<string, any>): string {
-  let res = `{`;
+  let res = `{`
   for (const key in define) {
-    const val = define[key];
-    res += `${JSON.stringify(key)}: ${typeof val === "string" ? `(${val})` : JSON.stringify(val)}, `;
+    const val = define[key]
+    res += `${JSON.stringify(key)}: ${typeof val === 'string' ? `(${val})` : JSON.stringify(val)}, `
   }
-  return res + `}`;
+  return res + `}`
 }

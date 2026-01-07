@@ -1,7 +1,7 @@
-import { Paragraph, Spacer, XStack, YStack } from "tamagui";
-import { SocialLinksRow } from "~/features/site/SocialLinksRow";
-import { OneBall } from "../brand/Logo";
-import { Link } from "./Link";
+import { Paragraph, Spacer, XStack, YStack } from 'tamagui'
+import { SocialLinksRow } from '~/features/site/SocialLinksRow'
+import { OneBall } from '../brand/Logo'
+import { Link } from './Link'
 
 export const Footer = () => {
   return (
@@ -11,16 +11,16 @@ export const Footer = () => {
       ai="center"
       jc="space-between"
       $sm={{
-        fd: "column",
-        jc: "center",
+        fd: 'column',
+        jc: 'center',
       }}
     >
       <XStack
         ai="center"
         gap="$4"
         $sm={{
-          fd: "column",
-          jc: "center",
+          fd: 'column',
+          jc: 'center',
         }}
       >
         <Link href="/">
@@ -38,9 +38,9 @@ export const Footer = () => {
         </Link>
       </XStack>
 
-      <Paragraph $sm={{ mt: "$8" }} o={0.5}>
+      <Paragraph $sm={{ mt: '$8' }} o={0.5}>
         Copyright 2024 Tamagui, LLC
       </Paragraph>
     </XStack>
-  );
-};
+  )
+}

@@ -1,8 +1,8 @@
-import { createAnimations } from "@tamagui/animations-moti";
+import { createAnimations } from '@tamagui/animations-moti'
 
 export const animations = createAnimations({
   quick: {
-    type: "spring",
+    type: 'spring',
     damping: 32,
     mass: 1.3,
     stiffness: 350,
@@ -12,4 +12,4 @@ export const animations = createAnimations({
     stiffness: 120,
     mass: 0.8,
   },
-});
+})

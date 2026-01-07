@@ -1,5 +1,5 @@
-import { resolveConfig } from "vite";
-import { buildBundle } from "./buildBundle";
+import { resolveConfig } from 'vite'
+import { buildBundle } from './buildBundle'
 
 /**
  * Returns the build bundle function.
@@ -14,18 +14,18 @@ export async function getBuildBundleFn() {
       // envFile,
       // forceOptimizeDeps,
     },
-    "build",
-    "production",
-  );
+    'build',
+    'production'
+  )
 
   // Should call `resolveConfig` before checking for `globalThis['__viteMetroPluginOptions__']`
-  if (globalThis["__viteMetroPluginOptions__"]) {
+  if (globalThis['__viteMetroPluginOptions__']) {
     const metroBuildBundle = buildBundle.bind({
       viteConfig,
-      metroPluginOptions: globalThis["__viteMetroPluginOptions__"],
-    });
-    return metroBuildBundle;
+      metroPluginOptions: globalThis['__viteMetroPluginOptions__'],
+    })
+    return metroBuildBundle
   }
 
-  return null;
+  return null
 }

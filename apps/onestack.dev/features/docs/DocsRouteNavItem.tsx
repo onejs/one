@@ -1,13 +1,13 @@
-import { getStore, useStoreSelector } from "@tamagui/use-store";
-import { createElement, useRef } from "react";
-import { SizableText, Spacer, XStack, YStack } from "tamagui";
-import { Link } from "one";
-import { ExternalIcon } from "~/features/icons/ExternalIcon";
-import type { NavItemProps } from "./types";
+import { getStore, useStoreSelector } from '@tamagui/use-store'
+import { createElement, useRef } from 'react'
+import { SizableText, Spacer, XStack, YStack } from 'tamagui'
+import { Link } from 'one'
+import { ExternalIcon } from '~/features/icons/ExternalIcon'
+import type { NavItemProps } from './types'
 
 export class DocsItemsStore {
-  hovered = false;
-  index = 0;
+  hovered = false
+  index = 0
 }
 
 export const DocsRouteNavItem = function DocsRouteNavItem({
@@ -20,17 +20,17 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
   index,
   external,
 }: NavItemProps & {
-  icon?: any;
-  inMenu?: boolean;
-  index: number;
+  icon?: any
+  inMenu?: boolean
+  index: number
 }) {
-  const isActive = useStoreSelector(DocsItemsStore, (x) => x.hovered && x.index === index);
-  const isExternal = external || href.startsWith("http");
-  const ref = useRef<any>();
+  const isActive = useStoreSelector(DocsItemsStore, (x) => x.hovered && x.index === index)
+  const isExternal = external || href.startsWith('http')
+  const ref = useRef<any>()
 
   return (
     <Link
-      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       href={href as any}
     >
       <XStack
@@ -42,18 +42,18 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         py="$2"
         opacity={pending ? 0.25 : 1}
         pressStyle={{
-          backgroundColor: "$background04",
+          backgroundColor: '$background04',
         }}
-        pointerEvents={pending ? "none" : ("inherit" as any)}
+        pointerEvents={pending ? 'none' : ('inherit' as any)}
         pos="relative"
         onMouseEnter={() => {
-          getStore(DocsItemsStore).index = index;
+          getStore(DocsItemsStore).index = index
         }}
         $sm={{
-          py: "$2.5",
+          py: '$2.5',
         }}
         {...(inMenu && {
-          jc: "flex-start",
+          jc: 'flex-start',
         })}
       >
         {!inMenu && (
@@ -66,7 +66,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
             l={0}
             br="$2"
             w={2}
-            bg={active ? "$color10" : "$backgroundHover"}
+            bg={active ? '$color10' : '$backgroundHover'}
           />
         )}
         <SizableText
@@ -82,7 +82,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
             o: 0.85,
           }}
           {...(active && {
-            fow: "700",
+            fow: '700',
             opacity: 1,
           })}
         >
@@ -112,5 +112,5 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         ) : null}
       </XStack>
     </Link>
-  );
-};
+  )
+}

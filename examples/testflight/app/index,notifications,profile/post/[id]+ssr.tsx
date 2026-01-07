@@ -1,29 +1,29 @@
-import { eq, sql } from "drizzle-orm";
-import { useLoader, useNavigation, useParams } from "one";
-import { useEffect } from "react";
-import { YStack } from "tamagui";
-import { db } from "~/code/db/connection";
-import { FeedCard } from "~/code/feed/FeedCard";
-import { PageContainer } from "~/code/ui/PageContainer";
-import { feed, replies } from "~/code/data";
+import { eq, sql } from 'drizzle-orm'
+import { useLoader, useNavigation, useParams } from 'one'
+import { useEffect } from 'react'
+import { YStack } from 'tamagui'
+import { db } from '~/code/db/connection'
+import { FeedCard } from '~/code/feed/FeedCard'
+import { PageContainer } from '~/code/ui/PageContainer'
+import { feed, replies } from '~/code/data'
 
 export function PostPage() {
   const postData =
-    feed.find((item) => item.id.toString() === (useParams() as any).id || "") || feed[0];
+    feed.find((item) => item.id.toString() === (useParams() as any).id || '') || feed[0]
   const data = {
     ...postData,
     replies: replies.filter((r) => r.postId === postData.id),
-  };
+  }
 
-  const navigation = useNavigation();
-  const params = useParams<any>();
+  const navigation = useNavigation()
+  const params = useParams<any>()
 
   useEffect(() => {
-    navigation.setOptions({ title: data?.content || `Post #${params.id}` });
-  }, [navigation, data?.content, params.id]);
+    navigation.setOptions({ title: data?.content || `Post #${params.id}` })
+  }, [navigation, data?.content, params.id])
 
   if (!data) {
-    return null;
+    return null
   }
 
   return (
@@ -44,5 +44,5 @@ export function PostPage() {
         )}
       </PageContainer>
     </>
-  );
+  )
 }

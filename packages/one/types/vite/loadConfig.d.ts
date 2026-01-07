@@ -1,15 +1,15 @@
-import "../polyfills-server";
-import type { One } from "./types";
-export declare function setOneOptions(next: One.PluginOptions): void;
+import '../polyfills-server'
+import type { One } from './types'
+export declare function setOneOptions(next: One.PluginOptions): void
 export declare function loadUserOneOptions(
-  command: "serve" | "build",
-  silent?: boolean,
+  command: 'serve' | 'build',
+  silent?: boolean
 ): Promise<{
   config: {
-    path: string;
-    config: import("vite").UserConfig;
-    dependencies: string[];
-  };
-  oneOptions: One.PluginOptions;
-}>;
+    path: string
+    config: import('vite').UserConfig
+    dependencies: string[]
+  }
+  oneOptions: One.PluginOptions
+}>
 //# sourceMappingURL=loadConfig.d.ts.map

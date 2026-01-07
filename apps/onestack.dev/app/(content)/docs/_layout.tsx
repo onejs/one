@@ -1,5 +1,5 @@
-import { ChevronLeft, ChevronRight } from "@tamagui/lucide-icons";
-import type { ReactNode } from "react";
+import { ChevronLeft, ChevronRight } from '@tamagui/lucide-icons'
+import type { ReactNode } from 'react'
 import {
   EnsureFlexed,
   H2,
@@ -10,21 +10,21 @@ import {
   View,
   XStack,
   YStack,
-} from "tamagui";
-import { type Href, Link, Slot } from "one";
-import { TopNav } from "~/components/TopNav";
-import { OneLogo } from "~/features/brand/Logo";
-import { DocsMenuContents } from "~/features/docs/DocsMenuContents";
-import { useDocsMenu } from "~/features/docs/useDocsMenu";
-import { ContainerDocs } from "~/features/site/Containers";
+} from 'tamagui'
+import { type Href, Link, Slot } from 'one'
+import { TopNav } from '~/components/TopNav'
+import { OneLogo } from '~/features/brand/Logo'
+import { DocsMenuContents } from '~/features/docs/DocsMenuContents'
+import { useDocsMenu } from '~/features/docs/useDocsMenu'
+import { ContainerDocs } from '~/features/site/Containers'
 
-const GITHUB_URL = "https://github.com";
-const REPO_NAME = "onejs/one";
-const BRANCH = "main";
+const GITHUB_URL = 'https://github.com'
+const REPO_NAME = 'onejs/one'
+const BRANCH = 'main'
 
 export default function DocsLayout() {
-  const { currentPath, next, previous, documentVersionPath } = useDocsMenu();
-  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`;
+  const { currentPath, next, previous, documentVersionPath } = useDocsMenu()
+  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`
 
   return (
     <>
@@ -34,29 +34,36 @@ export default function DocsLayout() {
         overflow="hidden"
         mx="auto"
         $gtMd={{
-          flexDirection: "row",
+          flexDirection: 'row',
         }}
         maw={1250}
         zi={100}
       >
         <EnsureFlexed />
         <View
-          animateOnly={["left"]}
-          position={"fixed" as any}
+          animateOnly={['left']}
+          position={'fixed' as any}
           top={0}
           zi={9999}
           overflow="hidden"
           width="100%"
           backgroundColor="$background"
           $gtMd={{
-            backgroundColor: "transparent",
-            position: "fixed" as any,
+            backgroundColor: 'transparent',
+            position: 'fixed' as any,
             top: 0,
             bottom: 0,
             width: 225,
           }}
         >
-          <YStack $md={{ dsp: "none" }} mt={28} h={65} maxWidth="fit-content" zi={100_000} ml="$4">
+          <YStack
+            $md={{ dsp: 'none' }}
+            mt={28}
+            h={65}
+            maxWidth="fit-content"
+            zi={100_000}
+            ml="$4"
+          >
             <Link href="/">
               <OneLogo size={0.55} />
             </Link>
@@ -67,9 +74,9 @@ export default function DocsLayout() {
               display="none"
               contain="paint layout"
               $gtMd={{
-                display: "block",
+                display: 'block',
                 pt: 20,
-                pb: "$10",
+                pb: '$10',
               }}
             >
               <DocsMenuContents />
@@ -81,7 +88,7 @@ export default function DocsLayout() {
       </View>
 
       <ContainerDocs>
-        <Spacer $md={{ dsp: "none" }} />
+        <Spacer $md={{ dsp: 'none' }} />
         <Slot />
 
         {(previous || next) && (
@@ -100,7 +107,7 @@ export default function DocsLayout() {
                   tag="a"
                   group="card"
                   hoverStyle={{
-                    borderColor: "$color6",
+                    borderColor: '$color6',
                   }}
                   flex={1}
                   width="50%"
@@ -109,7 +116,7 @@ export default function DocsLayout() {
                   borderWidth={1}
                   borderColor="$borderColor"
                   pressStyle={{
-                    backgroundColor: "$backgroundPress",
+                    backgroundColor: '$backgroundPress',
                   }}
                   aria-label={`Previous page: ${previous.title}`}
                   ai="center"
@@ -139,7 +146,7 @@ export default function DocsLayout() {
                   tag="a"
                   group="card"
                   hoverStyle={{
-                    borderColor: "$color6",
+                    borderColor: '$color6',
                   }}
                   flex={1}
                   width="50%"
@@ -148,7 +155,7 @@ export default function DocsLayout() {
                   borderWidth={1}
                   borderColor="$borderColor"
                   pressStyle={{
-                    backgroundColor: "$backgroundPress",
+                    backgroundColor: '$backgroundPress',
                   }}
                   aria-label={`Previous page: ${next.title}`}
                   ai="center"
@@ -193,13 +200,13 @@ export default function DocsLayout() {
         </Link>
       </ContainerDocs>
     </>
-  );
+  )
 }
 
 export type NavItemProps = {
-  children: ReactNode;
-  active?: boolean;
-  href: string;
-  pending?: boolean;
-  external?: boolean;
-};
+  children: ReactNode
+  active?: boolean
+  href: string
+  pending?: boolean
+  external?: boolean
+}

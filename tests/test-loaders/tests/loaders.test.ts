@@ -1,488 +1,491 @@
-import { type Browser, type BrowserContext, chromium } from "playwright";
-import { afterAll, beforeAll, describe, expect, test } from "vitest";
+import { type Browser, type BrowserContext, chromium } from 'playwright'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
-const serverUrl = process.env.ONE_SERVER_URL;
-const isDebug = !!process.env.DEBUG;
+const serverUrl = process.env.ONE_SERVER_URL
+const isDebug = !!process.env.DEBUG
 
-let browser: Browser;
-let context: BrowserContext;
+let browser: Browser
+let context: BrowserContext
 
 beforeAll(async () => {
-  browser = await chromium.launch({ headless: !isDebug });
-  context = await browser.newContext();
-});
+  browser = await chromium.launch({ headless: !isDebug })
+  context = await browser.newContext()
+})
 
 afterAll(async () => {
-  await browser.close();
-});
+  await browser.close()
+})
 
-describe("loader() SSG", () => {
-  test("throw redirect() in loader redirects correctly", async () => {
-    const page = await context.newPage();
+describe('loader() SSG', () => {
+  test('throw redirect() in loader redirects correctly', async () => {
+    const page = await context.newPage()
 
     // Navigate to a page that throws a redirect in its loader
-    await page.goto(serverUrl + "/loader-redirect");
+    await page.goto(serverUrl + '/loader-redirect')
 
     // Should have been redirected to /loader
-    expect(page.url()).toBe(`${serverUrl}/loader`);
+    expect(page.url()).toBe(`${serverUrl}/loader`)
 
     // Should see the loader page content, not the redirect page
-    const textContent = await page.textContent("#loader-data");
-    expect(textContent).toContain("loader-success");
+    const textContent = await page.textContent('#loader-data')
+    expect(textContent).toContain('loader-success')
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("initial load with loader, then navigate to a new loader", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader");
+  test('initial load with loader, then navigate to a new loader', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader')
 
-    const textContent = await page.textContent("#loader-data");
-    expect(textContent).toContain("loader-success");
+    const textContent = await page.textContent('#loader-data')
+    expect(textContent).toContain('loader-success')
 
-    const link = await page.$('a[href="/loader/other"]');
+    const link = await page.$('a[href="/loader/other"]')
     await link?.click({
       force: true,
-    });
+    })
 
-    await new Promise((res) => setTimeout(res, 500));
+    await new Promise((res) => setTimeout(res, 500))
 
-    expect(page.url()).toBe(`${serverUrl}/loader/other`);
+    expect(page.url()).toBe(`${serverUrl}/loader/other`)
 
-    expect(await page.textContent("#loader-data-two")).toContain("loader-success-two");
+    expect(await page.textContent('#loader-data-two')).toContain('loader-success-two')
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("loader data stays the same on back/forward", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/");
+  test.skip('loader data stays the same on back/forward', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/')
 
-    expect(await page.textContent("#test-loader")).toBe('{"test":"hello"}');
+    expect(await page.textContent('#test-loader')).toBe('{"test":"hello"}')
 
-    await page.click("#go-to-sub");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.click('#go-to-sub')
+    await new Promise((res) => setTimeout(res, 500))
 
-    expect(page.url()).toBe(`${serverUrl}/sub-page/sub`);
+    expect(page.url()).toBe(`${serverUrl}/sub-page/sub`)
 
-    await page.goBack();
+    await page.goBack()
 
-    expect(page.url()).toBe(`${serverUrl}/`);
+    expect(page.url()).toBe(`${serverUrl}/`)
 
-    expect(await page.textContent("#test-loader")).toBe('{"test":"hello"}');
+    expect(await page.textContent('#test-loader')).toBe('{"test":"hello"}')
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("loader refetches when search params change", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-refetch");
+  test.skip('loader refetches when search params change', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch')
 
     // Initial load
-    expect(await page.textContent("#loader-query")).toContain("Query: default");
-    const initialTimestampText = await page.textContent("#loader-timestamp");
+    expect(await page.textContent('#loader-query')).toContain('Query: default')
+    const initialTimestampText = await page.textContent('#loader-timestamp')
 
     // Change search params via navigation
-    await page.fill("#query-input", "hello");
-    await page.click("#update-search");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.fill('#query-input', 'hello')
+    await page.click('#update-search')
+    await new Promise((res) => setTimeout(res, 500))
 
     // Loader should have refetched with new search param
-    expect(await page.textContent("#loader-query")).toContain("Query: hello");
-    const afterFirstNavTimestamp = await page.textContent("#loader-timestamp");
-    expect(afterFirstNavTimestamp).not.toBe(initialTimestampText);
+    expect(await page.textContent('#loader-query')).toContain('Query: hello')
+    const afterFirstNavTimestamp = await page.textContent('#loader-timestamp')
+    expect(afterFirstNavTimestamp).not.toBe(initialTimestampText)
 
     // Change search params again
-    await page.fill("#query-input", "world");
-    await page.click("#update-search");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.fill('#query-input', 'world')
+    await page.click('#update-search')
+    await new Promise((res) => setTimeout(res, 500))
 
     // Loader should have refetched again
-    expect(await page.textContent("#loader-query")).toContain("Query: world");
-    const afterSecondNavTimestamp = await page.textContent("#loader-timestamp");
-    expect(afterSecondNavTimestamp).not.toBe(afterFirstNavTimestamp);
+    expect(await page.textContent('#loader-query')).toContain('Query: world')
+    const afterSecondNavTimestamp = await page.textContent('#loader-timestamp')
+    expect(afterSecondNavTimestamp).not.toBe(afterFirstNavTimestamp)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("useLoaderState refetch works from child component", async () => {
-    const page = await context.newPage();
+  test('useLoaderState refetch works from child component', async () => {
+    const page = await context.newPage()
 
     // Capture browser console logs
-    page.on("console", (msg) => {
-      console.log("[Browser]", msg.text());
-    });
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
 
-    await page.goto(serverUrl + "/loader-refetch");
+    await page.goto(serverUrl + '/loader-refetch')
 
     // Wait for client-side hydration (timestamp becomes visible)
     await page.waitForFunction(
-      () => !document.querySelector("#loader-timestamp")?.textContent?.includes("loading"),
-      { timeout: 5000 },
-    );
+      () =>
+        !document.querySelector('#loader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Initial load - SSG pages don't have search params at build time
-    expect(await page.textContent("#loader-query")).toContain("Query: default");
-    const initialTimestamp = await page.textContent("#loader-timestamp");
-    console.log("Initial timestamp:", initialTimestamp);
+    expect(await page.textContent('#loader-query')).toContain('Query: default')
+    const initialTimestamp = await page.textContent('#loader-timestamp')
+    console.log('Initial timestamp:', initialTimestamp)
 
     // Button should show "Refetch" when idle
-    expect(await page.textContent("#refetch-button")).toBe("Refetch");
+    expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
     // Click refetch button (in child component)
-    console.log("Clicking refetch button");
-    await page.click("#refetch-button");
+    console.log('Clicking refetch button')
+    await page.click('#refetch-button')
 
     // After refetch completes - increased timeout for CI
-    console.log("Waiting for refetch to complete");
-    await new Promise((res) => setTimeout(res, 2000));
+    console.log('Waiting for refetch to complete')
+    await new Promise((res) => setTimeout(res, 2000))
 
     // Button should be back to "Refetch"
-    expect(await page.textContent("#refetch-button")).toBe("Refetch");
+    expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
     // Query should stay the same (no search params) but timestamp should change
-    expect(await page.textContent("#loader-query")).toContain("Query: default");
-    const newTimestamp = await page.textContent("#loader-timestamp");
-    console.log("New timestamp:", newTimestamp);
-    expect(newTimestamp).not.toBe(initialTimestamp);
+    expect(await page.textContent('#loader-query')).toContain('Query: default')
+    const newTimestamp = await page.textContent('#loader-timestamp')
+    console.log('New timestamp:', newTimestamp)
+    expect(newTimestamp).not.toBe(initialTimestamp)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("simple SPA refetch", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/simple-spa-refetch");
+  test('simple SPA refetch', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/simple-spa-refetch')
 
     // Initial load
-    const initialCount = await page.textContent("#spa-count");
-    const initialCountNum = parseInt(initialCount?.match(/\d+/)?.[0] || "0");
+    const initialCount = await page.textContent('#spa-count')
+    const initialCountNum = parseInt(initialCount?.match(/\d+/)?.[0] || '0')
 
     // Click refetch
-    await page.click("#spa-refetch-btn");
-    await new Promise((res) => setTimeout(res, 1000));
+    await page.click('#spa-refetch-btn')
+    await new Promise((res) => setTimeout(res, 1000))
 
     // Count should have incremented
-    const newCount = await page.textContent("#spa-count");
-    const newCountNum = parseInt(newCount?.match(/\d+/)?.[0] || "0");
-    expect(newCountNum).toBeGreaterThan(initialCountNum);
+    const newCount = await page.textContent('#spa-count')
+    const newCountNum = parseInt(newCount?.match(/\d+/)?.[0] || '0')
+    expect(newCountNum).toBeGreaterThan(initialCountNum)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("SPA mode: loader refetches on search params and manual refetch", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-refetch/spa");
+  test.skip('SPA mode: loader refetches on search params and manual refetch', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch/spa')
 
     // Initial load
-    expect(await page.textContent("#spa-mode")).toBe("Mode: spa");
-    expect(await page.textContent("#spa-query")).toContain("spa-default");
-    const initialCountText = await page.textContent("#spa-call-count");
-    const initialCount = parseInt(initialCountText?.match(/\d+/)?.[0] || "0");
+    expect(await page.textContent('#spa-mode')).toBe('Mode: spa')
+    expect(await page.textContent('#spa-query')).toContain('spa-default')
+    const initialCountText = await page.textContent('#spa-call-count')
+    const initialCount = parseInt(initialCountText?.match(/\d+/)?.[0] || '0')
 
     // Navigate with new search params
-    await page.click("#spa-search-test");
-    await new Promise((res) => setTimeout(res, 1000)); // Give more time for navigation
+    await page.click('#spa-search-test')
+    await new Promise((res) => setTimeout(res, 1000)) // Give more time for navigation
 
-    expect(await page.textContent("#spa-query")).toContain("spa-test");
-    const afterNavCountText = await page.textContent("#spa-call-count");
-    const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || "0");
-    expect(afterNavCount).toBeGreaterThan(initialCount);
+    expect(await page.textContent('#spa-query')).toContain('spa-test')
+    const afterNavCountText = await page.textContent('#spa-call-count')
+    const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || '0')
+    expect(afterNavCount).toBeGreaterThan(initialCount)
 
     // Manual refetch
-    await page.click("#spa-refetch");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.click('#spa-refetch')
+    await new Promise((res) => setTimeout(res, 500))
 
-    const afterRefetchCountText = await page.textContent("#spa-call-count");
-    const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || "0");
-    expect(afterRefetchCount).toBeGreaterThan(afterNavCount);
+    const afterRefetchCountText = await page.textContent('#spa-call-count')
+    const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || '0')
+    expect(afterRefetchCount).toBeGreaterThan(afterNavCount)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("SSR mode: manual refetch works", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-refetch/ssr");
+  test.skip('SSR mode: manual refetch works', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch/ssr')
 
     // Initial load
-    expect(await page.textContent("#ssr-mode")).toBe("Mode: ssr");
-    const initialTimestampText = await page.textContent("#ssr-call-count");
+    expect(await page.textContent('#ssr-mode')).toBe('Mode: ssr')
+    const initialTimestampText = await page.textContent('#ssr-call-count')
 
     // Wait a bit to ensure timestamp will be different
-    await new Promise((res) => setTimeout(res, 100));
+    await new Promise((res) => setTimeout(res, 100))
 
     // Manual refetch
-    await page.click("#ssr-refetch");
-    await new Promise((res) => setTimeout(res, 3000)); // increased timeout for CI
+    await page.click('#ssr-refetch')
+    await new Promise((res) => setTimeout(res, 3000)) // increased timeout for CI
 
     // Timestamp should have changed
-    const afterRefetchTimestampText = await page.textContent("#ssr-call-count");
-    expect(afterRefetchTimestampText).not.toBe(initialTimestampText);
+    const afterRefetchTimestampText = await page.textContent('#ssr-call-count')
+    expect(afterRefetchTimestampText).not.toBe(initialTimestampText)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("SSR mode: loader refetches on search params and manual refetch", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-refetch/ssr");
+  test.skip('SSR mode: loader refetches on search params and manual refetch', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch/ssr')
 
     // Initial load
-    expect(await page.textContent("#ssr-mode")).toBe("Mode: ssr");
-    expect(await page.textContent("#ssr-query")).toContain("ssr-default");
-    const initialExecutedOn = await page.textContent("#ssr-executed-on");
+    expect(await page.textContent('#ssr-mode')).toBe('Mode: ssr')
+    expect(await page.textContent('#ssr-query')).toContain('ssr-default')
+    const initialExecutedOn = await page.textContent('#ssr-executed-on')
     // Initial SSR load should be on server
-    expect(initialExecutedOn).toContain("server");
-    const initialCountText = await page.textContent("#ssr-call-count");
-    const initialCount = parseInt(initialCountText?.match(/\d+/)?.[0] || "0");
+    expect(initialExecutedOn).toContain('server')
+    const initialCountText = await page.textContent('#ssr-call-count')
+    const initialCount = parseInt(initialCountText?.match(/\d+/)?.[0] || '0')
 
     // Navigate with new search params
-    await page.click("#ssr-search-test");
-    await new Promise((res) => setTimeout(res, 1000));
+    await page.click('#ssr-search-test')
+    await new Promise((res) => setTimeout(res, 1000))
 
-    expect(await page.textContent("#ssr-query")).toContain("ssr-test");
-    const afterNavCountText = await page.textContent("#ssr-call-count");
-    const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || "0");
-    expect(afterNavCount).toBeGreaterThan(initialCount);
+    expect(await page.textContent('#ssr-query')).toContain('ssr-test')
+    const afterNavCountText = await page.textContent('#ssr-call-count')
+    const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || '0')
+    expect(afterNavCount).toBeGreaterThan(initialCount)
 
     // Manual refetch - in a browser environment this should run on client
     // but in test environment it might still run on server
-    await page.click("#ssr-refetch");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.click('#ssr-refetch')
+    await new Promise((res) => setTimeout(res, 500))
 
-    const afterRefetchCountText = await page.textContent("#ssr-call-count");
-    const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || "0");
-    expect(afterRefetchCount).toBeGreaterThan(afterNavCount);
+    const afterRefetchCountText = await page.textContent('#ssr-call-count')
+    const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || '0')
+    expect(afterRefetchCount).toBeGreaterThan(afterNavCount)
 
     // Log where it executed for debugging
-    const refetchExecutedOn = await page.textContent("#ssr-executed-on");
-    console.log("SSR refetch executed on:", refetchExecutedOn);
+    const refetchExecutedOn = await page.textContent('#ssr-executed-on')
+    console.log('SSR refetch executed on:', refetchExecutedOn)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("useLoaderState with loader provides data, refetch, and state", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-refetch");
+  test('useLoaderState with loader provides data, refetch, and state', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch')
 
     // Wait for client-side hydration
     await page.waitForFunction(
-      () => !document.querySelector("#loader-timestamp")?.textContent?.includes("loading"),
-      { timeout: 5000 },
-    );
+      () =>
+        !document.querySelector('#loader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Check initial state
-    expect(await page.textContent("#refetch-button")).toBe("Refetch");
+    expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
     // Data should be available
-    expect(await page.textContent("#loader-query")).toContain("Query:");
-    expect(await page.textContent("#loader-timestamp")).toContain("Timestamp:");
+    expect(await page.textContent('#loader-query')).toContain('Query:')
+    expect(await page.textContent('#loader-timestamp')).toContain('Timestamp:')
 
     // Get initial timestamp
-    const initialTimestamp = await page.textContent("#loader-timestamp");
+    const initialTimestamp = await page.textContent('#loader-timestamp')
 
     // Test multiple rapid refetches
     for (let i = 0; i < 3; i++) {
-      await page.click("#refetch-button");
-      await new Promise((res) => setTimeout(res, 500));
+      await page.click('#refetch-button')
+      await new Promise((res) => setTimeout(res, 500))
     }
 
     // Timestamp should have changed after refetches
-    const finalTimestamp = await page.textContent("#loader-timestamp");
-    expect(finalTimestamp).not.toBe(initialTimestamp);
+    const finalTimestamp = await page.textContent('#loader-timestamp')
+    expect(finalTimestamp).not.toBe(initialTimestamp)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test.skip("loader refetches on pathname change and manual refetch", async () => {
-    const page = await context.newPage();
+  test.skip('loader refetches on pathname change and manual refetch', async () => {
+    const page = await context.newPage()
 
     // Capture browser console logs
-    page.on("console", (msg) => {
-      console.log("[Browser]", msg.text());
-    });
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
 
     // Preload both pages to avoid dev mode rebuild issues
-    await page.goto(serverUrl + "/loader-state/page1");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.goto(serverUrl + '/loader-state/page1')
+    await new Promise((res) => setTimeout(res, 500))
 
-    await page.goto(serverUrl + "/loader-state/page2");
-    await new Promise((res) => setTimeout(res, 500));
+    await page.goto(serverUrl + '/loader-state/page2')
+    await new Promise((res) => setTimeout(res, 500))
 
     // Now start the actual test - go back to page1
-    await page.goto(serverUrl + "/loader-state/page1");
-    expect(await page.textContent("#page-name")).toBe("Page: page1");
+    await page.goto(serverUrl + '/loader-state/page1')
+    expect(await page.textContent('#page-name')).toBe('Page: page1')
     const page1InitialCount = parseInt(
-      (await page.textContent("#call-count"))?.match(/\d+/)?.[0] || "0",
-    );
-    console.log("Page1 initial count:", page1InitialCount);
+      (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
+    )
+    console.log('Page1 initial count:', page1InitialCount)
 
     // Manual refetch on page1
-    await page.click("#refetch-btn");
-    await new Promise((res) => setTimeout(res, 1000));
+    await page.click('#refetch-btn')
+    await new Promise((res) => setTimeout(res, 1000))
 
     const page1AfterRefetch = parseInt(
-      (await page.textContent("#call-count"))?.match(/\d+/)?.[0] || "0",
-    );
-    console.log("Page1 after refetch:", page1AfterRefetch);
-    expect(page1AfterRefetch).toBeGreaterThan(page1InitialCount);
+      (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
+    )
+    console.log('Page1 after refetch:', page1AfterRefetch)
+    expect(page1AfterRefetch).toBeGreaterThan(page1InitialCount)
 
     // Navigate to page2
-    await page.click("#go-to-page2");
-    await new Promise((res) => setTimeout(res, 1000));
+    await page.click('#go-to-page2')
+    await new Promise((res) => setTimeout(res, 1000))
 
-    expect(await page.textContent("#page-name")).toBe("Page: page2");
+    expect(await page.textContent('#page-name')).toBe('Page: page2')
     const page2InitialCount = parseInt(
-      (await page.textContent("#call-count"))?.match(/\d+/)?.[0] || "0",
-    );
-    console.log("Page2 initial count:", page2InitialCount);
+      (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
+    )
+    console.log('Page2 initial count:', page2InitialCount)
 
     // Manual refetch on page2
-    await page.click("#refetch-btn");
-    await new Promise((res) => setTimeout(res, 1000));
+    await page.click('#refetch-btn')
+    await new Promise((res) => setTimeout(res, 1000))
 
     const page2AfterRefetch = parseInt(
-      (await page.textContent("#call-count"))?.match(/\d+/)?.[0] || "0",
-    );
-    console.log("Page2 after refetch:", page2AfterRefetch);
-    expect(page2AfterRefetch).toBeGreaterThan(page2InitialCount);
+      (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
+    )
+    console.log('Page2 after refetch:', page2AfterRefetch)
+    expect(page2AfterRefetch).toBeGreaterThan(page2InitialCount)
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("simple refetch test", async () => {
-    const page = await context.newPage();
+  test('simple refetch test', async () => {
+    const page = await context.newPage()
 
     // Capture browser console logs
-    page.on("console", (msg) => {
-      console.log("[Browser]", msg.text());
-    });
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
 
-    page.on("pageerror", (error) => {
-      console.error("[Browser Error]", error.message);
-    });
+    page.on('pageerror', (error) => {
+      console.error('[Browser Error]', error.message)
+    })
 
-    console.log("Navigating to /simple-refetch");
-    await page.goto(serverUrl + "/simple-refetch");
+    console.log('Navigating to /simple-refetch')
+    await page.goto(serverUrl + '/simple-refetch')
 
     // Wait for hydration and client-side rendering
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(1500)
 
     // Wait for timestamp to be loaded (not "loading")
     await page.waitForFunction(
-      () => !document.querySelector("#timestamp")?.textContent?.includes("loading"),
-      { timeout: 5000 },
-    );
+      () => !document.querySelector('#timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Get initial state
-    console.log("Getting initial state");
-    const initialTimestamp = await page.textContent("#timestamp");
-    const initialRandom = await page.textContent("#random");
-    console.log("Initial timestamp:", initialTimestamp);
-    console.log("Initial random:", initialRandom);
-    expect(await page.textContent("#changed")).toBe("Changed: NO");
-    expect(await page.textContent("#state")).toBe("State: idle");
+    console.log('Getting initial state')
+    const initialTimestamp = await page.textContent('#timestamp')
+    const initialRandom = await page.textContent('#random')
+    console.log('Initial timestamp:', initialTimestamp)
+    console.log('Initial random:', initialRandom)
+    expect(await page.textContent('#changed')).toBe('Changed: NO')
+    expect(await page.textContent('#state')).toBe('State: idle')
 
     // Click refetch
-    console.log("Clicking refetch button");
-    await page.waitForSelector("#refetch-btn", { state: "visible" });
-    await page.click("#refetch-btn");
+    console.log('Clicking refetch button')
+    await page.waitForSelector('#refetch-btn', { state: 'visible' })
+    await page.click('#refetch-btn')
 
-    console.log("Waiting 3 seconds for refetch to complete");
-    await new Promise((res) => setTimeout(res, 3000));
+    console.log('Waiting 3 seconds for refetch to complete')
+    await new Promise((res) => setTimeout(res, 3000))
 
     // Check if data changed
-    console.log("Checking if data changed");
-    const newTimestamp = await page.textContent("#timestamp");
-    const newRandom = await page.textContent("#random");
-    console.log("New timestamp:", newTimestamp);
-    console.log("New random:", newRandom);
-    console.log("Timestamps equal?", newTimestamp === initialTimestamp);
-    expect(newTimestamp).not.toBe(initialTimestamp);
-    expect(await page.textContent("#changed")).toBe("Changed: YES");
+    console.log('Checking if data changed')
+    const newTimestamp = await page.textContent('#timestamp')
+    const newRandom = await page.textContent('#random')
+    console.log('New timestamp:', newTimestamp)
+    console.log('New random:', newRandom)
+    console.log('Timestamps equal?', newTimestamp === initialTimestamp)
+    expect(newTimestamp).not.toBe(initialTimestamp)
+    expect(await page.textContent('#changed')).toBe('Changed: YES')
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("useLoaderState loading state transitions", async () => {
-    const page = await context.newPage();
-    await page.goto(serverUrl + "/loader-state/page2");
+  test('useLoaderState loading state transitions', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-state/page2')
 
     // Initial state should be idle
-    expect(await page.textContent("#load-state")).toBe("State: idle");
+    expect(await page.textContent('#load-state')).toBe('State: idle')
 
     // Click refetch and immediately check state
-    await page.click("#refetch-btn");
+    await page.click('#refetch-btn')
     // The button text should change to Loading...
-    const buttonText = await page.textContent("#refetch-btn");
-    console.log("Button text during refetch:", buttonText);
+    const buttonText = await page.textContent('#refetch-btn')
+    console.log('Button text during refetch:', buttonText)
 
     // Wait for completion
-    await new Promise((res) => setTimeout(res, 500));
+    await new Promise((res) => setTimeout(res, 500))
 
     // Should be back to idle
-    expect(await page.textContent("#load-state")).toBe("State: idle");
+    expect(await page.textContent('#load-state')).toBe('State: idle')
 
-    await page.close();
-  });
+    await page.close()
+  })
 
-  test("useLoader and useLoaderState share the same cache", async () => {
-    const page = await context.newPage();
+  test('useLoader and useLoaderState share the same cache', async () => {
+    const page = await context.newPage()
 
     // Capture console logs
-    page.on("console", (msg) => {
-      console.log("[Browser]", msg.text());
-    });
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
 
-    console.log("Navigating to /shared-cache");
-    await page.goto(serverUrl + "/shared-cache");
-    await new Promise((res) => setTimeout(res, 1000));
+    console.log('Navigating to /shared-cache')
+    await page.goto(serverUrl + '/shared-cache')
+    await new Promise((res) => setTimeout(res, 1000))
 
     // Wait for client-side rendering
     await page.waitForFunction(
-      () => !document.querySelector("#useloader-timestamp")?.textContent?.includes("loading"),
-      { timeout: 5000 },
-    );
+      () =>
+        !document.querySelector('#useloader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Get initial data from both hooks
-    const initialUseLoaderText = await page.textContent("#useloader-timestamp");
-    const initialUseLoaderStateText = await page.textContent("#useloaderstate-timestamp");
+    const initialUseLoaderText = await page.textContent('#useloader-timestamp')
+    const initialUseLoaderStateText = await page.textContent('#useloaderstate-timestamp')
 
-    console.log("Initial useLoader timestamp:", initialUseLoaderText);
-    console.log("Initial useLoaderState timestamp:", initialUseLoaderStateText);
+    console.log('Initial useLoader timestamp:', initialUseLoaderText)
+    console.log('Initial useLoaderState timestamp:', initialUseLoaderStateText)
 
     // Extract timestamps from the text
-    const initialUseLoaderTimestamp = initialUseLoaderText?.split(": ")[1];
-    const initialUseLoaderStateTimestamp = initialUseLoaderStateText?.split(": ")[1];
+    const initialUseLoaderTimestamp = initialUseLoaderText?.split(': ')[1]
+    const initialUseLoaderStateTimestamp = initialUseLoaderStateText?.split(': ')[1]
 
     // Both should have the same timestamp initially
-    expect(initialUseLoaderTimestamp).toBe(initialUseLoaderStateTimestamp);
+    expect(initialUseLoaderTimestamp).toBe(initialUseLoaderStateTimestamp)
 
     // Refetch using useLoaderState
-    console.log("Clicking refetch button");
-    await page.click("#refetch-btn");
+    console.log('Clicking refetch button')
+    await page.click('#refetch-btn')
 
-    console.log("Waiting for refetch to complete");
-    await new Promise((res) => setTimeout(res, 2000));
+    console.log('Waiting for refetch to complete')
+    await new Promise((res) => setTimeout(res, 2000))
 
     // Get new data from both hooks
-    const newUseLoaderText = await page.textContent("#useloader-timestamp");
-    const newUseLoaderStateText = await page.textContent("#useloaderstate-timestamp");
+    const newUseLoaderText = await page.textContent('#useloader-timestamp')
+    const newUseLoaderStateText = await page.textContent('#useloaderstate-timestamp')
 
-    console.log("New useLoader timestamp:", newUseLoaderText);
-    console.log("New useLoaderState timestamp:", newUseLoaderStateText);
+    console.log('New useLoader timestamp:', newUseLoaderText)
+    console.log('New useLoaderState timestamp:', newUseLoaderStateText)
 
     // Extract timestamps from the text
-    const newUseLoaderTimestamp = newUseLoaderText?.split(": ")[1];
-    const newUseLoaderStateTimestamp = newUseLoaderStateText?.split(": ")[1];
+    const newUseLoaderTimestamp = newUseLoaderText?.split(': ')[1]
+    const newUseLoaderStateTimestamp = newUseLoaderStateText?.split(': ')[1]
 
     // Both should have the same NEW timestamp
-    expect(newUseLoaderTimestamp).toBe(newUseLoaderStateTimestamp);
+    expect(newUseLoaderTimestamp).toBe(newUseLoaderStateTimestamp)
 
     // And it should be different from the initial
-    expect(newUseLoaderTimestamp).not.toBe(initialUseLoaderTimestamp);
+    expect(newUseLoaderTimestamp).not.toBe(initialUseLoaderTimestamp)
 
     // Verify refetch count incremented
-    expect(await page.textContent("#refetch-count")).toBe("Refetch count: 1");
+    expect(await page.textContent('#refetch-count')).toBe('Refetch count: 1')
 
-    await page.close();
-  });
-});
+    await page.close()
+  })
+})

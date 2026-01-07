@@ -6,15 +6,15 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
    * This should not be used inside of a Layout component.
    * @example `/(root)` maps to a layout route `/app/(root).tsx`.
    */
-  name?: string;
+  name?: string
   initialParams?: {
-    [key: string]: any;
-  };
-  options?: TOptions;
-};
+    [key: string]: any
+  }
+  options?: TOptions
+}
 /** Component for setting the current screen's options dynamically. */
 export declare function Screen<TOptions extends object = object>({
   name,
   options,
-}: ScreenProps<TOptions>): null;
+}: ScreenProps<TOptions>): null
 //# sourceMappingURL=Screen.d.ts.map

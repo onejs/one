@@ -1,4 +1,4 @@
-const getPageLikeExports = (x: string) => x !== "loader" && x[0].toUpperCase() === x[0];
+const getPageLikeExports = (x: string) => x !== 'loader' && x[0].toUpperCase() === x[0]
 
 export const getPageExport = (exported: Record<string, any>) => {
   return (
@@ -6,10 +6,10 @@ export const getPageExport = (exported: Record<string, any>) => {
     // because HMR fails with default exports, allow exporting something else
     // we just find the first non-loader export for now...
     (() => {
-      const keys = Object.keys(exported);
+      const keys = Object.keys(exported)
 
-      if (process.env.NODE_ENV === "development") {
-        const upperCaseExports = keys.filter(getPageLikeExports);
+      if (process.env.NODE_ENV === 'development') {
+        const upperCaseExports = keys.filter(getPageLikeExports)
         if (upperCaseExports.length > 1) {
           console.warn(`Warning: You've exported more than one uppercase non-default export.
 
@@ -20,14 +20,14 @@ cause issues, as browser clients and server runtimes may not sort the export key
 the same.
 
 Be sure to only export a single capitalized non-default export per-route.
-            `);
+            `)
         }
       }
 
-      const nonLoader = keys.find(getPageLikeExports);
+      const nonLoader = keys.find(getPageLikeExports)
       if (nonLoader) {
-        return exported[nonLoader];
+        return exported[nonLoader]
       }
     })()
-  );
-};
+  )
+}

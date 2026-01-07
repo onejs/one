@@ -1,21 +1,21 @@
-import { Link, useLoader } from "one";
-import { Text, YStack, H1, Paragraph } from "tamagui";
+import { Link, useLoader } from 'one'
+import { Text, YStack, H1, Paragraph } from 'tamagui'
 
 export function loader() {
   return {
-    title: "Documentation",
-    description: "Browse all documentation pages",
+    title: 'Documentation',
+    description: 'Browse all documentation pages',
     pages: [
-      { slug: "getting-started", title: "Getting Started" },
-      { slug: "api-reference", title: "API Reference" },
-      { slug: "advanced-usage", title: "Advanced Usage" },
+      { slug: 'getting-started', title: 'Getting Started' },
+      { slug: 'api-reference', title: 'API Reference' },
+      { slug: 'advanced-usage', title: 'Advanced Usage' },
     ],
     timestamp: Date.now(),
-  };
+  }
 }
 
 export default function DocsIndexPage() {
-  const data = useLoader(loader);
+  const data = useLoader(loader)
 
   return (
     <YStack padding="$4" gap="$4">
@@ -55,5 +55,5 @@ export default function DocsIndexPage() {
         Loaded at: {data.timestamp}
       </Text>
     </YStack>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import type { RollupOutput } from "rollup";
-import type { One } from "../../vite/types";
+import type { RollupOutput } from 'rollup'
+import type { One } from '../../vite/types'
 export declare const buildVercelOutputDirectory: ({
   apiOutput,
   buildInfoForWriting,
@@ -7,10 +7,10 @@ export declare const buildVercelOutputDirectory: ({
   oneOptionsRoot,
   postBuildLogs,
 }: {
-  apiOutput: RollupOutput | null;
-  buildInfoForWriting: One.BuildInfo;
-  clientDir: string;
-  oneOptionsRoot: string;
-  postBuildLogs: string[];
-}) => Promise<void>;
+  apiOutput: RollupOutput | null
+  buildInfoForWriting: One.BuildInfo
+  clientDir: string
+  oneOptionsRoot: string
+  postBuildLogs: string[]
+}) => Promise<void>
 //# sourceMappingURL=buildVercelOutputDirectory.d.ts.map

@@ -1,9 +1,9 @@
-import type { Frontmatter, UnifiedPlugin } from "./types";
+import type { Frontmatter, UnifiedPlugin } from './types'
 export declare function getMDX(
   source: string,
-  extraPlugins?: UnifiedPlugin,
+  extraPlugins?: UnifiedPlugin
 ): Promise<{
-  frontmatter: Frontmatter;
-  code: string;
-}>;
+  frontmatter: Frontmatter
+  code: string
+}>
 //# sourceMappingURL=getMDX.d.ts.map

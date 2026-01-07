@@ -1,45 +1,45 @@
-import { ChevronLeft } from "@tamagui/lucide-icons";
-import { getMDXComponent } from "mdx-bundler/client";
-import { createRoute, Link, useLoader } from "one";
-import { useMemo } from "react";
-import { H1, Paragraph, Separator, SizableText, XStack, YStack } from "tamagui";
-import { TopNav } from "~/components/TopNav";
-import { authors } from "~/data/authors";
-import { components } from "~/features/docs/MDXComponents";
-import { Container } from "~/features/site/Containers";
-import { HeadInfo } from "~/features/site/HeadInfo";
+import { ChevronLeft } from '@tamagui/lucide-icons'
+import { getMDXComponent } from 'mdx-bundler/client'
+import { createRoute, Link, useLoader } from 'one'
+import { useMemo } from 'react'
+import { H1, Paragraph, Separator, SizableText, XStack, YStack } from 'tamagui'
+import { TopNav } from '~/components/TopNav'
+import { authors } from '~/data/authors'
+import { components } from '~/features/docs/MDXComponents'
+import { Container } from '~/features/site/Containers'
+import { HeadInfo } from '~/features/site/HeadInfo'
 
-const route = createRoute<"/blog/[slug]">();
+const route = createRoute<'/blog/[slug]'>()
 
 export async function generateStaticParams() {
-  const { getAllFrontmatter } = await import("@vxrn/mdx");
-  const frontmatters = getAllFrontmatter("data/blog");
+  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const frontmatters = getAllFrontmatter('data/blog')
   return frontmatters.map(({ slug }) => ({
-    slug: slug.replace("blog/", ""),
-  }));
+    slug: slug.replace('blog/', ''),
+  }))
 }
 
 export const loader = route.createLoader(async ({ params }) => {
-  const { getMDXBySlug } = await import("@vxrn/mdx");
-  const { frontmatter, code } = await getMDXBySlug("data/blog", params.slug);
+  const { getMDXBySlug } = await import('@vxrn/mdx')
+  const { frontmatter, code } = await getMDXBySlug('data/blog', params.slug)
   return {
     frontmatter,
     code,
-  };
-});
+  }
+})
 
 export default function BlogPost() {
-  const { code, frontmatter } = useLoader(loader);
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const { code, frontmatter } = useLoader(loader)
+  const Component = useMemo(() => getMDXComponent(code), [code])
 
-  const author = frontmatter.by ? authors[frontmatter.by as keyof typeof authors] : null;
+  const author = frontmatter.by ? authors[frontmatter.by as keyof typeof authors] : null
   const date = frontmatter.publishedAt
-    ? new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
+    ? new Date(frontmatter.publishedAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       })
-    : null;
+    : null
 
   return (
     <>
@@ -93,5 +93,5 @@ export default function BlogPost() {
         </YStack>
       </Container>
     </>
-  );
+  )
 }

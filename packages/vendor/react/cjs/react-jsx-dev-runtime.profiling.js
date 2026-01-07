@@ -8,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-"use strict";
-var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-exports.Fragment = REACT_FRAGMENT_TYPE;
-exports.jsxDEV = void 0;
+'use strict'
+var REACT_FRAGMENT_TYPE = Symbol.for('react.fragment')
+exports.Fragment = REACT_FRAGMENT_TYPE
+exports.jsxDEV = void 0

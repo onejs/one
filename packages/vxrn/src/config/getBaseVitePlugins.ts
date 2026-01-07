@@ -1,16 +1,16 @@
-import type { PluginOption } from "vite";
-import { webExtensions } from "../constants";
-import FSExtra from "fs-extra";
-import { extname } from "node:path";
-import { createVXRNCompilerPlugin } from "@vxrn/compiler";
+import type { PluginOption } from 'vite'
+import { webExtensions } from '../constants'
+import FSExtra from 'fs-extra'
+import { extname } from 'node:path'
+import { createVXRNCompilerPlugin } from '@vxrn/compiler'
 
 // essentially base web config not base everything
 
 export function getBaseVitePlugins(): PluginOption[] {
   return [
     {
-      name: "platform-specific-resolve",
-      enforce: "pre",
+      name: 'platform-specific-resolve',
+      enforce: 'pre',
       config() {
         return {
           resolve: {
@@ -24,19 +24,19 @@ export function getBaseVitePlugins(): PluginOption[] {
             ssr: {
               resolve: {
                 extensions: webExtensions,
-                conditions: ["vxrn-web"],
-                externalConditions: ["vxrn-web"],
+                conditions: ['vxrn-web'],
+                externalConditions: ['vxrn-web'],
               },
             },
 
             client: {
               resolve: {
                 extensions: webExtensions,
-                conditions: ["vxrn-web"],
+                conditions: ['vxrn-web'],
               },
             },
           },
-        };
+        }
       },
 
       // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
@@ -45,39 +45,39 @@ export function getBaseVitePlugins(): PluginOption[] {
         // which can cause hard page reloads when new deps are found during navigation
         // @see https://github.com/remix-run/remix/discussions/8917
         // @ts-expect-error - scan is not in Vite's types but exists at runtime
-        if (options?.scan) return;
+        if (options?.scan) return
 
         // if (process.env.NODE_ENV !== 'development') {
         //   // is this only dev mode problem?
         //   return
         // }
 
-        const resolved = await this.resolve(source, importer, options);
+        const resolved = await this.resolve(source, importer, options)
 
-        if (!resolved || resolved.id.includes("node_modules")) {
-          return resolved;
+        if (!resolved || resolved.id.includes('node_modules')) {
+          return resolved
         }
 
         // not in node_modules, vite doesn't apply extensions! we need to manually
-        const jsExtension = extname(resolved.id);
-        const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), "");
+        const jsExtension = extname(resolved.id)
+        const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), '')
 
         const extensionsByEnvironment = {
-          client: ["web"],
-          ssr: ["web"],
-          ios: ["ios", "native"],
-          android: ["android", "native"],
-        };
+          client: ['web'],
+          ssr: ['web'],
+          ios: ['ios', 'native'],
+          android: ['android', 'native'],
+        }
 
-        const platformSpecificExtension = extensionsByEnvironment[this.environment.name];
+        const platformSpecificExtension = extensionsByEnvironment[this.environment.name]
 
         if (platformSpecificExtension) {
           for (const platformExtension of platformSpecificExtension) {
-            const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`;
+            const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
             if (await FSExtra.pathExists(fullPath)) {
               return {
                 id: fullPath,
-              };
+              }
             }
           }
         }
@@ -91,16 +91,19 @@ export function getBaseVitePlugins(): PluginOption[] {
       name: `avoid-optimize-logs`,
 
       configureServer() {
-        const ogWarn = console.warn;
+        const ogWarn = console.warn
         console.warn = (...args: any[]) => {
-          if (typeof args[0] === "string" && args[0].startsWith(`Failed to resolve dependency:`)) {
-            return;
+          if (
+            typeof args[0] === 'string' &&
+            args[0].startsWith(`Failed to resolve dependency:`)
+          ) {
+            return
           }
-          return ogWarn(...args);
-        };
+          return ogWarn(...args)
+        }
       },
     },
 
     createVXRNCompilerPlugin({}),
-  ];
+  ]
 }

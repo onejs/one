@@ -1,37 +1,37 @@
-import { one } from "one/vite";
-import { fileURLToPath } from "node:url";
-import path from "node:path";
-import type { UserConfig } from "vite";
+import { one } from 'one/vite'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+import type { UserConfig } from 'vite'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default {
   root: __dirname,
 
   ssr: {
     noExternal: true,
-    external: ["@vxrn/mdx"],
+    external: ['@vxrn/mdx'],
   },
 
   plugins: [
     one({
       router: {
-        ignoredRouteFiles: ["**/*.should-be-ignored.*"],
+        ignoredRouteFiles: ['**/*.should-be-ignored.*'],
       },
 
       setupFile: {
-        client: "./setup.ts",
-        server: "./setup.ts",
-        native: "./setup.native.ts",
+        client: './setup.ts',
+        server: './setup.ts',
+        native: './setup.native.ts',
       },
 
       web: {
-        deploy: "vercel",
+        deploy: 'vercel',
         inlineLayoutCSS: true, // Enable to test CSS hydration fix
       },
 
       native: {
-        bundler: "metro",
+        bundler: 'metro',
       },
 
       react: {
@@ -49,4 +49,4 @@ export default {
       },
     }),
   ],
-} satisfies UserConfig;
+} satisfies UserConfig

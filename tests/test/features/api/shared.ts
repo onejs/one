@@ -1,3 +1,3 @@
 export function sharedFn() {
-  return Math.random();
+  return Math.random()
 }

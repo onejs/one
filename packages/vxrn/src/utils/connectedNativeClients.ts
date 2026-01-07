@@ -1,9 +1,9 @@
-export let connectedNativeClients = 0;
+export let connectedNativeClients = 0
 
 export function addConnectedNativeClient() {
-  connectedNativeClients++;
+  connectedNativeClients++
 }
 
 export function removeConnectedNativeClient() {
-  connectedNativeClients--;
+  connectedNativeClients--
 }
