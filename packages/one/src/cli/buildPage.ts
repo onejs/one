@@ -9,6 +9,13 @@ import type { One, RouteInfo } from '../vite/types'
 
 const { readFile, outputFile } = FSExtra
 
+// Convert URL path (with forward slashes) to filesystem path for cross-platform compatibility
+function urlPathToFilePath(urlPath: string): string {
+  // Remove leading slash and split by forward slash (URL separator)
+  const parts = urlPath.replace(/^\//, '').split('/')
+  return join(...parts)
+}
+
 export async function buildPage(
   serverEntry: string,
   path: string,
@@ -66,7 +73,7 @@ export async function buildPage(
       ...registrationCalls,
     ].join('\n')
 
-    await FSExtra.writeFile(join(clientDir, preloadPath), preloadContent)
+    await FSExtra.writeFile(join(clientDir, urlPathToFilePath(preloadPath)), preloadContent)
 
     // Generate CSS preload file with prefetch (on hover) and inject (on navigation) functions
     // Deduplicate CSS URLs to avoid loading the same file multiple times
@@ -126,7 +133,7 @@ export function injectCSS() {
 // For backwards compatibility, also prefetch on import
 prefetchCSS()
 `
-    await FSExtra.writeFile(join(clientDir, cssPreloadPath), cssPreloadContent)
+    await FSExtra.writeFile(join(clientDir, urlPathToFilePath(cssPreloadPath)), cssPreloadContent)
 
     const exported = await import(toAbsolute(serverJsPath))
 
@@ -142,7 +149,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           code,
           loaderData,
         })
-      const loaderPartialPath = join(clientDir, getLoaderPath(path))
+      const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
       await outputFile(loaderPartialPath, withLoader)
       loaderPath = getLoaderPath(path)
     }
