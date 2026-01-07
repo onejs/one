@@ -17,6 +17,22 @@ afterAll(async () => {
 })
 
 describe('loader() SSG', () => {
+  test('throw redirect() in loader redirects correctly', async () => {
+    const page = await context.newPage()
+
+    // Navigate to a page that throws a redirect in its loader
+    await page.goto(serverUrl + '/loader-redirect')
+
+    // Should have been redirected to /loader
+    expect(page.url()).toBe(`${serverUrl}/loader`)
+
+    // Should see the loader page content, not the redirect page
+    const textContent = await page.textContent('#loader-data')
+    expect(textContent).toContain('loader-success')
+
+    await page.close()
+  })
+
   test('initial load with loader, then navigate to a new loader', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader')
