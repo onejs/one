@@ -1,10 +1,9 @@
-import { useLoader } from "one";
-import { H1, H2, Paragraph, YStack, XStack, Card as TamaguiCard, Text } from "tamagui";
-import { Link } from "one";
+import { Link, useLoader } from "one";
+import { H1, H2, Paragraph, SizableText, XStack, YStack } from "tamagui";
 import { TopNav } from "~/components/TopNav";
+import { authors } from "~/data/authors";
 import { Container } from "~/features/site/Containers";
 import { HeadInfo } from "~/features/site/HeadInfo";
-import { authors } from "~/data/authors";
 
 export async function loader() {
   const { getAllFrontmatter } = await import("@vxrn/mdx");
@@ -24,13 +23,15 @@ export default function BlogIndex() {
       <TopNav />
 
       <Container>
-        <YStack py="$8" gap="$6">
-          <H1 size="$10">Blog</H1>
-          <Paragraph size="$6" color="$color11">
-            News, updates, and insights from the One team.
-          </Paragraph>
+        <YStack pt="$12" pb="$8" gap="$6">
+          <YStack gap="$2">
+            <H1 size="$10">Blog</H1>
+            <Paragraph size="$6" color="$color11">
+              News, updates, and insights from the One team.
+            </Paragraph>
+          </YStack>
 
-          <YStack gap="$4" mt="$4">
+          <YStack gap="$4">
             {frontmatters.map((post) => {
               const author = post.by ? authors[post.by as keyof typeof authors] : null;
               const date = post.publishedAt
@@ -43,8 +44,7 @@ export default function BlogIndex() {
 
               return (
                 <Link key={post.slug} href={`/blog/${post.slug.replace("blog/", "")}`}>
-                  <TamaguiCard
-                    bordered
+                  <YStack
                     p="$5"
                     hoverStyle={{
                       borderColor: "$color8",
@@ -67,23 +67,23 @@ export default function BlogIndex() {
                       )}
                       <XStack gap="$3" mt="$2">
                         {author && (
-                          <Text size="$3" color="$color10">
+                          <SizableText size="$3" color="$color10">
                             {author.name}
-                          </Text>
+                          </SizableText>
                         )}
                         {date && (
-                          <Text size="$3" color="$color10">
+                          <SizableText size="$3" color="$color10">
                             {date}
-                          </Text>
+                          </SizableText>
                         )}
                         {post.readingTime && (
-                          <Text size="$3" color="$color10">
+                          <SizableText size="$3" color="$color10">
                             {post.readingTime.text}
-                          </Text>
+                          </SizableText>
                         )}
                       </XStack>
                     </YStack>
-                  </TamaguiCard>
+                  </YStack>
                 </Link>
               );
             })}
