@@ -23,8 +23,8 @@ describe('loader() SSG', () => {
     // Navigate to a page that throws a redirect in its loader
     await page.goto(serverUrl + '/loader-redirect')
 
-    // Should have been redirected to /loader
-    expect(page.url()).toBe(`${serverUrl}/loader`)
+    // Should have been redirected to /loader (use URL pathname to avoid localhost vs 0.0.0.0 mismatch)
+    expect(new URL(page.url()).pathname).toBe('/loader')
 
     // Should see the loader page content, not the redirect page
     const textContent = await page.textContent('#loader-data')
