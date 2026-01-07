@@ -7,8 +7,8 @@ import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING } from '../constants'
 
-const traverse = BabelTraverse['default'] as typeof BabelTraverse
-const generate = BabelGenerate['default'] as any as typeof BabelGenerate
+const traverse = (BabelTraverse['default'] || BabelTraverse) as typeof BabelTraverse
+const generate = (BabelGenerate['default'] || BabelGenerate) as any as typeof BabelGenerate
 
 // Collect type-only imports before dead code elimination runs
 // These should never be removed since TypeScript erases them at compile time
