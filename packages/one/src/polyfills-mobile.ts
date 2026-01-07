@@ -3,6 +3,13 @@
 
 globalThis['global'] = globalThis
 
+// --------------- TextDecoder -------------------
+// for viem and other web3/crypto packages that need TextDecoder on React Native
+
+import { TextDecoder as TextDecoderPolyfill } from '@bacons/text-decoder'
+
+globalThis['TextDecoder'] ||= TextDecoderPolyfill
+
 // --------------- structuredClone -------------------
 
 import structuredClone from '@ungap/structured-clone'

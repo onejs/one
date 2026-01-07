@@ -1746,6 +1746,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bacons/text-decoder@npm:^0.0.0":
+  version: 0.0.0
+  resolution: "@bacons/text-decoder@npm:0.0.0"
+  peerDependencies:
+    react-native: "*"
+  checksum: 10/a6db0f2d8777c7091bf0ab50bfaabba347c75cf3da76bf8cb738607773d784b6130f012fd34d4925f5a1e107a516e86469011e4786972d060c6f2376c48abdb6
+  languageName: node
+  linkType: hard
+
 "@biomejs/biome@npm:2.3.3":
   version: 2.3.3
   resolution: "@biomejs/biome@npm:2.3.3"
@@ -16599,6 +16608,7 @@ __metadata:
     "@babel/parser": "npm:^7.28.5"
     "@babel/traverse": "npm:^7.28.5"
     "@babel/types": "npm:^7.28.5"
+    "@bacons/text-decoder": "npm:^0.0.0"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@react-native-masked-view/masked-view": "npm:^0.3.2"
     "@react-navigation/bottom-tabs": "npm:~7.7.3"
