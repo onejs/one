@@ -2,18 +2,18 @@ import {
   createDrawerNavigator,
   type DrawerNavigationEventMap,
   type DrawerNavigationOptions,
-} from "@react-navigation/drawer";
-import type { DrawerNavigationState, ParamListBase } from "@react-navigation/native";
+} from '@react-navigation/drawer'
+import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native'
 
-import { withLayoutContext } from "./withLayoutContext";
+import { withLayoutContext } from './withLayoutContext'
 
-const DrawerNavigator = createDrawerNavigator().Navigator;
+const DrawerNavigator = createDrawerNavigator().Navigator
 
 export const Drawer = withLayoutContext<
   DrawerNavigationOptions,
   typeof DrawerNavigator,
   DrawerNavigationState<ParamListBase>,
   DrawerNavigationEventMap
->(DrawerNavigator);
+>(DrawerNavigator)
 
-export default Drawer;
+export default Drawer

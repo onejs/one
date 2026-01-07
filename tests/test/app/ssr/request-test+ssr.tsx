@@ -1,19 +1,19 @@
-import { type LoaderProps, useLoader } from "one";
-import { Text, View } from "tamagui";
+import { type LoaderProps, useLoader } from 'one'
+import { Text, View } from 'tamagui'
 
 export function loader(props: LoaderProps) {
   return {
     hasRequest: !!props.request,
     requestMethod: props.request?.method,
     requestUrl: props.request?.url ? new URL(props.request.url).pathname : undefined,
-    userAgent: props.request?.headers.get("user-agent"),
+    userAgent: props.request?.headers.get('user-agent'),
     path: props.path,
     params: props.params,
-  };
+  }
 }
 
 export default function RequestTestSSR() {
-  const data = useLoader(loader);
+  const data = useLoader(loader)
 
   return (
     <View
@@ -37,5 +37,5 @@ export default function RequestTestSSR() {
       <Text>Params:</Text>
       <Text id="params">{JSON.stringify(data.params)}</Text>
     </View>
-  );
+  )
 }

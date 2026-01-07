@@ -5,45 +5,45 @@
  * No changes are made except of formatting.
  */
 
-import * as React from "react";
+import * as React from 'react'
 
 export function useThenable<T>(create: () => PromiseLike<T>) {
-  const [promise] = React.useState(create);
+  const [promise] = React.useState(create)
 
-  let initialState: [boolean, T | undefined] = [false, undefined];
+  let initialState: [boolean, T | undefined] = [false, undefined]
 
   // Check if our thenable is synchronous
   // eslint-disable-next-line promise/catch-or-return, promise/always-return
   promise.then((result) => {
-    initialState = [true, result];
-  });
+    initialState = [true, result]
+  })
 
-  const [state, setState] = React.useState(initialState);
-  const [resolved] = state;
+  const [state, setState] = React.useState(initialState)
+  const [resolved] = state
 
   React.useEffect(() => {
-    let cancelled = false;
+    let cancelled = false
 
     const resolve = async () => {
-      let result;
+      let result
 
       try {
-        result = await promise;
+        result = await promise
       } finally {
         if (!cancelled) {
-          setState([true, result]);
+          setState([true, result])
         }
       }
-    };
+    }
 
     if (!resolved) {
-      resolve();
+      resolve()
     }
 
     return () => {
-      cancelled = true;
-    };
-  }, [promise, resolved]);
+      cancelled = true
+    }
+  }, [promise, resolved])
 
-  return state;
+  return state
 }

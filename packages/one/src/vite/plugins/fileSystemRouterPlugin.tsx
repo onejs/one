@@ -1,52 +1,52 @@
-import { join } from "node:path";
-import { Readable } from "node:stream";
-import { debounce } from "perfect-debounce";
-import type { Connect, Plugin, ViteDevServer } from "vite";
-import { createServerModuleRunner } from "vite";
-import type { ModuleRunner } from "vite/module-runner";
-import { getSpaHeaderElements } from "../../constants";
-import { createHandleRequest } from "../../createHandleRequest";
-import type { RenderAppProps } from "../../types";
-import { getRouterRootFromOneOptions } from "../../utils/getRouterRootFromOneOptions";
-import { isResponse } from "../../utils/isResponse";
-import { isStatusRedirect } from "../../utils/isStatus";
-import { promiseWithResolvers } from "../../utils/promiseWithResolvers";
-import { LoaderDataCache } from "../../vite/constants";
-import { replaceLoader } from "../../vite/replaceLoader";
-import type { One } from "../../vite/types";
-import { setServerContext } from "../one-server-only";
-import { virtalEntryIdClient, virtualEntryId } from "./virtualEntryConstants";
+import { join } from 'node:path'
+import { Readable } from 'node:stream'
+import { debounce } from 'perfect-debounce'
+import type { Connect, Plugin, ViteDevServer } from 'vite'
+import { createServerModuleRunner } from 'vite'
+import type { ModuleRunner } from 'vite/module-runner'
+import { getSpaHeaderElements } from '../../constants'
+import { createHandleRequest } from '../../createHandleRequest'
+import type { RenderAppProps } from '../../types'
+import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
+import { isResponse } from '../../utils/isResponse'
+import { isStatusRedirect } from '../../utils/isStatus'
+import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { LoaderDataCache } from '../../vite/constants'
+import { replaceLoader } from '../../vite/replaceLoader'
+import type { One } from '../../vite/types'
+import { setServerContext } from '../one-server-only'
+import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
-const debugRouter = process.env.ONE_DEBUG_ROUTER;
+const debugRouter = process.env.ONE_DEBUG_ROUTER
 
 // server needs better dep optimization
-const USE_SERVER_ENV = false; //!!process.env.USE_SERVER_ENV
+const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
-  const preloads = ["/@vite/client", virtalEntryIdClient];
+  const preloads = ['/@vite/client', virtalEntryIdClient]
 
-  let runner: ModuleRunner;
-  let server: ViteDevServer;
+  let runner: ModuleRunner
+  let server: ViteDevServer
 
-  let handleRequest = createRequestHandler();
+  let handleRequest = createRequestHandler()
   // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
-  let renderPromise: Promise<void> | null = null;
+  let renderPromise: Promise<void> | null = null
 
   function createRequestHandler() {
-    const routerRoot = getRouterRootFromOneOptions(options);
+    const routerRoot = getRouterRootFromOneOptions(options)
     return createHandleRequest(
       {
         async handlePage({ route, url, loaderProps }) {
           console.info(
             ` ⓵  [${route.type}] ${url} resolved to ${
-              route.isNotFound ? "‼️ 404 not found" : `app/${route.file.slice(2)}`
-            }`,
-          );
+              route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
+            }`
+          )
 
-          if (route.type === "spa") {
+          if (route.type === 'spa') {
             // render just the layouts? route.layouts
             return `<html><head>
-            ${getSpaHeaderElements({ serverContext: { mode: "spa" } })}
+            ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
               injectIntoGlobalHook(window);
@@ -55,80 +55,83 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             </script>
             <script type="module" src="/@vite/client" async=""></script>
             <script type="module" src="/@id/__x00__virtual:one-entry" async=""></script>
-          </head></html>`;
+          </head></html>`
           }
 
           if (renderPromise) {
-            await renderPromise;
+            await renderPromise
           }
 
-          const { promise, resolve } = promiseWithResolvers<void>();
-          renderPromise = promise;
+          const { promise, resolve } = promiseWithResolvers<void>()
+          renderPromise = promise
 
           try {
-            const routeFile = join(routerRoot, route.file);
-            runner.clearCache();
+            const routeFile = join(routerRoot, route.file)
+            runner.clearCache()
 
-            globalThis["__vxrnresetState"]?.();
+            globalThis['__vxrnresetState']?.()
 
-            const exported = routeFile === "" ? {} : await runner.import(routeFile);
-            const loaderData = await exported.loader?.(loaderProps);
+            const exported = routeFile === '' ? {} : await runner.import(routeFile)
+            const loaderData = await exported.loader?.(loaderProps)
 
             // biome-ignore lint/security/noGlobalEval: needed to set server env at runtime
-            eval(`process.env.TAMAGUI_IS_SERVER = '1'`);
+            eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
-            const entry = await runner.import(virtualEntryId);
+            const entry = await runner.import(virtualEntryId)
 
-            const render = entry.default.render as (props: RenderAppProps) => any;
+            const render = entry.default.render as (props: RenderAppProps) => any
 
             setServerContext({
               loaderData,
               loaderProps,
-            });
+            })
 
-            LoaderDataCache[route.file] = loaderData;
+            LoaderDataCache[route.file] = loaderData
 
-            const is404 = route.isNotFound || !exported.default;
+            const is404 = route.isNotFound || !exported.default
 
             const html = await render({
-              mode: route.type === "ssg" ? "ssg" : route.type === "ssr" ? "ssr" : "spa",
+              mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
               loaderData,
               loaderProps,
-              path: loaderProps?.path || "/",
+              path: loaderProps?.path || '/',
               preloads,
-            });
+            })
 
             if (is404) {
               return new Response(html, {
                 status: 404,
-                headers: { "Content-Type": "text/html" },
-              });
+                headers: { 'Content-Type': 'text/html' },
+              })
             }
 
-            return html;
+            return html
           } catch (err) {
             // allow throwing a response in a loader (e.g. redirect)
             if (isResponse(err)) {
-              return err;
+              return err
             }
 
-            console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err);
-            const title = `Error rendering ${url.pathname} on server`;
-            const message = err instanceof Error ? err.message : `${err}`;
-            const stack = err instanceof Error ? err.stack || "" : "";
+            console.error(
+              `SSR error while loading file ${route.file} from URL ${url.href}\n`,
+              err
+            )
+            const title = `Error rendering ${url.pathname} on server`
+            const message = err instanceof Error ? err.message : `${err}`
+            const stack = err instanceof Error ? err.stack || '' : ''
 
             const isDuplicateReactError =
               /at (useEffect|useState|useReducer|useContext|useLayoutEffect)\s*\(.*?react\.development\.js/g.test(
-                stack,
-              );
+                stack
+              )
             const subMessage = isDuplicateReactError
               ? `
             <h2>Duplicate React Error</h2>
             <p style="font-size: 18px; line-height: 24px; max-width: 850px;">Note: These types of errors happen during SSR because One needs all dependencies that use React to be optimized. Find the dependency on the line after the react.development.js line below to find the failing dependency. So long as that dependency has "react" as a sub-dependency, you can add it to your package.json and One will optimize it automatically. If it doesn't list it properly, you can fix this manually by changing your vite.config.ts One plugin to add "one({ deps: { depName: true })" so One optimizes depName.</p>
           `
-              : ``;
+              : ``
 
-            console.error(`${title}\n ${message}\n\n${stack}\n`);
+            console.error(`${title}\n ${message}\n\n${stack}\n`)
 
             return `
             <html>
@@ -145,102 +148,102 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
               </body>
             </html>
-          `;
+          `
           } finally {
-            resolve();
+            resolve()
           }
         },
 
         async handleLoader({ request, route, url, loaderProps }) {
-          const routeFile = join(routerRoot, route.file);
+          const routeFile = join(routerRoot, route.file)
 
           // this will remove all loaders
-          let transformedJS = (await server.transformRequest(routeFile))?.code;
+          let transformedJS = (await server.transformRequest(routeFile))?.code
           if (!transformedJS) {
-            throw new Error(`No transformed js returned`);
+            throw new Error(`No transformed js returned`)
           }
 
-          const exported = await runner.import(routeFile);
-          const loaderData = await exported.loader?.(loaderProps);
+          const exported = await runner.import(routeFile)
+          const loaderData = await exported.loader?.(loaderProps)
 
           if (loaderData) {
             // add loader back in!
             transformedJS = replaceLoader({
               code: transformedJS,
               loaderData,
-            });
+            })
           }
 
-          const platform = url.searchParams.get("platform");
+          const platform = url.searchParams.get('platform')
 
-          if (platform === "ios" || platform === "android") {
+          if (platform === 'ios' || platform === 'android') {
             // Need to transpile to CommonJS for React Native
 
-            const environment = server.environments[platform || ""];
+            const environment = server.environments[platform || '']
             if (!environment) {
               throw new Error(
-                `[handleLoader] No Vite environment found for platform '${platform}'`,
-              );
+                `[handleLoader] No Vite environment found for platform '${platform}'`
+              )
             }
 
             // [3] Just use a simple function to return the loader data for now.
-            const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`;
+            const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
 
-            return nativeTransformedJS;
+            return nativeTransformedJS
           }
 
-          return transformedJS;
+          return transformedJS
         },
 
         async handleAPI({ route }) {
-          return await runner.import(join(routerRoot, route.file));
+          return await runner.import(join(routerRoot, route.file))
         },
 
         async loadMiddleware(route) {
-          return await runner.import(join(routerRoot, route.contextKey));
+          return await runner.import(join(routerRoot, route.contextKey))
         },
       },
-      { routerRoot },
-    );
+      { routerRoot }
+    )
   }
 
   return {
     name: `one-router-fs`,
-    enforce: "post",
-    apply: "serve",
+    enforce: 'post',
+    apply: 'serve',
 
     async config(userConfig) {
-      const setting = options.optimization?.autoEntriesScanning ?? "flat";
+      const setting = options.optimization?.autoEntriesScanning ?? 'flat'
 
       if (setting === false) {
-        return;
+        return
       }
 
       if (handleRequest.manifest.pageRoutes) {
         const routesAndLayouts = [
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
-              if (route.isNotFound) return [];
+              if (route.isNotFound) return []
               // sitemap
-              if (!route.file) return [];
+              if (!route.file) return []
 
               if (
-                setting === "flat" &&
-                route.file.split("/").filter((x) => !x.startsWith("(")).length > 3
+                setting === 'flat' &&
+                route.file.split('/').filter((x) => !x.startsWith('(')).length > 3
               ) {
-                return [];
+                return []
               }
 
               return [
-                join("./app", route.file),
+                join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {
-                  if (!layout.contextKey) return [];
-                  return [join("./app", layout.contextKey)];
+                  if (!layout.contextKey) return []
+                  return [join('./app', layout.contextKey)]
                 }) || []),
-              ];
-            }),
+              ]
+            })
           ),
-        ];
+        ]
 
         return {
           optimizeDeps: {
@@ -253,7 +256,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
              */
             entries: routesAndLayouts,
           },
-        };
+        }
       }
       // if (USE_SERVER_ENV) {
       //   return {
@@ -295,24 +298,24 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     },
 
     configureServer(serverIn) {
-      server = serverIn;
+      server = serverIn
       // change this to .server to test using the indepedently scoped env
       runner = createServerModuleRunner(
-        USE_SERVER_ENV ? server.environments.server : server.environments.ssr,
-      );
+        USE_SERVER_ENV ? server.environments.server : server.environments.ssr
+      )
 
-      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options));
+      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
-        if (type === "add" || type === "delete") {
+        if (type === 'add' || type === 'delete') {
           if (path.startsWith(appDir)) {
-            handleRequest = createRequestHandler();
+            handleRequest = createRequestHandler()
           }
         }
-      }, 100);
+      }, 100)
 
-      server.watcher.addListener("all", fileWatcherChangeListener);
+      server.watcher.addListener('all', fileWatcherChangeListener)
 
       // Instead of adding the middleware here, we return a function that Vite
       // will call after adding its own middlewares. We want our code to run after
@@ -321,159 +324,161 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       return () => {
         server.middlewares.use(async (req, res, next) => {
           try {
-            const redirects = options.web?.redirects;
+            const redirects = options.web?.redirects
             if (redirects) {
-              const url = new URL(req.url || "", `http://${req.headers.host}`);
+              const url = new URL(req.url || '', `http://${req.headers.host}`)
               for (const redirect of redirects) {
-                const regexStr = `^${redirect.source.replace(/:\w+/g, "([^/]+)")}$`;
-                const match = url.pathname.match(new RegExp(regexStr));
+                const regexStr = `^${redirect.source.replace(/:\w+/g, '([^/]+)')}$`
+                const match = url.pathname.match(new RegExp(regexStr))
 
                 if (match) {
-                  let destination = redirect.destination;
-                  const params = redirect.source.match(/:\w+/g);
+                  let destination = redirect.destination
+                  const params = redirect.source.match(/:\w+/g)
 
                   if (params) {
                     params.forEach((param, index) => {
-                      destination = destination.replace(param, match[index + 1] || "");
-                    });
+                      destination = destination.replace(param, match[index + 1] || '')
+                    })
                   }
 
                   if (debugRouter) {
-                    console.info(`[one] ↪ redirect ${url.pathname} → ${destination}`);
+                    console.info(`[one] ↪ redirect ${url.pathname} → ${destination}`)
                   }
 
-                  res.writeHead(redirect.permanent ? 301 : 302, { Location: destination });
-                  res.end();
-                  return;
+                  res.writeHead(redirect.permanent ? 301 : 302, { Location: destination })
+                  res.end()
+                  return
                 }
               }
             }
 
-            const reply = await handleRequest.handler(convertIncomingMessageToRequest(req));
+            const reply = await handleRequest.handler(
+              convertIncomingMessageToRequest(req)
+            )
 
             if (!reply) {
-              return next();
+              return next()
             }
 
-            if (typeof reply !== "string" && isResponse(reply)) {
+            if (typeof reply !== 'string' && isResponse(reply)) {
               if (debugRouter) {
-                const headers: Record<string, string> = {};
+                const headers: Record<string, string> = {}
                 reply.headers.forEach((v, k) => {
-                  headers[k] = v;
-                });
-                console.info(`[one] 📤 response ${reply.status}`, headers);
+                  headers[k] = v
+                })
+                console.info(`[one] 📤 response ${reply.status}`, headers)
               }
 
               reply.headers.forEach((value, key) => {
-                if (key === "set-cookie") {
+                if (key === 'set-cookie') {
                   // for some reason it wasnt doing working without this?
-                  const cookies = value.split(", ");
+                  const cookies = value.split(', ')
                   for (const cookie of cookies) {
-                    res.appendHeader("Set-Cookie", cookie);
+                    res.appendHeader('Set-Cookie', cookie)
                   }
                 } else {
-                  res.setHeader(key, value);
+                  res.setHeader(key, value)
                 }
-              });
+              })
 
               if (isStatusRedirect(reply.status)) {
-                const location = `${reply.headers.get("location") || ""}`;
+                const location = `${reply.headers.get('location') || ''}`
                 if (debugRouter) {
-                  console.info(`[one] ↪ response redirect → ${location}`);
+                  console.info(`[one] ↪ response redirect → ${location}`)
                 }
                 if (location) {
                   res.writeHead(reply.status, {
                     Location: location,
-                  });
-                  res.end();
-                  return;
+                  })
+                  res.end()
+                  return
                 }
-                console.error(`No location provided to redirected status reply`, reply);
+                console.error(`No location provided to redirected status reply`, reply)
               }
 
-              res.statusCode = reply.status;
-              res.statusMessage = reply.statusText;
+              res.statusCode = reply.status
+              res.statusMessage = reply.statusText
 
               if (reply.body) {
                 if (reply.body.locked) {
-                  console.warn(`Body is locked??`, req.url);
-                  res.write(``);
-                  res.end();
-                  return;
+                  console.warn(`Body is locked??`, req.url)
+                  res.write(``)
+                  res.end()
+                  return
                 }
               }
 
               if (reply.body) {
                 if (reply.body.locked) {
-                  console.warn(`Body is locked??`, req.url);
-                  res.end();
-                  return;
+                  console.warn(`Body is locked??`, req.url)
+                  res.end()
+                  return
                 }
                 try {
                   // Use Node >=18's fromWeb to pipe the web-stream directly:
-                  Readable.fromWeb(reply.body as any).pipe(res);
+                  Readable.fromWeb(reply.body as any).pipe(res)
                 } catch (err) {
-                  console.warn("Error piping reply body to response:", err);
-                  res.end();
+                  console.warn('Error piping reply body to response:', err)
+                  res.end()
                 }
-                return;
+                return
               }
 
-              res.end();
-              return;
+              res.end()
+              return
             }
 
-            if (reply && typeof reply === "object") {
-              res.setHeader("Content-Type", "application/json");
-              res.write(JSON.stringify(reply));
-              res.end();
-              return;
+            if (reply && typeof reply === 'object') {
+              res.setHeader('Content-Type', 'application/json')
+              res.write(JSON.stringify(reply))
+              res.end()
+              return
             }
 
-            res.write(reply);
-            res.end();
-            return;
+            res.write(reply)
+            res.end()
+            return
           } catch (error) {
-            console.error(`[one] routing error ${req.url}: ${error}`);
+            console.error(`[one] routing error ${req.url}: ${error}`)
             // Forward the error to Vite
-            next(error);
+            next(error)
           }
 
           // We're not calling `next` because our handler will always be
           // the last one in the chain. If it didn't send a response, we
           // will treat it as an error since there will be no one else to
           // handle it in production.
-          console.warn(`SSR handler didn't send a response for url: ${req.url}`);
-        });
-      };
+          console.warn(`SSR handler didn't send a response for url: ${req.url}`)
+        })
+      }
     },
-  } satisfies Plugin;
+  } satisfies Plugin
 }
 
 const convertIncomingMessageToRequest = (req: Connect.IncomingMessage): Request => {
   if (!req.originalUrl) {
-    throw new Error(`Can't convert: originalUrl is missing`);
+    throw new Error(`Can't convert: originalUrl is missing`)
   }
 
-  const urlBase = `http://${req.headers.host}`;
-  const urlString = req.originalUrl;
-  const url = new URL(urlString, urlBase);
+  const urlBase = `http://${req.headers.host}`
+  const urlString = req.originalUrl
+  const url = new URL(urlString, urlBase)
 
-  const headers = new Headers();
+  const headers = new Headers()
   for (const key in req.headers) {
     if (req.headers[key]) {
-      headers.append(key, req.headers[key] as string);
+      headers.append(key, req.headers[key] as string)
     }
   }
 
-  const hasBody = ["POST", "PUT", "PATCH", "DELETE"].includes(req.method || "");
-  const body = hasBody ? Readable.toWeb(req) : null;
+  const hasBody = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
+  const body = hasBody ? Readable.toWeb(req) : null
 
   return new Request(url, {
     method: req.method,
     headers,
     body,
     // Required for streaming bodies in Node's experimental fetch:
-    duplex: "half",
-  } as RequestInit & { duplex: "half" });
-};
+    duplex: 'half',
+  } as RequestInit & { duplex: 'half' })
+}

@@ -3,6 +3,6 @@
  */
 export declare function patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
   manifestHandlerMiddleware: any,
-  mainModuleName: string,
-): void;
+  mainModuleName: string
+): void
 //# sourceMappingURL=patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName.d.ts.map

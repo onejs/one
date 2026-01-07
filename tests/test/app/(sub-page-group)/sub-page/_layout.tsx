@@ -1,5 +1,5 @@
-import { Slot } from "one";
+import { Slot } from 'one'
 
 export default function () {
-  return <Slot />;
+  return <Slot />
 }

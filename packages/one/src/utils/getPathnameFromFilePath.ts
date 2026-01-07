@@ -1,15 +1,15 @@
-import Path from "node:path";
+import Path from 'node:path'
 
 export function getPathnameFromFilePath(
   inputPath: string,
   params = {},
   strict = false,
-  options: { preserveExtensions?: boolean; includeIndex?: boolean } = {},
+  options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
 ) {
-  const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, "");
-  const dirname = Path.dirname(path).replace(/\([^/]+\)/gi, "");
-  const file = Path.basename(path);
-  const fileName = options.preserveExtensions ? file : file.replace(/\.[a-z]+$/, "");
+  const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
+  const dirname = Path.dirname(path).replace(/\([^/]+\)/gi, '')
+  const file = Path.basename(path)
+  const fileName = options.preserveExtensions ? file : file.replace(/\.[a-z]+$/, '')
 
   function paramsError(part: string) {
     throw new Error(
@@ -20,43 +20,43 @@ export function getPathnameFromFilePath(
       - fileName: ${fileName}
       - params:
 
-${JSON.stringify(params, null, 2)}`,
-    );
+${JSON.stringify(params, null, 2)}`
+    )
   }
 
   const nameWithParams = (() => {
-    if (fileName === "index" && !options.includeIndex) {
-      return "/";
+    if (fileName === 'index' && !options.includeIndex) {
+      return '/'
     }
-    if (fileName.startsWith("[...")) {
-      const part = fileName.replace("[...", "").replace("]", "");
+    if (fileName.startsWith('[...')) {
+      const part = fileName.replace('[...', '').replace(']', '')
       if (!params[part]) {
         if (strict) {
-          throw paramsError(part);
+          throw paramsError(part)
         }
-        return `/*`;
+        return `/*`
       }
-      return `/${params[part]}`;
+      return `/${params[part]}`
     }
     return `/${fileName
-      .split("/")
+      .split('/')
       .map((part) => {
-        if (part[0] === "[") {
-          const found = params[part.slice(1, part.length - 1)];
+        if (part[0] === '[') {
+          const found = params[part.slice(1, part.length - 1)]
           if (!found) {
             if (strict) {
-              throw paramsError(part);
+              throw paramsError(part)
             }
 
-            return ":" + part.replace("[", "").replace("]", "");
+            return ':' + part.replace('[', '').replace(']', '')
           }
-          return found;
+          return found
         }
-        return part;
+        return part
       })
-      .join("/")}`;
-  })();
+      .join('/')}`
+  })()
 
   // hono path will convert +not-found etc too
-  return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, "/");
+  return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
 }

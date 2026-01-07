@@ -1,11 +1,11 @@
-import { one } from "one/vite";
-import type { UserConfig } from "vite";
+import { one } from 'one/vite'
+import type { UserConfig } from 'vite'
 
 export default {
   plugins: [
     one({
       web: {
-        deploy: "vercel",
+        deploy: 'vercel',
       },
 
       config: {
@@ -15,4 +15,4 @@ export default {
       },
     }),
   ],
-} satisfies UserConfig;
+} satisfies UserConfig

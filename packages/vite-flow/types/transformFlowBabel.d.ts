@@ -4,8 +4,8 @@ export declare function transformFlowBabel(
     development,
     path,
   }?: {
-    development?: boolean;
-    path?: string;
-  },
-): Promise<string>;
+    development?: boolean
+    path?: string
+  }
+): Promise<string>
 //# sourceMappingURL=transformFlowBabel.d.ts.map

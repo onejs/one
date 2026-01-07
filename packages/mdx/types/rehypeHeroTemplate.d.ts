@@ -1,8 +1,8 @@
 export type RehypeHeroTemplateOptions = {
-  demosPackage?: string;
-  demosPath?: string;
-};
+  demosPackage?: string
+  demosPath?: string
+}
 export declare const rehypeHeroTemplate: (
-  options?: RehypeHeroTemplateOptions,
-) => (tree: any) => void;
+  options?: RehypeHeroTemplateOptions
+) => (tree: any) => void
 //# sourceMappingURL=rehypeHeroTemplate.d.ts.map

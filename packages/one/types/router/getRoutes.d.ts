@@ -1,14 +1,14 @@
-import type { One } from "../vite/types";
-import type { DynamicConvention, RouteNode } from "./Route";
+import type { One } from '../vite/types'
+import type { DynamicConvention, RouteNode } from './Route'
 export type Options = {
-  ignore?: RegExp[];
-  preserveApiRoutes?: boolean;
-  ignoreRequireErrors?: boolean;
-  ignoreEntryPoints?: boolean;
-  importMode?: "sync";
-  platformRoutes?: boolean;
-  platform?: string;
-};
+  ignore?: RegExp[]
+  preserveApiRoutes?: boolean
+  ignoreRequireErrors?: boolean
+  ignoreEntryPoints?: boolean
+  importMode?: 'sync'
+  platformRoutes?: boolean
+  platform?: string
+}
 /**
  * Given a Metro context module, return an array of nested routes.
  *
@@ -23,14 +23,14 @@ export type Options = {
  */
 export declare function getRoutes(
   contextModule: One.RouteContext,
-  options?: Options,
-): RouteNode | null;
-export declare function getIgnoreList(options?: Options): RegExp[];
+  options?: Options
+): RouteNode | null
+export declare function getIgnoreList(options?: Options): RegExp[]
 /**
  * Generates a set of strings which have the router array syntax extrapolated.
  *
  * /(a,b)/(c,d)/e.tsx => new Set(['a/c/e.tsx', 'a/d/e.tsx', 'b/c/e.tsx', 'b/d/e.tsx'])
  */
-export declare function extrapolateGroups(key: string, keys?: Set<string>): Set<string>;
-export declare function generateDynamic(path: string): DynamicConvention[] | null;
+export declare function extrapolateGroups(key: string, keys?: Set<string>): Set<string>
+export declare function generateDynamic(path: string): DynamicConvention[] | null
 //# sourceMappingURL=getRoutes.d.ts.map

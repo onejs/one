@@ -1,1 +1,1 @@
-export { webWorks } from "./test-web.js";
+export { webWorks } from './test-web.js'

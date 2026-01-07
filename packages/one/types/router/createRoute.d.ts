@@ -1,8 +1,8 @@
-import type { OneRouter } from "../interfaces/router";
-import type { LoaderProps } from "../types";
+import type { OneRouter } from '../interfaces/router'
+import type { LoaderProps } from '../types'
 export declare function createRoute<Path extends string = string>(): {
-  useParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;
-  useActiveParams: () => Partial<OneRouter.RouteType<Path>["Params"]>;
+  useParams: () => Partial<OneRouter.RouteType<Path>['Params']>
+  useActiveParams: () => Partial<OneRouter.RouteType<Path>['Params']>
   /**
    * Creates a typed loader function for this route.
    * The loader receives LoaderProps with typed params.
@@ -15,12 +15,12 @@ export declare function createRoute<Path extends string = string>(): {
    * })
    */
   createLoader: <T>(
-    fn: (props: LoaderProps<OneRouter.RouteType<Path>["Params"]>) => T,
-  ) => (props: LoaderProps<OneRouter.RouteType<Path>["Params"]>) => T;
-};
+    fn: (props: LoaderProps<OneRouter.RouteType<Path>['Params']>) => T
+  ) => (props: LoaderProps<OneRouter.RouteType<Path>['Params']>) => T
+}
 declare const postIdRoute: {
-  useParams: () => Partial<OneRouter.InputRouteParams<"/feed/[id]">>;
-  useActiveParams: () => Partial<OneRouter.InputRouteParams<"/feed/[id]">>;
+  useParams: () => Partial<OneRouter.InputRouteParams<'/feed/[id]'>>
+  useActiveParams: () => Partial<OneRouter.InputRouteParams<'/feed/[id]'>>
   /**
    * Creates a typed loader function for this route.
    * The loader receives LoaderProps with typed params.
@@ -33,15 +33,15 @@ declare const postIdRoute: {
    * })
    */
   createLoader: <T>(
-    fn: (props: LoaderProps<OneRouter.InputRouteParams<"/feed/[id]">>) => T,
-  ) => (props: LoaderProps<OneRouter.InputRouteParams<"/feed/[id]">>) => T;
-};
+    fn: (props: LoaderProps<OneRouter.InputRouteParams<'/feed/[id]'>>) => T
+  ) => (props: LoaderProps<OneRouter.InputRouteParams<'/feed/[id]'>>) => T
+}
 export declare const route: {
   feed: {
-    $id: typeof postIdRoute;
-  };
-  notifications: {};
-  profile: {};
-};
-export {};
+    $id: typeof postIdRoute
+  }
+  notifications: {}
+  profile: {}
+}
+export {}
 //# sourceMappingURL=createRoute.d.ts.map

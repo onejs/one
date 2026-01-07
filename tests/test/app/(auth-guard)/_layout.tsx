@@ -1,14 +1,14 @@
-import { Slot, useActiveParams, useRouter } from "one";
+import { Slot, useActiveParams, useRouter } from 'one'
 
 export default function AuthGuardLayout() {
-  const router = useRouter();
-  const activeParams = useActiveParams<any>();
+  const router = useRouter()
+  const activeParams = useActiveParams<any>()
 
   if (activeParams.guarded) {
-    console.warn(`not authed, redirecting`);
+    console.warn(`not authed, redirecting`)
     // breaking, should do server-side
-    router.replace("/about");
+    router.replace('/about')
   }
 
-  return <Slot />;
+  return <Slot />
 }

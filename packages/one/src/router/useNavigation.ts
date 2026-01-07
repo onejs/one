@@ -1,11 +1,11 @@
 import {
   type NavigationProp,
   useNavigation as useUpstreamNavigation,
-} from "@react-navigation/native";
-import React from "react";
+} from '@react-navigation/native'
+import React from 'react'
 
-import { getNameFromFilePath } from "./matchers";
-import { useContextKey } from "./Route";
+import { getNameFromFilePath } from './matchers'
+import { useContextKey } from './Route'
 
 /**
  * Return the navigation object for the current route.
@@ -13,65 +13,68 @@ import { useContextKey } from "./Route";
  * @returns the navigation object for the provided route.
  */
 export function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>(
-  parent?: string,
+  parent?: string
 ): T {
-  const navigation = useUpstreamNavigation<any>();
+  const navigation = useUpstreamNavigation<any>()
 
-  const contextKey = useContextKey();
+  const contextKey = useContextKey()
   const normalizedParent = React.useMemo(() => {
     if (!parent) {
-      return null;
+      return null
     }
-    const normalized = getNameFromFilePath(parent);
+    const normalized = getNameFromFilePath(parent)
 
-    if (parent.startsWith(".")) {
-      return relativePaths(contextKey, parent);
+    if (parent.startsWith('.')) {
+      return relativePaths(contextKey, parent)
     }
-    return normalized;
-  }, [contextKey, parent]);
+    return normalized
+  }, [contextKey, parent])
 
   if (normalizedParent != null) {
-    const parentNavigation = navigation.getParent(normalizedParent);
+    const parentNavigation = navigation.getParent(normalizedParent)
 
     if (!parentNavigation) {
       throw new Error(
         `Could not find parent navigation with route "${parent}".` +
-          (normalizedParent !== parent ? ` (normalized: ${normalizedParent})` : ""),
-      );
+          (normalizedParent !== parent ? ` (normalized: ${normalizedParent})` : '')
+      )
     }
-    return parentNavigation;
+    return parentNavigation
   }
-  return navigation;
+  return navigation
 }
 
-export function resolveParentId(contextKey: string, parentId?: string | null): string | null {
+export function resolveParentId(
+  contextKey: string,
+  parentId?: string | null
+): string | null {
   if (!parentId) {
-    return null;
+    return null
   }
 
-  if (parentId.startsWith(".")) {
-    return getNameFromFilePath(relativePaths(contextKey, parentId));
+  if (parentId.startsWith('.')) {
+    return getNameFromFilePath(relativePaths(contextKey, parentId))
   }
-  return getNameFromFilePath(parentId);
+  return getNameFromFilePath(parentId)
 }
 
 // Resolve a path like `../` relative to a path like `/foo/bar`
 function relativePaths(from: string, to: string): string {
-  const fromParts = from.split("/").filter(Boolean);
-  const toParts = to.split("/").filter(Boolean);
+  const fromParts = from.split('/').filter(Boolean)
+  const toParts = to.split('/').filter(Boolean)
 
   for (const part of toParts) {
-    if (part === "..") {
+    if (part === '..') {
       if (fromParts.length === 0) {
-        throw new Error(`Cannot resolve path "${to}" relative to "${from}"`);
+        throw new Error(`Cannot resolve path "${to}" relative to "${from}"`)
       }
-      fromParts.pop();
-    } else if (part === ".") {
+      fromParts.pop()
+    } else if (part === '.') {
       // Ignore
     } else {
-      fromParts.push(part);
+      fromParts.push(part)
     }
   }
 
-  return "/" + fromParts.join("/");
+  return '/' + fromParts.join('/')
 }

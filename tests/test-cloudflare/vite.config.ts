@@ -1,11 +1,11 @@
-import { one } from "one/vite";
+import { one } from 'one/vite'
 
 export default {
   plugins: [
     one({
       web: {
-        deploy: "cloudflare",
+        deploy: 'cloudflare',
       },
     }),
   ],
-};
+}

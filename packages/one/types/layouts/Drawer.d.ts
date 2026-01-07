@@ -1,33 +1,36 @@
 import {
   type DrawerNavigationEventMap,
   type DrawerNavigationOptions,
-} from "@react-navigation/drawer";
-import type { DrawerNavigationState, ParamListBase } from "@react-navigation/native";
-export declare const Drawer: import("react").ForwardRefExoticComponent<
+} from '@react-navigation/drawer'
+import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native'
+export declare const Drawer: import('react').ForwardRefExoticComponent<
   Omit<
     Omit<
-      import("@react-navigation/drawer").DrawerNavigatorProps,
-      | "children"
-      | "initialRouteName"
-      | "layout"
-      | "id"
-      | "screenOptions"
-      | "screenListeners"
-      | "screenLayout"
-      | "UNSTABLE_router"
-      | "UNSTABLE_routeNamesChangeBehavior"
+      import('@react-navigation/drawer').DrawerNavigatorProps,
+      | 'children'
+      | 'initialRouteName'
+      | 'layout'
+      | 'id'
+      | 'screenOptions'
+      | 'screenListeners'
+      | 'screenLayout'
+      | 'UNSTABLE_router'
+      | 'UNSTABLE_routeNamesChangeBehavior'
     > &
-      import("@react-navigation/routers").DefaultRouterOptions<string> & {
-        children: React.ReactNode;
+      import('@react-navigation/routers').DefaultRouterOptions<string> & {
+        children: React.ReactNode
         layout?:
           | ((props: {
-              state: DrawerNavigationState<ParamListBase>;
-              navigation: import("@react-navigation/core").NavigationHelpers<ParamListBase, {}>;
+              state: DrawerNavigationState<ParamListBase>
+              navigation: import('@react-navigation/core').NavigationHelpers<
+                ParamListBase,
+                {}
+              >
               descriptors: Record<
                 string,
-                import("@react-navigation/core").Descriptor<
+                import('@react-navigation/core').Descriptor<
                   DrawerNavigationOptions,
-                  import("@react-navigation/core").NavigationProp<
+                  import('@react-navigation/core').NavigationProp<
                     ParamListBase,
                     string,
                     string | undefined,
@@ -35,262 +38,265 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<
                     DrawerNavigationOptions,
                     DrawerNavigationEventMap
                   >,
-                  import("@react-navigation/core").RouteProp<ParamListBase, string>
+                  import('@react-navigation/core').RouteProp<ParamListBase, string>
                 >
-              >;
-              children: React.ReactNode;
+              >
+              children: React.ReactNode
             }) => React.ReactElement)
-          | undefined;
+          | undefined
         screenListeners?:
           | Partial<{
-              drawerItemPress: import("@react-navigation/core").EventListenerCallback<
+              drawerItemPress: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "drawerItemPress",
+                'drawerItemPress',
                 true
-              >;
-              transitionStart: import("@react-navigation/core").EventListenerCallback<
+              >
+              transitionStart: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "transitionStart",
+                'transitionStart',
                 unknown
-              >;
-              transitionEnd: import("@react-navigation/core").EventListenerCallback<
+              >
+              transitionEnd: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "transitionEnd",
+                'transitionEnd',
                 unknown
-              >;
-              gestureStart: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureStart: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureStart",
+                'gestureStart',
                 unknown
-              >;
-              gestureEnd: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureEnd: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureEnd",
+                'gestureEnd',
                 unknown
-              >;
-              gestureCancel: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureCancel: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureCancel",
+                'gestureCancel',
                 unknown
-              >;
-              focus: import("@react-navigation/core").EventListenerCallback<
+              >
+              focus: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "focus",
+                'focus',
                 unknown
-              >;
-              blur: import("@react-navigation/core").EventListenerCallback<
+              >
+              blur: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "blur",
+                'blur',
                 unknown
-              >;
-              state: import("@react-navigation/core").EventListenerCallback<
+              >
+              state: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "state",
+                'state',
                 unknown
-              >;
-              beforeRemove: import("@react-navigation/core").EventListenerCallback<
+              >
+              beforeRemove: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "beforeRemove",
+                'beforeRemove',
                 true
-              >;
+              >
             }>
           | ((props: {
-              route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-              navigation: import("@react-navigation/drawer").DrawerNavigationProp<
+              route: import('@react-navigation/core').RouteProp<ParamListBase, string>
+              navigation: import('@react-navigation/drawer').DrawerNavigationProp<
                 ParamListBase,
                 string,
                 undefined
-              >;
+              >
             }) => Partial<{
-              drawerItemPress: import("@react-navigation/core").EventListenerCallback<
+              drawerItemPress: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "drawerItemPress",
+                'drawerItemPress',
                 true
-              >;
-              transitionStart: import("@react-navigation/core").EventListenerCallback<
+              >
+              transitionStart: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "transitionStart",
+                'transitionStart',
                 unknown
-              >;
-              transitionEnd: import("@react-navigation/core").EventListenerCallback<
+              >
+              transitionEnd: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "transitionEnd",
+                'transitionEnd',
                 unknown
-              >;
-              gestureStart: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureStart: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureStart",
+                'gestureStart',
                 unknown
-              >;
-              gestureEnd: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureEnd: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureEnd",
+                'gestureEnd',
                 unknown
-              >;
-              gestureCancel: import("@react-navigation/core").EventListenerCallback<
+              >
+              gestureCancel: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "gestureCancel",
+                'gestureCancel',
                 unknown
-              >;
-              focus: import("@react-navigation/core").EventListenerCallback<
+              >
+              focus: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "focus",
+                'focus',
                 unknown
-              >;
-              blur: import("@react-navigation/core").EventListenerCallback<
+              >
+              blur: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "blur",
+                'blur',
                 unknown
-              >;
-              state: import("@react-navigation/core").EventListenerCallback<
+              >
+              state: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "state",
+                'state',
                 unknown
-              >;
-              beforeRemove: import("@react-navigation/core").EventListenerCallback<
+              >
+              beforeRemove: import('@react-navigation/core').EventListenerCallback<
                 DrawerNavigationEventMap &
-                  import("@react-navigation/core").EventMapCore<
+                  import('@react-navigation/core').EventMapCore<
                     DrawerNavigationState<ParamListBase>
                   >,
-                "beforeRemove",
+                'beforeRemove',
                 true
-              >;
+              >
             }>)
-          | undefined;
+          | undefined
         screenOptions?:
           | DrawerNavigationOptions
           | ((props: {
-              route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-              navigation: import("@react-navigation/drawer").DrawerNavigationProp<
+              route: import('@react-navigation/core').RouteProp<ParamListBase, string>
+              navigation: import('@react-navigation/drawer').DrawerNavigationProp<
                 ParamListBase,
                 string,
                 undefined
-              >;
-              theme: ReactNavigation.Theme;
+              >
+              theme: ReactNavigation.Theme
             }) => DrawerNavigationOptions)
-          | undefined;
+          | undefined
         screenLayout?:
           | ((
-              props: import("@react-navigation/core").ScreenLayoutArgs<
+              props: import('@react-navigation/core').ScreenLayoutArgs<
                 ParamListBase,
                 string,
                 DrawerNavigationOptions,
-                import("@react-navigation/drawer").DrawerNavigationProp<
+                import('@react-navigation/drawer').DrawerNavigationProp<
                   ParamListBase,
                   string,
                   undefined
                 >
-              >,
+              >
             ) => React.ReactElement)
-          | undefined;
+          | undefined
         UNSTABLE_router?:
           | (<
               Action extends Readonly<{
-                type: string;
-                payload?: object;
-                source?: string;
-                target?: string;
+                type: string
+                payload?: object
+                source?: string
+                target?: string
               }>,
             >(
-              original: import("@react-navigation/routers").Router<
+              original: import('@react-navigation/routers').Router<
                 DrawerNavigationState<ParamListBase>,
                 Action
-              >,
+              >
             ) => Partial<
-              import("@react-navigation/routers").Router<
+              import('@react-navigation/routers').Router<
                 DrawerNavigationState<ParamListBase>,
                 Action
               >
             >)
-          | undefined;
-        UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
+          | undefined
+        UNSTABLE_routeNamesChangeBehavior?: 'firstMatch' | 'lastUnhandled'
       } & {
-        id?: undefined;
+        id?: undefined
       },
-    "children"
+    'children'
   > &
     Partial<
       Pick<
         Omit<
-          import("@react-navigation/drawer").DrawerNavigatorProps,
-          | "children"
-          | "initialRouteName"
-          | "layout"
-          | "id"
-          | "screenOptions"
-          | "screenListeners"
-          | "screenLayout"
-          | "UNSTABLE_router"
-          | "UNSTABLE_routeNamesChangeBehavior"
+          import('@react-navigation/drawer').DrawerNavigatorProps,
+          | 'children'
+          | 'initialRouteName'
+          | 'layout'
+          | 'id'
+          | 'screenOptions'
+          | 'screenListeners'
+          | 'screenLayout'
+          | 'UNSTABLE_router'
+          | 'UNSTABLE_routeNamesChangeBehavior'
         > &
-          import("@react-navigation/routers").DefaultRouterOptions<string> & {
-            children: React.ReactNode;
+          import('@react-navigation/routers').DefaultRouterOptions<string> & {
+            children: React.ReactNode
             layout?:
               | ((props: {
-                  state: DrawerNavigationState<ParamListBase>;
-                  navigation: import("@react-navigation/core").NavigationHelpers<ParamListBase, {}>;
+                  state: DrawerNavigationState<ParamListBase>
+                  navigation: import('@react-navigation/core').NavigationHelpers<
+                    ParamListBase,
+                    {}
+                  >
                   descriptors: Record<
                     string,
-                    import("@react-navigation/core").Descriptor<
+                    import('@react-navigation/core').Descriptor<
                       DrawerNavigationOptions,
-                      import("@react-navigation/core").NavigationProp<
+                      import('@react-navigation/core').NavigationProp<
                         ParamListBase,
                         string,
                         string | undefined,
@@ -298,241 +304,241 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<
                         DrawerNavigationOptions,
                         DrawerNavigationEventMap
                       >,
-                      import("@react-navigation/core").RouteProp<ParamListBase, string>
+                      import('@react-navigation/core').RouteProp<ParamListBase, string>
                     >
-                  >;
-                  children: React.ReactNode;
+                  >
+                  children: React.ReactNode
                 }) => React.ReactElement)
-              | undefined;
+              | undefined
             screenListeners?:
               | Partial<{
-                  drawerItemPress: import("@react-navigation/core").EventListenerCallback<
+                  drawerItemPress: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "drawerItemPress",
+                    'drawerItemPress',
                     true
-                  >;
-                  transitionStart: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  transitionStart: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "transitionStart",
+                    'transitionStart',
                     unknown
-                  >;
-                  transitionEnd: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  transitionEnd: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "transitionEnd",
+                    'transitionEnd',
                     unknown
-                  >;
-                  gestureStart: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureStart: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureStart",
+                    'gestureStart',
                     unknown
-                  >;
-                  gestureEnd: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureEnd: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureEnd",
+                    'gestureEnd',
                     unknown
-                  >;
-                  gestureCancel: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureCancel: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureCancel",
+                    'gestureCancel',
                     unknown
-                  >;
-                  focus: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  focus: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "focus",
+                    'focus',
                     unknown
-                  >;
-                  blur: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  blur: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "blur",
+                    'blur',
                     unknown
-                  >;
-                  state: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  state: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "state",
+                    'state',
                     unknown
-                  >;
-                  beforeRemove: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  beforeRemove: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "beforeRemove",
+                    'beforeRemove',
                     true
-                  >;
+                  >
                 }>
               | ((props: {
-                  route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-                  navigation: import("@react-navigation/drawer").DrawerNavigationProp<
+                  route: import('@react-navigation/core').RouteProp<ParamListBase, string>
+                  navigation: import('@react-navigation/drawer').DrawerNavigationProp<
                     ParamListBase,
                     string,
                     undefined
-                  >;
+                  >
                 }) => Partial<{
-                  drawerItemPress: import("@react-navigation/core").EventListenerCallback<
+                  drawerItemPress: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "drawerItemPress",
+                    'drawerItemPress',
                     true
-                  >;
-                  transitionStart: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  transitionStart: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "transitionStart",
+                    'transitionStart',
                     unknown
-                  >;
-                  transitionEnd: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  transitionEnd: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "transitionEnd",
+                    'transitionEnd',
                     unknown
-                  >;
-                  gestureStart: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureStart: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureStart",
+                    'gestureStart',
                     unknown
-                  >;
-                  gestureEnd: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureEnd: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureEnd",
+                    'gestureEnd',
                     unknown
-                  >;
-                  gestureCancel: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  gestureCancel: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "gestureCancel",
+                    'gestureCancel',
                     unknown
-                  >;
-                  focus: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  focus: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "focus",
+                    'focus',
                     unknown
-                  >;
-                  blur: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  blur: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "blur",
+                    'blur',
                     unknown
-                  >;
-                  state: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  state: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "state",
+                    'state',
                     unknown
-                  >;
-                  beforeRemove: import("@react-navigation/core").EventListenerCallback<
+                  >
+                  beforeRemove: import('@react-navigation/core').EventListenerCallback<
                     DrawerNavigationEventMap &
-                      import("@react-navigation/core").EventMapCore<
+                      import('@react-navigation/core').EventMapCore<
                         DrawerNavigationState<ParamListBase>
                       >,
-                    "beforeRemove",
+                    'beforeRemove',
                     true
-                  >;
+                  >
                 }>)
-              | undefined;
+              | undefined
             screenOptions?:
               | DrawerNavigationOptions
               | ((props: {
-                  route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-                  navigation: import("@react-navigation/drawer").DrawerNavigationProp<
+                  route: import('@react-navigation/core').RouteProp<ParamListBase, string>
+                  navigation: import('@react-navigation/drawer').DrawerNavigationProp<
                     ParamListBase,
                     string,
                     undefined
-                  >;
-                  theme: ReactNavigation.Theme;
+                  >
+                  theme: ReactNavigation.Theme
                 }) => DrawerNavigationOptions)
-              | undefined;
+              | undefined
             screenLayout?:
               | ((
-                  props: import("@react-navigation/core").ScreenLayoutArgs<
+                  props: import('@react-navigation/core').ScreenLayoutArgs<
                     ParamListBase,
                     string,
                     DrawerNavigationOptions,
-                    import("@react-navigation/drawer").DrawerNavigationProp<
+                    import('@react-navigation/drawer').DrawerNavigationProp<
                       ParamListBase,
                       string,
                       undefined
                     >
-                  >,
+                  >
                 ) => React.ReactElement)
-              | undefined;
+              | undefined
             UNSTABLE_router?:
               | (<
                   Action extends Readonly<{
-                    type: string;
-                    payload?: object;
-                    source?: string;
-                    target?: string;
+                    type: string
+                    payload?: object
+                    source?: string
+                    target?: string
                   }>,
                 >(
-                  original: import("@react-navigation/routers").Router<
+                  original: import('@react-navigation/routers').Router<
                     DrawerNavigationState<ParamListBase>,
                     Action
-                  >,
+                  >
                 ) => Partial<
-                  import("@react-navigation/routers").Router<
+                  import('@react-navigation/routers').Router<
                     DrawerNavigationState<ParamListBase>,
                     Action
                   >
                 >)
-              | undefined;
-            UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
+              | undefined
+            UNSTABLE_routeNamesChangeBehavior?: 'firstMatch' | 'lastUnhandled'
           } & {
-            id?: undefined;
+            id?: undefined
           },
-        "children"
+        'children'
       >
     > &
-    import("react").RefAttributes<unknown>
+    import('react').RefAttributes<unknown>
 > & {
-  Screen: typeof import("../views/Screen").Screen;
-};
-export default Drawer;
+  Screen: typeof import('../views/Screen').Screen
+}
+export default Drawer
 //# sourceMappingURL=Drawer.d.ts.map

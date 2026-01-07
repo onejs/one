@@ -1,4 +1,4 @@
-import { createContext } from "react";
-import type { One } from "../vite/types";
+import { createContext } from 'react'
+import type { One } from '../vite/types'
 
-export const FlagsContext = createContext<One.Flags>({});
+export const FlagsContext = createContext<One.Flags>({})

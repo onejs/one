@@ -5,10 +5,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import fs from "node:fs";
-import path from "node:path";
+import fs from 'node:fs'
+import path from 'node:path'
 
-import type { TransformOptions } from "./babel-core";
+import type { TransformOptions } from './babel-core'
 
 /**
  * Returns a memoized function that checks for the existence of a
@@ -16,33 +16,33 @@ import type { TransformOptions } from "./babel-core";
  * default React Native babelrc file and uses that.
  */
 export const loadBabelConfig = (() => {
-  let babelRC: Pick<TransformOptions, "extends" | "presets"> | null = null;
+  let babelRC: Pick<TransformOptions, 'extends' | 'presets'> | null = null
 
   return function _getBabelRC({ projectRoot }: { projectRoot: string }) {
     if (babelRC !== null) {
-      return babelRC;
+      return babelRC
     }
 
-    babelRC = {};
+    babelRC = {}
 
     if (projectRoot) {
       // Check for various babel config files in the project root
       // TODO(EvanBacon): We might want to disable babelrc lookup when the user specifies `enableBabelRCLookup: false`.
       const possibleBabelRCPaths = [
-        ".babelrc",
-        ".babelrc.js",
-        "babel.config.js",
-        "babel.config.cjs",
-        "babel.config.mjs",
-      ];
+        '.babelrc',
+        '.babelrc.js',
+        'babel.config.js',
+        'babel.config.cjs',
+        'babel.config.mjs',
+      ]
 
       const foundBabelRCPath = possibleBabelRCPaths.find((configFileName) =>
-        fs.existsSync(path.resolve(projectRoot, configFileName)),
-      );
+        fs.existsSync(path.resolve(projectRoot, configFileName))
+      )
 
       // Extend the config if a babel config file is found
       if (foundBabelRCPath) {
-        babelRC.extends = path.resolve(projectRoot, foundBabelRCPath);
+        babelRC.extends = path.resolve(projectRoot, foundBabelRCPath)
       }
     }
 
@@ -50,10 +50,10 @@ export const loadBabelConfig = (() => {
     if (!babelRC.extends) {
       babelRC.presets = [
         // { plugins: [transformImportMetaGlobPlugin] }, // Added to support Vite's `import.meta.glob`
-        require("babel-preset-expo"),
-      ];
+        require('babel-preset-expo'),
+      ]
     }
 
-    return babelRC;
-  };
-})();
+    return babelRC
+  }
+})()

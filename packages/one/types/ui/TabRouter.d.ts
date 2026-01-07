@@ -5,140 +5,140 @@ import {
   type TabActionType as RNTabActionType,
   type TabNavigationState,
   type TabRouterOptions as RNTabRouterOptions,
-} from "@react-navigation/native";
-import type { TriggerMap } from "./common";
+} from '@react-navigation/native'
+import type { TriggerMap } from './common'
 export type ExpoTabRouterOptions = RNTabRouterOptions & {
-  triggerMap: TriggerMap;
-};
+  triggerMap: TriggerMap
+}
 export type ExpoTabActionType =
   | RNTabActionType
   | CommonNavigationAction
   | {
-      type: "JUMP_TO";
-      source?: string;
-      target?: string;
+      type: 'JUMP_TO'
+      source?: string
+      target?: string
       payload: {
-        name: string;
-        resetOnFocus?: boolean;
-        params?: object;
-      };
-    };
+        name: string
+        resetOnFocus?: boolean
+        params?: object
+      }
+    }
 export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<
   TabNavigationState<ParamListBase>,
   | {
-      type: "GO_BACK";
-      source?: string;
-      target?: string;
+      type: 'GO_BACK'
+      source?: string
+      target?: string
     }
   | {
-      type: "NAVIGATE";
+      type: 'NAVIGATE'
       payload: {
-        name: string;
-        params?: object;
-        path?: string;
-        merge?: boolean;
-        pop?: boolean;
-      };
-      source?: string;
-      target?: string;
+        name: string
+        params?: object
+        path?: string
+        merge?: boolean
+        pop?: boolean
+      }
+      source?: string
+      target?: string
     }
   | {
-      type: "NAVIGATE_DEPRECATED";
+      type: 'NAVIGATE_DEPRECATED'
       payload: {
-        name: string;
-        params?: object;
-        merge?: boolean;
-      };
-      source?: string;
-      target?: string;
+        name: string
+        params?: object
+        merge?: boolean
+      }
+      source?: string
+      target?: string
     }
   | {
-      type: "RESET";
+      type: 'RESET'
       payload:
         | (
             | Readonly<{
-                key: string;
-                index: number;
-                routeNames: string[];
-                history?: unknown[];
-                routes: import("@react-navigation/routers").NavigationRoute<
+                key: string
+                index: number
+                routeNames: string[]
+                history?: unknown[]
+                routes: import('@react-navigation/routers').NavigationRoute<
                   ParamListBase,
                   string
-                >[];
-                type: string;
-                stale: false;
+                >[]
+                type: string
+                stale: false
               }>
-            | import("@react-navigation/routers").PartialState<
+            | import('@react-navigation/routers').PartialState<
                 Readonly<{
-                  key: string;
-                  index: number;
-                  routeNames: string[];
-                  history?: unknown[];
-                  routes: import("@react-navigation/routers").NavigationRoute<
+                  key: string
+                  index: number
+                  routeNames: string[]
+                  history?: unknown[]
+                  routes: import('@react-navigation/routers').NavigationRoute<
                     ParamListBase,
                     string
-                  >[];
-                  type: string;
-                  stale: false;
+                  >[]
+                  type: string
+                  stale: false
                 }>
               >
             | (Omit<
                 Readonly<{
-                  key: string;
-                  index: number;
-                  routeNames: string[];
-                  history?: unknown[];
-                  routes: import("@react-navigation/routers").NavigationRoute<
+                  key: string
+                  index: number
+                  routeNames: string[]
+                  history?: unknown[]
+                  routes: import('@react-navigation/routers').NavigationRoute<
                     ParamListBase,
                     string
-                  >[];
-                  type: string;
-                  stale: false;
+                  >[]
+                  type: string
+                  stale: false
                 }>,
-                "routes"
+                'routes'
               > & {
-                routes: Omit<import("@react-navigation/routers").Route<string>, "key">[];
+                routes: Omit<import('@react-navigation/routers').Route<string>, 'key'>[]
               })
           )
-        | undefined;
-      source?: string;
-      target?: string;
+        | undefined
+      source?: string
+      target?: string
     }
   | {
-      type: "SET_PARAMS";
+      type: 'SET_PARAMS'
       payload: {
-        params?: object;
-      };
-      source?: string;
-      target?: string;
+        params?: object
+      }
+      source?: string
+      target?: string
     }
   | {
-      type: "REPLACE_PARAMS";
+      type: 'REPLACE_PARAMS'
       payload: {
-        params?: object;
-      };
-      source?: string;
-      target?: string;
+        params?: object
+      }
+      source?: string
+      target?: string
     }
   | {
-      type: "PRELOAD";
+      type: 'PRELOAD'
       payload: {
-        name: string;
-        params?: object;
-      };
-      source?: string;
-      target?: string;
+        name: string
+        params?: object
+      }
+      source?: string
+      target?: string
     }
   | RNTabActionType
   | {
-      type: "JUMP_TO";
-      source?: string;
-      target?: string;
+      type: 'JUMP_TO'
+      source?: string
+      target?: string
       payload: {
-        name: string;
-        resetOnFocus?: boolean;
-        params?: object;
-      };
+        name: string
+        resetOnFocus?: boolean
+        params?: object
+      }
     }
->;
+>
 //# sourceMappingURL=TabRouter.d.ts.map

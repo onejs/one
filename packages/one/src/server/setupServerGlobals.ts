@@ -1,3 +1,3 @@
-import { setServerGlobals } from "./setServerGlobals";
+import { setServerGlobals } from './setServerGlobals'
 
-setServerGlobals();
+setServerGlobals()

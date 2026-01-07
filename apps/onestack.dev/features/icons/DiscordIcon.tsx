@@ -17,4 +17,4 @@ export const DiscordIcon = ({ plain, ...props }: any) => (
       fill="var(--logoColor)"
     />
   </svg>
-);
+)

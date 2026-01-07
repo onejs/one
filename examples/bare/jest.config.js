@@ -1,3 +1,3 @@
 export default {
-  preset: "react-native",
-};
+  preset: 'react-native',
+}

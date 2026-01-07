@@ -35,6 +35,6 @@ export const notificationData = [
       avatar: `https://placecats.com/neo_banana/300/200`,
     },
   },
-];
+]
 
-export type NotificationItem = (typeof notificationData)[0];
+export type NotificationItem = (typeof notificationData)[0]

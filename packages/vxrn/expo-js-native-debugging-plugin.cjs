@@ -11,58 +11,62 @@
  * * https://hackmd.io/@z/rn-use-native-modules-without-importing-react-native
  */
 
-const fs = require("node:fs");
-const path = require("node:path");
-const { withPlugins, withDangerousMod, withXcodeProject } = require("@expo/config-plugins");
+const fs = require('node:fs')
+const path = require('node:path')
+const {
+  withPlugins,
+  withDangerousMod,
+  withXcodeProject,
+} = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
     [
       withDangerousMod,
       [
-        "ios",
+        'ios',
         async (config) => {
           const srcPath = path.resolve(
             config.modRequest.projectRoot,
-            config.modRequest.platformProjectRoot,
-          );
+            config.modRequest.platformProjectRoot
+          )
 
           for (const [fileName, fileContent] of Object.entries(IOS_FILES)) {
-            const filePath = path.resolve(srcPath, fileName);
+            const filePath = path.resolve(srcPath, fileName)
             if (!fs.existsSync(filePath)) {
-              fs.writeFileSync(filePath, fileContent);
+              fs.writeFileSync(filePath, fileContent)
             }
           }
 
-          return config;
+          return config
         },
       ],
     ],
     [
       withXcodeProject,
       async (config) => {
-        const xcodeProject = config.modResults;
+        const xcodeProject = config.modResults
 
-        const librariesGroupKey = xcodeProject.findPBXGroupKey({ name: "Libraries" });
+        const librariesGroupKey = xcodeProject.findPBXGroupKey({ name: 'Libraries' })
 
         for (const fileName in IOS_FILES) {
           if (!xcodeProject.hasFile(fileName)) {
-            if (fileName.endsWith(".h")) {
-              xcodeProject.addHeaderFile(fileName, {}, librariesGroupKey);
+            if (fileName.endsWith('.h')) {
+              xcodeProject.addHeaderFile(fileName, {}, librariesGroupKey)
             } else {
-              xcodeProject.addSourceFile(fileName, {}, librariesGroupKey);
+              xcodeProject.addSourceFile(fileName, {}, librariesGroupKey)
             }
           }
         }
 
-        return config;
+        return config
       },
     ],
-  ]);
-};
+  ])
+}
 
 const IOS_FILES = {
-  "RCTJsNativeDebugging.h": `
+  'RCTJsNativeDebugging.h': `
 //
 //  RCTJsNativeDebugging.h
 //
@@ -71,7 +75,7 @@ const IOS_FILES = {
 @interface RCTJsNativeDebugging : NSObject <RCTBridgeModule>
 @end
   `.trim(),
-  "RCTJsNativeDebugging.m": `
+  'RCTJsNativeDebugging.m': `
 //
 //  RCTJsNativeDebugging.m
 //
@@ -90,7 +94,7 @@ RCT_EXPORT_METHOD(log:(NSString *)message)
 @end
   `.trim(),
 
-  "JSIDebuggingModule.h": `
+  'JSIDebuggingModule.h': `
 //
 //  JSIDebuggingModule.h
 //
@@ -104,7 +108,7 @@ RCT_EXPORT_METHOD(log:(NSString *)message)
 @end
   `.trim(),
 
-  "JSIDebuggingModule.mm": `
+  'JSIDebuggingModule.mm': `
 //
 //  JSIDebuggingModule.mm
 //
@@ -145,7 +149,7 @@ RCT_EXPORT_MODULE()
 @end
   `.trim(),
 
-  "jsi_debugging.h": `
+  'jsi_debugging.h': `
 //
 //  jsi_debugging.h
 //
@@ -164,7 +168,7 @@ namespace jsi_debugging {
 #endif /* JSIDebugging_h */
   `.trim(),
 
-  "jsi_debugging.cpp": `
+  'jsi_debugging.cpp': `
 //
 //  jsi_debugging.cpp
 //
@@ -232,6 +236,6 @@ namespace jsi_debugging {
     }
 }
   `.trim(),
-};
+}
 
-module.exports = plugin;
+module.exports = plugin

@@ -1,135 +1,137 @@
-import { useIsFocused } from "@react-navigation/core";
-import React, { type JSX } from "react";
-import { useParams, usePathname, useSegments, useUnstableGlobalHref } from "../hooks";
-import { HeadModule, type UserActivity } from "./HeadModule";
-import type { HeadType } from "./types";
-import { getStaticUrlFromOneRouter } from "./url";
+import { useIsFocused } from '@react-navigation/core'
+import React, { type JSX } from 'react'
+import { useParams, usePathname, useSegments, useUnstableGlobalHref } from '../hooks'
+import { HeadModule, type UserActivity } from './HeadModule'
+import type { HeadType } from './types'
+import { getStaticUrlFromOneRouter } from './url'
 
 function urlToId(url: string) {
-  return url.replace(/[^a-zA-Z0-9]/g, "-");
+  return url.replace(/[^a-zA-Z0-9]/g, '-')
 }
 
 function getLastSegment(path: string) {
   // Remove the extension
-  const lastSegment = path.split("/").pop() ?? "";
-  return lastSegment.replace(/\.[^/.]+$/, "").split("?")[0];
+  const lastSegment = path.split('/').pop() ?? ''
+  return lastSegment.replace(/\.[^/.]+$/, '').split('?')[0]
 }
 
 // TODO: Use Head Provider to collect all props so only one Head is rendered for a given route.
 
 function useAddressableLink() {
-  const pathname = useUnstableGlobalHref();
-  const params = useParams<any>();
-  const url = getStaticUrlFromOneRouter(pathname);
-  return { url, pathname, params };
+  const pathname = useUnstableGlobalHref()
+  const params = useParams<any>()
+  const url = getStaticUrlFromOneRouter(pathname)
+  return { url, pathname, params }
 }
 
 type MetaNode =
   | React.ReactPortal
-  | React.ReactElement<unknown, string | React.JSXElementConstructor<any>>;
+  | React.ReactElement<unknown, string | React.JSXElementConstructor<any>>
 
 function useMetaChildren(children: React.ReactNode) {
   return React.useMemo(() => {
-    const renderableChildren: React.ReactNode[] = [];
-    const metaChildren: MetaNode[] = [];
+    const renderableChildren: React.ReactNode[] = []
+    const metaChildren: MetaNode[] = []
 
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) {
-        return;
+        return
       }
-      if (typeof child.type === "string") {
-        metaChildren.push(child);
+      if (typeof child.type === 'string') {
+        metaChildren.push(child)
       } else {
-        renderableChildren.push(child);
+        renderableChildren.push(child)
       }
-    });
+    })
 
-    return { children: renderableChildren, metaChildren };
-  }, [children]);
+    return { children: renderableChildren, metaChildren }
+  }, [children])
 }
 
 type SerializedMeta = {
-  type: string;
-  props: Record<string, string | undefined>;
-};
+  type: string
+  props: Record<string, string | undefined>
+}
 
 function serializedMetaChildren(meta: MetaNode[]): SerializedMeta[] {
-  const validMeta = meta.filter((child) => child.type === "meta" || child.type === "title");
+  const validMeta = meta.filter(
+    (child) => child.type === 'meta' || child.type === 'title'
+  )
 
   return validMeta.map((child) => {
-    if (child.type === "title") {
+    if (child.type === 'title') {
       return {
-        type: "title",
+        type: 'title',
         props: {
           children:
             child.props &&
-            typeof child.props === "object" &&
-            "children" in child.props &&
-            typeof child.props.children === "string"
+            typeof child.props === 'object' &&
+            'children' in child.props &&
+            typeof child.props.children === 'string'
               ? child.props.children
               : undefined,
         },
-      };
+      }
     }
     return {
-      type: "meta",
+      type: 'meta',
       props: {
         property:
           child.props &&
-          typeof child.props === "object" &&
-          "property" in child.props &&
-          typeof child.props.property === "string"
+          typeof child.props === 'object' &&
+          'property' in child.props &&
+          typeof child.props.property === 'string'
             ? child.props.property
             : undefined,
         content:
           child.props &&
-          typeof child.props === "object" &&
-          "content" in child.props &&
-          typeof child.props.content === "string"
+          typeof child.props === 'object' &&
+          'content' in child.props &&
+          typeof child.props.content === 'string'
             ? child.props.content
             : undefined,
       },
-    };
-  });
+    }
+  })
 }
 
 function useActivityFromMetaChildren(meta: MetaNode[]) {
-  const { url: href, pathname } = useAddressableLink();
+  const { url: href, pathname } = useAddressableLink()
 
-  const previousMeta = React.useRef<SerializedMeta[]>([]);
-  const cachedActivity = React.useRef<Partial<UserActivity>>({});
+  const previousMeta = React.useRef<SerializedMeta[]>([])
+  const cachedActivity = React.useRef<Partial<UserActivity>>({})
 
-  const sortedMeta = React.useMemo(() => serializedMetaChildren(meta), [meta]);
+  const sortedMeta = React.useMemo(() => serializedMetaChildren(meta), [meta])
 
   const url = React.useMemo(() => {
     const urlMeta = sortedMeta.find(
-      (child) => child.type === "meta" && child.props.property === "og:url",
-    );
+      (child) => child.type === 'meta' && child.props.property === 'og:url'
+    )
 
     if (urlMeta) {
       // Support =`/foo/bar` -> `https://example.com/foo/bar`
-      if (urlMeta.props.content?.startsWith("/")) {
-        return getStaticUrlFromOneRouter(urlMeta.props.content);
+      if (urlMeta.props.content?.startsWith('/')) {
+        return getStaticUrlFromOneRouter(urlMeta.props.content)
       }
-      return urlMeta.props.content;
+      return urlMeta.props.content
     }
-    return href;
-  }, [sortedMeta, href]);
+    return href
+  }, [sortedMeta, href])
 
   const title = React.useMemo(() => {
-    const titleTag = sortedMeta.find((child) => child.type === "title");
+    const titleTag = sortedMeta.find((child) => child.type === 'title')
     if (titleTag) {
-      return titleTag.props.children ?? "";
+      return titleTag.props.children ?? ''
     }
     const titleMeta = sortedMeta.find(
-      (child) => child.type === "meta" && child.props.property === "og:title",
-    );
+      (child) => child.type === 'meta' && child.props.property === 'og:title'
+    )
     if (titleMeta) {
-      return titleMeta.props.content ?? "";
+      return titleMeta.props.content ?? ''
     }
 
-    return getLastSegment(pathname);
-  }, [sortedMeta, pathname]);
+    return getLastSegment(pathname)
+  }, [sortedMeta, pathname])
 
   const activity = React.useMemo(() => {
     if (
@@ -137,30 +139,30 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
       !!cachedActivity.current &&
       deepObjectCompare(previousMeta.current, sortedMeta)
     ) {
-      return cachedActivity.current;
+      return cachedActivity.current
     }
-    previousMeta.current = sortedMeta;
+    previousMeta.current = sortedMeta
 
-    const userActivity: Partial<UserActivity> = {};
+    const userActivity: Partial<UserActivity> = {}
 
     sortedMeta.forEach((child) => {
       if (
         // <meta />
-        child.type === "meta"
+        child.type === 'meta'
       ) {
-        const { property, content } = child.props;
+        const { property, content } = child.props
 
         switch (property) {
-          case "og:description":
-            userActivity.description = content;
-            break;
+          case 'og:description':
+            userActivity.description = content
+            break
           // Custom properties
-          case "expo:handoff":
-            userActivity.isEligibleForHandoff = isTruthy(content);
-            break;
-          case "expo:spotlight":
-            userActivity.isEligibleForSearch = isTruthy(content);
-            break;
+          case 'expo:handoff':
+            userActivity.isEligibleForHandoff = isTruthy(content)
+            break
+          case 'expo:spotlight':
+            userActivity.isEligibleForSearch = isTruthy(content)
+            break
         }
 
         // // <meta name="keywords" content="foo,bar,baz" />
@@ -170,11 +172,11 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
         //     : content.split(",");
         // }
       }
-    });
+    })
 
-    cachedActivity.current = userActivity;
-    return userActivity;
-  }, [sortedMeta]);
+    cachedActivity.current = userActivity
+    return userActivity
+  }, [sortedMeta])
 
   const parsedActivity: UserActivity = {
     keywords: [title],
@@ -186,43 +188,43 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
       // TODO: This may need to be  versioned in the future, e.g. `_v1` if we change the format.
       href,
     },
-  };
+  }
 
-  return parsedActivity;
+  return parsedActivity
 }
 
 function isTruthy(value: any): boolean {
-  return [true, "true"].includes(value);
+  return [true, 'true'].includes(value)
 }
 
 function HeadNative(props: { children?: React.ReactNode }) {
-  const isFocused = useIsFocused();
+  const isFocused = useIsFocused()
   if (!isFocused) {
-    return <UnfocusedHead />;
+    return <UnfocusedHead />
   }
-  return <FocusedHead {...props} />;
+  return <FocusedHead {...props} />
 }
 
 function UnfocusedHead(props: { children?: React.ReactNode }): JSX.Element {
-  const { children } = useMetaChildren(props.children);
-  return <>{children}</>;
+  const { children } = useMetaChildren(props.children)
+  return <>{children}</>
 }
 
 function FocusedHead(props: { children?: React.ReactNode }): JSX.Element {
-  const { metaChildren, children } = useMetaChildren(props.children);
-  const activity = useActivityFromMetaChildren(metaChildren);
-  useRegisterCurrentActivity(activity);
-  return <>{children}</>;
+  const { metaChildren, children } = useMetaChildren(props.children)
+  const activity = useActivityFromMetaChildren(metaChildren)
+  useRegisterCurrentActivity(activity)
+  return <>{children}</>
 }
 
 // segments => activity
-const activities: Map<string, UserActivity> = new Map();
+const activities: Map<string, UserActivity> = new Map()
 
 function useRegisterCurrentActivity(activity: UserActivity) {
   // ID is tied to One and agnostic of URLs to ensure dynamic parameters are not considered.
   // Using all segments ensures that cascading routes are considered.
-  const activityId = urlToId(usePathname() || "/");
-  const cascadingId = urlToId(useSegments().join("-") || "-");
+  const activityId = urlToId(usePathname() || '/')
+  const cascadingId = urlToId(useSegments().join('-') || '-')
 
   const cascadingActivity: UserActivity = React.useMemo(() => {
     // Get all nested activities together, then update the id to match the current pathname.
@@ -236,85 +238,85 @@ function useRegisterCurrentActivity(activity: UserActivity) {
       : {
           ...activity,
           id: activityId,
-        };
-    activities.set(cascadingId, cascadingActivity);
+        }
+    activities.set(cascadingId, cascadingActivity)
 
-    return cascadingActivity;
-  }, [cascadingId, activityId, activity]);
+    return cascadingActivity
+  }, [cascadingId, activityId, activity])
 
-  const previousActivity = React.useRef<UserActivity | null>(null);
+  const previousActivity = React.useRef<UserActivity | null>(null)
 
   React.useEffect(() => {
     if (!cascadingActivity) {
-      return () => {};
+      return () => {}
     }
     if (
       !!previousActivity.current &&
       deepObjectCompare(previousActivity.current, cascadingActivity)
     ) {
-      return () => {};
+      return () => {}
     }
 
-    previousActivity.current = cascadingActivity;
+    previousActivity.current = cascadingActivity
     if (!cascadingActivity.id) {
-      throw new Error("Activity must have an ID");
+      throw new Error('Activity must have an ID')
     }
 
     // If no features are enabled, then skip registering the activity
     if (cascadingActivity.isEligibleForHandoff || cascadingActivity.isEligibleForSearch) {
-      Head?.createActivity(cascadingActivity);
+      Head?.createActivity(cascadingActivity)
     }
 
-    return () => {};
-  }, [cascadingActivity]);
+    return () => {}
+  }, [cascadingActivity])
 
   React.useEffect(() => {
     return () => {
       if (activityId) {
-        HeadModule?.suspendActivity(activityId);
+        HeadModule?.suspendActivity(activityId)
       }
-    };
-  }, [activityId]);
+    }
+  }, [activityId])
 }
 
 function deepObjectCompare(a: any, b: any) {
   if (typeof a !== typeof b) {
-    return false;
+    return false
   }
-  if (typeof a === "object") {
+  if (typeof a === 'object') {
     if (Array.isArray(a) !== Array.isArray(b)) {
-      return false;
+      return false
     }
     if (Array.isArray(a)) {
       if (a.length !== b.length) {
-        return false;
+        return false
       }
-      return a.every((item, index) => deepObjectCompare(item, b[index]));
+      return a.every((item, index) => deepObjectCompare(item, b[index]))
     }
     // handle null
     if (a === null || b === null) {
-      return a === b;
+      return a === b
     }
-    const aKeys = Object.keys(a);
-    const bKeys = Object.keys(b);
+    const aKeys = Object.keys(a)
+    const bKeys = Object.keys(b)
     if (aKeys.length !== bKeys.length) {
-      return false;
+      return false
     }
-    return aKeys.every((key) => deepObjectCompare(a[key], b[key]));
+    return aKeys.every((key) => deepObjectCompare(a[key], b[key]))
   }
-  return a === b;
+  return a === b
 }
 
-HeadNative.Provider = React.Fragment;
+HeadNative.Provider = React.Fragment
 
 function HeadShim(props: React.PropsWithChildren) {
-  return null;
+  return null
 }
 
-HeadShim.Provider = React.Fragment;
+HeadShim.Provider = React.Fragment
 
 // Native Head is only enabled in bare iOS apps.
 // @ts-expect-error
-export const Head: HeadType = HeadModule ? HeadNative : HeadShim;
+export const Head: HeadType = HeadModule ? HeadNative : HeadShim
 
-Object.assign(Head, HeadModule);
+Object.assign(Head, HeadModule)

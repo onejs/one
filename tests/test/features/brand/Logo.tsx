@@ -1,5 +1,5 @@
-import { Circle } from "tamagui";
+import { Circle } from 'tamagui'
 
 export function Logo() {
-  return <Circle size={30} bg="$accentColor" />;
+  return <Circle size={30} bg="$accentColor" />
 }

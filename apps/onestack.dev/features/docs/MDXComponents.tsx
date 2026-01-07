@@ -1,6 +1,6 @@
-import { ChevronRight } from "@tamagui/lucide-icons";
-import { Link } from "one";
-import React from "react";
+import { ChevronRight } from '@tamagui/lucide-icons'
+import { Link } from 'one'
+import React from 'react'
 import {
   EnsureFlexed,
   H1,
@@ -17,19 +17,19 @@ import {
   XStack,
   YStack,
   styled,
-} from "tamagui";
-import { Status } from "../../components/Status";
-import { StatusBadgePopover } from "../../components/StatusBadgePopover";
-import { SupportedVersions } from "../../components/SupportedVersions";
-import { SubTitle } from "../site/SubTitle";
-import { Badge } from "./Badge";
-import { Code, CodeInline } from "./Code";
-import { DocCodeBlock } from "./DocsCodeBlock";
-import { LinkHeading } from "./LinkHeading";
-import { Notice } from "./Notice";
-import { PropsTable } from "./PropsTable";
-import { RouteTree } from "./RouteTree";
-import { unwrapText } from "./unwrapText";
+} from 'tamagui'
+import { Status } from '../../components/Status'
+import { StatusBadgePopover } from '../../components/StatusBadgePopover'
+import { SupportedVersions } from '../../components/SupportedVersions'
+import { SubTitle } from '../site/SubTitle'
+import { Badge } from './Badge'
+import { Code, CodeInline } from './Code'
+import { DocCodeBlock } from './DocsCodeBlock'
+import { LinkHeading } from './LinkHeading'
+import { Notice } from './Notice'
+import { PropsTable } from './PropsTable'
+import { RouteTree } from './RouteTree'
+import { unwrapText } from './unwrapText'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
   return (
@@ -41,99 +41,99 @@ const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
       mb="$2"
       fow="400"
       $sm={{
-        size: "$7",
-        fow: "400",
+        size: '$7',
+        fow: '400',
       }}
       {...props}
     >
       {disableUnwrapText ? children : unwrapText(children)}
     </Paragraph>
-  );
-};
+  )
+}
 
 const LI = styled(Paragraph, {
-  display: "list-item" as any,
-  tag: "li",
-  size: "$5",
-  pb: "$1",
-});
+  display: 'list-item' as any,
+  tag: 'li',
+  size: '$5',
+  pb: '$1',
+})
 
 const UL = styled(YStack, {
-  tag: "ul",
-  my: "$1",
-  ml: "$4",
-  mr: "$2",
-});
+  tag: 'ul',
+  my: '$1',
+  ml: '$4',
+  mr: '$2',
+})
 
 const TableBase = styled(View, {
-  tag: "table",
-  display: "table" as any,
-  width: "100%",
+  tag: 'table',
+  display: 'table' as any,
+  width: '100%',
   borderBottomWidth: 1,
-  borderColor: "$color5",
-  borderCollapse: "collapse" as any,
-  my: "$4",
-});
+  borderColor: '$color5',
+  borderCollapse: 'collapse' as any,
+  my: '$4',
+})
 
 const TableWrapper = styled(View, {
-  width: "100%",
-  overflowX: "auto" as any,
-  my: "$4",
-});
+  width: '100%',
+  overflowX: 'auto' as any,
+  my: '$4',
+})
 
 const Table = (props: any) => (
   <TableWrapper>
     <style>{`.mdx-table th:first-child, .mdx-table td:first-child { border-right: none !important; }`}</style>
     <TableBase className="mdx-table" my={0} {...props} />
   </TableWrapper>
-);
+)
 
 const Thead = styled(View, {
-  tag: "thead",
-  display: "table-header-group" as any,
-});
+  tag: 'thead',
+  display: 'table-header-group' as any,
+})
 
 const Tbody = styled(View, {
-  tag: "tbody",
-  display: "table-row-group" as any,
-});
+  tag: 'tbody',
+  display: 'table-row-group' as any,
+})
 
 const Tr = styled(View, {
-  tag: "tr",
-  display: "table-row" as any,
-});
+  tag: 'tr',
+  display: 'table-row' as any,
+})
 
 const Th = styled(Text, {
-  tag: "th",
-  display: "table-cell" as any,
-  padding: "$3",
-  fontWeight: "600",
-  fontSize: "$5",
-  backgroundColor: "$color3",
-  textAlign: "center" as any,
+  tag: 'th',
+  display: 'table-cell' as any,
+  padding: '$3',
+  fontWeight: '600',
+  fontSize: '$5',
+  backgroundColor: '$color3',
+  textAlign: 'center' as any,
   borderWidth: 1,
   borderBottomWidth: 0,
-  borderColor: "$color5",
-});
+  borderColor: '$color5',
+})
 
 const Td = styled(Text, {
-  tag: "td",
-  display: "table-cell" as any,
-  padding: "$3",
-  fontSize: "$5",
-  textAlign: "center" as any,
+  tag: 'td',
+  display: 'table-cell' as any,
+  padding: '$3',
+  fontSize: '$5',
+  textAlign: 'center' as any,
   borderTopWidth: 1,
   borderLeftWidth: 1,
   borderRightWidth: 1,
-  borderColor: "$color5",
-});
+  borderColor: '$color5',
+})
 
 const HR = () => (
   <YStack mt="$9" mb="$5" mx="auto" maxWidth="50%">
     <EnsureFlexed />
     <YStack borderBottomColor="$color5" borderBottomWidth={1} flex={1} />
   </YStack>
-);
+)
 
 const code = (props) => {
   const {
@@ -147,11 +147,11 @@ const code = (props) => {
     showLineNumbers,
     collapsible,
     ...rest
-  } = props;
+  } = props
   if (!className) {
-    const childText = unwrapText(children);
-    if (!childText[0]?.includes("\n")) {
-      return <CodeInline>{childText}</CodeInline>;
+    const childText = unwrapText(children)
+    if (!childText[0]?.includes('\n')) {
+      return <CodeInline>{childText}</CodeInline>
     }
   }
   return (
@@ -165,8 +165,8 @@ const code = (props) => {
     >
       {children}
     </DocCodeBlock>
-  );
-};
+  )
+}
 
 const New = () => (
   <Text
@@ -182,7 +182,7 @@ const New = () => (
   >
     new
   </Text>
-);
+)
 
 const componentsIn = {
   New,
@@ -214,12 +214,12 @@ const componentsIn = {
         br="$4"
         p="$6"
         py="$5"
-        hoverStyle={{ y: -2, bg: "$color3" }}
-        pressStyle={{ y: 2, bg: "$color1" }}
+        hoverStyle={{ y: -2, bg: '$color3' }}
+        pressStyle={{ y: 2, bg: '$color1' }}
       >
         <XStack ai="center" jc="space-between" f={1} w="100%">
           <YStack>
-            <Heading size="$4" color="$color7" {...(!!category && { mt: "$-2" })}>
+            <Heading size="$4" color="$color7" {...(!!category && { mt: '$-2' })}>
               {category}
             </Heading>
             <Paragraph size="$7" color="$color11">
@@ -232,17 +232,17 @@ const componentsIn = {
           <ChevronRight color="$color11" />
         </XStack>
       </YStack>
-    );
+    )
 
     if (href) {
       return (
         <Link asChild href={href}>
           {content}
         </Link>
-      );
+      )
     }
 
-    return content;
+    return content
   },
 
   CardCol: (props) => <YStack mt="$6" mb="$6" gap="$3" {...props} />,
@@ -283,13 +283,27 @@ const componentsIn = {
   ),
 
   h4: (props) => (
-    <H4 pos="relative" width={`fit-content` as any} mt="$6" mb="$3" fow="400" {...props} />
+    <H4
+      pos="relative"
+      width={`fit-content` as any}
+      mt="$6"
+      mb="$3"
+      fow="400"
+      {...props}
+    />
   ),
 
   h5: (props) => <H5 mt="$4" {...props} />,
 
   p: (props) => (
-    <Paragraph className="docs-paragraph" display="block" size="$6" lh={30} my="$3" {...props} />
+    <Paragraph
+      className="docs-paragraph"
+      display="block"
+      size="$6"
+      lh={30}
+      my="$3"
+      {...props}
+    />
   ),
 
   hr: HR,
@@ -297,9 +311,9 @@ const componentsIn = {
   ul: ({ children }) => {
     return (
       <UL my="$2">
-        {React.Children.toArray(children).map((x) => (typeof x === "string" ? null : x))}
+        {React.Children.toArray(children).map((x) => (typeof x === 'string' ? null : x))}
       </UL>
-    );
+    )
   },
 
   ol: (props) => <YStack {...props} tag="ol" mb="$3" />,
@@ -309,10 +323,10 @@ const componentsIn = {
       <LI size="$6" className="docs-paragraph">
         {props.children}
       </LI>
-    );
+    )
   },
 
-  a: ({ href = "", children, ...props }) => {
+  a: ({ href = '', children, ...props }) => {
     return (
       <Link className="link" href={href} asChild>
         {/* @ts-ignore */}
@@ -341,7 +355,7 @@ const componentsIn = {
           ) : null} */}
         </Paragraph>
       </Link>
-    );
+    )
   },
 
   // hr: HR,
@@ -364,7 +378,9 @@ const componentsIn = {
   //   )
   // },
 
-  strong: (props) => <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />,
+  strong: (props) => (
+    <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />
+  ),
 
   table: Table,
   thead: Thead,
@@ -407,17 +423,17 @@ const componentsIn = {
           {unwrapText(children)}
         </Paragraph>
       </View>
-    );
+    )
   },
-};
+}
 
 export class ErrorBoundary extends React.Component<{ children: any; name: string }> {
-  state = { hasError: false };
+  state = { hasError: false }
 
   static getDerivedStateFromError(error) {
-    console.error("MDXComponent.error", error);
+    console.error('MDXComponent.error', error)
     // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+    return { hasError: true }
   }
 
   componentDidCatch(error, info) {
@@ -426,14 +442,14 @@ export class ErrorBoundary extends React.Component<{ children: any; name: string
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
     //   in App
-    console.error("MDXComponent.error", this.props.name, error, info);
+    console.error('MDXComponent.error', this.props.name, error, info)
   }
 
   render() {
     if (this.state.hasError) {
-      return null;
+      return null
     }
-    return this.props.children;
+    return this.props.children
   }
 }
 
@@ -445,22 +461,22 @@ export const components = Object.fromEntries(
         <ErrorBoundary name={key}>
           <Component {...props} />
         </ErrorBoundary>
-      );
-    };
+      )
+    }
 
     // inherit static props
     for (const cKey in Component) {
-      out[cKey] = Component[cKey];
+      out[cKey] = Component[cKey]
     }
 
-    return [key, out];
-  }),
-);
+    return [key, out]
+  })
+)
 
 const getNonTextChildren = (children) => {
   return React.Children.map(children, (x) => {
-    if (typeof x === "string") return null;
-    if (x["type"] === code) return null;
-    return x;
-  }).flat();
-};
+    if (typeof x === 'string') return null
+    if (x['type'] === code) return null
+    return x
+  }).flat()
+}

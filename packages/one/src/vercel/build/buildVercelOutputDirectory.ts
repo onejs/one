@@ -1,23 +1,23 @@
-import { join, resolve } from "node:path";
+import { join, resolve } from 'node:path'
 
-import FSExtra from "fs-extra";
-import type { RollupOutput } from "rollup";
-import { isMatching, P } from "ts-pattern";
-import type { One } from "../../vite/types";
-import { vercelBuildOutputConfigBase } from "./config/vc-build-output-config-base";
-import { serverlessVercelNodeJsConfig } from "./config/vc-config-base";
-import { serverlessVercelPackageJson } from "./config/vc-package-base";
-import { createApiServerlessFunction } from "./generate/createApiServerlessFunction";
-import { createSsrServerlessFunction } from "./generate/createSsrServerlessFunction";
-import { getPathFromRoute } from "./getPathFromRoute";
+import FSExtra from 'fs-extra'
+import type { RollupOutput } from 'rollup'
+import { isMatching, P } from 'ts-pattern'
+import type { One } from '../../vite/types'
+import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
+import { serverlessVercelNodeJsConfig } from './config/vc-config-base'
+import { serverlessVercelPackageJson } from './config/vc-package-base'
+import { createApiServerlessFunction } from './generate/createApiServerlessFunction'
+import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
+import { getPathFromRoute } from './getPathFromRoute'
 
-const { copy, ensureDir, existsSync, writeJSON } = FSExtra;
+const { copy, ensureDir, existsSync, writeJSON } = FSExtra
 
 async function moveAllFiles(src: string, dest: string) {
   try {
-    await copy(src, dest, { overwrite: true, errorOnExist: false });
+    await copy(src, dest, { overwrite: true, errorOnExist: false })
   } catch (err) {
-    console.error("Error moving files:", err);
+    console.error('Error moving files:', err)
   }
 }
 
@@ -27,12 +27,12 @@ function getMiddlewaresByNamedRegex(buildInfoForWriting: One.BuildInfo) {
     .map((r) => [
       r.namedRegex,
       r.middlewares!.map((m) =>
-        m.contextKey.startsWith("dist/middlewares/")
-          ? m.contextKey.substring("dist/middlewares/".length)
-          : m.contextKey,
+        m.contextKey.startsWith('dist/middlewares/')
+          ? m.contextKey.substring('dist/middlewares/'.length)
+          : m.contextKey
       ),
     ])
-    .sort((a, b) => b[0].length - a[0].length);
+    .sort((a, b) => b[0].length - a[0].length)
 }
 
 export const buildVercelOutputDirectory = async ({
@@ -42,105 +42,122 @@ export const buildVercelOutputDirectory = async ({
   oneOptionsRoot,
   postBuildLogs,
 }: {
-  apiOutput: RollupOutput | null;
-  buildInfoForWriting: One.BuildInfo;
-  clientDir: string;
-  oneOptionsRoot: string;
-  postBuildLogs: string[];
+  apiOutput: RollupOutput | null
+  buildInfoForWriting: One.BuildInfo
+  clientDir: string
+  oneOptionsRoot: string
+  postBuildLogs: string[]
 }) => {
-  const { routeToBuildInfo } = buildInfoForWriting;
+  const { routeToBuildInfo } = buildInfoForWriting
   if (apiOutput) {
     const compiltedApiRoutes = (apiOutput?.output ?? []).filter((o) =>
-      isMatching({ code: P.string, facadeModuleId: P.string }, o),
-    );
+      isMatching({ code: P.string, facadeModuleId: P.string }, o)
+    )
     for (const route of buildInfoForWriting.manifest.apiRoutes) {
       const compiledRoute = compiltedApiRoutes.find((compiled) => {
-        const flag = compiled.facadeModuleId.includes(route.file.replace("./", ""));
-        return flag;
-      });
+        const flag = compiled.facadeModuleId.includes(route.file.replace('./', ''))
+        return flag
+      })
       if (compiledRoute) {
         postBuildLogs.push(
-          `[one.build][vercel] generating serverless function for apiRoute ${route.page}`,
-        );
+          `[one.build][vercel] generating serverless function for apiRoute ${route.page}`
+        )
 
-        await createApiServerlessFunction(route, compiledRoute.code, oneOptionsRoot, postBuildLogs);
+        await createApiServerlessFunction(
+          route,
+          compiledRoute.code,
+          oneOptionsRoot,
+          postBuildLogs
+        )
       } else {
-        console.warn("\n 🔨[one.build][vercel] apiRoute missing code compilation for", route.file);
+        console.warn(
+          '\n 🔨[one.build][vercel] apiRoute missing code compilation for',
+          route.file
+        )
       }
     }
   }
 
-  const vercelOutputFunctionsDir = join(oneOptionsRoot, ".vercel/output/functions");
-  await ensureDir(vercelOutputFunctionsDir);
+  const vercelOutputFunctionsDir = join(oneOptionsRoot, '.vercel/output/functions')
+  await ensureDir(vercelOutputFunctionsDir)
 
   for (const route of buildInfoForWriting.manifest.pageRoutes) {
     switch (route.type) {
-      case "ssr": {
+      case 'ssr': {
         // Server Side Rendered
-        const builtPageRoute = routeToBuildInfo[route.file];
+        const builtPageRoute = routeToBuildInfo[route.file]
         if (builtPageRoute) {
           postBuildLogs.push(
-            `[one.build][vercel] generate serverless function for ${route.page} with ${route.type}`,
-          );
+            `[one.build][vercel] generate serverless function for ${route.page} with ${route.type}`
+          )
           await createSsrServerlessFunction(
             route,
             buildInfoForWriting,
             oneOptionsRoot,
-            postBuildLogs,
-          );
+            postBuildLogs
+          )
         }
-        break;
+        break
       }
       default:
         // no-op, these will be copied from built dist/client into .vercel/output/static
         // postBuildLogs.push(`[one.build][vercel] pageRoute will be copied to .vercel/output/static for ${route.page} with ${route.type}`)
-        break;
+        break
     }
   }
 
-  const distMiddlewareDir = resolve(join(oneOptionsRoot, "dist", "middlewares"));
+  const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
   if (existsSync(distMiddlewareDir)) {
     const vercelMiddlewareDir = resolve(
-      join(oneOptionsRoot, ".vercel/output/functions/_middleware.func"),
-    );
-    await ensureDir(vercelMiddlewareDir);
+      join(oneOptionsRoot, '.vercel/output/functions/_middleware.func')
+    )
+    await ensureDir(vercelMiddlewareDir)
     postBuildLogs.push(
-      `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`,
-    );
-    await moveAllFiles(resolve(join(oneOptionsRoot, "dist", "middlewares")), vercelMiddlewareDir);
-    const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, "package.json"));
+      `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`
+    )
+    await moveAllFiles(
+      resolve(join(oneOptionsRoot, 'dist', 'middlewares')),
+      vercelMiddlewareDir
+    )
+    const vercelMiddlewarePackageJsonFilePath = resolve(
+      join(vercelMiddlewareDir, 'package.json')
+    )
     postBuildLogs.push(
-      `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`,
-    );
-    await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson);
-    const wrappedMiddlewareEntryPointFilename = "_wrapped_middleware.js";
+      `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
+    )
+    await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson)
+    const wrappedMiddlewareEntryPointFilename = '_wrapped_middleware.js'
     const wrappedMiddlewareEntryPointPath = resolve(
-      join(vercelMiddlewareDir, wrappedMiddlewareEntryPointFilename),
-    );
-    const middlewaresByNamedRegex = getMiddlewaresByNamedRegex(buildInfoForWriting);
+      join(vercelMiddlewareDir, wrappedMiddlewareEntryPointFilename)
+    )
+    const middlewaresByNamedRegex = getMiddlewaresByNamedRegex(buildInfoForWriting)
     const middlewaresToVariableNameMap = middlewaresByNamedRegex.reduce(
       (acc, [namedRegex, middlewares]) => {
-        (Array.isArray(middlewares) ? middlewares : [middlewares]).forEach((middleware) => {
-          const middlewareVariableName = middleware.replace(/\.[a-z]+$/, "").replaceAll("/", "_");
-          acc[middleware] = middlewareVariableName;
-        });
-        return acc;
+        ;(Array.isArray(middlewares) ? middlewares : [middlewares]).forEach(
+          (middleware) => {
+            const middlewareVariableName = middleware
+              .replace(/\.[a-z]+$/, '')
+              .replaceAll('/', '_')
+            acc[middleware] = middlewareVariableName
+          }
+        )
+        return acc
       },
-      {},
-    );
+      {}
+    )
     await FSExtra.writeFile(
       wrappedMiddlewareEntryPointPath,
       `
 const middlewaresByNamedRegex = ${JSON.stringify(middlewaresByNamedRegex)}
 ${Object.entries(middlewaresToVariableNameMap)
   .map(([path, variableName]) => `import ${variableName} from './${path}'`)
-  .join("\n")}
+  .join('\n')}
 
 function getMiddleware(path) {
   switch (path){
       ${Object.entries(middlewaresToVariableNameMap)
         .map(([path, variableName]) => `case '${path}': return ${variableName}`)
-        .join("\n")}
+        .join('\n')}
       default: return null
   }
 }
@@ -173,63 +190,67 @@ const wrappedMiddlewareFunction = (request, event) => {
 }
 
 export { wrappedMiddlewareFunction as default }
-  `,
-    );
-    const middlewareVercelConfigFilePath = resolve(join(vercelMiddlewareDir, ".vc-config.json"));
+  `
+    )
+    const middlewareVercelConfigFilePath = resolve(
+      join(vercelMiddlewareDir, '.vc-config.json')
+    )
     postBuildLogs.push(
-      `[one.build][vercel] writing .vc-config.json to ${middlewareVercelConfigFilePath}`,
-    );
+      `[one.build][vercel] writing .vc-config.json to ${middlewareVercelConfigFilePath}`
+    )
     await writeJSON(middlewareVercelConfigFilePath, {
-      runtime: "edge", // Seems that middlewares only work with edge runtime
+      runtime: 'edge', // Seems that middlewares only work with edge runtime
       entrypoint: wrappedMiddlewareEntryPointFilename,
-    });
+    })
   }
 
-  const vercelOutputStaticDir = resolve(join(oneOptionsRoot, ".vercel/output/static"));
-  await ensureDir(vercelOutputStaticDir);
+  const vercelOutputStaticDir = resolve(join(oneOptionsRoot, '.vercel/output/static'))
+  await ensureDir(vercelOutputStaticDir)
 
   postBuildLogs.push(
-    `[one.build][vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`,
-  );
-  await moveAllFiles(clientDir, vercelOutputStaticDir);
+    `[one.build][vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`
+  )
+  await moveAllFiles(clientDir, vercelOutputStaticDir)
 
   // Documentation - Vercel Build Output v3 config.json
   //   https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
   // Generate loader routes for SSR pages
   // These intercept /assets/*_vxrn_loader.js requests and route to the SSR function
   const ssrLoaderRoutes = buildInfoForWriting.manifest.pageRoutes
-    .filter((r) => r.type === "ssr")
+    .filter((r) => r.type === 'ssr')
     .map((r) => {
-      const pagePath = getPathFromRoute(r) || "/";
+      const pagePath = getPathFromRoute(r) || '/'
       // Convert page path to loader asset pattern
       // /ssr-page -> ssr-page
       // /dynamic/:id -> dynamic_:id (getPathFromRoute converts [id] to :id)
-      const cleanPath = pagePath.slice(1).replace(/\//g, "_");
+      const cleanPath = pagePath.slice(1).replace(/\//g, '_')
 
       // Build regex pattern for the loader asset
       // Replace :param with capture groups for dynamic segments
       // The loader URL pattern uses the actual param value, not :param
       // e.g., /dynamic/123 -> /assets/dynamic_123_12345_vxrn_loader.js
-      let loaderPattern = cleanPath.replace(/:([^_]+)/g, "(?<$1>[^_]+)");
+      let loaderPattern = cleanPath.replace(/:([^_]+)/g, '(?<$1>[^_]+)')
 
       // Match the loader file pattern: {path}_{cacheKey}_vxrn_loader.js
       // Also handle _refetch_ pattern for cache busting
-      const src = `^/assets/${loaderPattern}(?:_refetch_\\d+)?_\\d+_vxrn_loader\\.js$`;
+      const src = `^/assets/${loaderPattern}(?:_refetch_\\d+)?_\\d+_vxrn_loader\\.js$`
 
       // Build destination with captured params
-      let dest = `${pagePath}?__loader=1`;
-      const paramMatches = cleanPath.match(/:([^_]+)/g);
+      let dest = `${pagePath}?__loader=1`
+      const paramMatches = cleanPath.match(/:([^_]+)/g)
       if (paramMatches) {
         for (const match of paramMatches) {
-          const paramName = match.slice(1); // remove leading :
-          dest += `&${paramName}=$${paramName}`;
+          const paramName = match.slice(1) // remove leading :
+          dest += `&${paramName}=$${paramName}`
         }
       }
 
-      return { src, dest };
-    });
+      return { src, dest }
+    })
 
-  const vercelConfigFilePath = resolve(join(oneOptionsRoot, ".vercel/output", "config.json"));
+  const vercelConfigFilePath = resolve(
+    join(oneOptionsRoot, '.vercel/output', 'config.json')
+  )
   await writeJSON(vercelConfigFilePath, {
     ...vercelBuildOutputConfigBase,
     routes: [
@@ -237,14 +258,14 @@ export { wrappedMiddlewareFunction as default }
       ...(existsSync(distMiddlewareDir)
         ? [
             {
-              src: "/(.*)",
-              middlewarePath: "_middleware",
+              src: '/(.*)',
+              middlewarePath: '_middleware',
               continue: true,
             },
           ]
         : []),
       {
-        handle: "rewrite",
+        handle: 'rewrite',
       },
       // SSR loader routes must come before dynamic page routes
       ...ssrLoaderRoutes,
@@ -252,11 +273,11 @@ export { wrappedMiddlewareFunction as default }
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${getPathFromRoute(r) || "/"}?${Object.entries(r.routeKeys)
+          dest: `${getPathFromRoute(r) || '/'}?${Object.entries(r.routeKeys)
             .map(([k, v]) => `${k}=$${v}`)
-            .join("&")}`,
+            .join('&')}`,
         })),
     ],
-  });
-  postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`);
-};
+  })
+  postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`)
+}

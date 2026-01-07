@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
-import type { HeadModule } from "./HeadModule";
+import type { ReactNode } from 'react'
+import type { HeadModule } from './HeadModule'
 export type HeadType = React.FC<{
-  children?: ReactNode;
+  children?: ReactNode
 }> &
-  typeof HeadModule;
+  typeof HeadModule
 //# sourceMappingURL=types.d.ts.map

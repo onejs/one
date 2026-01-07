@@ -1,13 +1,13 @@
-import * as proc from "node:child_process";
-import { promisify } from "node:util";
+import * as proc from 'node:child_process'
+import { promisify } from 'node:util'
 
-const exec_ = promisify(proc.exec);
+const exec_ = promisify(proc.exec)
 
 export const exec = async (cmd: string, options?: proc.ExecOptions) => {
-  console.info(`$ ${cmd}`);
-  const proc = await exec_(cmd, options);
+  console.info(`$ ${cmd}`)
+  const proc = await exec_(cmd, options)
   if (proc.stderr) {
-    console.error(`Error executing: ${proc.stderr}`);
+    console.error(`Error executing: ${proc.stderr}`)
   }
-  return proc.stdout.toString();
-};
+  return proc.stdout.toString()
+}

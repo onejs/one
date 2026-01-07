@@ -1,23 +1,23 @@
-import { Link, useLoader, useLoaderState } from "one";
-import { Button, Text, YStack } from "tamagui";
+import { Link, useLoader, useLoaderState } from 'one'
+import { Button, Text, YStack } from 'tamagui'
 
-let spaCallCount = 0;
+let spaCallCount = 0
 
 export function loader({ path }: { path: string }) {
-  spaCallCount++;
-  const url = new URL(path, "http://localhost");
-  const q = url.searchParams.get("q") || "spa-default";
+  spaCallCount++
+  const url = new URL(path, 'http://localhost')
+  const q = url.searchParams.get('q') || 'spa-default'
 
   return {
-    mode: "spa",
+    mode: 'spa',
     query: q,
     callCount: spaCallCount,
     timestamp: Date.now(),
-  };
+  }
 }
 
 export default () => {
-  const { data, refetch, state } = useLoaderState(loader);
+  const { data, refetch, state } = useLoaderState(loader)
 
   return (
     <YStack gap="$4" p="$4">
@@ -33,9 +33,9 @@ export default () => {
         New SPA Search Params
       </Link>
 
-      <Button id="spa-refetch" onPress={refetch} disabled={state === "loading"}>
-        {state === "loading" ? "Loading..." : "Refetch SPA"}
+      <Button id="spa-refetch" onPress={refetch} disabled={state === 'loading'}>
+        {state === 'loading' ? 'Loading...' : 'Refetch SPA'}
       </Button>
     </YStack>
-  );
-};
+  )
+}

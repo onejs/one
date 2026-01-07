@@ -1,21 +1,21 @@
-import type { Plugin } from "vite";
-export declare const clientTreeShakePlugin: () => Plugin;
+import type { Plugin } from 'vite'
+export declare const clientTreeShakePlugin: () => Plugin
 export declare function transformTreeShakeClient(
   code: string,
-  id: string,
+  id: string
 ): Promise<
   | {
-      code: string;
+      code: string
       map: {
-        version: number;
-        sources: string[];
-        names: string[];
-        sourceRoot?: string | undefined;
-        sourcesContent?: string[] | undefined;
-        mappings: string;
-        file: string;
-      } | null;
+        version: number
+        sources: string[]
+        names: string[]
+        sourceRoot?: string | undefined
+        sourcesContent?: string[] | undefined
+        mappings: string
+        file: string
+      } | null
     }
   | undefined
->;
+>
 //# sourceMappingURL=clientTreeShakePlugin.d.ts.map

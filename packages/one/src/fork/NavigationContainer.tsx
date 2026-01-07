@@ -17,7 +17,7 @@ import {
   type ParamListBase,
   ThemeProvider,
   validatePathConfig,
-} from "@react-navigation/core";
+} from '@react-navigation/core'
 // @modified - start
 // import { LinkingContext } from './LinkingContext'
 // import { LocaleDirContext } from './LocaleDirContext'
@@ -32,32 +32,32 @@ import {
   LocaleDirContext,
   type LocaleDirection,
   UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
-} from "@react-navigation/native";
-import * as React from "react";
-import { I18nManager } from "react-native";
-import useLatestCallback from "use-latest-callback";
+} from '@react-navigation/native'
+import * as React from 'react'
+import { I18nManager } from 'react-native'
+import useLatestCallback from 'use-latest-callback'
 // @modified - end
-import { useBackButton } from "./useBackButton";
-import { useDocumentTitle } from "./useDocumentTitle";
-import { useLinking } from "./useLinking";
-import { useThenable } from "./useThenable";
+import { useBackButton } from './useBackButton'
+import { useDocumentTitle } from './useDocumentTitle'
+import { useLinking } from './useLinking'
+import { useThenable } from './useThenable'
 
 declare global {
   // eslint-disable-next-line no-var
   var REACT_NAVIGATION_DEVTOOLS: WeakMap<
     NavigationContainerRef<any>,
     { readonly linking: LinkingOptions<any> }
-  >;
+  >
 }
 
-globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap();
+globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
 
 type Props<ParamList extends {}> = NavigationContainerProps & {
-  direction?: LocaleDirection;
-  linking?: LinkingOptions<ParamList>;
-  fallback?: React.ReactNode;
-  documentTitle?: DocumentTitleOptions;
-};
+  direction?: LocaleDirection
+  linking?: LinkingOptions<ParamList>
+  fallback?: React.ReactNode
+  documentTitle?: DocumentTitleOptions
+}
 
 /**
  * Container component which holds the navigation state designed for React Native apps.
@@ -77,7 +77,7 @@ type Props<ParamList extends {}> = NavigationContainerProps & {
  */
 function NavigationContainerInner(
   {
-    direction = I18nManager.getConstants().isRTL ? "rtl" : "ltr",
+    direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
     theme = DefaultTheme,
     linking,
     fallback = null,
@@ -86,20 +86,20 @@ function NavigationContainerInner(
     onStateChange,
     ...rest
   }: Props<ParamListBase>,
-  ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>,
+  ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
 ) {
-  const isLinkingEnabled = linking ? linking.enabled !== false : false;
+  const isLinkingEnabled = linking ? linking.enabled !== false : false
 
   if (linking?.config) {
-    validatePathConfig(linking.config);
+    validatePathConfig(linking.config)
   }
 
-  const refContainer = React.useRef<NavigationContainerRef<ParamListBase> | null>(null);
+  const refContainer = React.useRef<NavigationContainerRef<ParamListBase> | null>(null)
 
-  useBackButton(refContainer);
-  useDocumentTitle(refContainer, documentTitle);
+  useBackButton(refContainer)
+  useDocumentTitle(refContainer, documentTitle)
 
-  const [lastUnhandledLink, setLastUnhandledLink] = React.useState<string | undefined>();
+  const [lastUnhandledLink, setLastUnhandledLink] = React.useState<string | undefined>()
 
   const { getInitialState } = useLinking(
     refContainer,
@@ -108,41 +108,41 @@ function NavigationContainerInner(
       prefixes: [],
       ...linking,
     },
-    setLastUnhandledLink,
-  );
+    setLastUnhandledLink
+  )
 
-  const linkingContext = React.useMemo(() => ({ options: linking }), [linking]);
+  const linkingContext = React.useMemo(() => ({ options: linking }), [linking])
 
   const unhandledLinkingContext = React.useMemo(
     () => ({ lastUnhandledLink, setLastUnhandledLink }),
-    [lastUnhandledLink, setLastUnhandledLink],
-  );
+    [lastUnhandledLink, setLastUnhandledLink]
+  )
 
   const onReadyForLinkingHandling = useLatestCallback(() => {
     // If the screen path matches lastUnhandledLink, we do not track it
-    const path = refContainer.current?.getCurrentRoute()?.path;
+    const path = refContainer.current?.getCurrentRoute()?.path
     setLastUnhandledLink((previousLastUnhandledLink) => {
       if (previousLastUnhandledLink === path) {
-        return undefined;
+        return undefined
       }
-      return previousLastUnhandledLink;
-    });
-    onReady?.();
-  });
+      return previousLastUnhandledLink
+    })
+    onReady?.()
+  })
 
   const onStateChangeForLinkingHandling = useLatestCallback(
     (state: Readonly<NavigationState> | undefined) => {
       // If the screen path matches lastUnhandledLink, we do not track it
-      const path = refContainer.current?.getCurrentRoute()?.path;
+      const path = refContainer.current?.getCurrentRoute()?.path
       setLastUnhandledLink((previousLastUnhandledLink) => {
         if (previousLastUnhandledLink === path) {
-          return undefined;
+          return undefined
         }
-        return previousLastUnhandledLink;
-      });
-      onStateChange?.(state);
-    },
-  );
+        return previousLastUnhandledLink
+      })
+      onStateChange?.(state)
+    }
+  )
   // Add additional linking related info to the ref
   // This will be used by the devtools
   React.useEffect(() => {
@@ -156,30 +156,30 @@ function NavigationContainerInner(
             getStateFromPath: linking?.getStateFromPath ?? getStateFromPath,
             getPathFromState: linking?.getPathFromState ?? getPathFromState,
             getActionFromState: linking?.getActionFromState ?? getActionFromState,
-          };
+          }
         },
-      });
+      })
     }
-  });
+  })
 
-  const [isResolved, initialState] = useThenable(getInitialState);
+  const [isResolved, initialState] = useThenable(getInitialState)
 
   if (process.env.ONE_DEBUG_ROUTER) {
     console.info(
       `[one] 🏠 NavigationContainer isResolved=${isResolved} initialState=`,
-      JSON.stringify(initialState, null, 2),
-    );
-    console.info(`[one] 🏠 NavigationContainer rest.initialState=`, rest.initialState);
+      JSON.stringify(initialState, null, 2)
+    )
+    console.info(`[one] 🏠 NavigationContainer rest.initialState=`, rest.initialState)
   }
 
-  React.useImperativeHandle(ref, () => refContainer.current!);
+  React.useImperativeHandle(ref, () => refContainer.current!)
 
-  const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved;
+  const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved
 
   if (!isLinkingReady) {
     // This is temporary until we have Suspense for data-fetching
     // Then the fallback will be handled by a parent `Suspense` component
-    return <ThemeProvider value={theme}>{fallback}</ThemeProvider>;
+    return <ThemeProvider value={theme}>{fallback}</ThemeProvider>
   }
 
   return (
@@ -197,13 +197,13 @@ function NavigationContainerInner(
         </LinkingContext.Provider>
       </UnhandledLinkingContext.Provider>
     </LocaleDirContext.Provider>
-  );
+  )
 }
 
 export const NavigationContainer = React.forwardRef(NavigationContainerInner) as <
   RootParamList extends {} = ReactNavigation.RootParamList,
 >(
   props: Props<RootParamList> & {
-    ref?: React.Ref<NavigationContainerRef<RootParamList>>;
-  },
-) => React.ReactElement;
+    ref?: React.Ref<NavigationContainerRef<RootParamList>>
+  }
+) => React.ReactElement

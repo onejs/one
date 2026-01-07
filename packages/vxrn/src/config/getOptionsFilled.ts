@@ -1,14 +1,14 @@
-import { createHash } from "node:crypto";
-import { createRequire } from "node:module";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { readPackageJSON } from "pkg-types";
-import type { Mode, VXRNOptions } from "../types";
-import { getServerOptionsFilled } from "./getServerOptionsFilled";
-import { readState, writeState } from "../utils/state";
-import { getCacheDir } from "../utils/getCacheDir";
+import { createHash } from 'node:crypto'
+import { createRequire } from 'node:module'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { readPackageJSON } from 'pkg-types'
+import type { Mode, VXRNOptions } from '../types'
+import { getServerOptionsFilled } from './getServerOptionsFilled'
+import { readState, writeState } from '../utils/state'
+import { getCacheDir } from '../utils/getCacheDir'
 
-const require = createRequire(import.meta.url);
+const require = createRequire(import.meta.url)
 
 /**
  * **NOTES**
@@ -38,51 +38,56 @@ const require = createRequire(import.meta.url);
  *   * Over time, we can progressively eliminate dependencies on
  *     `VXRNOptionsFilled` across the codebase.
  */
-export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
+export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>
 
-let optionsFilled: VXRNOptionsFilled | null = null;
+let optionsFilled: VXRNOptionsFilled | null = null
 
-export async function fillOptions(options: VXRNOptions, { mode = "dev" }: { mode?: Mode } = {}) {
-  const { root = process.cwd(), entries } = options;
+export async function fillOptions(
+  options: VXRNOptions,
+  { mode = 'dev' }: { mode?: Mode } = {}
+) {
+  const { root = process.cwd(), entries } = options
 
-  const devMode = options.mode === "production" ? false : mode === "dev";
+  const devMode = options.mode === 'production' ? false : mode === 'dev'
 
   if (!devMode) {
-    console.info(`❶ Running dev server in production mode`);
+    console.info(`❶ Running dev server in production mode`)
   }
 
-  const packageRootDir = join(require.resolve("vxrn"), "../..");
-  const cacheDir = getCacheDir(root);
+  const packageRootDir = join(require.resolve('vxrn'), '../..')
+  const cacheDir = getCacheDir(root)
 
-  const [state, packageJSON] = await Promise.all([readState(cacheDir), readPackageJSON()]);
+  const [state, packageJSON] = await Promise.all([readState(cacheDir), readPackageJSON()])
 
-  const deps = packageJSON.dependencies || {};
+  const deps = packageJSON.dependencies || {}
 
   const packageVersions =
-    deps.react && deps["react-native"]
+    deps.react && deps['react-native']
       ? {
-          react: deps.react.replace(/[\^~]/, ""),
-          reactNative: deps["react-native"].replace(/[\^~]/, ""),
+          react: deps.react.replace(/[\^~]/, ''),
+          reactNative: deps['react-native'].replace(/[\^~]/, ''),
         }
-      : undefined;
+      : undefined
 
-  const versionHash = hashString(JSON.stringify(packageJSON));
+  const versionHash = hashString(JSON.stringify(packageJSON))
   const clean =
-    (options.clean ?? (state.versionHash && state.versionHash !== versionHash)) ? "vite" : false;
+    (options.clean ?? (state.versionHash && state.versionHash !== versionHash))
+      ? 'vite'
+      : false
 
   // no need to wait to write state
-  void writeState(cacheDir, { versionHash });
+  void writeState(cacheDir, { versionHash })
 
-  if (typeof options.build?.server !== "boolean" && !options.build?.server) {
+  if (typeof options.build?.server !== 'boolean' && !options.build?.server) {
     // default building server to off
-    options.build ||= {};
-    options.build.server = false;
+    options.build ||= {}
+    options.build.server = false
   }
 
   const debugBundlePath =
-    options.debugBundle && typeof options.debugBundle === "string"
+    options.debugBundle && typeof options.debugBundle === 'string'
       ? options.debugBundle
-      : join(tmpdir(), `bundle-${Math.round(Math.random() * 100_000)}.js`);
+      : join(tmpdir(), `bundle-${Math.round(Math.random() * 100_000)}.js`)
 
   const final = {
     ...options,
@@ -91,13 +96,13 @@ export async function fillOptions(options: VXRNOptions, { mode = "dev" }: { mode
       ios: debugBundlePath,
       android: debugBundlePath,
     },
-    mode: devMode ? ("development" as const) : ("production" as const),
+    mode: devMode ? ('development' as const) : ('production' as const),
     clean,
     root,
     server: await getServerOptionsFilled(options.server, mode),
     entries: {
-      native: "./src/entry-native.tsx",
-      server: "./src/entry-server.tsx",
+      native: './src/entry-native.tsx',
+      server: './src/entry-server.tsx',
       ...entries,
     },
     packageJSON,
@@ -105,19 +110,19 @@ export async function fillOptions(options: VXRNOptions, { mode = "dev" }: { mode
     state,
     packageRootDir,
     cacheDir,
-  } as const;
+  } as const
 
-  optionsFilled = final;
+  optionsFilled = final
 
-  return final;
+  return final
 }
 
 export function getOptionsFilled() {
-  return optionsFilled;
+  return optionsFilled
 }
 
 function hashString(str: string): string {
-  const hash = createHash("sha256"); // Create a hash object with the desired algorithm (e.g., 'sha256')
-  hash.update(str); // Update the hash content with the input string
-  return hash.digest("hex"); // Output the final hash in hexadecimal format
+  const hash = createHash('sha256') // Create a hash object with the desired algorithm (e.g., 'sha256')
+  hash.update(str) // Update the hash content with the input string
+  return hash.digest('hex') // Output the final hash in hexadecimal format
 }

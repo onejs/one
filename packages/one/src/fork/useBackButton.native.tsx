@@ -5,28 +5,30 @@
  * No changes are made except of formatting.
  */
 
-import type { NavigationContainerRef, ParamListBase } from "@react-navigation/core";
-import * as React from "react";
-import { BackHandler } from "react-native";
+import type { NavigationContainerRef, ParamListBase } from '@react-navigation/core'
+import * as React from 'react'
+import { BackHandler } from 'react-native'
 
-export function useBackButton(ref: React.RefObject<NavigationContainerRef<ParamListBase>>) {
+export function useBackButton(
+  ref: React.RefObject<NavigationContainerRef<ParamListBase>>
+) {
   React.useEffect(() => {
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      const navigation = ref.current;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      const navigation = ref.current
 
       if (navigation == null) {
-        return false;
+        return false
       }
 
       if (navigation.canGoBack()) {
-        navigation.goBack();
+        navigation.goBack()
 
-        return true;
+        return true
       }
 
-      return false;
-    });
+      return false
+    })
 
-    return () => subscription.remove();
-  }, [ref]);
+    return () => subscription.remove()
+  }, [ref])
 }

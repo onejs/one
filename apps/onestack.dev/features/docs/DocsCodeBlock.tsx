@@ -5,9 +5,9 @@ import {
   Copy,
   FileCode2,
   TerminalSquare,
-} from "@tamagui/lucide-icons";
-import { useStore } from "@tamagui/use-store";
-import { forwardRef, useEffect, useRef, useState } from "react";
+} from '@tamagui/lucide-icons'
+import { useStore } from '@tamagui/use-store'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import {
   AnimatePresence,
   Button,
@@ -18,30 +18,30 @@ import {
   XStack,
   YStack,
   styled,
-} from "tamagui";
-import { LinearGradient } from "tamagui/linear-gradient";
-import { ErrorBoundary } from "~/features/site/ErrorBoundary";
-import { RovingTabs } from "./RovingTabs";
-import { useBashCommand } from "./useBashCommand";
-import { useClipboard } from "./useClipboard";
+} from 'tamagui'
+import { LinearGradient } from 'tamagui/linear-gradient'
+import { ErrorBoundary } from '~/features/site/ErrorBoundary'
+import { RovingTabs } from './RovingTabs'
+import { useBashCommand } from './useBashCommand'
+import { useClipboard } from './useClipboard'
 
 export const Pre = styled(YStack, {
-  overflow: "visible",
-  tag: "pre",
-  padding: "$4",
-  borderRadius: "$4",
-  bg: "$color3",
-});
+  overflow: 'visible',
+  tag: 'pre',
+  padding: '$4',
+  borderRadius: '$4',
+  bg: '$color3',
+})
 
 class CollapseStore {
-  isCollapsed: boolean;
+  isCollapsed: boolean
 
   constructor(initialState: { isCollapsed: boolean } = { isCollapsed: true }) {
-    this.isCollapsed = initialState.isCollapsed;
+    this.isCollapsed = initialState.isCollapsed
   }
 
   setIsCollapsed(val: boolean) {
-    this.isCollapsed = val;
+    this.isCollapsed = val
   }
 }
 
@@ -58,24 +58,24 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
     disableCopy,
     size,
     ...rest
-  } = props;
+  } = props
 
-  const lines = Array.isArray(children) ? children.length : 0;
-  const isCollapsible = isHero || props.isCollapsible;
-  const store = useStore(CollapseStore, { isCollapsed: showMore });
-  const { isCollapsed, setIsCollapsed } = store;
-  const isLong = lines > 100;
-  const [isCutoff, setIsCutoff] = useState(isLong && !showMore);
-  const [code, setCode] = useState<string | undefined>(undefined);
-  const preRef = useRef<any>(null);
-  const { hasCopied, onCopy } = useClipboard(code);
-  const showLineNumbers = showLineNumbersIn ?? lines > 10;
+  const lines = Array.isArray(children) ? children.length : 0
+  const isCollapsible = isHero || props.isCollapsible
+  const store = useStore(CollapseStore, { isCollapsed: showMore })
+  const { isCollapsed, setIsCollapsed } = store
+  const isLong = lines > 100
+  const [isCutoff, setIsCutoff] = useState(isLong && !showMore)
+  const [code, setCode] = useState<string | undefined>(undefined)
+  const preRef = useRef<any>(null)
+  const { hasCopied, onCopy } = useClipboard(code)
+  const showLineNumbers = showLineNumbersIn ?? lines > 10
 
-  const { isTerminalCommand, transformedCommand } = useBashCommand(children, className);
+  const { isTerminalCommand, transformedCommand } = useBashCommand(children, className)
 
-  const showFileName = fileName || isTerminalCommand;
+  const showFileName = fileName || isTerminalCommand
 
-  const isPreVisible = !isCollapsed || !isCollapsible;
+  const isPreVisible = !isCollapsed || !isCollapsible
 
   // const onCommandChange = useEvent(() => {
   //   try {
@@ -92,8 +92,8 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
   // })
 
   useEffect(() => {
-    setCode(transformedCommand);
-  }, [transformedCommand]);
+    setCode(transformedCommand)
+  }, [transformedCommand])
 
   return (
     <YStack
@@ -105,10 +105,10 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
       bc="$gray4"
       br="$5"
       {...(isHero && {
-        px: "$4",
-        mx: "$-4",
+        px: '$4',
+        mx: '$-4',
         $gtMd: {
-          mx: "$-7",
+          mx: '$-7',
         },
       })}
     >
@@ -123,7 +123,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
             top={-82}
             r="$6"
             $gtMd={{
-              r: "$7",
+              r: '$7',
             }}
           >
             <Button
@@ -133,7 +133,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
               zi={10}
               onPress={() => setIsCollapsed(!isCollapsed)}
             >
-              {isCollapsed ? "Show code" : "Hide code"}
+              {isCollapsed ? 'Show code' : 'Hide code'}
             </Button>
           </XStack>
         )}
@@ -143,8 +143,8 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
             position="relative"
             {...(isCutoff && {
               maxHeight: 400,
-              ov: "hidden",
-              br: "$4",
+              ov: 'hidden',
+              br: '$4',
             })}
           >
             {isCutoff && (
@@ -154,7 +154,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                 l={0}
                 r={0}
                 height={200}
-                colors={["$background0", "$color2"]}
+                colors={['$background0', '$color2']}
                 zi={1000}
               >
                 <Spacer f={1} />
@@ -172,7 +172,9 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                 ) : (
                   <FileCode2 size={14} col="$color11" />
                 )}
-                <Paragraph col="$color11">{isTerminalCommand ? "Terminal" : fileName}</Paragraph>
+                <Paragraph col="$color11">
+                  {isTerminalCommand ? 'Terminal' : fileName}
+                </Paragraph>
               </XStack>
             )}
             <Pre
@@ -198,7 +200,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                   position="absolute"
                   aria-label="Collapse code block"
                   size="$2"
-                  top={showFileName ? "$3" : "$3.5"}
+                  top={showFileName ? '$3' : '$3.5'}
                   right="$10"
                   display="inline-flex"
                   iconAfter={ChevronsDownUp}
@@ -210,7 +212,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                   exitStyle={{ x: 5, o: 0 }}
                   onPress={() => setIsCutoff(true)}
                   $xs={{
-                    display: "none",
+                    display: 'none',
                   }}
                 >
                   Show less
@@ -222,7 +224,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
               <TooltipSimple
                 label={
                   <Text dsp="inline-flex" minWidth={100} ai="center" jc="center">
-                    {hasCopied ? "Copied!" : "Copy to clipboard"}
+                    {hasCopied ? 'Copied!' : 'Copy to clipboard'}
                   </Text>
                 }
               >
@@ -237,7 +239,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                   icon={hasCopied ? CheckCircle : Copy}
                   onPress={onCopy}
                   $xs={{
-                    display: "none",
+                    display: 'none',
                   }}
                 />
               </TooltipSimple>
@@ -246,5 +248,5 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
         )}
       </ErrorBoundary>
     </YStack>
-  );
-});
+  )
+})

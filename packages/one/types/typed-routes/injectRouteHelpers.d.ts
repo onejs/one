@@ -1,4 +1,4 @@
-export type InjectMode = "type" | "runtime";
+export type InjectMode = 'type' | 'runtime'
 /**
  * Injects route type helpers into a route file if they don't already exist.
  *
@@ -11,6 +11,6 @@ export type InjectMode = "type" | "runtime";
 export declare function injectRouteHelpers(
   filePath: string,
   routePath: string,
-  mode: InjectMode,
-): Promise<boolean>;
+  mode: InjectMode
+): Promise<boolean>
 //# sourceMappingURL=injectRouteHelpers.d.ts.map

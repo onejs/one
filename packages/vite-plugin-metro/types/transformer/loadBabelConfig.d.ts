@@ -1,4 +1,4 @@
-import type { TransformOptions } from "./babel-core";
+import type { TransformOptions } from './babel-core'
 /**
  * Returns a memoized function that checks for the existence of a
  * project-level .babelrc file. If it doesn't exist, it reads the
@@ -7,6 +7,6 @@ import type { TransformOptions } from "./babel-core";
 export declare const loadBabelConfig: ({
   projectRoot,
 }: {
-  projectRoot: string;
-}) => Pick<TransformOptions, "extends" | "presets">;
+  projectRoot: string
+}) => Pick<TransformOptions, 'extends' | 'presets'>
 //# sourceMappingURL=loadBabelConfig.d.ts.map

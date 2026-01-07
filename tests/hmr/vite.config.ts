@@ -1,6 +1,6 @@
-import { defineConfig } from "vite";
-import { one } from "one/vite";
+import { defineConfig } from 'vite'
+import { one } from 'one/vite'
 
 export default defineConfig({
   plugins: [one()],
-});
+})

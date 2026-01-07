@@ -1,25 +1,25 @@
-import type { UserConfig } from "vite";
-import { one } from "one/vite";
-import { tamaguiPlugin } from "@tamagui/vite-plugin";
+import type { UserConfig } from 'vite'
+import { one } from 'one/vite'
+import { tamaguiPlugin } from '@tamagui/vite-plugin'
 
 export default {
   plugins: [
     one({
       web: {
-        deploy: "vercel",
-        defaultRenderMode: "ssg",
+        deploy: 'vercel',
+        defaultRenderMode: 'ssg',
       },
 
       native: {
-        key: "one-example",
+        key: 'one-example',
       },
     }),
 
     tamaguiPlugin({
       optimize: true,
-      components: ["tamagui"],
-      config: "./config/tamagui.config.ts",
-      outputCSS: "./code/styles/tamagui.css",
+      components: ['tamagui'],
+      config: './config/tamagui.config.ts',
+      outputCSS: './code/styles/tamagui.css',
     }),
   ],
-} satisfies UserConfig;
+} satisfies UserConfig

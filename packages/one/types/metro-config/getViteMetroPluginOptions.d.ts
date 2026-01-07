@@ -1,4 +1,4 @@
-import type { metroPlugin } from "@vxrn/vite-plugin-metro";
+import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 export declare function getViteMetroPluginOptions({
   projectRoot,
   relativeRouterRoot,
@@ -6,18 +6,18 @@ export declare function getViteMetroPluginOptions({
   userDefaultConfigOverrides,
   setupFile,
 }: {
-  projectRoot: string;
-  relativeRouterRoot: string;
-  ignoredRouteFiles?: Array<`**/*${string}`>;
+  projectRoot: string
+  relativeRouterRoot: string
+  ignoredRouteFiles?: Array<`**/*${string}`>
   userDefaultConfigOverrides?: NonNullable<
     Parameters<typeof metroPlugin>[0]
-  >["defaultConfigOverrides"];
+  >['defaultConfigOverrides']
   setupFile?:
     | string
     | {
-        native?: string;
-        ios?: string;
-        android?: string;
-      };
-}): Parameters<typeof metroPlugin>[0];
+        native?: string
+        ios?: string
+        android?: string
+      }
+}): Parameters<typeof metroPlugin>[0]
 //# sourceMappingURL=getViteMetroPluginOptions.d.ts.map

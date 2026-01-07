@@ -6,7 +6,7 @@
  */
 declare function filterPlatformAssetScales(
   platform: string,
-  scales: ReadonlyArray<number>,
-): ReadonlyArray<number>;
-export default filterPlatformAssetScales;
+  scales: ReadonlyArray<number>
+): ReadonlyArray<number>
+export default filterPlatformAssetScales
 //# sourceMappingURL=filterPlatformAssetScales.d.ts.map

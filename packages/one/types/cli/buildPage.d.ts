@@ -1,4 +1,4 @@
-import type { One, RouteInfo } from "../vite/types";
+import type { One, RouteInfo } from '../vite/types'
 export declare function buildPage(
   serverEntry: string,
   path: string,
@@ -17,6 +17,6 @@ export declare function buildPage(
   criticalPreloads?: string[],
   deferredPreloads?: string[],
   useAfterLCP?: boolean,
-  useAfterLCPAggressive?: boolean,
-): Promise<One.RouteBuildInfo>;
+  useAfterLCPAggressive?: boolean
+): Promise<One.RouteBuildInfo>
 //# sourceMappingURL=buildPage.d.ts.map

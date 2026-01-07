@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react'
 
-const Decorated = Symbol();
+const Decorated = Symbol()
 
-type Combined<A, B> = A & B;
+type Combined<A, B> = A & B
 
 export const withStaticProperties = <A extends Function, B>(
   component: A,
-  staticProps: B,
+  staticProps: B
 ): Combined<A, B> => {
   // clone component if already wrapped once
   const next = (() => {
     if (component[Decorated]) {
       const _ = React.forwardRef((props, ref) =>
-        React.createElement(component as any, { ...props, ref }),
-      );
+        React.createElement(component as any, { ...props, ref })
+      )
       // attach existing things again
       for (const key in component) {
-        const v = component[key];
+        const v = component[key]
         // @ts-expect-error
-        _[key] = v && typeof v === "object" ? { ...v } : v;
+        _[key] = v && typeof v === 'object' ? { ...v } : v
       }
     }
-    return component;
-  })();
+    return component
+  })()
 
   // add new things
-  Object.assign(next, staticProps);
-  next[Decorated] = true;
+  Object.assign(next, staticProps)
+  next[Decorated] = true
 
-  return next as any as A & B;
-};
+  return next as any as A & B
+}

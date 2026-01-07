@@ -1,17 +1,17 @@
-import { one } from "one/vite";
-import type { UserConfig } from "vite";
+import { one } from 'one/vite'
+import type { UserConfig } from 'vite'
 
 export default {
   ssr: {
     noExternal: true,
-    external: ["@vxrn/mdx"],
+    external: ['@vxrn/mdx'],
   },
 
   plugins: [
     one({
       native: {
-        bundler: "metro",
+        bundler: 'metro',
       },
     }),
   ],
-} satisfies UserConfig;
+} satisfies UserConfig

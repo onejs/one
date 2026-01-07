@@ -1,3 +1,3 @@
-import type * as router from "./router";
+import type * as router from './router'
 
-export type RouterStore = typeof router;
+export type RouterStore = typeof router

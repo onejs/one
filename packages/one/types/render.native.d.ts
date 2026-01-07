@@ -1,2 +1,2 @@
-export declare function render(element: React.ReactNode): void;
+export declare function render(element: React.ReactNode): void
 //# sourceMappingURL=render.native.d.ts.map

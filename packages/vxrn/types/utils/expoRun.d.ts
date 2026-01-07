@@ -3,8 +3,8 @@ export declare function expoRun({
   platform,
   port,
 }: {
-  root: string;
-  platform: "ios" | "android";
-  port?: number;
-}): Promise<void>;
+  root: string
+  platform: 'ios' | 'android'
+  port?: number
+}): Promise<void>
 //# sourceMappingURL=expoRun.d.ts.map

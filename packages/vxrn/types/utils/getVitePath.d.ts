@@ -3,7 +3,10 @@ export declare function getVitePath(
   importer: string,
   moduleName: string,
   resolver: (moduleName: string, importer: string) => Promise<string | undefined>,
-  resolverWithPlugins: (moduleName: string, importer: string) => Promise<string | undefined>,
-  absolute?: boolean,
-): Promise<string>;
+  resolverWithPlugins: (
+    moduleName: string,
+    importer: string
+  ) => Promise<string | undefined>,
+  absolute?: boolean
+): Promise<string>
 //# sourceMappingURL=getVitePath.d.ts.map

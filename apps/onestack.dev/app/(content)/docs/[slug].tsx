@@ -1,35 +1,35 @@
-import { getMDXComponent } from "mdx-bundler/client";
-import { useLoader, createRoute } from "one";
-import { useMemo } from "react";
-import { H1 } from "tamagui";
-import { DocsRightSidebar } from "~/features/docs/DocsRightSidebar";
-import { components } from "~/features/docs/MDXComponents";
-import { HeadInfo } from "~/features/site/HeadInfo";
-import { nbspLastWord, SubTitle } from "~/features/site/SubTitle";
+import { getMDXComponent } from 'mdx-bundler/client'
+import { useLoader, createRoute } from 'one'
+import { useMemo } from 'react'
+import { H1 } from 'tamagui'
+import { DocsRightSidebar } from '~/features/docs/DocsRightSidebar'
+import { components } from '~/features/docs/MDXComponents'
+import { HeadInfo } from '~/features/site/HeadInfo'
+import { nbspLastWord, SubTitle } from '~/features/site/SubTitle'
 
-const route = createRoute<"/docs/[slug]">();
+const route = createRoute<'/docs/[slug]'>()
 
 export async function generateStaticParams() {
-  const { getAllFrontmatter } = await import("@vxrn/mdx");
-  const frontmatters = getAllFrontmatter("data/docs");
+  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const frontmatters = getAllFrontmatter('data/docs')
   const paths = frontmatters.map(({ slug }) => ({
-    slug: slug.replace(/.*docs\//, ""),
-  }));
-  return paths;
+    slug: slug.replace(/.*docs\//, ''),
+  }))
+  return paths
 }
 
 export const loader = route.createLoader(async ({ params }) => {
-  const { getMDXBySlug } = await import("@vxrn/mdx");
-  const { frontmatter, code } = await getMDXBySlug("data/docs", params.slug);
+  const { getMDXBySlug } = await import('@vxrn/mdx')
+  const { frontmatter, code } = await getMDXBySlug('data/docs', params.slug)
   return {
     frontmatter,
     code,
-  };
-});
+  }
+})
 
 export function DocCorePage() {
-  const { code, frontmatter } = useLoader(loader);
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const { code, frontmatter } = useLoader(loader)
+  const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
     <>
@@ -58,13 +58,13 @@ export function DocCorePage() {
               mt="$2"
               size="$10"
               $platform-web={{
-                textWrap: "balance",
+                textWrap: 'balance',
               }}
             >
               {nbspLastWord(frontmatter.title)}
             </H1>
             {!!frontmatter.description && (
-              <SubTitle>{nbspLastWord(frontmatter.description || "")}</SubTitle>
+              <SubTitle>{nbspLastWord(frontmatter.description || '')}</SubTitle>
             )}
           </>
         )}
@@ -72,5 +72,5 @@ export function DocCorePage() {
         <DocsRightSidebar headings={frontmatter.headings} />
       </>
     </>
-  );
+  )
 }

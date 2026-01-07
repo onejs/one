@@ -1,18 +1,18 @@
-import * as React from "react";
+import * as React from 'react'
 
-type ResultBox<T> = { v: T };
+type ResultBox<T> = { v: T }
 
 export function useConstant<T>(fn: () => T): T {
   // RSC compat
-  if (typeof document === "undefined") {
-    return React.useMemo(() => fn(), []);
+  if (typeof document === 'undefined') {
+    return React.useMemo(() => fn(), [])
   }
 
-  const ref = React.useRef<ResultBox<T> | undefined>(undefined);
+  const ref = React.useRef<ResultBox<T> | undefined>(undefined)
 
   if (!ref.current) {
-    ref.current = { v: fn() };
+    ref.current = { v: fn() }
   }
 
-  return ref.current.v;
+  return ref.current.v
 }

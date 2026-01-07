@@ -1,4 +1,4 @@
-import { Link } from "one";
+import { Link } from 'one'
 
 export default function LayoutTestsIndex() {
   return (
@@ -13,5 +13,5 @@ export default function LayoutTestsIndex() {
         Nested layout with layout and page params
       </Link> */}
     </>
-  );
+  )
 }

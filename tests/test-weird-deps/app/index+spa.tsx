@@ -1,12 +1,12 @@
-import { View } from "react-native";
-import * as BadDeps from "../src/bad-deps";
+import { View } from 'react-native'
+import * as BadDeps from '../src/bad-deps'
 
-console.info("BadDeps", BadDeps);
+console.info('BadDeps', BadDeps)
 
 export default function HomePage() {
   return (
     <>
-      <View style={{ width: 200, height: 200, backgroundColor: "red" }} />
+      <View style={{ width: 200, height: 200, backgroundColor: 'red' }} />
     </>
-  );
+  )
 }

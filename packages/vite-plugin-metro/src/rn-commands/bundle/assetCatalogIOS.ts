@@ -5,67 +5,67 @@
  * LICENSE file in the root directory of https://github.com/facebook/react-native.
  */
 
-import type { AssetData } from "metro/private/Assets";
+import type { AssetData } from 'metro/private/Assets'
 
-import assetPathUtils from "./assetPathUtils";
-import fs from "node:fs";
-import path from "node:path";
+import assetPathUtils from './assetPathUtils'
+import fs from 'node:fs'
+import path from 'node:path'
 
 export function cleanAssetCatalog(catalogDir: string): void {
-  const files = fs.readdirSync(catalogDir).filter((file) => file.endsWith(".imageset"));
+  const files = fs.readdirSync(catalogDir).filter((file) => file.endsWith('.imageset'))
   for (const file of files) {
-    fs.rmSync(path.join(catalogDir, file), { recursive: true, force: true });
+    fs.rmSync(path.join(catalogDir, file), { recursive: true, force: true })
   }
 }
 
 type ImageSet = {
-  basePath: string;
-  files: { name: string; src: string; scale: number }[];
-};
+  basePath: string
+  files: { name: string; src: string; scale: number }[]
+}
 
 export function getImageSet(
   catalogDir: string,
   asset: AssetData,
-  scales: ReadonlyArray<number>,
+  scales: ReadonlyArray<number>
 ): ImageSet {
-  const fileName = assetPathUtils.getResourceIdentifier(asset);
+  const fileName = assetPathUtils.getResourceIdentifier(asset)
   return {
     basePath: path.join(catalogDir, `${fileName}.imageset`),
     files: scales.map((scale, idx) => {
-      const suffix = scale === 1 ? "" : `@${scale}x`;
+      const suffix = scale === 1 ? '' : `@${scale}x`
       return {
         name: `${fileName + suffix}.${asset.type}`,
         scale,
         src: asset.files[idx],
-      };
+      }
     }),
-  };
+  }
 }
 
 export function isCatalogAsset(asset: AssetData): boolean {
-  return asset.type === "png" || asset.type === "jpg" || asset.type === "jpeg";
+  return asset.type === 'png' || asset.type === 'jpg' || asset.type === 'jpeg'
 }
 
 export function writeImageSet(imageSet: ImageSet): void {
-  fs.mkdirSync(imageSet.basePath, { recursive: true });
+  fs.mkdirSync(imageSet.basePath, { recursive: true })
 
   for (const file of imageSet.files) {
-    const dest = path.join(imageSet.basePath, file.name);
-    fs.copyFileSync(file.src, dest);
+    const dest = path.join(imageSet.basePath, file.name)
+    fs.copyFileSync(file.src, dest)
   }
 
   fs.writeFileSync(
-    path.join(imageSet.basePath, "Contents.json"),
+    path.join(imageSet.basePath, 'Contents.json'),
     JSON.stringify({
       images: imageSet.files.map((file) => ({
         filename: file.name,
-        idiom: "universal",
+        idiom: 'universal',
         scale: `${file.scale}x`,
       })),
       info: {
-        author: "xcode",
+        author: 'xcode',
         version: 1,
       },
-    }),
-  );
+    })
+  )
 }

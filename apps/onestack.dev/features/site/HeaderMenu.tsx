@@ -1,23 +1,32 @@
-import { Menu } from "@tamagui/lucide-icons";
-import * as React from "react";
-import { Adapt, Button, Circle, Popover, Sheet, XStack, YStack, isTouchable } from "tamagui";
-import { useDocsMenu } from "~/features/docs/useDocsMenu";
-import { OneBall } from "../brand/Logo";
-import { DocsMenuContents } from "../docs/DocsMenuContents";
-import { ScrollView } from "./ScrollView";
-import { useIsScrolled } from "./useIsScrolled";
-import { SocialLinksRow } from "./SocialLinksRow";
-import { View } from "tamagui";
-import { Link } from "one";
+import { Menu } from '@tamagui/lucide-icons'
+import * as React from 'react'
+import {
+  Adapt,
+  Button,
+  Circle,
+  Popover,
+  Sheet,
+  XStack,
+  YStack,
+  isTouchable,
+} from 'tamagui'
+import { useDocsMenu } from '~/features/docs/useDocsMenu'
+import { OneBall } from '../brand/Logo'
+import { DocsMenuContents } from '../docs/DocsMenuContents'
+import { ScrollView } from './ScrollView'
+import { useIsScrolled } from './useIsScrolled'
+import { SocialLinksRow } from './SocialLinksRow'
+import { View } from 'tamagui'
+import { Link } from 'one'
 
 export const HeaderMenu = React.memo(function HeaderMenu() {
-  const { open, setOpen } = useDocsMenu();
+  const { open, setOpen } = useDocsMenu()
   const [state, setState] = React.useState({
-    via: undefined as "hover" | "press" | undefined,
+    via: undefined as 'hover' | 'press' | undefined,
     viaAt: Date.now(),
-  });
-  const isPressOpened = state.via === "press" && open;
-  const isScrolled = useIsScrolled();
+  })
+  const isPressOpened = state.via === 'press' && open
+  const isScrolled = useIsScrolled()
 
   return (
     <>
@@ -32,11 +41,11 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
         }}
         open={open}
         onOpenChange={(next, via) => {
-          if (open && state.via === "press" && via === "hover") {
-            return;
+          if (open && state.via === 'press' && via === 'hover') {
+            return
           }
-          setState({ ...state, via, viaAt: Date.now() });
-          setOpen(next);
+          setState({ ...state, via, viaAt: Date.now() })
+          setOpen(next)
         }}
         size="$5"
         stayInFrame={{ padding: 20 }}
@@ -45,39 +54,45 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
           <YStack
             zi={120_000}
             pe="auto"
-            pos={"fixed" as any}
+            pos={'fixed' as any}
             t={42}
             r={20}
-            $gtMd={{ dsp: !isScrolled ? "none" : "flex" }}
+            $gtMd={{ dsp: !isScrolled ? 'none' : 'flex' }}
           >
             <Button
               size="$3"
-              bg={isPressOpened ? "$color5" : "transparent"}
+              bg={isPressOpened ? '$color5' : 'transparent'}
               noTextWrap
               br="$10"
               bw={2}
               px="$2"
               onPress={() => {
                 if (isTouchable) {
-                  setOpen(!open);
-                  return;
+                  setOpen(!open)
+                  return
                 }
-                if (open && state.via === "hover") {
-                  setState({ ...state, via: "press", viaAt: Date.now() });
-                  return;
+                if (open && state.via === 'hover') {
+                  setState({ ...state, via: 'press', viaAt: Date.now() })
+                  return
                 }
                 if (open) {
-                  setOpen(false);
-                  return;
+                  setOpen(false)
+                  return
                 }
                 // hover handles this
               }}
               aria-label="Open the main menu"
               hoverStyle={{
-                bg: isPressOpened ? "$color5" : "transparent",
+                bg: isPressOpened ? '$color5' : 'transparent',
               }}
             >
-              <Circle animation="medium" o={isScrolled ? 0 : 1} size={34} ai="center" jc="center">
+              <Circle
+                animation="medium"
+                o={isScrolled ? 0 : 1}
+                size={34}
+                ai="center"
+                jc="center"
+              >
                 <Menu color="$color11" size={20} />
               </Circle>
 
@@ -102,7 +117,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             dismissOnSnapToBottom
             animation="bouncy"
             animationConfig={{
-              type: "spring",
+              type: 'spring',
               damping: 25,
               mass: 1.2,
               stiffness: 200,
@@ -111,7 +126,10 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             <Sheet.Frame bg="$color5">
               <Sheet.ScrollView showsVerticalScrollIndicator={false} zi={1000}>
                 <XStack group="card" containerType="normal" mt="$3" mb="$-2" px="$2">
-                  <Link style={{ marginBottom: -6, marginTop: 12, marginLeft: 26 }} href="/">
+                  <Link
+                    style={{ marginBottom: -6, marginTop: 12, marginLeft: 26 }}
+                    href="/"
+                  >
                     <OneBall />
                   </Link>
                   <View flex={1} />
@@ -121,17 +139,21 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 <Adapt.Contents />
               </Sheet.ScrollView>
             </Sheet.Frame>
-            <Sheet.Overlay zIndex={100} bg={"$background075"} />
+            <Sheet.Overlay zIndex={100} bg={'$background075'} />
           </Sheet>
         </Adapt>
 
         <HeaderMenuContent open={open} />
       </Popover>
     </>
-  );
-});
+  )
+})
 
-const HeaderMenuContent = React.memo(function HeaderMenuContent({ open }: { open: boolean }) {
+const HeaderMenuContent = React.memo(function HeaderMenuContent({
+  open,
+}: {
+  open: boolean
+}) {
   return (
     <Popover.Content
       mt={-5}
@@ -143,14 +165,14 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({ open }: { open
       y={4}
       o={1}
       animation={[
-        "quicker",
+        'quicker',
         {
           opacity: {
             overshootClamping: true,
           },
         },
       ]}
-      animateOnly={["transform", "opacity"]}
+      animateOnly={['transform', 'opacity']}
       p={0}
       maxHeight="80vh"
       maxWidth={360}
@@ -163,18 +185,18 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({ open }: { open
       br="$6"
       {...{
         style: {
-          WebkitBackdropFilter: "blur(20px)",
-          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: 'blur(20px)',
+          backdropFilter: 'blur(20px)',
         },
       }}
     >
       <Popover.Arrow bg="$color5" size="$4" borderWidth={0} o={0.84} />
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: "100%" }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
         <YStack aria-label="Home menu contents" w="100%" p="$4" ai="flex-end">
           <DocsMenuContents inMenu />
         </YStack>
       </ScrollView>
     </Popover.Content>
-  );
-});
+  )
+})

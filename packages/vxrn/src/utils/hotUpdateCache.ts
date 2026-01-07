@@ -1,1 +1,1 @@
-export const hotUpdateCache = new Map<string, string>();
+export const hotUpdateCache = new Map<string, string>()

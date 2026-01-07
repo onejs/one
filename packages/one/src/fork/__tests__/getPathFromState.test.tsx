@@ -7,33 +7,33 @@
 
 // @modified - start: use vitest instead of jest
 // import { expect, test } from '@jest/globals';
-import { expect, test } from "vitest";
+import { expect, test } from 'vitest'
 // @modified - end: use vitest instead of jest
 
-import type { NavigationState, PartialState } from "@react-navigation/routers";
+import type { NavigationState, PartialState } from '@react-navigation/routers'
 
-import { getPathFromState } from "../getPathFromState";
-import { getStateFromPath } from "../getStateFromPath";
+import { getPathFromState } from '../getPathFromState'
+import { getStateFromPath } from '../getStateFromPath'
 
-type State = PartialState<NavigationState>;
+type State = PartialState<NavigationState>
 
-test("converts state to path string", () => {
+test('converts state to path string', () => {
   const state = {
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
           index: 1,
           routes: [
-            { name: "boo" },
+            { name: 'boo' },
             {
-              name: "bar",
-              params: { fruit: "apple" },
+              name: 'bar',
+              params: { fruit: 'apple' },
               state: {
                 routes: [
                   {
-                    name: "baz qux",
-                    params: { author: "jane", valid: true },
+                    name: 'baz qux',
+                    params: { author: 'jane', valid: true },
                   },
                 ],
               },
@@ -42,29 +42,30 @@ test("converts state to path string", () => {
         },
       },
     ],
-  };
+  }
 
-  const path = "/foo/bar/baz%20qux?author=jane&valid=true";
+  const path = '/foo/bar/baz%20qux?author=jane&valid=true'
 
-  expect(getPathFromState<object>(state)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path);
-});
+  expect(getPathFromState<object>(state)).toBe(path)
+  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path)
+})
 
-test("converts state to path string with config", () => {
-  const path = "/few/bar/sweet/apple/baz/jane?id=x10&valid=true";
+test('converts state to path string with config', () => {
+  const path = '/few/bar/sweet/apple/baz/jane?id=x10&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "few",
+        path: 'few',
         screens: {
           Bar: {
-            path: "bar/:type/:fruit",
+            path: 'bar/:type/:fruit',
             screens: {
               Baz: {
-                path: "baz/:author",
+                path: 'baz/:author',
                 parse: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
-                  id: (id: string) => Number(id.replace(/^x/, "")),
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toUpperCase()),
+                  id: (id: string) => Number(id.replace(/^x/, '')),
                   valid: Boolean,
                 },
                 stringify: {
@@ -77,25 +78,25 @@ test("converts state to path string with config", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           index: 1,
           routes: [
-            { name: "boo" },
+            { name: 'boo' },
             {
-              name: "Bar",
-              params: { fruit: "apple", type: "sweet", avaliable: false },
+              name: 'Bar',
+              params: { fruit: 'apple', type: 'sweet', avaliable: false },
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     params: {
-                      author: "Jane",
+                      author: 'Jane',
                       id: 10,
                       valid: true,
                     },
@@ -107,98 +108,99 @@ test("converts state to path string with config", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("prepends trailing slash to path", () => {
+test('prepends trailing slash to path', () => {
   expect(
     getPathFromState<object>({
       routes: [
         {
-          name: "foo",
+          name: 'foo',
           state: {
-            routes: [{ name: "bar" }],
+            routes: [{ name: 'bar' }],
           },
         },
       ],
-    }),
-  ).toBe("/foo/bar");
+    })
+  ).toBe('/foo/bar')
 
   expect(
     getPathFromState<object>({
       routes: [
         {
-          name: "foo",
+          name: 'foo',
           state: {
-            routes: [{ name: "bar", path: "foo/bar" }],
+            routes: [{ name: 'bar', path: 'foo/bar' }],
           },
         },
       ],
-    }),
-  ).toBe("/foo/bar");
-});
+    })
+  ).toBe('/foo/bar')
+})
 
-test("handles route without param", () => {
-  const path = "/foo/bar";
+test('handles route without param', () => {
+  const path = '/foo/bar'
   const state = {
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         state: {
-          routes: [{ name: "bar" }],
+          routes: [{ name: 'bar' }],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path);
-});
+  expect(getPathFromState<object>(state)).toBe(path)
+  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path)
+})
 
 test("doesn't add query param for empty params", () => {
-  const path = "/foo";
+  const path = '/foo'
   const state = {
     routes: [
       {
-        name: "foo",
+        name: 'foo',
         params: {},
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path);
-});
+  expect(getPathFromState<object>(state)).toBe(path)
+  expect(getPathFromState<object>(getStateFromPath<object>(path) as State)).toBe(path)
+})
 
-test("handles state with config with nested screens", () => {
-  const path = "/foo/foe/bar/sweet/apple/baz/jane?answer=42&count=10&valid=true";
+test('handles state with config with nested screens', () => {
+  const path = '/foo/foe/bar/sweet/apple/baz/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             screens: {
               Bar: {
-                path: "bar/:type/:fruit",
+                path: 'bar/:type/:fruit',
                 screens: {
                   Baz: {
-                    path: "baz/:author",
+                    path: 'baz/:author',
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
                     stringify: {
                       author: (author: string) => author.toLowerCase(),
                       id: (id: number) => `x${id}`,
-                      unknown: (_: unknown) => "x",
+                      unknown: (_: unknown) => 'x',
                     },
                   },
                 },
@@ -208,29 +210,29 @@ test("handles state with config with nested screens", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Bar",
-                    params: { fruit: "apple", type: "sweet" },
+                    name: 'Bar',
+                    params: { fruit: 'apple', type: 'sweet' },
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           params: {
-                            answer: "42",
-                            author: "Jane",
-                            count: "10",
+                            answer: '42',
+                            author: 'Jane',
+                            count: '10',
                             valid: true,
                           },
                         },
@@ -244,39 +246,40 @@ test("handles state with config with nested screens", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles state with config with nested screens and exact", () => {
-  const path = "/foe/bar/sweet/apple/baz/jane?answer=42&count=10&valid=true";
+test('handles state with config with nested screens and exact', () => {
+  const path = '/foe/bar/sweet/apple/baz/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             exact: true,
             screens: {
               Bar: {
-                path: "bar/:type/:fruit",
+                path: 'bar/:type/:fruit',
                 screens: {
                   Baz: {
-                    path: "baz/:author",
+                    path: 'baz/:author',
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
                     stringify: {
                       author: (author: string) => author.toLowerCase(),
                       id: (id: number) => `x${id}`,
-                      unknown: (_: unknown) => "x",
+                      unknown: (_: unknown) => 'x',
                     },
                   },
                 },
@@ -286,29 +289,29 @@ test("handles state with config with nested screens and exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Bar",
-                    params: { fruit: "apple", type: "sweet" },
+                    name: 'Bar',
+                    params: { fruit: 'apple', type: 'sweet' },
                     state: {
                       routes: [
                         {
-                          name: "Baz",
+                          name: 'Baz',
                           params: {
-                            answer: "42",
-                            author: "Jane",
-                            count: "10",
+                            answer: '42',
+                            author: 'Jane',
+                            count: '10',
                             valid: true,
                           },
                         },
@@ -322,34 +325,36 @@ test("handles state with config with nested screens and exact", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles state with config with nested screens and unused configs", () => {
-  const path = "/foo/foe/baz/jane?answer=42&count=10&valid=true";
+test('handles state with config with nested screens and unused configs', () => {
+  const path = '/foo/foe/baz/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             screens: {
               Baz: {
-                path: "baz/:author",
+                path: 'baz/:author',
                 parse: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toUpperCase()),
                   count: Number,
                   valid: Boolean,
                 },
                 stringify: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
-                  unknown: (_: unknown) => "x",
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toLowerCase()),
+                  unknown: (_: unknown) => 'x',
                 },
               },
             },
@@ -357,23 +362,23 @@ test("handles state with config with nested screens and unused configs", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     params: {
-                      answer: "42",
-                      author: "Jane",
+                      answer: '42',
+                      author: 'Jane',
                       count: 10,
                       valid: true,
                     },
@@ -385,35 +390,37 @@ test("handles state with config with nested screens and unused configs", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles state with config with nested screens and unused configs with exact", () => {
-  const path = "/foe/baz/jane?answer=42&count=10&valid=true";
+test('handles state with config with nested screens and unused configs with exact', () => {
+  const path = '/foe/baz/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Foe: {
-            path: "foe",
+            path: 'foe',
             exact: true,
             screens: {
               Baz: {
-                path: "baz/:author",
+                path: 'baz/:author',
                 parse: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toUpperCase()),
                   count: Number,
                   valid: Boolean,
                 },
                 stringify: {
-                  author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
-                  unknown: (_: unknown) => "x",
+                  author: (author: string) =>
+                    author.replace(/^\w/, (c) => c.toLowerCase()),
+                  unknown: (_: unknown) => 'x',
                 },
               },
             },
@@ -421,23 +428,23 @@ test("handles state with config with nested screens and unused configs with exac
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Foe",
+              name: 'Foe',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     params: {
-                      answer: "42",
-                      author: "Jane",
+                      answer: '42',
+                      author: 'Jane',
                       count: 10,
                       valid: true,
                     },
@@ -449,37 +456,39 @@ test("handles state with config with nested screens and unused configs with exac
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object with stringify in it", () => {
-  const path = "/bar/sweet/apple/foo/bis/jane?answer=42&count=10&valid=true";
+test('handles nested object with stringify in it', () => {
+  const path = '/bar/sweet/apple/foo/bis/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -491,28 +500,28 @@ test("handles nested object with stringify in it", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            answer: "42",
-                            author: "Jane",
+                            answer: '42',
+                            author: 'Jane',
                             count: 10,
                             valid: true,
                           },
@@ -527,39 +536,41 @@ test("handles nested object with stringify in it", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object with stringify in it with exact", () => {
-  const path = "/bis/jane?answer=42&count=10&valid=true";
+test('handles nested object with stringify in it with exact', () => {
+  const path = '/bis/jane?answer=42&count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
-                path: "baz",
+                path: 'baz',
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     exact: true,
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -571,28 +582,28 @@ test("handles nested object with stringify in it with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            answer: "42",
-                            author: "Jane",
+                            answer: '42',
+                            author: 'Jane',
                             count: 10,
                             valid: true,
                           },
@@ -607,70 +618,70 @@ test("handles nested object with stringify in it with exact", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object for second route depth", () => {
-  const path = "/foo/bar/baz";
+test('handles nested object for second route depth', () => {
+  const path = '/foo/bar/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
-            path: "bar",
+            path: 'bar',
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object for second route depth with exact", () => {
-  const path = "/baz";
+test('handles nested object for second route depth with exact', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
-            path: "bar",
+            path: 'bar',
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
                 exact: true,
               },
             },
@@ -678,95 +689,95 @@ test("handles nested object for second route depth with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object for second route depth and path and stringify in roots", () => {
-  const path = "/foo/dathomir/bar/42/baz";
+test('handles nested object for second route depth and path and stringify in roots', () => {
+  const path = '/foo/dathomir/bar/42/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo/:planet",
+        path: 'foo/:planet',
         stringify: {
           id: (id: number) => `planet=${id}`,
         },
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
-            path: "bar/:id",
+            path: 'bar/:id',
             parse: {
               id: Number,
             },
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
-        params: { planet: "dathomir" },
+        name: 'Foo',
+        params: { planet: 'dathomir' },
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz", params: { id: 42 } }],
+                routes: [{ name: 'Baz', params: { id: 42 } }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles nested object for second route depth and path and stringify in roots with exact", () => {
-  const path = "/baz";
+test('handles nested object for second route depth and path and stringify in roots with exact', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id",
+        path: 'foo/:id',
         stringify: {
           id: (id: number) => `id=${id}`,
         },
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
-            path: "bar/:id",
+            path: 'bar/:id',
             stringify: {
               id: (id: number) => `id=${id}`,
             },
@@ -775,7 +786,7 @@ test("handles nested object for second route depth and path and stringify in roo
             },
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
                 exact: true,
               },
             },
@@ -783,368 +794,370 @@ test("handles nested object for second route depth and path and stringify in roo
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("ignores empty string paths", () => {
-  const path = "/bar";
+test('ignores empty string paths', () => {
+  const path = '/bar'
   const config = {
     screens: {
       Foo: {
-        path: "",
+        path: '',
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
         },
       },
-      Bar: "bar",
+      Bar: 'bar',
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
-          routes: [{ name: "Bar" }],
+          routes: [{ name: 'Bar' }],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("keeps query params if path is empty", () => {
-  const path = "/?foo=42";
+test('keeps query params if path is empty', () => {
+  const path = '/?foo=42'
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
               Qux: {
-                path: "",
+                path: '',
                 parse: { foo: Number },
               },
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Qux", params: { foo: 42 } }],
+                routes: [{ name: 'Qux', params: { foo: 42 } }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toEqual(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toEqual(path)
+})
 
-test("does not use Object.prototype properties as parsing functions", () => {
-  const path = "/?toString=42";
+test('does not use Object.prototype properties as parsing functions', () => {
+  const path = '/?toString=42'
   const config = {
     screens: {
       Foo: {
         screens: {
-          Foe: "foe",
+          Foe: 'foe',
           Bar: {
             screens: {
               Qux: {
-                path: "",
+                path: '',
                 parse: {},
               },
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Qux", params: { toString: 42 } }],
+                routes: [{ name: 'Qux', params: { toString: 42 } }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toEqual(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toEqual(path)
+})
 
-test("cuts nested configs too", () => {
-  const path = "/foo/baz";
+test('cuts nested configs too', () => {
+  const path = '/foo/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Bar: {
-            path: "",
+            path: '',
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
               },
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("cuts nested configs too with exact", () => {
-  const path = "/baz";
+test('cuts nested configs too with exact', () => {
+  const path = '/baz'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
           Bar: {
-            path: "",
+            path: '',
             exact: true,
             screens: {
               Baz: {
-                path: "baz",
+                path: 'baz',
               },
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles empty path at the end", () => {
-  const path = "/foo/bar";
+test('handles empty path at the end', () => {
+  const path = '/foo/bar'
   const config = {
     screens: {
       Foo: {
-        path: "foo",
+        path: 'foo',
         screens: {
-          Bar: "bar",
+          Bar: 'bar',
         },
       },
-      Baz: { path: "" },
+      Baz: { path: '' },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "Baz" }],
+                routes: [{ name: 'Baz' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
 test('returns "/" for empty path', () => {
-  const path = "/";
+  const path = '/'
 
   const config = {
     screens: {
       Foo: {
-        path: "",
+        path: '',
         screens: {
-          Bar: "",
+          Bar: '',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("parses no path specified", () => {
-  const path = "/bar";
+test('parses no path specified', () => {
+  const path = '/bar'
   const config = {
     screens: {
       Foo: {
         screens: {
           Foe: {},
-          Bar: "bar",
+          Bar: 'bar',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
-          routes: [{ name: "Bar" }],
+          routes: [{ name: 'Bar' }],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("strips undefined query params", () => {
-  const path = "/bar/sweet/apple/foo/bis/jane?count=10&valid=true";
+test('strips undefined query params', () => {
+  const path = '/bar/sweet/apple/foo/bis/jane?count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -1156,27 +1169,27 @@ test("strips undefined query params", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            author: "Jane",
+                            author: 'Jane',
                             count: 10,
                             valid: true,
                           },
@@ -1191,38 +1204,40 @@ test("strips undefined query params", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("strips undefined query params with exact", () => {
-  const path = "/bis/jane?count=10&valid=true";
+test('strips undefined query params with exact', () => {
+  const path = '/bis/jane?count=10&valid=true'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     exact: true,
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -1234,27 +1249,27 @@ test("strips undefined query params with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            author: "Jane",
+                            author: 'Jane',
                             count: 10,
                             valid: true,
                           },
@@ -1269,37 +1284,39 @@ test("strips undefined query params with exact", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles stripping all query params", () => {
-  const path = "/bar/sweet/apple/foo/bis/jane";
+test('handles stripping all query params', () => {
+  const path = '/bar/sweet/apple/foo/bis/jane'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -1311,27 +1328,27 @@ test("handles stripping all query params", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            author: "Jane",
+                            author: 'Jane',
                           },
                         },
                       ],
@@ -1344,39 +1361,41 @@ test("handles stripping all query params", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("handles stripping all query params with exact", () => {
-  const path = "/bis/jane";
+test('handles stripping all query params with exact', () => {
+  const path = '/bis/jane'
   const config = {
     screens: {
       Bar: {
-        path: "bar/:type/:fruit",
+        path: 'bar/:type/:fruit',
         screens: {
           Foo: {
-            path: "foo",
+            path: 'foo',
             screens: {
               Foe: {
-                path: "foe",
+                path: 'foe',
               },
               Baz: {
-                path: "baz",
+                path: 'baz',
                 screens: {
-                  Bos: "bos",
+                  Bos: 'bos',
                   Bis: {
-                    path: "bis/:author",
+                    path: 'bis/:author',
                     exact: true,
                     stringify: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toLowerCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toLowerCase()),
                     },
                     parse: {
-                      author: (author: string) => author.replace(/^\w/, (c) => c.toUpperCase()),
+                      author: (author: string) =>
+                        author.replace(/^\w/, (c) => c.toUpperCase()),
                       count: Number,
                       valid: Boolean,
                     },
@@ -1388,27 +1407,27 @@ test("handles stripping all query params with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple", type: "sweet" },
+        name: 'Bar',
+        params: { fruit: 'apple', type: 'sweet' },
         state: {
           routes: [
             {
-              name: "Foo",
+              name: 'Foo',
               state: {
                 routes: [
                   {
-                    name: "Baz",
+                    name: 'Baz',
                     state: {
                       routes: [
                         {
-                          name: "Bis",
+                          name: 'Bis',
                           params: {
-                            author: "Jane",
+                            author: 'Jane',
                           },
                         },
                       ],
@@ -1421,118 +1440,118 @@ test("handles stripping all query params with exact", () => {
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
-test("replaces undefined query params", () => {
-  const path = "/bar/undefined/apple";
+test('replaces undefined query params', () => {
+  const path = '/bar/undefined/apple'
   const config = {
     screens: {
-      Bar: "bar/:type/:fruit",
+      Bar: 'bar/:type/:fruit',
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Bar",
-        params: { fruit: "apple" },
+        name: 'Bar',
+        params: { fruit: 'apple' },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at root", () => {
-  const path = "/test/bar/42/whatever";
+test.skip('matches wildcard patterns at root', () => {
+  const path = '/test/bar/42/whatever'
   const config = {
     screens: {
-      404: "*",
+      404: '*',
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
           },
         },
       },
     },
-  };
+  }
 
   const state = {
-    routes: [{ name: "404" }],
-  };
+    routes: [{ name: '404' }],
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe("/404");
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    "/404",
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe('/404')
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe('/404')
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at nested level", () => {
-  const path = "/bar/42/whatever/baz/initt";
+test.skip('matches wildcard patterns at nested level', () => {
+  const path = '/bar/42/whatever/baz/initt'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              404: "*",
+              404: '*',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "42" },
+              name: 'Bar',
+              params: { id: '42' },
               state: {
-                routes: [{ name: "404" }],
+                routes: [{ name: '404' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe("/bar/42/404");
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    "/bar/42/404",
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe('/bar/42/404')
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe('/bar/42/404')
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("matches wildcard patterns at nested level with exact", () => {
-  const path = "/whatever";
+test.skip('matches wildcard patterns at nested level with exact', () => {
+  const path = '/whatever'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
               404: {
-                path: "*",
+                path: '*',
                 exact: true,
               },
             },
@@ -1541,250 +1560,250 @@ test.skip("matches wildcard patterns at nested level with exact", () => {
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
+              name: 'Bar',
               state: {
-                routes: [{ name: "404" }],
+                routes: [{ name: '404' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe("/404");
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    "/404",
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe('/404')
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe('/404')
+})
 
-test("tries to match wildcard patterns at the end", () => {
-  const path = "/bar/42/test";
+test('tries to match wildcard patterns at the end', () => {
+  const path = '/bar/42/test'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              404: "*",
-              Test: "test",
+              404: '*',
+              Test: 'test',
             },
           },
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Bar",
-              params: { id: "42" },
+              name: 'Bar',
+              params: { id: '42' },
               state: {
-                routes: [{ name: "Test" }],
+                routes: [{ name: 'Test' }],
               },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(path);
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    path,
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe(path)
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe(path)
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("uses nearest parent wildcard match for unmatched paths", () => {
-  const path = "/bar/42/baz/test";
+test.skip('uses nearest parent wildcard match for unmatched paths', () => {
+  const path = '/bar/42/baz/test'
   const config = {
     screens: {
       Foo: {
         screens: {
           Bar: {
-            path: "/bar/:id/",
+            path: '/bar/:id/',
             screens: {
-              Baz: "baz",
+              Baz: 'baz',
             },
           },
-          404: "*",
+          404: '*',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
-          routes: [{ name: "404" }],
+          routes: [{ name: '404' }],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe("/404");
-  expect(getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)).toBe(
-    "/404",
-  );
-});
+  expect(getPathFromState<object>(state, config)).toBe('/404')
+  expect(
+    getPathFromState<object>(getStateFromPath<object>(path, config) as State, config)
+  ).toBe('/404')
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("handles path at top level", () => {
-  const path = "foo/fruits/apple";
+test.skip('handles path at top level', () => {
+  const path = 'foo/fruits/apple'
   const config = {
-    path: "foo",
+    path: 'foo',
     screens: {
       Foo: {
         screens: {
-          Fruits: "fruits/:fruit",
+          Fruits: 'fruits/:fruit',
         },
       },
     },
-  };
+  }
 
   const state = {
     routes: [
       {
-        name: "Foo",
+        name: 'Foo',
         state: {
           routes: [
             {
-              name: "Fruits",
-              params: { fruit: "apple" },
+              name: 'Fruits',
+              params: { fruit: 'apple' },
             },
           ],
         },
       },
     ],
-  };
+  }
 
-  expect(getPathFromState<object>(state, config)).toBe(`/${path}`);
+  expect(getPathFromState<object>(state, config)).toBe(`/${path}`)
   expect(getPathFromState<object>(getStateFromPath<object>(path, config)!, config)).toBe(
-    `/${path}`,
-  );
-});
+    `/${path}`
+  )
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("ignores regexp patterns when provided", () => {
+test.skip('ignores regexp patterns when provided', () => {
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id(\\d+)",
+        path: 'foo/:id(\\d+)',
         parse: {
           id: Number,
         },
       },
       Bar: {
-        path: "foo/:id([a-z]+)",
+        path: 'foo/:id([a-z]+)',
       },
       Baz: {
-        path: "foo/:id(\\d+)/:name([a-z]+)",
+        path: 'foo/:id(\\d+)/:name([a-z]+)',
       },
       Qux: {
-        path: "foo/:id(@[a-z]+)",
+        path: 'foo/:id(@[a-z]+)',
         stringify: {
           id: (id: string) => `@${id}`,
         },
       },
     },
-  };
+  }
 
   expect(
     getPathFromState<object>(
       {
         routes: [
           {
-            name: "Foo",
+            name: 'Foo',
             params: { id: 42 },
           },
         ],
       },
-      config,
-    ),
-  ).toBe("/foo/42");
+      config
+    )
+  ).toBe('/foo/42')
 
   expect(
     getPathFromState<object>(
       {
         routes: [
           {
-            name: "Bar",
-            params: { id: "bar" },
+            name: 'Bar',
+            params: { id: 'bar' },
           },
         ],
       },
-      config,
-    ),
-  ).toBe("/foo/bar");
+      config
+    )
+  ).toBe('/foo/bar')
 
   expect(
     getPathFromState<object>(
       {
         routes: [
           {
-            name: "Baz",
-            params: { id: 42, name: "bar" },
+            name: 'Baz',
+            params: { id: 42, name: 'bar' },
           },
         ],
       },
-      config,
-    ),
-  ).toBe("/foo/42/bar");
+      config
+    )
+  ).toBe('/foo/42/bar')
 
   expect(
     getPathFromState<object>(
       {
         routes: [
           {
-            name: "Qux",
-            params: { id: "bar" },
+            name: 'Qux',
+            params: { id: 'bar' },
           },
         ],
       },
-      config,
-    ),
-  ).toBe("/foo/@bar");
-});
+      config
+    )
+  ).toBe('/foo/@bar')
+})
 
 // @modify: TODO: temporally disable failing test
-test.skip("correctly handles regex pattern with slash", () => {
+test.skip('correctly handles regex pattern with slash', () => {
   const config = {
     screens: {
       Foo: {
-        path: "foo/:id([a-z]+\\/)",
+        path: 'foo/:id([a-z]+\\/)',
       },
     },
-  };
+  }
 
   expect(
     getPathFromState<object>(
       {
         routes: [
           {
-            name: "Foo",
-            params: { id: "bar" },
+            name: 'Foo',
+            params: { id: 'bar' },
           },
         ],
       },
-      config,
-    ),
-  ).toBe("/foo/bar");
-});
+      config
+    )
+  ).toBe('/foo/bar')
+})

@@ -1,2 +1,2 @@
-export declare function isWithin(outer: string, inner: string): boolean;
+export declare function isWithin(outer: string, inner: string): boolean
 //# sourceMappingURL=isWithin.d.ts.map
