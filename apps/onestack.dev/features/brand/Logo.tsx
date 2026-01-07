@@ -1,7 +1,7 @@
 import { View } from "@tamagui/core";
 import React, { useState } from "react";
 import type { ViewProps } from "tamagui";
-import { StatusBadgePopover } from "../../components/StatusBadgePopover";
+import { ReleaseStatus } from "../../components/ReleaseStatus";
 
 export const OneBall = (props) => {
   const scaleDownBy = (1 / 20) * (props.size ?? 1);
@@ -99,8 +99,9 @@ export const OneBall = (props) => {
 export function OneLogo({
   size = 1,
   animate,
+  minimal,
   ...props
-}: ViewProps & { size?: number; animate?: boolean }) {
+}: ViewProps & { size?: number; animate?: boolean; minimal?: boolean }) {
   const [start, setStart] = React.useState(false);
   const scaleDownBy = 0.12 * size;
 
@@ -149,19 +150,21 @@ export function OneLogo({
         }}
       />
 
-      <View
-        pos="absolute"
-        t={20}
-        r={-60}
-        animation="quickest"
-        y={0}
-        mr={5}
-        pe="auto"
-        scale={10 * scaleDownBy}
-        transformOrigin="center top"
-      >
-        <StatusBadgePopover is="beta" />
-      </View>
+      {!minimal && (
+        <View
+          pos="absolute"
+          t={20}
+          r={-60}
+          animation="quickest"
+          y={0}
+          mr={5}
+          pe="auto"
+          scale={10 * scaleDownBy}
+          transformOrigin="center top"
+        >
+          <ReleaseStatus />
+        </View>
+      )}
     </View>
   );
 }

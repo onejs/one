@@ -2,7 +2,7 @@ import { ChevronLeft } from "@tamagui/lucide-icons";
 import { getMDXComponent } from "mdx-bundler/client";
 import { createRoute, Link, useLoader } from "one";
 import { useMemo } from "react";
-import { H1, Paragraph, Separator, SizableText, Text, XStack } from "tamagui";
+import { H1, Paragraph, Separator, SizableText, XStack, YStack } from "tamagui";
 import { TopNav } from "~/components/TopNav";
 import { authors } from "~/data/authors";
 import { components } from "~/features/docs/MDXComponents";
@@ -47,55 +47,50 @@ export default function BlogPost() {
       <TopNav />
 
       <Container>
-        <Link href="/blog">
-          <XStack gap="$2" ai="center" mb="$4">
-            <ChevronLeft size={16} />
-            <SizableText size="$3">Back to Blog</SizableText>
-          </XStack>
-        </Link>
+        <YStack py="$8" gap="$6" maw={720} mx="auto">
+          <Link href="/blog">
+            <XStack gap="$2" ai="center" opacity={0.5} hoverStyle={{ opacity: 1 }}>
+              <ChevronLeft size={16} />
+              <SizableText size="$3">Back to Blog</SizableText>
+            </XStack>
+          </Link>
 
-        <H1
-          size="$10"
-          mt="$4"
-          mb="$3"
-          $platform-web={{
-            textWrap: "balance",
-          }}
-        >
-          {frontmatter.title}
-        </H1>
+          <YStack gap="$4">
+            <H1 size="$10">{frontmatter.title}</H1>
+            {frontmatter.description && (
+              <Paragraph size="$6" color="$color11">
+                {frontmatter.description}
+              </Paragraph>
+            )}
+            <XStack gap="$3" ai="center">
+              {author && (
+                <SizableText size="$4" fontWeight="500">
+                  {author.name}
+                </SizableText>
+              )}
+              {author && date && <SizableText color="$color10">·</SizableText>}
+              {date && (
+                <SizableText size="$4" color="$color10">
+                  {date}
+                </SizableText>
+              )}
+              {frontmatter.readingTime && (
+                <>
+                  <SizableText color="$color10">·</SizableText>
+                  <SizableText size="$4" color="$color10">
+                    {frontmatter.readingTime.text}
+                  </SizableText>
+                </>
+              )}
+            </XStack>
+          </YStack>
 
-        {frontmatter.description && (
-          <Paragraph size="$6" color="$color11" mb="$3">
-            {frontmatter.description}
-          </Paragraph>
-        )}
+          <Separator />
 
-        <XStack gap="$3" ai="center" mb="$6">
-          {author && (
-            <SizableText size="$4" fontWeight="500">
-              {author.name}
-            </SizableText>
-          )}
-          {author && date && <Text color="$color10">·</Text>}
-          {date && (
-            <SizableText size="$4" color="$color10">
-              {date}
-            </SizableText>
-          )}
-          {frontmatter.readingTime && (
-            <>
-              <Text color="$color10">·</Text>
-              <SizableText size="$4" color="$color10">
-                {frontmatter.readingTime.text}
-              </SizableText>
-            </>
-          )}
-        </XStack>
-
-        <Separator mb="$6" />
-
-        <Component components={components as any} />
+          <YStack className="blog-content">
+            <Component components={components as any} />
+          </YStack>
+        </YStack>
       </Container>
     </>
   );
