@@ -100,8 +100,8 @@ export function deepMergeOptimizeDeps(
   ]);
 
   a.optimizeDeps.esbuildOptions = {
-    ...(a.optimizeDeps.esbuildOptions || {}),
-    ...(b.optimizeDeps.esbuildOptions || {}),
-    ...(extraDepsOpt?.esbuildOptions || {}),
+    ...a.optimizeDeps.esbuildOptions,
+    ...b.optimizeDeps.esbuildOptions,
+    ...extraDepsOpt?.esbuildOptions,
   };
 }

@@ -28,7 +28,7 @@ export function matchDeepDynamicRouteName(name: string): string | undefined {
 
 /** Test `/` -> `page` */
 export function testNotFound(name: string): boolean {
-  return /\+not-found$/.test(name);
+  return name.endsWith("+not-found");
 }
 
 /** Match `(page)` -> `page` */

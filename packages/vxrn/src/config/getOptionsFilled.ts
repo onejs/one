@@ -61,8 +61,8 @@ export async function fillOptions(options: VXRNOptions, { mode = "dev" }: { mode
   const packageVersions =
     deps.react && deps["react-native"]
       ? {
-          react: deps.react.replace(/[\^\~]/, ""),
-          reactNative: deps["react-native"].replace(/[\^\~]/, ""),
+          react: deps.react.replace(/[\^~]/, ""),
+          reactNative: deps["react-native"].replace(/[\^~]/, ""),
         }
       : undefined;
 

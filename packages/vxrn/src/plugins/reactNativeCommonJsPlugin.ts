@@ -162,7 +162,7 @@ export function reactNativeCommonJsPlugin(options: {
                     for (const line of code.split("\n")) {
                       if (line.startsWith("export * from")) {
                         const [_, exportedName] =
-                          line.match(/export \* from [\'\"]([^\'\"]+)[\'\"]/) || [];
+                          line.match(/export \* from ['"]([^'"]+)['"]/) || [];
                         if (exportedName) {
                           found++;
                           const name = `__vxrnExp${found}`;

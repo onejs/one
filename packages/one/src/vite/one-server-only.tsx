@@ -34,7 +34,7 @@ export const asyncHeadersCache =
 
 globalThis["__vxrnasyncHeadersCache"] ||= asyncHeadersCache;
 
-export async function runWithAsyncLocalContext<A>(cb: (id: Object) => Promise<A>): Promise<A> {
+export async function runWithAsyncLocalContext<A>(cb: (id: object) => Promise<A>): Promise<A> {
   const id = { _id: Math.random() };
   let out: A = null as any;
   await ASYNC_LOCAL_STORE.current!.run(id, async () => {
@@ -80,7 +80,7 @@ export function ensureAsyncLocalID() {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`);
   }
 
-  return id as Object;
+  return id as object;
 }
 
 export type MaybeServerContext = null | One.ServerContext;

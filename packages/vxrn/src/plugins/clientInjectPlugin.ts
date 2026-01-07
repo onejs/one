@@ -6,7 +6,7 @@ import { getResolvedConfig, setResolvedConfig } from "./getResolvedConfigSubset"
 
 let config: ResolvedConfig | null;
 
-const isObject = (x: any): x is Object => x && typeof x === "object";
+const isObject = (x: any): x is object => x && typeof x === "object";
 
 export function getServerConfigPlugin() {
   return {

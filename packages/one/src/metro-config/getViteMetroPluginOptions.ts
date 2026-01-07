@@ -165,30 +165,28 @@ export function getViteMetroPluginOptions({
         [
           "babel-plugin-module-resolver",
           {
-            alias: {
-              // "vite-tsconfig-paths" for Metro
-              ...Object.fromEntries(
-                Object.entries(tsconfigPathsConfigLoadResult.paths).map(([k, v]) => {
-                  const key = (() => {
-                    if (k.endsWith("/*")) {
-                      return k.replace(/\/\*$/, "");
-                    }
-
-                    // If the key does not end with "/*", only alias exact matches.
-                    // Ref: https://www.npmjs.com/package/babel-plugin-module-resolver/v/3.0.0#regular-expression-alias
-                    return `${k}$`;
-                  })();
-
-                  let value = v[0].replace(/\/\*$/, "");
-
-                  if (!value.startsWith("./")) {
-                    value = `./${value}`;
+            // "vite-tsconfig-paths" for Metro
+            alias: Object.fromEntries(
+              Object.entries(tsconfigPathsConfigLoadResult.paths).map(([k, v]) => {
+                const key = (() => {
+                  if (k.endsWith("/*")) {
+                    return k.replace(/\/\*$/, "");
                   }
 
-                  return [key, value];
-                }),
-              ),
-            },
+                  // If the key does not end with "/*", only alias exact matches.
+                  // Ref: https://www.npmjs.com/package/babel-plugin-module-resolver/v/3.0.0#regular-expression-alias
+                  return `${k}$`;
+                })();
+
+                let value = v[0].replace(/\/\*$/, "");
+
+                if (!value.startsWith("./")) {
+                  value = `./${value}`;
+                }
+
+                return [key, value];
+              }),
+            ),
           },
         ],
         [

@@ -5,11 +5,11 @@ export type PickPartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 
 export type GlobbedRouteImports = Record<string, () => Promise<unknown>>;
 
-export type Endpoint = (req: Request) => Response | string | Object | null;
+export type Endpoint = (req: Request) => Response | string | object | null;
 
 export type RenderApp = (props: RenderAppProps) => Promise<string>;
 
-export type LoaderProps<Params extends Object = Record<string, string | string[]>> = {
+export type LoaderProps<Params extends object = Record<string, string | string[]>> = {
   path: string;
   search?: string;
   params: Params;

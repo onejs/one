@@ -38,7 +38,7 @@ export function resolveAPIEndpoint(
   });
 }
 
-async function getResponseWithAddedHeaders(response: any, id: Object) {
+async function getResponseWithAddedHeaders(response: any, id: object) {
   const asyncHeaders = asyncHeadersCache.get(id);
 
   if (asyncHeaders) {

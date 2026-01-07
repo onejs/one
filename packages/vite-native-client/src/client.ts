@@ -29,7 +29,7 @@ const hmrPort = __HMR_PORT__ || 5173;
 let rnDevServerHost: string | undefined;
 try {
   const { url: devServerUrl } = getDevServer() as { url: string };
-  const [, host] = devServerUrl.match(/:\/\/([^\/]+)/) || [];
+  const [, host] = devServerUrl.match(/:\/\/([^/]+)/) || [];
   if (host) rnDevServerHost = host;
 } catch (e) {
   console.warn(`[vite-native-client] failed to get react-native dev server url: ${e}`);

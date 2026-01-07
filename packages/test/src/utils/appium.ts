@@ -168,7 +168,7 @@ async function takeScreenshotForError(driver: Browser, err: unknown) {
 
 function sanitizeFileName(input: string): string {
   return input
-    .replace(/[^a-zA-Z0-9-_\. ]/g, "")
+    .replace(/[^a-zA-Z0-9-_. ]/g, "")
     .replace(/\s+/g, "_")
     .slice(0, 100);
 }

@@ -30,6 +30,6 @@ type EntriesToObject<ARR_T extends EntriesType> = MergeIntersectingObjects<
   UnionToIntersection<UnionObjectFromArrayOfPairs<ARR_T>>
 >;
 
-export function objectKeys<O extends Object>(obj: O) {
+export function objectKeys<O extends object>(obj: O) {
   return Object.keys(obj) as Array<keyof O>;
 }

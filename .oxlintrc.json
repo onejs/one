@@ -9,9 +9,16 @@
     "no-invalid-fetch-options": "off",
     "triple-slash-reference": "off",
     "no-constant-binary-expression": "off",
+    "no-control-regex": "off",
+    "no-eval": "off",
+    "no-cond-assign": "off",
+    "no-unsafe-finally": "off",
     "unicorn/no-single-promise-in-promise-methods": "off",
     "unicorn/no-thenable": "off",
+    "unicorn/no-new-array": "off",
     "oxc/const-comparisons": "off",
+    "oxc/only-used-in-recursion": "off",
+    "oxc/erasing-op": "off",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error"
   },
@@ -26,6 +33,8 @@
     "**/android/**",
     "**/dist/**",
     "**/.dist/**",
-    "**/node_modules/**"
+    "**/node_modules/**",
+    "**/vendor/**",
+    "**/tslib-lite/**"
   ]
 }

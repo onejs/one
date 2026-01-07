@@ -92,9 +92,7 @@ export async function buildBundle(
   const optionsIn = {
     root,
     host: "0.0.0.0", // TODO: Hardcoded for now.
-    entries: {
-      ...(nativeEntry ? { native: nativeEntry } : {}),
-    },
+    entries: nativeEntry ? { native: nativeEntry } : {},
   };
 
   const options = await fillOptions(optionsIn, { mode: dev ? "dev" : "prod" });

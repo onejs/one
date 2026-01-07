@@ -112,7 +112,7 @@ export function usePathname(): string {
  *
  * @see `useParams`
  */
-export function useActiveParams<TParams extends Object = SearchParams>(): Partial<TParams> {
+export function useActiveParams<TParams extends object = SearchParams>(): Partial<TParams> {
   return useRouteInfo().params as Partial<TParams>;
 }
 
@@ -129,7 +129,7 @@ export const useGlobalSearchParams = useActiveParams;
  * To observe updates even when the invoking route is not focused, use `useActiveParams()`.
  */
 
-export function useParams<TParams extends Object = SearchParams>(): Partial<TParams> {
+export function useParams<TParams extends object = SearchParams>(): Partial<TParams> {
   const params = React.useContext(RouteParamsContext) ?? {};
 
   return Object.fromEntries(

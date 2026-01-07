@@ -61,7 +61,7 @@ export default defineConfig({
   const options = await fillOptions({
     ...optionsIn,
     server: {
-      ...(oneServerConfig || {}),
+      ...oneServerConfig,
       ...removeUndefined(optionsIn.server || {}),
     },
   });

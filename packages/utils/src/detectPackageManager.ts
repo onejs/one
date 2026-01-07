@@ -47,7 +47,7 @@ async function getFromPackage(cwd = ".") {
   }
 }
 
-const foundSome = (obj: Object) => Object.keys(obj).some((k) => !!obj[k]);
+const foundSome = (obj: object) => Object.keys(obj).some((k) => !!obj[k]);
 
 export const detectPackageManager = async ({ cwd }: { cwd?: string } = {}) => {
   const fromLockfile = await getFromLockfile(cwd);
