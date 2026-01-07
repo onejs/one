@@ -2,12 +2,50 @@ import { extname, relative } from 'node:path'
 import BabelGenerate from '@babel/generator'
 import { parse } from '@babel/parser'
 import BabelTraverse from '@babel/traverse'
+import type * as t from '@babel/types'
 import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-elimination'
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING } from '../constants'
 
 const traverse = BabelTraverse['default'] as typeof BabelTraverse
 const generate = BabelGenerate['default'] as any as typeof BabelGenerate
+
+// Collect type-only imports before dead code elimination runs
+// These should never be removed since TypeScript erases them at compile time
+function collectTypeImports(ast: t.File): t.ImportDeclaration[] {
+  const typeImports: t.ImportDeclaration[] = []
+  traverse(ast, {
+    ImportDeclaration(path) {
+      // Check if the entire import is type-only: `import type { X } from '...'`
+      if (path.node.importKind === 'type') {
+        typeImports.push(path.node)
+      }
+    },
+  })
+  return typeImports
+}
+
+// Restore type-only imports that may have been removed by dead code elimination
+function restoreTypeImports(ast: t.File, typeImports: t.ImportDeclaration[]) {
+  if (typeImports.length === 0) return
+
+  // Get existing import sources to avoid duplicates
+  const existingSources = new Set<string>()
+  traverse(ast, {
+    ImportDeclaration(path) {
+      if (path.node.importKind === 'type') {
+        existingSources.add(path.node.source.value)
+      }
+    },
+  })
+
+  // Add back any type imports that were removed
+  for (const typeImport of typeImports) {
+    if (!existingSources.has(typeImport.source.value)) {
+      ast.program.body.unshift(typeImport)
+    }
+  }
+}
 
 export const clientTreeShakePlugin = (): Plugin => {
   return {
@@ -112,7 +150,14 @@ export async function transformTreeShakeClient(code: string, id: string) {
 
   if (removedFunctions.length) {
     try {
+      // Collect type-only imports before dead code elimination
+      // These should be preserved since TypeScript erases them at compile time
+      const typeImports = collectTypeImports(ast)
+
       deadCodeElimination(ast, referenced)
+
+      // Restore any type imports that were incorrectly removed
+      restoreTypeImports(ast, typeImports)
 
       const out = generate(ast)
 
