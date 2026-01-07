@@ -388,7 +388,7 @@ async function doPreload(href: string) {
     const [_preload, cssPreloadModule, loader] = await Promise.all([
       dynamicImport(preloadPath),
       dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null), // graceful fail if no CSS preload
-      dynamicImport(loaderPath),
+      dynamicImport(loaderPath)?.catch(() => null) ?? Promise.resolve(null), // graceful fail if no loader file
       preloadRouteModules(href),
     ])
 
