@@ -1,4 +1,4 @@
-import { type Plugin } from 'vite'
+import { type Plugin } from 'vite';
 /**
  * Supporting the ["react-native" community condition](https://nodejs.org/docs/latest-v19.x/api/packages.html#community-conditions-definitions) in dependencies' `package.json`.
  *
@@ -6,7 +6,7 @@ import { type Plugin } from 'vite'
  * * https://reactnative.dev/blog/2023/06/21/0.72-metro-package-exports-symlinks#package-exports-support-beta
  * * https://v5.vite.dev/config/shared-options.html#resolve-conditions
  */
-export declare const conditions: string[]
+export declare const conditions: string[];
 /**
  * Supporting the "react-native" field in dependencies' `package.json`.
  *
@@ -30,10 +30,10 @@ export declare const conditions: string[]
  * See:
  * * https://v5.vite.dev/config/shared-options.html#resolve-mainfields
  */
-export declare const mainFields: string[]
+export declare const mainFields: string[];
 export declare function reactNativeCommonJsPlugin(options: {
-  root: string
-  port: number
-  mode: 'build' | 'serve'
-}): Plugin
+    root: string;
+    port: number;
+    mode: 'build' | 'serve';
+}): Plugin;
 //# sourceMappingURL=reactNativeCommonJsPlugin.d.ts.map

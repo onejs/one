@@ -1,3 +1,3 @@
-declare const _default: 'sync' | 'lazy'
-export default _default
+declare const _default: "sync" | "lazy";
+export default _default;
 //# sourceMappingURL=index.d.ts.map

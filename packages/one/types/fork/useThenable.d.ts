@@ -4,7 +4,5 @@
  *
  * No changes are made except of formatting.
  */
-export declare function useThenable<T>(
-  create: () => PromiseLike<T>
-): [boolean, T | undefined]
+export declare function useThenable<T>(create: () => PromiseLike<T>): [boolean, T | undefined];
 //# sourceMappingURL=useThenable.d.ts.map
