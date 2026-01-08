@@ -26,11 +26,10 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger } from '~/components/typography'
+import { PrettyText, PrettyTextBigger, PrettyTextMedium } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
-import { Footer } from '~/features/site/Footer'
 import { HeadInfo } from '~/features/site/HeadInfo'
 import { Link } from '~/features/site/Link'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -82,29 +81,6 @@ export default function HomePage() {
           >
             <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
               <ToggleThemeButton />
-              {/* commenting this out till the blog page is ready */}
-              {/*<Link href="/blog" asChild>
-                <Button
-                  size="$5"
-                  bg="$color2"
-                  br="$10"
-                  group
-                  animation="quickest"
-                  containerType="normal"
-                  gap={0}
-                  bw={0}
-                  hoverStyle={{
-                    bg: '$color5',
-                  }}
-                  pressStyle={{
-                    bg: '$color9',
-                  }}
-                >
-                  <ButtonText fontFamily="$mono" lh={0}>
-                    Blog
-                  </ButtonText>
-                </Button>
-              </Link>*/}
 
               <Theme name="accent">
                 <Link href="/docs/introduction" asChild>
@@ -146,25 +122,14 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="$4" pt="$6">
+        <View theme="yellow" gap="$4" pt="$5">
           <PrettyTextBigger>
-            One aims to make web + native with React and React&nbsp;Native much simpler,
-            and faster.
-            <br />
-            <br />
-            One takes{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
-              Vite
-            </Link>
-            ,{' '}
-            <Link target="_blank" href="https://vxrn.dev">
-              makes it serve
-            </Link>{' '}
-            React&nbsp;web and React&nbsp;Native. Then adds{' '}
+            Build websites and apps with React and React&nbsp;Native with a single Vite
+            plugin. Fully typed{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
-              FS routes
+              file-system routes
             </Link>
-            ,{' '}
+            , per-page{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
               render modes
             </Link>
@@ -180,32 +145,24 @@ export default function HomePage() {
             <Link style={{ color: 'var(--color11)' }} href="/docs/one-dev">
               CLI
             </Link>
-            ,{' '}
+            , and production{' '}
             <Link target="_blank" href="https://hono.dev">
               Hono
             </Link>
-            ,{' '}
+            , Vercel or Cloudflare output,{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              etc
+              plus more
             </Link>
             .
           </PrettyTextBigger>
 
-          <PrettyTextBigger>
-            One is a simpler framework because it's being designed alongside a sync
-            engine,{' '}
-            <Link
-              style={{ color: 'var(--color11)' }}
-              target="_blank"
-              href="https://zero.rocicorp.dev/"
-            >
-              Zero
-            </Link>
-            .
-          </PrettyTextBigger>
+          <PrettyTextMedium>
+            One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or
+            a sync-engine for data.
+          </PrettyTextMedium>
 
           <YStack
-            mt={40}
+            mt={30}
             als="center"
             ai="center"
             jc="center"
@@ -213,8 +170,8 @@ export default function HomePage() {
             px="$6"
             bc="$color4"
           >
-            <Paragraph size="$5" theme="gray" color="$color8" mb={-20}>
-              Bootstrap an app with
+            <Paragraph size="$5" theme="gray" color="$color9" mb={-20}>
+              Bootstrap instantly with
             </Paragraph>
             <br />
             <CopyCommand />
@@ -249,6 +206,7 @@ export default function HomePage() {
                 als="center"
                 px="$4"
                 py="$5"
+                mt="$-4"
                 br="$9"
                 hoverStyle={{
                   y: -2,
@@ -297,8 +255,6 @@ export default function HomePage() {
           <Separator />
 
           <Team />
-
-          <Footer />
         </View>
       </ContainerSm>
     </>
@@ -327,15 +283,12 @@ const InfoBoxes = () => {
       <InfoCard title="Web + Native" Icon={TabletSmartphone}>
         Build a website with React. Or a native app with React Native. Or both at once.
       </InfoCard>
-      <InfoCard title="100% Vite" Icon={ViteIcon}>
-        Not based on Metro, One is a single Vite plugin with few dependencies.
+      <InfoCard title="Vite-native" Icon={ViteIcon}>
+        Use just Vite, even for native, or defer to Metro. One lets you choose.
       </InfoCard>
-      <InfoCard title="The future of data" Icon={Database}>
-        Integration with{' '}
-        <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
-          ZeroSync
-        </a>{' '}
-        and other sync engines. Coming soon.
+      <InfoCard title="Simplistic model" Icon={Database}>
+        One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or a
+        sync-engine for data.
       </InfoCard>
     </XStack>
   )

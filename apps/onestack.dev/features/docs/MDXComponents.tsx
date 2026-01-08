@@ -19,8 +19,6 @@ import {
   styled,
 } from 'tamagui'
 import { Status } from '../../components/Status'
-import { StatusBadgePopover } from '../../components/StatusBadgePopover'
-import { SupportedVersions } from '../../components/SupportedVersions'
 import { SubTitle } from '../site/SubTitle'
 import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
@@ -196,8 +194,6 @@ const componentsIn = {
   RouteTree,
   PropsTable,
   Status,
-  StatusBadgePopover,
-  SupportedVersions,
   Badge,
   XStack,
   YStack,
