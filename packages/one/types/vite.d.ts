@@ -1,10 +1,10 @@
-import './server/setupServerGlobals'
-export { resolvePath } from '@vxrn/resolve'
-export { build } from './cli/build'
-export { makePluginWebOnly } from './vite/makePluginWebOnly'
-export { one } from './vite/one'
-export { clientTreeShakePlugin } from './vite/plugins/clientTreeShakePlugin'
-export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlugin'
-export { removeReactNativeWebAnimatedPlugin } from './vite/plugins/removeReactNativeWebAnimatedPlugin'
-export { SSRCSSPlugin } from './vite/plugins/SSRCSSPlugin'
+import './server/setupServerGlobals';
+export { resolvePath } from '@vxrn/resolve';
+export { build } from './cli/build';
+export { makePluginWebOnly } from './vite/makePluginWebOnly';
+export { one } from './vite/one';
+export { clientTreeShakePlugin } from './vite/plugins/clientTreeShakePlugin';
+export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlugin';
+export { removeReactNativeWebAnimatedPlugin } from './vite/plugins/removeReactNativeWebAnimatedPlugin';
+export { SSRCSSPlugin } from './vite/plugins/SSRCSSPlugin';
 //# sourceMappingURL=vite.d.ts.map

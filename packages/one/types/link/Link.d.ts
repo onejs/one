@@ -1,4 +1,4 @@
-import type { OneRouter } from '../interfaces/router'
+import type { OneRouter } from '../interfaces/router';
 /**
  * Component to render link to another route using a path.
  * Uses an anchor tag on the web.
@@ -10,5 +10,5 @@ import type { OneRouter } from '../interfaces/router'
  * @param props.children Child elements to render the content.
  * @param props.className On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind.
  */
-export declare const Link: OneRouter.LinkComponent
+export declare const Link: OneRouter.LinkComponent;
 //# sourceMappingURL=Link.d.ts.map

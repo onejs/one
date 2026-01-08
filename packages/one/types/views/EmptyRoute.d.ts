@@ -1,2 +1,2 @@
-export declare function EmptyRoute(): null
+export declare function EmptyRoute(): null;
 //# sourceMappingURL=EmptyRoute.d.ts.map

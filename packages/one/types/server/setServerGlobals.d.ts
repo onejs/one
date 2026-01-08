@@ -1,2 +1,2 @@
-export declare function setServerGlobals(): void
+export declare function setServerGlobals(): void;
 //# sourceMappingURL=setServerGlobals.d.ts.map

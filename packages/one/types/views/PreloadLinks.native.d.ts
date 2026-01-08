@@ -1,2 +1,2 @@
-export declare function PreloadLinks(): null
+export declare function PreloadLinks(): null;
 //# sourceMappingURL=PreloadLinks.native.d.ts.map
