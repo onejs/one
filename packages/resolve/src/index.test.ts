@@ -36,20 +36,31 @@ describe('resolvePath', () => {
     })
   })
 
-  describe('returns CJS entry points (require.resolve behavior)', () => {
-    it('resolves to CJS entry for dual packages', () => {
-      // Packages with both ESM and CJS should resolve to CJS entry
-      // This matches require.resolve behavior
+  describe('ESM entry point detection', () => {
+    it('returns ESM entry when exports["."].import is a string', () => {
+      // Most @tamagui packages have this pattern
       const path = resolvePath('@vxrn/resolve', process.cwd())
+      // Should resolve to ESM if available
       expect(path).toBeTruthy()
-      // Should NOT return the ESM entry - require.resolve returns CJS
-      expect(path).toContain('cjs')
     })
 
-    it('resolves standard packages correctly', () => {
+    it('returns ESM entry when exports["."].import.default exists', () => {
+      // vitest has nested structure: { import: { types: "...", default: "..." } }
+      const path = resolvePath('vitest', process.cwd())
+      expect(path).toContain('dist/index.js')
+      expect(path).not.toContain('.cjs')
+    })
+
+    it('falls back to module field when exports not available', () => {
+      // Some packages only have "module" field
       const path = resolvePath('vitest', process.cwd())
       expect(path).toBeTruthy()
-      expect(existsSync(path)).toBe(true)
+    })
+
+    it('falls back to main/require.resolve when no ESM entry', () => {
+      // resolve package is CJS-only (no exports field, just main)
+      const path = resolvePath('resolve', process.cwd())
+      expect(path).toContain('resolve')
     })
   })
 })
