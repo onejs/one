@@ -482,8 +482,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             // Here we trick Vite to skip that check.
             m.acceptedHmrExports = new Set()
 
-            // Check if this is a layout file - layouts need special handling for HMR
-            if (relativePath.includes('_layout')) {
+            // Check if this is a ROOT layout file - only root layouts need special handling
+            // because they're called as functions (not rendered as JSX) to support HTML elements
+            // Root layout patterns: app/_layout.tsx or app/(group)/_layout.tsx
+            const isRootLayout =
+              relativePath === path.join('app', '_layout.tsx') ||
+              /^app[\\/]\([^)]+\)[\\/]_layout\.tsx$/.test(relativePath)
+            if (isRootLayout) {
               hasRouteUpdate = true
             }
           }
@@ -491,8 +496,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           return m
         })
 
-        // For layout files, send a custom event to trigger re-render
-        // This is needed because layouts with HTML are called as functions, bypassing React's HMR
+        // For root layout files, send a custom event to trigger re-render
+        // Root layouts are called as functions (not JSX) to support HTML elements, bypassing React's HMR
         if (hasRouteUpdate) {
           server.hot.send({
             type: 'custom',
