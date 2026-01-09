@@ -254,22 +254,25 @@ async function run() {
       await spawnify(`yarn install`)
     }
 
+    // run quick checks first to fail fast
+    if (!finish && !skipTest) {
+      console.info('run checks')
+      await spawnify(`yarn lint`)
+      await spawnify(`yarn check`)
+      await spawnify(`yarn typecheck`)
+    }
+
     if (!skipBuild && !finish) {
       await spawnify(`yarn build`)
       await checkDistDirs()
     }
 
-    if (!finish) {
-      console.info('run checks')
-
-      if (!skipTest) {
-        await spawnify(`yarn lint`)
-        await spawnify(`yarn check`)
-        await spawnify(`yarn typecheck`)
-        await spawnify(`yarn test`)
-        if (!skipNativeTest) {
-          await spawnify(`yarn test-ios`)
-        }
+    // run tests after build
+    if (!finish && !skipTest) {
+      console.info('run tests')
+      await spawnify(`yarn test`)
+      if (!skipNativeTest) {
+        await spawnify(`yarn test-ios`)
       }
     }
 
