@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -309,7 +309,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
         if (type === 'add' || type === 'delete') {
-          if (path.startsWith(appDir)) {
+          // resolve to absolute path since watcher may emit relative paths
+          const absolutePath = resolve(path)
+          if (absolutePath.startsWith(appDir)) {
             handleRequest = createRequestHandler()
           }
         }

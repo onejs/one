@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { debounce } from 'perfect-debounce'
 import type { Plugin } from 'vite'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
@@ -23,7 +23,9 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
         if (type === 'add' || type === 'delete' || type === 'change') {
-          if (path.startsWith(appDir)) {
+          // resolve to absolute path since watcher may emit relative paths
+          const absolutePath = resolve(path)
+          if (absolutePath.startsWith(appDir)) {
             // generate
             generateRouteTypes(
               outFile,
