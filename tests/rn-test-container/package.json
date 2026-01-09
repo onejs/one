@@ -1,7 +1,8 @@
 {
   "name": "rn-test-container",
-  "version": "1.2.48",
+  "version": "0.0.0",
   "private": true,
+  "skipVersion": true,
   "type": "module",
   "scripts": {
     "android": "one run:android",
