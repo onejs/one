@@ -9,6 +9,7 @@ import { registerPreloadedRoute } from './router/useViteRoutes'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
+import { safeJsonStringify } from './utils/htmlEscape'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
@@ -127,8 +128,8 @@ export function createApp(options: CreateAppProps) {
 
         if (postRenderData) {
           html = html.replace(
-            JSON.stringify(SERVER_CONTEXT_POST_RENDER_STRING),
-            JSON.stringify(postRenderData)
+            safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
+            safeJsonStringify(postRenderData)
           )
         }
 

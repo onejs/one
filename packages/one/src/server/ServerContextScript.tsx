@@ -1,4 +1,5 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
+import { safeJsonStringify } from '../utils/htmlEscape'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from '../vite/constants'
 import { useServerContext } from '../vite/one-server-only'
 
@@ -39,11 +40,11 @@ export function ServerContextScript() {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: `
-              globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
+              globalThis["${SERVER_CONTEXT_KEY}"] = ${safeJsonStringify({
                 ...clientContext,
                 postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
               })};
-              globalThis.__oneLoadedCSS = new Set(${JSON.stringify(cssUrls)});
+              globalThis.__oneLoadedCSS = new Set(${safeJsonStringify(cssUrls)});
           `,
         }}
       />

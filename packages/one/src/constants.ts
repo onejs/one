@@ -1,3 +1,4 @@
+import { safeJsonStringify } from './utils/htmlEscape'
 import type { One } from './vite/types'
 
 export const isWebClient =
@@ -29,6 +30,6 @@ export const getSpaHeaderElements = ({
 } = {}) => `
   <script>globalThis['global'] = globalThis</script>
   <script>globalThis['__vxrnIsSPA'] = true</script>
-  <script>globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(serverContext)}</script>
-  <script>globalThis.__oneLoadedCSS = new Set(${JSON.stringify(serverContext.css || [])})</script>
+  <script>globalThis["${SERVER_CONTEXT_KEY}"] = ${safeJsonStringify(serverContext)}</script>
+  <script>globalThis.__oneLoadedCSS = new Set(${safeJsonStringify(serverContext.css || [])})</script>
 `
