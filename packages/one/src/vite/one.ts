@@ -455,7 +455,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     {
       name: 'route-module-hmr-fix',
       hotUpdate({ server, modules }) {
-        return modules.map((m) => {
+        let hasRouteUpdate = false
+
+        const result = modules.map((m) => {
           const { id } = m
           if (!id) return m
 
@@ -466,10 +468,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             // If the file is a route, Vite might force a full-reload due to that file not being imported by any other modules (`!node.importers.size`) (see https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L440-L443, https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L427 and https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L557-L566)
             // Here we trick Vite to skip that check.
             m.acceptedHmrExports = new Set()
+
+            // Check if this is a layout file - layouts need special handling for HMR
+            if (relativePath.includes('_layout')) {
+              hasRouteUpdate = true
+            }
           }
 
           return m
         })
+
+        // For layout files, send a custom event to force a full React re-render
+        // This is needed because layouts with HTML are called as functions, bypassing React's HMR
+        if (hasRouteUpdate) {
+          server.hot.send({
+            type: 'custom',
+            event: 'one:route-update',
+          })
+        }
+
+        return result
       },
     } satisfies Plugin,
 
