@@ -8013,6 +8013,7 @@ __metadata:
   resolution: "@vxrn/resolve@workspace:packages/resolve"
   dependencies:
     "@tamagui/build": "npm:^1.144.0"
+    vitest: "npm:^4.0.6"
   languageName: unknown
   linkType: soft
 

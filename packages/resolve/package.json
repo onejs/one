@@ -26,10 +26,12 @@
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "test": "vitest run --dir src"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.144.0"
+    "@tamagui/build": "^1.144.0",
+    "vitest": "^4.0.6"
   },
   "publishConfig": {
     "access": "public"
