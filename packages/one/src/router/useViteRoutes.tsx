@@ -213,6 +213,27 @@ export function globbedRoutesToRouteContext(
           delete preloadedModules[key]
         })
       },
+      clearFile: (file: string) => {
+        hmrVersion++
+        // Clear only the specific file's cache
+        // file is like "app/_layout.tsx", need to match against keys like "./_layout.tsx"
+        const normalizedFile = file.replace(/^app\//, './')
+        Object.keys(loadedRoutes).forEach((key) => {
+          if (key === normalizedFile || key.endsWith(normalizedFile.replace('./', '/'))) {
+            delete loadedRoutes[key]
+          }
+        })
+        Object.keys(promises).forEach((key) => {
+          if (key === normalizedFile || key.endsWith(normalizedFile.replace('./', '/'))) {
+            delete promises[key]
+          }
+        })
+        Object.keys(preloadedModules).forEach((key) => {
+          if (key.includes(file)) {
+            delete preloadedModules[key]
+          }
+        })
+      },
       getVersion: () => hmrVersion,
     }
   }

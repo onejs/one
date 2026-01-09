@@ -491,12 +491,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           return m
         })
 
-        // For layout files, send a custom event to force a full React re-render
+        // For layout files, send a custom event to trigger re-render
         // This is needed because layouts with HTML are called as functions, bypassing React's HMR
         if (hasRouteUpdate) {
           server.hot.send({
             type: 'custom',
             event: 'one:route-update',
+            data: { file: fileRelativePath },
           })
         }
 
