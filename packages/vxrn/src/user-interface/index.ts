@@ -160,6 +160,8 @@ function startInterceptingKeyStrokes(context: Context) {
   stdin.resume()
   stdin.setEncoding('utf8')
   stdin.on('data', handleKeypress.bind(null, context))
+  // Allow Node.js to exit even if stdin is still listening
+  stdin.unref()
 }
 
 let pressedKeys = ''
@@ -173,6 +175,8 @@ function resetClearPressedKeysTimer() {
     clearTimeout(clearPressedKeysTimer)
   }
   clearPressedKeysTimer = setTimeout(clearPressedKeys, 3000)
+  // Allow Node.js to exit even if timer is pending
+  clearPressedKeysTimer.unref()
 }
 
 function handleKeypress(context: Context, key: string) {
