@@ -1,6 +1,6 @@
 {
   "name": "test-env",
-  "version": "1.2.51",
+  "version": "1.2.52",
   "private": true,
   "type": "module",
   "scripts": {
