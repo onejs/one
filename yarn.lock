@@ -21065,6 +21065,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"test-route-file-watching@workspace:tests/test-route-file-watching":
+  version: 0.0.0-use.local
+  resolution: "test-route-file-watching@workspace:tests/test-route-file-watching"
+  dependencies:
+    "@react-navigation/native": "npm:~7.1.19"
+    expo: "npm:54.0.22"
+    fs-extra: "npm:^11.2.0"
+    one: "workspace:*"
+    playwright: "npm:^1.57.0"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    react-native: "npm:0.81.5"
+    react-native-safe-area-context: "npm:~5.6.1"
+    react-native-screens: "npm:~4.16.0"
+    vite: "npm:^7.1.12"
+    vitest: "npm:^4.0.6"
+  languageName: unknown
+  linkType: soft
+
 "test-routing-flicker@workspace:tests/test-routing-flicker":
   version: 0.0.0-use.local
   resolution: "test-routing-flicker@workspace:tests/test-routing-flicker"
