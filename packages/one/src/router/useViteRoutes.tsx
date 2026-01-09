@@ -246,9 +246,7 @@ export function globbedRoutesToRouteContext(
         hmrVersion > 0 &&
         routePaths[id]
       ) {
-        importPromise = (0, eval)('imp' + 'ort')(
-          `${routePaths[id]}?t=${Date.now()}`
-        )
+        importPromise = (0, eval)('imp' + 'ort')(`${routePaths[id]}?t=${Date.now()}`)
       } else {
         importPromise = routesSync[id]()
       }

@@ -59,8 +59,8 @@ function RootLayoutRenderer({
   layoutProps: any
   forwardedRef: any
 }) {
-  // HMR support: force re-render when layout changes (dev only)
-  if (process.env.NODE_ENV === 'development') {
+  // HMR support: force re-render when layout changes (dev only, web only)
+  if (process.env.NODE_ENV === 'development' && process.env.TAMAGUI_TARGET !== 'native') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [, setHmrKey] = useState(0)
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -272,8 +272,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   }
 
   const ScreenComponent = React.forwardRef((props: any, ref) => {
-    // HMR support: force re-render when layout files change to get fresh module (dev only)
-    if (process.env.NODE_ENV === 'development') {
+    // HMR support: force re-render when layout files change to get fresh module (dev only, web only)
+    if (
+      process.env.NODE_ENV === 'development' &&
+      process.env.TAMAGUI_TARGET !== 'native'
+    ) {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [, setHmrKey] = useState(0)
       // eslint-disable-next-line react-hooks/rules-of-hooks
