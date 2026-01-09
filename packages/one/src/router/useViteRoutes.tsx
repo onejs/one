@@ -1,5 +1,6 @@
 import type { GlobbedRouteImports } from '../types'
 import type { One } from '../vite/types'
+import { hmrImport } from './hmrImport'
 
 // essentially a development helper
 
@@ -237,16 +238,10 @@ export function globbedRoutesToRouteContext(
 
     if (!promises[id]) {
       // In dev mode after HMR, use cache-busting import to get fresh module
-      // Note: we use a block + IIFE to help bundlers fully eliminate the import() call
-      // which Hermes cannot parse even as dead code
+      // hmrImport is platform-specific: .native.ts returns rejected promise, base uses dynamic import()
       let importPromise: Promise<any>
-      if (
-        process.env.VITE_PLATFORM !== 'native' &&
-        process.env.NODE_ENV === 'development' &&
-        hmrVersion > 0 &&
-        routePaths[id]
-      ) {
-        importPromise = (0, eval)('imp' + 'ort')(`${routePaths[id]}?t=${Date.now()}`)
+      if (process.env.NODE_ENV === 'development' && hmrVersion > 0 && routePaths[id]) {
+        importPromise = hmrImport(routePaths[id]).catch(() => routesSync[id]())
       } else {
         importPromise = routesSync[id]()
       }
