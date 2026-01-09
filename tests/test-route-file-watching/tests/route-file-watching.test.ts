@@ -34,46 +34,50 @@ afterEach(async () => {
  * Before: /specific -> matches [slug].tsx (shows "Dynamic: specific")
  * After adding specific.tsx: /specific -> matches specific.tsx (shows "Specific Page")
  */
-test('adding static route takes precedence over dynamic [slug]', { retry: 3 }, async () => {
-  const page = await context.newPage()
+test(
+  'adding static route takes precedence over dynamic [slug]',
+  { retry: 3 },
+  async () => {
+    const page = await context.newPage()
 
-  // First verify that /specific currently goes to the dynamic route
-  await page.goto(serverUrl + '/specific')
-  const routeType = await page.getByTestId('route-type')
-  expect(await routeType.textContent()).toBe('dynamic')
+    // First verify that /specific currently goes to the dynamic route
+    await page.goto(serverUrl + '/specific')
+    const routeType = await page.getByTestId('route-type')
+    expect(await routeType.textContent()).toBe('dynamic')
 
-  // Now create a specific.tsx file
-  createRouteFile('specific.tsx', specificRouteContent)
+    // Now create a specific.tsx file
+    createRouteFile('specific.tsx', specificRouteContent)
 
-  // Wait for the dev server to pick up the change and reload
-  // We need to navigate again or wait for HMR
-  await page.waitForTimeout(500) // Give file watcher time to detect
+    // Wait for the dev server to pick up the change and reload
+    // We need to navigate again or wait for HMR
+    await page.waitForTimeout(500) // Give file watcher time to detect
 
-  // Reload the page to get the new route
-  await page.reload()
+    // Reload the page to get the new route
+    await page.reload()
 
-  // Wait for the static route to be active
-  try {
-    await page.waitForFunction(
-      () => {
-        const element = document.querySelector('[data-testid="route-type"]')
-        return element && element.textContent?.trim() === 'static'
-      },
-      { timeout: 10000 }
-    )
-  } catch (e) {
-    if (e instanceof Error) {
-      e.message = `Static route did not take precedence over dynamic route: ${e.message}`
+    // Wait for the static route to be active
+    try {
+      await page.waitForFunction(
+        () => {
+          const element = document.querySelector('[data-testid="route-type"]')
+          return element && element.textContent?.trim() === 'static'
+        },
+        { timeout: 10000 }
+      )
+    } catch (e) {
+      if (e instanceof Error) {
+        e.message = `Static route did not take precedence over dynamic route: ${e.message}`
+      }
+      throw e
     }
-    throw e
+
+    expect(await routeType.textContent()).toBe('static')
+    const pageTitle = await page.getByTestId('page-title')
+    expect(await pageTitle.textContent()).toBe('Specific Page')
+
+    await page.close()
   }
-
-  expect(await routeType.textContent()).toBe('static')
-  const pageTitle = await page.getByTestId('page-title')
-  expect(await pageTitle.textContent()).toBe('Specific Page')
-
-  await page.close()
-})
+)
 
 /**
  * Test: Renaming a route file should update routing

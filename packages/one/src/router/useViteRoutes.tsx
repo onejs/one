@@ -164,6 +164,7 @@ export function globbedRoutesToRouteContext(
 ): One.RouteContext {
   // make it look like webpack context
   const routesSync = {}
+  const routePaths = {} // Store full paths for HMR cache-busting imports
   const promises = {}
   const loadedRoutes = {}
   const clears = {}
@@ -185,10 +186,35 @@ export function globbedRoutesToRouteContext(
       }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction
+      routePaths[pathWithoutRelative] = path // Store full path for HMR
     }
   })
 
   const moduleKeys = Object.keys(routesSync)
+
+  // Track HMR version for cache busting
+  let hmrVersion = 0
+
+  // Expose a function to clear the cache for HMR support
+  if (typeof window !== 'undefined') {
+    ;(window as any).__oneRouteCache = {
+      clear: () => {
+        hmrVersion++
+        // Clear all caches
+        Object.keys(loadedRoutes).forEach((key) => {
+          delete loadedRoutes[key]
+        })
+        Object.keys(promises).forEach((key) => {
+          delete promises[key]
+        })
+        // Clear preloaded modules too
+        Object.keys(preloadedModules).forEach((key) => {
+          delete preloadedModules[key]
+        })
+      },
+      getVersion: () => hmrVersion,
+    }
+  }
 
   function resolve(id: string) {
     clearTimeout(clears[id])
@@ -210,7 +236,13 @@ export function globbedRoutesToRouteContext(
     }
 
     if (!promises[id]) {
-      promises[id] = routesSync[id]()
+      // In dev mode after HMR, use cache-busting import to get fresh module
+      const importPromise =
+        process.env.NODE_ENV === 'development' && hmrVersion > 0 && routePaths[id]
+          ? import(/* @vite-ignore */ `${routePaths[id]}?t=${Date.now()}`)
+          : routesSync[id]()
+
+      promises[id] = importPromise
         .then((val: any) => {
           loadedRoutes[id] = val
           delete promises[id]

@@ -25,6 +25,21 @@ export function DevHead() {
         <script
           type="module"
           dangerouslySetInnerHTML={{
+            __html: `import { createHotContext } from "/@vite/client";
+  const hot = createHotContext("/__one_route_hmr");
+  hot.on("one:route-update", () => {
+    // Clear the route module cache so fresh modules are loaded
+    if (window.__oneRouteCache) {
+      window.__oneRouteCache.clear();
+    }
+    // Dispatch a window event that triggers re-render in route components
+    window.dispatchEvent(new CustomEvent('one-hmr-update'));
+  });`,
+          }}
+        />
+        <script
+          type="module"
+          dangerouslySetInnerHTML={{
             __html: `import { injectIntoGlobalHook } from "/@react-refresh";
   injectIntoGlobalHook(window);
   window.$RefreshReg$ = () => {};

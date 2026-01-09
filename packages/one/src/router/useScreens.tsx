@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { memo, Suspense, useId } from 'react'
+import React, { memo, Suspense, useEffect, useId, useState } from 'react'
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
@@ -44,6 +44,91 @@ const cachedInlineCSSElements: React.ReactNode[] =
         />
       ))
     : []
+
+/**
+ * Separate component for rendering root layouts with HTML.
+ * This is extracted into its own component so React's HMR can properly track changes.
+ * When the LayoutComponent prop changes, React will re-render this component.
+ */
+function RootLayoutRenderer({
+  LayoutComponent,
+  layoutProps,
+  forwardedRef,
+}: {
+  LayoutComponent: React.ComponentType<any>
+  layoutProps: any
+  forwardedRef: any
+}) {
+  // HMR support: force re-render when layout changes (dev only)
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [, setHmrKey] = useState(0)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      const handler = () => setHmrKey((k) => k + 1)
+      window.addEventListener('one-hmr-update', handler)
+      return () => window.removeEventListener('one-hmr-update', handler)
+    }, [])
+  }
+
+  // Call the layout component to get its output for HTML filtering
+  // @ts-expect-error
+  const out = LayoutComponent(layoutProps, forwardedRef)
+
+  const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
+  const { children: headChildren, ...headProps } = (head?.props || {}) as Record<
+    string,
+    any
+  >
+  const serverContext = useServerContext()
+
+  let finalChildren = children
+
+  if (process.env.TAMAGUI_TARGET === 'native') {
+    // on native we just ignore all html/body/head
+    return finalChildren
+  }
+
+  finalChildren = (
+    <>
+      <head key="head" {...headProps}>
+        <DevHead />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `globalThis['global'] = globalThis`,
+          }}
+        />
+        {serverContext?.cssContents?.length || serverContext?.cssInlineCount
+          ? // Inline CSS: SSR renders fresh, client uses cached elements from module load
+            serverContext?.cssContents
+            ? serverContext.cssContents.map((content, i) => (
+                <style
+                  key={`inline-css-${i}`}
+                  id={`__one_css_${i}`}
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              ))
+            : cachedInlineCSSElements
+          : serverContext?.css?.map((file) => (
+              <link key={file} rel="stylesheet" href={file} />
+            ))}
+        <ServerContextScript />
+        {headChildren}
+      </head>
+      <body key="body" suppressHydrationWarning {...bodyProps}>
+        <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
+      </body>
+    </>
+  )
+
+  return (
+    // tamagui and libraries can add className on hydration to have ssr safe styling
+    // so supress hydration warnings here
+    <html suppressHydrationWarning lang="en-US" {...htmlProps}>
+      {finalChildren}
+    </html>
+  )
+}
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -187,6 +272,18 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   }
 
   const ScreenComponent = React.forwardRef((props: any, ref) => {
+    // HMR support: force re-render when layout files change to get fresh module (dev only)
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [, setHmrKey] = useState(0)
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        const handler = () => setHmrKey((k) => k + 1)
+        window.addEventListener('one-hmr-update', handler)
+        return () => window.removeEventListener('one-hmr-update', handler)
+      }, [])
+    }
+
     const res = value.loadRoute()
     const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
 
@@ -197,64 +294,14 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       console.groupEnd()
     }
 
-    // this is causing HMR to not work on root layout
+    // Root layout with HTML support - use RootLayoutRenderer for proper HMR tracking
     if (props.segment === '') {
-      // @ts-expect-error
-      const out = Component(props, ref)
-
-      const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
-      const { children: headChildren, ...headProps } = (head?.props || {}) as Record<
-        string,
-        any
-      >
-      const serverContext = useServerContext()
-
-      // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
-      let finalChildren = children
-
-      if (process.env.TAMAGUI_TARGET === 'native') {
-        // on native we just ignore all html/body/head
-        return finalChildren
-      }
-
-      finalChildren = (
-        <>
-          <head key="head" {...headProps}>
-            <DevHead />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `globalThis['global'] = globalThis`,
-              }}
-            />
-            {serverContext?.cssContents?.length || serverContext?.cssInlineCount
-              ? // Inline CSS: SSR renders fresh, client uses cached elements from module load
-                serverContext?.cssContents
-                ? serverContext.cssContents.map((content, i) => (
-                    <style
-                      key={`inline-css-${i}`}
-                      id={`__one_css_${i}`}
-                      dangerouslySetInnerHTML={{ __html: content }}
-                    />
-                  ))
-                : cachedInlineCSSElements
-              : serverContext?.css?.map((file) => (
-                  <link key={file} rel="stylesheet" href={file} />
-                ))}
-            <ServerContextScript />
-            {headChildren}
-          </head>
-          <body key="body" suppressHydrationWarning {...bodyProps}>
-            <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
-          </body>
-        </>
-      )
-
       return (
-        // tamagui and libraries can add className on hydration to have ssr safe styling
-        // so supress hydration warnings here
-        <html suppressHydrationWarning lang="en-US" {...htmlProps}>
-          {finalChildren}
-        </html>
+        <RootLayoutRenderer
+          LayoutComponent={Component}
+          layoutProps={props}
+          forwardedRef={ref}
+        />
       )
     }
 
