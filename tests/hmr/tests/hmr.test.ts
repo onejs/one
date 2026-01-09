@@ -93,7 +93,9 @@ test('component containing relative import HMR', { retry: 3 }, async () => {
   )
 })
 
-// TODO: make this pass
+// Root layouts are called as functions (not rendered as React components) to support HTML elements.
+// This means React can't preserve child state during layout HMR - the layout updates but state is lost.
+// The layout DOES update without a full page reload, but this test expects state preservation.
 test.skip('layout HMR', { retry: 3 }, async () => {
   await testHMR(
     'layout-text-content',
