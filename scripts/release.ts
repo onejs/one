@@ -283,6 +283,11 @@ async function run() {
     if (!skipVersion && !finish) {
       await Promise.all(
         allPackageJsons.map(async ({ json, path }) => {
+          // Skip packages that opt out of version bumping (e.g., test containers for native build caching)
+          if (json.skipVersion) {
+            return
+          }
+
           const next = { ...json }
 
           next.version = version
