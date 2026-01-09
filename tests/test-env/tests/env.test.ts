@@ -32,8 +32,7 @@ describe('Environment Variable Tests', () => {
     })
   })
 
-  // TODO: Fix client hydration for env variables - values stay 'ssr' instead of changing to 'client'
-  describe.skip('Client (after hydration)', () => {
+  describe('Client (after hydration)', () => {
     it('should show process.env.VITE_ENVIRONMENT after hydration', async () => {
       const page = await context.newPage()
       await page.goto(serverUrl, { waitUntil: 'networkidle' })
