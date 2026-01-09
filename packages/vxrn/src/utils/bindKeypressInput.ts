@@ -10,6 +10,8 @@ export function bindKeypressInput() {
 
   readline.emitKeypressEvents(process.stdin)
   process.stdin.setRawMode(true)
+  // Allow Node.js to exit even if stdin is still listening
+  process.stdin.unref()
 
   process.stdin.on('keypress', (_key, data) => {
     const { ctrl, name } = data
