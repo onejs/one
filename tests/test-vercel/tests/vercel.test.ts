@@ -340,6 +340,43 @@ describe('Vercel API Test Page Integration', () => {
   })
 })
 
+describe('Vercel Direct URL Access (cleanUrls)', () => {
+  // This tests the cleanUrls feature - direct URL access should work for SSG pages
+  // Without cleanUrls: true in config.json, these would 404 on actual Vercel deployment
+  it('should serve SSG page via direct URL access', async () => {
+    const response = await fetch(`${serverUrl}/api-test`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('content-type')).toContain('text/html')
+  })
+
+  it('should serve SPA page via direct URL access', async () => {
+    const response = await fetch(`${serverUrl}/spa-page`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('content-type')).toContain('text/html')
+  })
+
+  it('should serve dynamic SSG page via direct URL access', async () => {
+    const page = await context.newPage()
+    await page.goto(`${serverUrl}/posts/hello-world`)
+
+    expect(await page.textContent('#post-title')).toBe('Post: hello-world')
+    expect(await page.textContent('#post-slug')).toBe('Slug: hello-world')
+    expect(await page.textContent('#render-mode')).toBe('Mode: SSG')
+
+    await page.close()
+  })
+
+  it('should serve different dynamic SSG pages via direct URL', async () => {
+    const page = await context.newPage()
+    await page.goto(`${serverUrl}/posts/another-post`)
+
+    expect(await page.textContent('#post-title')).toBe('Post: another-post')
+    expect(await page.textContent('#post-slug')).toBe('Slug: another-post')
+
+    await page.close()
+  })
+})
+
 describe('Vercel Build Output Validation', () => {
   it('should have correct Content-Type headers for API responses', async () => {
     const response = await fetch(`${serverUrl}/api/hello`)

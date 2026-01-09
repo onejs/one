@@ -453,6 +453,9 @@ const server = createServer((req, res) => {
       return originalWriteHead(statusCode, ...args)
     }
 
+    // Store original pathname before rewrites (for static file serving)
+    const originalPathname = pathname
+
     // Process routes from config.json (rewrites, etc.)
     // Skip catch-all routes initially - they should only apply after checking files/functions
     const rewrittenDest = processRoutes(pathname, true /* skipCatchAll */)
@@ -484,8 +487,10 @@ const server = createServer((req, res) => {
     // For loader rewrites, we explicitly DON'T serve static files (we want dynamic data)
     // For other rewrites (like the catch-all), still try static files
     if (!isLoaderRewrite) {
-      // For rewrites, try the rewritten path; for non-rewrites, use original path
-      const staticPath = rewrittenDest ? pathname : url.pathname
+      // For SSG pages, use the original pathname (before rewrite) to find static files
+      // Rewrites with :param placeholders are meant for serverless functions, not static files
+      // e.g., /posts/hello-world should serve posts/hello-world.html, not posts/:slug.html
+      const staticPath = originalPathname
       const served = await serveStatic(res, staticPath)
       if (served) return
     }
