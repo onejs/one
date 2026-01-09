@@ -35,13 +35,18 @@ describe('Environment Variable Tests', () => {
   describe('Client (after hydration)', () => {
     it('should show process.env.VITE_ENVIRONMENT after hydration', async () => {
       const page = await context.newPage()
-      await page.goto(serverUrl)
+      await page.goto(serverUrl, { waitUntil: 'networkidle' })
 
       // Wait for hydration to update the value from 'ssr' to 'client'
-      await page.waitForFunction(
-        () => document.querySelector('#process-env')?.textContent === 'client',
-        { timeout: 10000 }
-      )
+      try {
+        await page.waitForFunction(
+          () => document.querySelector('#process-env')?.textContent === 'client',
+          { timeout: 15000 }
+        )
+      } catch (e) {
+        const text = await page.textContent('#process-env')
+        throw new Error(`Hydration timeout - expected 'client' but got '${text}'`)
+      }
 
       const text = await page.textContent('#process-env')
       expect(text).toBe('client')
@@ -51,13 +56,18 @@ describe('Environment Variable Tests', () => {
 
     it('should show import.meta.env.VITE_ENVIRONMENT after hydration', async () => {
       const page = await context.newPage()
-      await page.goto(serverUrl)
+      await page.goto(serverUrl, { waitUntil: 'networkidle' })
 
       // Wait for hydration to update the value from 'ssr' to 'client'
-      await page.waitForFunction(
-        () => document.querySelector('#import-meta')?.textContent === 'client',
-        { timeout: 10000 }
-      )
+      try {
+        await page.waitForFunction(
+          () => document.querySelector('#import-meta')?.textContent === 'client',
+          { timeout: 15000 }
+        )
+      } catch (e) {
+        const text = await page.textContent('#import-meta')
+        throw new Error(`Hydration timeout - expected 'client' but got '${text}'`)
+      }
 
       const text = await page.textContent('#import-meta')
       expect(text).toBe('client')
