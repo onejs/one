@@ -27,10 +27,14 @@ export function DevHead() {
           dangerouslySetInnerHTML={{
             __html: `import { createHotContext } from "/@vite/client";
   const hot = createHotContext("/__one_route_hmr");
-  hot.on("one:route-update", () => {
-    // Clear the route module cache so fresh modules are loaded
+  hot.on("one:route-update", (data) => {
+    // Clear only the specific file's cache if provided, otherwise clear all
     if (window.__oneRouteCache) {
-      window.__oneRouteCache.clear();
+      if (data?.file) {
+        window.__oneRouteCache.clearFile(data.file);
+      } else {
+        window.__oneRouteCache.clear();
+      }
     }
     // Dispatch a window event that triggers re-render in route components
     window.dispatchEvent(new CustomEvent('one-hmr-update'));
