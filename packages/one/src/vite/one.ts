@@ -454,7 +454,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     {
       name: 'route-module-hmr-fix',
-      hotUpdate({ server, modules }) {
+      hotUpdate({ server, modules, file }) {
+        const envName = this.environment?.name
+
+        // Check if this is an app file
+        const fileRelativePath = path.relative(server.config.root, file)
+        const fileRootDir = fileRelativePath.split(path.sep)[0]
+        const isAppFile = fileRootDir === 'app'
+
+        // For SSR environment, prevent full page reload for app files by returning empty array
+        // The SSR module runner will still pick up changes on next request
+        if (envName === 'ssr' && isAppFile) {
+          return []
+        }
+
         let hasRouteUpdate = false
 
         const result = modules.map((m) => {
