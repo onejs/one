@@ -237,10 +237,21 @@ export function globbedRoutesToRouteContext(
 
     if (!promises[id]) {
       // In dev mode after HMR, use cache-busting import to get fresh module
-      const importPromise =
-        process.env.NODE_ENV === 'development' && hmrVersion > 0 && routePaths[id]
-          ? import(/* @vite-ignore */ `${routePaths[id]}?t=${Date.now()}`)
-          : routesSync[id]()
+      // Note: we use a block + IIFE to help bundlers fully eliminate the import() call
+      // which Hermes cannot parse even as dead code
+      let importPromise: Promise<any>
+      if (
+        process.env.VITE_PLATFORM !== 'native' &&
+        process.env.NODE_ENV === 'development' &&
+        hmrVersion > 0 &&
+        routePaths[id]
+      ) {
+        importPromise = (0, eval)('imp' + 'ort')(
+          `${routePaths[id]}?t=${Date.now()}`
+        )
+      } else {
+        importPromise = routesSync[id]()
+      }
 
       promises[id] = importPromise
         .then((val: any) => {
