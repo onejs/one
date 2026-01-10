@@ -37,14 +37,16 @@ describe(`SSR Routing Tests`, () => {
     expect(await page.textContent('#data')).toContain(`"sub/page"`)
 
     await page.click(`#test-change-sub-route`)
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await page.waitForURL(`${serverUrl}/ssr/sub/page-next`)
+    await page.waitForSelector('#params')
 
     expect(page.url()).toBe(`${serverUrl}/ssr/sub/page-next`)
     expect(await page.textContent('#params')).toContain(`{"rest":["sub","page-next"]}`)
     expect(await page.textContent('#data')).toContain(`"sub/page-next"`)
 
     await page.click(`#test-change-sub-route`)
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await page.waitForURL(`${serverUrl}/ssr/sub/page-next-next`)
+    await page.waitForSelector('#params')
 
     expect(page.url()).toBe(`${serverUrl}/ssr/sub/page-next-next`)
     expect(await page.textContent('#params')).toContain(

@@ -276,8 +276,8 @@ export function createHandleRequest(
       }
 
       // skip static file requests - let vite serve them instead of matching dynamic routes
-      // this mirrors Next.js behavior: paths with file extensions don't match page routes
-      if (pathname.includes('.')) {
+      // only skip paths that end with known static file extensions
+      if (/\.(?:ico|png|jpg|jpeg|gif|svg|webp|css|js|mjs|cjs|map|json|xml|txt|woff2?|ttf|otf|eot|mp3|mp4|webm|pdf)$/i.test(pathname)) {
         return null
       }
 

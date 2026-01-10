@@ -79,11 +79,16 @@ describe('createHandleRequest', () => {
       expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
 
-    it('should skip any file extension (.xyz)', async () => {
+    it('should NOT skip unknown extensions like .xyz (only known static file types)', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
-      const result = await handler(createRequest('/somefile.xyz'))
-      expect(result).toBeNull()
-      expect(mockHandlers.handlePage).not.toHaveBeenCalled()
+      await handler(createRequest('/somefile.xyz'))
+      expect(mockHandlers.handlePage).toHaveBeenCalled()
+    })
+
+    it('should match routes with dots in segment names', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+      await handler(createRequest('/route.normal'))
+      expect(mockHandlers.handlePage).toHaveBeenCalled()
     })
   })
 
