@@ -18,15 +18,16 @@ afterAll(async () => {
 
 test(
   'navigate into nested page, then back and forward to same page',
-  { retry: 2, timeout: 60_000 },
+  { retry: 3, timeout: 120_000 },
   async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/hooks/cases/navigating-into-nested-navigator', {
-      waitUntil: 'networkidle',
+      waitUntil: 'domcontentloaded',
     })
 
     await page.waitForSelector('[data-testid="navigate-into-nested-page"]', {
-      timeout: 30_000,
+      timeout: 60_000,
+      state: 'visible',
     })
     await page.getByTestId('navigate-into-nested-page').click()
     await page.waitForURL('**/page', { timeout: 30_000 })

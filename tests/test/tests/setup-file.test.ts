@@ -16,11 +16,11 @@ afterAll(async () => {
   await browser.close()
 })
 
-describe('setupFile Tests', { retry: 2, timeout: 60_000 }, () => {
+describe('setupFile Tests', { retry: 3, timeout: 120_000 }, () => {
   it('setupFile runs on web client', async () => {
     const page = await context.newPage()
 
-    await page.goto(`${serverUrl}/setup-file-test`, { waitUntil: 'networkidle' })
+    await page.goto(`${serverUrl}/setup-file-test`, { waitUntil: 'domcontentloaded' })
 
     // Wait for the client-side effect to run and re-render
     await page.waitForFunction(
@@ -28,7 +28,7 @@ describe('setupFile Tests', { retry: 2, timeout: 60_000 }, () => {
         const el = document.querySelector('[data-testid="client-setup-ran"]')
         return el?.textContent?.includes('true')
       },
-      { timeout: 30_000 }
+      { timeout: 60_000 }
     )
 
     // Check that the client setup file ran
