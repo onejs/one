@@ -78,21 +78,84 @@ export const loader = async ({ params }) => {
 
 ### setResponseHeaders
 
-<Status is="developing" />
+Set HTTP response headers from anywhere during server-side rendering - loaders, components, or middleware. Headers are accumulated and merged onto the final response.
 
-A convenience function for setting headers of the current response from anywhere on the server.
+```tsx
+import { setResponseHeaders } from 'one'
+
+await setResponseHeaders((headers) => {
+  headers.set('X-Custom-Header', 'value')
+})
+```
+
+The `headers` parameter is a standard [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) object.
+
+#### Caching and ISR
+
+Use `setResponseHeaders` in loaders to enable CDN caching and [Incremental Static Regeneration](/docs/guides-isr):
+
+```tsx fileName=app/blog/[slug]+ssr.tsx
+import { setResponseHeaders, useLoader } from 'one'
+
+export async function loader({ params }) {
+  await setResponseHeaders((headers) => {
+    headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  })
+
+  const post = await fetchPost(params.slug)
+  return { post }
+}
+
+export default function BlogPost() {
+  const { post } = useLoader(loader)
+  return <article>{post.content}</article>
+}
+```
+
+Common cache header patterns:
+
+- `s-maxage=3600` - CDN caches for 1 hour
+- `stale-while-revalidate=86400` - Serve stale content while revalidating in background (up to 1 day)
+- `max-age=0, must-revalidate` - Always revalidate with origin
+- `private, no-store` - Never cache (for user-specific data)
+
+Note: `stale-while-revalidate` requires CDN support (Vercel, CloudFront, Fastly). Cloudflare does not currently support it.
+
+#### Cookies
+
+Set cookies using the standard `Set-Cookie` header:
+
+```tsx fileName=app/auth/login+api.ts
+import { setResponseHeaders } from 'one'
+
+export async function POST(request: Request) {
+  const { token } = await authenticateUser(request)
+
+  await setResponseHeaders((headers) => {
+    headers.append('Set-Cookie', `session=${token}; HttpOnly; Secure; SameSite=Strict; Path=/`)
+  })
+
+  return Response.json({ success: true })
+}
+```
+
+#### In Middleware
 
 ```tsx fileName=app/_middleware.ts
 import { createMiddleware, setResponseHeaders } from 'one'
 
 export default createMiddleware(({ request }) => {
   setResponseHeaders((headers) => {
-    headers.append('test-header', 'test-value')
+    headers.set('X-Request-Id', crypto.randomUUID())
   })
 })
 ```
 
-Where `headers` is of type [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers).
+#### Important Notes
+
+- Only works server-side (SSR routes and loaders)
+- Can be called multiple times - headers are merged
+- Must be called during the request lifecycle (not in event handlers or timeouts)
 
 ### watchFile
 
