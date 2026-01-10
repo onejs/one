@@ -40,13 +40,17 @@ export namespace OneRouter {
     : string
 
   type DynamicRoutes<T extends string> =
-    __routes<T> extends { DynamicRoutes: any }
+    __routes<T> extends {
+      DynamicRoutes: any
+    }
       ? T extends __routes<infer _>['DynamicRoutes']
         ? T
         : never
       : string
 
-  export type DynamicRouteTemplate = __routes extends { DynamicRouteTemplate: string }
+  export type DynamicRouteTemplate = __routes extends {
+    DynamicRouteTemplate: string
+  }
     ? __routes['DynamicRouteTemplate']
     : string
 

@@ -4,19 +4,18 @@ import type {
   PartialRoute,
   Route,
 } from '@react-navigation/native'
-
-import type { ExpoTabActionType } from './TabRouter'
+import type { OneRouter } from '../interfaces/router'
+import { resolveHref } from '../link/href'
 import type { UrlObject } from '../router/getNormalizedStatePath'
 import type { RouteNode } from '../router/Route'
-import { resolveHref } from '../link/href'
 import { sortRoutesWithInitial } from '../router/sortRoutes'
-import type { OneRouter } from '../interfaces/router'
-import { Slot } from './Slot'
 import {
-  Screen,
   createGetIdForRoute,
   getQualifiedRouteComponent,
+  Screen,
 } from '../router/useScreens'
+import { Slot } from './Slot'
+import type { ExpoTabActionType } from './TabRouter'
 
 export const ViewSlot = Slot
 

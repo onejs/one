@@ -1,5 +1,5 @@
-import type { ReactElement, ComponentProps } from 'react'
-import { View, StyleSheet, type ViewProps } from 'react-native'
+import type { ComponentProps, ReactElement } from 'react'
+import { StyleSheet, View, type ViewProps } from 'react-native'
 
 import { ViewSlot } from './common'
 

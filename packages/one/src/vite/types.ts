@@ -9,8 +9,8 @@ import type {
   VXRNBuildOptions,
   VXRNOptions,
 } from 'vxrn'
-import type { RouteNode } from '../router/Route'
 import type { One as OneShared } from '../interfaces/router'
+import type { RouteNode } from '../router/Route'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
 

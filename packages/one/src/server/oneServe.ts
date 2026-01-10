@@ -1,7 +1,7 @@
-import type { Hono, MiddlewareHandler } from 'hono'
-import type { BlankEnv } from 'hono/types'
 import { readFile } from 'node:fs/promises'
 import { extname, join, resolve } from 'node:path'
+import type { Hono, MiddlewareHandler } from 'hono'
+import type { BlankEnv } from 'hono/types'
 import {
   CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX_UNCACHED,
@@ -232,7 +232,10 @@ url: ${url}`)
           if (html) {
             const headers = new Headers()
             headers.set('content-type', 'text/html')
-            return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
+            return new Response(html, {
+              headers,
+              status: route.isNotFound ? 404 : 200,
+            })
           }
         }
       }
@@ -256,7 +259,9 @@ url: ${url}`)
           // If there's no matching not-found or dynamic route, it's very likely that One won't handle it and will fallback to VxRN serving the static asset so it will also work.
           // Note: serveStaticAssets is optional - workers handle static assets via platform config
           if (options?.serveStaticAssets) {
-            const staticAssetResponse = await options.serveStaticAssets({ context })
+            const staticAssetResponse = await options.serveStaticAssets({
+              context,
+            })
             if (staticAssetResponse) {
               return await runMiddlewares(
                 requestHandlers,

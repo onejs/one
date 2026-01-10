@@ -3,8 +3,8 @@ import './setup'
 import { cloneElement } from 'react'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
-import { render } from './render'
 import { Root } from './Root'
+import { render } from './render'
 import { registerPreloadedRoute } from './router/useViteRoutes'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
@@ -36,7 +36,7 @@ export function createApp(options: CreateAppProps) {
           ReactDOMServer.default?.renderToStaticMarkup
         const renderToString = serverRender.renderToString
 
-        let {
+        const {
           loaderData,
           loaderProps,
           css,
@@ -88,7 +88,9 @@ export function createApp(options: CreateAppProps) {
         try {
           const extraHeadElements: React.ReactElement[] = []
 
-          const styleTag = Application.getStyleElement({ nonce: process.env.ONE_NONCE })
+          const styleTag = Application.getStyleElement({
+            nonce: process.env.ONE_NONCE,
+          })
           if (styleTag) {
             extraHeadElements.push(styleTag)
           }

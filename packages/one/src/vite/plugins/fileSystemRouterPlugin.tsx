@@ -82,7 +82,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // Track file dependencies from loader for hot reload
             let loaderData: any
             if (exported.loader) {
-              const tracked = await trackLoaderDependencies(() => exported.loader(loaderProps))
+              const tracked = await trackLoaderDependencies(() =>
+                exported.loader(loaderProps)
+              )
               loaderData = tracked.result
 
               // Register dependencies: map file path -> route paths that depend on it
@@ -193,7 +195,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           // Track file dependencies from loader for hot reload
           let loaderData: any
           if (exported.loader) {
-            const tracked = await trackLoaderDependencies(() => exported.loader(loaderProps))
+            const tracked = await trackLoaderDependencies(() =>
+              exported.loader(loaderProps)
+            )
             loaderData = tracked.result
 
             // Register dependencies: map file path -> route paths that depend on it
@@ -414,7 +418,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                     console.info(`[one] ↪ redirect ${url.pathname} → ${destination}`)
                   }
 
-                  res.writeHead(redirect.permanent ? 301 : 302, { Location: destination })
+                  res.writeHead(redirect.permanent ? 301 : 302, {
+                    Location: destination,
+                  })
                   res.end()
                   return
                 }

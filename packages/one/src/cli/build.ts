@@ -17,6 +17,7 @@ import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
+import { isRolldown } from '../utils/isRolldown'
 import { toAbsolute } from '../utils/toAbsolute'
 import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
 import { getManifest } from '../vite/getManifest'
@@ -27,7 +28,6 @@ import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
-import { isRolldown } from '../utils/isRolldown'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -616,7 +616,7 @@ export async function build(args: {
     } = route
 
     routeToBuildInfo[route.routeFile] = rest
-    for (let p of getCleanPaths([route.path, route.cleanPath])) {
+    for (const p of getCleanPaths([route.path, route.cleanPath])) {
       pathToRoute[p] = route.routeFile
     }
     preloads[route.preloadPath] = true
@@ -675,7 +675,7 @@ export async function build(args: {
     console.info(`\n 📄 generated sitemap.xml (${sitemapData.length} URLs)\n`)
   }
 
-  let postBuildLogs: string[] = []
+  const postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy
 
@@ -691,15 +691,9 @@ export async function build(args: {
         try {
           const vercelConfig = JSON.parse(FSExtra.readFileSync(vercelJsonPath, 'utf-8'))
           if (!vercelConfig.cleanUrls) {
-            console.warn(
-              `\n ⚠️  Warning: Your vercel.json is missing "cleanUrls": true`
-            )
-            console.warn(
-              `    Without this, direct navigation to SSG pages will 404.`
-            )
-            console.warn(
-              `    Add "cleanUrls": true to your vercel.json to fix this.\n`
-            )
+            console.warn(`\n ⚠️  Warning: Your vercel.json is missing "cleanUrls": true`)
+            console.warn(`    Without this, direct navigation to SSG pages will 404.`)
+            console.warn(`    Add "cleanUrls": true to your vercel.json to fix this.\n`)
           }
         } catch {
           // ignore parse errors

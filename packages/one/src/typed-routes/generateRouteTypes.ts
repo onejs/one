@@ -2,12 +2,12 @@ import { writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import FSExtra from 'fs-extra'
 import micromatch from 'micromatch'
+import { removeSupportedExtensions } from '../router/matchers'
 import { globbedRoutesToRouteContext } from '../router/useViteRoutes'
 import { globDir } from '../utils/globDir'
 import type { One } from '../vite/types'
 import { getTypedRoutesDeclarationFile } from './getTypedRoutesDeclarationFile'
-import { injectRouteHelpers, type InjectMode } from './injectRouteHelpers'
-import { removeSupportedExtensions } from '../router/matchers'
+import { type InjectMode, injectRouteHelpers } from './injectRouteHelpers'
 
 export async function generateRouteTypes(
   outFile: string,

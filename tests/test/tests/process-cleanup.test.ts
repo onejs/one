@@ -94,10 +94,14 @@ describe('process cleanup', () => {
   test('dev server does not exit prematurely when parent is alive', async () => {
     const port = await getPort()
 
-    devServer = spawn('node', ['../../node_modules/.bin/one', 'dev', '--port', port.toString()], {
-      cwd: process.cwd(),
-      stdio: 'pipe',
-    })
+    devServer = spawn(
+      'node',
+      ['../../node_modules/.bin/one', 'dev', '--port', port.toString()],
+      {
+        cwd: process.cwd(),
+        stdio: 'pipe',
+      }
+    )
 
     // Wait for dev server to start
     await new Promise((r) => setTimeout(r, 6000))

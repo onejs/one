@@ -229,7 +229,7 @@ export { wrappedMiddlewareFunction as default }
       // Replace :param with capture groups for dynamic segments
       // The loader URL pattern uses the actual param value, not :param
       // e.g., /dynamic/123 -> /assets/dynamic_123_12345_vxrn_loader.js
-      let loaderPattern = cleanPath.replace(/:([^_]+)/g, '(?<$1>[^_]+)')
+      const loaderPattern = cleanPath.replace(/:([^_]+)/g, '(?<$1>[^_]+)')
 
       // Match the loader file pattern: {path}_{cacheKey}_vxrn_loader.js
       // Also handle _refetch_ pattern for cache busting

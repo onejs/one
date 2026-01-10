@@ -51,7 +51,10 @@ export async function transformTreeShakeClient(code: string, id: string) {
   let ast: any
   try {
     // `as any` because babel-dead-code-elimination using @types and it conflicts :/
-    ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] }) as any
+    ast = parse(code, {
+      sourceType: 'module',
+      plugins: ['typescript', 'jsx'],
+    }) as any
   } catch (error) {
     // If there's a syntax error, skip transformation and let Vite handle the error
     // This prevents the dev server from crashing on syntax errors
