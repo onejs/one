@@ -158,6 +158,72 @@ export async function loader({ params: { id } }) {
 }
 ```
 
+## Setting Response Headers
+
+Use `setResponseHeaders` to set HTTP headers on the response from within your loader. This is useful for caching, cookies, and custom headers.
+
+### Cache Headers (ISR)
+
+Set cache headers to enable [Incremental Static Regeneration](/docs/guides-isr) - serve SSR pages with static-like performance:
+
+```tsx
+import { setResponseHeaders, useLoader } from 'one'
+
+export async function loader({ params }) {
+  // Cache at CDN for 1 hour, serve stale while revalidating for up to 1 day
+  await setResponseHeaders((headers) => {
+    headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  })
+
+  const post = await fetchPost(params.slug)
+  return { post }
+}
+```
+
+### Cookies
+
+Set cookies by appending `Set-Cookie` headers:
+
+```tsx
+import { setResponseHeaders } from 'one'
+
+export async function loader({ params }) {
+  await setResponseHeaders((headers) => {
+    headers.append('Set-Cookie', `visited=${params.slug}; Path=/; HttpOnly`)
+  })
+
+  return { /* ... */ }
+}
+```
+
+Read cookies from the request (SSR routes only):
+
+```tsx
+export async function loader({ request }) {
+  const cookies = request?.headers.get('Cookie') || ''
+  const session = cookies.match(/session=([^;]+)/)?.[1]
+
+  if (!session) {
+    throw redirect('/login')
+  }
+
+  return { user: await getUser(session) }
+}
+```
+
+### Custom Headers
+
+Add any custom headers:
+
+```tsx
+await setResponseHeaders((headers) => {
+  headers.set('X-Custom-Header', 'value')
+  headers.set('X-Request-Id', crypto.randomUUID())
+})
+```
+
+See [setResponseHeaders](/docs/helpers-utility-functions#setresponseheaders) for more details.
+
 ## Hot Reload for File Dependencies
 
 During development, you can use `watchFile` to register file dependencies in your loader. When these files change, the loader data will automatically refresh without a full page reload.

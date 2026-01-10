@@ -1,0 +1,193 @@
+---
+title: Incremental Static Regeneration (ISR)
+description: Cache SSR pages at the edge for static-like performance
+---
+
+Incremental Static Regeneration (ISR) lets you serve SSR pages with static-like performance by caching them at the CDN edge. Pages are generated on the first request, cached, then served instantly to subsequent visitors while being regenerated in the background.
+
+## How ISR Works
+
+ISR uses HTTP cache headers to tell CDNs when to cache and when to revalidate:
+
+1. First visitor requests a page → SSR renders it → CDN caches the result
+2. Subsequent visitors get the cached version instantly
+3. After the cache expires, the next visitor still gets the cached version while the CDN fetches a fresh one in the background
+4. Once regenerated, the new version replaces the cached one
+
+No one ever waits for rendering - the CDN always serves something immediately.
+
+## Setting Up ISR
+
+Use `setResponseHeaders` in your SSR loader to set cache headers:
+
+```tsx fileName=app/blog/[slug]+ssr.tsx
+import { setResponseHeaders, useLoader } from 'one'
+
+export async function loader({ params }) {
+  // Set ISR cache headers
+  await setResponseHeaders((headers) => {
+    headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  })
+
+  const post = await fetchPost(params.slug)
+  return { post }
+}
+
+export default function BlogPost() {
+  const { post } = useLoader(loader)
+  return <article>{post.content}</article>
+}
+```
+
+## Cache Header Patterns
+
+### Basic ISR (1 hour cache, 1 day stale)
+
+```tsx
+headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+```
+
+- `public` - Allow CDN caching
+- `s-maxage=3600` - CDN caches for 1 hour (3600 seconds)
+- `stale-while-revalidate=86400` - Serve stale content for up to 1 day while revalidating
+
+### Aggressive caching (1 day cache)
+
+For content that rarely changes:
+
+```tsx
+headers.set('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800')
+```
+
+### Short cache (5 minutes)
+
+For frequently updated content:
+
+```tsx
+headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600')
+```
+
+### No caching (dynamic)
+
+For user-specific or real-time content:
+
+```tsx
+headers.set('Cache-Control', 'private, no-store')
+```
+
+## Conditional Caching
+
+Cache public pages, skip for authenticated users:
+
+```tsx fileName=app/dashboard+ssr.tsx
+export async function loader({ request }) {
+  const cookies = request?.headers.get('Cookie') || ''
+  const isAuthenticated = cookies.includes('session=')
+
+  if (isAuthenticated) {
+    // Don't cache user-specific content
+    await setResponseHeaders((headers) => {
+      headers.set('Cache-Control', 'private, no-store')
+    })
+    return { user: await getUser(cookies) }
+  }
+
+  // Cache the public version
+  await setResponseHeaders((headers) => {
+    headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  })
+  return { user: null }
+}
+```
+
+## API Routes
+
+For API routes, set headers directly on the Response:
+
+```tsx fileName=app/api/posts+api.ts
+export async function GET(request: Request) {
+  const posts = await fetchPosts()
+
+  return new Response(JSON.stringify(posts), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600',
+    },
+  })
+}
+```
+
+## CDN Compatibility
+
+ISR requires a CDN that supports `stale-while-revalidate`:
+
+| Platform | Support |
+|----------|---------|
+| Vercel | Full support |
+| AWS CloudFront | Full support |
+| Fastly | Full support |
+| Cloudflare | No `stale-while-revalidate` support |
+
+For Cloudflare, use `s-maxage` only - pages will be fully regenerated after cache expires rather than served stale during revalidation.
+
+## When to Use ISR vs SSG vs SSR
+
+| Strategy | Best For | Trade-offs |
+|----------|----------|------------|
+| **SSG** (`+ssg.tsx`) | Content known at build time | No runtime cost, but requires rebuild for updates |
+| **ISR** (`+ssr.tsx` + cache headers) | Content that changes occasionally | Fast after first request, fresh within cache window |
+| **SSR** (`+ssr.tsx`, no cache) | User-specific or real-time content | Always fresh, but slower |
+
+### Use ISR when:
+
+- Content updates periodically but doesn't need instant updates
+- You have many pages that can't all be pre-built (e.g., large blog, product catalog)
+- You want SSR flexibility with near-static performance
+
+### Use SSG when:
+
+- Content is known at build time
+- Updates can wait for a rebuild
+- You want zero runtime cost
+
+### Use SSR (no cache) when:
+
+- Content is user-specific
+- Data must be real-time
+- Content varies per request (A/B tests, geolocation)
+
+## Example: Blog with ISR
+
+```tsx fileName=app/blog/[slug]+ssr.tsx
+import { setResponseHeaders, useLoader } from 'one'
+import { getPost } from '../lib/posts'
+
+export async function loader({ params }) {
+  const post = await getPost(params.slug)
+
+  if (!post) {
+    throw new Response('Not Found', { status: 404 })
+  }
+
+  // Cache for 1 hour, serve stale for up to 1 week
+  await setResponseHeaders((headers) => {
+    headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=604800')
+  })
+
+  return { post }
+}
+
+export default function BlogPost() {
+  const { post } = useLoader(loader)
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <time>{post.date}</time>
+      <div>{post.content}</div>
+    </article>
+  )
+}
+```
+
+First visitor to `/blog/my-post` triggers SSR. The CDN caches the result. For the next hour, all visitors get the cached version instantly. After an hour, the next visitor still gets the cached version while the CDN regenerates in the background.
