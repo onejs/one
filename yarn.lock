@@ -17197,6 +17197,7 @@ __metadata:
     react-native-reanimated: "npm:~4.1.3"
     react-native-worklets: "npm:0.5.1"
     rollup: "npm:^4.29.1"
+    sharp: "npm:^0.34.5"
     ts-pattern: "npm:^5.6.2"
     tsconfig-paths: "npm:^4"
     typescript: "npm:^5.7.3"
@@ -19991,7 +19992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:>=0.33.0":
+"sharp@npm:>=0.33.0, sharp@npm:^0.34.5":
   version: 0.34.5
   resolution: "sharp@npm:0.34.5"
   dependencies:
