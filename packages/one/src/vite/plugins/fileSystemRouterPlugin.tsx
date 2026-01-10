@@ -360,15 +360,18 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       const appDir = path.join(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
-      const fileWatcherChangeListener = debounce(async (type: string, changedPath: string) => {
-        if (type === 'add' || type === 'delete') {
-          // resolve to absolute path since watcher may emit relative paths
-          const absolutePath = path.resolve(changedPath)
-          if (absolutePath.startsWith(appDir)) {
-            handleRequest = createRequestHandler()
+      const fileWatcherChangeListener = debounce(
+        async (type: string, changedPath: string) => {
+          if (type === 'add' || type === 'delete') {
+            // resolve to absolute path since watcher may emit relative paths
+            const absolutePath = path.resolve(changedPath)
+            if (absolutePath.startsWith(appDir)) {
+              handleRequest = createRequestHandler()
+            }
           }
-        }
-      }, 100)
+        },
+        100
+      )
 
       server.watcher.addListener('all', fileWatcherChangeListener)
 

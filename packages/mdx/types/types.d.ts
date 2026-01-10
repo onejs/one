@@ -34,5 +34,5 @@ export type Frontmatter = {
     package?: string;
     demoName?: string;
 };
-export type UnifiedPlugin = import('unified').Plugin[];
+export type UnifiedPlugin = import('unified').PluggableList;
 //# sourceMappingURL=types.d.ts.map

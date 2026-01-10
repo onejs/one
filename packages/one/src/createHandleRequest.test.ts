@@ -103,7 +103,9 @@ describe('createHandleRequest', () => {
         handlePage: vi.fn().mockResolvedValue('<html></html>'),
         handleLoader: vi.fn().mockResolvedValue('loader data'),
       }
-      const { handler } = createHandleRequest(mockHandlersWithLoader, { routerRoot: '/app' })
+      const { handler } = createHandleRequest(mockHandlersWithLoader, {
+        routerRoot: '/app',
+      })
       // Loader paths are /assets/<path>_<nonce>_vxrn_loader.js - they should reach handleLoader
       // for a matching route (the path /my-page matches the [slug] route)
       await handler(createRequest('/assets/my-page_123_vxrn_loader.js'))
