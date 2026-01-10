@@ -113,6 +113,42 @@ function HeroImage() {
 }
 ```
 
+## Programmatic usage
+
+For one-off usage or build scripts, use the `getImageData` helper:
+
+```tsx
+import { getImageData } from 'one/image'
+
+// Paths starting with / resolve from ./public
+const heroData = await getImageData('/images/hero.jpg')
+// { src: '/images/hero.jpg', width: 1920, height: 1080, blurDataURL: '...' }
+
+// Or use relative paths from your current file
+const logoData = await getImageData('../public/images/logo.png')
+```
+
+## MDX frontmatter integration
+
+When using `@vxrn/mdx`, images in frontmatter are automatically processed with `getMDX`. If your MDX file has:
+
+```yaml
+---
+title: My Post
+image: /images/post-hero.jpg
+---
+```
+
+The frontmatter will include `imageMeta` with dimensions and blur placeholder:
+
+```tsx
+import { getMDX } from '@vxrn/mdx'
+
+const { frontmatter } = await getMDX(source, { publicDir: './public' })
+// frontmatter.image = '/images/post-hero.jpg'
+// frontmatter.imageMeta = { width: 1200, height: 630, blurDataURL: '...' }
+```
+
 ## Supported formats
 
 The plugin uses [sharp](https://sharp.pixelplumbing.com/) for image processing, which supports:
@@ -132,3 +168,4 @@ The plugin uses [sharp](https://sharp.pixelplumbing.com/) for image processing, 
 - **Blur placeholders** - Improve perceived performance with LQIP technique
 - **Type-safe** - Full TypeScript support with autocomplete
 - **Works everywhere** - Compatible with any image component (native `<img>`, React Native `<Image>`, Tamagui, etc.)
+- **MDX integration** - Frontmatter images are automatically processed

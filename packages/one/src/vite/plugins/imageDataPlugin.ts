@@ -1,27 +1,10 @@
 import { existsSync } from 'node:fs'
 import { dirname, relative, resolve } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
+import { processImageMeta } from '../../image/getImageData'
 
 const IMAGEDATA_SUFFIX = '?imagedata'
 const VIRTUAL_PREFIX = '\0imagedata:'
-
-let sharpWarned = false
-
-async function getSharp(): Promise<typeof import('sharp') | null> {
-  try {
-    // sharp can be default or named export depending on environment
-    const sharpModule = await import('sharp')
-    return (sharpModule as any).default || sharpModule
-  } catch (e) {
-    if (!sharpWarned) {
-      sharpWarned = true
-      console.warn(
-        `\n[one] To use ?imagedata imports, install sharp:\n\n  npm install sharp\n`
-      )
-    }
-    return null
-  }
-}
 
 export function imageDataPlugin(): Plugin {
   let publicDir: string
@@ -95,26 +78,12 @@ export function imageDataPlugin(): Plugin {
       // Track file for rebuild on change
       this.addWatchFile(filePath)
 
-      const sharp = await getSharp()
-
-      if (!sharp) {
+      const meta = await processImageMeta(filePath)
+      if (!meta) {
         return createImageDataExport(src)
       }
 
-      try {
-        const image = sharp(filePath)
-        const metadata = await image.metadata()
-        const { width = 0, height = 0 } = metadata
-
-        // Generate blur placeholder (10px wide, maintains aspect ratio)
-        const blurBuffer = await image.resize(10).blur(1).jpeg({ quality: 40 }).toBuffer()
-        const blurDataURL = `data:image/jpeg;base64,${blurBuffer.toString('base64')}`
-
-        return createImageDataExport(src, width, height, blurDataURL)
-      } catch (e) {
-        console.warn(`[one] ?imagedata: Failed to process ${filePath}:`, e)
-        return createImageDataExport(src)
-      }
+      return createImageDataExport(src, meta.width, meta.height, meta.blurDataURL)
     },
   }
 }

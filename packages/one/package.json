@@ -86,6 +86,11 @@
     },
     "./env": {
       "types": "./types/env.d.ts"
+    },
+    "./image": {
+      "types": "./types/image.d.ts",
+      "import": "./dist/esm/image.mjs",
+      "require": "./dist/cjs/image.js"
     }
   },
   "main": "dist/cjs",
