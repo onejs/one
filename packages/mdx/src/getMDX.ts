@@ -20,10 +20,9 @@ export async function getMDX(
   extraPluginsOrOptions?: UnifiedPlugin | GetMDXOptions
 ) {
   // Handle both old signature (extraPlugins) and new options object
-  const opts: GetMDXOptions =
-    Array.isArray(extraPluginsOrOptions)
-      ? { extraPlugins: extraPluginsOrOptions }
-      : extraPluginsOrOptions ?? {}
+  const opts: GetMDXOptions = Array.isArray(extraPluginsOrOptions)
+    ? { extraPlugins: extraPluginsOrOptions }
+    : (extraPluginsOrOptions ?? {})
 
   const { frontmatter, code } = await bundleMDX({
     source,
