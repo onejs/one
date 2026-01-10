@@ -178,6 +178,11 @@ export async function oneServe(
           const headers = new Headers()
           headers.set('content-type', 'text/html')
 
+          // Reset router state for each SSR request to ensure correct routing
+          // TODO: Consider using AsyncLocalStorage to isolate router state per request
+          // instead of using global reset, for better concurrency handling
+          globalThis['__vxrnresetState']?.()
+
           const rendered = await (
             await getRender()
           )({
