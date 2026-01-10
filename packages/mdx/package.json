@@ -30,8 +30,12 @@
   "tamagui-build": {
     "bundleExternal": [
       "mdx-bundler",
-      "@mdx-js/mdx"
+      "@mdx-js/mdx",
+      "sharp"
     ]
+  },
+  "optionalDependencies": {
+    "sharp": ">=0.33.0"
   },
   "dependencies": {
     "compare-versions": "^4.1.3",

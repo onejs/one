@@ -45,7 +45,7 @@ export async function processImageMeta(
     const { width = 0, height = 0 } = metadata
 
     // Generate blur placeholder (10px wide, maintains aspect ratio)
-    const blurBuffer = await image.resize(10).blur(1).jpeg({ quality: 40 }).toBuffer()
+    const blurBuffer = await image.resize(10).blur().jpeg({ quality: 40 }).toBuffer()
     const blurDataURL = `data:image/jpeg;base64,${blurBuffer.toString('base64')}`
 
     return { width, height, blurDataURL }
