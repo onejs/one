@@ -1,5 +1,4 @@
-import type { Plugin } from 'esbuild';
-export declare function getOptimizeDeps(mode: 'build' | 'serve', root?: string): {
+export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
     needsInterop: string[];
     depsToOptimize: string[];
     optimizeDeps: {
@@ -9,7 +8,6 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve', root?: string):
         holdUntilCrawlEnd: false;
         esbuildOptions: {
             resolveExtensions: string[];
-            plugins: Plugin[];
         };
     };
 };

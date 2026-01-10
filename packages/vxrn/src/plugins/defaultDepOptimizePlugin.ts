@@ -24,7 +24,7 @@ export function defaultDepOptimizePlugin(): Plugin {
         )
       }
 
-      const { optimizeDeps } = getOptimizeDeps(env.command, config.root)
+      const { optimizeDeps } = getOptimizeDeps(env.command)
 
       // On dev, CLI mode will use `getViteServerConfig` which calls `mergeUserConfig` to merge
       // user defined configs with vxrn defaults. The `mergeUserConfig` function have a
