@@ -74,12 +74,15 @@ export default {
 ```json fileName=vercel.json
 {
   "framework": null,
+  "cleanUrls": true,
   "buildCommand": "npx one build",
   "installCommand": "npm install"
 }
 ```
 
 Setting `framework: null` tells Vercel to use the pre-built output from the Build Output API instead of auto-detecting a framework.
+
+The `cleanUrls: true` setting is important for SSG routes - it allows URLs like `/about` to serve `about.html` without needing the `.html` extension. Without this, direct navigation to SSG pages will 404.
 
 2. **Install the Vercel CLI** (optional, for manual deploys):
 
