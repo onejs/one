@@ -4,7 +4,11 @@ import type { One } from '../vite/types'
 import { getContextKey } from './matchers'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
-export type DynamicConvention = { name: string; deep: boolean; notFound?: boolean }
+export type DynamicConvention = {
+  name: string
+  deep: boolean
+  notFound?: boolean
+}
 
 export type LoadedRoute = {
   ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>

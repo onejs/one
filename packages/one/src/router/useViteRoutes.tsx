@@ -28,7 +28,7 @@ export function useViteRoutes(
 }
 
 // store preloaded modules so resolve() can use them synchronously
-let preloadedModules: Record<string, any> = {}
+const preloadedModules: Record<string, any> = {}
 
 export function registerPreloadedRoute(key: string, module: any): void {
   preloadedModules[key] = module

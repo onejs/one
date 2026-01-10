@@ -237,7 +237,9 @@ function getPathMeta(route: string) {
           cleanedKey = getSafeRouteKey()
         }
 
-        urlPathParts.push({ content: repeat ? '/*' : `/:${name}${optional ? '?' : ''}` })
+        urlPathParts.push({
+          content: repeat ? '/*' : `/:${name}${optional ? '?' : ''}`,
+        })
         routeKeys[cleanedKey] = name
 
         return repeat

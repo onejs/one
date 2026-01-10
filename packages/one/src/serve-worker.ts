@@ -5,7 +5,7 @@ import { ensureExists } from './utils/ensureExists'
 import type { One } from './vite/types'
 
 // Re-export static HTML fetcher utilities for worker use
-export { setFetchStaticHtml, getFetchStaticHtml } from './server/staticHtmlFetcher'
+export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher'
 
 /**
  * Lazy import functions for route modules.

@@ -1,10 +1,10 @@
 import { Slot as RUISlot } from '@radix-ui/react-slot'
 import {
-  forwardRef,
-  useMemo,
-  type ForwardRefExoticComponent,
   type Component,
+  type ForwardRefExoticComponent,
+  forwardRef,
   type RefAttributes,
+  useMemo,
 } from 'react'
 import { StyleSheet, type ViewProps } from 'react-native'
 

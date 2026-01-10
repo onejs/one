@@ -46,8 +46,14 @@ describe(matchDynamicName, () => {
   it(`matches`, () => {
     expect(matchDynamicName('[[...foobar]]')).toEqual(undefined)
     expect(matchDynamicName('[[foobar]]')).toEqual(undefined)
-    expect(matchDynamicName('[...foobar]')).toEqual({ name: 'foobar', deep: true })
-    expect(matchDynamicName('[foobar]')).toEqual({ name: 'foobar', deep: false })
+    expect(matchDynamicName('[...foobar]')).toEqual({
+      name: 'foobar',
+      deep: true,
+    })
+    expect(matchDynamicName('[foobar]')).toEqual({
+      name: 'foobar',
+      deep: false,
+    })
     expect(matchDynamicName('foobar')).toEqual(undefined)
   })
 })

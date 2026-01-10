@@ -1,6 +1,6 @@
-import { describe, expect, it, beforeEach, afterEach } from 'vitest'
-import { generateSitemap, type RouteSitemapData } from './generateSitemap'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import type { One } from '../vite/types'
+import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 
 describe('generateSitemap', () => {
   let originalEnv: string | undefined

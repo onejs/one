@@ -1,6 +1,6 @@
 import {
-  isNative,
   CSS_PRELOAD_JS_POSTFIX,
+  isNative,
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
   PRELOAD_JS_POSTFIX,

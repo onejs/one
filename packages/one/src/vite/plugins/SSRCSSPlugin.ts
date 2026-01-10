@@ -17,7 +17,7 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
         if (req.url?.includes(VIRTUAL_SSR_CSS_HREF)) {
           invalidateModule(server, '\0' + VIRTUAL_SSR_CSS_ENTRY + '?direct')
 
-          let code = await collectStyle(server, pluginOpts.entries)
+          const code = await collectStyle(server, pluginOpts.entries)
 
           res.setHeader('Content-Type', 'text/css')
           res.setHeader('Cache-Control', 'no-store')
@@ -112,7 +112,7 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
           buffer.byteLength
         )
 
-        let processed = transform({
+        const processed = transform({
           filename: 'code.css',
           code: codeOut,
           ...server.config.css.lightningcss,

@@ -10,7 +10,7 @@ LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
 export function createApp(options: CreateAppProps): void {
   const App = () => {
-    let contents = (
+    const contents = (
       <Root
         isClient
         flags={options.flags}

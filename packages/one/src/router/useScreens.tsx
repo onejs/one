@@ -457,7 +457,11 @@ function routeToScreen(
   )
 }
 
-type RouteErrorBoundaryState = { hasError: boolean; error: any; errorInfo: any }
+type RouteErrorBoundaryState = {
+  hasError: boolean
+  error: any
+  errorInfo: any
+}
 
 const ROUTE_ERROR_BOUNDARY_INITIAL_STATE = {
   hasError: false,
@@ -530,12 +534,24 @@ class RouteErrorBoundary extends React.Component<
             </TouchableOpacity>
             <ScrollView contentContainerStyle={{ gap: 12 }}>
               {error instanceof Error ? (
-                <Text style={{ color: 'white', fontSize: 12, fontFamily: 'monospace' }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 12,
+                    fontFamily: 'monospace',
+                  }}
+                >
                   {error.stack}
                 </Text>
               ) : null}
               {errorInfo?.componentStack ? (
-                <Text style={{ color: 'white', fontSize: 12, fontFamily: 'monospace' }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 12,
+                    fontFamily: 'monospace',
+                  }}
+                >
                   Component Stack: {errorInfo.componentStack}
                 </Text>
               ) : null}

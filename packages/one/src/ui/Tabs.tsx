@@ -1,3 +1,4 @@
+import type { RouterFactory } from '@react-navigation/native'
 import {
   type DefaultNavigatorOptions,
   LinkingContext,
@@ -11,33 +12,31 @@ import {
   Children,
   type ComponentProps,
   Fragment,
+  isValidElement,
+  type PropsWithChildren,
   type ReactElement,
   type ReactNode,
-  isValidElement,
   use,
   useMemo,
-  type PropsWithChildren,
 } from 'react'
-import { StyleSheet, type ViewProps, View } from 'react-native'
-
+import { StyleSheet, View, type ViewProps } from 'react-native'
+import { useRouteInfo } from '../hooks'
+import { resolveHref } from '../link/href'
+import { useContextKey, useRouteNode } from '../router/Route'
+import { shouldLinkExternally } from '../utils/url'
+import { NavigatorContext } from '../views/Navigator'
+import { type ScreenTrigger, triggersToScreens, ViewSlot } from './common'
 import {
   type ExpoTabsScreenOptions,
   type TabNavigationEventMap,
-  TabTriggerMapContext,
   type TabsContextValue,
+  TabTriggerMapContext,
 } from './TabContext'
 import { isTabList } from './TabList'
 import { ExpoTabRouter, type ExpoTabRouterOptions } from './TabRouter'
 import { isTabSlot } from './TabSlot'
 import { isTabTrigger } from './TabTrigger'
-import { ViewSlot, type ScreenTrigger, triggersToScreens } from './common'
 import { useComponent } from './useComponent'
-import { useRouteNode, useContextKey } from '../router/Route'
-import { useRouteInfo } from '../hooks'
-import { resolveHref } from '../link/href'
-import { shouldLinkExternally } from '../utils/url'
-import { NavigatorContext } from '../views/Navigator'
-import type { RouterFactory } from '@react-navigation/native'
 
 type NavigatorContextValue = {
   contextKey: string
@@ -140,7 +139,10 @@ export type UseTabsWithTriggersOptions = UseTabsOptions & {
  */
 export function useTabsWithChildren(options: UseTabsWithChildrenOptions) {
   const { children, ...rest } = options
-  return useTabsWithTriggers({ triggers: parseTriggersFromChildren(children), ...rest })
+  return useTabsWithTriggers({
+    triggers: parseTriggersFromChildren(children),
+    ...rest,
+  })
 }
 
 /**

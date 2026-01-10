@@ -1,27 +1,26 @@
 import { Slot } from '@radix-ui/react-slot'
 import type { TabNavigationState } from '@react-navigation/native'
 import {
+  type ComponentProps,
+  type ReactElement,
   type ReactNode,
   use,
-  type ReactElement,
-  type ComponentProps,
   useCallback,
 } from 'react'
 import {
-  type View,
-  StyleSheet,
+  type GestureResponderEvent,
   Pressable,
   type PressableProps,
-  type GestureResponderEvent,
+  StyleSheet,
+  type View,
 } from 'react-native'
-
-import { TabTriggerMapContext } from './TabContext'
-import type { TriggerMap } from './common'
 import { appendBaseUrl } from '../fork/getPathFromState-mods'
+import type { OneRouter } from '../interfaces/router'
 import { router } from '../router/imperative-api'
 import { stripGroupSegmentsFromPath } from '../router/matchers'
-import type { OneRouter } from '../interfaces/router'
 import { useNavigatorContext } from '../views/Navigator'
+import type { TriggerMap } from './common'
+import { TabTriggerMapContext } from './TabContext'
 
 type PressablePropsWithoutFunctionChildren = Omit<PressableProps, 'children'> & {
   children?: ReactNode | undefined

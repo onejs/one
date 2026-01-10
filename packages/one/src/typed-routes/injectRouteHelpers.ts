@@ -1,5 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
+import { readFile, writeFile } from 'node:fs/promises'
 
 export type InjectMode = 'type' | 'runtime'
 

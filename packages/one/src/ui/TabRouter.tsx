@@ -1,11 +1,11 @@
 import {
   type CommonNavigationAction,
   type ParamListBase,
-  TabRouter as RNTabRouter,
-  type Router,
   type TabActionType as RNTabActionType,
-  type TabNavigationState,
+  TabRouter as RNTabRouter,
   type TabRouterOptions as RNTabRouterOptions,
+  type Router,
+  type TabNavigationState,
 } from '@react-navigation/native'
 
 import type { TriggerMap } from './common'
