@@ -275,11 +275,11 @@ export function createHandleRequest(
         return null
       }
 
-      // skip static file requests - let vite serve them instead of matching dynamic routes
-      // only skip paths that end with known static file extensions
-      if (/\.(?:ico|png|jpg|jpeg|gif|svg|webp|css|js|mjs|cjs|map|json|xml|txt|woff2?|ttf|otf|eot|mp3|mp4|webm|pdf)$/i.test(pathname)) {
-        return null
-      }
+      // check if path looks like a static file (extension 2-4 chars like .js, .png, .jpeg)
+      // excludes loader paths which end with _vxrn_loader.js
+      const looksLikeStaticFile =
+        !pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED) &&
+        /\.[a-zA-Z0-9]{2,4}$/.test(pathname)
 
       if (handlers.handleAPI) {
         const apiRoute = compiledManifest.apiRoutes.find((route) => {
@@ -339,6 +339,21 @@ export function createHandleRequest(
           if (!route.compiledRegex.test(pathname)) {
             continue
           }
+
+          // for static-looking paths, skip dynamic routes (with route params)
+          // this prevents /favicon.ico from matching [slug] routes
+          // but allows explicit routes and not-found handlers to match
+          const isDynamicRoute = Object.keys(route.routeKeys).length > 0
+          const isNotFoundRoute = route.page.endsWith('/+not-found')
+          if (looksLikeStaticFile && isDynamicRoute && !isNotFoundRoute) {
+            if (debugRouter) {
+              console.info(
+                `[one] ⚡ ${pathname} → skipping dynamic route ${route.page} for static-looking path`
+              )
+            }
+            continue
+          }
+
           if (debugRouter) {
             console.info(
               `[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`

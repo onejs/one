@@ -79,16 +79,35 @@ describe('createHandleRequest', () => {
       expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
 
-    it('should NOT skip unknown extensions like .xyz (only known static file types)', async () => {
+    it('should skip extensions 2-4 chars like .xyz', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
-      await handler(createRequest('/somefile.xyz'))
-      expect(mockHandlers.handlePage).toHaveBeenCalled()
+      const result = await handler(createRequest('/somefile.xyz'))
+      expect(result).toBeNull()
+      expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
 
-    it('should match routes with dots in segment names', async () => {
+    it('should NOT skip extensions longer than 4 chars (routes with dots in names)', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
       await handler(createRequest('/route.normal'))
       expect(mockHandlers.handlePage).toHaveBeenCalled()
+    })
+
+    it('should NOT skip 5+ char extensions like .woff2', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+      await handler(createRequest('/font.woff2'))
+      expect(mockHandlers.handlePage).toHaveBeenCalled()
+    })
+
+    it('should NOT skip loader paths ending with _vxrn_loader.js', async () => {
+      const mockHandlersWithLoader = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleLoader: vi.fn().mockResolvedValue('loader data'),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithLoader, { routerRoot: '/app' })
+      // Loader paths are /assets/<path>_<nonce>_vxrn_loader.js - they should reach handleLoader
+      // for a matching route (the path /my-page matches the [slug] route)
+      await handler(createRequest('/assets/my-page_123_vxrn_loader.js'))
+      expect(mockHandlersWithLoader.handleLoader).toHaveBeenCalled()
     })
   })
 
