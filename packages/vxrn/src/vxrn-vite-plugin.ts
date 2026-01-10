@@ -61,7 +61,7 @@ export function vxrn(options?: VxrnPluginOptions): PluginOption {
           mode,
         })
 
-        const additionalConfig = getAdditionalViteConfig(root)
+        const additionalConfig = getAdditionalViteConfig()
         return mergeConfig(baseConfig, additionalConfig)
       },
     },

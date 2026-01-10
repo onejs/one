@@ -48,7 +48,7 @@ export async function getReactNativeBuildConfig(
     root,
     server: { port },
   } = options
-  const { optimizeDeps } = getOptimizeDeps('build', root)
+  const { optimizeDeps } = getOptimizeDeps('build')
 
   const { mode } = internal
   const serverUrl = process.env.ONE_SERVER_URL || options.server.url
