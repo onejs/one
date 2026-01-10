@@ -39,7 +39,7 @@ export { useNavigation } from './router/useNavigation';
 export { registerPreloadedRoute } from './router/useViteRoutes';
 export type { Endpoint, LoaderProps } from './types';
 export { useFocusEffect } from './useFocusEffect';
-export { useLoader, useLoaderState } from './useLoader';
+export { refetchLoader, useLoader, useLoaderState } from './useLoader';
 export { type ServerHeadInsertionCallback, useServerHeadInsertion, } from './useServerHeadInsertion';
 export { isResponse } from './utils/isResponse';
 export { redirect } from './utils/redirect';
@@ -48,4 +48,5 @@ export { LoadProgressBar } from './views/LoadProgressBar';
 export { Navigator, Slot } from './views/Navigator';
 export { ScrollBehavior } from './views/ScrollBehavior';
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only';
+export { watchFile } from './utils/watchFile';
 //# sourceMappingURL=index.d.ts.map

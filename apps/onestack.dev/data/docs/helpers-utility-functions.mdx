@@ -93,3 +93,23 @@ export default createMiddleware(({ request }) => {
 ```
 
 Where `headers` is of type [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers).
+
+### watchFile
+
+A function that registers a file dependency for hot reload during development. When the file changes, the loader will automatically re-run and refresh data on the client without a full page reload.
+
+```tsx fileName=app/blog/[slug].tsx
+import { watchFile } from 'one'
+import { readFile } from 'fs/promises'
+
+export async function loader({ params: { slug } }) {
+  const filePath = `./content/${slug}.mdx`
+  watchFile(filePath)
+  const content = await readFile(filePath, 'utf-8')
+  return { content }
+}
+```
+
+- No-op in production and on the client
+- Pass the same path you use with `fs.readFile` or similar
+- See [Loaders - Hot Reload](/docs/routing-loader#hot-reload-for-file-dependencies) for more details

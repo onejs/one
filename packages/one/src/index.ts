@@ -70,7 +70,7 @@ export { registerPreloadedRoute } from './router/useViteRoutes'
 export type { Endpoint, LoaderProps } from './types'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
-export { useLoader, useLoaderState } from './useLoader'
+export { refetchLoader, useLoader, useLoaderState } from './useLoader'
 export {
   type ServerHeadInsertionCallback,
   useServerHeadInsertion,
@@ -83,3 +83,4 @@ export { Navigator, Slot } from './views/Navigator'
 export { ScrollBehavior } from './views/ScrollBehavior'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
+export { watchFile } from './utils/watchFile'

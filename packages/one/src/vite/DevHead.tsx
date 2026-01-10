@@ -44,6 +44,29 @@ export function DevHead() {
         <script
           type="module"
           dangerouslySetInnerHTML={{
+            __html: `import { createHotContext } from "/@vite/client";
+  const hot = createHotContext("/__one_loader_hmr");
+  hot.on("one:loader-data-update", async (data) => {
+    // Refetch loader data for all affected routes (no full page reload)
+    if (data?.routePaths && window.__oneRefetchLoader) {
+      const currentPath = window.location.pathname.replace(/\\/$/, '') || '/';
+      for (const routePath of data.routePaths) {
+        // Only refetch if we're on an affected route
+        if (routePath === currentPath) {
+          try {
+            await window.__oneRefetchLoader(routePath);
+          } catch (err) {
+            console.error('[one] Error refetching loader:', err);
+          }
+        }
+      }
+    }
+  });`,
+          }}
+        />
+        <script
+          type="module"
+          dangerouslySetInnerHTML={{
             __html: `import { injectIntoGlobalHook } from "/@react-refresh";
   injectIntoGlobalHook(window);
   window.$RefreshReg$ = () => {};

@@ -11,6 +11,7 @@ import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOpt
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
@@ -18,6 +19,7 @@ import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
+const debugLoaderDeps = process.env.ONE_DEBUG_LOADER_DEPS
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -27,6 +29,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
   let runner: ModuleRunner
   let server: ViteDevServer
+
+  // Track file dependencies from loaders for hot reload
+  // Maps file path -> set of route paths that depend on it
+  const loaderFileDependencies = new Map<string, Set<string>>()
 
   let handleRequest = createRequestHandler()
   // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
@@ -72,7 +78,26 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             globalThis['__vxrnresetState']?.()
 
             const exported = routeFile === '' ? {} : await runner.import(routeFile)
-            const loaderData = await exported.loader?.(loaderProps)
+
+            // Track file dependencies from loader for hot reload
+            let loaderData: any
+            if (exported.loader) {
+              const tracked = await trackLoaderDependencies(() => exported.loader(loaderProps))
+              loaderData = tracked.result
+
+              // Register dependencies: map file path -> route paths that depend on it
+              const routePath = loaderProps?.path || '/'
+              for (const dep of tracked.dependencies) {
+                if (!loaderFileDependencies.has(dep)) {
+                  loaderFileDependencies.set(dep, new Set())
+                  server?.watcher.add(dep)
+                  if (debugLoaderDeps) {
+                    console.info(` ⓵  [loader-dep] watching: ${dep}`)
+                  }
+                }
+                loaderFileDependencies.get(dep)!.add(routePath)
+              }
+            }
 
             // biome-ignore lint/security/noGlobalEval: needed to set server env at runtime
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
@@ -164,7 +189,26 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           }
 
           const exported = await runner.import(routeFile)
-          const loaderData = await exported.loader?.(loaderProps)
+
+          // Track file dependencies from loader for hot reload
+          let loaderData: any
+          if (exported.loader) {
+            const tracked = await trackLoaderDependencies(() => exported.loader(loaderProps))
+            loaderData = tracked.result
+
+            // Register dependencies: map file path -> route paths that depend on it
+            const routePath = loaderProps?.path || '/'
+            for (const dep of tracked.dependencies) {
+              if (!loaderFileDependencies.has(dep)) {
+                loaderFileDependencies.set(dep, new Set())
+                server?.watcher.add(dep)
+                if (debugLoaderDeps) {
+                  console.info(` ⓵  [loader-dep] watching: ${dep}`)
+                }
+              }
+              loaderFileDependencies.get(dep)!.add(routePath)
+            }
+          }
 
           if (loaderData) {
             // add loader back in!
@@ -299,6 +343,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
     configureServer(serverIn) {
       server = serverIn
+
       // change this to .server to test using the indepedently scoped env
       runner = createServerModuleRunner(
         USE_SERVER_ENV ? server.environments.server : server.environments.ssr
@@ -318,6 +363,28 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       }, 100)
 
       server.watcher.addListener('all', fileWatcherChangeListener)
+
+      // Watch for changes to loader dependencies (files read via fs in loaders)
+      const loaderDepChangeListener = debounce((path: string) => {
+        const absolutePath = resolve(path)
+        const routePaths = loaderFileDependencies.get(absolutePath)
+        if (routePaths && routePaths.size > 0) {
+          if (debugLoaderDeps) {
+            console.info(
+              ` ⓵  [loader-dep] changed: ${absolutePath}, triggering loader refetch for routes:`,
+              [...routePaths]
+            )
+          }
+          // Send custom HMR event with affected route paths for hot reload (no full page reload)
+          server.hot.send({
+            type: 'custom',
+            event: 'one:loader-data-update',
+            data: { routePaths: [...routePaths] },
+          })
+        }
+      }, 100)
+
+      server.watcher.on('change', loaderDepChangeListener)
 
       // Instead of adding the middleware here, we return a function that Vite
       // will call after adding its own middlewares. We want our code to run after
