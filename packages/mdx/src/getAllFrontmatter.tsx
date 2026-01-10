@@ -5,13 +5,16 @@ import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { getHeadings } from './getHeadings'
 import type { Frontmatter } from './types'
+import { notifyFileRead } from './watchFile'
 
 // the front matter and content of all mdx files based on `docsPaths`
 export const getAllFrontmatter = (fromPath: string): Frontmatter[] => {
   const paths = glob.sync(`${fromPath}/**/*.mdx`)
   return paths
     .map((filePath) => {
-      const source = fs.readFileSync(path.join(filePath), 'utf8')
+      const absolutePath = path.join(filePath)
+      notifyFileRead(absolutePath)
+      const source = fs.readFileSync(absolutePath, 'utf8')
       const { data, content } = matter(source)
       const slug = filePath
         .replace(`${fromPath.replaceAll('\\', '/')}/`, '')

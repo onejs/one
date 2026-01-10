@@ -3,6 +3,7 @@ import path from 'node:path'
 import compareVersions from 'compare-versions'
 import { getMDX } from './getMDX'
 import type { Frontmatter, UnifiedPlugin } from './types'
+import { notifyFileRead } from './watchFile'
 
 export const getMDXBySlug = async (
   basePath: string,
@@ -18,6 +19,7 @@ export const getMDXBySlug = async (
   }
 
   const filePath = path.join(basePath, `${mdxPath}.mdx`)
+  notifyFileRead(filePath)
   const source = fs.readFileSync(filePath, 'utf8')
   const bundle = await getMDX(source, extraPlugins)
   return bundle

@@ -180,3 +180,40 @@ export async function loader({ params: { slug } }) {
 ```
 
 `watchFile` is a no-op in production and on the client, so it's safe to use unconditionally. The path should be the same path you pass to `fs.readFile` or similar functions.
+
+### Using @vxrn/mdx
+
+The `@vxrn/mdx` package has built-in HMR support. When used in a One loader, MDX files will automatically trigger hot reload when changed:
+
+```tsx
+import { getMDXBySlug } from '@vxrn/mdx'
+
+export async function loader({ params: { slug } }) {
+  // HMR is automatic - no watchFile needed
+  const { frontmatter, code } = await getMDXBySlug('./content', slug)
+  return { frontmatter, code }
+}
+```
+
+### For Library Authors
+
+If you're building a library that reads files and want to support One's loader HMR, you can use the global hook pattern. This allows your library to work with One's HMR without depending on the `one` package:
+
+```tsx
+const WATCH_FILE_KEY = '__oneWatchFile'
+
+function notifyFileRead(filePath: string): void {
+  const watchFile = globalThis[WATCH_FILE_KEY] as ((path: string) => void) | undefined
+  if (watchFile) {
+    watchFile(filePath)
+  }
+}
+
+// Call this whenever you read a file
+export function readContent(filePath: string) {
+  notifyFileRead(filePath)
+  return fs.readFileSync(filePath, 'utf-8')
+}
+```
+
+When One is present, it registers the `watchFile` implementation on the global object. Your library checks for it and calls it if available - no coupling required. The `@vxrn/mdx` package exports `notifyFileRead` if you prefer to import it directly.
