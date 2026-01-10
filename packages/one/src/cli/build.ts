@@ -685,6 +685,27 @@ export async function build(args: {
 
   switch (platform) {
     case 'vercel': {
+      // Check for cleanUrls in vercel.json - required for SSG direct URL access
+      const vercelJsonPath = join(options.root, 'vercel.json')
+      if (FSExtra.existsSync(vercelJsonPath)) {
+        try {
+          const vercelConfig = JSON.parse(FSExtra.readFileSync(vercelJsonPath, 'utf-8'))
+          if (!vercelConfig.cleanUrls) {
+            console.warn(
+              `\n ⚠️  Warning: Your vercel.json is missing "cleanUrls": true`
+            )
+            console.warn(
+              `    Without this, direct navigation to SSG pages will 404.`
+            )
+            console.warn(
+              `    Add "cleanUrls": true to your vercel.json to fix this.\n`
+            )
+          }
+        } catch {
+          // ignore parse errors
+        }
+      }
+
       await buildVercelOutputDirectory({
         apiOutput,
         buildInfoForWriting,
