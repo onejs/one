@@ -1,11 +1,11 @@
+import events from 'node:events'
+import path from 'node:path'
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
   MetroPluginOptions,
 } from '@vxrn/vite-plugin-metro'
-import events from 'node:events'
-import path from 'node:path'
 import type { Plugin, PluginOption } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -21,6 +21,7 @@ import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -157,6 +158,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ? barrelOption
             : ['@tamagui/lucide-icons'],
         }) as any),
+
+    imageDataPlugin(),
 
     {
       name: 'one-define-client-env',

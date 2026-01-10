@@ -13,12 +13,14 @@ Out of the box, the One Vite plugin does the following:
 
 - Sets up a [file system router](/docs/routing) in the `./app` folder
 - Generates [types for routes](/docs/routing#types) and updates them when routes change
-- Enables [loaders](/docs/routing-loader) and tree shakes them out on client. Using the amazing [babel-dead-code-elimination](https://github.com/pcattori/babel-dead-code-elimination) module
+- Enables [loaders](/docs/routing-loader) and tree shakes them out on client using [babel-dead-code-elimination](https://github.com/pcattori/babel-dead-code-elimination)
+- Supports [loader HMR](/docs/routing-loader#hot-reload-for-file-dependencies) with `watchFile` for instant content updates during development
 - Enables the [`deps` option](/docs/configuration#deps) that allows for easy node_module patching
 - Uses React 19 for both native and web
 - Adds [vite-tsconfig-paths](https://github.com/aleclarson/vite-tsconfig-paths) plugin, unless it detects you've added it already
 - Loads `.env` file into `process.env` before running anything using [dotenv](https://www.npmjs.com/package/dotenv)
 - Adds a well-configured `tsconfig.json` if it doesn't exist
+- Enables [`?imagedata` imports](/docs/guides-images) for automatic image dimensions and blur placeholders
 - Configures native to resolve "react-native" export field in package.json
 - Configures platform-specific extensions `web|native|ios|android` for extensions `ts|tsx|js|mjs`, eg `.ios.ts`
 - Adds a ssr-css plugin that enables perfect dev-mode CSS on first load, matching production
@@ -40,6 +42,10 @@ Out of the box, the One Vite plugin does the following:
 - Implements custom hot reloading that works with commonjs
 - Implements a custom bridge to React Native for debug logging
 - Implements logic to support importing assets, like images
+- Tree-shakes server code from native bundles automatically
+- Auto-detects and configures NativeWind support
+- Auto-detects and configures Reanimated support
+- Supports [Metro mode](/docs/metro-mode) for maximum compatibility
 
 ## Web
 
@@ -54,7 +60,10 @@ Out of the box, the One Vite plugin does the following:
 - Implements [API routes](/docs/routing-modes#api)
 - Adds a [page loading progress bar](/docs/components-LoadProgressBar)
 - Swaps `query-string` and `url-parse` libraries to save ~20Kb
-- Adds a [Redirect component](/docs/components-Redirect) 
+- Adds a [Redirect component](/docs/components-Redirect)
+- Supports [middleware](/docs/routing-middlewares) for request interception and shared context
+- [Deploy to Vercel or Cloudflare](/docs/guides-deployment) workers with a single config option
+- Automatic [sitemap generation](/docs/configuration#sitemap) with per-route overrides
 
 ## Extras
 
@@ -62,3 +71,4 @@ Out of the box, the One Vite plugin does the following:
 - Analyze your web client-side bundle with `VXRN_ANALYZE_BUNDLE=1`
 - Guide for [MDX support](/docs/guides-mdx)
 - Guide for [light and dark mode](/docs/guides-dark-mode)
+- Guide for [optimized images](/docs/guides-images) with `?imagedata` imports

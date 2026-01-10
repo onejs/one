@@ -2,6 +2,24 @@ export { createApp } from './createApp'
 
 export type { One, OneRouter } from './interfaces/router'
 
+/**
+ * Image data returned by ?imagedata imports.
+ * Install `sharp` to enable this feature: `npm install sharp`
+ *
+ * NOTE: This interface is also declared in types/env.d.ts for Vite module augmentation.
+ * Keep both definitions in sync.
+ */
+export interface ImageData {
+  /** URL path to the image */
+  src: string
+  /** Image width in pixels */
+  width: number
+  /** Image height in pixels */
+  height: number
+  /** Base64 blur placeholder (10px wide) */
+  blurDataURL: string
+}
+
 import type { OneRouter } from './interfaces/router'
 
 // if not overridden keep it as just string
@@ -77,10 +95,10 @@ export {
 } from './useServerHeadInsertion'
 export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
+export { watchFile } from './utils/watchFile'
 export { ErrorBoundary } from './views/ErrorBoundary'
 export { LoadProgressBar } from './views/LoadProgressBar'
 export { Navigator, Slot } from './views/Navigator'
 export { ScrollBehavior } from './views/ScrollBehavior'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
-export { watchFile } from './utils/watchFile'
