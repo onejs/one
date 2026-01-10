@@ -275,6 +275,12 @@ export function createHandleRequest(
         return null
       }
 
+      // skip static file requests - let vite serve them instead of matching dynamic routes
+      // this mirrors Next.js behavior: paths with file extensions don't match page routes
+      if (pathname.includes('.')) {
+        return null
+      }
+
       if (handlers.handleAPI) {
         const apiRoute = compiledManifest.apiRoutes.find((route) => {
           return route.compiledRegex.test(pathname)
