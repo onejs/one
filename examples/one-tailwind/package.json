@@ -1,6 +1,6 @@
 {
   "name": "example-tailwind",
-  "version": "1.2.55",
+  "version": "1.2.56",
   "private": true,
   "type": "module",
   "scripts": {
