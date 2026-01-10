@@ -42,6 +42,7 @@ export function SchemeProvider({
     <>
       {process.env.TAMAGUI_TARGET === 'native' ? null : (
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `let d = document.documentElement.classList
 d.remove('${getClassName('light')}')
@@ -81,6 +82,7 @@ export function MetaTheme({
         content={color ?? (value === 'dark' ? darkColor : lightColor)}
       />
       <script
+        suppressHydrationWarning
         id="meta-theme-hydrate"
         dangerouslySetInnerHTML={{
           __html: `
