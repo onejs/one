@@ -8,7 +8,6 @@ import {
   type NavigationContainerRefWithCurrent,
   StackActions,
 } from '@react-navigation/native'
-import * as Linking from 'expo-linking'
 import {
   type ComponentType,
   Fragment,
@@ -19,6 +18,7 @@ import {
 import { Platform } from 'react-native'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
+import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
@@ -473,7 +473,7 @@ export async function linkTo(
   }
 
   if (shouldLinkExternally(href)) {
-    Linking.openURL(href)
+    openExternalURL(href)
     return
   }
 
