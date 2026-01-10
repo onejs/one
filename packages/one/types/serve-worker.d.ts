@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import type { One } from './vite/types';
-export { setFetchStaticHtml, getFetchStaticHtml } from './server/staticHtmlFetcher';
+export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher';
 /**
  * Lazy import functions for route modules.
  * Modules are loaded on-demand when a route is matched, not all upfront.

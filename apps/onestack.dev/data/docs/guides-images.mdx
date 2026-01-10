@@ -1,0 +1,134 @@
+---
+title: Images
+description: Optimized image loading with automatic dimensions and blur placeholders using the ?imagedata import suffix.
+---
+
+One provides a built-in way to import images with their metadata at build time using the `?imagedata` suffix. This gives you automatic width, height, and blur placeholder data without any runtime cost.
+
+## Setup
+
+Install `sharp` to enable image processing:
+
+```bash
+npm install sharp
+```
+
+If `sharp` is not installed, imports will still work but return `0` for dimensions and an empty blur placeholder. A console warning will be shown during build to remind you to install it.
+
+## Usage
+
+Import any image with the `?imagedata` suffix:
+
+```tsx
+import heroImage from '/hero.jpg?imagedata'
+
+// heroImage = {
+//   src: '/hero.jpg',
+//   width: 1920,
+//   height: 1080,
+//   blurDataURL: 'data:image/jpeg;base64,...'
+// }
+```
+
+The returned object can be spread directly onto any image component:
+
+```tsx
+import heroImage from '/hero.jpg?imagedata'
+
+// Native img element
+<img {...heroImage} alt="Hero" />
+
+// Or with explicit props
+<img
+  src={heroImage.src}
+  width={heroImage.width}
+  height={heroImage.height}
+  style={{ backgroundImage: `url(${heroImage.blurDataURL})` }}
+  alt="Hero"
+/>
+```
+
+## Import paths
+
+The plugin supports both public directory and relative imports:
+
+```tsx
+// From public directory (starts with /)
+import hero from '/images/hero.jpg?imagedata'
+
+// Relative to current file
+import avatar from './avatar.png?imagedata'
+import logo from '../assets/logo.svg?imagedata'
+```
+
+## TypeScript
+
+Types are included automatically. The import returns an `ImageData` object:
+
+```tsx
+import type { ImageData } from 'one'
+
+// ImageData = {
+//   src: string
+//   width: number
+//   height: number
+//   blurDataURL: string
+// }
+```
+
+## Blur placeholders
+
+The blur placeholder is a tiny (10px wide) base64-encoded JPEG that can be used as a low-quality image placeholder (LQIP) while the full image loads:
+
+```tsx
+import hero from '/hero.jpg?imagedata'
+
+function HeroImage() {
+  const [loaded, setLoaded] = useState(false)
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {/* Blur placeholder */}
+      <img
+        src={hero.blurDataURL}
+        width={hero.width}
+        height={hero.height}
+        style={{
+          position: 'absolute',
+          filter: 'blur(20px)',
+          transform: 'scale(1.1)',
+          opacity: loaded ? 0 : 1,
+          transition: 'opacity 0.3s',
+        }}
+        alt=""
+      />
+      {/* Full image */}
+      <img
+        {...hero}
+        onLoad={() => setLoaded(true)}
+        alt="Hero"
+      />
+    </div>
+  )
+}
+```
+
+## Supported formats
+
+The plugin uses [sharp](https://sharp.pixelplumbing.com/) for image processing, which supports:
+
+- JPEG / JPG
+- PNG
+- WebP
+- AVIF
+- GIF
+- TIFF
+- SVG (dimensions only, no blur placeholder)
+
+## Benefits
+
+- **Build-time processing** - No runtime cost, dimensions are computed during build
+- **Prevents layout shift** - Width and height allow browsers to reserve space before images load
+- **Blur placeholders** - Improve perceived performance with LQIP technique
+- **Type-safe** - Full TypeScript support with autocomplete
+- **Works everywhere** - Compatible with any image component (native `<img>`, React Native `<Image>`, Tamagui, etc.)

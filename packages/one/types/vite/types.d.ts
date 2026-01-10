@@ -2,8 +2,8 @@ import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
-import type { RouteNode } from '../router/Route';
 import type { One as OneShared } from '../interfaces/router';
+import type { RouteNode } from '../router/Route';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type RouteInfo<TRegex = string> = {
     file: string;

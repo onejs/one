@@ -1,8 +1,8 @@
 import { type DefaultNavigatorOptions, type ParamListBase, type TabActionHelpers, type TabNavigationState, type TabRouterOptions } from '@react-navigation/native';
 import { type PropsWithChildren } from 'react';
 import { type ViewProps } from 'react-native';
-import { type ExpoTabsScreenOptions, type TabNavigationEventMap, type TabsContextValue } from './TabContext';
 import { type ScreenTrigger } from './common';
+import { type ExpoTabsScreenOptions, type TabNavigationEventMap, type TabsContextValue } from './TabContext';
 export * from './TabContext';
 export * from './TabList';
 export * from './TabSlot';
@@ -84,7 +84,22 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             name: RouteName;
             params: object | undefined;
             path?: string;
-            merge?: boolean;
+            merge
+            /**
+             * Root component for the headless tabs.
+             *
+             * @see [`useTabsWithChildren`](#usetabswithchildrenoptions) for a hook version of this component.
+             * @example
+             * ```tsx
+             * <Tabs>
+             *  <TabSlot />
+             *  <TabList>
+             *   <TabTrigger name="home" href="/" />
+             *  </TabList>
+             * </Tabs>
+             * ```
+             */
+            ?: boolean;
             pop?: boolean;
         } : never): void;
         navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;

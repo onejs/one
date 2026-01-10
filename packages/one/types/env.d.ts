@@ -40,4 +40,27 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
+/**
+ * Image data returned by ?imagedata imports.
+ * Install `sharp` to enable this feature: `npm install sharp`
+ *
+ * NOTE: This interface is also declared in src/index.ts for direct exports.
+ * Keep both definitions in sync.
+ */
+export interface ImageData {
+  /** URL path to the image */
+  src: string
+  /** Image width in pixels */
+  width: number
+  /** Image height in pixels */
+  height: number
+  /** Base64 blur placeholder (10px wide) */
+  blurDataURL: string
+}
+
+declare module '*?imagedata' {
+  const imageData: ImageData
+  export default imageData
+}
+
 export {}

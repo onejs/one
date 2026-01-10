@@ -1,4 +1,4 @@
-import type { ReactElement, ComponentProps } from 'react';
+import type { ComponentProps, ReactElement } from 'react';
 import { type ViewProps } from 'react-native';
 export type TabListProps = ViewProps & {
     /** Forward props to child component and removes the extra `<View>`. Useful for custom wrappers. */

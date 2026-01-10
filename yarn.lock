@@ -16991,8 +16991,11 @@ __metadata:
     react-native: "*"
     react-native-safe-area-context: ~5.6.1
     react-native-screens: ~4.16.0
+    sharp: ">=0.33.0"
   peerDependenciesMeta:
     react-native:
+      optional: true
+    sharp:
       optional: true
   bin:
     one: run.mjs
