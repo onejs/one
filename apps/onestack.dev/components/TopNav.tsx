@@ -77,7 +77,7 @@ export const TopNav = () => {
               pointerEvents="none"
               y={-2}
             >
-              <OneLogo size={0.5} animate minimal={isBlog} />
+              <OneLogo size={0.5} animate minimal />
             </View>
           </Link>
         </XStack>
