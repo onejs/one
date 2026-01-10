@@ -201,6 +201,7 @@
     "immer": "^10.1.1",
     "react-native": "0.81.5",
     "rollup": "^4.29.1",
+    "sharp": "^0.34.5",
     "typescript": "^5.7.3",
     "vitest": "^4.0.6"
   },
