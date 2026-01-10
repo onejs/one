@@ -1,6 +1,6 @@
 {
   "name": "example-recommended",
-  "version": "1.2.56",
+  "version": "1.2.57",
   "private": true,
   "type": "module",
   "scripts": {
