@@ -1,8 +1,13 @@
 import type { InlineConfig } from 'vite'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
-import { join } from 'node:path'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const motiStubPath = join(__dirname, '..', 'stubs', 'moti-stub.mjs')
+const configDefaultStubPath = join(__dirname, '..', 'stubs', 'config-default-stub.mjs')
 
 // essentially base web config not base everything
 
@@ -95,6 +100,15 @@ export async function getBaseViteConfig(
         // bundle size optimizations
         'query-string': resolvePath('@vxrn/query-string', root),
         'url-parse': resolvePath('@vxrn/url-parse', root),
+
+        // stub out packages that cause duplicate @tamagui/core instances via CJS imports
+        'moti/author': motiStubPath,
+        'moti/interactions': motiStubPath,
+        'moti/skeleton': motiStubPath,
+        'moti/svg': motiStubPath,
+        'moti': motiStubPath,
+        '@tamagui/animations-moti': motiStubPath,
+        '@tamagui/config-default': configDefaultStubPath,
       },
 
       // TODO auto dedupe all include optimize deps?

@@ -110,7 +110,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     )
   }
 
-  const { optimizeDeps } = getOptimizeDeps('build')
+  const { optimizeDeps } = getOptimizeDeps('build', options.root)
 
   let webBuildConfig = mergeConfig(
     await getBaseViteConfigWithPlugins({

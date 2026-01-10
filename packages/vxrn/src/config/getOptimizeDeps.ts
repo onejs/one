@@ -1,9 +1,65 @@
 import type { UserConfig } from 'vite'
+import type { Plugin } from 'esbuild'
+import { createRequire } from 'node:module'
 import { webExtensions } from '../constants'
+
+// packages that must be singletons (have module-level state)
+const singletonPackages = [
+  '@tamagui/core',
+  '@tamagui/web',
+  'tamagui',
+  'react',
+  'react-dom',
+]
+
+// esbuild plugin to force singleton packages to resolve to the same path
+// this prevents duplicate module instances when the same package appears
+// in different dependency trees during SSR pre-bundling
+function createDedupePlugin(root: string): Plugin {
+  const require = createRequire(root + '/package.json')
+  const resolvedPaths = new Map<string, string>()
+
+  return {
+    name: 'vxrn-dedupe-singleton',
+    setup(build) {
+      // resolve singleton packages to absolute paths
+      for (const pkg of singletonPackages) {
+        try {
+          const resolved = require.resolve(pkg)
+          resolvedPaths.set(pkg, resolved)
+        } catch {
+          // package not installed, skip
+        }
+      }
+
+      build.onResolve({ filter: /.*/ }, (args) => {
+        // check if this is a singleton package
+        const resolvedPath = resolvedPaths.get(args.path)
+        if (resolvedPath) {
+          return { path: resolvedPath }
+        }
+
+        // also check for subpaths like @tamagui/core/config
+        for (const [pkg, path] of resolvedPaths) {
+          if (args.path.startsWith(pkg + '/')) {
+            try {
+              const subpath = require.resolve(args.path)
+              return { path: subpath }
+            } catch {
+              // subpath doesn't exist
+            }
+          }
+        }
+
+        return null
+      })
+    },
+  }
+}
 
 // TODO we need to traverse to get sub-deps...
 
-export function getOptimizeDeps(mode: 'build' | 'serve') {
+export function getOptimizeDeps(mode: 'build' | 'serve', root = process.cwd()) {
   const needsInterop = [
     'nativewind/jsx-dev-runtime',
     'nativewind/jsx-runtime',
@@ -136,13 +192,23 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     depsToOptimize,
     optimizeDeps: {
       include: depsToOptimize,
-      exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
+      exclude: [
+        'util',
+        '@swc/wasm',
+        '@swc/core-darwin-arm64',
+        'moti/author',
+        // build-time tools that shouldn't be bundled for SSR
+        '@tamagui/static',
+        '@tamagui/static-worker',
+        '@tamagui/vite-plugin',
+      ],
       needsInterop,
       // Enable lazy optimization - don't wait for all deps before starting server
       // This allows browser to process requests in parallel for faster initial load
       holdUntilCrawlEnd: false,
       esbuildOptions: {
         resolveExtensions: webExtensions,
+        plugins: [createDedupePlugin(root)],
       },
     } satisfies UserConfig['optimizeDeps'],
   }

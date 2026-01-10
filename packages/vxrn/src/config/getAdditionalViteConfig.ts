@@ -7,8 +7,8 @@ import { webExtensions } from '../constants'
 /**
  * These configs are originally in `getViteServerConfig`. Maybe we should organize and move each of them into other more appropriate places.
  */
-export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
-  const { optimizeDeps } = getOptimizeDeps('serve')
+export function getAdditionalViteConfig(root?: string): Omit<InlineConfig, 'plugins'> {
+  const { optimizeDeps } = getOptimizeDeps('serve', root)
 
   // TODO: can we move most of this into `one` plugin:
   return {

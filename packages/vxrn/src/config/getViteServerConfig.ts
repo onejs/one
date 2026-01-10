@@ -17,13 +17,13 @@ export async function getViteServerConfig(
   userViteConfig?: UserConfig
 ) {
   const { root, server } = config
-  const { optimizeDeps } = getOptimizeDeps('serve')
+  const { optimizeDeps } = getOptimizeDeps('serve', root)
 
   // TODO: can we move most of this into `one` plugin:
   let serverConfig: UserConfig = mergeConfig(
     await getBaseViteConfigWithPlugins(config),
 
-    mergeConfig(getAdditionalViteConfig(), {
+    mergeConfig(getAdditionalViteConfig(root), {
       plugins: [...getReactNativePlugins(config)],
       server: {
         hmr: {
