@@ -157,3 +157,26 @@ export async function loader({ params: { id } }) {
   // ... rest of function
 }
 ```
+
+## Hot Reload for File Dependencies
+
+During development, you can use `watchFile` to register file dependencies in your loader. When these files change, the loader data will automatically refresh without a full page reload.
+
+This is useful for content-driven sites where loaders read from MDX files, JSON, or other data files:
+
+```tsx
+import { watchFile } from 'one'
+import { readFile } from 'fs/promises'
+
+export async function loader({ params: { slug } }) {
+  const filePath = `./content/${slug}.mdx`
+
+  // Register this file for HMR - when it changes, loader will re-run
+  watchFile(filePath)
+
+  const content = await readFile(filePath, 'utf-8')
+  return { content }
+}
+```
+
+`watchFile` is a no-op in production and on the client, so it's safe to use unconditionally. The path should be the same path you pass to `fs.readFile` or similar functions.

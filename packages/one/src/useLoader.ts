@@ -71,6 +71,10 @@ export async function refetchLoader(pathname: string): Promise<void> {
   }
 }
 
+if (typeof window !== 'undefined') {
+  ;(window as any).__oneRefetchLoader = refetchLoader
+}
+
 export function useLoaderState<
   Loader extends Function = any,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
