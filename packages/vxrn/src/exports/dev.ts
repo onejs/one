@@ -6,11 +6,27 @@ import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
 
+// Exit if we become orphaned (parent dies). This prevents zombie dev servers.
+function setupOrphanDetection() {
+  if (process.platform === 'win32') return
+
+  const initialPpid = process.ppid
+  const interval = setInterval(() => {
+    // If parent changed (usually to PID 1), we're orphaned
+    if (process.ppid !== initialPpid) {
+      process.exit(0)
+    }
+  }, 500)
+  interval.unref()
+}
+
 export type DevOptions = VXRNOptions & {
   clean?: boolean
 }
 
 export const dev = async (optionsIn: DevOptions) => {
+  setupOrphanDetection()
+
   const devStartTime = Date.now()
   process.env.IS_VXRN_CLI = 'true'
 
@@ -80,6 +96,8 @@ export default defineConfig({
   const serverConfig = await getViteServerConfig(options, config)
 
   let viteServer: ViteDevServer | null = null
+  // Track if server is closing to prevent work during shutdown
+  let isClosing = false
 
   return {
     viteServer,
@@ -87,11 +105,18 @@ export default defineConfig({
     start: async () => {
       viteServer = await createServer(serverConfig)
 
-      // This fakes vite into thinking its loading files for HMR
-      // Debounced per-file to avoid CPU spikes during builds
+      // This fakes vite into thinking its loading files for React Native HMR.
+      // Native clients don't request URLs like web clients, so we manually
+      // trigger transforms to make HMR work.
+      const { connectedNativeClients } = await import('../utils/connectedNativeClients')
       const pendingTransforms = new Map<string, ReturnType<typeof debounce>>()
 
       viteServer.watcher.addListener('change', async (path) => {
+        // Don't do work if server is closing or no native clients connected
+        if (isClosing || connectedNativeClients === 0) {
+          return
+        }
+
         // Skip dist files to avoid loops during builds
         if (path.includes('/dist/') || path.includes('\\dist\\')) {
           return
@@ -107,16 +132,25 @@ export default defineConfig({
           pendingTransforms.set(
             id,
             debounce(async () => {
+              if (isClosing) return
               try {
                 await viteServer!.transformRequest(id)
               } catch (err) {
-                console.info('err', err)
+                // Ignore errors during shutdown
+                if (!isClosing) {
+                  console.info('err', err)
+                }
               }
             }, 100)
           )
         }
 
         pendingTransforms.get(id)!()
+      })
+
+      // Mark as closing when http server closes
+      viteServer.httpServer?.on('close', () => {
+        isClosing = true
       })
 
       await viteServer.listen()
@@ -142,6 +176,7 @@ export default defineConfig({
     },
 
     stop: () => {
+      isClosing = true
       if (viteServer) {
         viteServer.watcher.removeAllListeners()
         return viteServer.close()
