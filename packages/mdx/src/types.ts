@@ -27,4 +27,4 @@ export type Frontmatter = {
   demoName?: string
 }
 
-export type UnifiedPlugin = import('unified').Plugin[]
+export type UnifiedPlugin = import('unified').PluggableList
