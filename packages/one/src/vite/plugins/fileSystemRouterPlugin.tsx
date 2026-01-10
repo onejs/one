@@ -1,4 +1,4 @@
-import { join, resolve } from 'node:path'
+import path from 'node:path'
 import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -68,11 +68,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             await renderPromise
           }
 
-          const { promise, resolve } = promiseWithResolvers<void>()
+          const { promise, resolve: resolveRender } = promiseWithResolvers<void>()
           renderPromise = promise
 
           try {
-            const routeFile = join(routerRoot, route.file)
+            const routeFile = path.join(routerRoot, route.file)
             runner.clearCache()
 
             globalThis['__vxrnresetState']?.()
@@ -90,14 +90,16 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               // Register dependencies: map file path -> route paths that depend on it
               const routePath = loaderProps?.path || '/'
               for (const dep of tracked.dependencies) {
-                if (!loaderFileDependencies.has(dep)) {
-                  loaderFileDependencies.set(dep, new Set())
-                  server?.watcher.add(dep)
+                // Resolve to absolute path for consistent lookup when file changes
+                const absoluteDep = path.resolve(dep)
+                if (!loaderFileDependencies.has(absoluteDep)) {
+                  loaderFileDependencies.set(absoluteDep, new Set())
+                  server?.watcher.add(absoluteDep)
                   if (debugLoaderDeps) {
-                    console.info(` ⓵  [loader-dep] watching: ${dep}`)
+                    console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
                   }
                 }
-                loaderFileDependencies.get(dep)!.add(routePath)
+                loaderFileDependencies.get(absoluteDep)!.add(routePath)
               }
             }
 
@@ -177,12 +179,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             </html>
           `
           } finally {
-            resolve()
+            resolveRender()
           }
         },
 
         async handleLoader({ request, route, url, loaderProps }) {
-          const routeFile = join(routerRoot, route.file)
+          const routeFile = path.join(routerRoot, route.file)
 
           // this will remove all loaders
           let transformedJS = (await server.transformRequest(routeFile))?.code
@@ -203,14 +205,16 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // Register dependencies: map file path -> route paths that depend on it
             const routePath = loaderProps?.path || '/'
             for (const dep of tracked.dependencies) {
-              if (!loaderFileDependencies.has(dep)) {
-                loaderFileDependencies.set(dep, new Set())
-                server?.watcher.add(dep)
+              // Resolve to absolute path for consistent lookup when file changes
+              const absoluteDep = path.resolve(dep)
+              if (!loaderFileDependencies.has(absoluteDep)) {
+                loaderFileDependencies.set(absoluteDep, new Set())
+                server?.watcher.add(absoluteDep)
                 if (debugLoaderDeps) {
-                  console.info(` ⓵  [loader-dep] watching: ${dep}`)
+                  console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
                 }
               }
-              loaderFileDependencies.get(dep)!.add(routePath)
+              loaderFileDependencies.get(absoluteDep)!.add(routePath)
             }
           }
 
@@ -244,11 +248,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         },
 
         async handleAPI({ route }) {
-          return await runner.import(join(routerRoot, route.file))
+          return await runner.import(path.join(routerRoot, route.file))
         },
 
         async loadMiddleware(route) {
-          return await runner.import(join(routerRoot, route.contextKey))
+          return await runner.import(path.join(routerRoot, route.contextKey))
         },
       },
       { routerRoot }
@@ -283,10 +287,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               }
 
               return [
-                join('./app', route.file),
+                path.join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {
                   if (!layout.contextKey) return []
-                  return [join('./app', layout.contextKey)]
+                  return [path.join('./app', layout.contextKey)]
                 }) || []),
               ]
             })
@@ -326,7 +330,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       //         dev: {
       //           optimizeDeps,
       //           createEnvironment(name, config) {
-      //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
+      //             const worker = new Worker(path.join(import.meta.dirname, 'server.js'))
       //             // const hot = new
       //             return new DevEnvironment(name, config, {
       //               hot: false,
@@ -353,13 +357,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         USE_SERVER_ENV ? server.environments.server : server.environments.ssr
       )
 
-      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
+      const appDir = path.join(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
-      const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
+      const fileWatcherChangeListener = debounce(async (type: string, changedPath: string) => {
         if (type === 'add' || type === 'delete') {
           // resolve to absolute path since watcher may emit relative paths
-          const absolutePath = resolve(path)
+          const absolutePath = path.resolve(changedPath)
           if (absolutePath.startsWith(appDir)) {
             handleRequest = createRequestHandler()
           }
@@ -369,8 +373,8 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       server.watcher.addListener('all', fileWatcherChangeListener)
 
       // Watch for changes to loader dependencies (files read via fs in loaders)
-      const loaderDepChangeListener = debounce((path: string) => {
-        const absolutePath = resolve(path)
+      const loaderDepChangeListener = debounce((changedPath: string) => {
+        const absolutePath = path.resolve(changedPath)
         const routePaths = loaderFileDependencies.get(absolutePath)
         if (routePaths && routePaths.size > 0) {
           if (debugLoaderDeps) {
