@@ -1,60 +1,97 @@
 import path from 'node:path'
+import { parseSync } from 'oxc-parser'
 import { normalizePath } from 'vite'
 import type { Plugin, ViteDevServer } from 'vite'
 
-/**
- * Checks if a potential JSX match is actually JSX and not a TypeScript generic.
- */
-function isRealJsx(code: string, matchIndex: number, tagEnd: number): boolean {
-  const afterTag = code.slice(tagEnd)
-  const beforeTag = code.slice(0, matchIndex)
-
-  // JSX has `<` preceded by whitespace, `(`, `{`, etc.
-  // Generics have `<` preceded by an identifier: `SomeType<T>`
-  if (beforeTag.match(/[a-zA-Z0-9_$]$/)) {
-    return false
-  }
-
-  // Skip type definition contexts
-  const lineStart = beforeTag.lastIndexOf('\n')
-  const currentLine = beforeTag.slice(lineStart + 1)
-
-  if (
-    currentLine.match(/^\s*(export\s+)?(type|interface)\s+/) ||
-    currentLine.match(/:\s*[A-Za-z_$][\w$]*\s*$/) ||
-    currentLine.match(/extends\s+[A-Za-z_$][\w$]*\s*$/) ||
-    currentLine.match(/implements\s+[A-Za-z_$][\w$]*\s*$/) ||
-    currentLine.match(/as\s+[A-Za-z_$][\w$]*\s*$/)
-  ) {
-    return false
-  }
-
-  // Check for JSX-like patterns after tag
-  const attrMatch = afterTag.match(/^\s+([a-zA-Z_$][\w$-]*\s*[=?{:]|\.\.\.|\{|\/)/)
-  if (attrMatch) {
-    return true
-  }
-
-  if (afterTag.match(/^\s*\/?>/)) {
-    const context = beforeTag.slice(-100)
-    if (
-      context.includes('return') ||
-      context.match(/\(\s*$/) ||
-      context.match(/\{\s*$/) ||
-      context.match(/\?\s*$/) ||
-      context.match(/:\s*$/) ||
-      context.match(/&&\s*$/) ||
-      context.match(/\|\|\s*$/)
-    ) {
-      return true
-    }
-  }
-
-  return false
+interface JsxLocation {
+  /** Position right after the tag name where we insert the attribute */
+  insertOffset: number
+  line: number
+  column: number
 }
 
 /**
- * Transforms JSX to inject data-one-source attributes.
+ * Parse code with oxc and find all JSX opening elements.
+ * Returns insertion points sorted by offset (descending for safe insertion).
+ */
+function findJsxElements(code: string, filename: string): JsxLocation[] {
+  const result = parseSync(filename, code)
+
+  if (result.errors.length > 0) {
+    return []
+  }
+
+  const locations: JsxLocation[] = []
+
+  function getJsxName(node: any): string | null {
+    if (!node) return null
+    if (node.type === 'JSXIdentifier') return node.name
+    if (node.type === 'JSXMemberExpression') {
+      const obj = getJsxName(node.object)
+      return obj ? `${obj}.${node.property?.name}` : null
+    }
+    return null
+  }
+
+  function getLocation(offset: number): { line: number; column: number } {
+    const before = code.slice(0, offset)
+    const lines = before.split('\n')
+    return {
+      line: lines.length,
+      column: lines[lines.length - 1]!.length + 1,
+    }
+  }
+
+  function walk(node: any): void {
+    if (!node || typeof node !== 'object') return
+
+    if (node.type === 'JSXOpeningElement' && node.name) {
+      const tagName = getJsxName(node.name)
+
+      // Skip Fragment and already-tagged elements
+      if (tagName && tagName !== 'Fragment') {
+        // Check if already has data-one-source
+        const hasSourceAttr = node.attributes?.some(
+          (attr: any) =>
+            attr.type === 'JSXAttribute' && attr.name?.name === 'data-one-source'
+        )
+
+        if (!hasSourceAttr) {
+          // Insert position is right after the tag name
+          const nameEnd = node.name.end
+          const loc = getLocation(node.start)
+
+          locations.push({
+            insertOffset: nameEnd,
+            line: loc.line,
+            column: loc.column,
+          })
+        }
+      }
+    }
+
+    // Walk all child nodes
+    for (const key of Object.keys(node)) {
+      if (key === 'parent') continue
+      const value = node[key]
+      if (Array.isArray(value)) {
+        for (const child of value) {
+          walk(child)
+        }
+      } else if (value && typeof value === 'object') {
+        walk(value)
+      }
+    }
+  }
+
+  walk(result.program)
+
+  // Sort by offset descending so we can insert from end to start without shifting positions
+  return locations.sort((a, b) => b.insertOffset - a.insertOffset)
+}
+
+/**
+ * Transforms JSX to inject data-one-source attributes using oxc-parser.
  */
 function injectSourceToJsx(
   code: string,
@@ -65,43 +102,25 @@ function injectSourceToJsx(
 
   const location = filePath.replace(normalizePath(process.cwd()), '')
 
+  // Quick check - skip if no JSX-like content
   if (!code.includes('<') || !code.includes('>')) {
     return
   }
 
-  let modified = false
-  let result = code
-  let offset = 0
+  const jsxLocations = findJsxElements(code, filePath)
 
-  const jsxPattern = /<([A-Z][a-zA-Z0-9.]*|[a-z][a-zA-Z0-9-]*)(?=[\s>/])/g
-
-  let match: RegExpExecArray | null
-  while ((match = jsxPattern.exec(code)) !== null) {
-    const tagName = match[1]!
-    const matchStart = match.index
-    const matchEnd = match.index + match[0].length
-
-    if (tagName === 'Fragment') continue
-
-    const nearbyCode = code.slice(Math.max(0, matchStart - 20), matchEnd + 50)
-    if (nearbyCode.includes('data-one-source')) continue
-
-    if (!isRealJsx(code, matchStart, matchEnd)) continue
-
-    const beforeMatch = code.slice(0, matchStart)
-    const lineNumber = (beforeMatch.match(/\n/g) || []).length + 1
-    const lastNewline = beforeMatch.lastIndexOf('\n')
-    const column = matchStart - lastNewline
-
-    const insertPos = matchEnd + offset
-    const sourceAttr = ` data-one-source="${location}:${lineNumber}:${column}"`
-
-    result = result.slice(0, insertPos) + sourceAttr + result.slice(insertPos)
-    offset += sourceAttr.length
-    modified = true
+  if (jsxLocations.length === 0) {
+    return
   }
 
-  if (!modified) return
+  let result = code
+
+  // Insert from end to start to preserve offsets
+  for (const jsx of jsxLocations) {
+    const sourceAttr = ` data-one-source="${location}:${jsx.line}:${jsx.column}"`
+    result =
+      result.slice(0, jsx.insertOffset) + sourceAttr + result.slice(jsx.insertOffset)
+  }
 
   return { code: result, map: null }
 }
