@@ -25,6 +25,7 @@ export const Link = React.forwardRef(function Link(
     replace,
     push,
     id,
+    mask,
     // TODO: This does not prevent default on the anchor tag.
     asChild,
     rel,
@@ -47,7 +48,11 @@ export const Link = React.forwardRef(function Link(
     return resolveHref(href)
   }, [href])
 
-  const props = useLinkTo({ href: resolvedHref, replace })
+  const resolvedMask = React.useMemo(() => {
+    return mask ? resolveHref(mask) : undefined
+  }, [mask])
+
+  const props = useLinkTo({ href: resolvedHref, replace, mask: resolvedMask })
 
   const onPress = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent

@@ -46,6 +46,41 @@ export declare namespace OneRouter {
     export type AllRoutes = OneRouterRoutes | ExternalPathString;
     export type LinkToOptions = {
         scroll?: boolean;
+        /**
+         * Display a different URL in the browser than the actual route.
+         * Useful for modals and overlays that should show a clean URL.
+         *
+         * @example
+         * ```tsx
+         * // Navigate to /photos/5/modal but show /photos/5 in browser
+         * router.navigate('/photos/5/modal', {
+         *   mask: { href: '/photos/5' }
+         * })
+         * ```
+         */
+        mask?: {
+            /** The URL to display in the browser address bar */
+            href: Href;
+            /**
+             * If true, unmask on page reload (show the masked URL in browser).
+             * If false (default), keep masking (navigate to actual route on reload).
+             */
+            unmaskOnReload?: boolean;
+        };
+        /**
+         * Specify a scroll group for this navigation.
+         * Routes within the same scroll group will preserve scroll position
+         * when navigating between them.
+         *
+         * @example
+         * ```tsx
+         * // Use scroll group to preserve scroll when switching tabs
+         * router.navigate('/dashboard/settings', {
+         *   scrollGroup: '/dashboard'
+         * })
+         * ```
+         */
+        scrollGroup?: string;
     };
     type SearchOrHash = `?${string}` | `#${string}`;
     export type UnknownInputParams = Record<string, string | number | undefined | null | (string | number)[]>;
@@ -237,6 +272,18 @@ export declare namespace OneRouter {
         push?: boolean;
         /** On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind. */
         className?: string;
+        /**
+         * Display a different URL in the browser than the actual route.
+         * Useful for modals and overlays that should show a clean URL.
+         *
+         * @example
+         * ```tsx
+         * <Link href="/photos/5/modal" mask="/photos/5">
+         *   View Photo
+         * </Link>
+         * ```
+         */
+        mask?: Href<T>;
         onPress?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void;
     }
     export interface LinkComponent {
