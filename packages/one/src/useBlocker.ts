@@ -305,3 +305,36 @@ export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
     location: blockedLocation!,
   }
 }
+
+/**
+ * Check if any active blocker wants to block navigation.
+ * Called by the router before navigating via Link.
+ * Returns true if navigation was blocked.
+ */
+export function checkBlocker(
+  nextLocation: string,
+  historyAction: 'push' | 'pop' | 'replace' = 'push'
+): boolean {
+  if (Platform.OS !== 'web' || typeof window === 'undefined') {
+    return false
+  }
+
+  if (isProceeding) {
+    return false
+  }
+
+  for (const [, callbacks] of blockerCallbacks) {
+    if (callbacks.shouldBlock()) {
+      isBlocking = true
+      pendingNavigation = {
+        previousLocation: currentLocation,
+        nextLocation,
+        historyAction,
+      }
+      callbacks.onBlock(pendingNavigation)
+      return true
+    }
+  }
+
+  return false
+}
