@@ -1,0 +1,189 @@
+---
+title: useBlocker
+---
+
+The `useBlocker` hook allows you to block navigation when certain conditions are met, such as when a user has unsaved changes in a form. This provides a way to prompt users before they accidentally leave a page with unsaved work.
+
+## Basic Usage
+
+```tsx
+import { useBlocker } from 'one'
+import { useState } from 'react'
+
+export default function EditPage() {
+  const [isDirty, setIsDirty] = useState(false)
+  const blocker = useBlocker(isDirty)
+
+  return (
+    <>
+      <form onChange={() => setIsDirty(true)}>
+        <input type="text" />
+        <button type="submit">Save</button>
+      </form>
+
+      {blocker.state === 'blocked' && (
+        <div className="modal">
+          <p>You have unsaved changes. Leave anyway?</p>
+          <button onClick={blocker.reset}>Stay</button>
+          <button onClick={blocker.proceed}>Leave</button>
+        </div>
+      )}
+    </>
+  )
+}
+```
+
+## Function-Based Blocking
+
+For more control, pass a function that receives location information:
+
+```tsx
+const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+  // Only block when leaving the /edit section
+  return currentLocation.startsWith('/edit') && !nextLocation.startsWith('/edit')
+})
+```
+
+The function receives:
+
+- `currentLocation` - The current pathname and search params
+- `nextLocation` - Where the user is trying to navigate
+- `historyAction` - The type of navigation (`'push'`, `'pop'`, or `'replace'`)
+
+## Blocker States
+
+The blocker returns an object with a `state` property:
+
+### `'unblocked'`
+
+Navigation is not blocked. The blocker object has no additional properties.
+
+```tsx
+if (blocker.state === 'unblocked') {
+  // Normal state, navigation is allowed
+}
+```
+
+### `'blocked'`
+
+Navigation has been blocked and is waiting for user decision.
+
+```tsx
+if (blocker.state === 'blocked') {
+  blocker.location  // The destination the user tried to navigate to
+  blocker.reset()   // Cancel the navigation, stay on current page
+  blocker.proceed() // Allow the navigation to continue
+}
+```
+
+### `'proceeding'`
+
+The user has chosen to proceed and navigation is in progress.
+
+```tsx
+if (blocker.state === 'proceeding') {
+  blocker.location  // Where we're navigating to
+}
+```
+
+## Platform Behavior
+
+### Web
+
+On web, `useBlocker` intercepts:
+
+- **Browser back/forward buttons** - Via popstate events
+- **Programmatic navigation** - Via pushState/replaceState interception
+- **Page close/refresh** - Via beforeunload (shows browser's default prompt)
+
+### Native
+
+On native platforms, `useBlocker` uses React Navigation's `beforeRemove` event. This blocks:
+
+- **Back navigation** - Hardware back button, swipe gestures, programmatic back
+- **Screen removal** - When the screen would be removed from the stack
+
+Note: Native blocking cannot prevent the app from being closed or backgrounded.
+
+## TypeScript Types
+
+```tsx
+import type { Blocker, BlockerFunction, BlockerState } from 'one'
+
+// BlockerState is 'unblocked' | 'blocked' | 'proceeding'
+
+// BlockerFunction signature
+type BlockerFunction = (args: {
+  currentLocation: string
+  nextLocation: string
+  historyAction: 'push' | 'pop' | 'replace'
+}) => boolean
+```
+
+## Example: Form with Confirmation Dialog
+
+```tsx
+import { useBlocker } from 'one'
+import { useState } from 'react'
+
+export default function EditProfile() {
+  const [formData, setFormData] = useState({ name: '', email: '' })
+  const [savedData, setSavedData] = useState({ name: '', email: '' })
+
+  // Check if form has unsaved changes
+  const hasUnsavedChanges =
+    formData.name !== savedData.name ||
+    formData.email !== savedData.email
+
+  const blocker = useBlocker(hasUnsavedChanges)
+
+  const handleSave = () => {
+    // Save logic here...
+    setSavedData(formData)
+  }
+
+  return (
+    <div>
+      <h1>Edit Profile</h1>
+
+      <input
+        value={formData.name}
+        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+        placeholder="Name"
+      />
+
+      <input
+        value={formData.email}
+        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+        placeholder="Email"
+      />
+
+      <button onClick={handleSave}>Save Changes</button>
+
+      {blocker.state === 'blocked' && (
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <h2>Unsaved Changes</h2>
+            <p>You have unsaved changes that will be lost.</p>
+            <div className="dialog-actions">
+              <button onClick={blocker.reset}>
+                Keep Editing
+              </button>
+              <button onClick={blocker.proceed}>
+                Discard Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+```
+
+## Best Practices
+
+1. **Reset dirty state on save** - Clear the blocking condition when the user saves their work
+2. **Provide clear messaging** - Tell users what will be lost if they navigate away
+3. **Make actions obvious** - Clearly label the "stay" and "leave" options
+4. **Test both platforms** - Behavior differs slightly between web and native
