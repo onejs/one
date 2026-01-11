@@ -1,6 +1,8 @@
 import React, { createContext, type ReactNode, useContext } from 'react'
 import type { ErrorBoundaryProps } from '../views/Try'
+import type { LoaderProps } from '../types'
 import type { One } from '../vite/types'
+import type { ParamValidator, RouteValidationFn } from '../validateParams'
 import { getContextKey } from './matchers'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
@@ -18,9 +20,36 @@ export type LoadedRoute = {
   generateStaticParams?: (props: {
     params?: Record<string, string | string[]>
   }) => Record<string, string | string[]>[]
-  loader?: (props: {
-    params?: Record<string, string | string[]>
-  }) => Record<string, string | string[]>[]
+  loader?: (props: LoaderProps) => Record<string, string | string[]>[]
+  /**
+   * Validate route params before navigation.
+   * Use with Zod, Valibot, or a custom function.
+   *
+   * @example
+   * ```ts
+   * import { z } from 'zod'
+   * export const validateParams = z.object({
+   *   id: z.string().uuid()
+   * })
+   * ```
+   */
+  validateParams?: ParamValidator
+  /**
+   * Async route validation function.
+   * Runs before navigation to validate the route is accessible.
+   *
+   * @example
+   * ```ts
+   * export async function validateRoute({ params }) {
+   *   const exists = await checkResourceExists(params.id)
+   *   if (!exists) {
+   *     return { valid: false, error: 'Resource not found' }
+   *   }
+   *   return { valid: true }
+   * }
+   * ```
+   */
+  validateRoute?: RouteValidationFn
 }
 
 export type RouteNode = {
