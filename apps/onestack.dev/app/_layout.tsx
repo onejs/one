@@ -4,7 +4,7 @@ import './syntax-highlight.css'
 import './tamagui.css'
 
 import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, SourceInspector, usePathname } from 'one'
+import { LoadProgressBar, Slot, usePathname } from 'one'
 import { useEffect } from 'react'
 import { TamaguiProvider, useTheme } from 'tamagui'
 import config from '~/config/tamagui.config'
@@ -35,7 +35,6 @@ export default function Layout() {
 
       <body>
         <LoadProgressBar startDelay={1_000} />
-        <SourceInspector />
 
         <SchemeProvider>
           <ThemeProvider>
