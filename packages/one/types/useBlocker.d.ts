@@ -63,4 +63,10 @@ export type Blocker = {
  * ```
  */
 export declare function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker;
+/**
+ * Check if any active blocker wants to block navigation.
+ * Called by the router before navigating via Link.
+ * Returns true if navigation was blocked.
+ */
+export declare function checkBlocker(nextLocation: string, historyAction?: 'push' | 'pop' | 'replace'): boolean;
 //# sourceMappingURL=useBlocker.d.ts.map

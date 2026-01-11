@@ -140,3 +140,14 @@ export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
     location: blockedLocation!,
   }
 }
+
+/**
+ * No-op on native - native uses React Navigation's beforeRemove event instead.
+ * This is only used by the router on web.
+ */
+export function checkBlocker(
+  _nextLocation: string,
+  _historyAction: 'push' | 'pop' | 'replace' = 'push'
+): boolean {
+  return false
+}

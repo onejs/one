@@ -55,7 +55,7 @@ export * as routerStore from './router/router';
 export { useNavigation } from './router/useNavigation';
 export { registerPreloadedRoute } from './router/useViteRoutes';
 export type { Endpoint, LoaderProps } from './types';
-export { useBlocker, type Blocker, type BlockerFunction, type BlockerState } from './useBlocker';
+export { useBlocker, type Blocker, type BlockerFunction, type BlockerState, } from './useBlocker';
 export { validateParams, zodParamValidator, ParamValidationError, RouteValidationError, type ParamValidator, type InferParamInput, type InferParamOutput, type ValidateRouteProps, type ValidationResult, type RouteValidationFn, } from './validateParams';
 export { useValidationState, type ValidationState } from './router/router';
 export { useFocusEffect } from './useFocusEffect';

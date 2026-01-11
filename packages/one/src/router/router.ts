@@ -46,6 +46,7 @@ import {
   RouteValidationError,
   ParamValidationError,
 } from '../validateParams'
+import { checkBlocker } from '../useBlocker'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -634,6 +635,11 @@ export async function linkTo(
 
   if (shouldLinkExternally(href)) {
     openExternalURL(href)
+    return
+  }
+
+  // Check if any blocker wants to block this navigation (web only)
+  if (checkBlocker(href, event === 'REPLACE' ? 'replace' : 'push')) {
     return
   }
 
