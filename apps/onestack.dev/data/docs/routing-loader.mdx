@@ -283,3 +283,91 @@ export function readContent(filePath: string) {
 ```
 
 When One is present, it registers the `watchFile` implementation on the global object. Your library checks for it and calls it if available - no coupling required. The `@vxrn/mdx` package exports `notifyFileRead` if you prefer to import it directly.
+
+## Route Validation
+
+One provides two ways to validate routes before navigation: `validateParams` for schema-based validation and `validateRoute` for async validation logic.
+
+### validateParams
+
+Export a schema to validate route params before navigation. Works with Zod, Valibot, or custom functions:
+
+```tsx
+import { z } from 'zod'
+
+// Validate that id is a UUID
+export const validateParams = z.object({
+  id: z.string().uuid('Invalid ID format')
+})
+
+export default function UserPage({ params }) {
+  // params.id is guaranteed to be a valid UUID
+  return <UserDetail userId={params.id} />
+}
+```
+
+If validation fails, navigation is blocked and an error is shown in the Error Panel (Alt+E).
+
+### validateRoute
+
+For async validation (like checking if a resource exists), export a `validateRoute` function:
+
+```tsx
+export async function validateRoute({ params, search, pathname }) {
+  // Check if the product exists before allowing navigation
+  const exists = await checkProductExists(params.slug)
+
+  if (!exists) {
+    return {
+      valid: false,
+      error: 'Product not found',
+      details: { slug: params.slug }
+    }
+  }
+
+  return { valid: true }
+}
+
+export default function ProductPage({ params }) {
+  // We only get here if the product exists
+  return <ProductDetail slug={params.slug} />
+}
+```
+
+### validateParams vs validateRoute
+
+Both can validate routes, but they serve different purposes:
+
+| Feature | validateParams | validateRoute |
+|---------|----------------|---------------|
+| Runs on | Client | Client |
+| Use case | Schema validation | Async checks |
+
+**Use `validateParams`** for simple schema validation (UUIDs, formats, types).
+
+**Use `validateRoute`** for async checks on the client (API calls, existence checks).
+
+For server-side auth and redirects, use your `loader` function and throw a redirect response.
+
+### useValidationState
+
+Access validation state from any component:
+
+```tsx
+import { useValidationState } from 'one'
+
+function NavigationStatus() {
+  const { status, error } = useValidationState()
+  // status: 'idle' | 'validating' | 'error' | 'valid'
+
+  if (status === 'validating') {
+    return <Spinner />
+  }
+
+  if (status === 'error') {
+    return <Alert>{error.message}</Alert>
+  }
+
+  return null
+}
+```
