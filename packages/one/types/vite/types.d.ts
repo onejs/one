@@ -345,6 +345,22 @@ export declare namespace One {
              */
             sitemap?: boolean | SitemapOptions;
         };
+        /**
+         * Development tools configuration. Set to `true` to enable all devtools,
+         * `false` to disable, or an object to configure individual tools.
+         *
+         * @default true
+         */
+        devtools?: boolean | {
+            /**
+             * Enable the source inspector.
+             * Hold Shift+Ctrl (or Shift+Cmd on Mac) and hover over elements
+             * to see their source file location. Click to open in your editor.
+             *
+             * @default true (when devtools is enabled)
+             */
+            inspector?: boolean;
+        };
         server?: VXRNOptions['server'];
         build?: {
             server?: VXRNBuildOptions | false;
