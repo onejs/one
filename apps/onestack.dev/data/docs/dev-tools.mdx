@@ -1,0 +1,84 @@
+---
+title: Dev Tools
+---
+
+One includes a unified development tools panel to help you debug and optimize your app. Open it with **Alt+Space** (Option+Space on Mac) to see a spotlight-style picker.
+
+## Opening Dev Tools
+
+Press **Alt+Space** to open the spotlight menu, then select a tool. You can also use keyboard shortcuts to jump directly to a specific panel:
+
+- **Alt+S** - SEO Preview
+- **Alt+R** - Route Info
+- **Alt+L** - Loader Timing
+- **Alt+E** - Errors
+
+Press **Escape** to close any panel.
+
+## SEO Preview
+
+See how your page appears in Google search results and check for common SEO issues:
+
+- **Google Preview** - Live preview of your search result appearance
+- **Meta Tags** - View title, description, and Open Graph tags
+- **Issues** - Warnings for missing or too-long meta tags
+
+## Route Info
+
+Debug the current route state:
+
+- **Pathname** - The current URL path
+- **Segments** - Path broken into segments
+- **Route Params** - Dynamic params from the route (e.g., `[id]`)
+- **Search Params** - Query string values
+
+## Loader Timing
+
+Visualize loader performance with a waterfall breakdown:
+
+- **Module Load Time** - Time to import the loader module
+- **Execution Time** - Time to run the loader function
+- **Total Time** - Combined timing with visual bar
+
+Useful for identifying slow loaders and optimizing data fetching.
+
+## Errors
+
+Track errors from error boundaries and loaders:
+
+- **Error Type** - Whether from a boundary or loader
+- **Timestamp** - When the error occurred
+- **Message** - The error message
+
+Errors are collected in real-time so you can see issues as they happen.
+
+## Source Inspector
+
+Hold **Shift+Cmd** (Mac) or **Shift+Ctrl** (Windows/Linux) and hover over any element to see its source location. Click to open the file in your editor.
+
+This requires the `data-one-source` attribute which One adds automatically to components during development.
+
+## Panel Features
+
+The dev tools panel is:
+
+- **Draggable** - Drag the header to reposition
+- **Edge Snapping** - Snaps to screen edges with 10px padding
+- **Resizable** - Tracks window resize when snapped to edges
+
+## Configuration
+
+Dev tools are enabled by default in development mode. To disable them, set:
+
+```ts
+// vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      devtools: false
+    })
+  ]
+}
+```

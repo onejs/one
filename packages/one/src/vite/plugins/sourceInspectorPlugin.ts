@@ -148,102 +148,6 @@ async function openInEditor(
   }
 }
 
-// Inline inspector script - runs in browser
-const INSPECTOR_SCRIPT = `
-<script type="module">
-(function() {
-  const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-  const hotkey = isMac ? ['shift', 'meta'] : ['shift', 'control'];
-  const pressed = new Set();
-  let active = false;
-  let overlay = null;
-  let tag = null;
-
-  function isHotkeyPressed() {
-    return hotkey.every(k => {
-      if (k === 'meta' || k === 'control') return pressed.has('meta') || pressed.has('control');
-      return pressed.has(k);
-    });
-  }
-
-  function createOverlay() {
-    overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;pointer-events:none;z-index:10000;background:rgba(59,130,246,0.2);border:2px solid rgba(59,130,246,0.8);border-radius:2px;transition:all 0.05s';
-    document.body.appendChild(overlay);
-
-    tag = document.createElement('div');
-    tag.style.cssText = 'position:fixed;pointer-events:none;z-index:10001;background:rgba(59,130,246,0.9);color:white;padding:4px 8px;font-size:12px;font-family:system-ui;border-radius:4px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2)';
-    document.body.appendChild(tag);
-  }
-
-  function hideOverlay() {
-    if (overlay) overlay.style.display = 'none';
-    if (tag) tag.style.display = 'none';
-  }
-
-  function showOverlay(el, source) {
-    if (!overlay) createOverlay();
-    const rect = el.getBoundingClientRect();
-    overlay.style.display = 'block';
-    overlay.style.top = rect.top + 'px';
-    overlay.style.left = rect.left + 'px';
-    overlay.style.width = rect.width + 'px';
-    overlay.style.height = rect.height + 'px';
-
-    tag.style.display = 'block';
-    tag.textContent = source;
-    let top = rect.top - 28;
-    if (top < 0) top = rect.bottom + 4;
-    tag.style.top = top + 'px';
-    tag.style.left = Math.max(4, Math.min(rect.left, window.innerWidth - 200)) + 'px';
-  }
-
-  document.addEventListener('keydown', e => {
-    pressed.add(e.key.toLowerCase());
-    if (isHotkeyPressed()) {
-      active = true;
-      console.log('[Inspector] Active - hover over elements');
-    }
-  });
-
-  document.addEventListener('keyup', e => {
-    pressed.delete(e.key.toLowerCase());
-    if (!isHotkeyPressed()) {
-      active = false;
-      hideOverlay();
-    }
-  });
-
-  document.addEventListener('mousemove', e => {
-    if (!active) return;
-    let el = document.elementFromPoint(e.clientX, e.clientY);
-    while (el && !el.hasAttribute('data-one-source')) el = el.parentElement;
-    if (el) {
-      showOverlay(el, el.getAttribute('data-one-source'));
-    } else {
-      hideOverlay();
-    }
-  });
-
-  document.addEventListener('click', e => {
-    if (!active) return;
-    let el = document.elementFromPoint(e.clientX, e.clientY);
-    while (el && !el.hasAttribute('data-one-source')) el = el.parentElement;
-    if (el) {
-      e.preventDefault();
-      e.stopPropagation();
-      const source = el.getAttribute('data-one-source');
-      fetch('/__one/open-source?source=' + encodeURIComponent(source));
-    }
-  }, true);
-
-  window.addEventListener('blur', () => { pressed.clear(); active = false; hideOverlay(); });
-
-  console.log('[Inspector] Ready - hold ' + (isMac ? 'Shift+Cmd' : 'Shift+Ctrl') + ' and hover');
-})();
-</script>
-`
-
 export function sourceInspectorPlugin(): Plugin[] {
   return [
     // Transform plugin - injects data-one-source attributes
@@ -271,22 +175,7 @@ export function sourceInspectorPlugin(): Plugin[] {
       },
     },
 
-    // Inject inspector UI script
-    {
-      name: 'one:source-inspector-ui',
-      apply: 'serve',
-
-      transformIndexHtml() {
-        return [
-          {
-            tag: 'script',
-            attrs: { type: 'module' },
-            children: INSPECTOR_SCRIPT.replace(/<\/?script[^>]*>/g, ''),
-            injectTo: 'body',
-          },
-        ]
-      },
-    },
+    // Note: Inspector UI script is now injected via DevHead.tsx for SSR compatibility
 
     // Server plugin - handles open-source requests
     {

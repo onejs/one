@@ -1,3 +1,13 @@
+export type LoaderTimingEntry = {
+    path: string;
+    startTime: number;
+    moduleLoadTime?: number;
+    executionTime?: number;
+    totalTime?: number;
+    error?: string;
+    source: 'preload' | 'initial' | 'refetch';
+};
+export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
 export declare function refetchLoader(pathname: string): Promise<void>;
 export declare function useLoaderState<Loader extends Function = any, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader?: Loader): Loader extends undefined ? {
     refetch: () => Promise<void>;
