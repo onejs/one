@@ -52,4 +52,9 @@ export type Blocker = {
  * ```
  */
 export declare function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker;
+/**
+ * No-op on native - native uses React Navigation's beforeRemove event instead.
+ * This is only used by the router on web.
+ */
+export declare function checkBlocker(_nextLocation: string, _historyAction?: 'push' | 'pop' | 'replace'): boolean;
 //# sourceMappingURL=useBlocker.native.d.ts.map
