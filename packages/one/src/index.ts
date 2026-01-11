@@ -86,9 +86,37 @@ export * as routerStore from './router/router'
 export { useNavigation } from './router/useNavigation'
 export { registerPreloadedRoute } from './router/useViteRoutes'
 export type { Endpoint, LoaderProps } from './types'
+// navigation blocking
+export {
+  useBlocker,
+  type Blocker,
+  type BlockerFunction,
+  type BlockerState,
+} from './useBlocker'
+// route param validation
+export {
+  validateParams,
+  zodParamValidator,
+  ParamValidationError,
+  RouteValidationError,
+  type ParamValidator,
+  type InferParamInput,
+  type InferParamOutput,
+  type ValidateRouteProps,
+  type ValidationResult,
+  type RouteValidationFn,
+} from './validateParams'
+// validation state hook
+export { useValidationState, type ValidationState } from './router/router'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
-export { refetchLoader, useLoader, useLoaderState } from './useLoader'
+export {
+  getLoaderTimingHistory,
+  refetchLoader,
+  useLoader,
+  useLoaderState,
+  type LoaderTimingEntry,
+} from './useLoader'
 export {
   type ServerHeadInsertionCallback,
   useServerHeadInsertion,
@@ -97,8 +125,12 @@ export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
 export { watchFile } from './utils/watchFile'
 export { ErrorBoundary } from './views/ErrorBoundary'
+export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export { LoadProgressBar } from './views/LoadProgressBar'
 export { Navigator, Slot } from './views/Navigator'
 export { ScrollBehavior } from './views/ScrollBehavior'
+export { SourceInspector, type SourceInspectorProps } from './views/SourceInspector'
+// scroll position groups
+export { useScrollGroup } from './useScrollGroup'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
