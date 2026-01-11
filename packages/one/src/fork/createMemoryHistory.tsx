@@ -5,7 +5,9 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  *
- * No modifications currently, copied only in order to use a custom `useLinking` function.
+ * Modifications:
+ * - Added displayPath field to HistoryRecord for route masking support
+ * - Modified push() and replace() to accept displayPath parameter for showing masked URLs in browser
  */
 
 import type { NavigationState } from '@react-navigation/core'
@@ -16,8 +18,10 @@ type HistoryRecord = {
   id: string
   // Navigation state object for the history entry
   state: NavigationState
-  // Path of the history entry
+  // Path of the history entry (actual navigation path)
   path: string
+  // @modified - Display path for route masking (URL shown in browser)
+  displayPath?: string
 }
 
 export function createMemoryHistory() {
@@ -70,7 +74,16 @@ export function createMemoryHistory() {
       return -1
     },
 
-    push({ path, state }: { path: string; state: NavigationState }) {
+    // @modified - added displayPath parameter for route masking
+    push({
+      path,
+      state,
+      displayPath,
+    }: {
+      path: string
+      state: NavigationState
+      displayPath?: string
+    }) {
       interrupt()
 
       const id = nanoid()
@@ -79,21 +92,35 @@ export function createMemoryHistory() {
       // So we remove any existing entries after the current index to clean them up
       items = items.slice(0, index + 1)
 
-      items.push({ path, state, id })
+      items.push({ path, state, id, displayPath })
       index = items.length - 1
 
+      // @modified - use displayPath for browser URL if provided (route masking)
+      const urlPath = displayPath ?? path
+
       if (process.env.ONE_DEBUG_ROUTER) {
-        console.info(`[one] 📜 history.push path=${path}`)
+        console.info(
+          `[one] 📜 history.push path=${path}${displayPath ? ` displayPath=${displayPath}` : ''}`
+        )
       }
 
       // We pass empty string for title because it's ignored in all browsers except safari
       // We don't store state object in history.state because:
       // - browsers have limits on how big it can be, and we don't control the size
       // - while not recommended, there could be non-serializable data in state
-      window.history.pushState({ id }, '', path)
+      window.history.pushState({ id }, '', urlPath)
     },
 
-    replace({ path, state }: { path: string; state: NavigationState }) {
+    // @modified - added displayPath parameter for route masking
+    replace({
+      path,
+      state,
+      displayPath,
+    }: {
+      path: string
+      state: NavigationState
+      displayPath?: string
+    }) {
       interrupt()
 
       const id = window.history.state?.id ?? nanoid()
@@ -112,20 +139,25 @@ export function createMemoryHistory() {
         //   So we need to push the entry as there's nothing to replace
 
         pathWithHash = pathWithHash + hash
-        items = [{ path: pathWithHash, state, id }]
+        items = [{ path: pathWithHash, state, id, displayPath }]
         index = 0
       } else {
         if (items[index].path === path) {
           pathWithHash = pathWithHash + hash
         }
-        items[index] = { path, state, id }
+        items[index] = { path, state, id, displayPath }
       }
+
+      // @modified - use displayPath for browser URL if provided (route masking)
+      const urlPath = displayPath ? displayPath + hash : pathWithHash
 
       if (process.env.ONE_DEBUG_ROUTER) {
-        console.info(`[one] 📜 history.replace path=${pathWithHash}`)
+        console.info(
+          `[one] 📜 history.replace path=${pathWithHash}${displayPath ? ` displayPath=${displayPath}` : ''}`
+        )
       }
 
-      window.history.replaceState({ id }, '', pathWithHash)
+      window.history.replaceState({ id }, '', urlPath)
     },
 
     // `history.go(n)` is asynchronous, there are couple of things to keep in mind:

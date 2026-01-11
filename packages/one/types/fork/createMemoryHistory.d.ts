@@ -5,13 +5,16 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  *
- * No modifications currently, copied only in order to use a custom `useLinking` function.
+ * Modifications:
+ * - Added displayPath field to HistoryRecord for route masking support
+ * - Modified push() and replace() to accept displayPath parameter for showing masked URLs in browser
  */
 import type { NavigationState } from '@react-navigation/core';
 type HistoryRecord = {
     id: string;
     state: NavigationState;
     path: string;
+    displayPath?: string;
 };
 export declare function createMemoryHistory(): {
     readonly index: number;
@@ -19,13 +22,15 @@ export declare function createMemoryHistory(): {
     backIndex({ path }: {
         path: string;
     }): number;
-    push({ path, state }: {
+    push({ path, state, displayPath, }: {
         path: string;
         state: NavigationState;
+        displayPath?: string;
     }): void;
-    replace({ path, state }: {
+    replace({ path, state, displayPath, }: {
         path: string;
         state: NavigationState;
+        displayPath?: string;
     }): void;
     go(n: number): Promise<void> | undefined;
     listen(listener: () => void): () => void;

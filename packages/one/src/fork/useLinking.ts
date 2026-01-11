@@ -23,6 +23,7 @@ import * as React from 'react'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
 import { rootState as routerRootState } from '../router/router'
+import { stripGroupSegmentsFromPath } from '../router/matchers'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
@@ -254,7 +255,9 @@ export function useLinking(
       // Otherwise, we'll handle it like a regular deep link
       const record = history.get(index)
 
-      if (record?.path === path && record?.state) {
+      // @modified - check both actual path and display path for route masking support
+      const pathMatches = record?.path === path || record?.displayPath === path
+      if (pathMatches && record?.state) {
         if (process.env.ONE_DEBUG_ROUTER) {
           console.info(`[one] 📜 history record found, resetRoot to:`, record.state)
         }
@@ -461,6 +464,12 @@ export function useLinking(
       const route = findFocusedRoute(state)
       const path = getPathForRoute(route, state)
 
+      // @modified - extract mask from linkOptions for route masking
+      const maskHref = (state as any).linkOptions?.mask?.href
+      const displayPath = maskHref
+        ? appendBaseUrl(stripGroupSegmentsFromPath(maskHref) || '/')
+        : undefined
+
       previousStateRef.current = refState
       pendingPopStatePathRef.current = undefined
 
@@ -488,7 +497,7 @@ export function useLinking(
         if (historyDelta > 0) {
           // If history length is increased, we should pushState
           // Note that path might not actually change here, for example, drawer open should pushState
-          history.push({ path, state })
+          history.push({ path, state, displayPath })
         } else if (historyDelta < 0) {
           // If history length is decreased, i.e. entries were removed, we want to go back
 
@@ -512,18 +521,19 @@ export function useLinking(
             }
 
             // Store the updated state as well as fix the path if incorrect
+            // Don't apply mask when going back - use the actual path
             history.replace({ path, state })
           } catch (e) {
             // The navigation was interrupted
           }
         } else {
           // If history length is unchanged, we want to replaceState
-          history.replace({ path, state })
+          history.replace({ path, state, displayPath })
         }
       } else {
         // If no common navigation state was found, assume it's a replace
         // This would happen if the user did a reset/conditionally changed navigators
-        history.replace({ path, state })
+        history.replace({ path, state, displayPath })
       }
     }
 
