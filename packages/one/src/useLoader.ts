@@ -15,6 +15,57 @@ type LoaderStateEntry = {
   hasLoadedOnce?: boolean
 }
 
+// Timing data for loader waterfall devtool (dev only)
+export type LoaderTimingEntry = {
+  path: string
+  startTime: number
+  moduleLoadTime?: number
+  executionTime?: number
+  totalTime?: number
+  error?: string
+  source: 'preload' | 'initial' | 'refetch'
+}
+
+// Store timing history for devtools - only populated in development
+const loaderTimingHistory: LoaderTimingEntry[] = []
+const MAX_TIMING_HISTORY = 50
+
+function recordLoaderTiming(entry: LoaderTimingEntry) {
+  if (process.env.NODE_ENV !== 'development') return
+
+  loaderTimingHistory.unshift(entry)
+  if (loaderTimingHistory.length > MAX_TIMING_HISTORY) {
+    loaderTimingHistory.pop()
+  }
+  // Dispatch event for devtools
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('one-loader-timing', { detail: entry }))
+
+    // Also dispatch error event if there was an error
+    if (entry.error) {
+      window.dispatchEvent(
+        new CustomEvent('one-error', {
+          detail: {
+            error: {
+              message: entry.error,
+              name: 'LoaderError',
+            },
+            route: {
+              pathname: entry.path,
+            },
+            timestamp: Date.now(),
+            type: 'loader',
+          },
+        })
+      )
+    }
+  }
+}
+
+export function getLoaderTimingHistory(): LoaderTimingEntry[] {
+  return loaderTimingHistory
+}
+
 const loaderState: Record<string, LoaderStateEntry> = {}
 const subscribers = new Set<() => void>()
 
@@ -44,6 +95,8 @@ function getLoaderState(path: string, preloadedData?: any): LoaderStateEntry {
 }
 
 export async function refetchLoader(pathname: string): Promise<void> {
+  const startTime = performance.now()
+
   updateState(pathname, {
     state: 'loading',
     error: null,
@@ -53,8 +106,15 @@ export async function refetchLoader(pathname: string): Promise<void> {
     const cacheBust = `${Date.now()}`
     const loaderJSUrl = getLoaderPath(pathname, true, cacheBust)
 
+    const moduleLoadStart = performance.now()
     const module = await dynamicImport(loaderJSUrl)
+    const moduleLoadTime = performance.now() - moduleLoadStart
+
+    const executionStart = performance.now()
     const result = await module.loader()
+    const executionTime = performance.now() - executionStart
+
+    const totalTime = performance.now() - startTime
 
     updateState(pathname, {
       data: result,
@@ -62,16 +122,37 @@ export async function refetchLoader(pathname: string): Promise<void> {
       timestamp: Date.now(),
       hasLoadedOnce: true,
     })
+
+    recordLoaderTiming({
+      path: pathname,
+      startTime,
+      moduleLoadTime,
+      executionTime,
+      totalTime,
+      source: 'refetch',
+    })
   } catch (err) {
+    const totalTime = performance.now() - startTime
+
     updateState(pathname, {
       error: err,
       state: 'idle',
     })
+
+    recordLoaderTiming({
+      path: pathname,
+      startTime,
+      totalTime,
+      error: err instanceof Error ? err.message : String(err),
+      source: 'refetch',
+    })
+
     throw err
   }
 }
 
-if (typeof window !== 'undefined') {
+// Expose refetchLoader globally for HMR in development
+if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   ;(window as any).__oneRefetchLoader = refetchLoader
 }
 
@@ -172,12 +253,15 @@ export function useLoaderState<
     } else {
       // initial load
       const loadData = async () => {
+        const startTime = performance.now()
+
         try {
           if (process.env.TAMAGUI_TARGET === 'native') {
             const loaderJSUrl = getLoaderPath(currentPath, true)
             const nativeLoaderJSUrl = `${loaderJSUrl}?platform=ios`
 
             try {
+              const moduleLoadStart = performance.now()
               const loaderJsCodeResp = await fetch(nativeLoaderJSUrl)
               if (!loaderJsCodeResp.ok) {
                 throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
@@ -187,22 +271,44 @@ export function useLoaderState<
               const result = eval(
                 `() => { var exports = {}; ${loaderJsCode}; return exports; }`
               )()
+              const moduleLoadTime = performance.now() - moduleLoadStart
 
               if (typeof result.loader !== 'function') {
                 throw new Error("Loader code isn't exporting a `loader` function")
               }
 
+              const executionStart = performance.now()
               const data = await result.loader()
+              const executionTime = performance.now() - executionStart
+              const totalTime = performance.now() - startTime
+
               updateState(currentPath, {
                 data,
                 hasLoadedOnce: true,
                 promise: undefined,
               })
+
+              recordLoaderTiming({
+                path: currentPath,
+                startTime,
+                moduleLoadTime,
+                executionTime,
+                totalTime,
+                source: 'initial',
+              })
               return
             } catch (e) {
+              const totalTime = performance.now() - startTime
               updateState(currentPath, {
                 data: {},
                 promise: undefined,
+              })
+              recordLoaderTiming({
+                path: currentPath,
+                startTime,
+                totalTime,
+                error: e instanceof Error ? e.message : String(e),
+                source: 'initial',
               })
               return
             }
@@ -210,17 +316,45 @@ export function useLoaderState<
 
           // web platform
           const loaderJSUrl = getLoaderPath(currentPath, true)
+
+          const moduleLoadStart = performance.now()
           const module = await dynamicImport(loaderJSUrl)
+          const moduleLoadTime = performance.now() - moduleLoadStart
+
+          const executionStart = performance.now()
           const result = await module.loader()
+          const executionTime = performance.now() - executionStart
+
+          const totalTime = performance.now() - startTime
+
           updateState(currentPath, {
             data: result,
             hasLoadedOnce: true,
             promise: undefined,
           })
+
+          recordLoaderTiming({
+            path: currentPath,
+            startTime,
+            moduleLoadTime,
+            executionTime,
+            totalTime,
+            source: 'initial',
+          })
         } catch (err) {
+          const totalTime = performance.now() - startTime
+
           updateState(currentPath, {
             error: err,
             promise: undefined,
+          })
+
+          recordLoaderTiming({
+            path: currentPath,
+            startTime,
+            totalTime,
+            error: err instanceof Error ? err.message : String(err),
+            source: 'initial',
           })
         }
       }
