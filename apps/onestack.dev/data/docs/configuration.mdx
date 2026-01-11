@@ -268,6 +268,39 @@ The sitemap automatically:
 
 Enables the new [React Compiler](https://react.dev/learn/react-compiler) for both native and web. Will slow down compilation as it uses Babel, but will improve app performance and reduce the need to write memoization.
 
+## devtools
+
+Development tools to help debug and understand your app. Enabled by default in development mode.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      // Enable all devtools (default)
+      devtools: true,
+
+      // Disable all devtools
+      devtools: false,
+
+      // Configure individual tools
+      devtools: {
+        inspector: true, // enabled by default
+      },
+    }),
+  ],
+}
+```
+
+### devtools.inspector
+
+The source inspector lets you quickly find the source code for any element on the page:
+
+1. Hold **Shift+Cmd** (Mac) or **Shift+Ctrl** (Windows/Linux)
+2. Hover over any element to see its source file location
+3. Click to open the file in your editor
+
+This works automatically without any additional setup - One injects the necessary data attributes during development and handles opening files in your configured editor.
+
 ## deps
 
 While building One we found ourselves needing to apply small patches to a variety of packages. Packages in the React Native ecosystem are often published only for Metro, and so have a variety of weird setups.

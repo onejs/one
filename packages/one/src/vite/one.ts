@@ -22,6 +22,7 @@ import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
+import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -678,5 +679,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     SSRCSSPlugin({
       entries: [virtualEntryId],
     }),
+
+    // Source inspector - show source file location on hover with Shift+Ctrl/Cmd
+    ...(() => {
+      // devtools defaults to true
+      const devtools = options.devtools ?? true
+      if (devtools === false) return []
+
+      // if devtools is true, enable all tools
+      // if devtools is object, check individual settings (default true)
+      const inspector = devtools === true || (devtools.inspector ?? true)
+      return inspector ? sourceInspectorPlugin() : []
+    })(),
   ]
 }

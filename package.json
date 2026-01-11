@@ -110,5 +110,8 @@
     "tamagui": {
       "workspace": "~/tamagui"
     }
+  },
+  "devDependencies": {
+    "oxc-parser": "^0.107.0"
   }
 }
