@@ -35,6 +35,17 @@ import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
 import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
+import {
+  findRouteNodeFromState,
+  extractParamsFromState,
+  extractSearchFromHref,
+  extractPathnameFromHref,
+} from './findRouteNode'
+import {
+  validateParams as runValidateParams,
+  RouteValidationError,
+  ParamValidationError,
+} from '../validateParams'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -55,6 +66,56 @@ let navigationRefSubscription: () => void
 const rootStateSubscribers = new Set<OneRouter.RootStateListener>()
 const loadingStateSubscribers = new Set<OneRouter.LoadingStateListener>()
 const storeSubscribers = new Set<() => void>()
+
+// Validation state tracking
+export type ValidationState = {
+  status: 'idle' | 'validating' | 'error' | 'valid'
+  error?: Error
+  lastValidatedHref?: string
+}
+
+let validationState: ValidationState = { status: 'idle' }
+const validationStateSubscribers = new Set<(state: ValidationState) => void>()
+
+export function subscribeToValidationState(subscriber: (state: ValidationState) => void) {
+  validationStateSubscribers.add(subscriber)
+  return () => validationStateSubscribers.delete(subscriber)
+}
+
+export function setValidationState(state: ValidationState) {
+  validationState = state
+  for (const subscriber of validationStateSubscribers) {
+    subscriber(state)
+  }
+  // Dispatch event for devtools
+  if (typeof window !== 'undefined' && state.status === 'error' && state.error) {
+    window.dispatchEvent(
+      new CustomEvent('one-validation-error', {
+        detail: {
+          error: {
+            message: state.error.message,
+            name: state.error.name,
+            stack: state.error.stack,
+          },
+          href: state.lastValidatedHref,
+          timestamp: Date.now(),
+        },
+      })
+    )
+  }
+}
+
+export function getValidationState(): ValidationState {
+  return validationState
+}
+
+export function useValidationState() {
+  return useSyncExternalStore(
+    subscribeToValidationState,
+    getValidationState,
+    getValidationState
+  )
+}
 
 // Initialize function
 export function initialize(
@@ -272,6 +333,23 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
     }
     routeInfo = nextRouteInfo
   }
+
+  // Expose devtools API in development
+  if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    // Import loader timing dynamically to avoid circular deps
+    import('../useLoader').then(({ getLoaderTimingHistory }) => {
+      ;(window as any).__oneDevtools = {
+        routeInfo: nextRouteInfo,
+        rootState: state,
+        routeNode,
+        getRoutes: () => routeNode?.children || [],
+        getLoaderTimingHistory,
+        getPreloadHistory,
+      }
+    })
+    // Dispatch event for devtools panels to listen
+    window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
+  }
 }
 
 // Subscription functions
@@ -397,6 +475,9 @@ async function doPreload(href: string) {
   const preloadPath = getPreloadPath(href)
   const loaderPath = getLoaderPath(href)
   const cssPreloadPath = getPreloadCSSPath(href)
+
+  recordPreloadStart(href)
+
   try {
     const [_preload, cssPreloadModule, loader] = await Promise.all([
       dynamicImport(preloadPath),
@@ -406,18 +487,24 @@ async function doPreload(href: string) {
     ])
 
     // Store the CSS inject function for later use on navigation
-    if (cssPreloadModule?.injectCSS) {
+    const hasCss = !!cssPreloadModule?.injectCSS
+    if (hasCss) {
       cssInjectFunctions[href] = cssPreloadModule.injectCSS
     }
 
-    if (!loader?.loader) {
+    const hasLoader = !!loader?.loader
+    if (!hasLoader) {
+      recordPreloadComplete(href, false, hasCss)
       return null
     }
 
     const result = await loader.loader()
+    recordPreloadComplete(href, true, hasCss)
     return result ?? null
   } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err)
     console.error(`[one] preload error for ${href}:`, err)
+    recordPreloadError(href, errorMessage)
     return null
   }
 }
@@ -427,6 +514,79 @@ export const preloadedLoaderData: Record<string, any> = {}
 
 // Store CSS inject functions for calling on navigation
 const cssInjectFunctions: Record<string, (() => Promise<void[]>) | undefined> = {}
+
+// Preload status tracking for devtools
+export type PreloadStatus = 'pending' | 'loading' | 'loaded' | 'error'
+export type PreloadEntry = {
+  href: string
+  status: PreloadStatus
+  startTime: number
+  endTime?: number
+  error?: string
+  hasLoader: boolean
+  hasCss: boolean
+}
+
+const preloadHistory: PreloadEntry[] = []
+const MAX_PRELOAD_HISTORY = 30
+
+// Preload tracking functions - only do work in development for devtools
+function recordPreloadStart(href: string) {
+  if (process.env.NODE_ENV !== 'development') return
+
+  const existing = preloadHistory.find((p) => p.href === href)
+  if (existing) {
+    existing.status = 'loading'
+    existing.startTime = performance.now()
+    return
+  }
+  preloadHistory.unshift({
+    href,
+    status: 'loading',
+    startTime: performance.now(),
+    hasLoader: false,
+    hasCss: false,
+  })
+  if (preloadHistory.length > MAX_PRELOAD_HISTORY) {
+    preloadHistory.pop()
+  }
+  dispatchPreloadEvent()
+}
+
+function recordPreloadComplete(href: string, hasLoader: boolean, hasCss: boolean) {
+  if (process.env.NODE_ENV !== 'development') return
+
+  const entry = preloadHistory.find((p) => p.href === href)
+  if (entry) {
+    entry.status = 'loaded'
+    entry.endTime = performance.now()
+    entry.hasLoader = hasLoader
+    entry.hasCss = hasCss
+  }
+  dispatchPreloadEvent()
+}
+
+function recordPreloadError(href: string, error: string) {
+  if (process.env.NODE_ENV !== 'development') return
+
+  const entry = preloadHistory.find((p) => p.href === href)
+  if (entry) {
+    entry.status = 'error'
+    entry.endTime = performance.now()
+    entry.error = error
+  }
+  dispatchPreloadEvent()
+}
+
+function dispatchPreloadEvent() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('one-preload-update'))
+  }
+}
+
+export function getPreloadHistory(): PreloadEntry[] {
+  return preloadHistory
+}
 
 export function preloadRoute(href: string, injectCSS = false): Promise<any> | undefined {
   if (process.env.TAMAGUI_TARGET === 'native') {
@@ -536,6 +696,57 @@ export async function linkTo(
     console.error(`linking.config`, linking.config)
     console.error(`routes`, getSortedRoutes())
     return
+  }
+
+  // Run async route validation before navigation
+  const matchingRouteNode = findRouteNodeFromState(state, routeNode)
+  if (matchingRouteNode?.loadRoute) {
+    setValidationState({ status: 'validating', lastValidatedHref: href })
+
+    try {
+      const loadedRoute = matchingRouteNode.loadRoute()
+      const params = extractParamsFromState(state)
+      const search = extractSearchFromHref(href)
+      const pathname = extractPathnameFromHref(href)
+
+      // Run validateParams if exported
+      if (loadedRoute.validateParams) {
+        runValidateParams(loadedRoute.validateParams, params)
+      }
+
+      // Run validateRoute if exported
+      if (loadedRoute.validateRoute) {
+        const validationResult = await loadedRoute.validateRoute({
+          params,
+          search,
+          pathname,
+          href,
+        })
+
+        // Check for explicit invalid result
+        if (validationResult && !validationResult.valid) {
+          const error = new RouteValidationError(
+            validationResult.error || 'Route validation failed',
+            validationResult.details
+          )
+          setValidationState({ status: 'error', error, lastValidatedHref: href })
+          throw error
+        }
+      }
+
+      setValidationState({ status: 'valid', lastValidatedHref: href })
+    } catch (error) {
+      // Handle validation errors
+      if (
+        error instanceof ParamValidationError ||
+        error instanceof RouteValidationError
+      ) {
+        setValidationState({ status: 'error', error, lastValidatedHref: href })
+        throw error
+      }
+      // Re-throw other errors
+      throw error
+    }
   }
 
   setLoadingState('loading')

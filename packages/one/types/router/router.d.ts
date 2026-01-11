@@ -16,6 +16,15 @@ export declare let initialState: OneRouter.ResultState | undefined;
 export declare let rootState: OneRouter.ResultState | undefined;
 export declare let routeInfo: UrlObject | undefined;
 export declare let navigationRef: OneRouter.NavigationRef;
+export type ValidationState = {
+    status: 'idle' | 'validating' | 'error' | 'valid';
+    error?: Error;
+    lastValidatedHref?: string;
+};
+export declare function subscribeToValidationState(subscriber: (state: ValidationState) => void): () => boolean;
+export declare function setValidationState(state: ValidationState): void;
+export declare function getValidationState(): ValidationState;
+export declare function useValidationState(): ValidationState;
 export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
 export declare function navigate(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
 export declare function push(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
@@ -71,6 +80,17 @@ export declare function useStoreRouteInfo(): UrlObject;
 export declare function cleanup(): void;
 export declare const preloadingLoader: Record<string, Promise<any> | undefined>;
 export declare const preloadedLoaderData: Record<string, any>;
+export type PreloadStatus = 'pending' | 'loading' | 'loaded' | 'error';
+export type PreloadEntry = {
+    href: string;
+    status: PreloadStatus;
+    startTime: number;
+    endTime?: number;
+    error?: string;
+    hasLoader: boolean;
+    hasCss: boolean;
+};
+export declare function getPreloadHistory(): PreloadEntry[];
 export declare function preloadRoute(href: string, injectCSS?: boolean): Promise<any> | undefined;
 export declare function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions): Promise<void>;
 //# sourceMappingURL=router.d.ts.map
