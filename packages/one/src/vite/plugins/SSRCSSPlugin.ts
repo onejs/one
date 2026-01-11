@@ -3,6 +3,11 @@ import { VIRTUAL_SSR_CSS_ENTRY, VIRTUAL_SSR_CSS_HREF } from '../../constants'
 
 // thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
 
+// Track if we've pre-warmed routes and cached CSS
+let cssCache: { css: string; timestamp: number } | null = null
+let routesPreWarmed = false
+const CSS_CACHE_TTL = 1000 // 1 second cache for dev mode
+
 export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
   let server: ViteDevServer
 
@@ -12,12 +17,64 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
     configureServer(server_) {
       server = server_
 
+      // Pre-warm route modules on first request to populate the module graph
+      // This ensures CSS from all routes is collected even for lazy imports
+      const preWarmRoutes = async () => {
+        if (routesPreWarmed) return
+        routesPreWarmed = true
+
+        try {
+          // Transform the virtual entry to get route module paths
+          await server.transformRequest(pluginOpts.entries[0])
+
+          // Get all route files from the module graph
+          const routeFiles = await collectRouteFiles(server, pluginOpts.entries)
+
+          // Transform each route file to warm its CSS dependencies
+          await Promise.all(
+            routeFiles.map((file) =>
+              server.transformRequest(file).catch(() => {
+                // Ignore errors - some routes may have issues
+              })
+            )
+          )
+
+          if (process.env.ONE_DEBUG) {
+            console.log(
+              `[one] Pre-warmed ${routeFiles.length} route modules for CSS collection`
+            )
+          }
+        } catch (err) {
+          console.error('[one] Error pre-warming routes:', err)
+        }
+      }
+
+      // Invalidate CSS cache on HMR
+      server.watcher.on('change', () => {
+        cssCache = null
+      })
+
       // invalidate virtual modules for each direct request
       server.middlewares.use(async (req, res, next) => {
         if (req.url?.includes(VIRTUAL_SSR_CSS_HREF)) {
+          // Pre-warm routes on first CSS request
+          await preWarmRoutes()
+
           invalidateModule(server, '\0' + VIRTUAL_SSR_CSS_ENTRY + '?direct')
 
+          // Use cached CSS if fresh
+          const now = Date.now()
+          if (cssCache && now - cssCache.timestamp < CSS_CACHE_TTL) {
+            res.setHeader('Content-Type', 'text/css')
+            res.setHeader('Cache-Control', 'no-store')
+            res.setHeader('Vary', '*')
+            res.write(cssCache.css)
+            res.end()
+            return
+          }
+
           const code = await collectStyle(server, pluginOpts.entries)
+          cssCache = { css: code, timestamp: now }
 
           res.setHeader('Content-Type', 'text/css')
           res.setHeader('Cache-Control', 'no-store')
@@ -175,3 +232,50 @@ async function collectStyleUrls(
 
 // cf. https://github.com/vitejs/vite/blob/d6bde8b03d433778aaed62afc2be0630c8131908/packages/vite/src/node/constants.ts#L49C23-L50
 const CSS_LANGS_RE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
+
+// Match route files from dynamic imports in virtual entry
+// Vite transforms import.meta.glob to:
+// const routes = { "./path/to/file.tsx": () => import("./path/to/file.tsx") }
+const DYNAMIC_IMPORT_RE = /import\s*\(\s*["'`]([^"'`]+)["'`]\s*\)/g
+
+/**
+ * Collect all route file paths from the module graph.
+ * This is used to pre-warm route modules so their CSS is included.
+ */
+async function collectRouteFiles(
+  server: ViteDevServer,
+  entries: string[]
+): Promise<string[]> {
+  const routeFiles: string[] = []
+
+  for (const entry of entries) {
+    try {
+      // Get the transformed code for the entry
+      const result = await server.transformRequest(entry)
+      if (!result?.code) continue
+
+      // Extract dynamic import paths from the transformed code
+      let match
+      while ((match = DYNAMIC_IMPORT_RE.exec(result.code)) !== null) {
+        const importPath = match[1]
+        // Only include actual route files, not node_modules or virtual
+        if (
+          importPath &&
+          !importPath.includes('node_modules') &&
+          !importPath.startsWith('\0') &&
+          !importPath.startsWith('virtual:') &&
+          (importPath.endsWith('.tsx') ||
+            importPath.endsWith('.ts') ||
+            importPath.endsWith('.jsx') ||
+            importPath.endsWith('.js'))
+        ) {
+          routeFiles.push(importPath)
+        }
+      }
+    } catch {
+      // Ignore errors
+    }
+  }
+
+  return routeFiles
+}
