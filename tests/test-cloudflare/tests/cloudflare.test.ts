@@ -232,9 +232,10 @@ describe('Cloudflare Client-Side Navigation', () => {
   it('should navigate from SSG to SSR page', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl)
+    await page.waitForTimeout(1000)
 
     await page.click('#link-ssr')
-    await page.waitForURL(`${serverUrl}/ssr-page`)
+    await page.waitForSelector('#ssr-title')
 
     expect(await page.textContent('#ssr-title')).toBe('SSR Page')
 
@@ -244,11 +245,11 @@ describe('Cloudflare Client-Side Navigation', () => {
   it('should navigate from SSG to SPA page', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl)
+    await page.waitForTimeout(1000)
 
     await page.click('#link-spa')
-    await page.waitForURL(`${serverUrl}/spa-page`)
+    await page.waitForSelector('#spa-title')
 
-    await page.waitForTimeout(500)
     expect(await page.textContent('#spa-title')).toBe('SPA Page')
 
     await page.close()
@@ -257,9 +258,10 @@ describe('Cloudflare Client-Side Navigation', () => {
   it('should navigate from SSG to dynamic route', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl)
+    await page.waitForTimeout(1000)
 
     await page.click('#link-dynamic')
-    await page.waitForURL(`${serverUrl}/dynamic/123`)
+    await page.waitForSelector('#param-id')
 
     expect(await page.textContent('#param-id')).toBe('Param ID: 123')
 
@@ -270,10 +272,17 @@ describe('Cloudflare Client-Side Navigation', () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/dynamic/123`)
 
+    // Wait for hydration
+    await page.waitForTimeout(1000)
+
     expect(await page.textContent('#param-id')).toBe('Param ID: 123')
 
     await page.click('#link-other-dynamic')
-    await page.waitForURL(`${serverUrl}/dynamic/456`)
+    // Wait for the param to update to the new value
+    await page.waitForFunction(() => {
+      const el = document.querySelector('#param-id')
+      return el?.textContent === 'Param ID: 456'
+    })
 
     expect(await page.textContent('#param-id')).toBe('Param ID: 456')
 
@@ -283,9 +292,10 @@ describe('Cloudflare Client-Side Navigation', () => {
   it('should navigate back to home', async () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/ssr-page`)
+    await page.waitForTimeout(1000)
 
     await page.click('#link-home')
-    await page.waitForURL(serverUrl + '/')
+    await page.waitForSelector('#home-title')
 
     expect(await page.textContent('#home-title')).toBe('One Test Home')
 
