@@ -1,0 +1,84 @@
+---
+title: useScrollGroup
+---
+
+Register the current route as a scroll group. Child routes will preserve scroll position when navigating between them.
+
+This is useful for layouts where you want to maintain scroll position while users navigate between child routes, such as:
+- Tab layouts where switching tabs shouldn't reset the parent scroll
+- Dashboard layouts with multiple sections
+- Any nested layout that wants independent scroll restoration
+
+## Usage
+
+Use this hook in a layout component to create a scroll group for all its children:
+
+```tsx
+// app/dashboard/_layout.tsx
+import { useScrollGroup, Slot } from 'one'
+
+export default function DashboardLayout() {
+  // All routes under /dashboard will share scroll position
+  useScrollGroup()
+
+  return (
+    <div>
+      <nav>Dashboard Navigation</nav>
+      <Slot />
+    </div>
+  )
+}
+```
+
+When users navigate between `/dashboard/overview`, `/dashboard/settings`, and `/dashboard/reports`, the scroll position of the dashboard layout will be preserved.
+
+## Custom Group Path
+
+By default, `useScrollGroup` uses the current pathname. You can specify a custom group path:
+
+```tsx
+// Create a scroll group for a specific path prefix
+useScrollGroup('/products')
+```
+
+## Programmatic Scroll Groups
+
+You can also specify a scroll group when navigating programmatically:
+
+```tsx
+import { useRouter } from 'one'
+
+function MyComponent() {
+  const router = useRouter()
+
+  const goToSettings = () => {
+    router.navigate('/dashboard/settings', {
+      scrollGroup: '/dashboard'
+    })
+  }
+
+  return <button onClick={goToSettings}>Go to Settings</button>
+}
+```
+
+## How It Works
+
+1. When a layout calls `useScrollGroup()`, it registers the current path as a scroll group
+2. When navigating, if both the previous and new routes are within the same scroll group, the scroll position is preserved
+3. If navigating to a route outside the scroll group, scroll resets to the top
+
+## Platform Support
+
+This hook only affects web scroll behavior. On native platforms, it's a no-op since React Navigation handles scroll restoration differently.
+
+## Type
+
+```tsx
+function useScrollGroup(groupPath?: string): void
+```
+
+### Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `groupPath` | `string` (optional) | Custom path to use as the scroll group. Defaults to current pathname. |
