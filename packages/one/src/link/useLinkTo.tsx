@@ -29,7 +29,7 @@ function eventShouldPreventDefault(
   return false
 }
 
-export function useLinkTo(props: { href: string; replace?: boolean }) {
+export function useLinkTo(props: { href: string; replace?: boolean; mask?: string }) {
   const { linkTo } = useOneRouter()
 
   const onPress = (
@@ -46,13 +46,17 @@ export function useLinkTo(props: { href: string; replace?: boolean }) {
     }
 
     if (shouldHandle) {
-      linkTo(props.href, event)
+      const options = props.mask ? { mask: { href: props.mask } } : undefined
+      linkTo(props.href, event, options)
     }
   }
 
+  // For the displayed href, use the mask if provided (shows clean URL in status bar on hover)
+  const displayHref = props.mask || props.href
+
   return {
     // Ensure there's always a value for href. Manually append the baseUrl to the href prop that shows in the static HTML.
-    href: appendBaseUrl(stripGroupSegmentsFromPath(props.href) || '/'),
+    href: appendBaseUrl(stripGroupSegmentsFromPath(displayHref) || '/'),
     role: 'link' as const,
     onPress,
   }

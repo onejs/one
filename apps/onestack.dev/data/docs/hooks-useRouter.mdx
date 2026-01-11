@@ -33,4 +33,30 @@ type Router = {
   /** Subscribe to loading state updates */
   onLoadState: (listener: LoadingStateListener) => () => void
 }
+
+type LinkToOptions = {
+  /** Disable scroll restoration on navigation */
+  scroll?: boolean
+  /** Display a different URL in the browser (web only) */
+  mask?: {
+    href: Href
+  }
+}
 ```
+
+## Route Masking
+
+You can display a different URL in the browser address bar while navigating to a specific route.
+This is useful for modals, side panels, or keeping URLs clean:
+
+```tsx
+const router = useRouter()
+
+// Navigate to /photos/5/modal but show /photos/5 in the URL bar
+router.push('/photos/5/modal', {
+  mask: { href: '/photos/5' }
+})
+```
+
+When users click back/forward, the actual route state is restored from history.
+This feature is web-only.

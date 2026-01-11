@@ -83,5 +83,16 @@ export interface LinkProps extends TextProps {
    * <Link href="/image.jpg" download="my-image.jpg">Download image</Link>
    */
   download?: string
+
+  /**
+   * **Web only:** Display a different URL in the browser address bar than the actual route.
+   * Useful for modals, side panels, or keeping URLs clean while navigating to complex routes.
+   *
+   * When the user navigates back/forward, the actual route will be restored from history.
+   *
+   * @example
+   * <Link href="/photos/5/modal" mask="/photos/5">View Photo</Link>
+   */
+  mask?: Href
 }
 ```

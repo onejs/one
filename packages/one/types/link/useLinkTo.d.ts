@@ -3,6 +3,7 @@ import { type GestureResponderEvent } from 'react-native';
 export declare function useLinkTo(props: {
     href: string;
     replace?: boolean;
+    mask?: string;
 }): {
     href: string;
     role: "link";
