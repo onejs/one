@@ -25,6 +25,10 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
         if (type === 'add' || type === 'delete' || type === 'change') {
           // resolve to absolute path since watcher may emit relative paths
           const absolutePath = resolve(path)
+          // skip routes.d.ts itself to avoid infinite loop
+          if (absolutePath === outFile) {
+            return
+          }
           if (absolutePath.startsWith(appDir)) {
             // generate
             generateRouteTypes(
