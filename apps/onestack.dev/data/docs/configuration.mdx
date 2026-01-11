@@ -285,6 +285,7 @@ export default {
       // Configure individual tools
       devtools: {
         inspector: true, // enabled by default
+        seoPreview: true, // enabled by default
       },
     }),
   ],
@@ -300,6 +301,76 @@ The source inspector lets you quickly find the source code for any element on th
 3. Click to open the file in your editor
 
 This works automatically without any additional setup - One injects the necessary data attributes during development and handles opening files in your configured editor.
+
+### devtools.seoPreview
+
+The SEO Preview panel helps you visualize how your pages will appear in search results and social media shares:
+
+1. Press **Alt+S** to toggle the panel
+2. View previews for:
+   - **Google Search** - How your page appears in search results
+   - **Open Graph** - How your page appears when shared on Facebook, LinkedIn, etc.
+   - **Twitter Card** - How your page appears when shared on Twitter/X
+3. See all meta tags at a glance with validation warnings for common SEO issues
+
+The panel automatically updates as you navigate or modify meta tags, making it easy to verify your SEO configuration during development.
+
+### devtools.routeDebug
+
+The Route Debug panel helps you understand your current route state during development:
+
+1. Press **Alt+R** to toggle the panel
+2. View information about the current route:
+   - **Pathname** - The current URL path
+   - **Segments** - Breadcrumb-style view of path segments
+   - **Route Params** - Dynamic route parameters (e.g., `[slug]`, `[id]`)
+   - **Search Params** - Query string parameters
+   - **Hash** - URL fragment (if present)
+   - **Full URL** - Complete URL for reference
+
+The panel updates automatically as you navigate, making it easy to debug routing issues and verify params are being parsed correctly.
+
+### devtools.loaderTiming
+
+The Loader Timing Waterfall panel shows performance metrics for your route loaders:
+
+1. Press **Alt+L** to toggle the panel
+2. View timing data for each loader:
+   - **Module Load Time** (blue) - Time to download and parse the loader module
+   - **Execution Time** (green) - Time for the loader function to complete
+   - **Total Time** - End-to-end timing
+   - **Source** - Whether this was an initial load, refetch, or preload
+3. Visual waterfall shows relative timing of module load vs execution
+4. Error states are highlighted with red indicators
+
+The panel helps identify slow loaders and understand where time is being spent - whether in module loading (suggesting code splitting issues) or execution (suggesting slow data fetching).
+
+### devtools.routePreload
+
+The Route Preload panel shows which routes have been preloaded during navigation:
+
+1. Press **Alt+P** to toggle the panel
+2. View preloaded routes with status:
+   - **Loading** - Preload in progress
+   - **Loaded** - Successfully preloaded (shows duration, loader/CSS status)
+   - **Error** - Preload failed (shows error message)
+
+**Note:** Route preloading only works in production builds. In development, the panel shows a notice explaining this. Run `yarn build && yarn serve` to test preloading behavior.
+
+Preloading is automatically triggered when users hover over links, warming the cache for likely navigation targets.
+
+### devtools.errorPanel
+
+The Error Panel shows errors caught by error boundaries and loaders during development:
+
+1. Press **Alt+E** to toggle the panel
+2. View error history with:
+   - **Error Type** - Whether from render, loader, or hydration
+   - **Route** - The route where the error occurred
+   - **Error Message** - The error message with expandable stack trace
+   - **Timestamp** - When the error occurred
+
+The panel automatically appears when the first error is caught, making it easy to spot issues immediately. Click "Clear" to reset the error history. Error boundaries and loaders dispatch events that the panel listens to, giving you a unified view of all errors in your app.
 
 ## deps
 

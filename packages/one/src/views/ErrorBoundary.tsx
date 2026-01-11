@@ -1,171 +1,169 @@
-// import { LogContext } from '@expo/metro-runtime/build/error-overlay/Data/LogContext'
-// import { LogBoxInspectorStackFrames } from '@expo/metro-runtime/build/error-overlay/overlay/LogBoxInspectorStackFrames'
-// import { LogBoxLog, parseErrorStack } from '@expo/metro-runtime/symbolicate'
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import { View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import type { ErrorBoundaryProps } from './Try'
 
-// function useMetroSymbolication(error: Error) {
-//   const [logBoxLog, setLogBoxLog] = React.useState<LogBoxLog | null>(null)
-
-//   React.useEffect(() => {
-//     let isMounted = true
-//     const stack = parseErrorStack(error.stack)
-
-//     const log = new LogBoxLog({
-//       level: 'error',
-//       message: {
-//         content: error.message,
-//         substitutions: [],
-//       },
-//       isComponentError: false,
-//       stack,
-//       category: error.message,
-//       componentStack: [],
-//     })
-
-//     log.symbolicate('stack', (symbolicatedLog) => {
-//       if (isMounted) {
-//         setLogBoxLog(log)
-//       }
-//     })
-
-//     return () => {
-//       isMounted = false
-//     }
-//   }, [error])
-
-//   return logBoxLog
-// }
-
-export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
-  // const logBoxLog = useMetroSymbolication(error)
+/**
+ * Default error boundary component for native platforms.
+ * Shows a user-friendly error message with retry capability.
+ *
+ * This component is used when:
+ * - A route doesn't export its own ErrorBoundary
+ * - An error occurs during rendering
+ *
+ * Users can override this by exporting their own ErrorBoundary from a route.
+ */
+export function ErrorBoundary({ error, retry, route }: ErrorBoundaryProps) {
   const inTabBar = React.useContext(BottomTabBarHeightContext)
   const Wrapper = inTabBar ? View : SafeAreaView
+  const isDev = process.env.NODE_ENV === 'development'
 
-  console.error('error', error)
+  console.error('[One] Error in route:', route?.routeName || 'unknown', error)
 
-  return null
+  return (
+    <Wrapper style={styles.container}>
+      <View style={styles.content}>
+        {/* Error icon */}
+        <View style={styles.iconContainer}>
+          <Text style={styles.iconText}>!</Text>
+        </View>
 
-  // return (
-  //   <View style={styles.container}>
-  //     <Wrapper style={{ flex: 1, gap: 8, maxWidth: 720, marginHorizontal: 'auto' }}>
-  //       <View
-  //         style={{
-  //           marginBottom: 12,
-  //           flexDirection: 'row',
-  //           flexWrap: 'wrap',
-  //           justifyContent: 'space-between',
-  //           alignItems: 'center',
-  //         }}
-  //       >
-  //         <Text role="heading" aria-level={1} style={styles.title}>
-  //           Something went wrong
-  //         </Text>
-  //       </View>
+        {/* Title */}
+        <Text style={styles.title}>Something went wrong</Text>
 
-  //       <StackTrace logData={logBoxLog} />
-  //       {process.env.NODE_ENV === 'development' && (
-  //         <Link href="/_sitemap" style={styles.link}>
-  //           Sitemap
-  //         </Link>
-  //       )}
-  //       <Pressable onPress={retry}>
-  //         {({ hovered, pressed }) => (
-  //           <View
-  //             style={[
-  //               styles.buttonInner,
-  //               (hovered || pressed) && { backgroundColor: 'white' },
-  //             ]}
-  //           >
-  //             <Text
-  //               style={[
-  //                 styles.buttonText,
-  //                 {
-  //                   transitionDuration: '100ms',
-  //                   color: hovered || pressed ? 'black' : 'white',
-  //                 },
-  //               ]}
-  //             >
-  //               Retry
-  //             </Text>
-  //           </View>
-  //         )}
-  //       </Pressable>
-  //     </Wrapper>
-  //   </View>
-  // )
+        {/* Route info */}
+        {route?.routeName && (
+          <Text style={styles.routeInfo}>on route: {route.routeName}</Text>
+        )}
+
+        {/* Error message */}
+        <View style={styles.errorBox}>
+          <Text style={styles.errorMessage}>
+            {error?.message || 'An unexpected error occurred'}
+          </Text>
+        </View>
+
+        {/* Stack trace (dev only) */}
+        {isDev && error?.stack && (
+          <ScrollView style={styles.stackContainer}>
+            <Text style={styles.stackTitle}>Stack trace:</Text>
+            <Text style={styles.stackText}>{error.stack}</Text>
+          </ScrollView>
+        )}
+
+        {/* Actions */}
+        <View style={styles.actions}>
+          <Pressable
+            onPress={() => retry()}
+            style={({ pressed }) => [
+              styles.button,
+              styles.primaryButton,
+              pressed && styles.buttonPressed,
+            ]}
+          >
+            <Text style={styles.primaryButtonText}>Try Again</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Wrapper>
+  )
 }
 
-// function StackTrace({ logData }: { logData: LogBoxLog | null }) {
-//   if (!logData?.symbolicated?.stack?.stack) {
-//     return null
-//   }
-//   return (
-//     <ScrollView style={{ flex: 1 }}>
-//       <LogContext.Provider
-//         value={{
-//           isDisabled: false,
-//           logs: [logData],
-//           selectedLogIndex: 0,
-//         }}
-//       >
-//         <LogBoxInspectorStackFrames onRetry={function () {}} type="stack" />
-//       </LogContext.Provider>
-//     </ScrollView>
-//   )
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'black',
-//     padding: 24,
-//     alignItems: 'stretch',
-//     justifyContent: 'center',
-//   },
-//   title: {
-//     color: 'white',
-//     fontSize: Platform.select({ web: 32, default: 24 }),
-//     fontWeight: 'bold',
-//   },
-//   buttonText: {
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     color: 'black',
-//   },
-//   buttonInner: {
-//     transitionDuration: '100ms',
-//     paddingVertical: 12,
-//     paddingHorizontal: 24,
-//     borderColor: 'white',
-//     borderWidth: 2,
-//     marginLeft: 8,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   code: {
-//     fontFamily: Platform.select({
-//       default: 'Courier',
-//       ios: 'Courier New',
-//       android: 'monospace',
-//     }),
-//     fontWeight: '500',
-//   },
-//   subtitle: {
-//     color: 'white',
-//     fontSize: 14,
-//     marginBottom: 12,
-//     // textAlign: "center",
-//   },
-//   link: {
-//     color: 'rgba(255,255,255,0.4)',
-//     textDecorationStyle: 'solid',
-//     textDecorationLine: 'underline',
-//     fontSize: 14,
-//     textAlign: 'center',
-//   },
-// })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0a0a0f',
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24,
+  },
+  iconContainer: {
+    width: 64,
+    height: 64,
+    backgroundColor: '#ef4444',
+    borderRadius: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+  },
+  iconText: {
+    color: 'white',
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#e8e8e8',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  routeInfo: {
+    fontSize: 13,
+    color: '#666',
+    marginBottom: 16,
+  },
+  errorBox: {
+    backgroundColor: '#1a1a2e',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 16,
+    width: '100%',
+    maxWidth: 400,
+  },
+  errorMessage: {
+    fontFamily: 'monospace',
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#f87171',
+    textAlign: 'center',
+  },
+  stackContainer: {
+    maxHeight: 150,
+    width: '100%',
+    maxWidth: 400,
+    backgroundColor: '#16162a',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+  },
+  stackTitle: {
+    fontSize: 11,
+    color: '#666',
+    marginBottom: 8,
+  },
+  stackText: {
+    fontFamily: 'monospace',
+    fontSize: 10,
+    lineHeight: 16,
+    color: '#a0a0a0',
+  },
+  actions: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 8,
+  },
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    minWidth: 120,
+    alignItems: 'center',
+  },
+  primaryButton: {
+    backgroundColor: '#3b82f6',
+  },
+  buttonPressed: {
+    opacity: 0.8,
+  },
+  primaryButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+})

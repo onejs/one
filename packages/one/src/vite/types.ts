@@ -411,6 +411,15 @@ export namespace One {
            * @default true (when devtools is enabled)
            */
           inspector?: boolean
+
+          /**
+           * Enable the SEO preview panel.
+           * Press Alt+S to toggle a panel showing how the page appears in
+           * Google search results, Twitter cards, and Open Graph shares.
+           *
+           * @default true (when devtools is enabled)
+           */
+          seoPreview?: boolean
         }
 
     server?: VXRNOptions['server']
