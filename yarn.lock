@@ -17357,6 +17357,7 @@ __metadata:
     lightningcss: "npm:^1.30.1"
     micromatch: "npm:^4.0.7"
     nanoid: "npm:^3.3.7"
+    oxc-parser: "npm:^0.107.0"
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
     react: "npm:19.1.0"
