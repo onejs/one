@@ -177,13 +177,13 @@ const ONE_DEVTOOLS_SCRIPT = `
 
         .info-row {
           display: flex;
-          justify-content: space-between;
-          padding: 6px 0;
+          gap: 12px;
+          padding: 8px 0;
           border-bottom: 1px solid #222;
         }
         .info-row:last-child { border-bottom: none; }
-        .info-label { color: #666; }
-        .info-value { color: #ccc; font-family: monospace; font-size: 12px; word-break: break-all; }
+        .info-label { color: #666; font-size: 11px; width: 90px; flex-shrink: 0; padding-top: 1px; }
+        .info-value { color: #ccc; font-family: monospace; font-size: 12px; word-break: break-word; line-height: 1.4; flex: 1; }
 
         .badge {
           display: inline-block;
@@ -478,11 +478,11 @@ const ONE_DEVTOOLS_SCRIPT = `
       html += '</div></div>';
 
       html += '<div class="section"><div class="section-title">Meta Tags</div>';
-      html += '<div class="info-row"><span class="info-label">title</span><span class="info-value">' + escapeHtml(title || '-') + '</span></div>';
-      html += '<div class="info-row"><span class="info-label">description</span><span class="info-value">' + escapeHtml(desc || '-') + '</span></div>';
-      html += '<div class="info-row"><span class="info-label">og:title</span><span class="info-value">' + escapeHtml(ogTitle || '-') + '</span></div>';
-      html += '<div class="info-row"><span class="info-label">og:description</span><span class="info-value">' + escapeHtml(ogDesc || '-') + '</span></div>';
-      html += '<div class="info-row"><span class="info-label">og:image</span><span class="info-value">' + escapeHtml(ogImage || '-') + '</span></div>';
+      html += '<div class="info-row"><div class="info-label">title</div><div class="info-value">' + escapeHtml(title || '-') + '</div></div>';
+      html += '<div class="info-row"><div class="info-label">description</div><div class="info-value">' + escapeHtml(desc || '-') + '</div></div>';
+      html += '<div class="info-row"><div class="info-label">og:title</div><div class="info-value">' + escapeHtml(ogTitle || '-') + '</div></div>';
+      html += '<div class="info-row"><div class="info-label">og:description</div><div class="info-value">' + escapeHtml(ogDesc || '-') + '</div></div>';
+      html += '<div class="info-row"><div class="info-label">og:image</div><div class="info-value">' + escapeHtml(ogImage || '-') + '</div></div>';
       html += '</div>';
 
       return html;
@@ -590,6 +590,24 @@ const ONE_DEVTOOLS_SCRIPT = `
       if (panel && panel.classList.contains('visible') && activeTab === 'errors') updateContent();
     });
 
+    // Update on navigation
+    function onNavigate() {
+      if (panel && panel.classList.contains('visible')) updateContent();
+    }
+    window.addEventListener('popstate', onNavigate);
+    window.addEventListener('one-hmr-update', onNavigate);
+    // Also catch pushState/replaceState
+    var origPushState = history.pushState;
+    var origReplaceState = history.replaceState;
+    history.pushState = function() {
+      origPushState.apply(this, arguments);
+      setTimeout(onNavigate, 0);
+    };
+    history.replaceState = function() {
+      origReplaceState.apply(this, arguments);
+      setTimeout(onNavigate, 0);
+    };
+
   } catch (e) {
     console.error('[One DevTools] Failed to initialize:', e);
   }
@@ -678,7 +696,17 @@ const SOURCE_INSPECTOR_SCRIPT = `
       if (!active) return;
       var el = document.elementFromPoint(e.clientX, e.clientY);
       while (el && !el.hasAttribute('data-one-source')) el = el.parentElement;
-      if (el) showOverlay(el, el.getAttribute('data-one-source'));
+      if (el) {
+        var source = el.getAttribute('data-one-source');
+        // Parse source and look up actual line:column
+        var lastColon = source.lastIndexOf(':');
+        var filePath = source.slice(0, lastColon);
+        var idx = source.slice(lastColon + 1);
+        var info = window.__oneSourceInfo && window.__oneSourceInfo[filePath];
+        var lineCol = info && info[idx];
+        var displaySource = lineCol ? filePath + ':' + lineCol[0] + ':' + lineCol[1] : source;
+        showOverlay(el, displaySource);
+      }
       else hideOverlay();
     });
 
@@ -689,7 +717,19 @@ const SOURCE_INSPECTOR_SCRIPT = `
       if (el) {
         e.preventDefault();
         e.stopPropagation();
-        fetch('/__one/open-source?source=' + encodeURIComponent(el.getAttribute('data-one-source')));
+        var source = el.getAttribute('data-one-source');
+        // Parse source: "/path/to/file.tsx:index"
+        var lastColon = source.lastIndexOf(':');
+        var filePath = source.slice(0, lastColon);
+        var idx = source.slice(lastColon + 1);
+        // Look up actual line/column from source info
+        var info = window.__oneSourceInfo && window.__oneSourceInfo[filePath];
+        var lineCol = info && info[idx];
+        var url = '/__one/open-source?source=' + encodeURIComponent(source);
+        if (lineCol) {
+          url += '&line=' + lineCol[0] + '&column=' + lineCol[1];
+        }
+        fetch(url);
       }
     }, true);
   } catch (e) {

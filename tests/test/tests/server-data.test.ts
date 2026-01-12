@@ -29,8 +29,9 @@ test(
     const response = await fetch(url)
     const html = await response.text()
 
+    // Use regex to match div content regardless of data-one-source attribute (added by source inspector in dev)
     expect(
-      html.includes(`<div id="server-data">{&quot;fromServer&quot;:true}</div>`)
+      /<div[^>]*id="server-data"[^>]*>\{&quot;fromServer&quot;:true\}<\/div>/.test(html)
     ).toBeTruthy()
 
     const page = await context.newPage()
