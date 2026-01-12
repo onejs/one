@@ -69,3 +69,21 @@ One includes a [Hono server](/docs/one-serve) out of the box - just run `one bui
 ### What's the npm package?
 
 It's `one`, thanks to Dan Maier.
+
+### Can I develop iOS apps on Windows or Linux?
+
+Yes. With [EAS Build](https://docs.expo.dev/build/introduction/), you can build iOS apps in the cloud from any platform. For local development, you can test on Android and web, then build iOS when ready. See [Build or Run iOS](/docs/guides-ios-native) for details.
+
+### What's the bundle size overhead?
+
+One itself adds some overhead, but not enough to affect Lighthouse scores in general.
+
+The core routing and rendering logic is under 20KB gzipped, but it brings in React Navigation and generally `react-native-web`. You can swap for `@tamagui/react-native-web-lite` using an alias to save quite a bit of bundle size.
+
+### Can I use One with an existing React Native app?
+
+Yes. One can be added incrementally to existing React Native projects. Start by installing `one` and setting up file-based routing alongside your existing navigation. [Metro mode](/docs/metro-mode) ensures compatibility with your current native setup.
+
+### Does One support monorepos?
+
+Yes. One works well in monorepos with tools like Turborepo, Nx, or pnpm workspaces. Configure your workspace's package resolution and One will respect it. The [one-recommended](https://github.com/onejs/one/tree/main/examples/one-recommended) example shows a typical setup.

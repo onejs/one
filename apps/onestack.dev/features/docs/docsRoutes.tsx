@@ -14,6 +14,7 @@ export const docsRoutes = [
   {
     title: 'Guides',
     pages: [
+      { title: 'Authentication', route: '/docs/guides-authentication' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
       { title: 'Deployment', route: '/docs/guides-deployment' },
@@ -65,7 +66,7 @@ export const docsRoutes = [
     title: 'Components',
     pages: [
       { title: 'Link', route: '/docs/components-Link' },
-      // { title: 'Head', route: '/docs/components-Head' },
+      { title: 'Head', route: '/docs/components-Head' },
       { title: 'Redirect', route: '/docs/components-Redirect' },
       { title: 'LoadProgressBar', route: '/docs/components-LoadProgressBar' },
       { title: 'ScrollBehavior', route: '/docs/components-ScrollBehavior' },

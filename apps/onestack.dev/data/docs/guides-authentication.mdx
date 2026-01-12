@@ -1,0 +1,322 @@
+---
+title: Authentication
+---
+
+This guide covers authentication patterns for One apps, from simple session management to full OAuth flows. One's unique combination of middleware, loaders, and cross-platform support gives you flexibility in how you protect routes.
+
+## Approaches
+
+There are three main approaches to authentication:
+
+| Approach | Best For | Complexity |
+|----------|----------|------------|
+| **Self-hosted libraries** | Most apps, full control, own database | Low-Medium |
+| **Hosted providers** | Fastest setup, managed infrastructure | Low |
+| **Custom auth** | Specific requirements, full control | High |
+
+**Self-hosted libraries** like [Better Auth](https://better-auth.com) or [Auth.js](https://authjs.dev) run on your own server with your own database. You get full control over user data while the library handles the complexity of OAuth flows, session management, and security best practices. This is our recommended approach.
+
+**Hosted providers** like [Clerk](https://clerk.com) or [Supabase Auth](https://supabase.com/auth) manage everything for you including infrastructure. Fastest to set up but user data lives on their servers.
+
+**Custom auth** means implementing everything yourself - password hashing, session management, token validation, OAuth flows. Only recommended if you have very specific requirements.
+
+## Session Context
+
+The foundation of any auth system is a session context that tracks auth state across your app.
+
+```tsx fileName=features/auth/ctx.tsx
+import { createContext, useContext, useState, useEffect, type PropsWithChildren } from 'react'
+import { storage } from './storage'
+
+type AuthContextType = {
+  signIn: (token: string) => void
+  signOut: () => void
+  session: string | null
+  isLoading: boolean
+}
+
+const AuthContext = createContext<AuthContextType | null>(null)
+
+export function useSession() {
+  const ctx = useContext(AuthContext)
+  if (!ctx) {
+    throw new Error('useSession must be used within SessionProvider')
+  }
+  return ctx
+}
+
+export function SessionProvider({ children }: PropsWithChildren) {
+  const [session, setSession] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    storage.get('session').then((token) => {
+      setSession(token)
+      setIsLoading(false)
+    })
+  }, [])
+
+  const signIn = (token: string) => {
+    storage.set('session', token)
+    setSession(token)
+  }
+
+  const signOut = () => {
+    storage.remove('session')
+    setSession(null)
+  }
+
+  return (
+    <AuthContext.Provider value={{ signIn, signOut, session, isLoading }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
+```
+
+### Cross-Platform Storage
+
+For token storage, use a cross-platform storage library. Popular options:
+
+- **[react-native-mmkv](https://github.com/mrousavy/react-native-mmkv)** - Fast key-value storage (~30x faster than AsyncStorage), works on web and native
+- **[Zustand](https://github.com/pmndrs/zustand) with persist middleware** - State management with built-in storage abstraction
+- **[expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)** - Encrypted storage for sensitive tokens (native only)
+
+Create a platform-specific abstraction using One's file extensions:
+
+```
+features/auth/
+├── storage.ts        # Shared interface
+├── storage.web.ts    # localStorage or MMKV for web
+└── storage.native.ts # MMKV or expo-secure-store for native
+```
+
+This keeps your auth context clean while each platform uses appropriate secure storage.
+
+## Protected Routes
+
+Protect routes using a layout guard that checks auth state and redirects unauthorized users.
+
+<RouteTree
+  routes={[
+    { name: '_layout.tsx', description: 'Root layout with SessionProvider' },
+    { name: 'login.tsx', description: 'Public - login page' },
+    { name: '(app)', children: [
+      { name: '_layout.tsx', description: 'Auth guard - redirects if not logged in' },
+      { name: 'index.tsx', description: 'Protected home' },
+      { name: 'profile.tsx', description: 'Protected profile' },
+    ] },
+  ]}
+/>
+
+```tsx fileName=app/_layout.tsx
+import { Slot } from 'one'
+import { SessionProvider } from '~/features/auth/ctx'
+
+export default function RootLayout() {
+  return (
+    <SessionProvider>
+      <Slot />
+    </SessionProvider>
+  )
+}
+```
+
+```tsx fileName=app/(app)/_layout.tsx
+import { Redirect, Slot, useFocusEffect, useRouter } from 'one'
+import { useSession } from '~/features/auth/ctx'
+
+export default function AppLayout() {
+  const { session, isLoading } = useSession()
+  const router = useRouter()
+
+  // Re-check auth when screen focuses (important for native)
+  useFocusEffect(() => {
+    if (!isLoading && !session) {
+      router.replace('/login')
+    }
+  }, [isLoading, session])
+
+  if (isLoading) {
+    return null
+  }
+
+  if (!session) {
+    return <Redirect href="/login" />
+  }
+
+  return <Slot />
+}
+```
+
+The `useFocusEffect` ensures auth is re-checked when returning to a screen on native, where screens may stay mounted in memory.
+
+### Redirect Logged-In Users
+
+Keep authenticated users away from auth pages:
+
+```tsx fileName=app/login.tsx
+import { Redirect, useRouter } from 'one'
+import { useSession } from '~/features/auth/ctx'
+
+export default function LoginPage() {
+  const { session } = useSession()
+  const router = useRouter()
+
+  if (session) {
+    return <Redirect href="/" />
+  }
+
+  const handleLogin = async () => {
+    // ... your login logic
+    router.replace('/')
+  }
+
+  return (
+    <Button onPress={handleLogin}>
+      Sign In
+    </Button>
+  )
+}
+```
+
+## Middleware Authentication
+
+One's middleware runs on the server before your route, making it ideal for auth checks.
+
+### Protect API Routes
+
+```tsx fileName=app/api/_middleware.ts
+import { createMiddleware } from 'one'
+import { validateToken } from '~/features/auth/server'
+
+export default createMiddleware(async ({ request, next, context }) => {
+  const token = request.headers.get('authorization')?.replace('Bearer ', '')
+
+  if (!token) {
+    return Response.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  try {
+    const user = await validateToken(token)
+    context.user = user
+  } catch {
+    return Response.json({ error: 'Invalid token' }, { status: 401 })
+  }
+
+  return await next()
+})
+```
+
+## Loader Authentication
+
+Check auth in loaders for SSR pages:
+
+```tsx fileName=app/profile.tsx
+import { redirect, useLoader } from 'one'
+import { validateSession } from '~/features/auth/server'
+
+export async function loader({ request }) {
+  const session = await validateSession(request)
+
+  if (!session) {
+    throw redirect('/login')
+  }
+
+  const user = await getUser(session.userId)
+  return { user }
+}
+
+export default function ProfilePage() {
+  const { user } = useLoader()
+
+  return (
+    <View>
+      <Text>Welcome, {user.name}</Text>
+    </View>
+  )
+}
+```
+
+## OAuth Integration
+
+### GitHub OAuth Example
+
+```tsx fileName=features/auth/server.ts
+import { betterAuth } from 'better-auth'
+import { jwt, bearer } from 'better-auth/plugins'
+
+export const auth = betterAuth({
+  database: process.env.DATABASE_URL,
+
+  plugins: [
+    jwt({ expirationTime: '7d' }),
+    bearer(),
+  ],
+
+  socialProviders: {
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    },
+  },
+})
+```
+
+```tsx fileName=app/api/auth/[...rest]+api.ts
+import { auth } from '~/features/auth/server'
+
+export const GET = (req: Request) => auth.handler(req)
+export const POST = (req: Request) => auth.handler(req)
+```
+
+```tsx fileName=app/login.tsx
+import { authClient } from '~/features/auth/client'
+
+export default function LoginPage() {
+  const handleGitHubLogin = () => {
+    authClient.signIn.social({ provider: 'github' })
+  }
+
+  return (
+    <Button onPress={handleGitHubLogin}>
+      Sign in with GitHub
+    </Button>
+  )
+}
+```
+
+## Logout
+
+```tsx fileName=features/auth/useLogout.ts
+import { useRouter } from 'one'
+import { useSession } from './ctx'
+import { authClient } from './client'
+
+export function useLogout() {
+  const router = useRouter()
+  const { signOut } = useSession()
+
+  const logout = async () => {
+    try {
+      await authClient.signOut()
+      signOut()
+      router.replace('/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
+
+  return { logout }
+}
+```
+
+## Example
+
+See the [one-fullstack example](https://github.com/onejs/one/tree/main/examples/one-fullstack) for a complete Supabase authentication implementation with OAuth, protected routes, and user management.
+
+## Related
+
+- [Middlewares](/docs/routing-middlewares) - Server-side request interception
+- [Loaders](/docs/routing-loader) - Data loading with auth
+- [API Routes](/docs/render-modes#api) - Creating API endpoints

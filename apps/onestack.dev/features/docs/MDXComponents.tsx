@@ -69,8 +69,6 @@ const TableBase = styled(View, {
   width: '100%',
   borderBottomWidth: 1,
   borderColor: '$color5',
-  borderCollapse: 'collapse' as any,
-  borderSpacing: 0,
   my: '$4',
 })
 
@@ -82,7 +80,6 @@ const TableWrapper = styled(View, {
 
 const Table = (props: any) => (
   <TableWrapper>
-    <style>{`.mdx-table th:first-child, .mdx-table td:first-child { border-right: none !important; }`}</style>
     <TableBase className="mdx-table" my={0} {...props} />
   </TableWrapper>
 )
