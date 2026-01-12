@@ -39,17 +39,17 @@ export async function dev(args: {
     stop()
   })
 
-  process.on('SIGINT', () => {
+  process.on('SIGINT', async () => {
     try {
-      stop()
+      await stop()
     } finally {
       process.exit(2)
     }
   })
 
-  process.on('SIGTERM', () => {
+  process.on('SIGTERM', async () => {
     try {
-      stop()
+      await stop()
     } finally {
       process.exit(0)
     }
