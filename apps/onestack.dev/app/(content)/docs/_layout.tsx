@@ -65,7 +65,7 @@ export default function DocsLayout() {
             ml="$4"
           >
             <Link href="/">
-              <OneLogo size={0.55} />
+              <OneLogo size={0.55} minimal />
             </Link>
           </YStack>
 

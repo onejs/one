@@ -704,6 +704,11 @@ export async function linkTo(
     return
   }
 
+  setLoadingState('loading')
+
+  // Preload route modules first so loadRoute() won't throw Suspense promises
+  await preloadRoute(href, true)
+
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)
   if (matchingRouteNode?.loadRoute) {
@@ -742,22 +747,23 @@ export async function linkTo(
 
       setValidationState({ status: 'valid', lastValidatedHref: href })
     } catch (error) {
-      // Handle validation errors
-      if (
+      // Handle Suspense promises thrown by loadRoute in dev mode
+      if (error && typeof (error as any).then === 'function') {
+        // Wait for the route to load and skip validation for this navigation
+        await (error as Promise<any>).catch(() => {})
+        setValidationState({ status: 'valid', lastValidatedHref: href })
+      } else if (
         error instanceof ParamValidationError ||
         error instanceof RouteValidationError
       ) {
         setValidationState({ status: 'error', error, lastValidatedHref: href })
         throw error
+      } else {
+        // Re-throw other errors
+        throw error
       }
-      // Re-throw other errors
-      throw error
     }
   }
-
-  setLoadingState('loading')
-
-  await preloadRoute(href, true)
 
   const rootState = navigationRef.getRootState()
 
