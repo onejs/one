@@ -596,23 +596,14 @@ const ONE_DEVTOOLS_SCRIPT = `
 })();
 `
 
-// Source Inspector script - shows source location on hover with Shift+Cmd/Ctrl
+// Source Inspector script - shows source location on hover after holding Alt for 1s
 const SOURCE_INSPECTOR_SCRIPT = `
 (function() {
   try {
-    var isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-    var hotkey = isMac ? ['shift', 'meta'] : ['shift', 'control'];
-    var pressed = new Set();
     var active = false;
     var overlay = null;
     var tag = null;
-
-    function isHotkeyPressed() {
-      return hotkey.every(function(k) {
-        if (k === 'meta' || k === 'control') return pressed.has('meta') || pressed.has('control');
-        return pressed.has(k);
-      });
-    }
+    var altHoldTimer = null;
 
     function createOverlay() {
       overlay = document.createElement('div');
@@ -644,13 +635,35 @@ const SOURCE_INSPECTOR_SCRIPT = `
       tag.style.left = Math.max(4, Math.min(rect.left, window.innerWidth - 200)) + 'px';
     }
 
+    function deactivate() {
+      if (altHoldTimer) {
+        clearTimeout(altHoldTimer);
+        altHoldTimer = null;
+      }
+      active = false;
+      hideOverlay();
+    }
+
     document.addEventListener('keydown', function(e) {
-      pressed.add(e.key.toLowerCase());
-      if (isHotkeyPressed()) active = true;
+      if (e.code === 'AltLeft' || e.code === 'AltRight') {
+        if (!altHoldTimer && !active) {
+          altHoldTimer = setTimeout(function() {
+            altHoldTimer = null;
+            active = true;
+          }, 1000);
+        }
+      } else {
+        // Any other key cancels the timer
+        if (altHoldTimer) {
+          clearTimeout(altHoldTimer);
+          altHoldTimer = null;
+        }
+      }
     });
     document.addEventListener('keyup', function(e) {
-      pressed.delete(e.key.toLowerCase());
-      if (!isHotkeyPressed()) { active = false; hideOverlay(); }
+      if (e.code === 'AltLeft' || e.code === 'AltRight') {
+        deactivate();
+      }
     });
     document.addEventListener('mousemove', function(e) {
       if (!active) return;
@@ -669,7 +682,7 @@ const SOURCE_INSPECTOR_SCRIPT = `
         fetch('/__one/open-source?source=' + encodeURIComponent(el.getAttribute('data-one-source')));
       }
     }, true);
-    window.addEventListener('blur', function() { pressed.clear(); active = false; hideOverlay(); });
+    window.addEventListener('blur', deactivate);
   } catch (e) {
     console.error('[Source Inspector] Failed to initialize:', e);
   }
@@ -711,7 +724,7 @@ export function DevHead() {
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: ONE_DEVTOOLS_SCRIPT }}
         />
-        {/* Source Inspector - hover with Shift+Cmd/Ctrl */}
+        {/* Source Inspector - hold Alt for 1s then hover */}
         <script
           type="module"
           suppressHydrationWarning
