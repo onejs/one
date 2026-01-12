@@ -89,7 +89,11 @@ export function setValidationState(state: ValidationState) {
     subscriber(state)
   }
   // Dispatch event for devtools
-  if (process.env.TAMAGUI_TARGET !== 'native' && state.status === 'error' && state.error) {
+  if (
+    process.env.TAMAGUI_TARGET !== 'native' &&
+    state.status === 'error' &&
+    state.error
+  ) {
     window.dispatchEvent(
       new CustomEvent('one-validation-error', {
         detail: {

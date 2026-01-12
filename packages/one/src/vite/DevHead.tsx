@@ -614,23 +614,59 @@ const ONE_DEVTOOLS_SCRIPT = `
 })();
 `
 
-// Source Inspector script - shows source location on hover when holding Option for 1s
+// Source Inspector script - shows source location on hover when holding Option for 0.5s
+// Uses shadow DOM for style isolation to avoid conflicts with page styles (e.g., Tamagui)
 const SOURCE_INSPECTOR_SCRIPT = `
 (function() {
   try {
     var active = false;
+    var host = null;
+    var shadow = null;
     var overlay = null;
     var tag = null;
     var holdTimer = null;
-    var holdDelay = 1000;
+    var holdDelay = 500;
+    var mousePos = { x: 0, y: 0 };
 
-    function createOverlay() {
-      overlay = document.createElement('div');
-      overlay.style.cssText = 'position:fixed;pointer-events:none;z-index:10000;background:rgba(100,100,100,0.2);border:2px solid rgba(100,100,100,0.6);border-radius:2px;transition:all 0.05s';
-      document.body.appendChild(overlay);
-      tag = document.createElement('div');
-      tag.style.cssText = 'position:fixed;pointer-events:none;z-index:10001;background:rgba(60,60,60,0.9);color:white;padding:4px 8px;font-size:12px;font-family:system-ui;border-radius:4px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2)';
-      document.body.appendChild(tag);
+    function createHost() {
+      if (host) return;
+      host = document.createElement('div');
+      host.id = 'one-source-inspector';
+      shadow = host.attachShadow({ mode: 'open' });
+      shadow.innerHTML = \`
+        <style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          .overlay {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100000;
+            background: rgba(100,100,100,0.2);
+            border: 2px solid rgba(100,100,100,0.6);
+            border-radius: 2px;
+            transition: all 0.05s;
+            display: none;
+          }
+          .tag {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100001;
+            background: rgba(60,60,60,0.95);
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-family: system-ui, -apple-system, sans-serif;
+            border-radius: 4px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            display: none;
+          }
+        </style>
+        <div class="overlay"></div>
+        <div class="tag"></div>
+      \`;
+      document.body.appendChild(host);
+      overlay = shadow.querySelector('.overlay');
+      tag = shadow.querySelector('.tag');
     }
 
     function hideOverlay() {
@@ -639,7 +675,7 @@ const SOURCE_INSPECTOR_SCRIPT = `
     }
 
     function showOverlay(el, source) {
-      if (!overlay) createOverlay();
+      if (!host) createHost();
       var rect = el.getBoundingClientRect();
       overlay.style.display = 'block';
       overlay.style.top = rect.top + 'px';
@@ -659,8 +695,35 @@ const SOURCE_INSPECTOR_SCRIPT = `
       holdTimer = null;
     }
 
+    function updateOverlayAtPosition(x, y) {
+      // Use elementsFromPoint to get all elements at position, ordered from topmost/innermost to bottom
+      var allElements = document.elementsFromPoint(x, y);
+      // Find the first (innermost) element with data-one-source
+      var el = null;
+      for (var i = 0; i < allElements.length; i++) {
+        if (allElements[i].hasAttribute('data-one-source')) {
+          el = allElements[i];
+          break;
+        }
+      }
+      if (el) {
+        var source = el.getAttribute('data-one-source');
+        var lastColon = source.lastIndexOf(':');
+        var filePath = source.slice(0, lastColon);
+        var idx = source.slice(lastColon + 1);
+        var info = window.__oneSourceInfo && window.__oneSourceInfo[filePath];
+        var lineCol = info && info[idx];
+        var displaySource = lineCol ? filePath + ':' + lineCol[0] + ':' + lineCol[1] : source;
+        showOverlay(el, displaySource);
+      } else {
+        hideOverlay();
+      }
+    }
+
     function activate() {
       active = true;
+      // Immediately show overlay at current mouse position
+      updateOverlayAtPosition(mousePos.x, mousePos.y);
     }
 
     function deactivate() {
@@ -693,27 +756,24 @@ const SOURCE_INSPECTOR_SCRIPT = `
     window.addEventListener('blur', deactivate);
 
     document.addEventListener('mousemove', function(e) {
+      // Always track mouse position
+      mousePos.x = e.clientX;
+      mousePos.y = e.clientY;
       if (!active) return;
-      var el = document.elementFromPoint(e.clientX, e.clientY);
-      while (el && !el.hasAttribute('data-one-source')) el = el.parentElement;
-      if (el) {
-        var source = el.getAttribute('data-one-source');
-        // Parse source and look up actual line:column
-        var lastColon = source.lastIndexOf(':');
-        var filePath = source.slice(0, lastColon);
-        var idx = source.slice(lastColon + 1);
-        var info = window.__oneSourceInfo && window.__oneSourceInfo[filePath];
-        var lineCol = info && info[idx];
-        var displaySource = lineCol ? filePath + ':' + lineCol[0] + ':' + lineCol[1] : source;
-        showOverlay(el, displaySource);
-      }
-      else hideOverlay();
+      updateOverlayAtPosition(e.clientX, e.clientY);
     });
 
     document.addEventListener('click', function(e) {
       if (!active) return;
-      var el = document.elementFromPoint(e.clientX, e.clientY);
-      while (el && !el.hasAttribute('data-one-source')) el = el.parentElement;
+      // Use elementsFromPoint to find innermost sourced element
+      var allElements = document.elementsFromPoint(e.clientX, e.clientY);
+      var el = null;
+      for (var i = 0; i < allElements.length; i++) {
+        if (allElements[i].hasAttribute('data-one-source')) {
+          el = allElements[i];
+          break;
+        }
+      }
       if (el) {
         e.preventDefault();
         e.stopPropagation();
