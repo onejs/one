@@ -55,8 +55,8 @@
   ],
   "scripts": {
     "build": "tamagui-build",
-    "watch": "yarn build --watch",
-    "check": "yarn depcheck",
+    "watch": "bun run build --watch",
+    "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
