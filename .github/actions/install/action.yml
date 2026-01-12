@@ -46,7 +46,8 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      run: bun install ${{ inputs.workspace-focus && format('--filter {0}', inputs.workspace-focus) || '' }}
+      # Always do full install to ensure devDependencies of workspace packages are available for builds
+      run: bun install
 
     - name: Install Playwright
       shell: bash
