@@ -132,10 +132,10 @@ const SubSection = ({
               fd="row"
               py="$2"
               px="$4"
-              jc="flex-start"
+              jc="space-between"
               tag="span"
               ai="center"
-              gap="$3"
+              w="100%"
             >
               <Paragraph size="$5" fow="600" color="$color12">
                 {section.title}

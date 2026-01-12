@@ -39,7 +39,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         ai="center"
         jc="flex-end"
         px="$4"
-        py="$2"
+        py="$1.5"
         opacity={pending ? 0.25 : 1}
         pressStyle={{
           backgroundColor: '$background04',
@@ -50,7 +50,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
           getStore(DocsItemsStore).index = index
         }}
         $sm={{
-          py: '$2.5',
+          py: '$1.5',
         }}
         {...(inMenu && {
           jc: 'flex-start',
