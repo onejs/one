@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/tslib-lite",
   "sideEffects": false,
-  "version": "1.2.57-1768195703893",
+  "version": "1.2.57-1768196633882",
   "type": "module",
   "publishConfig": {
     "access": "public"
