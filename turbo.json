@@ -28,6 +28,22 @@
       "dependsOn": ["^build:js"],
       "outputs": []
     },
+    "test-macos": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios:dev": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios:prod": {
+      "cache": false,
+      "outputs": []
+    },
     "clean": {
       "outputs": ["dist/**/*"],
       "cache": false

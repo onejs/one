@@ -48,7 +48,7 @@ export async function setup({ provide }: GlobalSetupContext) {
     console.log('[test-cloudflare] Building with Cloudflare deploy target...')
 
     try {
-      execSync('yarn build:web', {
+      execSync('bun run build:web', {
         cwd: testDir,
         stdio: 'inherit',
         env: {

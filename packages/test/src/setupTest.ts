@@ -107,7 +107,7 @@ export async function setupTestServers({
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
-      buildProcess = spawn('yarn', ['build:web'], {
+      buildProcess = spawn('bun', ['run', 'build:web'], {
         cwd: process.cwd(),
         env: {
           ...process.env,
