@@ -43,6 +43,7 @@ export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNaviga
 export { href } from './href';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
+export { Protected, type ProtectedProps } from './views/Protected';
 export { withLayoutContext } from './layouts/withLayoutContext';
 export { Link } from './link/Link';
 export { Redirect } from './link/Redirect';

@@ -25,6 +25,8 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
  */
 export declare function useSortedScreens(order: ScreenProps[], options?: {
     onlyMatching?: boolean;
+    /** Set of route names to filter out (protected routes with guard=false) */
+    protectedScreens?: Set<string>;
 }): React.ReactNode[];
 /** Wrap the component with various enhancements and add access to child routes. */
 export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.NamedExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;

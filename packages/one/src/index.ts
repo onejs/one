@@ -71,6 +71,7 @@ export { href } from './href'
 // components
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
+export { Protected, type ProtectedProps } from './views/Protected'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
 export { Link } from './link/Link'

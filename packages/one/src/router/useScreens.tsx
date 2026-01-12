@@ -224,7 +224,11 @@ function getSortedChildren(
  */
 export function useSortedScreens(
   order: ScreenProps[],
-  options?: { onlyMatching?: boolean }
+  options?: {
+    onlyMatching?: boolean
+    /** Set of route names to filter out (protected routes with guard=false) */
+    protectedScreens?: Set<string>
+  }
 ): React.ReactNode[] {
   const node = useRouteNode()
 
@@ -233,8 +237,10 @@ export function useSortedScreens(
       ? getSortedChildren(node.children, order, node.initialRouteName, options)
       : []
 
-    return sorted.map((value) => routeToScreen(value.route, value.props))
-  }, [node?.children, node?.initialRouteName, order])
+    return sorted
+      .filter((value) => !options?.protectedScreens?.has(value.route.route))
+      .map((value) => routeToScreen(value.route, value.props))
+  }, [node?.children, node?.initialRouteName, order, options?.protectedScreens])
 
   return sortedScreens
 }
