@@ -70,6 +70,7 @@ const TableBase = styled(View, {
   borderBottomWidth: 1,
   borderColor: '$color5',
   borderCollapse: 'collapse' as any,
+  borderSpacing: 0,
   my: '$4',
 })
 
@@ -408,7 +409,7 @@ const componentsIn = {
         {...props}
       >
         <Paragraph
-          fontFamily="$silkscreen"
+          fontFamily="$body"
           whiteSpace="revert"
           size="$8"
           lh="$9"
