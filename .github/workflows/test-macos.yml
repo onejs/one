@@ -17,4 +17,4 @@ jobs:
 
       - name: Test
         run: |
-          yarn test-macos
+          bun run test-macos

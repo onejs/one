@@ -21,17 +21,14 @@ jobs:
         # with:
         #  workspace-focus: ${{ env.test_app_package_name }}
 
-      - name: Security Audit
-        run: yarn npm audit --severity high
-
       - name: Check
-        run: yarn check
+        run: bun run check
 
       # workaround of node_modules/.bin/biome not being executable
       - run: chmod +x node_modules/@biomejs/biome/bin/biome
 
       - name: Lint
-        run: yarn lint
+        run: bun run lint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -46,7 +43,7 @@ jobs:
         #   workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Typecheck
-        run: yarn typecheck
+        run: bun run typecheck
 
   tests:
     # runs-on: ubuntu-latest
@@ -62,4 +59,4 @@ jobs:
         #   workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Test
-        run: yarn test
+        run: bun run test

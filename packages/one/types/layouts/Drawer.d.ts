@@ -1,6 +1,6 @@
 import { type DrawerNavigationEventMap, type DrawerNavigationOptions } from '@react-navigation/drawer';
 import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
-export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: DrawerNavigationState<ParamListBase>;
@@ -21,7 +21,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         beforeRemove: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "beforeRemove", true>;
     }> | ((props: {
         route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>;
+        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>;
     }) => Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress", true>;
         transitionStart: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "transitionStart", unknown>;
@@ -36,10 +36,10 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
     }>) | undefined;
     screenOptions?: DrawerNavigationOptions | ((props: {
         route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>;
+        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>;
         theme: ReactNavigation.Theme;
     }) => DrawerNavigationOptions) | undefined;
-    screenLayout?: ((props: import("@react-navigation/core").ScreenLayoutArgs<ParamListBase, string, DrawerNavigationOptions, import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>>) => React.ReactElement) | undefined;
+    screenLayout?: ((props: import("@react-navigation/core").ScreenLayoutArgs<ParamListBase, string, DrawerNavigationOptions, import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>>) => React.ReactElement) | undefined;
     UNSTABLE_router?: (<Action extends Readonly<{
         type: string;
         payload?: object;
@@ -47,9 +47,11 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         target?: string;
     }>>(original: import("@react-navigation/routers").Router<DrawerNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<DrawerNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
-} & {
+} & ({
     id?: undefined;
-}, "children"> & Partial<Pick<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+} | {
+    id: string;
+})), "children"> & Partial<Pick<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: DrawerNavigationState<ParamListBase>;
@@ -70,7 +72,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         beforeRemove: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "beforeRemove", true>;
     }> | ((props: {
         route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>;
+        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>;
     }) => Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress", true>;
         transitionStart: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "transitionStart", unknown>;
@@ -85,10 +87,10 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
     }>) | undefined;
     screenOptions?: DrawerNavigationOptions | ((props: {
         route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
-        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>;
+        navigation: import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>;
         theme: ReactNavigation.Theme;
     }) => DrawerNavigationOptions) | undefined;
-    screenLayout?: ((props: import("@react-navigation/core").ScreenLayoutArgs<ParamListBase, string, DrawerNavigationOptions, import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, undefined>>) => React.ReactElement) | undefined;
+    screenLayout?: ((props: import("@react-navigation/core").ScreenLayoutArgs<ParamListBase, string, DrawerNavigationOptions, import("@react-navigation/drawer").DrawerNavigationProp<ParamListBase, string, string | undefined>>) => React.ReactElement) | undefined;
     UNSTABLE_router?: (<Action extends Readonly<{
         type: string;
         payload?: object;
@@ -96,9 +98,11 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         target?: string;
     }>>(original: import("@react-navigation/routers").Router<DrawerNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<DrawerNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
-} & {
+} & ({
     id?: undefined;
-}, "children">> & import("react").RefAttributes<unknown>> & {
+} | {
+    id: string;
+})), "children">> & import("react").RefAttributes<unknown>> & {
     Screen: typeof import("../views/Screen").Screen;
 };
 export default Drawer;
