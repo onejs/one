@@ -35,7 +35,7 @@ export default {
       },
 
       react: {
-        compiler: false, // Disabled to test SSG hydration issue
+        compiler: true,
       },
 
       config: {
