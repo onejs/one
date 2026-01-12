@@ -75,7 +75,6 @@ export function MetaTheme({
   return (
     <>
       <meta
-        itemProp="__deopt"
         suppressHydrationWarning
         id="vxrn-theme-color"
         name="theme-color"
