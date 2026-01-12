@@ -141,7 +141,7 @@
     "@vxrn/tslib-lite": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*",
     "@vxrn/vite-plugin-metro": "workspace:*",
-    "babel-dead-code-elimination": "^1.0.10",
+    "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
