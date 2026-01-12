@@ -54,7 +54,7 @@
     "metro": "^0.83",
     "metro-config": "*",
     "react-native": "~0.81.5",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0 || ^7.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
