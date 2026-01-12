@@ -156,7 +156,7 @@ export default function HomePage() {
             .
           </PrettyTextBigger>
 
-          <PrettyTextMedium>
+          <PrettyTextMedium color="$gray9">
             One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or
             a sync-engine for data.
           </PrettyTextMedium>
