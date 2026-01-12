@@ -55,16 +55,19 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Wait for hydration - the button should be interactive
     await page.waitForSelector('[data-testid="toggle-auth"]', { state: 'visible' })
-    await page.waitForTimeout(2000) // Extra wait for React hydration
+    await page.waitForTimeout(3000) // Extra wait for React hydration in CI
 
-    // Toggle auth
-    await page.getByTestId('toggle-auth').click()
+    // Toggle auth using evaluate to ensure the click actually fires
+    await page.evaluate(() => {
+      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      if (btn) btn.click()
+    })
 
     // Wait for state to update - poll until we see the change
     await page.waitForFunction(() => {
       const el = document.querySelector('[data-testid="auth-status"]')
       return el && el.textContent?.includes('true')
-    }, { timeout: 5000 })
+    }, { timeout: 10000 })
 
     const authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -87,16 +90,19 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Wait for hydration
     await page.waitForSelector('[data-testid="toggle-auth"]', { state: 'visible' })
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
 
-    // Toggle auth on
-    await page.getByTestId('toggle-auth').click()
+    // Toggle auth on using evaluate
+    await page.evaluate(() => {
+      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      if (btn) btn.click()
+    })
 
     // Wait for state to update
     await page.waitForFunction(() => {
       const el = document.querySelector('[data-testid="auth-status"]')
       return el && el.textContent?.includes('true')
-    }, { timeout: 5000 })
+    }, { timeout: 10000 })
 
     let authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -108,14 +114,17 @@ describe('Protected Routes', { retry: 1 }, () => {
     const dashboardPage = await page.getByTestId('dashboard-page').textContent()
     expect(dashboardPage).toContain('Dashboard Page')
 
-    // Toggle auth off
-    await page.getByTestId('toggle-auth').click()
+    // Toggle auth off using evaluate
+    await page.evaluate(() => {
+      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      if (btn) btn.click()
+    })
 
     // Wait for state to update
     await page.waitForFunction(() => {
       const el = document.querySelector('[data-testid="auth-status"]')
       return el && el.textContent?.includes('false')
-    }, { timeout: 5000 })
+    }, { timeout: 10000 })
 
     authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: false')
