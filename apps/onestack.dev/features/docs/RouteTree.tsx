@@ -57,7 +57,6 @@ export const RouteTree = ({
                 bbw={1}
                 theme={route.delete ? 'light_gray' : route.add ? 'add' : undefined}
                 bbc="$color3"
-                bg="$color1"
                 {...((route.highlight || route.add) && {
                   bg: '$color2',
                 })}

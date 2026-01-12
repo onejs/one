@@ -391,3 +391,13 @@ h1 + h2 {
 .t_light .video-glow::after {
   background: var(--color3);
 }
+
+.mdx-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.mdx-table th:first-child,
+.mdx-table td:first-child {
+  border-right: none;
+}
