@@ -127,7 +127,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
-          bun node_modules/@take-out/scripts/src/run.ts test-ios:dev
+          bun tko run test-ios:dev
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
@@ -239,7 +239,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
         run: |
-          bun node_modules/@take-out/scripts/src/run.ts test-ios:prod
+          bun tko run test-ios:prod
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1

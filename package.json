@@ -22,6 +22,7 @@
     "sharp"
   ],
   "scripts": {
+    "run": "tko run",
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check": "turbo check",
@@ -75,7 +76,6 @@
     "esbuild": "0.25.11"
   },
   "dependencies": {
-    "@take-out/scripts": "^0.0.39",
     "@manypkg/cli": "^0.19.1",
     "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",
@@ -118,6 +118,7 @@
     }
   },
   "devDependencies": {
+    "@take-out/cli": "^0.0.39",
     "oxc-parser": "^0.107.0"
   }
 }
