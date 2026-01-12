@@ -95,7 +95,46 @@ This keeps your auth context clean while each platform uses appropriate secure s
 
 ## Protected Routes
 
-Protect routes using a layout guard that checks auth state and redirects unauthorized users.
+There are two approaches to protecting routes in One:
+
+| Approach | Best For |
+|----------|----------|
+| **`<Protected />`** | Routes that shouldn't exist when unauthorized (hidden tabs, admin-only pages) |
+| **Redirect guard** | Routes that redirect to login but support returning after auth |
+
+### Declarative with `<Protected />`
+
+The `<Protected />` component completely filters out routes when its `guard` prop is false. This is ideal when routes should be invisible to unauthorized users:
+
+```tsx fileName=app/(app)/_layout.tsx
+import { Stack, Protected } from 'one'
+import { useSession } from '~/features/auth/ctx'
+
+export default function AppLayout() {
+  const { session, isLoading } = useSession()
+
+  if (isLoading) return null
+
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ title: 'Home' }} />
+      <Protected guard={!!session}>
+        <Stack.Screen name="dashboard" options={{ title: 'Dashboard' }} />
+        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+      </Protected>
+      <Protected guard={session?.role === 'admin'}>
+        <Stack.Screen name="admin" options={{ title: 'Admin' }} />
+      </Protected>
+    </Stack>
+  )
+}
+```
+
+When `session` is null, attempts to navigate to `/dashboard` or `/settings` are blocked entirely - the routes don't exist in the navigation state.
+
+### Redirect Guard
+
+Protect routes using a layout guard that checks auth state and redirects unauthorized users. This approach allows deep linking to protected pages - users are redirected to login, then can return to their original destination.
 
 <RouteTree
   routes={[
@@ -317,6 +356,7 @@ See the [one-fullstack example](https://github.com/onejs/one/tree/main/examples/
 
 ## Related
 
+- [Protected](/docs/components-Protected) - Declarative route protection
 - [Middlewares](/docs/routing-middlewares) - Server-side request interception
 - [Loaders](/docs/routing-loader) - Data loading with auth
 - [API Routes](/docs/render-modes#api) - Creating API endpoints

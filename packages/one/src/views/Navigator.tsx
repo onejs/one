@@ -9,6 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
 import { FlagsContext } from '../router/FlagsContext'
 import { useContextKey } from '../router/Route'
+import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens } from '../router/useScreens'
 import { Screen } from './Screen'
 
@@ -44,12 +45,23 @@ export function Navigator({
   const contextKey = useContextKey()
 
   // Allows adding Screen components as children to configure routes.
-  const { screens, children: otherSlot } = useFilterScreenChildren(children, {
+  const { screens, children: otherSlot, protectedScreens } = useFilterScreenChildren(children, {
     isCustomNavigator: true,
     contextKey,
   })
 
-  const sorted = useSortedScreens(screens ?? [])
+  // Register protected routes globally so linkTo can block navigation to them
+  // Register immediately (not just in effect) to catch navigation attempts during first render
+  registerProtectedRoutes(contextKey, protectedScreens)
+
+  React.useEffect(() => {
+    registerProtectedRoutes(contextKey, protectedScreens)
+    return () => {
+      unregisterProtectedRoutes(contextKey)
+    }
+  }, [contextKey, protectedScreens])
+
+  const sorted = useSortedScreens(screens ?? [], { protectedScreens })
 
   if (!sorted.length) {
     console.warn(`Navigator at "${contextKey}" has no children.`)

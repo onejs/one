@@ -11,6 +11,21 @@ import type { UrlObject } from './getNormalizedStatePath';
 import type { RouteNode } from './Route';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
+/**
+ * Register protected routes for a navigator context.
+ * Called by navigators when their protectedScreens changes.
+ */
+export declare function registerProtectedRoutes(contextKey: string, protectedScreens: Set<string>): void;
+/**
+ * Unregister protected routes for a navigator context.
+ * Called when a navigator unmounts.
+ */
+export declare function unregisterProtectedRoutes(contextKey: string): void;
+/**
+ * Check if a route path is protected and should be blocked.
+ * Returns true if the route is protected.
+ */
+export declare function isRouteProtected(href: string): boolean;
 export declare let hasAttemptedToHideSplash: boolean;
 export declare let initialState: OneRouter.ResultState | undefined;
 export declare let rootState: OneRouter.ResultState | undefined;

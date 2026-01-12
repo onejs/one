@@ -1,0 +1,119 @@
+---
+title: "<Protected />"
+---
+
+The `<Protected />` component allows you to declaratively hide routes based on a boolean condition. When the `guard` prop is `false`, wrapped screens are completely filtered out from the navigator - they won't appear in the navigation state and cannot be navigated to.
+
+This is useful for authentication flows, feature flags, role-based access, or any scenario where routes should be conditionally available.
+
+```tsx
+import { Stack, Protected } from 'one'
+import { useSession } from '~/features/auth/ctx'
+
+export default function Layout() {
+  const { session } = useSession()
+
+  return (
+    <Stack>
+      <Stack.Screen name="login" options={{ title: 'Login' }} />
+      <Stack.Screen name="index" options={{ title: 'Home' }} />
+      <Protected guard={!!session}>
+        <Stack.Screen name="dashboard" options={{ title: 'Dashboard' }} />
+        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+      </Protected>
+    </Stack>
+  )
+}
+```
+
+When `session` is null/undefined, the `dashboard` and `settings` routes don't exist in the navigation tree. Attempts to navigate to them will be blocked.
+
+## Works with Any Navigator
+
+`<Protected />` works with Stack, Tabs, Drawer, and the base Navigator component:
+
+```tsx
+import { Tabs, Protected } from 'one'
+
+export default function TabLayout() {
+  const { isAdmin } = useUser()
+
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" />
+      <Tabs.Screen name="profile" />
+      <Protected guard={isAdmin}>
+        <Tabs.Screen name="admin" />
+      </Protected>
+    </Tabs>
+  )
+}
+```
+
+## Nested Guards
+
+You can nest `<Protected />` components. Routes are only shown when **all** parent guards are true:
+
+```tsx
+<Stack>
+  <Stack.Screen name="public" />
+  <Protected guard={isLoggedIn}>
+    <Stack.Screen name="dashboard" />
+    <Protected guard={isPremium}>
+      <Stack.Screen name="premium-features" />
+    </Protected>
+  </Protected>
+</Stack>
+```
+
+In this example:
+- `public` is always available
+- `dashboard` requires `isLoggedIn` to be true
+- `premium-features` requires both `isLoggedIn` AND `isPremium` to be true
+
+## Comparison with Redirect
+
+There are two main approaches to protecting routes:
+
+| Approach | When to Use |
+|----------|-------------|
+| `<Protected />` | Routes should not exist when unauthorized |
+| `<Redirect />` | Routes exist but redirect unauthorized users |
+
+**Use `<Protected />`** when routes should be completely hidden - they won't appear in tab bars, won't be in the navigation history, and navigation attempts will be blocked.
+
+**Use `<Redirect />`** when you want to intercept navigation and send users to a login page. This is better for deep linking scenarios where you want to redirect to login, then back to the original destination.
+
+You can combine both approaches:
+
+```tsx
+export default function AppLayout() {
+  const { session, isLoading } = useSession()
+
+  if (isLoading) return null
+  if (!session) return <Redirect href="/login" />
+
+  return (
+    <Stack>
+      <Stack.Screen name="index" />
+      <Protected guard={session.role === 'admin'}>
+        <Stack.Screen name="admin" />
+      </Protected>
+    </Stack>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `guard` | `boolean` | When `false`, all wrapped screens are filtered out |
+| `children` | `ReactNode` | `<Stack.Screen />`, `<Tabs.Screen />`, or other `<Protected />` elements |
+
+## Related
+
+- [Authentication Guide](/docs/guides-authentication) - Full auth implementation patterns
+- [Stack](/docs/components-Stack) - Stack navigator
+- [Tabs](/docs/components-Tabs) - Tab navigator
+- [Redirect](/docs/components-Redirect) - Redirect component

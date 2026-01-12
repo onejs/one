@@ -52,6 +52,57 @@ import { checkBlocker } from '../useBlocker'
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
 
+// Global registry for protected routes
+// Key: contextKey (e.g., '/protected-test'), Value: Set of protected route names
+const protectedRouteRegistry = new Map<string, Set<string>>()
+
+/**
+ * Register protected routes for a navigator context.
+ * Called by navigators when their protectedScreens changes.
+ */
+export function registerProtectedRoutes(contextKey: string, protectedScreens: Set<string>) {
+  if (protectedScreens.size === 0) {
+    protectedRouteRegistry.delete(contextKey)
+  } else {
+    protectedRouteRegistry.set(contextKey, protectedScreens)
+  }
+}
+
+/**
+ * Unregister protected routes for a navigator context.
+ * Called when a navigator unmounts.
+ */
+export function unregisterProtectedRoutes(contextKey: string) {
+  protectedRouteRegistry.delete(contextKey)
+}
+
+/**
+ * Check if a route path is protected and should be blocked.
+ * Returns true if the route is protected.
+ */
+export function isRouteProtected(href: string): boolean {
+  // Normalize the href (remove leading/trailing slashes)
+  const normalizedHref = href.replace(/^\/+|\/+$/g, '')
+
+  // Check each navigator context to see if this route is protected
+  for (const [contextKey, protectedScreens] of protectedRouteRegistry) {
+    const normalizedContextKey = contextKey.replace(/^\/+|\/+$/g, '')
+
+    // Check if this href is under this context
+    if (normalizedHref.startsWith(normalizedContextKey)) {
+      // Get the route name relative to this context
+      const relativePath = normalizedHref.slice(normalizedContextKey.length).replace(/^\//, '')
+      const routeName = relativePath.split('/')[0] || 'index'
+
+      if (protectedScreens.has(routeName)) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
 export let hasAttemptedToHideSplash = false
 export let initialState: OneRouter.ResultState | undefined
 export let rootState: OneRouter.ResultState | undefined
@@ -646,6 +697,11 @@ export async function linkTo(
 
   // Check if any blocker wants to block this navigation (web only)
   if (checkBlocker(href, event === 'REPLACE' ? 'replace' : 'push')) {
+    return
+  }
+
+  // Check if the route is protected and should be blocked
+  if (isRouteProtected(href)) {
     return
   }
 

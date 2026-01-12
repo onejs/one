@@ -58,6 +58,7 @@ export const docsRoutes = [
       { title: 'Stack', route: '/docs/components-Stack' },
       { title: 'Tabs', route: '/docs/components-Tabs' },
       { title: 'Drawer', route: '/docs/components-Drawer' },
+      { title: 'Protected', route: '/docs/components-Protected' },
       { title: 'withLayoutContext', route: '/docs/exports-withLayoutContext' },
     ],
   },
