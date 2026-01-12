@@ -596,23 +596,15 @@ const ONE_DEVTOOLS_SCRIPT = `
 })();
 `
 
-// Source Inspector script - shows source location on hover with Shift+Cmd/Ctrl
+// Source Inspector script - shows source location on hover when holding Option for 1s
 const SOURCE_INSPECTOR_SCRIPT = `
 (function() {
   try {
-    var isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-    var hotkey = isMac ? ['shift', 'meta'] : ['shift', 'control'];
-    var pressed = new Set();
     var active = false;
     var overlay = null;
     var tag = null;
-
-    function isHotkeyPressed() {
-      return hotkey.every(function(k) {
-        if (k === 'meta' || k === 'control') return pressed.has('meta') || pressed.has('control');
-        return pressed.has(k);
-      });
-    }
+    var holdTimer = null;
+    var holdDelay = 1000;
 
     function createOverlay() {
       overlay = document.createElement('div');
@@ -644,14 +636,44 @@ const SOURCE_INSPECTOR_SCRIPT = `
       tag.style.left = Math.max(4, Math.min(rect.left, window.innerWidth - 200)) + 'px';
     }
 
-    document.addEventListener('keydown', function(e) {
-      pressed.add(e.key.toLowerCase());
-      if (isHotkeyPressed()) active = true;
+    function cancelHold() {
+      clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+
+    function activate() {
+      active = true;
+    }
+
+    function deactivate() {
+      cancelHold();
+      active = false;
+      hideOverlay();
+    }
+
+    window.addEventListener('keydown', function(e) {
+      // Only trigger on Alt/Option key held alone
+      if (e.key !== 'Alt') {
+        cancelHold();
+        return;
+      }
+      // Ignore if other modifier keys are pressed
+      if (e.metaKey || e.ctrlKey || e.shiftKey) {
+        cancelHold();
+        return;
+      }
+      if (e.defaultPrevented) return;
+      if (holdTimer) return; // already waiting
+      holdTimer = setTimeout(activate, holdDelay);
     });
-    document.addEventListener('keyup', function(e) {
-      pressed.delete(e.key.toLowerCase());
-      if (!isHotkeyPressed()) { active = false; hideOverlay(); }
+
+    window.addEventListener('keyup', function(e) {
+      if (e.defaultPrevented) return;
+      deactivate();
     });
+
+    window.addEventListener('blur', deactivate);
+
     document.addEventListener('mousemove', function(e) {
       if (!active) return;
       var el = document.elementFromPoint(e.clientX, e.clientY);
@@ -659,6 +681,7 @@ const SOURCE_INSPECTOR_SCRIPT = `
       if (el) showOverlay(el, el.getAttribute('data-one-source'));
       else hideOverlay();
     });
+
     document.addEventListener('click', function(e) {
       if (!active) return;
       var el = document.elementFromPoint(e.clientX, e.clientY);
@@ -669,7 +692,6 @@ const SOURCE_INSPECTOR_SCRIPT = `
         fetch('/__one/open-source?source=' + encodeURIComponent(el.getAttribute('data-one-source')));
       }
     }, true);
-    window.addEventListener('blur', function() { pressed.clear(); active = false; hideOverlay(); });
   } catch (e) {
     console.error('[Source Inspector] Failed to initialize:', e);
   }
@@ -711,7 +733,7 @@ export function DevHead() {
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: ONE_DEVTOOLS_SCRIPT }}
         />
-        {/* Source Inspector - hover with Shift+Cmd/Ctrl */}
+        {/* Source Inspector - hold Option for 1s then hover */}
         <script
           type="module"
           suppressHydrationWarning
