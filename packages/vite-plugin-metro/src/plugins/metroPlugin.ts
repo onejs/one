@@ -141,7 +141,6 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
           const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
           const devMiddleware = createDevMiddleware({
-            projectRoot: config.projectRoot,
             serverBaseUrl: reactNativeDevToolsUrl,
             logger: console,
           })
