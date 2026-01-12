@@ -22,7 +22,7 @@
     "sharp"
   ],
   "scripts": {
-    "run": "tko run",
+    "run": "bun tko run",
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check": "turbo check",
@@ -65,8 +65,9 @@
     "test:vite-ecosystem-ci": "bun run --cwd tests/test test",
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "typecheck": "turbo typecheck",
-    "upgrade:tamagui": "bun update '*tamagui*' '@tamagui/*'",
-    "upgrade:tamagui:canary": "bun update '*tamagui*'@canary '@tamagui/*'@canary",
+    "up-dep": "bun tko update-deps",
+    "upgrade:tamagui": "bun run up-dep '*tamagui*' '@tamagui/*'",
+    "upgrade:tamagui:canary": "bun run up-dep --canary '*tamagui*' '@tamagui/*'",
     "watch": "npm-run-all --parallel watch:ts watch:build",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 bun run watch:build",
