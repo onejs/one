@@ -1,12 +1,12 @@
 ---
-title: Routing Modes
+title: Render Modes
 ---
 
 A unique feature of One is the ability to seamlessly route across a variety of route modes. What this means in plain english, is that you can choose whether each individual page within your routes uses one of a few strategies, such as rendering statically at build time, or rendering on-demand at request time.
 
-One supports the following routing modes, which are explained in detail below: `api`, `spa`, `ssr`, and `ssg`.
+One supports the following render modes, which are explained in detail below: `api`, `spa`, `ssr`, and `ssg`.
 
-You can set your global routing mode with the One vite plugin. The default is `ssg`.
+You can set your global render mode with the One vite plugin. The default is `ssg`.
 
 ```tsx fileName=vite.config.ts
 import { one } from 'one/vite'
@@ -22,12 +22,12 @@ export default {
 }
 ```
 
-To specify the routing mode on a per-page basis, you add a suffix to the filename, like so:
+To specify the render mode on a per-page basis, you add a suffix to the filename, like so:
 
-- `route+ssg.tsx` - Matches "/route", but will render the page as a [SSG route](#ssg-the-default).
-- `route+spa.tsx` - Matches "/route", but will render the page as a [SPA route](#spa).
-- `route+ssr.tsx` - Matches "/route", but will render the page as a [SSR route](#ssr).
-- `route+api.tsx` - Matches "/route", but will render the page as an [API route](#api).
+- `route+ssg.tsx` - Matches `/route`, but will render the page as a [SSG route](#ssg-the-default).
+- `route+spa.tsx` - Matches `/route`, but will render the page as a [SPA route](#spa).
+- `route+ssr.tsx` - Matches `/route`, but will render the page as a [SSR route](#ssr).
+- `route+api.tsx` - Matches `/route`, but will render the page as an [API route](#api).
 
 ## Modes
 

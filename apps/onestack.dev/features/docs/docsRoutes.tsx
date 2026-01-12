@@ -14,17 +14,17 @@ export const docsRoutes = [
   {
     title: 'Guides',
     pages: [
-      { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
+      { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
+      { title: 'Ship with EAS', route: '/docs/guides-eas' },
       { title: 'Deployment', route: '/docs/guides-deployment' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
       { title: 'Tamagui', route: '/docs/guides-tamagui' },
-      { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
-      { title: 'Ship with EAS', route: '/docs/guides-eas' },
       {
         title: 'Migrate from CRA',
         route: '/docs/guides-migrating-create-react-app-cra-to-vite-with-one',
       },
+      { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
     ],
   },
 
@@ -41,7 +41,7 @@ export const docsRoutes = [
     title: 'Routing',
     pages: [
       { title: 'Overview', route: '/docs/routing' },
-      { title: 'Modes', route: '/docs/routing-modes' },
+      { title: 'Render Modes', route: '/docs/render-modes' },
       { title: 'Exports', route: '/docs/routing-exports' },
       { title: 'Navigation', route: '/docs/routing-navigation' },
       { title: 'Layouts', route: '/docs/routing-layouts' },

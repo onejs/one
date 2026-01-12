@@ -2,12 +2,192 @@
 title: "<ScrollBehavior />"
 ---
 
-One automatically handles resetting scrolling to window.location.hash and changing scroll position to the top when you navigate to a new page.
+One automatically handles scroll restoration to provide a native browser-like experience. When you navigate to a new page, scroll resets to the top. When you press back/forward, your previous scroll position is restored.
 
-It also remembers your scroll position on each page you've visited and restores that position when you navigate back or forward to it. This mimics the default behavior that browsers do with multi-page apps.
+The `ScrollBehavior` component lets you customize this behavior for special cases.
 
-You can control this behavior by importing the `ScrollBehavior` component once in your app (we'd recommend doing so in your root `_layout.tsx`) and returning it in your component's virtual DOM.
+## Default Behavior
 
-ScrollBehavior accepts a `disabled` prop which takes values of type `boolean` or string `"restore"`. If set to "restore," the scroll position will only reset to the top on new page navigation, but won't be restored to the previous scroll position when navigating back/forward.
+Out of the box, One handles:
 
-In general, you shouldn't need to use this component, but it may be helpful in specialized use cases where you need more control over the scroll restoration logic.
+- **Hash scrolling**: Scrolls to `#element-id` when present in the URL
+- **New page navigation**: Scrolls to top when navigating to a new route
+- **Back/forward navigation**: Restores the previous scroll position
+- **Session persistence**: Scroll positions are saved to sessionStorage
+
+You don't need to add `ScrollBehavior` unless you want to change this behavior.
+
+## Usage
+
+Add `ScrollBehavior` once in your root layout:
+
+```tsx fileName=app/_layout.tsx
+import { ScrollBehavior, Slot } from 'one'
+
+export default function Layout() {
+  return (
+    <>
+      <ScrollBehavior />
+      <Slot />
+    </>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disable` | `boolean \| 'restore'` | `false` | Disable scroll behavior entirely or just restoration |
+
+### Disable Options
+
+```tsx
+// Disable all scroll behavior
+<ScrollBehavior disable />
+
+// Disable only scroll restoration on back/forward
+// (still scrolls to top on new navigation)
+<ScrollBehavior disable="restore" />
+```
+
+## Scroll Groups
+
+For complex layouts like tabs or dashboards, you may want child routes to share a scroll position. Use the `useScrollGroup` hook to create a scroll group:
+
+```tsx fileName=app/dashboard/_layout.tsx
+import { Slot, useScrollGroup } from 'one'
+
+export default function DashboardLayout() {
+  // All routes under /dashboard will share scroll position
+  useScrollGroup()
+
+  return (
+    <div>
+      <Sidebar />
+      <main>
+        <Slot />
+      </main>
+    </div>
+  )
+}
+```
+
+Now when navigating between `/dashboard/overview` and `/dashboard/settings`, the scroll position is preserved instead of resetting to the top.
+
+### Custom Scroll Group Path
+
+You can specify a custom group path:
+
+```tsx
+import { useScrollGroup } from 'one'
+
+function MyLayout() {
+  // Create a scroll group for a specific path
+  useScrollGroup('/products')
+
+  return <Slot />
+}
+```
+
+## Link-Level Control
+
+Disable scroll behavior for individual navigation actions using the `scroll` prop on `Link`:
+
+```tsx
+import { Link } from 'one'
+
+// This navigation won't affect scroll position
+<Link href="/next-page" scroll={false}>
+  Stay in place
+</Link>
+```
+
+Or with `useRouter`:
+
+```tsx
+import { useRouter } from 'one'
+
+function MyComponent() {
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push('/next-page', { scroll: false })
+  }
+
+  return <button onClick={handleClick}>Navigate without scrolling</button>
+}
+```
+
+## How It Works
+
+1. **On navigation start**: Current scroll position is saved to sessionStorage keyed by pathname
+2. **On navigation complete**:
+   - If URL has a hash (`#section`), scrolls to that element
+   - If back/forward navigation, restores saved position
+   - If within a scroll group, preserves group position
+   - Otherwise, scrolls to top
+
+Scroll positions are stored per-pathname in sessionStorage, so they persist across page refreshes within a session but not across browser sessions.
+
+## Platform Support
+
+| Platform | Support |
+|----------|---------|
+| Web | Full support |
+| React Native | Not applicable (no window scroll) |
+
+`ScrollBehavior` is a web-only component. On native platforms, scroll restoration is handled by the native scroll views themselves.
+
+## Common Use Cases
+
+### Infinite Scroll Lists
+
+Preserve scroll position when users navigate away and back:
+
+```tsx fileName=app/feed/_layout.tsx
+import { Slot, useScrollGroup } from 'one'
+
+export default function FeedLayout() {
+  // Preserve scroll in the feed when viewing details
+  useScrollGroup()
+
+  return <Slot />
+}
+```
+
+### Tab-Based Navigation
+
+Keep each tab's scroll position independent:
+
+```tsx fileName=app/(tabs)/_layout.tsx
+import { Tabs, useScrollGroup } from 'one'
+
+export default function TabLayout() {
+  useScrollGroup()
+
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" />
+      <Tabs.Screen name="search" />
+      <Tabs.Screen name="profile" />
+    </Tabs>
+  )
+}
+```
+
+### Disable for Modal Routes
+
+Don't scroll when opening modals:
+
+```tsx
+<Link href="/modal" scroll={false}>
+  Open Modal
+</Link>
+```
+
+## Related
+
+- [Link](/docs/components-Link) - Navigation component with scroll control
+- [useRouter](/docs/hooks-useRouter) - Programmatic navigation with scroll options
+- [Layouts](/docs/routing-layouts) - Layout patterns for scroll groups
