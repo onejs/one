@@ -7,14 +7,16 @@ describe(`Rendering Tests`, { retry: 2, timeout: 60_000 }, () => {
     const response = await fetch(serverUrl!)
     const html = await response.text()
 
-    expect(html).toContain('<meta id="test-meta"/>')
-    expect(html).toContain('<title>test title</title>')
+    // Use regex to match elements regardless of data-one-source attribute (added by source inspector in dev)
+    expect(html).toMatch(/<meta[^>]*id="test-meta"[^>]*\/>/)
+    expect(html).toMatch(/<title[^>]*>test title<\/title>/)
   })
 
   it('the root layout can use useServerHeadInsertion to add head tags', async () => {
     const response = await fetch(serverUrl!)
     const html = await response.text()
 
-    expect(html).toContain('<style id="test-server-insert-style">hi</style>')
+    // Use regex to match style element regardless of data-one-source attribute (added by source inspector in dev)
+    expect(html).toMatch(/<style[^>]*id="test-server-insert-style"[^>]*>hi<\/style>/)
   })
 })

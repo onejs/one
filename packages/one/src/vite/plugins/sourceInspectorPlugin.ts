@@ -6,7 +6,11 @@ import type { Plugin, ViteDevServer } from 'vite'
 interface JsxLocation {
   /** Position right after the tag name where we insert the attribute */
   insertOffset: number
+  /** Traversal index - stable ordering that's the same on server and client */
+  index: number
+  /** Actual line number for editor navigation */
   line: number
+  /** Actual column number for editor navigation */
   column: number
 }
 
@@ -22,6 +26,7 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
   }
 
   const locations: JsxLocation[] = []
+  let traversalIndex = 0
 
   function getJsxName(node: any): string | null {
     if (!node) return null
@@ -63,6 +68,7 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
 
           locations.push({
             insertOffset: nameEnd,
+            index: traversalIndex++,
             line: loc.line,
             column: loc.column,
           })
@@ -70,7 +76,7 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
       }
     }
 
-    // Walk all child nodes
+    // Walk all child nodes in consistent order
     for (const key of Object.keys(node)) {
       if (key === 'parent') continue
       const value = node[key]
@@ -92,6 +98,7 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
 
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
+ * Uses stable traversal indices instead of line numbers to avoid hydration mismatches.
  */
 function injectSourceToJsx(
   code: string,
@@ -113,14 +120,28 @@ function injectSourceToJsx(
     return
   }
 
+  // Build source info map for this file
+  // Sort by index (ascending) for the map, since jsxLocations is sorted by offset (descending)
+  const sourceInfoEntries = [...jsxLocations]
+    .sort((a, b) => a.index - b.index)
+    .map((jsx) => `${jsx.index}:[${jsx.line},${jsx.column}]`)
+    .join(',')
+
+  // Inject source info registration at the top of the file
+  const sourceInfoScript = `globalThis.__oneSourceInfo=globalThis.__oneSourceInfo||{};globalThis.__oneSourceInfo["${location}"]={${sourceInfoEntries}};`
+
   let result = code
 
   // Insert from end to start to preserve offsets
   for (const jsx of jsxLocations) {
-    const sourceAttr = ` data-one-source="${location}:${jsx.line}:${jsx.column}"`
+    // Use stable index instead of line:column
+    const sourceAttr = ` data-one-source="${location}:${jsx.index}"`
     result =
       result.slice(0, jsx.insertOffset) + sourceAttr + result.slice(jsx.insertOffset)
   }
+
+  // Add source info at the very beginning of the file
+  result = sourceInfoScript + result
 
   return { code: result, map: null }
 }
@@ -158,6 +179,7 @@ export function sourceInspectorPlugin(): Plugin[] {
 
       transform(code, id) {
         const envName = this.environment?.name
+        // Skip native environments only - transform both client and SSR for consistency
         if (envName === 'ios' || envName === 'android') return
 
         if (
@@ -198,12 +220,17 @@ export function sourceInspectorPlugin(): Plugin[] {
               return
             }
 
-            const parts = source.split(':')
-            const filePath = parts.slice(0, -2).join(':') || parts[0]
-            const line = parts.length >= 2 ? parts[parts.length - 2] : undefined
-            const column = parts.length >= 3 ? parts[parts.length - 1] : undefined
+            // Parse the source - now format is "filePath:index"
+            const lastColon = source.lastIndexOf(':')
+            const filePath = source.slice(0, lastColon)
+            const index = source.slice(lastColon + 1)
 
-            await openInEditor(filePath!, line, column)
+            // Look up actual line/column from source info
+            // The client will send these if available
+            const line = url.searchParams.get('line')
+            const column = url.searchParams.get('column')
+
+            await openInEditor(filePath, line || undefined, column || undefined)
 
             res.statusCode = 200
             res.end('OK')

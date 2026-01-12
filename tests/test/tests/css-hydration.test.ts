@@ -61,15 +61,16 @@ describe('CSS Hydration Tests', () => {
     // Give React a moment to report any hydration issues
     await page.waitForTimeout(1000)
 
-    // Check that there are no hydration warnings related to CSS
+    // Check that there are no hydration warnings related to CSS elements
+    // Exclude data-one-source warnings (source inspector in dev mode, not CSS-related)
     const cssHydrationWarnings = hydrationWarnings.filter(
       (w) =>
-        w.includes('style') ||
-        w.includes('Style') ||
-        w.includes('link') ||
-        w.includes('Link') ||
-        w.includes('css') ||
-        w.includes('CSS')
+        !w.includes('data-one-source') && // Exclude source inspector attribute mismatches
+        (w.includes('<style') || // Look for style element mismatches
+          w.includes('<link') || // Look for link element mismatches
+          w.includes('stylesheet') ||
+          w.includes('css') ||
+          w.includes('CSS'))
     )
 
     expect(
