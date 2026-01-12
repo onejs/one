@@ -72,7 +72,7 @@ export const Link = React.forwardRef(function Link(
       {...props}
       {...hrefAttrs}
       {...rest}
-      nativeID={id}
+      {...(process.env.TAMAGUI_TARGET === 'web' ? { id } : { nativeID: id })}
       style={asChild ? null : style}
       {...Platform.select({
         web: {
