@@ -53,14 +53,18 @@ describe('Protected Routes', { retry: 1 }, () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/protected-test`)
 
-    // Wait for hydration
-    await page.waitForTimeout(1000)
+    // Wait for hydration - the button should be interactive
+    await page.waitForSelector('[data-testid="toggle-auth"]', { state: 'visible' })
+    await page.waitForTimeout(2000) // Extra wait for React hydration
 
-    // Toggle auth using testID selector - more reliable in CI
+    // Toggle auth
     await page.getByTestId('toggle-auth').click()
 
-    // Wait for state update
-    await page.waitForTimeout(500)
+    // Wait for state to update - poll until we see the change
+    await page.waitForFunction(() => {
+      const el = document.querySelector('[data-testid="auth-status"]')
+      return el && el.textContent?.includes('true')
+    }, { timeout: 5000 })
 
     const authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -82,11 +86,17 @@ describe('Protected Routes', { retry: 1 }, () => {
     await page.goto(`${serverUrl}/protected-test`)
 
     // Wait for hydration
-    await page.waitForTimeout(1000)
+    await page.waitForSelector('[data-testid="toggle-auth"]', { state: 'visible' })
+    await page.waitForTimeout(2000)
 
     // Toggle auth on
     await page.getByTestId('toggle-auth').click()
-    await page.waitForTimeout(500)
+
+    // Wait for state to update
+    await page.waitForFunction(() => {
+      const el = document.querySelector('[data-testid="auth-status"]')
+      return el && el.textContent?.includes('true')
+    }, { timeout: 5000 })
 
     let authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -100,7 +110,12 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Toggle auth off
     await page.getByTestId('toggle-auth').click()
-    await page.waitForTimeout(500)
+
+    // Wait for state to update
+    await page.waitForFunction(() => {
+      const el = document.querySelector('[data-testid="auth-status"]')
+      return el && el.textContent?.includes('false')
+    }, { timeout: 5000 })
 
     authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: false')
