@@ -54,13 +54,13 @@ describe('Protected Routes', { retry: 1 }, () => {
     await page.goto(`${serverUrl}/protected-test`)
 
     // Wait for hydration
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
 
-    // Toggle auth using role selector for better compatibility
-    await page.getByRole('button', { name: 'Toggle Auth' }).click()
+    // Toggle auth using testID selector - more reliable in CI
+    await page.getByTestId('toggle-auth').click()
 
     // Wait for state update
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(500)
 
     const authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -82,11 +82,11 @@ describe('Protected Routes', { retry: 1 }, () => {
     await page.goto(`${serverUrl}/protected-test`)
 
     // Wait for hydration
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
 
     // Toggle auth on
-    await page.getByRole('button', { name: 'Toggle Auth' }).click()
-    await page.waitForTimeout(200)
+    await page.getByTestId('toggle-auth').click()
+    await page.waitForTimeout(500)
 
     let authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -99,8 +99,8 @@ describe('Protected Routes', { retry: 1 }, () => {
     expect(dashboardPage).toContain('Dashboard Page')
 
     // Toggle auth off
-    await page.getByRole('button', { name: 'Toggle Auth' }).click()
-    await page.waitForTimeout(200)
+    await page.getByTestId('toggle-auth').click()
+    await page.waitForTimeout(500)
 
     authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: false')
