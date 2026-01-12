@@ -22,13 +22,15 @@ describe('Environment Variable Tests', () => {
     it('should have process.env.VITE_ENVIRONMENT in SSR HTML', async () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
-      expect(html).toContain(`<div id="process-env">ssr</div>`)
+      // Use regex to match regardless of data-one-source attribute (added by source inspector in dev)
+      expect(html).toMatch(/<div[^>]*id="process-env"[^>]*>ssr<\/div>/)
     })
 
     it('should have import.meta.env.VITE_ENVIRONMENT in SSR HTML', async () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
-      expect(html).toContain(`<div id="import-meta">ssr</div>`)
+      // Use regex to match regardless of data-one-source attribute (added by source inspector in dev)
+      expect(html).toMatch(/<div[^>]*id="import-meta"[^>]*>ssr<\/div>/)
     })
   })
 
