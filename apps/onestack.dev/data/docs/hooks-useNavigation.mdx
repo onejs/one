@@ -2,12 +2,260 @@
 title: useNavigation
 ---
 
-Return the navigation object for the current route.
+Returns the React Navigation object for the current route. This gives you low-level access to the underlying navigation state and methods.
 
-It takes an optional argument named `parent` of type `string`:
+> **Tip**: Prefer [`useRouter`](/docs/hooks-useRouter) for most navigation needs. It provides a simpler, strongly-typed API that's designed specifically for One. Use `useNavigation` only when you need React Navigation-specific features.
 
-- `parent` - Provide an absolute path like `/(root)` to the parent route or a relative path like `../../` to the parent route.
+## Usage
 
-It returns the result of [`useNavigation` from React Navigation](https://reactnavigation.org/docs/use-navigation), you can see the methods available on this object on the [React Navigation navigation prop reference page](https://reactnavigation.org/docs/navigation-prop).
+```tsx
+import { useNavigation } from 'one'
 
-You should prefer to use [`useRouter`](/docs/hooks-useRouter) as it is strongly typed and only exposes functions that are guaranteed to work within One, but useNavigation gives you lower level access to the underlying React Navigation instance.
+function MyComponent() {
+  const navigation = useNavigation()
+
+  // Access navigation state
+  const isFocused = navigation.isFocused()
+
+  // Add event listeners
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log('Screen focused')
+    })
+    return unsubscribe
+  }, [navigation])
+
+  return <View />
+}
+```
+
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `parent` | `string` | Optional. Path to a parent navigator to get its navigation object |
+
+### Parent Path
+
+You can access a parent navigator's navigation object by providing a path:
+
+```tsx
+import { useNavigation } from 'one'
+
+function NestedScreen() {
+  // Get the root navigator's navigation object
+  const rootNavigation = useNavigation('/(root)')
+
+  // Or use relative paths
+  const parentNavigation = useNavigation('../')
+  const grandparentNavigation = useNavigation('../../')
+
+  return <View />
+}
+```
+
+## Return Value
+
+Returns the React Navigation [`NavigationProp`](https://reactnavigation.org/docs/navigation-prop). Key methods include:
+
+| Method | Description |
+|--------|-------------|
+| `navigate(name, params)` | Navigate to a screen |
+| `goBack()` | Go back to the previous screen |
+| `isFocused()` | Check if the screen is focused |
+| `addListener(event, callback)` | Subscribe to navigation events |
+| `setOptions(options)` | Update screen options |
+| `getParent(id)` | Get a parent navigator |
+| `getState()` | Get the navigation state |
+| `dispatch(action)` | Dispatch a navigation action |
+
+## Examples
+
+### Screen Focus Events
+
+Run code when a screen gains or loses focus:
+
+```tsx
+import { useNavigation } from 'one'
+import { useEffect } from 'react'
+
+function ProfileScreen() {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    const unsubscribeFocus = navigation.addListener('focus', () => {
+      // Refresh data when screen comes into focus
+      fetchUserData()
+    })
+
+    const unsubscribeBlur = navigation.addListener('blur', () => {
+      // Cleanup when leaving screen
+      cancelPendingRequests()
+    })
+
+    return () => {
+      unsubscribeFocus()
+      unsubscribeBlur()
+    }
+  }, [navigation])
+
+  return <View />
+}
+```
+
+### Dynamic Screen Options
+
+Update screen options at runtime:
+
+```tsx
+import { useNavigation } from 'one'
+import { useEffect } from 'react'
+
+function ChatScreen({ chatName }) {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: chatName,
+      headerRight: () => <SettingsButton />,
+    })
+  }, [navigation, chatName])
+
+  return <View />
+}
+```
+
+### Before Remove Event
+
+Prevent navigation (e.g., for unsaved changes):
+
+```tsx
+import { useNavigation } from 'one'
+import { useEffect, useState } from 'react'
+import { Alert } from 'react-native'
+
+function EditorScreen() {
+  const navigation = useNavigation()
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (!hasUnsavedChanges) return
+
+      // Prevent default behavior of leaving the screen
+      e.preventDefault()
+
+      Alert.alert(
+        'Discard changes?',
+        'You have unsaved changes. Are you sure you want to leave?',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          {
+            text: 'Discard',
+            style: 'destructive',
+            onPress: () => navigation.dispatch(e.data.action),
+          },
+        ]
+      )
+    })
+
+    return unsubscribe
+  }, [navigation, hasUnsavedChanges])
+
+  return <View />
+}
+```
+
+### Accessing Parent Navigators
+
+Access methods from parent navigators in nested screens:
+
+```tsx fileName=app/(tabs)/home/details.tsx
+import { useNavigation } from 'one'
+
+function DetailsScreen() {
+  // Get the tabs navigator to switch tabs programmatically
+  const tabsNavigation = useNavigation('/(tabs)')
+
+  const goToProfile = () => {
+    // Jump to the profile tab
+    tabsNavigation.navigate('profile')
+  }
+
+  return (
+    <Button onPress={goToProfile}>
+      Go to Profile Tab
+    </Button>
+  )
+}
+```
+
+### Navigation State
+
+Access the current navigation state:
+
+```tsx
+import { useNavigation } from 'one'
+
+function DebugComponent() {
+  const navigation = useNavigation()
+  const state = navigation.getState()
+
+  console.log('Current route index:', state.index)
+  console.log('Route history:', state.routes.map(r => r.name))
+
+  return <View />
+}
+```
+
+## Navigation Events
+
+Available events you can listen to:
+
+| Event | Description |
+|-------|-------------|
+| `focus` | Screen is focused |
+| `blur` | Screen loses focus |
+| `beforeRemove` | Screen is about to be removed (can be prevented) |
+| `state` | Navigation state changes |
+
+## When to Use useNavigation vs useRouter
+
+| Use Case | Recommended Hook |
+|----------|-----------------|
+| Navigate to a route | `useRouter` |
+| Go back | `useRouter` |
+| Replace current route | `useRouter` |
+| Listen to focus/blur events | `useNavigation` |
+| Set screen options dynamically | `useNavigation` |
+| Prevent navigation (beforeRemove) | `useNavigation` |
+| Access navigation state | `useNavigation` |
+| Access parent navigator | `useNavigation` |
+
+## TypeScript
+
+Type the navigation object for better autocomplete:
+
+```tsx
+import { useNavigation } from 'one'
+import type { NavigationProp } from '@react-navigation/native'
+
+type RootStackParamList = {
+  Home: undefined
+  Profile: { userId: string }
+  Settings: undefined
+}
+
+function MyComponent() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>()
+
+  // Now fully typed
+  navigation.navigate('Profile', { userId: '123' })
+}
+```
+
+## Related
+
+- [useRouter](/docs/hooks-useRouter) - Recommended hook for navigation
+- [useBlocker](/docs/hooks-useBlocker) - Block navigation with a simpler API
+- [React Navigation docs](https://reactnavigation.org/docs/navigation-prop) - Full navigation prop reference

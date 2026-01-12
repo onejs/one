@@ -130,7 +130,7 @@ export default function HomePage() {
               file-system routes
             </Link>
             , per-page{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
+            <Link style={{ color: 'var(--color11)' }} href="/docs/render-modes">
               render modes
             </Link>
             ,{' '}
@@ -274,7 +274,7 @@ const InfoBoxes = () => {
       <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
         Typed file-system routing, nested layouts with groups.
       </InfoCard>
-      <InfoCard title="Routing Modes" Icon={FileStack}>
+      <InfoCard title="Render Modes" Icon={FileStack}>
         Render any page as SPA, SSR, or SSG, control the global default.
       </InfoCard>
       <InfoCard title="Loaders" Icon={Loader}>

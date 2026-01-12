@@ -8,25 +8,63 @@ It feels light and simple, runs fast and is easy to customize. It tree shakes we
 
 ### Is this production ready?
 
-Yes! Thanks to many web bug fixes, tests and improvements, and native landing [metro mode](/docs/native-metro-mode), One is now generally production ready.
+Yes! Thanks to many web bug fixes, tests and improvements, and native landing [Metro mode](/docs/metro-mode), One is now generally production ready. See the [Status documentation](/docs/status) for more details.
 
-See the [Status documentation](/docs/status) for more details.
+### Does this use Metro?
 
-### Is this on Metro? Is it Expo Router?
+One supports two modes: [Metro mode](/docs/metro-mode) (recommended) uses Metro for native builds with maximum compatibility, while Vite-only mode is more experimental but offers a unified bundler experience.
 
-No, One started as a fork of [Expo Router](https://docs.expo.dev/router/introduction/) to test and improve [vxrn](https://vxrn.dev). To test that we ported [tamagui.dev](https://tamagui.dev) to it and enjoyed it.
+### How does this relate to Expo Router?
 
-To make that port work well we added [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), [middlewares](/docs/routing-middlewares), a lot of configuration to make a large amount of node_modules work, a CLI, a production Hono server, and some other [smaller features](/docs/features).
+One started as a fork of [Expo Router](https://docs.expo.dev/router/introduction/) but has since diverged significantly. We aim to maintain API compatibility where possible.
+
+### Why use One instead of Expo Router?
+
+One runs on Vite, which is fast, light, and has a massive ecosystem with best-in-class TypeScript support. One achieves significantly higher Lighthouse scores thanks to [render modes](/docs/render-modes), optimized loading strategies, and proper code splitting - you can hit 100 on Lighthouse while sharing nearly all your code with native.
+
+With render modes, you can choose SSG, SSR, or SPA on a per-page basis - Expo Router is SPA-only on web. One includes a [Hono-based production server](/docs/one-serve) out of the box and deploys to [Vercel or Cloudflare](/docs/guides-deployment) with a single config option.
+
+One also adds [dev tools](/docs/dev-tools) (Alt+Space) with SEO preview, route debugging, loader timing, error tracking, and a source inspector. Plus [middleware](/docs/routing-middlewares) for request interception and auth, and [typed loaders](/docs/routing-loader) that run on the server and tree-shake out of client bundles.
+
+Expo Router does have features One lacks, like `use dom` and RSC support. We encourage you to evaluate both and choose based on your needs.
 
 ### Will you support RSC?
 
-In the best case scenario, we'd like to build our apps as though they were completely client-side, and have smart tools and libraries make them work fast. Mostly-client-side apps are great, and RSC adds a lot of new concepts to learn.
+No, we find the complexity trade-off not worth it. One supports [SSG, SPA, and SSR](/docs/render-modes) with [loaders](/docs/routing-loader), and we recommend pairing with a sync engine like [Zero](https://zerosync.dev) for data. A simplified one-way RSC could work, which we'll continue to evaluate.
 
-Further, once you have a great client-side data solution like Zero, you don't want to be going back to the server often, as it would degrade user experience.
+### What platforms does One support?
 
-Finally, we do have [server rendering](/docs/routing-modes) and [loaders](/docs/routing-loader) that are both very simple, we save a lot of effort and complexity without server components.
+macOS (stable), Linux (developing), and Windows (early). See the [Status documentation](/docs/status) for details.
 
-We'd like to explore bringing a simplified subset of RSC to One in the future.
+### Can I use One for web-only or native-only projects?
+
+Yes. One works great as a web-only framework - you don't even need `react-native` as a dependency. For native-only, you can skip web-specific features like SSG/SSR. One is designed to be flexible whether you're targeting one platform or both.
+
+### How does One compare to Next.js?
+
+One takes a simpler approach: no RSC, no complex server/client boundaries. Instead, One uses [loaders](/docs/routing-loader) for data fetching (similar to Remix) and recommends pairing with a sync engine like [Zero](https://zerosync.dev) for real-time data. One also targets React Native alongside web with a single codebase, which Next.js doesn't support.
+
+That said, One provides many things out of the box: [image optimization](/docs/guides-images) with blur placeholders, [dynamic OpenGraph images](/docs/guides-open-graph), [middleware](/docs/routing-middlewares), [automatic sitemaps](/docs/configuration#sitemap), [dev tools](/docs/dev-tools), a [production Hono server](/docs/one-serve), [API routes](/docs/render-modes#api), typed routes, scroll restoration, and a loading progress bar. See [Features](/docs/features) for the full list.
+
+### How does One compare to TanStack Start?
+
+Both are modern Vite-based frameworks with type safety and flexible rendering. One uses file suffixes (`page+ssg.tsx`, `page+ssr.tsx`) to set render modes while TanStack uses route property configuration. One also supports a global `defaultRenderMode`.
+
+In One, SSG routes run loaders at build time and output static HTML. TanStack's "static prerendering" is a post-build crawl - a different model. One includes a [Hono server](/docs/one-serve) out of the box while TanStack Start requires setting up Nitro or deploying to specific platforms. One's loaders run on the server and tree-shake out of client bundles, while TanStack's loaders are isomorphic (run on server, then again on client during navigation). And One targets web and native with shared routes and loaders - TanStack Start is web-only.
+
+Both are great choices for web - One is the better fit if you need cross-platform or prefer the simpler file-based approach.
+
+### What's the difference between SSG, SSR, and SPA?
+
+SSG (Static Site Generation) pre-renders pages at build time - fast and cacheable, ideal for mostly-static content. SSR (Server Side Rendering) renders on each request - good for dynamic content that needs SEO. SPA (Single Page Application) renders entirely on the client - simpler for highly dynamic dashboards. See [Render Modes](/docs/render-modes) for details.
+
+### Can I use my existing React Native libraries?
+
+Yes. With [Metro mode](/docs/metro-mode) (recommended), you get full compatibility with the React Native ecosystem. For libraries that have issues with Vite, One provides a [`deps` patching system](/docs/configuration#deps) to fix common problems like Flow types or JSX in `.js` files.
+
+### How do I deploy a One app?
+
+One includes a [Hono server](/docs/one-serve) out of the box - just run `one build && one serve`. You can also deploy to [Vercel or Cloudflare](/docs/guides-deployment) with a single config option.
 
 ### What's the npm package?
 

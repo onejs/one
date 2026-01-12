@@ -2,8 +2,90 @@
 title: "<SafeAreaView />"
 ---
 
-Exports SafeAreaView from [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context). This enables easy "safe area" targeting for both web and native.
+`SafeAreaView` renders content within the safe area boundaries of a device, avoiding notches, status bars, and home indicators.
 
-One uses the [SafeAreaProvider from React Navigation](https://reactnavigation.org/docs/elements/#safeareaprovidercompat) to set this up.
+One exports `SafeAreaView` from [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context), which works on both web and native.
 
-We're working on improving this so you can control whether it is included and the initial window metrics on server.
+## Usage
+
+```tsx fileName=app/_layout.tsx
+import { SafeAreaView, Slot } from 'one'
+
+export default function Layout() {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Slot />
+    </SafeAreaView>
+  )
+}
+```
+
+## Props
+
+`SafeAreaView` extends all standard `View` props and adds:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `mode` | `'padding' \| 'margin'` | `'padding'` | How to apply the safe area insets |
+| `edges` | `Edge[]` | All edges | Which edges to apply insets to |
+
+## Examples
+
+### Apply to Specific Edges
+
+```tsx
+import { SafeAreaView } from 'one'
+
+// Only apply to top (useful for screens with bottom tabs)
+<SafeAreaView edges={['top']}>
+  {/* Content */}
+</SafeAreaView>
+
+// Only apply to top and bottom
+<SafeAreaView edges={['top', 'bottom']}>
+  {/* Content */}
+</SafeAreaView>
+```
+
+### Use Margin Instead of Padding
+
+```tsx
+<SafeAreaView mode="margin" style={{ flex: 1 }}>
+  {/* Content */}
+</SafeAreaView>
+```
+
+## Hooks
+
+### useSafeAreaInsets
+
+Get the current safe area insets for custom layouts:
+
+```tsx
+import { useSafeAreaInsets } from 'one'
+
+function MyComponent() {
+  const insets = useSafeAreaInsets()
+
+  return (
+    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+      {/* Content */}
+    </View>
+  )
+}
+```
+
+Returns `{ top, right, bottom, left }` in pixels.
+
+## Platform Behavior
+
+- **Web**: Uses CSS `env(safe-area-inset-*)` for notched devices
+- **iOS**: Accounts for status bar, notch/Dynamic Island, and home indicator
+- **Android**: Accounts for status bar, navigation bar, and display cutouts
+
+One automatically sets up `SafeAreaProvider` - no additional setup needed.
+
+## Related
+
+- [Layouts](/docs/routing-layouts) - Using SafeAreaView in layouts
+- [Stack](/docs/components-Stack) - Stack navigation with safe areas
