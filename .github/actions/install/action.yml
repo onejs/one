@@ -54,8 +54,8 @@ runs:
 
     - name: Clean Build
       shell: bash
-      run: ${{ inputs.workspace-focus && format('turbo run clean:build --filter={0}...', inputs.workspace-focus) || 'bun run clean:build'}}
+      run: ${{ inputs.workspace-focus && format('bunx turbo run clean:build --filter={0}...', inputs.workspace-focus) || 'bun run clean:build'}}
 
     - name: Build
       shell: bash
-      run: ${{ inputs.workspace-focus && format('turbo run build --filter={0}...', inputs.workspace-focus) || 'bun run build'}}
+      run: ${{ inputs.workspace-focus && format('bunx turbo run build --filter={0}...', inputs.workspace-focus) || 'bun run build'}}
