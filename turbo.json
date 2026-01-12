@@ -38,11 +38,13 @@
     },
     "test-ios:dev": {
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["SIMULATOR_UDID", "IOS_TEST_CONTAINER_PATH_DEV", "ONE_METRO_MODE"]
     },
     "test-ios:prod": {
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["SIMULATOR_UDID", "IOS_TEST_CONTAINER_PATH_PROD", "ONE_METRO_MODE"]
     },
     "clean": {
       "outputs": ["dist/**/*"],
