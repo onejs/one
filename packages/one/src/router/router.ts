@@ -89,7 +89,7 @@ export function setValidationState(state: ValidationState) {
     subscriber(state)
   }
   // Dispatch event for devtools
-  if (typeof window !== 'undefined' && state.status === 'error' && state.error) {
+  if (process.env.TAMAGUI_TARGET !== 'native' && state.status === 'error' && state.error) {
     window.dispatchEvent(
       new CustomEvent('one-validation-error', {
         detail: {
@@ -349,7 +349,9 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
       }
     })
     // Dispatch event for devtools panels to listen
-    window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
+    if (process.env.TAMAGUI_TARGET !== 'native') {
+      window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
+    }
   }
 }
 
@@ -580,7 +582,7 @@ function recordPreloadError(href: string, error: string) {
 }
 
 function dispatchPreloadEvent() {
-  if (typeof window !== 'undefined') {
+  if (process.env.TAMAGUI_TARGET !== 'native') {
     window.dispatchEvent(new CustomEvent('one-preload-update'))
   }
 }
