@@ -101,7 +101,7 @@ fi
 echo "Building $CONFIGURATION (no cache hit)..."
 
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
-yarn prebuild:native --platform ios
+bun run prebuild:native --platform ios
 
 # Enable precompiled React Native builds (RN 0.81+) and ccache for faster builds
 # RCT_USE_RN_DEP=1 - Use precompiled ReactNativeDependencies.xcframework

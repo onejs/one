@@ -1,6 +1,5 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "extends": ["//"],
   "tasks": {
     "build:js": {
       "cache": false
@@ -27,6 +26,22 @@
     },
     "test": {
       "dependsOn": ["^build:js"],
+      "outputs": []
+    },
+    "test-macos": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios:dev": {
+      "cache": false,
+      "outputs": []
+    },
+    "test-ios:prod": {
+      "cache": false,
       "outputs": []
     },
     "clean": {

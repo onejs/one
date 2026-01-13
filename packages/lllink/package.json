@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "tamagui-build --skip-types --skip-native",
-    "watch": "yarn build --watch",
+    "watch": "bun run build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint": "../../node_modules/.bin/biome check src",

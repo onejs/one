@@ -28,7 +28,6 @@
     "types"
   ],
   "scripts": {
-    "prebuild": "tsx ./prebuild-react-native.ts",
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",

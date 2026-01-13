@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "tamagui-build --skip-native",
-    "watch": "yarn build --watch",
+    "watch": "bun run build --watch",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
@@ -39,7 +39,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "react-native-css-interop": "^0.1.22",
     "ts-deepmerge": "^7.0.2",
-    "vite": "^7.1.12"
+    "vite": "7.1.12"
   },
   "devDependencies": {
     "@tamagui/build": "^1.144.1",

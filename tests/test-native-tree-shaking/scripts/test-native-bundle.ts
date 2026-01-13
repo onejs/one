@@ -88,7 +88,7 @@ async function main() {
     console.log('Starting Metro dev server...')
 
     // Start the dev server
-    metroProcess = spawn('yarn', ['dev'], {
+    metroProcess = spawn('bun', ['run', 'dev'], {
       cwd: process.cwd(),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: { ...process.env, FORCE_COLOR: '0' },

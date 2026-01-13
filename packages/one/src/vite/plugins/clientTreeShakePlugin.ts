@@ -108,8 +108,8 @@ export async function transformTreeShakeClient(code: string, id: string) {
                 declarator.id.name === 'generateStaticParams')
             ) {
               const declaration = path.get('declaration.declarations.' + index)
-              if (!Array.isArray(declaration)) {
-                declaration.remove()
+              if (!Array.isArray(declaration) && declaration) {
+                ;(declaration as any).remove()
                 removed[declarator.id.name] = true
               }
             }

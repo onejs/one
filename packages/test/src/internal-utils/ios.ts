@@ -183,7 +183,7 @@ async function prepareTestApp() {
   $.cwd = root
   await $({
     stdio: 'inherit',
-  })`yarn one patch` // Ensure patches are applied.
+  })`bun one patch` // Ensure patches are applied.
 
   // First, bundle the JS to a temporary file
   const jsBundlePath = `${appPath}/main.jsbundle.js`
@@ -195,7 +195,7 @@ async function prepareTestApp() {
   // So we need to use `env -u` to unset MODE and any env vars we care here.
   await $({
     stdio: 'inherit',
-  })`env -u MODE -u VITE_TEST_ENV_MODE yarn react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
+  })`env -u MODE -u VITE_TEST_ENV_MODE bun react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
 
   // Compile the JS bundle to Hermes bytecode
   // The Release app is built with Hermes enabled, so we must emit bytecode

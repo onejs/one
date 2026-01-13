@@ -1,12 +1,12 @@
 /**
- * This file is only relevant if you have multiple yarn repos and you want to work on them together.
+ * This file is only relevant if you have multiple repos and you want to work on them together.
  * It lets you quickly switch between sets of "resolutions" without dirtying up your git.
  *
  * Add a "profile" to your root package.json, then named keys, then the resolutions.
  *
- * "yarn profile [name]" will toggle them on or off.
+ * "bun run profile [name]" will toggle them on or off.
  *
- * One key feature is it will turn ~ into your home dir, which normally yarn doesn't support.
+ * One key feature is it will turn ~ into your home dir, which normally package managers don't support.
  */
 
 import { spawn, type SpawnOptions } from 'node:child_process'
@@ -16,7 +16,45 @@ import * as path from 'node:path'
 
 interface PackageJson {
   profile?: { [key: string]: any }
+  workspaces?: string[]
   [key: string]: any
+}
+
+async function getWorkspacePackages(workspacePath: string, exclude: string[] = []) {
+  const pkgJsonPath = path.join(workspacePath, 'package.json')
+  const pkgJson: PackageJson = JSON.parse(await fs.readFile(pkgJsonPath, 'utf-8'))
+
+  if (!pkgJson.workspaces) {
+    return []
+  }
+
+  const packages: { location: string; name: string }[] = []
+
+  for (const pattern of pkgJson.workspaces) {
+    // Handle simple ./dir/* patterns by listing the directory
+    const baseDir = pattern.replace(/\/\*$/, '').replace(/^\.\//, '')
+    const fullDir = path.join(workspacePath, baseDir)
+
+    try {
+      const entries = await fs.readdir(fullDir, { withFileTypes: true })
+      for (const entry of entries) {
+        if (!entry.isDirectory()) continue
+        const pkgPath = path.join(fullDir, entry.name, 'package.json')
+        try {
+          const pkg = JSON.parse(await fs.readFile(pkgPath, 'utf-8'))
+          if (pkg.name && !pkg.private && !exclude.includes(pkg.name)) {
+            packages.push({ location: path.join(baseDir, entry.name), name: pkg.name })
+          }
+        } catch {
+          // Skip directories without package.json
+        }
+      }
+    } catch {
+      // Skip patterns that don't resolve to directories
+    }
+  }
+
+  return packages
 }
 
 const main = async (name: string) => {
@@ -38,16 +76,7 @@ const main = async (name: string) => {
   if (profile.workspace) {
     const exclude = profile.exclude || []
     const workspacePath = replaceTildeWithHomePath(profile.workspace)
-    const packages = (
-      await execy(`yarn workspaces list --json --no-private`, {
-        cwd: workspacePath,
-        silent: true,
-      })
-    ).stdout
-      .trim()
-      .split('\n')
-      .map((x) => JSON.parse(x) as { location: string; name: string })
-      .filter((x) => !exclude.includes(x.name))
+    const packages = await getWorkspacePackages(workspacePath, exclude)
 
     Object.assign(
       resolutions,
@@ -67,7 +96,7 @@ const main = async (name: string) => {
   console.info(`Applying profile "${name}"`)
 
   try {
-    await execy(args.includes('--debug') ? `NM_DEBUG_LEVEL=2 yarn` : `yarn`)
+    await execy(args.includes('--debug') ? `DEBUG=* bun install` : `bun install`)
   } catch {
     console.error(`Failed to apply resolutions`, processedResolutions)
     console.error(`You can re-run with --debug flag to see debug output`)
@@ -85,7 +114,7 @@ const main = async (name: string) => {
 
 async function undoChanges() {
   await execy(
-    'git reset HEAD -- package.json && git checkout -- package.json && git reset HEAD -- yarn.lock && git checkout -- yarn.lock',
+    'git reset HEAD -- package.json && git checkout -- package.json && git reset HEAD -- bun.lock && git checkout -- bun.lock',
     { silent: true }
   )
 }
@@ -93,7 +122,7 @@ async function undoChanges() {
 // Example usage: pass the profile name as a command-line argument
 const args = process.argv.slice(2)
 if (args.length !== 1) {
-  console.error('Usage: bun profile.ts <profile-name>')
+  console.error('Usage: bun run profile <profile-name>')
   process.exit(1)
 }
 
