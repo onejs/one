@@ -48,7 +48,7 @@ export async function setup({ provide }: GlobalSetupContext) {
     console.log('[test-vercel] Building with Vercel deploy target...')
 
     try {
-      execSync('yarn build:web', {
+      execSync('bun run build:web', {
         cwd: testDir,
         stdio: 'inherit',
         env: {

@@ -13,13 +13,6 @@ apps/*/android/**
 
 docs/.vitepress/cache
 
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
 # temporary packed packages for release, created by scripts/release.ts
 package.tmp.tgz
 

@@ -1,22 +1,22 @@
 # This Dockerfile is used to run the tests in a clean environment on your own machine
-# If CI is failing you can run yarn test:docker on your own machine to debug
-# NB The Container will close after yarn test has run, so amend to keep it alive if you want
+# If CI is failing you can run bun run test:docker on your own machine to debug
+# NB The Container will close after bun run test has run, so amend to keep it alive if you want
 # to run tests inside the container
 
 # syntax=docker/dockerfile:1.2
 
-# Use an official Node.js LTS runtime as a parent image
-FROM node:20.17.0
+# Use Bun as the base image
+FROM oven/bun:1.2.22
 # Set the CI environment variable
 ENV CI=true
 
-# Enable Corepack and set the correct version of yarn
-RUN corepack enable && corepack prepare yarn@4.4.1 --activate
-
-RUN npm install -g npm@10.8.2
+# Install Node.js for npm (needed for some operations)
+RUN apt-get update && apt-get install -y curl git
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
 
 RUN echo "node: $(node -v)"
-RUN echo "yarn: $(yarn -v)"
+RUN echo "bun: $(bun -v)"
 
 # Set the working directory
 WORKDIR /app
@@ -24,21 +24,21 @@ WORKDIR /app
 # Copy the local .git folder into the Docker image
 COPY .git /app/.git
 
-ARG CACHEBUST=1 
+ARG CACHEBUST=1
 RUN git clone --local /app/.git /app/repo
 
 WORKDIR /app/repo
 
-# Install root dependencies with the --immutable flag
-RUN yarn install --immutable
+# Install root dependencies with the --frozen-lockfile flag
+RUN bun install --frozen-lockfile
 
-RUN yarn clean:build
-RUN yarn build
-RUN cd packages/vxrn && yarn build
+RUN bun run clean:build
+RUN bun run build
+RUN cd packages/vxrn && bun run build
 
 # Run the tests and capture the output
 
-CMD yarn test
+CMD ["bun", "run", "test"]
 
 # Uncomment to keep the container running after the tests have run
-# CMD yarn test; echo "Tests completed. Container is still running."; tail -f /dev/null
+# CMD bun run test; echo "Tests completed. Container is still running."; tail -f /dev/null

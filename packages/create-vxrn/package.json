@@ -7,10 +7,10 @@
   "scripts": {
     "start": "./run.js",
     "prerelease": "rimraf ./dist/",
-    "prepublish": "yarn build",
+    "prepublish": "bun run build",
     "typecheck": "tsc --noEmit",
     "build": "tamagui-build --skip-types",
-    "watch": "yarn build --watch",
+    "watch": "bun run build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },

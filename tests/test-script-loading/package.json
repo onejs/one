@@ -7,8 +7,8 @@
     "build:web": "one build",
     "dev": "one dev",
     "serve": "one serve",
-    "test": "yarn test:prod",
-    "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false"
+    "test": "bun run test:prod",
+    "test:prod": "TEST_ONLY=prod bun run vitest --run --reporter=dot --color=false"
   },
   "dependencies": {
     "one": "workspace:*",

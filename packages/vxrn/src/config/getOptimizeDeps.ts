@@ -143,6 +143,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       holdUntilCrawlEnd: false,
       esbuildOptions: {
         resolveExtensions: webExtensions,
+        // Some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js)
+        loader: { '.js': 'jsx' },
       },
     } satisfies UserConfig['optimizeDeps'],
   }

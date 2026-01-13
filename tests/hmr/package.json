@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "one dev",
-    "test-ios": "yarn test-ios:dev && yarn test-ios:prod",
+    "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": ":",
     "test-macos": "TEST_ONLY=dev vitest"
