@@ -392,17 +392,16 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
 
   // Expose devtools API in development
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-    // Import loader timing dynamically to avoid circular deps
-    import('../useLoader').then(({ getLoaderTimingHistory }) => {
-      ;(window as any).__oneDevtools = {
-        routeInfo: nextRouteInfo,
-        rootState: state,
-        routeNode,
-        getRoutes: () => routeNode?.children || [],
-        getLoaderTimingHistory,
-        getPreloadHistory,
-      }
-    })
+    // Use registry to avoid circular deps - useLoader registers its function there
+    const { devtoolsRegistry } = require('../devtools/registry')
+    ;(window as any).__oneDevtools = {
+      routeInfo: nextRouteInfo,
+      rootState: state,
+      routeNode,
+      getRoutes: () => routeNode?.children || [],
+      getLoaderTimingHistory: () => devtoolsRegistry.getLoaderTimingHistory?.() ?? [],
+      getPreloadHistory,
+    }
     // Dispatch event for devtools panels to listen
     if (process.env.TAMAGUI_TARGET !== 'native') {
       window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
