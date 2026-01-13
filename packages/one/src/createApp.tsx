@@ -18,6 +18,11 @@ export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>
   routerRoot: string
   flags?: One.Flags
+  /**
+   * Promise that resolves when the setup file has finished loading.
+   * The app will wait for this before rendering to ensure setup code runs first.
+   */
+  setupPromise?: Promise<unknown>
 }
 
 export function createApp(options: CreateAppProps) {
@@ -143,6 +148,10 @@ export function createApp(options: CreateAppProps) {
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
 
+  // Wait for setup file to complete first (if provided)
+  // This ensures setup code (error handlers, analytics, etc.) runs before the app
+  const setupComplete = options.setupPromise || Promise.resolve()
+
   // preload routes using build-time mapping (production SSG)
   // for SPA/dev mode, fall back to importing root layout directly
   const preloadPromises = routePreloads
@@ -153,7 +162,8 @@ export function createApp(options: CreateAppProps) {
       })
     : [options.routes[`/${options.routerRoot}/_layout.tsx`]?.()]
 
-  return Promise.all(preloadPromises)
+  return setupComplete
+    .then(() => Promise.all(preloadPromises))
     .then(() => {
       return resolveClientLoader(serverContext)
     })
