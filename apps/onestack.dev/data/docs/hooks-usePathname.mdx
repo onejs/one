@@ -2,17 +2,82 @@
 title: usePathname
 ---
 
-Returns a string that represents the current [pathname](https://developer.mozilla.org/en-US/docs/Web/API/URL/pathname).
-
-It takes no arguments and will update every time the route changes.
+Returns the current pathname without query parameters or hash.
 
 ```tsx
 import { usePathname } from 'one'
 
 export default function CurrentPath() {
   const pathname = usePathname()
-  // Returns e.g. "/blog/hello-world"
+  // URL: /blog/hello-world?ref=twitter#comments
+  // Returns: "/blog/hello-world"
 
   return <Text>Current path: {pathname}</Text>
 }
 ```
+
+## Common Uses
+
+### Active Link Styling
+
+```tsx
+import { usePathname, Link } from 'one'
+
+function NavLink({ href, children }) {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
+  return (
+    <Link
+      href={href}
+      style={{ fontWeight: isActive ? 'bold' : 'normal' }}
+    >
+      {children}
+    </Link>
+  )
+}
+```
+
+### Conditional Rendering
+
+```tsx
+function Layout({ children }) {
+  const pathname = usePathname()
+  const showSidebar = !pathname.startsWith('/auth')
+
+  return (
+    <div>
+      {showSidebar && <Sidebar />}
+      {children}
+    </div>
+  )
+}
+```
+
+### Analytics
+
+```tsx
+function PageTracker() {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    analytics.trackPageView(pathname)
+  }, [pathname])
+
+  return null
+}
+```
+
+## What's Not Included
+
+The pathname does **not** include:
+- Query parameters (`?foo=bar`)
+- Hash fragments (`#section`)
+
+For URL parameters, use [useParams](/docs/hooks-useParams) or [useActiveParams](/docs/hooks-useActiveParams).
+
+## Related
+
+- [useParams](/docs/hooks-useParams) - Get URL parameters
+- [useSegments](/docs/hooks-useSegments) - Get pathname as segments array
+- [useActiveParams](/docs/hooks-useActiveParams) - Global URL parameters

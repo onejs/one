@@ -54,9 +54,9 @@ export function isProtectedElement(
 ): child is ReactElement<ProtectedProps> {
   return Boolean(
     isValidElement(child) &&
-      child.type === Group &&
-      child.props &&
-      typeof child.props === 'object' &&
-      'guard' in child.props
+    child.type === Group &&
+    child.props &&
+    typeof child.props === 'object' &&
+    'guard' in child.props
   )
 }

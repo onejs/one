@@ -8,9 +8,18 @@ import { getNameFromFilePath } from './matchers'
 import { useContextKey } from './Route'
 
 /**
- * Return the navigation object for the current route.
- * @param parent Provide an absolute path like `/(root)` to the parent route or a relative path like `../../` to the parent route.
- * @returns the navigation object for the provided route.
+ * Returns the React Navigation navigation object for the current route.
+ * Provides low-level access to navigation actions, events, and screen options.
+ *
+ * @param parent - Optional path to parent navigator (absolute like `/(tabs)` or relative like `../`)
+ * @returns The navigation object with methods like setOptions, addListener, getParent
+ * @link https://onestack.dev/docs/api/hooks/useNavigation
+ *
+ * @example
+ * ```tsx
+ * const navigation = useNavigation()
+ * navigation.setOptions({ title: 'My Screen' })
+ * ```
  */
 export function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>(
   parent?: string

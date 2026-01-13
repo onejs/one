@@ -100,6 +100,12 @@ function updateScheme(setting: SchemeSetting) {
   }
 }
 
+/**
+ * Imperatively set the user's color scheme preference.
+ * Persists to localStorage and updates all listeners.
+ *
+ * @param setting - 'system', 'light', or 'dark'
+ */
 export function setUserScheme(setting: SchemeSetting) {
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem(storageKey, setting)
@@ -107,10 +113,21 @@ export function setUserScheme(setting: SchemeSetting) {
   updateScheme(setting)
 }
 
+/**
+ * Get the current user scheme setting and resolved value.
+ *
+ * @returns Object with setting and resolved value
+ */
 export function getUserScheme(): { setting: SchemeSetting; value: Scheme } {
   return { setting: currentSetting, value: currentValue }
 }
 
+/**
+ * Subscribe to color scheme changes. Listener is called immediately with current value.
+ *
+ * @param listener - Callback receiving (setting, value)
+ * @returns Unsubscribe function
+ */
 export function onUserSchemeChange(listener: SchemeListener) {
   listeners.add(listener)
   listener(currentSetting, currentValue)
@@ -119,6 +136,19 @@ export function onUserSchemeChange(listener: SchemeListener) {
   }
 }
 
+/**
+ * Manage the user's color scheme preference with system detection and persistence.
+ *
+ * @returns Object with setting ('system'|'light'|'dark'), resolved value ('light'|'dark'), and set function
+ * @link https://onestack.dev/docs/api/hooks/useUserScheme
+ *
+ * @example
+ * ```tsx
+ * const { setting, value, set } = useUserScheme()
+ * // setting = 'system', value = 'dark' (resolved from OS)
+ * set('light') // Switch to light mode
+ * ```
+ */
 export function useUserScheme(): UserScheme {
   const [state, setState] = useState(() => getUserScheme())
 

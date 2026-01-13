@@ -35,6 +35,9 @@ Out of the box, the One Vite plugin does the following:
 - Adds a [Link](/docs/components-Link) component for navigation
 - Adds a wide variety of hooks for routing
 - Adds [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context) and exports [SafeAreaView](/docs/components-SafeAreaView)
+- Adds [`<Protected />`](/docs/components-Protected) component for declarative route guarding
+- Adds [`useBlocker`](/docs/hooks-useBlocker) hook for blocking navigation with confirmation
+- Adds [route validation](/docs/routing-loader#route-validation) with `validateParams` and `validateRoute`
 
 ## Native
 
@@ -55,6 +58,8 @@ Out of the box, the One Vite plugin does the following:
 - Automatically preloads next page JS when hovering a link or navigating to a new route, including loaders
   - Doesn't require up-front route map so no scaling cost
 - Automatically handles scroll restoration and [allows configuration](/docs/components-ScrollBehavior)
+- Adds [scroll position groups](/docs/hooks-useScrollGroup) for independent scroll areas
+- Adds [route masks](/docs/hooks-useRouter#route-masking) for displaying different URLs
 - Adds an easy [`redirects` option](/docs/configuration)
 - Adds [`generateStaticParams` export](/docs/routing-exports#generatestaticparams) for SSG and SSR routes
 - Implements [API routes](/docs/render-modes#api)
@@ -67,7 +72,8 @@ Out of the box, the One Vite plugin does the following:
 
 ## Devtools
 
-- **[Source Inspector](/docs/configuration#devtools)** - Hold Shift+Cmd (Mac) or Shift+Ctrl (Windows/Linux) and hover over any element to see its source file location. Click to open in your editor.
+- **[Dev Tools Panel](/docs/dev-tools)** - Press Alt+Space to open the spotlight menu with SEO Preview, Route Info, Loader Timing, and Errors panels
+- **[Source Inspector](/docs/dev-tools#source-inspector)** - Hold Shift+Cmd (Mac) or Shift+Ctrl (Windows/Linux) and click any element to open in your editor
 
 ## Extras
 

@@ -2,11 +2,11 @@
 title: useActiveParams
 ---
 
-This will return the segments of the current URL paths, including dynamic path segments.
+Returns URL parameters globally, updating even when the route using it is not focused.
 
-Note that this function, as opposed to [useParams](/docs/hooks-useParams), will update even when the path is not relevant to the route it is used inside. In general when you need to access params, use `useParams`, as these will only update when the route is focused.
+Unlike [useParams](/docs/hooks-useParams), this hook updates on every navigation regardless of which route is active. Use this for analytics, background operations, or global UI that needs to react to all route changes.
 
-This hook is useful for things like analytics where you need to access every change globally.
+## Basic Usage
 
 ```tsx
 import { useActiveParams } from 'one'
@@ -14,7 +14,6 @@ import { useActiveParams } from 'one'
 export default function AnalyticsTracker() {
   const params = useActiveParams()
 
-  // Track every route change, even when not inside the matched route
   useEffect(() => {
     analytics.track('page_view', params)
   }, [params])
@@ -22,3 +21,55 @@ export default function AnalyticsTracker() {
   return null
 }
 ```
+
+## When to Use
+
+**Use `useActiveParams` for:**
+- Analytics tracking from a root component
+- Global breadcrumbs or navigation UI
+- Background data sync based on current route
+- Debugging route state
+
+**Use `useParams` for:**
+- Most component use cases
+- Avoiding unnecessary re-renders
+- Stack navigators where background screens shouldn't update
+
+## Comparison
+
+```tsx
+// Stack: /home -> /users/123 -> /users/123/edit
+// Current screen: /users/123/edit
+
+// In /users/123 component (background):
+useParams()        // { id: '123' } - no updates
+useActiveParams()  // Updates on every navigation
+
+// In /users/123/edit component (focused):
+useParams()        // { id: '123' }
+useActiveParams()  // { id: '123' }
+```
+
+## Example: Global Breadcrumbs
+
+```tsx
+import { useActiveParams, usePathname } from 'one'
+
+function Breadcrumbs() {
+  const pathname = usePathname()
+  const params = useActiveParams()
+
+  // Always shows current route, even from a layout component
+  return (
+    <nav>
+      <span>{pathname}</span>
+      {params.id && <span> - ID: {params.id}</span>}
+    </nav>
+  )
+}
+```
+
+## Related
+
+- [useParams](/docs/hooks-useParams) - Focus-aware params (recommended for most uses)
+- [usePathname](/docs/hooks-usePathname) - Get just the pathname

@@ -61,7 +61,10 @@ const protectedRouteRegistry = new Map<string, Set<string>>()
  * Register protected routes for a navigator context.
  * Called by navigators when their protectedScreens changes.
  */
-export function registerProtectedRoutes(contextKey: string, protectedScreens: Set<string>) {
+export function registerProtectedRoutes(
+  contextKey: string,
+  protectedScreens: Set<string>
+) {
   if (protectedScreens.size === 0) {
     protectedRouteRegistry.delete(contextKey)
   } else {
@@ -92,7 +95,9 @@ export function isRouteProtected(href: string): boolean {
     // Check if this href is under this context
     if (normalizedHref.startsWith(normalizedContextKey)) {
       // Get the route name relative to this context
-      const relativePath = normalizedHref.slice(normalizedContextKey.length).replace(/^\//, '')
+      const relativePath = normalizedHref
+        .slice(normalizedContextKey.length)
+        .replace(/^\//, '')
       const routeName = relativePath.split('/')[0] || 'index'
 
       if (protectedScreens.has(routeName)) {

@@ -7,12 +7,25 @@ import { useOptionalNavigation } from './link/useLoadedNavigation'
 type EffectCallback = () => undefined | void | (() => void)
 
 /**
- * Hook to run an effect in a focused screen, similar to `React.useEffect`.
- * This can be used to perform side-effects such as fetching data or subscribing to events.
+ * Run side effects when a screen is focused. The effect runs when the screen
+ * gains focus and cleans up when it loses focus.
  *
- * @param callback Memoized callback containing the effect, should optionally return a cleanup function.
+ * @param effect - Memoized callback containing the effect, optionally returns cleanup function
+ * @param deps - Dependency array, effect re-runs when dependencies change (if focused)
+ * @link https://onestack.dev/docs/api/hooks/useFocusEffect
+ *
+ * @example
+ * ```tsx
+ * useFocusEffect(
+ *   useCallback(() => {
+ *     const subscription = subscribeToUpdates()
+ *     return () => subscription.unsubscribe()
+ *   }, []),
+ *   []
+ * )
+ * ```
  */
-export function useFocusEffect(effect: EffectCallback, args: any[]) {
+export function useFocusEffect(effect: EffectCallback, deps: any[]) {
   const navigation = useOptionalNavigation()
 
   useEffect(() => {
@@ -87,5 +100,5 @@ export function useFocusEffect(effect: EffectCallback, args: any[]) {
       unsubscribeFocus()
       unsubscribeBlur()
     }
-  }, [navigation, ...args])
+  }, [navigation, ...deps])
 }
