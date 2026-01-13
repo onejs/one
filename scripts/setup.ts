@@ -1,21 +1,42 @@
 import { join } from 'node:path'
 
 import FSExtra from 'fs-extra'
-import { exec } from './exec'
 
 setup()
 
 /**
  * Should be immutable function that runs and ensures all the packages are setup correctly
  * Allowing you to make a new package just by adding a folder to packages and then running
- * `yarn setup` once.
+ * `bun run setup` once.
  */
 
 async function setup() {
-  const workspaces = (await exec(`yarn workspaces list --json`)).trim().split('\n')
-  const packagePaths = workspaces.map(
-    (p) => JSON.parse(p) as { location: string; name: string }
-  )
+  // Read workspaces from package.json since bun doesn't have a workspaces list command
+  const rootPkg = JSON.parse(await FSExtra.readFile('package.json', 'utf-8'))
+  const workspaceGlobs = rootPkg.workspaces || []
+
+  const packagePaths: { location: string; name: string }[] = []
+
+  for (const pattern of workspaceGlobs) {
+    const baseDir = pattern.replace(/\/\*$/, '').replace(/^\.\//, '')
+    try {
+      const entries = await FSExtra.readdir(baseDir, { withFileTypes: true })
+      for (const entry of entries) {
+        if (!entry.isDirectory()) continue
+        const pkgPath = join(baseDir, entry.name, 'package.json')
+        try {
+          const pkg = JSON.parse(await FSExtra.readFile(pkgPath, 'utf-8'))
+          if (pkg.name) {
+            packagePaths.push({ location: join(baseDir, entry.name), name: pkg.name })
+          }
+        } catch {
+          // Skip directories without package.json
+        }
+      }
+    } catch {
+      // Skip patterns that don't resolve
+    }
+  }
 
   await Promise.all(
     packagePaths.map(async ({ location, name }) => {
@@ -35,9 +56,7 @@ async function setup() {
           } catch (err) {
             if (`${err}`.includes(`no such file or directory`)) {
               console.error(`No biome.json found for ${name}, linking from monorepo root`)
-              await exec(`ln -s ../../biome.json ./biome.json`, {
-                cwd,
-              })
+              await FSExtra.symlink('../../biome.json', biomeConfig)
             }
           }
         })(),

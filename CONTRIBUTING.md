@@ -7,19 +7,19 @@ Welcome, and thank you for your interest in contributing to One!
 First, install the dependencies:
 
 ```bash
-yarn install
+bun install
 ```
 
 Next, initially build all the packages:
 
 ```bash
-yarn build
+bun run build
 ```
 
 You can also watch for changes in all packages and rebuild automatically:
 
 ```bash
-yarn watch
+bun run watch
 ```
 
 ## Guidelines

@@ -1,22 +1,22 @@
 # for onstack.dev railway
 
-FROM node:24
+FROM oven/bun:1.2.22
 
 ARG ONE_SERVER_URL
 
-# unlock
-RUN apt-get update && apt-get install -y git bsdmainutils vim-common
+# Install Node.js for npm (needed for some operations)
+RUN apt-get update && apt-get install -y git bsdmainutils vim-common curl
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
 
 WORKDIR /app
 COPY . .
 
-RUN corepack enable
-RUN corepack prepare yarn@4.4.0 --activate
-RUN yarn install --immutable
-RUN yarn profile react-19
-RUN yarn build:js
-RUN yarn site:build
+RUN bun install --frozen-lockfile
+RUN bun run profile react-19
+RUN bun run build:js
+RUN bun run site:build
 
 EXPOSE 3000
 
-CMD ["yarn", "site:serve"]
+CMD ["bun", "run", "site:serve"]

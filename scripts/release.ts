@@ -109,6 +109,35 @@ async function upgradeReproApp(newVersion: string) {
   await writeJSON(pkgJsonPath, pkgJson, { spaces: 2 })
 }
 
+async function getWorkspacePackages() {
+  const rootPkg = await fs.readJSON('package.json')
+  const workspaceGlobs = rootPkg.workspaces || []
+  const packages: { name: string; location: string }[] = []
+
+  for (const pattern of workspaceGlobs) {
+    const baseDir = pattern.replace(/\/\*$/, '').replace(/^\.\//, '')
+    try {
+      const entries = await fs.readdir(baseDir, { withFileTypes: true })
+      for (const entry of entries) {
+        if (!entry.isDirectory()) continue
+        const pkgPath = path.join(baseDir, entry.name, 'package.json')
+        try {
+          const pkg = await fs.readJSON(pkgPath)
+          if (pkg.name) {
+            packages.push({ name: pkg.name, location: path.join(baseDir, entry.name) })
+          }
+        } catch {
+          // Skip directories without package.json
+        }
+      }
+    } catch {
+      // Skip patterns that don't resolve
+    }
+  }
+
+  return packages
+}
+
 async function run() {
   try {
     let version = curVersion
@@ -124,13 +153,7 @@ async function run() {
       }
     }
 
-    const workspaces = (await exec(`yarn workspaces list --json`)).stdout
-      .trim()
-      .split('\n')
-    const packagePaths = workspaces.map((p) => JSON.parse(p)) as {
-      name: string
-      location: string
-    }[]
+    const packagePaths = await getWorkspacePackages()
 
     const allPackageJsons = (
       await Promise.all(
@@ -251,28 +274,28 @@ async function run() {
     console.info('install and build')
 
     if (!rePublish && !finish) {
-      await spawnify(`yarn install`)
+      await spawnify(`bun install`)
     }
 
     // run quick checks first to fail fast
     if (!finish && !skipTest) {
       console.info('run checks')
-      await spawnify(`yarn lint`)
-      await spawnify(`yarn check`)
-      await spawnify(`yarn typecheck`)
+      await spawnify(`bun run lint`)
+      await spawnify(`bun run check`)
+      await spawnify(`bun run typecheck`)
     }
 
     if (!skipBuild && !finish) {
-      await spawnify(`yarn build`)
+      await spawnify(`bun run build`)
       await checkDistDirs()
     }
 
     // run tests after build
     if (!finish && !skipTest) {
       console.info('run tests')
-      await spawnify(`yarn test`)
+      await spawnify(`bun run test`)
       if (!skipNativeTest) {
-        await spawnify(`yarn test-ios`)
+        await spawnify(`bun run test-ios`)
       }
     }
 
@@ -385,10 +408,16 @@ async function run() {
           }
 
           const absolutePath = `${tmpDir}/${name.replace('/', '_')}-package.tmp.tgz`
-          await spawnify(`yarn pack --out ${absolutePath}`, {
+          await spawnify(`npm pack --pack-destination ${path.dirname(absolutePath)}`, {
             cwd,
             avoidLog: true,
           })
+          // npm pack creates a file with the package name, rename it to our expected name
+          const files = await fs.readdir(path.dirname(absolutePath))
+          const tgzFile = files.find(f => f.endsWith('.tgz') && f.includes(name.replace('@', '').replace('/', '-')))
+          if (tgzFile) {
+            await fs.rename(path.join(path.dirname(absolutePath), tgzFile), absolutePath)
+          }
 
           // Restore the symlink after packing
           if (biomeTarget) {
@@ -397,7 +426,7 @@ async function run() {
 
           const publishCommand = [
             'npm publish',
-            absolutePath, // produced by `yarn pack`
+            absolutePath, // produced by `npm pack`
             publishOptions,
           ]
             .filter(Boolean)
@@ -420,7 +449,7 @@ async function run() {
     if (!skipFinish) {
       // then git tag, commit, push
       if (!finish) {
-        await spawnify(`yarn install`)
+        await spawnify(`bun install`)
       }
 
       const tagPrefix = canary ? 'canary' : 'v'

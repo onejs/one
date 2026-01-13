@@ -8,6 +8,9 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
         holdUntilCrawlEnd: false;
         esbuildOptions: {
             resolveExtensions: string[];
+            loader: {
+                '.js': "jsx";
+            };
         };
     };
 };
