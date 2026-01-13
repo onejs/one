@@ -1,4 +1,5 @@
 import { useCallback, useDeferredValue, useSyncExternalStore } from 'react'
+import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname } from './hooks'
 import { preloadedLoaderData, preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
@@ -65,6 +66,9 @@ function recordLoaderTiming(entry: LoaderTimingEntry) {
 export function getLoaderTimingHistory(): LoaderTimingEntry[] {
   return loaderTimingHistory
 }
+
+// Register with devtools registry so router.ts doesn't need to dynamically import us
+registerDevtoolsFunction('getLoaderTimingHistory', getLoaderTimingHistory)
 
 const loaderState: Record<string, LoaderStateEntry> = {}
 const subscribers = new Set<() => void>()
