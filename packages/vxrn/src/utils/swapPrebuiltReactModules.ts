@@ -6,6 +6,9 @@ import { join } from 'node:path'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from './environmentUtils'
 
+// Lock to prevent concurrent prebuilds which cause race conditions
+let prebuildPromise: Promise<void> | null = null
+
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
@@ -30,96 +33,117 @@ export async function prebuildReactNativeModules(
   cacheDir: string,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const prebuilds = getPrebuilds(cacheDir, internal.mode)
-
-  if (
-    internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
-    (await allExist(Object.values(prebuilds)))
-  ) {
+  // If a prebuild is already in progress, wait for it and return
+  // This check must happen synchronously before any await
+  if (prebuildPromise) {
+    await prebuildPromise
     return
   }
 
-  if (internal.mode !== 'prod') {
-    console.info('\n ❶ Pre-building react-native (one time cost)...\n')
-  } else {
-    console.info('\n ❶ Pre-building react-native for production...\n')
-  }
+  const prebuilds = getPrebuilds(cacheDir, internal.mode)
 
-  /** Some build option overrides depending on the mode (dev/prod). */
-  const buildOptions =
-    internal.mode === 'prod'
-      ? {
-          define: {
-            __DEV__: 'false',
-            'process.env.NODE_ENV': `"production"`,
-          },
-        }
-      : {}
+  // Set lock immediately before any async operation to prevent race conditions
+  // We do this before allExist check because two concurrent calls could both
+  // pass the first check, then both await allExist, then both try to build
+  let resolveLock: () => void
+  prebuildPromise = new Promise((resolve) => {
+    resolveLock = resolve
+  })
 
-  let enableExperimentalReactNativeWithReact19Support = false
-  const reactPackageJsonPath = resolvePath('react/package.json')
-  const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
-  const reactPackageJson = JSON.parse(reactPackageJsonContents)
-  const reactNativePackageJsonPath = resolvePath('react/package.json')
-  const reactNativePackageJsonContents = await readFile(
-    reactNativePackageJsonPath,
-    'utf8'
-  )
-  const reactNativePackageJson = JSON.parse(reactNativePackageJsonContents)
+  try {
+    if (
+      internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
+      (await allExist(Object.values(prebuilds)))
+    ) {
+      return
+    }
 
-  const reactVersion = reactPackageJson?.version
-  const reactNativeVersion = reactNativePackageJson?.version
-  if (reactVersion?.startsWith('19') && Number.parseFloat(reactNativeVersion) < 0.78) {
-    console.info(
-      `🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`
+    if (internal.mode !== 'prod') {
+      console.info('\n ❶ Pre-building react-native (one time cost)...\n')
+    } else {
+      console.info('\n ❶ Pre-building react-native for production...\n')
+    }
+
+    /** Some build option overrides depending on the mode (dev/prod). */
+    const buildOptions =
+      internal.mode === 'prod'
+        ? {
+            define: {
+              __DEV__: 'false',
+              'process.env.NODE_ENV': `"production"`,
+            },
+          }
+        : {}
+
+    let enableExperimentalReactNativeWithReact19Support = false
+    const reactPackageJsonPath = resolvePath('react/package.json')
+    const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
+    const reactPackageJson = JSON.parse(reactPackageJsonContents)
+    const reactNativePackageJsonPath = resolvePath('react/package.json')
+    const reactNativePackageJsonContents = await readFile(
+      reactNativePackageJsonPath,
+      'utf8'
     )
-    enableExperimentalReactNativeWithReact19Support = true
-  }
+    const reactNativePackageJson = JSON.parse(reactNativePackageJsonContents)
 
-  await Promise.all([
-    buildReactNative(
-      {
-        entryPoints: [resolvePath('react-native')],
-        outfile: prebuilds.reactNativeIos,
+    const reactVersion = reactPackageJson?.version
+    const reactNativeVersion = reactNativePackageJson?.version
+    if (reactVersion?.startsWith('19') && Number.parseFloat(reactNativeVersion) < 0.78) {
+      console.info(
+        `🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`
+      )
+      enableExperimentalReactNativeWithReact19Support = true
+    }
+
+    await Promise.all([
+      buildReactNative(
+        {
+          entryPoints: [resolvePath('react-native')],
+          outfile: prebuilds.reactNativeIos,
+          ...buildOptions,
+        },
+        { platform: 'ios', enableExperimentalReactNativeWithReact19Support }
+      ).catch((err) => {
+        console.error(`Error pre-building react-native for iOS`)
+        throw err
+      }),
+      buildReactNative(
+        {
+          entryPoints: [resolvePath('react-native')],
+          outfile: prebuilds.reactNativeAndroid,
+          ...buildOptions,
+        },
+        { platform: 'android', enableExperimentalReactNativeWithReact19Support }
+      ).catch((err) => {
+        console.error(`Error pre-building react-native for Android`)
+        throw err
+      }),
+      buildReact({
+        entryPoints: [resolvePath('react')],
+        outfile: prebuilds.react,
         ...buildOptions,
-      },
-      { platform: 'ios', enableExperimentalReactNativeWithReact19Support }
-    ).catch((err) => {
-      console.error(`Error pre-building react-native for iOS`)
-      throw err
-    }),
-    buildReactNative(
-      {
-        entryPoints: [resolvePath('react-native')],
-        outfile: prebuilds.reactNativeAndroid,
+      }).catch((err) => {
+        console.error(`Error pre-building react`)
+        throw err
+      }),
+      buildReactJSX({
+        entryPoints: [
+          internal.mode === 'dev'
+            ? resolvePath('react/jsx-dev-runtime')
+            : resolvePath('react/jsx-runtime'),
+        ],
+        outfile: prebuilds.reactJSX,
         ...buildOptions,
-      },
-      { platform: 'android', enableExperimentalReactNativeWithReact19Support }
-    ).catch((err) => {
-      console.error(`Error pre-building react-native for Android`)
-      throw err
-    }),
-    buildReact({
-      entryPoints: [resolvePath('react')],
-      outfile: prebuilds.react,
-      ...buildOptions,
-    }).catch((err) => {
-      console.error(`Error pre-building react`)
-      throw err
-    }),
-    buildReactJSX({
-      entryPoints: [
-        internal.mode === 'dev'
-          ? resolvePath('react/jsx-dev-runtime')
-          : resolvePath('react/jsx-runtime'),
-      ],
-      outfile: prebuilds.reactJSX,
-      ...buildOptions,
-    }).catch((err) => {
-      console.error(`Error pre-building react/jsx-runtime`)
-      throw err
-    }),
-  ])
+      }).catch((err) => {
+        console.error(`Error pre-building react/jsx-runtime`)
+        throw err
+      }),
+    ])
+  } finally {
+    // Release the lock so other callers can proceed
+    resolveLock!()
+    prebuildPromise = null
+  }
 }
 
 export async function swapPrebuiltReactModules(
