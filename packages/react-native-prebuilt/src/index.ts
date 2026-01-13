@@ -40,16 +40,15 @@ export async function buildReactJSX(options: BuildOptions = {}) {
         ...(isProd
           ? [
               {
-                // react 18 and 19 (18 has _min, esbuild may add number suffixes)
-                find: /module\.exports = require_react_jsx_runtime_production([a-z0-9_]*)\(\);/,
+                // react 18 and 19 (18 has _min)
+                find: /module\.exports = require_react_jsx_runtime_production([a-z_]*)\(\);/,
                 replace: `return require_react_jsx_runtime_production$1();`,
               },
             ]
           : [
               {
-                // react 18 and 19 (handle variations in esbuild output including number suffixes)
-                find: /module\.exports = require_react_jsx_dev_runtime_development([a-z0-9_]*)\(\);/,
-                replace: `return require_react_jsx_dev_runtime_development$1();`,
+                find: `module.exports = require_react_jsx_dev_runtime_development();`,
+                replace: `return require_react_jsx_dev_runtime_development();`,
               },
             ]),
         { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
@@ -108,11 +107,11 @@ export async function buildReact(options: BuildOptions = {}) {
       ${mustReplace(bundled, [
         isProd
           ? {
-              find: /module\.exports = require_react_production([a-z0-9_]*)\(\);/,
+              find: /module\.exports = require_react_production([a-z_]*)\(\);/,
               replace: 'return require_react_production$1();',
             }
           : {
-              find: /module\.exports = require_react_development([a-z0-9_]*)\(\);/,
+              find: /module\.exports = require_react_development([a-z_]*)\(\);/,
               replace: 'return require_react_development$1();',
             },
         {
@@ -303,10 +302,9 @@ var __commonJS = function __commonJS(cb, mod) {
 `,
         },
         {
-          // Handle variations in esbuild output (e.g., require_react_native2, require_index2)
-          find: /module\.exports = require_(react_native|index)([0-9]*)\(\);/,
+          find: /module\.exports = require_(react_native|index)\(\);/,
           replace: [
-            `const rn = require_$1$2();`,
+            `const rn = require_$1();`,
             `rn.AssetRegistry = require_registry();`,
             `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
             `if (typeof require_InitializeCore === 'function') { require_InitializeCore(); }`, // Since we're accessing the RefreshRuntime directly via `__cachedModules` directly in the RN bundle, we need to ensure it's loaded in time. Note that calling `require_react_refresh_runtime_development()`, `require_setUpReactRefresh()` or `require_setUpDeveloperTools()` directly won't work.
@@ -331,8 +329,6 @@ var __commonJS = function __commonJS(cb, mod) {
   })
 }
 
-// Match esbuild's __commonJS helper function definition
-// This is the exact pattern esbuild outputs for CommonJS compatibility
 const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };`
