@@ -68,7 +68,7 @@ jobs:
         env:
           # A hash that can save us more time if we can already know that the build hash will not change.
           #
-          # Calculating the build_hash relies on generated files, for example, `Podfile.lock`, and it’ll take some time to run `yarn install`, `expo prebuild` and `pod install` in order to get that. But if `bun.lock` didn’t change, there’s no likely that `Podfile.lock` will change - we can leverage that and skip some installation steps.
+          # Calculating the build_hash relies on generated files, for example, `Podfile.lock`, and it'll take some time to run `bun install`, `expo prebuild` and `pod install` in order to get that. But if `bun.lock` didn't change, there's no likely that `Podfile.lock` will change - we can leverage that and skip some installation steps.
           #
           # This hash MUST be different if the build_hash will be different.
           #

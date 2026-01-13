@@ -39,7 +39,7 @@ export async function run(args: { appDir?: string; typed?: string } = {}) {
   if (!existsSync(appDir)) {
     console.error(`Error: App directory not found at ${appDir}`)
     console.error(
-      'You can specify a custom directory with: yarn one generate-routes --appDir=<path>'
+      'You can specify a custom directory with: npx one generate-routes --appDir=<path>'
     )
     process.exit(1)
   }

@@ -21,6 +21,9 @@ jobs:
         # with:
         #  workspace-focus: ${{ env.test_app_package_name }}
 
+      - name: Security Audit
+        run: bun audit --audit-level high
+
       - name: Check
         run: bun run check
 
