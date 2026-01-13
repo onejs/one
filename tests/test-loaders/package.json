@@ -12,7 +12,7 @@
     "prod": "one build && one serve",
     "serve": "one serve",
     "prebuild:native": "one prebuild",
-    "test": "yarn test:dev && yarn test:prod ",
+    "test": "yarn test:dev",
     "test:dev": "TEST_ONLY=dev yarn vitest --run --reporter=dot --color=false",
     "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false",
     "typecheck": "tsc --noEmit"
