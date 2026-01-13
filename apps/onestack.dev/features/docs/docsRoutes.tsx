@@ -12,33 +12,6 @@ export const docsRoutes = [
   },
 
   {
-    title: 'Guides',
-    pages: [
-      { title: 'Authentication', route: '/docs/guides-authentication' },
-      { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
-      { title: 'Ship with EAS', route: '/docs/guides-eas' },
-      { title: 'Deployment', route: '/docs/guides-deployment' },
-      { title: 'MDX for web', route: '/docs/guides-mdx' },
-      { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
-      { title: 'Tamagui', route: '/docs/guides-tamagui' },
-      {
-        title: 'Migrate from CRA',
-        route: '/docs/guides-migrating-create-react-app-cra-to-vite-with-one',
-      },
-      { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
-    ],
-  },
-
-  {
-    title: 'CLI',
-    pages: [
-      { title: 'Dev', route: '/docs/one-dev' },
-      { title: 'Build', route: '/docs/one-build' },
-      { title: 'Serve', route: '/docs/one-serve' },
-    ],
-  },
-
-  {
     title: 'Routing',
     pages: [
       { title: 'Overview', route: '/docs/routing' },
@@ -98,6 +71,33 @@ export const docsRoutes = [
   {
     title: 'Native',
     pages: [{ title: 'Metro Mode', route: '/docs/metro-mode' }],
+  },
+
+  {
+    title: 'Guides',
+    pages: [
+      { title: 'Authentication', route: '/docs/guides-authentication' },
+      { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
+      { title: 'Ship with EAS', route: '/docs/guides-eas' },
+      { title: 'Deployment', route: '/docs/guides-deployment' },
+      { title: 'MDX for web', route: '/docs/guides-mdx' },
+      { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
+      { title: 'Tamagui', route: '/docs/guides-tamagui' },
+      {
+        title: 'Migrate from CRA',
+        route: '/docs/guides-migrating-create-react-app-cra-to-vite-with-one',
+      },
+      { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
+    ],
+  },
+
+  {
+    title: 'CLI',
+    pages: [
+      { title: 'Dev', route: '/docs/one-dev' },
+      { title: 'Build', route: '/docs/one-build' },
+      { title: 'Serve', route: '/docs/one-serve' },
+    ],
   },
 
   {
