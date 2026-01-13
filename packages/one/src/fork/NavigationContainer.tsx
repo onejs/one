@@ -44,6 +44,7 @@ import { useThenable } from './useThenable'
 
 declare global {
   // eslint-disable-next-line no-var
+  // @ts-ignore - Type differs between react-navigation versions
   var REACT_NAVIGATION_DEVTOOLS: WeakMap<
     NavigationContainerRef<any>,
     { readonly linking: LinkingOptions<any> }
@@ -147,6 +148,7 @@ function NavigationContainerInner(
   // This will be used by the devtools
   React.useEffect(() => {
     if (refContainer.current) {
+      // @ts-ignore - Type differs between react-navigation versions in monorepo
       REACT_NAVIGATION_DEVTOOLS.set(refContainer.current, {
         get linking() {
           return {

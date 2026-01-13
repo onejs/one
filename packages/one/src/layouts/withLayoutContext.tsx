@@ -7,6 +7,7 @@ import type { PickPartial } from '../types'
 import { withStaticProperties } from '../utils/withStaticProperties'
 import { isProtectedElement } from '../views/Protected'
 import { Screen } from '../views/Screen'
+import { StackScreen } from './stack-utils/StackScreen'
 
 export function useFilterScreenChildren(
   children: React.ReactNode,
@@ -29,8 +30,8 @@ export function useFilterScreenChildren(
      * When exclude is true, all Screen children are added to protectedScreens instead of screens.
      */
     function flattenChild(child: React.ReactNode, exclude = false) {
-      // Handle Screen elements
-      if (React.isValidElement(child) && child.type === Screen) {
+      // Handle Screen or StackScreen elements
+      if (React.isValidElement(child) && (child.type === Screen || child.type === StackScreen)) {
         if (
           typeof child.props === 'object' &&
           child.props &&
