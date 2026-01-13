@@ -80,7 +80,7 @@ export async function build(args: {
     return
   }
 
-  const options = await fillOptions(vxrnOutput.options)
+  const options = await fillOptions(vxrnOutput.options, { mode: 'prod' })
 
   const { optimizeDeps } = getOptimizeDeps('build')
 
