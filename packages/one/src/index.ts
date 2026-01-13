@@ -72,6 +72,16 @@ export { href } from './href'
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
 export { Protected, type ProtectedProps } from './views/Protected'
+// Stack header compositional API types
+export type {
+  StackHeaderProps,
+  StackHeaderBackButtonProps,
+  StackHeaderTitleProps,
+  StackHeaderLeftProps,
+  StackHeaderRightProps,
+  StackHeaderSearchBarProps,
+  StackScreenProps,
+} from './layouts/stack-utils'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
 export { Link } from './link/Link'
