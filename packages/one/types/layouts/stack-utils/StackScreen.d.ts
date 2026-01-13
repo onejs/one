@@ -12,8 +12,8 @@ export interface StackScreenProps extends PropsWithChildren {
  * <Stack.Screen name="home" options={{ title: 'Home' }}>
  *   <Stack.Header>
  *     <Stack.Header.Title large>Welcome</Stack.Header.Title>
+ *     <Stack.Header.SearchBar placeholder="Search..." />
  *   </Stack.Header>
- *   <Stack.SearchBar placeholder="Search..." />
  * </Stack.Screen>
  * ```
  */

@@ -1,6 +1,6 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { StackScreen, StackHeaderSearchBar } from './stack-utils';
+import { StackScreen } from './stack-utils';
 export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
@@ -100,9 +100,8 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
         Right: typeof import("./stack-utils").StackHeaderRight;
         BackButton: typeof import("./stack-utils").StackHeaderBackButton;
         Title: typeof import("./stack-utils").StackHeaderTitle;
-        SearchBar: typeof StackHeaderSearchBar;
+        SearchBar: typeof import("./stack-utils").StackHeaderSearchBar;
     };
-    SearchBar: typeof StackHeaderSearchBar;
 };
 export default Stack;
 //# sourceMappingURL=Stack.d.ts.map

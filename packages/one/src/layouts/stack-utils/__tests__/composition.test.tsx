@@ -595,19 +595,6 @@ describe('Stack Header Composition', () => {
       })
     })
 
-    it('works with StackSearchBar as direct child of StackScreen', () => {
-      const result = appendScreenStackPropsToOptions(
-        {},
-        {
-          children: <StackHeaderSearchBar placeholder="Global search..." />,
-        }
-      )
-
-      expect(result.headerSearchBarOptions).toMatchObject({
-        placeholder: 'Global search...',
-      })
-    })
-
     it('works with full compositional setup', () => {
       const result = appendScreenStackPropsToOptions(
         {},
