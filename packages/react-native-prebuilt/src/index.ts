@@ -40,15 +40,15 @@ export async function buildReactJSX(options: BuildOptions = {}) {
         ...(isProd
           ? [
               {
-                // react 18 and 19 (18 has _min)
-                find: /module\.exports = require_react_jsx_runtime_production([a-z_]*)\(\);/,
+                // react 18 and 19 (18 has _min, esbuild may add number suffixes)
+                find: /module\.exports = require_react_jsx_runtime_production([a-z0-9_]*)\(\);/,
                 replace: `return require_react_jsx_runtime_production$1();`,
               },
             ]
           : [
               {
-                // react 18 and 19 (handle variations in esbuild output)
-                find: /module\.exports = require_react_jsx_dev_runtime_development([a-z_]*)\(\);/,
+                // react 18 and 19 (handle variations in esbuild output including number suffixes)
+                find: /module\.exports = require_react_jsx_dev_runtime_development([a-z0-9_]*)\(\);/,
                 replace: `return require_react_jsx_dev_runtime_development$1();`,
               },
             ]),
@@ -108,11 +108,11 @@ export async function buildReact(options: BuildOptions = {}) {
       ${mustReplace(bundled, [
         isProd
           ? {
-              find: /module\.exports = require_react_production([a-z_]*)\(\);/,
+              find: /module\.exports = require_react_production([a-z0-9_]*)\(\);/,
               replace: 'return require_react_production$1();',
             }
           : {
-              find: /module\.exports = require_react_development([a-z_]*)\(\);/,
+              find: /module\.exports = require_react_development([a-z0-9_]*)\(\);/,
               replace: 'return require_react_development$1();',
             },
         {
