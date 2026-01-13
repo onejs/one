@@ -47,6 +47,7 @@ import {
   ParamValidationError,
 } from '../validateParams'
 import { checkBlocker } from '../useBlocker'
+import { devtoolsRegistry } from '../devtools/registry'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -393,7 +394,6 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   // Expose devtools API in development
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     // Use registry to avoid circular deps - useLoader registers its function there
-    const { devtoolsRegistry } = require('../devtools/registry')
     ;(window as any).__oneDevtools = {
       routeInfo: nextRouteInfo,
       rootState: state,
