@@ -224,7 +224,7 @@ export function initialize(
     console.info(`[one] 📍 Route structure:\n${formatRouteTree(routeNode)}`)
   }
 
-  navigationRef = ref
+  navigationRef = ref as unknown as OneRouter.NavigationRef
   setupLinkingAndRouteInfo(initialLocation)
   subscribeToNavigationChanges()
 }
