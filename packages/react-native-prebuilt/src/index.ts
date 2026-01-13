@@ -331,9 +331,9 @@ var __commonJS = function __commonJS(cb, mod) {
   })
 }
 
-const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};`
+// Match esbuild's __commonJS helper - use regex to handle whitespace variations
+const esbuildCommonJSFunction =
+  /var __commonJS\s*=\s*\(cb,\s*mod\)\s*=>\s*function __require\(\)\s*\{\s*return mod \|\| \(0, cb\[__getOwnPropNames\(cb\)\[0\]\]\)\(\(mod = \{ exports: \{\} \}\)\.exports, mod\), mod\.exports;\s*\};?/
 
 export const RNExportNames = [
   'registerCallableModule',
