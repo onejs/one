@@ -6,6 +6,9 @@ import { join } from 'node:path'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from './environmentUtils'
 
+// Lock to prevent concurrent prebuilds which cause race conditions
+let prebuildPromise: Promise<void> | null = null
+
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
@@ -30,20 +33,33 @@ export async function prebuildReactNativeModules(
   cacheDir: string,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const prebuilds = getPrebuilds(cacheDir, internal.mode)
-
-  if (
-    internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
-    (await allExist(Object.values(prebuilds)))
-  ) {
+  // If a prebuild is already in progress, wait for it and return
+  if (prebuildPromise) {
+    await prebuildPromise
     return
   }
 
-  if (internal.mode !== 'prod') {
-    console.info('\n ❶ Pre-building react-native (one time cost)...\n')
-  } else {
-    console.info('\n ❶ Pre-building react-native for production...\n')
-  }
+  const prebuilds = getPrebuilds(cacheDir, internal.mode)
+
+  // Set lock immediately before any async operation to prevent race conditions
+  let resolveLock: () => void
+  prebuildPromise = new Promise((resolve) => {
+    resolveLock = resolve
+  })
+
+  try {
+    if (
+      internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
+      (await allExist(Object.values(prebuilds)))
+    ) {
+      return
+    }
+
+    if (internal.mode !== 'prod') {
+      console.info('\n ❶ Pre-building react-native (one time cost)...\n')
+    } else {
+      console.info('\n ❶ Pre-building react-native for production...\n')
+    }
 
   /** Some build option overrides depending on the mode (dev/prod). */
   const buildOptions =
@@ -120,6 +136,11 @@ export async function prebuildReactNativeModules(
       throw err
     }),
   ])
+  } finally {
+    // Release the lock so other callers can proceed
+    resolveLock!()
+    prebuildPromise = null
+  }
 }
 
 export async function swapPrebuiltReactModules(
