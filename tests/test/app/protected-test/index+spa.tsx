@@ -37,10 +37,18 @@ export default function ProtectedTestIndex() {
         </>
       ) : (
         <>
-          <Text testID="link-dashboard" onPress={navigateToDashboard} style={{ padding: 10, marginTop: 10 }}>
+          <Text
+            testID="link-dashboard"
+            onPress={navigateToDashboard}
+            style={{ padding: 10, marginTop: 10 }}
+          >
             Go to Dashboard
           </Text>
-          <Text testID="link-settings" onPress={navigateToSettings} style={{ padding: 10, marginTop: 10 }}>
+          <Text
+            testID="link-settings"
+            onPress={navigateToSettings}
+            style={{ padding: 10, marginTop: 10 }}
+          >
             Go to Settings
           </Text>
         </>

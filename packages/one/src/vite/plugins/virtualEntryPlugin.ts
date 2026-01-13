@@ -81,7 +81,8 @@ function getSetupFileImport(
   if (!key) return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
   const setupFile = setupFiles[key]
-  if (!setupFile) return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
+  if (!setupFile)
+    return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
   // For native, use static import since dynamic import doesn't work
   if (useStaticImport) {

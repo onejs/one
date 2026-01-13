@@ -59,15 +59,20 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Toggle auth using evaluate to ensure the click actually fires
     await page.evaluate(() => {
-      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      const btn = document.querySelector(
+        '[data-testid="toggle-auth"]'
+      ) as HTMLButtonElement
       if (btn) btn.click()
     })
 
     // Wait for state to update - poll until we see the change
-    await page.waitForFunction(() => {
-      const el = document.querySelector('[data-testid="auth-status"]')
-      return el && el.textContent?.includes('true')
-    }, { timeout: 10000 })
+    await page.waitForFunction(
+      () => {
+        const el = document.querySelector('[data-testid="auth-status"]')
+        return el && el.textContent?.includes('true')
+      },
+      { timeout: 10000 }
+    )
 
     const authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -94,15 +99,20 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Toggle auth on using evaluate
     await page.evaluate(() => {
-      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      const btn = document.querySelector(
+        '[data-testid="toggle-auth"]'
+      ) as HTMLButtonElement
       if (btn) btn.click()
     })
 
     // Wait for state to update
-    await page.waitForFunction(() => {
-      const el = document.querySelector('[data-testid="auth-status"]')
-      return el && el.textContent?.includes('true')
-    }, { timeout: 10000 })
+    await page.waitForFunction(
+      () => {
+        const el = document.querySelector('[data-testid="auth-status"]')
+        return el && el.textContent?.includes('true')
+      },
+      { timeout: 10000 }
+    )
 
     let authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: true')
@@ -116,15 +126,20 @@ describe('Protected Routes', { retry: 1 }, () => {
 
     // Toggle auth off using evaluate
     await page.evaluate(() => {
-      const btn = document.querySelector('[data-testid="toggle-auth"]') as HTMLButtonElement
+      const btn = document.querySelector(
+        '[data-testid="toggle-auth"]'
+      ) as HTMLButtonElement
       if (btn) btn.click()
     })
 
     // Wait for state to update
-    await page.waitForFunction(() => {
-      const el = document.querySelector('[data-testid="auth-status"]')
-      return el && el.textContent?.includes('false')
-    }, { timeout: 10000 })
+    await page.waitForFunction(
+      () => {
+        const el = document.querySelector('[data-testid="auth-status"]')
+        return el && el.textContent?.includes('false')
+      },
+      { timeout: 10000 }
+    )
 
     authStatus = await page.getByTestId('auth-status').textContent()
     expect(authStatus).toContain('Auth: false')

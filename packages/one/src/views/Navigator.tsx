@@ -45,7 +45,11 @@ export function Navigator({
   const contextKey = useContextKey()
 
   // Allows adding Screen components as children to configure routes.
-  const { screens, children: otherSlot, protectedScreens } = useFilterScreenChildren(children, {
+  const {
+    screens,
+    children: otherSlot,
+    protectedScreens,
+  } = useFilterScreenChildren(children, {
     isCustomNavigator: true,
     contextKey,
   })

@@ -12,12 +12,24 @@ export default function ProtectedTestLayout() {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ padding: 10, backgroundColor: '#eee' }}>
-        <Text testID="auth-status" accessibilityLabel={`Auth: ${isAuthed ? 'true' : 'false'}`}>Auth: {isAuthed ? 'true' : 'false'}</Text>
+        <Text
+          testID="auth-status"
+          accessibilityLabel={`Auth: ${isAuthed ? 'true' : 'false'}`}
+        >
+          Auth: {isAuthed ? 'true' : 'false'}
+        </Text>
         {Platform.OS === 'web' ? (
           <button
             data-testid="toggle-auth"
             onClick={toggleAuth}
-            style={{ padding: 10, backgroundColor: '#007AFF', marginTop: 5, color: 'white', border: 'none', cursor: 'pointer' }}
+            style={{
+              padding: 10,
+              backgroundColor: '#007AFF',
+              marginTop: 5,
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Toggle Auth
           </button>

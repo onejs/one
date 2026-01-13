@@ -48,6 +48,7 @@ export const docsRoutes = [
       { title: 'Layouts', route: '/docs/routing-layouts' },
       { title: 'Loaders', route: '/docs/routing-loader' },
       { title: 'Middlewares', route: '/docs/routing-middlewares' },
+      { title: 'Typed Routes', route: '/docs/routing-typed-routes' },
     ],
   },
 
@@ -78,16 +79,19 @@ export const docsRoutes = [
   {
     title: 'Hooks',
     pages: [
+      { title: 'useRouter', route: '/docs/hooks-useRouter' },
+      { title: 'useParams', route: '/docs/hooks-useParams' },
       { title: 'useActiveParams', route: '/docs/hooks-useActiveParams' },
-      { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
-      { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
-      { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
+      { title: 'usePathname', route: '/docs/hooks-usePathname' },
+      { title: 'useSegments', route: '/docs/hooks-useSegments' },
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
       { title: 'useLoaderState', route: '/docs/hooks-useLoaderState' },
+      { title: 'useBlocker', route: '/docs/hooks-useBlocker' },
+      { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
+      { title: 'useScrollGroup', route: '/docs/hooks-useScrollGroup' },
       { title: 'useNavigation', route: '/docs/hooks-useNavigation' },
-      { title: 'useParams', route: '/docs/hooks-useParams' },
-      { title: 'usePathname', route: '/docs/hooks-usePathname' },
-      { title: 'useRouter', route: '/docs/hooks-useRouter' },
+      { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
+      { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
     ],
   },
 

@@ -61,81 +61,81 @@ export async function prebuildReactNativeModules(
       console.info('\n ❶ Pre-building react-native for production...\n')
     }
 
-  /** Some build option overrides depending on the mode (dev/prod). */
-  const buildOptions =
-    internal.mode === 'prod'
-      ? {
-          define: {
-            __DEV__: 'false',
-            'process.env.NODE_ENV': `"production"`,
-          },
-        }
-      : {}
+    /** Some build option overrides depending on the mode (dev/prod). */
+    const buildOptions =
+      internal.mode === 'prod'
+        ? {
+            define: {
+              __DEV__: 'false',
+              'process.env.NODE_ENV': `"production"`,
+            },
+          }
+        : {}
 
-  let enableExperimentalReactNativeWithReact19Support = false
-  const reactPackageJsonPath = resolvePath('react/package.json')
-  const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
-  const reactPackageJson = JSON.parse(reactPackageJsonContents)
-  const reactNativePackageJsonPath = resolvePath('react/package.json')
-  const reactNativePackageJsonContents = await readFile(
-    reactNativePackageJsonPath,
-    'utf8'
-  )
-  const reactNativePackageJson = JSON.parse(reactNativePackageJsonContents)
-
-  const reactVersion = reactPackageJson?.version
-  const reactNativeVersion = reactNativePackageJson?.version
-  if (reactVersion?.startsWith('19') && Number.parseFloat(reactNativeVersion) < 0.78) {
-    console.info(
-      `🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`
+    let enableExperimentalReactNativeWithReact19Support = false
+    const reactPackageJsonPath = resolvePath('react/package.json')
+    const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
+    const reactPackageJson = JSON.parse(reactPackageJsonContents)
+    const reactNativePackageJsonPath = resolvePath('react/package.json')
+    const reactNativePackageJsonContents = await readFile(
+      reactNativePackageJsonPath,
+      'utf8'
     )
-    enableExperimentalReactNativeWithReact19Support = true
-  }
+    const reactNativePackageJson = JSON.parse(reactNativePackageJsonContents)
 
-  await Promise.all([
-    buildReactNative(
-      {
-        entryPoints: [resolvePath('react-native')],
-        outfile: prebuilds.reactNativeIos,
+    const reactVersion = reactPackageJson?.version
+    const reactNativeVersion = reactNativePackageJson?.version
+    if (reactVersion?.startsWith('19') && Number.parseFloat(reactNativeVersion) < 0.78) {
+      console.info(
+        `🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`
+      )
+      enableExperimentalReactNativeWithReact19Support = true
+    }
+
+    await Promise.all([
+      buildReactNative(
+        {
+          entryPoints: [resolvePath('react-native')],
+          outfile: prebuilds.reactNativeIos,
+          ...buildOptions,
+        },
+        { platform: 'ios', enableExperimentalReactNativeWithReact19Support }
+      ).catch((err) => {
+        console.error(`Error pre-building react-native for iOS`)
+        throw err
+      }),
+      buildReactNative(
+        {
+          entryPoints: [resolvePath('react-native')],
+          outfile: prebuilds.reactNativeAndroid,
+          ...buildOptions,
+        },
+        { platform: 'android', enableExperimentalReactNativeWithReact19Support }
+      ).catch((err) => {
+        console.error(`Error pre-building react-native for Android`)
+        throw err
+      }),
+      buildReact({
+        entryPoints: [resolvePath('react')],
+        outfile: prebuilds.react,
         ...buildOptions,
-      },
-      { platform: 'ios', enableExperimentalReactNativeWithReact19Support }
-    ).catch((err) => {
-      console.error(`Error pre-building react-native for iOS`)
-      throw err
-    }),
-    buildReactNative(
-      {
-        entryPoints: [resolvePath('react-native')],
-        outfile: prebuilds.reactNativeAndroid,
+      }).catch((err) => {
+        console.error(`Error pre-building react`)
+        throw err
+      }),
+      buildReactJSX({
+        entryPoints: [
+          internal.mode === 'dev'
+            ? resolvePath('react/jsx-dev-runtime')
+            : resolvePath('react/jsx-runtime'),
+        ],
+        outfile: prebuilds.reactJSX,
         ...buildOptions,
-      },
-      { platform: 'android', enableExperimentalReactNativeWithReact19Support }
-    ).catch((err) => {
-      console.error(`Error pre-building react-native for Android`)
-      throw err
-    }),
-    buildReact({
-      entryPoints: [resolvePath('react')],
-      outfile: prebuilds.react,
-      ...buildOptions,
-    }).catch((err) => {
-      console.error(`Error pre-building react`)
-      throw err
-    }),
-    buildReactJSX({
-      entryPoints: [
-        internal.mode === 'dev'
-          ? resolvePath('react/jsx-dev-runtime')
-          : resolvePath('react/jsx-runtime'),
-      ],
-      outfile: prebuilds.reactJSX,
-      ...buildOptions,
-    }).catch((err) => {
-      console.error(`Error pre-building react/jsx-runtime`)
-      throw err
-    }),
-  ])
+      }).catch((err) => {
+        console.error(`Error pre-building react/jsx-runtime`)
+        throw err
+      }),
+    ])
   } finally {
     // Release the lock so other callers can proceed
     resolveLock!()

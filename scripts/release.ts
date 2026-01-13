@@ -414,7 +414,10 @@ async function run() {
           })
           // npm pack creates a file with the package name, rename it to our expected name
           const files = await fs.readdir(path.dirname(absolutePath))
-          const tgzFile = files.find(f => f.endsWith('.tgz') && f.includes(name.replace('@', '').replace('/', '-')))
+          const tgzFile = files.find(
+            (f) =>
+              f.endsWith('.tgz') && f.includes(name.replace('@', '').replace('/', '-'))
+          )
           if (tgzFile) {
             await fs.rename(path.join(path.dirname(absolutePath), tgzFile), absolutePath)
           }

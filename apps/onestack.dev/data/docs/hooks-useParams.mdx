@@ -2,18 +2,112 @@
 title: useParams
 ---
 
-Returns an object that describes the route segments. This will only update for the route it's used inside of,
-and avoids re-renders when, for example, a user navigates to another stack view that isn't matched.
+Returns URL parameters for the focused route, including dynamic segments and query string values.
 
-This is the recommended way to access the URL parameters. If you need to access parameters across all routes, see [useActiveParams](/docs/hooks-useActiveParams).
+This hook only updates when the route using it is focused, making it ideal for stack navigators where pushed screens shouldn't react to parameter changes in other screens.
+
+## Basic Usage
 
 ```tsx
 import { useParams } from 'one'
 
-export default function PostPage() {
-  // For a route like /post/[id].tsx
-  const { id } = useParams()
+// Route: app/posts/[id].tsx
+// URL: /posts/123?sort=date
 
-  return <Text>Post ID: {id}</Text>
+export default function PostPage() {
+  const { id, sort } = useParams()
+  // id = '123', sort = 'date'
+
+  return <Text>Post {id}, sorted by {sort}</Text>
 }
 ```
+
+## TypeScript
+
+### Using `createRoute` (Recommended)
+
+The best way to get fully typed params is with the `createRoute` helper:
+
+```tsx
+import { createRoute } from 'one'
+
+const route = createRoute<'/posts/[id]'>()
+
+export default function PostPage() {
+  const { id } = route.useParams()
+  // id is automatically typed as string!
+
+  return <Text>Post {id}</Text>
+}
+```
+
+Enable auto-generation in your vite config to have this inserted automatically:
+
+```tsx
+// vite.config.ts
+one({
+  router: {
+    experimental: {
+      typedRoutesGeneration: 'runtime', // auto-inserts createRoute
+    },
+  },
+})
+```
+
+See [Typed Routes](/docs/routing-typed-routes) for full setup details.
+
+### Manual Typing
+
+You can also type params manually:
+
+```tsx
+export default function PostPage() {
+  const { id, sort } = useParams<{
+    id: string
+    sort?: 'date' | 'title'
+  }>()
+
+  return <Text>Post {id}</Text>
+}
+```
+
+## Catch-All Routes
+
+For catch-all routes like `[...slug].tsx`, params are returned as arrays:
+
+```tsx
+// Route: app/docs/[...slug].tsx
+// URL: /docs/api/hooks/useParams
+
+export default function DocsPage() {
+  const { slug } = useParams<{ slug: string[] }>()
+  // slug = ['api', 'hooks', 'useParams']
+
+  return <Text>{slug.join(' / ')}</Text>
+}
+```
+
+## URL Decoding
+
+Parameters are automatically URL-decoded:
+
+```tsx
+// URL: /search?q=hello%20world
+const { q } = useParams()
+// q = 'hello world' (decoded)
+```
+
+## useParams vs useActiveParams
+
+| Hook | Updates when... | Best for |
+|------|----------------|----------|
+| `useParams` | Route is focused | Most components |
+| `useActiveParams` | Any route changes | Analytics, global UI |
+
+In a stack navigator, if you push a new screen, `useParams` in the previous screen won't update. Use [useActiveParams](/docs/hooks-useActiveParams) if you need global parameter updates.
+
+## Related
+
+- [useActiveParams](/docs/hooks-useActiveParams) - Global params that update even when unfocused
+- [usePathname](/docs/hooks-usePathname) - Get just the pathname
+- [useSegments](/docs/hooks-useSegments) - Get route segments as array

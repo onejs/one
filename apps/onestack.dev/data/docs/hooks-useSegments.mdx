@@ -1,0 +1,115 @@
+---
+title: useSegments
+---
+
+Returns the current route as an array of path segments. Segments match the file path structure, not the resolved URL values.
+
+```tsx
+import { useSegments } from 'one'
+
+// File: app/users/[id]/settings.tsx
+// URL: /users/123/settings
+
+export default function SettingsPage() {
+  const segments = useSegments()
+  // Returns: ['users', '[id]', 'settings']
+  // Note: Returns '[id]' not '123'
+
+  return <Text>Route: /{segments.join('/')}</Text>
+}
+```
+
+## When to Use
+
+Use `useSegments` when you need to know which route file is active, rather than the resolved URL:
+
+- **Route matching** - Check which section of the app is active
+- **Navigation guards** - Protect routes based on segments
+- **Breadcrumbs** - Build navigation from route structure
+
+For resolved URL values, use [usePathname](/docs/hooks-usePathname) or [useParams](/docs/hooks-useParams).
+
+## TypeScript
+
+You can strictly type segments for better type safety:
+
+```tsx
+// Given file structure:
+// app/
+//   settings.tsx
+//   [user]/
+//     index.tsx
+//     followers.tsx
+
+type AppSegments =
+  | ['settings']
+  | ['[user]']
+  | ['[user]', 'followers']
+
+function RouteHandler() {
+  const segments = useSegments<AppSegments>()
+
+  if (segments[0] === 'settings') {
+    return <SettingsPage />
+  }
+
+  if (segments[0] === '[user]') {
+    if (segments[1] === 'followers') {
+      return <FollowersPage />
+    }
+    return <UserPage />
+  }
+}
+```
+
+## Examples
+
+### Auth Guard
+
+```tsx
+function AuthGuard({ children }) {
+  const segments = useSegments()
+  const { user } = useAuth()
+
+  const inAuthGroup = segments[0] === '(auth)'
+
+  useEffect(() => {
+    if (!user && !inAuthGroup) {
+      router.replace('/login')
+    } else if (user && inAuthGroup) {
+      router.replace('/')
+    }
+  }, [user, inAuthGroup])
+
+  return children
+}
+```
+
+### Tab Highlighting
+
+```tsx
+function TabBar() {
+  const segments = useSegments()
+  const activeTab = segments[0]
+
+  return (
+    <div>
+      <Tab active={activeTab === 'home'} href="/home">Home</Tab>
+      <Tab active={activeTab === 'search'} href="/search">Search</Tab>
+      <Tab active={activeTab === 'profile'} href="/profile">Profile</Tab>
+    </div>
+  )
+}
+```
+
+## Segments vs Pathname
+
+| Hook | Returns | Use Case |
+|------|---------|----------|
+| `useSegments()` | `['users', '[id]']` | Route matching, guards |
+| `usePathname()` | `'/users/123'` | Display, analytics |
+
+## Related
+
+- [usePathname](/docs/hooks-usePathname) - Resolved pathname string
+- [useParams](/docs/hooks-useParams) - Dynamic segment values
