@@ -233,7 +233,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           ${criticalScripts}
           ${deferredLinks}
           ${cssOutput}
-        </head></html>`
+        </head><body></body></html>`
         )
       }
     }
