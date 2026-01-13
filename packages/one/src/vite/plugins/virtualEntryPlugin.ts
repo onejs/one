@@ -56,11 +56,20 @@ function normalizeSetupFile(
   }
 }
 
+type SetupImportResult = {
+  /** Import statement to prepend (for native static imports) */
+  importStatement: string
+  /** Variable declaration for setup promise (for web dynamic imports) */
+  promiseDeclaration: string
+  /** The variable name to pass to createApp, or empty if no setup */
+  promiseVarName: string
+}
+
 function getSetupFileImport(
   environmentName: string,
   setupFiles: NormalizedSetupFiles,
   useStaticImport: boolean
-): string {
+): SetupImportResult {
   const envMap: Record<string, keyof NormalizedSetupFiles> = {
     client: 'client',
     ssr: 'server',
@@ -69,18 +78,28 @@ function getSetupFileImport(
   }
 
   const key = envMap[environmentName]
-  if (!key) return ''
+  if (!key) return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
   const setupFile = setupFiles[key]
-  if (!setupFile) return ''
+  if (!setupFile) return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
   // For native, use static import since dynamic import doesn't work
-  // For web, use top-level await with dynamic import to ensure setup runs before app
   if (useStaticImport) {
-    return `import ${JSON.stringify(setupFile)}`
+    return {
+      importStatement: `import ${JSON.stringify(setupFile)}`,
+      promiseDeclaration: '',
+      promiseVarName: '',
+    }
   }
 
-  return `await import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`
+  // For web, use non-blocking dynamic import to avoid circular dependency deadlocks
+  // when the setup file's dependencies use Vite's __vite_preload helper.
+  // The promise is passed to createApp which awaits it before rendering.
+  return {
+    importStatement: '',
+    promiseDeclaration: `const __oneSetupPromise = import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`,
+    promiseVarName: '__oneSetupPromise',
+  }
 }
 
 export function createVirtualEntry(options: {
@@ -117,7 +136,7 @@ export function createVirtualEntry(options: {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
-        const prependCode = getSetupFileImport(
+        const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
           isNative
@@ -126,8 +145,13 @@ export function createVirtualEntry(options: {
         const nativewindImport = configuration.enableNativewind
           ? `import 'react-native-css-interop/dist/runtime/components'`
           : ''
+        // For web, pass setupPromise to createApp so it awaits before rendering
+        const setupPromiseArg = setupResult.promiseVarName
+          ? `setupPromise: ${setupResult.promiseVarName},`
+          : ''
         return `
-${prependCode}
+${setupResult.importStatement}
+${setupResult.promiseDeclaration}
 ${nativewindImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
@@ -145,6 +169,7 @@ if (typeof window !== 'undefined') {
 
 // globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
+  ${setupPromiseArg}
   routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`)])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
@@ -154,13 +179,13 @@ export default createApp({
 
       if (id === resolvedVirtualEntryIdNative) {
         const isNative = isNativeEnvironment(this.environment)
-        const prependCode = getSetupFileImport(
+        const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
           isNative
         )
         return `
-${prependCode}
+${setupResult.importStatement}
 
 import { createApp } from 'one'
 
