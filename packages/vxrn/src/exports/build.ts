@@ -50,7 +50,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   const [{ serverEnv }, options, userViteConfig] = await Promise.all([
     loadEnv('production'),
-    fillOptions(optionsIn),
+    fillOptions(optionsIn, { mode: 'prod' }),
     loadConfigFromFile({
       command: 'build',
       mode: 'prod',
