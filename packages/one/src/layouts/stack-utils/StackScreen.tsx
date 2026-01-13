@@ -8,11 +8,6 @@ import {
   appendStackHeaderPropsToOptions,
   type StackHeaderProps,
 } from './StackHeaderComponent'
-import {
-  StackHeaderSearchBar,
-  appendStackHeaderSearchBarPropsToOptions,
-  type StackHeaderSearchBarProps,
-} from './StackHeaderSearchBar'
 import { Screen } from '../../views/Screen'
 
 export interface StackScreenProps extends PropsWithChildren {
@@ -28,8 +23,8 @@ export interface StackScreenProps extends PropsWithChildren {
  * <Stack.Screen name="home" options={{ title: 'Home' }}>
  *   <Stack.Header>
  *     <Stack.Header.Title large>Welcome</Stack.Header.Title>
+ *     <Stack.Header.SearchBar placeholder="Search..." />
  *   </Stack.Header>
- *   <Stack.SearchBar placeholder="Search..." />
  * </Stack.Screen>
  * ```
  */
@@ -53,8 +48,6 @@ export function appendScreenStackPropsToOptions(
   function appendChildOptions(child: React.ReactElement, options: NativeStackNavigationOptions) {
     if (child.type === StackHeaderComponent) {
       return appendStackHeaderPropsToOptions(options, child.props as StackHeaderProps)
-    } else if (child.type === StackHeaderSearchBar) {
-      return appendStackHeaderSearchBarPropsToOptions(options, child.props as StackHeaderSearchBarProps)
     } else {
       console.warn(
         `Warning: Unknown child element passed to Stack.Screen: ${(child.type as { name: string }).name ?? child.type}`

@@ -5,7 +5,7 @@ import {
   type NativeStackNavigationOptions,
 } from '@react-navigation/native-stack'
 
-import { StackScreen, StackHeader, StackHeaderSearchBar } from './stack-utils'
+import { StackScreen, StackHeader } from './stack-utils'
 import { withLayoutContext } from './withLayoutContext'
 
 const NativeStackNavigator = createNativeStackNavigator().Navigator
@@ -20,7 +20,6 @@ const StackBase = withLayoutContext<
 export const Stack = Object.assign(StackBase, {
   Screen: StackScreen,
   Header: StackHeader,
-  SearchBar: StackHeaderSearchBar,
 })
 
 export default Stack
