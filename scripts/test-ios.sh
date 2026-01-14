@@ -17,7 +17,7 @@ export IOS_TEST_CONTAINER_PATH_PROD="$(tests/rn-test-container/scripts/get-ios-b
 
 scripts/install-and-run-appium.sh
 
-yarn test-ios:run
+bun run test-ios:run
 
 # Clean up Appium server
 if lsof -i :4723 >/dev/null 2>&1; then
