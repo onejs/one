@@ -1,26 +1,17 @@
 /**
- * Register the current route as a scroll group.
- * Child routes will preserve scroll position when navigating between them.
+ * Register a route as a scroll group. Routes within the same scroll group
+ * preserve their scroll position when navigating between them.
  *
- * Use this in a layout component to create a scroll group for all its children.
+ * @param groupPath - Optional path to define the group. Defaults to current pathname.
+ * @link https://onestack.dev/docs/api/hooks/useScrollGroup
  *
  * @example
  * ```tsx
  * // app/dashboard/_layout.tsx
- * import { useScrollGroup } from 'one'
- *
  * export default function DashboardLayout() {
- *   // All routes under /dashboard will share scroll position
- *   useScrollGroup()
- *
+ *   useScrollGroup() // All /dashboard/* routes share scroll
  *   return <Slot />
  * }
- * ```
- *
- * @example
- * ```tsx
- * // Custom group path
- * useScrollGroup('/products')
  * ```
  */
 export declare function useScrollGroup(groupPath?: string): void;
