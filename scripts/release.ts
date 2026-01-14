@@ -394,44 +394,45 @@ async function run() {
             .filter(Boolean)
             .join(' ')
 
-          // Check for and temporarily remove symlinks (like biome.json) before packing
-          const biomePath = join(cwd, 'biome.json')
-          let biomeTarget: string | null = null
-          try {
-            const stats = await fs.lstat(biomePath)
-            if (stats.isSymbolicLink()) {
-              biomeTarget = await fs.readlink(biomePath)
-              await fs.unlink(biomePath)
-            }
-          } catch (err) {
-            // biome.json doesn't exist, that's fine
-          }
+          // Copy to temp directory and replace workspace:* with versions
+          const tmpPackageDir = join(tmpDir, name.replace('/', '_'))
+          await fs.copy(cwd, tmpPackageDir, {
+            filter: (src) => {
+              // exclude node_modules to avoid symlink issues
+              return !src.includes('node_modules')
+            },
+          })
 
-          const absolutePath = `${tmpDir}/${name.replace('/', '_')}-package.tmp.tgz`
-          await spawnify(`npm pack --pack-destination ${path.dirname(absolutePath)}`, {
-            cwd,
+          // replace workspace:* with version in temp copy
+          const pkgJsonPath = join(tmpPackageDir, 'package.json')
+          const pkgJson = await fs.readJSON(pkgJsonPath)
+          for (const field of [
+            'dependencies',
+            'devDependencies',
+            'optionalDependencies',
+            'peerDependencies',
+          ]) {
+            if (!pkgJson[field]) continue
+            for (const depName in pkgJson[field]) {
+              if (pkgJson[field][depName].startsWith('workspace:')) {
+                pkgJson[field][depName] = version
+              }
+            }
+          }
+          await writeJSON(pkgJsonPath, pkgJson, { spaces: 2 })
+
+          const filename = `${name.replace('/', '_')}-package.tmp.tgz`
+          const absolutePath = `${tmpDir}/${filename}`
+          await spawnify(`npm pack --pack-destination ${tmpDir}`, {
+            cwd: tmpPackageDir,
             avoidLog: true,
           })
+
           // npm pack creates a file with the package name, rename it to our expected name
-          const files = await fs.readdir(path.dirname(absolutePath))
-          const tgzFile = files.find(
-            (f) =>
-              f.endsWith('.tgz') && f.includes(name.replace('@', '').replace('/', '-'))
-          )
-          if (tgzFile) {
-            await fs.rename(path.join(path.dirname(absolutePath), tgzFile), absolutePath)
-          }
+          const npmFilename = `${name.replace('@', '').replace('/', '-')}-${version}.tgz`
+          await fs.rename(join(tmpDir, npmFilename), absolutePath)
 
-          // Restore the symlink after packing
-          if (biomeTarget) {
-            await fs.symlink(biomeTarget, biomePath)
-          }
-
-          const publishCommand = [
-            'npm publish',
-            absolutePath, // produced by `npm pack`
-            publishOptions,
-          ]
+          const publishCommand = ['npm publish', absolutePath, publishOptions]
             .filter(Boolean)
             .join(' ')
 
