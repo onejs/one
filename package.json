@@ -65,6 +65,7 @@
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "typecheck": "turbo typecheck",
     "up-dep": "tko update-deps",
+    "upgrade:takeout": "bun run up-dep '@take-out-/*'",
     "upgrade:tamagui": "bun run up-dep '*tamagui*' '@tamagui/*'",
     "upgrade:tamagui:canary": "bun run up-dep --canary '*tamagui*' '@tamagui/*'",
     "watch": "npm-run-all --parallel watch:ts watch:build",
