@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "exclude": [
+    "env.d.ts",
     "vitest.config.ts",
     "**/test",
     "**/dist",
