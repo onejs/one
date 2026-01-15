@@ -37,4 +37,14 @@ test('import.meta.env', sharedTestOptions, async () => {
   expect(testModeSpecificEnvValue).toBe(
     `${process.env.TEST_ENV!.startsWith('prod') ? 'production' : 'development'}_value`
   )
+
+  // Platform-specific env vars
+  const viteEnvironment = await driver.$('~import-meta-env-VITE_ENVIRONMENT').getText()
+  expect(viteEnvironment).toBe('ios')
+
+  const vitePlatform = await driver.$('~import-meta-env-VITE_PLATFORM').getText()
+  expect(vitePlatform).toBe('native')
+
+  const expoOs = await driver.$('~import-meta-env-EXPO_OS').getText()
+  expect(expoOs).toBe('ios')
 })

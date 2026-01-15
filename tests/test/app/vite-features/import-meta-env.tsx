@@ -20,6 +20,17 @@ export default function ImportMetaEnv() {
       <Text testID="import-meta-env-VITE_TEST_ENV_MODE">
         {import.meta.env.VITE_TEST_ENV_MODE}
       </Text>
+
+      <Text>import.meta.env.VITE_ENVIRONMENT:</Text>
+      <Text testID="import-meta-env-VITE_ENVIRONMENT">
+        {import.meta.env.VITE_ENVIRONMENT}
+      </Text>
+
+      <Text>import.meta.env.VITE_PLATFORM:</Text>
+      <Text testID="import-meta-env-VITE_PLATFORM">{import.meta.env.VITE_PLATFORM}</Text>
+
+      <Text>import.meta.env.EXPO_OS:</Text>
+      <Text testID="import-meta-env-EXPO_OS">{import.meta.env.EXPO_OS}</Text>
     </View>
   )
 }

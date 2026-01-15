@@ -1,18 +1,34 @@
 import { declare } from '@babel/helper-plugin-utils'
 import * as t from '@babel/types'
 import type { PluginObj } from '@babel/core'
+import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 type PluginOptions = {
-  env?: Record<string, string | undefined>
+  env?: Record<string, string | boolean | undefined>
 }
 
 /**
- * A Babel plugin to replace `import.meta.env` and `import.meta.env.*` with the provided env variables.
+ * Babel plugin to replace `import.meta.env` and `import.meta.env.*` with env values.
  *
- * This plugin may not be referenced directly since metro runs transformers in separate workers, search for `@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin` to see how it's used.
+ * Platform-specific env vars (VITE_ENVIRONMENT, VITE_PLATFORM, EXPO_OS, TAMAGUI_ENVIRONMENT)
+ * are automatically injected based on the babel caller's platform.
+ *
+ * This plugin is referenced by name since Metro runs transformers in separate workers:
+ * '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin'
  */
 export const importMetaEnvPlugin = declare<PluginOptions>((api, options): PluginObj => {
   api.assertVersion(7)
+
+  const platform = api.caller((caller) => (caller as any)?.platform) as
+    | string
+    | null
+    | undefined
+  const platformEnv = getPlatformEnv(metroPlatformToViteEnvironment(platform))
+
+  const env: Record<string, string | boolean | undefined> = {
+    ...platformEnv,
+    ...options.env,
+  }
 
   return {
     name: 'import-meta-env',
@@ -27,7 +43,7 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
 
         // Replace import.meta.env
         if (isImportMeta && t.isIdentifier(node.property, { name: 'env' })) {
-          const envEntries = Object.entries(options.env ?? {}).map(([key, value]) =>
+          const envEntries = Object.entries(env).map(([key, value]) =>
             t.objectProperty(
               t.identifier(key),
               value === undefined ? t.identifier('undefined') : t.valueToNode(value)
@@ -53,7 +69,7 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
 
           if (!envKey) return
 
-          const value = options.env?.[envKey]
+          const value = env[envKey]
           path.replaceWith(
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
