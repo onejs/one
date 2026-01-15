@@ -1,45 +1,34 @@
 import type { ResolvedConfig } from 'vite'
-
-// For Metro and Expo, we only import types here.
-// We use `projectImport` to dynamically import the actual modules
-// at runtime to ensure they are loaded from the user's project root.
-import type { loadConfig as loadConfigT } from 'metro'
-
 import type { TransformOptions } from '@babel/core'
 
-type MetroInputConfig = Parameters<typeof loadConfigT>[1]
-
+/**
+ * Creates babel config for Metro transforms from Vite config.
+ *
+ * Platform-specific env vars (VITE_ENVIRONMENT, VITE_PLATFORM, EXPO_OS)
+ * are handled automatically by the import-meta-env-plugin based on caller.platform.
+ */
 export function getMetroBabelConfigFromViteConfig(
   config: ResolvedConfig
 ): TransformOptions {
-  const importMetaEnv = {
-    // https://vite.dev/guide/env-and-mode.html#built-in-constants
+  const importMetaEnv: Record<string, string | boolean | undefined> = {
     MODE: config.mode,
-    BASE_URL: 'https://vxrn.not.supported.yet',
+    BASE_URL: config.base,
     PROD: config.mode === 'production',
     DEV: config.mode === 'development',
     SSR: false,
   }
 
-  // Collect from process.env
   const envPrefix = config.envPrefix || 'VITE_'
-  if (envPrefix) {
-    Object.keys(config.env).forEach((key) => {
-      const shouldInclude = Array.isArray(envPrefix)
-        ? envPrefix.some((p) => key.startsWith(p))
-        : key.startsWith(envPrefix)
+  const prefixes = Array.isArray(envPrefix) ? envPrefix : [envPrefix]
 
-      if (shouldInclude) {
-        importMetaEnv[key] = process.env[key]
-      }
-    })
+  for (const key of Object.keys(config.env)) {
+    if (prefixes.some((p) => key.startsWith(p))) {
+      importMetaEnv[key] = process.env[key]
+    }
   }
 
   return {
     plugins: [
-      // Note that we can only pass Babel plugins by name here,
-      // since Metro will run Babel transformers in different threads
-      // and plugins are not serializable, it seems.
       [
         '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
         { env: importMetaEnv },

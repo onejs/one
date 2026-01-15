@@ -2,9 +2,10 @@ import events from 'node:events'
 import path from 'node:path'
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
-import type {
-  ExpoManifestRequestHandlerPluginPluginOptions,
-  MetroPluginOptions,
+import {
+  type ExpoManifestRequestHandlerPluginPluginOptions,
+  type MetroPluginOptions,
+  getPlatformEnvDefine,
 } from '@vxrn/vite-plugin-metro'
 import type { Plugin, PluginOption } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
@@ -302,17 +303,55 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       name: 'one:init-config',
 
       config() {
+        const setupFileDefines = (() => {
+          if (!options.setupFile) return {}
+
+          let setupFiles: {
+            client?: string
+            server?: string
+            ios?: string
+            android?: string
+          }
+
+          if (typeof options.setupFile === 'string') {
+            setupFiles = {
+              client: options.setupFile,
+              server: options.setupFile,
+              ios: options.setupFile,
+              android: options.setupFile,
+            }
+          } else if ('native' in options.setupFile) {
+            setupFiles = {
+              client: options.setupFile.client,
+              server: options.setupFile.server,
+              ios: options.setupFile.native,
+              android: options.setupFile.native,
+            }
+          } else {
+            setupFiles = options.setupFile
+          }
+
+          return {
+            ...(setupFiles.client && {
+              'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(setupFiles.client),
+            }),
+            ...(setupFiles.server && {
+              'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(setupFiles.server),
+            }),
+            ...(setupFiles.ios && {
+              'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(setupFiles.ios),
+            }),
+            ...(setupFiles.android && {
+              'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(setupFiles.android),
+            }),
+          }
+        })()
+
         return {
+          // Platform env defined at root level for client (workaround for Vite bug with environment.client.define)
           define: {
-            // we define this not in environment.client because there must be a bug in vite
-            // it doesnt define the import.meta.env at all if you do that
-            'process.env.TAMAGUI_ENVIRONMENT': '"client"',
-            'process.env.VITE_ENVIRONMENT': '"client"',
-            'import.meta.env.VITE_ENVIRONMENT': '"client"',
-            'process.env.VITE_PLATFORM': '"web"',
-            'import.meta.env.VITE_PLATFORM': '"web"',
-            'process.env.EXPO_OS': '"web"',
-            'import.meta.env.EXPO_OS': '"web"',
+            ...getPlatformEnvDefine('client'),
+            ...setupFileDefines,
 
             ...(options.web?.defaultRenderMode && {
               'process.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(
@@ -323,53 +362,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               ),
             }),
 
-            ...(() => {
-              if (!options.setupFile) return {}
-
-              // normalize setupFile to object format
-              let setupFiles: {
-                client?: string
-                server?: string
-                ios?: string
-                android?: string
-              }
-
-              if (typeof options.setupFile === 'string') {
-                setupFiles = {
-                  client: options.setupFile,
-                  server: options.setupFile,
-                  ios: options.setupFile,
-                  android: options.setupFile,
-                }
-              } else if ('native' in options.setupFile) {
-                setupFiles = {
-                  client: options.setupFile.client,
-                  server: options.setupFile.server,
-                  ios: options.setupFile.native,
-                  android: options.setupFile.native,
-                }
-              } else {
-                setupFiles = options.setupFile
-              }
-
-              return {
-                ...(setupFiles.client && {
-                  'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(setupFiles.client),
-                }),
-                ...(setupFiles.server && {
-                  'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(setupFiles.server),
-                }),
-                ...(setupFiles.ios && {
-                  'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(setupFiles.ios),
-                }),
-                ...(setupFiles.android && {
-                  'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(
-                    setupFiles.android
-                  ),
-                }),
-              }
-            })(),
-
             ...(process.env.NODE_ENV !== 'production' &&
               vxrnOptions && {
                 'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
@@ -378,47 +370,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           },
 
           environments: {
-            // we define client vars not in environment.client because there must be a bug in vite
-            // it doesnt define the import.meta.env at all if you do that
-            // client: {
-            //   define: {
-            //   },
-            // },
-
             ssr: {
-              define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
-                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
-                'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
-                'process.env.VITE_PLATFORM': '"web"',
-                'import.meta.env.VITE_PLATFORM': '"web"',
-                'process.env.EXPO_OS': '"web"',
-                'import.meta.env.EXPO_OS': '"web"',
-              },
+              define: getPlatformEnvDefine('ssr'),
             },
-
             ios: {
-              define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"ios"',
-                'process.env.VITE_ENVIRONMENT': '"ios"',
-                'import.meta.env.VITE_ENVIRONMENT': '"ios"',
-                'process.env.VITE_PLATFORM': '"native"',
-                'import.meta.env.VITE_PLATFORM': '"native"',
-                'process.env.EXPO_OS': '"ios"',
-                'import.meta.env.EXPO_OS': '"ios"',
-              },
+              define: getPlatformEnvDefine('ios'),
             },
-
             android: {
-              define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"android"',
-                'process.env.VITE_ENVIRONMENT': '"android"',
-                'import.meta.env.VITE_ENVIRONMENT': '"android"',
-                'process.env.VITE_PLATFORM': '"native"',
-                'import.meta.env.VITE_PLATFORM': '"native"',
-                'process.env.EXPO_OS': '"android"',
-                'import.meta.env.EXPO_OS': '"android"',
-              },
+              define: getPlatformEnvDefine('android'),
             },
           },
         }
