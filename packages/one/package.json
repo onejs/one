@@ -85,7 +85,7 @@
       "import": "./metro-entry.js"
     },
     "./env": {
-      "types": "./types/env.d.ts"
+      "types": "./env.d.ts"
     },
     "./image": {
       "types": "./types/image.d.ts",
@@ -103,9 +103,13 @@
     "types",
     "dist",
     "vendor",
+    "run.mjs",
+    "env.d.ts",
+    "server.js",
     "metro-entry.js",
     "metro-entry-ctx.js",
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "tamagui-build",
