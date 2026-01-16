@@ -30,7 +30,7 @@ async function testFlicker(path: string) {
 
         for (const mutation of mutations) {
           if (mutation.type === 'childList') {
-            for (const node of mutation.removedNodes) {
+            for (const node of Array.from(mutation.removedNodes)) {
               if (node.nodeType === 1) {
                 const textLen = (node as Element).textContent?.length || 0
                 if (textLen > 100) {
@@ -47,7 +47,7 @@ async function testFlicker(path: string) {
               }
             }
 
-            for (const node of mutation.addedNodes) {
+            for (const node of Array.from(mutation.addedNodes)) {
               if (node.nodeType === 1) {
                 const textLen = (node as Element).textContent?.length || 0
                 if (textLen > 100 && data.lastRemovalTime > 0) {
