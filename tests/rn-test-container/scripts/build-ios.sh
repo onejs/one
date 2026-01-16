@@ -10,6 +10,18 @@ if [ -z "$CONFIGURATION" ]; then
   exit 1
 fi
 
+# Validate xcpretty is installed and working
+if ! xcpretty --version >/dev/null 2>&1; then
+  echo "Error: xcpretty is not installed or not working"
+  echo ""
+  echo "Install it with: gem install xcpretty"
+  echo ""
+  echo "If you have a broken Ruby setup, you may need to:"
+  echo "  1. Remove stale shims: sudo rm /usr/local/bin/xcpretty"
+  echo "  2. Install with homebrew ruby: /opt/homebrew/opt/ruby/bin/gem install xcpretty"
+  exit 1
+fi
+
 cd "$(dirname "$0")/.."
 
 # Cache directory
