@@ -51,7 +51,11 @@ export async function build(args: {
 
   const { oneOptions } = await loadUserOneOptions('build')
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
-  const routerRootRegexp = new RegExp(`^${routerRoot}`)
+
+  // Set defaultRenderMode env var so getManifest knows the correct route types
+  if (oneOptions.web?.defaultRenderMode) {
+    process.env.ONE_DEFAULT_RENDER_MODE = oneOptions.web.defaultRenderMode
+  }
 
   const manifest = getManifest({ routerRoot })!
 
