@@ -51,7 +51,7 @@ export async function fillOptions(
   const devMode = options.mode === 'production' ? false : mode === 'dev'
 
   if (!devMode) {
-    console.info(`❶ Running dev server in production mode`)
+    console.info(`❶ Running in production mode`)
   }
 
   const packageRootDir = join(require.resolve('vxrn'), '../..')

@@ -138,7 +138,6 @@ export async function oneServe(
       const { loader } = exports
 
       if (!loader) {
-        console.warn(`No loader found in exports`, route.file)
         return null
       }
 
