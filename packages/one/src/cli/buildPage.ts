@@ -39,7 +39,7 @@ export async function buildPage(
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
-  const clientJsPath = join(`dist/client`, clientManifestEntry.file)
+  const clientJsPath = clientManifestEntry ? join(`dist/client`, clientManifestEntry.file) : ''
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
   const cssPreloadPath = getPreloadCSSPath(path)
@@ -157,19 +157,22 @@ prefetchCSS()
         }
       }
 
-      const code = await readFile(clientJsPath, 'utf-8')
-      const withLoader =
-        // super dirty to quickly make ssr loaders work until we have better
-        `
+      // Only generate loader file if we have a client manifest entry
+      if (clientJsPath) {
+        const code = await readFile(clientJsPath, 'utf-8')
+        const withLoader =
+          // super dirty to quickly make ssr loaders work until we have better
+          `
 if (typeof document === 'undefined') globalThis.document = {}
 ` +
-        replaceLoader({
-          code,
-          loaderData,
-        })
-      const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
-      await outputFile(loaderPartialPath, withLoader)
-      loaderPath = getLoaderPath(path)
+          replaceLoader({
+            code,
+            loaderData,
+          })
+        const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
+        await outputFile(loaderPartialPath, withLoader)
+        loaderPath = getLoaderPath(path)
+      }
     }
 
     // ssr, we basically skip at build-time and just compile it the js we need
