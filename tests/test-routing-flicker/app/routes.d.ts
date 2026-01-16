@@ -7,9 +7,7 @@ declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: `/` | `/_sitemap` | `/default-mode` | `/docs` | `/no-loader`
-      DynamicRoutes:
-        | `/default-mode/${OneRouter.SingleRoutePart<T>}`
-        | `/docs/${OneRouter.SingleRoutePart<T>}`
+      DynamicRoutes: `/default-mode/${OneRouter.SingleRoutePart<T>}` | `/docs/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: `/default-mode/[slug]` | `/docs/[slug]`
       IsTyped: true
       RouteTypes: {
