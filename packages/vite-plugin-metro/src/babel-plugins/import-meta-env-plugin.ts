@@ -25,9 +25,10 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
     | undefined
   const platformEnv = getPlatformEnv(metroPlatformToViteEnvironment(platform))
 
+  // Platform env is authoritative and cannot be overridden
   const env: Record<string, string | boolean | undefined> = {
-    ...platformEnv,
     ...options.env,
+    ...platformEnv,
   }
 
   return {
