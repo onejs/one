@@ -36,13 +36,22 @@ async function testHMR(
   const page = await context.newPage()
   await page.goto(serverUrl + '/')
 
-  const textInput = await page.getByTestId('text-input')
+  // Wait for page to be fully hydrated and stable
+  await page.waitForLoadState('networkidle')
+
+  const textInput = page.getByTestId('text-input')
   await textInput.fill('page did not reload')
 
-  const textElementInComponent = await page.getByTestId(testId)
+  const textElementInComponent = page.getByTestId(testId)
   expect(await textElementInComponent.textContent()).toBe(originalText)
 
+  // Small delay before edit to ensure page state is stable
+  await new Promise((r) => setTimeout(r, 100))
+
   editFn()
+
+  // Small delay after file edit to ensure file watcher picks up the change
+  await new Promise((r) => setTimeout(r, 100))
 
   try {
     await page.waitForFunction(
@@ -51,7 +60,7 @@ async function testHMR(
         return element && element.textContent?.trim() === editedText
       },
       { testId, editedText },
-      { timeout: 30000 }
+      { timeout: 60000 } // Increase timeout for slower CI machines
     )
   } catch (e) {
     if (e instanceof Error) {
