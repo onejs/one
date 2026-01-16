@@ -42,7 +42,7 @@ describe('baseUrl', () => {
     const config = getMockConfig(['_layout.tsx', 'bar.tsx', 'index.tsx'])
 
     expect(getStateFromPath<object>(path, config)).toEqual({
-      routes: [{ name: 'bar', path: '/bar' }],
+      routes: [{ name: 'bar', path: '/bar', key: 'bar-0' }],
     })
 
     expect(getPathFromState(getStateFromPath<object>(path, config)!, config)).toBe(
@@ -56,7 +56,7 @@ describe('baseUrl', () => {
     const config = getMockConfig(['_layout.tsx', 'bar.tsx', 'index.tsx'])
 
     expect(getStateFromPath<object>(path, config)).toEqual({
-      routes: [{ name: 'bar', path: '/bar' }],
+      routes: [{ name: 'bar', path: '/bar', key: 'bar-0' }],
     })
     expect(getPathFromState(getStateFromPath<object>(path, config)!, config)).toBe(
       '/expo/bar'
@@ -111,6 +111,7 @@ describe('hash', () => {
           params: {
             '#': '123',
           },
+          key: 'hello-0',
         },
       ],
     })
@@ -126,6 +127,7 @@ describe('hash', () => {
             '#': '123',
           },
           path: '/hello#123',
+          key: '[hello]-0',
         },
       ],
     })
@@ -140,6 +142,7 @@ describe('hash', () => {
           params: {
             '#': '123',
           },
+          key: 'index-0',
         },
       ],
     })
@@ -160,6 +163,7 @@ it(`supports spaces`, () => {
       {
         name: 'hello world',
         path: '/hello%20world',
+        key: 'hello world-0',
       },
     ],
   })
@@ -172,6 +176,7 @@ it(`supports spaces`, () => {
           'hello world': 'hello world',
         },
         path: '/hello%20world',
+        key: '[hello world]-0',
       },
     ],
   })
@@ -247,16 +252,19 @@ it(`adds dynamic route params from all levels of the path`, () => {
       {
         name: '[foo]',
         params: { baz: 'baz', foo: 'foo' },
+        key: '[foo]-0',
         state: {
           routes: [
             {
               name: 'bar',
               params: { baz: 'baz', foo: 'foo' },
+              key: 'bar-1',
               state: {
                 routes: [
                   {
                     name: '[baz]',
                     params: { baz: 'baz', foo: 'foo' },
+                    key: '[baz]-2',
                     state: {
                       routes: [
                         {
@@ -266,6 +274,7 @@ it(`adds dynamic route params from all levels of the path`, () => {
                             foo: 'foo',
                           },
                           path: '/foo/bar/baz/other',
+                          key: 'other-3',
                         },
                       ],
                     },
@@ -291,6 +300,7 @@ it(`handles not-found routes`, () => {
           'not-found': ['missing-page'],
         },
         path: '/missing-page',
+        key: '+not-found-0',
       },
     ],
   })
@@ -312,12 +322,13 @@ it(`handles query params`, () => {
           array: ['1', '2'],
         },
         path: '/?test=true&hello=world&array=1&array=2',
+        key: 'index-0',
       },
     ],
   })
 })
 
-it(`handles query params`, () => {
+it(`handles query params (duplicate)`, () => {
   expect(
     getStateFromPath(
       '/?test=true&hello=world&array=1&array=2',
@@ -333,6 +344,7 @@ it(`handles query params`, () => {
           array: ['1', '2'],
         },
         path: '/?test=true&hello=world&array=1&array=2',
+        key: 'index-0',
       },
     ],
   })
