@@ -64,9 +64,12 @@ generate_fingerprint() {
   local expo_fingerprint=""
   expo_fingerprint=$(npx --yes @expo/fingerprint fingerprint:generate --platform ios 2>/dev/null | jq -r '.hash' 2>/dev/null || echo "")
 
+  # Get Xcode version - critical for cache invalidation on Xcode updates
+  local xcode_version=$(xcodebuild -version 2>/dev/null | head -1 || echo "unknown")
+
   if [ -n "$expo_fingerprint" ]; then
-    # Combine expo fingerprint with config AND one version for final hash
-    echo "${expo_fingerprint}-${config}-${one_version}" | shasum -a 256 | cut -d' ' -f1
+    # Combine expo fingerprint with config, one version, AND xcode version for final hash
+    echo "${expo_fingerprint}-${config}-${one_version}-${xcode_version}" | shasum -a 256 | cut -d' ' -f1
   else
     # Fallback to manual hashing if @expo/fingerprint fails
     echo "Warning: @expo/fingerprint failed, falling back to manual hashing" >&2
@@ -77,6 +80,7 @@ generate_fingerprint() {
     hash_input+=$(cat ios/Podfile.lock 2>/dev/null || echo "")
     hash_input+="$one_version"
     hash_input+="$config"
+    hash_input+="$xcode_version"
     if [ -d "ios/RNTestContainer" ]; then
       hash_input+=$(find ios/RNTestContainer -type f \( -name "*.m" -o -name "*.mm" -o -name "*.h" -o -name "*.swift" -o -name "*.plist" -o -name "*.storyboard" \) -exec cat {} \; 2>/dev/null || echo "")
     fi
@@ -111,6 +115,11 @@ if [ -f "$CACHE_FILE" ]; then
 fi
 
 echo "Building $CONFIGURATION (no cache hit)..."
+
+# Always clean when building - stale artifacts cause issues and we're doing a full build anyway
+echo "Cleaning build artifacts..."
+rm -rf ios/build ios/Pods ios/Podfile.lock 2>/dev/null || true
+rm -rf ~/Library/Developer/Xcode/DerivedData/*RNTestContainer* 2>/dev/null || true
 
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 bun run prebuild:native --platform ios
