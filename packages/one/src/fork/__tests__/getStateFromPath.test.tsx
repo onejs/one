@@ -211,10 +211,12 @@ test('handles leading slash when converting', () => {
     routes: [
       {
         name: 'foo',
+        key: 'foo-0',
         state: {
           routes: [
             {
               name: 'bar',
+              key: 'bar-1',
               params: { count: '42' },
               path,
             },
@@ -232,10 +234,12 @@ test('handles ending slash when converting', () => {
     routes: [
       {
         name: 'foo',
+        key: 'foo-0',
         state: {
           routes: [
             {
               name: 'bar',
+              key: 'bar-1',
               params: { count: '42' },
               path,
             },
@@ -252,8 +256,9 @@ test('handles route without param', () => {
     routes: [
       {
         name: 'foo',
+        key: 'foo-0',
         state: {
-          routes: [{ name: 'bar', path }],
+          routes: [{ name: 'bar', key: 'bar-1', path }],
         },
       },
     ],
@@ -531,12 +536,14 @@ test('handles parse in nested object for second route depth', () => {
     routes: [
       {
         name: 'Foo',
+        key: 'Foo-0',
         state: {
           routes: [
             {
               name: 'Bar',
+              key: 'Bar-1',
               state: {
-                routes: [{ name: 'Baz', path }],
+                routes: [{ name: 'Baz', key: 'Baz-2', path }],
               },
             },
           ],
@@ -582,12 +589,14 @@ test('handles parse in nested object for second route depth and and path and par
     routes: [
       {
         name: 'Foo',
+        key: 'Foo-0',
         state: {
           routes: [
             {
               name: 'Bar',
+              key: 'Bar-1',
               state: {
-                routes: [{ name: 'Baz', path }],
+                routes: [{ name: 'Baz', key: 'Baz-2', path }],
               },
             },
           ],
@@ -660,15 +669,17 @@ test('handles initialRouteName at top level', () => {
   const state = {
     index: 1,
     routes: [
-      { name: 'Boo' },
+      { name: 'Boo', key: 'Boo-0' },
       {
         name: 'Foo',
+        key: 'Foo-1',
         state: {
           routes: [
             {
               name: 'Bar',
+              key: 'Bar-2',
               state: {
-                routes: [{ name: 'Baz', path }],
+                routes: [{ name: 'Baz', key: 'Baz-3', path }],
               },
             },
           ],
@@ -705,16 +716,19 @@ test('handles initialRouteName inside a screen', () => {
     routes: [
       {
         name: 'Foo',
+        key: 'Foo-0',
         state: {
           index: 1,
           routes: [
             {
               name: 'Foe',
+              key: 'Foe-1',
             },
             {
               name: 'Bar',
+              key: 'Bar-2',
               state: {
-                routes: [{ name: 'Baz', path }],
+                routes: [{ name: 'Baz', key: 'Baz-3', path }],
               },
             },
           ],
@@ -751,12 +765,14 @@ test('handles initialRouteName included in path', () => {
     routes: [
       {
         name: 'Foo',
+        key: 'Foo-0',
         state: {
           routes: [
             {
               name: 'Foe',
+              key: 'Foe-1',
               state: {
-                routes: [{ name: 'Baz', path }],
+                routes: [{ name: 'Baz', key: 'Baz-2', path }],
               },
             },
           ],
@@ -1136,12 +1152,14 @@ test('returns matching screen with params if path is empty', () => {
     routes: [
       {
         name: 'Foo',
+        key: 'Foo-0',
         state: {
           routes: [
             {
               name: 'Bar',
+              key: 'Bar-1',
               state: {
-                routes: [{ name: 'Qux', params: { foo: 42 }, path }],
+                routes: [{ name: 'Qux', key: 'Qux-2', params: { foo: 42 }, path }],
               },
             },
           ],
@@ -1252,14 +1270,17 @@ test('handles same paths beginnings', () => {
     routes: [
       {
         name: 'Foe',
+        key: 'Foe-0',
         state: {
           index: 1,
           routes: [
             {
               name: 'Foo',
+              key: 'Foo-1',
             },
             {
               name: 'Bis',
+              key: 'Bis-2',
               path,
             },
           ],
@@ -2616,14 +2637,17 @@ test('correctly applies initialRouteName for config with similar route names', (
     routes: [
       {
         name: 'RootTabs',
+        key: 'RootTabs-0',
         state: {
           routes: [
             {
               name: 'HomeTab',
+              key: 'HomeTab-1',
               state: {
                 routes: [
                   {
                     name: 'WeeklyEarnings',
+                    key: 'WeeklyEarnings-2',
                     path,
                   },
                 ],
@@ -2672,18 +2696,22 @@ test('correctly applies initialRouteName for config with similar route names v2'
     routes: [
       {
         name: 'RootTabs',
+        key: 'RootTabs-0',
         state: {
           routes: [
             {
               name: 'EarningsTab',
+              key: 'EarningsTab-1',
               state: {
                 index: 1,
                 routes: [
                   {
                     name: 'Earnings',
+                    key: 'Earnings-2',
                   },
                   {
                     name: 'WeeklyEarnings',
+                    key: 'WeeklyEarnings-3',
                     path,
                   },
                 ],
