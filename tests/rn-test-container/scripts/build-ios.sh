@@ -116,9 +116,10 @@ fi
 
 echo "Building $CONFIGURATION (no cache hit)..."
 
-# Always clean when building - stale artifacts cause issues and we're doing a full build anyway
+# Clean only the specific configuration's build directory to avoid wiping other configs
+# (e.g., don't wipe Debug when building Release)
 echo "Cleaning build artifacts..."
-rm -rf ios/build ios/Pods ios/Podfile.lock 2>/dev/null || true
+rm -rf "$BUILD_DIR" ios/Pods ios/Podfile.lock 2>/dev/null || true
 
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 bun run prebuild:native --platform ios
