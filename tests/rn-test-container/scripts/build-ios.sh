@@ -119,7 +119,6 @@ echo "Building $CONFIGURATION (no cache hit)..."
 # Always clean when building - stale artifacts cause issues and we're doing a full build anyway
 echo "Cleaning build artifacts..."
 rm -rf ios/build ios/Pods ios/Podfile.lock 2>/dev/null || true
-rm -rf ~/Library/Developer/Xcode/DerivedData/*RNTestContainer* 2>/dev/null || true
 
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 bun run prebuild:native --platform ios
