@@ -99,6 +99,16 @@ export function getStateFromPath<ParamList extends {}>(
   path: string,
   options?: Options<ParamList>
 ): ResultState | undefined {
+  // @modified: reset counter for deterministic keys across SSR and hydration
+  resetRouteKeyCounter()
+
+  // @modified: debug logging for hydration fix
+  if (process.env.ONE_DEBUG_ROUTER) {
+    console.info(
+      `[one] getStateFromPath called with path=${path}, isServer=${typeof window === 'undefined'}`
+    )
+  }
+
   const { initialRoutes, configs, configWithRegexes } = getConfigResources(options)
 
   const screens = options?.screens
@@ -652,6 +662,25 @@ const findInitialRoute = (
   return undefined
 }
 
+// @modified - start
+// HYDRATION FIX: Add deterministic keys to routes so react-navigation preserves them
+// instead of generating new ones with nanoid(). This prevents SSR/hydration key mismatch.
+let routeKeyCounter = 0
+
+function resetRouteKeyCounter() {
+  routeKeyCounter = 0
+}
+
+function getRouteWithKey<T extends { name: string }>(route: T): T & { key: string } {
+  const key = `${route.name}-${routeKeyCounter++}`
+  // @modified: debug logging for hydration fix
+  if (process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] getRouteWithKey: ${route.name} -> key=${key}`)
+  }
+  return { ...route, key }
+}
+// @modified - end
+
 // returns state object with values depending on whether
 // it is the end of state and if there is initialRoute for this level
 const createStateObject = (
@@ -663,22 +692,29 @@ const createStateObject = (
     if (initialRoute) {
       return {
         index: 1,
-        routes: [{ name: initialRoute }, route],
+        // @modified: add deterministic keys
+        routes: [getRouteWithKey({ name: initialRoute }), getRouteWithKey(route)],
       }
     } else {
       return {
-        routes: [route],
+        // @modified: add deterministic keys
+        routes: [getRouteWithKey(route)],
       }
     }
   } else {
     if (initialRoute) {
       return {
         index: 1,
-        routes: [{ name: initialRoute }, { ...route, state: { routes: [] } }],
+        // @modified: add deterministic keys
+        routes: [
+          getRouteWithKey({ name: initialRoute }),
+          getRouteWithKey({ ...route, state: { routes: [] } }),
+        ],
       }
     } else {
       return {
-        routes: [{ ...route, state: { routes: [] } }],
+        // @modified: add deterministic keys
+        routes: [getRouteWithKey({ ...route, state: { routes: [] } })],
       }
     }
   }

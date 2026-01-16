@@ -7,7 +7,6 @@ import {
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
-import { FlagsContext } from '../router/FlagsContext'
 import { useContextKey } from '../router/Route'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens } from '../router/useScreens'
@@ -34,6 +33,20 @@ export type NavigatorProps = {
   children?: Parameters<typeof useNavigationBuilder>[1]['children']
   router?: Parameters<typeof useNavigationBuilder>[0]
 }
+
+// HYDRATION FIX for SSG/SSR pages inside route groups
+//
+// Problem: When a page is inside a route group with a <Slot /> layout, hydration causes
+// visible flicker. The content is removed and re-added with a timing gap (~300ms).
+//
+// Root cause: During hydration, react-navigation generates different route keys
+// on SSR vs client (using nanoid()). React sees different component keys and
+// treats them as different children, causing unmount/remount.
+//
+// Solution: Deterministic route keys are now generated in getStateFromPath.ts
+// using a counter-based approach that produces identical keys on both SSR and
+// client. This ensures react-navigation preserves the existing keys instead of
+// generating new ones with nanoid().
 
 /** An unstyled custom navigator. Good for basic web layouts */
 export function Navigator({
@@ -131,8 +144,6 @@ export function useNavigatorContext() {
 
 export function useSlot() {
   const context = useNavigatorContext()
-  const flags = React.useContext(FlagsContext)
-
   const { state, descriptors } = context
 
   const current = state.routes.find((route, i) => {
@@ -143,17 +154,7 @@ export function useSlot() {
     return null
   }
 
-  let renderedElement = descriptors[current.key]?.render() ?? null
-
-  if (flags.experimentalPreventLayoutRemounting && renderedElement !== null) {
-    // To save unnecessary re-mounting since the Slot navigator will only render one screen at a time anyway.
-    renderedElement = {
-      ...renderedElement,
-      key: 'one-uses-a-static-key-here-for-slot-navigator',
-    }
-  }
-
-  return renderedElement
+  return descriptors[current.key]?.render() ?? null
 }
 
 /** Renders the currently selected content. */
