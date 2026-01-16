@@ -34,15 +34,18 @@
     },
     "test-ios": {
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["IOS_TEST_CONTAINER_PATH_DEV", "IOS_TEST_CONTAINER_PATH_PROD", "DEV_PORT", "SIMULATOR_UDID"]
     },
     "test-ios:dev": {
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["IOS_TEST_CONTAINER_PATH_DEV", "IOS_TEST_CONTAINER_PATH_PROD", "DEV_PORT", "SIMULATOR_UDID"]
     },
     "test-ios:prod": {
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["IOS_TEST_CONTAINER_PATH_DEV", "IOS_TEST_CONTAINER_PATH_PROD", "DEV_PORT", "SIMULATOR_UDID"]
     },
     "clean": {
       "outputs": ["dist/**/*"],
