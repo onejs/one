@@ -24,15 +24,19 @@ if lsof -i :4723 >/dev/null 2>&1; then
     sleep 1
 fi
 
-# Start fresh Appium
-# Run in subshell so it doesn't hold parent's file descriptors open
+# Start fresh Appium (subshell ensures process stays backgrounded)
 (npx appium > /tmp/appium.log 2>&1 &)
-sleep 3
 
-# Verify Appium started successfully
-if ! lsof -i :4723 >/dev/null 2>&1; then
-    echo "ERROR: Appium failed to start. Log contents:"
-    cat /tmp/appium.log
-    exit 1
-fi
-echo "Appium server running on port 4723"
+# Wait for Appium to start (up to 30 seconds)
+echo "Waiting for Appium to start..."
+for i in {1..30}; do
+    if lsof -i :4723 >/dev/null 2>&1; then
+        echo "Appium server running on port 4723 (started in ${i}s)"
+        exit 0
+    fi
+    sleep 1
+done
+
+echo "ERROR: Appium failed to start within 30 seconds. Log contents:"
+cat /tmp/appium.log
+exit 1
