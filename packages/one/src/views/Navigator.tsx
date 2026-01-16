@@ -1,9 +1,5 @@
 // Copyright © 2024 650 Industries.
-import {
-  type RouterFactory,
-  StackRouter,
-  useNavigationBuilder,
-} from '@react-navigation/native'
+import { type RouterFactory, StackRouter, useNavigationBuilder } from '@react-navigation/native'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
@@ -11,6 +7,11 @@ import { useContextKey } from '../router/Route'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens } from '../router/useScreens'
 import { Screen } from './Screen'
+
+// Static key used to prevent React from unmounting/remounting Slot content
+// when route keys change during navigation. Since Slot only renders one screen
+// at a time anyway, we can safely reuse the same component instance.
+const SLOT_STATIC_KEY = 'one-slot-static-key'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
@@ -154,7 +155,18 @@ export function useSlot() {
     return null
   }
 
-  return descriptors[current.key]?.render() ?? null
+  const renderedElement = descriptors[current.key]?.render() ?? null
+
+  // Use static key to prevent layout remounts when route keys change during navigation.
+  // Safe because Slot only renders one screen at a time.
+  if (renderedElement !== null) {
+    return {
+      ...renderedElement,
+      key: SLOT_STATIC_KEY,
+    }
+  }
+
+  return renderedElement
 }
 
 /** Renders the currently selected content. */

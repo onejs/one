@@ -173,7 +173,9 @@ export function getPathDataFromState<ParamList extends {}>(
         // Better handle array params
         const currentParams = Object.fromEntries(
           Object.entries(route.params!).flatMap(([key, value]) => {
-            if (key === 'screen' || key === 'params') {
+            // Filter out internal navigation params that shouldn't appear in URL
+            // 'key' is our deterministic route key used for React reconciliation
+            if (key === 'screen' || key === 'params' || key === 'key') {
               return []
             }
 
