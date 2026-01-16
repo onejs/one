@@ -13,7 +13,7 @@
     "prod": "one build && one serve",
     "serve": "one serve",
     "prebuild:native": "one prebuild",
-    "test": "bun run test:dev && bun run test:dev-non-cli && bun run test:prod && bun run test:app-cases-dev && bun run test:app-cases-prod",
+    "test": "bun run build:web && SKIP_BUILD=1 bun run test:dev && SKIP_BUILD=1 bun run test:dev-non-cli && SKIP_BUILD=1 bun run test:prod && SKIP_BUILD=1 bun run test:app-cases-dev && SKIP_BUILD=1 bun run test:app-cases-prod",
     "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
