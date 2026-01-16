@@ -304,9 +304,9 @@ export async function build(args: {
         }) || ''
     }
 
-    // SPA routes may not have client manifest entries - that's expected
+    // SPA and SSG routes may not have client manifest entries - that's expected
     // They still need to be built but with empty preloads
-    if (!clientManifestKey && foundRoute.type !== 'spa') {
+    if (!clientManifestKey && foundRoute.type !== 'spa' && foundRoute.type !== 'ssg') {
       console.warn(`No client manifest entry found for route: ${id}`)
       continue
     }
@@ -390,7 +390,9 @@ export async function build(args: {
     }
 
     // add the page itself
-    routePreloads[`/${clientManifestKey}`] = `/${clientManifestEntry.file}`
+    if (clientManifestEntry && clientManifestKey) {
+      routePreloads[`/${clientManifestKey}`] = `/${clientManifestEntry.file}`
+    }
 
     const preloadSetupFilePreloads = (() => {
       if (!oneOptions.setupFile) return []
@@ -423,7 +425,7 @@ export async function build(args: {
       ...new Set([
         ...preloadSetupFilePreloads,
         // add the route entry js (like ./app/index.ts)
-        clientManifestEntry.file,
+        ...(clientManifestEntry ? [clientManifestEntry.file] : []),
         // add the virtual entry
         vxrnOutput.clientManifest['virtual:one-entry'].file,
         ...entryImports,
@@ -447,7 +449,7 @@ export async function build(args: {
             // add the virtual entry (framework bootstrap)
             vxrnOutput.clientManifest['virtual:one-entry'].file,
             // add the route entry js (like ./app/index.ts)
-            clientManifestEntry.file,
+            ...(clientManifestEntry ? [clientManifestEntry.file] : []),
             // add layout files (but not their deep imports)
             ...layoutEntries.map((entry) => entry.file),
           ]),
@@ -471,7 +473,7 @@ export async function build(args: {
       ? [...criticalPreloads!, ...deferredPreloads!]
       : allPreloads
 
-    const allEntries = [clientManifestEntry, ...layoutEntries]
+    const allEntries = [clientManifestEntry, ...layoutEntries].filter(Boolean)
     const allCSS = allEntries
       .flatMap((entry) => collectImports(entry, { type: 'css' }))
       // nested path pages need to reference root assets
