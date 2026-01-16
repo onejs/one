@@ -445,7 +445,9 @@ url: ${url}`)
           )
           return resolved
         } catch (err) {
-          console.error(`Error running loader: ${err}`)
+          if ((err as any)?.code !== 'ERR_MODULE_NOT_FOUND') {
+            console.error(`Error running loader: ${err}`)
+          }
           return next()
         }
       }
