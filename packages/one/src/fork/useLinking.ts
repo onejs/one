@@ -10,12 +10,15 @@ import {
   findFocusedRoute,
   getActionFromState as getActionFromStateDefault,
   getPathFromState as getPathFromStateDefault,
-  getStateFromPath as getStateFromPathDefault,
+  // @modified: use our local getStateFromPath with deterministic route keys for hydration fix
+  // getStateFromPath as getStateFromPathDefault,
   type NavigationContainerRef,
   type NavigationState,
   type ParamListBase,
   useNavigationIndependentTree,
 } from '@react-navigation/core'
+// @modified: import our getStateFromPath with deterministic route keys
+import { getStateFromPath as getStateFromPathDefault } from './getStateFromPath'
 // @modified - end
 import type { LinkingOptions } from '@react-navigation/native' // @modified: change import path
 import isEqual from 'fast-deep-equal'

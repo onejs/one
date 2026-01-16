@@ -67,4 +67,25 @@ describe('Simple Build Tests', () => {
     const privacyContent = await readFile(privacyPath, 'utf-8')
     expect(privacyContent).toContain('Privacy Policy')
   })
+
+  it('should build SSR routes in deeply nested route groups with client JS', async () => {
+    // This test catches a regression where nested route groups like (app)/dashboard/(tabs)/
+    // would log "No client manifest entry found" warnings and fail to include proper
+    // client-side JS bundles for hydration.
+    const settingsPath = join(
+      fixturePath,
+      'dist',
+      'client',
+      'dashboard',
+      'settings',
+      'index.html'
+    )
+
+    expect(await pathExists(settingsPath)).toBeTruthy()
+
+    const settingsContent = await readFile(settingsPath, 'utf-8')
+    expect(settingsContent).toContain('Nested Settings Page')
+    // Verify it has client JS bundle reference for hydration
+    expect(settingsContent).toMatch(/<script[^>]+type="module"[^>]+src="[^"]+\.js"/)
+  })
 })
