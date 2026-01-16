@@ -300,12 +300,16 @@ export async function build(args: {
         }) || ''
     }
 
-    if (!clientManifestKey) {
+    // SPA routes may not have client manifest entries - that's expected
+    // They still need to be built but with empty preloads
+    if (!clientManifestKey && foundRoute.type !== 'spa') {
       console.warn(`No client manifest entry found for route: ${id}`)
       continue
     }
 
-    const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
+    const clientManifestEntry = clientManifestKey
+      ? vxrnOutput.clientManifest[clientManifestKey]
+      : undefined
 
     foundRoute.loaderServerPath = output.fileName
 
@@ -334,7 +338,9 @@ export async function build(args: {
       ]
     }
 
-    if (!clientManifestEntry) {
+    // Only warn if we expected a manifest entry but didn't find it
+    // SPA routes are expected to not have manifest entries
+    if (!clientManifestEntry && foundRoute.type !== 'spa' && clientManifestKey) {
       console.warn(
         `No client manifest entry found: ${clientManifestKey} in manifest ${JSON.stringify(
           vxrnOutput.clientManifest,
