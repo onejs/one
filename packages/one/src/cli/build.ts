@@ -560,9 +560,7 @@ export async function build(args: {
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
-      console.info(
-        `  ↦ route ${path}${useAfterLCPAggressive ? ' (after-lcp-aggressive)' : useAfterLCP ? ' (after-lcp)' : ''}`
-      )
+      console.info(`  ↦ route ${path}`)
 
       const built = await runWithAsyncLocalContext(async () => {
         return await buildPage(
