@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-plugin-metro",
-  "version": "1.2.64",
+  "version": "1.2.65",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
