@@ -76,7 +76,7 @@
   "resolutions": {
     "tar": "7.5.3",
     "esbuild": "0.25.11",
-    "vite": "7.1.12",
+    "vite": "^7.1.12",
     "rollup": "4.54.0",
     "expo": "54.0.22",
     "react-native-reanimated": "4.1.3",
