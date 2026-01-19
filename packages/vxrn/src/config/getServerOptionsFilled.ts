@@ -7,16 +7,27 @@ export async function getServerOptionsFilled(
 ): Promise<VXRNServeOptionsFilled> {
   const {
     host = '0.0.0.0' /* TODO: Better default to 127.0.0.1 due to security reasons, and only dynamically change to 0.0.0.0 if the user is requesting an Expo QR code */,
-    port: defaultPort = mode === 'dev' ? 8081 : 3000,
+    port: requestedPort,
   } = serverOptions || {}
 
+  const defaultPort = mode === 'dev' ? 8081 : 3000
+  const portToUse = requestedPort ?? defaultPort
   const protocol = 'http:' as const
 
+  // if a specific port was requested, only try that port (strict mode)
+  // otherwise, allow finding an available port in a range
   const port = await getPort({
-    port: defaultPort,
-    portRange: [defaultPort, defaultPort + 100],
+    port: portToUse,
+    portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
     host,
   })
+
+  // if user explicitly requested a port and we couldn't get it, error out
+  if (requestedPort && port !== requestedPort) {
+    throw new Error(
+      `Port ${requestedPort} is already in use. Either free the port or use a different one.`
+    )
+  }
 
   // Use localhost for the URL when host is 0.0.0.0 since that's how clients will access it
   const urlHost = host === '0.0.0.0' ? 'localhost' : host
