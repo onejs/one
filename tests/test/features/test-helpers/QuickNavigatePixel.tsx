@@ -1,10 +1,16 @@
-import { useCallback } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { Pressable } from 'react-native'
 import { useRouter } from 'one'
 import * as Clipboard from 'expo-clipboard'
 import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
 
 export function QuickNavigatePixel() {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const safeAreaInsets = (() => {
     try {
       const insets = useSafeAreaInsets()
@@ -17,6 +23,11 @@ export function QuickNavigatePixel() {
   })()
 
   const router = useRouter()
+
+  // render nothing on server to avoid hydration mismatch from safe area insets
+  if (!isMounted) {
+    return null
+  }
 
   const navigate = useCallback(async () => {
     try {

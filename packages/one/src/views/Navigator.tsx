@@ -1,5 +1,9 @@
 // Copyright © 2024 650 Industries.
-import { type RouterFactory, StackRouter, useNavigationBuilder } from '@react-navigation/native'
+import {
+  type RouterFactory,
+  StackRouter,
+  useNavigationBuilder,
+} from '@react-navigation/native'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
