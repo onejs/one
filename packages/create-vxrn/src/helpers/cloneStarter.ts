@@ -2,14 +2,14 @@ import { copy, ensureDir, move, pathExists } from 'fs-extra'
 import { homedir } from 'node:os'
 import { join, sep } from 'node:path'
 import { rimraf } from 'rimraf'
-import type { templates } from '../templates'
+import type { CloneableTemplate } from '../templates'
 import { exec, execPromiseQuiet } from '@vxrn/utils'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
 
 export const cloneStarter = async (
-  template: (typeof templates)[number],
+  template: CloneableTemplate,
   resolvedProjectPath: string
 ) => {
   const dir = await setupVxrnDotDir(
@@ -35,7 +35,7 @@ export const cloneStarter = async (
 }
 
 async function setupVxrnDotDir(
-  template: (typeof templates)[number],
+  template: CloneableTemplate,
   targetGitDir: string,
   isRetry = false
 ) {
