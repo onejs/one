@@ -39,7 +39,9 @@ export async function buildPage(
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
-  const clientJsPath = clientManifestEntry ? join(`dist/client`, clientManifestEntry.file) : ''
+  const clientJsPath = clientManifestEntry
+    ? join(`dist/client`, clientManifestEntry.file)
+    : ''
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
   const cssPreloadPath = getPreloadCSSPath(path)

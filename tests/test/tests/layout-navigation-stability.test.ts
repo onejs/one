@@ -128,7 +128,9 @@ describe('Layout Navigation Stability', () => {
     // CRITICAL: Mount count should STILL not increase
     expect(stateAfterThird.mountCount).toBe(mountCountAfterEntry)
 
-    console.log('\n✓ Layout stability verified - no remounts during navigation within layout')
+    console.log(
+      '\n✓ Layout stability verified - no remounts during navigation within layout'
+    )
 
     await page.close()
   })
