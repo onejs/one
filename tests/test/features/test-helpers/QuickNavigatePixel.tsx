@@ -24,11 +24,6 @@ export function QuickNavigatePixel() {
 
   const router = useRouter()
 
-  // render nothing on server to avoid hydration mismatch from safe area insets
-  if (!isMounted) {
-    return null
-  }
-
   const navigate = useCallback(async () => {
     try {
       const target = await Clipboard.getStringAsync()
@@ -44,7 +39,12 @@ export function QuickNavigatePixel() {
         `QuickNavigatePixel: Failed to navigate ${e instanceof Error ? e.message : 'Unknown error'}`
       )
     }
-  }, [])
+  }, [router])
+
+  // render nothing on server to avoid hydration mismatch from safe area insets
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <Pressable
