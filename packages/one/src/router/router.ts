@@ -16,15 +16,28 @@ import {
   useSyncExternalStore,
 } from 'react'
 import { Platform } from 'react-native'
+import { devtoolsRegistry } from '../devtools/registry'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
+import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
 import { shouldLinkExternally } from '../utils/url'
+import {
+  ParamValidationError,
+  RouteValidationError,
+  validateParams as runValidateParams,
+} from '../validateParams'
 import type { One } from '../vite/types'
+import {
+  extractParamsFromState,
+  extractPathnameFromHref,
+  extractSearchFromHref,
+  findRouteNodeFromState,
+} from './findRouteNode'
 import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
 import { getRoutes } from './getRoutes'
@@ -35,19 +48,6 @@ import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
 import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
-import {
-  findRouteNodeFromState,
-  extractParamsFromState,
-  extractSearchFromHref,
-  extractPathnameFromHref,
-} from './findRouteNode'
-import {
-  validateParams as runValidateParams,
-  RouteValidationError,
-  ParamValidationError,
-} from '../validateParams'
-import { checkBlocker } from '../useBlocker'
-import { devtoolsRegistry } from '../devtools/registry'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -530,8 +530,35 @@ export function cleanup() {
   }
 }
 
-// TODO
 export const preloadingLoader: Record<string, Promise<any> | undefined> = {}
+
+// inlined to ensure tree shakes away in prod
+// dev mode preload - fetches just the loader directly without production preload bundles
+async function doPreloadDev(href: string): Promise<any> {
+  if (process.env.NODE_ENV === 'development') {
+    try {
+      const loaderJSUrl = getLoaderPath(href, true)
+      const modulePromise = dynamicImport(loaderJSUrl)
+      if (!modulePromise) {
+        return null
+      }
+      const module = await modulePromise.catch(() => null)
+
+      if (!module?.loader) {
+        return null
+      }
+
+      const result = await module.loader()
+      return result ?? null
+    } catch (err) {
+      // graceful fail - loader will be fetched when component mounts
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.warn(`[one] dev preload failed for ${href}:`, err)
+      }
+      return null
+    }
+  }
+}
 
 async function doPreload(href: string) {
   const preloadPath = getPreloadPath(href)
@@ -654,8 +681,20 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
   if (process.env.TAMAGUI_TARGET === 'native') {
     return
   }
+
+  // in dev mode, use a simpler preload that just fetches the loader directly
+  // this avoids issues with production-only preload paths while still ensuring
+  // loader data is available before navigation completes
   if (process.env.NODE_ENV === 'development') {
-    return
+    // normalize the path to match what useLoader uses for cache keys
+    const normalizedHref = normalizeLoaderPath(href)
+    if (!preloadingLoader[normalizedHref]) {
+      preloadingLoader[normalizedHref] = doPreloadDev(href).then((data) => {
+        preloadedLoaderData[normalizedHref] = data
+        return data
+      })
+    }
+    return preloadingLoader[normalizedHref]
   }
 
   if (!preloadingLoader[href]) {
@@ -678,6 +717,13 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
   }
 
   return preloadingLoader[href]
+}
+
+// normalize path to match what useLoader uses for currentPath
+function normalizeLoaderPath(href: string): string {
+  // remove search params and hash, normalize trailing slashes and /index
+  const url = new URL(href, 'http://example.com')
+  return url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 }
 
 export async function linkTo(

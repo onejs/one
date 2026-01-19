@@ -15,6 +15,8 @@
     "test:ssg": "DEFAULT_RENDER_MODE=ssg TEST_ONLY=prod bun run vitest --run --reporter=verbose --color=false",
     "test:ssr": "DEFAULT_RENDER_MODE=ssr TEST_ONLY=prod bun run vitest --run --reporter=verbose --color=false",
     "test:all": "bun run test:spa && bun run test:ssg",
+    "test:dev": "TEST_ONLY=dev bun run vitest --run --reporter=verbose --color=false tests/dev-navigation-flicker.test.ts",
+    "test:dev:ssg": "DEFAULT_RENDER_MODE=ssg TEST_ONLY=dev bun run vitest --run --reporter=verbose --color=false tests/dev-navigation-flicker.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
