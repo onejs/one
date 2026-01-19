@@ -1,10 +1,9 @@
-// import * as FullstackSteps from './steps/fullstack'
 import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Minimal`,
-    value: 'Minimal',
+    title: `Basic`,
+    value: 'Basic',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
@@ -17,44 +16,27 @@ export const templates = [
   },
 
   {
-    title: `Minimal Tamagui`,
+    title: `Tamagui`,
     value: 'Tamagui',
-    type: 'included-in-monorepo',
+    type: 'external-repo',
     hidden: false,
     repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-tamagui`],
+      url: `https://github.com/tamagui/takeout-free.git`,
+      sshFallback: `git@github.com:tamagui/takeout-free.git`,
+      dir: [],
       branch: 'main',
     },
     ...BasicTemplateSteps,
   },
 
   {
-    title: `Minimal Tailwind`,
-    value: 'Tailwind',
-    type: 'included-in-monorepo',
+    title: `Tamagui Pro`,
+    value: 'TamaguiPro',
+    type: 'external-link',
     hidden: false,
-    repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-tailwind`],
-      branch: 'main',
-    },
-    ...BasicTemplateSteps,
-  },
-
-  {
-    title: `Fullstack Traditional - Drizzle, Postgres, Tamagui`,
-    value: 'Recommended',
-    type: 'included-in-monorepo',
-    hidden: false,
-    repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-recommended`],
-      branch: 'main',
-    },
-    ...BasicTemplateSteps,
+    externalUrl: 'https://tamagui.dev/takeout',
   },
 ] as const
+
+export type Template = (typeof templates)[number]
+export type CloneableTemplate = Extract<Template, { repo: any }>
