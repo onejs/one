@@ -135,3 +135,5 @@ export { SourceInspector, type SourceInspectorProps } from './views/SourceInspec
 export { useScrollGroup } from './useScrollGroup'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
+// route config
+export { createRouteConfig } from './createRouteConfig'
