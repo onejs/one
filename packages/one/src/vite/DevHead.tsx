@@ -507,6 +507,17 @@ const ONE_DEVTOOLS_SCRIPT = `
       html += '<div style="font-size:13px;color:#4d5156;">' + escapeHtml(desc ? desc.slice(0,160) : 'No description') + '</div>';
       html += '</div></div>';
 
+      if (ogImage) {
+        html += '<div class="section"><div class="section-title">Social Preview</div>';
+        html += '<div class="preview-card" style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e1e8ed;">';
+        html += '<img src="' + escapeHtml(ogImage) + '" style="width:100%;height:auto;display:block;border-bottom:1px solid #e1e8ed;" onerror="this.style.display=&quot;none&quot;" />';
+        html += '<div style="padding:12px;">';
+        html += '<div style="font-size:12px;color:#8899a6;text-transform:uppercase;margin-bottom:2px;">' + escapeHtml(location.hostname) + '</div>';
+        html += '<div style="font-size:15px;color:#1c2022;font-weight:700;margin-bottom:4px;line-height:1.3;">' + escapeHtml(ogTitle || title || 'No title') + '</div>';
+        html += '<div style="font-size:14px;color:#8899a6;line-height:1.3;">' + escapeHtml((ogDesc || desc || '').slice(0,100)) + '</div>';
+        html += '</div></div></div>';
+      }
+
       html += '<div class="section"><div class="section-title">Meta Tags</div>';
       html += '<div class="info-row"><div class="info-label">title</div><div class="info-value">' + escapeHtml(title || '-') + '</div></div>';
       html += '<div class="info-row"><div class="info-label">description</div><div class="info-value">' + escapeHtml(desc || '-') + '</div></div>';
