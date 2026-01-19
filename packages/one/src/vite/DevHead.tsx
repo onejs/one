@@ -27,6 +27,7 @@ const ONE_DEVTOOLS_SCRIPT = `
     var dragOffset = { x: 0, y: 0 };
     var panelPos = { x: 20, y: 20 };
     var snappedEdge = { h: null, v: null };
+    var removalObserver = null;
 
     var LOGO_SVG = '<svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FCD34D" stroke="#222" stroke-width="2"/><circle cx="50" cy="35" r="16" fill="white"/><text x="50" y="41" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="bold" fill="#222">1</text></svg>';
 
@@ -245,6 +246,32 @@ const ONE_DEVTOOLS_SCRIPT = `
       setupSpotlight();
       setupPanel();
       setupKeyboard();
+      setupRemovalObserver();
+    }
+
+    // watch for React hydration removing our element and re-create it
+    function setupRemovalObserver() {
+      if (removalObserver) return;
+      removalObserver = new MutationObserver(function(mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var mutation = mutations[i];
+          if (mutation.type === 'childList') {
+            for (var j = 0; j < mutation.removedNodes.length; j++) {
+              var node = mutation.removedNodes[j];
+              if (node === host) {
+                // our element was removed (likely by React hydration), re-create it
+                host = null;
+                shadow = null;
+                spotlight = null;
+                panel = null;
+                setTimeout(createHost, 0);
+                return;
+              }
+            }
+          }
+        }
+      });
+      removalObserver.observe(document.body, { childList: true });
     }
 
     function setupSpotlight() {
@@ -364,7 +391,10 @@ const ONE_DEVTOOLS_SCRIPT = `
       });
     }
 
+    var keyboardSetup = false;
     function setupKeyboard() {
+      if (keyboardSetup) return;
+      keyboardSetup = true;
       document.addEventListener('keydown', function(e) {
         if (e.altKey && e.code === 'Space') {
           e.preventDefault();
@@ -379,14 +409,14 @@ const ONE_DEVTOOLS_SCRIPT = `
             showPanel();
           }
         } else if (e.code === 'Escape') {
-          if (spotlight.classList.contains('visible')) hideSpotlight();
-          else if (panel.classList.contains('visible')) hidePanel();
+          if (spotlight && spotlight.classList.contains('visible')) hideSpotlight();
+          else if (panel && panel.classList.contains('visible')) hidePanel();
         }
       });
     }
 
     function toggleSpotlight() {
-      if (spotlight.classList.contains('visible')) hideSpotlight();
+      if (spotlight && spotlight.classList.contains('visible')) hideSpotlight();
       else showSpotlight();
     }
 
@@ -575,8 +605,21 @@ const ONE_DEVTOOLS_SCRIPT = `
       return html;
     }
 
-    // Initialize
-    createHost();
+    // Initialize after React hydration completes
+    // use requestIdleCallback to wait for the browser to be idle (after hydration)
+    function initAfterHydration() {
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(createHost, { timeout: 3000 });
+      } else {
+        setTimeout(createHost, 100);
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      initAfterHydration();
+    } else {
+      window.addEventListener('load', initAfterHydration);
+    }
 
     // Listen for events
     window.addEventListener('one-loader-timing', function() {
@@ -627,6 +670,7 @@ const SOURCE_INSPECTOR_SCRIPT = `
     var holdTimer = null;
     var holdDelay = 500;
     var mousePos = { x: 0, y: 0 };
+    var removalObserver = null;
 
     function createHost() {
       if (host) return;
@@ -667,6 +711,31 @@ const SOURCE_INSPECTOR_SCRIPT = `
       document.body.appendChild(host);
       overlay = shadow.querySelector('.overlay');
       tag = shadow.querySelector('.tag');
+      setupRemovalObserver();
+    }
+
+    // watch for React hydration removing our element and re-create it
+    function setupRemovalObserver() {
+      if (removalObserver) return;
+      removalObserver = new MutationObserver(function(mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var mutation = mutations[i];
+          if (mutation.type === 'childList') {
+            for (var j = 0; j < mutation.removedNodes.length; j++) {
+              var node = mutation.removedNodes[j];
+              if (node === host) {
+                host = null;
+                shadow = null;
+                overlay = null;
+                tag = null;
+                // don't auto-recreate - will be created on next hover
+                return;
+              }
+            }
+          }
+        }
+      });
+      removalObserver.observe(document.body, { childList: true });
     }
 
     function hideOverlay() {
