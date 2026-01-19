@@ -73,4 +73,5 @@ export { ScrollBehavior } from './views/ScrollBehavior';
 export { SourceInspector, type SourceInspectorProps } from './views/SourceInspector';
 export { useScrollGroup } from './useScrollGroup';
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only';
+export { createRouteConfig } from './createRouteConfig';
 //# sourceMappingURL=index.d.ts.map

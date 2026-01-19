@@ -17,7 +17,7 @@ import {
 } from 'react'
 import { Platform } from 'react-native'
 import { devtoolsRegistry } from '../devtools/registry'
-import type { OneRouter } from '../interfaces/router'
+import type { OneRouter, One as OneInterfaces } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
@@ -726,6 +726,40 @@ function normalizeLoaderPath(href: string): string {
   return url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 }
 
+// get the loading mode for a route
+function getRouteLoadingMode(
+  routeNode: RouteNode | null | undefined,
+  loadedRoute?: { config?: OneInterfaces.RouteConfig }
+): OneInterfaces.RouteLoadingMode {
+  if (loadedRoute?.config?.loading !== undefined) {
+    return loadedRoute.config.loading
+  }
+  if (routeNode?.loadingMode !== undefined) {
+    return routeNode.loadingMode
+  }
+  if (routeNode?.type === 'spa') {
+    return 'instant'
+  }
+  return 'blocking'
+}
+
+// handle preload based on loading mode
+async function handlePreloadWithMode(
+  href: string,
+  loadingMode: OneInterfaces.RouteLoadingMode
+): Promise<void> {
+  const preloadPromise = preloadRoute(href, true)
+
+  if (loadingMode === 'blocking') {
+    await preloadPromise
+  } else if (loadingMode === 'instant') {
+    // don't wait - navigate immediately
+  } else if (typeof loadingMode === 'number') {
+    const timeoutPromise = new Promise<void>((resolve) => setTimeout(resolve, loadingMode))
+    await Promise.race([preloadPromise, timeoutPromise])
+  }
+}
+
 export async function linkTo(
   href: string,
   event?: string,
@@ -818,16 +852,27 @@ export async function linkTo(
 
   setLoadingState('loading')
 
-  // Preload route modules first so loadRoute() won't throw Suspense promises
-  await preloadRoute(href, true)
+  // Find the matching route node to determine loading mode
+  const matchingRouteNode = findRouteNodeFromState(state, routeNode)
+
+  // Get the loading mode - uses cached config or defaults based on route type
+  const loadingMode = getRouteLoadingMode(matchingRouteNode)
+
+  // Preload route modules based on loading mode
+  await handlePreloadWithMode(href, loadingMode)
 
   // Run async route validation before navigation
-  const matchingRouteNode = findRouteNodeFromState(state, routeNode)
   if (matchingRouteNode?.loadRoute) {
     setValidationState({ status: 'validating', lastValidatedHref: href })
 
     try {
       const loadedRoute = matchingRouteNode.loadRoute()
+
+      // Cache the loading mode from config for subsequent navigations
+      if (loadedRoute.config?.loading !== undefined && !matchingRouteNode.loadingMode) {
+        matchingRouteNode.loadingMode = loadedRoute.config.loading
+      }
+
       const params = extractParamsFromState(state)
       const search = extractSearchFromHref(href)
       const pathname = extractPathnameFromHref(href)

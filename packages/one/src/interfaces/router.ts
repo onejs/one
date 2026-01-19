@@ -525,4 +525,29 @@ export namespace One {
      */
     exclude?: boolean
   }
+
+  /**
+   * Loading mode for route navigation.
+   * - `'blocking'` - Wait for loader to complete before navigation (default for SSG/SSR)
+   * - `'instant'` - Navigate immediately, show Loading component while loader runs
+   * - `number` - Wait up to N milliseconds, then navigate (showing Loading if still loading)
+   */
+  export type RouteLoadingMode = 'blocking' | 'instant' | number
+
+  /**
+   * Route configuration object for customizing route behavior.
+   */
+  export type RouteConfig = {
+    /**
+     * Loading mode for this route.
+     * - `'blocking'` - Wait for loader before navigation (default for SSG/SSR)
+     * - `'instant'` - Navigate immediately, show Loading component (default for SPA)
+     * - `number` - Wait up to N ms, then show Loading if still loading
+     */
+    loading?: RouteLoadingMode
+    /**
+     * Sitemap configuration for this route.
+     */
+    sitemap?: RouteSitemap
+  }
 }

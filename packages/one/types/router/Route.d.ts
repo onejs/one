@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import type { ErrorBoundaryProps } from '../views/Try';
+import type { One as OneInterfaces } from '../interfaces/router';
 import type { LoaderProps } from '../types';
 import type { One } from '../vite/types';
 import type { ParamValidator, RouteValidationFn } from '../validateParams';
@@ -17,6 +18,10 @@ export type LoadedRoute = {
         params?: Record<string, string | string[]>;
     }) => Record<string, string | string[]>[];
     loader?: (props: LoaderProps) => Record<string, string | string[]>[];
+    /** Route configuration for loading behavior, sitemap, etc. */
+    config?: OneInterfaces.RouteConfig;
+    /** Loading component shown while loader is running (for instant/timed modes). */
+    Loading?: React.ComponentType;
     /**
      * Validate route params before navigation.
      * Use with Zod, Valibot, or a custom function.
@@ -72,6 +77,8 @@ export type RouteNode = {
     layouts?: RouteNode[];
     /** Parent middlewares */
     middlewares?: RouteNode[];
+    /** Cached loading mode from route config. */
+    loadingMode?: OneInterfaces.RouteLoadingMode;
 };
 export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
