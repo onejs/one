@@ -63,9 +63,11 @@ describe('CSS Hydration Tests', () => {
 
     // Check that there are no hydration warnings related to CSS elements
     // Exclude data-one-source warnings (source inspector in dev mode, not CSS-related)
+    // Exclude PortalHostWeb warnings (tamagui portal hydration, unrelated to CSS loading)
     const cssHydrationWarnings = hydrationWarnings.filter(
       (w) =>
         !w.includes('data-one-source') && // Exclude source inspector attribute mismatches
+        !w.includes('PortalHostWeb') && // Exclude tamagui portal hydration mismatches
         (w.includes('<style') || // Look for style element mismatches
           w.includes('<link') || // Look for link element mismatches
           w.includes('stylesheet') ||
