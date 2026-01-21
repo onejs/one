@@ -51,7 +51,11 @@ export function appendStackHeaderTitlePropsToOptions(
     ? {
         ...flattenedLargeStyle,
         ...(flattenedLargeStyle?.fontWeight
-          ? { fontWeight: convertFontWeightToStringFontWeight(flattenedLargeStyle.fontWeight) }
+          ? {
+              fontWeight: convertFontWeightToStringFontWeight(
+                flattenedLargeStyle.fontWeight
+              ),
+            }
           : {}),
       }
     : undefined
@@ -65,8 +69,11 @@ export function appendStackHeaderTitlePropsToOptions(
     ...(props.large && Platform.OS === 'ios' && { headerTransparent: true }),
     headerTitleAlign: flattenedStyle?.textAlign,
     // Only set styles when explicitly configured to avoid interfering with native defaults
-    ...(titleStyle && Object.keys(titleStyle).length > 0 && { headerTitleStyle: titleStyle }),
+    ...(titleStyle &&
+      Object.keys(titleStyle).length > 0 && { headerTitleStyle: titleStyle }),
     ...(largeTitleStyle &&
-      Object.keys(largeTitleStyle).length > 0 && { headerLargeTitleStyle: largeTitleStyle }),
+      Object.keys(largeTitleStyle).length > 0 && {
+        headerLargeTitleStyle: largeTitleStyle,
+      }),
   }
 }

@@ -31,7 +31,10 @@ export function useFilterScreenChildren(
      */
     function flattenChild(child: React.ReactNode, exclude = false) {
       // Handle Screen or StackScreen elements
-      if (React.isValidElement(child) && (child.type === Screen || child.type === StackScreen)) {
+      if (
+        React.isValidElement(child) &&
+        (child.type === Screen || child.type === StackScreen)
+      ) {
         if (
           typeof child.props === 'object' &&
           child.props &&

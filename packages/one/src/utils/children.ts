@@ -60,7 +60,9 @@ export function getAllChildrenNotOfType<ComponentT extends JSXElementConstructor
 /**
  * Filter children to only include elements of allowed types.
  */
-export function filterAllowedChildrenElements<ComponentT extends JSXElementConstructor<any>>(
+export function filterAllowedChildrenElements<
+  ComponentT extends JSXElementConstructor<any>,
+>(
   children: ReactNode,
   allowedTypes: ComponentT[]
 ): ReactElement<React.ComponentProps<ComponentT>, ComponentT>[] {

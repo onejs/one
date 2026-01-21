@@ -1,8 +1,14 @@
-import { StackHeaderBackButton, type StackHeaderBackButtonProps } from './StackHeaderBackButton'
+import {
+  StackHeaderBackButton,
+  type StackHeaderBackButtonProps,
+} from './StackHeaderBackButton'
 import { StackHeaderComponent, type StackHeaderProps } from './StackHeaderComponent'
 import { StackHeaderLeft, type StackHeaderLeftProps } from './StackHeaderLeft'
 import { StackHeaderRight, type StackHeaderRightProps } from './StackHeaderRight'
-import { StackHeaderSearchBar, type StackHeaderSearchBarProps } from './StackHeaderSearchBar'
+import {
+  StackHeaderSearchBar,
+  type StackHeaderSearchBarProps,
+} from './StackHeaderSearchBar'
 import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle'
 
 /**
@@ -32,4 +38,8 @@ export {
   type StackHeaderTitleProps,
 }
 
-export { StackScreen, appendScreenStackPropsToOptions, type StackScreenProps } from './StackScreen'
+export {
+  StackScreen,
+  appendScreenStackPropsToOptions,
+  type StackScreenProps,
+} from './StackScreen'
