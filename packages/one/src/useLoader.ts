@@ -257,8 +257,9 @@ export function useLoaderState<
     loader
   ) {
     // check for already-resolved preloaded data first (synchronous)
+    // use != null to also exclude null values (which indicate preload failures)
     const resolvedPreloadData = preloadedLoaderData[currentPath]
-    if (resolvedPreloadData !== undefined) {
+    if (resolvedPreloadData != null) {
       // Data was preloaded and already resolved - use it directly
       delete preloadedLoaderData[currentPath]
       delete preloadingLoader[currentPath]
@@ -271,11 +272,18 @@ export function useLoaderState<
         .then((val: any) => {
           delete preloadingLoader[currentPath]
           delete preloadedLoaderData[currentPath]
-          updateState(currentPath, {
-            data: val,
-            hasLoadedOnce: true,
-            promise: undefined,
-          })
+          // null means preload failed - don't mark as loaded, let initial load handle it
+          if (val != null) {
+            updateState(currentPath, {
+              data: val,
+              hasLoadedOnce: true,
+              promise: undefined,
+            })
+          } else {
+            updateState(currentPath, {
+              promise: undefined,
+            })
+          }
         })
         .catch((err: any) => {
           console.error(`Error running loader()`, err)
