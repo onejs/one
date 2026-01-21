@@ -1,8 +1,8 @@
 /* eslint-env browser */
 
 import * as React from 'react'
-import type { NativeSafeAreaProviderProps } from './SafeArea-types'
 import { View } from 'react-native'
+import type { NativeSafeAreaProviderProps } from './SafeArea-types'
 
 /**
  * TODO:
