@@ -60,6 +60,7 @@ export const EXCLUDE_LIST = [
   'react-native-sortables',
   'react-native-image-colors',
   'react-native-fast-image',
+  'react-native-fast-squircle',
   'react-native-device-info',
 
   // CLI shouldn't be used in SSR runtime
