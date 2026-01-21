@@ -1,7 +1,8 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { StackScreen } from './stack-utils';
-export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+import React from 'react';
+import { StackScreen, StackHeaderComponent, StackHeaderSearchBar } from './stack-utils';
+export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "id" | "initialRouteName" | "layout" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: StackNavigationState<ParamListBase>;
@@ -91,17 +92,17 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & {
     id?: undefined;
-}, "children">> & import("react").RefAttributes<unknown>> & {
-    Screen: typeof import("../views/Screen").Screen;
-} & {
+}, "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
     Screen: typeof StackScreen;
-    Header: typeof import("./stack-utils").StackHeaderComponent & {
+    Header: typeof StackHeaderComponent & {
         Left: typeof import("./stack-utils").StackHeaderLeft;
         Right: typeof import("./stack-utils").StackHeaderRight;
         BackButton: typeof import("./stack-utils").StackHeaderBackButton;
         Title: typeof import("./stack-utils").StackHeaderTitle;
-        SearchBar: typeof import("./stack-utils").StackHeaderSearchBar;
+        SearchBar: typeof StackHeaderSearchBar;
     };
+    Protected: React.FunctionComponent<import("..").ProtectedProps>;
+    SearchBar: typeof StackHeaderSearchBar;
 };
 export default Stack;
 //# sourceMappingURL=Stack.d.ts.map
