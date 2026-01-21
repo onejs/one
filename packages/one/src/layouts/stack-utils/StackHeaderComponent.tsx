@@ -8,12 +8,18 @@ import {
   StackHeaderBackButton,
 } from './StackHeaderBackButton'
 import { StackHeaderLeft, appendStackHeaderLeftPropsToOptions } from './StackHeaderLeft'
-import { StackHeaderRight, appendStackHeaderRightPropsToOptions } from './StackHeaderRight'
+import {
+  StackHeaderRight,
+  appendStackHeaderRightPropsToOptions,
+} from './StackHeaderRight'
 import {
   appendStackHeaderSearchBarPropsToOptions,
   StackHeaderSearchBar,
 } from './StackHeaderSearchBar'
-import { appendStackHeaderTitlePropsToOptions, StackHeaderTitle } from './StackHeaderTitle'
+import {
+  appendStackHeaderTitlePropsToOptions,
+  StackHeaderTitle,
+} from './StackHeaderTitle'
 import { isChildOfType } from '../../utils/children'
 
 export interface StackHeaderProps {
@@ -84,16 +90,23 @@ export function appendStackHeaderPropsToOptions(
       headerStyle: { backgroundColor: flattenedStyle.backgroundColor as string },
     }),
     ...(hasLargeBackgroundColor && {
-      headerLargeStyle: { backgroundColor: flattenedLargeStyle.backgroundColor as string },
+      headerLargeStyle: {
+        backgroundColor: flattenedLargeStyle.backgroundColor as string,
+      },
     }),
     // Only set shadow visibility when explicitly configured
-    ...(hasCustomShadow && { headerShadowVisible: flattenedStyle?.shadowColor !== 'transparent' }),
+    ...(hasCustomShadow && {
+      headerShadowVisible: flattenedStyle?.shadowColor !== 'transparent',
+    }),
     ...(flattenedLargeStyle?.shadowColor !== undefined && {
       headerLargeTitleShadowVisible: flattenedLargeStyle?.shadowColor !== 'transparent',
     }),
   }
 
-  function appendChildOptions(child: React.ReactElement, options: NativeStackNavigationOptions) {
+  function appendChildOptions(
+    child: React.ReactElement,
+    options: NativeStackNavigationOptions
+  ) {
     let result = options
     if (isChildOfType(child, StackHeaderTitle)) {
       result = appendStackHeaderTitlePropsToOptions(result, child.props)

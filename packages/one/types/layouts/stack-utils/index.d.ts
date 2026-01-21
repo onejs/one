@@ -16,5 +16,5 @@ export declare const StackHeader: typeof StackHeaderComponent & {
     SearchBar: typeof StackHeaderSearchBar;
 };
 export { StackHeaderBackButton, type StackHeaderBackButtonProps, StackHeaderComponent, type StackHeaderProps, StackHeaderLeft, type StackHeaderLeftProps, StackHeaderRight, type StackHeaderRightProps, StackHeaderSearchBar, type StackHeaderSearchBarProps, StackHeaderTitle, type StackHeaderTitleProps, };
-export { StackScreen, appendScreenStackPropsToOptions, type StackScreenProps } from './StackScreen';
+export { StackScreen, appendScreenStackPropsToOptions, type StackScreenProps, } from './StackScreen';
 //# sourceMappingURL=index.d.ts.map

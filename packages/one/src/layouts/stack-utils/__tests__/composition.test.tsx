@@ -2,9 +2,15 @@ import { describe, expect, it } from 'vitest'
 import React from 'react'
 import { Platform } from 'react-native'
 
-import { StackHeaderTitle, appendStackHeaderTitlePropsToOptions } from '../StackHeaderTitle'
+import {
+  StackHeaderTitle,
+  appendStackHeaderTitlePropsToOptions,
+} from '../StackHeaderTitle'
 import { StackHeaderLeft, appendStackHeaderLeftPropsToOptions } from '../StackHeaderLeft'
-import { StackHeaderRight, appendStackHeaderRightPropsToOptions } from '../StackHeaderRight'
+import {
+  StackHeaderRight,
+  appendStackHeaderRightPropsToOptions,
+} from '../StackHeaderRight'
 import {
   StackHeaderBackButton,
   appendStackHeaderBackButtonPropsToOptions,
@@ -13,7 +19,10 @@ import {
   StackHeaderSearchBar,
   appendStackHeaderSearchBarPropsToOptions,
 } from '../StackHeaderSearchBar'
-import { StackHeaderComponent, appendStackHeaderPropsToOptions } from '../StackHeaderComponent'
+import {
+  StackHeaderComponent,
+  appendStackHeaderPropsToOptions,
+} from '../StackHeaderComponent'
 import { appendScreenStackPropsToOptions } from '../StackScreen'
 import { StackHeader } from '../index'
 

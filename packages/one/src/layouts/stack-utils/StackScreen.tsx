@@ -45,7 +45,10 @@ export function appendScreenStackPropsToOptions(
 ): NativeStackNavigationOptions {
   let updatedOptions = { ...options, ...props.options }
 
-  function appendChildOptions(child: React.ReactElement, options: NativeStackNavigationOptions) {
+  function appendChildOptions(
+    child: React.ReactElement,
+    options: NativeStackNavigationOptions
+  ) {
     if (child.type === StackHeaderComponent) {
       return appendStackHeaderPropsToOptions(options, child.props as StackHeaderProps)
     } else {
