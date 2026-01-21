@@ -60,15 +60,14 @@ export function NativeSafeAreaProvider({
     }
   }, [onInsetsChange])
 
-  const finalStyle = style || {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    maxHeight: '100%',
-    maxWidth: '100%',
+  // use display: contents to avoid breaking sticky positioning
+  // the old constraining styles (height: 100%, max-height: 100%) created a
+  // containing block that broke position: sticky
+  if (style) {
+    return <View style={style}>{children}</View>
   }
 
-  return <View style={finalStyle}>{children}</View>
+  return <div style={{ display: 'contents' }}>{children}</div>
 }
 
 let _supportedTransitionEvent: string | null | undefined = null
