@@ -304,6 +304,28 @@ export async function build(args: {
         }) || ''
     }
 
+    // If still not found, try matching by manifest entry's `name` property
+    // When experimentalMinChunkSize is used, Vite may merge dynamic routes into shared chunks
+    // The manifest entry's `name` contains the transformed chunk name without hash
+    // e.g., for [slug]+ssg.tsx -> name is "_slug__ssg"
+    if (!clientManifestKey) {
+      const routeFile = foundRoute.file.slice(2) // remove ./
+      // get just the filename without directory (Vite uses filename for shared chunks)
+      const filename = routeFile.split('/').pop() || routeFile
+      // convert [param] to _param_, remove .tsx extension, replace + with _
+      const transformedName = filename
+        .replace(/\[([^\]]+)\]/g, '_$1_')
+        .replace(/\.tsx?$/, '')
+        .replace(/\+/g, '_')
+
+      // match by the manifest entry's `name` property which is stable across builds
+      clientManifestKey =
+        Object.keys(vxrnOutput.clientManifest).find((key) => {
+          const entry = vxrnOutput.clientManifest[key]
+          return entry.name === transformedName
+        }) || ''
+    }
+
     // SPA and SSG routes may not have client manifest entries - that's expected
     // They still need to be built but with empty preloads
     if (!clientManifestKey && foundRoute.type !== 'spa' && foundRoute.type !== 'ssg') {
@@ -390,8 +412,11 @@ export async function build(args: {
     }
 
     // add the page itself
-    if (clientManifestEntry && clientManifestKey) {
-      routePreloads[`/${clientManifestKey}`] = `/${clientManifestEntry.file}`
+    // use the actual route file path as the key (e.g., /app/posts/[slug]+ssg.tsx)
+    // not the clientManifestKey which may be a transformed chunk name
+    if (clientManifestEntry) {
+      const routeKey = `/${routerRoot}${foundRoute.file.slice(1)}`
+      routePreloads[routeKey] = `/${clientManifestEntry.file}`
     }
 
     const preloadSetupFilePreloads = (() => {

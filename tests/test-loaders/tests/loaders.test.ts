@@ -488,4 +488,46 @@ describe('loader() SSG', () => {
 
     await page.close()
   })
+
+  test('dynamic SSG route with loader works on client-side navigation', async () => {
+    const page = await context.newPage()
+
+    // start at posts index
+    await page.goto(serverUrl + '/posts')
+
+    // wait for hydration
+    await page.waitForLoadState('networkidle')
+
+    // click the link to navigate to hello-world post
+    const link = await page.$('#link-hello')
+    await link?.click({ force: true })
+
+    // wait for navigation
+    await page.waitForURL(`${serverUrl}/posts/hello-world`, { timeout: 5000 })
+
+    // loader data should be present
+    const title = await page.textContent('#post-title')
+    expect(title).toBe('Post: hello-world')
+
+    const content = await page.textContent('#post-content')
+    expect(content).toBe('This is the content for hello-world')
+
+    await page.close()
+  })
+
+  test('dynamic SSG route with loader works on direct navigation', async () => {
+    const page = await context.newPage()
+
+    // navigate directly to a post
+    await page.goto(serverUrl + '/posts/another-post')
+
+    // loader data should be present
+    const title = await page.textContent('#post-title')
+    expect(title).toBe('Post: another-post')
+
+    const content = await page.textContent('#post-content')
+    expect(content).toBe('This is the content for another-post')
+
+    await page.close()
+  })
 })
