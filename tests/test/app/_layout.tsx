@@ -6,6 +6,7 @@ import './_layout.css'
 import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import config from '../config/tamagui.config'
 import { QuickNavigatePixel } from '~/features/test-helpers/QuickNavigatePixel'
 
@@ -24,10 +25,12 @@ export default function Layout() {
       <LoadProgressBar />
 
       <SchemeProvider>
-        <TamaguiRootProvider>
-          <Slot />
-          <QuickNavigatePixel />
-        </TamaguiRootProvider>
+        <SafeAreaProvider>
+          <TamaguiRootProvider>
+            <Slot />
+            <QuickNavigatePixel />
+          </TamaguiRootProvider>
+        </SafeAreaProvider>
       </SchemeProvider>
     </html>
   )
