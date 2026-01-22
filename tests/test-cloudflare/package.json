@@ -17,6 +17,6 @@
     "playwright": "^1.42.1",
     "typescript": "^5.4.0",
     "vitest": "^4.0.6",
-    "wrangler": "^4.0.0"
+    "wrangler": "4.60.0"
   }
 }
