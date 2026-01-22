@@ -1,0 +1,31 @@
+{
+  "name": "test-layout-flicker",
+  "version": "1.2.70",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "one build",
+    "clean": "one clean",
+    "dev": "one dev",
+    "serve": "one serve",
+    "prod": "one build && one serve",
+    "test": "TEST_ONLY=prod bun run vitest --run --reporter=verbose",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-navigation/native": "~7.1.19",
+    "expo": "54.0.22",
+    "one": "workspace:*",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "get-port-please": "^3.1.2",
+    "playwright": "^1.57.0",
+    "typescript": "^5.7.3",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
+  }
+}

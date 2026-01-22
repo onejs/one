@@ -929,6 +929,26 @@
         "vitest": "^4.0.6",
       },
     },
+    "tests/test-layout-flicker": {
+      "name": "test-layout-flicker",
+      "version": "1.2.70",
+      "dependencies": {
+        "@react-navigation/native": "~7.1.19",
+        "expo": "54.0.22",
+        "one": "workspace:*",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "react-native": "0.81.5",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.57.0",
+        "typescript": "^5.7.3",
+        "vite": "^7.1.12",
+        "vitest": "^4.0.6",
+      },
+    },
     "tests/test-loaders": {
       "name": "test-loaders",
       "version": "1.2.70",
@@ -4946,6 +4966,8 @@
     "test-exclude": ["test-exclude@6.0.0", "", { "dependencies": { "@istanbuljs/schema": "^0.1.2", "glob": "^7.1.4", "minimatch": "^3.0.4" } }, "sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w=="],
 
     "test-hmr": ["test-hmr@workspace:tests/hmr"],
+
+    "test-layout-flicker": ["test-layout-flicker@workspace:tests/test-layout-flicker"],
 
     "test-loaders": ["test-loaders@workspace:tests/test-loaders"],
 
