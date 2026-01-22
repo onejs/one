@@ -40,7 +40,7 @@ Removing `useDeferredValue` from `useStoreRouteInfo()` in `packages/one/src/rout
 
 ## Questions to Investigate
 
-1. Why was `useDeferredValue` added to `useStoreRouteInfo()` in the first place?
+1. ✅ Why was `useDeferredValue` added to `useStoreRouteInfo()` in the first place?
 2. Does removing it cause any regressions?
 3. How does React Navigation handle state transitions internally?
 4. Is there a better fix at the React Navigation level?
@@ -48,6 +48,26 @@ Removing `useDeferredValue` from `useStoreRouteInfo()` in `packages/one/src/rout
 6. Could we fix this with View Transitions API?
 
 ## Investigation Log
+
+### 2024-01-22 - Why useDeferredValue was added
+
+Found in commit `762d01424` (Dec 7, 2025) - "feat(one): add web.inlineLayoutCSS to make layout css automatically inlined"
+
+The comment in code says:
+> `useDeferredValue makes the transition concurrent, preventing main thread blocking`
+
+**Analysis:** The intent was to prevent main thread blocking during navigation by making route state updates lower priority. However:
+
+1. During navigation, the route state IS the important thing - we want to show the new route ASAP
+2. `useDeferredValue` only helps if there's other urgent work to prioritize
+3. In our case, it delays the parent layout from knowing about the route change while nested layouts have already unmounted
+4. This creates the flash: old header gone, new header not yet rendered because pathname is stale
+
+**Conclusion:** Removing `useDeferredValue` from `useStoreRouteInfo()` is correct. The perf benefit was theoretical and the actual effect was causing layout flash.
+
+Note: `useOneRouter()` and `useStoreRootState()` still use `useDeferredValue` - we only removed it from `useStoreRouteInfo()` which directly affects `usePathname()`.
+
+---
 
 ### 2024-01-22 - Initial Investigation
 
