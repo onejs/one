@@ -520,7 +520,10 @@ export function useStoreRouteInfo() {
     routeInfoSnapshot,
     routeInfoSnapshot
   )
-  return useDeferredValue(state)
+  // note: we intentionally don't use useDeferredValue here because it can cause
+  // layout flash when conditional rendering depends on pathname. the deferred value
+  // delays the parent layout's update while nested layouts have already unmounted.
+  return state
 }
 
 // Cleanup function
