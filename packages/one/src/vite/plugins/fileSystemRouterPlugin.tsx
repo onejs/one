@@ -90,23 +90,32 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 return { loaderData: undefined, routeId }
               }
 
-              const tracked = await trackLoaderDependencies(() => loaderFn(loaderProps))
+              try {
+                const tracked = await trackLoaderDependencies(() => loaderFn(loaderProps))
 
-              // register dependencies for HMR
-              const routePath = loaderProps?.path || '/'
-              for (const dep of tracked.dependencies) {
-                const absoluteDep = path.resolve(dep)
-                if (!loaderFileDependencies.has(absoluteDep)) {
-                  loaderFileDependencies.set(absoluteDep, new Set())
-                  server?.watcher.add(absoluteDep)
-                  if (debugLoaderDeps) {
-                    console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
+                // register dependencies for HMR
+                const routePath = loaderProps?.path || '/'
+                for (const dep of tracked.dependencies) {
+                  const absoluteDep = path.resolve(dep)
+                  if (!loaderFileDependencies.has(absoluteDep)) {
+                    loaderFileDependencies.set(absoluteDep, new Set())
+                    server?.watcher.add(absoluteDep)
+                    if (debugLoaderDeps) {
+                      console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
+                    }
                   }
+                  loaderFileDependencies.get(absoluteDep)!.add(routePath)
                 }
-                loaderFileDependencies.get(absoluteDep)!.add(routePath)
-              }
 
-              return { loaderData: tracked.result, routeId }
+                return { loaderData: tracked.result, routeId }
+              } catch (err) {
+                // if a loader throws a Response (redirect), re-throw it
+                if (isResponse(err)) {
+                  throw err
+                }
+                console.error(`[one] Error running loader for ${routeId}:`, err)
+                return { loaderData: undefined, routeId }
+              }
             }
 
             // collect all routes to run loaders for (layouts + page)

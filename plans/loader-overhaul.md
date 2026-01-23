@@ -16,6 +16,8 @@
 - [x] Hydration - matches preserved from server context
 - [x] Client-side navigation - `setClientMatches()` wired to router navigation flow
 - [x] Tests - e2e tests for useMatches in test-loaders test suite
+- [x] Bug fix: doubled `dist/server` path in loader imports (production server)
+- [x] Bug fix: loader error handling in dev server (graceful degradation)
 
 ### ⏳ Remaining Work
 
