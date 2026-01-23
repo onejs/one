@@ -171,6 +171,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               loaderProps,
               path: loaderProps?.path || '/',
               preloads,
+              matches,
             })
 
             if (is404) {
