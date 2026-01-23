@@ -2,7 +2,7 @@
 
 ## Implementation Status
 
-✅ **IMPLEMENTED** - The core features are now available:
+### ✅ Completed
 
 - [x] `useMatches()` hook - returns all matched routes with loader data
 - [x] `useMatch(routeId)` - find a specific match by route ID
@@ -12,6 +12,14 @@
 - [x] Production server support - layout loaders run in parallel in production
 - [x] Build system support - layout server paths included in builds
 - [x] Type definitions - `One.RouteMatch` type available
+- [x] SSR/Initial load - all matches populated correctly
+- [x] Hydration - matches preserved from server context
+
+### ⏳ Remaining Work
+
+- [ ] Client-side navigation - wire up `setClientMatches()` to router navigation flow
+- [ ] Tests - add e2e tests for useMatches in test-loaders test suite
+- [ ] Docs - add documentation for useMatches to onestack.dev
 
 ### Usage
 
