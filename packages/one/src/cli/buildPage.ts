@@ -145,10 +145,48 @@ prefetchCSS()
     )
 
     const exported = await import(toAbsolute(serverJsPath))
+    const loaderProps: LoaderProps = { path, params }
 
+    // Build matches array for useMatches() hook
+    const matches: One.RouteMatch[] = []
+
+
+    // Run layout loaders in parallel
+    if (foundRoute.layouts?.length) {
+      const layoutResults = await Promise.all(
+        foundRoute.layouts.map(async (layout) => {
+          try {
+            const layoutServerPath = (layout as any).loaderServerPath
+            if (!layoutServerPath) {
+              return { contextKey: layout.contextKey, loaderData: undefined }
+            }
+            const layoutExported = await import(toAbsolute(join('./', 'dist/server', layoutServerPath)))
+            const layoutLoaderData = await layoutExported?.loader?.(loaderProps)
+            return { contextKey: layout.contextKey, loaderData: layoutLoaderData }
+          } catch (err) {
+            if (isResponse(err)) {
+              throw err
+            }
+            console.warn(`[one] Warning: layout loader failed for ${layout.contextKey}:`, err)
+            return { contextKey: layout.contextKey, loaderData: undefined }
+          }
+        })
+      )
+
+      for (const result of layoutResults) {
+        matches.push({
+          routeId: result.contextKey,
+          pathname: path,
+          params: params || {},
+          loaderData: result.loaderData,
+        })
+      }
+    }
+
+    // Run page loader
     if (exported.loader) {
       try {
-        loaderData = (await exported.loader?.({ path, params })) ?? null
+        loaderData = (await exported.loader?.(loaderProps)) ?? null
       } catch (err) {
         // Handle thrown responses (e.g., redirect) - skip loader data generation for this page
         // The redirect will happen at runtime instead
@@ -177,6 +215,14 @@ if (typeof document === 'undefined') globalThis.document = {}
       }
     }
 
+    // Add page match
+    matches.push({
+      routeId: foundRoute.file,
+      pathname: path,
+      params: params || {},
+      loaderData,
+    })
+
     // ssr, we basically skip at build-time and just compile it the js we need
     if (foundRoute.type !== 'ssr') {
       const loaderProps: LoaderProps = { path, params }
@@ -200,6 +246,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           cssContents: allCSSContents,
           mode: 'ssg',
           routePreloads,
+          matches,
         })
 
         // Apply after-LCP script loading if enabled

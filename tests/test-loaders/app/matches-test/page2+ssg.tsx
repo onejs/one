@@ -12,15 +12,19 @@ export default function Page2() {
   const data = useLoader(loader)
   const matches = useMatches()
 
-  // find the layout match
-  const layoutMatch = matches.find((m) => m.routeId.includes('_layout'))
+  // find the layout match - be specific about which layout
+  const layoutMatch = matches.find((m) => m.routeId.includes('matches-test/_layout'))
   const pageMatch = matches.find((m) => m.routeId.includes('page2'))
+
+  // debug: show all matches
+  console.log('[Page2] matches:', JSON.stringify(matches, null, 2))
 
   return (
     <div>
       <h1 id="page-title">{data.pageTitle}</h1>
       <p id="page-content">{data.content}</p>
       <div id="page-matches-count">Page sees {matches.length} matches</div>
+      <div id="all-matches-debug">{JSON.stringify(matches)}</div>
       <div id="layout-loader-data">
         Layout data: {JSON.stringify(layoutMatch?.loaderData)}
       </div>

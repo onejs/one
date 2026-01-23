@@ -536,19 +536,31 @@ describe('useMatches()', () => {
   test('SSR: useMatches returns all matched routes with loader data', async () => {
     const page = await context.newPage()
 
+    // capture console logs
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
+
     await page.goto(serverUrl + '/matches-test/page1')
+
+    // debug: show all matches
+    const allMatches = await page.textContent('#all-matches-debug')
+    console.log('All matches:', allMatches)
 
     // should see 3+ matches (root layout, matches-test layout, page1)
     const matchesCount = await page.textContent('#page-matches-count')
+    console.log('Matches count text:', matchesCount)
     expect(matchesCount).toContain('matches')
 
     // layout should have its loader data
     const layoutData = await page.textContent('#layout-loader-data')
+    console.log('Layout data text:', layoutData)
     expect(layoutData).toContain('layoutTitle')
     expect(layoutData).toContain('Matches Test Layout')
 
     // page should have its loader data
     const pageData = await page.textContent('#page-loader-data')
+    console.log('Page data text:', pageData)
     expect(pageData).toContain('pageTitle')
     expect(pageData).toContain('Page 1')
 
@@ -560,9 +572,7 @@ describe('useMatches()', () => {
 
     // capture console logs
     page.on('console', (msg) => {
-      if (msg.type() === 'error') {
-        console.log('[Browser Error]', msg.text())
-      }
+      console.log('[Browser]', msg.text())
     })
 
     // start at page1
@@ -571,27 +581,37 @@ describe('useMatches()', () => {
 
     // verify initial state
     const page1Title = await page.textContent('#page-title')
+    console.log('Page1 title:', page1Title)
     expect(page1Title).toBe('Page 1')
 
     const page1Data = await page.textContent('#page-loader-data')
+    console.log('Page1 data:', page1Data)
     expect(page1Data).toContain('Page 1')
 
     // navigate to page2 via client-side link
+    console.log('Clicking link to page2...')
     await page.click('#link-to-page2')
     await page.waitForURL(`${serverUrl}/matches-test/page2`, { timeout: 5000 })
 
     // give client time to update
     await new Promise((res) => setTimeout(res, 500))
 
+    // debug: show all matches after navigation
+    const allMatches = await page.textContent('#all-matches-debug')
+    console.log('All matches after nav:', allMatches)
+
     // page match should update to page2's data
     const page2Title = await page.textContent('#page-title')
+    console.log('Page2 title:', page2Title)
     expect(page2Title).toBe('Page 2')
 
     const page2Data = await page.textContent('#page-loader-data')
+    console.log('Page2 data:', page2Data)
     expect(page2Data).toContain('Page 2')
 
     // layout data should still be present (cached from SSR)
     const layoutData = await page.textContent('#layout-loader-data')
+    console.log('Layout data after nav:', layoutData)
     expect(layoutData).toContain('layoutTitle')
 
     await page.close()

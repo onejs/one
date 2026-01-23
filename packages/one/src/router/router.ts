@@ -768,6 +768,9 @@ function normalizeLoaderPath(href: string): string {
 /**
  * Build matches array for client-side navigation.
  * Preserves layout matches (cached from SSR) and updates page match with fresh data.
+ *
+ * Strategy: Since layouts don't re-run on client navigation, we keep all layout matches
+ * from the current cached matches and only update the page match.
  */
 function buildClientMatches(
   href: string,
@@ -776,47 +779,22 @@ function buildClientMatches(
   loaderData: unknown
 ): RouteMatch[] {
   const pathname = extractPathnameFromHref(href)
+  const routeId = matchingNode?.contextKey || pathname
 
-  // if no matching node, just return a single page match
-  if (!matchingNode) {
-    return [
-      {
-        routeId: pathname,
-        pathname,
-        params,
-        loaderData,
-      },
-    ]
-  }
-
-  const newMatches: RouteMatch[] = []
-
-  // add layout matches - reuse cached data from currentMatches if available
+  // preserve all layout matches (those with _layout in routeId) from current state
   // since layout loaders don't re-run on client navigation
-  if (matchingNode.layouts) {
-    for (const layout of matchingNode.layouts) {
-      // try to find existing layout match with cached data
-      const existingMatch = currentMatches.find((m) => m.routeId === layout.contextKey)
+  const layoutMatches = currentMatches.filter((m) => m.routeId.includes('_layout'))
 
-      newMatches.push({
-        routeId: layout.contextKey,
-        pathname: layout.route || '/',
-        params,
-        // use cached data if available, otherwise undefined (layout loader didn't run)
-        loaderData: existingMatch?.loaderData,
-      })
-    }
-  }
-
-  // add the page match with fresh loader data
-  newMatches.push({
-    routeId: matchingNode.contextKey,
+  // create the new page match with fresh loader data
+  const pageMatch: RouteMatch = {
+    routeId,
     pathname,
     params,
     loaderData,
-  })
+  }
 
-  return newMatches
+  // return layouts + new page match
+  return [...layoutMatches, pageMatch]
 }
 
 /**
