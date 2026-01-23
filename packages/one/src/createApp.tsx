@@ -5,6 +5,7 @@ import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { Root } from './Root'
 import { render } from './render'
+import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
@@ -149,6 +150,11 @@ export function createApp(options: CreateAppProps) {
 
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
+
+  // initialize client matches from server context for useMatches hook
+  if (serverContext.matches) {
+    initClientMatches(serverContext.matches)
+  }
 
   // Wait for setup file to complete first (if provided)
   // This ensures setup code (error handlers, analytics, etc.) runs before the app

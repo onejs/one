@@ -14,11 +14,11 @@
 - [x] Type definitions - `One.RouteMatch` type available
 - [x] SSR/Initial load - all matches populated correctly
 - [x] Hydration - matches preserved from server context
+- [x] Client-side navigation - `setClientMatches()` wired to router navigation flow
+- [x] Tests - e2e tests for useMatches in test-loaders test suite
 
 ### ⏳ Remaining Work
 
-- [ ] Client-side navigation - wire up `setClientMatches()` to router navigation flow
-- [ ] Tests - add e2e tests for useMatches in test-loaders test suite
 - [ ] Docs - add documentation for useMatches to onestack.dev
 
 ### Usage
@@ -506,22 +506,20 @@ Since One doesn't run loaders on client navigation (intentional):
 2. User navigates to `/docs/guide` → Only guide's loader runs
 3. `useMatches()` returns cached layout data + fresh page data
 
-### Current Implementation
+### Implementation Details
 
-The current implementation uses a client-side store (`setClientMatches`) that needs to be called after navigation:
+The implementation handles client-side navigation automatically:
 
-```ts
-// This needs to be called from the navigation handler
-import { setClientMatches } from 'one'
+1. **Initialization** (`createApp.tsx`): On hydration, `initClientMatches()` is called with matches from ServerContext
+2. **Navigation** (`router.ts:linkTo`): After `preloadRoute()` completes, `buildClientMatches()` constructs the new matches array:
+   - Layout matches are preserved with cached loader data (from SSR)
+   - Page match is created with fresh loader data from `preloadedLoaderData`
+3. **Update** (`router.ts`): `setClientMatches()` updates the client store, triggering `useMatches()` to return new data
 
-// After navigation completes
-setClientMatches([
-  ...cachedLayoutMatches,  // from SSR hydration
-  newPageMatch,            // from client loader
-])
-```
-
-**TODO**: Wire up `setClientMatches` to the navigation flow in `router.ts`
+Key files:
+- `router.ts:buildClientMatches()` - constructs matches for navigation
+- `router.ts:initClientMatches()` - initializes from server context on hydration
+- `createApp.tsx` - calls `initClientMatches` during client startup
 
 ### Future Enhancement Options
 

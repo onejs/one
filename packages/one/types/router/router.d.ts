@@ -9,6 +9,7 @@ import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
 import type { UrlObject } from './getNormalizedStatePath';
 import type { RouteNode } from './Route';
+import type { RouteMatch } from '../useMatches';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
 /**
@@ -107,5 +108,10 @@ export type PreloadEntry = {
 };
 export declare function getPreloadHistory(): PreloadEntry[];
 export declare function preloadRoute(href: string, injectCSS?: boolean): Promise<any> | undefined;
+/**
+ * Initialize client matches from server context during hydration.
+ * Called from createApp when hydrating.
+ */
+export declare function initClientMatches(matches: RouteMatch[]): void;
 export declare function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions): Promise<void>;
 //# sourceMappingURL=router.d.ts.map
