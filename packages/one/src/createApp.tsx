@@ -49,6 +49,7 @@ export function createApp(options: CreateAppProps) {
           mode,
           loaderServerData,
           routePreloads,
+          matches,
         } = props
 
         setServerContext({
@@ -59,6 +60,7 @@ export function createApp(options: CreateAppProps) {
           css,
           cssContents,
           routePreloads,
+          matches,
         })
 
         let renderId: string | undefined

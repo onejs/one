@@ -6,6 +6,7 @@ import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
 import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
+import type { RouteNode } from '../../router/Route' // used for type in runLoaderWithTracking
 import type { RenderAppProps } from '../../types'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 import { isResponse } from '../../utils/isResponse'
@@ -79,18 +80,21 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             const exported = routeFile === '' ? {} : await runner.import(routeFile)
 
-            // Track file dependencies from loader for hot reload
-            let loaderData: any
-            if (exported.loader) {
-              const tracked = await trackLoaderDependencies(() =>
-                exported.loader(loaderProps)
-              )
-              loaderData = tracked.result
+            // helper to run a loader and track dependencies
+            async function runLoaderWithTracking(
+              routeNode: RouteNode | { contextKey: string; file?: string },
+              loaderFn: ((props: any) => any) | undefined
+            ): Promise<{ loaderData: any; routeId: string }> {
+              const routeId = routeNode.contextKey
+              if (!loaderFn) {
+                return { loaderData: undefined, routeId }
+              }
 
-              // Register dependencies: map file path -> route paths that depend on it
+              const tracked = await trackLoaderDependencies(() => loaderFn(loaderProps))
+
+              // register dependencies for HMR
               const routePath = loaderProps?.path || '/'
               for (const dep of tracked.dependencies) {
-                // Resolve to absolute path for consistent lookup when file changes
                 const absoluteDep = path.resolve(dep)
                 if (!loaderFileDependencies.has(absoluteDep)) {
                   loaderFileDependencies.set(absoluteDep, new Set())
@@ -101,7 +105,48 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
                 loaderFileDependencies.get(absoluteDep)!.add(routePath)
               }
+
+              return { loaderData: tracked.result, routeId }
             }
+
+            // collect all routes to run loaders for (layouts + page)
+            const layoutRoutes = (route.layouts || []) as RouteNode[]
+            const pageRoute = { contextKey: route.file, file: route.file }
+
+            // run all layout loaders in parallel
+            const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
+              const layoutFile = path.join(routerRoot, layout.contextKey)
+              const layoutExported = await runner.import(layoutFile)
+              return runLoaderWithTracking(layout, layoutExported.loader)
+            })
+
+            // run page loader
+            const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
+
+            // wait for all loaders in parallel
+            const [layoutResults, pageResult] = await Promise.all([
+              Promise.all(layoutLoaderPromises),
+              pageLoaderPromise,
+            ])
+
+            // build matches array (layouts + page)
+            const matches: One.RouteMatch[] = [
+              ...layoutResults.map((result) => ({
+                routeId: result.routeId,
+                pathname: loaderProps?.path || '/',
+                params: loaderProps?.params || {},
+                loaderData: result.loaderData,
+              })),
+              {
+                routeId: pageResult.routeId,
+                pathname: loaderProps?.path || '/',
+                params: loaderProps?.params || {},
+                loaderData: pageResult.loaderData,
+              },
+            ]
+
+            // for backwards compat, loaderData is still the page's loader data
+            const loaderData = pageResult.loaderData
 
             // biome-ignore lint/security/noGlobalEval: needed to set server env at runtime
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
@@ -113,6 +158,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             setServerContext({
               loaderData,
               loaderProps,
+              matches,
             })
 
             LoaderDataCache[route.file] = loaderData
