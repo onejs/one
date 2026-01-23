@@ -638,4 +638,41 @@ describe('useMatches()', () => {
 
     await page.close()
   })
+
+  test('deeply nested layouts: 3+ levels of layout loaders', async () => {
+    const page = await context.newPage()
+
+    // capture console logs
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
+
+    await page.goto(serverUrl + '/nested-test/level2/page')
+    await page.waitForLoadState('networkidle')
+
+    // should have 4 matches: root _layout, nested-test/_layout, level2/_layout, page
+    const totalMatches = await page.textContent('[data-testid="nested-total-matches"]')
+    console.log('Total matches:', totalMatches)
+    expect(totalMatches).toContain('4')
+
+    // level1 layout data should be accessible
+    const level1Data = await page.textContent('[data-testid="nested-level1-data"]')
+    console.log('Level1 data:', level1Data)
+    expect(level1Data).toContain('"level":1')
+    expect(level1Data).toContain('"name":"Level 1 Layout"')
+
+    // level2 layout data should be accessible
+    const level2Data = await page.textContent('[data-testid="nested-level2-data"]')
+    console.log('Level2 data:', level2Data)
+    expect(level2Data).toContain('"level":2')
+    expect(level2Data).toContain('"name":"Level 2 Layout"')
+
+    // page data should be accessible
+    const pageData = await page.textContent('[data-testid="nested-page-match-data"]')
+    console.log('Page match data:', pageData)
+    expect(pageData).toContain('"level":3')
+    expect(pageData).toContain('"name":"Nested Page"')
+
+    await page.close()
+  })
 })
