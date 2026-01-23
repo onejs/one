@@ -25,7 +25,7 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
     name,
     enforce: 'pre',
 
-    async config(_cfg, env) {
+    async config(cfg, env) {
       debug?.('Config hook called')
 
       // TODO not use global here we should move deps into vxrn
@@ -34,16 +34,22 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
 
       const exclude = depsConfig
         ? Object.entries(depsConfig)
-            .filter(([key, value]) => value === false)
+            .filter(([_, value]) => value === false)
             .map(([k]) => k)
         : []
 
       const userExcludes = Array.isArray(props.exclude) ? props.exclude : [props.exclude]
 
+      // also respect user's vite config optimizeDeps.exclude
+      const userViteExcludes = cfg.optimizeDeps?.exclude || []
+      const userSsrExcludes = cfg.ssr?.optimizeDeps?.exclude || []
+
       const finalConfig = await getScannedOptimizeDepsConfig({
         ...props,
         mode: env.mode,
-        exclude: [...exclude, ...userExcludes].filter(Boolean),
+        exclude: [...exclude, ...userExcludes, ...userViteExcludes, ...userSsrExcludes].filter(
+          Boolean
+        ),
       })
 
       debugDetails?.(
@@ -66,13 +72,21 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
 
   props.onScannedDeps?.(result)
 
+  // filter out explicitly excluded deps from the scanned results
+  // createFilter works on file paths but user exclude may be dep names
+  const excludeArray = Array.isArray(props.exclude) ? props.exclude : [props.exclude]
+  const excludeStrings = excludeArray.filter((e): e is string => typeof e === 'string')
+  const excludeSet = new Set(excludeStrings)
+
+  const filteredDeps = result.prebundleDeps.filter((dep) => !excludeSet.has(dep))
+
   return {
     ssr: {
       optimizeDeps: {
-        include: result.prebundleDeps,
+        include: filteredDeps,
         exclude: EXCLUDE_LIST,
       },
-      noExternal: result.prebundleDeps,
+      noExternal: filteredDeps,
     },
   }
 }

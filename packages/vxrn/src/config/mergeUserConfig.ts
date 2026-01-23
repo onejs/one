@@ -60,11 +60,21 @@ export function deepMergeOptimizeDeps(
   a.optimizeDeps ||= {}
   b.optimizeDeps ||= {}
 
+  // build exclude set first so we can filter it from other lists
+  const excludeSet = new Set(
+    uniq([
+      ...(a.optimizeDeps.exclude || []),
+      ...(b.optimizeDeps.exclude || []),
+      ...(extraDepsOpt?.exclude || []),
+    ])
+  )
+
   if (!avoidMergeExternal) {
     // If either config has noExternal: true, preserve it (means "bundle everything")
     if (a.noExternal === true || b.noExternal === true) {
       a.noExternal = true
     } else {
+      // filter out excluded deps from noExternal
       a.noExternal = uniq([
         ...coerceToArray((a.noExternal as string[]) || []),
         ...(a.optimizeDeps.include || []),
@@ -77,27 +87,25 @@ export function deepMergeOptimizeDeps(
         'react-dom',
         'react-dom/server',
         'react-dom/client',
-      ])
+      ]).filter((dep) => typeof dep !== 'string' || !excludeSet.has(dep))
     }
   }
 
-  a.optimizeDeps.exclude = uniq([
-    ...(a.optimizeDeps.exclude || []),
-    ...(b.optimizeDeps.exclude || []),
-    ...(extraDepsOpt?.exclude || []),
-  ])
+  a.optimizeDeps.exclude = [...excludeSet]
 
+  // filter out excluded deps from include - esbuild fails if something is both
+  // an entry point (include) and external (exclude)
   a.optimizeDeps.include = uniq([
     ...(a.optimizeDeps.include || []),
     ...(b.optimizeDeps.include || []),
     ...(extraDepsOpt?.include || []),
-  ])
+  ]).filter((dep) => !excludeSet.has(dep))
 
   a.optimizeDeps.needsInterop = uniq([
     ...(a.optimizeDeps.needsInterop || []),
     ...(b.optimizeDeps.needsInterop || []),
     ...(extraDepsOpt?.needsInterop || []),
-  ])
+  ]).filter((dep) => !excludeSet.has(dep))
 
   a.optimizeDeps.esbuildOptions = {
     ...a.optimizeDeps.esbuildOptions,
