@@ -261,6 +261,20 @@ export async function build(args: {
 
   const outputEntries = [...vxrnOutput.serverOutput.entries()]
 
+  // build a map of layout contextKey -> server output fileName
+  // this is used to run layout loaders in production
+  const layoutServerPaths = new Map<string, string>()
+  for (const [, output] of outputEntries) {
+    if (output.type === 'asset') continue
+    const id = output.facadeModuleId || ''
+    const file = Path.basename(id)
+    // layout files start with _layout
+    if (file.startsWith('_layout') && id.includes(`/${routerRoot}/`)) {
+      const contextKey = `/${relative(process.cwd(), id).replace(`${routerRoot}/`, '')}`
+      layoutServerPaths.set(contextKey, output.fileName)
+    }
+  }
+
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
       assets.push(output)
@@ -317,6 +331,16 @@ export async function build(args: {
     }
 
     foundRoute.loaderServerPath = output.fileName
+
+    // attach layout server paths for running layout loaders in production
+    if (foundRoute.layouts) {
+      for (const layout of foundRoute.layouts) {
+        const serverPath = layoutServerPaths.get(layout.contextKey)
+        if (serverPath) {
+          ;(layout as any).loaderServerPath = serverPath
+        }
+      }
+    }
 
     function collectImports(
       { imports = [], css }: ClientManifestEntry,

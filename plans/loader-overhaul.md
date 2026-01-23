@@ -1,5 +1,42 @@
 # One Loader Overhaul Plan
 
+## Implementation Status
+
+✅ **IMPLEMENTED** - The core features are now available:
+
+- [x] `useMatches()` hook - returns all matched routes with loader data
+- [x] `useMatch(routeId)` - find a specific match by route ID
+- [x] `usePageMatch()` - get the current page's match
+- [x] Layout loaders - layouts can export `loader()` functions
+- [x] Dev server support - layout loaders run in parallel during development
+- [x] Production server support - layout loaders run in parallel in production
+- [x] Build system support - layout server paths included in builds
+- [x] Type definitions - `One.RouteMatch` type available
+
+### Usage
+
+```tsx
+import { useMatches, useMatch, usePageMatch } from 'one'
+
+// in any component
+function MyComponent() {
+  // get all matched routes (root → layout → page)
+  const matches = useMatches()
+
+  // find a specific layout's data
+  const docsMatch = useMatch('/docs/_layout')
+  const navItems = docsMatch?.loaderData?.navItems
+
+  // get the current page's data
+  const pageMatch = usePageMatch()
+  const headings = pageMatch?.loaderData?.headings
+
+  return <div>...</div>
+}
+```
+
+---
+
 ## The Core Problem
 
 Layout components can't access page loader data on SSR because:

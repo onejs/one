@@ -30,5 +30,10 @@ export type RenderAppProps = {
     loaderData?: any;
     loaderProps?: LoaderProps;
     routePreloads?: Record<string, string>;
+    /**
+     * All matched routes with their loader data.
+     * Ordered from root layout to leaf page (parent → child).
+     */
+    matches?: One.RouteMatch[];
 };
 //# sourceMappingURL=types.d.ts.map
