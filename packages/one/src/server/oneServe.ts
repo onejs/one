@@ -129,11 +129,15 @@ export async function oneServe(
     async handleLoader({ route, loaderProps }) {
       // Use lazy import if available (workers), otherwise dynamic import (Node.js)
       // For workers, look up by routeFile (original file path like "./dynamic/[id]+ssr.tsx")
-      // For Node.js, use route.file which may be loaderServerPath
+      // For Node.js, use route.file which may be loaderServerPath (already includes dist/server)
       const routeFile = (route as any).routeFile || route.file
+      // route.file may already include dist/server if it came from loaderServerPath
+      const serverPath = route.file.includes('dist/server')
+        ? route.file
+        : join('./', 'dist/server', route.file)
       const exports = options?.lazyRoutes?.pages?.[routeFile]
         ? await options.lazyRoutes.pages[routeFile]()
-        : await import(toAbsolute(join('./', 'dist/server', route.file)))
+        : await import(toAbsolute(serverPath))
 
       const { loader } = exports
 
@@ -174,10 +178,16 @@ export async function oneServe(
             }
 
             try {
+              // serverPath may already include dist/server if it came from buildInfo.serverJsPath
+              const pathToResolve = serverPath || lazyKey || ''
+              const resolvedPath = pathToResolve.includes('dist/server')
+                ? pathToResolve
+                : join('./', 'dist/server', pathToResolve)
+
               const routeExported = lazyKey
                 ? options?.lazyRoutes?.pages?.[lazyKey]
                   ? await options.lazyRoutes.pages[lazyKey]()
-                  : await import(toAbsolute(join('./', 'dist/server', serverPath || lazyKey)))
+                  : await import(toAbsolute(resolvedPath))
                 : await import(toAbsolute(serverPath!))
 
               const loaderData = await routeExported?.loader?.(loaderProps)
