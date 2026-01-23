@@ -25,11 +25,12 @@ export const loader = route.createLoader(async ({ params }) => {
   return {
     frontmatter,
     code,
+    slug: params.slug,
   }
 })
 
 export default function BlogPost() {
-  const { code, frontmatter } = useLoader(loader)
+  const { code, frontmatter, slug } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   const author = frontmatter.by ? authors[frontmatter.by as keyof typeof authors] : null
@@ -43,7 +44,19 @@ export default function BlogPost() {
 
   return (
     <>
-      <HeadInfo title={frontmatter.title} description={frontmatter.description} />
+      <HeadInfo
+        title={frontmatter.title}
+        description={frontmatter.description}
+        openGraph={{
+          images: [
+            {
+              url: `${process.env.ONE_SERVER_URL}/og/${slug}.png`,
+              width: 1200,
+              height: 630,
+            },
+          ],
+        }}
+      />
       <TopNav />
 
       <Container>

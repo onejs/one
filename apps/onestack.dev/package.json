@@ -6,7 +6,8 @@
   "type": "module",
   "files": [],
   "scripts": {
-    "build:web": "one build",
+    "generate:og": "bun scripts/generate-og-images.tsx",
+    "build:web": "bun scripts/generate-og-images.tsx && one build",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "serve": "one serve",
@@ -42,10 +43,13 @@
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
     "@tamagui/vite-plugin": "^1.144.1",
+    "@types/sharp": "^0.32.0",
     "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
     "playwright": "^1.57.0",
+    "satori": "^0.19.1",
+    "sharp": "^0.34.5",
     "subset-font": "^2.4.0",
     "tsx": "^4.20.6",
     "vitest": "^4.0.6"
