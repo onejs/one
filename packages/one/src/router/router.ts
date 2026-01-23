@@ -48,6 +48,8 @@ import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
 import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
+import { setClientMatches } from '../useMatches'
+import type { RouteMatch } from '../useMatches'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -124,6 +126,9 @@ let navigationRefSubscription: () => void
 const rootStateSubscribers = new Set<OneRouter.RootStateListener>()
 const loadingStateSubscribers = new Set<OneRouter.LoadingStateListener>()
 const storeSubscribers = new Set<() => void>()
+
+// current matches for useMatches hook (cached on client)
+let currentMatches: RouteMatch[] = []
 
 // Validation state tracking
 export type ValidationState = {
@@ -760,6 +765,69 @@ function normalizeLoaderPath(href: string): string {
   return url.pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 }
 
+/**
+ * Build matches array for client-side navigation.
+ * Preserves layout matches (cached from SSR) and updates page match with fresh data.
+ */
+function buildClientMatches(
+  href: string,
+  matchingNode: RouteNode | null,
+  params: Record<string, string | string[]>,
+  loaderData: unknown
+): RouteMatch[] {
+  const pathname = extractPathnameFromHref(href)
+
+  // if no matching node, just return a single page match
+  if (!matchingNode) {
+    return [
+      {
+        routeId: pathname,
+        pathname,
+        params,
+        loaderData,
+      },
+    ]
+  }
+
+  const newMatches: RouteMatch[] = []
+
+  // add layout matches - reuse cached data from currentMatches if available
+  // since layout loaders don't re-run on client navigation
+  if (matchingNode.layouts) {
+    for (const layout of matchingNode.layouts) {
+      // try to find existing layout match with cached data
+      const existingMatch = currentMatches.find((m) => m.routeId === layout.contextKey)
+
+      newMatches.push({
+        routeId: layout.contextKey,
+        pathname: layout.route || '/',
+        params,
+        // use cached data if available, otherwise undefined (layout loader didn't run)
+        loaderData: existingMatch?.loaderData,
+      })
+    }
+  }
+
+  // add the page match with fresh loader data
+  newMatches.push({
+    routeId: matchingNode.contextKey,
+    pathname,
+    params,
+    loaderData,
+  })
+
+  return newMatches
+}
+
+/**
+ * Initialize client matches from server context during hydration.
+ * Called from createApp when hydrating.
+ */
+export function initClientMatches(matches: RouteMatch[]) {
+  currentMatches = matches
+  setClientMatches(matches)
+}
+
 export async function linkTo(
   href: string,
   event?: string,
@@ -909,6 +977,17 @@ export async function linkTo(
         throw error
       }
     }
+  }
+
+  // Update client matches for useMatches hook
+  // This runs after preload so loaderData is available
+  if (process.env.TAMAGUI_TARGET !== 'native') {
+    const normalizedPath = normalizeLoaderPath(href)
+    const loaderData = preloadedLoaderData[normalizedPath]
+    const params = extractParamsFromState(state)
+    const newMatches = buildClientMatches(href, matchingRouteNode, params, loaderData)
+    currentMatches = newMatches
+    setClientMatches(newMatches)
   }
 
   const rootState = navigationRef.getRootState()

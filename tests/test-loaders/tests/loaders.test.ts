@@ -531,3 +531,91 @@ describe('loader() SSG', () => {
     await page.close()
   })
 })
+
+describe('useMatches()', () => {
+  test('SSR: useMatches returns all matched routes with loader data', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/page1')
+
+    // should see 3+ matches (root layout, matches-test layout, page1)
+    const matchesCount = await page.textContent('#page-matches-count')
+    expect(matchesCount).toContain('matches')
+
+    // layout should have its loader data
+    const layoutData = await page.textContent('#layout-loader-data')
+    expect(layoutData).toContain('layoutTitle')
+    expect(layoutData).toContain('Matches Test Layout')
+
+    // page should have its loader data
+    const pageData = await page.textContent('#page-loader-data')
+    expect(pageData).toContain('pageTitle')
+    expect(pageData).toContain('Page 1')
+
+    await page.close()
+  })
+
+  test('client navigation: useMatches updates after navigation', async () => {
+    const page = await context.newPage()
+
+    // capture console logs
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        console.log('[Browser Error]', msg.text())
+      }
+    })
+
+    // start at page1
+    await page.goto(serverUrl + '/matches-test/page1')
+    await page.waitForLoadState('networkidle')
+
+    // verify initial state
+    const page1Title = await page.textContent('#page-title')
+    expect(page1Title).toBe('Page 1')
+
+    const page1Data = await page.textContent('#page-loader-data')
+    expect(page1Data).toContain('Page 1')
+
+    // navigate to page2 via client-side link
+    await page.click('#link-to-page2')
+    await page.waitForURL(`${serverUrl}/matches-test/page2`, { timeout: 5000 })
+
+    // give client time to update
+    await new Promise((res) => setTimeout(res, 500))
+
+    // page match should update to page2's data
+    const page2Title = await page.textContent('#page-title')
+    expect(page2Title).toBe('Page 2')
+
+    const page2Data = await page.textContent('#page-loader-data')
+    expect(page2Data).toContain('Page 2')
+
+    // layout data should still be present (cached from SSR)
+    const layoutData = await page.textContent('#layout-loader-data')
+    expect(layoutData).toContain('layoutTitle')
+
+    await page.close()
+  })
+
+  test('layout can access page loader data via useMatches', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/page1')
+
+    // the layout renders its own view of matches
+    const layoutMatchesData = await page.textContent('#layout-matches-data')
+
+    // should be a JSON array with multiple matches
+    const parsed = JSON.parse(layoutMatchesData || '[]')
+    expect(Array.isArray(parsed)).toBe(true)
+    expect(parsed.length).toBeGreaterThan(0)
+
+    // at least one match should have loader data
+    const hasLoaderData = parsed.some(
+      (m: { routeId: string; hasLoaderData: boolean }) => m.hasLoaderData
+    )
+    expect(hasLoaderData).toBe(true)
+
+    await page.close()
+  })
+})
