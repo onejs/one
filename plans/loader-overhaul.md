@@ -484,24 +484,54 @@ Since One doesn't run loaders on client navigation (intentional):
 
 `useMatches()` returns hydrated data from server. Works out of the box.
 
-### Client Navigation
+### Client Navigation - IMPORTANT LIMITATION
 
-Only the navigated-to page's loader runs. Options:
+**Current behavior**: Only the navigated-to page's loader runs on client-side navigation. Layout loaders do NOT re-run.
 
-1. **Cache previous matches** (recommended initial approach)
+**What this means for `useMatches()`**:
+- Layout matches are cached from SSR/initial load
+- Page match gets updated on client navigation
+- Layout loader data becomes stale after navigation
+
+**Example scenario**:
+1. User loads `/docs/intro` → All matches populated (root, docs/_layout, intro)
+2. User navigates to `/docs/guide` → Only guide's loader runs
+3. `useMatches()` returns cached layout data + fresh page data
+
+### Current Implementation
+
+The current implementation uses a client-side store (`setClientMatches`) that needs to be called after navigation:
+
+```ts
+// This needs to be called from the navigation handler
+import { setClientMatches } from 'one'
+
+// After navigation completes
+setClientMatches([
+  ...cachedLayoutMatches,  // from SSR hydration
+  newPageMatch,            // from client loader
+])
+```
+
+**TODO**: Wire up `setClientMatches` to the navigation flow in `router.ts`
+
+### Future Enhancement Options
+
+1. **Cache previous matches** (current approach)
    - Fast, no extra requests
-   - Stale data for layouts (acceptable for most cases)
-   - User can manually invalidate via `revalidateMatches()`
+   - Stale data for layouts (acceptable for most cases - nav items, site config rarely change)
+   - User can manually invalidate via `revalidateMatches()` (not yet implemented)
 
 2. **Re-fetch all matches** (future enhancement)
    - Fresh data, slower
    - Would require layout loaders to be client-fetchable
+   - Could add `revalidateMatches()` API
 
 3. **Hybrid: re-fetch only changed segments**
    - Best of both, most complex
    - Needs segment-level change detection
 
-**Recommendation**: Start with option 1. Most layout data is static (nav items, site config) and doesn't need refetching.
+**Recommendation**: Current approach is correct for most use cases. Layout data (navigation items, site config) is typically static.
 
 ---
 
