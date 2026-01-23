@@ -343,7 +343,6 @@ export async function build(args: {
       ]
     }
 
-
     const entryImports = collectImports(clientManifestEntry || {})
 
     // TODO isn't this getting all layouts not just the ones for this route?
@@ -420,7 +419,11 @@ export async function build(args: {
       ...new Set([
         ...preloadSetupFilePreloads,
         // add the route entry js (like ./app/index.ts) - prefer direct chunk lookup
-        ...(clientChunk ? [clientChunk.fileName] : clientManifestEntry ? [clientManifestEntry.file] : []),
+        ...(clientChunk
+          ? [clientChunk.fileName]
+          : clientManifestEntry
+            ? [clientManifestEntry.file]
+            : []),
         // add the virtual entry
         vxrnOutput.clientManifest['virtual:one-entry'].file,
         ...entryImports,
@@ -444,7 +447,11 @@ export async function build(args: {
             // add the virtual entry (framework bootstrap)
             vxrnOutput.clientManifest['virtual:one-entry'].file,
             // add the route entry js (like ./app/index.ts) - prefer direct chunk lookup
-            ...(clientChunk ? [clientChunk.fileName] : clientManifestEntry ? [clientManifestEntry.file] : []),
+            ...(clientChunk
+              ? [clientChunk.fileName]
+              : clientManifestEntry
+                ? [clientManifestEntry.file]
+                : []),
             // add layout files (but not their deep imports)
             ...layoutEntries.map((entry) => entry.file),
           ]),

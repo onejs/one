@@ -539,21 +539,52 @@ export const preloadingLoader: Record<string, Promise<any> | undefined> = {}
 // dev mode preload - fetches just the loader directly without production preload bundles
 async function doPreloadDev(href: string): Promise<any> {
   if (process.env.NODE_ENV === 'development') {
+    const startTime = performance.now()
+    const normalizedPath = normalizeLoaderPath(href)
+
     try {
       const loaderJSUrl = getLoaderPath(href, true)
+
+      const moduleLoadStart = performance.now()
       const modulePromise = dynamicImport(loaderJSUrl)
       if (!modulePromise) {
         return null
       }
       const module = await modulePromise.catch(() => null)
+      const moduleLoadTime = performance.now() - moduleLoadStart
 
       if (!module?.loader) {
         return null
       }
 
+      const executionStart = performance.now()
       const result = await module.loader()
+      const executionTime = performance.now() - executionStart
+      const totalTime = performance.now() - startTime
+
+      // record timing for devtools
+      devtoolsRegistry.recordLoaderTiming?.({
+        path: normalizedPath,
+        startTime,
+        moduleLoadTime,
+        executionTime,
+        totalTime,
+        source: 'preload',
+      })
+
       return result ?? null
     } catch (err) {
+      const totalTime = performance.now() - startTime
+
+      // record error timing for devtools
+      devtoolsRegistry.recordLoaderTiming?.({
+        path: normalizedPath,
+        startTime,
+        totalTime,
+        error: err instanceof Error ? err.message : String(err),
+        source: 'preload',
+      })
+
       // graceful fail - loader will be fetched when component mounts
       if (process.env.ONE_DEBUG_ROUTER) {
         console.warn(`[one] dev preload failed for ${href}:`, err)

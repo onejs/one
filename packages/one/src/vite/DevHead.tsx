@@ -20,7 +20,8 @@ const ONE_DEVTOOLS_SCRIPT = `
   try {
     var host = null;
     var shadow = null;
-    var spotlight = null;
+    var spotlightDialog = null;
+    var panelDialog = null;
     var panel = null;
     var activeTab = 'seo';
     var isDragging = false;
@@ -45,19 +46,29 @@ const ONE_DEVTOOLS_SCRIPT = `
       var css = \`
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        dialog {
+          border: none;
+          padding: 0;
+          background: transparent;
+          max-width: none;
+          max-height: none;
+          overflow: visible;
+        }
+        dialog::backdrop {
+          background: transparent;
+        }
+        #spotlight-dialog::backdrop {
+          background: rgba(0,0,0,0.3);
+          backdrop-filter: blur(8px);
+        }
+
         .spotlight {
-          position: fixed;
-          inset: 0;
-          z-index: 100000;
-          display: none;
+          display: flex;
           align-items: center;
           justify-content: center;
-          backdrop-filter: blur(8px);
-          background: rgba(0,0,0,0.4);
-          opacity: 0;
-          transition: opacity 0.12s ease-out;
+          position: fixed;
+          inset: 0;
         }
-        .spotlight.visible { display: flex; opacity: 1; }
 
         .spotlight-box {
           background: #1a1a1a;
@@ -66,11 +77,7 @@ const ONE_DEVTOOLS_SCRIPT = `
           max-width: 90vw;
           overflow: hidden;
           box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-          transform: scale(0.96);
-          opacity: 0;
-          transition: transform 0.12s ease-out, opacity 0.12s ease-out;
         }
-        .spotlight.visible .spotlight-box { transform: scale(1); opacity: 1; }
 
         .spotlight-header {
           display: flex;
@@ -105,22 +112,29 @@ const ONE_DEVTOOLS_SCRIPT = `
           margin-left: auto;
         }
 
-        .panel {
+        .panel-dialog {
           position: fixed;
+          margin: 0;
+          inset: unset;
+          z-index: 2147483647;
+        }
+        .panel-dialog::backdrop {
+          display: none;
+        }
+
+        .panel {
           width: 420px;
           max-width: calc(100vw - 40px);
           max-height: calc(100vh - 40px);
           background: #161616;
           border-radius: 10px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-          z-index: 99998;
-          display: none;
+          box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+          display: flex;
           flex-direction: column;
           overflow: hidden;
           font: 13px system-ui, sans-serif;
           color: #ccc;
         }
-        .panel.visible { display: flex; }
 
         .panel-header {
           display: flex;
@@ -240,7 +254,7 @@ const ONE_DEVTOOLS_SCRIPT = `
         .issue-icon { font-size: 10px; }
       \`;
 
-      shadow.innerHTML = '<style>' + css + '</style><div class="spotlight" id="spotlight"><div class="spotlight-box" id="spotlight-box"></div></div><div class="panel" id="panel"></div>';
+      shadow.innerHTML = '<style>' + css + '</style><dialog id="spotlight-dialog"><div class="spotlight"><div class="spotlight-box" id="spotlight-box"></div></div></dialog><dialog class="panel-dialog" id="panel-dialog"><div class="panel" id="panel"></div></dialog>';
       document.body.appendChild(host);
 
       setupSpotlight();
@@ -262,7 +276,8 @@ const ONE_DEVTOOLS_SCRIPT = `
                 // our element was removed (likely by React hydration), re-create it
                 host = null;
                 shadow = null;
-                spotlight = null;
+                spotlightDialog = null;
+                panelDialog = null;
                 panel = null;
                 setTimeout(createHost, 0);
                 return;
@@ -275,7 +290,7 @@ const ONE_DEVTOOLS_SCRIPT = `
     }
 
     function setupSpotlight() {
-      spotlight = shadow.getElementById('spotlight');
+      spotlightDialog = shadow.getElementById('spotlight-dialog');
       var box = shadow.getElementById('spotlight-box');
 
       var items = [
@@ -299,12 +314,14 @@ const ONE_DEVTOOLS_SCRIPT = `
         }
       });
 
-      spotlight.addEventListener('click', function(e) {
-        if (e.target === spotlight) hideSpotlight();
+      // close on backdrop click
+      spotlightDialog.addEventListener('click', function(e) {
+        if (e.target === spotlightDialog) spotlightDialog.close();
       });
     }
 
     function setupPanel() {
+      panelDialog = shadow.getElementById('panel-dialog');
       panel = shadow.getElementById('panel');
       panel.innerHTML = '<div class="panel-header" id="panel-header">' + LOGO_SVG + '<span class="panel-title">DevTools</span><button class="panel-close" id="panel-close">×</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>';
 
@@ -329,7 +346,7 @@ const ONE_DEVTOOLS_SCRIPT = `
       header.addEventListener('mousedown', function(e) {
         if (e.target.closest('.panel-close')) return;
         isDragging = true;
-        var rect = panel.getBoundingClientRect();
+        var rect = panelDialog.getBoundingClientRect();
         dragOffset.x = e.clientX - rect.left;
         dragOffset.y = e.clientY - rect.top;
         // Store current position before resetting snap state
@@ -345,8 +362,8 @@ const ONE_DEVTOOLS_SCRIPT = `
         var snapDist = 20;
         var w = window.innerWidth;
         var h = window.innerHeight;
-        var pw = panel.offsetWidth;
-        var ph = panel.offsetHeight;
+        var pw = panelDialog.offsetWidth;
+        var ph = panelDialog.offsetHeight;
         var pad = 10;
 
         var snapH = null;
@@ -361,27 +378,27 @@ const ONE_DEVTOOLS_SCRIPT = `
 
         // Apply horizontal positioning
         if (snapH === 'left') {
-          panel.style.left = pad + 'px';
-          panel.style.right = 'auto';
+          panelDialog.style.left = pad + 'px';
+          panelDialog.style.right = 'auto';
         } else if (snapH === 'right') {
-          panel.style.left = 'auto';
-          panel.style.right = pad + 'px';
+          panelDialog.style.left = 'auto';
+          panelDialog.style.right = pad + 'px';
         } else {
-          panel.style.left = x + 'px';
-          panel.style.right = 'auto';
+          panelDialog.style.left = x + 'px';
+          panelDialog.style.right = 'auto';
           panelPos.x = x;
         }
 
         // Apply vertical positioning
         if (snapV === 'top') {
-          panel.style.top = pad + 'px';
-          panel.style.bottom = 'auto';
+          panelDialog.style.top = pad + 'px';
+          panelDialog.style.bottom = 'auto';
         } else if (snapV === 'bottom') {
-          panel.style.top = 'auto';
-          panel.style.bottom = pad + 'px';
+          panelDialog.style.top = 'auto';
+          panelDialog.style.bottom = pad + 'px';
         } else {
-          panel.style.top = y + 'px';
-          panel.style.bottom = 'auto';
+          panelDialog.style.top = y + 'px';
+          panelDialog.style.bottom = 'auto';
           panelPos.y = y;
         }
       });
@@ -409,24 +426,26 @@ const ONE_DEVTOOLS_SCRIPT = `
             showPanel();
           }
         } else if (e.code === 'Escape') {
-          if (spotlight && spotlight.classList.contains('visible')) hideSpotlight();
-          else if (panel && panel.classList.contains('visible')) hidePanel();
+          // dialogs handle escape natively, but we need to handle the case where escape is pressed
+          // when only one is open
+          if (spotlightDialog && spotlightDialog.open) spotlightDialog.close();
+          else if (panelDialog && panelDialog.open) panelDialog.close();
         }
       });
     }
 
     function toggleSpotlight() {
-      if (spotlight && spotlight.classList.contains('visible')) hideSpotlight();
+      if (spotlightDialog && spotlightDialog.open) hideSpotlight();
       else showSpotlight();
     }
 
     function showSpotlight() {
       if (!host) createHost();
-      spotlight.classList.add('visible');
+      spotlightDialog.showModal();
     }
 
     function hideSpotlight() {
-      spotlight.classList.remove('visible');
+      spotlightDialog.close();
     }
 
     function showPanel() {
@@ -434,33 +453,33 @@ const ONE_DEVTOOLS_SCRIPT = `
       var pad = 10;
       // Apply horizontal positioning based on snap state
       if (snappedEdge.h === 'left') {
-        panel.style.left = pad + 'px';
-        panel.style.right = 'auto';
+        panelDialog.style.left = pad + 'px';
+        panelDialog.style.right = 'auto';
       } else if (snappedEdge.h === 'right') {
-        panel.style.left = 'auto';
-        panel.style.right = pad + 'px';
+        panelDialog.style.left = 'auto';
+        panelDialog.style.right = pad + 'px';
       } else {
-        panel.style.left = panelPos.x + 'px';
-        panel.style.right = 'auto';
+        panelDialog.style.left = panelPos.x + 'px';
+        panelDialog.style.right = 'auto';
       }
       // Apply vertical positioning based on snap state
       if (snappedEdge.v === 'top') {
-        panel.style.top = pad + 'px';
-        panel.style.bottom = 'auto';
+        panelDialog.style.top = pad + 'px';
+        panelDialog.style.bottom = 'auto';
       } else if (snappedEdge.v === 'bottom') {
-        panel.style.top = 'auto';
-        panel.style.bottom = pad + 'px';
+        panelDialog.style.top = 'auto';
+        panelDialog.style.bottom = pad + 'px';
       } else {
-        panel.style.top = panelPos.y + 'px';
-        panel.style.bottom = 'auto';
+        panelDialog.style.top = panelPos.y + 'px';
+        panelDialog.style.bottom = 'auto';
       }
-      panel.classList.add('visible');
+      panelDialog.show();
       updateTabs();
       updateContent();
     }
 
     function hidePanel() {
-      panel.classList.remove('visible');
+      panelDialog.close();
     }
 
     function updateTabs() {
@@ -634,19 +653,19 @@ const ONE_DEVTOOLS_SCRIPT = `
 
     // Listen for events
     window.addEventListener('one-loader-timing', function() {
-      if (panel && panel.classList.contains('visible') && activeTab === 'loader') updateContent();
+      if (panelDialog && panelDialog.open && activeTab === 'loader') updateContent();
     });
     window.addEventListener('one-error', function(e) {
       var devtools = window.__oneDevtools = window.__oneDevtools || {};
       devtools.errorHistory = devtools.errorHistory || [];
       devtools.errorHistory.unshift(e.detail);
       if (devtools.errorHistory.length > 20) devtools.errorHistory = devtools.errorHistory.slice(0, 20);
-      if (panel && panel.classList.contains('visible') && activeTab === 'errors') updateContent();
+      if (panelDialog && panelDialog.open && activeTab === 'errors') updateContent();
     });
 
     // Update on navigation
     function onNavigate() {
-      if (panel && panel.classList.contains('visible')) updateContent();
+      if (panelDialog && panelDialog.open) updateContent();
     }
     window.addEventListener('popstate', onNavigate);
     window.addEventListener('one-hmr-update', onNavigate);
