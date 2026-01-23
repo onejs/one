@@ -35,7 +35,8 @@ export function defaultDepOptimizePlugin(): Plugin {
       // so we just call it here to ensure `optimizeDeps` and `noExternal` configs are set as likely
       // same as in CLI mode.
       if (!config.ssr) config.ssr = {}
-      deepMergeOptimizeDeps(config.ssr, {}, optimizeDeps)
+      // pass user config so their excludes are respected
+      deepMergeOptimizeDeps(config.ssr, config, optimizeDeps)
     },
   } satisfies Plugin
 }
