@@ -48,6 +48,9 @@ export default function HomePage() {
       <HeadInfo
         title="One, a React Framework"
         description="One is a React framework focused on simplicity that lets you target both web and native at once with a single Vite plugin."
+        openGraph={{
+          images: [{ url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 }],
+        }}
       />
 
       <Spacer size="$8" $gtSm={{ size: '$4' }} />
