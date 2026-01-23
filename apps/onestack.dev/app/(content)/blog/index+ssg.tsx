@@ -26,7 +26,9 @@ export default function BlogIndex() {
         title="Blog"
         description="Latest news and updates from One"
         openGraph={{
-          images: [{ url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 }],
+          images: [
+            { url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 },
+          ],
         }}
       />
       <TopNav />

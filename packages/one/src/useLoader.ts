@@ -69,6 +69,7 @@ export function getLoaderTimingHistory(): LoaderTimingEntry[] {
 
 // Register with devtools registry so router.ts doesn't need to dynamically import us
 registerDevtoolsFunction('getLoaderTimingHistory', getLoaderTimingHistory)
+registerDevtoolsFunction('recordLoaderTiming', recordLoaderTiming)
 
 const loaderState: Record<string, LoaderStateEntry> = {}
 const subscribers = new Set<() => void>()

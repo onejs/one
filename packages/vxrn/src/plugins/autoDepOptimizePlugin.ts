@@ -47,9 +47,12 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
       const finalConfig = await getScannedOptimizeDepsConfig({
         ...props,
         mode: env.mode,
-        exclude: [...exclude, ...userExcludes, ...userViteExcludes, ...userSsrExcludes].filter(
-          Boolean
-        ),
+        exclude: [
+          ...exclude,
+          ...userExcludes,
+          ...userViteExcludes,
+          ...userSsrExcludes,
+        ].filter(Boolean),
       })
 
       debugDetails?.(

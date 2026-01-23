@@ -13,8 +13,9 @@ export default function FeedPage() {
       </Text>
 
       <Text style={styles.content}>
-        This is the feed page. Click the "App Logo" in the header to go back to the landing page.
-        This navigation should NOT cause a layout flash - the header should transition smoothly.
+        This is the feed page. Click the "App Logo" in the header to go back to the
+        landing page. This navigation should NOT cause a layout flash - the header should
+        transition smoothly.
       </Text>
 
       <View style={styles.items}>
