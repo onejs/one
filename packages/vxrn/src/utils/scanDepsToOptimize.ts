@@ -74,7 +74,6 @@ export const EXCLUDE_LIST = [
   // Stuff we had in fleek
   '@nandorojo/galeria',
   'expo-video',
-  '@react-navigation/elements',
   '@react-native/debugger-shell',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
