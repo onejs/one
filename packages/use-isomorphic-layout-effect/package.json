@@ -18,7 +18,8 @@
     "watch": "tamagui-build --watch",
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit"
   },
   "exports": {
     "./package.json": "./package.json",

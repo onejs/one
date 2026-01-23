@@ -25,6 +25,7 @@
     "clean:build": "tamagui-build clean:build",
     "lint": "biome check src",
     "lint:fix": "biome check --write src",
+    "typecheck": "tsc --noEmit",
     "watch": "bun run build --watch"
   },
   "tamagui-build": {
