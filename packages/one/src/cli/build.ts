@@ -270,7 +270,9 @@ export async function build(args: {
     const file = Path.basename(id)
     // layout files start with _layout
     if (file.startsWith('_layout') && id.includes(`/${routerRoot}/`)) {
-      const contextKey = `/${relative(process.cwd(), id).replace(`${routerRoot}/`, '')}`
+      // contextKey format is "./_layout.tsx" or "./subdir/_layout.tsx"
+      const relativePath = relative(process.cwd(), id).replace(`${routerRoot}/`, '')
+      const contextKey = `./${relativePath}`
       layoutServerPaths.set(contextKey, output.fileName)
     }
   }
@@ -315,6 +317,7 @@ export async function build(args: {
     if (!foundRoute) {
       continue
     }
+
 
     // look up client chunk directly by source file path (from rollup output)
     // this is more reliable than the manifest.json which can have ambiguous keys
@@ -661,9 +664,17 @@ export async function build(args: {
   }
 
   function createBuildManifestRoute(route: RouteInfo) {
-    // remove layouts, they are huge due to keeping all children, not needed after build
-    // TODO would be clean it up in manifst
+    // remove the full layouts (they're huge with all children), but keep minimal info
+    // needed for running layout loaders in production
     const { layouts, ...built } = route
+
+    // keep simplified layout info for loader execution
+    if (layouts?.length) {
+      ;(built as any).layouts = layouts.map((layout) => ({
+        contextKey: layout.contextKey,
+        loaderServerPath: (layout as any).loaderServerPath,
+      }))
+    }
 
     // swap out for the built middleware path
     const buildInfo = builtRoutes.find((x) => x.routeFile === route.file)

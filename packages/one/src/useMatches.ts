@@ -83,15 +83,17 @@ export function useMatches(): RouteMatch[] {
   }
 
   // on client, use sync external store for reactivity
+  // the server snapshot (3rd arg) is used during hydration to match SSR output
   const clientStoreMatches = useSyncExternalStore(
     subscribeToClientMatches,
     getClientMatchesSnapshot,
-    // server snapshot for hydration
+    // server snapshot for hydration - must match what SSR rendered
     () => serverContext?.matches ?? []
   )
 
-  // prefer server context during hydration, then use client store
-  return serverContext?.matches ?? clientStoreMatches
+  // always return client store on client - it's initialized from server context
+  // during hydration via initClientMatches, then updated on navigation
+  return clientStoreMatches
 }
 
 /**
