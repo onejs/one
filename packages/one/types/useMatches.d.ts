@@ -1,0 +1,75 @@
+import type { One } from './vite/types';
+/**
+ * Re-export for convenience
+ */
+export type RouteMatch = One.RouteMatch;
+/**
+ * Update the client-side matches store.
+ * Called after navigation to update the matches with new loader data.
+ * @internal
+ */
+export declare function setClientMatches(matches: RouteMatch[]): void;
+/**
+ * Returns an array of all matched routes from root to the current page.
+ * Each match contains the route's loader data, params, and route ID.
+ *
+ * On the server (SSR), this returns the matches computed during the request.
+ * On the client, this returns cached matches from hydration or the last navigation.
+ *
+ * @example
+ * ```tsx
+ * // In a layout component
+ * function DocsLayout({ children }) {
+ *   const matches = useMatches()
+ *   const pageMatch = matches[matches.length - 1]
+ *   const headings = pageMatch?.loaderData?.headings
+ *
+ *   return (
+ *     <div>
+ *       <TableOfContents headings={headings} />
+ *       {children}
+ *     </div>
+ *   )
+ * }
+ * ```
+ *
+ * @example
+ * ```tsx
+ * // Building breadcrumbs
+ * function Breadcrumbs() {
+ *   const matches = useMatches()
+ *
+ *   return (
+ *     <nav>
+ *       {matches.map((match) => (
+ *         <a key={match.routeId} href={match.pathname}>
+ *           {match.loaderData?.title ?? match.routeId}
+ *         </a>
+ *       ))}
+ *     </nav>
+ *   )
+ * }
+ * ```
+ */
+export declare function useMatches(): RouteMatch[];
+/**
+ * Find a specific match by route ID.
+ *
+ * @example
+ * ```tsx
+ * const docsMatch = useMatch('docs/_layout')
+ * const navItems = docsMatch?.loaderData?.navItems
+ * ```
+ */
+export declare function useMatch(routeId: string): RouteMatch | undefined;
+/**
+ * Get the current page's match (the last/deepest match).
+ *
+ * @example
+ * ```tsx
+ * const pageMatch = usePageMatch()
+ * const { title, description } = pageMatch?.loaderData ?? {}
+ * ```
+ */
+export declare function usePageMatch(): RouteMatch | undefined;
+//# sourceMappingURL=useMatches.d.ts.map

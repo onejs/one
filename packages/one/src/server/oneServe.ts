@@ -163,16 +163,81 @@ export async function oneServe(
             ? await options.lazyRoutes.pages[route.file]()
             : await import(toAbsolute(buildInfo.serverJsPath))
 
-          let loaderData
-          try {
-            loaderData = await exported.loader?.(loaderProps)
-          } catch (loaderErr) {
-            // Handle thrown responses (e.g., redirect) from loader
-            if (isResponse(loaderErr)) {
-              return loaderErr
+          // helper to import and run a single loader
+          async function runLoader(
+            routeId: string,
+            serverPath: string | undefined,
+            lazyKey?: string
+          ): Promise<{ loaderData: unknown; routeId: string }> {
+            if (!serverPath && !lazyKey) {
+              return { loaderData: undefined, routeId }
             }
-            throw loaderErr
+
+            try {
+              const routeExported = lazyKey
+                ? options?.lazyRoutes?.pages?.[lazyKey]
+                  ? await options.lazyRoutes.pages[lazyKey]()
+                  : await import(toAbsolute(join('./', 'dist/server', serverPath || lazyKey)))
+                : await import(toAbsolute(serverPath!))
+
+              const loaderData = await routeExported?.loader?.(loaderProps)
+              return { loaderData, routeId }
+            } catch (err) {
+              // if a loader throws a Response (redirect), re-throw it
+              if (isResponse(err)) {
+                throw err
+              }
+              console.error(`[one] Error running loader for ${routeId}:`, err)
+              return { loaderData: undefined, routeId }
+            }
           }
+
+          // collect layout loaders to run in parallel
+          const layoutRoutes = route.layouts || []
+          const layoutLoaderPromises = layoutRoutes.map((layout: any) => {
+            // layouts may have loaderServerPath set from build, or we can try contextKey
+            const serverPath = layout.loaderServerPath || layout.contextKey
+            return runLoader(layout.contextKey, serverPath, layout.contextKey)
+          })
+
+          // run page loader
+          const pageLoaderPromise = runLoader(route.file, buildInfo.serverJsPath, route.file)
+
+          // wait for all loaders in parallel
+          let layoutResults: Array<{ loaderData: unknown; routeId: string }>
+          let pageResult: { loaderData: unknown; routeId: string }
+
+          try {
+            ;[layoutResults, pageResult] = await Promise.all([
+              Promise.all(layoutLoaderPromises),
+              pageLoaderPromise,
+            ])
+          } catch (err) {
+            // Handle thrown responses (e.g., redirect) from any loader
+            if (isResponse(err)) {
+              return err
+            }
+            throw err
+          }
+
+          // build matches array (layouts + page)
+          const matches: One.RouteMatch[] = [
+            ...layoutResults.map((result) => ({
+              routeId: result.routeId,
+              pathname: loaderProps?.path || '/',
+              params: loaderProps?.params || {},
+              loaderData: result.loaderData,
+            })),
+            {
+              routeId: pageResult.routeId,
+              pathname: loaderProps?.path || '/',
+              params: loaderProps?.params || {},
+              loaderData: pageResult.loaderData,
+            },
+          ]
+
+          // for backwards compat, loaderData is still the page's loader data
+          const loaderData = pageResult.loaderData
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
@@ -194,6 +259,7 @@ export async function oneServe(
             deferredPreloads: buildInfo.deferredPreloads,
             css: buildInfo.css,
             cssContents: buildInfo.cssContents,
+            matches,
           })
 
           return new Response(rendered, {

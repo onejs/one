@@ -62,6 +62,7 @@ export { validateParams, zodParamValidator, ParamValidationError, RouteValidatio
 export { useValidationState, type ValidationState } from './router/router';
 export { useFocusEffect } from './useFocusEffect';
 export { getLoaderTimingHistory, refetchLoader, useLoader, useLoaderState, type LoaderTimingEntry, } from './useLoader';
+export { useMatches, useMatch, usePageMatch, setClientMatches, type RouteMatch, } from './useMatches';
 export { type ServerHeadInsertionCallback, useServerHeadInsertion, } from './useServerHeadInsertion';
 export { isResponse } from './utils/isResponse';
 export { redirect } from './utils/redirect';

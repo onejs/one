@@ -77,6 +77,8 @@ export type RouteNode = {
   layouts?: RouteNode[]
   /** Parent middlewares */
   middlewares?: RouteNode[]
+  /** Server-side path to the compiled loader module (set during build) */
+  loaderServerPath?: string
 }
 
 export const RouteParamsContext = createContext<

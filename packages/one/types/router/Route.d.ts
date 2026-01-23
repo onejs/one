@@ -72,6 +72,8 @@ export type RouteNode = {
     layouts?: RouteNode[];
     /** Parent middlewares */
     middlewares?: RouteNode[];
+    /** Server-side path to the compiled loader module (set during build) */
+    loaderServerPath?: string;
 };
 export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */

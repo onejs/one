@@ -511,6 +511,21 @@ export namespace One {
     cssContents?: string[]
   }
 
+  /**
+   * Represents a matched route in the route hierarchy.
+   * Used by useMatches() to expose loader data from all matched routes.
+   */
+  export type RouteMatch = {
+    /** Route identifier (e.g., "docs/_layout" or "docs/intro") */
+    routeId: string
+    /** The pathname segment this route matched */
+    pathname: string
+    /** URL params extracted for this route */
+    params: Record<string, string | string[]>
+    /** Data returned from this route's loader */
+    loaderData: unknown
+  }
+
   export type ServerContext = {
     css?: string[]
     /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
@@ -523,6 +538,11 @@ export namespace One {
     mode?: 'spa' | 'ssg' | 'ssr'
     // mapping of route keys to bundle paths for hydration preloading
     routePreloads?: Record<string, string>
+    /**
+     * All matched routes with their loader data.
+     * Ordered from root layout to leaf page (parent → child).
+     */
+    matches?: RouteMatch[]
   }
 
   export type Flags = {

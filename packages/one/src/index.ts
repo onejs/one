@@ -129,6 +129,13 @@ export {
   type LoaderTimingEntry,
 } from './useLoader'
 export {
+  useMatches,
+  useMatch,
+  usePageMatch,
+  setClientMatches,
+  type RouteMatch,
+} from './useMatches'
+export {
   type ServerHeadInsertionCallback,
   useServerHeadInsertion,
 } from './useServerHeadInsertion'
