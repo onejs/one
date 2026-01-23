@@ -31,6 +31,7 @@
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch"
   },
   "dependencies": {

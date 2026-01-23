@@ -24,6 +24,7 @@
     "clean:build": "tamagui-build clean:build",
     "lint": "../../node_modules/.bin/biome check src",
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch"
   },
   "dependencies": {

@@ -58,7 +58,8 @@
     "watch": "bun run build --watch",
     "check": "depcheck",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@expo/config-plugins": "^8.0.8",

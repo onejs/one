@@ -46,7 +46,8 @@
     "watch": "bun run build --watch",
     "check": "depcheck",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "@expo/metro-config": "^54.0.7",

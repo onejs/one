@@ -28,7 +28,8 @@
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "url-parse": "^1.5.10"

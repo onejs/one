@@ -27,7 +27,8 @@
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "test": "vitest run --dir src"
+    "test": "vitest run --dir src",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@tamagui/build": "^1.144.1",
