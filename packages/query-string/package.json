@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/query-string",
-  "version": "1.2.76",
+  "version": "1.2.77",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
