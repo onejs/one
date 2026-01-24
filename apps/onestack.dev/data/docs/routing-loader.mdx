@@ -2,9 +2,9 @@
 title: Loaders
 ---
 
-Loaders are useful for one-time loading of data from the server to the client and can only be used in routes in your `app` directory.
+Loaders are useful for one-time loading of data from the server to the client. They can be used in both page routes and layout files in your `app` directory.
 
-Loaders run on the server, for now they run based on their render mode - during build-time for SSG routes, or on each request for SPA or SSR routes.
+Loaders run on the server based on their render mode - during build-time for SSG routes, or on each request for SPA or SSR routes. Layout loaders and page loaders run in parallel for optimal performance.
 
 ## Native Platform Behavior
 
@@ -74,6 +74,59 @@ export default function HomePage() {
 ```
 
 Both hooks are automatically type safe. See [useLoader](/docs/hooks-useLoader) and [useLoaderState](/docs/hooks-useLoaderState) for detailed documentation.
+
+### useMatches
+
+To access loader data from other routes (like a layout accessing page data, or vice versa), use `useMatches`:
+
+```tsx
+import { useMatches } from 'one'
+
+function Breadcrumbs() {
+  const matches = useMatches()
+  // matches = [rootLayout, nestedLayout, currentPage]
+  // each has: { routeId, pathname, params, loaderData }
+
+  return (
+    <nav>
+      {matches.map(match => (
+        <a key={match.routeId} href={match.pathname}>
+          {match.loaderData?.title}
+        </a>
+      ))}
+    </nav>
+  )
+}
+```
+
+See [useMatches](/docs/hooks-useMatches) for detailed documentation.
+
+## Layout Loaders
+
+Layouts can export a `loader` function just like pages:
+
+```tsx fileName=app/docs/_layout.tsx
+import { useLoader, Slot } from 'one'
+
+export async function loader() {
+  return {
+    navItems: await fetchDocsNav()
+  }
+}
+
+export default function DocsLayout() {
+  const { navItems } = useLoader(loader)
+
+  return (
+    <div>
+      <Sidebar items={navItems} />
+      <Slot />
+    </div>
+  )
+}
+```
+
+See [Layout Loaders](/docs/routing-layouts#layout-loaders) for more details.
 
 ## Loader arguments
 

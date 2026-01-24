@@ -59,6 +59,7 @@ export const docsRoutes = [
       { title: 'useSegments', route: '/docs/hooks-useSegments' },
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
       { title: 'useLoaderState', route: '/docs/hooks-useLoaderState' },
+      { title: 'useMatches', route: '/docs/hooks-useMatches' },
       { title: 'useBlocker', route: '/docs/hooks-useBlocker' },
       { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
       { title: 'useScrollGroup', route: '/docs/hooks-useScrollGroup' },

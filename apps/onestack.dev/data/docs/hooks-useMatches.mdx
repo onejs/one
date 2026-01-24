@@ -1,0 +1,149 @@
+---
+title: useMatches
+---
+
+Returns an array of all matched routes from the root layout down to the current page. Each match includes the route's loader data, params, and route ID.
+
+This is useful for:
+- Building breadcrumbs from parent routes
+- Accessing layout loader data from any component
+- Building table of contents from page data in a layout
+
+## Basic Usage
+
+```tsx
+import { useMatches } from 'one'
+
+function Breadcrumbs() {
+  const matches = useMatches()
+
+  return (
+    <nav>
+      {matches.map((match) => (
+        <a key={match.routeId} href={match.pathname}>
+          {match.loaderData?.title ?? match.routeId}
+        </a>
+      ))}
+    </nav>
+  )
+}
+```
+
+## Accessing Layout Data from a Page
+
+A common use case is accessing a layout's loader data from a page component:
+
+```tsx
+import { useMatches } from 'one'
+
+// in a page component
+function DocsPage() {
+  const matches = useMatches()
+
+  // find the docs layout match
+  const docsLayout = matches.find(m => m.routeId.includes('docs/_layout'))
+  const navItems = docsLayout?.loaderData?.navItems
+
+  return (
+    <div>
+      <Sidebar items={navItems} />
+      {/* page content */}
+    </div>
+  )
+}
+```
+
+## Accessing Page Data from a Layout
+
+Layouts can access their child page's loader data to render things like a table of contents:
+
+```tsx fileName=app/docs/_layout.tsx
+import { useMatches, Slot } from 'one'
+
+export async function loader() {
+  return {
+    navItems: await fetchDocsNav()
+  }
+}
+
+export default function DocsLayout() {
+  const matches = useMatches()
+
+  // the last match is the current page
+  const pageMatch = matches[matches.length - 1]
+  const headings = pageMatch?.loaderData?.headings
+
+  return (
+    <div>
+      <Sidebar />
+      <main>
+        <Slot />
+      </main>
+      <TableOfContents headings={headings} />
+    </div>
+  )
+}
+```
+
+## RouteMatch Type
+
+Each match in the array has this shape:
+
+```ts
+interface RouteMatch {
+  routeId: string      // e.g., './docs/_layout.tsx'
+  pathname: string     // e.g., '/docs/intro'
+  params: Record<string, string>  // URL params like { slug: 'intro' }
+  loaderData?: unknown // data from the route's loader
+}
+```
+
+## Related Hooks
+
+### useMatch
+
+Find a specific route's match by its route ID:
+
+```tsx
+import { useMatch } from 'one'
+
+function Component() {
+  // find a specific layout's data
+  const docsMatch = useMatch('./docs/_layout.tsx')
+  const navItems = docsMatch?.loaderData?.navItems
+}
+```
+
+Returns `undefined` if the route is not in the current match list.
+
+### usePageMatch
+
+Get the current page's match (the last/deepest match):
+
+```tsx
+import { usePageMatch } from 'one'
+
+function Layout() {
+  const pageMatch = usePageMatch()
+  const { title, description } = pageMatch?.loaderData ?? {}
+
+  return (
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Head>
+  )
+}
+```
+
+## Server vs Client Behavior
+
+- **Server (SSR/SSG)**: Returns matches computed during the request with fresh loader data
+- **Client (hydration)**: Returns the same matches from the server for consistent hydration
+- **Client (navigation)**: Returns updated matches - page loader data is fresh, layout loader data is cached from the initial load
+
+## Related
+
+- [Layout Loaders](/docs/routing-layouts#layout-loaders) - Adding loaders to layout files
+- [useLoader](/docs/hooks-useLoader) - Basic loader data access
+- [useLoaderState](/docs/hooks-useLoaderState) - Advanced loader with refetch
