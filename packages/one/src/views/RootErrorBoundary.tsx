@@ -28,8 +28,8 @@ export class RootErrorBoundary extends React.Component<
       `[One] Root error boundary caught error:\n${printError(error)}\n${info.componentStack}`
     )
 
-    // Dispatch error event for devtools
-    if (typeof window !== 'undefined') {
+    // Dispatch error event for devtools (web only - CustomEvent doesn't exist on native)
+    if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
       window.dispatchEvent(
         new CustomEvent('one-error', {
           detail: {
