@@ -339,7 +339,7 @@ export async function build(args: {
       for (const layout of foundRoute.layouts) {
         const serverPath = layoutServerPaths.get(layout.contextKey)
         if (serverPath) {
-          ;(layout as any).loaderServerPath = serverPath
+          layout.loaderServerPath = serverPath
         }
       }
     }
