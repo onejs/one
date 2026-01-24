@@ -155,7 +155,7 @@ prefetchCSS()
       const layoutResults = await Promise.all(
         foundRoute.layouts.map(async (layout) => {
           try {
-            const layoutServerPath = (layout as any).loaderServerPath
+            const layoutServerPath = layout.loaderServerPath
             if (!layoutServerPath) {
               return { contextKey: layout.contextKey, loaderData: undefined }
             }
@@ -229,7 +229,6 @@ if (typeof document === 'undefined') globalThis.document = {}
 
     // ssr, we basically skip at build-time and just compile it the js we need
     if (foundRoute.type !== 'ssr') {
-      const loaderProps: LoaderProps = { path, params }
       // importing resetState causes issues :/
       globalThis['__vxrnresetState']?.()
 
