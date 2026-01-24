@@ -1,12 +1,15 @@
+ignorePatterns:
+  - "dist"
 ignores:
-  - "@vxrn/safe-area"
   - "@biomejs/biome"
   - "vxrn"
   - "@expo/cli"
-  - "@vxrn/vendor"
   - "react"
   - "expo"
+  # should probably be a peer dependency, this is only used while running prebuild without expo
+  - "@react-native-community/template"
+  # used dynamically via resolvePath() for vite aliases
+  - "@vxrn/safe-area"
   - "@vxrn/query-string"
   - "@vxrn/url-parse"
-  # Should probably be a peer dependency, this is only used while running prebuild without expo
-  - "@react-native-community/template"
+  - "@vxrn/vendor"
