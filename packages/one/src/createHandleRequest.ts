@@ -273,7 +273,13 @@ export function createHandleRequest(
       const url = getURLfromRequestURL(request)
       const { pathname, search } = url
 
-      if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+      // skip paths handled by vite internals or react native dev middleware
+      if (
+        pathname === '/__vxrnhmr' ||
+        pathname.startsWith('/@') ||
+        pathname.startsWith('/debugger-frontend') ||
+        pathname.startsWith('/inspector')
+      ) {
         return null
       }
 
