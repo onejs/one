@@ -119,7 +119,6 @@ describe('RouteMatch ordering', () => {
 describe('setClientMatches reactivity', () => {
   it('should notify listeners when matches change', () => {
     let notifyCount = 0
-    const { setClientMatches } = require('./useMatches')
 
     // simulate a listener (like what useSyncExternalStore would use)
     const listener = () => {
@@ -146,8 +145,6 @@ describe('setClientMatches reactivity', () => {
   })
 
   it('should handle multiple sequential updates', () => {
-    const { setClientMatches } = require('./useMatches')
-
     const matches1: One.RouteMatch[] = [
       { routeId: '/a', pathname: '/a', params: {}, loaderData: { n: 1 } },
     ]

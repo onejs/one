@@ -846,4 +846,87 @@ describe('useMatches()', () => {
 
     await page.close()
   })
+
+  test('cross-route-type navigation: SSG → SPA', async () => {
+    const page = await context.newPage()
+
+    // start at SSG page
+    await page.goto(serverUrl + '/matches-test/page1')
+    await page.waitForLoadState('networkidle')
+
+    // verify we're on SSG page
+    const ssgTitle = await page.textContent('#page-title')
+    expect(ssgTitle).toBe('Page 1')
+
+    // navigate to SPA page
+    await page.click('a[href="/matches-test/spa-page"]')
+    await page.waitForURL(`${serverUrl}/matches-test/spa-page`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // verify SPA page data loaded
+    const spaTitle = await page.textContent('#page-title')
+    expect(spaTitle).toBe('SPA Page')
+
+    const routeType = await page.textContent('#route-type')
+    expect(routeType).toContain('spa')
+
+    // verify matches updated
+    const matchesCount = await page.textContent('#matches-count')
+    expect(matchesCount).toContain('Matches:')
+
+    await page.close()
+  })
+
+  test('cross-route-type navigation: SPA → SSR', async () => {
+    const page = await context.newPage()
+
+    // start at SPA page
+    await page.goto(serverUrl + '/matches-test/spa-page')
+    await page.waitForLoadState('networkidle')
+
+    // verify we're on SPA page
+    const spaTitle = await page.textContent('#page-title')
+    expect(spaTitle).toBe('SPA Page')
+
+    // navigate to SSR page
+    await page.click('#link-to-ssr')
+    await page.waitForURL(`${serverUrl}/matches-test/ssr-page`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // verify SSR page data loaded
+    const ssrTitle = await page.textContent('#page-title')
+    expect(ssrTitle).toBe('SSR Page')
+
+    const routeType = await page.textContent('#route-type')
+    expect(routeType).toContain('ssr')
+
+    await page.close()
+  })
+
+  test('cross-route-type navigation: SSR → SSG', async () => {
+    const page = await context.newPage()
+
+    // start at SSR page
+    await page.goto(serverUrl + '/matches-test/ssr-page')
+    await page.waitForLoadState('networkidle')
+
+    // verify we're on SSR page
+    const ssrTitle = await page.textContent('#page-title')
+    expect(ssrTitle).toBe('SSR Page')
+
+    // navigate to SSG page
+    await page.click('#link-to-ssg')
+    await page.waitForURL(`${serverUrl}/matches-test/page1`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // verify SSG page data loaded
+    const ssgTitle = await page.textContent('#page-title')
+    expect(ssgTitle).toBe('Page 1')
+
+    // verify pageMatch updated correctly
+    const pageData = await page.textContent('#page-loader-data')
+    expect(pageData).toContain('Page 1')
+
+    await page.close()
+  })
 })

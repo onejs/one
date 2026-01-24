@@ -37,10 +37,21 @@
 - [x] Bug fix: doubled `dist/server` path in loader imports (production server)
 - [x] Bug fix: loader error handling in dev server (graceful degradation)
 - [x] Bug fix: test ports now use high range (9444-9999) to avoid conflicts
+- [x] Docs - documentation added to onestack.dev:
+  - `hooks-useMatches.mdx` - comprehensive docs for useMatches, useMatch, usePageMatch
+  - Updated `routing-layouts.mdx` - added Layout Loaders section
+  - Updated `routing-loader.mdx` - added useMatches and Layout Loaders sections
+  - Updated `hooks-useLoader.mdx` and `hooks-useLoaderState.mdx` - added useMatches to Related
+  - Added useMatches to docsRoutes.tsx navigation
+- [x] Additional tests in tests/test:
+  - `tests/useMatches.test.ts` - web tests for useMatches with layout loaders
+  - `tests/useMatches.test.ios.ts` - native iOS tests for useMatches
+  - `tests/loaders.test.ios.ts` - native iOS tests for basic loader functionality
+  - `app/matches-test/` - test pages for useMatches
 
-### ⏳ Remaining Work
+### ✅ All Work Complete
 
-- [ ] Docs - add documentation for useMatches to onestack.dev
+Implementation, tests, and documentation are complete.
 
 ### API Reference
 
