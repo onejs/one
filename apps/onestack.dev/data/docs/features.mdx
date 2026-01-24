@@ -32,6 +32,10 @@ Out of the box, the One Vite plugin does the following:
 
 - Uses [React Navigation](https://reactnavigation.org/) routing and truly native layouts
 - Adds [loaders](/docs/routing-loader) that work on native and web
+- Adds [layout loaders](/docs/routing-layouts#layout-loaders) - layouts can export `loader()` just like pages
+- Adds [`useMatches`](/docs/hooks-useMatches) hook to access all matched route data (like TanStack Router)
+- Adds [`useMatch`](/docs/hooks-useMatches#usematch) to find a specific route's loader data by route ID
+- Adds [`usePageMatch`](/docs/hooks-useMatches#usepagematch) to get the current page's match
 - Adds a [Link](/docs/components-Link) component for navigation
 - Adds a wide variety of hooks for routing
 - Adds [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context) and exports [SafeAreaView](/docs/components-SafeAreaView)
