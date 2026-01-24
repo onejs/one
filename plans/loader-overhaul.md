@@ -15,7 +15,7 @@
 - [x] SSR/Initial load - all matches populated correctly
 - [x] Hydration - matches preserved from server context
 - [x] Client-side navigation - `setClientMatches()` wired to router navigation flow
-- [x] Tests - comprehensive e2e tests for useMatches in test-loaders test suite:
+- [x] Tests - comprehensive e2e tests for useMatches in test-loaders test suite (`tests/test-loaders/tests/loaders.test.ts`):
   - SSR: useMatches returns all matched routes with loader data
   - Client navigation: useMatches updates after navigation
   - Layout can access page loader data via useMatches
@@ -25,6 +25,15 @@
   - useMatch: returns undefined for non-existent routeId
   - usePageMatch: returns current page match
   - Hydration: matches are consistent after hydration
+- [x] Test pages created:
+  - `tests/test-loaders/app/matches-test/_layout.tsx` - layout with loader
+  - `tests/test-loaders/app/matches-test/page1+ssg.tsx` - page with loader
+  - `tests/test-loaders/app/matches-test/page2+ssg.tsx` - page with loader
+  - `tests/test-loaders/app/matches-test/hooks-test+ssg.tsx` - tests useMatch/usePageMatch
+  - `tests/test-loaders/app/nested-test/_layout.tsx` - deeply nested layout
+  - `tests/test-loaders/app/nested-test/level2/_layout.tsx` - level 2 layout
+  - `tests/test-loaders/app/nested-test/level2/page+ssg.tsx` - deeply nested page
+  - `tests/test-loaders/app/posts/[slug]+ssg.tsx` - dynamic route test
 - [x] Bug fix: doubled `dist/server` path in loader imports (production server)
 - [x] Bug fix: loader error handling in dev server (graceful degradation)
 - [x] Bug fix: test ports now use high range (9444-9999) to avoid conflicts
@@ -32,6 +41,25 @@
 ### ⏳ Remaining Work
 
 - [ ] Docs - add documentation for useMatches to onestack.dev
+
+### API Reference
+
+| Hook | Description |
+|------|-------------|
+| `useMatches()` | Returns array of all matched routes from root to current page |
+| `useMatch(routeId)` | Find a specific route's match by its route ID |
+| `usePageMatch()` | Get the current page's match (last/deepest match) |
+| `setClientMatches(matches)` | Internal: update client-side matches after navigation |
+
+**RouteMatch type:**
+```ts
+interface RouteMatch {
+  routeId: string      // e.g., './docs/_layout.tsx'
+  pathname: string     // e.g., '/docs/intro'
+  params: Record<string, string>  // URL params
+  loaderData?: unknown // data from the route's loader
+}
+```
 
 ### Usage
 
@@ -44,7 +72,7 @@ function MyComponent() {
   const matches = useMatches()
 
   // find a specific layout's data
-  const docsMatch = useMatch('/docs/_layout')
+  const docsMatch = useMatch('./docs/_layout.tsx')
   const navItems = docsMatch?.loaderData?.navItems
 
   // get the current page's data
