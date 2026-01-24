@@ -15,9 +15,19 @@
 - [x] SSR/Initial load - all matches populated correctly
 - [x] Hydration - matches preserved from server context
 - [x] Client-side navigation - `setClientMatches()` wired to router navigation flow
-- [x] Tests - e2e tests for useMatches in test-loaders test suite
+- [x] Tests - comprehensive e2e tests for useMatches in test-loaders test suite:
+  - SSR: useMatches returns all matched routes with loader data
+  - Client navigation: useMatches updates after navigation
+  - Layout can access page loader data via useMatches
+  - Deeply nested layouts (3+ levels) with loaders
+  - Dynamic routes with params in matches
+  - useMatch: finds specific route by routeId
+  - useMatch: returns undefined for non-existent routeId
+  - usePageMatch: returns current page match
+  - Hydration: matches are consistent after hydration
 - [x] Bug fix: doubled `dist/server` path in loader imports (production server)
 - [x] Bug fix: loader error handling in dev server (graceful degradation)
+- [x] Bug fix: test ports now use high range (9444-9999) to avoid conflicts
 
 ### ⏳ Remaining Work
 
