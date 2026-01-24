@@ -89,6 +89,8 @@ export default defineConfig({
 
   if (options.clean) {
     await clean(optionsIn, options.clean)
+    // signal metro to reset its cache as well
+    process.env.METRO_RESET_CACHE = '1'
   }
 
   await ensureDir(cacheDir)

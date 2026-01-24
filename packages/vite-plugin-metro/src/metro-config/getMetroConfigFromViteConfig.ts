@@ -146,7 +146,7 @@ export async function getMetroConfigFromViteConfig(
     {
       cwd: projectRoot,
       projectRoot,
-      'reset-cache': !!process.env.METRO_RESET_CACHE, // TODO: `--clean`
+      'reset-cache': !!process.env.METRO_RESET_CACHE,
       ...argv,
     },
     {
