@@ -48,6 +48,12 @@
   - `tests/useMatches.test.ios.ts` - native iOS tests for useMatches
   - `tests/loaders.test.ios.ts` - native iOS tests for basic loader functionality
   - `app/matches-test/` - test pages for useMatches
+- [x] Cross-route-type navigation tests in test-loaders:
+  - `matches-test/spa-page+spa.tsx` - SPA page for cross-type navigation tests
+  - `matches-test/ssr-page+ssr.tsx` - SSR page for cross-type navigation tests
+  - SSG → SPA navigation test
+  - SPA → SSR navigation test
+  - SSR → SSG navigation test
 
 ### ✅ All Work Complete
 
