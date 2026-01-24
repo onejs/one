@@ -19,15 +19,24 @@ export default function MatchesTestPage() {
         Page: {data.pageData}
       </Text>
 
-      <Text testID="matches-count" accessibilityLabel={`matches-count: ${matches.length}`}>
+      <Text
+        testID="matches-count"
+        accessibilityLabel={`matches-count: ${matches.length}`}
+      >
         Matches count: {matches.length}
       </Text>
 
-      <Text testID="page-match-routeid" accessibilityLabel={`page-match-routeid: ${pageMatch?.routeId || 'none'}`}>
+      <Text
+        testID="page-match-routeid"
+        accessibilityLabel={`page-match-routeid: ${pageMatch?.routeId || 'none'}`}
+      >
         Page match routeId: {pageMatch?.routeId || 'none'}
       </Text>
 
-      <Text testID="all-matches" accessibilityLabel={`all-matches: ${JSON.stringify(matches)}`}>
+      <Text
+        testID="all-matches"
+        accessibilityLabel={`all-matches: ${JSON.stringify(matches)}`}
+      >
         {JSON.stringify(matches, null, 2)}
       </Text>
     </View>

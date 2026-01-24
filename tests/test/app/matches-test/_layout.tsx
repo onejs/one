@@ -17,7 +17,10 @@ export default function MatchesTestLayout() {
 
   return (
     <View f={1}>
-      <Text testID="layout-data" accessibilityLabel={`layout-data: ${data?.layoutData || 'loading'}`}>
+      <Text
+        testID="layout-data"
+        accessibilityLabel={`layout-data: ${data?.layoutData || 'loading'}`}
+      >
         Layout: {data?.layoutData || 'loading'}
       </Text>
       <Slot />

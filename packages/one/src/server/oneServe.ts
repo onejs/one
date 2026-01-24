@@ -211,7 +211,11 @@ export async function oneServe(
           })
 
           // run page loader
-          const pageLoaderPromise = runLoader(route.file, buildInfo.serverJsPath, route.file)
+          const pageLoaderPromise = runLoader(
+            route.file,
+            buildInfo.serverJsPath,
+            route.file
+          )
 
           // wait for all loaders in parallel
           let layoutResults: Array<{ loaderData: unknown; routeId: string }>

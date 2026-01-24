@@ -24,7 +24,10 @@ describe('useMatches', () => {
 
     // wait for layout loader data to be present (not 'loading')
     await page.waitForFunction(
-      () => !document.querySelector('[data-testid="layout-data"]')?.textContent?.includes('loading'),
+      () =>
+        !document
+          .querySelector('[data-testid="layout-data"]')
+          ?.textContent?.includes('loading'),
       { timeout: 5000 }
     )
 

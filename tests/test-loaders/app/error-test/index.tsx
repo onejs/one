@@ -17,7 +17,9 @@ export default function ErrorTestPage() {
     <YStack padding="$4">
       <Text testID="error-test-page-data">Page data: {JSON.stringify(data)}</Text>
       <Text testID="error-test-matches-count">Matches: {matches.length}</Text>
-      <Text testID="error-test-page-match">Page match: {JSON.stringify(pageMatch?.loaderData)}</Text>
+      <Text testID="error-test-page-match">
+        Page match: {JSON.stringify(pageMatch?.loaderData)}
+      </Text>
       <Text testID="error-test-all-matches">{JSON.stringify(matches)}</Text>
     </YStack>
   )

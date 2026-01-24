@@ -150,7 +150,6 @@ prefetchCSS()
     // Build matches array for useMatches() hook
     const matches: One.RouteMatch[] = []
 
-
     // Run layout loaders in parallel
     if (foundRoute.layouts?.length) {
       const layoutResults = await Promise.all(
@@ -160,14 +159,19 @@ prefetchCSS()
             if (!layoutServerPath) {
               return { contextKey: layout.contextKey, loaderData: undefined }
             }
-            const layoutExported = await import(toAbsolute(join('./', 'dist/server', layoutServerPath)))
+            const layoutExported = await import(
+              toAbsolute(join('./', 'dist/server', layoutServerPath))
+            )
             const layoutLoaderData = await layoutExported?.loader?.(loaderProps)
             return { contextKey: layout.contextKey, loaderData: layoutLoaderData }
           } catch (err) {
             if (isResponse(err)) {
               throw err
             }
-            console.warn(`[one] Warning: layout loader failed for ${layout.contextKey}:`, err)
+            console.warn(
+              `[one] Warning: layout loader failed for ${layout.contextKey}:`,
+              err
+            )
             return { contextKey: layout.contextKey, loaderData: undefined }
           }
         })
