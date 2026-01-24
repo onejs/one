@@ -27,9 +27,15 @@ export default function NestedPage() {
     <YStack padding="$4" gap="$2">
       <Text testID="nested-page-data">Page: {JSON.stringify(data)}</Text>
       <Text testID="nested-total-matches">Total matches: {matches.length}</Text>
-      <Text testID="nested-level1-data">Level1 data: {JSON.stringify(level1Match?.loaderData)}</Text>
-      <Text testID="nested-level2-data">Level2 data: {JSON.stringify(level2Match?.loaderData)}</Text>
-      <Text testID="nested-page-match-data">Page match data: {JSON.stringify(pageMatch?.loaderData)}</Text>
+      <Text testID="nested-level1-data">
+        Level1 data: {JSON.stringify(level1Match?.loaderData)}
+      </Text>
+      <Text testID="nested-level2-data">
+        Level2 data: {JSON.stringify(level2Match?.loaderData)}
+      </Text>
+      <Text testID="nested-page-match-data">
+        Page match data: {JSON.stringify(pageMatch?.loaderData)}
+      </Text>
       <Text testID="all-matches">{JSON.stringify(matches)}</Text>
     </YStack>
   )

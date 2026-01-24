@@ -4,7 +4,7 @@ title: "<SafeAreaView />"
 
 `SafeAreaView` renders content within the safe area boundaries of a device, avoiding notches, status bars, and home indicators.
 
-One exports `SafeAreaView` from [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context), which works on both web and native.
+One provides safe area support via a lightweight implementation for web (`@vxrn/safe-area`) and uses [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) on native. The web implementation is optimized for bundle size and doesn't require native module dependencies.
 
 ## Usage
 
@@ -79,9 +79,9 @@ Returns `{ top, right, bottom, left }` in pixels.
 
 ## Platform Behavior
 
-- **Web**: Uses CSS `env(safe-area-inset-*)` for notched devices
-- **iOS**: Accounts for status bar, notch/Dynamic Island, and home indicator
-- **Android**: Accounts for status bar, navigation bar, and display cutouts
+- **Web**: Uses a lightweight custom implementation (`@vxrn/safe-area`) that reads CSS `env(safe-area-inset-*)` values. This is automatically aliased from `react-native-safe-area-context` on web, reducing bundle size while maintaining full API compatibility.
+- **iOS**: Uses native safe area APIs via `react-native-safe-area-context`, accounting for status bar, notch/Dynamic Island, and home indicator
+- **Android**: Uses native safe area APIs, accounting for status bar, navigation bar, and display cutouts
 
 One automatically sets up `SafeAreaProvider` - no additional setup needed.
 

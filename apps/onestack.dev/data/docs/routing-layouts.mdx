@@ -6,13 +6,27 @@ Layout files can be placed in any folder inside the `./app` directory. They serv
 
 <RouteTree
   routes={[
-    { name: '_layout.tsx', description: 'Wraps all files in this directory and below', highlight: true },
+    {
+      name: '_layout.tsx',
+      description: 'Wraps all files in this directory and below',
+      highlight: true,
+    },
     { name: 'index.tsx', description: 'Matches "/"' },
-    { name: 'blog', children: [
-      { name: '_layout.tsx', description: 'A custom sub-layout for all /blog pages', highlight: true },
-      { name: 'index.tsx', description: 'Matches "/blog"' },
-      { name: '[slug].tsx', description: 'Matches a single sub-path of "/blog", like "/blog/hello"' }
-    ] },
+    {
+      name: 'blog',
+      children: [
+        {
+          name: '_layout.tsx',
+          description: 'A custom sub-layout for all /blog pages',
+          highlight: true,
+        },
+        { name: 'index.tsx', description: 'Matches "/blog"' },
+        {
+          name: '[slug].tsx',
+          description: 'Matches a single sub-path of "/blog", like "/blog/hello"',
+        },
+      ],
+    },
   ]}
 />
 
@@ -29,9 +43,7 @@ This looks something like this at the simplest:
 import { Slot } from 'one'
 
 export default function Layout() {
-  return (
-   <Slot />
-  )
+  return <Slot />
 }
 ```
 
@@ -45,7 +57,7 @@ import { useLoader, Slot } from 'one'
 export async function loader() {
   return {
     navItems: await fetchDocsNavigation(),
-    version: await fetchCurrentVersion()
+    version: await fetchCurrentVersion(),
   }
 }
 
@@ -79,7 +91,9 @@ export default function DocsLayout() {
 
   return (
     <div>
-      <main><Slot /></main>
+      <main>
+        <Slot />
+      </main>
       <TableOfContents headings={headings} />
     </div>
   )
@@ -90,14 +104,16 @@ See [useMatches](/docs/hooks-useMatches) for more details.
 
 ### Layout Loader Caching
 
-On client-side navigation, layout loaders do not re-run - their data is cached from the initial page load. Only the destination page's loader runs. This is similar to TanStack Router's default behavior and is intentional for performance, as layout data (navigation items, site config) rarely changes.
+On client-side navigation, layout loaders do not re-run - their data is cached from the initial page load. Only the destination page's loader runs. This is intentional for performance, as layout data (navigation items, site config) rarely changes.
 
 **When layout loaders DO re-run:**
+
 - Full page loads (initial visit, hard refresh)
 - SSR page requests (each request runs all matched loaders on server)
 - After calling `window.location.reload()`
 
 **When layout loaders DON'T re-run:**
+
 - Client-side navigation via `<Link>` or `useRouter().push()`
 
 If you need fresh layout data, you can trigger a full page navigation instead of client-side navigation, or store frequently-changing data in the page loader and access it via `useMatches()`.
@@ -117,7 +133,7 @@ export default function Layout() {
       <head>
         <meta charSet="utf-8" />
       </head>
-      
+
       <body>
         <Slot />
       </body>
@@ -156,11 +172,18 @@ If you'd like to logically group together some pages without creating a sub-rout
   routes={[
     { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
     { name: 'index.tsx', description: 'Matches "/"' },
-    { name: '(blog)', highlight: true, children: [
-      { name: '_layout.tsx', description: 'A custom sub-layout for all /blog pages' },
-      { name: 'blog.tsx', description: 'Matches "/blog"' },
-      { name: '[slug].tsx', description: 'Matches a single sub-path of "/blog", like "/blog/hello"' }
-    ] },
+    {
+      name: '(blog)',
+      highlight: true,
+      children: [
+        { name: '_layout.tsx', description: 'A custom sub-layout for all /blog pages' },
+        { name: 'blog.tsx', description: 'Matches "/blog"' },
+        {
+          name: '[slug].tsx',
+          description: 'Matches a single sub-path of "/blog", like "/blog/hello"',
+        },
+      ],
+    },
   ]}
 />
 
@@ -179,11 +202,15 @@ Here's our file structure:
     { name: '_layout.tsx', description: 'Where our Tabs layout is defined' },
     { name: 'notifications.tsx', description: 'Matches "/notifications"' },
     { name: 'profile.tsx', description: 'Matches "/profile"' },
-    { name: '(feed)', highlight: true, children: [
-      { name: '_layout.tsx', description: 'Where our Stack layout is defined' },
-      { name: 'index.tsx', description: 'Matches "/"' },
-      { name: 'post-[id].tsx', description: 'Matches routes like "/post-123"' }
-    ] },
+    {
+      name: '(feed)',
+      highlight: true,
+      children: [
+        { name: '_layout.tsx', description: 'Where our Stack layout is defined' },
+        { name: 'index.tsx', description: 'Matches "/"' },
+        { name: 'post-[id].tsx', description: 'Matches routes like "/post-123"' },
+      ],
+    },
   ]}
 />
 
@@ -257,7 +284,6 @@ On Native we are defining the configuration for each sub-screen with the `Stack.
 You'll notice we are matching the `name` to the file names names of the sub-routes, without the `.tsx` extension.
 
 This will get you a nice Stack-inside-Tabs pattern that is common on native apps, all with just two layouts and a few routes.
-
 
 ## Limitations
 

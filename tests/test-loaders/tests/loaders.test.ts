@@ -726,7 +726,9 @@ describe('useMatches()', () => {
     expect(pageData).toContain('This page loader should still run')
 
     // matches should include the layout match (with undefined loaderData) and page match
-    const matchesCount = await page.textContent('[data-testid="error-test-matches-count"]')
+    const matchesCount = await page.textContent(
+      '[data-testid="error-test-matches-count"]'
+    )
     console.log('Matches count:', matchesCount)
     // should have 3 matches: root layout, error-test layout, page
     expect(matchesCount).toContain('Matches: 3')
@@ -780,7 +782,9 @@ describe('useMatches()', () => {
     await page.waitForLoadState('networkidle')
 
     // should NOT find invalid match
-    const invalidMatchFound = await page.textContent('[data-testid="invalid-match-found"]')
+    const invalidMatchFound = await page.textContent(
+      '[data-testid="invalid-match-found"]'
+    )
     expect(invalidMatchFound).toContain('no')
 
     await page.close()
