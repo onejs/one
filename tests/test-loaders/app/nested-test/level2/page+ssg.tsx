@@ -10,7 +10,7 @@ export async function loader() {
 }
 
 export default function NestedPage() {
-  const data = useLoader<typeof loader>()
+  const data = useLoader(loader)
   const matches = useMatches()
 
   // Log matches for debugging

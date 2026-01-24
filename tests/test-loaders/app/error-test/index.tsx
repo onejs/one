@@ -9,7 +9,7 @@ export async function loader() {
 }
 
 export default function ErrorTestPage() {
-  const data = useLoader<typeof loader>()
+  const data = useLoader(loader)
   const matches = useMatches()
   const pageMatch = usePageMatch()
 
