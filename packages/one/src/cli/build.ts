@@ -318,7 +318,6 @@ export async function build(args: {
       continue
     }
 
-
     // look up client chunk directly by source file path (from rollup output)
     // this is more reliable than the manifest.json which can have ambiguous keys
     const clientChunk = clientChunksBySource.get(id)
