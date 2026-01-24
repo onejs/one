@@ -750,4 +750,100 @@ describe('useMatches()', () => {
 
     await page.close()
   })
+
+  test('useMatch: finds specific route by routeId', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/hooks-test')
+    await page.waitForLoadState('networkidle')
+
+    // should find the layout match
+    const layoutMatchFound = await page.textContent('[data-testid="layout-match-found"]')
+    expect(layoutMatchFound).toContain('yes')
+
+    // layout match should have correct routeId
+    const layoutRouteId = await page.textContent('[data-testid="layout-match-routeid"]')
+    expect(layoutRouteId).toContain('matches-test/_layout')
+
+    // layout match should have loader data
+    const layoutData = await page.textContent('[data-testid="layout-match-data"]')
+    expect(layoutData).toContain('layoutTitle')
+    expect(layoutData).toContain('Matches Test Layout')
+
+    await page.close()
+  })
+
+  test('useMatch: returns undefined for non-existent routeId', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/hooks-test')
+    await page.waitForLoadState('networkidle')
+
+    // should NOT find invalid match
+    const invalidMatchFound = await page.textContent('[data-testid="invalid-match-found"]')
+    expect(invalidMatchFound).toContain('no')
+
+    await page.close()
+  })
+
+  test('usePageMatch: returns current page match', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/hooks-test')
+    await page.waitForLoadState('networkidle')
+
+    // should find page match
+    const pageMatchFound = await page.textContent('[data-testid="page-match-found"]')
+    expect(pageMatchFound).toContain('yes')
+
+    // page match routeId should contain hooks-test
+    const pageRouteId = await page.textContent('[data-testid="page-match-routeid"]')
+    expect(pageRouteId).toContain('hooks-test')
+
+    // page match should have loader data
+    const pageData = await page.textContent('[data-testid="page-match-data"]')
+    expect(pageData).toContain('pageTitle')
+    expect(pageData).toContain('Hooks Test Page')
+
+    // page match should have empty params (not a dynamic route)
+    const pageParams = await page.textContent('[data-testid="page-match-params"]')
+    expect(pageParams).toContain('{}')
+
+    await page.close()
+  })
+
+  test('hydration: matches are consistent after hydration', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/hooks-test')
+    await page.waitForLoadState('networkidle')
+
+    // get matches from hydrated page
+    const matchesText = await page.textContent('[data-testid="all-matches"]')
+    const matches = JSON.parse(matchesText || '[]')
+
+    // should have matches (root layout + matches-test layout + page = 3)
+    expect(matches.length).toBeGreaterThanOrEqual(3)
+
+    // verify structure of each match
+    for (const match of matches) {
+      expect(match).toHaveProperty('routeId')
+      expect(match).toHaveProperty('pathname')
+      expect(match).toHaveProperty('params')
+      expect(match.pathname).toBe('/matches-test/hooks-test')
+    }
+
+    // verify specific matches exist
+    const hasLayoutMatch = matches.some((m: { routeId: string }) =>
+      m.routeId.includes('matches-test/_layout')
+    )
+    const hasPageMatch = matches.some((m: { routeId: string }) =>
+      m.routeId.includes('hooks-test')
+    )
+
+    expect(hasLayoutMatch).toBe(true)
+    expect(hasPageMatch).toBe(true)
+
+    await page.close()
+  })
 })
