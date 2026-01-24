@@ -37,6 +37,7 @@
 - [x] Bug fix: doubled `dist/server` path in loader imports (production server)
 - [x] Bug fix: loader error handling in dev server (graceful degradation)
 - [x] Bug fix: test ports now use high range (9444-9999) to avoid conflicts
+- [x] Bug fix: randomize test port range start to avoid parallel test race conditions
 - [x] Docs - documentation added to onestack.dev:
   - `hooks-useMatches.mdx` - comprehensive docs for useMatches, useMatch, usePageMatch
   - Updated `routing-layouts.mdx` - added Layout Loaders section
