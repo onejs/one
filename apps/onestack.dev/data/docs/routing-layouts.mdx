@@ -35,7 +35,64 @@ export default function Layout() {
 }
 ```
 
-As of now, layouts don't support loaders. If you need to access the current route params, you can use [the useParams hook](/docs/hooks-useParams).
+## Layout Loaders
+
+Layouts can export a `loader` function just like pages. This is useful for fetching data that's shared across all routes in that layout:
+
+```tsx fileName=app/docs/_layout.tsx
+import { useLoader, Slot } from 'one'
+
+export async function loader() {
+  return {
+    navItems: await fetchDocsNavigation(),
+    version: await fetchCurrentVersion()
+  }
+}
+
+export default function DocsLayout() {
+  const data = useLoader(loader)
+
+  return (
+    <div>
+      <Sidebar items={data.navItems} version={data.version} />
+      <main>
+        <Slot />
+      </main>
+    </div>
+  )
+}
+```
+
+Layout loaders run in parallel with page loaders for optimal performance. All matched route loaders (root layout → nested layouts → page) execute simultaneously.
+
+### Accessing Page Data from a Layout
+
+Use `useMatches` to access the current page's loader data from a layout:
+
+```tsx fileName=app/docs/_layout.tsx
+import { useMatches, Slot } from 'one'
+
+export default function DocsLayout() {
+  const matches = useMatches()
+  const pageMatch = matches[matches.length - 1]
+  const headings = pageMatch?.loaderData?.headings
+
+  return (
+    <div>
+      <main><Slot /></main>
+      <TableOfContents headings={headings} />
+    </div>
+  )
+}
+```
+
+See [useMatches](/docs/hooks-useMatches) for more details.
+
+### Layout Loader Caching
+
+On client-side navigation, layout loaders do not re-run - their data is cached from the initial page load. Only the destination page's loader runs. This is intentional for performance, as layout data (navigation items, site config) rarely changes.
+
+If you need to access the current route params in a layout, you can use [the useActiveParams hook](/docs/hooks-useActiveParams).
 
 ## Root Layout
 
@@ -194,6 +251,4 @@ This will get you a nice Stack-inside-Tabs pattern that is common on native apps
 
 ## Limitations
 
-As of today layouts don't support loaders. This is on our radar, please [chime in](https://github.com/onejs/one/discussions/376) if this is helpful for you.
-
-Also note that `useParams` won't work in layouts, as they are never nested inside a route. Instead, you can use `useActiveParams`.
+Note that `useParams` won't work in layouts, as they are never nested inside a route. Instead, you can use `useActiveParams`.
