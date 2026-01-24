@@ -90,7 +90,17 @@ See [useMatches](/docs/hooks-useMatches) for more details.
 
 ### Layout Loader Caching
 
-On client-side navigation, layout loaders do not re-run - their data is cached from the initial page load. Only the destination page's loader runs. This is intentional for performance, as layout data (navigation items, site config) rarely changes.
+On client-side navigation, layout loaders do not re-run - their data is cached from the initial page load. Only the destination page's loader runs. This is similar to TanStack Router's default behavior and is intentional for performance, as layout data (navigation items, site config) rarely changes.
+
+**When layout loaders DO re-run:**
+- Full page loads (initial visit, hard refresh)
+- SSR page requests (each request runs all matched loaders on server)
+- After calling `window.location.reload()`
+
+**When layout loaders DON'T re-run:**
+- Client-side navigation via `<Link>` or `useRouter().push()`
+
+If you need fresh layout data, you can trigger a full page navigation instead of client-side navigation, or store frequently-changing data in the page loader and access it via `useMatches()`.
 
 If you need to access the current route params in a layout, you can use [the useActiveParams hook](/docs/hooks-useActiveParams).
 
