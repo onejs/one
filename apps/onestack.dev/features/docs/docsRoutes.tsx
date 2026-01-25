@@ -31,6 +31,7 @@ export const docsRoutes = [
       { title: 'Layouts', route: '/docs/routing-layouts' },
       { title: 'Loaders', route: '/docs/routing-loader' },
       { title: 'Middlewares', route: '/docs/routing-middlewares' },
+      { title: 'Route Masking', route: '/docs/routing-route-masking' },
       { title: 'Typed Routes', route: '/docs/routing-typed-routes' },
     ],
   },
