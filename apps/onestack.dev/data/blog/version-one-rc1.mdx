@@ -13,14 +13,19 @@ by: nate
   become.
 </IntroParagraph>
 
-One makes building apps for both web and native a delight, bringing simplicity and sanity to
-what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes.
+One makes building apps for both web and native a delight, bringing simplicity and sanity to what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes.
 
-Thanks to a lot of investment, we've achieved something remarkable: **stability**, and **class-leading performance**. Not bad a for a side project!
+Get started a simply as:
 
-Thanks to per-page render modes and a variety of optimizations, One makes it possible for the first time to **get 100 on your Lighthouse performance score, even on hydrated pages that share all code with native**.
+```bash
+npx one
+```
 
-One is **a uniquely great framework even if you are only targeting web**. In a world haunted by complexity, One punches above it's weight by _focusing_: it only supports React: not multiple frameworks, no RSC, no magic directives. With much development, it now has a featureset to rival any modern web framework.
+We've invested a lot to achieve **stability**, **many new features**, and **some class-leading performance numbers**.
+
+Thanks to per-page render modes and a variety of optimizations, One makes it possible for the first time to **get 100 on your Lighthouse performance score without trouble, even on hydrated pages that share UI with native**.
+
+One is a uniquely great framework **even if you are only targeting web**. In a world haunted by complexity, One simplifies by _focusing_: it only supports React, not multiple frameworks, and it's always taken a principled stand against RSC or magic directives. One now has a feature-set that rivals any modern web framework.
 
 Some highlights:
 
@@ -40,9 +45,12 @@ Some highlights:
   getServerData](/docs/helpers-utility-functions)** for advanced data loading.
 - <New /> **[setResponseHeaders](/docs/helpers-utility-functions#setresponseheaders)** for
   ISR/caching via CDN cache headers, cookies, and custom response headers.
-- <New /> Automatic **[NativeWind](https://www.nativewind.dev)** and **[Reanimated](https://docs.swmansion.com/react-native-reanimated)** detection and support.
-- <New /> **[Advanced script loading strategies](/docs/configuration#webexperimental_scriptloading)** that
-  significantly improve Lighthouse scores.
+- <New /> Automatic **[NativeWind](https://www.nativewind.dev)** and
+  **[Reanimated](https://docs.swmansion.com/react-native-reanimated)** detection and
+  support.
+- <New /> **[Advanced script loading
+  strategies](/docs/configuration#webexperimental_scriptloading)** that significantly
+  improve Lighthouse scores.
 - <New /> **[Loader HMR](/docs/routing-loader#hot-reload-for-file-dependencies)** with
   `watchFile` for instant content updates during development.
 - <New /> **[Image data imports](/docs/guides-images)** with `?imagedata` suffix for
@@ -61,9 +69,9 @@ Some highlights:
   in the browser while navigating to complex routes, perfect for modals and side panels.
 - <New /> **[Scroll Position Groups](/docs/hooks-useScrollGroup)** - Preserve scroll
   position when navigating between child routes in nested layouts.
-- <New /> **[LCP Optimization and CSS inlining](/docs/configuration#webinlinelayoutcss)** - Inline layout CSS for a great hybrid mix
-  of first-load performance and caching, and optimize LCP for 30+% improved Lighthouse
-  scores.
+- <New /> **[LCP Optimization and CSS inlining](/docs/configuration#webinlinelayoutcss)**
+  - Inline layout CSS for a great hybrid mix of first-load performance and caching, and
+  optimize LCP for 30+% improved Lighthouse scores.
 - <New /> **[Smart Link Prefetching](/docs/configuration#weblinkprefetch)** - Predicts
   which link you're moving toward using mouse trajectory, prefetching before you hover.
 - <New /> **[useSearchParams](/docs/hooks-useSearchParams)** - Standard URLSearchParams

@@ -5,7 +5,7 @@ import './tamagui.css'
 
 import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot, usePathname } from 'one'
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 import { TamaguiProvider, useTheme } from 'tamagui'
 import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
@@ -15,6 +15,8 @@ import { Footer } from '../features/site/Footer'
 import { ContainerSm } from '../features/site/Containers'
 
 export default function Layout() {
+  const layoutId = useId()
+  console.log(`[DEBUG _layout] render useId=${layoutId}`)
   return (
     <html lang="en-US">
       <head>
@@ -60,6 +62,8 @@ const ConditionalFooter = () => {
 
 const ThemeProvider = ({ children }) => {
   const userScheme = useUserScheme()
+  const themeProviderId = useId()
+  console.log(`[DEBUG ThemeProvider] render useId=${themeProviderId}`)
 
   return (
     <>
