@@ -59,7 +59,7 @@ Out of the box, the One Vite plugin does the following:
 - Adds `serve` command that sets up a [Hono](https://hono.dev/) server for production
 - Implements SPA, SSG, and SSR style routing on a [per-page and global basis](/docs/render-modes)
 - Server rendering - find JS and CSS for all nested routes and layouts and hoists it to header to avoid waterfalls and flickering
-- Automatically preloads next page JS when hovering a link or navigating to a new route, including loaders
+- Smart [link prefetching](/docs/configuration#weblinkprefetch) that predicts navigation using mouse trajectory
   - Doesn't require up-front route map so no scaling cost
 - Automatically handles scroll restoration and [allows configuration](/docs/components-ScrollBehavior)
 - Adds [scroll position groups](/docs/hooks-useScrollGroup) for independent scroll areas

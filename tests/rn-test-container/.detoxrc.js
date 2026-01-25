@@ -12,25 +12,29 @@ module.exports = {
   apps: {
     'ios.debug': {
       type: 'ios.app',
-      binaryPath: 'ios/build/Debug/Build/Products/Debug-iphonesimulator/RNTestContainer.app',
+      binaryPath:
+        'ios/build/Debug/Build/Products/Debug-iphonesimulator/RNTestContainer.app',
       build:
         'xcodebuild -workspace ios/RNTestContainer.xcworkspace -scheme RNTestContainer -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build/Debug',
     },
     'ios.release': {
       type: 'ios.app',
-      binaryPath: 'ios/build/Release/Build/Products/Release-iphonesimulator/RNTestContainer.app',
+      binaryPath:
+        'ios/build/Release/Build/Products/Release-iphonesimulator/RNTestContainer.app',
       build:
         'xcodebuild -workspace ios/RNTestContainer.xcworkspace -scheme RNTestContainer -configuration Release -sdk iphonesimulator -derivedDataPath ios/build/Release',
     },
     'android.debug': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
-      build: 'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug',
+      build:
+        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug',
     },
     'android.release': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
-      build: 'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release',
+      build:
+        'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release',
     },
   },
   devices: {

@@ -717,45 +717,43 @@ export function getPreloadHistory(): PreloadEntry[] {
 }
 
 export function preloadRoute(href: string, injectCSS = false): Promise<any> | undefined {
-  if (process.env.TAMAGUI_TARGET === 'native') {
-    return
-  }
+  if (process.env.TAMAGUI_TARGET !== 'native') {
+    // in dev mode, use a simpler preload that just fetches the loader directly
+    // this avoids issues with production-only preload paths while still ensuring
+    // loader data is available before navigation completes
+    if (process.env.NODE_ENV === 'development') {
+      // normalize the path to match what useLoader uses for cache keys
+      const normalizedHref = normalizeLoaderPath(href)
+      if (!preloadingLoader[normalizedHref]) {
+        preloadingLoader[normalizedHref] = doPreloadDev(href).then((data) => {
+          preloadedLoaderData[normalizedHref] = data
+          return data
+        })
+      }
+      return preloadingLoader[normalizedHref]
+    }
 
-  // in dev mode, use a simpler preload that just fetches the loader directly
-  // this avoids issues with production-only preload paths while still ensuring
-  // loader data is available before navigation completes
-  if (process.env.NODE_ENV === 'development') {
-    // normalize the path to match what useLoader uses for cache keys
-    const normalizedHref = normalizeLoaderPath(href)
-    if (!preloadingLoader[normalizedHref]) {
-      preloadingLoader[normalizedHref] = doPreloadDev(href).then((data) => {
-        preloadedLoaderData[normalizedHref] = data
+    if (!preloadingLoader[href]) {
+      preloadingLoader[href] = doPreload(href).then((data) => {
+        // Store the resolved data for synchronous access
+        preloadedLoaderData[href] = data
         return data
       })
     }
-    return preloadingLoader[normalizedHref]
-  }
 
-  if (!preloadingLoader[href]) {
-    preloadingLoader[href] = doPreload(href).then((data) => {
-      // Store the resolved data for synchronous access
-      preloadedLoaderData[href] = data
-      return data
-    })
-  }
+    if (injectCSS) {
+      // Wait for preload to populate cssInjectFunctions, then inject CSS (max 800ms)
+      return preloadingLoader[href]?.then(async (data) => {
+        const inject = cssInjectFunctions[href]
+        if (inject) {
+          await Promise.race([inject(), new Promise((r) => setTimeout(r, 800))])
+        }
+        return data
+      })
+    }
 
-  if (injectCSS) {
-    // Wait for preload to populate cssInjectFunctions, then inject CSS (max 500ms)
-    return preloadingLoader[href]?.then(async (data) => {
-      const inject = cssInjectFunctions[href]
-      if (inject) {
-        await Promise.race([inject(), new Promise((r) => setTimeout(r, 500))])
-      }
-      return data
-    })
+    return preloadingLoader[href]
   }
-
-  return preloadingLoader[href]
 }
 
 // normalize path to match what useLoader uses for currentPath
