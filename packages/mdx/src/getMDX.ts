@@ -7,6 +7,7 @@ import { getHeadings } from './getHeadings'
 import { processImageMeta } from './processImageMeta'
 import { rehypeHighlightCode } from './rehypeHighlightCode'
 import rehypeMetaAttribute from './rehypeMetaAttribute'
+import { remarkSmartypantsFixed } from './remarkSmartypantsFixed'
 import type { Frontmatter, ImageMeta, UnifiedPlugin } from './types'
 
 export type GetMDXOptions = {
@@ -27,7 +28,11 @@ export async function getMDX(
   const { frontmatter, code } = await bundleMDX({
     source,
     mdxOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm]
+      options.remarkPlugins = [
+          ...(options.remarkPlugins ?? []),
+          remarkGfm,
+          remarkSmartypantsFixed,
+        ]
       const plugins = [
         ...(opts.extraPlugins || []),
         ...(options.rehypePlugins ?? []),
