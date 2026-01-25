@@ -164,6 +164,36 @@ export default {
 
 Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) automatically, accessible in your apps and website. For TypeScript support, add `/// <reference types="one/env" />` to get typed access to these variables.
 
+## setupFile
+
+Path to a JS or TS file to import before the rest of your app runs. One controls your root component, but you may want to run some initialization code before anything else.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      // Single file for all environments
+      setupFile: './setup.ts',
+
+      // Or different files per environment
+      setupFile: {
+        client: './setup.client.ts',
+        server: './setup.server.ts',
+        native: './setup.native.ts',
+      },
+
+      // Or with platform-specific native files
+      setupFile: {
+        client: './setup.client.ts',
+        server: './setup.server.ts',
+        ios: './setup.ios.ts',
+        android: './setup.android.ts',
+      },
+    }),
+  ],
+}
+```
+
 ## native
 
 The native object allows you to configure your native apps.
@@ -188,6 +218,24 @@ Choose the bundler for native builds. Options are:
 - Standard React Native bundling behavior
 
 For detailed information including limitations, configuration options, and performance considerations, see the [Metro Mode documentation](/docs/metro-mode).
+
+### native.css
+
+Enables [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      native: {
+        css: true,
+      },
+    }),
+  ],
+}
+```
+
+**Default:** `false`
 
 ## web
 
@@ -252,6 +300,74 @@ export default {
 
 - **`false`**: Disables link prefetching entirely.
 
+### web.deploy
+
+Deployment target for production builds. Determines how the server bundle is built.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        deploy: 'vercel', // or 'node' or 'cloudflare'
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'node'`** (default): Standard Node.js server using Hono
+- **`'vercel'`**: Vercel serverless functions
+- **`'cloudflare'`**: Cloudflare Workers
+
+### web.inlineLayoutCSS
+
+When enabled, inlines CSS content directly into the HTML instead of using `<link>` tags. This eliminates an extra network request for CSS, improving LCP (Largest Contentful Paint) scores.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        inlineLayoutCSS: true,
+      },
+    }),
+  ],
+}
+```
+
+This is particularly effective for layout CSS that's critical for the initial render. Combined with `experimental_scriptLoading`, you can achieve significant Lighthouse score improvements.
+
+**Default:** `false`
+
+### web.experimental_scriptLoading
+
+Controls how scripts are loaded for improved performance. This is an experimental feature that can significantly improve Lighthouse scores by deferring non-critical JavaScript.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        experimental_scriptLoading: 'after-lcp',
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'defer-non-critical'`**: Critical scripts (framework entry, page, layouts) load immediately. Non-critical scripts (component imports, utilities) become modulepreload hints only, reducing network/CPU contention.
+
+- **`'after-lcp'`**: Scripts download immediately via modulepreload but execution is deferred until after first paint using double requestAnimationFrame. This allows the browser to paint the SSR content before executing JavaScript. Only applies to SSG pages.
+
+- **`'after-lcp-aggressive'`**: Only modulepreloads critical scripts (entry, layouts). Non-critical scripts have no modulepreload hints, reducing network saturation. Best for pages with many chunks or slow networks.
+
+**Default:** `undefined` (all scripts load with async)
+
 ### web.sitemap
 
 Generate a `sitemap.xml` file automatically during build. This helps search engines discover and index your pages.
@@ -296,9 +412,75 @@ The sitemap automatically:
 
 ## react
 
-### compiler: boolean
+### react.compiler
 
 Enables the new [React Compiler](https://react.dev/learn/react-compiler) for both native and web. Will slow down compilation as it uses Babel, but will improve app performance and reduce the need to write memoization.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      react: {
+        compiler: true, // enable for all platforms
+        // or
+        compiler: 'web', // enable only for web
+        // or
+        compiler: 'native', // enable only for native
+      },
+    }),
+  ],
+}
+```
+
+**Default:** `false`
+
+## optimization
+
+Performance optimization options.
+
+### optimization.barrel
+
+Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel). Optimizes barrel export files to speed up your build. You must list the packages that have barrel exports. Especially useful for icon packs.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      optimization: {
+        barrel: ['@tamagui/lucide-icons', 'my-icon-package'],
+      },
+    }),
+  ],
+}
+```
+
+**Default:** `['@tamagui/lucide-icons']`
+
+### optimization.autoEntriesScanning
+
+By default, One scans your file system routes and adds them as Vite `entries`. This prevents some hard reloads on web as you navigate to new pages, but can slow down startup.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      optimization: {
+        autoEntriesScanning: 'flat', // only root-level routes (default)
+        // or
+        autoEntriesScanning: true, // scan all routes
+        // or
+        autoEntriesScanning: false, // disable scanning
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'flat'`** (default): Automatically adds just the routes at the root of your app but nothing nested in non-group folders below that
+- **`true`**: Scans and adds all routes as entries
+- **`false`**: Disables auto-scanning entirely
 
 ## devtools
 
@@ -526,6 +708,62 @@ const route = createRoute<'/your/[route]'>()
 The insertion happens automatically when route files are created or modified, with proper spacing and without modifying your existing code.
 
 For more information, see the [Typed Routes documentation](/docs/routing-typed-routes).
+
+### router.experimental.preventLayoutRemounting
+
+When enabled, the router will try to avoid unnecessary remounts of `_layout` components during navigation.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      router: {
+        experimental: {
+          preventLayoutRemounting: true,
+        },
+      },
+    }),
+  ],
+}
+```
+
+This modifies the `<Slot />` navigator to set a static `key` on screen elements, preventing React from remounting them. This is still experimental as it may cause unexpected side effects in some cases.
+
+**Default:** `false`
+
+## ssr
+
+Server-side rendering configuration.
+
+### ssr.autoDepsOptimization
+
+One scans dependencies on startup and decides which ones to optimize based on known problematic dependencies. These include `react-native` and `react`, which need to be optimized to work. It finds all parent dependencies of the known bad deps and adds them to `ssr.optimizeDeps.include`.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      ssr: {
+        // Enable with default include pattern (default)
+        autoDepsOptimization: true,
+
+        // Disable entirely
+        autoDepsOptimization: false,
+
+        // Configure include/exclude patterns
+        autoDepsOptimization: {
+          include: /node_modules/,
+          exclude: /some-package/,
+        },
+      },
+    }),
+  ],
+}
+```
+
+**Note:** The full path (e.g., `<your_project_path>/node_modules/<some_package>`) is used to match dependencies. If you're using a string to match a package name, you may want to add `*/` at the start and `/*` at the end.
+
+**Default:** `{ include: /node_modules/ }`
 
 ## The Environment API
 

@@ -142,7 +142,9 @@ export function findAllRouteNodesFromState(
   const nodes: RouteNode[] = []
 
   function collectNodes(
-    currentState: { routes: Array<{ name: string; state?: any; params?: Record<string, any> }> } | undefined,
+    currentState:
+      | { routes: Array<{ name: string; state?: any; params?: Record<string, any> }> }
+      | undefined,
     parentNode: RouteNode | null
   ) {
     if (!currentState || !parentNode) {
@@ -159,7 +161,12 @@ export function findAllRouteNodesFromState(
     const matchingNode = findNodeByRouteName(parentNode, currentRoute.name)
     if (!matchingNode) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('[one] findAllRouteNodesFromState: could not find node for', currentRoute.name, 'in', parentNode.route)
+        console.log(
+          '[one] findAllRouteNodesFromState: could not find node for',
+          currentRoute.name,
+          'in',
+          parentNode.route
+        )
       }
       return
     }
@@ -191,4 +198,3 @@ export function findAllRouteNodesFromState(
   collectNodes(state, rootNode)
   return nodes
 }
-
