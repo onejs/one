@@ -8,6 +8,25 @@ export function findIosBuiltAppFromXcode(
 ) {
   const { workspace, scheme } = findXcworkspaceAndScheme(projectRoot)
 
+  // first check custom build directory used by build-ios.sh script
+  // the build script uses -derivedDataPath ios/build/${config}
+  const customBuildPath = join(
+    projectRoot,
+    'ios',
+    'build',
+    buildConfig,
+    'Build',
+    'Products',
+    `${buildConfig}-iphonesimulator`,
+    `${scheme}.app`
+  )
+
+  if (existsSync(customBuildPath)) {
+    console.info(`Using built app from custom build path: ${customBuildPath}`)
+    return customBuildPath
+  }
+
+  // fallback to querying xcode's default derived data location
   const buildSettings = (() => {
     try {
       return execSync(

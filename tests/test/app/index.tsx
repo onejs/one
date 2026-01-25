@@ -42,7 +42,9 @@ export default () => {
         native-setup: {setupStatus.native ? 'true' : 'false'}
       </Text>
 
-      <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
+      <Paragraph testID="test-loader" accessibilityLabel={`test-loader: ${JSON.stringify(data)}`}>
+        {JSON.stringify(data)}
+      </Paragraph>
 
       <TestNavigationHelper />
 

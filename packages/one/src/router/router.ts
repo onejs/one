@@ -37,6 +37,7 @@ import {
   extractPathnameFromHref,
   extractSearchFromHref,
   findRouteNodeFromState,
+  findAllRouteNodesFromState,
 } from './findRouteNode'
 import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
@@ -399,6 +400,16 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
       console.info(`[one] 🧭 ${from} → ${to}`, params ? { params } : '')
     }
     routeInfo = nextRouteInfo
+
+    // On native, update client matches when route changes
+    // This enables useMatches to work for initial route and navigation
+    // Loader data will be undefined initially (fetched by useLoader)
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      const params = extractParamsFromState(state)
+      const newMatches = buildNativeMatches(state, nextRouteInfo.pathname, params)
+      currentMatches = newMatches
+      setClientMatches(newMatches)
+    }
   }
 
   // Expose devtools API in development
@@ -796,6 +807,25 @@ function buildClientMatches(
 }
 
 /**
+ * Build all matches for native, including layouts and page.
+ * Unlike web which preserves SSR-hydrated layouts, native builds fresh
+ * since there's no SSR context to hydrate from.
+ */
+function buildNativeMatches(
+  state: OneRouter.ResultState,
+  pathname: string,
+  params: Record<string, string | string[]>
+): RouteMatch[] {
+  const allNodes = findAllRouteNodesFromState(state, routeNode)
+  return allNodes.map((node) => ({
+    routeId: node.contextKey || pathname,
+    pathname,
+    params,
+    loaderData: undefined, // loader data is fetched async by useLoader on native
+  }))
+}
+
+/**
  * Initialize client matches from server context during hydration.
  * Called from createApp when hydrating.
  */
@@ -956,15 +986,14 @@ export async function linkTo(
   }
 
   // Update client matches for useMatches hook
-  // This runs after preload so loaderData is available
-  if (process.env.TAMAGUI_TARGET !== 'native') {
-    const normalizedPath = normalizeLoaderPath(href)
-    const loaderData = preloadedLoaderData[normalizedPath]
-    const params = extractParamsFromState(state)
-    const newMatches = buildClientMatches(href, matchingRouteNode, params, loaderData)
-    currentMatches = newMatches
-    setClientMatches(newMatches)
-  }
+  // On web: runs after preload so loaderData is available
+  // On native: runs without preloaded data (loaders are fetched by useLoader)
+  const normalizedPath = normalizeLoaderPath(href)
+  const loaderData = preloadedLoaderData[normalizedPath]
+  const params = extractParamsFromState(state)
+  const newMatches = buildClientMatches(href, matchingRouteNode, params, loaderData)
+  currentMatches = newMatches
+  setClientMatches(newMatches)
 
   const rootState = navigationRef.getRootState()
 

@@ -28,4 +28,15 @@ export declare function extractSearchFromHref(href: string): Record<string, stri
  * Extract pathname from href string.
  */
 export declare function extractPathnameFromHref(href: string): string;
+/**
+ * Find all route nodes from root to the current page based on navigation state.
+ * Returns an array of RouteNodes in order from root layout to the page.
+ * This is used on native to build the full matches array including layouts.
+ */
+export declare function findAllRouteNodesFromState(state: {
+    routes: Array<{
+        name: string;
+        state?: any;
+    }>;
+} | undefined, rootNode: RouteNode | null): RouteNode[];
 //# sourceMappingURL=findRouteNode.d.ts.map
