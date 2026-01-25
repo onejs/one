@@ -1,0 +1,13 @@
+---
+title: href
+---
+
+A simple function allows for creating typed route strings. It's a type-level only check, at runtime it only validates that it is a string.
+
+```tsx
+import { href } from 'one'
+
+const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
+```
+
+This is useful for ensuring your links are valid routes in your application at compile time.

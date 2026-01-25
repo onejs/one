@@ -110,7 +110,7 @@ const SubSection = ({
   }
 
   if (!section.title) {
-    return wrapper(<YStack mb="$1">{content}</YStack>)
+    return wrapper(<YStack mb="$-2">{content}</YStack>)
   }
 
   return wrapper(

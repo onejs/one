@@ -1,0 +1,17 @@
+---
+title: redirect
+---
+
+A function that takes two arguments: a string `path`, and a number `status`.
+
+```tsx
+import { redirect } from 'one'
+
+export function redirectToLogin() {
+  return redirect('/login')
+}
+```
+
+It accepts relative paths by using the [`getURL`](/docs/helpers-getURL) helper internally.
+
+On the server (including in loaders) it returns a `Response.redirect` object. On the client it calls `router.navigate` and returns void.

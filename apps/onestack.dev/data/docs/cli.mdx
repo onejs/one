@@ -1,0 +1,137 @@
+---
+title: CLI
+---
+
+One provides a simple CLI for development, building, and serving your apps.
+
+## one dev
+
+Developing an app with One is as simple as `one dev`.
+
+```bash
+one dev [options]
+
+--clean    # clear all caches before running
+--host     # set the hostname to bind to
+--port     # set the port to bind to
+--debug    # turns on vite debugging
+```
+
+The One development server serves both web and native apps on the same port at the same time, and should hot reload both at once. When you see the `Server running on` message with a host and port, that is the same for both native and web.
+
+### Native Development
+
+The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. For native development you have two options:
+
+**Using Expo Go** - For quick development without custom native dependencies, install [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779) on your device. It will auto-detect from your simulator, or press <kbd>q</kbd>, <kbd>r</kbd> in the terminal to open the app.
+
+**Building the Native Shell** - If you need custom native dependencies, you'll need to build the native shell first:
+
+1. Run `one prebuild` to generate the native Xcode/Android project
+2. Run `one run:ios` or `one run:android` to build and launch the app
+
+See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide for detailed instructions.
+
+---
+
+## one build
+
+Building your app for production happens through `one build`.
+
+```bash
+one build [web | ios | android]
+```
+
+The first argument is the platform, which defaults to `web`. To build for iOS:
+
+```bash
+npx one build ios
+```
+
+### Building for web
+
+When building One for web, the output will be a mostly static directory of HTML, CSS, and JavaScript. Internally, One runs a few different Vite production builds to output client, server, and API folders. This output is always in the `dist` directory.
+
+Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL:
+
+```
+ONE_SERVER_URL=https://onestack.dev
+```
+
+We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server via your Vite configuration:
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        deploy: 'vercel' // defaults to 'node'
+      }
+    })
+  ]
+}
+```
+
+For detailed deployment instructions, see the [Deployment Guide](/docs/guides-deployment).
+
+If you are only using SPA and SSG routes and aren't using loaders, you can statically serve the results of `dist/client` using any server you'd like.
+
+### Building for native
+
+We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.
+
+If you're familiar with EAS, see how to [Build and Deliver Native Apps with EAS](/docs/guides-eas).
+
+Or check out the [iOS Native Guide](/docs/guides-ios-native) for instructions on building your iOS app with Xcode.
+
+---
+
+## one serve
+
+Serve your web apps for production with `one serve`, after you've successfully run `one build`.
+
+```bash
+one serve [options]
+
+--host          # set the hostname to bind to
+--port          # set the port to bind to
+--compress      # enable gzip compression (default: true)
+--loadEnv       # load .env files before running
+```
+
+One comes with a serve command that is powered by [Hono](https://hono.dev).
+
+If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` - you can statically serve the results of `dist/client` using any server you'd like.
+
+You must run a `one build` before serve.
+
+### Programmatic Usage
+
+You can also run your production server programmatically:
+
+```tsx
+import { serve } from 'one/serve'
+
+await serve()
+```
+
+Which takes options:
+
+```tsx
+type ServeOptions = {
+  // you can pass in your own Hono server
+  app?: Hono
+
+  host?: string
+  port?: number
+  compress?: boolean
+
+  /**
+    * Whether to run the Vite logic to load .env files before running the server
+    * @default false
+    */
+  loadEnv?: boolean
+}
+```

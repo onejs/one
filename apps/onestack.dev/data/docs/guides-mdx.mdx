@@ -3,13 +3,21 @@ title: MDX Guide
 description: Setting up MDX for web
 ---
 
-In building out this beautiful website, and the equally beautiful [tamagui.dev](https://tamagui.dev), the surprising
-most difficult part was getting MDX to work well.
+In building out this beautiful website, and the equally beautiful [tamagui.dev](https://tamagui.dev), one of the trickier
+parts was getting MDX to work well.
 
 Since many blogs, apps, and documentation sites want to display Markdown content, we figured a guide showing how
 we did it will be useful.
 
-We think long-term someone should write a much better mdx package, as ours is simply pieced together from a bunch of packages and code we ported long ago to Next.js, but nonetheless it works. It uses a hodge-podge of [Rehype](https://github.com/rehypejs/rehype) plugins to do the trick, alongside [mdx-bundler](https://github.com/kentcdodds/mdx-bundler).
+The `@vxrn/mdx` package bundles together [Rehype](https://github.com/rehypejs/rehype) plugins alongside [mdx-bundler](https://github.com/kentcdodds/mdx-bundler) to provide a batteries-included MDX experience with:
+
+- **Syntax highlighting** via refractor
+- **GitHub Flavored Markdown** support
+- **Smart typography** via remark-smartypants (with code blocks properly preserved)
+- **Auto-linked headings** with slugified IDs
+- **Image metadata extraction** including blur placeholders
+- **Reading time** calculation
+- **Frontmatter** with heading extraction for table of contents
 
 ### Setting up your data dir
 

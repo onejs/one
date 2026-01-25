@@ -1,0 +1,15 @@
+---
+title: getURL
+---
+
+A function that takes no arguments and returns a string of the current URL of the running application on client or server.
+
+```tsx
+import { getURL } from 'one'
+
+const url = getURL()
+// Dev: "http://127.0.0.1:8081"
+// Prod: Your ONE_SERVER_URL value
+```
+
+For example, in dev-mode by default this would be a string of `http://127.0.0.1:8081`. In non-development environments you will need to set `process.env.ONE_SERVER_URL` to your production URL with no trailing `/`.

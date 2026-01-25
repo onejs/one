@@ -4,10 +4,20 @@ export const docsRoutes = [
       { title: 'Introduction', route: '/docs/introduction' },
       { title: 'Installation', route: '/docs/installation' },
       { title: 'Configuration', route: '/docs/configuration' },
-      { title: 'Environment', route: '/docs/environment' },
+      { title: 'Deployment', route: '/docs/guides-deployment' },
       { title: 'Features', route: '/docs/features' },
       { title: 'Status', route: '/docs/status' },
       { title: 'FAQ', route: '/docs/faq' },
+      { title: 'Common Issues', route: '/docs/common-issues' },
+    ],
+  },
+
+  {
+    title: 'Development',
+    pages: [
+      { title: 'Environment', route: '/docs/environment' },
+      { title: 'Metro Mode', route: '/docs/metro-mode' },
+      { title: 'CLI', route: '/docs/cli' },
     ],
   },
 
@@ -70,17 +80,11 @@ export const docsRoutes = [
   },
 
   {
-    title: 'Native',
-    pages: [{ title: 'Metro Mode', route: '/docs/metro-mode' }],
-  },
-
-  {
     title: 'Guides',
     pages: [
       { title: 'Authentication', route: '/docs/guides-authentication' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
-      { title: 'Deployment', route: '/docs/guides-deployment' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
       { title: 'Tamagui', route: '/docs/guides-tamagui' },
@@ -93,19 +97,15 @@ export const docsRoutes = [
   },
 
   {
-    title: 'CLI',
+    title: 'Helpers',
     pages: [
-      { title: 'Dev', route: '/docs/one-dev' },
-      { title: 'Build', route: '/docs/one-build' },
-      { title: 'Serve', route: '/docs/one-serve' },
-    ],
-  },
-
-  {
-    title: 'Etc',
-    pages: [
-      { title: 'Utility Functions', route: '/docs/helpers-utility-functions' },
-      { title: 'Common Issues', route: '/docs/common-issues' },
+      { title: 'redirect', route: '/docs/helpers-redirect' },
+      { title: 'getURL', route: '/docs/helpers-getURL' },
+      { title: 'isResponse', route: '/docs/helpers-isResponse' },
+      { title: 'href', route: '/docs/helpers-href' },
+      { title: 'setServerData', route: '/docs/helpers-serverData' },
+      { title: 'setResponseHeaders', route: '/docs/helpers-setResponseHeaders' },
+      { title: 'watchFile', route: '/docs/helpers-watchFile' },
     ],
   },
 ]

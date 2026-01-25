@@ -49,7 +49,7 @@ export const config = createTamagui({
     xxs: { maxWidth: 390 },
     gtXs: { minWidth: 660 + 1 },
     gtSm: { minWidth: 800 + 1 },
-    gtMd: { minWidth: 1020 + 1 },
+    gtMd: { minWidth: 980 + 1 },
     gtLg: { minWidth: 1180 + 1 },
     gtXl: { minWidth: 1450 + 1 },
   },
