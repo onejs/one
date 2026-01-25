@@ -1,0 +1,130 @@
+---
+title: useSearchParams
+---
+
+Returns URL search parameters as a read-only `URLSearchParams` object. This provides the standard web API for working with query strings.
+
+## Basic Usage
+
+```tsx
+import { useSearchParams } from 'one'
+
+// URL: /products?sort=price&category=electronics
+
+export default function Products() {
+  const searchParams = useSearchParams()
+
+  const sort = searchParams.get('sort')           // 'price'
+  const category = searchParams.get('category')   // 'electronics'
+  const missing = searchParams.get('missing')     // null
+
+  return <Text>Sorted by {sort}</Text>
+}
+```
+
+## URLSearchParams Methods
+
+The returned object supports all standard `URLSearchParams` read methods:
+
+```tsx
+const searchParams = useSearchParams()
+
+// Get a single value
+searchParams.get('key')        // string | null
+
+// Check if param exists
+searchParams.has('key')        // boolean
+
+// Get all values for a key (for repeated params)
+searchParams.getAll('tag')     // string[]
+
+// Iterate over all entries
+for (const [key, value] of searchParams) {
+  console.log(key, value)
+}
+
+// Convert to string
+searchParams.toString()        // 'key=value&other=123'
+```
+
+## Repeated Parameters
+
+Use `getAll()` when a parameter appears multiple times:
+
+```tsx
+// URL: /filter?tag=react&tag=typescript&tag=native
+
+const searchParams = useSearchParams()
+const tags = searchParams.getAll('tag')
+// tags = ['react', 'typescript', 'native']
+```
+
+## Global Option
+
+By default, `useSearchParams` only updates when the current route is focused. Pass `{ global: true }` to update on any route change:
+
+```tsx
+// Updates even when this screen is not focused
+const searchParams = useSearchParams({ global: true })
+```
+
+<Notice>
+The `global` option cannot change between renders.
+</Notice>
+
+## Read-Only
+
+The returned `URLSearchParams` is read-only. Calling `set()`, `append()`, or `delete()` will throw an error:
+
+```tsx
+const searchParams = useSearchParams()
+
+// ❌ These will throw
+searchParams.set('key', 'value')
+searchParams.append('key', 'value')
+searchParams.delete('key')
+```
+
+To update search params, use the router:
+
+```tsx
+import { useRouter, useSearchParams } from 'one'
+
+function Filters() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const updateSort = (sort: string) => {
+    // Build new search string
+    const params = new URLSearchParams(searchParams)
+    params.set('sort', sort)
+
+    router.push(`/products?${params.toString()}`)
+  }
+}
+```
+
+## useSearchParams vs useParams
+
+| Hook | Returns | Use for |
+|------|---------|---------|
+| `useParams` | Plain object | Quick access to params as object |
+| `useSearchParams` | URLSearchParams | Standard web API, repeated params |
+
+Both hooks include path params and query params. Choose based on which API you prefer:
+
+```tsx
+// Object style
+const { sort, page } = useParams()
+
+// URLSearchParams style
+const searchParams = useSearchParams()
+const sort = searchParams.get('sort')
+const page = searchParams.get('page')
+```
+
+## Related
+
+- [useParams](/docs/hooks-useParams) - Get params as a plain object
+- [useActiveParams](/docs/hooks-useActiveParams) - Global params that update even when unfocused
+- [usePathname](/docs/hooks-usePathname) - Get just the pathname

@@ -184,27 +184,83 @@ export const useGlobalSearchParams = useActiveParams
 export function useParams<TParams extends object = SearchParams>(): Partial<TParams> {
   const params = React.useContext(RouteParamsContext) ?? {}
 
-  return Object.fromEntries(
-    Object.entries(params)
-      .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => {
-        if (Array.isArray(value)) {
-          return [
-            key,
-            value.map((v) => {
-              try {
-                return decodeURIComponent(v)
-              } catch {
-                return v
-              }
-            }),
-          ]
-        }
-        try {
-          return [key, decodeURIComponent(value as string)]
-        } catch {
-          return [key, value]
-        }
-      })
-  ) as TParams
+  return React.useMemo(() => {
+    return Object.fromEntries(
+      Object.entries(params)
+        .filter(([_, value]) => value !== undefined)
+        .map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return [
+              key,
+              value.map((v) => {
+                try {
+                  return decodeURIComponent(v)
+                } catch {
+                  return v
+                }
+              }),
+            ]
+          }
+          try {
+            return [key, decodeURIComponent(value as string)]
+          } catch {
+            return [key, value]
+          }
+        })
+    ) as TParams
+  }, [params])
+}
+
+class ReadOnlyURLSearchParams extends URLSearchParams {
+  override set(_name: string, _value: string): void {
+    throw new Error('useSearchParams returns a read-only URLSearchParams object')
+  }
+  override append(_name: string, _value: string): void {
+    throw new Error('useSearchParams returns a read-only URLSearchParams object')
+  }
+  override delete(_name: string, _value?: string): void {
+    throw new Error('useSearchParams returns a read-only URLSearchParams object')
+  }
+}
+
+/**
+ * Returns URL search parameters as a read-only URLSearchParams object.
+ * Use this when you need the standard web URLSearchParams API.
+ *
+ * @param options.global - If true, returns params that update even when route is not focused
+ * @returns Read-only URLSearchParams object
+ * @link https://onestack.dev/docs/api/hooks/useSearchParams
+ * @see useParams for a plain object with both path and search params
+ *
+ * @example
+ * ```tsx
+ * // URL: /products?sort=price&category=electronics
+ * const searchParams = useSearchParams()
+ * searchParams.get('sort')      // 'price'
+ * searchParams.get('category')  // 'electronics'
+ * searchParams.has('sort')      // true
+ * searchParams.getAll('tag')    // ['a', 'b'] for ?tag=a&tag=b
+ * ```
+ */
+export function useSearchParams({ global = false } = {}): URLSearchParams {
+  const globalRef = React.useRef(global)
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (global !== globalRef.current) {
+      console.warn("useSearchParams: the 'global' option cannot change between renders")
+    }
+  }
+
+  // biome-ignore lint/correctness/useHookAtTopLevel: global option is stable (validated above)
+  const params = global ? useActiveParams() : useParams()
+
+  return React.useMemo(() => {
+    const entries = Object.entries(params).flatMap(([key, value]) => {
+      if (value === undefined) return []
+      return Array.isArray(value)
+        ? value.map((v) => [key, String(v)] as [string, string])
+        : [[key, String(value)] as [string, string]]
+    })
+    return new ReadOnlyURLSearchParams(entries)
+  }, [params])
 }
