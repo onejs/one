@@ -1,4 +1,4 @@
-import { useEffect, useId } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Slot } from 'one'
 
 // module-level tracking - persists across renders within a session
@@ -17,6 +17,7 @@ declare global {
 
 export default function RootLayout() {
   const id = useId()
+  const [mountTime] = useState(() => Date.now())
 
   rootRenderCount++
 
@@ -24,7 +25,7 @@ export default function RootLayout() {
     rootIds.push(id)
   }
 
-  console.log('root', id)
+  console.log('root', id, 'mount:', mountTime, 'render:', rootRenderCount)
 
   useEffect(() => {
     window.__hydrationTest = window.__hydrationTest || ({} as any)
@@ -39,6 +40,7 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
         <title>Hydration Test</title>
       </head>
       <body>

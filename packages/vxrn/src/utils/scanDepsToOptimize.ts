@@ -12,6 +12,9 @@ export type ScanDepsResult = {
 
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [
+  'jsc-android',
+  'react-shallow-renderer',
+
   'fsevents',
   '@swc/core',
   '@swc/core-darwin-arm64',

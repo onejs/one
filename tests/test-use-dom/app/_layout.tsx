@@ -5,7 +5,6 @@ export default function Layout() {
     <>
       {typeof document !== 'undefined' && (
         <>
-          <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
             name="viewport"

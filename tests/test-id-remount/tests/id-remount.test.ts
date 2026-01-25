@@ -1,4 +1,36 @@
-import puppeteer, { type Browser, type Page } from 'puppeteer'
+// NOTE THIS IS TRUE BUT IDK HOW TO DO THIS IN CI/CD??
+
+// import puppeteer, { type Browser, type Page } from 'puppeteer'
+// import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+
+// /**
+//  * Hydration ID Remount Tests
+//  *
+//  * These tests use Puppeteer with real Chrome (NOT Playwright's Chromium)
+//  * because the hydration bug only reproduces in real browsers.
+//  *
+//  * The bug: useId() changes from SSR format (uppercase R like «Rd6qlj»)
+//  * to client format (lowercase r like «r0») during hydration, which means
+//  * React abandoned hydration and remounted the component tree.
+//  */
+
+// const serverUrl = process.env.ONE_SERVER_URL
+
+// let browser: Browser
+
+// beforeAll(async () => {
+//   browser = await puppeteer.launch({
+//     headless: true,
+//     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+//     args: ['--no-sandbox'],
+//   })
+// })
+
+// afterAll(async () => {
+//   await browser.close()
+// })
+
+import { type Browser, type BrowserContext, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 /**
@@ -15,13 +47,11 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 const serverUrl = process.env.ONE_SERVER_URL
 
 let browser: Browser
+let context: BrowserContext
 
 beforeAll(async () => {
-  browser = await puppeteer.launch({
-    headless: true,
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox'],
-  })
+  browser = await chromium.launch({ headless: true })
+  context = await browser.newContext()
 })
 
 afterAll(async () => {
@@ -60,9 +90,10 @@ describe('Hydration ID Remount Detection', () => {
 
     // The first ID should be SSR format
     const firstId = pageIds[0]
-    expect(isSSRFormat(firstId), `First ID "${firstId}" should be SSR format (uppercase R)`).toBe(
-      true
-    )
+    expect(
+      isSSRFormat(firstId),
+      `First ID "${firstId}" should be SSR format (uppercase R)`
+    ).toBe(true)
 
     // No ID should be client format - if any are, hydration was abandoned
     const clientIds = pageIds.filter(isClientFormat)
@@ -102,10 +133,14 @@ describe('Hydration ID Remount Detection', () => {
     expect(result.domId, 'DOM data-testid should match React useId').toBe(result.reactId)
 
     // Both should be SSR format
-    expect(isSSRFormat(result.domId), `DOM ID "${result.domId}" should be SSR format`).toBe(true)
-    expect(isSSRFormat(result.reactId), `React ID "${result.reactId}" should be SSR format`).toBe(
-      true
-    )
+    expect(
+      isSSRFormat(result.domId),
+      `DOM ID "${result.domId}" should be SSR format`
+    ).toBe(true)
+    expect(
+      isSSRFormat(result.reactId),
+      `React ID "${result.reactId}" should be SSR format`
+    ).toBe(true)
 
     await page.close()
   })

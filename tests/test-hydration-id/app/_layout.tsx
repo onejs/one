@@ -36,6 +36,7 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
         <title>Hydration Test</title>
       </head>
       <body>

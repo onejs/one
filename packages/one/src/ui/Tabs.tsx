@@ -18,6 +18,7 @@ import {
   type ReactNode,
   use,
   useMemo,
+  useRef,
 } from 'react'
 import { StyleSheet, View, type ViewProps } from 'react-native'
 import { useRouteInfo } from '../hooks'
@@ -42,7 +43,7 @@ type NavigatorContextValue = {
   contextKey: string
   state: ReturnType<typeof useNavigationBuilder>['state']
   navigation: ReturnType<typeof useNavigationBuilder>['navigation']
-  descriptors: ReturnType<typeof useNavigationBuilder>['descriptors']
+  descriptorsRef: React.MutableRefObject<ReturnType<typeof useNavigationBuilder>['descriptors']>
   router: RouterFactory<any, any, any>
 }
 
@@ -208,14 +209,20 @@ export function useTabsWithTriggers(
     NavigationContent: RNNavigationContent,
   } = navigatorContext
 
-  const navigatorContextValue = useMemo<NavigatorContextValue>(
+  // HYDRATION FIX: Use ref for descriptors to avoid context invalidation during hydration.
+  const descriptorsRef = useRef(descriptors)
+  descriptorsRef.current = descriptors
+
+  const navigatorContextValue = useMemo(
     () => ({
-      ...(navigatorContext as unknown as ReturnType<typeof useNavigationBuilder>),
+      state,
+      navigation,
       contextKey,
       router: ExpoTabRouter,
+      descriptorsRef,
     }),
-    [navigatorContext, contextKey, ExpoTabRouter]
-  )
+    [state, navigation, contextKey, ExpoTabRouter]
+  ) as unknown as NavigatorContextValue
 
   const NavigationContent = useComponent((children: React.ReactNode) => (
     <TabTriggerMapContext.Provider value={triggerMap}>

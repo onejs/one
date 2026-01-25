@@ -1,9 +1,9 @@
-import { Image as Image2, type ImageProps } from '@tamagui/image-next'
+import { Image as Image2, type ImageProps } from '@tamagui/image'
 import { isWeb, View } from 'tamagui'
 
 export function Image({ src, ...props }: ImageProps) {
   return isWeb ? (
-    <View userSelect="none" pe="none" ov="hidden" {...props}>
+    <View userSelect="none" pointerEvents="none" overflow="hidden" {...props}>
       <img
         src={src}
         style={{

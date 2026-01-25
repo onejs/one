@@ -9,10 +9,5 @@ export default defineConfig({
     hookTimeout: 60000,
     teardownTimeout: 10000,
     pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: false,
-      },
-    },
   },
 })

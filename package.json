@@ -54,7 +54,7 @@
     "site:prod": "bun run site:build && bun run site:serve",
     "site:serve": "cd apps/onestack.dev && bun run serve --host 0.0.0.0 --port 3000",
     "start": "cd examples/one-basic && bun run dev",
-    "test": "bun run turbo:run test --concurrency=2",
+    "test": "bun run turbo:run test --concurrency=4",
     "test-ios": "./scripts/test-ios.sh",
     "test-ios:run": "turbo run test-ios --concurrency=1",
     "test-macos": "turbo run test-macos",
@@ -65,7 +65,7 @@
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "typecheck": "turbo typecheck",
     "up-dep": "tko update-deps",
-    "upgrade:takeout": "bun run up-dep '@take-out-/*'",
+    "upgrade:takeout": "bun run up-dep '@take-out/*'",
     "upgrade:tamagui": "bun run up-dep '*tamagui*' '@tamagui/*'",
     "upgrade:tamagui:canary": "bun run up-dep --canary '*tamagui*' '@tamagui/*'",
     "watch": "npm-run-all --parallel watch:ts watch:build",
@@ -88,6 +88,23 @@
   },
   "dependencies": {
     "@manypkg/cli": "^0.19.1",
+    "@tamagui/animations-css": "^1.144.3",
+    "@tamagui/animations-moti": "^1.144.3",
+    "@tamagui/build": "^1.144.3",
+    "@tamagui/button": "^1.144.3",
+    "@tamagui/colors": "^1.144.3",
+    "@tamagui/config": "^1.144.3",
+    "@tamagui/core": "^1.144.3",
+    "@tamagui/image-next": "^1.144.3",
+    "@tamagui/input": "^1.144.3",
+    "@tamagui/linear-gradient": "^1.144.3",
+    "@tamagui/lucide-icons": "^1.144.3",
+    "@tamagui/react-native-media-driver": "^1.144.3",
+    "@tamagui/react-native-web": "^1.144.3",
+    "@tamagui/shorthands": "^1.144.3",
+    "@tamagui/themes": "^1.144.3",
+    "@tamagui/use-store": "^1.144.3",
+    "@tamagui/vite-plugin": "^1.144.3",
     "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",
     "lllink": "workspace:*",
@@ -99,6 +116,7 @@
     "playwright": "^1.57.0",
     "prettier": "^3.5.3",
     "sst": "^3.6.18",
+    "tamagui": "^1.144.3",
     "ts-pattern": "^5.6.2",
     "tsx": "^4.20.6",
     "turbo": "^2.1.0",
@@ -129,7 +147,7 @@
     }
   },
   "devDependencies": {
-    "@take-out/cli": "^0.0.40",
+    "@take-out/cli": "^0.0.52",
     "oxc-parser": "^0.107.0"
   }
 }

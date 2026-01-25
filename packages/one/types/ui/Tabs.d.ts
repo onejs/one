@@ -84,22 +84,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             name: RouteName;
             params: object | undefined;
             path?: string;
-            merge
-            /**
-             * Root component for the headless tabs.
-             *
-             * @see [`useTabsWithChildren`](#usetabswithchildrenoptions) for a hook version of this component.
-             * @example
-             * ```tsx
-             * <Tabs>
-             *  <TabSlot />
-             *  <TabList>
-             *   <TabTrigger name="home" href="/" />
-             *  </TabList>
-             * </Tabs>
-             * ```
-             */
-            ?: boolean;
+            merge?: boolean;
             pop?: boolean;
         } : never): void;
         navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;

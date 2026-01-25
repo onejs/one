@@ -5,7 +5,7 @@ export declare const NavigatorContext: React.Context<{
     contextKey: string;
     state: NavigatorTypes["state"];
     navigation: NavigatorTypes["navigation"];
-    descriptors: NavigatorTypes["descriptors"];
+    descriptorsRef: React.MutableRefObject<NavigatorTypes["descriptors"]>;
     router: RouterFactory<any, any, any>;
 } | null>;
 export type NavigatorProps = {
@@ -25,23 +25,13 @@ export declare function useNavigatorContext(): {
     contextKey: string;
     state: NavigatorTypes["state"];
     navigation: NavigatorTypes["navigation"];
-    descriptors: NavigatorTypes["descriptors"];
+    descriptorsRef: React.MutableRefObject<NavigatorTypes["descriptors"]>;
     router: RouterFactory<any, any, any>;
 };
-export declare function useSlot(): {
-    key: string;
-    type: any;
-    props: any;
-    $$typeof?: symbol | string;
-} | null;
+export declare function useSlot(): React.FunctionComponentElement<any> | null;
 /** Renders the currently selected content. */
 export declare const Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
-export declare function QualifiedSlot(): {
-    key: string;
-    type: any;
-    props: any;
-    $$typeof?: symbol | string;
-} | null;
+export declare function QualifiedSlot(): React.FunctionComponentElement<any> | null;
 export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=Navigator.d.ts.map

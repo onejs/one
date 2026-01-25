@@ -62,6 +62,8 @@ export async function setup({ provide }: GlobalSetupContext) {
     }
   }
 
+  execSync(`bun kill-my-port 3457`)
+
   // Verify build output exists
   const workerFile = join(testDir, 'dist', 'worker.js')
   if (!existsSync(workerFile)) {

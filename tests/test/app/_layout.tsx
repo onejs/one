@@ -18,6 +18,7 @@ export default function Layout() {
   return (
     <html lang="ab">
       <head>
+        <meta charSet="utf-8" />
         <meta id="test-meta" />
         <title>test title</title>
       </head>

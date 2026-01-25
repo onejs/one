@@ -88,4 +88,30 @@ describe('Hydration useId Stability', () => {
 
     await page.close()
   })
+
+  it('DOM attributes should match React state (no encoding mismatch)', async () => {
+    const page = await context.newPage()
+
+    await page.goto(`${serverUrl}/`, { waitUntil: 'networkidle' })
+    await page.waitForTimeout(500)
+
+    const { domId, reactId, domLength, reactLength } = await page.evaluate(() => {
+      const root = document.getElementById('root')
+      const domId = root?.getAttribute('data-testid') || ''
+      const reactId = (window as any).__hydrationTest?.root?.current || ''
+      return {
+        domId,
+        reactId,
+        domLength: domId.length,
+        reactLength: reactId.length,
+      }
+    })
+
+    // if encoding is correct, DOM and React should have same ID
+    // if UTF-8 was misinterpreted as Latin-1, DOM will have double-encoded chars (longer string)
+    expect(domLength, `DOM ID "${domId}" has different length than React ID "${reactId}" - encoding mismatch!`).toBe(reactLength)
+    expect(domId, `DOM ID "${domId}" differs from React ID "${reactId}" - encoding mismatch!`).toBe(reactId)
+
+    await page.close()
+  })
 })
