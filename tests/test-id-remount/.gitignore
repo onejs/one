@@ -1,0 +1,5 @@
+dist/
+.vercel/
+node_modules/
+*.log
+routes.d.ts
