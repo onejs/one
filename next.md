@@ -139,3 +139,6 @@
 - route sorting algorithm isn't same between server (packages/one/src/router/sortRoutes.ts) and client (getRouteConfigSorter in packages/one/src/fork/getStateFromPath-mods.ts), may lead to loader bug on edge cases
 - missing root `_layout.tsx` will lead to unclear error
 - better error handling for API route functions returning incorrect data types (e.g. a string)
+## iOS Prod Loaders
+
+Set up a simple dev server for testing loaders on native prod builds. Currently loaders are skipped in prod mode because there's no server to fetch loader JS from.

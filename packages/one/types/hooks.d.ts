@@ -109,5 +109,27 @@ export declare const useGlobalSearchParams: typeof useActiveParams;
  * ```
  */
 export declare function useParams<TParams extends object = SearchParams>(): Partial<TParams>;
+/**
+ * Returns URL search parameters as a read-only URLSearchParams object.
+ * Use this when you need the standard web URLSearchParams API.
+ *
+ * @param options.global - If true, returns params that update even when route is not focused
+ * @returns Read-only URLSearchParams object
+ * @link https://onestack.dev/docs/api/hooks/useSearchParams
+ * @see useParams for a plain object with both path and search params
+ *
+ * @example
+ * ```tsx
+ * // URL: /products?sort=price&category=electronics
+ * const searchParams = useSearchParams()
+ * searchParams.get('sort')      // 'price'
+ * searchParams.get('category')  // 'electronics'
+ * searchParams.has('sort')      // true
+ * searchParams.getAll('tag')    // ['a', 'b'] for ?tag=a&tag=b
+ * ```
+ */
+export declare function useSearchParams({ global }?: {
+    global?: boolean | undefined;
+}): URLSearchParams;
 export {};
 //# sourceMappingURL=hooks.d.ts.map

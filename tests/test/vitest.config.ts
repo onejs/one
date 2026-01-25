@@ -22,8 +22,10 @@ export default defineConfig({
         exclude: configDefaults.exclude,
       }
     })(),
-    // Ensure tests run sequentially
+    // Ensure tests run sequentially to avoid resource contention
     fileParallelism: false,
+    // Limit concurrent tests within a file
+    maxConcurrency: 3,
     // Add reasonable timeouts (60s for CI resource contention)
     testTimeout: 60000,
     hookTimeout: 60000,

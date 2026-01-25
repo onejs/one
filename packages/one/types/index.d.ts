@@ -39,7 +39,7 @@ export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';
 export { getURL } from './getURL';
 export { Head } from './head';
-export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSegments, useUnstableGlobalHref, } from './hooks';
+export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';
 export { href } from './href';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';

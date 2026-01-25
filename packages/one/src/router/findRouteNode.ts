@@ -125,3 +125,70 @@ export function extractPathnameFromHref(href: string): string {
 
   return href.slice(0, endIndex)
 }
+
+/**
+ * Find all route nodes from root to the current page based on navigation state.
+ * Returns an array of RouteNodes in order from root layout to the page.
+ * This is used on native to build the full matches array including layouts.
+ */
+export function findAllRouteNodesFromState(
+  state: { routes: Array<{ name: string; state?: any }> } | undefined,
+  rootNode: RouteNode | null
+): RouteNode[] {
+  if (!state || !rootNode) {
+    return []
+  }
+
+  const nodes: RouteNode[] = []
+
+  function collectNodes(
+    currentState: { routes: Array<{ name: string; state?: any; params?: Record<string, any> }> } | undefined,
+    parentNode: RouteNode | null
+  ) {
+    if (!currentState || !parentNode) {
+      return
+    }
+
+    // get the current route from state (the active one based on index)
+    const currentRoute = currentState.routes[currentState.routes.length - 1]
+    if (!currentRoute) {
+      return
+    }
+
+    // find the matching child node
+    const matchingNode = findNodeByRouteName(parentNode, currentRoute.name)
+    if (!matchingNode) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[one] findAllRouteNodesFromState: could not find node for', currentRoute.name, 'in', parentNode.route)
+      }
+      return
+    }
+
+    // add this node to the list
+    nodes.push(matchingNode)
+
+    // if there's a nested state, continue recursively
+    if (currentRoute.state && currentRoute.state.routes) {
+      collectNodes(currentRoute.state, matchingNode)
+    } else if (currentRoute.params?.screen) {
+      // react navigation uses params.screen to specify child route when state isn't created yet
+      // this happens on initial render before the nested navigator mounts
+      const childRouteName = currentRoute.params.screen as string
+      const childNode = matchingNode.children.find((c) => c.route === childRouteName)
+      if (childNode) {
+        nodes.push(childNode)
+        // if there are nested params, continue recursively
+        if (currentRoute.params.params && (currentRoute.params.params as any).screen) {
+          collectNodes(
+            { routes: [{ name: childRouteName, params: currentRoute.params.params }] },
+            childNode
+          )
+        }
+      }
+    }
+  }
+
+  collectNodes(state, rootNode)
+  return nodes
+}
+
