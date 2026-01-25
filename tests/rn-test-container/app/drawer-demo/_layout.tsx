@@ -14,7 +14,10 @@ export default function DrawerDemoLayout() {
         }}
       >
         <Drawer.Screen name="index" options={{ drawerLabel: 'Home', title: 'Home' }} />
-        <Drawer.Screen name="settings" options={{ drawerLabel: 'Settings', title: 'Settings' }} />
+        <Drawer.Screen
+          name="settings"
+          options={{ drawerLabel: 'Settings', title: 'Settings' }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   )

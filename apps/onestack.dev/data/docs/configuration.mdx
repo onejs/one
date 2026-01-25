@@ -67,7 +67,7 @@ export default {
          * @default ['@tamagui/lucide-icons']
          * @type boolean | string[]
          */
-        barrel: ['my-icon-package']
+        barrel: ['my-icon-package'],
       },
 
       // native-specific config:
@@ -104,61 +104,61 @@ export default {
         'moti/author': true,
         '@sentry/react-native': {
           version: '~15.2.0',
-          '**/*.js': ['jsx']
-        }
+          '**/*.js': ['jsx'],
+        },
       },
 
-     /**
-      * Per-file control over how code transforms.
-      * Defaults to SWC, runs babel before SWC if:
-      *
-      *  - options.react.compiler is `true`, on tsx files in your app
-      *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
-      *
-      * Otherwise One defaults to using `@swc/core`.
-      *
-      * Accepts a function:
-      *
-      *   (props: {
-      *      id: string
-      *      code: string
-      *      development: boolean
-      *      environment: Environment
-      *      reactForRNVersion: '18' | '19'
-      *   }) =>
-      *      | true     // default transforms
-      *      | false    // no transforms
-      *      | 'babel'  // force babel default transform
-      *      | 'swc'    // force swc default transform
-      *
-      *       // force babel, custom transform
-      *
-      *      | {
-      *          transform: 'babel'
-      *          excludeDefaultPlugins?: boolean
-      *        } & babel.TransformOptions
-      *
-      *      // force swc, custom transform
-      *
-      *      | {
-      *          transform: 'swc'
-      *        } & SWCOptions
-      *
-      * Babel defaults to preset `@babel/preset-typescript` with plugins:
-      *
-      *  - @babel/plugin-transform-destructuring
-      *  - @babel/plugin-transform-runtime
-      *  - @babel/plugin-transform-react-jsx
-      *  - @babel/plugin-transform-async-generator-functions
-      *  - @babel/plugin-transform-async-to-generator
-      *
-      *
-      * SWC default to target es5 for native, es2020 for web.
-      *
-      */
-      transform: true
-    })
-  ]
+      /**
+       * Per-file control over how code transforms.
+       * Defaults to SWC, runs babel before SWC if:
+       *
+       *  - options.react.compiler is `true`, on tsx files in your app
+       *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
+       *
+       * Otherwise One defaults to using `@swc/core`.
+       *
+       * Accepts a function:
+       *
+       *   (props: {
+       *      id: string
+       *      code: string
+       *      development: boolean
+       *      environment: Environment
+       *      reactForRNVersion: '18' | '19'
+       *   }) =>
+       *      | true     // default transforms
+       *      | false    // no transforms
+       *      | 'babel'  // force babel default transform
+       *      | 'swc'    // force swc default transform
+       *
+       *       // force babel, custom transform
+       *
+       *      | {
+       *          transform: 'babel'
+       *          excludeDefaultPlugins?: boolean
+       *        } & babel.TransformOptions
+       *
+       *      // force swc, custom transform
+       *
+       *      | {
+       *          transform: 'swc'
+       *        } & SWCOptions
+       *
+       * Babel defaults to preset `@babel/preset-typescript` with plugins:
+       *
+       *  - @babel/plugin-transform-destructuring
+       *  - @babel/plugin-transform-runtime
+       *  - @babel/plugin-transform-react-jsx
+       *  - @babel/plugin-transform-async-generator-functions
+       *  - @babel/plugin-transform-async-to-generator
+       *
+       *
+       * SWC default to target es5 for native, es2020 for web.
+       *
+       */
+      transform: true,
+    }),
+  ],
 } satisfies UserConfig
 ```
 
@@ -219,6 +219,38 @@ This mode is likely the least useful, as it means that you must make a full trip
 ### redirects
 
 You can apply server-level redirects. One serves your app with Hono in production, and so the redirect pattern is simple: your `source` will be passed to `Hono.app.get(source)`. Any matching path segments that start with `:` will be replaced into the matching segments in `destination`. And the redirect will send a response type of `301` if permanent is true, otherwise it will be `302`.
+
+### web.linkPrefetch
+
+Controls link prefetching strategy for improved navigation performance.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        // Smart trajectory-based prefetching (default)
+        linkPrefetch: 'intent',
+
+        // Or choose a simpler strategy
+        linkPrefetch: 'viewport', // prefetch when links enter viewport
+        linkPrefetch: 'hover', // prefetch on mouseover only
+        linkPrefetch: false, // disable prefetching
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'intent'`** (default): Uses mouse trajectory prediction to prefetch links before you hover them. Ray-casting detects when you're moving toward a link, with winner-takes-all scoring to avoid over-fetching in dense navigation areas. Falls back to hover for immediate interactions.
+
+- **`'viewport'`**: Prefetches links when they enter the viewport (with 100px margin). Good for content-heavy pages with many links.
+
+- **`'hover'`**: Traditional hover-based prefetching. Prefetches when you mouseover a link.
+
+- **`false`**: Disables link prefetching entirely.
 
 ### web.sitemap
 

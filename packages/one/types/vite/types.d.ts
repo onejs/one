@@ -344,6 +344,17 @@ export declare namespace One {
              * ```
              */
             sitemap?: boolean | SitemapOptions;
+            /**
+             * Controls link prefetching strategy for improved navigation performance.
+             *
+             * - `'intent'`: Smart prefetching using mouse trajectory prediction (default)
+             * - `'viewport'`: Prefetch links when they enter the viewport
+             * - `'hover'`: Prefetch on mouseover only
+             * - `false`: Disable prefetching entirely
+             *
+             * @default 'intent'
+             */
+            linkPrefetch?: false | 'hover' | 'viewport' | 'intent';
         };
         /**
          * Development tools configuration. Set to `true` to enable all devtools,

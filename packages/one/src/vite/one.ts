@@ -367,6 +367,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
                 'import.meta.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
               }),
+
+            ...(options.web?.linkPrefetch && {
+              'process.env.ONE_LINK_PREFETCH': JSON.stringify(options.web.linkPrefetch),
+            }),
           },
 
           environments: {

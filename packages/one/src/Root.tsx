@@ -136,7 +136,7 @@ export function Root(props: RootProps) {
             {/* </GestureHandlerRootView> */}
           </ServerLocationContext.Provider>
         </UpstreamNavigationContainer>
-        <PreloadLinks key="preload-links" />
+        {typeof window !== 'undefined' && <PreloadLinks key="preload-links" />}
       </ServerRenderID.Provider>
     </ServerAsyncLocalIDContext.Provider>
   )
