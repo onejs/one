@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { memo, Suspense, useEffect, useId, useState } from 'react'
+import React, { memo, Suspense, useEffect, useState } from 'react'
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
@@ -27,6 +27,46 @@ import { sortRoutesWithInitial } from './sortRoutes'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
+
+/**
+ * Recursively check if React children contain a <meta charSet /> element.
+ * This is used to warn developers if they're missing the charset meta tag
+ * which can cause React hydration issues due to encoding mismatch.
+ */
+function hasMetaCharset(children: React.ReactNode): boolean {
+  if (process.env.NODE_ENV === 'development') {
+    if (!children) return false
+
+    const checkElement = (child: React.ReactNode): boolean => {
+      if (!React.isValidElement(child)) return false
+
+      // check if this is a <meta charSet /> or <meta charset />
+      if (child.type === 'meta') {
+        const props = child.props as Record<string, unknown>
+        if ('charSet' in props || 'charset' in props) {
+          return true
+        }
+      }
+
+      // recurse into children
+      const childProps = child.props as { children?: React.ReactNode }
+      if (childProps.children) {
+        return hasMetaCharset(childProps.children)
+      }
+
+      return false
+    }
+
+    if (Array.isArray(children)) {
+      return children.some(checkElement)
+    }
+
+    return checkElement(children)
+  }
+
+  return true
+}
+
 export const { Screen, Group } = createNavigatorFactory({} as any)()
 
 // Cache inline CSS elements at module load (before React hydrates).
@@ -89,10 +129,22 @@ function RootLayoutRenderer({
     return finalChildren
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    // check if <meta charSet /> is present in head children
+    // if not, warn that it must be set in root _layout.tsx or else
+    // React will have hydration issues as it switches encoding
+    if (!hasMetaCharset(headChildren)) {
+      console.warn(
+        `[one] Missing <meta charSet="utf-8" /> in your root _layout.tsx <head>. ` +
+          `This can cause React hydration issues due to encoding mismatch. ` +
+          `Add it as the first element in your <head> tag.`
+      )
+    }
+  }
+
   finalChildren = (
     <>
       <head key="head" {...headProps}>
-        <meta charSet="utf-8" />
         <DevHead />
         <script
           dangerouslySetInnerHTML={{

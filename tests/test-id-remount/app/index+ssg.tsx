@@ -1,17 +1,20 @@
-import { useEffect, useId } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 let pageRenderCount = 0
 const pageIds: string[] = []
 
 export default function IndexPage() {
   const id = useId()
+  // track if this is a fresh mount vs re-render
+  const [mountTime] = useState(() => Date.now())
   pageRenderCount++
 
   if (!pageIds.includes(id)) {
     pageIds.push(id)
   }
 
-  console.log('page', id)
+  // THIS IS TESTED LEAVE IT
+  console.info('page', id, 'mount:', mountTime, 'render:', pageRenderCount)
 
   useEffect(() => {
     window.__hydrationTest = window.__hydrationTest || ({} as any)

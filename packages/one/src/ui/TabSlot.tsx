@@ -55,7 +55,8 @@ export function useTabSlot({
   style,
   renderFn = defaultTabsSlotRender,
 }: TabSlotProps = {}) {
-  const { state, descriptors } = useNavigatorContext()
+  const { state, descriptorsRef } = useNavigatorContext()
+  const descriptors = descriptorsRef.current
   const focusedRouteKey = state.routes[state.index].key
   const [loaded, setLoaded] = useState({ [focusedRouteKey]: true })
 

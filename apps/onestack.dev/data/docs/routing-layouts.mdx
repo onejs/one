@@ -142,6 +142,8 @@ export default function Layout() {
 }
 ```
 
+Note - you should have both a `lang` property on your `html` tag, and a `<meta charSet />` tag in your `head`. Otherwise, React can have hydration re-rendering issues.
+
 ### useServerHeadInsertion
 
 The root `_layout.tsx` can use a special hook that allows it to insert tags into your `<head />` tag after server rendering finishes. This is an edge-case that is mostly only useful for CSS-in-JS libraries. You can use it like so:

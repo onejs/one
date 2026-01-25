@@ -24,7 +24,7 @@ export const NavigatorContext = React.createContext<{
   contextKey: string
   state: NavigatorTypes['state']
   navigation: NavigatorTypes['navigation']
-  descriptors: NavigatorTypes['descriptors']
+  descriptorsRef: React.MutableRefObject<NavigatorTypes['descriptors']>
   router: RouterFactory<any, any, any>
 } | null>(null)
 
@@ -122,15 +122,22 @@ function QualifiedNavigator({
     }
   )
 
+  // HYDRATION FIX: Use ref for descriptors to avoid context invalidation during hydration.
+  // The descriptors object changes by reference on each render from useNavigationBuilder,
+  // but the actual content is the same. By using a ref, we prevent unnecessary re-renders
+  // that cause React to abandon hydration and remount the component tree.
+  const descriptorsRef = React.useRef(descriptors)
+  descriptorsRef.current = descriptors
+
   const value = React.useMemo(() => {
     return {
       contextKey,
       state,
       navigation,
-      descriptors,
+      descriptorsRef,
       router,
     }
-  }, [contextKey, state, navigation, descriptors, router])
+  }, [contextKey, state, navigation, router])
 
   return (
     <NavigatorContext.Provider value={value}>
@@ -149,7 +156,7 @@ export function useNavigatorContext() {
 
 export function useSlot() {
   const context = useNavigatorContext()
-  const { state, descriptors } = context
+  const { state, descriptorsRef } = context
 
   const current = state.routes.find((route, i) => {
     return state.index === i
@@ -159,15 +166,13 @@ export function useSlot() {
     return null
   }
 
-  const renderedElement = descriptors[current.key]?.render() ?? null
+  const renderedElement = descriptorsRef.current[current.key]?.render() ?? null
 
   // Use static key to prevent layout remounts when route keys change during navigation.
   // Safe because Slot only renders one screen at a time.
+  // Use cloneElement to properly clone the React element with a new key.
   if (renderedElement !== null) {
-    return {
-      ...renderedElement,
-      key: SLOT_STATIC_KEY,
-    }
+    return React.cloneElement(renderedElement, { key: SLOT_STATIC_KEY })
   }
 
   return renderedElement

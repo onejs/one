@@ -7,7 +7,7 @@
     "build:web": "one build --platform web",
     "serve": "one serve",
     "serve:vercel": "node ./vercel-server.mjs",
-    "test": "vitest run"
+    "test": "vitest --run --reporter=verbose --color=false"
   },
   "dependencies": {
     "one": "workspace:*",

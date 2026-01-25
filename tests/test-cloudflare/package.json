@@ -7,12 +7,13 @@
     "dev": "one dev",
     "build:web": "one build",
     "serve": "wrangler dev dist/worker.js --port 3457",
-    "test": "vitest run"
+    "test": "vitest --run --reporter=verbose"
   },
   "dependencies": {
     "one": "workspace:*"
   },
   "devDependencies": {
+    "kill-my-port": "1.1.2",
     "@playwright/test": "^1.42.1",
     "playwright": "^1.42.1",
     "typescript": "^5.4.0",
