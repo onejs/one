@@ -2,20 +2,116 @@
 title: "<Drawer />"
 ---
 
-<Notice>
-  Notice - Drawer is current disabled as we work through a final issue with react-native-gesture-handler. It should be landing very shortly.
-</Notice>
+The Drawer component provides a slide-out navigation panel, commonly used for app-wide navigation menus. Import it from `one/drawer` to keep the bundle size minimal when not using the drawer.
 
 This component should only be rendered inside a `_layout.tsx` file, where it will serve as the location that children will render for routes below the layout.
 
-Drawer is simply a [React Navigation Drawer view](https://reactnavigation.org/docs/drawer-navigator) and accepts the same props as React Navigation.
+Drawer wraps [React Navigation's Drawer Navigator](https://reactnavigation.org/docs/drawer-navigator) and accepts the same props.
 
-```tsx
-import { Drawer } from 'one'
+## Basic Usage
+
+```tsx fileName="_layout.tsx"
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { Drawer } from 'one/drawer'
 
 export default function Layout() {
   return (
-    <Drawer />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer />
+    </GestureHandlerRootView>
   )
 }
 ```
+
+<Notice>
+  The `GestureHandlerRootView` wrapper is required for gesture handling to work properly on native platforms.
+</Notice>
+
+## With Screen Options
+
+You can customize the drawer appearance and behavior using `screenOptions`:
+
+```tsx fileName="_layout.tsx"
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { Drawer } from 'one/drawer'
+
+export default function Layout() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer
+        screenOptions={{
+          headerShown: true,
+          drawerType: 'front',
+          // improve swipe gesture feel
+          swipeEdgeWidth: 80,
+          swipeMinDistance: 20,
+        }}
+      >
+        <Drawer.Screen
+          name="index"
+          options={{
+            drawerLabel: 'Home',
+            title: 'Home',
+          }}
+        />
+        <Drawer.Screen
+          name="settings"
+          options={{
+            drawerLabel: 'Settings',
+            title: 'Settings',
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
+  )
+}
+```
+
+## Programmatic Control
+
+You can open and close the drawer programmatically using navigation:
+
+```tsx
+import { useNavigation, DrawerActions } from '@react-navigation/native'
+
+function MyScreen() {
+  const navigation = useNavigation()
+
+  return (
+    <Button
+      onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+      title="Open Drawer"
+    />
+  )
+}
+```
+
+## Drawer Types
+
+The `drawerType` option controls how the drawer appears:
+
+- `'front'` (default) - Drawer slides over the content
+- `'back'` - Content slides to reveal drawer behind
+- `'slide'` - Both drawer and content slide together
+- `'permanent'` - Drawer is always visible (good for tablets)
+
+## Common Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `drawerType` | `'front' \| 'back' \| 'slide' \| 'permanent'` | `'front'` | How the drawer animates |
+| `swipeEdgeWidth` | `number` | `32` | Width of the swipe area from screen edge |
+| `swipeMinDistance` | `number` | `60` | Minimum swipe distance to open drawer |
+| `swipeEnabled` | `boolean` | `true` | Enable/disable swipe gestures |
+| `drawerPosition` | `'left' \| 'right'` | `'left'` | Which side the drawer appears |
+| `headerShown` | `boolean` | `true` | Show/hide the header |
+
+## Dependencies
+
+The Drawer requires these peer dependencies:
+
+```bash
+npm install react-native-gesture-handler react-native-reanimated
+```
+
+For more configuration options, see the [React Navigation Drawer documentation](https://reactnavigation.org/docs/drawer-navigator).
