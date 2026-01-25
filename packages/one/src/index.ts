@@ -92,6 +92,13 @@ export { Root } from './Root'
 // internals
 export { render } from './render'
 export { createRoute, route } from './router/createRoute'
+// route masking
+export {
+  createRouteMask,
+  type RouteMask,
+  type RouteMaskOptions,
+} from './router/routeMask'
+export { setRouteMasks, getRouteMasks } from './router/router'
 // base
 export { router } from './router/imperative-api'
 export * as routerStore from './router/router'

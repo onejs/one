@@ -8,6 +8,8 @@
  * Modifications:
  * - Added displayPath field to HistoryRecord for route masking support
  * - Modified push() and replace() to accept displayPath parameter for showing masked URLs in browser
+ * - Store __tempLocation in history.state for route masking (persists across refresh)
+ * - Added unmaskOnReload support via __tempKey mechanism
  */
 import type { NavigationState } from '@react-navigation/core';
 type HistoryRecord = {
@@ -22,15 +24,17 @@ export declare function createMemoryHistory(): {
     backIndex({ path }: {
         path: string;
     }): number;
-    push({ path, state, displayPath, }: {
+    push({ path, state, displayPath, unmaskOnReload, }: {
         path: string;
         state: NavigationState;
         displayPath?: string;
+        unmaskOnReload?: boolean;
     }): void;
-    replace({ path, state, displayPath, }: {
+    replace({ path, state, displayPath, unmaskOnReload, }: {
         path: string;
         state: NavigationState;
         displayPath?: string;
+        unmaskOnReload?: boolean;
     }): void;
     go(n: number): Promise<void> | undefined;
     listen(listener: () => void): () => void;

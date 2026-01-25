@@ -51,10 +51,42 @@ import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
 import { setClientMatches } from '../useMatches'
 import type { RouteMatch } from '../useMatches'
+import { type RouteMask, findMatchingMask } from './routeMask'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
+
+// Route masks for automatic URL masking
+let routeMasks: RouteMask[] = []
+
+/**
+ * Set route masks for automatic URL masking during navigation.
+ * Route masks transform URLs displayed in the browser without changing the actual route.
+ *
+ * @example
+ * ```tsx
+ * import { setRouteMasks, createRouteMask } from 'one'
+ *
+ * setRouteMasks([
+ *   createRouteMask({
+ *     from: '/photos/[id]/modal',
+ *     to: '/photos/[id]',
+ *     unmaskOnReload: true,
+ *   }),
+ * ])
+ * ```
+ */
+export function setRouteMasks(masks: RouteMask[]) {
+  routeMasks = masks
+}
+
+/**
+ * Get the current route masks.
+ */
+export function getRouteMasks(): RouteMask[] {
+  return routeMasks
+}
 
 // Global registry for protected routes
 // Key: contextKey (e.g., '/protected-test'), Value: Set of protected route names
@@ -1002,8 +1034,28 @@ export async function linkTo(
     hashes[rootState.key] = href.slice(hash)
   }
 
+  // Auto-apply route mask if no explicit mask provided and routeMasks are configured
+  let finalOptions = options ?? null
+  if (!finalOptions?.mask && routeMasks.length > 0) {
+    // Extract pathname from href (remove search params and hash)
+    const pathname = extractPathnameFromHref(href)
+    const maskResult = findMatchingMask(pathname, routeMasks)
+    if (maskResult) {
+      finalOptions = {
+        ...finalOptions,
+        mask: {
+          href: maskResult.maskedPath,
+          unmaskOnReload: maskResult.unmaskOnReload,
+        },
+      }
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 🎭 Auto-masked ${pathname} → ${maskResult.maskedPath}`)
+      }
+    }
+  }
+
   // a bit hacky until can figure out a reliable way to tie it to the state
-  nextOptions = options ?? null
+  nextOptions = finalOptions
 
   startTransition(() => {
     const action = getNavigateAction(state, rootState, event)

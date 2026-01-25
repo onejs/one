@@ -30,10 +30,19 @@ export function setupLinking(
 
     if (initialLocation) {
       linkingConfig.getInitialURL = () => initialLocation.toString()
-      initialState = linkingConfig.getStateFromPath?.(
-        initialLocation.pathname + (initialLocation.search || ''),
-        linkingConfig.config
-      )
+
+      // @modified - Check __tempLocation for route masking support
+      // On page refresh with a masked URL, history.state contains the actual route
+      let path = initialLocation.pathname + (initialLocation.search || '')
+      if (typeof window !== 'undefined') {
+        const historyState = window.history.state
+        if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
+          // Restore to actual route from __tempLocation
+          path = historyState.__tempLocation.pathname + (historyState.__tempLocation.search || '')
+        }
+      }
+
+      initialState = linkingConfig.getStateFromPath?.(path, linkingConfig.config)
     }
   }
 

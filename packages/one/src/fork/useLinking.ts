@@ -149,6 +149,13 @@ export function useLinking(
   const getPathFromStateRef = React.useRef(getPathFromState)
   const getActionFromStateRef = React.useRef(getActionFromState)
 
+  // @modified - Track if we're restoring from __tempLocation to skip initial history.replace
+  const restoringFromTempLocationRef = React.useRef(false)
+  // @modified - Track if initial history setup is complete (handles React Strict Mode double-mount)
+  const initialHistorySetupDoneRef = React.useRef(false)
+  // @modified - Track the displayPath from mask restoration to preserve it across onStateChange
+  const maskedDisplayPathRef = React.useRef<string | undefined>(undefined)
+
   React.useEffect(() => {
     enabledRef.current = enabled
     configRef.current = config
@@ -192,7 +199,23 @@ export function useLinking(
       const location =
         server?.location ?? (typeof window !== 'undefined' ? window.location : undefined)
 
-      const path = location ? location.pathname + location.search : undefined
+      let path = location ? location.pathname + location.search : undefined
+
+      // @modified - Route masking: check __tempLocation in history.state
+      // If the page was loaded with a masked URL and unmaskOnReload is false,
+      // use the actual route from __tempLocation instead of the masked URL
+      if (typeof window !== 'undefined') {
+        const historyState = window.history.state
+        if (historyState) {
+          const { __tempLocation, __tempKey } = historyState
+          // If __tempLocation exists and __tempKey is undefined (unmaskOnReload: false)
+          // Then use the actual route from __tempLocation
+          if (__tempLocation?.pathname && !__tempKey) {
+            path = __tempLocation.pathname + (__tempLocation.search || '')
+            restoringFromTempLocationRef.current = true
+          }
+        }
+      }
 
       if (process.env.ONE_DEBUG_ROUTER) {
         console.info(`[one] 🔍 getInitialState path=${path}`)
@@ -200,9 +223,6 @@ export function useLinking(
 
       if (path) {
         value = getStateFromPathRef.current(path, configRef.current)
-        if (process.env.ONE_DEBUG_ROUTER) {
-          console.info(`[one] 🔍 getInitialState result:`, JSON.stringify(value, null, 2))
-        }
       }
 
       // If the link were handled, it gets cleared in NavigationContainer
@@ -441,7 +461,27 @@ export function useLinking(
           previousStateRef.current = refState
         }
 
-        history.replace({ path, state })
+        // @modified - Handle initial history.replace with route masking support
+        // When restoring from __tempLocation, we need to preserve the masked URL
+        // Also skip if already done (handles React Strict Mode double-mount)
+        if (!initialHistorySetupDoneRef.current) {
+          // Check if we're restoring from __tempLocation (route masking)
+          const historyState = window.history.state
+          const isRestoringFromMask = restoringFromTempLocationRef.current ||
+            (historyState?.__tempLocation?.pathname && !historyState.__tempKey)
+
+          if (isRestoringFromMask) {
+            // Use current URL as displayPath to preserve the masked URL in browser
+            const displayPath = window.location.pathname + window.location.search
+            history.replace({ path, state, displayPath })
+            restoringFromTempLocationRef.current = false
+            // Store displayPath so onStateChange can preserve it
+            maskedDisplayPathRef.current = displayPath
+          } else {
+            history.replace({ path, state })
+          }
+          initialHistorySetupDoneRef.current = true
+        }
       }
     }
 
@@ -468,10 +508,18 @@ export function useLinking(
       const path = getPathForRoute(route, state)
 
       // @modified - extract mask from linkOptions for route masking
-      const maskHref = (state as any).linkOptions?.mask?.href
-      const displayPath = maskHref
-        ? appendBaseUrl(stripGroupSegmentsFromPath(maskHref) || '/')
-        : undefined
+      const maskOptions = (state as any).linkOptions?.mask
+      const maskHref = maskOptions?.href
+      // First check if we have a saved displayPath from mask restoration (page refresh case)
+      // This preserves the masked URL on the first state change after refresh
+      let displayPath = maskedDisplayPathRef.current
+      if (displayPath) {
+        // Consume the saved displayPath (only use it once)
+        maskedDisplayPathRef.current = undefined
+      } else if (maskHref) {
+        displayPath = appendBaseUrl(stripGroupSegmentsFromPath(maskHref) || '/')
+      }
+      const unmaskOnReload = maskOptions?.unmaskOnReload
 
       previousStateRef.current = refState
       pendingPopStatePathRef.current = undefined
@@ -500,7 +548,7 @@ export function useLinking(
         if (historyDelta > 0) {
           // If history length is increased, we should pushState
           // Note that path might not actually change here, for example, drawer open should pushState
-          history.push({ path, state, displayPath })
+          history.push({ path, state, displayPath, unmaskOnReload })
         } else if (historyDelta < 0) {
           // If history length is decreased, i.e. entries were removed, we want to go back
 
@@ -531,12 +579,12 @@ export function useLinking(
           }
         } else {
           // If history length is unchanged, we want to replaceState
-          history.replace({ path, state, displayPath })
+          history.replace({ path, state, displayPath, unmaskOnReload })
         }
       } else {
         // If no common navigation state was found, assume it's a replace
         // This would happen if the user did a reset/conditionally changed navigators
-        history.replace({ path, state, displayPath })
+        history.replace({ path, state, displayPath, unmaskOnReload })
       }
     }
 
