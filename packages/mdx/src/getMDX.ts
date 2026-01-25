@@ -29,10 +29,10 @@ export async function getMDX(
     source,
     mdxOptions(options) {
       options.remarkPlugins = [
-          ...(options.remarkPlugins ?? []),
-          remarkGfm,
-          remarkSmartypantsFixed,
-        ]
+        ...(options.remarkPlugins ?? []),
+        remarkGfm,
+        remarkSmartypantsFixed,
+      ]
       const plugins = [
         ...(opts.extraPlugins || []),
         ...(options.rehypePlugins ?? []),
