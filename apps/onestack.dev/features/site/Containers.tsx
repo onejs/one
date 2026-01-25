@@ -16,15 +16,16 @@ export const ContainerDocs = styled(View, {
   },
 
   $gtMd: {
-    y: -50,
-    maxWidth: `min(840px, calc(100vw - 250px))`,
-    x: '15%',
+    ml: 225,
+    mr: 0,
+    maxWidth: `calc(100vw - 425px)`,
   },
 
   $gtLg: {
+    ml: 'auto',
+    mr: 'auto',
     maxWidth: 840,
-    y: -50,
-    x: '2%',
+    pr: '$10',
   },
 })
 
