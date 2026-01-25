@@ -1,0 +1,37 @@
+---
+title: setServerData / getServerData
+---
+
+<Status is="developing" />
+
+For improving performance of client hydration on the web, you can pass data from the server to the client. Data must be serializable to JSON.
+
+Here's an example of a simple `useFetch`:
+
+```tsx fileName=app/index.tsx
+import { setServerData, getServerData } from 'one'
+
+type SafeURLs = `${`https://tamagui.dev` | `http://localhost`}${string}
+
+const useFetch = async (url: SafeURLs) => {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    // on server data must be set during render
+    setServerData(url, await fetch(url).then(res => res.json()))
+  }
+
+  return getServerData(url)
+}
+
+export default async (props) => {
+  const serverData = await useFetch(props.url)
+  return <div />
+}
+
+// can use it in loaders, too
+
+export const loader = async ({ params }) => {
+  await doSomething()
+  setServerData(params.idl, 'data')
+  return {}
+}
+```

@@ -1,0 +1,18 @@
+---
+title: isResponse
+---
+
+One uses `Request`/`Response` type objects for API routes, but for some environments doing an `instanceof Response` can fail.
+
+`isResponse` takes any value and returns true if it is a Response-like object. Useful for API utility functions.
+
+```tsx
+import { isResponse } from 'one'
+
+export async function handleResult(result: unknown) {
+  if (isResponse(result)) {
+    return result
+  }
+  return Response.json(result)
+}
+```

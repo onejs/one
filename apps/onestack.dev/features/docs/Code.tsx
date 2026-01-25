@@ -1,4 +1,4 @@
-import { Text, styled } from '@tamagui/core'
+import { Text, Theme, styled } from '@tamagui/core'
 
 export const Code = styled(Text, {
   name: 'Code',
@@ -24,16 +24,23 @@ export const Code = styled(Text, {
   } as const,
 })
 
-export const CodeInline = styled(Text, {
+const CodeInlineBase = styled(Text, {
   name: 'CodeInline',
   tag: 'code',
   fontFamily: '$mono',
   color: '$color12',
-  backgroundColor: '$color2',
+  backgroundColor: '$color4',
   cursor: 'inherit',
   br: '$3',
   // @ts-ignore
   fontSize: '88%',
   p: '$1.5',
-  whiteSpace: 'pre',
+  whiteSpace: 'pre-wrap',
+  wordBreak: 'break-word',
 })
+
+export const CodeInline = (props: any) => (
+  <Theme name="yellow">
+    <CodeInlineBase {...props} />
+  </Theme>
+)

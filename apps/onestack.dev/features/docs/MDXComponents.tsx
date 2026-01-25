@@ -261,10 +261,11 @@ const componentsIn = {
   ),
 
   h3: ({ children, id, ...props }) => (
-    <LinkHeading pt="$8" mb="$1" id={id}>
+    <LinkHeading pt="$4" mb="$1" id={id}>
       <H3
         fontFamily="$mono"
-        size="$4"
+        size="$5"
+        letterSpacing={-0.5}
         pos="relative"
         width={`fit-content` as any}
         id={id}

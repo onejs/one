@@ -57,7 +57,10 @@ export default function DocsLayout() {
           }}
         >
           <YStack
-            $md={{ dsp: 'none' }}
+            dsp="none"
+            $gtMd={{
+              dsp: 'flex',
+            }}
             mt={28}
             h={65}
             maxWidth="fit-content"
@@ -88,7 +91,7 @@ export default function DocsLayout() {
       </View>
 
       <ContainerDocs>
-        <Spacer $md={{ dsp: 'none' }} />
+        {/* <Spacer $md={{ dsp: 'none' }} /> */}
         <Slot />
 
         {(previous || next) && (

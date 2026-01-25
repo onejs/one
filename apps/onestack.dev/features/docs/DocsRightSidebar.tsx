@@ -31,16 +31,23 @@ export function DocsRightSidebar({
       tag="aside"
       // className={classNames.zeroRight}
       display="none"
-      $gtLg={{
+      $gtMd={{
         display: 'flex',
         pe: 'none',
         width: 200,
         flexShrink: 0,
         zIndex: 1,
         position: 'fixed' as any,
+        right: 0,
+        top: 130,
+        pr: '$5',
+      }}
+      $gtLg={{
+        width: 200,
+        right: 'auto',
         left: '50%',
-        top: 100,
-        marginLeft: 420,
+        marginLeft: 410,
+        pr: 0,
       }}
     >
       <YStack
@@ -50,7 +57,7 @@ export function DocsRightSidebar({
         gap="$2"
         pe="auto"
       >
-        <H4 size="$2" mx="$2" id="site-quick-nav-heading">
+        <H4 userSelect="none" size="$2" mx="$2" id="site-quick-nav-heading">
           Quick nav
         </H4>
 
@@ -62,9 +69,9 @@ export function DocsRightSidebar({
               <ul style={{ margin: 0, padding: 0 }}>
                 {headings.map(({ id, title, priority }, i) => {
                   return (
-                    <XStack key={i} tag="li" ai="center" py="$2">
+                    <XStack key={i} tag="li" ai="center" py="$1">
                       {priority > 2 && <Circle size={4} mx="$2" />}
-                      <QuickNavLink href={`#${id}`}>{title}</QuickNavLink>
+                      <QuickNavLink href={`#${id}` as any}>{title}</QuickNavLink>
                     </XStack>
                   )
                 })}
