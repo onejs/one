@@ -108,10 +108,12 @@ The `drawerType` option controls how the drawer appears:
 
 ## Dependencies
 
-The Drawer requires these peer dependencies:
+The Drawer requires these optional peer dependencies to be installed:
 
 ```bash
-npm install react-native-gesture-handler react-native-reanimated
+npm install @react-navigation/drawer react-native-gesture-handler react-native-reanimated
 ```
+
+These are marked as optional peer dependencies in `one`, so they won't be installed automatically. This keeps bundle sizes smaller for apps that don't use the Drawer.
 
 For more configuration options, see the [React Navigation Drawer documentation](https://reactnavigation.org/docs/drawer-navigator).
