@@ -73,13 +73,17 @@ export function PreloadLinks() {
           const seen = new WeakSet<Element>()
 
           const observeLinks = () => {
-            const links = document.querySelectorAll('a[href^="/"], a[href^="' + url + '"]')
+            const links = document.querySelectorAll(
+              'a[href^="/"], a[href^="' + url + '"]'
+            )
             links.forEach((link) => {
               if (seen.has(link)) return
               seen.add(link)
               const href = link.getAttribute('href')
               if (href) {
-                cleanups.push(observePrefetchViewport(link as HTMLElement, href.replace(url, '')))
+                cleanups.push(
+                  observePrefetchViewport(link as HTMLElement, href.replace(url, ''))
+                )
               }
             })
           }
@@ -116,13 +120,17 @@ export function PreloadLinks() {
           const seen = new WeakSet<Element>()
 
           const observeLinks = () => {
-            const links = document.querySelectorAll('a[href^="/"], a[href^="' + url + '"]')
+            const links = document.querySelectorAll(
+              'a[href^="/"], a[href^="' + url + '"]'
+            )
             links.forEach((link) => {
               if (seen.has(link)) return
               seen.add(link)
               const href = link.getAttribute('href')
               if (href) {
-                cleanups.push(observePrefetchIntent(link as HTMLElement, href.replace(url, '')))
+                cleanups.push(
+                  observePrefetchIntent(link as HTMLElement, href.replace(url, ''))
+                )
               }
             })
           }

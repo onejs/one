@@ -64,6 +64,7 @@ export {
   usePathname,
   useRootNavigationState,
   useRouter,
+  useSearchParams,
   useSegments,
   useUnstableGlobalHref,
 } from './hooks'
