@@ -92,6 +92,7 @@ function RootLayoutRenderer({
   finalChildren = (
     <>
       <head key="head" {...headProps}>
+        <meta charSet="utf-8" />
         <DevHead />
         <script
           dangerouslySetInnerHTML={{
