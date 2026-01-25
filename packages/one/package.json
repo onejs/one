@@ -91,6 +91,15 @@
       "types": "./types/image.d.ts",
       "import": "./dist/esm/image.mjs",
       "require": "./dist/cjs/image.js"
+    },
+    "./drawer": {
+      "react-native": {
+        "import": "./dist/esm/drawer.native.js",
+        "require": "./dist/cjs/drawer.native.js"
+      },
+      "types": "./types/drawer.d.ts",
+      "import": "./dist/esm/drawer.mjs",
+      "require": "./dist/cjs/drawer.js"
     }
   },
   "main": "dist/cjs",
