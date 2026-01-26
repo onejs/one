@@ -18,7 +18,7 @@ export function getMetroBabelConfigFromViteConfig(
     SSR: false,
   }
 
-  const envPrefix = config.envPrefix || 'VITE_'
+  const envPrefix = config.envPrefix || ['VITE_', 'EXPO_PUBLIC_']
   const prefixes = Array.isArray(envPrefix) ? envPrefix : [envPrefix]
 
   for (const key of Object.keys(config.env)) {

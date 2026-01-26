@@ -154,6 +154,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       __get: options,
     } as any,
 
+    {
+      name: 'one:env-prefix',
+      config(userConfig) {
+        // only set default if user hasn't configured envPrefix
+        if (userConfig.envPrefix) return
+        return {
+          envPrefix: ['VITE_', 'EXPO_PUBLIC_'],
+        }
+      },
+    },
+
     !barrelOption
       ? null
       : (barrel({
