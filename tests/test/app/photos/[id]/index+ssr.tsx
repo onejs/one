@@ -25,7 +25,9 @@ export default function PhotoDetail() {
     <YStack flex={1} bg="$background" p="$4" gap="$4" data-testid="photo-detail-page">
       <XStack ai="center" gap="$3">
         <Link href="/photos">
-          <Button size="$3" data-testid="back-btn">Back</Button>
+          <Button size="$3" data-testid="back-btn">
+            Back
+          </Button>
         </Link>
         <Text fontSize="$6" fontWeight="bold" data-testid="photo-detail-title">
           {photo.title}

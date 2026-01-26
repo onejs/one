@@ -43,7 +43,9 @@ type NavigatorContextValue = {
   contextKey: string
   state: ReturnType<typeof useNavigationBuilder>['state']
   navigation: ReturnType<typeof useNavigationBuilder>['navigation']
-  descriptorsRef: React.MutableRefObject<ReturnType<typeof useNavigationBuilder>['descriptors']>
+  descriptorsRef: React.MutableRefObject<
+    ReturnType<typeof useNavigationBuilder>['descriptors']
+  >
   router: RouterFactory<any, any, any>
 }
 

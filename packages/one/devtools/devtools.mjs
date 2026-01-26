@@ -344,16 +344,24 @@
 
     function getSeoContent() {
       const title = document.title || ''
-      const desc = document.querySelector('meta[name="description"]')?.getAttribute('content') || ''
-      const ogTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content') || ''
-      const ogDesc = document.querySelector('meta[property="og:description"]')?.getAttribute('content') || ''
-      const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content') || ''
+      const desc =
+        document.querySelector('meta[name="description"]')?.getAttribute('content') || ''
+      const ogTitle =
+        document.querySelector('meta[property="og:title"]')?.getAttribute('content') || ''
+      const ogDesc =
+        document
+          .querySelector('meta[property="og:description"]')
+          ?.getAttribute('content') || ''
+      const ogImage =
+        document.querySelector('meta[property="og:image"]')?.getAttribute('content') || ''
 
       const issues = []
       if (!title) issues.push({ type: 'error', msg: 'Missing title' })
-      else if (title.length > 60) issues.push({ type: 'warn', msg: 'Title too long (>60)' })
+      else if (title.length > 60)
+        issues.push({ type: 'warn', msg: 'Title too long (>60)' })
       if (!desc) issues.push({ type: 'error', msg: 'Missing description' })
-      else if (desc.length > 160) issues.push({ type: 'warn', msg: 'Description too long (>160)' })
+      else if (desc.length > 160)
+        issues.push({ type: 'warn', msg: 'Description too long (>160)' })
       if (!ogTitle) issues.push({ type: 'warn', msg: 'Missing og:title' })
       if (!ogImage) issues.push({ type: 'warn', msg: 'Missing og:image' })
 
@@ -373,28 +381,65 @@
 
       html +=
         '<div class="section"><div class="section-title">Google Preview</div><div class="preview-card" style="background:#fff;color:#202124;padding:12px;border-radius:8px;">'
-      html += '<div style="font-size:12px;color:#202124;margin-bottom:2px;">' + escapeHtml(location.hostname) + '</div>'
-      html += '<div style="font-size:16px;color:#1a0dab;margin-bottom:4px;">' + escapeHtml(title || 'No title') + '</div>'
-      html += '<div style="font-size:13px;color:#4d5156;">' + escapeHtml(desc ? desc.slice(0, 160) : 'No description') + '</div>'
+      html +=
+        '<div style="font-size:12px;color:#202124;margin-bottom:2px;">' +
+        escapeHtml(location.hostname) +
+        '</div>'
+      html +=
+        '<div style="font-size:16px;color:#1a0dab;margin-bottom:4px;">' +
+        escapeHtml(title || 'No title') +
+        '</div>'
+      html +=
+        '<div style="font-size:13px;color:#4d5156;">' +
+        escapeHtml(desc ? desc.slice(0, 160) : 'No description') +
+        '</div>'
       html += '</div></div>'
 
       if (ogImage) {
         html += '<div class="section"><div class="section-title">Social Preview</div>'
-        html += '<div class="preview-card" style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e1e8ed;">'
-        html += '<img src="' + escapeHtml(ogImage) + '" style="width:100%;height:auto;display:block;border-bottom:1px solid #e1e8ed;" onerror="this.style.display=\'none\'" />'
+        html +=
+          '<div class="preview-card" style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e1e8ed;">'
+        html +=
+          '<img src="' +
+          escapeHtml(ogImage) +
+          '" style="width:100%;height:auto;display:block;border-bottom:1px solid #e1e8ed;" onerror="this.style.display=\'none\'" />'
         html += '<div style="padding:12px;">'
-        html += '<div style="font-size:12px;color:#8899a6;text-transform:uppercase;margin-bottom:2px;">' + escapeHtml(location.hostname) + '</div>'
-        html += '<div style="font-size:15px;color:#1c2022;font-weight:700;margin-bottom:4px;line-height:1.3;">' + escapeHtml(ogTitle || title || 'No title') + '</div>'
-        html += '<div style="font-size:14px;color:#8899a6;line-height:1.3;">' + escapeHtml((ogDesc || desc || '').slice(0, 100)) + '</div>'
+        html +=
+          '<div style="font-size:12px;color:#8899a6;text-transform:uppercase;margin-bottom:2px;">' +
+          escapeHtml(location.hostname) +
+          '</div>'
+        html +=
+          '<div style="font-size:15px;color:#1c2022;font-weight:700;margin-bottom:4px;line-height:1.3;">' +
+          escapeHtml(ogTitle || title || 'No title') +
+          '</div>'
+        html +=
+          '<div style="font-size:14px;color:#8899a6;line-height:1.3;">' +
+          escapeHtml((ogDesc || desc || '').slice(0, 100)) +
+          '</div>'
         html += '</div></div></div>'
       }
 
       html += '<div class="section"><div class="section-title">Meta Tags</div>'
-      html += '<div class="info-row"><div class="info-label">title</div><div class="info-value">' + escapeHtml(title || '-') + '</div></div>'
-      html += '<div class="info-row"><div class="info-label">description</div><div class="info-value">' + escapeHtml(desc || '-') + '</div></div>'
-      html += '<div class="info-row"><div class="info-label">og:title</div><div class="info-value">' + escapeHtml(ogTitle || '-') + '</div></div>'
-      html += '<div class="info-row"><div class="info-label">og:description</div><div class="info-value">' + escapeHtml(ogDesc || '-') + '</div></div>'
-      html += '<div class="info-row"><div class="info-label">og:image</div><div class="info-value">' + escapeHtml(ogImage || '-') + '</div></div>'
+      html +=
+        '<div class="info-row"><div class="info-label">title</div><div class="info-value">' +
+        escapeHtml(title || '-') +
+        '</div></div>'
+      html +=
+        '<div class="info-row"><div class="info-label">description</div><div class="info-value">' +
+        escapeHtml(desc || '-') +
+        '</div></div>'
+      html +=
+        '<div class="info-row"><div class="info-label">og:title</div><div class="info-value">' +
+        escapeHtml(ogTitle || '-') +
+        '</div></div>'
+      html +=
+        '<div class="info-row"><div class="info-label">og:description</div><div class="info-value">' +
+        escapeHtml(ogDesc || '-') +
+        '</div></div>'
+      html +=
+        '<div class="info-row"><div class="info-label">og:image</div><div class="info-value">' +
+        escapeHtml(ogImage || '-') +
+        '</div></div>'
       html += '</div>'
 
       return html
@@ -410,27 +455,53 @@
       const params = routeInfo.params || {}
 
       let html = '<div class="section"><div class="section-title">Current Route</div>'
-      html += '<div class="info-row"><span class="info-label">pathname</span><span class="info-value">' + escapeHtml(pathname) + '</span></div>'
+      html +=
+        '<div class="info-row"><span class="info-label">pathname</span><span class="info-value">' +
+        escapeHtml(pathname) +
+        '</span></div>'
       html +=
         '<div class="info-row"><span class="info-label">segments</span><span class="info-value">' +
         (segments.length
-          ? segments.map((s) => '<span style="background:#252525;padding:2px 6px;border-radius:4px;margin-right:4px;">' + escapeHtml(s) + '</span>').join('')
+          ? segments
+              .map(
+                (s) =>
+                  '<span style="background:#252525;padding:2px 6px;border-radius:4px;margin-right:4px;">' +
+                  escapeHtml(s) +
+                  '</span>'
+              )
+              .join('')
           : '/') +
         '</span></div>'
-      if (search) html += '<div class="info-row"><span class="info-label">search</span><span class="info-value">' + escapeHtml(search) + '</span></div>'
-      if (hash) html += '<div class="info-row"><span class="info-label">hash</span><span class="info-value">' + escapeHtml(hash) + '</span></div>'
+      if (search)
+        html +=
+          '<div class="info-row"><span class="info-label">search</span><span class="info-value">' +
+          escapeHtml(search) +
+          '</span></div>'
+      if (hash)
+        html +=
+          '<div class="info-row"><span class="info-label">hash</span><span class="info-value">' +
+          escapeHtml(hash) +
+          '</span></div>'
       html += '</div>'
 
       if (Object.keys(params).length) {
         html += '<div class="section"><div class="section-title">Route Params</div>'
         Object.entries(params).forEach(([k, v]) => {
-          html += '<div class="info-row"><span class="info-label">' + escapeHtml(k) + '</span><span class="info-value">' + escapeHtml(String(v)) + '</span></div>'
+          html +=
+            '<div class="info-row"><span class="info-label">' +
+            escapeHtml(k) +
+            '</span><span class="info-value">' +
+            escapeHtml(String(v)) +
+            '</span></div>'
         })
         html += '</div>'
       }
 
       html += '<div class="section"><div class="section-title">Full URL</div>'
-      html += '<div style="font-family:monospace;font-size:11px;color:#666;word-break:break-all;">' + escapeHtml(location.href) + '</div>'
+      html +=
+        '<div style="font-family:monospace;font-size:11px;color:#666;word-break:break-all;">' +
+        escapeHtml(location.href) +
+        '</div>'
       html += '</div>'
 
       return html
@@ -438,7 +509,10 @@
 
     function getLoaderContent() {
       const devtools = window.__oneDevtools || {}
-      const history = typeof devtools.getLoaderTimingHistory === 'function' ? devtools.getLoaderTimingHistory() || [] : []
+      const history =
+        typeof devtools.getLoaderTimingHistory === 'function'
+          ? devtools.getLoaderTimingHistory() || []
+          : []
 
       if (!history.length) {
         return '<div class="empty">No loader timings recorded yet</div>'
@@ -448,19 +522,41 @@
       let html = ''
 
       history.forEach((t) => {
-        const modPct = t.moduleLoadTime && t.totalTime ? (t.moduleLoadTime / t.totalTime) * 100 : 0
-        const execPct = t.executionTime && t.totalTime ? (t.executionTime / t.totalTime) * 100 : 0
+        const modPct =
+          t.moduleLoadTime && t.totalTime ? (t.moduleLoadTime / t.totalTime) * 100 : 0
+        const execPct =
+          t.executionTime && t.totalTime ? (t.executionTime / t.totalTime) * 100 : 0
         const widthPct = t.totalTime && maxTime ? (t.totalTime / maxTime) * 100 : 0
 
         html += '<div class="error-item' + (t.error ? ' error' : '') + '">'
-        html += '<div style="display:flex;justify-content:space-between;align-items:center;">'
-        html += '<span style="font-family:monospace;font-size:11px;">' + escapeHtml(t.path) + '</span>'
-        html += '<span class="badge badge-' + (t.error ? 'error' : 'success') + '">' + (t.totalTime ? Math.round(t.totalTime) + 'ms' : '-') + '</span>'
+        html +=
+          '<div style="display:flex;justify-content:space-between;align-items:center;">'
+        html +=
+          '<span style="font-family:monospace;font-size:11px;">' +
+          escapeHtml(t.path) +
+          '</span>'
+        html +=
+          '<span class="badge badge-' +
+          (t.error ? 'error' : 'success') +
+          '">' +
+          (t.totalTime ? Math.round(t.totalTime) + 'ms' : '-') +
+          '</span>'
         html += '</div>'
         if (!t.error) {
-          html += '<div class="timing-bar" style="width:' + Math.max(20, widthPct) + '%;">'
-          html += '<div class="timing-segment timing-module" style="width:' + modPct + '%;" title="Module: ' + Math.round(t.moduleLoadTime || 0) + 'ms"></div>'
-          html += '<div class="timing-segment timing-exec" style="width:' + execPct + '%;" title="Exec: ' + Math.round(t.executionTime || 0) + 'ms"></div>'
+          html +=
+            '<div class="timing-bar" style="width:' + Math.max(20, widthPct) + '%;">'
+          html +=
+            '<div class="timing-segment timing-module" style="width:' +
+            modPct +
+            '%;" title="Module: ' +
+            Math.round(t.moduleLoadTime || 0) +
+            'ms"></div>'
+          html +=
+            '<div class="timing-segment timing-exec" style="width:' +
+            execPct +
+            '%;" title="Exec: ' +
+            Math.round(t.executionTime || 0) +
+            'ms"></div>'
           html += '</div>'
         }
         if (t.error) html += '<div class="error-msg">' + escapeHtml(t.error) + '</div>'
@@ -481,11 +577,19 @@
       let html = ''
       errors.forEach((err) => {
         html += '<div class="error-item error">'
-        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'
-        html += '<span class="badge badge-error">' + escapeHtml(err.type || 'error') + '</span>'
-        html += '<span style="font-size:11px;color:#666;">' + new Date(err.timestamp).toLocaleTimeString() + '</span>'
+        html +=
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'
+        html +=
+          '<span class="badge badge-error">' + escapeHtml(err.type || 'error') + '</span>'
+        html +=
+          '<span style="font-size:11px;color:#666;">' +
+          new Date(err.timestamp).toLocaleTimeString() +
+          '</span>'
         html += '</div>'
-        html += '<div class="error-msg">' + escapeHtml(err.error?.message || 'Unknown error') + '</div>'
+        html +=
+          '<div class="error-msg">' +
+          escapeHtml(err.error?.message || 'Unknown error') +
+          '</div>'
         html += '</div>'
       })
 
@@ -514,7 +618,8 @@
       const devtools = (window.__oneDevtools = window.__oneDevtools || {})
       devtools.errorHistory = devtools.errorHistory || []
       devtools.errorHistory.unshift(e.detail)
-      if (devtools.errorHistory.length > 20) devtools.errorHistory = devtools.errorHistory.slice(0, 20)
+      if (devtools.errorHistory.length > 20)
+        devtools.errorHistory = devtools.errorHistory.slice(0, 20)
       if (panelDialog?.open && activeTab === 'errors') updateContent()
     })
 

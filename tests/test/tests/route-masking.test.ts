@@ -122,7 +122,9 @@ describe.skip('Route Masking Tests', { retry: 3, timeout: 120_000 }, () => {
       await page.waitForTimeout(1500)
 
       // Check modal content shows correct photo
-      const routeInfo = await page.locator('[data-testid="modal-route-info"]').textContent()
+      const routeInfo = await page
+        .locator('[data-testid="modal-route-info"]')
+        .textContent()
       expect(routeInfo).toContain('/photos/5/modal')
 
       // URL should be preserved
@@ -236,7 +238,9 @@ describe.skip('Route Masking Tests', { retry: 3, timeout: 120_000 }, () => {
       // the behavior depends on unmaskOnReload setting
       // With unmaskOnReload: false and no history.state,
       // it should show the photo detail page (the mask target)
-      const hasDetailPage = await page.locator('[data-testid="photo-detail-page"]').count()
+      const hasDetailPage = await page
+        .locator('[data-testid="photo-detail-page"]')
+        .count()
       const hasModal = await page.locator('[data-testid="modal-title"]').count()
 
       // Should have either detail page or modal (implementation dependent)
@@ -269,5 +273,4 @@ describe.skip('Route Masking Tests', { retry: 3, timeout: 120_000 }, () => {
       await page.close()
     })
   })
-
 })
