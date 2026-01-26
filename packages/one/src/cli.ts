@@ -283,6 +283,45 @@ const generateRoutes = defineCommand({
   },
 })
 
+const daemonCommand = defineCommand({
+  meta: {
+    name: 'daemon',
+    version: version,
+    description: 'Multi-app development server proxy',
+  },
+  args: {
+    subcommand: {
+      type: 'positional',
+      description: 'Subcommand: start, stop, status, route (default: start)',
+      required: false,
+    },
+    port: {
+      type: 'string',
+      description: 'Port to listen on (default: 8081)',
+    },
+    host: {
+      type: 'string',
+      description: 'Host to bind to (default: 0.0.0.0)',
+    },
+    app: {
+      type: 'string',
+      description: 'Bundle ID for route command',
+    },
+    slot: {
+      type: 'string',
+      description: 'Slot number for route command',
+    },
+    project: {
+      type: 'string',
+      description: 'Project path for route command',
+    },
+  },
+  async run({ args }) {
+    const { daemon } = await import('./cli/daemon')
+    await daemon(args)
+  },
+})
+
 const subCommands = {
   dev,
   clean,
@@ -293,6 +332,7 @@ const subCommands = {
   patch,
   serve: serveCommand,
   'generate-routes': generateRoutes,
+  daemon: daemonCommand,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow
