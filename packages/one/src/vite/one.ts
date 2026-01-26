@@ -23,6 +23,7 @@ import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
+import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
@@ -654,5 +655,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       const inspector = devtools === true || (devtools.inspector ?? true)
       return inspector ? sourceInspectorPlugin() : []
     })(),
+
+    // devtools client script (HMR, refresh, devtools UI)
+    createDevtoolsPlugin(),
   ]
 }
