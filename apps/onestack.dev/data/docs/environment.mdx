@@ -10,7 +10,7 @@ One handles environment variables for you in a few ways.
 
 First, it handles loading `.env` files during development and in production. In order to ease compatibility with ESM and CJS, One makes your loaded environment variables (from `.env` and from `process.env`) automatically be defined onto both `import.meta.env` and `process.env`.
 
-Second, One ensures that all environment variables loaded are only available to the server-side functionality, unless they are prefixed with either `VITE_` (to match Vite convention) or `ONE_PUBLIC_`.
+Second, One ensures that all environment variables loaded are only available to the server-side functionality, unless they are prefixed with `VITE_` (Vite convention), `EXPO_PUBLIC_` (Expo convention), or `ONE_PUBLIC_`.
 
 So, for example `ONE_PUBLIC_DAYTIME=false one dev` would set both `process.env.ONE_PUBLIC_DAYTIME` and `import.meta.env.ONE_PUBLIC_DAYTIME` to be the string "false" on both server and client.
 
