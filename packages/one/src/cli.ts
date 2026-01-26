@@ -315,6 +315,10 @@ const daemonCommand = defineCommand({
       type: 'string',
       description: 'Project path for route command',
     },
+    tui: {
+      type: 'boolean',
+      description: 'Show TUI (default: true if TTY)',
+    },
   },
   async run({ args }) {
     const { daemon } = await import('./cli/daemon')

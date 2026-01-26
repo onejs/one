@@ -10,6 +10,7 @@ export async function daemon(args: {
   app?: string
   slot?: string
   project?: string
+  tui?: boolean
 }) {
   const subcommand = args.subcommand || 'run'
 
@@ -34,7 +35,7 @@ export async function daemon(args: {
   }
 }
 
-async function daemonStart(args: { port?: string; host?: string }) {
+async function daemonStart(args: { port?: string; host?: string; tui?: boolean }) {
   labelProcess('daemon')
 
   const { isDaemonRunning } = await import('../daemon/ipc')
@@ -47,10 +48,19 @@ async function daemonStart(args: { port?: string; host?: string }) {
 
   const { startDaemon } = await import('../daemon/server')
 
-  await startDaemon({
+  // default to TUI if running in interactive terminal
+  const useTUI = args.tui ?? process.stdin.isTTY
+
+  const { state } = await startDaemon({
     port: args.port ? parseInt(args.port, 10) : undefined,
     host: args.host,
+    quiet: useTUI, // suppress normal logs when TUI is active
   })
+
+  if (useTUI) {
+    const { startTUI } = await import('../daemon/tui')
+    startTUI(state)
+  }
 }
 
 async function daemonStop() {
