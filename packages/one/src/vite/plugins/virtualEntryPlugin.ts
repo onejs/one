@@ -120,6 +120,7 @@ export function createVirtualEntry(options: {
   const setupFiles = normalizeSetupFile(options.setupFile)
 
   // Generate route masks setup code if configured in vite config
+  // @ts-ignore
   const routeMasks = options.router?.routeMasks
   const routeMasksSetup = routeMasks?.length
     ? `
