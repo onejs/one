@@ -30,7 +30,7 @@ One also sets some environment variables for you, available on both `process.env
 #### Platform Detection
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
-- `VITE_PLATFORM` is set to `"web"` for web builds (both client and SSR), or `"native"` for native platforms (iOS and Android). Useful for branching on web vs native without checking multiple OS values.
+- `VITE_NATIVE` is a boolean set to `true` for native platforms (iOS and Android), or `false` for web (client and SSR). Useful for tree-shaking native-only code.
 - `EXPO_OS` is set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms. This matches the Expo convention for platform detection.
 
 #### React Native
@@ -50,4 +50,4 @@ One provides TypeScript types for all preset environment variables. To enable th
 
 You can add this to any `.d.ts` file in your project (such as `env.d.ts` or `vite-env.d.ts`), or include it in a file that's part of your TypeScript compilation.
 
-This gives you autocomplete and type checking for `import.meta.env.VITE_ENVIRONMENT`, `process.env.VITE_PLATFORM`, and all other One environment variables.
+This gives you autocomplete and type checking for `import.meta.env.VITE_ENVIRONMENT`, `process.env.VITE_NATIVE`, and all other One environment variables.
