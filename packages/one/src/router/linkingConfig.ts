@@ -42,11 +42,13 @@ export function setupLinking(
       if (unmaskPath) {
         path = unmaskPath
       } else if (typeof window !== 'undefined') {
-        // Fall back to history.state check (client-only)
-        const historyState = window.history.state
+        // Fall back to history.state check (client-only, not available on native)
+        const historyState = window.history?.state
         if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
           // Restore to actual route from __tempLocation
-          path = historyState.__tempLocation.pathname + (historyState.__tempLocation.search || '')
+          path =
+            historyState.__tempLocation.pathname +
+            (historyState.__tempLocation.search || '')
         }
       }
 
