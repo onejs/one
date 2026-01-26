@@ -30,7 +30,7 @@ One also sets some environment variables for you, available on both `process.env
 #### Platform Detection
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
-- `VITE_NATIVE` is a boolean set to `true` for native platforms (iOS and Android), or `false` for web (client and SSR). Useful for tree-shaking native-only code.
+- `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
 - `EXPO_OS` is set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms. This matches the Expo convention for platform detection.
 
 #### React Native
