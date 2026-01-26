@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter, Link } from 'one'
 import { Dialog, Button, XStack, YStack, Text, Image, Adapt, Sheet } from 'tamagui'
+import { X } from '@tamagui/lucide-icons'
 
 const getPhotoUrl = (id: string) =>
   `https://picsum.photos/id/${(parseInt(id) || 1) * 10}/600/400`
@@ -20,7 +21,7 @@ export default function PhotoModal() {
   }
 
   const handleClose = () => {
-    if (isClosing) return
+    if (isClosing) return // Prevent double-close
     setIsClosing(true)
   }
 
@@ -50,7 +51,7 @@ export default function PhotoModal() {
           elevate
           key="content"
           animation={[
-            'quick',
+            '200ms',
             {
               opacity: {
                 overshootClamping: true,
@@ -60,12 +61,14 @@ export default function PhotoModal() {
           enterStyle={{ x: 0, y: -20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
           width="90%"
-          maw={500}
+          maxW={500}
         >
-          <XStack jc="space-between" ai="center" mb="$3">
-            <Dialog.Title fontSize="$6" data-testid="modal-title">{photo.title}</Dialog.Title>
+          <XStack justify="space-between" items="center" mb="$3">
+            <Dialog.Title fontSize="$6" testID="modal-title">
+              {photo.title}
+            </Dialog.Title>
             <Dialog.Close asChild>
-              <Button size="$3" circular data-testid="modal-close-btn">X</Button>
+              <Button size="$3" circular icon={X} testID="modal-close-btn" />
             </Dialog.Close>
           </XStack>
 
@@ -76,8 +79,8 @@ export default function PhotoModal() {
             borderRadius="$4"
           />
 
-          <YStack gap="$2" mt="$3" data-testid="modal-content">
-            <Text color="$color11" fontSize="$3" data-testid="modal-route-info">
+          <YStack gap="$2" mt="$3" testID="modal-content">
+            <Text color="$color11" fontSize="$3" testID="modal-route-info">
               This is a modal at /photos/{id}/modal
             </Text>
             <Text color="$color11" fontSize="$3">
