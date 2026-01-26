@@ -1,0 +1,326 @@
+---
+title: Route Masking
+---
+
+Route masking displays a different URL in the browser than the actual route being rendered. This is useful for creating modal experiences where you want a clean, shareable URL while still rendering a nested route.
+
+For example, you might navigate to `/photos/5/modal` to show a photo in a modal overlay, but display `/photos/5` in the browser URL bar. When the user shares that URL or refreshes the page, you control what happens.
+
+## Why Use Route Masking?
+
+Common use cases include:
+
+- **Modal overlays**: Show a photo modal at `/photos/[id]/modal` but display `/photos/[id]` in the URL
+- **Preview panels**: Open a preview slide-over without changing the visible URL
+- **Multi-step forms**: Navigate through form steps internally while keeping a clean URL
+
+## Basic Setup
+
+Route masks are configured in your `vite.config.ts` under `router.routeMasks`:
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      router: {
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+          },
+        ],
+      },
+    }),
+  ],
+}
+```
+
+Now when you navigate to `/photos/5/modal`, the browser URL shows `/photos/5`, but the modal route renders.
+
+### Imperative Setup
+
+You can also configure route masks imperatively in your root layout using `setRouteMasks`. This is useful when you need custom param transformation functions:
+
+```tsx fileName=app/_layout.tsx
+import { setRouteMasks, createRouteMask, Slot } from 'one'
+
+setRouteMasks([
+  createRouteMask({
+    from: '/photos/[id]/modal',
+    to: '/photos/[id]',
+    params: (matched) => ({ id: matched.id }),
+  }),
+])
+
+export default function Layout() {
+  return <Slot />
+}
+```
+
+## Route Mask Options
+
+The `createRouteMask` function accepts the following options:
+
+### from
+
+The route pattern to match (the actual route being navigated to). Supports dynamic segments.
+
+```tsx
+createRouteMask({
+  from: '/photos/[id]/modal',
+  // ...
+})
+```
+
+### to
+
+The route pattern to display in the browser URL (the masked URL). Dynamic segments are populated from the matched params.
+
+```tsx
+createRouteMask({
+  from: '/photos/[id]/modal',
+  to: '/photos/[id]',
+  // ...
+})
+```
+
+### params
+
+Controls how parameters are forwarded to the masked URL:
+
+- `true` (default): Forward all matched params
+- `false`: Don't forward any params
+- Function: Custom param transformation
+
+```tsx
+// Forward all params (default)
+createRouteMask({
+  from: '/users/[userId]/settings/[tab]',
+  to: '/users/[userId]',
+  params: true,
+})
+
+// Custom transformation
+createRouteMask({
+  from: '/products/[category]/[id]/edit',
+  to: '/products/[category]',
+  params: (matched) => ({
+    category: matched.category,
+    // Don't include id in the masked URL
+  }),
+})
+```
+
+### unmaskOnReload
+
+Controls what happens when the user refreshes the page or navigates directly to the masked URL:
+
+- `false` (default): Keep showing the actual route content (the modal)
+- `true`: Show the masked URL's content instead
+
+```tsx
+// SPA-style: Refresh restores the modal
+createRouteMask({
+  from: '/photos/[id]/modal',
+  to: '/photos/[id]',
+  unmaskOnReload: false,
+})
+
+// Share-friendly: Refresh shows the photo detail page
+createRouteMask({
+  from: '/photos/[id]/modal',
+  to: '/photos/[id]',
+  unmaskOnReload: true,
+})
+```
+
+### useSearchParam
+
+Encodes the actual route as a base64 postfix in the URL pathname, enabling SSR to render the correct content without a flash.
+
+- `false` (default): Store the actual route in `history.state` (clean URL, but SSR can't read it)
+- `true`: Encode the actual route in the URL as a `__` postfix (SSR-safe, no flash on refresh)
+
+```tsx
+// SSR-safe: URL includes encoded actual route
+// URL will look like: /photos/5__L3Bob3Rvcy81L21vZGFs
+createRouteMask({
+  from: '/photos/[id]/modal',
+  to: '/photos/[id]',
+  useSearchParam: true, // Encode actual route in URL for SSR support
+})
+```
+
+When `useSearchParam` is enabled, the URL includes a `__` separator followed by a base64-encoded version of the actual route. This lets the server decode and render the correct route on first load, avoiding any flash of wrong content.
+
+**Tradeoff**: The URL has a base64 suffix visible (e.g., `/photos/5__L3Bob3Rvcy81L21vZGFs`), but there's no query parameter and SSR works correctly.
+
+## Complete Example
+
+Here's a full example with a photo gallery that opens photos in a modal:
+
+<RouteTree
+  routes={[
+    { name: '_layout.tsx', description: 'Root layout' },
+    { name: 'photos', children: [
+      { name: '_layout.tsx', description: 'Photo grid layout' },
+      { name: 'index.tsx', description: 'Photo list (empty, grid is in layout)' },
+      { name: '[id]', children: [
+        { name: 'index.tsx', description: 'Photo detail page - /photos/[id]' },
+        { name: 'modal.tsx', description: 'Photo modal - /photos/[id]/modal' },
+      ] },
+    ] },
+  ]}
+/>
+
+### Vite Config
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      router: {
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+            unmaskOnReload: false,
+          },
+        ],
+      },
+    }),
+  ],
+}
+```
+
+### Root Layout
+
+```tsx fileName=app/_layout.tsx
+import { Slot } from 'one'
+
+export default function RootLayout() {
+  return (
+    <html>
+      <body>
+        <Slot />
+      </body>
+    </html>
+  )
+}
+```
+
+### Photos Layout
+
+```tsx fileName=app/photos/_layout.tsx
+import { Link, Slot } from 'one'
+
+const photos = [
+  { id: '1', title: 'Photo 1' },
+  { id: '2', title: 'Photo 2' },
+  { id: '3', title: 'Photo 3' },
+]
+
+export default function PhotosLayout() {
+  return (
+    <div>
+      <h1>Photos</h1>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        {photos.map((photo) => (
+          <Link key={photo.id} href={`/photos/${photo.id}/modal`}>
+            {photo.title}
+          </Link>
+        ))}
+      </div>
+
+      {/* Modal renders here via Slot */}
+      <Slot />
+    </div>
+  )
+}
+```
+
+### Photo Modal
+
+```tsx fileName=app/photos/[id]/modal.tsx
+import { useParams, useRouter } from 'one'
+
+export default function PhotoModal() {
+  const { id } = useParams<{ id: string }>()
+  const router = useRouter()
+
+  const handleClose = () => {
+    router.navigate('/photos')
+  }
+
+  return (
+    <div className="modal-overlay" onClick={handleClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2>Photo {id}</h2>
+        <img src={`/images/photo-${id}.jpg`} alt={`Photo ${id}`} />
+        <button onClick={handleClose}>Close</button>
+      </div>
+    </div>
+  )
+}
+```
+
+### Photo Detail Page
+
+```tsx fileName=app/photos/[id]/index.tsx
+import { useParams, Link } from 'one'
+
+export default function PhotoDetail() {
+  const { id } = useParams<{ id: string }>()
+
+  return (
+    <div>
+      <h1>Photo {id}</h1>
+      <img src={`/images/photo-${id}.jpg`} alt={`Photo ${id}`} />
+      <Link href="/photos">Back to gallery</Link>
+    </div>
+  )
+}
+```
+
+## How It Works
+
+When you navigate to a masked route:
+
+1. One detects the route matches a mask pattern
+2. The browser URL is updated to show the masked URL
+3. The actual route path is stored (in `history.state` or encoded in the URL)
+4. The actual route component renders
+
+### Default mode (`useSearchParam: false`)
+
+Uses the browser's `history.state` to store the actual route path. The URL is completely clean (e.g., `/photos/5`), but the server can't read `history.state`, so SSR will render the masked URL's content first, then the client corrects it (causing a flash).
+
+On page refresh:
+
+- If `unmaskOnReload: false`: One reads the actual path from `history.state` and restores it
+- If `unmaskOnReload: true`: One navigates to what the URL shows (the masked URL)
+
+### SSR mode (`useSearchParam: true`)
+
+Encodes the actual route as a base64 postfix in the URL (e.g., `/photos/5__L3Bob3Rvcy81L21vZGFs`). The server decodes the postfix and renders the correct route immediately — no flash.
+
+On page refresh:
+
+- The server parses the `__` postfix from the URL pathname
+- Decodes the base64 value to get the actual route
+- Renders the correct content on the first response
+
+## Tips
+
+- Configure route masks in `vite.config.ts` under `router.routeMasks` for a declarative setup
+- Use `setRouteMasks()` in your root `_layout.tsx` when you need custom param transformation functions
+- Use `useSearchParam: true` when you need SSR to render the correct content without a flash
+- Use `unmaskOnReload: true` when the masked URL should be shareable as a standalone page
+- Use `unmaskOnReload: false` when you want to preserve the exact app state on refresh
+- Route masks work with dynamic segments like `[id]` and catch-all segments like `[...rest]`

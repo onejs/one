@@ -1,17 +1,15 @@
 import { ChevronLeft, ChevronRight } from '@tamagui/lucide-icons'
+import { type Href, Link, Slot } from 'one'
 import type { ReactNode } from 'react'
 import {
   EnsureFlexed,
-  H2,
   Paragraph,
   ScrollView,
   SizableText,
-  Spacer,
   View,
   XStack,
   YStack,
 } from 'tamagui'
-import { type Href, Link, Slot } from 'one'
 import { TopNav } from '~/components/TopNav'
 import { OneLogo } from '~/features/brand/Logo'
 import { DocsMenuContents } from '~/features/docs/DocsMenuContents'

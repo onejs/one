@@ -3,6 +3,7 @@ import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './router/Route'
 import type { RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
+import { parseUnmaskFromPath } from './router/routeMask'
 import { getPathFromLoaderPath } from './utils/cleanUrl'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
@@ -343,8 +344,13 @@ export function createHandleRequest(
       }
 
       if (handlers.handlePage) {
+        // Check for unmask postfix in pathname (route masking with SSR support)
+        // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs → actual route /photos/3/modal
+        const unmaskParam = parseUnmaskFromPath(pathname)
+        const routeMatchPath = unmaskParam || pathname
+
         for (const route of compiledManifest.pageRoutes) {
-          if (!route.compiledRegex.test(pathname)) {
+          if (!route.compiledRegex.test(routeMatchPath)) {
             continue
           }
 
@@ -364,10 +370,17 @@ export function createHandleRequest(
 
           if (debugRouter) {
             console.info(
-              `[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`
+              `[one] ⚡ ${routeMatchPath} → matched page route: ${route.page} (${route.type})${unmaskParam ? ' (unmasked)' : ''}`
             )
           }
-          return resolvePageRoute(handlers, request, url, route)
+
+          // If unmask postfix is present, create a new URL with the unmasked path
+          // This ensures the page is rendered with the correct route
+          const resolveUrl = unmaskParam
+            ? new URL(unmaskParam + url.search, url.origin)
+            : url
+
+          return resolvePageRoute(handlers, request, resolveUrl, route)
         }
       }
 

@@ -9,8 +9,19 @@ export default {
         compiler: process.env.NODE_ENV === 'production',
       },
 
+      router: {
+        // @ts-ignore - internal
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+          },
+        ],
+      },
+
       web: {
-        defaultRenderMode: 'ssg',
+        defaultRenderMode: 'ssr',
       },
 
       native: {
