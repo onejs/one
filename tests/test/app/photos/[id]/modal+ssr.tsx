@@ -63,9 +63,13 @@ export default function PhotoModal() {
           maw={500}
         >
           <XStack jc="space-between" ai="center" mb="$3">
-            <Dialog.Title fontSize="$6" data-testid="modal-title">{photo.title}</Dialog.Title>
+            <Dialog.Title fontSize="$6" data-testid="modal-title">
+              {photo.title}
+            </Dialog.Title>
             <Dialog.Close asChild>
-              <Button size="$3" circular data-testid="modal-close-btn">X</Button>
+              <Button size="$3" circular data-testid="modal-close-btn">
+                X
+              </Button>
             </Dialog.Close>
           </XStack>
 

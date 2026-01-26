@@ -14,7 +14,14 @@ const photos = Array.from({ length: 12 }, (_, i) => ({
 export default function PhotosLayout() {
   return (
     <YStack flex={1} bg="$background" testID="photos-layout">
-      <XStack p="$3" gap="$3" items="center" bg="$color2" borderColor="$borderColor" borderWidth={1}>
+      <XStack
+        p="$3"
+        gap="$3"
+        items="center"
+        bg="$color2"
+        borderColor="$borderColor"
+        borderWidth={1}
+      >
         <Link href="/">
           <Text color="$blue10" fontSize="$4">
             Home
@@ -35,7 +42,7 @@ export default function PhotosLayout() {
                 rounded="$4"
                 overflow="hidden"
                 elevation="$2"
-                hoverStyle={{ scale: 1.05 }}  
+                hoverStyle={{ scale: 1.05 }}
                 pressStyle={{ scale: 0.98 }}
                 animation="quick"
               >
@@ -54,14 +61,7 @@ export default function PhotosLayout() {
       </ScrollView>
 
       {/* Modal renders here as overlay */}
-      <View
-        position="absolute"
-        t={0}
-        l={0}
-        r={0}
-        b={0}
-        pointerEvents="box-none"
-      >
+      <View position="absolute" t={0} l={0} r={0} b={0} pointerEvents="box-none">
         <Slot />
       </View>
     </YStack>

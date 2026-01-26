@@ -119,7 +119,9 @@
         const idx = source.slice(lastColon + 1)
         const info = window.__oneSourceInfo?.[filePath]
         const lineCol = info?.[idx]
-        const displaySource = lineCol ? filePath + ':' + lineCol[0] + ':' + lineCol[1] : source
+        const displaySource = lineCol
+          ? filePath + ':' + lineCol[0] + ':' + lineCol[1]
+          : source
         showOverlay(el, displaySource)
       } else {
         hideOverlay()

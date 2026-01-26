@@ -53,14 +53,7 @@ export default function PhotosLayout() {
       </ScrollView>
 
       {/* Modal renders here as overlay */}
-      <View
-        position="absolute"
-        t={0}
-        l={0}
-        r={0}
-        b={0}
-        pointerEvents="box-none"
-      >
+      <View position="absolute" t={0} l={0} r={0} b={0} pointerEvents="box-none">
         <Slot />
       </View>
     </YStack>

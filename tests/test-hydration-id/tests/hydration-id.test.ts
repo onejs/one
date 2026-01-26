@@ -37,12 +37,24 @@ describe('Hydration useId Stability', () => {
     const testData = await page.evaluate(() => (window as any).__hydrationTest)
 
     // root layout should have exactly 1 unique ID (no remount)
-    expect(testData.root.ids.length, `Root had multiple IDs: [${testData.root.ids}]`).toBe(1)
-    expect(isSSRFormat(testData.root.current), `Root ID "${testData.root.current}" should be SSR format`).toBe(true)
+    expect(
+      testData.root.ids.length,
+      `Root had multiple IDs: [${testData.root.ids}]`
+    ).toBe(1)
+    expect(
+      isSSRFormat(testData.root.current),
+      `Root ID "${testData.root.current}" should be SSR format`
+    ).toBe(true)
 
     // page should have exactly 1 unique ID
-    expect(testData.page.ids.length, `Page had multiple IDs: [${testData.page.ids}]`).toBe(1)
-    expect(isSSRFormat(testData.page.current), `Page ID "${testData.page.current}" should be SSR format`).toBe(true)
+    expect(
+      testData.page.ids.length,
+      `Page had multiple IDs: [${testData.page.ids}]`
+    ).toBe(1)
+    expect(
+      isSSRFormat(testData.page.current),
+      `Page ID "${testData.page.current}" should be SSR format`
+    ).toBe(true)
 
     await page.close()
   })
@@ -56,16 +68,34 @@ describe('Hydration useId Stability', () => {
     const testData = await page.evaluate(() => (window as any).__hydrationTest)
 
     // root layout
-    expect(testData.root.ids.length, `Root had multiple IDs: [${testData.root.ids}]`).toBe(1)
-    expect(isSSRFormat(testData.root.current), `Root ID "${testData.root.current}" should be SSR format`).toBe(true)
+    expect(
+      testData.root.ids.length,
+      `Root had multiple IDs: [${testData.root.ids}]`
+    ).toBe(1)
+    expect(
+      isSSRFormat(testData.root.current),
+      `Root ID "${testData.root.current}" should be SSR format`
+    ).toBe(true)
 
     // nested layout
-    expect(testData.nested.ids.length, `Nested had multiple IDs: [${testData.nested.ids}]`).toBe(1)
-    expect(isSSRFormat(testData.nested.current), `Nested ID "${testData.nested.current}" should be SSR format`).toBe(true)
+    expect(
+      testData.nested.ids.length,
+      `Nested had multiple IDs: [${testData.nested.ids}]`
+    ).toBe(1)
+    expect(
+      isSSRFormat(testData.nested.current),
+      `Nested ID "${testData.nested.current}" should be SSR format`
+    ).toBe(true)
 
     // page
-    expect(testData.page.ids.length, `Page had multiple IDs: [${testData.page.ids}]`).toBe(1)
-    expect(isSSRFormat(testData.page.current), `Page ID "${testData.page.current}" should be SSR format`).toBe(true)
+    expect(
+      testData.page.ids.length,
+      `Page had multiple IDs: [${testData.page.ids}]`
+    ).toBe(1)
+    expect(
+      isSSRFormat(testData.page.current),
+      `Page ID "${testData.page.current}" should be SSR format`
+    ).toBe(true)
 
     await page.close()
   })
@@ -76,15 +106,21 @@ describe('Hydration useId Stability', () => {
     await page.goto(`${serverUrl}/`, { waitUntil: 'networkidle' })
     await page.waitForTimeout(300)
 
-    const initialData = await page.evaluate(() => JSON.parse(JSON.stringify((window as any).__hydrationTest)))
+    const initialData = await page.evaluate(() =>
+      JSON.parse(JSON.stringify((window as any).__hydrationTest))
+    )
 
     // wait to detect any delayed re-renders
     await page.waitForTimeout(1500)
 
     const finalData = await page.evaluate(() => (window as any).__hydrationTest)
 
-    expect(finalData.root.renders, 'Root re-rendered after hydration').toBe(initialData.root.renders)
-    expect(finalData.page.renders, 'Page re-rendered after hydration').toBe(initialData.page.renders)
+    expect(finalData.root.renders, 'Root re-rendered after hydration').toBe(
+      initialData.root.renders
+    )
+    expect(finalData.page.renders, 'Page re-rendered after hydration').toBe(
+      initialData.page.renders
+    )
 
     await page.close()
   })
@@ -109,8 +145,14 @@ describe('Hydration useId Stability', () => {
 
     // if encoding is correct, DOM and React should have same ID
     // if UTF-8 was misinterpreted as Latin-1, DOM will have double-encoded chars (longer string)
-    expect(domLength, `DOM ID "${domId}" has different length than React ID "${reactId}" - encoding mismatch!`).toBe(reactLength)
-    expect(domId, `DOM ID "${domId}" differs from React ID "${reactId}" - encoding mismatch!`).toBe(reactId)
+    expect(
+      domLength,
+      `DOM ID "${domId}" has different length than React ID "${reactId}" - encoding mismatch!`
+    ).toBe(reactLength)
+    expect(
+      domId,
+      `DOM ID "${domId}" differs from React ID "${reactId}" - encoding mismatch!`
+    ).toBe(reactId)
 
     await page.close()
   })
