@@ -42,8 +42,8 @@ test('import.meta.env', sharedTestOptions, async () => {
   const viteEnvironment = await driver.$('~import-meta-env-VITE_ENVIRONMENT').getText()
   expect(viteEnvironment).toBe('ios')
 
-  const vitePlatform = await driver.$('~import-meta-env-VITE_PLATFORM').getText()
-  expect(vitePlatform).toBe('native')
+  const viteNative = await driver.$('~import-meta-env-VITE_NATIVE').getText()
+  expect(viteNative).toBe('true')
 
   const expoOs = await driver.$('~import-meta-env-EXPO_OS').getText()
   expect(expoOs).toBe('ios')

@@ -10,7 +10,7 @@ type PluginOptions = {
 /**
  * Babel plugin to replace `import.meta.env` and `import.meta.env.*` with env values.
  *
- * Platform-specific env vars (VITE_ENVIRONMENT, VITE_PLATFORM, EXPO_OS, TAMAGUI_ENVIRONMENT)
+ * Platform-specific env vars (VITE_ENVIRONMENT, VITE_NATIVE, EXPO_OS, TAMAGUI_ENVIRONMENT)
  * are automatically injected based on the babel caller's platform.
  *
  * This plugin is referenced by name since Metro runs transformers in separate workers:

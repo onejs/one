@@ -26,8 +26,8 @@ export default function ImportMetaEnv() {
         {import.meta.env.VITE_ENVIRONMENT}
       </Text>
 
-      <Text>import.meta.env.VITE_PLATFORM:</Text>
-      <Text testID="import-meta-env-VITE_PLATFORM">{import.meta.env.VITE_PLATFORM}</Text>
+      <Text>import.meta.env.VITE_NATIVE:</Text>
+      <Text testID="import-meta-env-VITE_NATIVE">{String(import.meta.env.VITE_NATIVE)}</Text>
 
       <Text>import.meta.env.EXPO_OS:</Text>
       <Text testID="import-meta-env-EXPO_OS">{import.meta.env.EXPO_OS}</Text>
