@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.2.86",
+  "version": "1.2.87",
   "private": true,
   "type": "module",
   "scripts": {
