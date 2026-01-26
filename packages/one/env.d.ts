@@ -14,8 +14,8 @@ interface OneEnvVariables {
   // Platform detection
   /** "client" for client-side web, "ssr" for server-side web, "ios" or "android" for native */
   VITE_ENVIRONMENT: 'client' | 'ssr' | 'ios' | 'android'
-  /** true for native platforms (iOS and Android), false for web (client and SSR). Useful for tree-shaking native-only code. */
-  VITE_NATIVE: boolean
+  /** "1" for native platforms (iOS and Android), "" for web (client and SSR). Truthy/falsy for tree-shaking native-only code. */
+  VITE_NATIVE: '' | '1'
   /** "web" for web builds, "ios" or "android" for native. Matches Expo convention. */
   EXPO_OS: 'web' | 'ios' | 'android'
 
