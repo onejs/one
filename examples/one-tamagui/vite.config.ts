@@ -10,6 +10,7 @@ export default {
       },
 
       router: {
+        // @ts-ignore - internal
         routeMasks: [
           {
             from: '/photos/[id]/modal',
