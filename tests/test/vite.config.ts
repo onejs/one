@@ -17,6 +17,7 @@ export default {
     one({
       router: {
         ignoredRouteFiles: ['**/*.should-be-ignored.*'],
+        // @ts-ignore
         routeMasks: [
           {
             from: '/photos/[id]/modal',
