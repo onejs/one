@@ -4,7 +4,6 @@ import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
-import type { RouteMaskOptions } from '../router/routeMask';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type RouteInfo<TRegex = string> = {
     file: string;
@@ -139,32 +138,6 @@ export declare namespace One {
                  */
                 typedRoutesGeneration?: false | 'type' | 'runtime';
             };
-            /**
-             * Route masks for automatic URL masking during navigation.
-             * Displays a different URL in the browser than the actual route being rendered.
-             *
-             * Note: Only serializable options are supported here (params must be a boolean).
-             * For custom param transformation functions, use `setRouteMasks()` in your _layout.tsx.
-             *
-             * @example
-             * ```ts
-             * one({
-             *   router: {
-             *     routeMasks: [
-             *       {
-             *         from: '/photos/[id]/modal',
-             *         to: '/photos/[id]',
-             *         params: true,
-             *         useSearchParam: true,
-             *       },
-             *     ],
-             *   },
-             * })
-             * ```
-             */
-            routeMasks?: (Omit<RouteMaskOptions, 'params'> & {
-                params?: boolean;
-            })[];
         };
         react?: {
             /**
