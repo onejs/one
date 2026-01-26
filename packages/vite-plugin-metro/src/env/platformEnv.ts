@@ -52,7 +52,9 @@ export function metroPlatformToViteEnvironment(
  * Returns both process.env.* and import.meta.env.* definitions.
  * VITE_NATIVE is "1" or "" (truthy/falsy string) to avoid polluting process.env types.
  */
-export function getPlatformEnvDefine(environment: ViteEnvironment): Record<string, string> {
+export function getPlatformEnvDefine(
+  environment: ViteEnvironment
+): Record<string, string> {
   const env = getPlatformEnv(environment)
   const define: Record<string, string> = {}
 
