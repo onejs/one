@@ -100,7 +100,8 @@
       "types": "./types/drawer.d.ts",
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.js"
-    }
+    },
+    "./devtools/*": "./devtools/*"
   },
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -111,6 +112,7 @@
     "src",
     "types",
     "dist",
+    "devtools",
     "vendor",
     "run.mjs",
     "env.d.ts",

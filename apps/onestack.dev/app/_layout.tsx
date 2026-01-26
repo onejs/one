@@ -11,12 +11,10 @@ import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
 import { useIsScrolled } from '~/features/site/useIsScrolled'
-import { Footer } from '../features/site/Footer'
 import { ContainerSm } from '../features/site/Containers'
+import { Footer } from '../features/site/Footer'
 
 export default function Layout() {
-  const layoutId = useId()
-  console.log(`[DEBUG _layout] render useId=${layoutId}`)
   return (
     <html lang="en-US">
       <head>
@@ -63,7 +61,6 @@ const ConditionalFooter = () => {
 const ThemeProvider = ({ children }) => {
   const userScheme = useUserScheme()
   const themeProviderId = useId()
-  console.log(`[DEBUG ThemeProvider] render useId=${themeProviderId}`)
 
   return (
     <>

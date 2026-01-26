@@ -7,11 +7,7 @@ import {
   Triangle,
   X,
 } from '@tamagui/lucide-icons'
-import { useEffect, useId, useState, type KeyboardEvent } from 'react'
-
-// DEBUG: track mount count
-let mountCount = 0
-let effectCount = 0
+import { useState, type KeyboardEvent } from 'react'
 import {
   Circle,
   EnsureFlexed,
@@ -47,18 +43,6 @@ const ButtonText = styled(Text, {
 })
 
 export default function HomePage() {
-  const id = useId()
-  mountCount++
-  console.log(`[DEBUG] onestack.dev HomePage render #${mountCount}, useId=${id}`)
-
-  useEffect(() => {
-    effectCount++
-    console.log(`[DEBUG] onestack.dev HomePage useEffect mount #${effectCount}, useId=${id}`)
-    return () => {
-      console.log(`[DEBUG] onestack.dev HomePage useEffect cleanup #${effectCount}, useId=${id}`)
-    }
-  }, [id])
-
   return (
     <>
       <HeadInfo

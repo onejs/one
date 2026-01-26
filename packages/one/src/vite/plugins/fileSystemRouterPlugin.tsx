@@ -4,7 +4,7 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
-import { getSpaHeaderElements } from '../../constants'
+import { getSpaHeaderElements, VIRTUAL_SSR_CSS_HREF } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RouteNode } from '../../router/Route' // used for type in runLoaderWithTracking
 import type { RenderAppProps } from '../../types'
@@ -54,12 +54,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // render just the layouts? route.layouts
             return `<html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
-            <script type="module">
-              import { injectIntoGlobalHook } from "/@react-refresh";
-              injectIntoGlobalHook(window);
-              window.$RefreshReg$ = () => {};
-              window.$RefreshSig$ = () => (type) => type;
-            </script>
+            <script type="module" src="/@one/dev.js"></script>
             <script type="module" src="/@vite/client" async=""></script>
             <script type="module" src="/@id/__x00__virtual:one-entry" async=""></script>
           </head></html>`
