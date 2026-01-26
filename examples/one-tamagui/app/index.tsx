@@ -45,6 +45,17 @@ export function HomePage() {
         </Text>
 
         <ToggleThemeButton />
+
+        <Link href="/photos">
+          <Text
+            color="$blue10"
+            fontSize="$5"
+            textDecorationLine="underline"
+            hoverStyle={{ opacity: 0.8 }}
+          >
+            Route Masking Demo (Photos)
+          </Text>
+        </Link>
       </YStack>
     </YStack>
   )

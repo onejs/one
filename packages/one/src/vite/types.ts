@@ -164,6 +164,7 @@ export namespace One {
          */
         typedRoutesGeneration?: false | 'type' | 'runtime'
       }
+
     }
 
     react?: {

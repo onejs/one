@@ -8,6 +8,8 @@
  * Modifications:
  * - Added displayPath field to HistoryRecord for route masking support
  * - Modified push() and replace() to accept displayPath parameter for showing masked URLs in browser
+ * - Store __tempLocation in history.state for route masking (persists across refresh)
+ * - Added unmaskOnReload support via __tempKey mechanism
  */
 
 import type { NavigationState } from '@react-navigation/core'
@@ -74,15 +76,17 @@ export function createMemoryHistory() {
       return -1
     },
 
-    // @modified - added displayPath parameter for route masking
+    // @modified - added displayPath and unmaskOnReload parameters for route masking
     push({
       path,
       state,
       displayPath,
+      unmaskOnReload,
     }: {
       path: string
       state: NavigationState
       displayPath?: string
+      unmaskOnReload?: boolean
     }) {
       interrupt()
 
@@ -104,22 +108,40 @@ export function createMemoryHistory() {
         )
       }
 
+      // @modified - Build history state with route masking support
+      // Store the actual route in __tempLocation so it persists across page reloads
+      const historyState: Record<string, any> = { id }
+      if (displayPath && displayPath !== path) {
+        historyState.__tempLocation = {
+          pathname: path,
+          search: '',
+          hash: '',
+        }
+        // If unmaskOnReload is true, set __tempKey so client knows to NOT restore
+        // On reload, the masked route will render its own content instead of redirecting
+        if (unmaskOnReload) {
+          historyState.__tempKey = id // Using id as a session marker
+        }
+      }
+
       // We pass empty string for title because it's ignored in all browsers except safari
       // We don't store state object in history.state because:
       // - browsers have limits on how big it can be, and we don't control the size
       // - while not recommended, there could be non-serializable data in state
-      window.history.pushState({ id }, '', urlPath)
+      window.history.pushState(historyState, '', urlPath)
     },
 
-    // @modified - added displayPath parameter for route masking
+    // @modified - added displayPath and unmaskOnReload parameters for route masking
     replace({
       path,
       state,
       displayPath,
+      unmaskOnReload,
     }: {
       path: string
       state: NavigationState
       displayPath?: string
+      unmaskOnReload?: boolean
     }) {
       interrupt()
 
@@ -157,7 +179,20 @@ export function createMemoryHistory() {
         )
       }
 
-      window.history.replaceState({ id }, '', urlPath)
+      // @modified - Build history state with route masking support
+      const historyState: Record<string, any> = { id }
+      if (displayPath && displayPath !== path) {
+        historyState.__tempLocation = {
+          pathname: path,
+          search: '',
+          hash: '',
+        }
+        if (unmaskOnReload) {
+          historyState.__tempKey = id
+        }
+      }
+
+      window.history.replaceState(historyState, '', urlPath)
     },
 
     // `history.go(n)` is asynchronous, there are couple of things to keep in mind:

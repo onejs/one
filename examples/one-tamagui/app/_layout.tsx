@@ -25,7 +25,7 @@ export default function Layout() {
       </head>
 
       <body>
-        <LoadProgressBar />
+        {/* <LoadProgressBar /> */}
 
         <SchemeProvider>
           <TamaguiRootProvider>

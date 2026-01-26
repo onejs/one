@@ -15,6 +15,15 @@ body {
   background-color: var(--color1);
 }
 
+/*
+ * Fix for modal scroll-lock padding issue.
+ * scrollbar-gutter: stable reserves space for scrollbar at all times,
+ * preventing any layout shift when modal opens/closes.
+ */
+html {
+  scrollbar-gutter: stable;
+}
+
 a {
   text-decoration: underline;
   text-decoration-thickness: 2px;
