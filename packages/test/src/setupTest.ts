@@ -92,13 +92,14 @@ export async function setupTestServers({
   const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
   const shouldStartProdServer = !ONLY_TEST_DEV && !process.env.IS_NATIVE_TEST
 
-  // Get available ports in a high range (9444+) to avoid conflicts with common dev servers
-  // Use random offset to reduce race conditions when multiple tests start simultaneously
-  const portRangeStart = 9444 + Math.floor(Math.random() * 200)
-  const prodPort = await getPort({ port: portNumbers(portRangeStart, 9999) })
+  // Get available ports in a high range to avoid conflicts with common dev servers
+  // Use wider random offset to reduce race conditions when multiple tests start simultaneously
+  // Range: 10000-60000 gives 50000 ports, much less likely to collide than the previous 200
+  const portRangeStart = 10000 + Math.floor(Math.random() * 50000)
+  const prodPort = await getPort({ port: portNumbers(portRangeStart, 65000) })
   const devPort =
     (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) ||
-    (await getPort({ port: portNumbers(portRangeStart + 100, 9999) }))
+    (await getPort({ port: portNumbers(prodPort + 100, 65000) }))
 
   // Ensure ports are clear before starting servers
   await killProcessOnPort(prodPort)
