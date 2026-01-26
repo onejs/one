@@ -25,9 +25,9 @@ import isEqual from 'fast-deep-equal'
 import * as React from 'react'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
-import { rootState as routerRootState } from '../router/router'
 import { stripGroupSegmentsFromPath } from '../router/matchers'
 import { parseUnmaskFromPath } from '../router/routeMask'
+import { rootState as routerRootState } from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
@@ -215,7 +215,7 @@ export function useLinking(
           path = unmaskPath
           restoringFromTempLocationRef.current = true
         } else if (typeof window !== 'undefined') {
-          // Fall back to history.state check (client-only)
+          // Fall back to history.state check (client-only, not available on native)
           const historyState = window.history.state
           if (historyState) {
             const { __tempLocation, __tempKey } = historyState
@@ -483,7 +483,8 @@ export function useLinking(
         if (!initialHistorySetupDoneRef.current) {
           // Check if we're restoring from __tempLocation (route masking)
           const historyState = window.history.state
-          const isRestoringFromMask = restoringFromTempLocationRef.current ||
+          const isRestoringFromMask =
+            restoringFromTempLocationRef.current ||
             (historyState?.__tempLocation?.pathname && !historyState.__tempKey)
 
           if (isRestoringFromMask) {

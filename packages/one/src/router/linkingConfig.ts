@@ -1,3 +1,4 @@
+import { isWebClient } from '../constants'
 import type { OneRouter } from '../interfaces/router'
 import {
   getLinkingConfig as createLinkingConfig,
@@ -41,12 +42,14 @@ export function setupLinking(
       const unmaskPath = parseUnmaskFromPath(initialLocation.pathname)
       if (unmaskPath) {
         path = unmaskPath
-      } else if (typeof window !== 'undefined') {
-        // Fall back to history.state check (client-only)
+      } else if (isWebClient) {
+        // Fall back to history.state check (client-only, not available on native)
         const historyState = window.history.state
         if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
           // Restore to actual route from __tempLocation
-          path = historyState.__tempLocation.pathname + (historyState.__tempLocation.search || '')
+          path =
+            historyState.__tempLocation.pathname +
+            (historyState.__tempLocation.search || '')
         }
       }
 
