@@ -20,16 +20,24 @@ const DEFAULT_PORT = 8081
 interface DaemonOptions {
   port?: number
   host?: string
+  quiet?: boolean
+}
+
+// allow TUI to override route mode
+let routeModeOverride: 'most-recent' | 'ask' | null = null
+
+export function setRouteMode(mode: 'most-recent' | 'ask' | null) {
+  routeModeOverride = mode
 }
 
 export async function startDaemon(options: DaemonOptions = {}) {
   const port = options.port || DEFAULT_PORT
   const host = options.host || '0.0.0.0'
+  const quiet = options.quiet || false
+
+  const log = quiet ? (..._args: any[]) => {} : console.log
 
   const state = createRegistry()
-
-  // pending requests waiting for picker selection (for future use)
-  // const pendingRequests: Map<string, {...}[]> = new Map()
 
   // start IPC server for CLI communication
   const ipcServer = createIPCServer(
@@ -38,13 +46,13 @@ export async function startDaemon(options: DaemonOptions = {}) {
       const server = findServerById(state, id)
       if (server) {
         const shortRoot = server.root.replace(process.env.HOME || '', '~')
-        console.log(
+        log(
           colors.green(`[daemon] Server registered: ${server.bundleId} → :${server.port} (${shortRoot})`)
         )
       }
     },
     (id) => {
-      console.log(colors.yellow(`[daemon] Server unregistered: ${id}`))
+      log(colors.yellow(`[daemon] Server unregistered: ${id}`))
     }
   )
 
@@ -94,19 +102,21 @@ export async function startDaemon(options: DaemonOptions = {}) {
       // route exists but server is gone, fall through to picker
     }
 
-    // check if running in CI/non-interactive mode - use first match with warning
-    if (!process.stdin.isTTY || process.env.CI) {
-      console.log(
+    // check route mode - TUI can override, otherwise check CI/TTY
+    const useAutoRoute = routeModeOverride === 'most-recent' ||
+      (!routeModeOverride && (!process.stdin.isTTY || process.env.CI))
+
+    if (useAutoRoute) {
+      // sort by registeredAt descending, pick most recent
+      const mostRecent = [...servers].sort((a, b) => b.registeredAt - a.registeredAt)[0]
+      // remember this route for subsequent requests
+      setRoute(state, routeKey, mostRecent.id)
+      log(
         colors.yellow(
-          `[daemon] Non-interactive mode: routing ${bundleId} to first match (${servers[0].root})`
+          `[daemon] Auto-routing ${bundleId} → ${mostRecent.root} (most recent, remembered)`
         )
       )
-      console.log(
-        colors.yellow(
-          `[daemon] Use 'one daemon route --app=${bundleId} --slot=N' to configure routing`
-        )
-      )
-      proxyHttpRequest(req, res, servers[0])
+      proxyHttpRequest(req, res, mostRecent)
       return
     }
 
@@ -125,18 +135,19 @@ export async function startDaemon(options: DaemonOptions = {}) {
 
       if (remember) {
         setRoute(state, routeKey, server.id)
-        console.log(colors.blue(`[daemon] Route saved: ${routeKey} → ${server.id}`))
+        log(colors.blue(`[daemon] Route saved: ${routeKey} → ${server.id}`))
       }
 
       proxyHttpRequest(req, res, server)
     } catch (err) {
-      // picker cancelled or timed out - use first match
-      console.log(
+      // picker cancelled or timed out - use most recent
+      const mostRecent = [...servers].sort((a, b) => b.registeredAt - a.registeredAt)[0]
+      log(
         colors.yellow(
-          `[daemon] Picker timeout/cancelled: routing to first match (${servers[0].root})`
+          `[daemon] Picker timeout/cancelled: routing to most recent (${mostRecent.root})`
         )
       )
-      proxyHttpRequest(req, res, servers[0])
+      proxyHttpRequest(req, res, mostRecent)
     }
   })
 
@@ -169,14 +180,16 @@ export async function startDaemon(options: DaemonOptions = {}) {
       }
 
       if (!target) {
-        // for WebSocket, we can't really show a picker, so use first match
-        // or wait for an HTTP request to establish the route
-        console.log(
+        // for WebSocket, we can't show a picker - use most recently registered server
+        const mostRecent = [...servers].sort((a, b) => b.registeredAt - a.registeredAt)[0]
+        // remember this route
+        setRoute(state, routeKey, mostRecent.id)
+        log(
           colors.yellow(
-            `[daemon] WebSocket upgrade with ambiguous route (${servers.length} servers), using first match`
+            `[daemon] WebSocket: routing ${bundleId} → ${mostRecent.root} (most recent, remembered)`
           )
         )
-        target = servers[0]
+        target = mostRecent
       }
     }
 
@@ -189,20 +202,20 @@ export async function startDaemon(options: DaemonOptions = {}) {
 
   // start listening
   httpServer.listen(port, host, () => {
-    console.log(colors.cyan('\n═══════════════════════════════════════════════════'))
-    console.log(colors.cyan('  one daemon'))
-    console.log(colors.cyan('═══════════════════════════════════════════════════'))
-    console.log(`\n  Listening on ${colors.green(`http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`)}`)
-    console.log(`  IPC socket:  ${colors.dim(getSocketPath())}`)
-    console.log('')
-    console.log(colors.dim('  Waiting for dev servers to register...'))
-    console.log(colors.dim("  Run 'one dev' in your project directories"))
-    console.log('')
+    log(colors.cyan('\n═══════════════════════════════════════════════════'))
+    log(colors.cyan('  one daemon'))
+    log(colors.cyan('═══════════════════════════════════════════════════'))
+    log(`\n  Listening on ${colors.green(`http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`)}`)
+    log(`  IPC socket:  ${colors.dim(getSocketPath())}`)
+    log('')
+    log(colors.dim('  Waiting for dev servers to register...'))
+    log(colors.dim("  Run 'one dev' in your project directories"))
+    log('')
   })
 
   // graceful shutdown
   const shutdown = () => {
-    console.log(colors.yellow('\n[daemon] Shutting down...'))
+    log(colors.yellow('\n[daemon] Shutting down...'))
     httpServer.close()
     ipcServer.close()
     cleanupSocket()
