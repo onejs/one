@@ -27,6 +27,7 @@ import * as React from 'react'
 // import { ServerContext } from '@react-navigation/web';
 import { rootState as routerRootState } from '../router/router'
 import { stripGroupSegmentsFromPath } from '../router/matchers'
+import { parseUnmaskFromPath } from '../router/routeMask'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
@@ -201,18 +202,26 @@ export function useLinking(
 
       let path = location ? location.pathname + location.search : undefined
 
-      // @modified - Route masking: check __tempLocation in history.state
-      // If the page was loaded with a masked URL and unmaskOnReload is false,
-      // use the actual route from __tempLocation instead of the masked URL
-      if (typeof window !== 'undefined') {
-        const historyState = window.history.state
-        if (historyState) {
-          const { __tempLocation, __tempKey } = historyState
-          // If __tempLocation exists and __tempKey is undefined (unmaskOnReload: false)
-          // Then use the actual route from __tempLocation
-          if (__tempLocation?.pathname && !__tempKey) {
-            path = __tempLocation.pathname + (__tempLocation.search || '')
-            restoringFromTempLocationRef.current = true
+      // @modified - Route masking support
+      // Priority: 1. _unmask search param (SSR-safe), 2. __tempLocation in history.state (client-only)
+      if (location) {
+        // Check for unmask postfix in pathname first (works on both server and client)
+        // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs → actual route /photos/3/modal
+        const unmaskPath = parseUnmaskFromPath(location.pathname)
+        if (unmaskPath) {
+          path = unmaskPath
+          restoringFromTempLocationRef.current = true
+        } else if (typeof window !== 'undefined') {
+          // Fall back to history.state check (client-only)
+          const historyState = window.history.state
+          if (historyState) {
+            const { __tempLocation, __tempKey } = historyState
+            // If __tempLocation exists and __tempKey is undefined (unmaskOnReload: false)
+            // Then use the actual route from __tempLocation
+            if (__tempLocation?.pathname && !__tempKey) {
+              path = __tempLocation.pathname + (__tempLocation.search || '')
+              restoringFromTempLocationRef.current = true
+            }
           }
         }
       }

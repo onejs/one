@@ -4,6 +4,7 @@ import {
   type OneLinkingOptions,
 } from './getLinkingConfig'
 import type { RouteNode } from './Route'
+import { parseUnmaskFromPath } from './routeMask'
 
 let linkingConfig: OneLinkingOptions | undefined
 
@@ -31,10 +32,17 @@ export function setupLinking(
     if (initialLocation) {
       linkingConfig.getInitialURL = () => initialLocation.toString()
 
-      // @modified - Check __tempLocation for route masking support
-      // On page refresh with a masked URL, history.state contains the actual route
+      // @modified - Route masking support
+      // Priority: 1. _unmask search param (SSR-safe), 2. __tempLocation in history.state (client-only)
       let path = initialLocation.pathname + (initialLocation.search || '')
-      if (typeof window !== 'undefined') {
+
+      // Check for unmask postfix in pathname first (works on both server and client)
+      // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs → actual route /photos/3/modal
+      const unmaskPath = parseUnmaskFromPath(initialLocation.pathname)
+      if (unmaskPath) {
+        path = unmaskPath
+      } else if (typeof window !== 'undefined') {
+        // Fall back to history.state check (client-only)
         const historyState = window.history.state
         if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
           // Restore to actual route from __tempLocation

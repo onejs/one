@@ -40,8 +40,26 @@ export interface RouteMaskOptions {
      * @default false
      */
     unmaskOnReload?: boolean
+
+    /**
+     * If true, encode the actual route as a base64 postfix in the URL pathname instead of history.state.
+     *
+     * URL will look like: /photos/5__L3Bob3Rvcy81L21vZGFs
+     *
+     * Benefits:
+     * - Server can parse the postfix and render the actual route (no SSR flash)
+     * - URL contains the "truth" about what to render
+     * - Works consistently across SSR, SSG, and SPA
+     * - No query parameter visible
+     *
+     * Tradeoffs:
+     * - URL has a base64 suffix visible after `__`
+     *
+     * @default false
+     */
+    useSearchParam?: boolean
   }
-  
+
   /**
    * A compiled route mask ready for matching.
    */
@@ -77,8 +95,8 @@ export interface RouteMaskOptions {
    * ```
    */
   export function createRouteMask(options: RouteMaskOptions): RouteMask {
-    const { from, to, params = true, unmaskOnReload = false } = options
-  
+    const { from, to, params = true, unmaskOnReload = false, useSearchParam = false } = options
+
     // Extract parameter names and build regex from the 'from' pattern
     const fromParams: string[] = []
     const fromRegexStr = from
@@ -116,6 +134,7 @@ export interface RouteMaskOptions {
       to,
       params,
       unmaskOnReload,
+      useSearchParam,
       _fromRegex: new RegExp(`^${fromRegexStr}$`),
       _fromParams: fromParams,
     }
@@ -185,19 +204,73 @@ export interface RouteMaskOptions {
   }
   
   /**
+   * URL-safe base64 encode for the _unmask suffix.
+   * Replaces +/= with URL-safe characters so the param looks like an opaque token.
+   */
+  export function encodeUnmask(path: string): string {
+    return btoa(path).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  }
+
+  /**
+   * Decode a URL-safe base64 _unmask value back to the original path.
+   */
+  export function decodeUnmask(encoded: string): string {
+    const base64 = encoded.replace(/-/g, '+').replace(/_/g, '/')
+    return atob(base64)
+  }
+
+  /**
+   * The separator used in the pathname postfix for route unmasking.
+   * e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs
+   */
+  const UNMASK_SEPARATOR = '__'
+
+  /**
+   * Parse the base64-encoded unmask suffix from a pathname.
+   * Looks for `__` separator in the last path segment.
+   * Returns the decoded actual path, or null if no unmask suffix found.
+   *
+   * @example
+   * parseUnmaskFromPath('/photos/3__L3Bob3Rvcy8zL21vZGFs') // '/photos/3/modal'
+   * parseUnmaskFromPath('/photos/3') // null
+   */
+  export function parseUnmaskFromPath(pathname: string): string | null {
+    const lastSlash = pathname.lastIndexOf('/')
+    const lastSegment = pathname.slice(lastSlash + 1)
+    const separatorIndex = lastSegment.indexOf(UNMASK_SEPARATOR)
+
+    if (separatorIndex === -1) return null
+
+    const encoded = lastSegment.slice(separatorIndex + UNMASK_SEPARATOR.length)
+    if (!encoded) return null
+
+    try {
+      return decodeUnmask(encoded)
+    } catch {
+      return null
+    }
+  }
+
+  /**
    * Finds a matching route mask for a given pathname.
    * Returns the mask result to apply, or undefined if no match.
    */
   export function findMatchingMask(
     pathname: string,
     routeMasks: RouteMask[]
-  ): { maskedPath: string; unmaskOnReload: boolean } | undefined {
+  ): { maskedPath: string; unmaskOnReload: boolean; useSearchParam: boolean; actualPath: string } | undefined {
     for (const mask of routeMasks) {
       const matchedParams = matchRouteMask(pathname, mask)
       if (matchedParams) {
+        const maskedPath = buildMaskedPath(mask, matchedParams)
+        const useSearchParam = mask.useSearchParam ?? false
         return {
-          maskedPath: buildMaskedPath(mask, matchedParams),
+          // If useSearchParam is true, append base64-encoded actual path as pathname postfix
+          // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs
+          maskedPath: useSearchParam ? `${maskedPath}${UNMASK_SEPARATOR}${encodeUnmask(pathname)}` : maskedPath,
           unmaskOnReload: mask.unmaskOnReload ?? false,
+          useSearchParam,
+          actualPath: pathname,
         }
       }
     }

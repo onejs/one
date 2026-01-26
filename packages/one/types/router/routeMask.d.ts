@@ -37,6 +37,23 @@ export interface RouteMaskOptions {
      * @default false
      */
     unmaskOnReload?: boolean;
+    /**
+     * If true, encode the actual route as a base64 postfix in the URL pathname instead of history.state.
+     *
+     * URL will look like: /photos/5__L3Bob3Rvcy81L21vZGFs
+     *
+     * Benefits:
+     * - Server can parse the postfix and render the actual route (no SSR flash)
+     * - URL contains the "truth" about what to render
+     * - Works consistently across SSR, SSG, and SPA
+     * - No query parameter visible
+     *
+     * Tradeoffs:
+     * - URL has a base64 suffix visible after `__`
+     *
+     * @default false
+     */
+    useSearchParam?: boolean;
 }
 /**
  * A compiled route mask ready for matching.
@@ -82,11 +99,32 @@ export declare function matchRouteMask(pathname: string, mask: RouteMask): Recor
  */
 export declare function buildMaskedPath(mask: RouteMask, matchedParams: Record<string, string>): string;
 /**
+ * URL-safe base64 encode for the _unmask suffix.
+ * Replaces +/= with URL-safe characters so the param looks like an opaque token.
+ */
+export declare function encodeUnmask(path: string): string;
+/**
+ * Decode a URL-safe base64 _unmask value back to the original path.
+ */
+export declare function decodeUnmask(encoded: string): string;
+/**
+ * Parse the base64-encoded unmask suffix from a pathname.
+ * Looks for `__` separator in the last path segment.
+ * Returns the decoded actual path, or null if no unmask suffix found.
+ *
+ * @example
+ * parseUnmaskFromPath('/photos/3__L3Bob3Rvcy8zL21vZGFs') // '/photos/3/modal'
+ * parseUnmaskFromPath('/photos/3') // null
+ */
+export declare function parseUnmaskFromPath(pathname: string): string | null;
+/**
  * Finds a matching route mask for a given pathname.
  * Returns the mask result to apply, or undefined if no match.
  */
 export declare function findMatchingMask(pathname: string, routeMasks: RouteMask[]): {
     maskedPath: string;
     unmaskOnReload: boolean;
+    useSearchParam: boolean;
+    actualPath: string;
 } | undefined;
 //# sourceMappingURL=routeMask.d.ts.map

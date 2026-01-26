@@ -114,6 +114,27 @@ createRouteMask({
 })
 ```
 
+### useSearchParam
+
+Encodes the actual route as a base64 postfix in the URL pathname, enabling SSR to render the correct content without a flash.
+
+- `false` (default): Store the actual route in `history.state` (clean URL, but SSR can't read it)
+- `true`: Encode the actual route in the URL as a `__` postfix (SSR-safe, no flash on refresh)
+
+```tsx
+// SSR-safe: URL includes encoded actual route
+// URL will look like: /photos/5__L3Bob3Rvcy81L21vZGFs
+createRouteMask({
+  from: '/photos/[id]/modal',
+  to: '/photos/[id]',
+  useSearchParam: true, // Encode actual route in URL for SSR support
+})
+```
+
+When `useSearchParam` is enabled, the URL includes a `__` separator followed by a base64-encoded version of the actual route. This lets the server decode and render the correct route on first load, avoiding any flash of wrong content.
+
+**Tradeoff**: The URL has a base64 suffix visible (e.g., `/photos/5__L3Bob3Rvcy81L21vZGFs`), but there's no query parameter and SSR works correctly.
+
 ## Complete Example
 
 Here's a full example with a photo gallery that opens photos in a modal:
@@ -232,21 +253,36 @@ export default function PhotoDetail() {
 
 ## How It Works
 
-Route masking uses the browser's `history.state` to store the actual route path. When you navigate to a masked route:
+When you navigate to a masked route:
 
 1. One detects the route matches a mask pattern
 2. The browser URL is updated to show the masked URL
-3. The actual route path is stored in `history.state`
+3. The actual route path is stored (in `history.state` or encoded in the URL)
 4. The actual route component renders
+
+### Default mode (`useSearchParam: false`)
+
+Uses the browser's `history.state` to store the actual route path. The URL is completely clean (e.g., `/photos/5`), but the server can't read `history.state`, so SSR will render the masked URL's content first, then the client corrects it (causing a flash).
 
 On page refresh:
 
 - If `unmaskOnReload: false`: One reads the actual path from `history.state` and restores it
 - If `unmaskOnReload: true`: One navigates to what the URL shows (the masked URL)
 
+### SSR mode (`useSearchParam: true`)
+
+Encodes the actual route as a base64 postfix in the URL (e.g., `/photos/5__L3Bob3Rvcy81L21vZGFs`). The server decodes the postfix and renders the correct route immediately — no flash.
+
+On page refresh:
+
+- The server parses the `__` postfix from the URL pathname
+- Decodes the base64 value to get the actual route
+- Renders the correct content on the first response
+
 ## Tips
 
 - Configure route masks in your root `_layout.tsx` so they're available for all navigation
+- Use `useSearchParam: true` when you need SSR to render the correct content without a flash
 - Use `unmaskOnReload: true` when the masked URL should be shareable as a standalone page
 - Use `unmaskOnReload: false` when you want to preserve the exact app state on refresh
 - Route masks work with dynamic segments like `[id]` and catch-all segments like `[...rest]`

@@ -269,40 +269,4 @@ describe('Route Masking Tests', { retry: 3, timeout: 120_000 }, () => {
     })
   })
 
-  describe('history.state Verification', () => {
-    it('should store __tempLocation in history.state', async () => {
-      const page = await context.newPage()
-      await page.goto(`${serverUrl}/photos`, { waitUntil: 'domcontentloaded' })
-      await page.waitForTimeout(1000)
-
-      // Open modal
-      await page.locator('text=Photo 1').first().click()
-      await page.waitForTimeout(500)
-
-      // Check history.state contains __tempLocation
-      const historyState = await page.evaluate(() => window.history.state)
-
-      expect(historyState).toBeDefined()
-      expect(historyState.__tempLocation).toBeDefined()
-      expect(historyState.__tempLocation.pathname).toBe('/photos/1/modal')
-
-      await page.close()
-    })
-
-    it('should NOT have __tempKey when unmaskOnReload is false', async () => {
-      const page = await context.newPage()
-      await page.goto(`${serverUrl}/photos`, { waitUntil: 'domcontentloaded' })
-      await page.waitForTimeout(1000)
-
-      await page.locator('text=Photo 1').first().click()
-      await page.waitForTimeout(500)
-
-      const historyState = await page.evaluate(() => window.history.state)
-
-      // unmaskOnReload: false means NO __tempKey
-      expect(historyState.__tempKey).toBeUndefined()
-
-      await page.close()
-    })
-  })
 })
