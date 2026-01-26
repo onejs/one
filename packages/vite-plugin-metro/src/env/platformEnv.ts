@@ -3,7 +3,7 @@ export type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android'
 
 export type PlatformEnv = {
   VITE_ENVIRONMENT: ViteEnvironment
-  VITE_NATIVE: boolean
+  VITE_NATIVE: '' | '1'
   EXPO_OS: 'web' | 'ios' | 'android'
   TAMAGUI_ENVIRONMENT: ViteEnvironment
 }
@@ -11,25 +11,25 @@ export type PlatformEnv = {
 const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
   client: {
     VITE_ENVIRONMENT: 'client',
-    VITE_NATIVE: false,
+    VITE_NATIVE: '',
     EXPO_OS: 'web',
     TAMAGUI_ENVIRONMENT: 'client',
   },
   ssr: {
     VITE_ENVIRONMENT: 'ssr',
-    VITE_NATIVE: false,
+    VITE_NATIVE: '',
     EXPO_OS: 'web',
     TAMAGUI_ENVIRONMENT: 'ssr',
   },
   ios: {
     VITE_ENVIRONMENT: 'ios',
-    VITE_NATIVE: true,
+    VITE_NATIVE: '1',
     EXPO_OS: 'ios',
     TAMAGUI_ENVIRONMENT: 'ios',
   },
   android: {
     VITE_ENVIRONMENT: 'android',
-    VITE_NATIVE: true,
+    VITE_NATIVE: '1',
     EXPO_OS: 'android',
     TAMAGUI_ENVIRONMENT: 'android',
   },
@@ -50,17 +50,15 @@ export function metroPlatformToViteEnvironment(
 /**
  * Format platform env for Vite's define config.
  * Returns both process.env.* and import.meta.env.* definitions.
- * VITE_NATIVE is set as a real boolean for tree-shaking.
+ * VITE_NATIVE is "1" or "" (truthy/falsy string) to avoid polluting process.env types.
  */
 export function getPlatformEnvDefine(environment: ViteEnvironment): Record<string, string> {
   const env = getPlatformEnv(environment)
   const define: Record<string, string> = {}
 
   for (const [key, value] of Object.entries(env)) {
-    // VITE_NATIVE should be a real boolean, not a string
-    const defineValue = typeof value === 'boolean' ? String(value) : JSON.stringify(value)
-    define[`process.env.${key}`] = defineValue
-    define[`import.meta.env.${key}`] = defineValue
+    define[`process.env.${key}`] = JSON.stringify(value)
+    define[`import.meta.env.${key}`] = JSON.stringify(value)
   }
 
   return define
