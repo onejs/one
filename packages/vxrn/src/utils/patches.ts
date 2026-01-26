@@ -103,204 +103,215 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
   deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
-// --- HACK! ---
-// These originally lives inside applyDependencyPatches
-// but we can't be sure that `applyDependencyPatches` will only be called
-// once, at least one is calling applyDependencyPatches directly, in fixDependenciesPlugin.ts
-/**
- * Determine if a file has already been patched by a previous run.
- *
- * We need this to be cached not only for performance but also for the
- * fact that we may patch the same file multiple times but the "ogfile"
- * will be created during the first patching.
- */
-const getIsAlreadyPatched = (fullFilePath: string) => {
-  if (_isAlreadyPatchedMap.has(fullFilePath)) {
-    return _isAlreadyPatchedMap.get(fullFilePath)
-  }
-  const isAlreadyPatched = FSExtra.existsSync(getOgFilePath(fullFilePath))
-  _isAlreadyPatchedMap.set(fullFilePath, isAlreadyPatched)
-  return isAlreadyPatched
-}
-const _isAlreadyPatchedMap = new Map<string, boolean>()
+// stats file stores {[filePath]: {size, mtimeMs}} of patched files for fast comparison
+type PatchStats = Record<string, { size: number; mtimeMs: number }>
 
-/**
- * A set of full paths to files that have been patched during the
- * current run.
- */
-const pathsBeingPatched = new Set<string>()
-// --- HACK! ---
+const STATS_FILE = '.vxrn.patch-stats.json'
+
+function getOriginalPath(fullPath: string) {
+  return fullPath + '.vxrn.original'
+}
+
+async function readPatchStats(nodeModulesDir: string): Promise<PatchStats> {
+  try {
+    return await FSExtra.readJSON(join(nodeModulesDir, STATS_FILE))
+  } catch {
+    return {}
+  }
+}
+
+async function writePatchStats(nodeModulesDir: string, stats: PatchStats) {
+  await FSExtra.writeJSON(join(nodeModulesDir, STATS_FILE), stats)
+}
 
 export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
 ) {
-  const nodeModulesDirs = findNodeModules({
-    cwd: root,
-  }).map((relativePath) => join(root, relativePath))
+  const nodeModulesDirs = findNodeModules({ cwd: root }).map((relativePath) =>
+    join(root, relativePath)
+  )
 
   await Promise.all(
-    patches.flatMap((patch) => {
-      return nodeModulesDirs!.flatMap(async (dir) => {
-        try {
-          const nodeModuleDir = join(dir, patch.module)
-          const version = patch.patchFiles.version
+    nodeModulesDirs.map(async (nodeModulesDir) => {
+      // read stats file once per node_modules
+      const patchStats = await readPatchStats(nodeModulesDir)
+      let statsChanged = false
 
-          let hasLogged = false
+      await Promise.all(
+        patches.map(async (patch) => {
+          try {
+            const nodeModuleDir = join(nodeModulesDir, patch.module)
 
-          if (FSExtra.existsSync(nodeModuleDir)) {
+            if (!FSExtra.existsSync(nodeModuleDir)) return
+
+            const version = patch.patchFiles.version
             if (typeof version === 'string') {
               const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
-              if (!semver.satisfies(pkgJSON.version, version)) {
-                return
-              }
+              if (!semver.satisfies(pkgJSON.version, version)) return
             }
 
-            for (const file in patch.patchFiles) {
-              if (file === 'optimize' || file === 'version') {
-                continue
-              }
+            let hasLogged = false
 
+            // collect all files to patch
+            const filePatches: {
+              relativePath: string
+              patchDefinition: DepFileStrategy
+            }[] = []
+            for (const file in patch.patchFiles) {
+              if (file === 'optimize' || file === 'version') continue
               const filesToApply = file.includes('*')
                 ? globDir(nodeModuleDir, file)
                 : [file]
-
-              await Promise.all(
-                filesToApply.map(async (relativePath) => {
-                  try {
-                    const fullPath = join(nodeModuleDir, relativePath)
-
-                    if (!process.env.VXRN_FORCE_PATCH && getIsAlreadyPatched(fullPath)) {
-                      // if the file is already patched, skip it
-                      return
-                    }
-
-                    let contentsIn = await (async () => {
-                      if (pathsBeingPatched.has(fullPath)) {
-                        // If the file has been patched during the current run,
-                        // we should always start from the already patched file
-                        return await FSExtra.readFile(fullPath, 'utf-8')
-                      }
-
-                      if (getIsAlreadyPatched(fullPath)) {
-                        // If a original file exists, we should start from it
-                        // If we can reach here, basically it means
-                        // VXRN_FORCE_PATCH is set
-                        return await FSExtra.readFile(getOgFilePath(fullPath), 'utf-8')
-                      }
-
-                      return await FSExtra.readFile(fullPath, 'utf-8')
-                    })()
-
-                    const write = async (contents: string) => {
-                      const possibleOrigContents = contentsIn
-                      // update contentsIn so the next patch gets the new value if it runs multiple
-                      contentsIn = contents
-                      const alreadyPatchedPreviouslyInCurrentRun =
-                        pathsBeingPatched.has(fullPath)
-                      pathsBeingPatched.add(fullPath)
-                      await Promise.all(
-                        [
-                          !alreadyPatchedPreviouslyInCurrentRun /* only write ogfile if this is the first patch, otherwise contentsIn will be already patched content */ &&
-                            !getIsAlreadyPatched(
-                              fullPath
-                            ) /* an ogfile must already be there, no need to write */ &&
-                            atomicWriteFile(
-                              getOgFilePath(fullPath),
-                              possibleOrigContents
-                            ),
-                          atomicWriteFile(fullPath, contents),
-                        ].filter((p) => !!p)
-                      )
-
-                      if (!hasLogged) {
-                        hasLogged = true
-                        console.info(` 🩹 Patching ${patch.module}`)
-                      }
-
-                      if (process.env.DEBUG) {
-                        console.info(
-                          `  - Applied patch to ${patch.module}: ${relativePath}`
-                        )
-                      }
-                    }
-
-                    const patchDefinition = patch.patchFiles[file]
-
-                    // add
-                    if (typeof patchDefinition === 'string') {
-                      await write(patchDefinition)
-                      return
-                    }
-
-                    // strategy
-                    if (Array.isArray(patchDefinition)) {
-                      let contents = contentsIn
-
-                      for (const strategy of patchDefinition) {
-                        if (strategy === 'flow') {
-                          contents = await transformFlowBabel(contents)
-                        }
-                        if (strategy === 'swc' || strategy === 'jsx') {
-                          contents =
-                            (
-                              await transformSWC(fullPath, contents, {
-                                mode: 'build',
-                                environment: 'ios',
-                                forceJSX: strategy === 'jsx',
-                                noHMR: true,
-                                fixNonTypeSpecificImports: true,
-                              })
-                            )?.code || contents
-                        }
-                      }
-
-                      if (contentsIn !== contents) {
-                        await write(contents)
-                      }
-
-                      return
-                    }
-
-                    // update
-                    const out = await patchDefinition(contentsIn)
-                    if (typeof out === 'string') {
-                      await write(out)
-                    }
-                  } catch (err) {
-                    if (err instanceof Bail) {
-                      return
-                    }
-                    throw err
-                  }
+              for (const relativePath of filesToApply) {
+                filePatches.push({
+                  relativePath,
+                  patchDefinition: patch.patchFiles[file],
                 })
-              )
+              }
             }
+
+            // stat all target files in parallel for fast comparison
+            const fileStatsResults = await Promise.all(
+              filePatches.map(async ({ relativePath }) => {
+                const fullPath = join(nodeModuleDir, relativePath)
+                try {
+                  const stat = await FSExtra.stat(fullPath)
+                  return { relativePath, fullPath, stat, exists: true }
+                } catch {
+                  return { relativePath, fullPath, stat: null, exists: false }
+                }
+              })
+            )
+
+            // filter to files that need processing
+            const filesToProcess = fileStatsResults.filter(
+              ({ fullPath, stat, exists }) => {
+                if (!exists || !stat) return false
+                if (process.env.VXRN_FORCE_PATCH) return true
+
+                const cached = patchStats[fullPath]
+                if (!cached) return true // never patched
+
+                // check if file changed since we patched it
+                return stat.size !== cached.size || stat.mtimeMs !== cached.mtimeMs
+              }
+            )
+
+            if (filesToProcess.length === 0) return
+
+            // process files that need patching
+            await Promise.all(
+              filesToProcess.map(async ({ relativePath, fullPath }) => {
+                try {
+                  const patchDef = filePatches.find(
+                    (p) => p.relativePath === relativePath
+                  )!.patchDefinition
+                  const originalPath = getOriginalPath(fullPath)
+
+                  // read target and original in parallel
+                  const [targetContent, originalContent] = await Promise.all([
+                    FSExtra.readFile(fullPath, 'utf-8'),
+                    FSExtra.readFile(originalPath, 'utf-8').catch(() => null),
+                  ])
+
+                  // determine source content for patching
+                  const sourceContent = originalContent ?? targetContent
+
+                  // apply patch
+                  let patchedContent: string | null = null
+
+                  if (typeof patchDef === 'string') {
+                    patchedContent = patchDef
+                  } else if (Array.isArray(patchDef)) {
+                    let contents = sourceContent
+                    for (const strategy of patchDef) {
+                      if (strategy === 'flow') {
+                        contents = await transformFlowBabel(contents)
+                      }
+                      if (strategy === 'swc' || strategy === 'jsx') {
+                        contents =
+                          (
+                            await transformSWC(fullPath, contents, {
+                              mode: 'build',
+                              environment: 'ios',
+                              forceJSX: strategy === 'jsx',
+                              noHMR: true,
+                              fixNonTypeSpecificImports: true,
+                            })
+                          )?.code || contents
+                      }
+                    }
+                    if (contents !== sourceContent) {
+                      patchedContent = contents
+                    }
+                  } else {
+                    const out = await patchDef(sourceContent)
+                    if (typeof out === 'string' && out !== sourceContent) {
+                      patchedContent = out
+                    }
+                  }
+
+                  // if patch produced changes
+                  if (patchedContent !== null) {
+                    // check if already has this patched content
+                    if (targetContent === patchedContent) {
+                      // already patched, just update stats
+                      const stat = await FSExtra.stat(fullPath)
+                      patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                      statsChanged = true
+                      return
+                    }
+
+                    // write original if needed, then write patched
+                    await Promise.all([
+                      originalContent === null &&
+                        atomicWriteFile(originalPath, sourceContent),
+                      atomicWriteFile(fullPath, patchedContent),
+                    ])
+
+                    // update stats
+                    const stat = await FSExtra.stat(fullPath)
+                    patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                    statsChanged = true
+
+                    if (!hasLogged) {
+                      hasLogged = true
+                      console.info(` 🩹 Patching ${patch.module}`)
+                    }
+
+                    if (process.env.DEBUG) {
+                      console.info(
+                        `  - Applied patch to ${patch.module}: ${relativePath}`
+                      )
+                    }
+                  } else {
+                    // patch made no changes, still record stats so we skip next time
+                    const stat = await FSExtra.stat(fullPath)
+                    patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
+                    statsChanged = true
+                  }
+                } catch (err) {
+                  if (err instanceof Bail) return
+                  throw err
+                }
+              })
+            )
+          } catch (err) {
+            console.error(`🚨 Error applying patch to`, patch.module)
+            console.error(err)
           }
-        } catch (err) {
-          console.error(`🚨 Error applying patch to`, patch.module)
-          console.error(err)
-        }
-      })
+        })
+      )
+
+      // write stats file if changed
+      if (statsChanged) {
+        await writePatchStats(nodeModulesDir, patchStats)
+      }
     })
   )
 }
 
-/**
- * For every patch we store an "og" file as a backup of the original.
- * If such file exists, we can skip the patching since the
- * file should be already patched, unless the user forces
- * to apply the patch again - in such case we use the
- * contents of the original file as a base to reapply patches.
- */
-function getOgFilePath(fullPath: string) {
-  return fullPath + '.vxrn.ogfile'
-}
-
-/**
- * Atomically write a file by writing to a temp file first then renaming.
- * This prevents other processes from reading a partially written file.
- */
 async function atomicWriteFile(filePath: string, contents: string) {
   const tempPath = filePath + '.vxrn.tmp.' + process.pid + '.' + Date.now()
   await FSExtra.writeFile(tempPath, contents)
