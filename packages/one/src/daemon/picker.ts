@@ -19,20 +19,25 @@ let rl: readline.Interface | null = null
 let stdinDataListener: ((key: Buffer) => void) | null = null
 
 export async function getBootedSimulators(): Promise<
-  { name: string; udid: string; state: string }[]
+  { name: string; udid: string; state: string; iosVersion?: string }[]
 > {
   try {
     const { stdout } = await execAsync('xcrun simctl list devices booted -j')
     const data = JSON.parse(stdout)
-    const simulators: { name: string; udid: string; state: string }[] = []
+    const simulators: { name: string; udid: string; state: string; iosVersion?: string }[] = []
 
-    for (const [_runtime, devices] of Object.entries(data.devices || {})) {
+    for (const [runtime, devices] of Object.entries(data.devices || {})) {
+      // extract iOS version from runtime like "com.apple.CoreSimulator.SimRuntime.iOS-18-1"
+      const versionMatch = runtime.match(/iOS-(\d+)-(\d+)/)
+      const iosVersion = versionMatch ? `${versionMatch[1]}.${versionMatch[2]}` : undefined
+
       for (const device of devices as any[]) {
         if (device.state === 'Booted') {
           simulators.push({
             name: device.name,
             udid: device.udid,
             state: device.state,
+            iosVersion,
           })
         }
       }
@@ -43,24 +48,123 @@ export async function getBootedSimulators(): Promise<
   }
 }
 
+// show native macOS dialog using AppleScript
+async function showMacOSDialog(
+  bundleId: string,
+  servers: ServerRegistration[]
+): Promise<{ server: ServerRegistration; remember: boolean } | null> {
+  if (process.platform !== 'darwin') {
+    return null
+  }
+
+  // get running simulators for context
+  const simulators = await getBootedSimulators()
+  let simInfo = ''
+  if (simulators.length > 0) {
+    // dedupe by name+version, show unique simulators
+    const seen = new Set<string>()
+    const uniqueSims: string[] = []
+    for (const sim of simulators) {
+      const key = `${sim.name}-${sim.iosVersion || ''}`
+      if (!seen.has(key)) {
+        seen.add(key)
+        uniqueSims.push(sim.iosVersion ? `${sim.name} (iOS ${sim.iosVersion})` : sim.name)
+      }
+    }
+    if (uniqueSims.length === 1) {
+      // single simulator - we know exactly which one is requesting
+      simInfo = `\\n\\nFrom: ${uniqueSims[0]}`
+    } else {
+      // multiple simulators - show which might be requesting
+      simInfo = `\\n\\nActive simulators: ${uniqueSims.slice(0, 3).join(', ')}${uniqueSims.length > 3 ? '...' : ''}`
+    }
+  }
+
+  const choices = servers.map((s, i) => {
+    const shortRoot = s.root.replace(process.env.HOME || '', '~')
+    return `${i + 1}. ${shortRoot} (port ${s.port})`
+  })
+
+  // escape quotes for AppleScript
+  const choicesStr = choices.map((c) => `"${c.replace(/"/g, '\\"')}"`).join(', ')
+  const prompt = `${bundleId} bundle requested${simInfo}\\n\\nWhich project should serve it?`
+
+  const script = `choose from list {${choicesStr}} with title "one daemon" with prompt "${prompt}" default items {"${choices[0].replace(/"/g, '\\"')}"}`
+
+  try {
+    const { stdout } = await execAsync(`osascript -e '${script}'`)
+    const result = stdout.trim()
+
+    if (result === 'false' || !result) {
+      return null // cancelled
+    }
+
+    // parse selection - format is "1. ~/path (port XXXX)"
+    const match = result.match(/^(\d+)\./)
+    if (match) {
+      const index = parseInt(match[1], 10) - 1
+      if (index >= 0 && index < servers.length) {
+        return { server: servers[index], remember: false }
+      }
+    }
+
+    return null
+  } catch {
+    return null
+  }
+}
+
 export function showPicker(context: PickerContext): void {
   activePickerContext = context
 
+  // try native macOS dialog first
+  if (process.platform === 'darwin') {
+    showMacOSDialog(context.bundleId, context.servers).then((result) => {
+      if (result) {
+        cleanupPicker()
+        context.onSelect(result.server, result.remember)
+      } else if (activePickerContext === context) {
+        // dialog cancelled or failed, fall back to terminal picker
+        showTerminalPicker(context)
+      }
+    })
+    return
+  }
+
+  showTerminalPicker(context)
+}
+
+function showTerminalPicker(context: PickerContext): void {
   console.log('\n' + '─'.repeat(60))
-  console.log(`🔀 Multiple servers for ${context.bundleId}`)
+  console.log(`🔀 ${context.bundleId} bundle requested`)
   console.log('─'.repeat(60))
 
   // show running simulators for context
   getBootedSimulators().then((sims) => {
     if (sims.length > 0) {
-      console.log('\nRunning simulators:')
+      // dedupe by name+version
+      const seen = new Set<string>()
+      const uniqueSims: { name: string; iosVersion?: string }[] = []
       for (const sim of sims) {
-        console.log(`  • ${sim.name} (${sim.udid.slice(0, 8)}...)`)
+        const key = `${sim.name}-${sim.iosVersion || ''}`
+        if (!seen.has(key)) {
+          seen.add(key)
+          uniqueSims.push(sim)
+        }
+      }
+      if (uniqueSims.length === 1) {
+        const sim = uniqueSims[0]
+        console.log(`\nFrom: ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`)
+      } else {
+        console.log('\nActive simulators:')
+        for (const sim of uniqueSims.slice(0, 5)) {
+          console.log(`  • ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`)
+        }
       }
     }
   })
 
-  console.log('\nSelect project:')
+  console.log('\nWhich project should serve it?')
   context.servers.forEach((server, i) => {
     const shortRoot = server.root.replace(process.env.HOME || '', '~')
     console.log(`  [${i + 1}] ${shortRoot} (port ${server.port})`)
