@@ -16,17 +16,42 @@ Common use cases include:
 
 ## Basic Setup
 
-Route masks are configured using `setRouteMasks` and `createRouteMask`:
+Route masks are configured in your `vite.config.ts` under `router.routeMasks`:
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      router: {
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+          },
+        ],
+      },
+    }),
+  ],
+}
+```
+
+Now when you navigate to `/photos/5/modal`, the browser URL shows `/photos/5`, but the modal route renders.
+
+### Imperative Setup
+
+You can also configure route masks imperatively in your root layout using `setRouteMasks`. This is useful when you need custom param transformation functions:
 
 ```tsx fileName=app/_layout.tsx
 import { setRouteMasks, createRouteMask, Slot } from 'one'
 
-// Configure route masks at the app root
 setRouteMasks([
   createRouteMask({
     from: '/photos/[id]/modal',
     to: '/photos/[id]',
-    params: true,
+    params: (matched) => ({ id: matched.id }),
   }),
 ])
 
@@ -34,8 +59,6 @@ export default function Layout() {
   return <Slot />
 }
 ```
-
-Now when you navigate to `/photos/5/modal`, the browser URL shows `/photos/5`, but the modal route renders.
 
 ## Route Mask Options
 
@@ -141,7 +164,7 @@ Here's a full example with a photo gallery that opens photos in a modal:
 
 <RouteTree
   routes={[
-    { name: '_layout.tsx', description: 'Root layout with route mask config' },
+    { name: '_layout.tsx', description: 'Root layout' },
     { name: 'photos', children: [
       { name: '_layout.tsx', description: 'Photo grid layout' },
       { name: 'index.tsx', description: 'Photo list (empty, grid is in layout)' },
@@ -153,19 +176,33 @@ Here's a full example with a photo gallery that opens photos in a modal:
   ]}
 />
 
+### Vite Config
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      router: {
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+            unmaskOnReload: false,
+          },
+        ],
+      },
+    }),
+  ],
+}
+```
+
 ### Root Layout
 
 ```tsx fileName=app/_layout.tsx
-import { setRouteMasks, createRouteMask, Slot } from 'one'
-
-setRouteMasks([
-  createRouteMask({
-    from: '/photos/[id]/modal',
-    to: '/photos/[id]',
-    params: true,
-    unmaskOnReload: false,
-  }),
-])
+import { Slot } from 'one'
 
 export default function RootLayout() {
   return (
@@ -281,7 +318,8 @@ On page refresh:
 
 ## Tips
 
-- Configure route masks in your root `_layout.tsx` so they're available for all navigation
+- Configure route masks in `vite.config.ts` under `router.routeMasks` for a declarative setup
+- Use `setRouteMasks()` in your root `_layout.tsx` when you need custom param transformation functions
 - Use `useSearchParam: true` when you need SSR to render the correct content without a flash
 - Use `unmaskOnReload: true` when the masked URL should be shareable as a standalone page
 - Use `unmaskOnReload: false` when you want to preserve the exact app state on refresh

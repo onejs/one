@@ -155,7 +155,10 @@ export function useLinking(
   // @modified - Track if initial history setup is complete (handles React Strict Mode double-mount)
   const initialHistorySetupDoneRef = React.useRef(false)
   // @modified - Track the displayPath from mask restoration to preserve it across onStateChange
-  const maskedDisplayPathRef = React.useRef<string | undefined>(undefined)
+  // Stores both the displayPath and the actualPath so we only apply it when the route matches
+  const maskedDisplayPathRef = React.useRef<
+    { displayPath: string; actualPath: string } | undefined
+  >(undefined)
 
   React.useEffect(() => {
     enabledRef.current = enabled
@@ -265,6 +268,10 @@ export function useLinking(
       if (!navigation || !enabled) {
         return
       }
+
+      // @modified - Clear stale masked display path on browser back/forward navigation
+      // The user is navigating via browser controls, so the masked URL should not be preserved
+      maskedDisplayPathRef.current = undefined
 
       const { location } = window
 
@@ -484,8 +491,9 @@ export function useLinking(
             const displayPath = window.location.pathname + window.location.search
             history.replace({ path, state, displayPath })
             restoringFromTempLocationRef.current = false
-            // Store displayPath so onStateChange can preserve it
-            maskedDisplayPathRef.current = displayPath
+            // Store displayPath and actualPath so onStateChange can preserve it
+            // Only applied when the route path still matches (prevents stale mask on back navigation)
+            maskedDisplayPathRef.current = { displayPath, actualPath: path }
           } else {
             history.replace({ path, state })
           }
@@ -519,13 +527,19 @@ export function useLinking(
       // @modified - extract mask from linkOptions for route masking
       const maskOptions = (state as any).linkOptions?.mask
       const maskHref = maskOptions?.href
-      // First check if we have a saved displayPath from mask restoration (page refresh case)
-      // This preserves the masked URL on the first state change after refresh
-      let displayPath = maskedDisplayPathRef.current
-      if (displayPath) {
-        // Consume the saved displayPath (only use it once)
+      // Check if we have a saved displayPath from mask restoration (page refresh case)
+      // Only apply it if the current path still matches the masked actual path
+      // This prevents stale displayPath from being applied on browser back/forward navigation
+      const maskedInfo = maskedDisplayPathRef.current
+      let displayPath: string | undefined
+      if (maskedInfo) {
+        if (path === maskedInfo.actualPath) {
+          displayPath = maskedInfo.displayPath
+        }
+        // Always consume regardless of match
         maskedDisplayPathRef.current = undefined
-      } else if (maskHref) {
+      }
+      if (!displayPath && maskHref) {
         displayPath = appendBaseUrl(stripGroupSegmentsFromPath(maskHref) || '/')
       }
       const unmaskOnReload = maskOptions?.unmaskOnReload

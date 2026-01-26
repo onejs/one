@@ -82,9 +82,9 @@ export interface RouteMask extends RouteMaskOptions {
  *   params: true,
  * })
  *
- * // In vite.config.ts or app config:
+ * // In vite.config.ts:
  * one({
- *   routeMasks: [photoMask],
+ *   router: { routeMasks: [photoMask] },
  * })
  * ```
  */

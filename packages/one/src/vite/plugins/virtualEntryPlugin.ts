@@ -105,9 +105,7 @@ function getSetupFileImport(
 
 export function createVirtualEntry(options: {
   root: string
-  router?: {
-    ignoredRouteFiles?: Array<string>
-  }
+  router?: One.PluginOptions['router']
   flags: One.Flags
   setupFile?: One.PluginOptions['setupFile']
 }): Plugin {
@@ -120,6 +118,15 @@ export function createVirtualEntry(options: {
   const apiRouteGlobs = `/${options.root}/${API_ROUTE_GLOB_PATTERN}`
 
   const setupFiles = normalizeSetupFile(options.setupFile)
+
+  // Generate route masks setup code if configured in vite config
+  const routeMasks = options.router?.routeMasks
+  const routeMasksSetup = routeMasks?.length
+    ? `
+import { createRouteMask, setRouteMasks } from 'one'
+setRouteMasks(${JSON.stringify(routeMasks)}.map(opts => createRouteMask(opts)))
+`
+    : ''
 
   return {
     name: 'one-virtual-entry',
@@ -156,6 +163,7 @@ ${setupResult.promiseDeclaration}
 ${nativewindImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
+${routeMasksSetup}
 
 // Export registerPreloadedRoute so preload files can import it from this bundle
 // Named export that wraps the original function

@@ -17,6 +17,14 @@ export default {
     one({
       router: {
         ignoredRouteFiles: ['**/*.should-be-ignored.*'],
+        routeMasks: [
+          {
+            from: '/photos/[id]/modal',
+            to: '/photos/[id]',
+            params: true,
+            unmaskOnReload: false,
+          },
+        ],
       },
 
       setupFile: {

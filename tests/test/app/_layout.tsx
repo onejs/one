@@ -5,21 +5,10 @@ import './_layout.css'
 
 import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
-import { LoadProgressBar, Slot, useServerHeadInsertion, setRouteMasks, createRouteMask } from 'one'
+import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import config from '../config/tamagui.config'
 import { QuickNavigatePixel } from '~/features/test-helpers/QuickNavigatePixel'
-
-// Configure route masks for URL masking
-// This masks /photos/[id]/modal to show as /photos/[id] in the browser
-setRouteMasks([
-  createRouteMask({
-    from: '/photos/[id]/modal',
-    to: '/photos/[id]',
-    params: true,
-    unmaskOnReload: false, // On refresh, restore the modal
-  }),
-])
 
 export default function Layout() {
   useServerHeadInsertion(() => {
