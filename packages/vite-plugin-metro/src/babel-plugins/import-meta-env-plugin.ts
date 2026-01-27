@@ -8,7 +8,7 @@ type PluginOptions = {
 }
 
 /**
- * Babel plugin to replace `import.meta.env` and `import.meta.env.*` with env values.
+ * Babel plugin to replace `import.meta.env.*` and `process.env.*` with env values.
  *
  * Platform-specific env vars (VITE_ENVIRONMENT, VITE_NATIVE, EXPO_OS, TAMAGUI_ENVIRONMENT)
  * are automatically injected based on the babel caller's platform.
@@ -69,6 +69,27 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
               : null
 
           if (!envKey) return
+
+          const value = env[envKey]
+          path.replaceWith(
+            value === undefined ? t.identifier('undefined') : t.valueToNode(value)
+          )
+          return
+        }
+
+        // Replace process.env.* for known env keys
+        if (
+          t.isMemberExpression(node.object) &&
+          t.isIdentifier(node.object.object, { name: 'process' }) &&
+          t.isIdentifier(node.object.property, { name: 'env' })
+        ) {
+          const envKey = t.isIdentifier(node.property)
+            ? node.property.name
+            : t.isStringLiteral(node.property)
+              ? node.property.value
+              : null
+
+          if (!envKey || !(envKey in env)) return
 
           const value = env[envKey]
           path.replaceWith(
