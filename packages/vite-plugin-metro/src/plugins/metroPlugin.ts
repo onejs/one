@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
 import { createDebugger } from '@vxrn/debug'
+import { checkAndClearMetroCacheFromVite } from '../utils/metroCacheManager'
 
 const { debug } = createDebugger('vite-plugin-metro')
 
@@ -102,6 +103,10 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
       const startMetro = async () => {
         const metroStartTime = Date.now()
         try {
+          // check if Metro cache needs clearing based on Vite's deps optimization hashes
+          // must run before importing Metro so METRO_RESET_CACHE is set
+          checkAndClearMetroCacheFromVite(server, server.config.logger)
+
           // Import Metro modules lazily - only after Vite server is listening
           const { default: Metro } = await projectImport<{
             default: typeof MetroT

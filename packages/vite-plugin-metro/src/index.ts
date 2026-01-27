@@ -10,3 +10,4 @@ export {
   type PlatformEnv,
   type ViteEnvironment,
 } from './env/platformEnv'
+export { checkAndClearMetroCacheFromVite } from './utils/metroCacheManager'
