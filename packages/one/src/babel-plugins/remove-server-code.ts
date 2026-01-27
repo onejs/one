@@ -226,9 +226,11 @@ function removeServerCodePlugin(_: unknown, options: PluginOptions): PluginObj {
             path.pushContainer('body', stub)
           }
 
-          console.info(
-            ` 🧹 [one/metro] ${filename} removed ${removedExports.size} server-only exports`
-          )
+          if (process.env.DEBUG) {
+            console.info(
+              ` 🧹 [one/metro] ${filename} removed ${removedExports.size} server-only exports`
+            )
+          }
         },
       },
     },
