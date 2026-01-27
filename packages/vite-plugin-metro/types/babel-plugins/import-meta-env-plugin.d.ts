@@ -3,7 +3,7 @@ type PluginOptions = {
     env?: Record<string, string | boolean | undefined>;
 };
 /**
- * Babel plugin to replace `import.meta.env` and `import.meta.env.*` with env values.
+ * Babel plugin to replace `import.meta.env.*` and `process.env.*` with env values.
  *
  * Platform-specific env vars (VITE_ENVIRONMENT, VITE_NATIVE, EXPO_OS, TAMAGUI_ENVIRONMENT)
  * are automatically injected based on the babel caller's platform.
