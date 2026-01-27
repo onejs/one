@@ -124,6 +124,8 @@ async function writePatchStats(nodeModulesDir: string, stats: PatchStats) {
   await FSExtra.writeJSON(join(nodeModulesDir, STATS_FILE), stats)
 }
 
+type PatchResult = 'applied' | 'ok' | 'skipped'
+
 export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
@@ -131,6 +133,9 @@ export async function applyDependencyPatches(
   const nodeModulesDirs = findNodeModules({ cwd: root }).map((relativePath) =>
     join(root, relativePath)
   )
+
+  // track results per module
+  const results = new Map<string, PatchResult>()
 
   await Promise.all(
     nodeModulesDirs.map(async (nodeModulesDir) => {
@@ -150,8 +155,6 @@ export async function applyDependencyPatches(
               const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
               if (!semver.satisfies(pkgJSON.version, version)) return
             }
-
-            let hasLogged = false
 
             // collect all files to patch
             const filePatches: {
@@ -198,7 +201,15 @@ export async function applyDependencyPatches(
               }
             )
 
-            if (filesToProcess.length === 0) return
+            // if no files need processing, module is already patched
+            if (filesToProcess.length === 0) {
+              if (!results.has(patch.module)) {
+                results.set(patch.module, 'ok')
+              }
+              return
+            }
+
+            let didApplyPatch = false
 
             // process files that need patching
             await Promise.all(
@@ -274,11 +285,7 @@ export async function applyDependencyPatches(
                     const stat = await FSExtra.stat(fullPath)
                     patchStats[fullPath] = { size: stat.size, mtimeMs: stat.mtimeMs }
                     statsChanged = true
-
-                    if (!hasLogged) {
-                      hasLogged = true
-                      console.info(` 🩹 Patching ${patch.module}`)
-                    }
+                    didApplyPatch = true
 
                     if (process.env.DEBUG) {
                       console.info(
@@ -297,6 +304,13 @@ export async function applyDependencyPatches(
                 }
               })
             )
+
+            // update result for this module
+            if (didApplyPatch) {
+              results.set(patch.module, 'applied')
+            } else if (!results.has(patch.module)) {
+              results.set(patch.module, 'ok')
+            }
           } catch (err) {
             console.error(`🚨 Error applying patch to`, patch.module)
             console.error(err)
@@ -310,6 +324,15 @@ export async function applyDependencyPatches(
       }
     })
   )
+
+  // log results
+  for (const [module, result] of results) {
+    if (result === 'applied') {
+      console.info(` 🩹 ${module}`)
+    } else if (result === 'ok') {
+      console.info(` ✓ ${module}`)
+    }
+  }
 }
 
 async function atomicWriteFile(filePath: string, contents: string) {

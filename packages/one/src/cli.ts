@@ -253,7 +253,12 @@ const patch = defineCommand({
     version: '0.0.0',
     description: withDocsLink('Apply package patches', 'patch'),
   },
-  args: {},
+  args: {
+    force: {
+      type: 'boolean',
+      description: 'Force re-apply all patches',
+    },
+  },
   async run({ args }) {
     const { run } = await import('./cli/patch')
     await run(args)
