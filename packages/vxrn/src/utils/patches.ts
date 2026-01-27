@@ -325,11 +325,11 @@ export async function applyDependencyPatches(
     })
   )
 
-  // log results
+  // log results (only log 'ok' status when --force is used)
   for (const [module, result] of results) {
     if (result === 'applied') {
       console.info(` 🩹 ${module}`)
-    } else if (result === 'ok') {
+    } else if (result === 'ok' && process.env.VXRN_FORCE_PATCH) {
       console.info(` ✓ ${module}`)
     }
   }
