@@ -291,14 +291,18 @@ export async function createVXRNCompilerPlugin(
       name: 'one:compiler-resolve-refresh-runtime',
       apply: 'serve',
       enforce: 'pre', // Run before Vite default resolve to avoid syscalls
-      resolveId: (id) => (id === runtimePublicPath ? id : undefined),
-      load: (id) =>
-        id === runtimePublicPath
-          ? readFileSync(
-              join(dirname(fileURLToPath(import.meta.url)), 'refresh-runtime.js'),
-              'utf-8'
-            )
-          : undefined,
+      resolveId: (id) =>
+        id === runtimePublicPath || id === `${runtimePublicPath}.map` ? id : undefined,
+      load: (id) => {
+        const basePath = dirname(fileURLToPath(import.meta.url))
+        if (id === runtimePublicPath) {
+          return readFileSync(join(basePath, 'refresh-runtime.js'), 'utf-8')
+        }
+        if (id === `${runtimePublicPath}.map`) {
+          return readFileSync(join(basePath, 'refresh-runtime.js.map'), 'utf-8')
+        }
+        return undefined
+      },
     },
 
     {

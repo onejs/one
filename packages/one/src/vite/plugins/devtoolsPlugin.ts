@@ -1,35 +1,41 @@
-import type { Plugin, ViteDevServer } from 'vite'
+import type { Plugin } from 'vite'
+import { readFileSync } from 'node:fs'
 import { resolvePath } from '@vxrn/resolve'
 
 const DEVTOOLS_VIRTUAL_ID = '/@one/dev.js'
 
 export function createDevtoolsPlugin(): Plugin {
-  let server: ViteDevServer
-
   return {
     name: 'one-devtools',
     apply: 'serve', // only in dev
 
-    configureServer(_server) {
-      server = _server
-
-      // serve the devtools script by transforming the source file
+    configureServer(server) {
+      // serve the devtools script by reading and combining the source files
       server.middlewares.use(async (req, res, next) => {
         if (req.url === DEVTOOLS_VIRTUAL_ID) {
           try {
-            // get the path to the source file - packages/one/devtools/dev.mjs
+            // resolve and read the devtools files directly
             const devEntryPath = resolvePath('one/devtools/dev.mjs')
+            const devtoolsPath = resolvePath('one/devtools/devtools.mjs')
+            const sourceInspectorPath = resolvePath('one/devtools/source-inspector.mjs')
 
-            // let vite transform the file
-            const result = await server.transformRequest(devEntryPath)
+            const devEntry = readFileSync(devEntryPath, 'utf-8')
+            const devtools = readFileSync(devtoolsPath, 'utf-8')
+            const sourceInspector = readFileSync(sourceInspectorPath, 'utf-8')
 
-            if (result?.code) {
-              res.setHeader('Content-Type', 'application/javascript')
-              res.end(result.code)
-              return
-            }
+            // remove the relative imports from dev.mjs and inline the code
+            const devEntryCode = devEntry
+              .replace("import './devtools.mjs'", '')
+              .replace("import './source-inspector.mjs'", '')
+
+            // combine all code - devtools and source-inspector are IIFEs that run directly
+            const code = `${devEntryCode}\n${devtools}\n${sourceInspector}`
+
+            res.setHeader('Content-Type', 'application/javascript')
+            res.end(code)
+            return
           } catch (e) {
-            console.error('[one] Failed to transform devtools script:', e)
+            console.error('[one] Failed to load devtools script:', e)
           }
 
           res.setHeader('Content-Type', 'application/javascript')
