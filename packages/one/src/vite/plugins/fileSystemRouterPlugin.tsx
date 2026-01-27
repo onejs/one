@@ -8,6 +8,7 @@ import { getSpaHeaderElements, VIRTUAL_SSR_CSS_HREF } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RouteNode } from '../../router/Route' // used for type in runLoaderWithTracking
 import type { RenderAppProps } from '../../types'
+import { getPageExport } from '../../utils/getPageExport'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
@@ -167,7 +168,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             LoaderDataCache[route.file] = loaderData
 
-            const is404 = route.isNotFound || !exported.default
+            const is404 = route.isNotFound || !getPageExport(exported)
 
             const html = await render({
               mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
