@@ -121,9 +121,6 @@ export function getViteMetroPluginOptions({
             : defaultConfig?.resolver?.nodeModulesPaths,
           resolveRequest: (context, moduleName, platform) => {
             if (moduleName.endsWith('.css')) {
-              console.warn(
-                `[one/metro] *.css files are ignored for now, resolving ${moduleName} to empty module.`
-              )
               return {
                 type: 'sourceFile',
                 filePath: emptyPath,
