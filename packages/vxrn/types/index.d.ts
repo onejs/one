@@ -5,7 +5,7 @@ export { prebuild } from './exports/prebuild';
 export { runIos } from './exports/runIos';
 export { runAndroid } from './exports/runAndroid';
 export { clean } from './exports/clean';
-export { patch } from './exports/patch';
+export { patch, type PatchOptions } from './exports/patch';
 export { loadEnv } from './exports/loadEnv';
 export { serveStaticAssets } from './exports/serveStaticAssets';
 export { type VXRNOptionsFilled, getOptionsFilled, fillOptions, } from './config/getOptionsFilled';

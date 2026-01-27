@@ -1,2 +1,4 @@
-export declare function run(args: {}): Promise<void>;
+export declare function run(args: {
+    force?: boolean;
+}): Promise<void>;
 //# sourceMappingURL=patch.d.ts.map
