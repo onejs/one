@@ -12,7 +12,9 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
   console.info(`Server running on http://${options.host}:${options.port}`)
 
   const shutdown = () => {
-    server.close()
+    server.close(() => {
+      process.exit(0)
+    })
   }
 
   process.on('SIGINT', shutdown)
