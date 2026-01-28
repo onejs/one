@@ -58,3 +58,125 @@ In this example we are setting `index`, `[id]`, and `sheet` screens, which would
 This is a convenient way to configure settings for each page up front, but you could also render `Stack.Screen` inside each individual page so you can access data loaded inside that page. The upside of doing it in the layout is that it will configure things before any stack animation runs on enter, with the downside being that you can't access page-level data.
 
 The `options` property passes to the React Navigation NativeStack, and so [takes the same options](https://reactnavigation.org/docs/native-stack-navigator#options).
+
+### Header Composition API
+
+<New />
+
+For more declarative header configuration, use the compositional API with `Stack.Header` and its child components:
+
+```tsx
+import { Stack } from 'one'
+
+export default function Layout() {
+  return (
+    <Stack>
+      <Stack.Screen name="index">
+        <Stack.Header blurEffect="regular">
+          <Stack.Header.Title large>Articles</Stack.Header.Title>
+          <Stack.Header.SearchBar placeholder="Search..." />
+        </Stack.Header>
+      </Stack.Screen>
+
+      <Stack.Screen name="[id]">
+        <Stack.Header>
+          <Stack.Header.Title>Post</Stack.Header.Title>
+          <Stack.Header.Right asChild>
+            <ShareButton />
+          </Stack.Header.Right>
+        </Stack.Header>
+      </Stack.Screen>
+    </Stack>
+  )
+}
+```
+
+#### Stack.Header
+
+The container for header configuration. Props:
+
+- `hidden` - Hide the header entirely
+- `blurEffect` - iOS blur effect (`'regular'`, `'prominent'`, `'systemMaterial'`, etc.)
+- `asChild` - Render a completely custom header component
+- `style` - Style with `backgroundColor`, `shadowColor` (set to `'transparent'` to hide)
+- `largeStyle` - Style for large title mode
+
+#### Stack.Header.Title
+
+Configure the header title:
+
+```tsx
+<Stack.Header.Title large>My Title</Stack.Header.Title>
+```
+
+Props:
+- `children` - The title text
+- `large` - Enable iOS large title mode
+- `style` - Text style (`fontWeight`, `fontSize`, `color`, `textAlign`)
+
+#### Stack.Header.BackButton
+
+Configure the back button:
+
+```tsx
+<Stack.Header.BackButton hidden />
+<Stack.Header.BackButton displayMode="minimal">Back</Stack.Header.BackButton>
+```
+
+Props:
+- `children` - Custom back button text
+- `hidden` - Hide the back button
+- `displayMode` - `'default'`, `'generic'`, or `'minimal'`
+- `withMenu` - Enable long-press menu on iOS
+
+#### Stack.Header.Left / Stack.Header.Right
+
+Add custom components to the header:
+
+```tsx
+<Stack.Header.Left asChild>
+  <MenuButton />
+</Stack.Header.Left>
+
+<Stack.Header.Right asChild>
+  <SettingsButton />
+</Stack.Header.Right>
+```
+
+Props:
+- `asChild` - Required to render custom children
+- `children` - Your custom component
+
+#### Stack.Header.SearchBar
+
+Add an iOS-style search bar:
+
+```tsx
+<Stack.Header.SearchBar
+  placeholder="Search articles..."
+  autoCapitalize="none"
+  placement="stacked"
+/>
+```
+
+Props:
+- `placeholder` - Placeholder text
+- `autoCapitalize` - `'none'`, `'words'`, `'sentences'`, `'characters'`
+- `placement` - `'automatic'` or `'stacked'`
+- `hideWhenScrolling` - Hide when scrolling
+- `obscureBackground` - Obscure background when active
+
+#### Default Header for All Screens
+
+You can set a default header for all screens by placing `Stack.Header` directly inside `Stack`:
+
+```tsx
+<Stack>
+  <Stack.Header blurEffect="regular">
+    <Stack.Header.BackButton displayMode="minimal" />
+  </Stack.Header>
+
+  <Stack.Screen name="index" options={{ title: 'Home' }} />
+  <Stack.Screen name="profile" options={{ title: 'Profile' }} />
+</Stack>
+```
