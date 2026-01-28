@@ -13,7 +13,6 @@ export function HeadInfo({
     type?: string
     locale?: string
     url?: string
-    siteName?: string
     images?: { url: string; width?: number; height?: number }[]
   }
 }) {
@@ -48,6 +47,7 @@ export function HeadInfo({
             return (
               <Fragment key={image.url}>
                 <meta property="og:image" content={image.url} />
+                <meta property="twitter:image" content={image.url} />
                 {image.width && (
                   <meta property="og:image:width" content={`${image.width}`} />
                 )}
@@ -59,7 +59,6 @@ export function HeadInfo({
           })}
 
           <meta property="og:locale" content={openGraph.locale ?? 'en_US'} />
-          <meta property="og:site_name" content={openGraph.siteName || 'Tamagui'} />
         </>
       )}
     </>
