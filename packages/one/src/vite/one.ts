@@ -655,19 +655,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
 
-    // Source inspector - show source file location on hover with Shift+Ctrl/Cmd
+    // devtools (inspector, HMR overlay, etc)
     ...(() => {
-      // devtools defaults to true
       const devtools = options.devtools ?? true
       if (devtools === false) return []
-
-      // if devtools is true, enable all tools
-      // if devtools is object, check individual settings (default true)
       const inspector = devtools === true || (devtools.inspector ?? true)
-      return inspector ? sourceInspectorPlugin() : []
+      return [createDevtoolsPlugin(), ...(inspector ? sourceInspectorPlugin() : [])]
     })(),
-
-    // devtools client script (HMR, refresh, devtools UI)
-    createDevtoolsPlugin(),
   ]
 }
