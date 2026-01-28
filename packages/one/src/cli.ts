@@ -343,6 +343,8 @@ if (helpIndex > 0) {
   const subCommand = subCommands[subCommandName]
   if (subCommand) {
     showUsage(subCommand)
+  } else {
+    showUsage(subMain)
   }
 } else {
   runMain(main)

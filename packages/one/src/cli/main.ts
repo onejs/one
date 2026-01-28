@@ -30,7 +30,7 @@ export async function cliMain(args: { name?: string } = {}) {
   void getLatestVersion('one')
 
   if (existsSync('vite.config.ts')) {
-    // Inside existing app, let's just run the damn thing
+    // inside existing app, just run dev
     await dev({})
     process.exit(0)
   }
