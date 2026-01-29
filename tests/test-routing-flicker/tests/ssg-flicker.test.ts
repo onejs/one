@@ -192,14 +192,15 @@ describe('SSG Navigation - Dynamic Route to Dynamic Route', () => {
   test('/docs/getting-started => /docs/api-reference - no flicker', async () => {
     const page = await context.newPage()
 
-    await page.goto(serverUrl + '/docs/getting-started', { waitUntil: 'networkidle' })
+    await page.goto(serverUrl + '/docs/getting-started', { waitUntil: 'load' })
+    await page.waitForSelector('#doc-title', { state: 'visible', timeout: 10000 })
     expect(await page.textContent('#doc-title')).toContain('Getting Started')
 
     await setupFlickerDetection(page)
 
     await page.click('a[href="/docs/api-reference"]')
-    await page.waitForURL('**/docs/api-reference')
-    await page.waitForLoadState('networkidle')
+    await page.waitForURL('**/docs/api-reference', { timeout: 15000 })
+    await page.waitForSelector('#doc-title', { state: 'visible', timeout: 10000 })
 
     const results = await getFlickerResults(page)
     const finalContent = await page.textContent('#doc-title')
@@ -216,19 +217,20 @@ describe('SSG Navigation - Dynamic Route to Dynamic Route', () => {
   test('/docs/getting-started => /docs/api-reference => /docs/advanced-usage - chain navigation no flicker', async () => {
     const page = await context.newPage()
 
-    await page.goto(serverUrl + '/docs/getting-started', { waitUntil: 'networkidle' })
+    await page.goto(serverUrl + '/docs/getting-started', { waitUntil: 'load' })
+    await page.waitForSelector('#doc-title', { state: 'visible', timeout: 10000 })
     expect(await page.textContent('#doc-title')).toContain('Getting Started')
 
     await setupFlickerDetection(page)
 
     await page.click('a[href="/docs/api-reference"]')
-    await page.waitForURL('**/docs/api-reference')
-    await page.waitForLoadState('networkidle')
+    await page.waitForURL('**/docs/api-reference', { timeout: 15000 })
+    await page.waitForSelector('#doc-title', { state: 'visible', timeout: 10000 })
     expect(await page.textContent('#doc-title')).toContain('API Reference')
 
     await page.click('a[href="/docs/advanced-usage"]')
-    await page.waitForURL('**/docs/advanced-usage')
-    await page.waitForLoadState('networkidle')
+    await page.waitForURL('**/docs/advanced-usage', { timeout: 15000 })
+    await page.waitForSelector('#doc-title', { state: 'visible', timeout: 10000 })
     expect(await page.textContent('#doc-title')).toContain('Advanced Usage')
 
     const results = await getFlickerResults(page)
