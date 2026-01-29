@@ -655,12 +655,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
 
-    // devtools (inspector, HMR overlay, etc)
+    // devtools (always includes refresh preamble for HMR, optionally includes UI)
     ...(() => {
       const devtools = options.devtools ?? true
-      if (devtools === false) return []
-      const inspector = devtools === true || (devtools.inspector ?? true)
-      return [createDevtoolsPlugin(), ...(inspector ? sourceInspectorPlugin() : [])]
+      const includeUI = devtools !== false
+      const inspector =
+        devtools === true || (devtools !== false && (devtools.inspector ?? true))
+      return [
+        // always include devtools plugin for refresh preamble (required for HMR)
+        createDevtoolsPlugin({ includeUI }),
+        ...(inspector ? sourceInspectorPlugin() : []),
+      ]
     })(),
   ]
 }
