@@ -133,6 +133,13 @@
       updateOverlayAtPosition(mousePos.x, mousePos.y)
     }
 
+    // expose for devtools menu
+    window.__oneSourceInspector = {
+      activate,
+      deactivate,
+      isActive: () => active,
+    }
+
     function deactivate() {
       cancelHold()
       active = false
@@ -155,7 +162,9 @@
 
     window.addEventListener('keyup', (e) => {
       if (e.defaultPrevented) return
-      deactivate()
+      if (e.key === 'Alt') {
+        deactivate()
+      }
     })
 
     window.addEventListener('blur', deactivate)
