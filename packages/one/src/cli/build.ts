@@ -1,4 +1,5 @@
 import { createRequire } from 'node:module'
+import { cpus } from 'node:os'
 import Path, { join, relative, resolve } from 'node:path'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
@@ -30,6 +31,43 @@ import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
 
 const { ensureDir, writeJSON } = FSExtra
+
+// concurrency limit for parallel page builds
+// can be overridden with ONE_BUILD_CONCURRENCY env var
+// default to sequential (1) as parallelization adds overhead for typical sites
+// users with 100s+ pages may benefit from higher values (2-4)
+const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
+  ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10) || 1)
+  : 1
+
+// simple concurrency limiter
+function pLimit(concurrency: number) {
+  const queue: (() => void)[] = []
+  let active = 0
+
+  const next = () => {
+    if (active < concurrency && queue.length > 0) {
+      active++
+      const fn = queue.shift()!
+      fn()
+    }
+  }
+
+  return <T>(fn: () => Promise<T>): Promise<T> => {
+    return new Promise<T>((resolve, reject) => {
+      queue.push(() => {
+        fn()
+          .then(resolve)
+          .catch(reject)
+          .finally(() => {
+            active--
+            next()
+          })
+      })
+      next()
+    })
+  }
+}
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -64,6 +102,8 @@ export async function build(args: {
       ? 'esm'
       : (oneOptions.build?.server?.outputFormat ?? 'esm')
 
+  const buildStartTime = performance.now()
+
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
@@ -79,6 +119,9 @@ export async function build(args: {
     },
     args
   )
+
+  const bundleTime = performance.now() - buildStartTime
+  console.info(`\n ⏱️  vite bundle: ${(bundleTime / 1000).toFixed(2)}s\n`)
 
   if (!vxrnOutput || args.platform !== 'web') {
     return
@@ -235,7 +278,15 @@ export async function build(args: {
   const builtRoutes: One.RouteBuildInfo[] = []
   const sitemapData: RouteSitemapData[] = []
 
-  console.info(`\n 🔨 build static routes\n`)
+  // caches for expensive operations
+  const collectImportsCache = new Map<string, string[]>()
+  const cssFileContentsCache = new Map<string, string>()
+
+  // concurrency limiter for parallel page builds
+  const limit = pLimit(BUILD_CONCURRENCY)
+
+  const staticStartTime = performance.now()
+  console.info(`\n 🔨 build static routes (concurrency: ${BUILD_CONCURRENCY})\n`)
 
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
@@ -277,6 +328,15 @@ export async function build(args: {
     }
   }
 
+  // build a map for O(1) route lookups instead of O(n) find per route
+  const routeByPath = new Map<string, RouteInfo<string>>()
+  for (const route of manifest.pageRoutes) {
+    if (route.file) {
+      const routePath = `${routerRoot}${route.file.slice(1)}`
+      routeByPath.set(routePath, route)
+    }
+  }
+
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
       assets.push(output)
@@ -307,12 +367,14 @@ export async function build(args: {
       }
     }
 
-    // Match route by server output id against manifest.pageRoutes
-    const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
-      if (!route.file) return false
-      const routePath = `${routerRoot}${route.file.slice(1)}`
-      return id.endsWith(routePath)
-    })
+    // Match route by server output id against manifest.pageRoutes (O(1) lookup)
+    let foundRoute: RouteInfo<string> | undefined
+    for (const [routePath, route] of routeByPath) {
+      if (id.endsWith(routePath)) {
+        foundRoute = route
+        break
+      }
+    }
 
     if (!foundRoute) {
       continue
@@ -345,10 +407,16 @@ export async function build(args: {
     }
 
     function collectImports(
-      { imports = [], css }: ClientManifestEntry,
+      entry: ClientManifestEntry,
       { type = 'js' }: { type?: 'js' | 'css' } = {}
     ): string[] {
-      return [
+      const { imports = [], css } = entry
+      // use entry.file as cache key (unique per manifest entry)
+      const cacheKey = `${entry.file || imports.join(',')}:${type}`
+      const cached = collectImportsCache.get(cacheKey)
+      if (cached) return cached
+
+      const result = [
         ...new Set(
           [
             ...(type === 'js' ? imports : css || []),
@@ -367,6 +435,8 @@ export async function build(args: {
             )
         ),
       ]
+      collectImportsCache.set(cacheKey, result)
+      return result
     }
 
     const entryImports = collectImports(clientManifestEntry || {})
@@ -507,16 +577,23 @@ export async function build(args: {
       // nested path pages need to reference root assets
       .map((path) => `/${path}`)
 
-    // Read CSS file contents if inlineLayoutCSS is enabled
+    // Read CSS file contents if inlineLayoutCSS is enabled (with caching)
     let allCSSContents: string[] | undefined
     if (oneOptions.web?.inlineLayoutCSS) {
       allCSSContents = await Promise.all(
         allCSS.map(async (cssPath) => {
+          // check cache first
+          const cached = cssFileContentsCache.get(cssPath)
+          if (cached !== undefined) return cached
+
           const filePath = join(clientDir, cssPath)
           try {
-            return await FSExtra.readFile(filePath, 'utf-8')
+            const content = await FSExtra.readFile(filePath, 'utf-8')
+            cssFileContentsCache.set(cssPath, content)
+            return content
           } catch (err) {
             console.warn(`[one] Warning: Could not read CSS file ${filePath}`)
+            cssFileContentsCache.set(cssPath, '')
             return ''
           }
         })
@@ -586,43 +663,56 @@ export async function build(args: {
     const useAfterLCPAggressive =
       foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp-aggressive'
 
-    for (const params of paramsList) {
+    // determine if this route can be built in parallel
+    // routes that use sitemap exports or have side effects should be sequential
+    const shouldCollectSitemap =
+      foundRoute.type !== 'api' &&
+      foundRoute.type !== 'layout' &&
+      !foundRoute.isNotFound &&
+      !foundRoute.page.includes('+not-found') &&
+      !foundRoute.page.includes('_sitemap')
+
+    // build pages in parallel with concurrency limit
+    const pageBuilds = paramsList.map((params) => {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
-      console.info(`  ↦ route ${path}`)
 
-      const built = await runWithAsyncLocalContext(async () => {
-        return await buildPage(
-          vxrnOutput.serverEntry,
-          path,
-          relativeId,
-          params,
-          foundRoute,
-          clientManifestEntry,
-          staticDir,
-          clientDir,
-          builtMiddlewares,
-          serverJsPath,
-          preloads,
-          allCSS,
-          routePreloads,
-          allCSSContents,
-          criticalPreloads,
-          deferredPreloads,
-          useAfterLCP,
-          useAfterLCPAggressive
-        )
+      return limit(async () => {
+        console.info(`  ↦ route ${path}`)
+
+        const built = await runWithAsyncLocalContext(async () => {
+          return await buildPage(
+            vxrnOutput.serverEntry,
+            path,
+            relativeId,
+            params,
+            foundRoute,
+            clientManifestEntry,
+            staticDir,
+            clientDir,
+            builtMiddlewares,
+            serverJsPath,
+            preloads,
+            allCSS,
+            routePreloads,
+            allCSSContents,
+            criticalPreloads,
+            deferredPreloads,
+            useAfterLCP,
+            useAfterLCPAggressive
+          )
+        })
+
+        return { built, path }
       })
+    })
 
+    const results = await Promise.all(pageBuilds)
+
+    for (const { built, path } of results) {
       builtRoutes.push(built)
 
       // Collect sitemap data for page routes (exclude API, not-found, layouts)
-      if (
-        foundRoute.type !== 'api' &&
-        foundRoute.type !== 'layout' &&
-        !foundRoute.isNotFound &&
-        !foundRoute.page.includes('+not-found') &&
-        !foundRoute.page.includes('_sitemap')
-      ) {
+      if (shouldCollectSitemap) {
         sitemapData.push({
           path,
           routeExport: routeSitemapExport,
@@ -630,6 +720,9 @@ export async function build(args: {
       }
     }
   }
+
+  const staticTime = performance.now() - staticStartTime
+  console.info(`\n ⏱️  static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`)
 
   // once done building static we can move it to client dir:
   await moveAllFiles(staticDir, clientDir)
