@@ -2,6 +2,7 @@ import path from 'node:path'
 import { parseSync } from 'oxc-parser'
 import { normalizePath } from 'vite'
 import type { Plugin, ViteDevServer } from 'vite'
+import type { WebSocket } from 'ws'
 
 interface JsxLocation {
   /** Position right after the tag name where we insert the attribute */
@@ -169,6 +170,10 @@ async function openInEditor(
   }
 }
 
+// track connected vscode clients and browser clients
+const vscodeClients = new Set<WebSocket>()
+let viteServer: ViteDevServer | null = null
+
 export function sourceInspectorPlugin(): Plugin[] {
   return [
     // Transform plugin - injects data-one-source attributes
@@ -199,12 +204,54 @@ export function sourceInspectorPlugin(): Plugin[] {
 
     // Note: Inspector UI script is now injected via DevHead.tsx for SSR compatibility
 
-    // Server plugin - handles open-source requests
+    // Server plugin - handles open-source requests and cursor WebSocket
     {
       name: 'one:source-inspector-server',
       apply: 'serve',
 
       configureServer(server: ViteDevServer) {
+        viteServer = server
+
+        // set up websocket server for vscode cursor position
+        let wss: InstanceType<typeof import('ws').WebSocketServer> | null = null
+
+        import('ws').then(({ WebSocketServer }) => {
+          wss = new WebSocketServer({ noServer: true })
+
+          server.httpServer?.on('upgrade', (req, socket, head) => {
+            if (req.url !== '/__one/cursor') return
+
+            wss!.handleUpgrade(req, socket, head, (ws) => {
+              vscodeClients.add(ws)
+
+              ws.on('message', (data) => {
+                try {
+                  const message = JSON.parse(data.toString())
+
+                  // broadcast cursor position to browser via HMR
+                  if (message.type === 'cursor-position') {
+                    server.hot.send('one:cursor-highlight', {
+                      file: message.file,
+                      line: message.line,
+                      column: message.column,
+                    })
+                  } else if (message.type === 'cursor-clear') {
+                    server.hot.send('one:cursor-highlight', { clear: true })
+                  }
+                } catch {
+                  // ignore parse errors
+                }
+              })
+
+              ws.on('close', () => {
+                vscodeClients.delete(ws)
+                // clear highlight when vscode disconnects
+                server.hot.send('one:cursor-highlight', { clear: true })
+              })
+            })
+          })
+        })
+
         server.middlewares.use(async (req, res, next) => {
           if (!req.url?.startsWith('/__one/open-source')) {
             return next()
