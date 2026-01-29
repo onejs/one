@@ -1,4 +1,5 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
+import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
 import * as routerStore from './router'
 import { initialize } from './router'
@@ -22,6 +23,7 @@ export function useInitializeOneRouter(
 export function resetState() {
   initialized = false
   resetReactNavigationContexts()
+  resetLoaderState()
 }
 
 // TODO remove global

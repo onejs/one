@@ -470,6 +470,11 @@ export function useLoader<
 const results = new Map()
 const started = new Map()
 
+export function resetLoaderState() {
+  results.clear()
+  started.clear()
+}
+
 function useAsyncFn(val: any, props?: any) {
   const key = (val ? weakKey(val) : '') + JSON.stringify(props)
 

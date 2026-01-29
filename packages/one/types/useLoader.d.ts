@@ -71,4 +71,5 @@ export declare function useLoaderState<Loader extends Function = any, Returned =
  * ```
  */
 export declare function useLoader<Loader extends Function, Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown>(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned;
+export declare function resetLoaderState(): void;
 //# sourceMappingURL=useLoader.d.ts.map
