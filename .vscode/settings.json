@@ -1,6 +1,6 @@
 {
   "biome.enabled": false,
-  "oxc.fmt.experimental": true,
+  "one.liveHighlight.enabled": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",

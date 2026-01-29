@@ -1,9 +1,12 @@
 // Source Inspector - shows source location on hover when holding Option for 0.5s
+// Also supports live highlighting from VSCode cursor position
 // Uses shadow DOM for style isolation
+// Note: createHotContext is already imported in dev.mjs which concatenates this file
 
 ;(function () {
   try {
     let active = false
+    let cursorHighlightActive = false // separate state for vscode cursor highlighting
     let host = null
     let shadow = null
     let overlay = null
@@ -12,6 +15,19 @@
     const holdDelay = 500
     const mousePos = { x: 0, y: 0 }
     let removalObserver = null
+
+    // set up HMR listener for cursor position from vscode
+    const cursorHot = createHotContext('/__one_cursor_hmr')
+    cursorHot.on('one:cursor-highlight', (data) => {
+      if (data.clear) {
+        cursorHighlightActive = false
+        if (!active) hideOverlay()
+        return
+      }
+
+      cursorHighlightActive = true
+      highlightBySource(data.file, data.line, data.column)
+    })
 
     function createHost() {
       if (host) return
@@ -80,7 +96,7 @@
       if (tag) tag.style.display = 'none'
     }
 
-    function showOverlay(el, source) {
+    function showOverlay(el, source, fromVscode = false) {
       if (!host) createHost()
       const rect = el.getBoundingClientRect()
       overlay.style.display = 'block'
@@ -88,6 +104,14 @@
       overlay.style.left = rect.left + 'px'
       overlay.style.width = rect.width + 'px'
       overlay.style.height = rect.height + 'px'
+      // use different color for vscode cursor highlight
+      if (fromVscode) {
+        overlay.style.background = 'rgba(59, 130, 246, 0.2)'
+        overlay.style.borderColor = 'rgba(59, 130, 246, 0.8)'
+      } else {
+        overlay.style.background = 'rgba(100, 100, 100, 0.2)'
+        overlay.style.borderColor = 'rgba(100, 100, 100, 0.6)'
+      }
       tag.style.display = 'block'
       tag.textContent = source
       let top = rect.top - 28
@@ -100,6 +124,50 @@
       if (holdTimer) {
         clearTimeout(holdTimer)
         holdTimer = null
+      }
+    }
+
+    // find element by source file and line/column from vscode
+    function highlightBySource(file, line, column) {
+      // find all elements with data-one-source that match this file
+      const elements = document.querySelectorAll(`[data-one-source^="${file}:"]`)
+
+      let bestMatch = null
+      let bestDistance = Infinity
+
+      for (const el of elements) {
+        const source = el.getAttribute('data-one-source')
+        const lastColon = source.lastIndexOf(':')
+        const filePath = source.slice(0, lastColon)
+        const idx = source.slice(lastColon + 1)
+
+        // look up the actual line/column for this element
+        const info = window.__oneSourceInfo?.[filePath]
+        const lineCol = info?.[idx]
+
+        if (!lineCol) continue
+
+        const elLine = lineCol[0]
+        const elColumn = lineCol[1]
+
+        // find element whose line is <= cursor line (closest opening tag above/at cursor)
+        if (elLine <= line) {
+          const distance = line - elLine
+          // prefer elements on same line, then closest line above
+          // if same line, prefer closer column
+          if (distance < bestDistance || (distance === bestDistance && elLine === line)) {
+            bestDistance = distance
+            bestMatch = { el, source, filePath, lineCol }
+          }
+        }
+      }
+
+      if (bestMatch) {
+        const displaySource =
+          bestMatch.filePath + ':' + bestMatch.lineCol[0] + ':' + bestMatch.lineCol[1]
+        showOverlay(bestMatch.el, displaySource, true)
+      } else {
+        hideOverlay()
       }
     }
 
@@ -143,7 +211,10 @@
     function deactivate() {
       cancelHold()
       active = false
-      hideOverlay()
+      // only hide if vscode isn't actively highlighting
+      if (!cursorHighlightActive) {
+        hideOverlay()
+      }
     }
 
     window.addEventListener('keydown', (e) => {
