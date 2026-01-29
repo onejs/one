@@ -29,6 +29,7 @@ import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
+import { pLimit } from '../utils/pLimit'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -39,35 +40,6 @@ const { ensureDir, writeJSON } = FSExtra
 const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
   ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10) || 1)
   : 1
-
-// simple concurrency limiter
-function pLimit(concurrency: number) {
-  const queue: (() => void)[] = []
-  let active = 0
-
-  const next = () => {
-    if (active < concurrency && queue.length > 0) {
-      active++
-      const fn = queue.shift()!
-      fn()
-    }
-  }
-
-  return <T>(fn: () => Promise<T>): Promise<T> => {
-    return new Promise<T>((resolve, reject) => {
-      queue.push(() => {
-        fn()
-          .then(resolve)
-          .catch(reject)
-          .finally(() => {
-            active--
-            next()
-          })
-      })
-      next()
-    })
-  }
-}
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
