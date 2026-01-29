@@ -1,0 +1,56 @@
+{
+  "name": "one-vscode",
+  "displayName": "One Framework",
+  "description": "VSCode integration for One framework - live element highlighting",
+  "version": "0.0.1",
+  "private": true,
+  "publisher": "one",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:one.config.ts",
+    "workspaceContains:one.config.js"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "one.toggleLiveHighlight",
+        "title": "One: Toggle Live Element Highlighting"
+      }
+    ],
+    "configuration": {
+      "title": "One Framework",
+      "properties": {
+        "one.liveHighlight.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable live element highlighting in browser when cursor is on JSX"
+        },
+        "one.liveHighlight.port": {
+          "type": "number",
+          "default": 8081,
+          "description": "Vite dev server port"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run build -- --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
