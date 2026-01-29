@@ -130,6 +130,7 @@
         { id: 'route', name: 'Route Info', key: '⌥R' },
         { id: 'loader', name: 'Loader Timing', key: '⌥L' },
         { id: 'errors', name: 'Errors', key: '⌥E' },
+        { id: 'inspect', name: 'Inspect Source', key: '⌥I' },
       ]
 
       const header =
@@ -154,9 +155,14 @@
       box.addEventListener('click', (e) => {
         const item = e.target.closest('.spotlight-item')
         if (item) {
-          activeTab = item.dataset.tab
+          const tab = item.dataset.tab
           hideSpotlight()
-          showPanel()
+          if (tab === 'inspect') {
+            window.__oneSourceInspector?.activate()
+          } else {
+            activeTab = tab
+            showPanel()
+          }
         }
       })
 
@@ -262,6 +268,12 @@
           e.preventDefault()
           toggleSpotlight()
         } else if (e.altKey) {
+          if (e.code === 'KeyI') {
+            e.preventDefault()
+            hideSpotlight()
+            window.__oneSourceInspector?.activate()
+            return
+          }
           const tabMap = {
             KeyS: 'seo',
             KeyR: 'route',
