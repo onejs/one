@@ -25,8 +25,9 @@ import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
-import { buildPage } from './buildPage'
+import { buildPage, printBuildTimings } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
+import { getWorkerPool, terminateWorkerPool } from './workerPool'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
 import { pLimit } from '../utils/pLimit'
@@ -35,11 +36,14 @@ const { ensureDir, writeJSON } = FSExtra
 
 // concurrency limit for parallel page builds
 // can be overridden with ONE_BUILD_CONCURRENCY env var
-// default to sequential (1) as parallelization adds overhead for typical sites
-// users with 100s+ pages may benefit from higher values (2-4)
+// default based on CPU count for I/O parallelism benefits
 const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
-  ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10) || 1)
-  : 1
+  ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10))
+  : Math.max(1, Math.min(cpus().length, 8))
+
+// enable true multicore building via worker threads
+// set ONE_BUILD_WORKERS=1 to enable
+const USE_WORKERS = process.env.ONE_BUILD_WORKERS === '1'
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -217,21 +221,21 @@ export async function build(args: {
     return output as RollupOutput
   }
 
-  let apiOutput: RollupOutput | null = null
-  if (manifest.apiRoutes.length) {
-    console.info(`\n 🔨 build api routes\n`)
-    apiOutput = await buildCustomRoutes('api', manifest.apiRoutes)
-  }
-
+  // build api routes and middlewares in parallel
   const builtMiddlewares: Record<string, string> = {}
 
-  if (manifest.middlewareRoutes.length) {
-    console.info(`\n 🔨 build middlewares\n`)
-    const middlewareBuildInfo = await buildCustomRoutes(
-      'middlewares',
-      manifest.middlewareRoutes
-    )
+  const apiPromise = manifest.apiRoutes.length
+    ? (console.info(`\n 🔨 build api routes\n`), buildCustomRoutes('api', manifest.apiRoutes))
+    : Promise.resolve(null)
 
+  const middlewarePromise = manifest.middlewareRoutes.length
+    ? (console.info(`\n 🔨 build middlewares\n`),
+      buildCustomRoutes('middlewares', manifest.middlewareRoutes))
+    : Promise.resolve(null)
+
+  const [apiOutput, middlewareBuildInfo] = await Promise.all([apiPromise, middlewarePromise])
+
+  if (middlewareBuildInfo) {
     for (const middleware of manifest.middlewareRoutes) {
       const absoluteRoot = resolve(process.cwd(), options.root)
       const fullPath = join(absoluteRoot, routerRoot, middleware.file)
@@ -257,8 +261,17 @@ export async function build(args: {
   // concurrency limiter for parallel page builds
   const limit = pLimit(BUILD_CONCURRENCY)
 
+  // initialize worker pool if enabled
+  const workerPool = USE_WORKERS ? getWorkerPool(BUILD_CONCURRENCY) : null
+  if (workerPool) {
+    await workerPool.ready()
+    // initialize workers with build config (needed for SSR globals)
+    await workerPool.initialize(oneOptions)
+  }
+
   const staticStartTime = performance.now()
-  console.info(`\n 🔨 build static routes (concurrency: ${BUILD_CONCURRENCY})\n`)
+  const modeLabel = USE_WORKERS ? `workers: ${workerPool?.size}` : `concurrency: ${BUILD_CONCURRENCY}`
+  console.info(`\n 🔨 build static routes (${modeLabel})\n`)
 
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
@@ -644,10 +657,36 @@ export async function build(args: {
       !foundRoute.page.includes('+not-found') &&
       !foundRoute.page.includes('_sitemap')
 
-    // build pages in parallel with concurrency limit
+    // build pages in parallel with concurrency limit (or workers if enabled)
     const pageBuilds = paramsList.map((params) => {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
 
+      // use worker pool for true multicore parallelism if enabled
+      if (workerPool) {
+        console.info(`  ↦ route ${path}`)
+        return workerPool.buildPage({
+          serverEntry: vxrnOutput.serverEntry,
+          path,
+          relativeId,
+          params,
+          foundRoute,
+          clientManifestEntry,
+          staticDir,
+          clientDir,
+          builtMiddlewares,
+          serverJsPath,
+          preloads,
+          allCSS,
+          routePreloads,
+          allCSSContents,
+          criticalPreloads,
+          deferredPreloads,
+          useAfterLCP,
+          useAfterLCPAggressive,
+        }).then((built) => ({ built, path }))
+      }
+
+      // fallback to pLimit for async parallelism
       return limit(async () => {
         console.info(`  ↦ route ${path}`)
 
@@ -693,8 +732,14 @@ export async function build(args: {
     }
   }
 
+  // terminate worker pool if used
+  if (workerPool) {
+    await terminateWorkerPool()
+  }
+
   const staticTime = performance.now() - staticStartTime
   console.info(`\n ⏱️  static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`)
+  printBuildTimings()
 
   // once done building static we can move it to client dir:
   await moveAllFiles(staticDir, clientDir)
