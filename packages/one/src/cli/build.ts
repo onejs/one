@@ -264,9 +264,7 @@ export async function build(args: {
   // initialize worker pool if enabled
   const workerPool = USE_WORKERS ? getWorkerPool(BUILD_CONCURRENCY) : null
   if (workerPool) {
-    await workerPool.ready()
-    // initialize workers with build config (needed for SSR globals)
-    await workerPool.initialize(oneOptions)
+    await workerPool.initialize()
   }
 
   const staticStartTime = performance.now()

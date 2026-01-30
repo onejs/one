@@ -11,11 +11,9 @@ export declare class BuildWorkerPool {
     private _initialized;
     private _resolveInitialized;
     private _terminated;
-    private _config;
     constructor(size?: number);
     get size(): number;
-    ready(): Promise<void>;
-    initialize(config: any): Promise<void>;
+    initialize(): Promise<void>;
     private dispatch;
     buildPage(args: {
         serverEntry: string;
