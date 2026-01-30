@@ -384,6 +384,13 @@ export declare namespace One {
         build?: {
             server?: VXRNBuildOptions | false;
             api?: VXRNBuildOptions;
+            /**
+             * Use worker threads for parallel static page generation during build.
+             * This utilizes multiple CPU cores for faster builds.
+             *
+             * @default true
+             */
+            workers?: boolean;
         };
         deps?: FixDependencies;
         ssr?: {
