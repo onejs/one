@@ -28,7 +28,6 @@ export class BuildWorkerPool {
   private _initialized: Promise<void>
   private _resolveInitialized!: () => void
   private _terminated = false
-  private _config: any = null
 
   constructor(size = Math.max(1, cpus().length - 1)) {
     this._ready = new Promise((resolve) => {
@@ -84,17 +83,13 @@ export class BuildWorkerPool {
     return this.workers.length
   }
 
-  async ready() {
-    return this._ready
-  }
-
-  // initialize all workers with build config
-  async initialize(config: any) {
+  // initialize all workers - they load config themselves from vite.config
+  async initialize() {
     await this._ready
-    this._config = config
     // send init message to all workers
+    // workers load the vite config themselves to avoid serialization issues
     for (const worker of this.workers) {
-      worker.postMessage({ type: 'init', id: this.nextId++, config })
+      worker.postMessage({ type: 'init', id: this.nextId++ })
     }
     // wait for all workers to be initialized
     await this._initialized
