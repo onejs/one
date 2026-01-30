@@ -1,4 +1,6 @@
 ignores:
+  # build artifact from node:url -> url.native.js transformation
+  - "url.native.js"
   - "react-native-worklets"
   - "expo-modules-core"
   - "react-native-web"
