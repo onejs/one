@@ -16,13 +16,19 @@ process.env.NODE_ENV = 'production'
 
 // lazy-loaded imports
 let buildPageFn: typeof import('./buildPage').buildPage | null = null
-let runWithAsyncLocalContextFn: typeof import('../vite/one-server-only').runWithAsyncLocalContext | null = null
-let loadUserOneOptionsFn: typeof import('../vite/loadConfig').loadUserOneOptions | null = null
+let runWithAsyncLocalContextFn:
+  | typeof import('../vite/one-server-only').runWithAsyncLocalContext
+  | null = null
+let loadUserOneOptionsFn: typeof import('../vite/loadConfig').loadUserOneOptions | null =
+  null
 let initialized = false
 
 async function ensureImports() {
   if (!buildPageFn) {
-    const mod = await workerImport<typeof import('./buildPage')>('./buildPage', import.meta.url)
+    const mod = await workerImport<typeof import('./buildPage')>(
+      './buildPage',
+      import.meta.url
+    )
     buildPageFn = mod.buildPage
   }
   if (!runWithAsyncLocalContextFn) {

@@ -230,7 +230,8 @@ export async function build(args: {
   const builtMiddlewares: Record<string, string> = {}
 
   const apiPromise = manifest.apiRoutes.length
-    ? (console.info(`\n 🔨 build api routes\n`), buildCustomRoutes('api', manifest.apiRoutes))
+    ? (console.info(`\n 🔨 build api routes\n`),
+      buildCustomRoutes('api', manifest.apiRoutes))
     : Promise.resolve(null)
 
   const middlewarePromise = manifest.middlewareRoutes.length
@@ -238,7 +239,10 @@ export async function build(args: {
       buildCustomRoutes('middlewares', manifest.middlewareRoutes))
     : Promise.resolve(null)
 
-  const [apiOutput, middlewareBuildInfo] = await Promise.all([apiPromise, middlewarePromise])
+  const [apiOutput, middlewareBuildInfo] = await Promise.all([
+    apiPromise,
+    middlewarePromise,
+  ])
 
   if (middlewareBuildInfo) {
     for (const middleware of manifest.middlewareRoutes) {
@@ -274,7 +278,9 @@ export async function build(args: {
   }
 
   const staticStartTime = performance.now()
-  const modeLabel = useWorkers ? `workers: ${workerPool?.size}` : `concurrency: ${BUILD_CONCURRENCY}`
+  const modeLabel = useWorkers
+    ? `workers: ${workerPool?.size}`
+    : `concurrency: ${BUILD_CONCURRENCY}`
   console.info(`\n 🔨 build static routes (${modeLabel})\n`)
 
   const staticDir = join(`dist/static`)
@@ -668,26 +674,28 @@ export async function build(args: {
       // use worker pool for true multicore parallelism if enabled
       if (workerPool) {
         console.info(`  ↦ route ${path}`)
-        return workerPool.buildPage({
-          serverEntry: vxrnOutput.serverEntry,
-          path,
-          relativeId,
-          params,
-          foundRoute,
-          clientManifestEntry,
-          staticDir,
-          clientDir,
-          builtMiddlewares,
-          serverJsPath,
-          preloads,
-          allCSS,
-          routePreloads,
-          allCSSContents,
-          criticalPreloads,
-          deferredPreloads,
-          useAfterLCP,
-          useAfterLCPAggressive,
-        }).then((built) => ({ built, path }))
+        return workerPool
+          .buildPage({
+            serverEntry: vxrnOutput.serverEntry,
+            path,
+            relativeId,
+            params,
+            foundRoute,
+            clientManifestEntry,
+            staticDir,
+            clientDir,
+            builtMiddlewares,
+            serverJsPath,
+            preloads,
+            allCSS,
+            routePreloads,
+            allCSSContents,
+            criticalPreloads,
+            deferredPreloads,
+            useAfterLCP,
+            useAfterLCPAggressive,
+          })
+          .then((built) => ({ built, path }))
       }
 
       // fallback to pLimit for async parallelism
@@ -742,7 +750,9 @@ export async function build(args: {
   }
 
   const staticTime = performance.now() - staticStartTime
-  console.info(`\n ⏱️  static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`)
+  console.info(
+    `\n ⏱️  static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`
+  )
   printBuildTimings()
 
   // once done building static we can move it to client dir:

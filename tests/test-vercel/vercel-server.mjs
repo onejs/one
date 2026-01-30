@@ -497,7 +497,9 @@ const server = createServer((req, res) => {
 
     // For preload/loader requests with cache key mismatch, try to find a matching file
     // The cache key is random per build, so client may request different key than what exists
-    const preloadMatch = originalPathname.match(/^\/assets\/(.+?)_\d+_(preload(?:_css)?|vxrn_loader)\.js$/)
+    const preloadMatch = originalPathname.match(
+      /^\/assets\/(.+?)_\d+_(preload(?:_css)?|vxrn_loader)\.js$/
+    )
     if (preloadMatch) {
       const baseName = preloadMatch[1]
       const suffix = preloadMatch[2]
@@ -507,7 +509,7 @@ const server = createServer((req, res) => {
         const assetsDir = join(STATIC_DIR, 'assets')
         const files = await readdir(assetsDir)
         const pattern = new RegExp(`^${baseName}_\\d+_${suffix}\\.js$`)
-        const match = files.find(f => pattern.test(f))
+        const match = files.find((f) => pattern.test(f))
         if (match) {
           const content = await readFile(join(assetsDir, match))
           res.writeHead(200, { 'Content-Type': 'application/javascript' })
