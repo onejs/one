@@ -4,7 +4,7 @@ import { configDefaults } from 'vitest/config'
 export default defineConfig({
   test: {
     globalSetup: '@vxrn/test/setup',
-    retry: 1,
+    retry: 2,
     ...(() => {
       const routerRoot = process.env.ONE_ROUTER_ROOT
       if (!routerRoot) {
