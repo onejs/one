@@ -17,6 +17,23 @@ function urlPathToFilePath(urlPath: string): string {
   return join(...parts)
 }
 
+// timing helper for build profiling
+const buildTiming = process.env.ONE_BUILD_TIMING === '1'
+const timings: Record<string, number[]> = {}
+function recordTiming(label: string, ms: number) {
+  if (!buildTiming) return
+  ;(timings[label] ||= []).push(ms)
+}
+export function printBuildTimings() {
+  if (!buildTiming) return
+  console.info('\n📊 Build timing breakdown:')
+  for (const [label, times] of Object.entries(timings)) {
+    const avg = times.reduce((a, b) => a + b, 0) / times.length
+    const total = times.reduce((a, b) => a + b, 0)
+    console.info(`  ${label}: ${avg.toFixed(1)}ms avg, ${total.toFixed(0)}ms total (${times.length} calls)`)
+  }
+}
+
 export async function buildPage(
   serverEntry: string,
   path: string,
@@ -37,7 +54,11 @@ export async function buildPage(
   useAfterLCP?: boolean,
   useAfterLCPAggressive?: boolean
 ): Promise<One.RouteBuildInfo> {
+  let t0 = performance.now()
+
   const render = await getRender(serverEntry)
+  recordTiming('getRender', performance.now() - t0)
+
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
   const clientJsPath = clientManifestEntry
     ? join(`dist/client`, clientManifestEntry.file)
@@ -76,10 +97,12 @@ export async function buildPage(
       ...registrationCalls,
     ].join('\n')
 
+    t0 = performance.now()
     await FSExtra.writeFile(
       join(clientDir, urlPathToFilePath(preloadPath)),
       preloadContent
     )
+    recordTiming('writePreload', performance.now() - t0)
 
     // Generate CSS preload file with prefetch (on hover) and inject (on navigation) functions
     // Deduplicate CSS URLs to avoid loading the same file multiple times
@@ -139,18 +162,24 @@ export function injectCSS() {
 // For backwards compatibility, also prefetch on import
 prefetchCSS()
 `
+    t0 = performance.now()
     await FSExtra.writeFile(
       join(clientDir, urlPathToFilePath(cssPreloadPath)),
       cssPreloadContent
     )
+    recordTiming('writeCSSPreload', performance.now() - t0)
 
+    t0 = performance.now()
     const exported = await import(toAbsolute(serverJsPath))
+    recordTiming('importServerModule', performance.now() - t0)
+
     const loaderProps: LoaderProps = { path, params }
 
     // Build matches array for useMatches() hook
     const matches: One.RouteMatch[] = []
 
     // Run layout loaders in parallel
+    t0 = performance.now()
     if (foundRoute.layouts?.length) {
       const layoutResults = await Promise.all(
         foundRoute.layouts.map(async (layout) => {
@@ -186,8 +215,10 @@ prefetchCSS()
         })
       }
     }
+    recordTiming('layoutLoaders', performance.now() - t0)
 
     // Run page loader
+    t0 = performance.now()
     if (exported.loader) {
       try {
         loaderData = (await exported.loader?.(loaderProps)) ?? null
@@ -218,6 +249,7 @@ if (typeof document === 'undefined') globalThis.document = {}
         loaderPath = getLoaderPath(path)
       }
     }
+    recordTiming('pageLoader', performance.now() - t0)
 
     // Add page match
     matches.push({
@@ -239,6 +271,7 @@ if (typeof document === 'undefined') globalThis.document = {}
         const renderPreloads = criticalPreloads || preloads
         const renderDeferredPreloads = useAfterLCPAggressive ? [] : deferredPreloads
 
+        t0 = performance.now()
         let html = await render({
           path,
           preloads: renderPreloads,
@@ -251,6 +284,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           routePreloads,
           matches,
         })
+        recordTiming('ssrRender', performance.now() - t0)
 
         // Apply after-LCP script loading if enabled
         // Load all preloads (not just critical) to ensure good TTI after first paint
@@ -258,7 +292,9 @@ if (typeof document === 'undefined') globalThis.document = {}
           html = applyAfterLCPScriptLoad(html, preloads)
         }
 
+        t0 = performance.now()
         await outputFile(htmlOutPath, html)
+        recordTiming('writeHTML', performance.now() - t0)
       } else if (foundRoute.type === 'spa') {
         // Generate CSS - either inline styles or link tags
         const cssOutput = allCSSContents
