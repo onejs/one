@@ -45,7 +45,6 @@
     "llink": "lllink ~/tamagui",
     "npxone": "node ./packages/create-vxrn/run.js",
     "one": "cd examples/one-basic && bun run",
-    "profile": "tsx ./scripts/bun-profile.ts",
     "release": "tsx ./scripts/release.ts",
     "sandbox": "cd tests/sandbox && bun run dev",
     "setup": "tsx ./scripts/setup.ts",
@@ -124,27 +123,6 @@
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "zod": "3.25.67"
-  },
-  "profile": {
-    "//": "bun run profile [name] to toggle package resolutions",
-    "react-19": {
-      "applied": false,
-      "resolutions": {
-        "react": "19.1.0",
-        "react-dom": "19.1.0"
-      }
-    },
-    "react-18": {
-      "applied": false,
-      "resolutions": {
-        "react": "18.3.1",
-        "react-dom": "18.3.1"
-      }
-    },
-    "//1": "useful for developing on tamagui and one at once",
-    "tamagui": {
-      "workspace": "~/tamagui"
-    }
   },
   "devDependencies": {
     "@take-out/cli": "^0.0.52",

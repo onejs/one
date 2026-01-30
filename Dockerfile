@@ -13,7 +13,6 @@ WORKDIR /app
 COPY . .
 
 RUN bun install --frozen-lockfile
-RUN bun run profile react-19
 RUN bun run build:js
 RUN bun run site:build
 
