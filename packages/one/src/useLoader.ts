@@ -124,8 +124,18 @@ export async function refetchLoader(pathname: string): Promise<void> {
     const loaderJSUrl = getLoaderPath(pathname, true, cacheBust)
 
     const moduleLoadStart = performance.now()
-    const module = await dynamicImport(loaderJSUrl)
+    const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
     const moduleLoadTime = performance.now() - moduleLoadStart
+
+    // gracefully handle missing loader (404, no loader export, etc)
+    if (!module?.loader) {
+      updateState(pathname, {
+        data: undefined,
+        state: 'idle',
+        hasLoadedOnce: true,
+      })
+      return
+    }
 
     const executionStart = performance.now()
     const result = await module.loader()
@@ -364,8 +374,18 @@ export function useLoaderState<
           const loaderJSUrl = getLoaderPath(currentPath, true)
 
           const moduleLoadStart = performance.now()
-          const module = await dynamicImport(loaderJSUrl)
+          const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
           const moduleLoadTime = performance.now() - moduleLoadStart
+
+          // gracefully handle missing loader (404, no loader export, etc)
+          if (!module?.loader) {
+            updateState(currentPath, {
+              data: undefined,
+              hasLoadedOnce: true,
+              promise: undefined,
+            })
+            return
+          }
 
           const executionStart = performance.now()
           const result = await module.loader()
