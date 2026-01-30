@@ -495,6 +495,39 @@ const server = createServer((req, res) => {
       if (served) return
     }
 
+    // For preload/loader requests with cache key mismatch, try to find a matching file
+    // The cache key is random per build, so client may request different key than what exists
+    const preloadMatch = originalPathname.match(/^\/assets\/(.+?)_\d+_(preload(?:_css)?|vxrn_loader)\.js$/)
+    if (preloadMatch) {
+      const baseName = preloadMatch[1]
+      const suffix = preloadMatch[2]
+
+      // find any matching file with same base name and suffix
+      try {
+        const assetsDir = join(STATIC_DIR, 'assets')
+        const files = await readdir(assetsDir)
+        const pattern = new RegExp(`^${baseName}_\\d+_${suffix}\\.js$`)
+        const match = files.find(f => pattern.test(f))
+        if (match) {
+          const content = await readFile(join(assetsDir, match))
+          res.writeHead(200, { 'Content-Type': 'application/javascript' })
+          res.end(content)
+          return
+        }
+      } catch {}
+
+      // no matching file found - return empty module for loaders
+      if (suffix === 'vxrn_loader') {
+        res.writeHead(200, { 'Content-Type': 'application/javascript' })
+        res.end('// no loader\nexport const loader = undefined;')
+        return
+      }
+      // for preloads, return empty preload
+      res.writeHead(200, { 'Content-Type': 'application/javascript' })
+      res.end('// empty preload')
+      return
+    }
+
     // 404
     res.writeHead(404, { 'Content-Type': 'text/plain' })
     res.end('Not Found')
