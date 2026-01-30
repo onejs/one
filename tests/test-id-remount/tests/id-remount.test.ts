@@ -54,6 +54,25 @@ beforeAll(async () => {
   context = await browser.newContext()
 })
 
+// helper to retry page.goto on transient network errors (common in CI)
+async function gotoWithRetry(
+  page: Awaited<ReturnType<Browser['newPage']>>,
+  url: string,
+  options: Parameters<typeof page.goto>[1],
+  retries = 3
+) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await page.goto(url, options)
+      return
+    } catch (e) {
+      if (i === retries - 1) throw e
+      // wait before retry
+      await new Promise((r) => setTimeout(r, 1000))
+    }
+  }
+}
+
 afterAll(async () => {
   await browser.close()
 })
@@ -75,7 +94,7 @@ describe('Hydration ID Remount Detection', () => {
       consoleLogs.push(msg.text())
     })
 
-    await page.goto(`${serverUrl}/`, { waitUntil: 'load' })
+    await gotoWithRetry(page, `${serverUrl}/`, { waitUntil: 'load' })
     await new Promise((r) => setTimeout(r, 3000))
 
     // Extract page IDs from console logs
@@ -115,7 +134,7 @@ describe('Hydration ID Remount Detection', () => {
   it('DOM data-testid should match React useId after hydration', async () => {
     const page = await browser.newPage()
 
-    await page.goto(`${serverUrl}/`, { waitUntil: 'load' })
+    await gotoWithRetry(page, `${serverUrl}/`, { waitUntil: 'load' })
     await new Promise((r) => setTimeout(r, 3000))
 
     const result = await page.evaluate(() => {
