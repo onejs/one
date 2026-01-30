@@ -11,7 +11,7 @@ import { createApiServerlessFunction } from './generate/createApiServerlessFunct
 import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
 import { getPathFromRoute } from './getPathFromRoute'
 
-const { copy, ensureDir, existsSync, writeJSON } = FSExtra
+const { copy, ensureDir, existsSync, remove, writeJSON } = FSExtra
 
 async function moveAllFiles(src: string, dest: string) {
   try {
@@ -48,6 +48,12 @@ export const buildVercelOutputDirectory = async ({
   oneOptionsRoot: string
   postBuildLogs: string[]
 }) => {
+  // clean the vercel output directory to avoid stale files from previous builds
+  const vercelOutputDir = resolve(join(oneOptionsRoot, '.vercel/output'))
+  if (existsSync(vercelOutputDir)) {
+    await remove(vercelOutputDir)
+  }
+
   const { routeToBuildInfo } = buildInfoForWriting
   if (apiOutput) {
     const compiltedApiRoutes = (apiOutput?.output ?? []).filter((o) =>
