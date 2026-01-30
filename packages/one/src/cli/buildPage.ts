@@ -30,7 +30,9 @@ export function printBuildTimings() {
   for (const [label, times] of Object.entries(timings)) {
     const avg = times.reduce((a, b) => a + b, 0) / times.length
     const total = times.reduce((a, b) => a + b, 0)
-    console.info(`  ${label}: ${avg.toFixed(1)}ms avg, ${total.toFixed(0)}ms total (${times.length} calls)`)
+    console.info(
+      `  ${label}: ${avg.toFixed(1)}ms avg, ${total.toFixed(0)}ms total (${times.length} calls)`
+    )
   }
 }
 

@@ -83,7 +83,9 @@ function updateStatusBar(connected: boolean) {
   } else {
     statusBarItem.text = '$(debug-disconnect) One'
     statusBarItem.tooltip = 'One: Connecting to dev server...'
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground')
+    statusBarItem.backgroundColor = new vscode.ThemeColor(
+      'statusBarItem.warningBackground'
+    )
   }
 }
 
@@ -92,7 +94,10 @@ function isJsxFile(document: vscode.TextDocument): boolean {
   return lang === 'typescriptreact' || lang === 'javascriptreact'
 }
 
-function isOnJsxElement(document: vscode.TextDocument, position: vscode.Position): boolean {
+function isOnJsxElement(
+  document: vscode.TextDocument,
+  position: vscode.Position
+): boolean {
   // simple heuristic: check if we're inside or near a JSX tag
   const line = document.lineAt(position.line).text
   const before = line.substring(0, position.character)
