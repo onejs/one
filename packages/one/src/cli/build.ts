@@ -41,9 +41,14 @@ const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
   ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10))
   : Math.max(1, Math.min(cpus().length, 8))
 
-// enable true multicore building via worker threads
-// set ONE_BUILD_WORKERS=1 to enable
-const USE_WORKERS = process.env.ONE_BUILD_WORKERS === '1'
+// worker threads enabled by default, can be disabled via config or env var
+function shouldUseWorkers(oneOptions?: { build?: { workers?: boolean } }) {
+  // env var takes precedence (ONE_BUILD_WORKERS=0 to disable, =1 to force enable)
+  if (process.env.ONE_BUILD_WORKERS === '0') return false
+  if (process.env.ONE_BUILD_WORKERS === '1') return true
+  // then check config option (defaults to true)
+  return oneOptions?.build?.workers !== false
+}
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -261,14 +266,15 @@ export async function build(args: {
   // concurrency limiter for parallel page builds
   const limit = pLimit(BUILD_CONCURRENCY)
 
-  // initialize worker pool if enabled
-  const workerPool = USE_WORKERS ? getWorkerPool(BUILD_CONCURRENCY) : null
+  // initialize worker pool if enabled (default: true)
+  const useWorkers = shouldUseWorkers(oneOptions)
+  const workerPool = useWorkers ? getWorkerPool(BUILD_CONCURRENCY) : null
   if (workerPool) {
     await workerPool.initialize()
   }
 
   const staticStartTime = performance.now()
-  const modeLabel = USE_WORKERS ? `workers: ${workerPool?.size}` : `concurrency: ${BUILD_CONCURRENCY}`
+  const modeLabel = useWorkers ? `workers: ${workerPool?.size}` : `concurrency: ${BUILD_CONCURRENCY}`
   console.info(`\n 🔨 build static routes (${modeLabel})\n`)
 
   const staticDir = join(`dist/static`)
@@ -1060,10 +1066,6 @@ export default {
 
       break
     }
-  }
-
-  if (process.env.VXRN_ANALYZE_BUNDLE) {
-    postBuildLogs.push(`client build report: ${toAbsolute(`dist/report.html`)}`)
   }
 
   if (postBuildLogs.length) {

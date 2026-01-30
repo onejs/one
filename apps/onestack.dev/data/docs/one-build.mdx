@@ -46,6 +46,32 @@ For detailed deployment instructions, see the [Deployment Guide](/docs/guides-de
 
 If you are only using SPA and SSG routes and aren't using loaders, you can statically serve the results of `dist/client` using any server you'd like.
 
+### Parallel builds with worker threads
+
+By default, One uses worker threads to build static pages in parallel across multiple CPU cores. This can significantly speed up builds for sites with many pages.
+
+You can disable this via config if needed:
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      build: {
+        workers: false
+      }
+    })
+  ]
+}
+```
+
+Or via environment variable:
+
+```bash
+ONE_BUILD_WORKERS=0 npx one build
+```
+
 ## Building for native
 
 We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.

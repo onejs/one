@@ -10,7 +10,6 @@ import {
   type Plugin,
   type UserConfig,
 } from 'vite'
-import { analyzer } from 'vite-bundle-analyzer'
 import { getBaseViteConfigWithPlugins } from '../config/getBaseViteConfigWithPlugins'
 import { getOptimizeDeps } from '../config/getOptimizeDeps'
 import { fillOptions } from '../config/getOptionsFilled'
@@ -187,17 +186,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
-      plugins: [
-        excludeAPIAndMiddlewareRoutesPlugin,
-        // if an error occurs (like can't find index.html, it seems to show an
-        // error saying can't find report here instead, so a bit confusing)
-        process.env.VXRN_ANALYZE_BUNDLE
-          ? analyzer({
-              analyzerMode: 'static',
-              fileName: '../report',
-            })
-          : null,
-      ],
+      plugins: [excludeAPIAndMiddlewareRoutesPlugin],
 
       define: {
         'process.env.VITE_ENVIRONMENT': '"client"',
