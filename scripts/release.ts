@@ -6,11 +6,30 @@ import fs, { ensureDir, writeJson, writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
+import blockedVersions from './blocked-versions.json'
 
 // avoid emitter error
 process.setMaxListeners(50)
 process.stderr.setMaxListeners(50)
 process.stdout.setMaxListeners(50)
+
+// skip over versions taken by the old "one" package on npm
+function skipBlockedVersions(version: string, mode: 'patch' | 'minor' | 'major' = 'patch'): string {
+  const blocked = new Set(blockedVersions.one)
+  let current = version
+  while (blocked.has(current)) {
+    console.info(`Version ${current} is blocked (old npm package), skipping...`)
+    const [major, minor, patch] = current.split('.').map(Number)
+    if (mode === 'major') {
+      current = `${major + 1}.0.0`
+    } else if (mode === 'minor') {
+      current = `${major}.${minor + 1}.0`
+    } else {
+      current = `${major}.${minor}.${patch + 1}`
+    }
+  }
+  return current
+}
 
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
@@ -82,7 +101,7 @@ const nextVersion = (() => {
   const minorVersion = curMinor + (shouldPatch ? 0 : plusVersion)
   const next = `1.${minorVersion}.${patchVersion}`
 
-  return next
+  return skipBlockedVersions(next, shouldPatch ? 'patch' : 'minor')
 })()
 
 if (!skipVersion) {
@@ -267,7 +286,7 @@ async function run() {
         })
       }
 
-      version = answer.version
+      version = skipBlockedVersions(answer.version)
       console.info('Next:', version, '\n')
     }
 
