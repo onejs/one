@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-app",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "private": true,
   "main": "expo/AppEntry.js",
   "scripts": {
