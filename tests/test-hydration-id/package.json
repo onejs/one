@@ -1,6 +1,6 @@
 {
   "name": "test-hydration-id",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "private": true,
   "type": "module",
   "scripts": {
