@@ -135,9 +135,19 @@ export async function oneServe(
       const serverPath = route.file.includes('dist/server')
         ? route.file
         : join('./', 'dist/server', route.file)
-      const exports = options?.lazyRoutes?.pages?.[routeFile]
-        ? await options.lazyRoutes.pages[routeFile]()
-        : await import(toAbsolute(serverPath))
+
+      let exports
+      try {
+        exports = options?.lazyRoutes?.pages?.[routeFile]
+          ? await options.lazyRoutes.pages[routeFile]()
+          : await import(toAbsolute(serverPath))
+      } catch (err) {
+        // module doesn't exist (e.g., dynamic route with slug not in generateStaticParams)
+        if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
+          return null
+        }
+        throw err
+      }
 
       const { loader } = exports
 
@@ -293,7 +303,12 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
+        // for dynamic routes, only check exact pathname match in routeMap
+        // (buildInfo.cleanPath would be from last built page, not this slug)
+        const isDynamicRoute = Object.keys(route.routeKeys).length > 0
+        const htmlPath = isDynamicRoute
+          ? routeMap[url.pathname]
+          : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
           // Try Worker ASSETS binding first (for Cloudflare Workers), fall back to filesystem
@@ -321,6 +336,55 @@ url: ${url}`)
               status: route.isNotFound ? 404 : 200,
             })
           }
+        }
+
+        // dynamic route matched but no static HTML exists for this path
+        // (slug wasn't in generateStaticParams) - return 404
+        if (isDynamicRoute) {
+          // find nearest +not-found.html by walking up the path
+          let currentPath = url.pathname
+          while (currentPath) {
+            const parentDir =
+              currentPath.lastIndexOf('/') > 0
+                ? currentPath.slice(0, currentPath.lastIndexOf('/'))
+                : ''
+            const notFoundPath = routeMap[`${parentDir}/+not-found`]
+
+            if (notFoundPath) {
+              const fetchStaticHtml = getFetchStaticHtml()
+              let notFoundHtml: string | null = null
+
+              if (fetchStaticHtml) {
+                notFoundHtml = await fetchStaticHtml(notFoundPath)
+              }
+
+              if (!notFoundHtml) {
+                try {
+                  notFoundHtml = await readFile(
+                    join('dist/client', notFoundPath),
+                    'utf-8'
+                  )
+                } catch {
+                  // File not found
+                }
+              }
+
+              if (notFoundHtml) {
+                const headers = new Headers()
+                headers.set('content-type', 'text/html')
+                return new Response(notFoundHtml, {
+                  headers,
+                  status: 404,
+                })
+              }
+            }
+
+            if (!parentDir) break
+            currentPath = parentDir
+          }
+
+          // no +not-found.html found, return basic 404
+          return new Response('404 Not Found', { status: 404 })
         }
       }
     },
@@ -524,9 +588,14 @@ url: ${url}`)
           )
           return resolved
         } catch (err) {
-          if ((err as any)?.code !== 'ERR_MODULE_NOT_FOUND') {
-            console.error(`Error running loader: ${err}`)
+          if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
+            // module doesn't exist (e.g., dynamic route with slug not in generateStaticParams)
+            // return empty loader so client doesn't get import error
+            c.header('Content-Type', 'text/javascript')
+            c.status(200)
+            return c.body(`export function loader() { return undefined }`)
           }
+          console.error(`Error running loader: ${err}`)
           return next()
         }
       }
