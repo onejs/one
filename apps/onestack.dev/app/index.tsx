@@ -78,14 +78,14 @@ export default function HomePage() {
             ai="center"
             contain="paint layout"
             $sm={{
-              gap: '$3',
-              fd: 'column',
-              ai: 'flex-end',
+              gap: '$2',
               mt: -20,
             }}
           >
-            <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
-              <ToggleThemeButton />
+            <XStack ai="center" gap="$6" $sm={{ jc: 'center', gap: '$3' }}>
+              <View $sm={{ ml: '$3' }}>
+                <ToggleThemeButton />
+              </View>
 
               <Link href="/blog" asChild>
                 <Button
@@ -143,7 +143,7 @@ export default function HomePage() {
               y={-2}
               mr={-10}
               gap="$2"
-              $sm={{ jc: 'center' }}
+              $sm={{ display: 'none' }}
             >
               <SocialLinksRow />
             </XStack>
