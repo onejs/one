@@ -187,7 +187,6 @@ describe(`Routing Tests`, () => {
         await page.close()
       }
     })
-
   })
 
   describe('SPA routing', { retry: 3, timeout: 120_000 }, () => {

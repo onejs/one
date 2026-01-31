@@ -159,7 +159,9 @@ export function createApp(options: CreateAppProps) {
   // Wait for setup file to complete first (if provided)
   // This ensures setup code (error handlers, analytics, etc.) runs before the app
   // The function is called here at runtime, not at module evaluation time during build
-  const setupComplete = options.getSetupPromise ? options.getSetupPromise() : Promise.resolve()
+  const setupComplete = options.getSetupPromise
+    ? options.getSetupPromise()
+    : Promise.resolve()
 
   // preload routes using build-time mapping (production SSG)
   // for SPA/dev mode, fall back to importing root layout directly
