@@ -6,10 +6,10 @@ export type CreateAppProps = {
     routerRoot: string;
     flags?: One.Flags;
     /**
-     * Promise that resolves when the setup file has finished loading.
-     * The app will wait for this before rendering to ensure setup code runs first.
+     * Lazy function that returns a promise for the setup file import.
+     * Called at runtime (not build time) to ensure setup code only runs when the app starts.
      */
-    setupPromise?: Promise<unknown>;
+    getSetupPromise?: () => Promise<unknown>;
 };
 export declare function createApp(options: CreateAppProps): Promise<void> | {
     options: CreateAppProps;
