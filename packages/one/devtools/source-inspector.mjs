@@ -254,7 +254,10 @@
       }
     })
 
-    window.addEventListener('blur', deactivate)
+    window.addEventListener('blur', () => {
+      deactivate()
+      otherKeyPressed = false
+    })
 
     document.addEventListener('mousemove', (e) => {
       mousePos.x = e.clientX
