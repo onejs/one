@@ -20,10 +20,10 @@ export type CreateAppProps = {
   routerRoot: string
   flags?: One.Flags
   /**
-   * Promise that resolves when the setup file has finished loading.
-   * The app will wait for this before rendering to ensure setup code runs first.
+   * Lazy function that returns a promise for the setup file import.
+   * Called at runtime (not build time) to ensure setup code only runs when the app starts.
    */
-  setupPromise?: Promise<unknown>
+  getSetupPromise?: () => Promise<unknown>
 }
 
 export function createApp(options: CreateAppProps) {
@@ -158,7 +158,8 @@ export function createApp(options: CreateAppProps) {
 
   // Wait for setup file to complete first (if provided)
   // This ensures setup code (error handlers, analytics, etc.) runs before the app
-  const setupComplete = options.setupPromise || Promise.resolve()
+  // The function is called here at runtime, not at module evaluation time during build
+  const setupComplete = options.getSetupPromise ? options.getSetupPromise() : Promise.resolve()
 
   // preload routes using build-time mapping (production SSG)
   // for SPA/dev mode, fall back to importing root layout directly

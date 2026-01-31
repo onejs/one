@@ -93,13 +93,13 @@ function getSetupFileImport(
     }
   }
 
-  // For web, use non-blocking dynamic import to avoid circular dependency deadlocks
-  // when the setup file's dependencies use Vite's __vite_preload helper.
-  // The promise is passed to createApp which awaits it before rendering.
+  // For web, use a lazy function that returns the dynamic import promise.
+  // This ensures the import only executes at runtime when createApp calls it,
+  // not during build when the module is evaluated.
   return {
     importStatement: '',
-    promiseDeclaration: `const __oneSetupPromise = import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`,
-    promiseVarName: '__oneSetupPromise',
+    promiseDeclaration: `const __oneGetSetupPromise = () => import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`,
+    promiseVarName: '__oneGetSetupPromise',
   }
 }
 
@@ -154,9 +154,9 @@ setRouteMasks(${JSON.stringify(routeMasks)}.map(opts => createRouteMask(opts)))
         const nativewindImport = configuration.enableNativewind
           ? `import 'react-native-css-interop/dist/runtime/components'`
           : ''
-        // For web, pass setupPromise to createApp so it awaits before rendering
+        // For web, pass getSetupPromise to createApp so it can call it at runtime
         const setupPromiseArg = setupResult.promiseVarName
-          ? `setupPromise: ${setupResult.promiseVarName},`
+          ? `getSetupPromise: ${setupResult.promiseVarName},`
           : ''
         return `
 ${setupResult.importStatement}
