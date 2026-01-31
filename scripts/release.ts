@@ -14,7 +14,10 @@ process.stderr.setMaxListeners(50)
 process.stdout.setMaxListeners(50)
 
 // skip over versions taken by the old "one" package on npm
-function skipBlockedVersions(version: string, mode: 'patch' | 'minor' | 'major' = 'patch'): string {
+function skipBlockedVersions(
+  version: string,
+  mode: 'patch' | 'minor' | 'major' = 'patch'
+): string {
   const blocked = new Set(blockedVersions.one)
   let current = version
   while (blocked.has(current)) {

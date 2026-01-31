@@ -12,7 +12,8 @@
     let overlay = null
     let tag = null
     let holdTimer = null
-    const holdDelay = 500
+    const holdDelay = 800
+    let otherKeyPressed = false
     const mousePos = { x: 0, y: 0 }
     let removalObserver = null
 
@@ -219,22 +220,37 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key !== 'Alt') {
+        // any other key pressed cancels and marks that we're in a combo
         cancelHold()
+        otherKeyPressed = true
         return
       }
+      // option key pressed
       if (e.metaKey || e.ctrlKey || e.shiftKey) {
         cancelHold()
         return
       }
+      // if another key was held before option, don't start
+      if (otherKeyPressed) return
       if (e.defaultPrevented) return
       if (holdTimer) return
-      holdTimer = setTimeout(activate, holdDelay)
+      holdTimer = setTimeout(() => {
+        // double check no other key was pressed during the delay
+        if (!otherKeyPressed) {
+          activate()
+        }
+      }, holdDelay)
     })
 
     window.addEventListener('keyup', (e) => {
       if (e.defaultPrevented) return
       if (e.key === 'Alt') {
         deactivate()
+      } else {
+        // reset when other keys are released (check if no modifiers held)
+        if (!e.metaKey && !e.ctrlKey && !e.shiftKey) {
+          otherKeyPressed = false
+        }
       }
     })
 
