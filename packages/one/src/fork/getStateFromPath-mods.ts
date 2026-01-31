@@ -289,7 +289,8 @@ export function formatRegexPattern(it: string): string {
 
   if (it.startsWith(':')) {
     // TODO: Remove unused match group
-    return `(([^/]+\\/)${it.endsWith('?') ? '?' : ''})`
+    // exclude +not-found from being matched by dynamic segments
+    return `(((?!\\+not-found(?:/|$))[^/]+\\/)${it.endsWith('?') ? '?' : ''})`
   }
 
   if (it.startsWith('*')) {

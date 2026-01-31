@@ -246,7 +246,7 @@ function getPathMeta(route: string) {
           ? optional
             ? `(?:/(?<${cleanedKey}>.+?))?`
             : `/(?<${cleanedKey}>.+?)`
-          : `/(?<${cleanedKey}>[^/]+?)`
+          : `/(?<${cleanedKey}>(?!\\+not-found$)[^/]+?)`
       }
 
       if (insideParensRegex.test(segment)) {
