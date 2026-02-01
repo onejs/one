@@ -263,35 +263,43 @@
     function setupKeyboard() {
       if (keyboardSetup) return
       keyboardSetup = true
-      document.addEventListener('keydown', (e) => {
-        if (e.altKey && e.code === 'Space') {
-          e.preventDefault()
-          toggleSpotlight()
-        } else if (e.altKey) {
-          if (e.code === 'KeyI') {
+      // use capture: false so app handlers can preventDefault first
+      document.addEventListener(
+        'keydown',
+        (e) => {
+          // respect other handlers and browser shortcuts
+          if (e.defaultPrevented || e.metaKey || e.ctrlKey) return
+
+          if (e.altKey && e.code === 'Space') {
             e.preventDefault()
-            hideSpotlight()
-            window.__oneSourceInspector?.activate()
-            return
+            toggleSpotlight()
+          } else if (e.altKey) {
+            if (e.code === 'KeyI') {
+              e.preventDefault()
+              hideSpotlight()
+              window.__oneSourceInspector?.activate()
+              return
+            }
+            const tabMap = {
+              KeyS: 'seo',
+              KeyR: 'route',
+              KeyL: 'loader',
+              KeyE: 'errors',
+            }
+            const tab = tabMap[e.code]
+            if (tab) {
+              e.preventDefault()
+              activeTab = tab
+              hideSpotlight()
+              showPanel()
+            }
+          } else if (e.code === 'Escape') {
+            if (spotlightDialog?.open) spotlightDialog.close()
+            else if (panelDialog?.open) panelDialog.close()
           }
-          const tabMap = {
-            KeyS: 'seo',
-            KeyR: 'route',
-            KeyL: 'loader',
-            KeyE: 'errors',
-          }
-          const tab = tabMap[e.code]
-          if (tab) {
-            e.preventDefault()
-            activeTab = tab
-            hideSpotlight()
-            showPanel()
-          }
-        } else if (e.code === 'Escape') {
-          if (spotlightDialog?.open) spotlightDialog.close()
-          else if (panelDialog?.open) panelDialog.close()
-        }
-      })
+        },
+        { capture: false }
+      )
     }
 
     function toggleSpotlight() {
