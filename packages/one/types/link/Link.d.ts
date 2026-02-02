@@ -1,4 +1,5 @@
 import type { OneRouter } from '../interfaces/router';
+export type { LinkMenuActionProps, LinkMenuProps, LinkPreviewProps, LinkTriggerProps } from './elements';
 /**
  * Component to render link to another route using a path.
  * Uses an anchor tag on the web.

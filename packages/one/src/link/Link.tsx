@@ -5,8 +5,48 @@ import * as React from 'react'
 import { type GestureResponderEvent, Platform, Text, type TextProps } from 'react-native'
 
 import type { OneRouter } from '../interfaces/router'
+import { LinkMenu, LinkMenuAction, LinkPreview, LinkTrigger } from './elements'
 import { resolveHref } from './href'
 import { useLinkTo } from './useLinkTo'
+import { InternalLinkPreviewContext } from './preview/InternalLinkPreviewContext'
+import { NativeLinkPreview } from './preview/nativeLinkPreview'
+
+export type { LinkMenuActionProps, LinkMenuProps, LinkPreviewProps, LinkTriggerProps } from './elements'
+
+/**
+ * Extracts compound children (Link.Trigger, Link.Preview, Link.Menu) from children.
+ * Returns the trigger content and other compound children separately.
+ */
+function useCompoundChildren(children: React.ReactNode) {
+  return React.useMemo(() => {
+    let triggerChild: React.ReactNode = null
+    let previewChild: React.ReactNode = null
+    let menuChild: React.ReactNode = null
+    let hasCompoundChildren = false
+
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) return
+
+      if (child.type === LinkTrigger) {
+        hasCompoundChildren = true
+        triggerChild = child
+      } else if (child.type === LinkPreview) {
+        hasCompoundChildren = true
+        previewChild = child
+      } else if (child.type === LinkMenu) {
+        hasCompoundChildren = true
+        menuChild = child
+      }
+    })
+
+    return {
+      hasCompoundChildren,
+      triggerChild,
+      previewChild,
+      menuChild,
+    }
+  }, [children])
+}
 
 /**
  * Component to render link to another route using a path.
@@ -35,6 +75,8 @@ export const Link = React.forwardRef(function Link(
   }: OneRouter.LinkProps<any>,
   ref: React.ForwardedRef<Text>
 ) {
+  const [isPreviewVisible, setIsPreviewVisible] = React.useState(false)
+
   // Mutate the style prop to add the className on web.
   const style = useInteropClassName(rest)
 
@@ -63,6 +105,73 @@ export const Link = React.forwardRef(function Link(
     props.onPress(e)
   }
 
+  // Extract compound children (Link.Trigger, Link.Preview, Link.Menu)
+  const { hasCompoundChildren, triggerChild, previewChild, menuChild } =
+    useCompoundChildren(rest.children)
+
+  // Context value for compound children
+  const internalContextValue = React.useMemo(
+    () => ({
+      isVisible: isPreviewVisible,
+      href: resolvedHref,
+    }),
+    [isPreviewVisible, resolvedHref]
+  )
+
+  // If using compound children pattern with asChild
+  if (hasCompoundChildren && asChild && triggerChild && React.isValidElement(triggerChild)) {
+    const triggerContent = (triggerChild as React.ReactElement<{ children?: React.ReactNode }>).props?.children
+
+    // On iOS, wrap with native preview
+    if (Platform.OS === 'ios') {
+      return (
+        <InternalLinkPreviewContext.Provider value={internalContextValue}>
+          <NativeLinkPreview
+            nextScreenId={undefined}
+            tabPath={undefined}
+            onWillPreviewOpen={() => setIsPreviewVisible(true)}
+            onPreviewDidClose={() => setIsPreviewVisible(false)}
+            onPreviewTapped={() => {
+              onPress({} as any)
+            }}
+          >
+            <Slot
+              ref={ref}
+              {...props}
+              {...hrefAttrs}
+              {...(rest as any)}
+              {...(process.env.TAMAGUI_TARGET === 'web' ? { id } : { nativeID: id })}
+              onPress={onPress}
+            >
+              {triggerContent}
+            </Slot>
+            {previewChild}
+            {menuChild}
+          </NativeLinkPreview>
+        </InternalLinkPreviewContext.Provider>
+      )
+    }
+
+    // On other platforms, just render the trigger
+    return (
+      <Slot
+        ref={ref}
+        {...props}
+        {...hrefAttrs}
+        {...(rest as any)}
+        {...(process.env.TAMAGUI_TARGET === 'web' ? { id } : { nativeID: id })}
+        {...Platform.select({
+          web: {
+            onClick: onPress,
+          } as any,
+          default: { onPress },
+        })}
+      >
+        {triggerContent}
+      </Slot>
+    )
+  }
+
   const Element = asChild ? Slot : Text
 
   // Avoid using createElement directly, favoring JSX, to allow tools like Nativewind to perform custom JSX handling on native.
@@ -84,7 +193,12 @@ export const Link = React.forwardRef(function Link(
   )
 }) as unknown as OneRouter.LinkComponent
 
+// Assign static properties and sub-components
 Link.resolveHref = resolveHref
+Link.Menu = LinkMenu
+Link.MenuAction = LinkMenuAction
+Link.Preview = LinkPreview
+Link.Trigger = LinkTrigger
 
 // Mutate the style prop to add the className on web.
 function useInteropClassName(props: { style?: TextProps['style']; className?: string }) {
