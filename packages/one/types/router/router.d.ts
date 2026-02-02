@@ -10,31 +10,8 @@ import type { One } from '../vite/types';
 import type { UrlObject } from './getNormalizedStatePath';
 import type { RouteNode } from './Route';
 import type { RouteMatch } from '../useMatches';
-import { type RouteMask } from './routeMask';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
-/**
- * Set route masks for automatic URL masking during navigation.
- * Route masks transform URLs displayed in the browser without changing the actual route.
- *
- * @example
- * ```tsx
- * import { setRouteMasks, createRouteMask } from 'one'
- *
- * setRouteMasks([
- *   createRouteMask({
- *     from: '/photos/[id]/modal',
- *     to: '/photos/[id]',
- *     unmaskOnReload: true,
- *   }),
- * ])
- * ```
- */
-export declare function setRouteMasks(masks: RouteMask[]): void;
-/**
- * Get the current route masks.
- */
-export declare function getRouteMasks(): RouteMask[];
 /**
  * Register protected routes for a navigator context.
  * Called by navigators when their protectedScreens changes.

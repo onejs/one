@@ -94,6 +94,7 @@ export { render } from './render'
 export { createRoute, route } from './router/createRoute'
 // intercepting routes
 export { NamedSlot } from './views/Navigator'
+export { closeIntercept, isInterceptedNavigation } from './router/interceptRoutes'
 // base
 export { router } from './router/imperative-api'
 export * as routerStore from './router/router'

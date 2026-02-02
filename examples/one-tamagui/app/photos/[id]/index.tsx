@@ -6,12 +6,11 @@ const getPhotoUrl = (id: string) =>
   `https://picsum.photos/id/${(parseInt(id) || 1) * 10}/600/400`
 
 /**
- * Photo detail page - the "masked" URL destination.
+ * Photo detail page - full page version.
  *
- * When route masking is used:
- * - Navigate to /photos/3/modal → URL shows /photos/3
- * - On refresh with unmaskOnReload: false → RouteMaskRestorer in _layout handles navigation
- * - On refresh with unmaskOnReload: true OR shared link → shows this page
+ * With intercepting routes:
+ * - Soft navigation (clicking link) → @modal/(.)photos/[id] intercepts, shows modal
+ * - Hard navigation (direct URL, refresh) → This full page renders
  */
 export default function PhotoDetail() {
   const { id = '1' } = useParams<{ id: string }>()
@@ -47,17 +46,15 @@ export default function PhotoDetail() {
           This is the photo detail page at /photos/{id}
         </Text>
         <Text color="$color11" fontSize="$3">
-          You're seeing this because either:
+          You're seeing this because you navigated directly to this URL
+          (shared link, refresh, or typed URL).
         </Text>
         <Text color="$color11" fontSize="$3">
-          • You navigated directly to this URL (shared link)
+          Click a photo from the grid to see the intercepting modal instead.
         </Text>
-        <Text color="$color11" fontSize="$3">
-          • unmaskOnReload was set to true
-        </Text>
-        <Link href={`/photos/${id}/modal` as any} testID="open-modal-link">
+        <Link href="/photos" testID="back-to-photos-link">
           <Text color="$blue10" fontSize="$3" textDecorationLine="underline">
-            Open in modal
+            Back to photos grid
           </Text>
         </Link>
       </YStack>
