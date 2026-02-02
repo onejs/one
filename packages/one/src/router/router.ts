@@ -55,6 +55,7 @@ import {
   findInterceptRoute,
   setNavigationType,
   updateURLWithoutNavigation,
+  storeInterceptState,
 } from './interceptRoutes'
 import { setSlotState } from '../views/Navigator'
 
@@ -219,9 +220,10 @@ export function initialize(
         ? ` [${node.dynamic.map((d) => d.name).join(', ')}]`
         : ''
       const typeBadge = node.type !== 'layout' ? ` (${node.type})` : ''
+      const slotsBadge = node.slots?.size ? ` {@${Array.from(node.slots.keys()).join(', @')}}` : ''
       const routeName = node.route || '/'
 
-      let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}`
+      let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}${slotsBadge}`
 
       const visibleChildren = node.children.filter((child) => !child.internal)
       for (let i = 0; i < visibleChildren.length; i++) {
@@ -234,6 +236,20 @@ export function initialize(
     }
 
     console.info(`[one] 📍 Route structure:\n${formatRouteTree(routeNode)}`)
+
+    // Log slot details
+    if (routeNode.slots?.size) {
+      console.info(`[one] 📦 Slots on root layout:`)
+      for (const [slotName, slotConfig] of routeNode.slots) {
+        console.info(`  @${slotName}:`, {
+          defaultRoute: slotConfig.defaultRoute?.route,
+          interceptRoutes: slotConfig.interceptRoutes.map((r) => ({
+            route: r.route,
+            intercept: r.intercept,
+          })),
+        })
+      }
+    }
   }
 
   navigationRef = ref as unknown as OneRouter.NavigationRef
@@ -875,17 +891,38 @@ export async function linkTo(
 
   // Check for intercepting routes (parallel routes with @slot)
   // This enables modal patterns where soft nav shows modal, hard nav shows full page
-  const currentLayoutNode = routeNode // For now, check from root - can be refined later
+  // Pass root node - findInterceptRoute will traverse to find all layouts with slots along the current path
+  const currentLayoutNode = routeNode
   const currentPath = routeInfo?.pathname || '/'
+
+  // DEBUG: Always log intercept checking
+  console.log('[one] 🔍 linkTo checking intercept:', {
+    href,
+    hasRouteNode: !!routeNode,
+    hasSlots: !!routeNode?.slots,
+    slotsSize: routeNode?.slots?.size,
+    slotNames: routeNode?.slots ? Array.from(routeNode.slots.keys()) : [],
+  })
+
   const interceptResult = findInterceptRoute(href, currentLayoutNode, currentPath)
+
+  console.log('[one] 🔍 findInterceptRoute result:', interceptResult)
 
   if (interceptResult) {
     // Found an intercept route! Render in slot instead of full navigation
-    const { interceptRoute, slotName } = interceptResult
+    const { interceptRoute, slotName, params } = interceptResult
 
-    if (process.env.ONE_DEBUG_ROUTER) {
-      console.info(`[one] 🎯 Intercepting ${href} → slot @${slotName}`)
-    }
+    console.log(`[one] 🎯 Intercepting ${href} → slot @${slotName}`, {
+      params,
+      interceptRoute: {
+        route: interceptRoute.route,
+        contextKey: interceptRoute.contextKey,
+        intercept: interceptRoute.intercept,
+      },
+    })
+
+    // Store intercept state for forward navigation restoration
+    storeInterceptState(slotName, interceptRoute, params)
 
     // Update URL to show the target path (not the intercept route path)
     updateURLWithoutNavigation(href)
@@ -893,6 +930,8 @@ export async function linkTo(
     // Activate the slot to render the intercept route
     setSlotState(slotName, {
       activeRouteKey: interceptRoute.contextKey,
+      activeRouteNode: interceptRoute,
+      params,
       isIntercepted: true,
     })
 

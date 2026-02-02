@@ -374,9 +374,24 @@ function flattenDirectoryTreeToRoutes(
   if (directory.slots.size > 0) {
     layout.slots = new Map()
 
+    console.log('[one] 🎰 Processing slots for layout:', {
+      layoutRoute: layout.route,
+      layoutContextKey: layout.contextKey,
+      slotNames: Array.from(directory.slots.keys()),
+    })
+
     for (const [slotName, slotDir] of directory.slots) {
       const slotConfig = flattenSlotDirectory(slotDir, slotName, options, pathToRemove)
       layout.slots.set(slotName, slotConfig)
+
+      console.log(`[one] 🎰 Slot @${slotName} config:`, {
+        defaultRoute: slotConfig.defaultRoute?.route,
+        interceptRoutes: slotConfig.interceptRoutes.map((r) => ({
+          route: r.route,
+          contextKey: r.contextKey,
+          intercept: r.intercept,
+        })),
+      })
     }
   }
 
@@ -399,8 +414,15 @@ function flattenSlotDirectory(
   for (const routes of directory.files.values()) {
     const routeNode = getMostSpecific(routes)
 
-    // Strip the slot prefix from the route for URL matching
+    // Strip the slot prefix and pathToRemove from the route for URL matching
     let cleanRoute = routeNode.route.replace(pathToRemove, '')
+
+    // Strip slot prefix (@modal/, @sidebar/, etc.) and intercept prefixes
+    cleanRoute = cleanRoute
+      .split('/')
+      .filter((segment) => !matchSlotName(segment)) // Remove @slot segments
+      .map((segment) => stripInterceptPrefix(segment)) // Remove (.) prefixes
+      .join('/')
 
     // Check if this is a default.tsx file
     if (cleanRoute.endsWith('default') || cleanRoute === 'default') {
@@ -411,18 +433,6 @@ function flattenSlotDirectory(
         dynamic: generateDynamic(cleanRoute),
       }
     } else {
-      // Check for intercept routes
-      const hasIntercept = routeNode.intercept !== undefined
-
-      // Strip intercept prefix from route path for URL display
-      if (hasIntercept) {
-        // The route path should be the target path for URL matching
-        cleanRoute = cleanRoute
-          .split('/')
-          .map((segment) => stripInterceptPrefix(segment))
-          .join('/')
-      }
-
       interceptRoutes.push({
         ...routeNode,
         route: cleanRoute,
@@ -464,10 +474,11 @@ function flattenSlotSubdirectory(
     // Build the full route path
     let cleanRoute = routeNode.route.replace(pathToRemove, '')
 
-    // Strip intercept prefixes from path segments
+    // Strip slot prefix (@modal/, @sidebar/, etc.) and intercept prefixes
     cleanRoute = cleanRoute
       .split('/')
-      .map((segment) => stripInterceptPrefix(segment))
+      .filter((segment) => !matchSlotName(segment)) // Remove @slot segments
+      .map((segment) => stripInterceptPrefix(segment)) // Remove (.) prefixes
       .join('/')
 
     routes.push({
@@ -533,11 +544,25 @@ function getFileMeta(key: string, options: Options) {
   }
 
   // Detect intercept prefix in directory names like (.)photos, (..)settings
+  // Build full target path from intercept segment + remaining path segments
   let interceptMatch: ReturnType<typeof matchInterceptPrefix>
-  for (const part of parts) {
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i]
     const match = matchInterceptPrefix(part)
     if (match) {
-      interceptMatch = match
+      // Build full target path: intercept's targetPath + remaining path parts
+      // Filter out 'index' since index.tsx represents the root of that directory
+      const remainingParts = parts
+        .slice(i + 1)
+        .map((p) => removeSupportedExtensions(p))
+        .filter((p) => p !== 'index')
+      const fullTargetPath = [match.targetPath, ...remainingParts]
+        .filter(Boolean)
+        .join('/')
+      interceptMatch = {
+        ...match,
+        targetPath: fullTargetPath,
+      }
       break
     }
   }

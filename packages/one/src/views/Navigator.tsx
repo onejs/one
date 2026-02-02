@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
 import { useContextKey } from '../router/Route'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
-import { useSortedScreens } from '../router/useScreens'
+import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
 import { Screen } from './Screen'
 
 // Static key used to prevent React from unmounting/remounting Slot content
@@ -19,10 +19,18 @@ const SLOT_STATIC_KEY = 'one-slot-static-key'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
+// Import RouteNode type for slot state
+import type { RouteNode } from '../router/Route'
+import { registerClearSlotStates, registerSetSlotState } from '../router/interceptRoutes'
+
 // Slot state for parallel routes / intercepting routes
 export interface SlotState {
   /** The route key currently being rendered in this slot (null = show default) */
   activeRouteKey: string | null
+  /** The actual RouteNode to render (needed because slot routes aren't in navigator) */
+  activeRouteNode?: RouteNode
+  /** Params extracted from the matched path */
+  params?: Record<string, string>
   /** Whether this is from an interception (soft nav) or direct nav */
   isIntercepted: boolean
 }
@@ -36,19 +44,30 @@ export function getSlotState(slotName: string): SlotState | undefined {
 }
 
 export function setSlotState(slotName: string, state: SlotState | null) {
+  console.log(`[one] setSlotState @${slotName}:`, {
+    state: state ? { activeRouteKey: state.activeRouteKey, isIntercepted: state.isIntercepted } : null,
+    listenersCount: slotStateListeners.size,
+  })
+
   if (state === null) {
     globalSlotState.delete(slotName)
   } else {
     globalSlotState.set(slotName, state)
   }
   // Notify listeners
+  console.log(`[one] notifying ${slotStateListeners.size} listeners`)
   slotStateListeners.forEach((listener) => listener())
 }
 
 export function clearAllSlotStates() {
+  console.log(`[one] clearAllSlotStates called, clearing ${globalSlotState.size} slots`)
   globalSlotState.clear()
   slotStateListeners.forEach((listener) => listener())
 }
+
+// Register callbacks with interceptRoutes to avoid circular deps
+registerClearSlotStates(clearAllSlotStates)
+registerSetSlotState(setSlotState)
 
 function useSlotStateSubscription() {
   const [, forceUpdate] = React.useReducer((x) => x + 1, 0)
@@ -270,20 +289,27 @@ export function useNamedSlot(slotName: string): React.ReactNode | null {
   // Subscribe to slot state changes
   useSlotStateSubscription()
 
-  const context = React.useContext(NavigatorContext)
   const slotState = getSlotState(slotName)
+
+  console.log(`[one] useNamedSlot @${slotName}:`, {
+    hasSlotState: !!slotState,
+    activeRouteKey: slotState?.activeRouteKey,
+    isIntercepted: slotState?.isIntercepted,
+    hasActiveRouteNode: !!slotState?.activeRouteNode,
+  })
 
   if (!slotState?.activeRouteKey || !slotState.isIntercepted) {
     // No active intercept - return null (layout can render default)
     return null
   }
 
-  // Get the descriptor for the intercepted route
-  if (context?.descriptorsRef.current) {
-    const descriptor = context.descriptorsRef.current[slotState.activeRouteKey]
-    if (descriptor) {
-      return descriptor.render()
-    }
+  // Render the intercepted route directly using the stored route node
+  if (slotState.activeRouteNode) {
+    const Component = getQualifiedRouteComponent(slotState.activeRouteNode)
+
+    console.log(`[one] NamedSlot @${slotName} rendering component`)
+    // Pass params from the intercept match
+    return <Component key={slotState.activeRouteKey} route={{ params: slotState.params || {} }} />
   }
 
   return null

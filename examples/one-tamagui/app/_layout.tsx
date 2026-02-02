@@ -1,15 +1,24 @@
 import '~/tamagui/tamagui.css'
 import './_layout.css'
 
+import type { ReactNode } from 'react'
 import { SchemeProvider } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { TamaguiRootProvider } from '../src/tamagui/TamaguiRootProvider'
 
 /**
- * The root _layout.tsx filters <html /> and <body /> out on native
+ * The root _layout.tsx filters <html /> and <body /> out on native.
+ *
+ * This layout receives slot props from @modal directory for intercepting routes.
+ * The `modal` prop renders intercepted content when a soft navigation occurs.
  */
 
-export default function Layout() {
+export default function Layout({
+  modal,
+}: {
+  children: ReactNode
+  modal: ReactNode // From @modal directory - intercepting routes
+}) {
   return (
     <html lang="en-US">
       <head>
@@ -25,11 +34,12 @@ export default function Layout() {
       </head>
 
       <body>
-        {/* <LoadProgressBar /> */}
-
         <SchemeProvider>
           <TamaguiRootProvider>
+            <LoadProgressBar />
             <Slot />
+            {/* Modal slot - renders intercepted content on soft navigation */}
+            {modal}
           </TamaguiRootProvider>
         </SchemeProvider>
       </body>

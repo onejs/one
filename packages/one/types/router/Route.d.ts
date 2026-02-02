@@ -8,6 +8,22 @@ export type DynamicConvention = {
     deep: boolean;
     notFound?: boolean;
 };
+/** Information about an intercept route */
+export type InterceptConvention = {
+    /** Number of levels up (0 = same level, 1 = parent, Infinity = root) */
+    levels: number;
+    /** The target route path being intercepted */
+    targetPath: string;
+};
+/** Slot configuration attached to a layout */
+export type SlotConfig = {
+    /** The slot name (e.g., "modal" from "@modal") */
+    name: string;
+    /** The default route to render when no intercept is active */
+    defaultRoute?: RouteNode;
+    /** All intercept routes in this slot */
+    interceptRoutes: RouteNode[];
+};
 export type LoadedRoute = {
     ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>;
     default?: React.ComponentType<any>;
@@ -74,6 +90,12 @@ export type RouteNode = {
     middlewares?: RouteNode[];
     /** Server-side path to the compiled loader module (set during build) */
     loaderServerPath?: string;
+    /** If this route is inside a slot directory, the slot name (e.g., "modal" from "@modal") */
+    slotName?: string;
+    /** If this route is an intercept route, information about what it intercepts */
+    intercept?: InterceptConvention;
+    /** For layouts: map of slot names to their configurations */
+    slots?: Map<string, SlotConfig>;
 };
 export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
