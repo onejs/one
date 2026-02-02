@@ -282,16 +282,29 @@ Navigator.Screen = Screen
 // ============================================
 
 /**
+ * Create a scoped slot key that includes the layout context.
+ * This prevents multiple layouts with the same slot name from sharing state.
+ */
+export function getScopedSlotKey(slotName: string, layoutContextKey?: string): string {
+  if (!layoutContextKey) return slotName
+  return `${layoutContextKey}:${slotName}`
+}
+
+/**
  * Hook to get the render output for a named slot (e.g., @modal, @sidebar).
  * Returns null if no intercept is active, otherwise returns the intercepted route element.
+ *
+ * @param slotName - The slot name (e.g., "modal")
+ * @param layoutContextKey - The layout's contextKey to scope slot state per-layout
  */
-export function useNamedSlot(slotName: string): React.ReactNode | null {
+export function useNamedSlot(slotName: string, layoutContextKey?: string): React.ReactNode | null {
   // Subscribe to slot state changes
   useSlotStateSubscription()
 
-  const slotState = getSlotState(slotName)
+  const scopedKey = getScopedSlotKey(slotName, layoutContextKey)
+  const slotState = getSlotState(scopedKey)
 
-  console.log(`[one] useNamedSlot @${slotName}:`, {
+  console.log(`[one] useNamedSlot @${slotName} (key: ${scopedKey}):`, {
     hasSlotState: !!slotState,
     activeRouteKey: slotState?.activeRouteKey,
     isIntercepted: slotState?.isIntercepted,
@@ -334,14 +347,17 @@ export function useNamedSlot(slotName: string): React.ReactNode | null {
  */
 export function NamedSlot({
   name,
+  layoutContextKey,
   children,
 }: {
   /** The slot name (matches @slotName directory) */
   name: string
+  /** The layout's contextKey to scope slot state (prevents duplicate modals across layouts) */
+  layoutContextKey?: string
   /** Default content when no intercept is active */
   children?: React.ReactNode
 }) {
-  const slotContent = useNamedSlot(name)
+  const slotContent = useNamedSlot(name, layoutContextKey)
 
   if (slotContent) {
     return <>{slotContent}</>

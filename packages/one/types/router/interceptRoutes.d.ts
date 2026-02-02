@@ -8,6 +8,8 @@ export interface InterceptResult {
     interceptRoute: RouteNode;
     /** The slot name this intercept belongs to */
     slotName: string;
+    /** The layout's contextKey that owns this slot (for scoped state) */
+    layoutContextKey: string;
     /** Params extracted from the target path */
     params: Record<string, string>;
 }

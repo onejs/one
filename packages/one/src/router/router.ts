@@ -915,9 +915,12 @@ export async function linkTo(
 
   if (interceptResult) {
     // Found an intercept route! Render in slot instead of full navigation
-    const { interceptRoute, slotName, params } = interceptResult
+    const { interceptRoute, slotName, layoutContextKey, params } = interceptResult
 
-    console.log(`[one] 🎯 Intercepting ${href} → slot @${slotName}`, {
+    // Create scoped slot key to prevent duplicate modals across layouts
+    const scopedSlotKey = `${layoutContextKey}:${slotName}`
+
+    console.log(`[one] 🎯 Intercepting ${href} → slot @${slotName} (key: ${scopedSlotKey})`, {
       params,
       interceptRoute: {
         route: interceptRoute.route,
@@ -927,13 +930,13 @@ export async function linkTo(
     })
 
     // Store intercept state for forward navigation restoration
-    storeInterceptState(slotName, interceptRoute, params)
+    storeInterceptState(scopedSlotKey, interceptRoute, params)
 
     // Update URL to show the target path (not the intercept route path)
     updateURLWithoutNavigation(href)
 
-    // Activate the slot to render the intercept route
-    setSlotState(slotName, {
+    // Activate the slot to render the intercept route (using scoped key)
+    setSlotState(scopedSlotKey, {
       activeRouteKey: interceptRoute.contextKey,
       activeRouteNode: interceptRoute,
       params,
