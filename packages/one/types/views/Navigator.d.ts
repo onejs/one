@@ -48,10 +48,18 @@ export declare const Slot: React.NamedExoticComponent<Omit<NavigatorProps, "chil
 export declare function QualifiedSlot(): React.FunctionComponentElement<any> | null;
 export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
 /**
+ * Create a scoped slot key that includes the layout context.
+ * This prevents multiple layouts with the same slot name from sharing state.
+ */
+export declare function getScopedSlotKey(slotName: string, layoutContextKey?: string): string;
+/**
  * Hook to get the render output for a named slot (e.g., @modal, @sidebar).
  * Returns null if no intercept is active, otherwise returns the intercepted route element.
+ *
+ * @param slotName - The slot name (e.g., "modal")
+ * @param layoutContextKey - The layout's contextKey to scope slot state per-layout
  */
-export declare function useNamedSlot(slotName: string): React.ReactNode | null;
+export declare function useNamedSlot(slotName: string, layoutContextKey?: string): React.ReactNode | null;
 /**
  * Named slot component for use in layouts.
  * Renders the slot content if an intercept is active, otherwise renders children (default).
@@ -69,9 +77,11 @@ export declare function useNamedSlot(slotName: string): React.ReactNode | null;
  * }
  * ```
  */
-export declare function NamedSlot({ name, children, }: {
+export declare function NamedSlot({ name, layoutContextKey, children, }: {
     /** The slot name (matches @slotName directory) */
     name: string;
+    /** The layout's contextKey to scope slot state (prevents duplicate modals across layouts) */
+    layoutContextKey?: string;
     /** Default content when no intercept is active */
     children?: React.ReactNode;
 }): import("react/jsx-runtime").JSX.Element;

@@ -40,6 +40,8 @@ export interface InterceptResult {
   interceptRoute: RouteNode
   /** The slot name this intercept belongs to */
   slotName: string
+  /** The layout's contextKey that owns this slot (for scoped state) */
+  layoutContextKey: string
   /** Params extracted from the target path */
   params: Record<string, string>
 }
@@ -250,10 +252,11 @@ function findMatchingInterceptInSlot(
     console.log(`[one] matchPath result:`, { params, matched: params !== null })
 
     if (params !== null) {
-      console.log(`[one] ✅ intercept matched!`, { params })
+      console.log(`[one] ✅ intercept matched!`, { params, layoutContextKey: layoutNode.contextKey })
       return {
         interceptRoute,
         slotName,
+        layoutContextKey: layoutNode.contextKey,
         params,
       }
     }

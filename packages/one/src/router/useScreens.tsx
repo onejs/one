@@ -362,8 +362,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     if (value.slots && value.slots.size > 0) {
       for (const [slotName] of value.slots) {
         // Create a NamedSlot component for each slot
-        // The layout can render this to show intercepted content or default
-        slotProps[slotName] = <NamedSlot name={slotName} />
+        // Pass layoutContextKey to scope slot state per-layout (prevents duplicate modals)
+        slotProps[slotName] = <NamedSlot name={slotName} layoutContextKey={value.contextKey} />
       }
     }
 
