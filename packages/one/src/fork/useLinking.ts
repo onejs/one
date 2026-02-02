@@ -26,9 +26,11 @@ import * as React from 'react'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
 import { stripGroupSegmentsFromPath } from '../router/matchers'
+import { setNavigationType } from '../router/interceptRoutes'
 import { parseUnmaskFromPath } from '../router/routeMask'
 import { rootState as routerRootState } from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
+import { clearAllSlotStates } from '../views/Navigator'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
 
@@ -197,6 +199,11 @@ export function useLinking(
   // @modified - end
 
   const getInitialState = React.useCallback(() => {
+    // @modified - Initial page load is always a "hard" navigation
+    // This means intercepting routes should NOT activate (show full page instead)
+    setNavigationType('hard')
+    clearAllSlotStates()
+
     let value: ResultState | undefined
 
     if (enabledRef.current) {
@@ -268,6 +275,11 @@ export function useLinking(
       if (!navigation || !enabled) {
         return
       }
+
+      // @modified - Browser back/forward is a "hard" navigation
+      // This means intercepting routes should NOT activate
+      setNavigationType('hard')
+      clearAllSlotStates()
 
       // @modified - Clear stale masked display path on browser back/forward navigation
       // The user is navigating via browser controls, so the masked URL should not be preserved
