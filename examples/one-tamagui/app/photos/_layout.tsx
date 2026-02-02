@@ -14,7 +14,7 @@ import { Link } from 'one'
  */
 export default function PhotosLayout() {
   return (
-    <YStack flex={1} bg="$background" testID="photos-layout" mt={50}>
+    <YStack flex={1} bg="$background" testID="photos-layout">
       <XStack
         p="$3"
         gap="$3"

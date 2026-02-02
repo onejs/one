@@ -60,9 +60,7 @@ export default function ProfileModal() {
           testID="profile-modal"
         >
           <XStack justify="space-between" items="center" mb="$3">
-            <Dialog.Title fontSize="$6">
-              Edit Profile
-            </Dialog.Title>
+            <Dialog.Title fontSize="$6">Edit Profile</Dialog.Title>
             <Dialog.Close asChild>
               <Button size="$3" circular icon={X} testID="close-profile-modal" />
             </Dialog.Close>

@@ -908,6 +908,11 @@ export async function linkTo(
 
   console.log('[one] 🔍 findInterceptRoute result:', interceptResult)
 
+  // Skip intercept handling if no result (native or hard navigation)
+  if (!interceptResult) {
+    console.log('[one] 🔍 No intercept, proceeding with normal navigation')
+  }
+
   if (interceptResult) {
     // Found an intercept route! Render in slot instead of full navigation
     const { interceptRoute, slotName, params } = interceptResult
@@ -938,6 +943,8 @@ export async function linkTo(
     return
   }
 
+  console.log('[one] 🚀 Starting normal navigation to:', href)
+
   assertIsReady(navigationRef)
   const current = navigationRef.current
 
@@ -956,6 +963,7 @@ export async function linkTo(
   setLastAction()
 
   if (href === '..' || href === '../') {
+    console.log('[one] 🚀 Going back')
     current.goBack()
     return
   }
@@ -986,9 +994,12 @@ export async function linkTo(
     }
 
     href = resolve(base, href)
+    console.log('[one] 🚀 Resolved relative href to:', href)
   }
 
+  console.log('[one] 🚀 Getting state from path:', href)
   const state = linking.getStateFromPath!(href, linking.config)
+  console.log('[one] 🚀 Got state:', state ? 'valid' : 'null', state?.routes?.length, 'routes')
 
   if (!state || state.routes.length === 0) {
     console.error(
@@ -1000,9 +1011,11 @@ export async function linkTo(
   }
 
   setLoadingState('loading')
+  console.log('[one] 🚀 Preloading route...')
 
   // Preload route modules first so loadRoute() won't throw Suspense promises
   await preloadRoute(href, true)
+  console.log('[one] 🚀 Preload complete')
 
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)
@@ -1080,15 +1093,21 @@ export async function linkTo(
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
 
+  console.log('[one] 🚀 Dispatching navigation action')
   startTransition(() => {
     const action = getNavigateAction(state, rootState, event)
+    console.log('[one] 🚀 Navigation action:', action?.type, action)
     const current = navigationRef.getCurrentRoute()
+    console.log('[one] 🚀 Current route before dispatch:', current?.name)
     navigationRef.dispatch(action)
+    console.log('[one] 🚀 Dispatch called')
 
     let warningTm
     const interval = setInterval(() => {
       const next = navigationRef.getCurrentRoute()
+      console.log('[one] 🚀 Route check - current:', current?.name, 'next:', next?.name)
       if (current !== next) {
+        console.log('[one] ✅ Navigation completed!')
         // let the main thread clear at least before running
         setTimeout(() => {
           setLoadingState('loaded')

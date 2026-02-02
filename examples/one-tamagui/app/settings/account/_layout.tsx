@@ -22,7 +22,7 @@ export default function AccountLayout({ modal }: { modal?: ReactNode }) {
         borderColor="$borderColor"
         borderBottomWidth={1}
       >
-        <Link href="/settings">
+        <Link href="/settings" asChild>
           <XStack items="center" gap="$2">
             <ArrowLeft size={16} color="$blue10" />
             <Text color="$blue10" fontSize="$3">

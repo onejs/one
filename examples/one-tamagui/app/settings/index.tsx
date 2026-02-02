@@ -17,7 +17,7 @@ export default function SettingsIndex() {
       </Text>
 
       <YStack gap="$3" mt="$4">
-        <Link href="/settings/account">
+        <Link href="/settings/account" asChild>
           <XStack
             p="$4"
             bg="$color2"
@@ -39,7 +39,7 @@ export default function SettingsIndex() {
           </XStack>
         </Link>
 
-        <Link href="/settings/profile">
+        <Link href="/settings/profile" asChild>
           <XStack
             p="$4"
             bg="$color2"

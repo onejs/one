@@ -13,7 +13,7 @@ export default function ProfilePage() {
   return (
     <YStack flex={1} p="$4" gap="$4" testID="profile-full-page">
       <XStack items="center" gap="$3">
-        <Link href="/settings">
+        <Link href="/settings" asChild>
           <Button size="$3" icon={ArrowLeft} circular />
         </Link>
         <Text fontSize="$6" fontWeight="bold">

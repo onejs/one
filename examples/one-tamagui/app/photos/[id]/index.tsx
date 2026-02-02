@@ -24,7 +24,7 @@ export default function PhotoDetail() {
   return (
     <YStack flex={1} bg="$background" p="$4" gap="$4" testID="photo-detail-page">
       <XStack items="center" gap="$3">
-        <Link href="/photos">
+        <Link href="/photos" asChild>
           <Button size="$3" icon={ArrowLeft} circular testID="back-btn" />
         </Link>
         <Text fontSize="$6" fontWeight="bold" testID="photo-detail-title">
@@ -46,8 +46,8 @@ export default function PhotoDetail() {
           This is the photo detail page at /photos/{id}
         </Text>
         <Text color="$color11" fontSize="$3">
-          You're seeing this because you navigated directly to this URL
-          (shared link, refresh, or typed URL).
+          You're seeing this because you navigated directly to this URL (shared link,
+          refresh, or typed URL).
         </Text>
         <Text color="$color11" fontSize="$3">
           Click a photo from the grid to see the intercepting modal instead.

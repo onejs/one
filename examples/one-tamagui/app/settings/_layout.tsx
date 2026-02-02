@@ -7,7 +7,7 @@ import { YStack, XStack, Text } from 'tamagui'
  */
 export default function SettingsLayout() {
   return (
-    <YStack flex={1} bg="$background" mt={50}>
+    <YStack flex={1} bg="$background">
       <XStack
         p="$3"
         gap="$3"
@@ -16,7 +16,7 @@ export default function SettingsLayout() {
         borderColor="$borderColor"
         borderWidth={1}
       >
-        <Link href="/">
+        <Link href="/" asChild>
           <Text color="$blue10" fontSize="$4">
             Home
           </Text>
