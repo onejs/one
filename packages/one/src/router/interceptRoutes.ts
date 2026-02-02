@@ -110,18 +110,10 @@ function findLayoutsWithSlotsAlongPath(
   // Collect all layouts with slots from the entire tree
   const allLayoutsWithSlots = collectAllLayoutsWithSlots(rootNode)
 
-  console.log('[one] All layouts with slots:', allLayoutsWithSlots.map((l) => ({
-    contextKey: l.contextKey,
-    path: getLayoutPath(l),
-    slots: l.slots ? Array.from(l.slots.keys()) : [],
-  })))
-
   // Filter to only those that are ancestors of the current path
   const ancestorLayouts = allLayoutsWithSlots.filter((layout) => {
     const layoutPath = getLayoutPath(layout)
-    const isAncestor = isLayoutAncestorOfPath(layoutPath, currentPath)
-    console.log(`[one] Layout ${layoutPath} isAncestorOf ${currentPath}: ${isAncestor}`)
-    return isAncestor
+    return isLayoutAncestorOfPath(layoutPath, currentPath)
   })
 
   // Sort by path depth (shallowest first) so we can check deepest last
@@ -159,7 +151,6 @@ export function findInterceptRoute(
 
   // Never intercept on hard navigation (page load, refresh, direct URL)
   if (isHardNavigation()) {
-    console.log('[one] findInterceptRoute: skipped (hard navigation)')
     return null
   }
 
@@ -167,22 +158,8 @@ export function findInterceptRoute(
   const layoutsWithSlots = findLayoutsWithSlotsAlongPath(rootNode, currentPath)
 
   if (layoutsWithSlots.length === 0) {
-    console.log('[one] findInterceptRoute: no layouts with slots along path', {
-      currentPath,
-      hasRootNode: !!rootNode,
-    })
     return null
   }
-
-  console.log('[one] findInterceptRoute: checking layouts with slots', {
-    targetPath,
-    currentPath,
-    layoutCount: layoutsWithSlots.length,
-    layouts: layoutsWithSlots.map((l) => ({
-      contextKey: l.contextKey,
-      slots: l.slots ? Array.from(l.slots.keys()) : [],
-    })),
-  })
 
   // Check each layout along the path for matching intercepts
   // Start from deepest (most specific) to shallowest (root)
@@ -190,7 +167,6 @@ export function findInterceptRoute(
     const layoutNode = layoutsWithSlots[i]
 
     for (const [slotName, slotConfig] of layoutNode.slots!) {
-      console.log(`[one] checking slot @${slotName} on layout ${layoutNode.contextKey}`)
 
       const result = findMatchingInterceptInSlot(
         targetPath,
@@ -218,14 +194,8 @@ function findMatchingInterceptInSlot(
   layoutNode: RouteNode,
   currentPath: string
 ): InterceptResult | null {
-  console.log(`[one] findMatchingInterceptInSlot @${slotName}:`, {
-    targetPath,
-    interceptRoutesCount: slotConfig.interceptRoutes.length,
-  })
-
   for (const interceptRoute of slotConfig.interceptRoutes) {
     if (!interceptRoute.intercept) {
-      console.log(`[one] skipping route without intercept:`, interceptRoute.route)
       continue
     }
 
@@ -239,20 +209,10 @@ function findMatchingInterceptInSlot(
       currentPath
     )
 
-    console.log(`[one] checking intercept:`, {
-      interceptTargetPath,
-      resolvedTargetPath,
-      targetPath,
-      levels,
-      layoutContextKey: layoutNode.contextKey,
-    })
-
     // Try to match the target path against the resolved intercept path
     const params = matchPath(targetPath, resolvedTargetPath)
-    console.log(`[one] matchPath result:`, { params, matched: params !== null })
 
     if (params !== null) {
-      console.log(`[one] ✅ intercept matched!`, { params, layoutContextKey: layoutNode.contextKey })
       return {
         interceptRoute,
         slotName,
@@ -525,11 +485,8 @@ export function restoreInterceptFromHistory(): boolean {
     return false
   }
 
-  console.log('[one] restoreInterceptFromHistory: found intercept state', state)
-
   // We have an intercepted state - try to restore it
   if (lastInterceptRouteNode && lastInterceptSlotName && setSlotStateCallback) {
-    console.log('[one] restoring intercept to slot', lastInterceptSlotName)
     setSlotStateCallback(lastInterceptSlotName, {
       activeRouteKey: lastInterceptRouteNode.contextKey,
       activeRouteNode: lastInterceptRouteNode,

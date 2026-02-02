@@ -285,8 +285,6 @@ export function useLinking(
       // If so, this is NOT a "hard" navigation - it's just closing a modal
       // We still clear slot states but preserve soft navigation mode
       if (isReturningFromIntercept()) {
-        // Just closing an intercept modal - clear slots but keep soft nav mode
-        console.log('[one] popstate: returning from intercept, clearing slots only')
         // Reset the flag
         setReturningFromIntercept(false)
         // Slots already cleared by closeIntercept, but clear again to be safe
@@ -298,8 +296,6 @@ export function useLinking(
       // @modified - Check if navigating forward to an intercepted state
       // If so, restore the intercept instead of doing a hard navigation
       if (restoreInterceptFromHistory()) {
-        console.log('[one] popstate: restored intercept from history')
-        // Don't process this as a regular navigation
         return
       }
 

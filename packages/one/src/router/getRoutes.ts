@@ -374,24 +374,9 @@ function flattenDirectoryTreeToRoutes(
   if (directory.slots.size > 0) {
     layout.slots = new Map()
 
-    console.log('[one] 🎰 Processing slots for layout:', {
-      layoutRoute: layout.route,
-      layoutContextKey: layout.contextKey,
-      slotNames: Array.from(directory.slots.keys()),
-    })
-
     for (const [slotName, slotDir] of directory.slots) {
       const slotConfig = flattenSlotDirectory(slotDir, slotName, options, pathToRemove)
       layout.slots.set(slotName, slotConfig)
-
-      console.log(`[one] 🎰 Slot @${slotName} config:`, {
-        defaultRoute: slotConfig.defaultRoute?.route,
-        interceptRoutes: slotConfig.interceptRoutes.map((r) => ({
-          route: r.route,
-          contextKey: r.contextKey,
-          intercept: r.intercept,
-        })),
-      })
     }
   }
 

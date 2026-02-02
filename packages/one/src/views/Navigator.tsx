@@ -44,23 +44,16 @@ export function getSlotState(slotName: string): SlotState | undefined {
 }
 
 export function setSlotState(slotName: string, state: SlotState | null) {
-  console.log(`[one] setSlotState @${slotName}:`, {
-    state: state ? { activeRouteKey: state.activeRouteKey, isIntercepted: state.isIntercepted } : null,
-    listenersCount: slotStateListeners.size,
-  })
-
   if (state === null) {
     globalSlotState.delete(slotName)
   } else {
     globalSlotState.set(slotName, state)
   }
   // Notify listeners
-  console.log(`[one] notifying ${slotStateListeners.size} listeners`)
   slotStateListeners.forEach((listener) => listener())
 }
 
 export function clearAllSlotStates() {
-  console.log(`[one] clearAllSlotStates called, clearing ${globalSlotState.size} slots`)
   globalSlotState.clear()
   slotStateListeners.forEach((listener) => listener())
 }
@@ -304,13 +297,6 @@ export function useNamedSlot(slotName: string, layoutContextKey?: string): React
   const scopedKey = getScopedSlotKey(slotName, layoutContextKey)
   const slotState = getSlotState(scopedKey)
 
-  console.log(`[one] useNamedSlot @${slotName} (key: ${scopedKey}):`, {
-    hasSlotState: !!slotState,
-    activeRouteKey: slotState?.activeRouteKey,
-    isIntercepted: slotState?.isIntercepted,
-    hasActiveRouteNode: !!slotState?.activeRouteNode,
-  })
-
   if (!slotState?.activeRouteKey || !slotState.isIntercepted) {
     // No active intercept - return null (layout can render default)
     return null
@@ -319,8 +305,6 @@ export function useNamedSlot(slotName: string, layoutContextKey?: string): React
   // Render the intercepted route directly using the stored route node
   if (slotState.activeRouteNode) {
     const Component = getQualifiedRouteComponent(slotState.activeRouteNode)
-
-    console.log(`[one] NamedSlot @${slotName} rendering component`)
     // Pass params from the intercept match
     return <Component key={slotState.activeRouteKey} route={{ params: slotState.params || {} }} />
   }
