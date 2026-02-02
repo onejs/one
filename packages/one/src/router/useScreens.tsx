@@ -23,6 +23,7 @@ import {
   type RouteNode,
   useRouteNode,
 } from './Route'
+import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
@@ -356,12 +357,22 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       console.groupEnd()
     }
 
+    // Build slot props for layouts with slots (@modal, @sidebar, etc.)
+    const slotProps: Record<string, React.ReactNode> = {}
+    if (value.slots && value.slots.size > 0) {
+      for (const [slotName] of value.slots) {
+        // Create a NamedSlot component for each slot
+        // The layout can render this to show intercepted content or default
+        slotProps[slotName] = <NamedSlot name={slotName} />
+      }
+    }
+
     // Root layout with HTML support - use RootLayoutRenderer for proper HMR tracking
     if (props.segment === '') {
       return (
         <RootLayoutRenderer
           LayoutComponent={Component}
-          layoutProps={props}
+          layoutProps={{ ...props, ...slotProps }}
           forwardedRef={ref}
         />
       )
@@ -369,7 +380,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
     return (
       <RouteErrorBoundary routeName={value.route}>
-        <Component {...props} ref={ref} />
+        <Component {...props} {...slotProps} ref={ref} />
       </RouteErrorBoundary>
     )
   })
