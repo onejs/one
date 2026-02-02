@@ -21,10 +21,10 @@ const photos = Array.from({ length: 12 }, (_, i) => ({
  */
 export default function PhotosIndex() {
   return (
-    <ScrollView flex={1} pt={50}>
+    <ScrollView flex={1}>
       <XStack flexWrap="wrap" p="$2" gap="$3" justify="center">
         {photos.map((photo) => (
-          <Link key={photo.id} href={`/photos/${photo.id}`}>
+          <Link key={photo.id} href={`/photos/${photo.id}`} asChild>
             <YStack
               width={180}
               bg="$color2"

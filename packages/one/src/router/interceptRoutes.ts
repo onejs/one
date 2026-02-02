@@ -1,5 +1,6 @@
 import type { RouteNode, SlotConfig } from './Route'
 import { matchDynamicName } from './matchers'
+import { isNative } from '../constants'
 
 // ============================================
 // Navigation Type Tracking
@@ -149,6 +150,11 @@ export function findInterceptRoute(
   rootNode: RouteNode | null,
   currentPath: string
 ): InterceptResult | null {
+  // Never intercept on native - no browser history API available
+  if (isNative) {
+    return null
+  }
+
   // Never intercept on hard navigation (page load, refresh, direct URL)
   if (isHardNavigation()) {
     console.log('[one] findInterceptRoute: skipped (hard navigation)')

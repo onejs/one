@@ -16,7 +16,7 @@ export default function AccountIndex() {
 
       <YStack gap="$3">
         {/* This link will be intercepted by @modal/(..)profile */}
-        <Link href="/settings/profile">
+        <Link href="/settings/profile" asChild>
           <XStack
             p="$4"
             bg="$blue2"
@@ -40,14 +40,7 @@ export default function AccountIndex() {
           </XStack>
         </Link>
 
-        <XStack
-          p="$4"
-          bg="$color2"
-          rounded="$4"
-          items="center"
-          gap="$3"
-          opacity={0.6}
-        >
+        <XStack p="$4" bg="$color2" rounded="$4" items="center" gap="$3" opacity={0.6}>
           <Mail size={24} color="$color11" />
           <YStack>
             <Text fontSize="$4" fontWeight="600">
@@ -59,14 +52,7 @@ export default function AccountIndex() {
           </YStack>
         </XStack>
 
-        <XStack
-          p="$4"
-          bg="$color2"
-          rounded="$4"
-          items="center"
-          gap="$3"
-          opacity={0.6}
-        >
+        <XStack p="$4" bg="$color2" rounded="$4" items="center" gap="$3" opacity={0.6}>
           <Bell size={24} color="$color11" />
           <YStack>
             <Text fontSize="$4" fontWeight="600">
@@ -78,14 +64,7 @@ export default function AccountIndex() {
           </YStack>
         </XStack>
 
-        <XStack
-          p="$4"
-          bg="$color2"
-          rounded="$4"
-          items="center"
-          gap="$3"
-          opacity={0.6}
-        >
+        <XStack p="$4" bg="$color2" rounded="$4" items="center" gap="$3" opacity={0.6}>
           <Shield size={24} color="$color11" />
           <YStack>
             <Text fontSize="$4" fontWeight="600">
@@ -100,8 +79,8 @@ export default function AccountIndex() {
 
       <YStack p="$3" bg="$yellow2" rounded="$4" mt="$2">
         <Text color="$yellow11" fontSize="$3">
-          💡 The "Edit Profile" link goes to /settings/profile but will be
-          intercepted by @modal/(..)profile and shown as a modal overlay.
+          💡 The "Edit Profile" link goes to /settings/profile but will be intercepted by
+          @modal/(..)profile and shown as a modal overlay.
         </Text>
       </YStack>
     </YStack>
