@@ -32,6 +32,7 @@ const docsLinks = {
   clean: `${DOCS_BASE}/configuration`,
   patch: `${DOCS_BASE}/configuration`,
   'generate-routes': `${DOCS_BASE}/routing-typed-routes`,
+  typegen: `${DOCS_BASE}/routing-typed-routes`,
 } as const
 
 function withDocsLink(description: string, command: keyof typeof docsLinks): string {
@@ -269,7 +270,30 @@ const generateRoutes = defineCommand({
   meta: {
     name: 'generate-routes',
     version: version,
-    description: withDocsLink('Generate route type definitions', 'generate-routes'),
+    description: withDocsLink('Generate route type definitions (routes.d.ts)', 'generate-routes'),
+  },
+  args: {
+    appDir: {
+      type: 'string',
+      description: 'Path to app directory (default: "app")',
+    },
+    typed: {
+      type: 'string',
+      description:
+        'Auto-generate route helpers. Options: "type" (type-only helpers) or "runtime" (runtime helpers)',
+    },
+  },
+  async run({ args }) {
+    const { run } = await import('./cli/generateRoutes')
+    await run(args)
+  },
+})
+
+const typegen = defineCommand({
+  meta: {
+    name: 'typegen',
+    version: version,
+    description: withDocsLink('Generate routes.d.ts (alias for generate-routes)', 'typegen'),
   },
   args: {
     appDir: {
@@ -298,6 +322,7 @@ const subCommands = {
   patch,
   serve: serveCommand,
   'generate-routes': generateRoutes,
+  typegen,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow
