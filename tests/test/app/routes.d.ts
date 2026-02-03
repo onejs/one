@@ -85,8 +85,6 @@ declare module 'one' {
         | `/rn-features/platform-specific-extensions/test`
         | `/rn-features/platform-specific-extensions/test-route-1`
         | `/rn-features/platform-specific-extensions/test-route-2`
-        | `/router/ignoredRouteFiles/route-1.should-be-ignored`
-        | `/router/ignoredRouteFiles/route-2.should-be-ignored`
         | `/router/ignoredRouteFiles/route.normal`
         | `/server-data`
         | `/setup-file-test`
