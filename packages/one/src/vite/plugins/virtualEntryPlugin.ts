@@ -119,16 +119,6 @@ export function createVirtualEntry(options: {
 
   const setupFiles = normalizeSetupFile(options.setupFile)
 
-  // Generate route masks setup code if configured in vite config
-  // @ts-ignore
-  const routeMasks = options.router?.routeMasks
-  const routeMasksSetup = routeMasks?.length
-    ? `
-import { createRouteMask, setRouteMasks } from 'one'
-setRouteMasks(${JSON.stringify(routeMasks)}.map(opts => createRouteMask(opts)))
-`
-    : ''
-
   return {
     name: 'one-virtual-entry',
     enforce: 'pre',
@@ -164,7 +154,6 @@ ${setupResult.promiseDeclaration}
 ${nativewindImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
-${routeMasksSetup}
 
 // Export registerPreloadedRoute so preload files can import it from this bundle
 // Named export that wraps the original function
