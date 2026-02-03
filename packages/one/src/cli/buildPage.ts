@@ -321,7 +321,7 @@ if (typeof document === 'undefined') globalThis.document = {}
 
         await outputFile(
           htmlOutPath,
-          `<html><head>
+          `<!DOCTYPE html><html><head>
           ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
           ${criticalScripts}
           ${deferredLinks}
