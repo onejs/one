@@ -186,14 +186,17 @@ function addRouteNode(
 
 /**
  * Converts a Set to a TypeScript union type
+ * Formats with one route per line for cleaner git diffs
  */
 const setToUnionType = <T>(set: Set<T>) => {
-  return set.size > 0
-    ? [...set]
-        .sort()
-        .map((s) => `\`${s}\``)
-        .join(' | ')
-    : 'never'
+  if (set.size === 0) return 'never'
+  const sorted = [...set].sort()
+  if (sorted.length === 1) return `\`${sorted[0]}\``
+  // format as multi-line union for cleaner diffs
+  return (
+    '\n        | ' +
+    sorted.map((s) => `\`${s}\``).join('\n        | ')
+  )
 }
 
 function generateCombinations(pathname) {

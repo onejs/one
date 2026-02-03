@@ -53,7 +53,18 @@ export function HomePage() {
             textDecorationLine="underline"
             hoverStyle={{ opacity: 0.8 }}
           >
-            Route Masking Demo (Photos)
+            Intercepting Routes Demo - (.) prefix
+          </Text>
+        </Link>
+
+        <Link href="/settings">
+          <Text
+            color="$green10"
+            fontSize="$5"
+            textDecorationLine="underline"
+            hoverStyle={{ opacity: 0.8 }}
+          >
+            Intercepting Routes Demo - (..) prefix
           </Text>
         </Link>
       </YStack>

@@ -1,0 +1,371 @@
+---
+title: Intercepting Routes
+---
+
+Intercepting routes allow you to load a route within the current layout while showing a different URL. This enables powerful patterns like modals that have shareable URLs, where clicking a link shows a modal overlay but navigating directly (or refreshing) shows the full page.
+
+## Why Use Intercepting Routes?
+
+Common use cases include:
+
+- **Photo gallery modals**: Click a photo to show it in a modal, but the URL is shareable and shows the full page on direct navigation
+- **Login modals**: Show login in a modal from the navbar, but `/login` renders a full page
+- **Shopping cart sidebars**: Open cart as a slide-over without losing context
+- **Preview panels**: Quick-view items while maintaining the list in the background
+
+## File Conventions
+
+### Slot Directories (`@slot`)
+
+Create parallel route slots using the `@` prefix:
+
+```
+app/
+├── _layout.tsx          # Receives { children, modal } props
+├── @modal/
+│   ├── default.tsx      # Renders null when no intercept is active
+│   └── (.)photos/
+│       └── [id].tsx     # Intercepts /photos/[id]
+├── photos/
+│   └── [id].tsx         # Full page /photos/[id]
+└── feed.tsx
+```
+
+### Intercept Prefixes
+
+Use parentheses with dots to define intercept relationships:
+
+| Convention | Meaning | Example |
+|------------|---------|---------|
+| `(.)` | Same level | `(.)photos` intercepts sibling `photos` route |
+| `(..)` | One level up | `(..)settings` intercepts parent's `settings` route |
+| `(..)(..)` | Two levels up | `(..)(..)admin` intercepts grandparent's route |
+| `(...)` | From root | `(...)photos` intercepts `/photos` from anywhere |
+
+## Basic Setup
+
+### 1. Create the Slot Directory
+
+Create an `@modal` directory (or any name) for your slot:
+
+```
+app/
+├── @modal/
+│   └── default.tsx
+```
+
+The `default.tsx` renders when no intercept is active:
+
+```tsx fileName=app/@modal/default.tsx
+export default function ModalDefault() {
+  return null
+}
+```
+
+### 2. Add the Intercept Route
+
+Create the intercept route using the `(.)` prefix:
+
+```tsx fileName=app/@modal/(.)photos/[id].tsx
+import { useParams, useRouter } from 'one'
+
+export default function PhotoModal() {
+  const { id } = useParams<{ id: string }>()
+  const router = useRouter()
+
+  return (
+    <div className="modal-overlay" onClick={() => router.back()}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2>Photo {id}</h2>
+        <img src={`/images/photo-${id}.jpg`} alt={`Photo ${id}`} />
+        <button onClick={() => router.back()}>Close</button>
+      </div>
+    </div>
+  )
+}
+```
+
+### 3. Create the Full Page Route
+
+This renders on direct navigation or page refresh:
+
+```tsx fileName=app/photos/[id].tsx
+import { useParams, Link } from 'one'
+
+export default function PhotoPage() {
+  const { id } = useParams<{ id: string }>()
+
+  return (
+    <div className="photo-page">
+      <h1>Photo {id}</h1>
+      <img src={`/images/photo-${id}.jpg`} alt={`Photo ${id}`} />
+      <Link href="/photos">Back to gallery</Link>
+    </div>
+  )
+}
+```
+
+### 4. Update the Layout
+
+The layout receives slot props for each `@slot` directory:
+
+```tsx fileName=app/_layout.tsx
+import { Slot } from 'one'
+
+export default function RootLayout({
+  children,
+  modal,  // From @modal directory
+}: {
+  children: React.ReactNode
+  modal: React.ReactNode
+}) {
+  return (
+    <html>
+      <body>
+        {children}
+        {modal}
+      </body>
+    </html>
+  )
+}
+```
+
+## How It Works
+
+### Soft Navigation (Link Click)
+
+When a user clicks a link within your app:
+
+1. One detects a matching intercept route exists
+2. The URL updates to show the target path (e.g., `/photos/5`)
+3. The intercept route renders in its slot (modal appears)
+4. The background content remains visible
+
+### Hard Navigation (Direct URL / Refresh)
+
+When a user navigates directly to a URL or refreshes:
+
+1. One skips intercept routes entirely
+2. The full page route renders normally
+3. No modal or overlay appears
+
+This ensures URLs are always shareable and work as expected.
+
+## Complete Example
+
+Here's a full photo gallery with modal implementation:
+
+<RouteTree
+  routes={[
+    { name: '_layout.tsx', description: 'Root layout with modal slot' },
+    { name: '@modal', children: [
+      { name: 'default.tsx', description: 'Returns null' },
+      { name: '(.)photos', children: [
+        { name: '[id].tsx', description: 'Photo modal' },
+      ] },
+    ] },
+    { name: 'photos', children: [
+      { name: 'index.tsx', description: 'Photo grid' },
+      { name: '[id].tsx', description: 'Photo detail page' },
+    ] },
+  ]}
+/>
+
+### Root Layout
+
+```tsx fileName=app/_layout.tsx
+import { Slot } from 'one'
+
+export default function RootLayout({ children, modal }) {
+  return (
+    <html>
+      <head>
+        <meta charSet="utf-8" />
+        <title>Photo Gallery</title>
+      </head>
+      <body>
+        {children}
+        {modal}
+      </body>
+    </html>
+  )
+}
+```
+
+### Photo Grid
+
+```tsx fileName=app/photos/index.tsx
+import { Link } from 'one'
+
+const photos = [
+  { id: '1', title: 'Sunset' },
+  { id: '2', title: 'Mountains' },
+  { id: '3', title: 'Ocean' },
+]
+
+export default function PhotoGrid() {
+  return (
+    <div className="photo-grid">
+      <h1>Photo Gallery</h1>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        {photos.map((photo) => (
+          <Link key={photo.id} href={`/photos/${photo.id}`}>
+            <img src={`/thumbnails/${photo.id}.jpg`} alt={photo.title} />
+            <span>{photo.title}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+### Photo Modal (Intercept)
+
+```tsx fileName=app/@modal/(.)photos/[id].tsx
+import { useParams, useRouter } from 'one'
+
+export default function PhotoModal() {
+  const { id } = useParams<{ id: string }>()
+  const router = useRouter()
+
+  return (
+    <div
+      className="modal-overlay"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onClick={() => router.back()}
+    >
+      <div
+        className="modal-content"
+        style={{
+          background: 'white',
+          padding: 24,
+          borderRadius: 8,
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={`/images/photo-${id}.jpg`}
+          alt={`Photo ${id}`}
+          style={{ maxWidth: '100%', maxHeight: '70vh' }}
+        />
+        <div style={{ marginTop: 16, display: 'flex', gap: 8 }}>
+          <button onClick={() => router.back()}>Close</button>
+          <button onClick={() => router.push(`/photos/${id}`)}>
+            View Full Page
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+### Photo Detail Page (Full)
+
+```tsx fileName=app/photos/[id].tsx
+import { useParams, Link } from 'one'
+
+export default function PhotoDetail() {
+  const { id } = useParams<{ id: string }>()
+
+  return (
+    <div className="photo-detail">
+      <Link href="/photos">← Back to gallery</Link>
+      <h1>Photo {id}</h1>
+      <img
+        src={`/images/photo-${id}.jpg`}
+        alt={`Photo ${id}`}
+        style={{ width: '100%', maxWidth: 800 }}
+      />
+      <div className="photo-info">
+        <p>Full resolution image with metadata and comments...</p>
+      </div>
+    </div>
+  )
+}
+```
+
+### Modal Default
+
+```tsx fileName=app/@modal/default.tsx
+export default function ModalDefault() {
+  return null
+}
+```
+
+## Multiple Slots
+
+You can have multiple slots for different purposes:
+
+```
+app/
+├── _layout.tsx          # { children, modal, sidebar }
+├── @modal/
+│   └── ...
+├── @sidebar/
+│   ├── default.tsx
+│   └── (.)cart.tsx      # Intercepts /cart as sidebar
+└── ...
+```
+
+```tsx fileName=app/_layout.tsx
+export default function RootLayout({ children, modal, sidebar }) {
+  return (
+    <html>
+      <body>
+        <main>{children}</main>
+        {modal}
+        {sidebar}
+      </body>
+    </html>
+  )
+}
+```
+
+## Tips
+
+- **Use `router.back()`** to close modals - this properly restores the previous URL and state
+- **Stop propagation** on modal content clicks to prevent closing when clicking inside
+- **Add keyboard handling** - listen for Escape key to close modals
+- **Consider animations** - use CSS transitions or animation libraries for smooth modal entry/exit
+- **Test both paths** - always verify both soft navigation (link click) and hard navigation (direct URL) work correctly
+
+## Migration from Route Masking
+
+If you were using the previous `routeMasks` configuration, migrate to intercepting routes:
+
+**Before (route masking):**
+```ts
+// vite.config.ts
+one({
+  router: {
+    routeMasks: [
+      { from: '/photos/[id]/modal', to: '/photos/[id]' }
+    ]
+  }
+})
+```
+
+**After (intercepting routes):**
+```
+app/
+├── @modal/(.)photos/[id].tsx   # Modal version
+├── @modal/default.tsx          # Returns null
+└── photos/[id].tsx             # Full page
+```
+
+The intercepting routes approach is more powerful because:
+- File-based convention (no config needed)
+- Parallel rendering (background stays visible)
+- Automatic soft/hard navigation handling
+- Familiar to Next.js developers

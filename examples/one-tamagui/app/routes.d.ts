@@ -6,13 +6,12 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/_sitemap` | `/photos` | `/photos/`
-      DynamicRoutes: `/photos/${OneRouter.SingleRoutePart<T>}` | `/photos/${OneRouter.SingleRoutePart<T>}/modal`
-      DynamicRouteTemplate: `/photos/[id]` | `/photos/[id]/modal`
+      StaticRoutes: `/` | `/_sitemap` | `/photos` | `/photos/` | `/settings` | `/settings/` | `/settings/account` | `/settings/account/` | `/settings/profile`
+      DynamicRoutes: `/photos/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate: `/photos/[id]`
       IsTyped: true
       RouteTypes: {
         '/photos/[id]': RouteInfo<{ id: string }>
-        '/photos/[id]/modal': RouteInfo<{ id: string }>
       }
     }
   }

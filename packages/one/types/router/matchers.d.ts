@@ -29,4 +29,41 @@ export declare function stripInvisibleSegmentsFromPath(path: string): string;
  *  - .d.ts files (type definition files)
  */
 export declare function isTypedRoute(name: string): boolean;
+/** Match @modal -> 'modal', @sidebar -> 'sidebar' */
+export declare function matchSlotName(name: string): string | undefined;
+/** Check if a directory name is a slot directory */
+export declare function isSlotDirectory(name: string): boolean;
+export interface InterceptMatch {
+    /** Number of levels up (0 = same level, 1 = parent, Infinity = root) */
+    levels: number;
+    /** The actual route path after stripping intercept prefix */
+    targetPath: string;
+    /** Original segment like "(.)photos" or "(..)photos" */
+    originalSegment: string;
+}
+/**
+ * Match intercept prefixes: (.), (..), (...), (..)(..) etc.
+ *
+ * Examples:
+ *   - "(.)photos" -> { levels: 0, targetPath: "photos" }
+ *   - "(..)photos" -> { levels: 1, targetPath: "photos" }
+ *   - "(...)photos" -> { levels: Infinity, targetPath: "photos" }
+ *   - "(..)(..)photos" -> { levels: 2, targetPath: "photos" }
+ */
+export declare function matchInterceptPrefix(segment: string): InterceptMatch | undefined;
+/**
+ * Strip intercept prefixes from a path segment
+ * "(.)photos" -> "photos"
+ * "(..)settings" -> "settings"
+ */
+export declare function stripInterceptPrefix(segment: string): string;
+/**
+ * Check if a segment has an intercept prefix
+ */
+export declare function hasInterceptPrefix(segment: string): boolean;
+/**
+ * Strip slot prefix from path for URL generation
+ * Removes @slot segments from path
+ */
+export declare function stripSlotSegmentsFromPath(path: string): string;
 //# sourceMappingURL=matchers.d.ts.map
