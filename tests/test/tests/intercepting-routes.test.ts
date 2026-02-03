@@ -28,16 +28,22 @@ describe('Intercepting Routes', () => {
 
     it('should render FULL PAGE on direct navigation to item', async () => {
       // Direct navigation (hard navigation) should show full page, NOT modal
-      const response = await fetch(`${serverUrl}/intercept-test/items/1`)
-      expect(response.status).toBe(200)
-      const html = await response.text()
+      // Note: This is a SPA route so we need to use browser to check rendered content
+      const page = await context.newPage()
+      try {
+        await page.goto(`${serverUrl}/intercept-test/items/1`, { waitUntil: 'networkidle' })
 
-      // Should contain full page indicator
-      expect(html).toContain('Full Page')
-      expect(html).toContain('item-detail-page')
+        // Should see full page, not modal
+        await page.waitForSelector('[data-testid="item-detail-page"]', { timeout: 10_000 })
+        const fullPageText = await page.textContent('[data-testid="full-page-indicator"]')
+        expect(fullPageText).toContain('FULL PAGE')
 
-      // Should NOT contain modal indicator
-      expect(html).not.toContain('intercept-modal')
+        // Modal should NOT be visible
+        const modalVisible = await page.isVisible('[data-testid="intercept-modal-overlay"]')
+        expect(modalVisible).toBe(false)
+      } finally {
+        await page.close()
+      }
     })
 
     it('should show modal on soft navigation (client-side link click)', async () => {
