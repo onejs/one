@@ -17,15 +17,6 @@ export default {
     one({
       router: {
         ignoredRouteFiles: ['**/*.should-be-ignored.*'],
-        // @ts-ignore
-        routeMasks: [
-          {
-            from: '/photos/[id]/modal',
-            to: '/photos/[id]',
-            params: true,
-            unmaskOnReload: false,
-          },
-        ],
       },
 
       setupFile: {

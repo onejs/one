@@ -26,9 +26,15 @@ import * as React from 'react'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
 import { stripGroupSegmentsFromPath } from '../router/matchers'
-import { parseUnmaskFromPath } from '../router/routeMask'
+import {
+  setNavigationType,
+  isReturningFromIntercept,
+  setReturningFromIntercept,
+  restoreInterceptFromHistory,
+} from '../router/interceptRoutes'
 import { rootState as routerRootState } from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
+import { clearAllSlotStates } from '../views/Navigator'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
 
@@ -197,6 +203,11 @@ export function useLinking(
   // @modified - end
 
   const getInitialState = React.useCallback(() => {
+    // @modified - Initial page load is always a "hard" navigation
+    // This means intercepting routes should NOT activate (show full page instead)
+    setNavigationType('hard')
+    clearAllSlotStates()
+
     let value: ResultState | undefined
 
     if (enabledRef.current) {
@@ -205,26 +216,14 @@ export function useLinking(
 
       let path = location ? location.pathname + location.search : undefined
 
-      // @modified - Route masking support
-      // Priority: 1. _unmask search param (SSR-safe), 2. __tempLocation in history.state (client-only)
-      if (location) {
-        // Check for unmask postfix in pathname first (works on both server and client)
-        // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs → actual route /photos/3/modal
-        const unmaskPath = parseUnmaskFromPath(location.pathname)
-        if (unmaskPath) {
-          path = unmaskPath
-          restoringFromTempLocationRef.current = true
-        } else if (typeof window !== 'undefined') {
-          // Fall back to history.state check (client-only, not available on native)
-          const historyState = window.history.state
-          if (historyState) {
-            const { __tempLocation, __tempKey } = historyState
-            // If __tempLocation exists and __tempKey is undefined (unmaskOnReload: false)
-            // Then use the actual route from __tempLocation
-            if (__tempLocation?.pathname && !__tempKey) {
-              path = __tempLocation.pathname + (__tempLocation.search || '')
-              restoringFromTempLocationRef.current = true
-            }
+      // Check history.state for temp location (client-only)
+      if (location && typeof window !== 'undefined') {
+        const historyState = window.history.state
+        if (historyState) {
+          const { __tempLocation, __tempKey } = historyState
+          if (__tempLocation?.pathname && !__tempKey) {
+            path = __tempLocation.pathname + (__tempLocation.search || '')
+            restoringFromTempLocationRef.current = true
           }
         }
       }
@@ -268,6 +267,29 @@ export function useLinking(
       if (!navigation || !enabled) {
         return
       }
+
+      // @modified - Check if we're returning from an intercepted state (back button)
+      // If so, this is NOT a "hard" navigation - it's just closing a modal
+      // We still clear slot states but preserve soft navigation mode
+      if (isReturningFromIntercept()) {
+        // Reset the flag
+        setReturningFromIntercept(false)
+        // Slots already cleared by closeIntercept, but clear again to be safe
+        clearAllSlotStates()
+        // Don't process this as a regular navigation - the underlying route is already correct
+        return
+      }
+
+      // @modified - Check if navigating forward to an intercepted state
+      // If so, restore the intercept instead of doing a hard navigation
+      if (restoreInterceptFromHistory()) {
+        return
+      }
+
+      // @modified - Browser back/forward is a "hard" navigation
+      // This means intercepting routes should NOT activate
+      setNavigationType('hard')
+      clearAllSlotStates()
 
       // @modified - Clear stale masked display path on browser back/forward navigation
       // The user is navigating via browser controls, so the masked URL should not be preserved

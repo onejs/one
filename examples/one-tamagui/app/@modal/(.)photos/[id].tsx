@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useParams, useRouter, Link } from 'one'
+import { useParams, closeIntercept } from 'one'
 import { Dialog, Button, XStack, YStack, Text, Image, Adapt, Sheet } from 'tamagui'
+import { X } from '@tamagui/lucide-icons'
 
 const getPhotoUrl = (id: string) =>
   `https://picsum.photos/id/${(parseInt(id) || 1) * 10}/600/400`
@@ -8,9 +9,17 @@ const getPhotoUrl = (id: string) =>
 // Animation duration in ms - should match Tamagui's 'quick' animation
 const EXIT_ANIMATION_DURATION = 200
 
+/**
+ * Photo modal using intercepting routes.
+ *
+ * This route intercepts /photos/[id] when navigating via Link (soft navigation).
+ * The modal opens while the photo grid stays visible in the background.
+ *
+ * On hard navigation (direct URL, refresh), this route is NOT used.
+ * Instead, the full page at /photos/[id] renders.
+ */
 export default function PhotoModal() {
   const { id = '1' } = useParams<{ id: string }>()
-  const router = useRouter()
   const [isClosing, setIsClosing] = useState(false)
 
   const photo = {
@@ -20,7 +29,7 @@ export default function PhotoModal() {
   }
 
   const handleClose = () => {
-    if (isClosing) return
+    if (isClosing) return // Prevent double-close
     setIsClosing(true)
   }
 
@@ -28,11 +37,13 @@ export default function PhotoModal() {
   useEffect(() => {
     if (isClosing) {
       const timer = setTimeout(() => {
-        router.navigate('/photos' as any)
+        // Use closeIntercept instead of router.back() to properly
+        // close the modal and restore the previous URL
+        closeIntercept()
       }, EXIT_ANIMATION_DURATION)
       return () => clearTimeout(timer)
     }
-  }, [isClosing, router])
+  }, [isClosing])
 
   return (
     <Dialog modal open={!isClosing} onOpenChange={(open) => !open && handleClose()}>
@@ -50,7 +61,7 @@ export default function PhotoModal() {
           elevate
           key="content"
           animation={[
-            'quick',
+            '200ms',
             {
               opacity: {
                 overshootClamping: true,
@@ -60,16 +71,14 @@ export default function PhotoModal() {
           enterStyle={{ x: 0, y: -20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
           width="90%"
-          maw={500}
+          maxW={500}
         >
-          <XStack jc="space-between" ai="center" mb="$3">
-            <Dialog.Title fontSize="$6" data-testid="modal-title">
+          <XStack justify="space-between" items="center" mb="$3">
+            <Dialog.Title fontSize="$6" testID="modal-title">
               {photo.title}
             </Dialog.Title>
             <Dialog.Close asChild>
-              <Button size="$3" circular data-testid="modal-close-btn">
-                X
-              </Button>
+              <Button size="$3" circular icon={X} testID="modal-close-btn" />
             </Dialog.Close>
           </XStack>
 
@@ -80,21 +89,16 @@ export default function PhotoModal() {
             borderRadius="$4"
           />
 
-          <YStack gap="$2" mt="$3" data-testid="modal-content">
-            <Text color="$color11" fontSize="$3" data-testid="modal-route-info">
-              This is a modal at /photos/{id}/modal
+          <YStack gap="$2" mt="$3" testID="modal-content">
+            <Text color="$color11" fontSize="$3" testID="modal-route-info">
+              Intercepting route: @modal/(.)photos/{id}
             </Text>
             <Text color="$color11" fontSize="$3">
-              But the URL shows /photos/{id} (masked!)
+              URL shows /photos/{id} - shareable!
             </Text>
-
-            <XStack gap="$2" mt="$2">
-              <Link href={`/photos/${id}/modal` as any} target="_blank">
-                <Text color="$blue10" fontSize="$3" textDecorationLine="underline">
-                  Open in new tab
-                </Text>
-              </Link>
-            </XStack>
+            <Text color="$color11" fontSize="$3" mt="$2">
+              Try refreshing - you'll see the full page version.
+            </Text>
           </YStack>
 
           <Adapt when="sm" platform="touch">

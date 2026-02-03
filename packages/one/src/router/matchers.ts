@@ -94,3 +94,85 @@ export function isTypedRoute(name: string) {
     name.match(/(_layout|[^/]*?\+[^/]*?)\.[tj]sx?$/) === null
   )
 }
+
+// ============================================
+// Parallel Routes & Intercepting Routes
+// ============================================
+
+/** Match @slot directories: @modal, @sidebar, etc. */
+const slotPrefixRe = /^@([a-zA-Z][a-zA-Z0-9_-]*)$/
+
+/** Match @modal -> 'modal', @sidebar -> 'sidebar' */
+export function matchSlotName(name: string): string | undefined {
+  return name.match(slotPrefixRe)?.[1]
+}
+
+/** Check if a directory name is a slot directory */
+export function isSlotDirectory(name: string): boolean {
+  return slotPrefixRe.test(name)
+}
+
+export interface InterceptMatch {
+  /** Number of levels up (0 = same level, 1 = parent, Infinity = root) */
+  levels: number
+  /** The actual route path after stripping intercept prefix */
+  targetPath: string
+  /** Original segment like "(.)photos" or "(..)photos" */
+  originalSegment: string
+}
+
+/**
+ * Match intercept prefixes: (.), (..), (...), (..)(..) etc.
+ *
+ * Examples:
+ *   - "(.)photos" -> { levels: 0, targetPath: "photos" }
+ *   - "(..)photos" -> { levels: 1, targetPath: "photos" }
+ *   - "(...)photos" -> { levels: Infinity, targetPath: "photos" }
+ *   - "(..)(..)photos" -> { levels: 2, targetPath: "photos" }
+ */
+export function matchInterceptPrefix(segment: string): InterceptMatch | undefined {
+  // Match one or more intercept prefixes followed by the target path
+  const match = segment.match(/^((?:\(\.{1,3}\))+)(.+)$/)
+  if (!match) return undefined
+
+  const [, prefixes, targetPath] = match
+
+  // (...) means from root (Infinity levels)
+  if (prefixes.includes('(...)')) {
+    return { levels: Infinity, targetPath, originalSegment: segment }
+  }
+
+  // Count (..) for levels up, (.) means same level (0)
+  const doubleDotMatches = prefixes.match(/\(\.{2}\)/g) || []
+  const levels = doubleDotMatches.length
+
+  return { levels, targetPath, originalSegment: segment }
+}
+
+/**
+ * Strip intercept prefixes from a path segment
+ * "(.)photos" -> "photos"
+ * "(..)settings" -> "settings"
+ */
+export function stripInterceptPrefix(segment: string): string {
+  const match = matchInterceptPrefix(segment)
+  return match ? match.targetPath : segment
+}
+
+/**
+ * Check if a segment has an intercept prefix
+ */
+export function hasInterceptPrefix(segment: string): boolean {
+  return /^\(\.{1,3}\)/.test(segment)
+}
+
+/**
+ * Strip slot prefix from path for URL generation
+ * Removes @slot segments from path
+ */
+export function stripSlotSegmentsFromPath(path: string): string {
+  return path
+    .split('/')
+    .filter((segment) => !isSlotDirectory(segment))
+    .join('/')
+}

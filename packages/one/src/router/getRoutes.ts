@@ -5,9 +5,12 @@ import {
   matchArrayGroupName,
   matchDynamicName,
   matchGroupName,
+  matchInterceptPrefix,
+  matchSlotName,
   removeSupportedExtensions,
+  stripInterceptPrefix,
 } from './matchers'
-import type { DynamicConvention, RouteNode } from './Route'
+import type { DynamicConvention, RouteNode, SlotConfig } from './Route'
 
 export type Options = {
   ignore?: RegExp[]
@@ -24,6 +27,8 @@ type DirectoryNode = {
   middleware?: RouteNode
   files: Map<string, RouteNode[]>
   subdirectories: Map<string, DirectoryNode>
+  /** Slot directories (@modal, @sidebar, etc.) for parallel routes */
+  slots: Map<string, DirectoryNode>
 }
 
 const validPlatforms = new Set(['android', 'ios', 'native', 'web'])
@@ -81,6 +86,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
   const rootDirectory: DirectoryNode = {
     files: new Map(),
     subdirectories: new Map(),
+    slots: new Map(),
   }
 
   let hasRoutes = false
@@ -146,22 +152,51 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
       let directory = rootDirectory
 
       for (const part of subdirectoryParts) {
-        let subDirectory = directory.subdirectories.get(part)
+        // Check if this is a slot directory (@modal, @sidebar, etc.)
+        const slotName = matchSlotName(part)
 
-        // Create any missing subdirectories
-        if (!subDirectory) {
-          subDirectory = {
-            files: new Map(),
-            subdirectories: new Map(),
+        if (slotName) {
+          // Handle slot directory
+          let slotDirectory = directory.slots.get(slotName)
+          if (!slotDirectory) {
+            slotDirectory = {
+              files: new Map(),
+              subdirectories: new Map(),
+              slots: new Map(),
+            }
+            directory.slots.set(slotName, slotDirectory)
           }
-          directory.subdirectories.set(part, subDirectory)
-        }
+          directory = slotDirectory
+        } else {
+          // Handle regular subdirectory
+          let subDirectory = directory.subdirectories.get(part)
 
-        directory = subDirectory
+          // Create any missing subdirectories
+          if (!subDirectory) {
+            subDirectory = {
+              files: new Map(),
+              subdirectories: new Map(),
+              slots: new Map(),
+            }
+            directory.subdirectories.set(part, subDirectory)
+          }
+
+          directory = subDirectory
+        }
       }
 
-      // Clone the node for this route
-      node = { ...node, route }
+      // Clone the node for this route with slot and intercept info
+      node = {
+        ...node,
+        route,
+        slotName: meta.slotName,
+        intercept: meta.interceptMatch
+          ? {
+              levels: meta.interceptMatch.levels,
+              targetPath: meta.interceptMatch.targetPath,
+            }
+          : undefined,
+      }
 
       if (meta.isLayout) {
         directory.layout ??= []
@@ -335,7 +370,117 @@ function flattenDirectoryTreeToRoutes(
     flattenDirectoryTreeToRoutes(child, options, layout, pathToRemove, middlewares)
   }
 
+  // Process slot directories (@modal, @sidebar, etc.) and attach to layout
+  if (directory.slots.size > 0) {
+    layout.slots = new Map()
+
+    for (const [slotName, slotDir] of directory.slots) {
+      const slotConfig = flattenSlotDirectory(slotDir, slotName, options, pathToRemove)
+      layout.slots.set(slotName, slotConfig)
+    }
+  }
+
   return layout
+}
+
+/**
+ * Flatten a slot directory into a SlotConfig
+ */
+function flattenSlotDirectory(
+  directory: DirectoryNode,
+  slotName: string,
+  options: Options,
+  pathToRemove: string
+): SlotConfig {
+  const interceptRoutes: RouteNode[] = []
+  let defaultRoute: RouteNode | undefined
+
+  // Process files in this slot directory
+  for (const routes of directory.files.values()) {
+    const routeNode = getMostSpecific(routes)
+
+    // Strip the slot prefix and pathToRemove from the route for URL matching
+    let cleanRoute = routeNode.route.replace(pathToRemove, '')
+
+    // Strip slot prefix (@modal/, @sidebar/, etc.) and intercept prefixes
+    cleanRoute = cleanRoute
+      .split('/')
+      .filter((segment) => !matchSlotName(segment)) // Remove @slot segments
+      .map((segment) => stripInterceptPrefix(segment)) // Remove (.) prefixes
+      .join('/')
+
+    // Check if this is a default.tsx file
+    if (cleanRoute.endsWith('default') || cleanRoute === 'default') {
+      defaultRoute = {
+        ...routeNode,
+        route: cleanRoute,
+        slotName,
+        dynamic: generateDynamic(cleanRoute),
+      }
+    } else {
+      interceptRoutes.push({
+        ...routeNode,
+        route: cleanRoute,
+        slotName,
+        dynamic: generateDynamic(cleanRoute),
+      })
+    }
+  }
+
+  // Process subdirectories within the slot
+  for (const [subDirName, subDir] of directory.subdirectories) {
+    const subRoutes = flattenSlotSubdirectory(subDir, slotName, options, pathToRemove, subDirName)
+    interceptRoutes.push(...subRoutes)
+  }
+
+  return {
+    name: slotName,
+    defaultRoute,
+    interceptRoutes,
+  }
+}
+
+/**
+ * Recursively flatten subdirectories within a slot
+ */
+function flattenSlotSubdirectory(
+  directory: DirectoryNode,
+  slotName: string,
+  options: Options,
+  pathToRemove: string,
+  currentPath: string
+): RouteNode[] {
+  const routes: RouteNode[] = []
+
+  // Process files
+  for (const fileRoutes of directory.files.values()) {
+    const routeNode = getMostSpecific(fileRoutes)
+
+    // Build the full route path
+    let cleanRoute = routeNode.route.replace(pathToRemove, '')
+
+    // Strip slot prefix (@modal/, @sidebar/, etc.) and intercept prefixes
+    cleanRoute = cleanRoute
+      .split('/')
+      .filter((segment) => !matchSlotName(segment)) // Remove @slot segments
+      .map((segment) => stripInterceptPrefix(segment)) // Remove (.) prefixes
+      .join('/')
+
+    routes.push({
+      ...routeNode,
+      route: cleanRoute,
+      slotName,
+      dynamic: generateDynamic(cleanRoute),
+    })
+  }
+
+  // Recurse into subdirectories
+  for (const [subDirName, subDir] of directory.subdirectories) {
+    const subPath = currentPath ? `${currentPath}/${subDirName}` : subDirName
+    routes.push(...flattenSlotSubdirectory(subDir, slotName, options, pathToRemove, subPath))
+  }
+
+  return routes
 }
 
 function getFileMeta(key: string, options: Options) {
@@ -371,6 +516,40 @@ function getFileMeta(key: string, options: Options) {
     throw new Error(
       `Invalid route ./${key}. Route nodes cannot start with the '+' character. "Please rename to ${renamedRoute}"`
     )
+  }
+
+  // Detect slot directory in path (@modal, @sidebar, etc.)
+  let slotName: string | undefined
+  for (const part of parts) {
+    const match = matchSlotName(part)
+    if (match) {
+      slotName = match
+      break
+    }
+  }
+
+  // Detect intercept prefix in directory names like (.)photos, (..)settings
+  // Build full target path from intercept segment + remaining path segments
+  let interceptMatch: ReturnType<typeof matchInterceptPrefix>
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i]
+    const match = matchInterceptPrefix(part)
+    if (match) {
+      // Build full target path: intercept's targetPath + remaining path parts
+      // Filter out 'index' since index.tsx represents the root of that directory
+      const remainingParts = parts
+        .slice(i + 1)
+        .map((p) => removeSupportedExtensions(p))
+        .filter((p) => p !== 'index')
+      const fullTargetPath = [match.targetPath, ...remainingParts]
+        .filter(Boolean)
+        .join('/')
+      interceptMatch = {
+        ...match,
+        targetPath: fullTargetPath,
+      }
+      break
+    }
   }
 
   let specificity = 0
@@ -414,6 +593,8 @@ function getFileMeta(key: string, options: Options) {
     isLayout,
     isMiddleware,
     renderMode,
+    slotName,
+    interceptMatch,
   }
 }
 

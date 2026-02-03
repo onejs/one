@@ -51,42 +51,17 @@ import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
 import { setClientMatches } from '../useMatches'
 import type { RouteMatch } from '../useMatches'
-import { type RouteMask, findMatchingMask } from './routeMask'
+import {
+  findInterceptRoute,
+  setNavigationType,
+  updateURLWithoutNavigation,
+  storeInterceptState,
+} from './interceptRoutes'
+import { setSlotState } from '../views/Navigator'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
-
-// Route masks for automatic URL masking
-let routeMasks: RouteMask[] = []
-
-/**
- * Set route masks for automatic URL masking during navigation.
- * Route masks transform URLs displayed in the browser without changing the actual route.
- *
- * @example
- * ```tsx
- * import { setRouteMasks, createRouteMask } from 'one'
- *
- * setRouteMasks([
- *   createRouteMask({
- *     from: '/photos/[id]/modal',
- *     to: '/photos/[id]',
- *     unmaskOnReload: true,
- *   }),
- * ])
- * ```
- */
-export function setRouteMasks(masks: RouteMask[]) {
-  routeMasks = masks
-}
-
-/**
- * Get the current route masks.
- */
-export function getRouteMasks(): RouteMask[] {
-  return routeMasks
-}
 
 // Global registry for protected routes
 // Key: contextKey (e.g., '/protected-test'), Value: Set of protected route names
@@ -245,9 +220,10 @@ export function initialize(
         ? ` [${node.dynamic.map((d) => d.name).join(', ')}]`
         : ''
       const typeBadge = node.type !== 'layout' ? ` (${node.type})` : ''
+      const slotsBadge = node.slots?.size ? ` {@${Array.from(node.slots.keys()).join(', @')}}` : ''
       const routeName = node.route || '/'
 
-      let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}`
+      let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}${slotsBadge}`
 
       const visibleChildren = node.children.filter((child) => !child.internal)
       for (let i = 0; i < visibleChildren.length; i++) {
@@ -260,6 +236,20 @@ export function initialize(
     }
 
     console.info(`[one] 📍 Route structure:\n${formatRouteTree(routeNode)}`)
+
+    // Log slot details
+    if (routeNode.slots?.size) {
+      console.info(`[one] 📦 Slots on root layout:`)
+      for (const [slotName, slotConfig] of routeNode.slots) {
+        console.info(`  @${slotName}:`, {
+          defaultRoute: slotConfig.defaultRoute?.route,
+          interceptRoutes: slotConfig.interceptRoutes.map((r) => ({
+            route: r.route,
+            intercept: r.intercept,
+          })),
+        })
+      }
+    }
   }
 
   navigationRef = ref as unknown as OneRouter.NavigationRef
@@ -875,6 +865,10 @@ export async function linkTo(
     console.info(`[one] 🔗 ${event || 'NAVIGATE'} ${href}`)
   }
 
+  // Mark this as a soft navigation (client-side Link click)
+  // This enables intercepting routes to activate
+  setNavigationType('soft')
+
   if (href[0] === '#') {
     // this is just linking to a section of the current page on web
     return
@@ -892,6 +886,38 @@ export async function linkTo(
 
   // Check if the route is protected and should be blocked
   if (isRouteProtected(href)) {
+    return
+  }
+
+  // Check for intercepting routes (parallel routes with @slot)
+  // This enables modal patterns where soft nav shows modal, hard nav shows full page
+  // Pass root node - findInterceptRoute will traverse to find all layouts with slots along the current path
+  const currentLayoutNode = routeNode
+  const currentPath = routeInfo?.pathname || '/'
+
+  const interceptResult = findInterceptRoute(href, currentLayoutNode, currentPath)
+
+  if (interceptResult) {
+    // Found an intercept route! Render in slot instead of full navigation
+    const { interceptRoute, slotName, layoutContextKey, params } = interceptResult
+
+    // Create scoped slot key to prevent duplicate modals across layouts
+    const scopedSlotKey = `${layoutContextKey}:${slotName}`
+
+    // Store intercept state for forward navigation restoration
+    storeInterceptState(scopedSlotKey, interceptRoute, params)
+
+    // Update URL to show the target path (not the intercept route path)
+    updateURLWithoutNavigation(href)
+
+    // Activate the slot to render the intercept route (using scoped key)
+    setSlotState(scopedSlotKey, {
+      activeRouteKey: interceptRoute.contextKey,
+      activeRouteNode: interceptRoute,
+      params,
+      isIntercepted: true,
+    })
+
     return
   }
 
@@ -1034,28 +1060,8 @@ export async function linkTo(
     hashes[rootState.key] = href.slice(hash)
   }
 
-  // Auto-apply route mask if no explicit mask provided and routeMasks are configured
-  let finalOptions = options ?? null
-  if (!finalOptions?.mask && routeMasks.length > 0) {
-    // Extract pathname from href (remove search params and hash)
-    const pathname = extractPathnameFromHref(href)
-    const maskResult = findMatchingMask(pathname, routeMasks)
-    if (maskResult) {
-      finalOptions = {
-        ...finalOptions,
-        mask: {
-          href: maskResult.maskedPath,
-          unmaskOnReload: maskResult.unmaskOnReload,
-        },
-      }
-      if (process.env.ONE_DEBUG_ROUTER) {
-        console.info(`[one] 🎭 Auto-masked ${pathname} → ${maskResult.maskedPath}`)
-      }
-    }
-  }
-
   // a bit hacky until can figure out a reliable way to tie it to the state
-  nextOptions = finalOptions
+  nextOptions = options ?? null
 
   startTransition(() => {
     const action = getNavigateAction(state, rootState, event)
