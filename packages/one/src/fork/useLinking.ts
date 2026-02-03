@@ -32,7 +32,6 @@ import {
   setReturningFromIntercept,
   restoreInterceptFromHistory,
 } from '../router/interceptRoutes'
-import { parseUnmaskFromPath } from '../router/routeMask'
 import { rootState as routerRootState } from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { clearAllSlotStates } from '../views/Navigator'
@@ -217,26 +216,14 @@ export function useLinking(
 
       let path = location ? location.pathname + location.search : undefined
 
-      // @modified - Route masking support
-      // Priority: 1. _unmask search param (SSR-safe), 2. __tempLocation in history.state (client-only)
-      if (location) {
-        // Check for unmask postfix in pathname first (works on both server and client)
-        // e.g. /photos/3__L3Bob3Rvcy8zL21vZGFs → actual route /photos/3/modal
-        const unmaskPath = parseUnmaskFromPath(location.pathname)
-        if (unmaskPath) {
-          path = unmaskPath
-          restoringFromTempLocationRef.current = true
-        } else if (typeof window !== 'undefined') {
-          // Fall back to history.state check (client-only, not available on native)
-          const historyState = window.history.state
-          if (historyState) {
-            const { __tempLocation, __tempKey } = historyState
-            // If __tempLocation exists and __tempKey is undefined (unmaskOnReload: false)
-            // Then use the actual route from __tempLocation
-            if (__tempLocation?.pathname && !__tempKey) {
-              path = __tempLocation.pathname + (__tempLocation.search || '')
-              restoringFromTempLocationRef.current = true
-            }
+      // Check history.state for temp location (client-only)
+      if (location && typeof window !== 'undefined') {
+        const historyState = window.history.state
+        if (historyState) {
+          const { __tempLocation, __tempKey } = historyState
+          if (__tempLocation?.pathname && !__tempKey) {
+            path = __tempLocation.pathname + (__tempLocation.search || '')
+            restoringFromTempLocationRef.current = true
           }
         }
       }
