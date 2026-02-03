@@ -429,7 +429,13 @@ function flattenSlotDirectory(
 
   // Process subdirectories within the slot
   for (const [subDirName, subDir] of directory.subdirectories) {
-    const subRoutes = flattenSlotSubdirectory(subDir, slotName, options, pathToRemove, subDirName)
+    const subRoutes = flattenSlotSubdirectory(
+      subDir,
+      slotName,
+      options,
+      pathToRemove,
+      subDirName
+    )
     interceptRoutes.push(...subRoutes)
   }
 
@@ -477,7 +483,9 @@ function flattenSlotSubdirectory(
   // Recurse into subdirectories
   for (const [subDirName, subDir] of directory.subdirectories) {
     const subPath = currentPath ? `${currentPath}/${subDirName}` : subDirName
-    routes.push(...flattenSlotSubdirectory(subDir, slotName, options, pathToRemove, subPath))
+    routes.push(
+      ...flattenSlotSubdirectory(subDir, slotName, options, pathToRemove, subPath)
+    )
   }
 
   return routes

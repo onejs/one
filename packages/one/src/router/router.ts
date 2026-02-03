@@ -220,7 +220,9 @@ export function initialize(
         ? ` [${node.dynamic.map((d) => d.name).join(', ')}]`
         : ''
       const typeBadge = node.type !== 'layout' ? ` (${node.type})` : ''
-      const slotsBadge = node.slots?.size ? ` {@${Array.from(node.slots.keys()).join(', @')}}` : ''
+      const slotsBadge = node.slots?.size
+        ? ` {@${Array.from(node.slots.keys()).join(', @')}}`
+        : ''
       const routeName = node.route || '/'
 
       let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}${slotsBadge}`

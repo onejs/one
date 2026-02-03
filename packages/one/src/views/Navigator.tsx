@@ -290,7 +290,10 @@ export function getScopedSlotKey(slotName: string, layoutContextKey?: string): s
  * @param slotName - The slot name (e.g., "modal")
  * @param layoutContextKey - The layout's contextKey to scope slot state per-layout
  */
-export function useNamedSlot(slotName: string, layoutContextKey?: string): React.ReactNode | null {
+export function useNamedSlot(
+  slotName: string,
+  layoutContextKey?: string
+): React.ReactNode | null {
   // Subscribe to slot state changes
   useSlotStateSubscription()
 
@@ -306,7 +309,12 @@ export function useNamedSlot(slotName: string, layoutContextKey?: string): React
   if (slotState.activeRouteNode) {
     const Component = getQualifiedRouteComponent(slotState.activeRouteNode)
     // Pass params from the intercept match
-    return <Component key={slotState.activeRouteKey} route={{ params: slotState.params || {} }} />
+    return (
+      <Component
+        key={slotState.activeRouteKey}
+        route={{ params: slotState.params || {} }}
+      />
+    )
   }
 
   return null

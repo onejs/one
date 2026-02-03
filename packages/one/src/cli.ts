@@ -270,7 +270,10 @@ const generateRoutes = defineCommand({
   meta: {
     name: 'generate-routes',
     version: version,
-    description: withDocsLink('Generate route type definitions (routes.d.ts)', 'generate-routes'),
+    description: withDocsLink(
+      'Generate route type definitions (routes.d.ts)',
+      'generate-routes'
+    ),
   },
   args: {
     appDir: {
@@ -293,7 +296,10 @@ const typegen = defineCommand({
   meta: {
     name: 'typegen',
     version: version,
-    description: withDocsLink('Generate routes.d.ts (alias for generate-routes)', 'typegen'),
+    description: withDocsLink(
+      'Generate routes.d.ts (alias for generate-routes)',
+      'typegen'
+    ),
   },
   args: {
     appDir: {

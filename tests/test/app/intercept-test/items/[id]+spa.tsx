@@ -12,7 +12,9 @@ export default function ItemDetailPage() {
     <YStack p="$4" gap="$4" testID="item-detail-page">
       <XStack gap="$3" ai="center">
         <Link href="/intercept-test" asChild>
-          <Button size="$3" testID="back-to-list">Back</Button>
+          <Button size="$3" testID="back-to-list">
+            Back
+          </Button>
         </Link>
         <Text fontSize="$6" fontWeight="bold" testID="item-title">
           Item {id} (Full Page)

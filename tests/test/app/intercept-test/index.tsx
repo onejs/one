@@ -8,7 +8,9 @@ import { YStack, Text } from 'tamagui'
 export default function InterceptTestIndex() {
   return (
     <YStack p="$4" gap="$3" testID="intercept-test-index">
-      <Text fontSize="$5" fontWeight="bold">Items List</Text>
+      <Text fontSize="$5" fontWeight="bold">
+        Items List
+      </Text>
       <Text color="$color11" testID="intercept-index-info">
         Click an item to open it in a modal (intercepting route).
       </Text>

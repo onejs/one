@@ -193,10 +193,7 @@ const setToUnionType = <T>(set: Set<T>) => {
   const sorted = [...set].sort()
   if (sorted.length === 1) return `\`${sorted[0]}\``
   // format as multi-line union for cleaner diffs
-  return (
-    '\n        | ' +
-    sorted.map((s) => `\`${s}\``).join('\n        | ')
-  )
+  return '\n        | ' + sorted.map((s) => `\`${s}\``).join('\n        | ')
 }
 
 function generateCombinations(pathname) {

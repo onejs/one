@@ -49,7 +49,10 @@ export interface InterceptResult {
 /**
  * Recursively collect all layout nodes with slots from the entire route tree.
  */
-function collectAllLayoutsWithSlots(node: RouteNode, collected: RouteNode[] = []): RouteNode[] {
+function collectAllLayoutsWithSlots(
+  node: RouteNode,
+  collected: RouteNode[] = []
+): RouteNode[] {
   if (node.slots && node.slots.size > 0) {
     collected.push(node)
   }
@@ -167,7 +170,6 @@ export function findInterceptRoute(
     const layoutNode = layoutsWithSlots[i]
 
     for (const [slotName, slotConfig] of layoutNode.slots!) {
-
       const result = findMatchingInterceptInSlot(
         targetPath,
         slotName,
@@ -281,10 +283,7 @@ function resolveInterceptTargetPath(
  * - "/users/[userId]/posts/[postId]" matches "/users/1/posts/2" → { userId: "1", postId: "2" }
  * - "/docs/[...slug]" matches "/docs/a/b/c" → { slug: "a/b/c" }
  */
-function matchPath(
-  path: string,
-  pattern: string
-): Record<string, string> | null {
+function matchPath(path: string, pattern: string): Record<string, string> | null {
   // Normalize paths
   const normalizedPath = '/' + path.replace(/^\/+/, '').replace(/\/+$/, '')
   const normalizedPattern = '/' + pattern.replace(/^\/+/, '').replace(/\/+$/, '')
@@ -452,9 +451,7 @@ let setSlotStateCallback:
     ) => void)
   | null = null
 
-export function registerSetSlotState(
-  callback: typeof setSlotStateCallback
-) {
+export function registerSetSlotState(callback: typeof setSlotStateCallback) {
   setSlotStateCallback = callback
 }
 
