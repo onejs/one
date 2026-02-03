@@ -31,15 +31,21 @@ describe('Intercepting Routes', () => {
       // Note: This is a SPA route so we need to use browser to check rendered content
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/intercept-test/items/1`, { waitUntil: 'networkidle' })
+        await page.goto(`${serverUrl}/intercept-test/items/1`, {
+          waitUntil: 'networkidle',
+        })
 
         // Should see full page, not modal
-        await page.waitForSelector('[data-testid="item-detail-page"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="item-detail-page"]', {
+          timeout: 10_000,
+        })
         const fullPageText = await page.textContent('[data-testid="full-page-indicator"]')
         expect(fullPageText).toContain('FULL PAGE')
 
         // Modal should NOT be visible
-        const modalVisible = await page.isVisible('[data-testid="intercept-modal-overlay"]')
+        const modalVisible = await page.isVisible(
+          '[data-testid="intercept-modal-overlay"]'
+        )
         expect(modalVisible).toBe(false)
       } finally {
         await page.close()
@@ -51,13 +57,17 @@ describe('Intercepting Routes', () => {
       try {
         // Start at the list page
         await page.goto(`${serverUrl}/intercept-test`, { waitUntil: 'networkidle' })
-        await page.waitForSelector('[data-testid="intercept-test-index"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-test-index"]', {
+          timeout: 10_000,
+        })
 
         // Click an item link (soft navigation)
         await page.click('[data-testid="item-link-1"]')
 
         // Should see the modal (intercepting route)
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
         await page.waitForSelector('[data-testid="modal-indicator"]', { timeout: 5_000 })
 
         // Modal content should be visible
@@ -85,17 +95,25 @@ describe('Intercepting Routes', () => {
         await page.click('[data-testid="item-link-2"]')
 
         // Wait for modal to appear
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
 
         // Refresh the page
         await page.reload({ waitUntil: 'networkidle' })
 
         // After refresh, should see FULL PAGE, not modal
-        await page.waitForSelector('[data-testid="item-detail-page"]', { timeout: 10_000 })
-        await page.waitForSelector('[data-testid="full-page-indicator"]', { timeout: 5_000 })
+        await page.waitForSelector('[data-testid="item-detail-page"]', {
+          timeout: 10_000,
+        })
+        await page.waitForSelector('[data-testid="full-page-indicator"]', {
+          timeout: 5_000,
+        })
 
         // Modal should NOT be visible
-        const modalVisible = await page.isVisible('[data-testid="intercept-modal-overlay"]')
+        const modalVisible = await page.isVisible(
+          '[data-testid="intercept-modal-overlay"]'
+        )
         expect(modalVisible).toBe(false)
 
         // Should still be at the same URL
@@ -114,7 +132,9 @@ describe('Intercepting Routes', () => {
 
         // Open modal
         await page.click('[data-testid="item-link-1"]')
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
 
         // Verify modal is open
         expect(page.url()).toContain('/intercept-test/items/1')
@@ -150,7 +170,9 @@ describe('Intercepting Routes', () => {
 
         // Open modal
         await page.click('[data-testid="item-link-3"]')
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
 
         // Click on the overlay (not the content)
         // Click at the edge of the viewport which should be on the overlay
@@ -181,7 +203,9 @@ describe('Intercepting Routes', () => {
 
         // Open modal
         await page.click('[data-testid="item-link-1"]')
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
 
         // Press browser back
         await page.goBack()
@@ -208,7 +232,9 @@ describe('Intercepting Routes', () => {
 
         // Open item 1 modal
         await page.click('[data-testid="item-link-1"]')
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
         let modalTitle = await page.textContent('[data-testid="modal-title"]')
         expect(modalTitle).toContain('Item 1')
 
@@ -221,7 +247,9 @@ describe('Intercepting Routes', () => {
 
         // Open item 2 modal
         await page.click('[data-testid="item-link-2"]')
-        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', { timeout: 10_000 })
+        await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
+          timeout: 10_000,
+        })
         modalTitle = await page.textContent('[data-testid="modal-title"]')
         expect(modalTitle).toContain('Item 2')
 
@@ -238,15 +266,23 @@ describe('Intercepting Routes', () => {
       const page = await context.newPage()
       try {
         // Simulate sharing: directly navigate to the item URL
-        await page.goto(`${serverUrl}/intercept-test/items/1`, { waitUntil: 'networkidle' })
+        await page.goto(`${serverUrl}/intercept-test/items/1`, {
+          waitUntil: 'networkidle',
+        })
 
         // Should see full page, not modal
-        await page.waitForSelector('[data-testid="item-detail-page"]', { timeout: 10_000 })
-        const fullPageIndicator = await page.textContent('[data-testid="full-page-indicator"]')
+        await page.waitForSelector('[data-testid="item-detail-page"]', {
+          timeout: 10_000,
+        })
+        const fullPageIndicator = await page.textContent(
+          '[data-testid="full-page-indicator"]'
+        )
         expect(fullPageIndicator).toContain('FULL PAGE')
 
         // Modal should not exist
-        const modalExists = await page.isVisible('[data-testid="intercept-modal-overlay"]')
+        const modalExists = await page.isVisible(
+          '[data-testid="intercept-modal-overlay"]'
+        )
         expect(modalExists).toBe(false)
       } finally {
         await page.close()

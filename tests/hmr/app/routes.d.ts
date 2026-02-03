@@ -6,7 +6,10 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/_sitemap` | `/loader-test`
+      StaticRoutes: 
+        | `/`
+        | `/_sitemap`
+        | `/loader-test`
       DynamicRoutes: never
       DynamicRouteTemplate: never
       IsTyped: true
