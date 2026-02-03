@@ -53,7 +53,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
           if (route.type === 'spa') {
             // render just the layouts? route.layouts
-            return `<html><head>
+            return `<!DOCTYPE html><html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module" src="/@one/dev.js"></script>
             <script type="module" src="/@vite/client" async=""></script>
