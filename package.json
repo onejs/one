@@ -84,7 +84,8 @@
     "@modelcontextprotocol/sdk": "1.25.2",
     "axios": "1.13.2",
     "got": "11.8.5",
-    "hono": "4.11.4"
+    "hono": "4.11.7",
+    "fastify": "5.7.2"
   },
   "dependencies": {
     "@manypkg/cli": "^0.19.1",
