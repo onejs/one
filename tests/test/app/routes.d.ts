@@ -127,6 +127,7 @@ declare module 'one' {
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/${string}`
         | `/segments-stable-ids/${string}`
+        | `/servers/${OneRouter.SingleRoutePart<T>}`
         | `/spa/${OneRouter.SingleRoutePart<T>}`
         | `/ssg-not-found/${OneRouter.SingleRoutePart<T>}`
         | `/ssg-not-found/+not-found`
@@ -149,6 +150,7 @@ declare module 'one' {
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/[...subpath]`
         | `/segments-stable-ids/[...segments]`
+        | `/servers/[serverId]`
         | `/spa/[spaparams]`
         | `/ssg-not-found/+not-found`
         | `/ssg-not-found/[slug]`
@@ -172,6 +174,7 @@ declare module 'one' {
         '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
         '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
         '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>
+        '/servers/[serverId]': RouteInfo<{ serverId: string }>
         '/spa/[spaparams]': RouteInfo<{ spaparams: string }>
         '/ssg-not-found/+not-found': RouteInfo<{}>
         '/ssg-not-found/[slug]': RouteInfo<{ slug: string }>
