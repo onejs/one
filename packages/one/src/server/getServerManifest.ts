@@ -274,11 +274,20 @@ function getPathMeta(route: string) {
     })
     .join('')
 
-  const urlPath = urlPathParts.map((p) => p.content).join('')
-  const urlCleanPath = urlPathParts
+  let urlPath = urlPathParts.map((p) => p.content).join('')
+  let urlCleanPath = urlPathParts
     .filter((p) => p.type !== 'group')
     .map((p) => p.content)
     .join('')
+
+  // for catch-all routes ending with /*, remove optional ? from params
+  // hono doesn't correctly match /:param?/* patterns
+  if (urlPath.endsWith('/*')) {
+    urlPath = urlPath.replace(/\?(?=\/|\/\*)/g, '')
+  }
+  if (urlCleanPath.endsWith('/*')) {
+    urlCleanPath = urlCleanPath.replace(/\?(?=\/|\/\*)/g, '')
+  }
 
   return {
     namedRegex: `^${routeSegments}(?:/)?$`,
