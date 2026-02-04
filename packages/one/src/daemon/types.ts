@@ -6,6 +6,7 @@ export interface ServerRegistration {
   bundleId: string
   root: string
   registeredAt: number
+  lastActiveAt?: number
 }
 
 export interface RouteBinding {
@@ -28,6 +29,8 @@ export type IPCMessage =
   | { type: 'route-clear'; bundleId: string }
   | { type: 'status' }
   | { type: 'ping' }
+  | { type: 'touch'; id: string } // mark server as recently active
+  | { type: 'get-last-active' } // get the most recently active server
 
 export type IPCResponse =
   | { type: 'registered'; id: string }
@@ -35,4 +38,6 @@ export type IPCResponse =
   | { type: 'routed' }
   | { type: 'status'; servers: ServerRegistration[]; routes: RouteBinding[] }
   | { type: 'pong' }
+  | { type: 'touched' }
+  | { type: 'last-active'; server: ServerRegistration | null }
   | { type: 'error'; message: string }

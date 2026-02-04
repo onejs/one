@@ -26,4 +26,11 @@ export declare function getDaemonStatus(): Promise<{
 }>;
 export declare function setDaemonRoute(bundleId: string, serverId: string): Promise<void>;
 export declare function clearDaemonRoute(bundleId: string): Promise<void>;
+export declare function touchDaemonServer(id: string): Promise<void>;
+export declare function getLastActiveDaemonServer(): Promise<{
+    id: string;
+    port: number;
+    bundleId: string;
+    root: string;
+} | null>;
 //# sourceMappingURL=ipc.d.ts.map

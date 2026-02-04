@@ -1,6 +1,6 @@
 // minimal terminal UI for daemon - no deps, just ANSI
 import type { DaemonState, ServerRegistration } from './types'
-import { getAllServers, getRoute, setRoute } from './registry'
+import { getAllServers, getRoute, setRoute, getLastActiveServer } from './registry'
 import { getBootedSimulators } from './picker'
 import { setRouteMode } from './server'
 import colors from 'picocolors'
@@ -251,12 +251,15 @@ function render(): void {
     if (server) {
       const isSelected = tuiState.selectedCol === 1 && tuiState.selectedRow === i
       const hasConnection = [...tuiState.routes.values()].includes(server.id)
+      const lastActive = daemonState ? getLastActiveServer(daemonState) : null
+      const isLastActive = lastActive?.id === server.id
 
       const dot = hasConnection ? box.dot : box.circle
-      const shortRoot = server.root.replace(process.env.HOME || '', '~').slice(0, 18)
+      const activeMarker = isLastActive ? colors.yellow('★') : ' '
+      const shortRoot = server.root.replace(process.env.HOME || '', '~').slice(0, 16)
       const port = `:${server.port}`
 
-      let text = `${dot} ${shortRoot.padEnd(18)} ${colors.dim(port)}`
+      let text = `${dot}${activeMarker}${shortRoot.padEnd(16)} ${colors.dim(port)}`
       if (isSelected) text = colors.inverse(text)
       if (hasConnection) text = colors.green(text)
 

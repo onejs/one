@@ -78,7 +78,7 @@ async function daemonStop() {
 }
 
 async function daemonStatus() {
-  const { isDaemonRunning, getDaemonStatus } = await import('../daemon/ipc')
+  const { isDaemonRunning, getDaemonStatus, getLastActiveDaemonServer } = await import('../daemon/ipc')
 
   if (!(await isDaemonRunning())) {
     console.log(colors.yellow('Daemon is not running'))
@@ -88,6 +88,7 @@ async function daemonStatus() {
 
   try {
     const status = await getDaemonStatus()
+    const lastActive = await getLastActiveDaemonServer()
 
     console.log(colors.cyan('\n═══════════════════════════════════════════════════'))
     console.log(colors.cyan('  one daemon status'))
@@ -99,9 +100,14 @@ async function daemonStatus() {
       console.log('  Registered servers:')
       for (const server of status.servers) {
         const shortRoot = server.root.replace(process.env.HOME || '', '~')
+        const isActive = lastActive?.id === server.id
+        const activeMarker = isActive ? colors.yellow(' ★') : ''
         console.log(
-          `    ${colors.green(server.id)} ${server.bundleId} → :${server.port} (${shortRoot})`
+          `    ${colors.green(server.id)} ${server.bundleId} → :${server.port} (${shortRoot})${activeMarker}`
         )
+      }
+      if (lastActive) {
+        console.log(colors.dim('\n  ★ = last active (used by oi/oa)'))
       }
     }
 
@@ -117,6 +123,52 @@ async function daemonStatus() {
     console.log(colors.red('Failed to get daemon status'))
     console.error(err)
     process.exit(1)
+  }
+}
+
+export async function openPlatform(platform: 'ios' | 'android') {
+  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, touchDaemonServer } = await import(
+    '../daemon/ipc'
+  )
+  const { getBundleIdFromConfig } = await import('../daemon/utils')
+
+  const cwd = process.cwd()
+  const bundleId = getBundleIdFromConfig(cwd)
+
+  if (!bundleId) {
+    console.log(colors.yellow('No app.json found in current directory'))
+    console.log(colors.dim('Run this command from a One project directory'))
+    process.exit(1)
+  }
+
+  // if daemon is running, pre-set the route so simulator connects to THIS project
+  if (await isDaemonRunning()) {
+    try {
+      const status = await getDaemonStatus()
+      // find server for this project root
+      const server = status.servers.find((s) => s.root === cwd)
+
+      if (server) {
+        // set route so next connection for this bundleId goes to this server
+        await setDaemonRoute(bundleId, server.id)
+        await touchDaemonServer(server.id)
+        console.log(colors.cyan(`[daemon] Route set: ${bundleId} → this project`))
+      } else {
+        console.log(colors.yellow(`[daemon] No server registered for this project`))
+        console.log(colors.dim(`Run 'one dev' first, or the simulator will connect directly`))
+      }
+    } catch (err) {
+      console.log(colors.dim(`[daemon] Could not set route: ${err}`))
+    }
+  }
+
+  // run from current directory
+  if (platform === 'ios') {
+    const { run } = await import('./runIos')
+    await run({})
+  } else {
+    const { run } = await import('./runAndroid')
+    await run({})
   }
 }
 

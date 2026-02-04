@@ -87,3 +87,27 @@ export function getAllServers(state: DaemonState): ServerRegistration[] {
 export function getAllRoutes(state: DaemonState): RouteBinding[] {
   return Array.from(state.routes.values())
 }
+
+export function touchServer(state: DaemonState, id: string): boolean {
+  const server = state.servers.get(id)
+  if (server) {
+    server.lastActiveAt = Date.now()
+    return true
+  }
+  return false
+}
+
+export function getLastActiveServer(state: DaemonState): ServerRegistration | null {
+  let lastActive: ServerRegistration | null = null
+  let maxTime = 0
+
+  for (const server of state.servers.values()) {
+    const activeTime = server.lastActiveAt || server.registeredAt
+    if (activeTime > maxTime) {
+      maxTime = activeTime
+      lastActive = server
+    }
+  }
+
+  return lastActive
+}

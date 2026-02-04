@@ -9,6 +9,7 @@ import {
   getAllServers,
   getRoute,
   setRoute,
+  touchServer,
 } from './registry'
 import { createIPCServer, getSocketPath, cleanupSocket } from './ipc'
 import { proxyHttpRequest, proxyWebSocket } from './proxy'
@@ -30,6 +31,21 @@ export function setRouteMode(mode: 'most-recent' | 'ask' | null) {
   routeModeOverride = mode
 }
 
+// track which daemon state is active for marking servers
+let activeDaemonState: DaemonState | null = null
+
+function proxyAndTouch(
+  req: http.IncomingMessage,
+  res: http.ServerResponse,
+  server: ServerRegistration
+) {
+  // mark this server as recently active
+  if (activeDaemonState) {
+    touchServer(activeDaemonState, server.id)
+  }
+  proxyHttpRequest(req, res, server)
+}
+
 export async function startDaemon(options: DaemonOptions = {}) {
   const port = options.port || DEFAULT_PORT
   const host = options.host || '0.0.0.0'
@@ -38,6 +54,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
   const log = quiet ? (..._args: any[]) => {} : console.log
 
   const state = createRegistry()
+  activeDaemonState = state
 
   // start IPC server for CLI communication
   const ipcServer = createIPCServer(
@@ -85,7 +102,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
 
     if (servers.length === 1) {
       // single match, proxy directly
-      proxyHttpRequest(req, res, servers[0])
+      proxyAndTouch(req, res, servers[0])
       return
     }
 
@@ -96,7 +113,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
     if (existingRoute) {
       const server = findServerById(state, existingRoute.serverId)
       if (server) {
-        proxyHttpRequest(req, res, server)
+        proxyAndTouch(req, res, server)
         return
       }
       // route exists but server is gone, fall through to picker
@@ -116,7 +133,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
           `[daemon] Auto-routing ${bundleId} → ${mostRecent.root} (most recent, remembered)`
         )
       )
-      proxyHttpRequest(req, res, mostRecent)
+      proxyAndTouch(req, res, mostRecent)
       return
     }
 
@@ -138,7 +155,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
         log(colors.blue(`[daemon] Route saved: ${routeKey} → ${server.id}`))
       }
 
-      proxyHttpRequest(req, res, server)
+      proxyAndTouch(req, res, server)
     } catch (err) {
       // picker cancelled or timed out - use most recent
       const mostRecent = [...servers].sort((a, b) => b.registeredAt - a.registeredAt)[0]
@@ -147,7 +164,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
           `[daemon] Picker timeout/cancelled: routing to most recent (${mostRecent.root})`
         )
       )
-      proxyHttpRequest(req, res, mostRecent)
+      proxyAndTouch(req, res, mostRecent)
     }
   })
 
@@ -194,6 +211,8 @@ export async function startDaemon(options: DaemonOptions = {}) {
     }
 
     if (target) {
+      // mark as active on WebSocket connection (HMR, etc)
+      touchServer(state, target.id)
       proxyWebSocket(req, socket, head, target)
     } else {
       socket.end('HTTP/1.1 404 Not Found\r\n\r\n')

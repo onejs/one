@@ -361,6 +361,32 @@ const daemonCommand = defineCommand({
   },
 })
 
+const openIos = defineCommand({
+  meta: {
+    name: 'oi',
+    version: version,
+    description: 'Open iOS simulator (uses last active dev server, or current dir)',
+  },
+  args: {},
+  async run() {
+    const { openPlatform } = await import('./cli/daemon')
+    await openPlatform('ios')
+  },
+})
+
+const openAndroid = defineCommand({
+  meta: {
+    name: 'oa',
+    version: version,
+    description: 'Open Android emulator (uses last active dev server, or current dir)',
+  },
+  args: {},
+  async run() {
+    const { openPlatform } = await import('./cli/daemon')
+    await openPlatform('android')
+  },
+})
+
 const subCommands = {
   dev,
   clean,
@@ -373,6 +399,8 @@ const subCommands = {
   'generate-routes': generateRoutes,
   typegen,
   daemon: daemonCommand,
+  oi: openIos,
+  oa: openAndroid,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow
