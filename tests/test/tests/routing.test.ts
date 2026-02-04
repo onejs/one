@@ -247,5 +247,24 @@ describe(`Routing Tests`, () => {
         await page.close()
       }
     })
+
+    it('should render dynamic SPA route with param in dirname on direct hit', async () => {
+      const page = await context.newPage()
+      try {
+        // route: servers/[serverId]/index+spa.tsx
+        // url: /servers/tamagui (any slug should work)
+        // tests that dynamic params in dirname are correctly converted to :param format
+        await page.goto(`${serverUrl}/servers/tamagui`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#server-page', {
+          timeout: 1000,
+          state: 'visible',
+        })
+        expect(await page.textContent('#server-id')).toBe('tamagui')
+      } finally {
+        await page.close()
+      }
+    })
   })
 })
