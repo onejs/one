@@ -58,15 +58,17 @@ export function getBundleIdFromConfig(root: string): string | undefined {
 
 const MAX_PORT = 65535
 
-export function getAvailablePort(preferredPort: number, excludePort?: number): Promise<number> {
+export function getAvailablePort(
+  preferredPort: number,
+  excludePort?: number
+): Promise<number> {
   return new Promise((resolve, reject) => {
-    // dynamic import to avoid top-level require
     import('node:net').then((netModule) => {
-      const server = netModule.createServer()
-
       const tryPort = (port: number) => {
         if (port > MAX_PORT) {
-          reject(new Error(`No available port found between ${preferredPort} and ${MAX_PORT}`))
+          reject(
+            new Error(`No available port found between ${preferredPort} and ${MAX_PORT}`)
+          )
           return
         }
 
@@ -75,7 +77,11 @@ export function getAvailablePort(preferredPort: number, excludePort?: number): P
           return
         }
 
+        // create fresh server for each attempt
+        const server = netModule.createServer()
+
         server.once('error', () => {
+          server.close()
           tryPort(port + 1)
         })
 
@@ -85,7 +91,7 @@ export function getAvailablePort(preferredPort: number, excludePort?: number): P
           })
         })
 
-        server.listen(port, '127.0.0.1')
+        server.listen(port, '0.0.0.0')
       }
 
       tryPort(preferredPort)

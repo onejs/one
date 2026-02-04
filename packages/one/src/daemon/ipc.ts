@@ -19,15 +19,54 @@ import {
 
 const SOCKET_DIR = path.join(os.homedir(), '.one')
 const SOCKET_PATH = path.join(SOCKET_DIR, 'daemon.sock')
+const SERVERS_FILE = path.join(SOCKET_DIR, 'servers.json')
 
 export function getSocketPath(): string {
   return SOCKET_PATH
+}
+
+export function getServersFilePath(): string {
+  return SERVERS_FILE
 }
 
 export function ensureSocketDir(): void {
   if (!fs.existsSync(SOCKET_DIR)) {
     fs.mkdirSync(SOCKET_DIR, { recursive: true })
   }
+}
+
+// persist server info to disk so daemon can recover on restart
+interface PersistedServer {
+  port: number
+  bundleId: string
+  root: string
+  pid: number
+}
+
+export function writeServerFile(server: PersistedServer): void {
+  ensureSocketDir()
+  const servers = readServerFiles()
+  // remove any existing entry for this root
+  const filtered = servers.filter((s) => s.root !== server.root)
+  filtered.push(server)
+  fs.writeFileSync(SERVERS_FILE, JSON.stringify(filtered, null, 2))
+}
+
+export function removeServerFile(root: string): void {
+  const servers = readServerFiles()
+  const filtered = servers.filter((s) => s.root !== root)
+  fs.writeFileSync(SERVERS_FILE, JSON.stringify(filtered, null, 2))
+}
+
+export function readServerFiles(): PersistedServer[] {
+  try {
+    if (fs.existsSync(SERVERS_FILE)) {
+      return JSON.parse(fs.readFileSync(SERVERS_FILE, 'utf-8'))
+    }
+  } catch {
+    // ignore parse errors
+  }
+  return []
 }
 
 export function cleanupSocket(): void {

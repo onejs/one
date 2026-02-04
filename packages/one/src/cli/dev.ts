@@ -1,3 +1,4 @@
+import * as path from 'node:path'
 import colors from 'picocolors'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
@@ -26,31 +27,26 @@ export async function dev(args: {
   let effectivePort = args.port ? +args.port : DEFAULT_PORT
 
   // check if daemon is running
-  const { isDaemonRunning, registerWithDaemon, unregisterFromDaemon } = await import(
-    '../daemon/ipc'
-  )
+  const {
+    isDaemonRunning,
+    registerWithDaemon,
+    unregisterFromDaemon,
+    writeServerFile,
+    removeServerFile,
+  } = await import('../daemon/ipc')
   const { getBundleIdFromConfig, getAvailablePort } = await import('../daemon/utils')
 
   const daemonRunning = await isDaemonRunning()
-  const bundleId = getBundleIdFromConfig(root)
+  // use bundleId from config, or fallback to folder name
+  const bundleId = getBundleIdFromConfig(root) || path.basename(root)
 
   if (daemonRunning && !args.port) {
-    // daemon is running and no explicit port - register with daemon
-    if (bundleId) {
-      // find an available port that's not 8081 (daemon's port)
-      effectivePort = await getAvailablePort(8082, DAEMON_PORT)
+    // daemon is running and no explicit port - need to find an available port
+    effectivePort = await getAvailablePort(8082, DAEMON_PORT)
 
-      console.log(colors.cyan(`[daemon] Detected running daemon on :${DAEMON_PORT}`))
-      console.log(colors.cyan(`[daemon] Using port :${effectivePort} for this server`))
-
-      useDaemon = true
-    } else {
-      console.log(
-        colors.yellow(
-          '[daemon] No bundleIdentifier found in app.json, running standalone on :8081'
-        )
-      )
-    }
+    console.log(colors.cyan(`[daemon] Detected running daemon on :${DAEMON_PORT}`))
+    console.log(colors.cyan(`[daemon] Using port :${effectivePort} for this server`))
+    useDaemon = true
   }
 
   const { dev } = await import('vxrn/dev')
@@ -85,6 +81,8 @@ export async function dev(args: {
           `[daemon] Registered as ${bundleId} (${daemonServerId}) → accessible via :${DAEMON_PORT}`
         )
       )
+      // persist for daemon restart recovery
+      writeServerFile({ port: effectivePort, bundleId, root, pid: process.pid })
     } catch (err) {
       console.log(colors.yellow(`[daemon] Failed to register: ${err}`))
     }
@@ -95,6 +93,7 @@ export async function dev(args: {
     if (daemonServerId) {
       try {
         await unregisterFromDaemon(daemonServerId)
+        removeServerFile(root)
       } catch {
         // ignore errors during cleanup
       }

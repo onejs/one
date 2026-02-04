@@ -1,7 +1,17 @@
 import * as net from 'node:net';
 import type { IPCMessage, IPCResponse, DaemonState } from './types';
 export declare function getSocketPath(): string;
+export declare function getServersFilePath(): string;
 export declare function ensureSocketDir(): void;
+interface PersistedServer {
+    port: number;
+    bundleId: string;
+    root: string;
+    pid: number;
+}
+export declare function writeServerFile(server: PersistedServer): void;
+export declare function removeServerFile(root: string): void;
+export declare function readServerFiles(): PersistedServer[];
 export declare function cleanupSocket(): void;
 export declare function createIPCServer(state: DaemonState, onServerRegistered?: (id: string) => void, onServerUnregistered?: (id: string) => void): net.Server;
 export declare function isDaemonRunning(): Promise<boolean>;
@@ -33,4 +43,5 @@ export declare function getLastActiveDaemonServer(): Promise<{
     bundleId: string;
     root: string;
 } | null>;
+export {};
 //# sourceMappingURL=ipc.d.ts.map

@@ -90,7 +90,7 @@ async function httpGet(port, path) {
   return new Promise((resolve, reject) => {
     const req = http.get(`http://localhost:${port}${path}`, (res) => {
       let data = ''
-      res.on('data', (chunk) => data += chunk)
+      res.on('data', (chunk) => (data += chunk))
       res.on('end', () => resolve({ status: res.statusCode, data }))
     })
     req.on('error', reject)
@@ -183,7 +183,10 @@ async function runTests() {
       if (response.type === 'status' && response.servers.length === 1) {
         pass('Status shows registered server')
       } else {
-        fail('Status shows registered server', `Expected 1 server, got ${response.servers?.length}`)
+        fail(
+          'Status shows registered server',
+          `Expected 1 server, got ${response.servers?.length}`
+        )
       }
     } catch (err) {
       fail('Status shows registered server', err.message)
@@ -202,7 +205,10 @@ async function runTests() {
         server2Id = response.id
         pass('Second server registration works')
       } else {
-        fail('Second server registration works', `Expected registered, got ${response.type}`)
+        fail(
+          'Second server registration works',
+          `Expected registered, got ${response.type}`
+        )
       }
     } catch (err) {
       fail('Second server registration works', err.message)
@@ -214,7 +220,10 @@ async function runTests() {
       if (response.type === 'status' && response.servers.length === 2) {
         pass('Status shows both servers')
       } else {
-        fail('Status shows both servers', `Expected 2 servers, got ${response.servers?.length}`)
+        fail(
+          'Status shows both servers',
+          `Expected 2 servers, got ${response.servers?.length}`
+        )
       }
     } catch (err) {
       fail('Status shows both servers', err.message)
@@ -249,7 +258,10 @@ async function runTests() {
       if (data.port === 9002) {
         pass('HTTP routing respects configured route')
       } else {
-        fail('HTTP routing respects configured route', `Expected port 9002, got ${data.port}`)
+        fail(
+          'HTTP routing respects configured route',
+          `Expected port 9002, got ${data.port}`
+        )
       }
     } catch (err) {
       fail('HTTP routing respects configured route', err.message)
@@ -273,7 +285,10 @@ async function runTests() {
       if (response.type === 'status' && response.servers.length === 1) {
         pass('Status correct after unregister')
       } else {
-        fail('Status correct after unregister', `Expected 1 server, got ${response.servers?.length}`)
+        fail(
+          'Status correct after unregister',
+          `Expected 1 server, got ${response.servers?.length}`
+        )
       }
     } catch (err) {
       fail('Status correct after unregister', err.message)
@@ -291,7 +306,6 @@ async function runTests() {
     } catch (err) {
       fail('Daemon status endpoint works', err.message)
     }
-
   } finally {
     // cleanup
     log('')
@@ -302,18 +316,22 @@ async function runTests() {
 
     if (daemonProcess) {
       daemonProcess.kill('SIGTERM')
-      await new Promise(r => setTimeout(r, 500))
+      await new Promise((r) => setTimeout(r, 500))
     }
 
     // clean up socket
     if (fs.existsSync(SOCKET_PATH)) {
-      try { fs.unlinkSync(SOCKET_PATH) } catch {}
+      try {
+        fs.unlinkSync(SOCKET_PATH)
+      } catch {}
     }
   }
 
   // summary
   console.log(cyan('\n═══════════════════════════════════════════════════'))
-  console.log(`  Tests: ${green(testsPassed + ' passed')}, ${testsFailed > 0 ? red(testsFailed + ' failed') : testsFailed + ' failed'}`)
+  console.log(
+    `  Tests: ${green(testsPassed + ' passed')}, ${testsFailed > 0 ? red(testsFailed + ' failed') : testsFailed + ' failed'}`
+  )
   console.log(cyan('═══════════════════════════════════════════════════\n'))
 
   process.exit(testsFailed > 0 ? 1 : 0)
