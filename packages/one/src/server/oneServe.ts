@@ -307,11 +307,20 @@ url: ${url}`)
         const isDynamicRoute = Object.keys(route.routeKeys).length > 0
         // for dynamic SPA routes, use the parameterized path to look up the single HTML file
         // (e.g., /home/feed/post/:feedId -> /home/feed/post/:feedId.html)
-        // urlCleanPath has trailing ? for optional params, strip it to match routeMap keys
-        const routeCleanPath = route.urlCleanPath.replace(/\?$/, '')
-        const htmlPath = isDynamicRoute
-          ? routeMap[routeCleanPath] || routeMap[url.pathname]
-          : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
+        // urlCleanPath has ? after optional params (e.g. /:id?), strip all of them to match routeMap keys
+        const routeCleanPath = route.urlCleanPath.replace(/\?/g, '')
+
+        // for +not-found routes, derive the routeMap key from the route's page field
+        // route.page is like "/case8/[param1]/+not-found", routeMap key is "/case8/:param1/+not-found"
+        const notFoundKey = route.isNotFound
+          ? route.page.replace(/\[([^\]]+)\]/g, ':$1')
+          : null
+
+        const htmlPath = notFoundKey
+          ? routeMap[notFoundKey]
+          : isDynamicRoute
+            ? routeMap[routeCleanPath] || routeMap[url.pathname]
+            : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
           // Try Worker ASSETS binding first (for Cloudflare Workers), fall back to filesystem
