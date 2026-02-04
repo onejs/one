@@ -4,6 +4,7 @@ export interface ServerRegistration {
     bundleId: string;
     root: string;
     registeredAt: number;
+    lastActiveAt?: number;
 }
 export interface RouteBinding {
     key: string;
@@ -33,6 +34,11 @@ export type IPCMessage = {
     type: 'status';
 } | {
     type: 'ping';
+} | {
+    type: 'touch';
+    id: string;
+} | {
+    type: 'get-last-active';
 };
 export type IPCResponse = {
     type: 'registered';
@@ -47,6 +53,11 @@ export type IPCResponse = {
     routes: RouteBinding[];
 } | {
     type: 'pong';
+} | {
+    type: 'touched';
+} | {
+    type: 'last-active';
+    server: ServerRegistration | null;
 } | {
     type: 'error';
     message: string;

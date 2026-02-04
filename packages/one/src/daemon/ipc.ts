@@ -13,6 +13,8 @@ import {
   setRoute,
   clearRoute,
   findServerById,
+  touchServer,
+  getLastActiveServer,
 } from './registry'
 
 const SOCKET_DIR = path.join(os.homedir(), '.one')
@@ -84,8 +86,8 @@ export function createIPCServer(
   })
 
   server.listen(SOCKET_PATH, () => {
-    // make socket accessible
-    fs.chmodSync(SOCKET_PATH, 0o666)
+    // owner-only permissions for security
+    fs.chmodSync(SOCKET_PATH, 0o600)
   })
 
   return server
@@ -139,6 +141,19 @@ function handleMessage(
 
     case 'ping': {
       return { type: 'pong' }
+    }
+
+    case 'touch': {
+      const touched = touchServer(state, message.id)
+      if (!touched) {
+        return { type: 'error', message: `Server not found: ${message.id}` }
+      }
+      return { type: 'touched' }
+    }
+
+    case 'get-last-active': {
+      const server = getLastActiveServer(state)
+      return { type: 'last-active', server }
     }
 
     default: {
@@ -281,4 +296,24 @@ export async function setDaemonRoute(bundleId: string, serverId: string): Promis
 
 export async function clearDaemonRoute(bundleId: string): Promise<void> {
   await sendIPCMessage({ type: 'route-clear', bundleId })
+}
+
+export async function touchDaemonServer(id: string): Promise<void> {
+  const response = await sendIPCMessage({ type: 'touch', id })
+  if (response.type === 'error') {
+    throw new Error(response.message)
+  }
+}
+
+export async function getLastActiveDaemonServer(): Promise<{
+  id: string
+  port: number
+  bundleId: string
+  root: string
+} | null> {
+  const response = await sendIPCMessage({ type: 'get-last-active' })
+  if (response.type === 'last-active') {
+    return response.server
+  }
+  throw new Error('Failed to get last active server')
 }

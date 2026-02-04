@@ -13,4 +13,6 @@ export declare function getRoute(state: DaemonState, key: string): RouteBinding 
 export declare function clearRoute(state: DaemonState, key: string): boolean;
 export declare function getAllServers(state: DaemonState): ServerRegistration[];
 export declare function getAllRoutes(state: DaemonState): RouteBinding[];
+export declare function touchServer(state: DaemonState, id: string): boolean;
+export declare function getLastActiveServer(state: DaemonState): ServerRegistration | null;
 //# sourceMappingURL=registry.d.ts.map
