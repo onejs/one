@@ -112,6 +112,10 @@ declare module 'one' {
         | `/vite-features/import-meta-env`
         | `/web-extensions`
       DynamicRoutes: 
+        | `/(app)/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
+        | `/(app)/dashboard/feed/post/${OneRouter.SingleRoutePart<T>}`
+        | `/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
+        | `/dashboard/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/dynamic-folder-routes/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/hooks/contents/with-nested-slug/${OneRouter.SingleRoutePart<T>}`
         | `/hooks/contents/with-nested-slug/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
@@ -130,6 +134,10 @@ declare module 'one' {
         | `/ssr/${OneRouter.SingleRoutePart<T>}/request-test`
         | `/ssr/${string}`
       DynamicRouteTemplate: 
+        | `/(app)/dashboard/(tabs)/feed/post/[postId]`
+        | `/(app)/dashboard/feed/post/[postId]`
+        | `/dashboard/(tabs)/feed/post/[postId]`
+        | `/dashboard/feed/post/[postId]`
         | `/dynamic-folder-routes/[serverId]/[channelId]`
         | `/hooks/contents/with-nested-slug/[folderSlug]`
         | `/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]`
@@ -149,6 +157,10 @@ declare module 'one' {
         | `/ssr/[param]`
       IsTyped: true
       RouteTypes: {
+        '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/dynamic-folder-routes/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>
         '/hooks/contents/with-nested-slug/[folderSlug]': RouteInfo<{ folderSlug: string }>
         '/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]': RouteInfo<{ folderSlug: string; fileSlug: string }>

@@ -303,11 +303,14 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        // for dynamic routes, only check exact pathname match in routeMap
-        // (buildInfo.cleanPath would be from last built page, not this slug)
+        // for SPA routes (not SSR), look up the HTML file
         const isDynamicRoute = Object.keys(route.routeKeys).length > 0
+        // for dynamic SPA routes, use the parameterized path to look up the single HTML file
+        // (e.g., /home/feed/post/:feedId -> /home/feed/post/:feedId.html)
+        // urlCleanPath has trailing ? for optional params, strip it to match routeMap keys
+        const routeCleanPath = route.urlCleanPath.replace(/\?$/, '')
         const htmlPath = isDynamicRoute
-          ? routeMap[url.pathname]
+          ? routeMap[routeCleanPath] || routeMap[url.pathname]
           : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {

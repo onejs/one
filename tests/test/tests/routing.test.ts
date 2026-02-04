@@ -229,5 +229,23 @@ describe(`Routing Tests`, () => {
         await page.close()
       }
     })
+
+    it('should render deeply nested SPA dynamic route on direct hit', async () => {
+      const page = await context.newPage()
+      try {
+        // route: (app)/dashboard/(tabs)/feed/post/[postId]+spa.tsx
+        // url: /dashboard/feed/post/test-post-123
+        await page.goto(`${serverUrl}/dashboard/feed/post/test-post-123`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#nested-spa-post-page', {
+          timeout: 60_000,
+          state: 'visible',
+        })
+        expect(await page.textContent('#post-id')).toBe('test-post-123')
+      } finally {
+        await page.close()
+      }
+    })
   })
 })
