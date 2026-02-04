@@ -1,4 +1,9 @@
 import * as http from 'node:http';
+export declare function setPendingMapping(serverId: string, simulatorUdid: string): void;
+export declare function clearMappingsForSimulator(simulatorUdid: string): void;
+export declare function clearAllMappings(): void;
+export declare function getSimulatorMappings(): Map<string, string>;
+export declare function setSimulatorMapping(simulatorUdid: string, serverId: string): void;
 import type { DaemonState } from './types';
 interface DaemonOptions {
     port?: number;

@@ -40,13 +40,20 @@ export async function dev(args: {
   // use bundleId from config, or fallback to folder name
   const bundleId = getBundleIdFromConfig(root) || path.basename(root)
 
-  if (daemonRunning && !args.port) {
-    // daemon is running and no explicit port - need to find an available port
-    effectivePort = await getAvailablePort(8082, DAEMON_PORT)
+  if (daemonRunning) {
+    const requestedPort = args.port ? +args.port : null
 
-    console.log(colors.cyan(`[daemon] Detected running daemon on :${DAEMON_PORT}`))
-    console.log(colors.cyan(`[daemon] Using port :${effectivePort} for this server`))
-    useDaemon = true
+    if (!requestedPort || requestedPort === DAEMON_PORT) {
+      // no port specified, or user requested the daemon port - use daemon mode
+      effectivePort = await getAvailablePort(8082, DAEMON_PORT)
+
+      console.log(colors.cyan(`[daemon] Detected running daemon on :${DAEMON_PORT}`))
+      console.log(colors.cyan(`[daemon] Using port :${effectivePort} for this server`))
+      useDaemon = true
+    } else {
+      // user requested a specific non-daemon port, use it directly without daemon
+      effectivePort = requestedPort
+    }
   }
 
   const { dev } = await import('vxrn/dev')
