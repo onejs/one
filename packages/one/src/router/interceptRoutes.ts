@@ -1,5 +1,5 @@
 import type { RouteNode, SlotConfig } from './Route'
-import { matchDynamicName } from './matchers'
+import { matchDynamicName, stripGroupSegmentsFromPath } from './matchers'
 import { isNative } from '../constants'
 
 // ============================================
@@ -69,6 +69,8 @@ function collectAllLayoutsWithSlots(
 /**
  * Get the absolute path for a layout node based on its contextKey.
  * contextKey is like './app/settings/account/_layout.tsx'
+ *
+ * Route groups like (app) and (tabs) are stripped since they don't appear in URLs.
  */
 function getLayoutPath(node: RouteNode): string {
   // Extract path from contextKey
@@ -76,6 +78,9 @@ function getLayoutPath(node: RouteNode): string {
     .replace(/^\.\//, '') // Remove leading ./
     .replace(/\/?_layout.*$/, '') // Remove _layout and extension
     .replace(/^app\/?/, '') // Remove 'app/' prefix
+
+  // Strip route groups like (app), (tabs) since they don't appear in URLs
+  path = stripGroupSegmentsFromPath(path)
 
   // Normalize to absolute path
   return '/' + path
@@ -249,6 +254,9 @@ function resolveInterceptTargetPath(
     .replace(/^\.\//, '') // Remove leading ./
     .replace(/\/?_layout.*$/, '') // Remove _layout and extension (with optional leading /)
     .replace(/^app\/?/, '') // Remove 'app/' prefix since routes are relative to app dir
+
+  // Strip route groups like (app), (tabs) since they don't appear in URLs
+  layoutPath = stripGroupSegmentsFromPath(layoutPath)
 
   // Normalize: empty string or '/' means root
   if (!layoutPath || layoutPath === '/') {
