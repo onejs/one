@@ -1,14 +1,14 @@
 // minimal terminal UI for daemon - no deps, just ANSI
 import type { DaemonState, ServerRegistration } from './types'
-import {
-  getAllServers,
-  setRoute,
-  getLastActiveServer,
-  clearRoute,
-  getRoute,
-} from './registry'
+import { getAllServers, setRoute, clearRoute, getLastActiveServer } from './registry'
 import { getBootedSimulators } from './picker'
-import { setRouteMode } from './server'
+import {
+  setRouteMode,
+  setPendingMapping,
+  clearMappingsForSimulator,
+  getSimulatorMappings,
+  setSimulatorMapping,
+} from './server'
 import colors from 'picocolors'
 
 interface Simulator {
@@ -34,12 +34,10 @@ interface Cable {
 interface TUIState {
   simulators: Simulator[]
   servers: ServerRegistration[]
-  // the active route's server index (derived from daemon state)
-  connectedServerIndex: number | null
-  // visual cable state for animation
-  cable: Cable
-  // dragging state
-  isDragging: boolean
+  // per-simulator cables keyed by simulator index
+  cables: Map<number, Cable>
+  // which simulator is currently being dragged (null if none)
+  draggingSimIndex: number | null
   // remember mode before dragging to restore after
   modeBeforeDrag: RouteMode | null
   selectedCol: 0 | 1
@@ -106,13 +104,8 @@ export function startTUI(state: DaemonState): void {
   tuiState = {
     simulators: [],
     servers: [],
-    connectedServerIndex: null,
-    cable: {
-      serverIndex: null,
-      controlPoint: { x: simEndX + 5, y: 7 },
-      velocity: { x: 0, y: 0 },
-    },
-    isDragging: false,
+    cables: new Map(),
+    draggingSimIndex: null,
     modeBeforeDrag: null,
     selectedCol: 0,
     selectedRow: 0,
@@ -215,20 +208,38 @@ export function startTUI(state: DaemonState): void {
   refreshData()
 }
 
+function getRouteKey(sim: Simulator): string {
+  return `sim:${sim.udid}`
+}
+
 function handleAction(): void {
   if (!tuiState || !daemonState) return
 
-  if (tuiState.isDragging) {
+  const isDragging = tuiState.draggingSimIndex !== null
+
+  if (isDragging) {
     // connecting cable to a server
     if (tuiState.selectedCol === 1 && tuiState.servers.length > 0) {
+      const simIndex = tuiState.draggingSimIndex!
+      const sim = tuiState.simulators[simIndex]
       const serverIndex = tuiState.selectedRow
       const server = tuiState.servers[serverIndex]
-      if (server) {
-        // commit the route to daemon
-        setRoute(daemonState, 'default', server.id)
-        tuiState.connectedServerIndex = serverIndex
-        tuiState.cable.serverIndex = serverIndex
-        tuiState.isDragging = false
+      if (server && sim) {
+        // set the simulator -> server mapping directly
+        setSimulatorMapping(sim.udid, server.id)
+
+        // also set pending mapping so if a NEW client identifier comes in, we learn it
+        setPendingMapping(server.id, sim.udid)
+
+        // set registry route for fallback
+        setRoute(daemonState, getRouteKey(sim), server.id)
+
+        // update cable
+        const cable = tuiState.cables.get(simIndex)
+        if (cable) {
+          cable.serverIndex = serverIndex
+        }
+        tuiState.draggingSimIndex = null
 
         // restore mode if was auto before
         if (tuiState.modeBeforeDrag === 'most-recent') {
@@ -241,8 +252,12 @@ function handleAction(): void {
     return
   }
 
-  // start dragging - pick up cable
+  // start dragging - pick up cable from selected simulator
   if (tuiState.selectedCol === 0 && tuiState.simulators.length > 0) {
+    const simIndex = tuiState.selectedRow
+    const sim = tuiState.simulators[simIndex]
+    if (!sim) return
+
     // remember mode and switch to manual while editing
     tuiState.modeBeforeDrag = tuiState.routeMode
     if (tuiState.routeMode === 'most-recent') {
@@ -250,105 +265,166 @@ function handleAction(): void {
       setRouteMode('ask')
     }
 
-    // clear the route
-    clearRoute(daemonState, 'default')
-    tuiState.connectedServerIndex = null
-    tuiState.cable.serverIndex = null
-    tuiState.cable.velocity = { x: 3, y: -2 }
-    tuiState.isDragging = true
+    // clear the route for this simulator
+    clearRoute(daemonState, getRouteKey(sim))
+    // clear TUI-learned mappings for this simulator only
+    clearMappingsForSimulator(sim.udid)
+
+    // update cable state
+    let cable = tuiState.cables.get(simIndex)
+    if (!cable) {
+      cable = {
+        serverIndex: null,
+        controlPoint: { x: tuiState.simEndX + 5, y: tuiState.rowStartY + simIndex },
+        velocity: { x: 0, y: 0 },
+      }
+      tuiState.cables.set(simIndex, cable)
+    }
+    cable.serverIndex = null
+    cable.velocity = { x: 3, y: -2 }
+    tuiState.draggingSimIndex = simIndex
   } else if (tuiState.selectedCol === 1 && tuiState.servers.length > 0) {
-    // remember mode and switch to manual while editing
-    tuiState.modeBeforeDrag = tuiState.routeMode
-    if (tuiState.routeMode === 'most-recent') {
-      tuiState.routeMode = 'ask'
-      setRouteMode('ask')
-    }
+    // clicking on server side - find if any cable is connected here and disconnect it
+    const serverIndex = tuiState.selectedRow
 
-    clearRoute(daemonState, 'default')
-    tuiState.connectedServerIndex = null
-    tuiState.cable.serverIndex = null
-    tuiState.cable.velocity = { x: -3, y: 2 }
-    tuiState.isDragging = true
+    // find which sim is connected to this server
+    for (const [simIndex, cable] of tuiState.cables) {
+      if (cable.serverIndex === serverIndex) {
+        const sim = tuiState.simulators[simIndex]
+        if (sim) {
+          // remember mode and switch to manual while editing
+          tuiState.modeBeforeDrag = tuiState.routeMode
+          if (tuiState.routeMode === 'most-recent') {
+            tuiState.routeMode = 'ask'
+            setRouteMode('ask')
+          }
+
+          clearRoute(daemonState, getRouteKey(sim))
+          cable.serverIndex = null
+          cable.velocity = { x: -3, y: 2 }
+          tuiState.draggingSimIndex = simIndex
+        }
+        break
+      }
+    }
   }
 }
 
 function handleDisconnect(): void {
   if (!tuiState || !daemonState) return
-  if (tuiState.connectedServerIndex === null) return
 
-  // switch to manual mode
-  if (tuiState.routeMode === 'most-recent') {
-    tuiState.routeMode = 'ask'
-    setRouteMode('ask')
-    showPopup('Switched to manual mode', 1500)
+  // disconnect based on current selection
+  if (tuiState.selectedCol === 0) {
+    // disconnect the selected simulator
+    const simIndex = tuiState.selectedRow
+    const sim = tuiState.simulators[simIndex]
+    const cable = tuiState.cables.get(simIndex)
+    if (!sim || !cable || cable.serverIndex === null) return
+
+    // switch to manual mode
+    if (tuiState.routeMode === 'most-recent') {
+      tuiState.routeMode = 'ask'
+      setRouteMode('ask')
+      showPopup('Switched to manual mode', 1500)
+    }
+
+    clearRoute(daemonState, getRouteKey(sim))
+    clearMappingsForSimulator(sim.udid)
+    cable.serverIndex = null
+    cable.velocity = { x: -4, y: 3 }
+  } else {
+    // disconnect whatever is connected to the selected server
+    const serverIndex = tuiState.selectedRow
+    for (const [simIndex, cable] of tuiState.cables) {
+      if (cable.serverIndex === serverIndex) {
+        const sim = tuiState.simulators[simIndex]
+        if (sim) {
+          // switch to manual mode
+          if (tuiState.routeMode === 'most-recent') {
+            tuiState.routeMode = 'ask'
+            setRouteMode('ask')
+            showPopup('Switched to manual mode', 1500)
+          }
+
+          clearRoute(daemonState, getRouteKey(sim))
+          clearMappingsForSimulator(sim.udid)
+          cable.serverIndex = null
+          cable.velocity = { x: -4, y: 3 }
+        }
+        break
+      }
+    }
   }
-
-  clearRoute(daemonState, 'default')
-  tuiState.connectedServerIndex = null
-  tuiState.cable.serverIndex = null
-  tuiState.cable.velocity = { x: -4, y: 3 }
 }
 
 function updatePhysics(): void {
   if (!tuiState) return
 
-  const cable = tuiState.cable
   const gravity = 0.3
   const damping = 0.85
-  const simY = tuiState.rowStartY // always connected to first sim visually
-
   let needsRender = false
 
-  if (cable.serverIndex !== null) {
-    // connected - settle into catenary with more slack
-    const serverY = tuiState.rowStartY + cable.serverIndex
-    const targetX = (tuiState.simEndX + tuiState.serverStartX) / 2
-    const targetY = (simY + serverY) / 2 + 7 // more sag
+  for (const [simIndex, cable] of tuiState.cables) {
+    const simY = tuiState.rowStartY + simIndex
 
-    const dx = targetX - cable.controlPoint.x
-    const dy = targetY - cable.controlPoint.y
+    if (cable.serverIndex !== null) {
+      // connected - settle into catenary with variable sag
+      // sag goes: high (0) -> low (4) -> high again (8+)
+      const sagCurve = (i: number) => {
+        if (i <= 4) return 6 - i // 6, 5, 4, 3, 2
+        return 2 + (i - 4) * 0.8 // 2.8, 3.6, 4.4, ...
+      }
+      const sag = sagCurve(simIndex)
 
-    cable.velocity.x += dx * 0.15
-    cable.velocity.y += dy * 0.15
-    cable.velocity.x *= damping
-    cable.velocity.y *= damping
+      const serverY = tuiState.rowStartY + cable.serverIndex
+      const targetX = (tuiState.simEndX + tuiState.serverStartX) / 2
+      const targetY = (simY + serverY) / 2 + sag
 
-    cable.controlPoint.x += cable.velocity.x
-    cable.controlPoint.y += cable.velocity.y
+      const dx = targetX - cable.controlPoint.x
+      const dy = targetY - cable.controlPoint.y
 
-    if (Math.abs(cable.velocity.x) > 0.05 || Math.abs(cable.velocity.y) > 0.05) {
+      cable.velocity.x += dx * 0.15
+      cable.velocity.y += dy * 0.15
+      cable.velocity.x *= damping
+      cable.velocity.y *= damping
+
+      cable.controlPoint.x += cable.velocity.x
+      cable.controlPoint.y += cable.velocity.y
+
+      if (Math.abs(cable.velocity.x) > 0.05 || Math.abs(cable.velocity.y) > 0.05) {
+        needsRender = true
+      }
+    } else {
+      // disconnected - swing with gravity
+      cable.velocity.y += gravity
+      cable.velocity.x *= damping
+      cable.velocity.y *= damping
+
+      cable.controlPoint.x += cable.velocity.x
+      cable.controlPoint.y += cable.velocity.y
+
+      // constrain
+      const anchorX = tuiState.simEndX
+      const anchorY = simY
+      if (cable.controlPoint.x < anchorX) {
+        cable.controlPoint.x = anchorX
+        cable.velocity.x = Math.abs(cable.velocity.x) * 0.5
+      }
+      if (cable.controlPoint.x > tuiState.serverStartX) {
+        cable.controlPoint.x = tuiState.serverStartX
+        cable.velocity.x = -Math.abs(cable.velocity.x) * 0.5
+      }
+      if (cable.controlPoint.y < anchorY) {
+        cable.controlPoint.y = anchorY
+        cable.velocity.y = Math.abs(cable.velocity.y) * 0.3
+      }
+      if (cable.controlPoint.y > tuiState.height - 5) {
+        cable.controlPoint.y = tuiState.height - 5
+        cable.velocity.y = -Math.abs(cable.velocity.y) * 0.5
+      }
+
       needsRender = true
     }
-  } else {
-    // disconnected - swing with gravity
-    cable.velocity.y += gravity
-    cable.velocity.x *= damping
-    cable.velocity.y *= damping
-
-    cable.controlPoint.x += cable.velocity.x
-    cable.controlPoint.y += cable.velocity.y
-
-    // constrain
-    const anchorX = tuiState.simEndX
-    const anchorY = simY
-    if (cable.controlPoint.x < anchorX) {
-      cable.controlPoint.x = anchorX
-      cable.velocity.x = Math.abs(cable.velocity.x) * 0.5
-    }
-    if (cable.controlPoint.x > tuiState.serverStartX) {
-      cable.controlPoint.x = tuiState.serverStartX
-      cable.velocity.x = -Math.abs(cable.velocity.x) * 0.5
-    }
-    if (cable.controlPoint.y < anchorY) {
-      cable.controlPoint.y = anchorY
-      cable.velocity.y = Math.abs(cable.velocity.y) * 0.3
-    }
-    if (cable.controlPoint.y > tuiState.height - 5) {
-      cable.controlPoint.y = tuiState.height - 5
-      cable.velocity.y = -Math.abs(cable.velocity.y) * 0.5
-    }
-
-    needsRender = true
   }
 
   if (needsRender) render()
@@ -363,44 +439,50 @@ async function refreshData(): Promise<void> {
   tuiState.simulators = newSims
   tuiState.servers = newServers
 
-  // get the actual route from daemon - this is the source of truth
-  const route = getRoute(daemonState, 'default')
-  let routedServerIndex: number | null = null
-  if (route) {
-    routedServerIndex = newServers.findIndex((s) => s.id === route.serverId)
-    if (routedServerIndex === -1) routedServerIndex = null
-  }
+  const isDragging = tuiState.draggingSimIndex !== null
 
-  // in auto mode with no route, auto-connect to most recent
-  if (
-    tuiState.routeMode === 'most-recent' &&
-    routedServerIndex === null &&
-    newServers.length > 0 &&
-    newSims.length > 0 &&
-    !tuiState.isDragging
-  ) {
-    const sortedServers = [...newServers].sort((a, b) => {
-      const aTime = a.lastActiveAt || a.registeredAt
-      const bTime = b.lastActiveAt || b.registeredAt
-      return bTime - aTime
-    })
-    const mostRecent = sortedServers[0]
-    const serverIndex = newServers.findIndex((s) => s.id === mostRecent.id)
-    if (serverIndex !== -1) {
-      setRoute(daemonState, 'default', mostRecent.id)
-      routedServerIndex = serverIndex
+  // get actual simulator -> server mappings from routing state
+  const simMappings = getSimulatorMappings()
+
+  // sync each simulator's cable with actual routing state
+  for (let simIndex = 0; simIndex < newSims.length; simIndex++) {
+    const sim = newSims[simIndex]
+
+    // check if we have a known mapping for this simulator
+    const mappedServerId = simMappings.get(sim.udid)
+    let routedServerIndex: number | null = null
+    if (mappedServerId) {
+      routedServerIndex = newServers.findIndex((s) => s.id === mappedServerId)
+      if (routedServerIndex === -1) routedServerIndex = null
+    }
+
+    // get or create cable for this simulator
+    let cable = tuiState.cables.get(simIndex)
+    if (!cable) {
+      cable = {
+        serverIndex: routedServerIndex,
+        controlPoint: { x: tuiState.simEndX + 5, y: tuiState.rowStartY + simIndex },
+        velocity: { x: 0, y: 0 },
+      }
+      tuiState.cables.set(simIndex, cable)
+    }
+
+    // sync visual state with actual routing state (unless this sim is being dragged)
+    if (tuiState.draggingSimIndex !== simIndex) {
+      if (routedServerIndex !== cable.serverIndex) {
+        cable.serverIndex = routedServerIndex
+        // give it a little bounce when connection changes
+        if (routedServerIndex !== null) {
+          cable.velocity = { x: 0, y: -2 }
+        }
+      }
     }
   }
 
-  // sync visual state with daemon state (unless dragging)
-  if (!tuiState.isDragging) {
-    if (routedServerIndex !== tuiState.connectedServerIndex) {
-      tuiState.connectedServerIndex = routedServerIndex
-      tuiState.cable.serverIndex = routedServerIndex
-      // give it a little bounce when route changes
-      if (routedServerIndex !== null) {
-        tuiState.cable.velocity = { x: 0, y: -2 }
-      }
+  // remove cables for simulators that no longer exist
+  for (const simIndex of tuiState.cables.keys()) {
+    if (simIndex >= newSims.length) {
+      tuiState.cables.delete(simIndex)
     }
   }
 
@@ -466,8 +548,18 @@ function render(): void {
     let simText = ''
     if (sim) {
       const isSelected = tuiState.selectedCol === 0 && tuiState.selectedRow === row
-      const hasConnection = tuiState.connectedServerIndex !== null && row === 0
-      const plug = hasConnection ? colors.green('●') : colors.dim('○')
+      const cable = tuiState.cables.get(row)
+      const hasConnection = cable?.serverIndex !== null
+      // unique color per cable
+      const cableColors = [
+        colors.green,
+        colors.cyan,
+        colors.magenta,
+        colors.blue,
+        colors.yellow,
+      ]
+      const cableColor = cableColors[row % cableColors.length]
+      const plug = hasConnection ? cableColor('●') : colors.dim('○')
       const name = truncate(sim.name, simEndX - 5)
       simText = `${name} ${plug}`
       if (isSelected) simText = colors.inverse(simText)
@@ -491,10 +583,24 @@ function render(): void {
     let srvRight = ''
     if (server) {
       const isSelected = tuiState.selectedCol === 1 && tuiState.selectedRow === row
-      const isConnected = tuiState.connectedServerIndex === row
+      // check which cables are connected to this server and get their colors
+      const cableColors = [
+        colors.green,
+        colors.cyan,
+        colors.magenta,
+        colors.blue,
+        colors.yellow,
+      ]
+      let connectedColor: ((s: string) => string) | null = null
+      for (const [simIndex, cable] of tuiState.cables) {
+        if (cable.serverIndex === row) {
+          connectedColor = cableColors[simIndex % cableColors.length]
+          break
+        }
+      }
       const lastActive = daemonState ? getLastActiveServer(daemonState) : null
       const isLastActive = lastActive?.id === server.id
-      const plug = isConnected ? colors.green('●') : colors.dim('○')
+      const plug = connectedColor ? connectedColor('●') : colors.dim('○')
       const star = isLastActive ? colors.yellow('★') : ' '
       const shortRoot = truncate(
         server.root.replace(process.env.HOME || '', '~'),
@@ -553,76 +659,86 @@ function getCableCharAt(x: number, y: number): string | null {
   if (!tuiState) return null
   if (tuiState.simulators.length === 0) return null
 
-  const cable = tuiState.cable
-  const simY = tuiState.rowStartY // first sim
-  const startX = tuiState.simEndX
-  const startY = simY
+  // check each cable
+  for (const [simIndex, cable] of tuiState.cables) {
+    const startX = tuiState.simEndX
+    const startY = tuiState.rowStartY + simIndex
 
-  let endX: number, endY: number
-  if (cable.serverIndex !== null) {
-    endX = tuiState.serverStartX
-    endY = tuiState.rowStartY + cable.serverIndex
-  } else {
-    endX = Math.round(cable.controlPoint.x)
-    endY = Math.round(cable.controlPoint.y)
-  }
+    let endX: number, endY: number
+    if (cable.serverIndex !== null) {
+      endX = tuiState.serverStartX
+      endY = tuiState.rowStartY + cable.serverIndex
+    } else {
+      endX = Math.round(cable.controlPoint.x)
+      endY = Math.round(cable.controlPoint.y)
+    }
 
-  const ctrlX = Math.round(cable.controlPoint.x)
-  const ctrlY = Math.round(cable.controlPoint.y)
+    const ctrlX = Math.round(cable.controlPoint.x)
+    const ctrlY = Math.round(cable.controlPoint.y)
 
-  // sample bezier curve
-  const steps = 30
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps
-    const invT = 1 - t
+    // sample bezier curve
+    const steps = 30
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps
+      const invT = 1 - t
 
-    const px = Math.round(invT * invT * startX + 2 * invT * t * ctrlX + t * t * endX)
-    const py = Math.round(invT * invT * startY + 2 * invT * t * ctrlY + t * t * endY)
+      const px = Math.round(invT * invT * startX + 2 * invT * t * ctrlX + t * t * endX)
+      const py = Math.round(invT * invT * startY + 2 * invT * t * ctrlY + t * t * endY)
 
-    if (px === x && py === y) {
-      const connected = cable.serverIndex !== null
-      const color = connected ? colors.green : colors.yellow
+      if (px === x && py === y) {
+        const connected = cable.serverIndex !== null
+        // unique color per cable based on sim index
+        const cableColors = [
+          colors.green,
+          colors.cyan,
+          colors.magenta,
+          colors.blue,
+          colors.yellow,
+        ]
+        const baseColor = cableColors[simIndex % cableColors.length]
+        const color = connected ? baseColor : colors.dim
 
-      // determine character based on curve direction
-      const tPrev = Math.max(0, (i - 1) / steps)
-      const tNext = Math.min(1, (i + 1) / steps)
+        // determine character based on curve direction
+        const tPrev = Math.max(0, (i - 1) / steps)
+        const tNext = Math.min(1, (i + 1) / steps)
 
-      const prevX = Math.round(
-        (1 - tPrev) * (1 - tPrev) * startX +
-          2 * (1 - tPrev) * tPrev * ctrlX +
-          tPrev * tPrev * endX
-      )
-      const prevY = Math.round(
-        (1 - tPrev) * (1 - tPrev) * startY +
-          2 * (1 - tPrev) * tPrev * ctrlY +
-          tPrev * tPrev * endY
-      )
-      const nextX = Math.round(
-        (1 - tNext) * (1 - tNext) * startX +
-          2 * (1 - tNext) * tNext * ctrlX +
-          tNext * tNext * endX
-      )
-      const nextY = Math.round(
-        (1 - tNext) * (1 - tNext) * startY +
-          2 * (1 - tNext) * tNext * ctrlY +
-          tNext * tNext * endY
-      )
+        const prevX = Math.round(
+          (1 - tPrev) * (1 - tPrev) * startX +
+            2 * (1 - tPrev) * tPrev * ctrlX +
+            tPrev * tPrev * endX
+        )
+        const prevY = Math.round(
+          (1 - tPrev) * (1 - tPrev) * startY +
+            2 * (1 - tPrev) * tPrev * ctrlY +
+            tPrev * tPrev * endY
+        )
+        const nextX = Math.round(
+          (1 - tNext) * (1 - tNext) * startX +
+            2 * (1 - tNext) * tNext * ctrlX +
+            tNext * tNext * endX
+        )
+        const nextY = Math.round(
+          (1 - tNext) * (1 - tNext) * startY +
+            2 * (1 - tNext) * tNext * ctrlY +
+            tNext * tNext * endY
+        )
 
-      const dx = nextX - prevX
-      const dy = nextY - prevY
+        const dx = nextX - prevX
+        const dy = nextY - prevY
 
-      let char: string
-      if (Math.abs(dx) > Math.abs(dy) * 2) {
-        char = '─'
-      } else if (Math.abs(dy) > Math.abs(dx) * 2) {
-        char = '│'
-      } else if ((dx > 0 && dy > 0) || (dx < 0 && dy < 0)) {
-        char = '╲'
-      } else {
-        char = '╱'
+        let char: string
+        if (Math.abs(dx) > Math.abs(dy) * 2) {
+          char = '─'
+        } else if (Math.abs(dy) > Math.abs(dx) * 2) {
+          char = '│'
+        } else if ((dx > 0 && dy > 0) || (dx < 0 && dy < 0)) {
+          char = '╲'
+        } else {
+          char = '╱'
+        }
+
+        return color(char)
       }
-
-      return color(char)
     }
   }
 

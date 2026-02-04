@@ -9,17 +9,21 @@ export function proxyHttpRequest(
   res: http.ServerResponse,
   target: ServerRegistration
 ): void {
+  const headers: http.OutgoingHttpHeaders = {
+    ...req.headers,
+    'x-forwarded-host': req.headers.host,
+  }
+  // only add x-forwarded-for if we have a remote address
+  if (req.socket.remoteAddress) {
+    headers['x-forwarded-for'] = req.socket.remoteAddress
+  }
+
   const options: http.RequestOptions = {
     hostname: 'localhost',
     port: target.port,
     path: req.url,
     method: req.method,
-    headers: {
-      ...req.headers,
-      // preserve original host but add forwarded headers
-      'x-forwarded-host': req.headers.host,
-      'x-forwarded-for': req.socket.remoteAddress,
-    },
+    headers,
   }
 
   const proxyReq = http.request(options, (proxyRes) => {
