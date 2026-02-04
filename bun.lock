@@ -925,6 +925,30 @@
         "vitest": "^4.0.6",
       },
     },
+    "tests/test-app-cases": {
+      "name": "test-app-cases",
+      "version": "1.4.10-1770183430303",
+      "dependencies": {
+        "@react-navigation/native": "~7.1.19",
+        "@tamagui/config": "^1.144.3",
+        "@tamagui/image-next": "^1.144.3",
+        "@vxrn/color-scheme": "workspace:*",
+        "one": "workspace:*",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "react-native": "0.81.5",
+        "react-native-safe-area-context": "~5.6.1",
+        "react-native-screens": "~4.16.0",
+        "react-native-web": "^0.21.2",
+        "tamagui": "^1.144.3",
+      },
+      "devDependencies": {
+        "playwright": "^1.57.0",
+        "typescript": "^5.7.3",
+        "vite": "^7.1.12",
+        "vitest": "^4.0.6",
+      },
+    },
     "tests/test-cloudflare": {
       "name": "test-cloudflare",
       "version": "1.4.10-1770183430303",
@@ -1075,6 +1099,25 @@
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
+      },
+    },
+    "tests/test-not-found": {
+      "name": "test-not-found",
+      "version": "1.0.0",
+      "dependencies": {
+        "@react-navigation/native": "~7.1.19",
+        "one": "workspace:*",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+        "react-native": "0.81.5",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.57.0",
+        "typescript": "^5.7.3",
+        "vite": "^7.1.12",
+        "vitest": "^4.0.6",
       },
     },
     "tests/test-route-file-watching": {
@@ -5095,6 +5138,8 @@
 
     "terser": ["terser@5.44.1", "", { "dependencies": { "@jridgewell/source-map": "^0.3.3", "acorn": "^8.15.0", "commander": "^2.20.0", "source-map-support": "~0.5.20" }, "bin": { "terser": "bin/terser" } }, "sha512-t/R3R/n0MSwnnazuPpPNVO60LX0SKL45pyl9YlvxIdkH0Of7D5qM2EVe+yASRIlY5pZ73nclYJfNANGWPwFDZw=="],
 
+    "test-app-cases": ["test-app-cases@workspace:tests/test-app-cases"],
+
     "test-cloudflare": ["test-cloudflare@workspace:tests/test-cloudflare"],
 
     "test-css-preload": ["test-css-preload@workspace:tests/test-css-preload"],
@@ -5114,6 +5159,8 @@
     "test-loaders": ["test-loaders@workspace:tests/test-loaders"],
 
     "test-native-tree-shaking": ["test-native-tree-shaking@workspace:tests/test-native-tree-shaking"],
+
+    "test-not-found": ["test-not-found@workspace:tests/test-not-found"],
 
     "test-route-file-watching": ["test-route-file-watching@workspace:tests/test-route-file-watching"],
 
