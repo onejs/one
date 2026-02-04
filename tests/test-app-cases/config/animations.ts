@@ -1,83 +1,20 @@
-import { createAnimations } from '@tamagui/animations-moti'
+import { createAnimations } from '@tamagui/animations-css'
 
+// use CSS animations for web (SSR compatible)
 export const animations = createAnimations({
-  '75ms': {
-    type: 'timing',
-    duration: 75,
-  },
-  '100ms': {
-    type: 'timing',
-    duration: 100,
-  },
-  '200ms': {
-    type: 'timing',
-    duration: 200,
-  },
-  superBouncy: {
-    type: 'spring',
-    damping: 5,
-    mass: 0.7,
-    stiffness: 200,
-  },
-  bouncy: {
-    type: 'spring',
-    damping: 9,
-    mass: 0.9,
-    stiffness: 150,
-  },
-  kindaBouncy: {
-    type: 'spring',
-    damping: 16,
-    mass: 1,
-    stiffness: 25,
-  },
-  superLazy: {
-    type: 'spring',
-    damping: 25,
-    mass: 2,
-    stiffness: 25,
-  },
-  lazy: {
-    type: 'spring',
-    damping: 18,
-    stiffness: 50,
-  },
-  medium: {
-    damping: 16,
-    stiffness: 120,
-    mass: 0.8,
-  },
-  slowest: {
-    type: 'spring',
-    damping: 15,
-    stiffness: 10,
-  },
-  slow: {
-    type: 'spring',
-    damping: 15,
-    stiffness: 60,
-  },
-  quick: {
-    type: 'spring',
-    damping: 32,
-    mass: 1.3,
-    stiffness: 350,
-  },
-  tooltip: {
-    type: 'spring',
-    damping: 10,
-    mass: 0.9,
-    stiffness: 100,
-  },
-  quicker: {
-    type: 'spring',
-    damping: 20,
-    mass: 1,
-    stiffness: 250,
-  },
-  quickest: {
-    damping: 14,
-    mass: 0.1,
-    stiffness: 380,
-  },
+  '75ms': 'ease-out 75ms',
+  '100ms': 'ease-out 100ms',
+  '200ms': 'ease-out 200ms',
+  superBouncy: 'ease-in-out 300ms',
+  bouncy: 'ease-in-out 250ms',
+  kindaBouncy: 'ease-in-out 200ms',
+  superLazy: 'ease-out 500ms',
+  lazy: 'ease-out 400ms',
+  medium: 'ease-out 200ms',
+  slowest: 'ease-out 600ms',
+  slow: 'ease-out 300ms',
+  quick: 'ease-out 100ms',
+  tooltip: 'ease-in-out 150ms',
+  quicker: 'ease-out 80ms',
+  quickest: 'ease-out 50ms',
 })
