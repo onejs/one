@@ -73,12 +73,17 @@ async function daemonStop() {
 
   // send shutdown signal via IPC
   // for now, just cleanup socket and let user stop the process manually
-  console.log(colors.yellow('Note: daemon runs in foreground. Press Ctrl+C in the daemon terminal to stop.'))
+  console.log(
+    colors.yellow(
+      'Note: daemon runs in foreground. Press Ctrl+C in the daemon terminal to stop.'
+    )
+  )
   console.log(colors.dim(`Socket path: ${getSocketPath()}`))
 }
 
 async function daemonStatus() {
-  const { isDaemonRunning, getDaemonStatus, getLastActiveDaemonServer } = await import('../daemon/ipc')
+  const { isDaemonRunning, getDaemonStatus, getLastActiveDaemonServer } =
+    await import('../daemon/ipc')
 
   if (!(await isDaemonRunning())) {
     console.log(colors.yellow('Daemon is not running'))
@@ -127,9 +132,8 @@ async function daemonStatus() {
 }
 
 export async function openPlatform(platform: 'ios' | 'android') {
-  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, touchDaemonServer } = await import(
-    '../daemon/ipc'
-  )
+  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, touchDaemonServer } =
+    await import('../daemon/ipc')
   const { getBundleIdFromConfig } = await import('../daemon/utils')
 
   const cwd = process.cwd()
@@ -155,7 +159,9 @@ export async function openPlatform(platform: 'ios' | 'android') {
         console.log(colors.cyan(`[daemon] Route set: ${bundleId} → this project`))
       } else {
         console.log(colors.yellow(`[daemon] No server registered for this project`))
-        console.log(colors.dim(`Run 'one dev' first, or the simulator will connect directly`))
+        console.log(
+          colors.dim(`Run 'one dev' first, or the simulator will connect directly`)
+        )
       }
     } catch (err) {
       console.log(colors.dim(`[daemon] Could not set route: ${err}`))
@@ -173,9 +179,8 @@ export async function openPlatform(platform: 'ios' | 'android') {
 }
 
 async function daemonRoute(args: { app?: string; slot?: string; project?: string }) {
-  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, clearDaemonRoute } = await import(
-    '../daemon/ipc'
-  )
+  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, clearDaemonRoute } =
+    await import('../daemon/ipc')
 
   if (!(await isDaemonRunning())) {
     console.log(colors.yellow('Daemon is not running'))
@@ -184,8 +189,8 @@ async function daemonRoute(args: { app?: string; slot?: string; project?: string
 
   if (!args.app) {
     console.log(colors.red('Missing --app parameter'))
-    console.log("Usage: one daemon route --app=com.example.app --slot=0")
-    console.log("   or: one daemon route --app=com.example.app --project=~/myapp")
+    console.log('Usage: one daemon route --app=com.example.app --slot=0')
+    console.log('   or: one daemon route --app=com.example.app --project=~/myapp')
     process.exit(1)
   }
 

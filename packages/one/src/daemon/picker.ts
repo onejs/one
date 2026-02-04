@@ -24,12 +24,19 @@ export async function getBootedSimulators(): Promise<
   try {
     const { stdout } = await execAsync('xcrun simctl list devices booted -j')
     const data = JSON.parse(stdout)
-    const simulators: { name: string; udid: string; state: string; iosVersion?: string }[] = []
+    const simulators: {
+      name: string
+      udid: string
+      state: string
+      iosVersion?: string
+    }[] = []
 
     for (const [runtime, devices] of Object.entries(data.devices || {})) {
       // extract iOS version from runtime like "com.apple.CoreSimulator.SimRuntime.iOS-18-1"
       const versionMatch = runtime.match(/iOS-(\d+)-(\d+)/)
-      const iosVersion = versionMatch ? `${versionMatch[1]}.${versionMatch[2]}` : undefined
+      const iosVersion = versionMatch
+        ? `${versionMatch[1]}.${versionMatch[2]}`
+        : undefined
 
       for (const device of devices as any[]) {
         if (device.state === 'Booted') {
@@ -154,11 +161,15 @@ function showTerminalPicker(context: PickerContext): void {
       }
       if (uniqueSims.length === 1) {
         const sim = uniqueSims[0]
-        console.log(`\nFrom: ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`)
+        console.log(
+          `\nFrom: ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`
+        )
       } else {
         console.log('\nActive simulators:')
         for (const sim of uniqueSims.slice(0, 5)) {
-          console.log(`  • ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`)
+          console.log(
+            `  • ${sim.name}${sim.iosVersion ? ` (iOS ${sim.iosVersion})` : ''}`
+          )
         }
       }
     }

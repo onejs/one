@@ -1,5 +1,6 @@
 // server registry for daemon
 
+import * as net from 'node:net'
 import type { ServerRegistration, RouteBinding, DaemonState } from './types'
 
 let idCounter = 0
@@ -9,6 +10,51 @@ export function createRegistry(): DaemonState {
     servers: new Map(),
     routes: new Map(),
   }
+}
+
+// check if a server is still listening on its port
+export function checkServerAlive(server: ServerRegistration): Promise<boolean> {
+  return new Promise((resolve) => {
+    const socket = new net.Socket()
+    const timeout = setTimeout(() => {
+      socket.destroy()
+      resolve(false)
+    }, 1000)
+
+    socket.on('connect', () => {
+      clearTimeout(timeout)
+      socket.destroy()
+      resolve(true)
+    })
+
+    socket.on('error', () => {
+      clearTimeout(timeout)
+      socket.destroy()
+      resolve(false)
+    })
+
+    socket.connect(server.port, '127.0.0.1')
+  })
+}
+
+// prune dead servers from the registry
+export async function pruneDeadServers(
+  state: DaemonState,
+  onPruned?: (server: ServerRegistration) => void
+): Promise<number> {
+  const servers = getAllServers(state)
+  let prunedCount = 0
+
+  for (const server of servers) {
+    const alive = await checkServerAlive(server)
+    if (!alive) {
+      unregisterServer(state, server.id)
+      onPruned?.(server)
+      prunedCount++
+    }
+  }
+
+  return prunedCount
 }
 
 export function registerServer(

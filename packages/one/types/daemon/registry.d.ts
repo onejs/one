@@ -1,5 +1,7 @@
 import type { ServerRegistration, RouteBinding, DaemonState } from './types';
 export declare function createRegistry(): DaemonState;
+export declare function checkServerAlive(server: ServerRegistration): Promise<boolean>;
+export declare function pruneDeadServers(state: DaemonState, onPruned?: (server: ServerRegistration) => void): Promise<number>;
 export declare function registerServer(state: DaemonState, opts: {
     port: number;
     bundleId: string;

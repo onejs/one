@@ -10,8 +10,11 @@ import {
   getRoute,
   setRoute,
   touchServer,
+  pruneDeadServers,
+  checkServerAlive,
+  registerServer,
 } from './registry'
-import { createIPCServer, getSocketPath, cleanupSocket } from './ipc'
+import { createIPCServer, getSocketPath, cleanupSocket, readServerFiles } from './ipc'
 import { proxyHttpRequest, proxyWebSocket } from './proxy'
 import { pickServer, getBootedSimulators, resolvePendingPicker } from './picker'
 import colors from 'picocolors'
@@ -56,6 +59,21 @@ export async function startDaemon(options: DaemonOptions = {}) {
   const state = createRegistry()
   activeDaemonState = state
 
+  // recover servers from disk (written by dev servers)
+  const persistedServers = readServerFiles()
+  for (const ps of persistedServers) {
+    // verify server is actually still running
+    const alive = await checkServerAlive({ port: ps.port } as ServerRegistration)
+    if (alive) {
+      registerServer(state, {
+        port: ps.port,
+        bundleId: ps.bundleId,
+        root: ps.root,
+      })
+      log(colors.cyan(`[daemon] Recovered server: ${ps.bundleId} → :${ps.port}`))
+    }
+  }
+
   // start IPC server for CLI communication
   const ipcServer = createIPCServer(
     state,
@@ -64,7 +82,9 @@ export async function startDaemon(options: DaemonOptions = {}) {
       if (server) {
         const shortRoot = server.root.replace(process.env.HOME || '', '~')
         log(
-          colors.green(`[daemon] Server registered: ${server.bundleId} → :${server.port} (${shortRoot})`)
+          colors.green(
+            `[daemon] Server registered: ${server.bundleId} → :${server.port} (${shortRoot})`
+          )
         )
       }
     },
@@ -120,7 +140,8 @@ export async function startDaemon(options: DaemonOptions = {}) {
     }
 
     // check route mode - TUI can override, otherwise check CI/TTY
-    const useAutoRoute = routeModeOverride === 'most-recent' ||
+    const useAutoRoute =
+      routeModeOverride === 'most-recent' ||
       (!routeModeOverride && (!process.stdin.isTTY || process.env.CI))
 
     if (useAutoRoute) {
@@ -224,7 +245,9 @@ export async function startDaemon(options: DaemonOptions = {}) {
     log(colors.cyan('\n═══════════════════════════════════════════════════'))
     log(colors.cyan('  one daemon'))
     log(colors.cyan('═══════════════════════════════════════════════════'))
-    log(`\n  Listening on ${colors.green(`http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`)}`)
+    log(
+      `\n  Listening on ${colors.green(`http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`)}`
+    )
     log(`  IPC socket:  ${colors.dim(getSocketPath())}`)
     log('')
     log(colors.dim('  Waiting for dev servers to register...'))
@@ -232,9 +255,25 @@ export async function startDaemon(options: DaemonOptions = {}) {
     log('')
   })
 
+  // start health check polling to prune dead servers
+  const HEALTH_CHECK_INTERVAL = 5000 // 5 seconds
+  const healthCheckInterval = setInterval(async () => {
+    const prunedCount = await pruneDeadServers(state, (server) => {
+      log(
+        colors.yellow(
+          `[daemon] Pruned dead server: ${server.bundleId} (port ${server.port})`
+        )
+      )
+    })
+    if (prunedCount > 0) {
+      log(colors.dim(`[daemon] Pruned ${prunedCount} dead server(s)`))
+    }
+  }, HEALTH_CHECK_INTERVAL)
+
   // graceful shutdown
   const shutdown = () => {
     log(colors.yellow('\n[daemon] Shutting down...'))
+    clearInterval(healthCheckInterval)
     httpServer.close()
     ipcServer.close()
     cleanupSocket()
@@ -249,6 +288,7 @@ export async function startDaemon(options: DaemonOptions = {}) {
     ipcServer,
     state,
     shutdown,
+    healthCheckInterval,
   }
 }
 
