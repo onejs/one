@@ -75,9 +75,34 @@ interface ClientInfo {
   serverId: string // the server this client should route to
   simulatorUdid?: string // the simulator (if known)
   matchedBy: 'user-agent' | 'tui' | 'auto' // how we learned this
+  lastUsed: number // timestamp for TTL cleanup
 }
 
 const clientMappings = new Map<string, ClientInfo>()
+
+// cleanup stale mappings every 30s
+const MAPPING_TTL_MS = 3600000 // 1 hour
+setInterval(() => {
+  const now = Date.now()
+  let cleaned = 0
+  for (const [key, info] of clientMappings) {
+    if (now - info.lastUsed > MAPPING_TTL_MS) {
+      clientMappings.delete(key)
+      cleaned++
+    }
+  }
+  if (cleaned > 0) {
+    debugLog(`Cleaned ${cleaned} stale mappings`)
+  }
+}, 30000)
+
+// parse one-route-id cookie from request
+function getRouteIdFromCookies(req: http.IncomingMessage): string | null {
+  const cookieHeader = req.headers.cookie
+  if (!cookieHeader) return null
+  const match = cookieHeader.match(/one-route-id=([^;]+)/)
+  return match ? match[1] : null
+}
 
 // pending mappings: when TUI connects sim to server, map next request's identifiers
 // key: serverId, value: simulatorUdid
@@ -129,6 +154,7 @@ export function setSimulatorMapping(simulatorUdid: string, serverId: string) {
     serverId,
     simulatorUdid,
     matchedBy: 'tui',
+    lastUsed: Date.now(),
   })
   debugLog(`TUI set mapping: sim=${simulatorUdid} -> server=${serverId}`)
 }
@@ -228,6 +254,10 @@ function lookupClient(headers: http.IncomingHttpHeaders): ClientLookup {
   }
 
   const info = clientMappings.get(identifier)
+  if (info) {
+    // update lastUsed on cache hit
+    info.lastUsed = Date.now()
+  }
   return { info: info || null, identifier }
 }
 
@@ -238,7 +268,12 @@ function saveClientMapping(
   simulatorUdid: string | undefined,
   matchedBy: ClientInfo['matchedBy']
 ) {
-  clientMappings.set(identifier, { serverId, simulatorUdid, matchedBy })
+  clientMappings.set(identifier, {
+    serverId,
+    simulatorUdid,
+    matchedBy,
+    lastUsed: Date.now(),
+  })
   debugLog(
     `Saved mapping: ${identifier} -> server=${serverId}, sim=${simulatorUdid || 'unknown'}, via=${matchedBy}`
   )
@@ -485,7 +520,11 @@ export async function startDaemon(options: DaemonOptions = {}) {
     // resolve which server to use (shared logic)
     const { server } = await resolveServer(state, req.headers, servers, bundleId)
 
-    // remember this connection for WebSocket matching
+    // set cookie for WebSocket correlation - this is the key fix!
+    // WebSocket upgrades will include this cookie, allowing us to route them correctly
+    res.setHeader('Set-Cookie', `one-route-id=${server.id}; Path=/; Max-Age=3600`)
+
+    // remember this connection for WebSocket matching (fallback)
     const remotePort = req.socket?.remotePort
     if (remotePort) {
       recentConnections.set(remotePort, { serverId: server.id, timestamp: Date.now() })
@@ -510,21 +549,35 @@ export async function startDaemon(options: DaemonOptions = {}) {
       return
     }
 
-    // try to match by recent connection from same port
-    const remotePort = req.socket?.remotePort
     let server: ServerRegistration | undefined
 
-    if (remotePort) {
-      const recent = recentConnections.get(remotePort)
-      if (recent && Date.now() - recent.timestamp < CONNECTION_MEMORY_MS) {
-        server = findServerById(state, recent.serverId)
-        if (server) {
-          debugLog(`WebSocket: port ${remotePort} matched to ${server.root}`)
+    // PRIORITY 1: cookie-based routing (most reliable)
+    // HTTP requests set a cookie with the server ID, WebSocket upgrades include it
+    const routeIdFromCookie = getRouteIdFromCookies(req)
+    if (routeIdFromCookie) {
+      server = findServerById(state, routeIdFromCookie)
+      if (server && servers.some((s) => s.id === server!.id)) {
+        debugLog(`WebSocket: cookie route -> ${server.root}`)
+      } else {
+        server = undefined // cookie pointed to invalid server
+      }
+    }
+
+    // PRIORITY 2: try to match by recent connection from same port (fallback)
+    if (!server) {
+      const remotePort = req.socket?.remotePort
+      if (remotePort) {
+        const recent = recentConnections.get(remotePort)
+        if (recent && Date.now() - recent.timestamp < CONNECTION_MEMORY_MS) {
+          server = findServerById(state, recent.serverId)
+          if (server) {
+            debugLog(`WebSocket: port ${remotePort} matched to ${server.root}`)
+          }
         }
       }
     }
 
-    // fallback to regular resolution
+    // PRIORITY 3: fallback to regular resolution
     if (!server) {
       const result = await resolveServer(state, req.headers, servers, bundleId)
       server = result.server
