@@ -317,8 +317,11 @@ export function parseParam(param: string) {
   let optional = false
   let name = param
 
-  if (insideBracketsRegex.test(name)) {
+  // [[param]] = optional, [param] = required
+  if (/^\[\[.*\]\]$/.test(name)) {
     optional = true
+    name = name.slice(2, -2)
+  } else if (insideBracketsRegex.test(name)) {
     name = name.slice(1, -1)
   }
 
