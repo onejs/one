@@ -164,7 +164,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
             )}
 
             {showFileName && (
-              <XStack ai="center" gap="$2" pl="$4" py="$3" bbw={1} bc="$gray4">
+              <XStack ai="center" gap="$2" pl="$4" py="$3" bbw={1} bc="$gray4" bg="$color3" btlr="$4" btrr="$4">
                 {isTerminalCommand ? (
                   <TerminalSquare size={14} col="$color11" />
                 ) : (
@@ -186,6 +186,10 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
               id={id}
               jc="center"
               mt={0}
+              {...(showFileName && {
+                btlr: 0,
+                btrr: 0,
+              })}
             >
               <RovingTabs className={className} size={size} {...rest}>
                 {children}

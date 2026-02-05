@@ -103,7 +103,7 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background02'}>
+      <YStack bbw={0} borderColor={inMenu ? 'transparent' : '$background02'}>
         {children}
       </YStack>
     )
