@@ -33,7 +33,7 @@ export default function PhotosIndex() {
               elevation="$2"
               hoverStyle={{ scale: 1.05 }}
               pressStyle={{ scale: 0.98 }}
-              animation="quick"
+              transition="quick"
             >
               <Image
                 source={{ uri: photo.thumbnailUrl, width: 180, height: 120 }}

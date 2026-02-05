@@ -33,7 +33,7 @@ export const NotificationCard = (props: NotificationItem) => {
           : props.fromUser.userLink) || '/'
       }
     >
-      <Card tag="a">
+      <Card render="a">
         <Image width={32} height={32} br={100} src={props.fromUser.avatar || ''} />
         <YStack f={1}>
           <Paragraph size="$5">

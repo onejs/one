@@ -87,7 +87,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
               }}
             >
               <Circle
-                animation="medium"
+                transition="medium"
                 o={isScrolled ? 0 : 1}
                 size={34}
                 ai="center"
@@ -99,7 +99,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
               <YStack
                 pos="absolute"
                 fullscreen
-                animation="medium"
+                transition="medium"
                 o={isScrolled ? 1 : 0}
                 x={8}
                 y={0}
@@ -115,7 +115,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             zIndex={100000000}
             modal
             dismissOnSnapToBottom
-            animation="bouncy"
+            transition="bouncy"
             animationConfig={{
               type: 'spring',
               damping: 25,
@@ -164,7 +164,7 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
       x={0}
       y={4}
       o={1}
-      animation={[
+      transition={[
         'quicker',
         {
           opacity: {

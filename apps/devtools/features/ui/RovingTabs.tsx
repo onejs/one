@@ -175,7 +175,7 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
       pos="absolute"
       bg="$color8"
       br="$4"
-      animation="quickest"
+      transition="quickest"
       enterStyle={{
         o: 0,
       }}
@@ -195,7 +195,7 @@ const AnimatedYStack = styled(YStack, {
   x: 0,
   o: 1,
 
-  animation: '100ms',
+  transition: '100ms',
   variants: {
     // 1 = right, 0 = nowhere, -1 = left
     direction: {

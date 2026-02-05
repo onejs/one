@@ -2,7 +2,7 @@ import { getTokenValue, styled, XStack } from 'tamagui'
 
 export const Button = styled(XStack, {
   cur: 'pointer',
-  tag: 'a',
+  render: 'a',
   className: 'text-underline-none',
 
   bg: '$color2',

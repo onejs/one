@@ -16,7 +16,6 @@ export default {
     }),
 
     tamaguiPlugin({
-      optimize: true,
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
       outputCSS: './code/styles/tamagui.css',

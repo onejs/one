@@ -82,7 +82,7 @@ const HoverableLink = (props: SizableTextProps & LinkProps) => {
 
   return (
     <SizableText
-      tag="a"
+      render="a"
       cur="pointer"
       p="$2"
       px="$3"

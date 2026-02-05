@@ -8,7 +8,7 @@ import { ScrollView } from '../site/ScrollView'
 const QuickNavLink = ({ href, ...rest }: LinkProps) => (
   <a onClick={(e) => [e.stopPropagation()]} href={href as any}>
     <Paragraph
-      tag="span"
+      render="span"
       size="$3"
       color="$color11"
       cursor="pointer"
@@ -28,7 +28,7 @@ export function DocsRightSidebar({
 }) {
   return (
     <YStack
-      tag="aside"
+      render="aside"
       // className={classNames.zeroRight}
       display="none"
       $gtMd={{
@@ -51,7 +51,7 @@ export function DocsRightSidebar({
       }}
     >
       <YStack
-        tag="nav"
+        render="nav"
         aria-labelledby="site-quick-nav-heading"
         display={headings.length === 0 ? 'none' : 'flex'}
         gap="$2"
@@ -69,7 +69,7 @@ export function DocsRightSidebar({
               <ul style={{ margin: 0, padding: 0 }}>
                 {headings.map(({ id, title, priority }, i) => {
                   return (
-                    <XStack key={i} tag="li" ai="center" py="$1">
+                    <XStack key={i} render="li" ai="center" py="$1">
                       {priority > 2 && <Circle size={4} mx="$2" />}
                       <QuickNavLink href={`#${id}` as any}>{title}</QuickNavLink>
                     </XStack>

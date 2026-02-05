@@ -14,7 +14,7 @@ export default function MatchesTestPage() {
   const pageMatch = usePageMatch()
 
   return (
-    <View f={1} p="$4" gap="$4">
+    <View flex={1} p="$4" gap="$4">
       <Text testID="page-data" accessibilityLabel={`page-data: ${data.pageData}`}>
         Page: {data.pageData}
       </Text>

@@ -16,7 +16,7 @@ export default function MatchesTestLayout() {
   const data = layoutMatch?.loaderData as { layoutData?: string } | undefined
 
   return (
-    <View f={1}>
+    <View flex={1}>
       <Text
         testID="layout-data"
         accessibilityLabel={`layout-data: ${data?.layoutData || 'loading'}`}

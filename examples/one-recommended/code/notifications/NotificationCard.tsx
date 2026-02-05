@@ -29,11 +29,11 @@ export const NotificationCard = (props: NotificationItem) => {
       asChild
       href={(props.post ? props.post.postLink : props.fromUser.userLink) || '/'}
     >
-      <Card tag="a">
+      <Card render="a">
         <Image
           width={32}
           height={32}
-          borderRadius={100}
+          rounded={100}
           src={props.fromUser.avatar || ''}
         />
         <YStack flex={1}>

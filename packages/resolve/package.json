@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.144.3",
+    "@tamagui/build": "^2.0.0-rc.2",
     "vitest": "^4.0.6"
   },
   "publishConfig": {

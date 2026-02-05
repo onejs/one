@@ -10,7 +10,7 @@ export default function ItemDetailPage() {
 
   return (
     <YStack p="$4" gap="$4" testID="item-detail-page">
-      <XStack gap="$3" ai="center">
+      <XStack gap="$3" items="center">
         <Link href="/intercept-test" asChild>
           <Button size="$3" testID="back-to-list">
             Back

@@ -30,7 +30,7 @@ export function ToggleThemeButton() {
 
       <YStack>
         <Paragraph
-          animation="100ms"
+          transition="100ms"
           size="$1"
           mb={-20}
           color="$color10"

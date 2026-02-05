@@ -2,7 +2,7 @@ import { H1, Image, Paragraph, YStack } from 'tamagui'
 import oneBall from '../public/app-icon.png'
 
 export default () => (
-  <YStack mih={900} f={10} bg="$color2" p="$4" gap="$6">
+  <YStack minH={900} flex={10} bg="$color2" p="$4" gap="$6">
     <H1>Native Sheet</H1>
 
     <Paragraph size="$5">

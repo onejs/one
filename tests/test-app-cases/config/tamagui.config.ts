@@ -1,4 +1,4 @@
-import { config as configOptions } from '@tamagui/config/v3'
+import { defaultConfig as configOptions } from '@tamagui/config/v5'
 import { createTamagui } from '@tamagui/core'
 import { animations } from './animations'
 
@@ -21,7 +21,7 @@ export const config = createTamagui({
   media: {
     ...configOptions.media,
     xsTouch: {
-      maxWidth: configOptions.media.xs.maxWidth,
+      maxWidth: 660,
       pointer: 'coarse',
     },
   },
@@ -30,6 +30,7 @@ export const config = createTamagui({
     fastSchemeChange: true,
     // avoids CSS bloat so long as you don't need nesting of dark/light themes
     maxDarkLightNesting: 2,
+    onlyAllowShorthands: false,
   },
 })
 
