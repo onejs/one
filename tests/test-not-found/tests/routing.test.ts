@@ -51,7 +51,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show root 404 content for invalid nested path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case1/value1/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case1/value1/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#root-not-found', { timeout: 5000 })
       } finally {
         await page.close()
@@ -132,7 +134,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show root 404 content for invalid nested path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case3/p1/p2/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case3/p1/p2/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#root-not-found', { timeout: 5000 })
       } finally {
         await page.close()
@@ -164,7 +168,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show middle-level 404 content for invalid path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case4/p1/p2/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case4/p1/p2/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case4-not-found', { timeout: 5000 })
       } finally {
         await page.close()
@@ -197,7 +203,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show leaf-level 404 content for invalid path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case5/p1/p2/p3/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case5/p1/p2/p3/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case5-not-found', { timeout: 5000 })
       } finally {
         await page.close()
@@ -210,7 +218,9 @@ describe('Dynamic route 404 handling', () => {
     it('should render page', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case6/val/segment`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case6/val/segment`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case6-page', { timeout: 5000, state: 'visible' })
         expect(await page.textContent('#case6-param1')).toBe('val')
       } finally {
@@ -224,7 +234,9 @@ describe('Dynamic route 404 handling', () => {
     it('should render page', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case7/prefix/val`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case7/prefix/val`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case7-page', { timeout: 5000, state: 'visible' })
         expect(await page.textContent('#case7-param1')).toBe('val')
       } finally {
@@ -242,7 +254,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show custom 404 content for invalid path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case7/prefix/val/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case7/prefix/val/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case7-not-found', { timeout: 5000 })
       } finally {
         await page.close()
@@ -274,7 +288,9 @@ describe('Dynamic route 404 handling', () => {
     it('should show first-level 404 content for invalid path', async () => {
       const page = await context.newPage()
       try {
-        await page.goto(`${serverUrl}/case8/p1/invalid`, { waitUntil: 'domcontentloaded' })
+        await page.goto(`${serverUrl}/case8/p1/invalid`, {
+          waitUntil: 'domcontentloaded',
+        })
         await page.waitForSelector('#case8-not-found', { timeout: 5000 })
       } finally {
         await page.close()

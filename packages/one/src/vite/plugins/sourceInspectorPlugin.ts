@@ -54,8 +54,8 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
     if (node.type === 'JSXOpeningElement' && node.name) {
       const tagName = getJsxName(node.name)
 
-      // Skip Fragment and already-tagged elements
-      if (tagName && tagName !== 'Fragment') {
+      // skip Fragment and already-tagged elements
+      if (tagName && tagName !== 'Fragment' && !tagName.endsWith('.Fragment')) {
         // Check if already has data-one-source
         const hasSourceAttr = node.attributes?.some(
           (attr: any) =>
