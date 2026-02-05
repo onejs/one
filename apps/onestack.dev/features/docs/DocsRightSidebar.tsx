@@ -40,6 +40,7 @@ export function DocsRightSidebar({
         position: 'fixed' as any,
         right: 0,
         top: 130,
+        bottom: 0,
         pr: '$5',
       }}
       $gtLg={{
@@ -56,6 +57,8 @@ export function DocsRightSidebar({
         display={headings.length === 0 ? 'none' : 'flex'}
         gap="$2"
         pe="auto"
+        flex={1}
+        overflow="hidden"
       >
         <H4 userSelect="none" size="$2" mx="$2" id="site-quick-nav-heading">
           Quick nav
@@ -63,9 +66,9 @@ export function DocsRightSidebar({
 
         <Separator />
 
-        <YStack maxHeight="calc(100vh - var(--space-25))">
-          <ScrollView>
-            <YStack px="$2">
+        <YStack flex={1} overflow="hidden">
+          <ScrollView style={{ flex: 1 }}>
+            <YStack px="$2" pb="$10">
               <ul style={{ margin: 0, padding: 0 }}>
                 {headings.map(({ id, title, priority }, i) => {
                   return (

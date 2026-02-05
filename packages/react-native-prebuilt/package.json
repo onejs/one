@@ -8,7 +8,7 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     },
     "./vendor/react-native-0.74.1": "./vendor/react-native-0.74.1/index.js",
     "./vendor/react-18.3.1": "./vendor/react-18.3.1/index.js",
