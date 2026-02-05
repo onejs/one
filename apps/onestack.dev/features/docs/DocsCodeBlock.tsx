@@ -27,7 +27,7 @@ import { useClipboard } from './useClipboard'
 
 export const Pre = styled(YStack, {
   overflow: 'visible',
-  tag: 'pre',
+  render: 'pre',
   padding: '$4',
   borderRadius: '$4',
   bg: '$color3',
@@ -101,8 +101,6 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
       position="relative"
       mb="$4"
       mt="$3"
-      bw={1}
-      bc="$gray4"
       br="$5"
       {...(isHero && {
         px: '$4',
@@ -207,7 +205,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                   scaleIcon={1.25}
                   bg="$color1"
                   o={1}
-                  animation="quickest"
+                  transition="quickest"
                   enterStyle={{ x: 5, o: 0 }}
                   exitStyle={{ x: 5, o: 0 }}
                   onPress={() => setIsCutoff(true)}

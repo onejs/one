@@ -20,13 +20,13 @@ export default () => {
   })
 
   return (
-    <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
+    <YStack height={600} bg="red" flex={1} items="center" justify="center" gap="$10">
       <H2 testID="welcome-message">Welcome to One</H2>
 
       <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
 
       <Square
-        animation="bouncy"
+        transition="bouncy"
         scale={1}
         size={100}
         bg="yellow"

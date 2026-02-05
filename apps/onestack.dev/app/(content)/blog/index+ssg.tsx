@@ -65,7 +65,7 @@ export default function BlogIndex() {
                       borderColor: '$color8',
                       backgroundColor: '$background05',
                     }}
-                    animation="100ms"
+                    transition="100ms"
                   >
                     <YStack gap="$2">
                       <H2 size="$7" fontWeight="600">

@@ -54,7 +54,7 @@ export const TopNav = () => {
         }}
         $gtMd={{
           jc: isBlog ? 'space-between' : 'flex-end',
-          top: 26,
+          pt: 50,
           px: 25,
         }}
       >
@@ -82,17 +82,10 @@ export const TopNav = () => {
           </Link>
         </XStack>
 
-        <XStack pe="none" ai="center" jc="center" gap="$1" f={1}>
-          <XStack
-            group="card"
-            containerType="normal"
-            ai="center"
-            jc="flex-end"
-            $sm={{ dsp: 'none' }}
-            f={10}
-          >
+        <XStack pe="none" ai="center" jc="flex-end" gap="$2" f={1}>
+          <XStack group="card" containerType="normal" ai="center" $sm={{ dsp: 'none' }}>
             <View
-              animation="quickest"
+              transition="quickest"
               mt={2}
               pe="auto"
               hoverStyle={{
@@ -112,7 +105,7 @@ export const TopNav = () => {
             </XStack>
           </XStack>
 
-          <XStack pe="none" ai="center" jc="flex-end" f={10} $gtSm={{ f: 0 }}>
+          <XStack pe="none" ai="center">
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
               <Search width={24} height={24} color="$color12" strokeWidth={2} />
             </SimpleButton>

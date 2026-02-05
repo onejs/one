@@ -105,7 +105,7 @@ export default function DocsLayout() {
               <Link href={previous.route as Href} asChild>
                 <XStack
                   className="text-underline-none"
-                  tag="a"
+                  render="a"
                   group="card"
                   hoverStyle={{
                     borderColor: '$color6',
@@ -122,13 +122,13 @@ export default function DocsLayout() {
                   aria-label={`Previous page: ${previous.title}`}
                   ai="center"
                   gap="$4"
-                  animation="100ms"
+                  transition="100ms"
                 >
-                  <View o={0} l="$-4" animation="quickest">
+                  <View o={0} l="$-4" transition="quickest">
                     <ChevronLeft col="$color11" />
                   </View>
 
-                  <View l="$-8" animation="quicker">
+                  <View l="$-8" transition="quicker">
                     <SizableText userSelect="none" size="$5">
                       Previous
                     </SizableText>
@@ -144,7 +144,7 @@ export default function DocsLayout() {
               <Link href={next.route as Href} asChild>
                 <XStack
                   className="text-underline-none"
-                  tag="a"
+                  render="a"
                   group="card"
                   hoverStyle={{
                     borderColor: '$color6',
@@ -162,9 +162,9 @@ export default function DocsLayout() {
                   ai="center"
                   jc="flex-end"
                   gap="$4"
-                  animation="100ms"
+                  transition="100ms"
                 >
-                  <View r="$-8" animation="quicker">
+                  <View r="$-8" transition="quicker">
                     <Paragraph userSelect="none" size="$5">
                       Next
                     </Paragraph>
@@ -173,7 +173,7 @@ export default function DocsLayout() {
                     </Paragraph>
                   </View>
 
-                  <View o={0} r="$-4" animation="quickest">
+                  <View o={0} r="$-4" transition="quickest">
                     <ChevronRight col="$color11" />
                   </View>
                 </XStack>

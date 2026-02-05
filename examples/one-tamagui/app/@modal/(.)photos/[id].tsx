@@ -50,7 +50,7 @@ export default function PhotoModal() {
       <Dialog.Portal>
         <Dialog.Overlay
           key="overlay"
-          animation="quick"
+          transition="quick"
           opacity={0.7}
           enterStyle={{ opacity: 0 }}
           exitStyle={{ opacity: 0 }}
@@ -60,7 +60,7 @@ export default function PhotoModal() {
           bordered
           elevate
           key="content"
-          animation={[
+          transition={[
             '200ms',
             {
               opacity: {
@@ -86,7 +86,7 @@ export default function PhotoModal() {
             source={{ uri: photo.url, width: 600, height: 400 }}
             width="100%"
             height={300}
-            borderRadius="$4"
+            rounded="$4"
           />
 
           <YStack gap="$2" mt="$3" testID="modal-content">
@@ -103,7 +103,7 @@ export default function PhotoModal() {
 
           <Adapt when="sm" platform="touch">
             <Sheet
-              animation="medium"
+              transition="medium"
               zIndex={200000}
               modal
               dismissOnSnapToBottom
@@ -113,7 +113,7 @@ export default function PhotoModal() {
                 <Adapt.Contents />
               </Sheet.Frame>
               <Sheet.Overlay
-                animation="lazy"
+                transition="lazy"
                 enterStyle={{ opacity: 0 }}
                 exitStyle={{ opacity: 0 }}
               />

@@ -35,7 +35,7 @@ export default function ProfileModal() {
       <Dialog.Portal>
         <Dialog.Overlay
           key="overlay"
-          animation="quick"
+          transition="quick"
           opacity={0.7}
           enterStyle={{ opacity: 0 }}
           exitStyle={{ opacity: 0 }}
@@ -45,7 +45,7 @@ export default function ProfileModal() {
           bordered
           elevate
           key="content"
-          animation={[
+          transition={[
             '200ms',
             {
               opacity: {
@@ -127,7 +127,7 @@ export default function ProfileModal() {
 
           <Adapt when="sm" platform="touch">
             <Sheet
-              animation="medium"
+              transition="medium"
               zIndex={200000}
               modal
               dismissOnSnapToBottom
@@ -137,7 +137,7 @@ export default function ProfileModal() {
                 <Adapt.Contents />
               </Sheet.Frame>
               <Sheet.Overlay
-                animation="lazy"
+                transition="lazy"
                 enterStyle={{ opacity: 0 }}
                 exitStyle={{ opacity: 0 }}
               />

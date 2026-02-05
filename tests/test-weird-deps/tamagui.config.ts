@@ -1,7 +1,11 @@
-import { config as configOptions } from '@tamagui/config/v3'
+import { defaultConfig as configOptions } from '@tamagui/config/v5'
+import { animations } from '@tamagui/config/v5-css'
 import { createTamagui } from '@tamagui/core'
 
-export const config = createTamagui(configOptions)
+export const config = createTamagui({
+  ...configOptions,
+  animations,
+})
 
 export type Conf = typeof config
 
