@@ -21,10 +21,10 @@
     "@docsearch/react": "^3.9.0",
     "@react-navigation/native": "~7.1.19",
     "@supabase/supabase-js": "^2.44.4",
-    "@tamagui/lucide-icons": "^2.0.0-rc.6",
-    "@tamagui/react-native-web": "^2.0.0-rc.6",
-    "@tamagui/themes": "^2.0.0-rc.6",
-    "@tamagui/use-store": "^2.0.0-rc.6",
+    "@tamagui/lucide-icons": "2.0.0-rc.6-1770408072869",
+    "@tamagui/react-native-web": "2.0.0-rc.6-1770409768999",
+    "@tamagui/themes": "2.0.0-rc.6-1770409768999",
+    "@tamagui/use-store": "2.0.0-rc.6-1770409768999",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "body-scroll-lock": "^4.0.0-beta.0",
@@ -34,11 +34,11 @@
     "react-native": "0.81.5",
     "react-native-safe-area-context": "~5.6.1",
     "react-native-screens": "~4.16.0",
-    "tamagui": "2.0.0-rc.6-1770408072869"
+    "tamagui": "2.0.0-rc.6-1770409768999"
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
-    "@tamagui/vite-plugin": "^2.0.0-rc.6",
+    "@tamagui/vite-plugin": "2.0.0-rc.6-1770409768999",
     "@types/sharp": "^0.32.0",
     "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
