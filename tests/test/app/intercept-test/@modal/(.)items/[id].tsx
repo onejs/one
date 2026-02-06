@@ -34,8 +34,8 @@ export default function ItemModal() {
       right={0}
       bottom={0}
       bg="rgba(0,0,0,0.5)"
-      ai="center"
-      jc="center"
+      items="center"
+      justify="center"
       testID="intercept-modal-overlay"
       onPress={handleClose}
     >
@@ -49,7 +49,7 @@ export default function ItemModal() {
         testID="intercept-modal-content"
         onPress={(e: any) => e.stopPropagation()}
       >
-        <XStack jc="space-between" ai="center">
+        <XStack justify="space-between" items="center">
           <Text fontSize="$5" fontWeight="bold" testID="modal-title">
             Item {id} (Modal)
           </Text>

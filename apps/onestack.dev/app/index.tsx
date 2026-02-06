@@ -37,7 +37,7 @@ import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 
 const ButtonText = styled(Text, {
   lh: 0,
-  animation: 'quickest',
+  transition: 'quickest',
   color: '$color11',
   fontWeight: '600',
 })
@@ -87,13 +87,13 @@ export default function HomePage() {
                 <ToggleThemeButton />
               </View>
 
-              <Link href="/blog" asChild>
+              <Link href="/docs/status" asChild>
                 <Button
                   size="$5"
                   bg="$color4"
                   br="$10"
                   group
-                  animation="quickest"
+                  transition="quickest"
                   containerType="normal"
                   gap={0}
                   bw={0}
@@ -117,7 +117,7 @@ export default function HomePage() {
                     bg="$color2"
                     br="$10"
                     group
-                    animation="quickest"
+                    transition="quickest"
                     containerType="normal"
                     gap={0}
                     bw={0}
@@ -196,7 +196,6 @@ export default function HomePage() {
             jc="center"
             gap="$1"
             px="$6"
-            bc="$color4"
           >
             <Paragraph size="$5" theme="gray" color="$color9" mb={-20}>
               Bootstrap instantly with
@@ -224,12 +223,12 @@ export default function HomePage() {
               target="_blank"
             >
               <XStack
-                tag="a"
+                render="a"
                 className="text-underline-none"
                 gap="$6"
                 ai="center"
                 jc="center"
-                animation="medium"
+                transition="medium"
                 cur="pointer"
                 als="center"
                 px="$4"
@@ -411,13 +410,13 @@ function Video() {
         zi={0}
       >
         <View
-          animation="quick"
+          transition="quick"
           als="center"
           maxWidth={380}
           w="100%"
           ov="hidden"
           cursor="pointer"
-          tag="button"
+          render="button"
           aria-label="Promo Video Launcher"
           backgroundColor="transparent"
           borderWidth={0}
@@ -448,7 +447,7 @@ function Video() {
             jc="center"
           >
             <Circle
-              animation="bouncy"
+              transition="bouncy"
               y={35}
               ai="center"
               size={60}
@@ -471,7 +470,7 @@ function Video() {
           </View>
         </View>
         <Paragraph
-          animation="quickest"
+          transition="quickest"
           fontFamily="$mono"
           size="$5"
           ta="center"
@@ -506,7 +505,7 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  bc: '$color2',
+  borderColor: '$color2',
   borderStyle: 'dotted',
   bw: 0,
   bbw: 1,
@@ -533,7 +532,7 @@ const CopyCommand = () => {
         <View
           als="center"
           cursor="pointer"
-          animation="quick"
+          transition="quick"
           onPress={handleCopyNpxRunCommand}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}

@@ -24,7 +24,7 @@ export const Hint = ({
   return (
     <Tooltip placement="top" allowFlip disableRTL offset={15} restMs={40} delay={240}>
       <Tooltip.Trigger
-        tag="span"
+        render="span"
         display="inline"
         cursor="default"
         data-tint-link={tint}

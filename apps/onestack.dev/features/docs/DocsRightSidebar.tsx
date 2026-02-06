@@ -8,7 +8,7 @@ import { ScrollView } from '../site/ScrollView'
 const QuickNavLink = ({ href, ...rest }: LinkProps) => (
   <a onClick={(e) => [e.stopPropagation()]} href={href as any}>
     <Paragraph
-      tag="span"
+      render="span"
       size="$3"
       color="$color11"
       cursor="pointer"
@@ -28,7 +28,7 @@ export function DocsRightSidebar({
 }) {
   return (
     <YStack
-      tag="aside"
+      render="aside"
       // className={classNames.zeroRight}
       display="none"
       $gtMd={{
@@ -40,6 +40,7 @@ export function DocsRightSidebar({
         position: 'fixed' as any,
         right: 0,
         top: 130,
+        bottom: 0,
         pr: '$5',
       }}
       $gtLg={{
@@ -51,11 +52,13 @@ export function DocsRightSidebar({
       }}
     >
       <YStack
-        tag="nav"
+        render="nav"
         aria-labelledby="site-quick-nav-heading"
         display={headings.length === 0 ? 'none' : 'flex'}
         gap="$2"
         pe="auto"
+        flex={1}
+        overflow="hidden"
       >
         <H4 userSelect="none" size="$2" mx="$2" id="site-quick-nav-heading">
           Quick nav
@@ -63,13 +66,13 @@ export function DocsRightSidebar({
 
         <Separator />
 
-        <YStack maxHeight="calc(100vh - var(--space-25))">
-          <ScrollView>
-            <YStack px="$2">
+        <YStack flex={1} overflow="hidden">
+          <ScrollView style={{ flex: 1 }}>
+            <YStack px="$2" pb="$10">
               <ul style={{ margin: 0, padding: 0 }}>
                 {headings.map(({ id, title, priority }, i) => {
                   return (
-                    <XStack key={i} tag="li" ai="center" py="$1">
+                    <XStack key={i} render="li" ai="center" py="$1">
                       {priority > 2 && <Circle size={4} mx="$2" />}
                       <QuickNavLink href={`#${id}` as any}>{title}</QuickNavLink>
                     </XStack>

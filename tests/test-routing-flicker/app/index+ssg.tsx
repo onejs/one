@@ -13,14 +13,14 @@ export default function HomePage() {
   const data = useLoader(loader)
 
   return (
-    <YStack padding="$4" gap="$4">
+    <YStack p="$4" gap="$4">
       <H1 id="page-title">{data.title}</H1>
       <Paragraph id="page-description">{data.description}</Paragraph>
       <Text id="loader-timestamp">Loaded at: {data.timestamp}</Text>
 
-      <YStack gap="$3" marginTop="$4">
+      <YStack gap="$3" mt="$4">
         <Text fontWeight="bold">SSG Pages (always +ssg):</Text>
-        <YStack gap="$2" paddingLeft="$2">
+        <YStack gap="$2" pl="$2">
           <Link href="/docs" id="nav-to-docs-index">
             <Text color="$blue10">Docs Index</Text>
           </Link>
@@ -39,7 +39,7 @@ export default function HomePage() {
         </YStack>
 
         <Text fontWeight="bold">Default Mode Pages (uses defaultRenderMode):</Text>
-        <YStack gap="$2" paddingLeft="$2">
+        <YStack gap="$2" pl="$2">
           <Link href="/default-mode" id="nav-to-default-index">
             <Text color="$blue10">Default Mode Index</Text>
           </Link>

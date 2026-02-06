@@ -159,7 +159,7 @@ export function OneLogo({
           pos="absolute"
           t={20}
           r={-60}
-          animation="quickest"
+          transition="quickest"
           y={0}
           mr={5}
           pe="auto"

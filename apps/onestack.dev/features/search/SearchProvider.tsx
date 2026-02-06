@@ -18,7 +18,7 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
 
   return (
     <Text
-      tag="a"
+      render="a"
       // always except-style
       asChild={asChild ? 'except-style' : false}
       className="t_Link"
@@ -130,7 +130,7 @@ export const SearchProvider = memo(({ children }: any) => {
 const ResultItem = ({ hit, children }) => {
   return (
     <Link href={window.location.origin + hit.url}>
-      <Paragraph tag="span" color="$color">
+      <Paragraph render="span" color="$color">
         {children}
       </Paragraph>
     </Link>

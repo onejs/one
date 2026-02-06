@@ -99,7 +99,7 @@ const DrawerFrame = styled(YStack, {
       false: {
         themeInverse: true,
         paddingVertical: '$2',
-        tag: 'nav',
+        render: 'nav',
         width: 210,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
@@ -178,7 +178,7 @@ const DrawerContent = DrawerFrame.styleable((props, ref) => {
     <FocusScope trapped enabled={true} loop>
       <DrawerFrame
         ref={ref}
-        animation="medium"
+        transition="medium"
         enterStyle={{ x: -(rest.width || rest.w || 210) }}
         exitStyle={{ x: -(rest.width || rest.w || 210) }}
         {...rest}

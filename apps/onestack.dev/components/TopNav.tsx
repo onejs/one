@@ -12,6 +12,7 @@ import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 const SimpleButton = styled(View, {
   role: 'button',
   cursor: 'pointer',
+  pos: 'relative',
   pe: 'auto',
   w: 42,
   h: 42,
@@ -40,6 +41,7 @@ export const TopNav = () => {
 
       <XStack
         ref={scrollParentRef}
+        pos="relative"
         jc="space-between"
         ai="center"
         maw={isBlog ? 1100 : 1400}
@@ -54,7 +56,7 @@ export const TopNav = () => {
         }}
         $gtMd={{
           jc: isBlog ? 'space-between' : 'flex-end',
-          top: 26,
+          t: 26,
           px: 25,
         }}
       >
@@ -82,17 +84,10 @@ export const TopNav = () => {
           </Link>
         </XStack>
 
-        <XStack pe="none" ai="center" jc="center" gap="$1" f={1}>
-          <XStack
-            group="card"
-            containerType="normal"
-            ai="center"
-            jc="flex-end"
-            $sm={{ dsp: 'none' }}
-            f={10}
-          >
+        <XStack pos="relative" pe="none" ai="center" jc="flex-end" gap="$1" f={1} fb="auto" fd="row">
+          <XStack pos="relative" group="card" containerType="normal" ai="center" jc="flex-end" fg={10} $sm={{ dsp: 'none' }}>
             <View
-              animation="quickest"
+              transition="quickest"
               mt={2}
               pe="auto"
               hoverStyle={{
@@ -112,7 +107,7 @@ export const TopNav = () => {
             </XStack>
           </XStack>
 
-          <XStack pe="none" ai="center" jc="flex-end" f={10} $gtSm={{ f: 0 }}>
+          <XStack pe="none" ai="center">
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
               <Search width={24} height={24} color="$color12" strokeWidth={2} />
             </SimpleButton>

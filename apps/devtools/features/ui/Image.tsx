@@ -1,5 +1,4 @@
-import { Image as Image2, type ImageProps } from '@tamagui/image-next'
-import { isWeb, View } from 'tamagui'
+import { Image as Image2, type ImageProps, isWeb, View } from 'tamagui'
 
 export function Image({ src, ...props }: ImageProps) {
   return isWeb ? (

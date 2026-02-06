@@ -26,14 +26,14 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "dependencies": {
     "react": "19.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.144.3"
+    "@tamagui/build": "^2.0.0-rc.6"
   },
   "publishConfig": {
     "access": "public"
