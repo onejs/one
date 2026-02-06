@@ -1,5 +1,5 @@
 import type { PluginOption } from 'vite'
-import { webExtensions } from '../constants'
+import { ssrExtensions, webExtensions } from '../constants'
 import FSExtra from 'fs-extra'
 import { extname } from 'node:path'
 import { createVXRNCompilerPlugin } from '@vxrn/compiler'
@@ -23,7 +23,7 @@ export function getBaseVitePlugins(): PluginOption[] {
           environments: {
             ssr: {
               resolve: {
-                extensions: webExtensions,
+                extensions: ssrExtensions,
                 conditions: ['vxrn-web'],
                 externalConditions: ['vxrn-web'],
               },
@@ -58,13 +58,23 @@ export function getBaseVitePlugins(): PluginOption[] {
           return resolved
         }
 
+        // error if .server. files are explicitly imported on client/native
+        if (
+          this.environment.name !== 'ssr' &&
+          /\.server\.\w+$/.test(resolved.id)
+        ) {
+          throw new Error(
+            `[one] .server file cannot be imported on ${this.environment.name}: ${source} (imported by ${importer})`
+          )
+        }
+
         // not in node_modules, vite doesn't apply extensions! we need to manually
         const jsExtension = extname(resolved.id)
         const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), '')
 
         const extensionsByEnvironment = {
           client: ['web'],
-          ssr: ['web'],
+          ssr: ['server', 'web'],
           ios: ['ios', 'native'],
           android: ['android', 'native'],
         }

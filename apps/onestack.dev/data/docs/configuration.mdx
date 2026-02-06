@@ -782,9 +782,24 @@ One assumes the following environments:
 
 We set up platform-specific extensions based on the environment:
 
-- client/ssr: `.web.(js|ts|tsx|mjs)`
+- client: `.web.(js|ts|tsx|mjs)`
+- ssr: `.server.(ts|tsx)`, `.web.(js|ts|tsx|mjs)`
 - ios: `.(ios|native).(js|ts|tsx|mjs)`
 - android: `.(android|native).(js|ts|tsx|mjs)`
+
+### Server-only files
+
+Files with a `.server.ts` or `.server.tsx` extension are resolved only in the `ssr` environment. This lets you colocate server-only code next to shared code:
+
+```
+src/
+  db.ts            # shared types/interface
+  db.server.ts     # server-only implementation (database queries, secrets, etc.)
+```
+
+When you `import './db'` from a server-rendered route or loader, it resolves to `db.server.ts`. On the client or native, it resolves to `db.ts`.
+
+If a `.server.ts` file is explicitly imported on the client or native (e.g. `import './db.server'`), the build will throw an error to prevent server code from leaking into client bundles.
 
 ## Other Exports
 

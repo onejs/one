@@ -16,3 +16,9 @@ export const webExtensions = [
   '.web.js',
   ...viteDefaultExtensions,
 ]
+
+export const ssrExtensions = [
+  '.server.tsx',
+  '.server.ts',
+  ...webExtensions,
+]
