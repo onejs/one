@@ -7,7 +7,7 @@ import {
 } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import path from 'node:path'
-import type { Plugin, PluginOption } from 'vite'
+import { mergeConfig, type Plugin, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
@@ -204,26 +204,34 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.config?.tsConfigPaths === false
       ? []
       : [
-          {
-            name: 'one:tsconfig-paths',
-            // return a fresh vite-tsconfig-paths instance per environment so
-            // parallel builds don't share closure state (tsconfigResolvers etc)
-            applyToEnvironment() {
-              const pathsConfig = options.config?.tsConfigPaths
-              const skipDotDirs = (dir: string) => {
-                const name = dir.split('/').pop() || ''
-                return name.startsWith('.')
-              }
+          (() => {
+            const pathsConfig = options.config?.tsConfigPaths
+            const skipDotDirs = (dir: string) => {
+              const name = dir.split('/').pop() || ''
+              return name.startsWith('.')
+            }
 
-              return tsconfigPaths({
-                loose: true,
-                projectDiscovery: 'lazy',
-                ignoreConfigErrors: true,
-                skip: skipDotDirs,
-                ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-              })
-            },
-          },
+            const tsPathsPlugin = tsconfigPaths({
+              loose: true,
+              projectDiscovery: 'lazy',
+              ignoreConfigErrors: true,
+              skip: skipDotDirs,
+              ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
+            })
+
+            return {
+              ...tsPathsPlugin,
+              // parallel viteBuild() calls share this plugin, so the second
+              // build's buildStart can fire before configResolved initializes
+              // tsconfigResolvers — swallow the error since buildStart only
+              // resets caches which isn't needed for parallel builds
+              buildStart() {
+                try {
+                  return tsPathsPlugin.buildStart?.call(this)
+                } catch {}
+              },
+            }
+          })(),
         ]),
 
     {
