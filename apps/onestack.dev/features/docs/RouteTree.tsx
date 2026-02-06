@@ -20,7 +20,7 @@ export const RouteTree = ({
   return (
     <YStack
       ov="hidden"
-      theme="light"
+      bg="$color3"
       {...(!indent && {
         bw: 2,
         borderColor: '$color4',
