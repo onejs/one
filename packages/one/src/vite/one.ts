@@ -204,21 +204,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.config?.tsConfigPaths === false
       ? []
       : [
-          (() => {
-            const pathsConfig = options.config?.tsConfigPaths
-            const skipDotDirs = (dir: string) => {
-              const name = dir.split('/').pop() || ''
-              return name.startsWith('.')
-            }
+          {
+            name: 'one:tsconfig-paths',
+            // return a fresh vite-tsconfig-paths instance per environment so
+            // parallel builds don't share closure state (tsconfigResolvers etc)
+            applyToEnvironment() {
+              const pathsConfig = options.config?.tsConfigPaths
+              const skipDotDirs = (dir: string) => {
+                const name = dir.split('/').pop() || ''
+                return name.startsWith('.')
+              }
 
-            return tsconfigPaths({
-              loose: true,
-              projectDiscovery: 'lazy',
-              ignoreConfigErrors: true,
-              skip: skipDotDirs,
-              ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-            })
-          })(),
+              return tsconfigPaths({
+                loose: true,
+                projectDiscovery: 'lazy',
+                ignoreConfigErrors: true,
+                skip: skipDotDirs,
+                ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
+              })
+            },
+          },
         ]),
 
     {
