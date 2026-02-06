@@ -8,7 +8,6 @@ import {
   getPlatformEnvDefine,
 } from '@vxrn/vite-plugin-metro'
 import type { Plugin, PluginOption } from 'vite'
-import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
@@ -132,7 +131,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const vxrnOptions = getOptionsFilled()
   const root = vxrnOptions?.root || process.cwd()
-  const barrelOption = options.optimization?.barrel
 
   const compiler = options.react?.compiler
   if (compiler) {
@@ -164,14 +162,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
-
-    !barrelOption
-      ? null
-      : (barrel({
-          packages: Array.isArray(barrelOption)
-            ? barrelOption
-            : ['@tamagui/lucide-icons'],
-        }) as any),
 
     imageDataPlugin(),
 
