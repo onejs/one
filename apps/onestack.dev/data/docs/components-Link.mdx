@@ -96,3 +96,140 @@ export interface LinkProps extends TextProps {
   mask?: Href
 }
 ```
+
+---
+
+## Link Preview (iOS)
+
+Link preview (also known as "Peek and Pop") shows a preview popup of a screen when users long-press a link. This is an iOS-only feature that works automatically on devices using the new architecture.
+
+### Requirements
+
+- iOS 15.1+
+- React Native New Architecture enabled (bridgeless mode)
+- Non-Apple TV device
+
+### No Installation Required
+
+Link preview is bundled with the `one` package. It works automatically on supported iOS devices and gracefully does nothing on unsupported platforms (web, Android, old architecture).
+
+### Basic Usage
+
+Use the compound `Link` components to enable preview:
+
+```tsx
+import { Link } from 'one'
+
+export function ProfileLink() {
+  return (
+    <Link href="/profile" asChild>
+      <Link.Trigger>
+        <Pressable>
+          <Text>View Profile</Text>
+        </Pressable>
+      </Link.Trigger>
+      <Link.Preview />
+    </Link>
+  )
+}
+```
+
+### Custom Preview Content
+
+By default, `Link.Preview` renders a snapshot of the destination screen. You can customize it:
+
+```tsx
+<Link href="/user/123" asChild>
+  <Link.Trigger>
+    <UserCard />
+  </Link.Trigger>
+  <Link.Preview style={{ width: 300, height: 200 }}>
+    <UserPreviewCard userId="123" />
+  </Link.Preview>
+</Link>
+```
+
+### Context Menus
+
+Add actions that appear when the preview is shown:
+
+```tsx
+<Link href="/photo/456" asChild>
+  <Link.Trigger>
+    <PhotoThumbnail />
+  </Link.Trigger>
+  <Link.Preview />
+  <Link.Menu>
+    <Link.MenuAction icon="star" onPress={handleFavorite}>
+      Add to Favorites
+    </Link.MenuAction>
+    <Link.MenuAction icon="square.and.arrow.up" onPress={handleShare}>
+      Share
+    </Link.MenuAction>
+    <Link.MenuAction icon="trash" destructive onPress={handleDelete}>
+      Delete
+    </Link.MenuAction>
+  </Link.Menu>
+</Link>
+```
+
+### Link.MenuAction Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `ReactNode` | The title of the menu item |
+| `icon` | `string` | SF Symbol name |
+| `onPress` | `() => void` | Callback when selected |
+| `destructive` | `boolean` | Display as destructive (red) |
+| `disabled` | `boolean` | Disable the action |
+| `subtitle` | `string` | Optional subtitle |
+| `hidden` | `boolean` | Hide the action |
+| `isOn` | `boolean` | Display as selected (checkmark) |
+
+### Nested Menus
+
+Create submenus for grouped actions:
+
+```tsx
+<Link.Menu>
+  <Link.MenuAction icon="heart" onPress={handleLike}>
+    Like
+  </Link.MenuAction>
+  <Link.Menu title="More" icon="ellipsis.circle">
+    <Link.MenuAction icon="flag" onPress={handleReport}>
+      Report
+    </Link.MenuAction>
+    <Link.MenuAction icon="eye.slash" onPress={handleHide}>
+      Hide
+    </Link.MenuAction>
+  </Link.Menu>
+</Link.Menu>
+```
+
+### Detecting Preview State
+
+Use `useIsPreview()` to adjust component behavior when rendered inside a preview:
+
+```tsx
+import { useIsPreview } from 'one'
+
+function MyComponent() {
+  const isPreview = useIsPreview()
+
+  if (isPreview) {
+    // Render simplified version for preview
+    return <SimplifiedView />
+  }
+
+  return <FullView />
+}
+```
+
+### Platform Behavior
+
+| Platform | Behavior |
+|----------|----------|
+| iOS (new arch) | Full link preview with context menu |
+| iOS (old arch) | Gracefully disabled, link works normally |
+| Android | Gracefully disabled, link works normally |
+| Web | Gracefully disabled, link works normally |
