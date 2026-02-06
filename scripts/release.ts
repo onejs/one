@@ -198,7 +198,7 @@ async function run() {
               )
               return [
                 item,
-                ...json.alsoPublishAs.map((name) => ({
+                ...json.alsoPublishAs.map((name: string) => ({
                   ...item,
                   json: { ...json, name },
                   name,
@@ -401,6 +401,7 @@ async function run() {
 
     if (!finish) {
       const tmpDir = `/tmp/one-publish`
+      await fs.remove(tmpDir)
       await ensureDir(tmpDir)
 
       // if all successful, re-tag as latest
