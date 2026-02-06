@@ -148,14 +148,6 @@ export declare namespace One {
         };
         optimization?: {
             /**
-             * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
-             * Optimizes barrel export files to speed up your build, you must list the packages that have
-             * barrel exports. Especially useful for icon packs.
-             *
-             * @default ['@tamagui/lucide-icons']
-             */
-            barrel?: boolean | string[];
-            /**
              * By default One scans your fs routes and adds them as Vite `entries`, this prevents some hard
              * reloads on web as you navigate to new pages, but can slow things startup.
              *
