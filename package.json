@@ -63,10 +63,7 @@
     "test:vite-ecosystem-ci": "cd tests/test && bun run test",
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "typecheck": "turbo typecheck",
-    "up-dep": "tko update-deps",
-    "upgrade:takeout": "bun run up-dep '@take-out/*'",
-    "upgrade:tamagui": "bun run up-dep '*tamagui*' '@tamagui/*'",
-    "upgrade:tamagui:canary": "bun run up-dep --canary '*tamagui*' '@tamagui/*'",
+    "up": "tko up",
     "watch": "npm-run-all --parallel watch:ts watch:build",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 bun run watch:build",
@@ -97,6 +94,7 @@
     "oxlint": "^1.31.0",
     "p-map": "^7.0.3",
     "patch-package": "^8.0.0",
+    "@take-out/cli": "0.0.77",
     "playwright": "^1.57.0",
     "prettier": "^3.5.3",
     "tamagui": "^2.0.0-rc.6",
@@ -106,9 +104,5 @@
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "zod": "3.25.67"
-  },
-  "devDependencies": {
-    "@take-out/cli": "0.0.77",
-    "oxc-parser": "^0.107.0"
   }
 }
