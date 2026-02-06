@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@vxrn/test": "workspace:*",
-    "hono": "^4.11.4",
+    "hono": "^4.11.8",
     "playwright": "^1.45.0",
     "typescript": "^5.5.3",
     "vitest": "^4.0.6"

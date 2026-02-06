@@ -34,7 +34,7 @@ const main = defineCommand({
     template: {
       type: 'string',
       required: false,
-      description: 'One of "bare", "tamagui", "router".',
+      description: 'Choose a template in advance (avoid selection screen).',
     },
     info: {
       type: 'boolean',
