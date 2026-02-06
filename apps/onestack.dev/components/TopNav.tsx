@@ -12,6 +12,7 @@ import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 const SimpleButton = styled(View, {
   role: 'button',
   cursor: 'pointer',
+  pos: 'relative',
   pe: 'auto',
   w: 42,
   h: 42,
@@ -40,6 +41,7 @@ export const TopNav = () => {
 
       <XStack
         ref={scrollParentRef}
+        pos="relative"
         jc="space-between"
         ai="center"
         maw={isBlog ? 1100 : 1400}
@@ -54,7 +56,7 @@ export const TopNav = () => {
         }}
         $gtMd={{
           jc: isBlog ? 'space-between' : 'flex-end',
-          pt: 50,
+          t: 26,
           px: 25,
         }}
       >
@@ -82,8 +84,8 @@ export const TopNav = () => {
           </Link>
         </XStack>
 
-        <XStack pe="none" ai="center" jc="flex-end" gap="$2" f={1}>
-          <XStack group="card" containerType="normal" ai="center" $sm={{ dsp: 'none' }}>
+        <XStack pos="relative" pe="none" ai="center" jc="flex-end" gap="$1" f={1} fb="auto" fd="row">
+          <XStack pos="relative" group="card" containerType="normal" ai="center" jc="flex-end" fg={10} $sm={{ dsp: 'none' }}>
             <View
               transition="quickest"
               mt={2}

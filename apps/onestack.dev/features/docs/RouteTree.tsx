@@ -23,7 +23,7 @@ export const RouteTree = ({
       theme="light"
       {...(!indent && {
         bw: 2,
-        bc: '$color4',
+        borderColor: '$color4',
         br: '$4',
         my: '$4',
       })}
