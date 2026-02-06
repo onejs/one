@@ -34,7 +34,7 @@
     "react-native": "0.81.5",
     "react-native-safe-area-context": "~5.6.1",
     "react-native-screens": "~4.16.0",
-    "tamagui": "^2.0.0-rc.6"
+    "tamagui": "2.0.0-rc.6-1770408072869"
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",

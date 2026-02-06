@@ -235,5 +235,27 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "upgradeSets": {
+    "takeout": [
+      "@take-out/*",
+      "on-zero"
+    ],
+    "tamagui": [
+      "tamagui",
+      "@tamagui/*"
+    ],
+    "one": [
+      "one",
+      "vxrn",
+      "@vxrn/*"
+    ],
+    "zero": [
+      "@rocicorp/zero"
+    ],
+    "better-auth": [
+      "better-auth",
+      "@better-auth/*"
+    ]
   }
 }
