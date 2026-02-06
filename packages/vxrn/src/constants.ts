@@ -17,8 +17,4 @@ export const webExtensions = [
   ...viteDefaultExtensions,
 ]
 
-export const ssrExtensions = [
-  '.server.tsx',
-  '.server.ts',
-  ...webExtensions,
-]
+export const ssrExtensions = ['.server.tsx', '.server.ts', ...webExtensions]

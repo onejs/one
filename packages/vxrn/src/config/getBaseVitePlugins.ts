@@ -59,10 +59,7 @@ export function getBaseVitePlugins(): PluginOption[] {
         }
 
         // error if .server. files are explicitly imported on client/native
-        if (
-          this.environment.name !== 'ssr' &&
-          /\.server\.\w+$/.test(resolved.id)
-        ) {
+        if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
           throw new Error(
             `[one] .server file cannot be imported on ${this.environment.name}: ${source} (imported by ${importer})`
           )

@@ -22,9 +22,7 @@ async function getPlatformResolvePlugin() {
 
 function createMockContext(envName: string, resolvedId?: string) {
   return {
-    resolve: vi.fn().mockResolvedValue(
-      resolvedId ? { id: resolvedId } : null
-    ),
+    resolve: vi.fn().mockResolvedValue(resolvedId ? { id: resolvedId } : null),
     environment: { name: envName },
   }
 }

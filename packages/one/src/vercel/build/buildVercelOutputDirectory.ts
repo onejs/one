@@ -179,9 +179,9 @@ const wrappedMiddlewareFunction = (request, event) => {
   const pathname = url.pathname
   
   // Find matching middlewares for this request
-  const matchingMiddlewares = middlewaresByNamedRegex
+  const matchingMiddlewares = [...middlewaresByNamedRegex
     .filter(([namedRegex]) => new RegExp(namedRegex).test(pathname))
-    .reduce((prev, current) => prev.length > current[1]?.length ? prev : current[1], []);
+    .reduce((prev, current) => prev.length > current[1]?.length ? prev : current[1], [])];
   
   // Import and execute the middleware function
   const boundNext = () => {
