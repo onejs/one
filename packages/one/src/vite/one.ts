@@ -229,6 +229,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         tsConfigPathsPlugin = tsconfigPaths({
           loose: true,
           projectDiscovery: 'lazy',
+          ignoreConfigErrors: true,
           skip: skipDotDirs,
           ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
         })

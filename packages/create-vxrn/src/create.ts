@@ -65,7 +65,12 @@ export async function create(args: { template?: string; name?: string }) {
     console.info()
     console.info(ansis.green(`Opening ${url}...`))
     console.info()
-    const openCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open'
+    const openCmd =
+      process.platform === 'darwin'
+        ? 'open'
+        : process.platform === 'win32'
+          ? 'start'
+          : 'xdg-open'
     exec(`${openCmd} ${url}`)
     process.exit(0)
   }

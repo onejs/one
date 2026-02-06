@@ -81,7 +81,7 @@ async function warmupServer(url: string, requests = 3): Promise<void> {
 
 export async function setupTestServers({
   skipDev = false,
-}: { skipDev? } = {}): Promise<TestInfo> {
+}: { skipDev?: boolean } = {}): Promise<TestInfo> {
   const runWithNonCliMode = !!process.env.TEST_NON_CLI_MODE
   console.info('Setting up tests 🛠️')
 

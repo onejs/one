@@ -16,7 +16,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await browser.close()
-}, 30000)
+}, 10000)
 
 test('homepage loads with no error logs', async () => {
   const page = await context.newPage()
@@ -29,10 +29,13 @@ test('homepage loads with no error logs', async () => {
   })
 
   await page.goto(serverUrl, { timeout: 120000 })
+  if (consoleMessages.length > 0) {
+    console.info('console errors:', consoleMessages)
+  }
   expect(consoleMessages).toHaveLength(0)
 
   await page.close()
-}, 180000)
+}, 50000)
 
 // this stopped working, but only in playwright..
 test.skip('clicking "Get Started" link navigates without reloading to docs', async () => {
@@ -65,48 +68,30 @@ test('ScrollBehavior docs page loads correctly with title', async () => {
   expect(h1Text).toContain('ScrollBehavior')
 
   await page.close()
-}, 180000)
+}, 50000)
 
 test('accordion auto-opens to Components section when visiting ScrollBehavior page', async () => {
   const page = await context.newPage()
 
-  // Set desktop viewport to ensure sidebar is visible
   await page.setViewportSize({ width: 1280, height: 800 })
-
   await page.goto(`${serverUrl}/docs/components-ScrollBehavior`, { timeout: 120000 })
 
-  // Wait for the page to load
-  await page.waitForSelector('h1', { timeout: 10000 })
-
-  // Wait a bit for the accordion to initialize
-  await page.waitForTimeout(500)
-
-  // Check that we can see the ScrollBehavior link in the sidebar (meaning the accordion is open)
+  // wait for hydration and accordion to open by checking the link is visible
   const scrollBehaviorLink = page.locator('a[href="/docs/components-ScrollBehavior"]')
-  const isVisible = await scrollBehaviorLink.isVisible()
-  expect(isVisible).toBe(true)
+  await scrollBehaviorLink.waitFor({ state: 'visible', timeout: 15000 })
 
   await page.close()
-}, 180000)
+}, 50000)
 
 test('accordion auto-opens to Hooks section when visiting useRouter page', async () => {
   const page = await context.newPage()
 
-  // Set desktop viewport to ensure sidebar is visible
   await page.setViewportSize({ width: 1280, height: 800 })
-
   await page.goto(`${serverUrl}/docs/hooks-useRouter`, { timeout: 120000 })
 
-  // Wait for the page to load
-  await page.waitForSelector('h1', { timeout: 10000 })
-
-  // Wait a bit for the accordion to initialize
-  await page.waitForTimeout(500)
-
-  // The useRouter link should be visible in the sidebar (meaning Hooks accordion is open)
+  // wait for hydration and accordion to open by checking the link is visible
   const useRouterLink = page.locator('a[href="/docs/hooks-useRouter"]')
-  const isVisible = await useRouterLink.isVisible()
-  expect(isVisible).toBe(true)
+  await useRouterLink.waitFor({ state: 'visible', timeout: 15000 })
 
   await page.close()
-}, 180000)
+}, 50000)

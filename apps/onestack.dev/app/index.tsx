@@ -189,14 +189,7 @@ export default function HomePage() {
             a sync-engine for data.
           </PrettyTextMedium>
 
-          <YStack
-            mt={30}
-            als="center"
-            ai="center"
-            jc="center"
-            gap="$1"
-            px="$6"
-          >
+          <YStack mt={30} als="center" ai="center" jc="center" gap="$1" px="$6">
             <Paragraph size="$5" theme="gray" color="$color9" mb={-20}>
               Bootstrap instantly with
             </Paragraph>
