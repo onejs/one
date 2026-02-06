@@ -127,8 +127,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     void ensureTSConfig()
   }
 
-  let tsConfigPathsPlugin: Plugin | null = null
-
   const vxrnOptions = getOptionsFilled()
   const root = vxrnOptions?.root || process.cwd()
 
@@ -203,51 +201,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           }),
         ]),
 
-    {
-      name: 'one:tsconfig-paths',
-      enforce: 'pre' as const,
+    ...(options.config?.tsConfigPaths === false
+      ? []
+      : [
+          (() => {
+            const pathsConfig = options.config?.tsConfigPaths
+            const skipDotDirs = (dir: string) => {
+              const name = dir.split('/').pop() || ''
+              return name.startsWith('.')
+            }
 
-      async config(this, configIncoming, env) {
-        const pathsConfig = options.config?.tsConfigPaths
-        if (pathsConfig === false) {
-          return
-        }
-        if (
-          configIncoming.plugins
-            ?.flat()
-            .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
-        ) {
-          // already has it configured
-          return
-        }
-
-        const skipDotDirs = (dir: string) => {
-          const name = dir.split('/').pop() || ''
-          return name.startsWith('.')
-        }
-
-        tsConfigPathsPlugin = tsconfigPaths({
-          loose: true,
-          projectDiscovery: 'lazy',
-          ignoreConfigErrors: true,
-          skip: skipDotDirs,
-          ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-        })
-      },
-
-      configResolved(this, ...args: any[]) {
-        return (tsConfigPathsPlugin as any)?.configResolved?.call(this, ...args)
-      },
-      resolveId(this, ...args: any[]) {
-        return (tsConfigPathsPlugin as any)?.resolveId?.call(this, ...args)
-      },
-      configureServer(this, ...args: any[]) {
-        return (tsConfigPathsPlugin as any)?.configureServer?.call(this, ...args)
-      },
-      buildStart(this, ...args: any[]) {
-        return (tsConfigPathsPlugin as any)?.buildStart?.call(this, ...args)
-      },
-    },
+            return tsconfigPaths({
+              loose: true,
+              projectDiscovery: 'lazy',
+              ignoreConfigErrors: true,
+              skip: skipDotDirs,
+              ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
+            })
+          })(),
+        ]),
 
     {
       name: 'one-aliases',
