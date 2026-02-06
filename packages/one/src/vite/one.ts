@@ -207,7 +207,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     new Proxy(
       {
         name: 'one:tsconfig-paths',
-        config(configIncoming) {
+
+        async config(this, configIncoming, env) {
           const pathsConfig = options.config?.tsConfigPaths
           if (pathsConfig === false) {
             return
@@ -232,6 +233,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             skip: skipDotDirs,
             ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
           })
+
+          if (typeof tsConfigPathsPlugin.config === 'function') {
+            return await tsConfigPathsPlugin.config?.call(this, configIncoming, env)
+          }
         },
 
         configResolved() {},
