@@ -48,7 +48,13 @@ export const DialogTest = (props) => {
         <Dialog.Overlay key="overlay" />
 
         <Dialog.Content key="content">
-          <YStack bg="$red10" borderWidth={20} borderColor="$green10" width={350} height={350}>
+          <YStack
+            bg="$red10"
+            borderWidth={20}
+            borderColor="$green10"
+            width={350}
+            height={350}
+          >
             <H1>ok ok</H1>
           </YStack>
         </Dialog.Content>

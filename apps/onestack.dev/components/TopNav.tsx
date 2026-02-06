@@ -84,8 +84,25 @@ export const TopNav = () => {
           </Link>
         </XStack>
 
-        <XStack pos="relative" pe="none" ai="center" jc="flex-end" gap="$1" f={1} fb="auto" fd="row">
-          <XStack pos="relative" group="card" containerType="normal" ai="center" jc="flex-end" fg={10} $sm={{ dsp: 'none' }}>
+        <XStack
+          pos="relative"
+          pe="none"
+          ai="center"
+          jc="flex-end"
+          gap="$1"
+          f={1}
+          fb="auto"
+          fd="row"
+        >
+          <XStack
+            pos="relative"
+            group="card"
+            containerType="normal"
+            ai="center"
+            jc="flex-end"
+            fg={10}
+            $sm={{ dsp: 'none' }}
+          >
             <View
               transition="quickest"
               mt={2}

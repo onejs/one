@@ -1,4 +1,3 @@
-import { ONLY_TEST_PROD } from '@vxrn/test'
 import { type Browser, type BrowserContext, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 

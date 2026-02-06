@@ -23,7 +23,6 @@
     "expo-image": "^3.0.10",
     "expo-structured-headers": "^4.0.0",
     "expo-updates": "~0.26.10",
-    "moti": "^0.30.0",
     "one": "workspace:*",
     "react": "19.1.0",
     "react-dom": "19.1.0",
