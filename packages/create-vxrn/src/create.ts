@@ -1,6 +1,6 @@
 import ansis from 'ansis'
 import FSExtra from 'fs-extra'
-import { execSync } from 'node:child_process'
+import { execSync, exec } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { promisify } from 'node:util'
@@ -59,6 +59,17 @@ export async function create(args: { template?: string; name?: string }) {
 
   let template = await getTemplateInfo(args.template)
 
+  // handle external link templates (like Tamagui Pro)
+  if (template.type === 'external-link') {
+    const url = (template as any).externalUrl
+    console.info()
+    console.info(ansis.green(`Opening ${url}...`))
+    console.info()
+    const openCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open'
+    exec(`${openCmd} ${url}`)
+    process.exit(0)
+  }
+
   const { valid, problems } = validateNpmName(projectName)
   if (!valid) {
     console.error(
@@ -86,7 +97,7 @@ export async function create(args: { template?: string; name?: string }) {
   await FSExtra.mkdir(resolvedProjectPath)
 
   try {
-    await cloneStarter(template, resolvedProjectPath)
+    await cloneStarter(template as any, resolvedProjectPath)
     process.chdir(resolvedProjectPath)
   } catch (e) {
     console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
