@@ -1,5 +1,3 @@
-import events from 'node:events'
-import path from 'node:path'
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import {
@@ -7,6 +5,8 @@ import {
   type MetroPluginOptions,
   getPlatformEnvDefine,
 } from '@vxrn/vite-plugin-metro'
+import events from 'node:events'
+import path from 'node:path'
 import type { Plugin, PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
@@ -18,11 +18,11 @@ import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOption
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
+import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
-import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
@@ -203,57 +203,50 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           }),
         ]),
 
-    // proxy because you cant add a plugin inside a plugin
-    new Proxy(
-      {
-        name: 'one:tsconfig-paths',
+    {
+      name: 'one:tsconfig-paths',
+      enforce: 'pre' as const,
 
-        async config(this, configIncoming, env) {
-          const pathsConfig = options.config?.tsConfigPaths
-          if (pathsConfig === false) {
-            return
-          }
-          if (
-            configIncoming.plugins
-              ?.flat()
-              .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
-          ) {
-            // already has it configured
-            return
-          }
+      async config(this, configIncoming, env) {
+        const pathsConfig = options.config?.tsConfigPaths
+        if (pathsConfig === false) {
+          return
+        }
+        if (
+          configIncoming.plugins
+            ?.flat()
+            .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
+        ) {
+          // already has it configured
+          return
+        }
 
-          const skipDotDirs = (dir: string) => {
-            const name = dir.split('/').pop() || ''
-            return name.startsWith('.')
-          }
+        const skipDotDirs = (dir: string) => {
+          const name = dir.split('/').pop() || ''
+          return name.startsWith('.')
+        }
 
-          tsConfigPathsPlugin = tsconfigPaths({
-            loose: true,
-            projectDiscovery: 'lazy',
-            skip: skipDotDirs,
-            ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-          })
-
-          if (typeof tsConfigPathsPlugin.config === 'function') {
-            return await tsConfigPathsPlugin.config?.call(this, configIncoming, env)
-          }
-        },
-
-        configResolved() {},
-        resolveId() {},
+        tsConfigPathsPlugin = tsconfigPaths({
+          loose: true,
+          projectDiscovery: 'lazy',
+          skip: skipDotDirs,
+          ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
+        })
       },
-      {
-        get(target, key, thisArg) {
-          if (key === 'config' || key === 'name') {
-            return Reflect.get(target, key, thisArg)
-          }
 
-          if (tsConfigPathsPlugin) {
-            return Reflect.get(tsConfigPathsPlugin, key, thisArg)
-          }
-        },
-      }
-    ),
+      configResolved(this, ...args: any[]) {
+        return (tsConfigPathsPlugin as any)?.configResolved?.call(this, ...args)
+      },
+      resolveId(this, ...args: any[]) {
+        return (tsConfigPathsPlugin as any)?.resolveId?.call(this, ...args)
+      },
+      configureServer(this, ...args: any[]) {
+        return (tsConfigPathsPlugin as any)?.configureServer?.call(this, ...args)
+      },
+      buildStart(this, ...args: any[]) {
+        return (tsConfigPathsPlugin as any)?.buildStart?.call(this, ...args)
+      },
+    },
 
     {
       name: 'one-aliases',
