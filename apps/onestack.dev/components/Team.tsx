@@ -5,7 +5,7 @@ import { PrettyText } from './typography'
 export const Team = () => {
   return (
     <YStack group containerType="normal" gap="$8" my="$4">
-      <PrettyText maw={500} als="center">
+      <PrettyText maw={500} als="center" $sm={{ ta: 'center' }}>
         We built One out of our experience building cross-platform apps with{' '}
         <Link href="https://tamagui.dev">Tamagui</Link>{' '}
         <Link href="https://tamagui.dev/takeout">Takeout</Link>, and at{' '}
