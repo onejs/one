@@ -50,7 +50,7 @@ export const EmailSignup = () => {
     <View
       theme="yellow"
       br="$6"
-      bc="$color5"
+      borderColor="$color5"
       mt="$5"
       gap="$3"
       w="100%"

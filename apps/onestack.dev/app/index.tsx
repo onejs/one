@@ -505,7 +505,7 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  bc: '$color2',
+  borderColor: '$color2',
   borderStyle: 'dotted',
   bw: 0,
   bbw: 1,
