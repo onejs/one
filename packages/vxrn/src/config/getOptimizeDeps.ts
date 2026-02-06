@@ -70,7 +70,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
     'ws',
     'lodash',
-    'moti/author',
 
     // added these when using a worker env
     'reading-time',
