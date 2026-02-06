@@ -135,10 +135,11 @@ export function createVirtualEntry(options: {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
+        const isSSR = this.environment.name === 'ssr'
         const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
-          isNative
+          isNative || isSSR
         )
         // When nativewind is enabled, import the components module to register Text, View, etc. with cssInterop
         const nativewindImport = configuration.enableNativewind
