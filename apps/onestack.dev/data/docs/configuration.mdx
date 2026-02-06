@@ -60,14 +60,15 @@ export default {
 
       optimization: {
         /**
-         * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
-         * Optimizes barrel export files to speed up your build, you must list the packages that have
-         * barrel exports. Especially useful for icon packs.
+         * By default One scans your fs routes and adds them as Vite `entries`, this prevents some hard
+         * reloads on web as you navigate to new pages, but can slow things startup.
          *
-         * @default ['@tamagui/lucide-icons']
-         * @type boolean | string[]
+         * The 'flat' option is default and will automatically add just the routes at the root of your
+         * app but nothing nested in non-group folders below that.
+         *
+         * @default 'flat'
          */
-        barrel: ['my-icon-package'],
+        autoEntriesScanning?: boolean | 'flat'
       },
 
       // native-specific config:
@@ -437,24 +438,6 @@ export default {
 ## optimization
 
 Performance optimization options.
-
-### optimization.barrel
-
-Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel). Optimizes barrel export files to speed up your build. You must list the packages that have barrel exports. Especially useful for icon packs.
-
-```tsx fileName=vite.config.ts
-export default {
-  plugins: [
-    one({
-      optimization: {
-        barrel: ['@tamagui/lucide-icons', 'my-icon-package'],
-      },
-    }),
-  ],
-}
-```
-
-**Default:** `['@tamagui/lucide-icons']`
 
 ### optimization.autoEntriesScanning
 
