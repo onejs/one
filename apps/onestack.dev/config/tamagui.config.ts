@@ -1,6 +1,6 @@
 import { createAnimations } from '@tamagui/animations-css'
-import { shorthands } from '@tamagui/shorthands/v2'
-import { tamaguiThemes } from '@tamagui/themes/v4'
+import { shorthands } from '@tamagui/shorthands'
+import { themes as tamaguiThemes } from '@tamagui/themes/v5'
 import { createTamagui } from 'tamagui'
 import { fonts } from './fonts'
 import { tokens } from './tokens'

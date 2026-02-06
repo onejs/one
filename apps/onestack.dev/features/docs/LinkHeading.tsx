@@ -4,7 +4,7 @@ import { View } from 'tamagui'
 export const LinkHeading = ({ id, children, ...props }: { id: string } & XStackProps) => (
   <View
     flexDirection="row"
-    tag="a"
+    render="a"
     className="text-underline-none"
     style={{ textDecoration: 'none' }}
     href={`#${id}`}
@@ -16,7 +16,7 @@ export const LinkHeading = ({ id, children, ...props }: { id: string } & XStackP
     {...props}
   >
     {children}
-    <View tag="span" opacity={0.3}>
+    <View render="span" opacity={0.3}>
       <Link2 size={16} color="var(--color)" aria-hidden />
     </View>
   </View>

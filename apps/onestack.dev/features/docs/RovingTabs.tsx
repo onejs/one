@@ -1,8 +1,8 @@
-import { Image } from '@tamagui/image-next'
 import { useState } from 'react'
 import type { TabLayout, TabsTabProps, ViewProps } from 'tamagui'
 import {
   AnimatePresence,
+  Image,
   ScrollView,
   SizableText,
   Tabs,
@@ -79,7 +79,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
           mt={1}
         >
           <YStack w="100%">
-            <YStack p="$1.5" m="$2" mb={0} br="$5">
+            <YStack pos="relative" px="$1.5" py="$1">
               <AnimatePresence initial={false}>
                 {intentAt && (
                   <TabIndicator
@@ -162,13 +162,11 @@ function Tab({
   return (
     <Tabs.Tab
       unstyled
-      pl="$2"
-      pr="$2.5"
+      px="$2.5"
       py="$1.5"
       gap="$1.5"
       bg="transparent"
       bw={0}
-      bc="$color1"
       shadowRadius={0}
       value={pkgManager}
       onInteraction={onInteraction}
@@ -176,7 +174,6 @@ function Tab({
       <XStack gap="$1.5" ai="center" jc="center">
         <Image
           scale={imageName === 'pnpm' ? 0.7 : 0.8}
-          y={imageName === 'pnpm' ? 0 : 0}
           src={`/logos/${imageName}.svg`}
           width={16}
           height={16}
@@ -202,7 +199,9 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
       bg="$color5"
       o={0.7}
       br="$4"
-      animation="quickest"
+      zi={0}
+      pointerEvents="none"
+      transition="quickest"
       enterStyle={{
         o: 0,
       }}
@@ -223,7 +222,7 @@ const AnimatedYStack = styled(YStack, {
   x: 0,
   o: 1,
 
-  animation: '100ms',
+  transition: '100ms',
   variants: {
     // 1 = right, 0 = nowhere, -1 = left
     direction: {

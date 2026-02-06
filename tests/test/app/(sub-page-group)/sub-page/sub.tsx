@@ -13,7 +13,7 @@ export default function Test() {
       <Logo />
       <ToggleThemeButton />
 
-      <YStack id="test-sub-box" w={500} h={500} bg="$color10">
+      <YStack id="test-sub-box" width={500} height={500} bg="$color10">
         <Paragraph size="$4">Test Sub Sub</Paragraph>
       </YStack>
 
@@ -30,14 +30,14 @@ export const DialogTest = (props) => {
       </Dialog.Trigger>
 
       <Dialog.Adapt when="sm">
-        <Sheet zIndex={200000} modal dismissOnSnapToBottom animation="medium">
+        <Sheet zIndex={200000} modal dismissOnSnapToBottom transition="medium">
           <Sheet.Frame bg="$color2" padding={0} gap="$4">
             <Sheet.ScrollView>
               <Dialog.Adapt.Contents />
             </Sheet.ScrollView>
           </Sheet.Frame>
           <Sheet.Overlay
-            animation="lazy"
+            transition="lazy"
             enterStyle={{ opacity: 0 }}
             exitStyle={{ opacity: 0 }}
           />
@@ -48,7 +48,7 @@ export const DialogTest = (props) => {
         <Dialog.Overlay key="overlay" />
 
         <Dialog.Content key="content">
-          <YStack bg="$red10" borderWidth={20} borderColor="$green10" w={350} h={350}>
+          <YStack bg="$red10" borderWidth={20} borderColor="$green10" width={350} height={350}>
             <H1>ok ok</H1>
           </YStack>
         </Dialog.Content>

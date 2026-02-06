@@ -32,7 +32,7 @@ import { unwrapText } from './unwrapText'
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
   return (
     <Paragraph
-      tag="p"
+      render="p"
       size="$8"
       lh={39}
       mt="$2"
@@ -51,20 +51,20 @@ const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
 
 const LI = styled(Paragraph, {
   display: 'list-item' as any,
-  tag: 'li',
+  render: 'li',
   size: '$5',
   pb: '$1',
 })
 
 const UL = styled(YStack, {
-  tag: 'ul',
+  render: 'ul',
   my: '$1',
   ml: '$4',
   mr: '$2',
 })
 
 const TableBase = styled(View, {
-  tag: 'table',
+  render: 'table',
   display: 'table' as any,
   width: '100%',
   borderBottomWidth: 1,
@@ -85,22 +85,22 @@ const Table = (props: any) => (
 )
 
 const Thead = styled(View, {
-  tag: 'thead',
+  render: 'thead',
   display: 'table-header-group' as any,
 })
 
 const Tbody = styled(View, {
-  tag: 'tbody',
+  render: 'tbody',
   display: 'table-row-group' as any,
 })
 
 const Tr = styled(View, {
-  tag: 'tr',
+  render: 'tr',
   display: 'table-row' as any,
 })
 
 const Th = styled(Text, {
-  tag: 'th',
+  render: 'th',
   display: 'table-cell' as any,
   padding: '$3',
   fontWeight: '600',
@@ -113,7 +113,7 @@ const Th = styled(Text, {
 })
 
 const Td = styled(Text, {
-  tag: 'td',
+  render: 'td',
   display: 'table-cell' as any,
   padding: '$3',
   fontSize: '$5',
@@ -199,8 +199,8 @@ const componentsIn = {
   Card: ({ category, title, href }) => {
     const content = (
       <YStack
-        tag="a"
-        animation="quickest"
+        render="a"
+        transition="quickest"
         className="text-underline-none"
         f={1}
         y={0}
@@ -311,7 +311,7 @@ const componentsIn = {
     )
   },
 
-  ol: (props) => <YStack {...props} tag="ol" mb="$3" />,
+  ol: (props) => <YStack {...props} render="ol" mb="$3" />,
 
   li: (props) => {
     return (
@@ -326,7 +326,7 @@ const componentsIn = {
       <Link className="link" href={href} asChild>
         {/* @ts-ignore */}
         <Paragraph
-          tag="a"
+          render="a"
           // @ts-ignore
           fontSize="inherit"
           display="inline"
@@ -363,7 +363,7 @@ const componentsIn = {
   //   )
   // },
 
-  // ol: (props) => <YStack {...props} tag="ol" mb="$3" />,
+  // ol: (props) => <YStack {...props} render="ol" mb="$3" />,
 
   // li: (props) => {
   //   return (
@@ -374,7 +374,7 @@ const componentsIn = {
   // },
 
   strong: (props) => (
-    <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />
+    <Paragraph render="strong" fontSize="inherit" {...props} fontWeight="700" />
   ),
 
   table: Table,
@@ -385,9 +385,9 @@ const componentsIn = {
   td: Td,
 
   img: ({ ...props }) => (
-    <View tag="span" my="$6">
+    <View render="span" my="$6">
       {/* TODO make this a proper <Image /> component */}
-      <View tag="img" {...props} maxWidth="100%" />
+      <View render="img" {...props} maxWidth="100%" />
     </View>
   ),
 

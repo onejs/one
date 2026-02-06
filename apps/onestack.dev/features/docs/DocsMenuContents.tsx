@@ -103,7 +103,7 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background02'}>
+      <YStack bbw={0} borderColor={inMenu ? 'transparent' : '$background02'}>
         {children}
       </YStack>
     )
@@ -133,7 +133,7 @@ const SubSection = ({
               py="$2"
               px="$4"
               jc="space-between"
-              tag="span"
+              render="span"
               ai="center"
               w="100%"
             >
@@ -141,7 +141,7 @@ const SubSection = ({
                 {section.title}
               </Paragraph>
 
-              <Square animation="quick" rotate={open ? '180deg' : '0deg'}>
+              <Square transition="quick" rotate={open ? '180deg' : '0deg'}>
                 <ChevronDown color="$color7" size="$1" />
               </Square>
             </XStack>
@@ -149,10 +149,10 @@ const SubSection = ({
         }}
       </Accordion.Trigger>
 
-      <Accordion.HeightAnimator overflow="hidden" animation="quickest">
+      <Accordion.HeightAnimator overflow="hidden" transition="quickest">
         <Accordion.Content
           unstyled
-          animation="quickest"
+          transition="quickest"
           bg="transparent"
           exitStyle={{ opacity: 0 }}
         >

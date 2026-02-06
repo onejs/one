@@ -1,4 +1,4 @@
-import { Image } from '@tamagui/image-next'
+import { Image } from 'tamagui'
 import sampleAssetPng from '../sample-asset.png'
 
 export default function Index() {

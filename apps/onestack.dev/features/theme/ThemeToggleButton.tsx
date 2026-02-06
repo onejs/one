@@ -9,7 +9,7 @@ export function ToggleThemeButton() {
   const { onPress, Icon, setting } = useToggleTheme()
 
   return (
-    <View group ai="center" containerType="normal" gap="$1">
+    <View group ai="center" containerType="normal" gap="$1" $sm={{ ml: '$2' }}>
       <View
         p="$3"
         br="$10"
@@ -30,7 +30,7 @@ export function ToggleThemeButton() {
 
       <YStack>
         <Paragraph
-          animation="100ms"
+          transition="100ms"
           size="$1"
           mb={-20}
           color="$color10"
