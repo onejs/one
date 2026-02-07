@@ -1,6 +1,6 @@
 {
   "name": "test-css-preload",
-  "version": "1.4.17",
+  "version": "1.4.19",
   "private": true,
   "type": "module",
   "scripts": {
