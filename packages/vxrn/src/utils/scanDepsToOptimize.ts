@@ -66,17 +66,20 @@ export const EXCLUDE_LIST = [
   'react-native-fast-squircle',
   'react-native-device-info',
 
-  // CLI shouldn't be used in SSR runtime
+  // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
+  '@take-out/scripts',
+  '@take-out/cli',
 
   // Should be used on native only
   '@tamagui/core/native-test',
 
   '@storybook/react',
 
-  // Stuff we had in fleek
+  // native-only or not needed in SSR
   '@nandorojo/galeria',
   'expo-video',
+  'react-native-pager-view',
   '@react-native/debugger-shell',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
