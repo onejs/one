@@ -299,7 +299,7 @@ export async function createVXRNCompilerPlugin(
           return readFileSync(join(basePath, 'refresh-runtime.js'), 'utf-8')
         }
         if (id === `${runtimePublicPath}.map`) {
-          return readFileSync(join(basePath, 'refresh-runtime.js.map'), 'utf-8')
+          return JSON.stringify({ version: 3, sources: [], mappings: '' })
         }
         return undefined
       },
