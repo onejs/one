@@ -348,6 +348,27 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-ios-popover-tip',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-ios-text-animations',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-ios-mesh-gradient',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'expo-glass-effect',
     patchFiles: {
       'build/**/*.js': ['jsx'],
