@@ -26,7 +26,7 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
       color="inherit"
       fontSize="inherit"
       lineHeight="inherit"
-      {...props}
+      {...(props as any)}
       {...linkProps}
     />
   )
@@ -129,7 +129,7 @@ export const SearchProvider = memo(({ children }: any) => {
 
 const ResultItem = ({ hit, children }) => {
   return (
-    <Link href={window.location.origin + hit.url}>
+    <Link href={(window.location.origin + hit.url) as any}>
       <Paragraph render="span" color="$color">
         {children}
       </Paragraph>

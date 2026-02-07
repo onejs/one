@@ -82,14 +82,14 @@ export default function HomePage() {
               mt: -20,
             }}
           >
-            <XStack ai="center" gap="$6" $sm={{ jc: 'center', gap: '$3' }}>
+            <XStack ai="center" gap="$3" $sm={{ jc: 'center', gap: '$3' }}>
               <View $sm={{ ml: '$3' }}>
                 <ToggleThemeButton />
               </View>
 
               <Link href="/docs/status" asChild>
                 <Button
-                  size="$5"
+                  size="$4"
                   bg="$color4"
                   br="$10"
                   group
@@ -113,7 +113,7 @@ export default function HomePage() {
               <Theme name="accent">
                 <Link href="/docs/introduction" asChild>
                   <Button
-                    size="$5"
+                    size="$4"
                     bg="$color2"
                     br="$10"
                     group
@@ -345,7 +345,7 @@ function Video() {
   return (
     <>
       {showVideo && (
-        <Portal zi={1000}>
+        <Portal zIndex={1000}>
           <YStack
             position={'fixed' as any}
             t={0}
@@ -596,7 +596,7 @@ const CopyCommand = () => {
         x={0}
         y={-1}
         opacity={1}
-        animation={[
+        transition={[
           'quick',
           {
             opacity: {

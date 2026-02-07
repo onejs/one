@@ -16,7 +16,7 @@ const QuickNavLink = ({ href, ...rest }: LinkProps) => (
       hoverStyle={{
         color: '$color12',
       }}
-      {...rest}
+      {...(rest as any)}
     />
   </a>
 )

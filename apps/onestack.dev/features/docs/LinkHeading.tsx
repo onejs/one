@@ -1,12 +1,14 @@
 import { Link2 } from '@tamagui/lucide-icons'
+import type { ViewProps } from 'tamagui'
 import { View } from 'tamagui'
 
-export const LinkHeading = ({ id, children, ...props }: { id: string } & XStackProps) => (
+export const LinkHeading = ({ id, children, ...props }: { id: string } & ViewProps) => (
   <View
     flexDirection="row"
     render="a"
     className="text-underline-none"
     style={{ textDecoration: 'none' }}
+    // @ts-ignore web anchor prop
     href={`#${id}`}
     id={id}
     data-id={id}

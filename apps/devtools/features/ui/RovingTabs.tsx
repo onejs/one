@@ -73,7 +73,7 @@ export function RovingTabs({
           <XStack data-tauri-drag-region w="100%" gap="$6">
             <XStack w={45} />
 
-            <XStack f={1}>
+            <XStack position="relative" f={1}>
               <AnimatePresence initial={false}>
                 {intentAt && (
                   <TabIndicator

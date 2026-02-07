@@ -1,7 +1,8 @@
 import { Paragraph, styled } from 'tamagui'
 
 export const PrettyText = styled(Paragraph, {
-  textWrap: 'balanced' as any,
+  // @ts-ignore web css prop
+  textWrap: 'balanced',
   wordWrap: 'normal',
   color: '$color11',
   fontSize: '$6',
@@ -46,6 +47,7 @@ export const PrettyTextBigger = styled(PrettyText, {
 
 export const PrettyTextBiggest = styled(PrettyText, {
   fontFamily: '$mono',
+  // @ts-ignore web css prop
   textWrap: 'pretty',
   fontSize: 60,
   lineHeight: 80,

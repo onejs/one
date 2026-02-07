@@ -97,7 +97,6 @@ export function PropsTable({
                       f={2}
                       miw="30%"
                       ai="center"
-                      separator={<Separator als="stretch" vertical mx="$3.5" my="$2" />}
                       $xs={{
                         flexDirection: 'column',
                         ai: 'flex-start',
@@ -108,7 +107,7 @@ export function PropsTable({
                         o={0.8}
                         fontFamily="$mono"
                         overflow="hidden"
-                        ellipse
+                        textOverflow="ellipsis"
                         mr="auto"
                       >
                         {type}
@@ -134,7 +133,7 @@ export function PropsTable({
                           <View
                             w="$8"
                             ai="center"
-                            theme="red_alt2"
+                            theme={'red_alt2' as any}
                             bg="$red2"
                             bw={1}
                             br="$2"

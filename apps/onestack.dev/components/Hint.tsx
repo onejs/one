@@ -62,7 +62,7 @@ export const Hint = ({
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
         }}
-        animation={[
+        transition={[
           'quicker',
           {
             opacity: {

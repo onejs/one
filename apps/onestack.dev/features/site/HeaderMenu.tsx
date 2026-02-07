@@ -62,7 +62,6 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             <Button
               size="$3"
               bg={isPressOpened ? '$color5' : 'transparent'}
-              noTextWrap
               br="$10"
               bw={2}
               px="$2"
@@ -116,7 +115,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             modal
             dismissOnSnapToBottom
             transition="bouncy"
-            animationConfig={{
+            transitionConfig={{
               type: 'spring',
               damping: 25,
               mass: 1.2,
