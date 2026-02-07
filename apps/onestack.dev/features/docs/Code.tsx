@@ -29,13 +29,14 @@ const CodeInlineBase = styled(Text, {
   render: 'code',
   fontFamily: '$mono',
   color: '$color12',
-  backgroundColor: '$color4',
+  backgroundColor: '$background08',
   cursor: 'inherit',
   br: '$3',
   // @ts-ignore
   fontSize: '88%',
   p: '$1.5',
   whiteSpace: 'pre-wrap',
+  // @ts-ignore web css prop
   wordBreak: 'break-word',
 })
 

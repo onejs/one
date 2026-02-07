@@ -30,7 +30,7 @@ export const Pre = styled(YStack, {
   render: 'pre',
   padding: '$4',
   borderRadius: '$4',
-  bg: '$color3',
+  bg: '$color2',
 })
 
 class CollapseStore {
@@ -98,6 +98,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
   return (
     <YStack
       ref={ref}
+      theme="teal"
       position="relative"
       mb="$4"
       mt="$3"
@@ -176,9 +177,9 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                 btrr="$4"
               >
                 {isTerminalCommand ? (
-                  <TerminalSquare size={14} col="$color11" />
+                  <TerminalSquare size={14} color="$color11" />
                 ) : (
-                  <FileCode2 size={14} col="$color11" />
+                  <FileCode2 size={14} color="$color11" />
                 )}
                 <Paragraph col="$color11">
                   {isTerminalCommand ? 'Terminal' : fileName}

@@ -76,7 +76,7 @@ export default function DocsLayout() {
               contain="paint layout"
               $gtMd={{
                 display: 'block',
-                pt: 20,
+                pt: 38,
                 pb: '$10',
               }}
             >
@@ -125,7 +125,7 @@ export default function DocsLayout() {
                   transition="100ms"
                 >
                   <View o={0} l="$-4" transition="quickest">
-                    <ChevronLeft col="$color11" />
+                    <ChevronLeft color="$color11" />
                   </View>
 
                   <View l="$-8" transition="quicker">
@@ -174,7 +174,7 @@ export default function DocsLayout() {
                   </View>
 
                   <View o={0} r="$-4" transition="quickest">
-                    <ChevronRight col="$color11" />
+                    <ChevronRight color="$color11" />
                   </View>
                 </XStack>
               </Link>

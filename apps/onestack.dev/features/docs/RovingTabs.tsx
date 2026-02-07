@@ -8,7 +8,6 @@ import {
   Tabs,
   XStack,
   YStack,
-  styled,
 } from 'tamagui'
 import { Code } from './Code'
 import { PACKAGE_MANAGERS, useBashCommand } from './useBashCommand'
@@ -70,16 +69,15 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
         <Tabs
           activationMode="manual"
           orientation="horizontal"
-          size="$4"
           br="$4"
+          mx="$1"
           value={selectedPackageManager}
           onPress={(e) => e.stopPropagation()}
           onValueChange={setPackageManager}
           group
-          mt={1}
         >
           <YStack w="100%">
-            <YStack pos="relative" px="$1.5" py="$1">
+            <YStack pos="relative" px="$1.5" pt="$2">
               <AnimatePresence initial={false}>
                 {intentAt && (
                   <TabIndicator
@@ -102,12 +100,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
                 )}
               </AnimatePresence>
 
-              <Tabs.List
-                disablePassBorderRadius
-                loop={false}
-                aria-label="package manager"
-                gap="$2"
-              >
+              <Tabs.List loop={false} aria-label="package manager" gap="$2">
                 <>
                   {PACKAGE_MANAGERS.map((pkgManager) => (
                     <Tab
@@ -163,13 +156,20 @@ function Tab({
     <Tabs.Tab
       unstyled
       px="$2.5"
-      py="$1.5"
+      py="$2"
       gap="$1.5"
       bg="transparent"
       bw={0}
+      br="$4"
       shadowRadius={0}
+      cursor="pointer"
       value={pkgManager}
       onInteraction={onInteraction}
+      focusVisibleStyle={{
+        outlineColor: '$outlineColor',
+        outlineWidth: 2,
+        outlineStyle: 'solid',
+      }}
     >
       <XStack gap="$1.5" ai="center" jc="center">
         <Image
@@ -184,6 +184,7 @@ function Tab({
           size="$3"
           col={active ? '$color12' : '$color11'}
           o={active ? 1 : 0.75}
+          cursor="pointer"
         >
           {pkgManager}
         </SizableText>
@@ -195,12 +196,14 @@ function Tab({
 function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
   return (
     <YStack
-      pos="absolute"
-      bg="$color5"
+      position="absolute"
+      pointerEvents="none"
+      t={0}
+      l={0}
+      bg="$color1"
       o={0.7}
       br="$4"
       zi={0}
-      pointerEvents="none"
       transition="quickest"
       enterStyle={{
         o: 0,
@@ -216,27 +219,3 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
     />
   )
 }
-
-const AnimatedYStack = styled(YStack, {
-  f: 1,
-  x: 0,
-  o: 1,
-
-  transition: '100ms',
-  variants: {
-    // 1 = right, 0 = nowhere, -1 = left
-    direction: {
-      ':number': (direction) => ({
-        enterStyle: {
-          x: direction > 0 ? -10 : -10,
-          opacity: 0,
-        },
-        exitStyle: {
-          zIndex: 0,
-          x: direction < 0 ? -10 : -10,
-          opacity: 0,
-        },
-      }),
-    },
-  } as const,
-})

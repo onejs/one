@@ -55,7 +55,9 @@ export const RouteTree = ({
                 componentName="RouteTree"
                 key={i}
                 bbw={1}
-                theme={route.delete ? 'light_gray' : route.add ? 'add' : undefined}
+                theme={
+                  (route.delete ? 'light_gray' : route.add ? 'add' : undefined) as any
+                }
                 bbc="$color3"
                 {...((route.highlight || route.add) && {
                   bg: '$color2',
@@ -88,7 +90,7 @@ export const RouteTree = ({
                       f={1}
                       ww="normal"
                       ov="hidden"
-                      ellipse
+                      textOverflow="ellipsis"
                       ff="$mono"
                       size="$1"
                       ls={-0.5}

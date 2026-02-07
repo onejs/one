@@ -207,7 +207,7 @@ const componentsIn = {
         bg="$color2"
         br="$4"
         p="$6"
-        py="$5"
+        py="$6"
         hoverStyle={{ y: -2, bg: '$color3' }}
         pressStyle={{ y: 2, bg: '$color1' }}
       >
@@ -221,7 +221,7 @@ const componentsIn = {
             </Paragraph>
           </YStack>
 
-          <Spacer flex />
+          <Spacer flex={1} />
 
           <ChevronRight color="$color11" />
         </XStack>
@@ -323,7 +323,7 @@ const componentsIn = {
 
   a: ({ href = '', children, ...props }) => {
     return (
-      <Link className="link" href={href} asChild>
+      <Link className="link" href={href as any} asChild>
         {/* @ts-ignore */}
         <Paragraph
           render="a"

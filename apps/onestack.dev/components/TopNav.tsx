@@ -30,7 +30,7 @@ const SimpleButton = styled(View, {
 })
 
 export const TopNav = () => {
-  const scrollParentRef = useRef<HTMLDivElement>(null)
+  const scrollParentRef = useRef<any>(null)
   const { onOpen } = useContext(SearchContext)
   const pathname = usePathname()
   const isBlog = pathname.startsWith('/blog')
