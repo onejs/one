@@ -1,6 +1,9 @@
 import { serveStatic } from '@hono/node-server/serve-static'
 import type { Context } from 'hono'
 
+// hashed assets can be cached forever, html must revalidate
+const hashedAssetRe = /\.[a-zA-Z0-9_-]{8,}\.\w+$/
+
 export async function serveStaticAssets({
   context,
   next,
@@ -12,8 +15,12 @@ export async function serveStaticAssets({
 
   const response = await serveStatic({
     root: './dist/client',
-    onFound: (_path, c) => {
-      c.header('Cache-Control', `public, immutable, max-age=31536000`)
+    onFound: (path, c) => {
+      if (hashedAssetRe.test(path)) {
+        c.header('Cache-Control', 'public, immutable, max-age=31536000')
+      } else {
+        c.header('Cache-Control', 'public, max-age=0, must-revalidate')
+      }
     },
   })(context, async () => {
     didCallNext = true
