@@ -1,7 +1,7 @@
 import path from 'node:path'
-import { parseSync } from 'oxc-parser'
-import { normalizePath } from 'vite'
+import { parse } from 'oxc-parser'
 import type { Plugin, ViteDevServer } from 'vite'
+import { normalizePath } from 'vite'
 import type { WebSocket } from 'ws'
 
 interface JsxLocation {
@@ -19,8 +19,8 @@ interface JsxLocation {
  * Parse code with oxc and find all JSX opening elements.
  * Returns insertion points sorted by offset (descending for safe insertion).
  */
-function findJsxElements(code: string, filename: string): JsxLocation[] {
-  const result = parseSync(filename, code)
+async function findJsxElements(code: string, filename: string): Promise<JsxLocation[]> {
+  const result = await parse(filename, code)
 
   if (result.errors.length > 0) {
     return []
@@ -101,10 +101,10 @@ function findJsxElements(code: string, filename: string): JsxLocation[] {
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
  * Uses stable traversal indices instead of line numbers to avoid hydration mismatches.
  */
-function injectSourceToJsx(
+async function injectSourceToJsx(
   code: string,
   id: string
-): { code: string; map?: null } | undefined {
+): Promise<{ code: string; map?: null } | undefined> {
   const [filePath] = id.split('?')
   if (!filePath) return
 
@@ -115,7 +115,7 @@ function injectSourceToJsx(
     return
   }
 
-  const jsxLocations = findJsxElements(code, filePath)
+  const jsxLocations = await findJsxElements(code, filePath)
 
   if (jsxLocations.length === 0) {
     return
