@@ -151,7 +151,10 @@
         // find element whose line is <= cursor line (closest opening tag above/at cursor)
         if (parsed.line <= line) {
           const distance = line - parsed.line
-          if (distance < bestDistance || (distance === bestDistance && parsed.line === line)) {
+          if (
+            distance < bestDistance ||
+            (distance === bestDistance && parsed.line === line)
+          ) {
             bestDistance = distance
             bestMatch = { el, source }
           }
