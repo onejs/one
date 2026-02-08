@@ -903,10 +903,8 @@ export async function build(args: {
         if (route.file) {
           // API files are built to dist/api/
           // route.page is like "/api/hello", files are at "dist/api/api/hello.js"
-          // rolldown preserves brackets, esbuild replaces them with underscores
-          const apiFileName = buildInfoForWriting.useRolldown
-            ? route.page.slice(1)
-            : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
+          // both vite and rolldown-vite replace brackets with underscores in output filenames
+          const apiFileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
           const importPath = `./api/${apiFileName}.js`
           apiRouteMap.push(`  '${route.page}': () => import('${importPath}')`)
         }

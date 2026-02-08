@@ -128,6 +128,14 @@
       }
     }
 
+    function parseSource(source) {
+      const parts = source.split(':')
+      const column = parseInt(parts.pop(), 10)
+      const line = parseInt(parts.pop(), 10)
+      const filePath = parts.join(':')
+      return { filePath, line, column }
+    }
+
     // find element by source file and line/column from vscode
     function highlightBySource(file, line, column) {
       // find all elements with data-one-source that match this file
@@ -138,35 +146,20 @@
 
       for (const el of elements) {
         const source = el.getAttribute('data-one-source')
-        const lastColon = source.lastIndexOf(':')
-        const filePath = source.slice(0, lastColon)
-        const idx = source.slice(lastColon + 1)
-
-        // look up the actual line/column for this element
-        const info = window.__oneSourceInfo?.[filePath]
-        const lineCol = info?.[idx]
-
-        if (!lineCol) continue
-
-        const elLine = lineCol[0]
-        const elColumn = lineCol[1]
+        const parsed = parseSource(source)
 
         // find element whose line is <= cursor line (closest opening tag above/at cursor)
-        if (elLine <= line) {
-          const distance = line - elLine
-          // prefer elements on same line, then closest line above
-          // if same line, prefer closer column
-          if (distance < bestDistance || (distance === bestDistance && elLine === line)) {
+        if (parsed.line <= line) {
+          const distance = line - parsed.line
+          if (distance < bestDistance || (distance === bestDistance && parsed.line === line)) {
             bestDistance = distance
-            bestMatch = { el, source, filePath, lineCol }
+            bestMatch = { el, source }
           }
         }
       }
 
       if (bestMatch) {
-        const displaySource =
-          bestMatch.filePath + ':' + bestMatch.lineCol[0] + ':' + bestMatch.lineCol[1]
-        showOverlay(bestMatch.el, displaySource, true)
+        showOverlay(bestMatch.el, bestMatch.source, true)
       } else {
         hideOverlay()
       }
@@ -182,16 +175,7 @@
         }
       }
       if (el) {
-        const source = el.getAttribute('data-one-source')
-        const lastColon = source.lastIndexOf(':')
-        const filePath = source.slice(0, lastColon)
-        const idx = source.slice(lastColon + 1)
-        const info = window.__oneSourceInfo?.[filePath]
-        const lineCol = info?.[idx]
-        const displaySource = lineCol
-          ? filePath + ':' + lineCol[0] + ':' + lineCol[1]
-          : source
-        showOverlay(el, displaySource)
+        showOverlay(el, el.getAttribute('data-one-source'))
       } else {
         hideOverlay()
       }
@@ -282,16 +266,7 @@
           e.preventDefault()
           e.stopPropagation()
           const source = el.getAttribute('data-one-source')
-          const lastColon = source.lastIndexOf(':')
-          const filePath = source.slice(0, lastColon)
-          const idx = source.slice(lastColon + 1)
-          const info = window.__oneSourceInfo?.[filePath]
-          const lineCol = info?.[idx]
-          let url = '/__one/open-source?source=' + encodeURIComponent(source)
-          if (lineCol) {
-            url += '&line=' + lineCol[0] + '&column=' + lineCol[1]
-          }
-          fetch(url)
+          fetch('/__one/open-source?source=' + encodeURIComponent(source))
         }
       },
       true

@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { configuration } from '@vxrn/compiler'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
@@ -68,7 +69,8 @@ type SetupImportResult = {
 function getSetupFileImport(
   environmentName: string,
   setupFiles: NormalizedSetupFiles,
-  useStaticImport: boolean
+  useStaticImport: boolean,
+  root?: string
 ): SetupImportResult {
   const envMap: Record<string, keyof NormalizedSetupFiles> = {
     client: 'client',
@@ -84,10 +86,13 @@ function getSetupFileImport(
   if (!setupFile)
     return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
+  // resolve to absolute path so rolldown can find it from virtual modules
+  const resolvedSetupFile = root ? resolve(root, setupFile) : setupFile
+
   // For native, use static import since dynamic import doesn't work
   if (useStaticImport) {
     return {
-      importStatement: `import ${JSON.stringify(setupFile)}`,
+      importStatement: `import ${JSON.stringify(resolvedSetupFile)}`,
       promiseDeclaration: '',
       promiseVarName: '',
     }
@@ -98,7 +103,7 @@ function getSetupFileImport(
   // not during build when the module is evaluated.
   return {
     importStatement: '',
-    promiseDeclaration: `const __oneGetSetupPromise = () => import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`,
+    promiseDeclaration: `const __oneGetSetupPromise = () => import(${JSON.stringify(resolvedSetupFile)})`,
     promiseVarName: '__oneGetSetupPromise',
   }
 }
@@ -118,10 +123,15 @@ export function createVirtualEntry(options: {
   const apiRouteGlobs = `/${options.root}/${API_ROUTE_GLOB_PATTERN}`
 
   const setupFiles = normalizeSetupFile(options.setupFile)
+  let viteRoot = ''
 
   return {
     name: 'one-virtual-entry',
     enforce: 'pre',
+
+    configResolved(config) {
+      viteRoot = config.root
+    },
 
     resolveId(id) {
       if (id === virtualEntryId) {
@@ -139,7 +149,8 @@ export function createVirtualEntry(options: {
         const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
-          isNative || isSSR
+          isNative || isSSR,
+          viteRoot
         )
         // When nativewind is enabled, import the components module to register Text, View, etc. with cssInterop
         const nativewindImport = configuration.enableNativewind
@@ -182,7 +193,8 @@ export default createApp({
         const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
-          isNative
+          isNative,
+          viteRoot
         )
         return `
 ${setupResult.importStatement}
