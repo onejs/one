@@ -1,28 +1,8 @@
-import { createAnimations } from '@tamagui/animations-css'
-import { shorthands } from '@tamagui/shorthands'
-import { themes as tamaguiThemes } from '@tamagui/themes/v5'
+import { animations } from '@tamagui/config/v5-css'
+import { themes } from '@tamagui/themes/v5'
 import { createTamagui } from 'tamagui'
 import { fonts } from './fonts'
 import { tokens } from './tokens'
-
-const smoothBezier = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
-
-const cssTransitions = {
-  '75ms': 'ease-in 75ms',
-  '100ms': 'ease-in 100ms',
-  '200ms': 'ease-in 200ms',
-  bouncy: 'ease-in 200ms',
-  superBouncy: 'ease-in 500ms',
-  lazy: 'ease-in 1000ms',
-  medium: 'ease-in 300ms',
-  slow: 'ease-in 500ms',
-  quick: `${smoothBezier} 500ms`,
-  quicker: `${smoothBezier} 350ms`,
-  quickest: `${smoothBezier} 200ms`,
-  tooltip: 'ease-in 400ms',
-}
-
-const animations = createAnimations(cssTransitions)
 
 const selectionStyles = (theme) =>
   theme.color5
@@ -36,10 +16,7 @@ export const config = createTamagui({
   animations,
   // tamagui optimization - reduce bundle size by avoiding themes js on client
   // tamagui will hydrate it from CSS which improves lighthouse scores
-  themes:
-    process.env.VITE_ENVIRONMENT === 'client'
-      ? ({} as typeof tamaguiThemes)
-      : tamaguiThemes,
+  themes: process.env.VITE_ENVIRONMENT === 'client' ? ({} as typeof themes) : themes,
   media: {
     xl: { maxWidth: 1450 },
     lg: { maxWidth: 1180 },
@@ -56,7 +33,81 @@ export const config = createTamagui({
   tokens,
   fonts,
   selectionStyles,
-  shorthands,
+  shorthands: {
+    ussel: 'userSelect',
+    cur: 'cursor',
+    pe: 'pointerEvents',
+    col: 'color',
+    ff: 'fontFamily',
+    fos: 'fontSize',
+    fost: 'fontStyle',
+    fow: 'fontWeight',
+    ls: 'letterSpacing',
+    lh: 'lineHeight',
+    ta: 'textAlign',
+    tt: 'textTransform',
+    ww: 'wordWrap',
+    ac: 'alignContent',
+    ai: 'alignItems',
+    als: 'alignSelf',
+    b: 'bottom',
+    bg: 'backgroundColor',
+    bbc: 'borderBottomColor',
+    bblr: 'borderBottomLeftRadius',
+    bbrr: 'borderBottomRightRadius',
+    bbw: 'borderBottomWidth',
+    blc: 'borderLeftColor',
+    blw: 'borderLeftWidth',
+    bc: 'borderColor',
+    br: 'borderRadius',
+    bs: 'borderStyle',
+    brw: 'borderRightWidth',
+    brc: 'borderRightColor',
+    btc: 'borderTopColor',
+    btlr: 'borderTopLeftRadius',
+    btrr: 'borderTopRightRadius',
+    btw: 'borderTopWidth',
+    bw: 'borderWidth',
+    dsp: 'display',
+    f: 'flex',
+    fb: 'flexBasis',
+    fd: 'flexDirection',
+    fg: 'flexGrow',
+    fs: 'flexShrink',
+    fw: 'flexWrap',
+    h: 'height',
+    jc: 'justifyContent',
+    l: 'left',
+    m: 'margin',
+    mah: 'maxHeight',
+    maw: 'maxWidth',
+    mb: 'marginBottom',
+    mih: 'minHeight',
+    miw: 'minWidth',
+    ml: 'marginLeft',
+    mr: 'marginRight',
+    mt: 'marginTop',
+    mx: 'marginHorizontal',
+    my: 'marginVertical',
+    o: 'opacity',
+    ov: 'overflow',
+    p: 'padding',
+    pb: 'paddingBottom',
+    pl: 'paddingLeft',
+    pos: 'position',
+    pr: 'paddingRight',
+    pt: 'paddingTop',
+    px: 'paddingHorizontal',
+    py: 'paddingVertical',
+    r: 'right',
+    shac: 'shadowColor',
+    shar: 'shadowRadius',
+    shof: 'shadowOffset',
+    shop: 'shadowOpacity',
+    t: 'top',
+    w: 'width',
+    zi: 'zIndex',
+  } as const,
   settings: {
     mediaQueryDefaultActive: {
       xl: true,

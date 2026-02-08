@@ -71,7 +71,7 @@
     "@biomejs/biome": "2.3.3",
     "@expo/metro-config": "^54.0.7",
     "@react-native/dev-middleware": "^0.83.0",
-    "@tamagui/build": "2.0.0-rc.6-1770409768999",
+    "@tamagui/build": "2.0.0-rc.7",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",

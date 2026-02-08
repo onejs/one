@@ -60,7 +60,6 @@ const ConditionalFooter = () => {
 
 const ThemeProvider = ({ children }) => {
   const userScheme = useUserScheme()
-  const themeProviderId = useId()
 
   return (
     <>
