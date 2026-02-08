@@ -29,7 +29,7 @@
     },
     "apps/devtools": {
       "name": "devtools",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -58,7 +58,7 @@
     },
     "apps/onestack.dev": {
       "name": "site",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@docsearch/react": "^3.9.0",
         "@react-navigation/native": "~7.1.19",
@@ -95,7 +95,7 @@
     },
     "examples/bare": {
       "name": "example-bare",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "expo-constants": "~16.0.0",
         "react": "19.1.0",
@@ -120,7 +120,7 @@
     },
     "examples/expo-blank": {
       "name": "expo-blank-app",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "expo": "54.0.22",
         "expo-status-bar": "~1.12.1",
@@ -131,7 +131,7 @@
     },
     "examples/expo-blank-with-vite-metro": {
       "name": "expo-blank-with-vite-metro",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "expo": "54.0.22",
         "one": "workspace:*",
@@ -148,7 +148,7 @@
     },
     "examples/one-basic": {
       "name": "example-basic",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "expo": "54.0.22",
@@ -169,7 +169,7 @@
     },
     "examples/testflight": {
       "name": "example-testflight",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@bottom-tabs/react-navigation": "^0.9.1",
         "@dotenvx/dotenvx": "^1.12.1",
@@ -208,7 +208,7 @@
     },
     "packages/color-scheme": {
       "name": "@vxrn/color-scheme",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
       },
@@ -224,7 +224,7 @@
     },
     "packages/compiler": {
       "name": "@vxrn/compiler",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/plugin-transform-destructuring": "^7.28.5",
@@ -247,7 +247,7 @@
     },
     "packages/create-vxrn": {
       "name": "create-vxrn",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "bin": "run.js",
       "dependencies": {
         "@types/validate-npm-package-name": "^4.0.2",
@@ -270,7 +270,7 @@
     },
     "packages/debug": {
       "name": "@vxrn/debug",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "debug": "^4.3.7",
       },
@@ -281,7 +281,7 @@
     },
     "packages/emitter": {
       "name": "@vxrn/emitter",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "react": "19.1.0",
       },
@@ -291,7 +291,7 @@
     },
     "packages/lllink": {
       "name": "lllink",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "bin": "./dist/index.mjs",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
@@ -300,7 +300,7 @@
     },
     "packages/mdx": {
       "name": "@vxrn/mdx",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "compare-versions": "^4.1.3",
         "esbuild-wasm": "^0.25.11",
@@ -332,7 +332,7 @@
     },
     "packages/one": {
       "name": "one",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "bin": "run.mjs",
       "dependencies": {
         "@azure/core-asynciterator-polyfill": "^1.0.2",
@@ -427,7 +427,7 @@
     },
     "packages/one-vscode": {
       "name": "one-vscode",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "ws": "^8.16.0",
       },
@@ -440,7 +440,7 @@
     },
     "packages/query-string": {
       "name": "@vxrn/query-string",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "query-string": "^9.1.0",
       },
@@ -450,7 +450,7 @@
     },
     "packages/react-native-prebuilt": {
       "name": "@vxrn/react-native-prebuilt",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-flow": "workspace:*",
@@ -474,7 +474,7 @@
     },
     "packages/resolve": {
       "name": "@vxrn/resolve",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "devDependencies": {
         "@tamagui/build": "2.0.0-rc.6-1770409768999",
         "vitest": "^4.0.6",
@@ -482,11 +482,11 @@
     },
     "packages/rn-proxy": {
       "name": "@vxrn/rn-proxy",
-      "version": "1.4.14",
+      "version": "1.6.2",
     },
     "packages/safe-area": {
       "name": "@vxrn/safe-area",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "2.0.0-rc.6-1770409768999",
@@ -494,7 +494,7 @@
     },
     "packages/test": {
       "name": "@vxrn/test",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "react": "19.1.0",
         "zx": "^8.5.5",
@@ -508,15 +508,15 @@
     },
     "packages/test-package": {
       "name": "@vxrn/test-package",
-      "version": "1.4.14",
+      "version": "1.6.2",
     },
     "packages/tslib-lite": {
       "name": "@vxrn/tslib-lite",
-      "version": "1.4.14",
+      "version": "1.6.2",
     },
     "packages/url-parse": {
       "name": "@vxrn/url-parse",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "url-parse": "^1.5.10",
       },
@@ -526,7 +526,7 @@
     },
     "packages/use-isomorphic-layout-effect": {
       "name": "@vxrn/use-isomorphic-layout-effect",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "react": "19.1.0",
       },
@@ -536,7 +536,7 @@
     },
     "packages/utils": {
       "name": "@vxrn/utils",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@vxrn/debug": "workspace:*",
         "@vxrn/resolve": "workspace:*",
@@ -547,11 +547,11 @@
     },
     "packages/vendor": {
       "name": "@vxrn/vendor",
-      "version": "1.4.14",
+      "version": "1.6.2",
     },
     "packages/vite-flow": {
       "name": "@vxrn/vite-flow",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
@@ -566,7 +566,7 @@
     },
     "packages/vite-native-client": {
       "name": "@vxrn/vite-native-client",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "2.0.0-rc.6-1770409768999",
@@ -578,7 +578,7 @@
     },
     "packages/vite-native-hmr": {
       "name": "@vxrn/vite-native-hmr",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@types/webpack-env": "^1.18.8",
         "pretty-format": "^28.1.0",
@@ -593,7 +593,7 @@
     },
     "packages/vite-plugin-metro": {
       "name": "@vxrn/vite-plugin-metro",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
@@ -627,7 +627,7 @@
     },
     "packages/vxrn": {
       "name": "vxrn",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "bin": "run.mjs",
       "dependencies": {
         "@expo/config-plugins": "^8.0.8",
@@ -679,7 +679,7 @@
     },
     "tests/hmr": {
       "name": "test-hmr",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "expo": "54.0.22",
@@ -725,7 +725,7 @@
     },
     "tests/sandbox": {
       "name": "test-sandbox",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -751,7 +751,7 @@
     },
     "tests/test": {
       "name": "test-test",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -792,7 +792,7 @@
     },
     "tests/test-app-cases": {
       "name": "test-app-cases",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -815,7 +815,7 @@
     },
     "tests/test-cloudflare": {
       "name": "test-cloudflare",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "one": "workspace:*",
       },
@@ -830,7 +830,7 @@
     },
     "tests/test-css-preload": {
       "name": "test-css-preload",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.1.0",
@@ -845,7 +845,7 @@
     },
     "tests/test-env": {
       "name": "test-env",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.1.0",
@@ -861,7 +861,7 @@
     },
     "tests/test-hydration-id": {
       "name": "test-hydration-id",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "one": "workspace:*",
@@ -880,7 +880,7 @@
     },
     "tests/test-id-remount": {
       "name": "test-id-remount",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "one": "workspace:*",
@@ -898,7 +898,7 @@
     },
     "tests/test-layout-flicker": {
       "name": "test-layout-flicker",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "expo": "54.0.22",
@@ -918,7 +918,7 @@
     },
     "tests/test-loaders": {
       "name": "test-loaders",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -945,7 +945,7 @@
     },
     "tests/test-native-tree-shaking": {
       "name": "test-native-tree-shaking",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@vxrn/mdx": "workspace:*",
@@ -967,7 +967,7 @@
     },
     "tests/test-not-found": {
       "name": "test-not-found",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "one": "workspace:*",
@@ -986,7 +986,7 @@
     },
     "tests/test-route-file-watching": {
       "name": "test-route-file-watching",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "expo": "54.0.22",
@@ -1006,7 +1006,7 @@
     },
     "tests/test-routing-flicker": {
       "name": "test-routing-flicker",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "@tamagui/config": "2.0.0-rc.6-1770409768999",
@@ -1032,7 +1032,7 @@
     },
     "tests/test-script-loading": {
       "name": "test-script-loading",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.1.0",
@@ -1047,7 +1047,7 @@
     },
     "tests/test-use-dom": {
       "name": "test-use-dom",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "@react-navigation/native": "~7.1.19",
         "expo": "54.0.22",
@@ -1066,7 +1066,7 @@
     },
     "tests/test-vercel": {
       "name": "test-vercel",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "dependencies": {
         "one": "workspace:*",
         "react": "^19.1.0",
@@ -1082,7 +1082,7 @@
     },
     "tests/test-weird-deps": {
       "name": "test-weird-deps",
-      "version": "1.4.14",
+      "version": "1.6.2",
       "devDependencies": {
         "vite": "^7.1.12",
       },
@@ -1579,7 +1579,7 @@
 
     "@expo/xcpretty": ["@expo/xcpretty@4.3.2", "", { "dependencies": { "@babel/code-frame": "7.10.4", "chalk": "^4.1.0", "find-up": "^5.0.0", "js-yaml": "^4.1.0" }, "bin": { "excpretty": "build/cli.js" } }, "sha512-ReZxZ8pdnoI3tP/dNnJdnmAk7uLT4FjsKDGW7YeDdvdOMz2XCQSmSCM9IWlrXuWtMF9zeSB6WJtEhCQ41gQOfw=="],
 
-    "@faker-js/faker": ["@faker-js/faker@10.2.0", "", {}, "sha512-rTXwAsIxpCqzUnZvrxVh3L0QA0NzToqWBLAhV+zDV3MIIwiQhAZHMdPCIaj5n/yADu/tyk12wIPgL6YHGXJP+g=="],
+    "@faker-js/faker": ["@faker-js/faker@10.3.0", "", {}, "sha512-It0Sne6P3szg7JIi6CgKbvTZoMjxBZhcv91ZrqrNuaZQfB5WoqYYbzCUOq89YR+VY8juY9M1vDWmDDa2TzfXCw=="],
 
     "@fal-works/esbuild-plugin-global-externals": ["@fal-works/esbuild-plugin-global-externals@2.1.2", "", {}, "sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ=="],
 
@@ -1965,6 +1965,8 @@
 
     "@oxc-parser/binding-win32-x64-msvc": ["@oxc-parser/binding-win32-x64-msvc@0.112.0", "", { "os": "win32", "cpu": "x64" }, "sha512-oGHluohzmVFAuQrkEnl1OXAxMz2aYmimxUqIgKXpBgbr7PvFv0doELB273sX+5V3fKeggohKg1A2Qq21W9Z9cQ=="],
 
+    "@oxc-project/runtime": ["@oxc-project/runtime@0.101.0", "", {}, "sha512-t3qpfVZIqSiLQ5Kqt/MC4Ge/WCOGrrcagAdzTcDaggupjiGxUx4nJF2v6wUCXWSzWHn5Ns7XLv13fCJEwCOERQ=="],
+
     "@oxc-project/types": ["@oxc-project/types@0.112.0", "", {}, "sha512-m6RebKHIRsax2iCwVpYW2ErQwa4ywHJrE4sCK3/8JK8ZZAWOKXaRJFl/uP51gaVyyXlaS4+chU1nSCdzYf6QqQ=="],
 
     "@oxc-transform/binding-android-arm64": ["@oxc-transform/binding-android-arm64@0.95.0", "", { "os": "android", "cpu": "arm64" }, "sha512-eW+BCgRWOsMrDiz7FEV7BjAmaF9lGIc2ueGdRUYjRUMq4f5FSGS7gMBTYDxajdoIB3L5Gnksh1CWkIlgg95UVA=="],
@@ -2154,6 +2156,34 @@
     "@rocicorp/zero": ["@rocicorp/zero@0.25.8", "", { "dependencies": { "@badrap/valita": "0.3.11", "@databases/escape-identifier": "^1.0.3", "@databases/sql": "^3.3.0", "@dotenvx/dotenvx": "^1.39.0", "@drdgvhbh/postgres-error-codes": "^0.0.6", "@fastify/cors": "^10.0.0", "@fastify/websocket": "^11.0.0", "@google-cloud/precise-date": "^4.0.0", "@opentelemetry/api": "^1.9.0", "@opentelemetry/api-logs": "^0.203.0", "@opentelemetry/auto-instrumentations-node": "^0.62.0", "@opentelemetry/exporter-metrics-otlp-http": "^0.203.0", "@opentelemetry/resources": "^2.0.1", "@opentelemetry/sdk-metrics": "^2.0.1", "@opentelemetry/sdk-node": "^0.203.0", "@opentelemetry/sdk-trace-node": "^2.0.1", "@postgresql-typed/oids": "^0.2.0", "@rocicorp/lock": "^1.0.4", "@rocicorp/logger": "^5.4.0", "@rocicorp/resolver": "^1.0.2", "@rocicorp/zero-sqlite3": "^1.0.12", "@standard-schema/spec": "^1.0.0", "@types/basic-auth": "^1.1.8", "basic-auth": "^2.0.1", "chalk": "^5.3.0", "chalk-template": "^1.1.0", "chokidar": "^4.0.1", "cloudevents": "^10.0.0", "command-line-args": "^6.0.1", "command-line-usage": "^7.0.3", "compare-utf8": "^0.1.1", "defu": "^6.1.4", "eventemitter3": "^5.0.1", "fastify": "^5.0.0", "is-in-subnet": "^4.0.1", "jose": "^5.9.3", "js-xxhash": "^4.0.0", "json-custom-numbers": "^3.1.1", "kasi": "^1.1.0", "nanoid": "^5.1.2", "parse-prometheus-text-format": "^1.1.1", "pg-format": "npm:pg-format-fix@^1.0.5", "postgres": "^3.4.4", "prettier": "^3.5.3", "semver": "^7.5.4", "tsx": "^4.19.1", "url-pattern": "^1.0.3", "urlpattern-polyfill": "^10.1.0", "ws": "^8.18.1" }, "peerDependencies": { "@op-engineering/op-sqlite": ">=15", "expo-sqlite": ">=15" }, "optionalPeers": ["@op-engineering/op-sqlite", "expo-sqlite"], "bin": { "zero-out": "out/zero/src/zero-out.js", "ast-to-zql": "out/zero/src/ast-to-zql.js", "zero-cache": "out/zero/src/cli.js", "analyze-query": "out/zero/src/analyze-query.js", "zero-cache-dev": "out/zero/src/zero-cache-dev.js", "transform-query": "out/zero/src/transform-query.js", "zero-build-schema": "out/zero/src/build-schema.js", "zero-deploy-permissions": "out/zero/src/deploy-permissions.js" } }, "sha512-o0zxFgpwbe4M12kbbLfHaXUJiJlI+eU2KHoLIYP7Jt8Ra1/ik2k2+anrP7Zd11oQVL5pvlaSXKNsDWKXAwpWlg=="],
 
     "@rocicorp/zero-sqlite3": ["@rocicorp/zero-sqlite3@1.0.15", "", { "dependencies": { "bindings": "^1.5.0", "prebuild-install": "^7.1.1" }, "bin": { "zero-sqlite3": "shell.js" } }, "sha512-o4ezzTgNQvOM23X/mBRN4LAo0i7XkIDAL3Obg7FaJLFTuwJyYwqE45aqk9vg8/0mlBw2U+DEUGLP1q/Pf+VgYQ=="],
+
+    "@rolldown/binding-android-arm64": ["@rolldown/binding-android-arm64@1.0.0-beta.53", "", { "os": "android", "cpu": "arm64" }, "sha512-Ok9V8o7o6YfSdTTYA/uHH30r3YtOxLD6G3wih/U9DO0ucBBFq8WPt/DslU53OgfteLRHITZny9N/qCUxMf9kjQ=="],
+
+    "@rolldown/binding-darwin-arm64": ["@rolldown/binding-darwin-arm64@1.0.0-beta.53", "", { "os": "darwin", "cpu": "arm64" }, "sha512-yIsKqMz0CtRnVa6x3Pa+mzTihr4Ty+Z6HfPbZ7RVbk1Uxnco4+CUn7Qbm/5SBol1JD/7nvY8rphAgyAi7Lj6Vg=="],
+
+    "@rolldown/binding-darwin-x64": ["@rolldown/binding-darwin-x64@1.0.0-beta.53", "", { "os": "darwin", "cpu": "x64" }, "sha512-GTXe+mxsCGUnJOFMhfGWmefP7Q9TpYUseHvhAhr21nCTgdS8jPsvirb0tJwM3lN0/u/cg7bpFNa16fQrjKrCjQ=="],
+
+    "@rolldown/binding-freebsd-x64": ["@rolldown/binding-freebsd-x64@1.0.0-beta.53", "", { "os": "freebsd", "cpu": "x64" }, "sha512-9Tmp7bBvKqyDkMcL4e089pH3RsjD3SUungjmqWtyhNOxoQMh0fSmINTyYV8KXtE+JkxYMPWvnEt+/mfpVCkk8w=="],
+
+    "@rolldown/binding-linux-arm-gnueabihf": ["@rolldown/binding-linux-arm-gnueabihf@1.0.0-beta.53", "", { "os": "linux", "cpu": "arm" }, "sha512-a1y5fiB0iovuzdbjUxa7+Zcvgv+mTmlGGC4XydVIsyl48eoxgaYkA3l9079hyTyhECsPq+mbr0gVQsFU11OJAQ=="],
+
+    "@rolldown/binding-linux-arm64-gnu": ["@rolldown/binding-linux-arm64-gnu@1.0.0-beta.53", "", { "os": "linux", "cpu": "arm64" }, "sha512-bpIGX+ov9PhJYV+wHNXl9rzq4F0QvILiURn0y0oepbQx+7stmQsKA0DhPGwmhfvF856wq+gbM8L92SAa/CBcLg=="],
+
+    "@rolldown/binding-linux-arm64-musl": ["@rolldown/binding-linux-arm64-musl@1.0.0-beta.53", "", { "os": "linux", "cpu": "arm64" }, "sha512-bGe5EBB8FVjHBR1mOLOPEFg1Lp3//7geqWkU5NIhxe+yH0W8FVrQ6WRYOap4SUTKdklD/dC4qPLREkMMQ855FA=="],
+
+    "@rolldown/binding-linux-x64-gnu": ["@rolldown/binding-linux-x64-gnu@1.0.0-beta.53", "", { "os": "linux", "cpu": "x64" }, "sha512-qL+63WKVQs1CMvFedlPt0U9PiEKJOAL/bsHMKUDS6Vp2Q+YAv/QLPu8rcvkfIMvQ0FPU2WL0aX4eWwF6e/GAnA=="],
+
+    "@rolldown/binding-linux-x64-musl": ["@rolldown/binding-linux-x64-musl@1.0.0-beta.53", "", { "os": "linux", "cpu": "x64" }, "sha512-VGl9JIGjoJh3H8Mb+7xnVqODajBmrdOOb9lxWXdcmxyI+zjB2sux69br0hZJDTyLJfvBoYm439zPACYbCjGRmw=="],
+
+    "@rolldown/binding-openharmony-arm64": ["@rolldown/binding-openharmony-arm64@1.0.0-beta.53", "", { "os": "none", "cpu": "arm64" }, "sha512-B4iIserJXuSnNzA5xBLFUIjTfhNy7d9sq4FUMQY3GhQWGVhS2RWWzzDnkSU6MUt7/aHUrep0CdQfXUJI9D3W7A=="],
+
+    "@rolldown/binding-wasm32-wasi": ["@rolldown/binding-wasm32-wasi@1.0.0-beta.53", "", { "dependencies": { "@napi-rs/wasm-runtime": "^1.1.0" }, "cpu": "none" }, "sha512-BUjAEgpABEJXilGq/BPh7jeU3WAJ5o15c1ZEgHaDWSz3LB881LQZnbNJHmUiM4d1JQWMYYyR1Y490IBHi2FPJg=="],
+
+    "@rolldown/binding-win32-arm64-msvc": ["@rolldown/binding-win32-arm64-msvc@1.0.0-beta.53", "", { "os": "win32", "cpu": "arm64" }, "sha512-s27uU7tpCWSjHBnxyVXHt3rMrQdJq5MHNv3BzsewCIroIw3DJFjMH1dzCPPMUFxnh1r52Nf9IJ/eWp6LDoyGcw=="],
+
+    "@rolldown/binding-win32-x64-msvc": ["@rolldown/binding-win32-x64-msvc@1.0.0-beta.53", "", { "os": "win32", "cpu": "x64" }, "sha512-cjWL/USPJ1g0en2htb4ssMjIycc36RvdQAx1WlXnS6DpULswiUTVXPDesTifSKYSyvx24E0YqQkEm0K/M2Z/AA=="],
+
+    "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-beta.53", "", {}, "sha512-vENRlFU4YbrwVqNDZ7fLvy+JR1CRkyr01jhSiDpE1u6py3OMzQfztQU2jxykW3ALNxO4kSlqIDeYyD0Y9RcQeQ=="],
 
     "@rollup/plugin-node-resolve": ["@rollup/plugin-node-resolve@15.3.1", "", { "dependencies": { "@rollup/pluginutils": "^5.0.1", "@types/resolve": "1.20.2", "deepmerge": "^4.2.2", "is-module": "^1.0.0", "resolve": "^1.22.1" }, "peerDependencies": { "rollup": "^2.78.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-tgg6b91pAybXHJQMAAwW9VuWBO6Thi+q7BCNARLwSqlmsHz0XYURtGvh/AuwSADXSI4h/2uHbs7s4FzlZDGSGA=="],
 
@@ -4649,6 +4679,8 @@
 
     "rn-test-container": ["rn-test-container@workspace:tests/rn-test-container"],
 
+    "rolldown": ["rolldown@1.0.0-beta.53", "", { "dependencies": { "@oxc-project/types": "=0.101.0", "@rolldown/pluginutils": "1.0.0-beta.53" }, "optionalDependencies": { "@rolldown/binding-android-arm64": "1.0.0-beta.53", "@rolldown/binding-darwin-arm64": "1.0.0-beta.53", "@rolldown/binding-darwin-x64": "1.0.0-beta.53", "@rolldown/binding-freebsd-x64": "1.0.0-beta.53", "@rolldown/binding-linux-arm-gnueabihf": "1.0.0-beta.53", "@rolldown/binding-linux-arm64-gnu": "1.0.0-beta.53", "@rolldown/binding-linux-arm64-musl": "1.0.0-beta.53", "@rolldown/binding-linux-x64-gnu": "1.0.0-beta.53", "@rolldown/binding-linux-x64-musl": "1.0.0-beta.53", "@rolldown/binding-openharmony-arm64": "1.0.0-beta.53", "@rolldown/binding-wasm32-wasi": "1.0.0-beta.53", "@rolldown/binding-win32-arm64-msvc": "1.0.0-beta.53", "@rolldown/binding-win32-x64-msvc": "1.0.0-beta.53" }, "bin": { "rolldown": "bin/cli.mjs" } }, "sha512-Qd9c2p0XKZdgT5AYd+KgAMggJ8ZmCs3JnS9PTMWkyUfteKlfmKtxJbWTHkVakxwXs1Ub7jrRYVeFeF7N0sQxyw=="],
+
     "rollup": ["rollup@4.54.0", "", { "dependencies": { "@types/estree": "1.0.8" }, "optionalDependencies": { "@rollup/rollup-android-arm-eabi": "4.54.0", "@rollup/rollup-android-arm64": "4.54.0", "@rollup/rollup-darwin-arm64": "4.54.0", "@rollup/rollup-darwin-x64": "4.54.0", "@rollup/rollup-freebsd-arm64": "4.54.0", "@rollup/rollup-freebsd-x64": "4.54.0", "@rollup/rollup-linux-arm-gnueabihf": "4.54.0", "@rollup/rollup-linux-arm-musleabihf": "4.54.0", "@rollup/rollup-linux-arm64-gnu": "4.54.0", "@rollup/rollup-linux-arm64-musl": "4.54.0", "@rollup/rollup-linux-loong64-gnu": "4.54.0", "@rollup/rollup-linux-ppc64-gnu": "4.54.0", "@rollup/rollup-linux-riscv64-gnu": "4.54.0", "@rollup/rollup-linux-riscv64-musl": "4.54.0", "@rollup/rollup-linux-s390x-gnu": "4.54.0", "@rollup/rollup-linux-x64-gnu": "4.54.0", "@rollup/rollup-linux-x64-musl": "4.54.0", "@rollup/rollup-openharmony-arm64": "4.54.0", "@rollup/rollup-win32-arm64-msvc": "4.54.0", "@rollup/rollup-win32-ia32-msvc": "4.54.0", "@rollup/rollup-win32-x64-gnu": "4.54.0", "@rollup/rollup-win32-x64-msvc": "4.54.0", "fsevents": "~2.3.2" }, "bin": { "rollup": "dist/bin/rollup" } }, "sha512-3nk8Y3a9Ea8szgKhinMlGMhGMw89mqule3KWczxhIzqudyHdCIOHw8WJlj/r329fACjKLEh13ZSk7oE22kyeIw=="],
 
     "run-parallel": ["run-parallel@1.2.0", "", { "dependencies": { "queue-microtask": "^1.2.2" } }, "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA=="],
@@ -5097,7 +5129,7 @@
 
     "vfile-message": ["vfile-message@4.0.3", "", { "dependencies": { "@types/unist": "^3.0.0", "unist-util-stringify-position": "^4.0.0" } }, "sha512-QTHzsGd1EhbZs4AsQ20JX1rC3cOlt/IWJruk893DfLRr57lcnOeMaWG4K0JrRta4mIJZKth2Au3mM3u03/JWKw=="],
 
-    "vite": ["vite@7.1.12", "", { "dependencies": { "esbuild": "^0.25.0", "fdir": "^6.5.0", "picomatch": "^4.0.3", "postcss": "^8.5.6", "rollup": "^4.43.0", "tinyglobby": "^0.2.15" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^20.19.0 || >=22.12.0", "jiti": ">=1.21.0", "less": "^4.0.0", "lightningcss": "^1.21.0", "sass": "^1.70.0", "sass-embedded": "^1.70.0", "stylus": ">=0.54.8", "sugarss": "^5.0.0", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-ZWyE8YXEXqJrrSLvYgrRP7p62OziLW7xI5HYGWFzOvupfAlrLvURSzv/FyGyy0eidogEM3ujU+kUG1zuHgb6Ug=="],
+    "vite": ["vite@7.3.1", "", { "dependencies": { "esbuild": "^0.27.0", "fdir": "^6.5.0", "picomatch": "^4.0.3", "postcss": "^8.5.6", "rollup": "^4.43.0", "tinyglobby": "^0.2.15" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^20.19.0 || >=22.12.0", "jiti": ">=1.21.0", "less": "^4.0.0", "lightningcss": "^1.21.0", "sass": "^1.70.0", "sass-embedded": "^1.70.0", "stylus": ">=0.54.8", "sugarss": "^5.0.0", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "jiti", "less", "lightningcss", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-w+N7Hifpc3gRjZ63vYBXA56dvvRlNWRczTdmCBBa+CotUzAPf5b7YMdMR/8CQoeYE5LX3W4wj6RYTgonm1b9DA=="],
 
     "vite-tsconfig-paths": ["vite-tsconfig-paths@6.0.5", "", { "dependencies": { "debug": "^4.1.1", "globrex": "^0.1.2", "tsconfck": "^3.0.3" }, "peerDependencies": { "vite": "*" } }, "sha512-f/WvY6ekHykUF1rWJUAbCU7iS/5QYDIugwpqJA+ttwKbxSbzNlqlE8vZSrsnxNQciUW+z6lvhlXMaEyZn9MSig=="],
 
@@ -5977,6 +6009,8 @@
 
     "rimraf/glob": ["glob@10.5.0", "", { "dependencies": { "foreground-child": "^3.1.0", "jackspeak": "^3.1.2", "minimatch": "^9.0.4", "minipass": "^7.1.2", "package-json-from-dist": "^1.0.0", "path-scurry": "^1.11.1" }, "bin": { "glob": "dist/esm/bin.mjs" } }, "sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg=="],
 
+    "rolldown/@oxc-project/types": ["@oxc-project/types@0.101.0", "", {}, "sha512-nuFhqlUzJX+gVIPPfuE6xurd4lST3mdcWOhyK/rZO0B9XWMKm79SuszIQEnSMmmDhq1DC8WWVYGVd+6F93o1gQ=="],
+
     "rollup/fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
 
     "sembear/semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
@@ -6044,6 +6078,8 @@
     "vfile-message/unist-util-stringify-position": ["unist-util-stringify-position@4.0.0", "", { "dependencies": { "@types/unist": "^3.0.0" } }, "sha512-0ASV06AAoKCDkS2+xw5RXJywruurpbC4JZSm7nr7MOt1ojAzvyyaO+UxZf18j8FCF6kmzCZKcAgN/yu2gm2XgQ=="],
 
     "vite/fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
+
+    "vitest/vite": ["rolldown-vite@7.3.1", "", { "dependencies": { "@oxc-project/runtime": "0.101.0", "fdir": "^6.5.0", "lightningcss": "^1.30.2", "picomatch": "^4.0.3", "postcss": "^8.5.6", "rolldown": "1.0.0-beta.53", "tinyglobby": "^0.2.15" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^20.19.0 || >=22.12.0", "esbuild": "^0.27.0", "jiti": ">=1.21.0", "less": "^4.0.0", "sass": "^1.70.0", "sass-embedded": "^1.70.0", "stylus": ">=0.54.8", "sugarss": "^5.0.0", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "esbuild", "jiti", "less", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-LYzdNAjRHhF2yA4JUQm/QyARyi216N2rpJ0lJZb8E9FU2y5v6Vk+xq/U4XBOxMefpWixT5H3TslmAHm1rqIq2w=="],
 
     "vxrn/dotenv": ["dotenv@17.2.3", "", {}, "sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w=="],
 
@@ -6656,6 +6692,8 @@
     "unified/vfile/vfile-message": ["vfile-message@3.1.4", "", { "dependencies": { "@types/unist": "^2.0.0", "unist-util-stringify-position": "^3.0.0" } }, "sha512-fa0Z6P8HUrQN4BZaX05SIVXic+7kE3b05PWAtPuYP9QLHsLKYR7/AlLW3NtOrpXRLeawpDLMsVkmk5DG0NXgWw=="],
 
     "vfile-location/vfile/vfile-message": ["vfile-message@3.1.4", "", { "dependencies": { "@types/unist": "^2.0.0", "unist-util-stringify-position": "^3.0.0" } }, "sha512-fa0Z6P8HUrQN4BZaX05SIVXic+7kE3b05PWAtPuYP9QLHsLKYR7/AlLW3NtOrpXRLeawpDLMsVkmk5DG0NXgWw=="],
+
+    "vitest/vite/fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
 
     "wait-port/chalk/ansi-styles": ["ansi-styles@4.3.0", "", { "dependencies": { "color-convert": "^2.0.1" } }, "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg=="],
 
