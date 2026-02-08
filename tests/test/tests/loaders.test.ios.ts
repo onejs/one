@@ -14,8 +14,8 @@ describe.skipIf(isProd)('loaders on native', () => {
 
     // verify the loader data is rendered on the home page
     // the index.tsx has a loader that returns { test: 'hello' }
-    // and renders it with <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
     const loaderDataElement = await driver.$(`~test-loader`)
+    await loaderDataElement.waitForDisplayed({ timeout: 2 * 60 * 1000 })
     const text = await loaderDataElement.getText()
     expect(text).toContain('hello')
   })
