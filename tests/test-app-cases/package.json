@@ -1,6 +1,6 @@
 {
   "name": "test-app-cases",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "type": "module",
   "scripts": {
