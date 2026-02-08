@@ -79,9 +79,6 @@ export async function oneServe(
 
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
-  // useRolldown is determined at build time and stored in buildInfo
-  const useRolldown = buildInfo.useRolldown ?? false
-
   // Lazy load server entry only when needed for SSR
   let render: ((props: RenderAppProps) => any) | null = null
   async function getRender() {
@@ -106,9 +103,8 @@ export async function oneServe(
       if (options?.lazyRoutes?.api?.[route.page]) {
         return await options.lazyRoutes.api[route.page]()
       }
-      const fileName = useRolldown
-        ? route.page.slice(1)
-        : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
+      // both vite and rolldown-vite replace brackets with underscores in output filenames
+      const fileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
       const apiFile = join(
         process.cwd(),
         'dist',

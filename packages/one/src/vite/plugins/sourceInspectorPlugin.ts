@@ -7,11 +7,9 @@ import type { WebSocket } from 'ws'
 interface JsxLocation {
   /** Position right after the tag name where we insert the attribute */
   insertOffset: number
-  /** Traversal index - stable ordering that's the same on server and client */
-  index: number
-  /** Actual line number for editor navigation */
+  /** Line number for editor navigation */
   line: number
-  /** Actual column number for editor navigation */
+  /** Column number for editor navigation */
   column: number
 }
 
@@ -27,7 +25,6 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
   }
 
   const locations: JsxLocation[] = []
-  let traversalIndex = 0
 
   function getJsxName(node: any): string | null {
     if (!node) return null
@@ -69,7 +66,6 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
 
           locations.push({
             insertOffset: nameEnd,
-            index: traversalIndex++,
             line: loc.line,
             column: loc.column,
           })
@@ -99,7 +95,8 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
 
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
- * Uses stable traversal indices instead of line numbers to avoid hydration mismatches.
+ * Embeds line:column directly in the attribute - safe because both SSR and client
+ * run this same transform with enforce:'pre' on the same source.
  */
 async function injectSourceToJsx(
   code: string,
@@ -121,28 +118,14 @@ async function injectSourceToJsx(
     return
   }
 
-  // Build source info map for this file
-  // Sort by index (ascending) for the map, since jsxLocations is sorted by offset (descending)
-  const sourceInfoEntries = [...jsxLocations]
-    .sort((a, b) => a.index - b.index)
-    .map((jsx) => `${jsx.index}:[${jsx.line},${jsx.column}]`)
-    .join(',')
-
-  // Inject source info registration at the top of the file
-  const sourceInfoScript = `globalThis.__oneSourceInfo=globalThis.__oneSourceInfo||{};globalThis.__oneSourceInfo["${location}"]={${sourceInfoEntries}};`
-
   let result = code
 
   // Insert from end to start to preserve offsets
   for (const jsx of jsxLocations) {
-    // Use stable index instead of line:column
-    const sourceAttr = ` data-one-source="${location}:${jsx.index}"`
+    const sourceAttr = ` data-one-source="${location}:${jsx.line}:${jsx.column}"`
     result =
       result.slice(0, jsx.insertOffset) + sourceAttr + result.slice(jsx.insertOffset)
   }
-
-  // Add source info at the very beginning of the file
-  result = sourceInfoScript + result
 
   return { code: result, map: null }
 }
@@ -267,17 +250,13 @@ export function sourceInspectorPlugin(): Plugin[] {
               return
             }
 
-            // Parse the source - now format is "filePath:index"
-            const lastColon = source.lastIndexOf(':')
-            const filePath = source.slice(0, lastColon)
-            const index = source.slice(lastColon + 1)
+            // Parse the source - format is "filePath:line:column"
+            const parts = source.split(':')
+            const column = parts.pop()!
+            const line = parts.pop()!
+            const filePath = parts.join(':')
 
-            // Look up actual line/column from source info
-            // The client will send these if available
-            const line = url.searchParams.get('line')
-            const column = url.searchParams.get('column')
-
-            await openInEditor(filePath, line || undefined, column || undefined)
+            await openInEditor(filePath, line, column)
 
             res.statusCode = 200
             res.end('OK')
