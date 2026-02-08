@@ -296,7 +296,12 @@ export async function createVXRNCompilerPlugin(
       load: (id) => {
         const basePath = dirname(fileURLToPath(import.meta.url))
         if (id === runtimePublicPath) {
-          return readFileSync(join(basePath, 'refresh-runtime.js'), 'utf-8')
+          // tamagui-build adds a sourceMappingURL to the dist copy of this file,
+          // strip it since the browser resolves it relative to the page causing a 404
+          return readFileSync(join(basePath, 'refresh-runtime.js'), 'utf-8').replace(
+            /\/\/# sourceMappingURL=.*/,
+            ''
+          )
         }
         if (id === `${runtimePublicPath}.map`) {
           return JSON.stringify({ version: 3, sources: [], mappings: '' })
@@ -353,7 +358,7 @@ export async function createVXRNCompilerPlugin(
             throw new Error(`Can't find root js, internal one error`)
           }
 
-          const rootJS = bundle[rootJSName] as OutputChunk
+          const rootJS = bundle[rootJSName] as unknown as OutputChunk
 
           const cssAssets = Object.keys(bundle).filter((i) =>
             bundle[i].fileName.endsWith('.css.js')
