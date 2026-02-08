@@ -1,7 +1,7 @@
 name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
-  simulator_ios_version: 18
+  simulator_ios_version: 17
   # Name of the simulator device to use.
   simulator_device_name: iPhone 15 Pro
 
