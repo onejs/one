@@ -38,10 +38,10 @@ async function getFromPackage(cwd = '.') {
   if (await pathExists(resolve(cwd, 'package.json'))) {
     const json = JSON.parse(await fs.readFile(resolve(cwd, 'package.json'), 'utf-8'))
     if (json.packageManager) {
-      const yarn = !!json.packageManager.starsWith('yarn')
-      const pnpm = !!json.packageManager.starsWith('pnpm')
-      const bun = !!json.packageManager.starsWith('bun')
-      const npm = !!json.packageManager.starsWith('npm')
+      const yarn = !!json.packageManager.startsWith('yarn')
+      const pnpm = !!json.packageManager.startsWith('pnpm')
+      const bun = !!json.packageManager.startsWith('bun')
+      const npm = !!json.packageManager.startsWith('npm')
       return { bun, yarn, pnpm, npm }
     }
   }
