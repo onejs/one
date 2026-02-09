@@ -373,6 +373,10 @@ export declare namespace One {
             seoPreview?: boolean;
         };
         server?: VXRNOptions['server'];
+        /**
+         * Skip loading .env files during build
+         */
+        skipEnv?: boolean;
         build?: {
             server?: VXRNBuildOptions | false;
             api?: VXRNBuildOptions;

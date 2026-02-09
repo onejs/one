@@ -56,6 +56,10 @@ export type VXRNOptions = {
      */
     mode?: 'development' | 'production';
     /**
+     * Skip loading .env files during build
+     */
+    skipEnv?: boolean;
+    /**
      * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
      *
      * Defaults:

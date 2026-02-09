@@ -58,6 +58,7 @@ export async function build(args: {
   step?: string
   only?: string
   platform?: 'ios' | 'web' | 'android'
+  skipEnv?: boolean
 }) {
   process.env.IS_VXRN_CLI = 'true'
 
@@ -87,6 +88,7 @@ export async function build(args: {
 
   const vxrnOutput = await vxrnBuild(
     {
+      skipEnv: args.skipEnv ?? oneOptions.skipEnv,
       server: oneOptions.server,
       build: {
         analyze: true,
