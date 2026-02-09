@@ -47,8 +47,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
 
-  const [{ serverEnv }, options, userViteConfig] = await Promise.all([
-    loadEnv('production'),
+  const skipEnv = optionsIn.skipEnv ?? false
+
+  const [envResult, options, userViteConfig] = await Promise.all([
+    skipEnv
+      ? { serverEnv: {} as Record<string, string>, clientEnv: {}, clientEnvDefine: {} }
+      : loadEnv('production'),
     fillOptions(optionsIn, { mode: 'prod' }),
     loadConfigFromFile({
       command: 'build',
@@ -64,7 +68,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
   const processEnvDefines = Object.fromEntries(
-    Object.entries(serverEnv).map(([key, value]) => {
+    Object.entries(envResult.serverEnv).map(([key, value]) => {
       return [`process.env.${key}`, JSON.stringify(value)]
     })
   )
@@ -120,6 +124,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       plugins: globalThis.__vxrnAddWebPluginsProd,
       clearScreen: false,
       configFile: false,
+      ...(skipEnv && { envFile: false }),
       optimizeDeps,
       logLevel: 'warn',
       build: {

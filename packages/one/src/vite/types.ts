@@ -427,6 +427,11 @@ export namespace One {
 
     server?: VXRNOptions['server']
 
+    /**
+     * Skip loading .env files during build
+     */
+    skipEnv?: boolean
+
     build?: {
       server?: VXRNBuildOptions | false
       api?: VXRNBuildOptions

@@ -118,6 +118,11 @@ const buildCommand = defineCommand({
       default: 'web',
       required: false,
     },
+    'skip-env': {
+      type: 'boolean',
+      description: `Skip loading .env files during build`,
+      required: false,
+    },
   },
   async run({ args }) {
     const { build } = await import('./cli/build')
@@ -138,6 +143,7 @@ const buildCommand = defineCommand({
       only: args.only,
       platform,
       step: args.step,
+      skipEnv: args['skip-env'],
     })
     // TODO somewhere just before 1787f241b79 this stopped exiting, must have some hanging task
     process.exit(0)
