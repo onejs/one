@@ -151,6 +151,7 @@ async function collectStyleUrls(
   const visited = new Set<string>()
 
   async function traverse(url: string) {
+    if (url.includes('.server.')) return
     const [, id] = await server.moduleGraph.resolveUrl(url)
     if (visited.has(id)) {
       return
