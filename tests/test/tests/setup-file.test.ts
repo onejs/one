@@ -37,4 +37,16 @@ describe('setupFile Tests', { retry: 3, timeout: 120_000 }, () => {
 
     await page.close()
   })
+
+  it('setupFile runs on server before rendering', async () => {
+    const page = await context.newPage()
+
+    await page.goto(`${serverUrl}/setup-file-test`, { waitUntil: 'domcontentloaded' })
+
+    // server setup should have ran during SSR render (not build time)
+    const serverSetupText = await page.textContent('[data-testid="server-setup-ran"]')
+    expect(serverSetupText).toContain('true')
+
+    await page.close()
+  })
 })

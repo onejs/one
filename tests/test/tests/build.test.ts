@@ -68,6 +68,28 @@ describe('Simple Build Tests', () => {
     expect(privacyContent).toContain('Privacy Policy')
   })
 
+  it('should not statically import setupFile in the SSR entry bundle', async () => {
+    // setupFile should use a lazy dynamic import (not a static import) to avoid
+    // executing setup code at build time instead of runtime
+    const ssrDir = join(fixturePath, 'dist', 'ssr')
+    if (!(await pathExists(ssrDir))) return
+
+    const { readdirSync, readFileSync } = await import('node:fs')
+    const ssrFiles = readdirSync(ssrDir, { recursive: true }) as string[]
+    const entryFile = ssrFiles.find(
+      (f) => f.endsWith('.js') && (f.includes('entry') || f.includes('virtual'))
+    )
+    if (!entryFile) return
+
+    const content = readFileSync(join(ssrDir, entryFile), 'utf-8')
+
+    // if setupFile is referenced, it should be via lazy dynamic import
+    // not a static import that executes at module evaluation time
+    if (content.includes('setup')) {
+      expect(content).not.toMatch(/^import\s+["'].*setup/m)
+    }
+  })
+
   it('should build SSR routes in deeply nested route groups with client JS', async () => {
     // This test catches a regression where nested route groups like (app)/dashboard/(tabs)/
     // would log "No client manifest entry found" warnings and fail to include proper

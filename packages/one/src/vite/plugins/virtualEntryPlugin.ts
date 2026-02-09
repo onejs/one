@@ -145,18 +145,17 @@ export function createVirtualEntry(options: {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
-        const isSSR = this.environment.name === 'ssr'
         const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
-          isNative || isSSR,
+          isNative, // only native needs static import; SSR now uses lazy import
           viteRoot
         )
         // When nativewind is enabled, import the components module to register Text, View, etc. with cssInterop
         const nativewindImport = configuration.enableNativewind
           ? `import 'react-native-css-interop/dist/runtime/components'`
           : ''
-        // For web, pass getSetupPromise to createApp so it can call it at runtime
+        // For web/SSR, pass getSetupPromise to createApp so it can call it at runtime
         const setupPromiseArg = setupResult.promiseVarName
           ? `getSetupPromise: ${setupResult.promiseVarName},`
           : ''
