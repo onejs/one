@@ -31,6 +31,12 @@ export function createApp(options: CreateAppProps) {
     return {
       options,
       render: async (props: RenderAppProps) => {
+        // wait for setup file to complete first (if provided)
+        // ensures setup code (msw, error handlers, etc.) runs before rendering
+        if (options.getSetupPromise) {
+          await options.getSetupPromise()
+        }
+
         // Dynamic imports for server-only modules to avoid bundling in client
         const [ReactDOMServer, serverRender] = await Promise.all([
           import('react-dom/server.browser'),

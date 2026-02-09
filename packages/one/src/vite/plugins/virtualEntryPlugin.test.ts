@@ -26,7 +26,7 @@ describe('virtualEntryPlugin', () => {
       flags: {},
     }
 
-    it('server (ssr) uses static import for setupFile', () => {
+    it('server (ssr) uses lazy dynamic import, not static import', () => {
       const plugin = createVirtualEntry({
         ...base,
         setupFile: {
@@ -35,11 +35,15 @@ describe('virtualEntryPlugin', () => {
         },
       })
       const code = loadEntry(plugin, 'ssr')
-      // should have a static import at the top
-      expect(code).toContain('import "./src/setupServer.ts"')
-      // should NOT have a dynamic import / getSetupPromise
-      expect(code).not.toContain('__oneGetSetupPromise')
-      expect(code).not.toContain('getSetupPromise')
+      // must NOT use static import (executes at build time)
+      expect(code).not.toContain('import "./src/setupServer.ts"')
+      // must use lazy function wrapping dynamic import
+      expect(code).toContain(
+        '__oneGetSetupPromise = () => import('
+      )
+      expect(code).toContain('./src/setupServer.ts')
+      // must pass it to createApp so it's called at render time
+      expect(code).toContain('getSetupPromise: __oneGetSetupPromise')
     })
 
     it('client uses dynamic import for setupFile', () => {
@@ -70,6 +74,20 @@ describe('virtualEntryPlugin', () => {
       })
       const code = loadEntry(plugin, 'ios')
       expect(code).toContain('import "./src/setupNative.ts"')
+      // native should NOT use lazy import or pass getSetupPromise
+      expect(code).not.toContain('__oneGetSetupPromise')
+      expect(code).not.toContain('getSetupPromise')
+    })
+
+    it('android uses static import like ios', () => {
+      const plugin = createVirtualEntry({
+        ...base,
+        setupFile: {
+          native: './src/setupNative.ts',
+        },
+      })
+      const code = loadEntry(plugin, 'android')
+      expect(code).toContain('import "./src/setupNative.ts"')
       expect(code).not.toContain('__oneGetSetupPromise')
     })
 
@@ -88,9 +106,17 @@ describe('virtualEntryPlugin', () => {
       })
       const ssrCode = loadEntry(plugin, 'ssr')
       const clientCode = loadEntry(plugin, 'client')
-      expect(ssrCode).toContain('import "./src/setup.ts"')
+      const iosCode = loadEntry(plugin, 'ios')
+      // client and ssr both use lazy dynamic import
+      expect(ssrCode).toContain('./src/setup.ts')
+      expect(ssrCode).toContain('__oneGetSetupPromise')
+      expect(ssrCode).not.toContain('import "./src/setup.ts"')
       expect(clientCode).toContain('./src/setup.ts')
       expect(clientCode).toContain('__oneGetSetupPromise')
+      expect(clientCode).not.toContain('import "./src/setup.ts"')
+      // native uses static import
+      expect(iosCode).toContain('import "./src/setup.ts"')
+      expect(iosCode).not.toContain('__oneGetSetupPromise')
     })
   })
 })
