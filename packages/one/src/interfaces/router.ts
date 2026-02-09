@@ -416,6 +416,74 @@ export namespace OneRouter {
     <T extends string | object>(props: React.PropsWithChildren<LinkProps<T>>): JSX.Element
     /** Helper method to resolve an Href object into a string. */
     resolveHref: (href: Href) => string
+    /**
+     * Context menu for the link. iOS only.
+     * @platform ios
+     */
+    Menu: React.FC<LinkMenuProps>
+    /**
+     * Individual menu action within a Link.Menu. iOS only.
+     * @platform ios
+     */
+    MenuAction: React.FC<LinkMenuActionProps>
+    /**
+     * Preview content shown on long-press. iOS only.
+     * @platform ios
+     */
+    Preview: React.FC<LinkPreviewProps>
+    /**
+     * Trigger element for the link. iOS only.
+     * @platform ios
+     */
+    Trigger: React.FC<LinkTriggerProps>
+  }
+
+  /** Props for Link.Menu component */
+  export interface LinkMenuProps {
+    title?: string
+    subtitle?: string
+    icon?: string
+    palette?: boolean
+    displayAsPalette?: boolean
+    inline?: boolean
+    displayInline?: boolean
+    destructive?: boolean
+    elementSize?: 'small' | 'medium' | 'large' | 'auto'
+    children?: React.ReactNode
+  }
+
+  /** Props for Link.MenuAction component */
+  export interface LinkMenuActionProps {
+    children?: ReactNode
+    destructive?: boolean
+    disabled?: boolean
+    discoverabilityLabel?: string
+    hidden?: boolean
+    icon?: string
+    isOn?: boolean
+    onPress?: () => void
+    subtitle?: string
+    title?: string
+    unstable_keepPresented?: boolean
+  }
+
+  /** Props for Link.Preview component */
+  export interface LinkPreviewProps {
+    children?: React.ReactNode
+    style?: LinkPreviewStyle
+  }
+
+  /** Style for Link.Preview component */
+  export type LinkPreviewStyle = {
+    width?: number
+    height?: number
+    [key: string]: any
+  }
+
+  /** Props for Link.Trigger component */
+  export interface LinkTriggerProps {
+    children?: React.ReactNode
+    withAppleZoom?: boolean
   }
 
   /**
