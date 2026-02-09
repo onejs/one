@@ -33,6 +33,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-dom/server',
     'react-dom/client',
     'react-native-web-internals',
+    'react-native-web',
     '@react-native-masked-view/masked-view',
     'url-parse',
     'query-string',
