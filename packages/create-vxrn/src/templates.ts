@@ -2,8 +2,9 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Basic`,
-    value: 'Basic',
+    title: `Base`,
+    value: 'Base',
+    description: 'The simplest starting point',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
@@ -16,8 +17,9 @@ export const templates = [
   },
 
   {
-    title: `Tamagui`,
-    value: 'Tamagui',
+    title: `Takeout`,
+    value: 'Takeout',
+    description: 'One, Tamagui, Zero, Better Auth',
     type: 'external-repo',
     hidden: false,
     repo: {
@@ -30,11 +32,13 @@ export const templates = [
   },
 
   {
-    title: `Tamagui Pro`,
-    value: 'TamaguiPro',
+    title: `Takeout Production`,
+    value: 'TakeoutPro',
+    description:
+      "Takeout + a startup in a repo. Refined stack that's production ready. Home/Terms/Docs, CI/CD, IaC, Integration Tests, Onboarding, Notifications, OTA Updates, Screens, >50 Components, >25 Agent Docs, >30 Scripts. See https://takeout.tamagui.dev",
     type: 'external-link',
     hidden: false,
-    externalUrl: 'https://tamagui.dev/takeout',
+    externalUrl: 'https://takeout.tamagui.dev',
   },
 ] as const
 
