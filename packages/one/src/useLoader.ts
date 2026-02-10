@@ -1,6 +1,7 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname } from './hooks'
+import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
@@ -142,6 +143,25 @@ export async function refetchLoader(pathname: string): Promise<void> {
     const executionTime = performance.now() - executionStart
 
     const totalTime = performance.now() - startTime
+
+    // detect server redirect signal during refetch
+    if (result?.__oneRedirect) {
+      recordLoaderTiming({
+        path: pathname,
+        startTime,
+        moduleLoadTime,
+        executionTime,
+        totalTime,
+        source: 'refetch',
+      })
+      updateState(pathname, {
+        data: undefined,
+        state: 'idle',
+        hasLoadedOnce: true,
+      })
+      router.replace(result.__oneRedirect)
+      return
+    }
 
     updateState(pathname, {
       data: result,
@@ -338,6 +358,25 @@ export function useLoaderState<
               const executionTime = performance.now() - executionStart
               const totalTime = performance.now() - startTime
 
+              // detect server redirect signal on native
+              if (data?.__oneRedirect) {
+                recordLoaderTiming({
+                  path: currentPath,
+                  startTime,
+                  moduleLoadTime,
+                  executionTime,
+                  totalTime,
+                  source: 'initial',
+                })
+                updateState(currentPath, {
+                  data: undefined,
+                  hasLoadedOnce: true,
+                  promise: undefined,
+                })
+                router.replace(data.__oneRedirect)
+                return
+              }
+
               updateState(currentPath, {
                 data,
                 hasLoadedOnce: true,
@@ -392,6 +431,25 @@ export function useLoaderState<
           const executionTime = performance.now() - executionStart
 
           const totalTime = performance.now() - startTime
+
+          // detect server redirect signal (fallback if preload didn't catch it)
+          if (result?.__oneRedirect) {
+            recordLoaderTiming({
+              path: currentPath,
+              startTime,
+              moduleLoadTime,
+              executionTime,
+              totalTime,
+              source: 'initial',
+            })
+            updateState(currentPath, {
+              data: undefined,
+              hasLoadedOnce: true,
+              promise: undefined,
+            })
+            router.replace(result.__oneRedirect)
+            return
+          }
 
           updateState(currentPath, {
             data: result,
