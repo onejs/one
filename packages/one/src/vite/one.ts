@@ -224,6 +224,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             return {
               ...tsPathsPlugin,
+              // let vite aliases (e.g. react-native → react-native-web) resolve first
+              enforce: undefined,
               // parallel viteBuild() calls share this plugin, so the second
               // build's buildStart can fire before configResolved initializes
               // tsconfigResolvers — swallow the error since buildStart only
