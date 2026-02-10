@@ -288,8 +288,24 @@ Each middleware can:
 
 Middlewares are server-only and run on every request. They do not run during static site generation or on native platforms.
 
+## Middleware vs Loader Redirects
+
+Middleware redirects and loader redirects serve different purposes:
+
+| | Middleware Redirects | Loader Redirects |
+|---|---|---|
+| **Best for** | URL rewrites, HTTPS enforcement, path-level access control | Protecting page data, auth guards for SSR pages |
+| **Runs on** | Every request before the route | When loader data is fetched |
+| **Client-side nav** | Not involved (middleware only runs on server requests) | Server intercepts redirect and sends metadata to client, preventing flash of protected content |
+| **Data protection** | Returns early before route processes | Prevents sensitive loader data from reaching the client |
+
+For protecting SSR routes with auth, prefer [loader redirects](/docs/routing-loader#redirects-in-loaders) — they handle both direct page loads and client-side `<Link>` navigation, ensuring no unauthorized data leaks. Use middleware redirects for request-level concerns like URL rewrites, HTTPS enforcement, and API route protection.
+
+See the [Loader Redirects guide](/docs/guides-loader-redirects) for a complete walkthrough.
+
 ## Related
 
 - [Loaders](/docs/routing-loader) - Load data for routes
+- [Loader Redirects](/docs/guides-loader-redirects) - Protecting routes with loader redirects
 - [API Routes](/docs/render-modes#api) - Create API endpoints
 - [setResponseHeaders](/docs/routing-loader#setresponseheaders) - Helper for setting headers

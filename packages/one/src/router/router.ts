@@ -602,6 +602,11 @@ async function doPreloadDev(href: string): Promise<any> {
       const executionTime = performance.now() - executionStart
       const totalTime = performance.now() - startTime
 
+      // detect server redirect signal from loader response
+      if (result?.__oneRedirect) {
+        return result
+      }
+
       // record timing for devtools
       devtoolsRegistry.recordLoaderTiming?.({
         path: normalizedPath,
@@ -662,6 +667,12 @@ async function doPreload(href: string) {
     }
 
     const result = await loader.loader()
+
+    // detect server redirect signal from loader response
+    if (result?.__oneRedirect) {
+      return result
+    }
+
     recordPreloadComplete(href, true, hasCss)
     return result ?? null
   } catch (err) {
@@ -988,6 +999,24 @@ export async function linkTo(
 
   // Preload route modules first so loadRoute() won't throw Suspense promises
   await preloadRoute(href, true)
+
+  // detect loader redirect signal before proceeding with navigation
+  // this handles the case where a server loader returned redirect() during
+  // a client-side navigation — we navigate to the redirect target instead
+  const normalizedPreloadPath = normalizeLoaderPath(href)
+  const preloadResult = preloadedLoaderData[normalizedPreloadPath]
+  if (preloadResult?.__oneRedirect) {
+    const redirectTarget = preloadResult.__oneRedirect
+    // clean up so subsequent navigations don't see stale redirect
+    delete preloadedLoaderData[normalizedPreloadPath]
+    delete preloadingLoader[normalizedPreloadPath]
+    // also clean the non-normalized key (used in prod)
+    delete preloadedLoaderData[href]
+    delete preloadingLoader[href]
+    setLoadingState('loaded')
+    linkTo(redirectTarget, 'REPLACE')
+    return
+  }
 
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)

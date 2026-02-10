@@ -83,6 +83,7 @@ export const docsRoutes = [
     title: 'Guides',
     pages: [
       { title: 'Authentication', route: '/docs/guides-authentication' },
+      { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },

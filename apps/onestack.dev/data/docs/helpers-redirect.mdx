@@ -2,7 +2,7 @@
 title: redirect
 ---
 
-A function that takes two arguments: a string `path`, and a number `status`.
+A function that takes two arguments: a string `path`, and an optional number `status`.
 
 ```tsx
 import { redirect } from 'one'
@@ -15,3 +15,47 @@ export function redirectToLogin() {
 It accepts relative paths by using the [`getURL`](/docs/helpers-getURL) helper internally.
 
 On the server (including in loaders) it returns a `Response.redirect` object. On the client it calls `router.navigate` and returns void.
+
+## Usage in Loaders
+
+Use `redirect()` in loaders to protect routes. When a user navigates via `<Link>`, the loader runs on the server and the redirect is detected on the client before the protected page ever renders — no flash of unauthorized content, no data leaks.
+
+```tsx fileName=app/dashboard+ssr.tsx
+import { redirect, useLoader } from 'one'
+import type { LoaderProps } from 'one'
+
+export function loader({ request }: LoaderProps) {
+  const session = getSession(request)
+
+  if (!session) {
+    throw redirect('/login')
+  }
+
+  return { user: session.user }
+}
+
+export default function Dashboard() {
+  const { user } = useLoader(loader)
+  return <Text>Welcome, {user.name}</Text>
+}
+```
+
+Both `throw redirect()` and `return redirect()` work. `throw` is often cleaner since it stops execution immediately.
+
+This works for both direct page loads (server returns a 302) and client-side `<Link>` navigation (server returns a redirect signal that the client intercepts before rendering).
+
+### How It Works
+
+During client-side navigation, loaders run on the server and the client fetches the result as a JavaScript module. When a loader returns `redirect()`:
+
+1. The server detects the redirect response
+2. Instead of returning a raw HTTP 302 (which the browser's module loader would silently follow), the server transforms it into a JS module containing redirect metadata
+3. The client detects the redirect signal before navigating or rendering anything
+4. The client navigates to the redirect target using `REPLACE` — the protected page never appears
+
+This means **no sensitive data reaches the client** when a redirect occurs. The server only sends back the redirect path.
+
+## Related
+
+- [Loaders](/docs/routing-loader) - Data loading for routes
+- [Authentication](/docs/guides-authentication) - Full authentication guide

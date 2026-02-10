@@ -221,34 +221,64 @@ prefetchCSS()
 
     // Run page loader
     t0 = performance.now()
+    let loaderRedirectInfo: { path: string; status: number } | null = null
+
     if (exported.loader) {
       try {
         loaderData = (await exported.loader?.(loaderProps)) ?? null
       } catch (err) {
-        // Handle thrown responses (e.g., redirect) - skip loader data generation for this page
-        // The redirect will happen at runtime instead
+        // handle thrown responses (e.g., throw redirect('/login'))
+        // extract redirect info so we can generate a static redirect loader file
         if (isResponse(err)) {
-          // Keep loaderData as empty object, the redirect will happen at runtime
+          loaderRedirectInfo = extractRedirectInfo(err as Response)
         } else {
           throw err
         }
       }
 
-      // Only generate loader file if we have a client manifest entry
+      // handle returned redirect responses (e.g., return redirect('/login'))
+      // check both isResponse and constructor name for cross-context compatibility
+      if (
+        !loaderRedirectInfo &&
+        loaderData &&
+        (isResponse(loaderData) ||
+          loaderData instanceof Response ||
+          loaderData?.constructor?.name === 'Response')
+      ) {
+        loaderRedirectInfo = extractRedirectInfo(loaderData as Response)
+        loaderData = {}
+      }
+
       if (clientJsPath) {
-        const code = await readFile(clientJsPath, 'utf-8')
-        const withLoader =
-          // super dirty to quickly make ssr loaders work until we have better
-          `
+        const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
+
+        if (loaderRedirectInfo) {
+          // generate a static redirect loader — the client detects __oneRedirect
+          // and navigates before the protected page ever renders
+          const redirectData = JSON.stringify({
+            __oneRedirect: loaderRedirectInfo.path,
+            __oneRedirectStatus: loaderRedirectInfo.status,
+          })
+          await outputFile(
+            loaderPartialPath,
+            `export function loader(){return ${redirectData}}`
+          )
+          loaderPath = getLoaderPath(path)
+          loaderData = {}
+        } else {
+          const code = await readFile(clientJsPath, 'utf-8')
+          const withLoader =
+            // super dirty to quickly make ssr loaders work until we have better
+            `
 if (typeof document === 'undefined') globalThis.document = {}
 ` +
-          replaceLoader({
-            code,
-            loaderData,
-          })
-        const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
-        await outputFile(loaderPartialPath, withLoader)
-        loaderPath = getLoaderPath(path)
+            replaceLoader({
+              code,
+              loaderData,
+            })
+          await outputFile(loaderPartialPath, withLoader)
+          loaderPath = getLoaderPath(path)
+        }
       }
     }
     recordTiming('pageLoader', performance.now() - t0)
@@ -401,6 +431,28 @@ async function getRender(serverEntry: string) {
 
 function removeTrailingSlash(path: string) {
   return path.endsWith('/') ? path.slice(0, path.length - 1) : path
+}
+
+// extract redirect target from a Response object (e.g., from redirect())
+function extractRedirectInfo(
+  response: Response
+): { path: string; status: number } | null {
+  if (response.status >= 300 && response.status < 400) {
+    const location = response.headers.get('location')
+    if (location) {
+      try {
+        const url = new URL(location)
+        return {
+          path: url.pathname + url.search + url.hash,
+          status: response.status,
+        }
+      } catch {
+        // relative URL
+        return { path: location, status: response.status }
+      }
+    }
+  }
+  return null
 }
 
 /**

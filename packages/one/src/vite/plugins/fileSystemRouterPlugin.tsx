@@ -254,6 +254,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             )
             loaderData = tracked.result
 
+            // if the loader returned a Response (e.g. redirect()), throw it
+            // so it bubbles up through resolveResponse and can be transformed
+            // into a JS redirect module for client-side navigation
+            if (isResponse(loaderData)) {
+              throw loaderData
+            }
+
             // Register dependencies: map file path -> route paths that depend on it
             const routePath = loaderProps?.path || '/'
             for (const dep of tracked.dependencies) {
