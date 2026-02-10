@@ -2,7 +2,7 @@
 title: Loader Redirects
 ---
 
-Loader redirects let you protect SSR routes server-side. When a loader calls `redirect()`, unauthorized users are redirected before any sensitive data or page content reaches the client — for both direct page loads and client-side `<Link>` navigation.
+Loader redirects let you protect routes server-side on both web and native. When a loader calls `redirect()`, unauthorized users are redirected before any sensitive data or page content reaches the client — for direct page loads, client-side `<Link>` navigation, and React Native navigation.
 
 ## Basic Usage
 
@@ -48,6 +48,17 @@ One handles this differently:
 4. The client navigates to the redirect target using a `REPLACE` action
 
 The protected page never appears. No loader data, no component JavaScript output, no flash of unauthorized content. The server only sends back the redirect path.
+
+### React Native
+
+On native, loaders are fetched from the dev/production server and evaluated on the device. The same redirect mechanism applies:
+
+1. The native app fetches the loader JavaScript from the server
+2. The server runs the loader, detects the redirect, and transforms it into a module with redirect metadata
+3. The native client detects the `__oneRedirect` signal after evaluating the loader
+4. The router performs a `replace` navigation to the redirect target
+
+The component never renders with protected data. This works for both `<Link>` navigation and programmatic navigation via `router.push()` / `router.navigate()`.
 
 ## Protecting Multiple Routes
 
@@ -144,7 +155,7 @@ Component JavaScript is always downloadable (this is true in every framework). L
 
 | Approach | Best For | Platform |
 |---|---|---|
-| **Loader redirects** | SSR data protection, server-side auth | Web (SSR) |
+| **Loader redirects** | SSR data protection, server-side auth | Web + Native |
 | **`<Protected />`** | Hiding routes from navigation entirely | Web + Native |
 | **`<Redirect />`** | Client-side redirect in component render | Web + Native |
 | **Middleware** | URL rewrites, API auth, request-level checks | Web (server) |
