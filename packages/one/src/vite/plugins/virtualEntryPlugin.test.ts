@@ -38,9 +38,7 @@ describe('virtualEntryPlugin', () => {
       // must NOT use static import (executes at build time)
       expect(code).not.toContain('import "./src/setupServer.ts"')
       // must use lazy function wrapping dynamic import
-      expect(code).toContain(
-        '__oneGetSetupPromise = () => import('
-      )
+      expect(code).toContain('__oneGetSetupPromise = () => import(')
       expect(code).toContain('./src/setupServer.ts')
       // must pass it to createApp so it's called at render time
       expect(code).toContain('getSetupPromise: __oneGetSetupPromise')
