@@ -1,5 +1,5 @@
 // One DevTools - All panels in one draggable window
-// Alt+Space opens Spotlight-style quick picker
+// Alt+Space opens searchable hot menu
 
 ;(function () {
   try {
@@ -14,9 +14,131 @@
     const panelPos = { x: 20, y: 20 }
     let snappedEdge = { h: null, v: null }
     let removalObserver = null
+    let selectedIndex = 0
+    let filteredItems = []
 
     const LOGO_SVG =
       '<svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FCD34D" stroke="#222" stroke-width="2"/><circle cx="50" cy="35" r="16" fill="white"/><text x="50" y="41" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="bold" fill="#222">1</text></svg>'
+
+    const allItems = [
+      { id: 'seo', name: 'SEO Preview', type: 'panel', category: 'Panels' },
+      { id: 'route', name: 'Route Info', type: 'panel', category: 'Panels' },
+      { id: 'loader', name: 'Loader Timing', type: 'panel', category: 'Panels' },
+      { id: 'errors', name: 'Errors', type: 'panel', category: 'Panels' },
+      { id: 'inspect', name: 'Inspect Source', type: 'tool', category: 'Panels' },
+      { id: 'clear-cookies', name: 'Clear Cookies', type: 'action', category: 'Clear Data' },
+      {
+        id: 'clear-localstorage',
+        name: 'Clear localStorage',
+        type: 'action',
+        category: 'Clear Data',
+      },
+      {
+        id: 'clear-sessionstorage',
+        name: 'Clear sessionStorage',
+        type: 'action',
+        category: 'Clear Data',
+      },
+      { id: 'clear-indexeddb', name: 'Clear IndexedDB', type: 'action', category: 'Clear Data' },
+      {
+        id: 'clear-caches',
+        name: 'Clear Cache Storage',
+        type: 'action',
+        category: 'Clear Data',
+      },
+      {
+        id: 'clear-sw',
+        name: 'Clear Service Workers',
+        type: 'action',
+        category: 'Clear Data',
+      },
+      { id: 'clear-all', name: 'Clear All', type: 'action', category: 'Clear Data' },
+      { id: 'reload', name: 'Reload Page', type: 'action', category: 'Actions' },
+      { id: 'hard-reload', name: 'Hard Reload', type: 'action', category: 'Actions' },
+      { id: 'copy-url', name: 'Copy Current URL', type: 'action', category: 'Actions' },
+      { id: 'copy-route', name: 'Copy Route Info', type: 'action', category: 'Actions' },
+    ]
+
+    const itemActions = {
+      'clear-cookies': async () => {
+        document.cookie.split(';').forEach((cookie) => {
+          const name = (cookie.split('=')[0] || '').trim()
+          if (!name) return
+          const d = location.hostname
+          document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'
+          document.cookie =
+            name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=' + d
+          document.cookie =
+            name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.' + d
+        })
+      },
+      'clear-localstorage': async () => {
+        localStorage.clear()
+      },
+      'clear-sessionstorage': async () => {
+        sessionStorage.clear()
+      },
+      'clear-indexeddb': async () => {
+        if ('indexedDB' in window && typeof indexedDB.databases === 'function') {
+          const dbs = await indexedDB.databases()
+          await Promise.all(
+            dbs.map((db) =>
+              db.name
+                ? new Promise((resolve) => {
+                    const req = indexedDB.deleteDatabase(db.name)
+                    req.onsuccess = resolve
+                    req.onerror = resolve
+                    req.onblocked = resolve
+                  })
+                : Promise.resolve()
+            )
+          )
+        }
+      },
+      'clear-caches': async () => {
+        if ('caches' in window) {
+          const names = await caches.keys()
+          await Promise.all(names.map((n) => caches.delete(n)))
+        }
+      },
+      'clear-sw': async () => {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations()
+          await Promise.all(regs.map((r) => r.unregister()))
+        }
+      },
+      'clear-all': async () => {
+        await itemActions['clear-cookies']()
+        await itemActions['clear-localstorage']()
+        await itemActions['clear-sessionstorage']()
+        await itemActions['clear-indexeddb']()
+        await itemActions['clear-caches']()
+        await itemActions['clear-sw']()
+      },
+      reload: async () => {
+        location.reload()
+      },
+      'hard-reload': async () => {
+        if ('caches' in window) {
+          const names = await caches.keys()
+          await Promise.all(names.map((n) => caches.delete(n)))
+        }
+        location.reload()
+      },
+      'copy-url': async () => {
+        await navigator.clipboard.writeText(location.href)
+      },
+      'copy-route': async () => {
+        const dt = window.__oneDevtools || {}
+        const info = {
+          pathname: location.pathname,
+          search: location.search,
+          hash: location.hash,
+          params: dt.routeInfo?.params || {},
+        }
+        await navigator.clipboard.writeText(JSON.stringify(info, null, 2))
+      },
+    }
 
     function escapeHtml(str) {
       if (!str) return ''
@@ -39,15 +161,23 @@
         dialog::backdrop { background: transparent; }
         #spotlight-dialog::backdrop { background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
         .spotlight { display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; }
-        .spotlight-box { background: #1a1a1a; border-radius: 12px; width: 320px; max-width: 90vw; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
-        .spotlight-header { display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid #252525; gap: 10px; }
+        .spotlight-box { background: #1a1a1a; border-radius: 12px; width: 340px; max-width: 90vw; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        .spotlight-header { display: flex; align-items: center; padding: 12px 14px; border-bottom: 1px solid #252525; gap: 10px; flex-shrink: 0; }
         .spotlight-header svg { width: 20px; height: 20px; flex-shrink: 0; }
-        .spotlight-header-title { font: 13px system-ui, sans-serif; color: #ccc; flex: 1; }
-        .spotlight-header-version { font: 11px system-ui, sans-serif; color: #666; }
-        .spotlight-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #ccc; font: 13px system-ui, sans-serif; cursor: pointer; transition: background 0.1s; border-bottom: 1px solid #252525; }
-        .spotlight-item:last-child { border-bottom: none; }
-        .spotlight-item:hover { background: #252525; color: #fff; }
-        .spotlight-item .key { background: #333; color: #888; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: auto; }
+        .spotlight-search { flex: 1; background: transparent; border: none; color: #eee; font: 14px system-ui, sans-serif; outline: none; min-width: 0; }
+        .spotlight-search::placeholder { color: #555; }
+        .spotlight-items { max-height: 354px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #333 transparent; }
+        .spotlight-items::-webkit-scrollbar { width: 4px; }
+        .spotlight-items::-webkit-scrollbar-track { background: transparent; }
+        .spotlight-items::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        .spotlight-category { font: 10px system-ui, sans-serif; color: #505050; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 16px 4px; user-select: none; }
+        .spotlight-item { display: flex; align-items: center; padding: 10px 16px; color: #aaa; font: 13px system-ui, sans-serif; cursor: pointer; transition: background 0.08s; }
+        .spotlight-item:hover, .spotlight-item.selected { background: #252525; color: #fff; }
+        .spotlight-item .name { flex: 1; }
+        .spotlight-item .status { font-size: 11px; color: #666; margin-left: 8px; }
+        .spotlight-item .status.ok { color: #4ade80; }
+        .spotlight-item .status.err { color: #f87171; }
+        .spotlight-empty { text-align: center; color: #444; padding: 24px; font: 13px system-ui, sans-serif; }
         .panel-dialog { position: fixed; margin: 0; inset: unset; z-index: 2147483647; }
         .panel-dialog::backdrop { display: none; }
         .panel { width: 420px; max-width: calc(100vw - 40px); max-height: calc(100vh - 40px); background: #161616; border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; overflow: hidden; font: 13px system-ui, sans-serif; color: #ccc; }
@@ -90,7 +220,15 @@
       shadow.innerHTML =
         '<style>' +
         css +
-        '</style><dialog id="spotlight-dialog"><div class="spotlight"><div class="spotlight-box" id="spotlight-box"></div></div></dialog><dialog class="panel-dialog" id="panel-dialog"><div class="panel" id="panel"></div></dialog>'
+        '</style>' +
+        '<dialog id="spotlight-dialog"><div class="spotlight"><div class="spotlight-box" id="spotlight-box">' +
+        '<div class="spotlight-header">' +
+        LOGO_SVG +
+        '<input type="text" class="spotlight-search" id="spotlight-search" placeholder="Search actions..." autocomplete="off" spellcheck="false" />' +
+        '</div>' +
+        '<div class="spotlight-items" id="spotlight-items"></div>' +
+        '</div></div></dialog>' +
+        '<dialog class="panel-dialog" id="panel-dialog"><div class="panel" id="panel"></div></dialog>'
       document.body.appendChild(host)
 
       setupSpotlight()
@@ -121,49 +259,178 @@
       removalObserver.observe(document.body, { childList: true })
     }
 
+    function fuzzyScore(raw, query) {
+      // light fuzzy: prefer matching at word starts
+      const text = raw.toLowerCase().replace(/\s+/g, '')
+      const words = raw.toLowerCase().split(/\s+/)
+      const wordStarts = new Set()
+      let pos = 0
+      for (const w of words) {
+        wordStarts.add(pos)
+        pos += w.length
+      }
+      let ti = 0
+      let score = 0
+      for (let qi = 0; qi < query.length; qi++) {
+        const ch = query[qi]
+        // scan for first match, but prefer word-start match
+        let first = -1
+        for (let j = ti; j < text.length; j++) {
+          if (text[j] === ch) {
+            if (wordStarts.has(j)) { first = j; break }
+            if (first === -1) first = j
+          }
+        }
+        if (first === -1) return -1
+        score += wordStarts.has(first) ? 10 : 1
+        ti = first + 1
+      }
+      return score
+    }
+
+    function renderSpotlightItems(query) {
+      const q = (query || '').toLowerCase().replace(/\s+/g, '')
+      const scored = []
+      for (const item of allItems) {
+        if (!q) {
+          scored.push({ item, score: 0 })
+          continue
+        }
+        const ns = fuzzyScore(item.name, q)
+        const cs = fuzzyScore(item.category, q)
+        const best = Math.max(ns, cs)
+        if (best >= 0) scored.push({ item, score: best })
+      }
+      scored.sort((a, b) => b.score - a.score)
+      filteredItems = scored.map((s) => s.item)
+      selectedIndex = filteredItems.length > 0 ? 0 : -1
+
+      const container = shadow.getElementById('spotlight-items')
+      if (!filteredItems.length) {
+        container.innerHTML = '<div class="spotlight-empty">No matching actions</div>'
+        return
+      }
+
+      let html = ''
+      let lastCategory = ''
+      filteredItems.forEach((item, index) => {
+        if (item.category !== lastCategory) {
+          lastCategory = item.category
+          html +=
+            '<div class="spotlight-category">' + escapeHtml(item.category) + '</div>'
+        }
+        html +=
+          '<div class="spotlight-item' +
+          (index === selectedIndex ? ' selected' : '') +
+          '" data-id="' +
+          item.id +
+          '" data-index="' +
+          index +
+          '"><span class="name">' +
+          escapeHtml(item.name) +
+          '</span><span class="status"></span></div>'
+      })
+
+      container.innerHTML = html
+    }
+
+    function updateSelection() {
+      if (!shadow) return
+      shadow.querySelectorAll('.spotlight-item').forEach((el) => {
+        const idx = parseInt(el.dataset.index)
+        el.classList.toggle('selected', idx === selectedIndex)
+      })
+      const selected = shadow.querySelector('.spotlight-item.selected')
+      if (selected) selected.scrollIntoView({ block: 'nearest' })
+    }
+
+    function handleItemClick(itemId) {
+      const item = allItems.find((i) => i.id === itemId)
+      if (!item) return
+
+      if (item.type === 'panel') {
+        hideSpotlight()
+        activeTab = item.id
+        showPanel()
+        return
+      }
+
+      if (item.id === 'inspect') {
+        hideSpotlight()
+        window.__oneSourceInspector?.activate()
+        return
+      }
+
+      const actionFn = itemActions[item.id]
+      if (!actionFn) return
+
+      const el = shadow.querySelector('.spotlight-item[data-id="' + item.id + '"]')
+      const statusEl = el?.querySelector('.status')
+      if (statusEl) statusEl.textContent = '...'
+
+      actionFn()
+        .then(() => {
+          if (statusEl) {
+            statusEl.textContent = '\u2713'
+            statusEl.className = 'status ok'
+          }
+          setTimeout(hideSpotlight, 500)
+        })
+        .catch((err) => {
+          if (statusEl) {
+            statusEl.textContent = '\u2717'
+            statusEl.className = 'status err'
+          }
+          console.error('[One DevTools]', err)
+        })
+    }
+
     function setupSpotlight() {
       spotlightDialog = shadow.getElementById('spotlight-dialog')
       const box = shadow.getElementById('spotlight-box')
+      const searchInput = shadow.getElementById('spotlight-search')
+      const itemsContainer = shadow.getElementById('spotlight-items')
 
-      const items = [
-        { id: 'seo', name: 'SEO Preview', key: '⌥S' },
-        { id: 'route', name: 'Route Info', key: '⌥R' },
-        { id: 'loader', name: 'Loader Timing', key: '⌥L' },
-        { id: 'errors', name: 'Errors', key: '⌥E' },
-        { id: 'inspect', name: 'Inspect Source', key: '⌥I' },
-      ]
+      searchInput.addEventListener('input', () => {
+        renderSpotlightItems(searchInput.value)
+      })
 
-      const header =
-        '<div class="spotlight-header">' +
-        LOGO_SVG +
-        '<span class="spotlight-header-title">Dev Tools</span><span class="spotlight-header-version">v1.2.57</span></div>'
-      box.innerHTML =
-        header +
-        items
-          .map(
-            (item) =>
-              '<div class="spotlight-item" data-tab="' +
-              item.id +
-              '"><span>' +
-              item.name +
-              '</span><span class="key">' +
-              item.key +
-              '</span></div>'
-          )
-          .join('')
-
-      box.addEventListener('click', (e) => {
-        const item = e.target.closest('.spotlight-item')
-        if (item) {
-          const tab = item.dataset.tab
-          hideSpotlight()
-          if (tab === 'inspect') {
-            window.__oneSourceInspector?.activate()
-          } else {
-            activeTab = tab
-            showPanel()
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault()
+          if (filteredItems.length) {
+            selectedIndex = (selectedIndex + 1) % filteredItems.length
+            updateSelection()
+          }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault()
+          if (filteredItems.length) {
+            selectedIndex =
+              selectedIndex <= 0 ? filteredItems.length - 1 : selectedIndex - 1
+            updateSelection()
+          }
+        } else if (e.key === 'Enter') {
+          e.preventDefault()
+          if (selectedIndex >= 0 && selectedIndex < filteredItems.length) {
+            handleItemClick(filteredItems[selectedIndex].id)
           }
         }
+      })
+
+      itemsContainer.addEventListener('mousemove', (e) => {
+        const item = e.target.closest('.spotlight-item')
+        if (item) {
+          const idx = parseInt(item.dataset.index)
+          if (!isNaN(idx) && idx !== selectedIndex) {
+            selectedIndex = idx
+            updateSelection()
+          }
+        }
+      })
+
+      itemsContainer.addEventListener('click', (e) => {
+        const item = e.target.closest('.spotlight-item')
+        if (item) handleItemClick(item.dataset.id)
       })
 
       spotlightDialog.addEventListener('click', (e) => {
@@ -177,7 +444,7 @@
       panel.innerHTML =
         '<div class="panel-header" id="panel-header">' +
         LOGO_SVG +
-        '<span class="panel-title">DevTools</span><button class="panel-close" id="panel-close">×</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>'
+        '<span class="panel-title">DevTools</span><button class="panel-close" id="panel-close">\u00d7</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>'
 
       shadow.getElementById('panel-close').addEventListener('click', hidePanel)
 
@@ -263,36 +530,18 @@
     function setupKeyboard() {
       if (keyboardSetup) return
       keyboardSetup = true
-      // use capture: false so app handlers can preventDefault first
       document.addEventListener(
         'keydown',
         (e) => {
-          // respect other handlers and browser shortcuts
           if (e.defaultPrevented || e.metaKey || e.ctrlKey) return
 
           if (e.altKey && e.code === 'Space') {
             e.preventDefault()
             toggleSpotlight()
-          } else if (e.altKey) {
-            if (e.code === 'KeyI') {
-              e.preventDefault()
-              hideSpotlight()
-              window.__oneSourceInspector?.activate()
-              return
-            }
-            const tabMap = {
-              KeyS: 'seo',
-              KeyR: 'route',
-              KeyL: 'loader',
-              KeyE: 'errors',
-            }
-            const tab = tabMap[e.code]
-            if (tab) {
-              e.preventDefault()
-              activeTab = tab
-              hideSpotlight()
-              showPanel()
-            }
+          } else if (e.altKey && e.code === 'KeyI') {
+            e.preventDefault()
+            hideSpotlight()
+            window.__oneSourceInspector?.activate()
           } else if (e.code === 'Escape') {
             if (spotlightDialog?.open) spotlightDialog.close()
             else if (panelDialog?.open) panelDialog.close()
@@ -309,11 +558,15 @@
 
     function showSpotlight() {
       if (!host) createHost()
+      const searchInput = shadow.getElementById('spotlight-search')
+      searchInput.value = ''
+      renderSpotlightItems('')
       spotlightDialog.showModal()
+      requestAnimationFrame(() => searchInput.focus())
     }
 
     function hideSpotlight() {
-      spotlightDialog.close()
+      if (spotlightDialog?.open) spotlightDialog.close()
     }
 
     function showPanel() {
@@ -391,7 +644,7 @@
         issues.forEach((i) => {
           html +=
             '<div class="issue-item"><span class="issue-icon">' +
-            (i.type === 'error' ? '✖' : '⚠') +
+            (i.type === 'error' ? '\u2716' : '\u26a0') +
             '</span><span>' +
             escapeHtml(i.msg) +
             '</span></div>'
@@ -591,7 +844,7 @@
       const errors = devtools.errorHistory || []
 
       if (!errors.length) {
-        return '<div class="empty">✓ No errors recorded</div>'
+        return '<div class="empty">\u2713 No errors recorded</div>'
       }
 
       let html = ''
