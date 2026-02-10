@@ -94,7 +94,7 @@
     "oxlint": "^1.31.0",
     "p-map": "^7.0.3",
     "patch-package": "^8.0.0",
-    "@take-out/cli": "0.0.79",
+    "@take-out/cli": "0.1.12",
     "playwright": "^1.57.0",
     "prettier": "^3.5.3",
     "tamagui": "2.0.0-rc.7",
