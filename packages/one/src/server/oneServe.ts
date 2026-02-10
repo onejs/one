@@ -153,6 +153,13 @@ export async function oneServe(
 
       const json = await loader(loaderProps)
 
+      // if the loader returned a Response (e.g. redirect()), throw it
+      // so it bubbles up through resolveResponse and can be transformed
+      // into a JS redirect module for client-side navigation
+      if (isResponse(json)) {
+        throw json
+      }
+
       return `export function loader() { return ${JSON.stringify(json)} }`
     },
 

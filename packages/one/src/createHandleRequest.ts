@@ -158,7 +158,7 @@ export async function resolveLoaderRoute(
     console.info(`[one] 📦 loader ${url.pathname} → ${route.file}`)
   }
 
-  return await runMiddlewares(handlers, request, route, async () => {
+  const response = await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {
       const headers = new Headers()
       headers.set('Content-Type', 'text/javascript')
@@ -193,6 +193,32 @@ export async function resolveLoaderRoute(
       }
     })
   })
+
+  // transform redirect responses into js modules so the client can detect
+  // and handle them during client-side navigation (instead of the browser
+  // silently following the 302 and trying to parse HTML as javascript)
+  if (response.status >= 300 && response.status < 400) {
+    const location = response.headers.get('location')
+    if (location) {
+      const redirectUrl = new URL(location, url.origin)
+      const redirectPath = redirectUrl.pathname + redirectUrl.search + redirectUrl.hash
+      const body = `export function loader(){return{__oneRedirect:${JSON.stringify(redirectPath)},__oneRedirectStatus:${response.status}}}`
+      return new Response(body, {
+        headers: { 'Content-Type': 'text/javascript' },
+      })
+    }
+  }
+
+  // transform auth error responses (401/403) into js modules so the client
+  // gets a clean error signal instead of a parse failure
+  if (response.status === 401 || response.status === 403) {
+    const body = `export function loader(){return{__oneError:${response.status},__oneErrorMessage:${JSON.stringify(response.statusText || 'Unauthorized')}}}`
+    return new Response(body, {
+      headers: { 'Content-Type': 'text/javascript' },
+    })
+  }
+
+  return response
 }
 
 export async function resolvePageRoute(

@@ -249,13 +249,14 @@ export default createMiddleware(async ({ request, next, context }) => {
 
 ## Loader Authentication
 
-Check auth in loaders for SSR pages:
+Check auth in loaders for SSR pages. Loaders run on the server, so `redirect()` works for both direct page loads and client-side `<Link>` navigation — the protected page never renders and no sensitive data reaches the client.
 
-```tsx fileName=app/profile.tsx
+```tsx fileName=app/profile+ssr.tsx
 import { redirect, useLoader } from 'one'
+import type { LoaderProps } from 'one'
 import { validateSession } from '~/features/auth/server'
 
-export async function loader({ request }) {
+export async function loader({ request }: LoaderProps) {
   const session = await validateSession(request)
 
   if (!session) {
@@ -267,7 +268,7 @@ export async function loader({ request }) {
 }
 
 export default function ProfilePage() {
-  const { user } = useLoader()
+  const { user } = useLoader(loader)
 
   return (
     <View>
@@ -276,6 +277,12 @@ export default function ProfilePage() {
   )
 }
 ```
+
+Both `throw redirect()` and `return redirect()` work — `throw` is often cleaner since it stops execution and makes it obvious the remaining code won't run.
+
+Use `+ssr` routes for protected pages so loaders run on every request, including client-side navigation. This ensures auth is always checked server-side.
+
+> **Note:** Component JavaScript is always downloadable (same as every framework). Loaders protect **data** — use them to ensure sensitive data never reaches unauthorized clients.
 
 ## OAuth Integration
 

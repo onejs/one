@@ -181,7 +181,7 @@ export async function loader({ params: { id } }) {
 
 ## Throwing a Response
 
-A final handy pattern for loaders is throwing a response to end it early:
+A handy pattern for loaders is throwing a response to end it early:
 
 ```tsx
 export async function loader({ params: { id } }) {
@@ -190,26 +190,57 @@ export async function loader({ params: { id } }) {
   if (!user) {
     throw Response.error()
   }
-  
+
   // ... rest of function
 }
 ```
 
-You can combine this with the [redirect utility function](/docs/helpers-utility-functions#redirect):
+## Redirects in Loaders
 
-```tsx
-import { redirect } from 'one'
+Use the [`redirect()`](/docs/helpers-redirect) helper in loaders to protect SSR routes. This is the recommended approach for server-side auth guards — it prevents unauthorized content from ever reaching the client.
 
-export async function loader({ params: { id } }) {
-  const user = await db.users.findOne({ id })
+```tsx fileName=app/dashboard+ssr.tsx
+import { redirect, useLoader } from 'one'
+import type { LoaderProps } from 'one'
 
-  if (!user) {
+export async function loader({ request }: LoaderProps) {
+  const session = await getSession(request)
+
+  if (!session) {
     throw redirect('/login')
   }
 
-  // ... rest of function
+  return { user: session.user }
+}
+
+export default function Dashboard() {
+  const { user } = useLoader(loader)
+  return <Text>Welcome, {user.name}</Text>
 }
 ```
+
+Both `throw redirect()` and `return redirect()` work. `throw` is often cleaner since it stops execution immediately and makes it obvious the remaining code won't run.
+
+### How Loader Redirects Work
+
+During a direct page load, `redirect()` returns a standard HTTP 302 response — the browser redirects normally.
+
+During client-side `<Link>` navigation, loaders run on the server and the client fetches the result as a JavaScript module. Without special handling, the browser's module loader would silently follow a 302, try to parse the HTML login page as JavaScript, and fail. One handles this differently:
+
+1. The server detects the redirect response from the loader
+2. Instead of returning a raw 302, it transforms the response into a JS module containing redirect metadata
+3. The client receives the metadata and detects the redirect signal before rendering anything
+4. The client navigates to the redirect target using a `REPLACE` action — the protected page never appears in the history
+
+This means **no sensitive data reaches the client** when a redirect occurs. The server only sends back the redirect path, not the page content or loader data.
+
+### Redirects at Build Time
+
+For SSG routes, if a loader redirects during the build (e.g., no authenticated request is available), One generates a static redirect file. In production with a runtime server, the server re-evaluates the loader on each request, so authenticated users see the real page while unauthenticated users get redirected.
+
+> Use `+ssr` routes for protected pages so loaders run on every request. SSG routes evaluate loaders once at build time, which won't have access to per-request auth state.
+
+See the [Loader Redirects guide](/docs/guides-loader-redirects) for a complete walkthrough and the [redirect helper](/docs/helpers-redirect) for the API reference.
 
 ## Setting Response Headers
 

@@ -69,6 +69,11 @@ declare module 'one' {
         | `/intercept-test/`
         | `/layouts`
         | `/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]/`
+        | `/loader-redirect-test`
+        | `/loader-redirect-test/`
+        | `/loader-redirect-test/dashboard`
+        | `/loader-redirect-test/profile`
+        | `/loader-redirect-test/settings`
         | `/matches-test`
         | `/matches-test/`
         | `/middleware`
