@@ -13,18 +13,25 @@ Place a `_middleware.ts` file anywhere inside your `app` directory to create a m
     { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
     { name: '_middleware.ts', description: 'Middleware for all "/" routes' },
     { name: 'index.tsx', description: 'Matches "/"' },
-    { name: 'blog', children: [
-      { name: '_middleware.ts', description: 'Middleware for all "/blog" routes' },
-      { name: 'index.tsx', description: 'Matches "/blog"' },
-    ] },
-    { name: 'api', children: [
-      { name: '_middleware.ts', description: 'Middleware for all "/api" routes' },
-      { name: 'users+api.ts', description: 'API route at "/api/users"' },
-    ] },
+    {
+      name: 'blog',
+      children: [
+        { name: '_middleware.ts', description: 'Middleware for all "/blog" routes' },
+        { name: 'index.tsx', description: 'Matches "/blog"' },
+      ],
+    },
+    {
+      name: 'api',
+      children: [
+        { name: '_middleware.ts', description: 'Middleware for all "/api" routes' },
+        { name: 'users+api.ts', description: 'API route at "/api/users"' },
+      ],
+    },
   ]}
 />
 
 Middlewares are **hierarchical** - they run from the root down to the most specific matching route. In the example above, a request to `/blog` would run:
+
 1. `app/_middleware.ts` first
 2. `app/blog/_middleware.ts` second
 3. Then the route handler
@@ -51,9 +58,9 @@ The `createMiddleware` function accepts a middleware handler and provides type s
 import { createMiddleware, type Middleware } from 'one'
 
 type MiddlewareProps = {
-  request: Request    // Standard Web API Request
-  next: () => Promise<Response | null>  // Call the next middleware/route
-  context: Record<string, any>  // Shared mutable object for data passing
+  request: Request // Standard Web API Request
+  next: () => Promise<Response | null> // Call the next middleware/route
+  context: Record<string, any> // Shared mutable object for data passing
 }
 
 export default createMiddleware(async ({ request, next, context }: MiddlewareProps) => {
@@ -63,50 +70,21 @@ export default createMiddleware(async ({ request, next, context }: MiddlewarePro
 
 ### Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `request` | [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) | The incoming request object |
-| `next` | `() => Promise<Response \| null>` | Calls the next middleware in the chain, then the route |
-| `context` | `object` | Mutable object shared across all middlewares in the chain |
+| Prop      | Type                                                                  | Description                                               |
+| --------- | --------------------------------------------------------------------- | --------------------------------------------------------- |
+| `request` | [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) | The incoming request object                               |
+| `next`    | `() => Promise<Response \| null>`                                     | Calls the next middleware in the chain, then the route    |
+| `context` | `object`                                                              | Mutable object shared across all middlewares in the chain |
 
 ### Return Values
 
-| Return | Effect |
-|--------|--------|
-| `Response` | Stops the chain and returns this response immediately |
-| `await next()` | Continues to the next middleware/route and returns its response |
-| `null` or `undefined` | Continues the chain (same as calling `next()`) |
+| Return                | Effect                                                          |
+| --------------------- | --------------------------------------------------------------- |
+| `Response`            | Stops the chain and returns this response immediately           |
+| `await next()`        | Continues to the next middleware/route and returns its response |
+| `null` or `undefined` | Continues the chain (same as calling `next()`)                  |
 
 ## Common Patterns
-
-### Authentication
-
-Protect routes by checking authentication before the request reaches your route:
-
-```tsx fileName=app/dashboard/_middleware.ts
-import { createMiddleware } from 'one'
-
-export default createMiddleware(async ({ request, next, context }) => {
-  const token = request.headers.get('authorization')?.replace('Bearer ', '')
-
-  if (!token) {
-    return new Response('Unauthorized', {
-      status: 401,
-      headers: { 'WWW-Authenticate': 'Bearer' }
-    })
-  }
-
-  // Verify token and add user to context
-  try {
-    const user = await verifyToken(token)
-    context.user = user
-  } catch {
-    return new Response('Invalid token', { status: 401 })
-  }
-
-  return await next()
-})
-```
 
 ### Redirects
 
@@ -293,19 +271,20 @@ Request to /blog/post/123
 ```
 
 Each middleware can:
+
 - **Intercept**: Return a response early without calling `next()`
 - **Pass through**: Call `next()` to continue the chain
 - **Post-process**: Modify the response after calling `next()`
 
 ## Platform Support
 
-| Platform | Support |
-|----------|---------|
-| Node.js server | Full support |
-| Vercel | Full support |
-| Cloudflare Workers | Full support |
-| Static export | Not applicable |
-| React Native | Not supported (server-only) |
+| Platform           | Support                     |
+| ------------------ | --------------------------- |
+| Node.js server     | Full support                |
+| Vercel             | Full support                |
+| Cloudflare Workers | Full support                |
+| Static export      | Not applicable              |
+| React Native       | Not supported (server-only) |
 
 Middlewares are server-only and run on every request. They do not run during static site generation or on native platforms.
 
