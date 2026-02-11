@@ -126,5 +126,8 @@
       "better-auth",
       "@better-auth/*"
     ]
+  },
+  "agent": {
+    "memory": true
   }
 }
