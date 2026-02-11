@@ -10,6 +10,8 @@ interface OneEnvVariables {
   ONE_SERVER_URL: string
   /** "ssr", "ssg", or "spa" based on your defaultRenderMode setting */
   ONE_DEFAULT_RENDER_MODE: 'ssr' | 'ssg' | 'spa'
+  /** The render mode of the current page being rendered. Set before the setup file runs so you can conditionally skip setup logic for certain modes. */
+  ONE_RENDER_MODE: 'ssr' | 'ssg' | 'spa'
 
   // Platform detection
   /** "client" for client-side web, "ssr" for server-side web, "ios" or "android" for native */
