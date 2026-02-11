@@ -31,9 +31,11 @@ export function createApp(options: CreateAppProps) {
     return {
       options,
       render: async (props: RenderAppProps) => {
-        // wait for setup file to complete first (if provided)
-        // only run at actual server runtime (ssr), not during build (ssg/spa-shell)
-        if (options.getSetupPromise && props.mode === 'ssr') {
+        // set render mode env before setup so users can conditionally skip setup in ssg/spa
+        const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
+        process.env.ONE_RENDER_MODE = renderMode
+
+        if (options.getSetupPromise) {
           await options.getSetupPromise()
         }
 
