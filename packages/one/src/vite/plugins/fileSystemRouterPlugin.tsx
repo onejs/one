@@ -51,7 +51,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             }`
           )
 
-          if (route.type === 'spa') {
+          const isSpaShell = route.type === 'spa' && !!options.web?.renderRootLayout
+
+          if (route.type === 'spa' && !isSpaShell) {
             // render just the layouts? route.layouts
             return `<!DOCTYPE html><html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
@@ -114,44 +116,74 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               }
             }
 
-            // collect all routes to run loaders for (layouts + page)
-            const layoutRoutes = (route.layouts || []) as RouteNode[]
-            const pageRoute = { contextKey: route.file, file: route.file }
+            let loaderData: any
+            let matches: One.RouteMatch[]
 
-            // run all layout loaders in parallel
-            const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
-              const layoutFile = path.join(routerRoot, layout.contextKey)
-              const layoutExported = await runner.import(layoutFile)
-              return runLoaderWithTracking(layout, layoutExported.loader)
-            })
+            if (isSpaShell) {
+              // spa-shell: only run layout loaders when using always-ssr or static-or-ssr
+              const renderRootLayout = options.web!.renderRootLayout!
+              const runLayoutLoaders =
+                renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr'
 
-            // run page loader
-            const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
+              if (runLayoutLoaders) {
+                const layoutRoutes = (route.layouts || []) as RouteNode[]
+                const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
+                  const layoutFile = path.join(routerRoot, layout.contextKey)
+                  const layoutExported = await runner.import(layoutFile)
+                  return runLoaderWithTracking(layout, layoutExported.loader)
+                })
+                const layoutResults = await Promise.all(layoutLoaderPromises)
+                matches = layoutResults.map((result) => ({
+                  routeId: result.routeId,
+                  pathname: loaderProps?.path || '/',
+                  params: loaderProps?.params || {},
+                  loaderData: result.loaderData,
+                }))
+              } else {
+                matches = []
+              }
 
-            // wait for all loaders in parallel
-            const [layoutResults, pageResult] = await Promise.all([
-              Promise.all(layoutLoaderPromises),
-              pageLoaderPromise,
-            ])
+              loaderData = {}
+            } else {
+              // collect all routes to run loaders for (layouts + page)
+              const layoutRoutes = (route.layouts || []) as RouteNode[]
+              const pageRoute = { contextKey: route.file, file: route.file }
 
-            // build matches array (layouts + page)
-            const matches: One.RouteMatch[] = [
-              ...layoutResults.map((result) => ({
-                routeId: result.routeId,
-                pathname: loaderProps?.path || '/',
-                params: loaderProps?.params || {},
-                loaderData: result.loaderData,
-              })),
-              {
-                routeId: pageResult.routeId,
-                pathname: loaderProps?.path || '/',
-                params: loaderProps?.params || {},
-                loaderData: pageResult.loaderData,
-              },
-            ]
+              // run all layout loaders in parallel
+              const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
+                const layoutFile = path.join(routerRoot, layout.contextKey)
+                const layoutExported = await runner.import(layoutFile)
+                return runLoaderWithTracking(layout, layoutExported.loader)
+              })
 
-            // for backwards compat, loaderData is still the page's loader data
-            const loaderData = pageResult.loaderData
+              // run page loader
+              const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
+
+              // wait for all loaders in parallel
+              const [layoutResults, pageResult] = await Promise.all([
+                Promise.all(layoutLoaderPromises),
+                pageLoaderPromise,
+              ])
+
+              // build matches array (layouts + page)
+              matches = [
+                ...layoutResults.map((result) => ({
+                  routeId: result.routeId,
+                  pathname: loaderProps?.path || '/',
+                  params: loaderProps?.params || {},
+                  loaderData: result.loaderData,
+                })),
+                {
+                  routeId: pageResult.routeId,
+                  pathname: loaderProps?.path || '/',
+                  params: loaderProps?.params || {},
+                  loaderData: pageResult.loaderData,
+                },
+              ]
+
+              // for backwards compat, loaderData is still the page's loader data
+              loaderData = pageResult.loaderData
+            }
 
             // biome-ignore lint/security/noGlobalEval: needed to set server env at runtime
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
@@ -171,7 +203,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             const is404 = route.isNotFound || !getPageExport(exported)
 
             const html = await render({
-              mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
+              mode: isSpaShell
+                ? 'spa-shell'
+                : route.type === 'ssg'
+                  ? 'ssg'
+                  : route.type === 'ssr'
+                    ? 'ssr'
+                    : 'spa',
               loaderData,
               loaderProps,
               path: loaderProps?.path || '/',

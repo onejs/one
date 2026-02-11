@@ -306,6 +306,91 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
+        // for SPA/SSG routes, check if we need to SSR the root layout shell
+        const renderRootLayout = oneOptions.web?.renderRootLayout
+        if (renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr') {
+          try {
+            // helper to import and run a single loader
+            async function runShellLoader(
+              routeId: string,
+              serverPath: string | undefined,
+              lazyKey?: string
+            ): Promise<{ loaderData: unknown; routeId: string }> {
+              if (!serverPath && !lazyKey) {
+                return { loaderData: undefined, routeId }
+              }
+              try {
+                const pathToResolve = serverPath || lazyKey || ''
+                const resolvedPath = pathToResolve.includes('dist/server')
+                  ? pathToResolve
+                  : join('./', 'dist/server', pathToResolve)
+
+                const routeExported = lazyKey
+                  ? options?.lazyRoutes?.pages?.[lazyKey]
+                    ? await options.lazyRoutes.pages[lazyKey]()
+                    : await import(toAbsolute(resolvedPath))
+                  : await import(toAbsolute(serverPath!))
+
+                const loaderData = await routeExported?.loader?.(loaderProps)
+                return { loaderData, routeId }
+              } catch (err) {
+                if (isResponse(err)) {
+                  throw err
+                }
+                console.error(`[one] Error running shell loader for ${routeId}:`, err)
+                return { loaderData: undefined, routeId }
+              }
+            }
+
+            // run layout loaders only (page content is client-rendered)
+            const layoutRoutes = route.layouts || []
+            const layoutResults = await Promise.all(
+              layoutRoutes.map((layout: any) => {
+                const serverPath = layout.loaderServerPath || layout.contextKey
+                return runShellLoader(layout.contextKey, serverPath, layout.contextKey)
+              })
+            )
+
+            const matches: One.RouteMatch[] = layoutResults.map((result) => ({
+              routeId: result.routeId,
+              pathname: loaderProps?.path || '/',
+              params: loaderProps?.params || {},
+              loaderData: result.loaderData,
+            }))
+
+            const headers = new Headers()
+            headers.set('content-type', 'text/html')
+
+            globalThis['__vxrnresetState']?.()
+
+            const rendered = await (
+              await getRender()
+            )({
+              mode: 'spa-shell',
+              loaderData: {},
+              loaderProps,
+              path: loaderProps?.path || '/',
+              preloads: buildInfo?.criticalPreloads || buildInfo?.preloads,
+              deferredPreloads: buildInfo?.deferredPreloads,
+              css: buildInfo?.css,
+              cssContents: buildInfo?.cssContents,
+              matches,
+            })
+
+            return new Response(rendered, {
+              headers,
+              status: route.isNotFound ? 404 : 200,
+            })
+          } catch (err) {
+            if (isResponse(err)) {
+              return err
+            }
+            console.error(
+              `[one] Error rendering spa-shell for ${route.file}\n${err?.['stack'] ?? err}\nurl: ${url}`
+            )
+          }
+        }
+
         // for SPA routes (not SSR), look up the HTML file
         const isDynamicRoute = Object.keys(route.routeKeys).length > 0
         // for dynamic SPA routes, use the parameterized path to look up the single HTML file

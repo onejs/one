@@ -11,11 +11,12 @@
     "test": "bun run test:dev && bun run test:prod",
     "test:dev": "TEST_ONLY=dev bun run test:all",
     "test:prod": "TEST_ONLY=prod bun run test:all",
-    "test:all": "bun run test:basic && bun run test:not-found-at-root-with-assets && bun run test:dynamic-route-at-root-with-assets && bun run test:catch-all-route-at-root-with-assets",
+    "test:all": "bun run test:basic && bun run test:not-found-at-root-with-assets && bun run test:dynamic-route-at-root-with-assets && bun run test:catch-all-route-at-root-with-assets && bun run test:spa-shell",
     "test:basic": "ONE_ROUTER_ROOT=app-cases/basic/app bun run vitest --run --reporter=dot --color=false",
     "test:catch-all-route-at-root-with-assets": "ONE_ROUTER_ROOT=app-cases/catch-all-route-at-root-with-assets/app bun run vitest --run --reporter=dot --color=false",
     "test:dynamic-route-at-root-with-assets": "ONE_ROUTER_ROOT=app-cases/dynamic-route-at-root-with-assets/app bun run vitest --run --reporter=dot --color=false",
     "test:not-found-at-root-with-assets": "ONE_ROUTER_ROOT=app-cases/not-found-at-root-with-assets/app bun run vitest --run --reporter=dot --color=false",
+    "test:spa-shell": "ONE_ROUTER_ROOT=app-cases/spa-shell/app bun run vitest --run --reporter=dot --color=false",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

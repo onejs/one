@@ -54,7 +54,8 @@ export async function buildPage(
   criticalPreloads?: string[],
   deferredPreloads?: string[],
   useAfterLCP?: boolean,
-  useAfterLCPAggressive?: boolean
+  useAfterLCPAggressive?: boolean,
+  renderRootLayout?: 'always-static' | 'always-ssr' | 'static-or-ssr'
 ): Promise<One.RouteBuildInfo> {
   let t0 = performance.now()
 
@@ -328,36 +329,69 @@ if (typeof document === 'undefined') globalThis.document = {}
         await outputFile(htmlOutPath, html)
         recordTiming('writeHTML', performance.now() - t0)
       } else if (foundRoute.type === 'spa') {
-        // Generate CSS - either inline styles or link tags
-        const cssOutput = allCSSContents
-          ? allCSSContents
-              .filter(Boolean)
-              .map((content) => `    <style>${content}</style>`)
-              .join('\n')
-          : allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')
+        if (renderRootLayout) {
+          // render root layout shell for SPA pages
+          globalThis['__vxrnresetState']?.()
 
-        // Use separated preloads if available
-        const criticalScripts = (criticalPreloads || preloads)
-          .map((preload) => `   <script type="module" src="${preload}"></script>`)
-          .join('\n')
+          const renderPreloads = criticalPreloads || preloads
+          const renderDeferredPreloads = deferredPreloads || []
 
-        // Non-critical scripts as modulepreload hints only
-        const deferredLinks = (deferredPreloads || [])
-          .map(
-            (preload) =>
-              `   <link rel="modulepreload" fetchPriority="low" href="${preload}"/>`
+          t0 = performance.now()
+          let html = await render({
+            path,
+            preloads: renderPreloads,
+            deferredPreloads: renderDeferredPreloads,
+            loaderProps,
+            loaderData: {},
+            css: allCSS,
+            cssContents: allCSSContents,
+            mode: 'spa-shell',
+            routePreloads,
+            matches: [],
+          })
+          recordTiming('spaShellRender', performance.now() - t0)
+
+          if (useAfterLCP) {
+            html = applyAfterLCPScriptLoad(html, preloads)
+          }
+
+          t0 = performance.now()
+          await outputFile(htmlOutPath, html)
+          recordTiming('writeHTML', performance.now() - t0)
+        } else {
+          // Generate CSS - either inline styles or link tags
+          const cssOutput = allCSSContents
+            ? allCSSContents
+                .filter(Boolean)
+                .map((content) => `    <style>${content}</style>`)
+                .join('\n')
+            : allCSS
+                .map((file) => `    <link rel="stylesheet" href=${file} />`)
+                .join('\n')
+
+          // Use separated preloads if available
+          const criticalScripts = (criticalPreloads || preloads)
+            .map((preload) => `   <script type="module" src="${preload}"></script>`)
+            .join('\n')
+
+          // Non-critical scripts as modulepreload hints only
+          const deferredLinks = (deferredPreloads || [])
+            .map(
+              (preload) =>
+                `   <link rel="modulepreload" fetchPriority="low" href="${preload}"/>`
+            )
+            .join('\n')
+
+          await outputFile(
+            htmlOutPath,
+            `<!DOCTYPE html><html><head>
+            ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
+            ${criticalScripts}
+            ${deferredLinks}
+            ${cssOutput}
+          </head><body></body></html>`
           )
-          .join('\n')
-
-        await outputFile(
-          htmlOutPath,
-          `<!DOCTYPE html><html><head>
-          ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
-          ${criticalScripts}
-          ${deferredLinks}
-          ${cssOutput}
-        </head><body></body></html>`
-        )
+        }
       }
     }
   } catch (err) {
