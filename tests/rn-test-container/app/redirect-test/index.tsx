@@ -26,7 +26,10 @@ export default function RedirectTestIndex() {
       </Pressable>
 
       <Link href="/redirect-test/always-redirect" asChild>
-        <Pressable testID="go-to-always-redirect" style={{ padding: 10, marginBottom: 10 }}>
+        <Pressable
+          testID="go-to-always-redirect"
+          style={{ padding: 10, marginBottom: 10 }}
+        >
           <Text>Go to Always Redirect</Text>
         </Pressable>
       </Link>

@@ -124,6 +124,7 @@ export function createVirtualEntry(options: {
 
   const setupFiles = normalizeSetupFile(options.setupFile)
   let viteRoot = ''
+  let isDevMode = false
 
   return {
     name: 'one-virtual-entry',
@@ -131,6 +132,7 @@ export function createVirtualEntry(options: {
 
     configResolved(config) {
       viteRoot = config.root
+      isDevMode = config.command === 'serve'
     },
 
     resolveId(id) {
@@ -145,10 +147,16 @@ export function createVirtualEntry(options: {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
+        const isSSR = this.environment.name === 'ssr'
+        // native always needs static import. SSR in dev mode uses static import
+        // so Vite crawls the setupFile's dep tree (including react) and pre-bundles
+        // them before the first request. SSR in build mode uses lazy import so the
+        // setupFile doesn't execute during the build phase.
+        const useStaticImport = isNative || (isSSR && isDevMode)
         const setupResult = getSetupFileImport(
           this.environment.name,
           setupFiles,
-          isNative, // only native needs static import; SSR now uses lazy import
+          useStaticImport,
           viteRoot
         )
         // When nativewind is enabled, import the components module to register Text, View, etc. with cssInterop

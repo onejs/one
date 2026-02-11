@@ -12,7 +12,9 @@ vi.mock('@vxrn/compiler', () => ({
   configuration: { enableNativewind: false },
 }))
 
-function loadEntry(plugin: any, envName: string) {
+function loadEntry(plugin: any, envName: string, command: 'serve' | 'build' = 'build') {
+  // simulate configResolved so isDevMode is set
+  plugin.configResolved?.({ root: '', command })
   const ctx = {
     environment: { name: envName },
   }
@@ -86,6 +88,20 @@ describe('virtualEntryPlugin', () => {
       })
       const code = loadEntry(plugin, 'android')
       expect(code).toContain('import "./src/setupNative.ts"')
+      expect(code).not.toContain('__oneGetSetupPromise')
+    })
+
+    it('server (ssr) in dev mode uses static import for dep discovery', () => {
+      const plugin = createVirtualEntry({
+        ...base,
+        setupFile: {
+          client: './src/setupClient.ts',
+          server: './src/setupServer.ts',
+        },
+      })
+      const code = loadEntry(plugin, 'ssr', 'serve')
+      // dev mode SSR uses static import so Vite crawls deps before first request
+      expect(code).toContain('import "./src/setupServer.ts"')
       expect(code).not.toContain('__oneGetSetupPromise')
     })
 

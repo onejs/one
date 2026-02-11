@@ -26,7 +26,12 @@
       { id: 'loader', name: 'Loader Timing', type: 'panel', category: 'Panels' },
       { id: 'errors', name: 'Errors', type: 'panel', category: 'Panels' },
       { id: 'inspect', name: 'Inspect Source', type: 'tool', category: 'Panels' },
-      { id: 'clear-cookies', name: 'Clear Cookies', type: 'action', category: 'Clear Data' },
+      {
+        id: 'clear-cookies',
+        name: 'Clear Cookies',
+        type: 'action',
+        category: 'Clear Data',
+      },
       {
         id: 'clear-localstorage',
         name: 'Clear localStorage',
@@ -39,7 +44,12 @@
         type: 'action',
         category: 'Clear Data',
       },
-      { id: 'clear-indexeddb', name: 'Clear IndexedDB', type: 'action', category: 'Clear Data' },
+      {
+        id: 'clear-indexeddb',
+        name: 'Clear IndexedDB',
+        type: 'action',
+        category: 'Clear Data',
+      },
       {
         id: 'clear-caches',
         name: 'Clear Cache Storage',
@@ -277,7 +287,10 @@
         let first = -1
         for (let j = ti; j < text.length; j++) {
           if (text[j] === ch) {
-            if (wordStarts.has(j)) { first = j; break }
+            if (wordStarts.has(j)) {
+              first = j
+              break
+            }
             if (first === -1) first = j
           }
         }
