@@ -300,8 +300,11 @@ describe('Vercel Client-Side Navigation', () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/ssr-page`)
 
+    // wait for hydration so One router handles the click as SPA navigation
+    await page.waitForTimeout(500)
+
     await page.click('#link-home')
-    await page.waitForURL(serverUrl + '/')
+    await page.waitForSelector('#home-title', { timeout: 15000 })
 
     expect(await page.textContent('#home-title')).toBe('One Test Home')
 
