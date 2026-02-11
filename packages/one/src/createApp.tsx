@@ -32,8 +32,8 @@ export function createApp(options: CreateAppProps) {
       options,
       render: async (props: RenderAppProps) => {
         // wait for setup file to complete first (if provided)
-        // ensures setup code (msw, error handlers, etc.) runs before rendering
-        if (options.getSetupPromise) {
+        // only run at actual server runtime (ssr), not during build (ssg/spa-shell)
+        if (options.getSetupPromise && props.mode === 'ssr') {
           await options.getSetupPromise()
         }
 
