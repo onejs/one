@@ -507,6 +507,15 @@ url: ${url}`)
               }
             }
 
+            // prevent browsers (safari) from caching html pages
+            // which causes stale js references after deploys
+            if (
+              !response.headers.has('cache-control') &&
+              !response.headers.has('Cache-Control')
+            ) {
+              response.headers.set('cache-control', 'no-cache')
+            }
+
             return response as Response
           }
 
