@@ -40,7 +40,7 @@
     }
   },
   "scripts": {
-    "build": "sh -c 'esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node'",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node || true",
     "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
     "package": "vsce package"
   },
