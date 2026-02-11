@@ -2,7 +2,7 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import type { Context } from 'hono'
 
 // hashed assets can be cached forever, html must revalidate
-const hashedAssetRe = /\.[a-zA-Z0-9_-]{8,}\.\w+$/
+const hashedAssetRe = /[.\-][a-zA-Z0-9_\-]{8,}\.\w+$/
 
 export async function serveStaticAssets({
   context,
