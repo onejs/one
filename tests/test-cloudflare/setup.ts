@@ -74,7 +74,7 @@ export async function setup({ provide }: GlobalSetupContext) {
 
   // Start the wrangler dev server
   serverProcess = spawn(
-    'npx',
+    'bunx',
     [
       'wrangler',
       'dev',
