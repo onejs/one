@@ -86,6 +86,10 @@ The major features in version 1 are:
   `Stack.Header.SearchBar`, and more.
 - <New /> **[Parallel builds with worker threads](/docs/one-build#parallel-builds-with-worker-threads)** -
   Static page generation now uses multiple CPU cores by default for ~40% faster builds.
+- <New /> **[SPA Shell Rendering](/docs/configuration#webrenderrootlayout)** - Render your
+  root layout into the HTML shell for SPA pages, giving users immediate visual content
+  (nav, head tags, CSS) while page content loads client-side. Supports per-route titles
+  via `usePathname()` and static, SSR, or hybrid modes.
 
 For the full changelog, see [the release notes](https://github.com/onejs/one/releases).
 
