@@ -411,6 +411,40 @@ The sitemap automatically:
 
 **Base URL:** If `baseUrl` isn't specified, One uses the `ONE_SERVER_URL` environment variable. If neither is set, paths are relative.
 
+### web.renderRootLayout
+
+Renders the root `_layout` into the HTML shell for SPA pages, giving users immediate visual content (nav, sidebar, head tags, CSS) while page-level content remains client-rendered.
+
+Without this option, SPA pages ship a completely empty `<body>` and nothing is visible until JavaScript downloads and executes. With `renderRootLayout`, the root layout's HTML is included in the initial response so users see your app chrome immediately.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        renderRootLayout: 'always-static',
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'always-static'`**: Root layout is rendered once at build time (SSG-style). The resulting HTML shell is served statically for all SPA pages. No layout loaders are run.
+
+- **`'always-ssr'`**: Root layout is rendered per-request on the server. This supports layout loaders (e.g., auth state in your nav), but page content is still client-only.
+
+- **`'static-or-ssr'`**: Static HTML shell at build time, with SSR at runtime for layout loaders. Combines the benefits of both modes.
+
+SSG and SSR pages already render the full layout, so this option only affects SPA page behavior. The root layout has no dynamic route params (it's always at `/`), making it a safe candidate for rendering independent of the page's render mode.
+
+**How it works:**
+
+The server renders your root `_layout` component into the HTML, with a `<div data-one-spa-content="">` placeholder where page content would go. After JavaScript loads and hydrates the shell, the placeholder is replaced with your real page content.
+
+**Default:** `undefined` (SPA pages ship with an empty body, existing behavior)
+
 ## react
 
 ### react.compiler

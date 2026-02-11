@@ -16,6 +16,7 @@ import {
   useState,
 } from 'react'
 import { SERVER_CONTEXT_KEY } from './constants'
+import { SpaShellContext } from './router/SpaShellContext'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { FlagsContext } from './router/FlagsContext'
@@ -34,6 +35,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
   onRenderId?: (id: string) => void
   path: string
   isClient?: boolean
+  mode?: string
   routes: GlobbedRouteImports
   routerRoot: string
   routeOptions?: One.RouteOptions
@@ -153,7 +155,9 @@ export function Root(props: RootProps) {
 
   if (isClient) {
     // only on client can read like this
-    if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
+    const serverMode = globalThis[SERVER_CONTEXT_KEY]?.mode
+
+    if (serverMode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 
@@ -165,7 +169,27 @@ export function Root(props: RootProps) {
       return show ? contents : null
     }
 
+    if (serverMode === 'spa-shell') {
+      // hydrate with shell placeholder, then flip to render real page content
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [isSpaShell, setIsSpaShell] = useState(true)
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLayoutEffect(() => {
+        setIsSpaShell(false)
+      }, [])
+
+      return (
+        <SpaShellContext.Provider value={isSpaShell}>{contents}</SpaShellContext.Provider>
+      )
+    }
+
     return contents
+  }
+
+  // server-side: wrap in SpaShellContext when rendering spa-shell
+  if (props.mode === 'spa-shell') {
+    return <SpaShellContext.Provider value={true}>{contents}</SpaShellContext.Provider>
   }
 
   return contents

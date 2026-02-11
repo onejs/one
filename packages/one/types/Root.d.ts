@@ -6,6 +6,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
     onRenderId?: (id: string) => void;
     path: string;
     isClient?: boolean;
+    mode?: string;
     routes: GlobbedRouteImports;
     routerRoot: string;
     routeOptions?: One.RouteOptions;

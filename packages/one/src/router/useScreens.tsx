@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { memo, Suspense, useEffect, useState } from 'react'
+import React, { memo, Suspense, useContext, useEffect, useState } from 'react'
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
@@ -23,6 +23,7 @@ import {
   type RouteNode,
   useRouteNode,
 } from './Route'
+import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
 
@@ -345,6 +346,13 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         window.addEventListener('one-hmr-update', handler)
         return () => window.removeEventListener('one-hmr-update', handler)
       }, [])
+    }
+
+    // in spa-shell mode, non-root-layout routes render a placeholder
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const isSpaShell = useContext(SpaShellContext)
+    if (isSpaShell && props.segment !== '') {
+      return <div data-one-spa-content="" />
     }
 
     const res = value.loadRoute()

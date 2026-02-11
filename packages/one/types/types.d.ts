@@ -11,7 +11,7 @@ export type LoaderProps<Params extends object = Record<string, string | string[]
     request?: Request;
 };
 export type RenderAppProps = {
-    mode: One.RouteRenderMode;
+    mode: One.RouteRenderMode | 'spa-shell';
     path: string;
     /**
      * Critical scripts that need to execute immediately (will use async).

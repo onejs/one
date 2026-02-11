@@ -123,6 +123,7 @@ export class BuildWorkerPool {
     deferredPreloads?: string[]
     useAfterLCP?: boolean
     useAfterLCPAggressive?: boolean
+    renderRootLayout?: 'always-static' | 'always-ssr' | 'static-or-ssr'
   }): Promise<any> {
     if (this._terminated) {
       throw new Error('Worker pool has been terminated')

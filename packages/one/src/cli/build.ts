@@ -696,6 +696,7 @@ export async function build(args: {
             deferredPreloads,
             useAfterLCP,
             useAfterLCPAggressive,
+            renderRootLayout: oneOptions.web?.renderRootLayout,
           })
           .then((built) => ({ built, path }))
       }
@@ -723,7 +724,8 @@ export async function build(args: {
             criticalPreloads,
             deferredPreloads,
             useAfterLCP,
-            useAfterLCPAggressive
+            useAfterLCPAggressive,
+            oneOptions.web?.renderRootLayout
           )
         })
 
