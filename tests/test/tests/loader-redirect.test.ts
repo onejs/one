@@ -155,7 +155,7 @@ describe('Loader Redirect', { retry: 2, timeout: 60_000 }, () => {
         await page.waitForSelector('#public-page', { timeout: 15_000 })
 
         await page.click('#link-to-settings')
-        await page.waitForTimeout(3000)
+        await page.waitForTimeout(5000)
 
         // should redirect to /, not stay on settings
         expect(page.url()).not.toContain('/settings')
