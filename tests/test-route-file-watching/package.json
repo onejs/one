@@ -1,6 +1,6 @@
 {
   "name": "test-route-file-watching",
-  "version": "1.6.14",
+  "version": "1.6.15",
   "private": true,
   "type": "module",
   "scripts": {
