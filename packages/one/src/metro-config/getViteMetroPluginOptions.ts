@@ -151,6 +151,8 @@ export function getViteMetroPluginOptions({
     },
     babelConfig: {
       plugins: [
+        // enforce environment guard imports (server-only, client-only, etc.)
+        'one/babel-plugin-environment-guard',
         // Remove server-only code (loader, generateStaticParams) from route files
         // This must run early to prevent server-only imports from being bundled
         [

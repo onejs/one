@@ -43,3 +43,9 @@ interface ImportMeta {
 }
 
 export {}
+
+// environment guard imports — side-effect-only, no exports
+declare module 'server-only' {}
+declare module 'client-only' {}
+declare module 'native-only' {}
+declare module 'web-only' {}
