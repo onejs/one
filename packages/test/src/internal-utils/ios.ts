@@ -259,9 +259,6 @@ async function prepareTestApp() {
     stdio: 'inherit',
   })`codesign --force --sign - ${appPath}`
 
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000)
-  })
   return appPath
 }
 
@@ -270,17 +267,17 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
     platformName: 'iOS',
     'appium:options': {
       automationName: 'XCUITest',
-
       udid: getSimulatorUdid(),
-
       app: await prepareTestApp(),
+      // skip reinstalling app between sessions, just restart it
+      noReset: true,
     },
   }
 
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 5 * 60 * 1000,
+    connectionRetryTimeout: 2 * 60 * 1000,
     connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,

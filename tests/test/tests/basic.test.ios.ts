@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 3 }
+const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 test('basic iOS test', sharedTestOptions, async () => {
   const driver = await remote(getWebDriverConfig())
