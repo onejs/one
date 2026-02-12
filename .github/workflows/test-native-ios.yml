@@ -50,6 +50,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
 
       - name: Download Built Test Container App (Dev)
         uses: actions/cache/restore@v4

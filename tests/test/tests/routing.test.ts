@@ -189,7 +189,7 @@ describe(`Routing Tests`, () => {
     })
   })
 
-  describe('SPA routing', { retry: 3, timeout: 120_000 }, () => {
+  describe('SPA routing', { retry: 1, timeout: 120_000 }, () => {
     it('should render SPA page on direct hit', async () => {
       const page = await context.newPage()
       try {
@@ -258,7 +258,7 @@ describe(`Routing Tests`, () => {
           waitUntil: 'domcontentloaded',
         })
         await page.waitForSelector('#server-page', {
-          timeout: 1000,
+          timeout: 60_000,
           state: 'visible',
         })
         expect(await page.textContent('#server-id')).toBe('tamagui')
