@@ -5,6 +5,14 @@ inputs:
     required: false
     description: 'Only install and build a specific workspace (and its dependencies)'
     type: string
+  install-playwright:
+    required: false
+    description: 'Install Playwright browsers (default: true)'
+    default: 'true'
+  npm-upgrade:
+    required: false
+    description: 'Upgrade npm to latest (needed for expo prebuild)'
+    default: 'false'
 runs:
   using: composite
   steps:
@@ -22,17 +30,11 @@ runs:
     # Expo prebuild runs a command like `npm view expo-template-bare-minimum@sdk-53 dist --json`
     # under the hood, which may fail with older npm versions (see https://github.com/npm/cli/issues/7834).
     - name: Upgrade npm
+      if: ${{ inputs.npm-upgrade == 'true' }}
       shell: bash
       run: |
         npm install -g npm@latest
         npm --version
-
-    - name: Get Home Dir Path
-      id: get-home-dir-path
-      shell: bash
-      run: |
-        echo "Home dir path: $HOME"
-        echo "path=$HOME" >> $GITHUB_OUTPUT
 
     - name: Cache Bun
       uses: actions/cache@v4
@@ -46,16 +48,12 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      # Always do full install to ensure devDependencies of workspace packages are available for builds
       run: bun install
 
     - name: Install Playwright
+      if: ${{ inputs.install-playwright == 'true' }}
       shell: bash
-      run: npx playwright install
-
-    - name: Clean Build
-      shell: bash
-      run: ${{ inputs.workspace-focus && format('bunx turbo run clean:build --filter={0}...', inputs.workspace-focus) || 'bun run clean:build'}}
+      run: npx playwright install chromium
 
     - name: Build
       shell: bash

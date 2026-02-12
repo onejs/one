@@ -20,7 +20,7 @@ afterEach(async () => {
   revertEditedFiles()
 })
 
-const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 3 }
+const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 async function testHMR(
   testId: string,

@@ -259,9 +259,6 @@ async function prepareTestApp() {
     stdio: 'inherit',
   })`codesign --force --sign - ${appPath}`
 
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000)
-  })
   return appPath
 }
 
@@ -270,9 +267,7 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
     platformName: 'iOS',
     'appium:options': {
       automationName: 'XCUITest',
-
       udid: getSimulatorUdid(),
-
       app: await prepareTestApp(),
     },
   }

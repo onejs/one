@@ -50,7 +50,8 @@
     "**/dist",
     "**/types",
     "**/__tests__",
-    "app-cases" // We need to use a different tsconfig.json for each app-case, since each one will have totally different routes and will have different `routes.d.ts`.
+    "app-cases", // We need to use a different tsconfig.json for each app-case, since each one will have totally different routes and will have different `routes.d.ts`.
+    "scripts" // bun scripts, not type-checked
   ],
   "typeAcquisition": {
     "enable": true

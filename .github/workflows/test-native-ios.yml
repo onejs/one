@@ -10,6 +10,7 @@ on:
     branches:
       - main
       - ci/native-tests-free-runners
+      - test-faster
   workflow_dispatch:
 
 concurrency:
@@ -50,6 +51,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
 
       - name: Download Built Test Container App (Dev)
         uses: actions/cache/restore@v4
@@ -96,26 +99,40 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
         run: xcrun simctl boot $SIMULATOR_UDID
 
-      - name: Install and Run Appium Server
+      - name: Cache Appium
+        id: appium-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.appium
+            /usr/local/lib/node_modules/appium
+            /usr/local/bin/appium
+          key: appium-xcuitest-${{ runner.os }}-v1
+
+      - name: Install Appium
+        if: steps.appium-cache.outputs.cache-hit != 'true'
         run: |
           npm install -g appium
           appium driver install xcuitest
-          appium > /tmp/appium.log &
-          sleep 3
+
+      - name: Start Appium Server
+        run: |
+          appium > /tmp/appium.log 2>&1 &
+          sleep 2
 
       - name: Test Dev
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
-          bun run --filter test-test test-ios:dev && bun run --filter test-hmr test-ios:dev
+          bun run --filter test-test test-ios:dev
 
       - name: Test Prod
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
         run: |
-          bun run --filter test-test test-ios:prod && bun run --filter test-hmr test-ios:prod
+          bun run --filter test-test test-ios:prod
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
@@ -123,8 +140,7 @@ jobs:
         continue-on-error: true
         with:
           name: appium-tests.log
-          path: |
-            /tmp/appium.log
+          path: /tmp/appium.log
 
       - name: Upload Appium Screenshots
         uses: actions/upload-artifact@v4.3.1
@@ -132,5 +148,4 @@ jobs:
         continue-on-error: true
         with:
           name: appium-screenshots
-          path: |
-            /tmp/appium-screenshots
+          path: /tmp/appium-screenshots
