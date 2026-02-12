@@ -22,7 +22,7 @@
     "sharp"
   ],
   "scripts": {
-    "build": "turbo run build --filter='*' --filter='!example/*'",
+    "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check": "turbo check",
     "ci": "bun install && bun run build && bun run check && bun run typecheck && bun run lint && bun run test && git diff --exit-code",
