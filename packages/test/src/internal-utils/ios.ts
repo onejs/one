@@ -269,8 +269,6 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       automationName: 'XCUITest',
       udid: getSimulatorUdid(),
       app: await prepareTestApp(),
-      // skip reinstalling app between sessions, just restart it
-      noReset: true,
     },
   }
 
