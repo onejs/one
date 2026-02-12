@@ -1,0 +1,36 @@
+name: Build OneTray
+
+on:
+  push:
+    tags:
+      - 'one-tray-v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build release
+        run: |
+          cd apps/one-tray
+          make release
+
+      - name: Package app
+        run: |
+          cd apps/one-tray
+          zip -r OneTray.zip OneTray.app
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OneTray
+          path: apps/one-tray/OneTray.zip
+
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: apps/one-tray/OneTray.zip
+          generate_release_notes: true

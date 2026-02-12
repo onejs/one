@@ -1,0 +1,13 @@
+{
+  "name": "one-tray",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "make debug",
+    "release": "make release",
+    "install-app": "make install",
+    "clean": "make clean",
+    "dev": "make debug && open OneTray.app",
+    "tray": "pkill -f one-tray || true; make debug && open OneTray.app"
+  }
+}
