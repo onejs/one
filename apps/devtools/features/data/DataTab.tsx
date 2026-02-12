@@ -1,7 +1,6 @@
 export const DataTab = () => {
   return (
     <>
-      {/* biome-ignore lint/a11y/useIframeTitle: <explanation> */}
       <iframe
         style={{
           borderWidth: 0,

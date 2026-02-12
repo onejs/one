@@ -404,7 +404,7 @@ class CableViewModel {
     var simulators: [SimulatorInfo] = [] // booted
     var availableSimulators: [SimulatorInfo] = [] // not booted, shown as inactive
     var showAvailableSims: Bool = true
-    var cables: [Int: Cable] = [:]
+    var cables: [Int: Cable] = [:] // keyed by sim index
     var draggingSimIndex: Int? = nil
     var dragPosition: CGPoint? = nil
     var userConnectionTime: Date? = nil // cooldown to prevent sync overwrite
@@ -419,8 +419,8 @@ class CableViewModel {
     let popoverHeight: CGFloat = 440
     let railHeight: CGFloat = 36
     let bottomRailHeight: CGFloat = 28
-    let serverJackX: CGFloat = 170
-    let simJackX: CGFloat = 550
+    let simJackX: CGFloat = 170     // sims on LEFT (cable source)
+    let serverJackX: CGFloat = 550  // servers on RIGHT (plug target)
     let jackStartY: CGFloat = 80
     let jackSpacing: CGFloat = 64
     let jackOuterRadius: CGFloat = 13
@@ -448,6 +448,21 @@ class CableViewModel {
 
     // physics tick counter to force SwiftUI redraw
     var physicsTick: Int = 0
+    private var physicsTimer: Timer?
+
+    func startPhysics() {
+        guard physicsTimer == nil else { return }
+        let t = Timer(timeInterval: 1.0/60.0, repeats: true) { [weak self] _ in
+            self?.updatePhysics()
+        }
+        RunLoop.main.add(t, forMode: .common)
+        physicsTimer = t
+    }
+
+    func stopPhysics() {
+        physicsTimer?.invalidate()
+        physicsTimer = nil
+    }
 
     let ropeGravity: CGFloat = 0.8
     let ropeDamping: CGFloat = 0.985
@@ -633,7 +648,7 @@ class CableViewModel {
 
     func hitTestToggle(at point: CGPoint) -> Bool {
         guard simulators.isEmpty && !availableSimulators.isEmpty else { return false }
-        let toggleCenter = CGPoint(x: simJackX + 100, y: jackStartY + 10)
+        let toggleCenter = CGPoint(x: simJackX - 40, y: jackStartY + 10)
         return abs(point.x - toggleCenter.x) < 16 && abs(point.y - toggleCenter.y) < 22
     }
 }
@@ -643,7 +658,6 @@ class CableViewModel {
 struct CableCanvasView: View {
     @Bindable var model: CableViewModel
     var onGearTapped: (() -> Void)?
-    @State private var timer: Timer?
 
     var body: some View {
         ZStack {
@@ -725,13 +739,8 @@ struct CableCanvasView: View {
         }
         .frame(width: model.popoverWidth, height: model.popoverHeight)
         .onAppear {
-            let t = Timer(timeInterval: 1.0/60.0, repeats: true) { _ in
-                model.updatePhysics()
-            }
-            RunLoop.main.add(t, forMode: .common)
-            timer = t
+            model.startPhysics()
         }
-        .onDisappear { timer?.invalidate() }
     }
 
     var gestureOverlay: some View {
@@ -1030,9 +1039,9 @@ struct CableCanvasView: View {
             context.stroke(Circle().path(in: cableRing), with: .color(col.opacity(0.6)), lineWidth: 1.5)
         }
 
-        // hover glow
+        // hover glow when dragging cable near a server jack
         if let hovered = model.hoveredServerIndex,
-           center.x < model.popoverWidth / 2, // only servers (now on left)
+           center.x > model.popoverWidth / 2, // only servers (now on right)
            hovered < model.servers.count {
             let serverPos = model.serverPlugPosition(index: hovered)
             if abs(center.x - serverPos.x) < 2 && abs(center.y - serverPos.y) < 2 {
@@ -1066,14 +1075,14 @@ struct CableCanvasView: View {
                 Text("no simulators")
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(RackColors.labelDim.opacity(0.4)),
-                at: CGPoint(x: model.simJackX - 20, y: model.jackStartY + 20),
+                at: CGPoint(x: model.simJackX + 20, y: model.jackStartY + 20),
                 anchor: .center
             )
         }
 
-        // draw toggle switch for showing available sims (near sim column on right)
+        // draw toggle switch for showing available sims (near sim column on left)
         if model.simulators.isEmpty && !model.availableSimulators.isEmpty {
-            let toggleCenter = CGPoint(x: model.simJackX + 100, y: model.jackStartY + 10)
+            let toggleCenter = CGPoint(x: model.simJackX - 40, y: model.jackStartY + 10)
             drawToggleSwitch(context: context, at: toggleCenter, isOn: model.showAvailableSims)
         }
     }
@@ -1221,35 +1230,35 @@ struct CableCanvasView: View {
     // MARK: - tape labels
 
     func drawTapeLabels(context: GraphicsContext, size: CGSize) {
-        // server tape labels (LEFT side)
+        // sim tape labels (LEFT side) — booted
+        for (index, sim) in model.simulators.enumerated() {
+            let pos = model.simPlugPosition(index: index)
+            let name = sim.name.count > 14 ? String(sim.name.prefix(13)) + "…" : sim.name
+            let version = sim.iosVersion.map { " \($0)" } ?? ""
+            drawTape(context: context, text: name + version, at: CGPoint(x: pos.x - 60, y: pos.y), anchor: .trailing, rotation: -1.5)
+        }
+
+        // available (inactive) sim tape labels (LEFT side)
+        if model.simulators.isEmpty && model.showAvailableSims {
+            for (index, sim) in model.availableSimulators.enumerated() {
+                let pos = model.simPlugPosition(index: index)
+                let name = sim.name.count > 12 ? String(sim.name.prefix(11)) + "…" : sim.name
+                drawTape(context: context, text: name, at: CGPoint(x: pos.x - 60, y: pos.y), anchor: .trailing, rotation: -1.0, dimmed: true)
+            }
+        }
+
+        // server tape labels (RIGHT side)
         for (index, server) in model.servers.enumerated() {
             let pos = model.serverPlugPosition(index: index)
             let home = ProcessInfo.processInfo.environment["HOME"] ?? ""
             let shortRoot = server.root.replacingOccurrences(of: home, with: "~")
             let display = shortRoot.count > 18 ? "…" + String(shortRoot.suffix(17)) : shortRoot
-            drawTape(context: context, text: ":\(server.port) \(display)", at: CGPoint(x: pos.x - 60, y: pos.y), anchor: .trailing, rotation: -1.2)
+            drawTape(context: context, text: ":\(server.port) \(display)", at: CGPoint(x: pos.x + 60, y: pos.y), anchor: .leading, rotation: 1.2)
         }
 
-        // sim tape labels (RIGHT side) — booted
-        for (index, sim) in model.simulators.enumerated() {
-            let pos = model.simPlugPosition(index: index)
-            let name = sim.name.count > 14 ? String(sim.name.prefix(13)) + "…" : sim.name
-            let version = sim.iosVersion.map { " \($0)" } ?? ""
-            drawTape(context: context, text: name + version, at: CGPoint(x: pos.x + 60, y: pos.y), anchor: .leading, rotation: 1.5)
-        }
-
-        // available (inactive) sim tape labels
-        if model.simulators.isEmpty && model.showAvailableSims {
-            for (index, sim) in model.availableSimulators.enumerated() {
-                let pos = model.simPlugPosition(index: index)
-                let name = sim.name.count > 12 ? String(sim.name.prefix(11)) + "…" : sim.name
-                drawTape(context: context, text: name, at: CGPoint(x: pos.x + 60, y: pos.y), anchor: .leading, rotation: 1.0, dimmed: true)
-            }
-        }
-
-        // column header tapes — servers LEFT, sims RIGHT
-        drawTape(context: context, text: "SERVERS", at: CGPoint(x: model.serverJackX - 30, y: model.railHeight + 16), anchor: .center, rotation: -0.6, bold: true)
-        drawTape(context: context, text: "SIMULATORS", at: CGPoint(x: model.simJackX + 30, y: model.railHeight + 16), anchor: .center, rotation: 0.8, bold: true)
+        // column header tapes — sims LEFT, servers RIGHT
+        drawTape(context: context, text: "SIMULATORS", at: CGPoint(x: model.simJackX - 30, y: model.railHeight + 16), anchor: .center, rotation: -0.8, bold: true)
+        drawTape(context: context, text: "SERVERS", at: CGPoint(x: model.serverJackX + 30, y: model.railHeight + 16), anchor: .center, rotation: 0.6, bold: true)
     }
 
     func drawTape(context: GraphicsContext, text: String, at point: CGPoint, anchor: UnitPoint, rotation: Double, bold: Bool = false, dimmed: Bool = false) {
@@ -1524,14 +1533,13 @@ struct VisualEffectBlur: NSViewRepresentable {
 
 // MARK: - Popover controller
 
-class CablePopoverController: NSObject {
+class CablePopoverController: NSObject, NSPopoverDelegate {
     var popover: NSPopover?
     let model = CableViewModel()
 
     func toggle(relativeTo button: NSStatusBarButton, onGear: @escaping () -> Void) {
         if let pop = popover, pop.isShown {
             pop.performClose(nil)
-            popover = nil
             return
         }
 
@@ -1539,6 +1547,7 @@ class CablePopoverController: NSObject {
         pop.contentSize = NSSize(width: model.popoverWidth, height: model.popoverHeight)
         pop.behavior = .transient
         pop.animates = true
+        pop.delegate = self
 
         let hostingView = NSHostingView(rootView:
             CableCanvasView(model: model, onGearTapped: onGear)
@@ -1552,6 +1561,11 @@ class CablePopoverController: NSObject {
 
         pop.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         popover = pop
+    }
+
+    func popoverDidClose(_ notification: Notification) {
+        model.stopPhysics()
+        popover = nil
     }
 
     func updateFromStatus(_ status: DaemonStatus, simulatorMappings: [String: String]) {
