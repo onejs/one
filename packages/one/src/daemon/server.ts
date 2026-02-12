@@ -286,6 +286,7 @@ import {
   getAllServers,
   getRoute,
   setRoute,
+  clearRoute,
   touchServer,
   pruneDeadServers,
   checkServerAlive,
@@ -651,6 +652,11 @@ async function handleDaemonEndpoint(
   if (url.pathname === '/__daemon/status') {
     const servers = getAllServers(state)
     const simulators = await getBootedSimulators()
+    const simMappings = getSimulatorMappings()
+    const simulatorRoutes: Record<string, string> = {}
+    for (const [udid, serverId] of simMappings) {
+      simulatorRoutes[udid] = serverId
+    }
 
     res.writeHead(200, { 'Content-Type': 'application/json' })
     res.end(
@@ -663,6 +669,8 @@ async function handleDaemonEndpoint(
             root: s.root,
           })),
           simulators,
+          simulatorRoutes,
+          routeMode: routeModeOverride || 'most-recent',
         },
         null,
         2
@@ -696,6 +704,54 @@ async function handleDaemonEndpoint(
 
     res.writeHead(200)
     res.end('Route set')
+    return
+  }
+
+  // POST /__daemon/simulator-route?simulatorUdid=...&serverId=...
+  // used by tray app to set simulator -> server mappings
+  if (url.pathname === '/__daemon/simulator-route' && req.method === 'POST') {
+    const simulatorUdid = url.searchParams.get('simulatorUdid')
+    const serverId = url.searchParams.get('serverId')
+
+    if (!simulatorUdid || !serverId) {
+      res.writeHead(400)
+      res.end('Missing simulatorUdid or serverId')
+      return
+    }
+
+    const server = findServerById(state, serverId)
+    if (!server) {
+      res.writeHead(404)
+      res.end('Server not found')
+      return
+    }
+
+    // set the mapping (same as TUI cable connect)
+    setSimulatorMapping(simulatorUdid, serverId)
+    setPendingMapping(serverId, simulatorUdid)
+    setRoute(state, `sim:${simulatorUdid}`, serverId)
+
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ ok: true }))
+    return
+  }
+
+  // DELETE /__daemon/simulator-route?simulatorUdid=...
+  // used by tray app to clear simulator -> server mappings
+  if (url.pathname === '/__daemon/simulator-route' && req.method === 'DELETE') {
+    const simulatorUdid = url.searchParams.get('simulatorUdid')
+
+    if (!simulatorUdid) {
+      res.writeHead(400)
+      res.end('Missing simulatorUdid')
+      return
+    }
+
+    clearMappingsForSimulator(simulatorUdid)
+    clearRoute(state, `sim:${simulatorUdid}`)
+
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ ok: true }))
     return
   }
 

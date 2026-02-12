@@ -46,6 +46,9 @@ async function daemonStart(args: { port?: string; host?: string; tui?: boolean }
     process.exit(1)
   }
 
+  // suggest tray app if available
+  await suggestTrayApp()
+
   const { startDaemon } = await import('../daemon/server')
 
   // default to TUI if running in interactive terminal
@@ -230,4 +233,20 @@ async function daemonRoute(args: { app?: string; slot?: string; project?: string
   await setDaemonRoute(args.app, targetServer.id)
   const shortRoot = targetServer.root.replace(process.env.HOME || '', '~')
   console.log(colors.green(`Route set: ${args.app} → ${targetServer.id} (${shortRoot})`))
+}
+
+async function suggestTrayApp() {
+  const { existsSync } = await import('node:fs')
+  const trayPaths = [
+    '/Applications/OneTray.app',
+    `${process.env.HOME}/Applications/OneTray.app`,
+  ]
+  const installed = trayPaths.some((p) => existsSync(p))
+  if (!installed) {
+    console.log(
+      colors.dim('  Tip: install OneTray.app for a native macOS cable interface')
+    )
+    console.log(colors.dim('  https://github.com/onejs/one/releases?q=one-tray'))
+    console.log('')
+  }
 }
