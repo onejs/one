@@ -22,6 +22,7 @@ Out of the box, the One Vite plugin does the following:
 - Adds a well-configured `tsconfig.json` if it doesn't exist
 - Enables [`?imagedata` imports](/docs/guides-images) for automatic image dimensions and blur placeholders
 - Configures native to resolve "react-native" export field in package.json
+- Enforces [environment guard imports](/docs/environment-guards) (`server-only`, `client-only`, `native-only`, `web-only`) that prevent modules from being used in the wrong build environment
 - Configures platform-specific extensions `web|server|native|ios|android` for extensions `ts|tsx|js|mjs`, eg `.ios.ts`, `.server.ts`
 - Adds a ssr-css plugin that enables perfect dev-mode CSS on first load, matching production
 - Configures a wide variety of optimizeDeps presets for React Native library compatibility
