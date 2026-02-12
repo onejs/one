@@ -27,6 +27,7 @@ import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
+import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
@@ -160,6 +161,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
+
+    environmentGuardPlugin(),
 
     imageDataPlugin(),
 

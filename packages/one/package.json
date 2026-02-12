@@ -75,6 +75,11 @@
       "import": "./dist/esm/babel-plugins/remove-server-code.mjs",
       "require": "./dist/cjs/babel-plugins/remove-server-code.cjs"
     },
+    "./babel-plugin-environment-guard": {
+      "types": "./types/babel-plugins/environment-guard.d.ts",
+      "import": "./dist/esm/babel-plugins/environment-guard.mjs",
+      "require": "./dist/cjs/babel-plugins/environment-guard.cjs"
+    },
     "./getViteMetroPluginOptions": {
       "types": "./types/metro-config/getViteMetroPluginOptions.d.ts",
       "import": "./dist/esm/metro-config/getViteMetroPluginOptions.mjs",
@@ -127,8 +132,8 @@
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint --fix --fix-suggestions src",
     "test": "bun run vitest --run",
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch"
