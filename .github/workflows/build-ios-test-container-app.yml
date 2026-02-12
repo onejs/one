@@ -117,6 +117,8 @@ jobs:
         with:
           # To save time, only install dependencies for the test container app
           workspace-focus: ${{ env.test_app_package_name }}
+          install-playwright: 'false'
+          npm-upgrade: 'true'
 
       - name: Prebuild
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}

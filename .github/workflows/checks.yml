@@ -4,9 +4,9 @@ on:
   push:
   pull_request:
 
-env:
-  # Package name in the monorepo
-  test_app_package_name: test-test
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   checks:
@@ -18,8 +18,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
-        # with:
-        #  workspace-focus: ${{ env.test_app_package_name }}
+        with:
+          install-playwright: 'false'
 
       - name: Security Audit
         run: bun audit --audit-level high
@@ -33,24 +33,11 @@ jobs:
       - name: Lint
         run: bun run lint
 
-  typecheck:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install
-        uses: ./.github/actions/install
-        # with:
-        #   workspace-focus: ${{ env.test_app_package_name }}
-
       - name: Typecheck
         run: bun run typecheck
 
   tests:
-    # runs-on: ubuntu-latest
-    runs-on: macos-14 # temporarily fix ubuntu runner being killed (https://github.com/actions/runner/issues/2468)
+    runs-on: macos-14
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
@@ -58,8 +45,6 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
-        # with:
-        #   workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Test
         run: bun run test

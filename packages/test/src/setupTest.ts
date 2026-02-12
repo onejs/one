@@ -31,7 +31,7 @@ export type TestInfo = {
 
 const waitForServer = (
   url: string,
-  { maxRetries = 240, retryInterval = 1000, getServerOutput = () => '' }
+  { maxRetries = 480, retryInterval = 250, getServerOutput = () => '' }
 ): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
@@ -67,14 +67,12 @@ const waitForServer = (
   })
 }
 
-async function warmupServer(url: string, requests = 3): Promise<void> {
+async function warmupServer(url: string, requests = 1): Promise<void> {
   for (let i = 0; i < requests; i++) {
     try {
       await fetch(url)
-      // Small delay between warmup requests
-      await new Promise((r) => setTimeout(r, 100))
     } catch {
-      // Ignore warmup errors, the server is still starting up
+      // ignore warmup errors
     }
   }
 }

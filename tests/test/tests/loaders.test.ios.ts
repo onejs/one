@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 
-const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 3 }
+const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 // loaders on native require a server to fetch loader JS from
 // in prod mode, there's no dev server, so loaders don't work

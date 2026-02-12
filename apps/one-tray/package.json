@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "make debug",
+    "build": "[ \"$(uname)\" = \"Darwin\" ] && make debug || true",
     "release": "make release",
     "install-app": "make install",
     "clean": "make clean",

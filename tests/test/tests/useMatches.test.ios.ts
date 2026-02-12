@@ -3,7 +3,7 @@ import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
-const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 3 }
+const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 test('useMatches returns matched routes on native', sharedTestOptions, async () => {
   const driver = await remote(getWebDriverConfig())
