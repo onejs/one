@@ -3,6 +3,7 @@ import {
   getNameFromFilePath,
   matchArrayGroupName,
   matchDeepDynamicRouteName,
+  matchDirectoryRenderMode,
   matchDynamicName,
   matchGroupName,
   stripGroupSegmentsFromPath,
@@ -126,5 +127,48 @@ describe(matchArrayGroupName, () => {
       '(foo),bar'
     )
     expect(matchArrayGroupName('(leading)/(foo,bar)/((fruit),apple)')).toEqual('foo,bar')
+  })
+})
+
+describe(matchDirectoryRenderMode, () => {
+  it('should match directory names with render mode suffixes', () => {
+    expect(matchDirectoryRenderMode('dashboard+ssr')).toEqual({
+      name: 'dashboard',
+      renderMode: 'ssr',
+    })
+    expect(matchDirectoryRenderMode('blog+ssg')).toEqual({
+      name: 'blog',
+      renderMode: 'ssg',
+    })
+    expect(matchDirectoryRenderMode('admin+spa')).toEqual({
+      name: 'admin',
+      renderMode: 'spa',
+    })
+    expect(matchDirectoryRenderMode('api-routes+api')).toEqual({
+      name: 'api-routes',
+      renderMode: 'api',
+    })
+  })
+
+  it('should not match directory names without render mode suffixes', () => {
+    expect(matchDirectoryRenderMode('dashboard')).toEqual(undefined)
+    expect(matchDirectoryRenderMode('blog')).toEqual(undefined)
+    expect(matchDirectoryRenderMode('admin')).toEqual(undefined)
+  })
+
+  it('should not match invalid render modes', () => {
+    expect(matchDirectoryRenderMode('dashboard+invalid')).toEqual(undefined)
+    expect(matchDirectoryRenderMode('blog+csr')).toEqual(undefined)
+  })
+
+  it('should handle directory names with hyphens and underscores', () => {
+    expect(matchDirectoryRenderMode('my-dashboard+ssr')).toEqual({
+      name: 'my-dashboard',
+      renderMode: 'ssr',
+    })
+    expect(matchDirectoryRenderMode('my_blog+ssg')).toEqual({
+      name: 'my_blog',
+      renderMode: 'ssg',
+    })
   })
 })

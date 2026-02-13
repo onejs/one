@@ -96,6 +96,37 @@ export function isTypedRoute(name: string) {
 }
 
 // ============================================
+// Directory Render Modes
+// ============================================
+
+/** Match directory render mode suffixes: dashboard+ssr, blog+ssg, etc. */
+const directoryRenderModeRe = /^(.+)\+(api|ssg|ssr|spa)$/
+
+export interface DirectoryRenderModeMatch {
+  /** Directory name without the render mode suffix */
+  name: string
+  /** The render mode for this directory */
+  renderMode: 'api' | 'ssg' | 'ssr' | 'spa'
+}
+
+/**
+ * Match directory render mode suffixes
+ *
+ * Examples:
+ *   - "dashboard+ssr" -> { name: "dashboard", renderMode: "ssr" }
+ *   - "blog+ssg" -> { name: "blog", renderMode: "ssg" }
+ *   - "admin+spa" -> { name: "admin", renderMode: "spa" }
+ */
+export function matchDirectoryRenderMode(name: string): DirectoryRenderModeMatch | undefined {
+  const match = name.match(directoryRenderModeRe)
+  if (!match) return undefined
+  return {
+    name: match[1],
+    renderMode: match[2] as 'api' | 'ssg' | 'ssr' | 'spa',
+  }
+}
+
+// ============================================
 // Parallel Routes & Intercepting Routes
 // ============================================
 
