@@ -436,7 +436,13 @@ export namespace One {
           seoPreview?: boolean
         }
 
-    server?: VXRNOptions['server']
+    server?: VXRNOptions['server'] & {
+      /**
+       * Log HTTP requests to the console
+       * @default true
+       */
+      loggingEnabled?: boolean
+    }
 
     /**
      * Skip loading .env files during build
