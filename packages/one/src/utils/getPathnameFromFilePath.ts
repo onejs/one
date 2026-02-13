@@ -7,8 +7,11 @@ export function getPathnameFromFilePath(
   options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
 ) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
-  // remove groups and convert [param] to :param in dirname
+  // remove groups, folder render mode suffixes, and convert [param] to :param in dirname
   const dirname = Path.dirname(path)
+    .split('/')
+    .map((segment) => segment.replace(/\+(api|ssg|ssr|spa)$/, ''))
+    .join('/')
     .replace(/\([^/]+\)/gi, '')
     .replace(/\[([^\]]+)\]/g, ':$1')
   const file = Path.basename(path)

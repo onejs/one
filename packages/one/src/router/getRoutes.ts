@@ -3,6 +3,7 @@ import { getPageExport } from '../utils/getPageExport'
 import type { One } from '../vite/types'
 import {
   matchArrayGroupName,
+  matchDirectoryRenderMode,
   matchDynamicName,
   matchGroupName,
   matchInterceptPrefix,
@@ -29,6 +30,8 @@ type DirectoryNode = {
   subdirectories: Map<string, DirectoryNode>
   /** Slot directories (@modal, @sidebar, etc.) for parallel routes */
   slots: Map<string, DirectoryNode>
+  /** Render mode for this directory (e.g., from dashboard+ssr or api+api) */
+  renderMode?: One.RouteRenderMode | 'api'
 }
 
 const validPlatforms = new Set(['android', 'ios', 'native', 'web'])
@@ -99,7 +102,20 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
 
     isValid = true
 
-    const meta = getFileMeta(filePath, options)
+    // First pass: determine parent render mode by traversing directories
+    let parentRenderMode: One.RouteRenderMode | 'api' | undefined
+    const pathParts = filePath.replace(/^\.\//, '').split('/')
+    const directoryParts = pathParts.slice(0, -1)
+
+    for (const part of directoryParts) {
+      const dirRenderMode = matchDirectoryRenderMode(part)
+      if (dirRenderMode) {
+        // Inner folders override outer folders
+        parentRenderMode = dirRenderMode.renderMode
+      }
+    }
+
+    const meta = getFileMeta(filePath, options, parentRenderMode)
 
     // This is a file that should be ignored. e.g maybe it has an invalid platform?
     if (meta.specificity < 0) {
@@ -168,8 +184,12 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
           }
           directory = slotDirectory
         } else {
+          // Check for directory render mode suffix (e.g., dashboard+ssr)
+          const dirRenderMode = matchDirectoryRenderMode(part)
+          const dirName = dirRenderMode?.name ?? part
+
           // Handle regular subdirectory
-          let subDirectory = directory.subdirectories.get(part)
+          let subDirectory = directory.subdirectories.get(dirName)
 
           // Create any missing subdirectories
           if (!subDirectory) {
@@ -177,8 +197,9 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
               files: new Map(),
               subdirectories: new Map(),
               slots: new Map(),
+              renderMode: dirRenderMode?.renderMode,
             }
-            directory.subdirectories.set(part, subDirectory)
+            directory.subdirectories.set(dirName, subDirectory)
           }
 
           directory = subDirectory
@@ -491,7 +512,7 @@ function flattenSlotSubdirectory(
   return routes
 }
 
-function getFileMeta(key: string, options: Options) {
+function getFileMeta(key: string, options: Options, parentRenderMode?: One.RouteRenderMode | 'api') {
   // Remove the leading `./`
   key = key.replace(/^\.\//, '')
 
@@ -505,7 +526,23 @@ function getFileMeta(key: string, options: Options) {
 
   const [_fullname, renderModeFound] =
     filename.match(/\+(api|ssg|ssr|spa)\.(\w+\.)?[jt]sx?$/) || []
-  const renderMode = renderModeFound as 'api' | One.RouteRenderMode | undefined
+  const fileRenderMode = renderModeFound as 'api' | One.RouteRenderMode | undefined
+
+  // Hierarchical render mode resolution:
+  // 1. File suffix (highest priority)
+  // 2. Parent folder suffix
+  // 3. Falls back to getDefaultRenderMode() later (vite config)
+  const renderMode = fileRenderMode ?? parentRenderMode
+
+  // Strip render mode suffixes from directory names in the route
+  // e.g., "dashboard+ssr/analytics" -> "dashboard/analytics"
+  route = route
+    .split('/')
+    .map((segment) => {
+      const dirRenderMode = matchDirectoryRenderMode(segment)
+      return dirRenderMode ? dirRenderMode.name : segment
+    })
+    .join('/')
 
   if (
     filenameWithoutExtensions.startsWith('(') &&
