@@ -6,6 +6,6 @@
  * with a throw statement.
  */
 import type { PluginObj } from '@babel/core';
-declare function environmentGuardBabelPlugin(): PluginObj;
+declare function environmentGuardBabelPlugin(_: unknown): PluginObj;
 export default environmentGuardBabelPlugin;
 //# sourceMappingURL=environment-guard.d.ts.map
