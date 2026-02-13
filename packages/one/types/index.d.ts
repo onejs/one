@@ -37,6 +37,7 @@ export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';
+export { createAPIRoute, type APIRouteHandler } from './createAPIRoute';
 export { getURL } from './getURL';
 export { Head } from './head';
 export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';

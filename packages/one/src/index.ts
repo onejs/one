@@ -52,6 +52,8 @@ export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
 export { createMiddleware, type Middleware } from './createMiddleware'
+// api routes
+export { createAPIRoute, type APIRouteHandler } from './createAPIRoute'
 export { getURL } from './getURL'
 export { Head } from './head'
 // for easier expo-router migration

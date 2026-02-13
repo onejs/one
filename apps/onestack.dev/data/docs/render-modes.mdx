@@ -64,41 +64,14 @@ In the case of a GitHub Issues type page, what you'd do is cache the SSR respons
 
 ### API
 
-Adding `+api.tsx` to the end of your filename turns a route into an API route. This is a special type of route that is different from the other types in that it expect to be used as an API endpoint that you call from other routes or services, and not as a place an end-user would navigate to directly via their browser.
+Adding `+api.ts` to the end of your filename turns a route into an API route. API routes are HTTP endpoints that you call from other routes or services, not pages that users navigate to directly.
 
-API routes have a few standard exports. The default export acts as a catch-all:
-
-```tsx
-export default (request: Request): Response => {
-  return Response.json({
-    hello: 'world'
-  })
+```tsx fileName=app/api/hello+api.ts
+export function GET(request: Request) {
+  return Response.json({ message: 'Hello!' })
 }
 ```
 
-We've aligned API routes with the Web standard [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) objects. This ensures they will be easy to use, well documented, and have broad compatibility with web servers. Note that TypeScript and Node >= 20 ships by default with global Request and Response objects, so you don't need to import them at all.
+API routes use Web standard [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) objects.
 
-If you define a `./app/test+api.tsx` page with the above code, you can `curl https://localhost:3000/test` and you will receive a response with `Content-Type` set to `application/json`, and the contents of `{"hello":"world"}`.
-
-You may also export a function for each of the supported HTTP types:
-
-```tsx
-export const GET = (request: Request): Response => {
-  return Response.json({
-    hello: 'world'
-  })
-}
-```
-
-One exports a type helper called `Endpoint` that you can use to make typing easier:
-
-```tsx
-import { Endpoint } from 'one'
-
-// this route will be typed as "(request: Request) => Response | Promise<Response>"
-export const GET: Endpoint = (request) => {
-  return Response.json({
-    hello: 'world'
-  })
-}
-```
+See [API Routes](/docs/routing-api-routes) for full documentation.
