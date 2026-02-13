@@ -8,9 +8,8 @@ describe('Folder Render Modes', () => {
       const response = await fetch(`${serverUrl}/folder-modes`)
       const html = await response.text()
 
+      expect(response.status).toBe(200)
       expect(html).toContain('Folder Modes SSR Index')
-      // SSR routes should have server-rendered content
-      expect(response.headers.get('content-type')).toContain('text/html')
     })
 
     it('should render nested route in folder+ssr with SSR', async () => {
@@ -26,8 +25,9 @@ describe('Folder Render Modes', () => {
       const response = await fetch(`${serverUrl}/folder-modes/override`)
       const html = await response.text()
 
-      expect(html).toContain('Override SPA Page')
-      // SPA routes may have minimal server-rendered content
+      expect(response.status).toBe(200)
+      // SPA routes render client-side, check for SPA mode marker
+      expect(html).toContain('__vxrnIsSPA')
     })
   })
 
