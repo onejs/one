@@ -1,3 +1,5 @@
+import type { One } from '../vite/types'
+
 /** Match `[page]` -> `page` or `[...page]` -> `page` with deep flag */
 const dynamicNameRe = /^\[([^[\]]+?)\]$/
 
@@ -106,7 +108,7 @@ export interface DirectoryRenderModeMatch {
   /** Directory name without the render mode suffix */
   name: string
   /** The render mode for this directory */
-  renderMode: 'api' | 'ssg' | 'ssr' | 'spa'
+  renderMode: One.RouteRenderMode | 'api'
 }
 
 /**
@@ -122,7 +124,7 @@ export function matchDirectoryRenderMode(name: string): DirectoryRenderModeMatch
   if (!match) return undefined
   return {
     name: match[1],
-    renderMode: match[2] as 'api' | 'ssg' | 'ssr' | 'spa',
+    renderMode: match[2] as One.RouteRenderMode | 'api',
   }
 }
 

@@ -30,8 +30,8 @@ type DirectoryNode = {
   subdirectories: Map<string, DirectoryNode>
   /** Slot directories (@modal, @sidebar, etc.) for parallel routes */
   slots: Map<string, DirectoryNode>
-  /** Render mode for this directory (e.g., from dashboard+ssr) */
-  renderMode?: One.RouteRenderMode
+  /** Render mode for this directory (e.g., from dashboard+ssr or api+api) */
+  renderMode?: One.RouteRenderMode | 'api'
 }
 
 const validPlatforms = new Set(['android', 'ios', 'native', 'web'])
@@ -103,7 +103,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
     isValid = true
 
     // First pass: determine parent render mode by traversing directories
-    let parentRenderMode: One.RouteRenderMode | undefined
+    let parentRenderMode: One.RouteRenderMode | 'api' | undefined
     const pathParts = filePath.replace(/^\.\//, '').split('/')
     const directoryParts = pathParts.slice(0, -1)
 
@@ -512,7 +512,7 @@ function flattenSlotSubdirectory(
   return routes
 }
 
-function getFileMeta(key: string, options: Options, parentRenderMode?: One.RouteRenderMode) {
+function getFileMeta(key: string, options: Options, parentRenderMode?: One.RouteRenderMode | 'api') {
   // Remove the leading `./`
   key = key.replace(/^\.\//, '')
 
