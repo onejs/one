@@ -120,8 +120,6 @@ jobs:
           if ! appium --version 2>/dev/null; then
             echo "appium not functional, reinstalling..."
             npm install -g appium
-            # driver is cached in ~/.appium, only install if missing
-            appium driver list --installed | grep -q xcuitest || appium driver install xcuitest
           fi
           appium --version
 
