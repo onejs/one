@@ -29,6 +29,57 @@ To specify the render mode on a per-page basis, you add a suffix to the filename
 - `route+ssr.tsx` - Matches `/route`, but will render the page as a [SSR route](#ssr).
 - `route+api.tsx` - Matches `/route`, but will render the page as an [API route](#api).
 
+### Folder-Level Render Modes
+
+You can also apply render modes to entire folders, and all routes within that folder will inherit the render mode. This is useful for organizing routes by their rendering strategy:
+
+```
+app/
+├── dashboard+ssr/         # All routes use SSR
+│   ├── index.tsx         # Uses SSR
+│   ├── analytics.tsx     # Uses SSR
+│   └── settings+spa.tsx  # Overrides to SPA
+├── blog+ssg/             # All routes use SSG
+│   ├── index.tsx         # Uses SSG
+│   └── [slug].tsx        # Uses SSG
+└── index.tsx             # Uses vite config default
+```
+
+**Render mode hierarchy:**
+1. **File suffix** (highest priority) - `page+spa.tsx`
+2. **Parent folder suffix** - `dashboard+ssr/page.tsx`
+3. **Vite configuration** (lowest priority) - `defaultRenderMode: 'ssg'`
+
+**Nested folders:**
+Inner folder suffixes override outer folder suffixes:
+
+```
+app/
+└── dashboard+ssr/
+    ├── index.tsx          # Uses SSR
+    └── reports+ssg/
+        └── monthly.tsx    # Uses SSG (inner folder wins)
+```
+
+**Important notes:**
+- Folder suffixes are stripped from URLs: `dashboard+ssr/analytics` becomes `/dashboard/analytics`
+- File suffixes always take precedence over folder suffixes
+- Layouts do not inherit folder render modes (they remain as layouts)
+
+**API routes benefit too:**
+With folder suffixes, API routes no longer require the `+api.tsx` file suffix:
+
+```
+app/
+└── api+api/              # Folder suffix
+    ├── users.tsx         # No +api.tsx needed! → /api/users (API)
+    ├── posts.tsx         # No +api.tsx needed! → /api/posts (API)
+    └── auth/
+        └── login.tsx     # Inherits API type → /api/auth/login (API)
+```
+
+This makes organizing API routes much cleaner, especially for versioned APIs like `v1+api/` and `v2+api/`.
+
 ## Modes
 
 Note that render modes mostly only apply to the web. On native, everything is essentially a SPA, with all the JS for every route included in the app the user downloads from the app store. Because native apps don't have to deal with the network, this SPA mode is ideal and has very little downsides.
