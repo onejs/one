@@ -127,7 +127,19 @@ jobs:
       - name: Start Appium Server
         run: |
           appium > /tmp/appium.log 2>&1 &
-          sleep 2
+          # wait for appium to be ready
+          for i in {1..30}; do
+            if curl -s http://localhost:4723/status | grep -q '"ready":true'; then
+              echo "Appium ready after $i seconds"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Appium failed to start"
+              cat /tmp/appium.log
+              exit 1
+            fi
+            sleep 1
+          done
 
       - name: Test Dev
         env:
