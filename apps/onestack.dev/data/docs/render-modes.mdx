@@ -51,7 +51,7 @@ If you name a route with the `+spa` suffix, like `app/dashboard+spa.tsx`, it wil
 
 This render mode is great for highly dynamic use cases. Think a Linear, or a Figma, a metrics dashboard, or a user account panel. It is simpler to build, and doesn't require making sure every dependency works on both Node.js and in the browser.
 
-It's downsides include a slower initial load time, and worse SEO. Though we are working on allowing `_layout.tsx` files to also leverage render modes, in which case you could have a really nice hybrid mode where you render layouts statically or on the server, but keep the "meat" of the page dynamic. This would retain some upsides of SSR/SSG, while simplifying things quite a bit.
+It's downsides include a slower initial load time, and worse SEO. You can mitigate this with the [`renderRootLayout`](/docs/configuration#webrenderrootlayout) option, which renders your root layout on the server while keeping page content client-rendered.
 
 
 ### SSR
