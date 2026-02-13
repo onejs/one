@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
+import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
@@ -22,6 +23,13 @@ import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 const debugLoaderDeps = process.env.ONE_DEBUG_LOADER_DEPS
+
+const routeTypeColors: Record<string, (s: string) => string> = {
+  ssg: colors.green,
+  ssr: colors.blue,
+  spa: colors.yellow,
+  api: colors.magenta,
+}
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -45,11 +53,17 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest(
       {
         async handlePage({ route, url, loaderProps }) {
-          console.info(
-            ` ⓵  [${route.type}] ${url} resolved to ${
-              route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
-            }`
-          )
+          if (options.server?.loggingEnabled !== false) {
+            const colorType = routeTypeColors[route.type] || colors.white
+            const pathname =
+              typeof url === 'string' ? new URL(url).pathname : url.pathname
+            const file = route.isNotFound
+              ? colors.red('404')
+              : colors.dim(`app/${route.file.slice(2)}`)
+            console.info(
+              ` ⓵  ${colorType(`[${route.type}]`)} ${pathname} ${colors.dim('→')} ${file}`
+            )
+          }
 
           const isSpaShell = route.type === 'spa' && !!options.web?.renderRootLayout
 
