@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL
+const isProd = process.env.TEST_ONLY === 'prod'
 
 describe('Folder Render Modes', () => {
   describe('Basic folder suffix inheritance', () => {
@@ -10,6 +11,9 @@ describe('Folder Render Modes', () => {
 
       expect(response.status).toBe(200)
       expect(html).toContain('Folder Modes SSR Index')
+      if (isProd) {
+        expect(response.headers.get('content-type')).toContain('text/html')
+      }
     })
 
     it('should render nested route in folder+ssr with SSR', async () => {
