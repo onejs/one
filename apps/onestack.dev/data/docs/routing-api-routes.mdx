@@ -1,0 +1,185 @@
+---
+title: API Routes
+---
+
+API routes let you create HTTP endpoints in your One app. Add `+api.ts` to the end of your filename and export handler functions for each HTTP method.
+
+## Basic Usage
+
+```tsx fileName=app/api/hello+api.ts
+export function GET(request: Request) {
+  return Response.json({ message: 'Hello!' })
+}
+```
+
+This creates an endpoint at `/api/hello` that responds to GET requests.
+
+## HTTP Methods
+
+Export named functions for each HTTP method:
+
+```tsx fileName=app/api/users+api.ts
+export function GET(request: Request) {
+  return Response.json({ users: [] })
+}
+
+export function POST(request: Request) {
+  // handle POST
+}
+
+export function PUT(request: Request) {
+  // handle PUT
+}
+
+export function DELETE(request: Request) {
+  // handle DELETE
+}
+```
+
+You can also export a `default` function as a catch-all:
+
+```tsx
+export default function handler(request: Request) {
+  return Response.json({ method: request.method })
+}
+```
+
+## Dynamic Routes
+
+Use brackets for dynamic segments. Params are passed as the second argument:
+
+```tsx fileName=app/api/users/[id]+api.ts
+export function GET(request: Request, { params }: { params: { id: string } }) {
+  return Response.json({ id: params.id })
+}
+```
+
+Rest parameters work the same way:
+
+```tsx fileName=app/api/files/[...path]+api.ts
+export function GET(request: Request, { params }: { params: { path: string[] } }) {
+  const filePath = params.path.join('/')
+  return Response.json({ path: filePath })
+}
+```
+
+## Request Handling
+
+### Reading the Body
+
+```tsx
+export async function POST(request: Request) {
+  // JSON
+  const json = await request.json()
+
+  // Form data
+  const form = await request.formData()
+
+  // Raw text
+  const text = await request.text()
+
+  return Response.json({ received: true })
+}
+```
+
+### Query Parameters
+
+```tsx
+export function GET(request: Request) {
+  const url = new URL(request.url)
+  const page = url.searchParams.get('page') || '1'
+  const limit = url.searchParams.get('limit') || '10'
+
+  return Response.json({ page, limit })
+}
+```
+
+### Headers
+
+```tsx
+export function GET(request: Request) {
+  const auth = request.headers.get('Authorization')
+
+  return Response.json({ authenticated: !!auth })
+}
+```
+
+## Response Handling
+
+### Custom Status Codes
+
+```tsx
+export async function POST(request: Request) {
+  const data = await request.json()
+
+  if (!data.name) {
+    return Response.json({ error: 'Name required' }, { status: 400 })
+  }
+
+  return Response.json({ id: 1, ...data }, { status: 201 })
+}
+```
+
+### Custom Headers
+
+```tsx
+export function GET(request: Request) {
+  return new Response(JSON.stringify({ data: [] }), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'public, max-age=3600',
+    },
+  })
+}
+```
+
+### Redirects
+
+```tsx
+import { redirect } from 'one'
+
+export function GET(request: Request, { params }: { params: { id: string } }) {
+  return redirect(`/api/v2/users/${params.id}`)
+}
+```
+
+## Error Handling
+
+```tsx
+export async function GET(request: Request, { params }: { params: { id: string } }) {
+  const user = await getUser(params.id)
+
+  if (!user) {
+    return Response.json({ error: 'User not found' }, { status: 404 })
+  }
+
+  return Response.json(user)
+}
+```
+
+## Web Standards
+
+API routes use the standard Web [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) and [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) APIs. TypeScript and Node >= 20 include these globally.
+
+## Type Helpers
+
+One exports an `Endpoint` type for simple cases:
+
+```tsx
+import type { Endpoint } from 'one'
+
+export const GET: Endpoint = (request) => {
+  return Response.json({ hello: 'world' })
+}
+```
+
+For typed params, use `createAPIRoute`:
+
+```tsx
+import { createAPIRoute } from 'one'
+
+export const GET = createAPIRoute<'/api/users/[id]'>((request, { params }) => {
+  // params.id is typed as string
+  return Response.json({ id: params.id })
+})
+```
