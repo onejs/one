@@ -246,6 +246,11 @@
       otherKeyPressed = false
     })
 
+    // deactivate when window is being resized (e.g. option+drag corner on macOS)
+    window.addEventListener('resize', () => {
+      deactivate()
+    })
+
     document.addEventListener('mousemove', (e) => {
       mousePos.x = e.clientX
       mousePos.y = e.clientY
