@@ -307,12 +307,16 @@ url: ${url}`)
         }
       } else {
         // for SPA routes only, check if we need to SSR the root layout shell
-        // SSG routes should always serve their pre-built static HTML
-        const renderRootLayout = oneOptions.web?.renderRootLayout
-        if (
+        // spa-shell: render if any parent layout has ssg/ssr render mode
+        const layoutRoutes = route.layouts || []
+        const needsSpaShell =
           route.type === 'spa' &&
-          (renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr')
-        ) {
+          layoutRoutes.some(
+            (layout: any) =>
+              layout.layoutRenderMode === 'ssg' || layout.layoutRenderMode === 'ssr'
+          )
+
+        if (needsSpaShell) {
           try {
             // helper to import and run a single loader
             async function runShellLoader(
@@ -347,7 +351,6 @@ url: ${url}`)
             }
 
             // run layout loaders only (page content is client-rendered)
-            const layoutRoutes = route.layouts || []
             const layoutResults = await Promise.all(
               layoutRoutes.map((layout: any) => {
                 const serverPath = layout.loaderServerPath || layout.contextKey
@@ -371,7 +374,9 @@ url: ${url}`)
               await getRender()
             )({
               mode: 'spa-shell',
-              loaderData: {},
+              // don't pass loaderData for spa-shell - the page loader runs on client
+              // passing {} here would make useLoaderState think data is preloaded
+              loaderData: undefined,
               loaderProps,
               path: loaderProps?.path || '/',
               preloads: buildInfo?.criticalPreloads || buildInfo?.preloads,

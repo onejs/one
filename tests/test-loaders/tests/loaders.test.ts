@@ -933,4 +933,60 @@ describe('useMatches()', () => {
 
     await page.close()
   })
+
+  test('useMatch: finds layout data after client navigation within same layout', async () => {
+    const page = await context.newPage()
+
+    // start at page1 (direct navigation)
+    await page.goto(serverUrl + '/matches-test/page1')
+    await page.waitForLoadState('networkidle')
+
+    // verify we're on page1
+    expect(await page.textContent('#page-title')).toBe('Page 1')
+
+    // client navigate to hooks-test page (same layout)
+    await page.click('#link-to-hooks-test')
+    await page.waitForURL(`${serverUrl}/matches-test/hooks-test`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // useMatch should still find layout data after client navigation
+    const layoutMatchFound = await page.textContent('[data-testid="layout-match-found"]')
+    expect(layoutMatchFound).toContain('yes')
+
+    // layout loader data should be available
+    const layoutData = await page.textContent('[data-testid="layout-match-data"]')
+    expect(layoutData).toContain('layoutTitle')
+    expect(layoutData).toContain('Matches Test Layout')
+
+    await page.close()
+  })
+
+  test('useMatch: layout data persists across multiple client navigations', async () => {
+    const page = await context.newPage()
+
+    // start at hooks-test (direct navigation)
+    await page.goto(serverUrl + '/matches-test/hooks-test')
+    await page.waitForLoadState('networkidle')
+
+    // verify initial layout data
+    const initialData = await page.textContent('[data-testid="layout-match-data"]')
+    expect(initialData).toContain('Matches Test Layout')
+
+    // navigate to page1
+    await page.click('#link-to-page1')
+    await page.waitForURL(`${serverUrl}/matches-test/page1`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // navigate back to hooks-test
+    await page.click('#link-to-hooks-test')
+    await page.waitForURL(`${serverUrl}/matches-test/hooks-test`, { timeout: 5000 })
+    await new Promise((r) => setTimeout(r, 500))
+
+    // layout data should still be available
+    const afterNavData = await page.textContent('[data-testid="layout-match-data"]')
+    expect(afterNavData).toContain('layoutTitle')
+    expect(afterNavData).toContain('Matches Test Layout')
+
+    await page.close()
+  })
 })

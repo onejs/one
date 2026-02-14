@@ -22,7 +22,9 @@ export default function SsgPageInSpaShell() {
       <p id="spa-shell-ssg-page-data">{JSON.stringify(data)}</p>
       <p id="spa-shell-ssg-page-matches">Page Matches: {matches.length}</p>
       <p id="spa-shell-ssg-seo">{data.seoContent}</p>
-      <Link href="/spa-shell-ssg/other" id="link-to-other">Go to Other SSG Page</Link>
+      <Link href="/spa-shell-ssg/other" id="link-to-other">
+        Go to Other SSG Page
+      </Link>
     </div>
   )
 }

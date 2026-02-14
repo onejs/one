@@ -54,8 +54,7 @@ export async function buildPage(
   criticalPreloads?: string[],
   deferredPreloads?: string[],
   useAfterLCP?: boolean,
-  useAfterLCPAggressive?: boolean,
-  renderRootLayout?: 'always-static' | 'always-ssr' | 'static-or-ssr'
+  useAfterLCPAggressive?: boolean
 ): Promise<One.RouteBuildInfo> {
   let t0 = performance.now()
 
@@ -329,7 +328,13 @@ if (typeof document === 'undefined') globalThis.document = {}
         await outputFile(htmlOutPath, html)
         recordTiming('writeHTML', performance.now() - t0)
       } else if (foundRoute.type === 'spa') {
-        if (renderRootLayout) {
+        // spa-shell: render if any parent layout has ssg/ssr render mode
+        const needsSpaShell = foundRoute.layouts?.some(
+          (layout) =>
+            layout.layoutRenderMode === 'ssg' || layout.layoutRenderMode === 'ssr'
+        )
+
+        if (needsSpaShell) {
           // render root layout shell for SPA pages
           globalThis['__vxrnresetState']?.()
 
@@ -347,7 +352,9 @@ if (typeof document === 'undefined') globalThis.document = {}
             preloads: renderPreloads,
             deferredPreloads: renderDeferredPreloads,
             loaderProps,
-            loaderData: {},
+            // don't pass loaderData for spa-shell - the page loader runs on client
+            // passing {} here would make useLoaderState think data is preloaded
+            loaderData: undefined,
             css: allCSS,
             cssContents: allCSSContents,
             mode: 'spa-shell',

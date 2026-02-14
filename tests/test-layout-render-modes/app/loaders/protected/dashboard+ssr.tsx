@@ -19,7 +19,9 @@ export default function ProtectedDashboard() {
       <p id="protected-dashboard-data">{JSON.stringify(data)}</p>
       <p id="protected-dashboard-matches">Matches: {matches.length}</p>
       <p id="dashboard-stats">Stats: {JSON.stringify(data.dashboardData.stats)}</p>
-      <Link href="/loaders/protected?auth=true" id="link-back">Back to Protected Index</Link>
+      <Link href="/loaders/protected?auth=true" id="link-back">
+        Back to Protected Index
+      </Link>
     </div>
   )
 }

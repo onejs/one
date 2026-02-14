@@ -12,7 +12,14 @@ export async function loader() {
 
 export default function NestedLayout() {
   const myMatch = useMatch('./loaders/nested/_layout+ssr.tsx')
-  const data = myMatch?.loaderData as { nestedLayoutMode: string; nestedLayoutLoaderRan: boolean; timestamp: number; random: number } | undefined
+  const data = myMatch?.loaderData as
+    | {
+        nestedLayoutMode: string
+        nestedLayoutLoaderRan: boolean
+        timestamp: number
+        random: number
+      }
+    | undefined
   const matches = useMatches()
 
   return (

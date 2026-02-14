@@ -9,10 +9,6 @@ export default {
           ignoreConfigErrors: true,
         },
       },
-      web: {
-        // render root layout for SPA pages to test layout render modes
-        renderRootLayout: 'always-ssr',
-      },
     }),
   ],
 } satisfies UserConfig

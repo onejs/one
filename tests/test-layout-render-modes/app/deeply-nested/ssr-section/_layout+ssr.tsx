@@ -13,7 +13,15 @@ export async function loader() {
 
 export default function Level2SsrLayout() {
   const myMatch = useMatch('./deeply-nested/ssr-section/_layout+ssr.tsx')
-  const data = myMatch?.loaderData as { level: number; layoutMode: string; name: string; timestamp: number; random: number } | undefined
+  const data = myMatch?.loaderData as
+    | {
+        level: number
+        layoutMode: string
+        name: string
+        timestamp: number
+        random: number
+      }
+    | undefined
   const matches = useMatches()
 
   return (

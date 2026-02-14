@@ -19,7 +19,9 @@ export default function SpaPageInSsgShell() {
       <p id="ssg-shell-spa-page-mode">Page Mode: {data?.pageMode}</p>
       <p id="ssg-shell-spa-page-data">{JSON.stringify(data)}</p>
       <p id="ssg-shell-spa-page-matches">Page Matches: {matches.length}</p>
-      <Link href="/ssg-shell-spa/other" id="link-to-other">Go to Other SPA Page</Link>
+      <Link href="/ssg-shell-spa/other" id="link-to-other">
+        Go to Other SPA Page
+      </Link>
     </div>
   )
 }

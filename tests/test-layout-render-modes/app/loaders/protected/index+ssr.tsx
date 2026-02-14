@@ -12,7 +12,7 @@ export default function ProtectedIndex() {
   const matches = useMatches()
 
   // verify we can access parent loader data
-  const layoutMatch = matches.find(m => m.routeId?.includes('protected/_layout'))
+  const layoutMatch = matches.find((m) => m.routeId?.includes('protected/_layout'))
 
   return (
     <div id="protected-index">
@@ -23,7 +23,9 @@ export default function ProtectedIndex() {
       <p id="protected-user-from-layout">
         User from layout: {layoutMatch?.loaderData?.user || 'none'}
       </p>
-      <Link href="/loaders/protected/dashboard?auth=true" id="link-dashboard">Dashboard</Link>
+      <Link href="/loaders/protected/dashboard?auth=true" id="link-dashboard">
+        Dashboard
+      </Link>
     </div>
   )
 }

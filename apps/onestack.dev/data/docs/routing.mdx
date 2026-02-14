@@ -136,6 +136,8 @@ You can choose a rendering strategy on a per-page basis using a filename suffix.
 - `route+ssr.tsx` - Matches `/route`, but will render the page as a SSR route.
 - `route+api.tsx` - Matches `/route`, but will render the page as an API route.
 
+Layouts also support render mode suffixes (`_layout+ssg.tsx`, `_layout+ssr.tsx`). This is especially useful for SPA-heavy apps - when a parent layout has SSG or SSR mode, the layout shell renders on the server while page content remains client-rendered. See [Layout Render Modes](/docs/routing-layouts#layout-render-modes) for details.
+
 ## Routing per-platform
 
 You can target a specific platform using the same specific extension convention as React Native - ie, using `.web.tsx`, `.native.tsx`, `.ios.tsx`, or `.android.tsx` as the last part of the filename.

@@ -29,6 +29,27 @@ To specify the render mode on a per-page basis, you add a suffix to the filename
 - `route+ssr.tsx` - Matches `/route`, but will render the page as a [SSR route](#ssr).
 - `route+api.tsx` - Matches `/route`, but will render the page as an [API route](#api).
 
+### Layout Render Modes
+
+Layouts can also specify render modes using the same suffix pattern:
+
+- `_layout+ssg.tsx` - Layout is pre-rendered at build time (static)
+- `_layout+ssr.tsx` - Layout is rendered on the server per-request
+- `_layout+spa.tsx` - Layout is client-rendered only (default behavior)
+
+**Why this matters for SPA pages:**
+
+When an SPA page has a parent layout with `+ssg` or `+ssr` render mode, the layout shell is rendered on the server while the page content remains client-rendered. This gives users immediate visual content (navigation, sidebar, head tags, CSS) without waiting for JavaScript to download and execute.
+
+```
+app/
+├── _layout+ssg.tsx      # Root layout rendered at build time
+├── dashboard+spa.tsx    # SPA page - but layout shell is pre-rendered!
+└── settings+spa.tsx     # Same - instant layout, client page content
+```
+
+This is the recommended approach for SPA-heavy apps that still want fast initial paint. The layout's HTML is included in the initial response, and page content hydrates after JavaScript loads.
+
 ### Folder-Level Render Modes
 
 You can also apply render modes to entire folders, and all routes within that folder will inherit the render mode. This is useful for organizing routes by their rendering strategy:
@@ -102,7 +123,7 @@ If you name a route with the `+spa` suffix, like `app/dashboard+spa.tsx`, it wil
 
 This render mode is great for highly dynamic use cases. Think a Linear, or a Figma, a metrics dashboard, or a user account panel. It is simpler to build, and doesn't require making sure every dependency works on both Node.js and in the browser.
 
-It's downsides include a slower initial load time, and worse SEO. You can mitigate this with the [`renderRootLayout`](/docs/configuration#webrenderrootlayout) option, which renders your root layout on the server while keeping page content client-rendered.
+Its downsides include a slower initial load time, and worse SEO. You can mitigate this by using a `_layout+ssg.tsx` or `_layout+ssr.tsx` root layout, which renders your layout shell on the server while keeping page content client-rendered. See [Layout Render Modes](#layout-render-modes) above.
 
 
 ### SSR

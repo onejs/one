@@ -13,7 +13,9 @@ export async function loader() {
 
 export default function SpaShellSsgLayout() {
   const myMatch = useMatch('./spa-shell-ssg/_layout+spa.tsx')
-  const data = myMatch?.loaderData as { layoutMode: string; layoutData: string; clientOnly: boolean } | undefined
+  const data = myMatch?.loaderData as
+    | { layoutMode: string; layoutData: string; clientOnly: boolean }
+    | undefined
   const matches = useMatches()
 
   return (
@@ -21,8 +23,12 @@ export default function SpaShellSsgLayout() {
       <header id="spa-shell-ssg-header">
         <span id="spa-shell-ssg-mode">Layout Mode: {data?.layoutMode}</span>
         <span id="spa-shell-ssg-matches">Matches: {matches.length}</span>
-        <span id="spa-shell-ssg-client">{data?.clientOnly ? 'client-only' : 'server'}</span>
-        <Link href="/" id="back-home">Back Home</Link>
+        <span id="spa-shell-ssg-client">
+          {data?.clientOnly ? 'client-only' : 'server'}
+        </span>
+        <Link href="/" id="back-home">
+          Back Home
+        </Link>
       </header>
       <div id="spa-shell-ssg-layout-data">{JSON.stringify(data)}</div>
       <Slot />

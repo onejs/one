@@ -395,17 +395,6 @@ export namespace One {
        * @default 'intent'
        */
       linkPrefetch?: false | 'hover' | 'viewport' | 'intent'
-
-      /**
-       * Renders the root `_layout` into the HTML shell for SPA pages, giving
-       * immediate visual content (nav, sidebar, head tags, CSS) while page-level
-       * content remains client-rendered.
-       *
-       * - `'always-static'`: root layout rendered once at build time (SSG-style)
-       * - `'always-ssr'`: root layout rendered per-request (supports layout loaders)
-       * - `'static-or-ssr'`: static at build, SSR at runtime for dynamic layout loaders
-       */
-      renderRootLayout?: 'always-static' | 'always-ssr' | 'static-or-ssr'
     }
 
     /**

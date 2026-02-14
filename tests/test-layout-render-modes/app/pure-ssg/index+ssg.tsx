@@ -18,7 +18,9 @@ export default function PureSsgPage() {
       <p id="pure-ssg-page-mode">Page Mode: {data?.pageMode}</p>
       <p id="pure-ssg-page-data">{JSON.stringify(data)}</p>
       <p id="pure-ssg-page-matches">Page Matches: {matches.length}</p>
-      <Link href="/pure-ssg/other" id="link-to-other">Go to Other SSG Page</Link>
+      <Link href="/pure-ssg/other" id="link-to-other">
+        Go to Other SSG Page
+      </Link>
     </div>
   )
 }

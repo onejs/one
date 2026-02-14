@@ -14,7 +14,9 @@ export default function PureSsgOther() {
     <div id="pure-ssg-other">
       <h1>Other SSG Page</h1>
       <p id="pure-ssg-other-data">{JSON.stringify(data)}</p>
-      <Link href="/pure-ssg" id="link-back">Back to Index</Link>
+      <Link href="/pure-ssg" id="link-back">
+        Back to Index
+      </Link>
     </div>
   )
 }

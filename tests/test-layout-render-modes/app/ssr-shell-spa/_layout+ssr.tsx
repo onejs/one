@@ -13,7 +13,9 @@ export async function loader() {
 
 export default function SsrShellSpaLayout() {
   const myMatch = useMatch('./ssr-shell-spa/_layout+ssr.tsx')
-  const data = myMatch?.loaderData as { layoutMode: string; layoutData: string; timestamp: number; serverData: string } | undefined
+  const data = myMatch?.loaderData as
+    | { layoutMode: string; layoutData: string; timestamp: number; serverData: string }
+    | undefined
   const matches = useMatches()
 
   return (
@@ -22,7 +24,9 @@ export default function SsrShellSpaLayout() {
         <span id="ssr-shell-spa-mode">Layout Mode: {data?.layoutMode}</span>
         <span id="ssr-shell-spa-matches">Matches: {matches.length}</span>
         <span id="ssr-shell-spa-server">{data?.serverData}</span>
-        <Link href="/" id="back-home">Back Home</Link>
+        <Link href="/" id="back-home">
+          Back Home
+        </Link>
       </header>
       <div id="ssr-shell-spa-layout-data">{JSON.stringify(data)}</div>
       <Slot />

@@ -20,7 +20,9 @@ export default function SpaLeafPage() {
       <p id="spa-leaf-data">{JSON.stringify(data)}</p>
       <p id="spa-leaf-matches">Matches: {matches.length}</p>
       <p id="spa-leaf-path">Path: SSG → SSR → SPA → SPA Page</p>
-      <Link href="/deeply-nested/ssr-section" id="link-back">Back to SSR Section</Link>
+      <Link href="/deeply-nested/ssr-section" id="link-back">
+        Back to SSR Section
+      </Link>
     </div>
   )
 }

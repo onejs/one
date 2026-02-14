@@ -16,7 +16,9 @@ export default function NestedOther() {
       <h2>Other Nested SSR Page</h2>
       <p id="nested-other-data">{JSON.stringify(data)}</p>
       <p id="nested-other-matches">Matches: {matches.length}</p>
-      <Link href="/loaders/nested" id="link-back">Back to Nested Index</Link>
+      <Link href="/loaders/nested" id="link-back">
+        Back to Nested Index
+      </Link>
     </div>
   )
 }

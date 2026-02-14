@@ -110,8 +110,8 @@ declare module 'one' {
         | `/ssr/`
         | `/ssr/basic`
         | `/ssr/cache-headers`
+        | `/ssr/cookie-test`
         | `/ssr/request-test`
-        | `/ssr/tamagui-hydration`
         | `/sticky-test`
         | `/sub-page`
         | `/sub-page/sub`

@@ -20,7 +20,9 @@ export default function SsgLeafPage() {
       <p id="ssg-leaf-data">{JSON.stringify(data)}</p>
       <p id="ssg-leaf-matches">Matches: {matches.length}</p>
       <p id="ssg-leaf-path">Path: SSG → SSR → SSG → SSG Page</p>
-      <Link href="/deeply-nested/ssr-section" id="link-back">Back to SSR Section</Link>
+      <Link href="/deeply-nested/ssr-section" id="link-back">
+        Back to SSR Section
+      </Link>
     </div>
   )
 }

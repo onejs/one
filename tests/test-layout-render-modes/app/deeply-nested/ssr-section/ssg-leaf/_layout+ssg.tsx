@@ -13,7 +13,9 @@ export async function loader() {
 
 export default function Level3SsgLayout() {
   const myMatch = useMatch('./deeply-nested/ssr-section/ssg-leaf/_layout+ssg.tsx')
-  const data = myMatch?.loaderData as { level: number; layoutMode: string; name: string; prebuilt: boolean } | undefined
+  const data = myMatch?.loaderData as
+    | { level: number; layoutMode: string; name: string; prebuilt: boolean }
+    | undefined
   const matches = useMatches()
 
   return (
