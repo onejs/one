@@ -20,7 +20,9 @@ export default function PureSsrPage() {
       <p id="pure-ssr-page-data">{JSON.stringify(data)}</p>
       <p id="pure-ssr-page-matches">Page Matches: {matches.length}</p>
       <p id="pure-ssr-page-random">Random: {data.random}</p>
-      <Link href="/pure-ssr/other" id="link-to-other">Go to Other SSR Page</Link>
+      <Link href="/pure-ssr/other" id="link-to-other">
+        Go to Other SSR Page
+      </Link>
     </div>
   )
 }

@@ -21,7 +21,9 @@ export default function SsrPageInSsgShell() {
       <p id="ssg-shell-ssr-page-data">{JSON.stringify(data)}</p>
       <p id="ssg-shell-ssr-page-matches">Page Matches: {matches.length}</p>
       <p id="ssg-shell-ssr-random">Random: {data.random}</p>
-      <Link href="/ssg-shell-ssr/other" id="link-to-other">Go to Other SSR Page</Link>
+      <Link href="/ssg-shell-ssr/other" id="link-to-other">
+        Go to Other SSR Page
+      </Link>
     </div>
   )
 }

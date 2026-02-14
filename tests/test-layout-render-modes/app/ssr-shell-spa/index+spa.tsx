@@ -19,7 +19,9 @@ export default function SpaPageInSsrShell() {
       <p id="ssr-shell-spa-page-mode">Page Mode: {data?.pageMode}</p>
       <p id="ssr-shell-spa-page-data">{JSON.stringify(data)}</p>
       <p id="ssr-shell-spa-page-matches">Page Matches: {matches.length}</p>
-      <Link href="/ssr-shell-spa/other" id="link-to-other">Go to Other SPA Page</Link>
+      <Link href="/ssr-shell-spa/other" id="link-to-other">
+        Go to Other SPA Page
+      </Link>
     </div>
   )
 }

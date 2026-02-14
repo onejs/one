@@ -65,7 +65,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             )
           }
 
-          const isSpaShell = route.type === 'spa' && !!options.web?.renderRootLayout
+          // spa-shell: render layout shell for SPA pages whose parent layouts have ssg/ssr render mode
+          const layouts = (route.layouts || []) as RouteNode[]
+          const isSpaShell =
+            route.type === 'spa' &&
+            layouts.some(
+              (layout) =>
+                layout.layoutRenderMode === 'ssg' || layout.layoutRenderMode === 'ssr'
+            )
 
           if (route.type === 'spa' && !isSpaShell) {
             // render just the layouts? route.layouts
@@ -134,30 +141,23 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             let matches: One.RouteMatch[]
 
             if (isSpaShell) {
-              // spa-shell: only run layout loaders when using always-ssr or static-or-ssr
-              const renderRootLayout = options.web!.renderRootLayout!
-              const runLayoutLoaders =
-                renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr'
+              // spa-shell: run layout loaders (page content is client-rendered)
+              const layoutLoaderPromises = layouts.map(async (layout) => {
+                const layoutFile = path.join(routerRoot, layout.contextKey)
+                const layoutExported = await runner.import(layoutFile)
+                return runLoaderWithTracking(layout, layoutExported.loader)
+              })
+              const layoutResults = await Promise.all(layoutLoaderPromises)
+              matches = layoutResults.map((result) => ({
+                routeId: result.routeId,
+                pathname: loaderProps?.path || '/',
+                params: loaderProps?.params || {},
+                loaderData: result.loaderData,
+              }))
 
-              if (runLayoutLoaders) {
-                const layoutRoutes = (route.layouts || []) as RouteNode[]
-                const layoutLoaderPromises = layoutRoutes.map(async (layout) => {
-                  const layoutFile = path.join(routerRoot, layout.contextKey)
-                  const layoutExported = await runner.import(layoutFile)
-                  return runLoaderWithTracking(layout, layoutExported.loader)
-                })
-                const layoutResults = await Promise.all(layoutLoaderPromises)
-                matches = layoutResults.map((result) => ({
-                  routeId: result.routeId,
-                  pathname: loaderProps?.path || '/',
-                  params: loaderProps?.params || {},
-                  loaderData: result.loaderData,
-                }))
-              } else {
-                matches = []
-              }
-
-              loaderData = {}
+              // don't pass loaderData for spa-shell - the page loader runs on client
+              // passing {} here would make useLoaderState think data is preloaded
+              loaderData = undefined
             } else {
               // collect all routes to run loaders for (layouts + page)
               const layoutRoutes = (route.layouts || []) as RouteNode[]

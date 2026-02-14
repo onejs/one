@@ -12,7 +12,9 @@ export async function loader() {
 
 export default function Level3SpaLayout() {
   const myMatch = useMatch('./deeply-nested/ssr-section/spa-leaf/_layout+spa.tsx')
-  const data = myMatch?.loaderData as { level: number; layoutMode: string; name: string; clientOnly: boolean } | undefined
+  const data = myMatch?.loaderData as
+    | { level: number; layoutMode: string; name: string; clientOnly: boolean }
+    | undefined
   const matches = useMatches()
 
   return (

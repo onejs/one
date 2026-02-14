@@ -94,8 +94,7 @@ parentPort.on('message', async (msg: any) => {
           msg.args.criticalPreloads,
           msg.args.deferredPreloads,
           msg.args.useAfterLCP,
-          msg.args.useAfterLCPAggressive,
-          msg.args.renderRootLayout
+          msg.args.useAfterLCPAggressive
         )
       })
       parentPort!.postMessage({ type: 'done', id: msg.id, result })

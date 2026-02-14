@@ -35,6 +35,9 @@ export default function Page1() {
       <Link href="/matches-test/spa-page" id="link-to-spa">
         Go to SPA Page
       </Link>
+      <Link href="/matches-test/hooks-test" id="link-to-hooks-test">
+        Go to Hooks Test
+      </Link>
     </div>
   )
 }

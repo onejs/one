@@ -13,12 +13,18 @@ export async function loader() {
 
 function IdCheck() {
   const id = useId()
-  return <span id="hydration-id" data-rid={id}>{id}</span>
+  return (
+    <span id="hydration-id" data-rid={id}>
+      {id}
+    </span>
+  )
 }
 
 export default function SsgShellSpaLayout() {
   const myMatch = useMatch('./ssg-shell-spa/_layout+ssg.tsx')
-  const data = myMatch?.loaderData as { layoutMode: string; layoutData: string; builtAt: string } | undefined
+  const data = myMatch?.loaderData as
+    | { layoutMode: string; layoutData: string; builtAt: string }
+    | undefined
   const matches = useMatches()
   const pathname = usePathname()
 
@@ -29,7 +35,9 @@ export default function SsgShellSpaLayout() {
         <span id="ssg-shell-spa-matches">Matches: {matches.length}</span>
         <span id="ssg-shell-spa-path">{pathname}</span>
         <IdCheck />
-        <Link href="/" id="back-home">Back Home</Link>
+        <Link href="/" id="back-home">
+          Back Home
+        </Link>
       </header>
       <div id="ssg-shell-spa-layout-data">{JSON.stringify(data)}</div>
       <Slot />

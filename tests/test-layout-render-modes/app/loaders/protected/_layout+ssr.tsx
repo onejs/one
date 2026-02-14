@@ -20,7 +20,9 @@ export async function loader({ request }: { request: Request }) {
 
 export default function ProtectedLayout() {
   const myMatch = useMatch('./loaders/protected/_layout+ssr.tsx')
-  const data = myMatch?.loaderData as { protectedLayoutMode: string; isAuthenticated: boolean; user: string } | undefined
+  const data = myMatch?.loaderData as
+    | { protectedLayoutMode: string; isAuthenticated: boolean; user: string }
+    | undefined
   const matches = useMatches()
 
   return (

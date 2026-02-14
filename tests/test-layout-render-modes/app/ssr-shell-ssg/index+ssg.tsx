@@ -19,7 +19,9 @@ export default function SsgPageInSsrShell() {
       <p id="ssr-shell-ssg-page-mode">Page Mode: {data?.pageMode}</p>
       <p id="ssr-shell-ssg-page-data">{JSON.stringify(data)}</p>
       <p id="ssr-shell-ssg-page-matches">Page Matches: {matches.length}</p>
-      <Link href="/ssr-shell-ssg/other" id="link-to-other">Go to Other SSG Page</Link>
+      <Link href="/ssr-shell-ssg/other" id="link-to-other">
+        Go to Other SSG Page
+      </Link>
     </div>
   )
 }

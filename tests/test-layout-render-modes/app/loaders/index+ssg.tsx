@@ -13,7 +13,7 @@ export default function LoadersIndex() {
   const matches = useMatches()
 
   // extract loader data from matches
-  const matchesWithLoaders = matches.filter(m => m.loaderData)
+  const matchesWithLoaders = matches.filter((m) => m.loaderData)
 
   return (
     <div id="loaders-index">
@@ -22,11 +22,13 @@ export default function LoadersIndex() {
       <p id="loaders-index-matches">Matches: {matches.length}</p>
       <p id="loaders-with-data">Matches with loader data: {matchesWithLoaders.length}</p>
       <div id="all-matches-data">
-        {JSON.stringify(matches.map(m => ({
-          routeId: m.routeId,
-          hasLoaderData: !!m.loaderData,
-          loaderData: m.loaderData,
-        })))}
+        {JSON.stringify(
+          matches.map((m) => ({
+            routeId: m.routeId,
+            hasLoaderData: !!m.loaderData,
+            loaderData: m.loaderData,
+          }))
+        )}
       </div>
     </div>
   )

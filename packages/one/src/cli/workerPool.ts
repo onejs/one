@@ -123,7 +123,6 @@ export class BuildWorkerPool {
     deferredPreloads?: string[]
     useAfterLCP?: boolean
     useAfterLCPAggressive?: boolean
-    renderRootLayout?: 'always-static' | 'always-ssr' | 'static-or-ssr'
   }): Promise<any> {
     if (this._terminated) {
       throw new Error('Worker pool has been terminated')
@@ -138,6 +137,7 @@ export class BuildWorkerPool {
       layouts: args.foundRoute.layouts?.map((layout: any) => ({
         contextKey: layout.contextKey,
         loaderServerPath: layout.loaderServerPath,
+        layoutRenderMode: layout.layoutRenderMode,
       })),
       // only keep contextKey from middlewares
       middlewares: args.foundRoute.middlewares?.map((mw: any) => ({

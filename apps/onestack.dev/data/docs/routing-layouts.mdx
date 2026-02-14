@@ -144,9 +144,57 @@ export default function Layout() {
 
 Note - you should have both a `lang` property on your `html` tag, and a `<meta charSet />` tag in your `head`. Otherwise, React can have hydration re-rendering issues.
 
-### Root Layout Render Mode
+### Layout Render Modes
 
-You can configure the root layout to render on the server even for SPA pages, giving users immediate navigation chrome, head tags, and CSS. See [`web.renderRootLayout`](/docs/configuration#webrenderrootlayout) for details.
+Layouts support render mode suffixes just like pages. This is especially useful for the root layout:
+
+```
+app/
+├── _layout+ssg.tsx     # Pre-rendered at build time
+├── _layout+ssr.tsx     # Rendered per-request on server
+└── _layout.tsx         # Client-rendered (default)
+```
+
+**When to use layout render modes:**
+
+- **`_layout+ssg.tsx`** - Best for static navigation, site chrome, and head tags. The layout HTML is generated once at build time and served instantly for all pages.
+
+- **`_layout+ssr.tsx`** - Use when your layout needs dynamic data per-request (e.g., auth state in the nav, user-specific content). The layout loader runs on each request.
+
+- **`_layout.tsx`** (no suffix) - Client-rendered. Use when the layout has no server requirements.
+
+**SPA pages with SSG/SSR layouts:**
+
+When an SPA page has a parent layout with `+ssg` or `+ssr` render mode, One automatically renders the layout shell on the server. This gives users immediate visual content (navigation, sidebar, head tags, CSS) while page content remains client-rendered.
+
+```tsx fileName=app/_layout+ssg.tsx
+import { Slot } from 'one'
+
+export async function loader() {
+  return {
+    navItems: ['Home', 'About', 'Contact'],
+  }
+}
+
+export default function RootLayout() {
+  return (
+    <html>
+      <head>
+        <meta charSet="utf-8" />
+        <title>My App</title>
+      </head>
+      <body>
+        <nav>{/* Navigation renders immediately */}</nav>
+        <main>
+          <Slot /> {/* SPA page content loads after JS */}
+        </main>
+      </body>
+    </html>
+  )
+}
+```
+
+With this setup, even `dashboard+spa.tsx` pages show the nav instantly - only the main content area waits for JavaScript.
 
 ### useServerHeadInsertion
 
