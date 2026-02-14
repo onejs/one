@@ -258,6 +258,8 @@ describe('Layout Structure Verification', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/', { waitUntil: 'networkidle' })
+    // wait for client-side render on ssg pages
+    await waitForElement(page, '#site-header')
 
     const siteHeader = await page.$('#site-header')
     const mainHeader = await page.$('#main-header')
@@ -274,6 +276,8 @@ describe('Layout Structure Verification', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/home/feed', { waitUntil: 'networkidle' })
+    // spa page - must wait for client-side react render
+    await waitForElement(page, '#main-header')
 
     const siteHeader = await page.$('#site-header')
     const mainHeader = await page.$('#main-header')
@@ -290,6 +294,8 @@ describe('Layout Structure Verification', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/docs', { waitUntil: 'networkidle' })
+    // wait for client-side render on ssg pages
+    await waitForElement(page, '#site-header')
 
     const siteHeader = await page.$('#site-header')
     const mainHeader = await page.$('#main-header')
