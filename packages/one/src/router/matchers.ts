@@ -119,7 +119,9 @@ export interface DirectoryRenderModeMatch {
  *   - "blog+ssg" -> { name: "blog", renderMode: "ssg" }
  *   - "admin+spa" -> { name: "admin", renderMode: "spa" }
  */
-export function matchDirectoryRenderMode(name: string): DirectoryRenderModeMatch | undefined {
+export function matchDirectoryRenderMode(
+  name: string
+): DirectoryRenderModeMatch | undefined {
   const match = name.match(directoryRenderModeRe)
   if (!match) return undefined
   return {

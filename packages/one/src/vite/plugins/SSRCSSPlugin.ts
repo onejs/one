@@ -55,7 +55,9 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
         return [
           {
             tag: 'link',
-            injectTo: 'head',
+            // prepend so SSR CSS comes BEFORE individual style tags injected by JS
+            // this ensures individual styles (later in DOM) win in CSS cascade
+            injectTo: 'head-prepend',
             attrs: {
               rel: 'stylesheet',
               href: VIRTUAL_SSR_CSS_HREF,
@@ -70,7 +72,7 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
             children: /* js */ `
               import { createHotContext } from "/@vite/client";
               const hot = createHotContext("/__clear_ssr_css");
-              hot.on("vite:afterUpdate", () => {
+              hot.on("vite:beforeUpdate", () => {
                 document
                   .querySelectorAll("[data-ssr-css]")
                   .forEach(node => node.remove());

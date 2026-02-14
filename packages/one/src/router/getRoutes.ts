@@ -512,7 +512,11 @@ function flattenSlotSubdirectory(
   return routes
 }
 
-function getFileMeta(key: string, options: Options, parentRenderMode?: One.RouteRenderMode | 'api') {
+function getFileMeta(
+  key: string,
+  options: Options,
+  parentRenderMode?: One.RouteRenderMode | 'api'
+) {
   // Remove the leading `./`
   key = key.replace(/^\.\//, '')
 

@@ -5,6 +5,9 @@ import {
   editLayoutFile,
   editRouteFile,
   editTestComponentContainingRelativeImportFile,
+  editCSSFileA,
+  editCSSFileB,
+  editCSSFileC,
   revertEditedFiles,
 } from './utils'
 
@@ -112,4 +115,41 @@ test.skip('layout HMR', { retry: 3 }, async () => {
     editLayoutFile,
     'Some edited text in layout file'
   )
+})
+
+// CSS HMR test - verifies that SSR CSS is removed after HMR so individual styles win
+test('CSS HMR - SSR CSS removed after update', { retry: 3 }, async () => {
+  const page = await context.newPage()
+  await page.goto(serverUrl + '/')
+  await page.waitForLoadState('networkidle')
+
+  // fill input to detect full page reload
+  const textInput = page.getByTestId('text-input')
+  await textInput.fill('page did not reload')
+
+  // wait for CSS elements
+  await page.waitForSelector('[data-testid="css-test-a"]')
+
+  // verify SSR CSS is present initially
+  const ssrBefore = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
+  expect(ssrBefore).toBe(true)
+
+  // edit CSS file to trigger HMR
+  editCSSFileB()
+
+  // wait for SSR CSS to be removed (this is the fix!)
+  await page.waitForFunction(
+    () => !document.querySelector('[data-ssr-css]'),
+    {},
+    { timeout: 10000 }
+  )
+
+  // verify SSR CSS is gone
+  const ssrAfter = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
+  expect(ssrAfter).toBe(false)
+
+  // verify no page reload
+  expect(await textInput.inputValue()).toBe('page did not reload')
+
+  await page.close()
 })

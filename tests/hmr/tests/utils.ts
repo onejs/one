@@ -64,6 +64,30 @@ export function editTestComponentContainingRelativeImportFile() {
   )
 }
 
+export function editCSSFileA() {
+  editFile(
+    path.join(root, 'components', 'css-a.css'),
+    'rgb(255, 0, 0)',
+    'rgb(255, 255, 0)' // red -> yellow
+  )
+}
+
+export function editCSSFileB() {
+  editFile(
+    path.join(root, 'components', 'css-b.css'),
+    'rgb(0, 255, 0)',
+    'rgb(255, 165, 0)' // green -> orange
+  )
+}
+
+export function editCSSFileC() {
+  editFile(
+    path.join(root, 'components', 'css-c.css'),
+    'rgb(0, 0, 255)',
+    'rgb(128, 0, 128)' // blue -> purple
+  )
+}
+
 export function revertEditedFiles() {
   const editedFiles = FSExtra.readJSONSync(editedFilesJsonPath, { throws: false }) || []
 
