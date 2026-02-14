@@ -1,3 +1,4 @@
+import type { One } from '../vite/types';
 export interface DynamicNameMatch {
     name: string;
     deep: boolean;
@@ -29,6 +30,21 @@ export declare function stripInvisibleSegmentsFromPath(path: string): string;
  *  - .d.ts files (type definition files)
  */
 export declare function isTypedRoute(name: string): boolean;
+export interface DirectoryRenderModeMatch {
+    /** Directory name without the render mode suffix */
+    name: string;
+    /** The render mode for this directory */
+    renderMode: One.RouteRenderMode | 'api';
+}
+/**
+ * Match directory render mode suffixes
+ *
+ * Examples:
+ *   - "dashboard+ssr" -> { name: "dashboard", renderMode: "ssr" }
+ *   - "blog+ssg" -> { name: "blog", renderMode: "ssg" }
+ *   - "admin+spa" -> { name: "admin", renderMode: "spa" }
+ */
+export declare function matchDirectoryRenderMode(name: string): DirectoryRenderModeMatch | undefined;
 /** Match @modal -> 'modal', @sidebar -> 'sidebar' */
 export declare function matchSlotName(name: string): string | undefined;
 /** Check if a directory name is a slot directory */
