@@ -5,8 +5,6 @@ import type { UserConfig } from 'vite'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const isSpaShellCase = process.env.ONE_ROUTER_ROOT?.includes('spa-shell')
-
 export default {
   root: __dirname,
 
@@ -20,11 +18,6 @@ export default {
         tsConfigPaths: {
           ignoreConfigErrors: true,
         },
-      },
-      web: {
-        ...(isSpaShellCase && {
-          renderRootLayout: 'always-static',
-        }),
       },
     }),
   ],
