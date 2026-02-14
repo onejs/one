@@ -90,6 +90,8 @@ export type RouteNode = {
     middlewares?: RouteNode[];
     /** Server-side path to the compiled loader module (set during build) */
     loaderServerPath?: string;
+    /** For layouts: the render mode if specified (e.g., _layout+ssg.tsx) */
+    layoutRenderMode?: One.RouteRenderMode;
     /** If this route is inside a slot directory, the slot name (e.g., "modal" from "@modal") */
     slotName?: string;
     /** If this route is an intercept route, information about what it intercepts */

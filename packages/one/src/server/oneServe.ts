@@ -306,9 +306,13 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        // for SPA/SSG routes, check if we need to SSR the root layout shell
+        // for SPA routes only, check if we need to SSR the root layout shell
+        // SSG routes should always serve their pre-built static HTML
         const renderRootLayout = oneOptions.web?.renderRootLayout
-        if (renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr') {
+        if (
+          route.type === 'spa' &&
+          (renderRootLayout === 'always-ssr' || renderRootLayout === 'static-or-ssr')
+        ) {
           try {
             // helper to import and run a single loader
             async function runShellLoader(
