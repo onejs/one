@@ -1,8 +1,27 @@
-import { type Browser, type BrowserContext, chromium } from 'playwright'
+import { type Browser, type BrowserContext, type Page, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL
 const isDebug = !!process.env.DEBUG
+
+// helper to wait for text content to contain a value (replaces fixed timeouts)
+async function waitForTextContent(
+  page: Page,
+  selector: string,
+  text: string,
+  timeout = 10000
+) {
+  await page.waitForFunction(
+    ([sel, txt]) => document.querySelector(sel)?.textContent?.includes(txt),
+    [selector, text] as const,
+    { timeout }
+  )
+}
+
+// helper to wait for URL to match
+async function waitForUrl(page: Page, url: string, timeout = 10000) {
+  await page.waitForURL(url, { timeout })
+}
 
 let browser: Browser
 let context: BrowserContext
@@ -45,10 +64,10 @@ describe('loader() SSG', () => {
       force: true,
     })
 
-    await new Promise((res) => setTimeout(res, 500))
+    await page.waitForURL(`${serverUrl}/loader/other`, { timeout: 5000 })
+    await waitForTextContent(page, '#loader-data-two', 'loader-success-two')
 
     expect(page.url()).toBe(`${serverUrl}/loader/other`)
-
     expect(await page.textContent('#loader-data-two')).toContain('loader-success-two')
 
     await page.close()
@@ -134,9 +153,9 @@ describe('loader() SSG', () => {
     console.log('Clicking refetch button')
     await page.click('#refetch-button')
 
-    // After refetch completes - increased timeout for CI
+    // After refetch completes
     console.log('Waiting for refetch to complete')
-    await new Promise((res) => setTimeout(res, 2000))
+    await waitForTextContent(page, '#refetch-button', 'Refetch')
 
     // Button should be back to "Refetch"
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
@@ -158,9 +177,17 @@ describe('loader() SSG', () => {
     const initialCount = await page.textContent('#spa-count')
     const initialCountNum = parseInt(initialCount?.match(/\d+/)?.[0] || '0')
 
-    // Click refetch
+    // Click refetch and wait for count to increment
     await page.click('#spa-refetch-btn')
-    await new Promise((res) => setTimeout(res, 1000))
+    await page.waitForFunction(
+      ([sel, prevCount]) => {
+        const text = document.querySelector(sel)?.textContent || ''
+        const count = parseInt(text.match(/\d+/)?.[0] || '0')
+        return count > prevCount
+      },
+      ['#spa-count', initialCountNum] as const,
+      { timeout: 10000 }
+    )
 
     // Count should have incremented
     const newCount = await page.textContent('#spa-count')
@@ -182,16 +209,21 @@ describe('loader() SSG', () => {
 
     // Navigate with new search params
     await page.click('#spa-search-test')
-    await new Promise((res) => setTimeout(res, 1000)) // Give more time for navigation
+    await waitForTextContent(page, '#spa-query', 'spa-test')
 
     expect(await page.textContent('#spa-query')).toContain('spa-test')
     const afterNavCountText = await page.textContent('#spa-call-count')
     const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || '0')
     expect(afterNavCount).toBeGreaterThan(initialCount)
 
-    // Manual refetch
+    // Manual refetch - wait for call count to change
+    const beforeRefetchText = await page.textContent('#spa-call-count')
     await page.click('#spa-refetch')
-    await new Promise((res) => setTimeout(res, 500))
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#spa-call-count', beforeRefetchText] as const,
+      { timeout: 10000 }
+    )
 
     const afterRefetchCountText = await page.textContent('#spa-call-count')
     const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || '0')
@@ -208,12 +240,13 @@ describe('loader() SSG', () => {
     expect(await page.textContent('#ssr-mode')).toBe('Mode: ssr')
     const initialTimestampText = await page.textContent('#ssr-call-count')
 
-    // Wait a bit to ensure timestamp will be different
-    await new Promise((res) => setTimeout(res, 100))
-
-    // Manual refetch
+    // Manual refetch - wait for call count to change
     await page.click('#ssr-refetch')
-    await new Promise((res) => setTimeout(res, 3000)) // increased timeout for CI
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#ssr-call-count', initialTimestampText] as const,
+      { timeout: 10000 }
+    )
 
     // Timestamp should have changed
     const afterRefetchTimestampText = await page.textContent('#ssr-call-count')
@@ -237,17 +270,21 @@ describe('loader() SSG', () => {
 
     // Navigate with new search params
     await page.click('#ssr-search-test')
-    await new Promise((res) => setTimeout(res, 1000))
+    await waitForTextContent(page, '#ssr-query', 'ssr-test')
 
     expect(await page.textContent('#ssr-query')).toContain('ssr-test')
     const afterNavCountText = await page.textContent('#ssr-call-count')
     const afterNavCount = parseInt(afterNavCountText?.match(/\d+/)?.[0] || '0')
     expect(afterNavCount).toBeGreaterThan(initialCount)
 
-    // Manual refetch - in a browser environment this should run on client
-    // but in test environment it might still run on server
+    // Manual refetch - wait for count to change
+    const beforeRefetchText = await page.textContent('#ssr-call-count')
     await page.click('#ssr-refetch')
-    await new Promise((res) => setTimeout(res, 500))
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#ssr-call-count', beforeRefetchText] as const,
+      { timeout: 10000 }
+    )
 
     const afterRefetchCountText = await page.textContent('#ssr-call-count')
     const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || '0')
@@ -283,8 +320,13 @@ describe('loader() SSG', () => {
 
     // Test multiple rapid refetches
     for (let i = 0; i < 3; i++) {
+      const beforeText = await page.textContent('#loader-timestamp')
       await page.click('#refetch-button')
-      await new Promise((res) => setTimeout(res, 500))
+      await page.waitForFunction(
+        ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+        ['#loader-timestamp', beforeText] as const,
+        { timeout: 10000 }
+      )
     }
 
     // Timestamp should have changed after refetches
@@ -304,10 +346,10 @@ describe('loader() SSG', () => {
 
     // Preload both pages to avoid dev mode rebuild issues
     await page.goto(serverUrl + '/loader-state/page1')
-    await new Promise((res) => setTimeout(res, 500))
+    await page.waitForSelector('#page-name', { timeout: 5000 })
 
     await page.goto(serverUrl + '/loader-state/page2')
-    await new Promise((res) => setTimeout(res, 500))
+    await page.waitForSelector('#page-name', { timeout: 5000 })
 
     // Now start the actual test - go back to page1
     await page.goto(serverUrl + '/loader-state/page1')
@@ -318,8 +360,13 @@ describe('loader() SSG', () => {
     console.log('Page1 initial count:', page1InitialCount)
 
     // Manual refetch on page1
+    const page1BeforeText = await page.textContent('#call-count')
     await page.click('#refetch-btn')
-    await new Promise((res) => setTimeout(res, 1000))
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#call-count', page1BeforeText] as const,
+      { timeout: 10000 }
+    )
 
     const page1AfterRefetch = parseInt(
       (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
@@ -329,7 +376,7 @@ describe('loader() SSG', () => {
 
     // Navigate to page2
     await page.click('#go-to-page2')
-    await new Promise((res) => setTimeout(res, 1000))
+    await waitForTextContent(page, '#page-name', 'page2')
 
     expect(await page.textContent('#page-name')).toBe('Page: page2')
     const page2InitialCount = parseInt(
@@ -338,8 +385,13 @@ describe('loader() SSG', () => {
     console.log('Page2 initial count:', page2InitialCount)
 
     // Manual refetch on page2
+    const page2BeforeText = await page.textContent('#call-count')
     await page.click('#refetch-btn')
-    await new Promise((res) => setTimeout(res, 1000))
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#call-count', page2BeforeText] as const,
+      { timeout: 10000 }
+    )
 
     const page2AfterRefetch = parseInt(
       (await page.textContent('#call-count'))?.match(/\d+/)?.[0] || '0'
@@ -386,10 +438,15 @@ describe('loader() SSG', () => {
     // Click refetch
     console.log('Clicking refetch button')
     await page.waitForSelector('#refetch-btn', { state: 'visible' })
+    const beforeRefetchText = await page.textContent('#timestamp')
     await page.click('#refetch-btn')
 
-    console.log('Waiting 3 seconds for refetch to complete')
-    await new Promise((res) => setTimeout(res, 3000))
+    console.log('Waiting for refetch to complete')
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#timestamp', beforeRefetchText] as const,
+      { timeout: 10000 }
+    )
 
     // Check if data changed
     console.log('Checking if data changed')
@@ -418,7 +475,7 @@ describe('loader() SSG', () => {
     console.log('Button text during refetch:', buttonText)
 
     // Wait for completion
-    await new Promise((res) => setTimeout(res, 500))
+    await waitForTextContent(page, '#load-state', 'idle')
 
     // Should be back to idle
     expect(await page.textContent('#load-state')).toBe('State: idle')
@@ -436,7 +493,7 @@ describe('loader() SSG', () => {
 
     console.log('Navigating to /shared-cache')
     await page.goto(serverUrl + '/shared-cache')
-    await new Promise((res) => setTimeout(res, 1000))
+    await page.waitForSelector('#useloader-timestamp', { timeout: 5000 })
 
     // Wait for client-side rendering
     await page.waitForFunction(
@@ -461,10 +518,15 @@ describe('loader() SSG', () => {
 
     // Refetch using useLoaderState
     console.log('Clicking refetch button')
+    const beforeRefetch = await page.textContent('#useloader-timestamp')
     await page.click('#refetch-btn')
 
     console.log('Waiting for refetch to complete')
-    await new Promise((res) => setTimeout(res, 2000))
+    await page.waitForFunction(
+      ([sel, prev]) => document.querySelector(sel)?.textContent !== prev,
+      ['#useloader-timestamp', beforeRefetch] as const,
+      { timeout: 10000 }
+    )
 
     // Get new data from both hooks
     const newUseLoaderText = await page.textContent('#useloader-timestamp')
@@ -593,8 +655,8 @@ describe('useMatches()', () => {
     await page.click('#link-to-page2')
     await page.waitForURL(`${serverUrl}/matches-test/page2`, { timeout: 5000 })
 
-    // give client time to update
-    await new Promise((res) => setTimeout(res, 500))
+    // wait for page2 content to load
+    await waitForTextContent(page, '#page-title', 'Page 2')
 
     // debug: show all matches after navigation
     const allMatches = await page.textContent('#all-matches-debug')
@@ -865,7 +927,7 @@ describe('useMatches()', () => {
     // navigate to SPA page
     await page.click('a[href="/matches-test/spa-page"]')
     await page.waitForURL(`${serverUrl}/matches-test/spa-page`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '#page-title', 'SPA Page')
 
     // verify SPA page data loaded
     const spaTitle = await page.textContent('#page-title')
@@ -895,7 +957,7 @@ describe('useMatches()', () => {
     // navigate to SSR page
     await page.click('#link-to-ssr')
     await page.waitForURL(`${serverUrl}/matches-test/ssr-page`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '#page-title', 'SSR Page')
 
     // verify SSR page data loaded
     const ssrTitle = await page.textContent('#page-title')
@@ -921,7 +983,7 @@ describe('useMatches()', () => {
     // navigate to SSG page
     await page.click('#link-to-ssg')
     await page.waitForURL(`${serverUrl}/matches-test/page1`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '#page-title', 'Page 1')
 
     // verify SSG page data loaded
     const ssgTitle = await page.textContent('#page-title')
@@ -947,7 +1009,7 @@ describe('useMatches()', () => {
     // client navigate to hooks-test page (same layout)
     await page.click('#link-to-hooks-test')
     await page.waitForURL(`${serverUrl}/matches-test/hooks-test`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '[data-testid="layout-match-found"]', 'yes')
 
     // useMatch should still find layout data after client navigation
     const layoutMatchFound = await page.textContent('[data-testid="layout-match-found"]')
@@ -975,12 +1037,12 @@ describe('useMatches()', () => {
     // navigate to page1
     await page.click('#link-to-page1')
     await page.waitForURL(`${serverUrl}/matches-test/page1`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '#page-title', 'Page 1')
 
     // navigate back to hooks-test
     await page.click('#link-to-hooks-test')
     await page.waitForURL(`${serverUrl}/matches-test/hooks-test`, { timeout: 5000 })
-    await new Promise((r) => setTimeout(r, 500))
+    await waitForTextContent(page, '[data-testid="layout-match-found"]', 'yes')
 
     // layout data should still be available
     const afterNavData = await page.textContent('[data-testid="layout-match-data"]')
