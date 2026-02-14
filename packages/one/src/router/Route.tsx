@@ -98,6 +98,9 @@ export type RouteNode = {
   /** Server-side path to the compiled loader module (set during build) */
   loaderServerPath?: string
 
+  /** For layouts: the render mode if specified (e.g., _layout+ssg.tsx) */
+  layoutRenderMode?: One.RouteRenderMode
+
   // ============================================
   // Parallel Routes & Intercepting Routes
   // ============================================

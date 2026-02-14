@@ -336,6 +336,11 @@ if (typeof document === 'undefined') globalThis.document = {}
           const renderPreloads = criticalPreloads || preloads
           const renderDeferredPreloads = deferredPreloads || []
 
+          // for spa-shell, include layout matches (not page match)
+          // matches array at this point has: [layout1, layout2, ..., page]
+          // we want just the layouts for spa-shell
+          const layoutMatches = matches.slice(0, -1)
+
           t0 = performance.now()
           let html = await render({
             path,
@@ -347,7 +352,7 @@ if (typeof document === 'undefined') globalThis.document = {}
             cssContents: allCSSContents,
             mode: 'spa-shell',
             routePreloads,
-            matches: [],
+            matches: layoutMatches,
           })
           recordTiming('spaShellRender', performance.now() - t0)
 

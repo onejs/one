@@ -123,9 +123,17 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
     }
 
     const type = meta.isLayout ? 'layout' : meta.renderMode || getDefaultRenderMode()
+    // for layouts, capture their render mode if specified (e.g., _layout+ssg.tsx)
+    // filter out 'api' since layouts can't have api render mode
+    const layoutRenderMode =
+      meta.isLayout && meta.renderMode && meta.renderMode !== 'api'
+        ? meta.renderMode
+        : undefined
 
     let node: RouteNode = {
       type,
+      // store layout render mode if this is a layout with an explicit mode
+      ...(layoutRenderMode && { layoutRenderMode }),
 
       loadRoute() {
         if (options.ignoreRequireErrors) {

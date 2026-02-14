@@ -9,6 +9,7 @@ declare module 'one' {
       StaticRoutes: 
         | `/`
         | `/(app)`
+        | `/(app)/dashboard`
         | `/(app)/dashboard/(tabs)/settings`
         | `/(app)/dashboard/settings`
         | `/(app)/home`
@@ -43,8 +44,10 @@ declare module 'one' {
         | `/_old-`
         | `/_sitemap`
         | `/about`
+        | `/api-test/users`
         | `/auth-guard`
         | `/blog/my-first-post`
+        | `/dashboard`
         | `/dashboard/(tabs)/settings`
         | `/dashboard/settings`
         | `/delay-test`
@@ -55,6 +58,10 @@ declare module 'one' {
         | `/docs/page-3`
         | `/expo-video`
         | `/flicker-home`
+        | `/folder-modes`
+        | `/folder-modes/analytics`
+        | `/folder-modes/nested/report`
+        | `/folder-modes/override`
         | `/home`
         | `/hooks`
         | `/hooks/cases/navigating-into-nested-navigator`
@@ -104,6 +111,7 @@ declare module 'one' {
         | `/ssr/basic`
         | `/ssr/cache-headers`
         | `/ssr/request-test`
+        | `/ssr/tamagui-hydration`
         | `/sticky-test`
         | `/sub-page`
         | `/sub-page/sub`
