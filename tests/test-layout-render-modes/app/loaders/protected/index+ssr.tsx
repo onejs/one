@@ -21,7 +21,7 @@ export default function ProtectedIndex() {
       <p id="protected-index-matches">Matches: {matches.length}</p>
       <p id="protected-secret">{data.secretData}</p>
       <p id="protected-user-from-layout">
-        User from layout: {layoutMatch?.loaderData?.user || 'none'}
+        User from layout: {(layoutMatch?.loaderData as any)?.user || 'none'}
       </p>
       <Link href="/loaders/protected/dashboard?auth=true" id="link-dashboard">
         Dashboard
