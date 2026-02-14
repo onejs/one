@@ -53,7 +53,15 @@ async function getResponseWithAddedHeaders(response: any, id: object) {
         if (response && typeof response === 'object') {
           response = Response.json(response, { headers: asyncHeaders })
         } else {
-          response = new Response(response as any, { headers: asyncHeaders })
+          // for string responses (like html), we need to preserve content-type
+          // if not explicitly set in asyncHeaders
+          const headers = new Headers(asyncHeaders)
+          if (!headers.has('content-type')) {
+            // assume html for string responses since that's the common case
+            // (dev mode returns html strings from handlePage)
+            headers.set('content-type', 'text/html')
+          }
+          response = new Response(response as any, { headers })
         }
       }
     } catch (err) {

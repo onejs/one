@@ -69,4 +69,30 @@ describe('Cache Headers / ISR', () => {
       expect(testHeader).toBe('test-value')
     })
   })
+
+  describe('setResponseHeaders with cookies', () => {
+    it('should set cookie without breaking content-type', async () => {
+      const response = await fetch(`${serverUrl}/ssr/cookie-test`)
+
+      expect(response.status).toBe(200)
+
+      // verify cookie is set
+      const setCookie = response.headers.get('set-cookie')
+      expect(setCookie).toContain('test-cookie=hello')
+
+      // verify content-type is still text/html (this is the bug!)
+      const contentType = response.headers.get('content-type')
+      expect(contentType).toContain('text/html')
+    })
+
+    it('should render the page as HTML', async () => {
+      const response = await fetch(`${serverUrl}/ssr/cookie-test`)
+      const html = await response.text()
+
+      // verify we get HTML back, not plain text
+      expect(html).toContain('<!DOCTYPE html>')
+      expect(html).toContain('<html')
+      expect(html).toContain('Cookie test page')
+    })
+  })
 })
