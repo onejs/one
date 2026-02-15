@@ -2,7 +2,7 @@
   "name": "one-vscode",
   "displayName": "One Framework",
   "description": "VSCode integration for One framework - live element highlighting",
-  "version": "1.6.20",
+  "version": "1.8.0",
   "private": true,
   "publisher": "one",
   "engines": {
