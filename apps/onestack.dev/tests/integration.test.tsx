@@ -17,8 +17,12 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  await browser.close()
-}, 30000)
+  try {
+    await browser.close()
+  } catch {
+    // force kill if close hangs
+  }
+}, 60000)
 
 test('homepage loads with no error logs', async () => {
   const page = await context.newPage()
