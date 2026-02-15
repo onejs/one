@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "one dev",
+    "test": "TEST_ONLY=dev vitest --run",
     "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
-    "test-ios:prod": ":",
-    "test-macos": "TEST_ONLY=dev vitest"
+    "test-ios:prod": ":"
   },
   "dependencies": {
     "@react-navigation/native": "~7.1.19",

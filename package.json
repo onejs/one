@@ -57,7 +57,6 @@
     "tray": "cd apps/one-tray && bun run tray",
     "test-ios": "./scripts/test-ios.sh",
     "test-ios:run": "turbo run test-ios --concurrency=1",
-    "test-macos": "turbo run test-macos",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "test:one": "cd packages/one && bun run test",
     "test:one:dev": "cd packages/one && bun run test:dev",

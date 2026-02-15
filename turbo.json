@@ -28,10 +28,6 @@
       "dependsOn": ["^build:js"],
       "outputs": []
     },
-    "test-macos": {
-      "cache": false,
-      "outputs": []
-    },
     "test-ios": {
       "cache": false,
       "outputs": [],
