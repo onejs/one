@@ -31,6 +31,10 @@ export async function getViteServerConfig(
         },
         host: server.host,
         port: server.port,
+        // prevent safari from caching stale JS/HTML in dev
+        headers: {
+          'Cache-Control': 'no-store',
+        },
       },
       root,
     } satisfies UserConfig)
