@@ -574,6 +574,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
               })
 
+              // prevent browsers (safari) from caching stale html/js in dev
+              if (
+                !reply.headers.has('cache-control') &&
+                !reply.headers.has('Cache-Control')
+              ) {
+                res.setHeader('Cache-Control', 'no-store')
+              }
+
               if (isStatusRedirect(reply.status)) {
                 const location = `${reply.headers.get('location') || ''}`
                 if (debugRouter) {
