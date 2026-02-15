@@ -546,6 +546,14 @@ describe('Protection Patterns (Loader-based)', () => {
     // should be on protected page
     expect(page.url()).toContain('/loaders/protected?auth=true')
 
+    // page should render with its own loader data
+    expect(await page.textContent('#protected-secret')).toContain(
+      'you-can-see-this-because-you-are-authenticated'
+    )
+
+    // page should access layout loader data via useMatches
+    expect(await page.textContent('#protected-user-from-layout')).toContain('test-user')
+
     await page.close()
   })
 
