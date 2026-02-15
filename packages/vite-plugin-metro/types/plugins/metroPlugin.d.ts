@@ -35,6 +35,14 @@ export type MetroPluginOptions = {
      * the `main` field in `package.json`.
      */
     mainModuleName?: string;
+    /**
+     * Controls when Metro bundler starts:
+     * - 'eager' (default): Start Metro as soon as Vite server is listening
+     * - 'lazy': Defer Metro startup until a bundle request or simulator connection is detected
+     *
+     * Use 'lazy' to speed up dev server startup when you don't always need Metro.
+     */
+    startup?: 'eager' | 'lazy';
 };
 export declare function metroPlugin(options?: MetroPluginOptions): PluginOption;
 export {};

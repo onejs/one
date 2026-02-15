@@ -218,6 +218,8 @@ Choose the bundler for native builds. Options are:
 - Battle-tested stability
 - Standard React Native bundling behavior
 
+When using Metro mode, you can also configure `bundlerOptions.startup: 'lazy'` to defer Metro startup until a native client connects, which speeds up dev server startup when you don't always need native builds.
+
 For detailed information including limitations, configuration options, and performance considerations, see the [Metro Mode documentation](/docs/metro-mode).
 
 ### native.css
