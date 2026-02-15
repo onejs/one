@@ -166,16 +166,19 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
             ...devMiddleware.websocketEndpoints,
           }
 
-          // Setup websocket handling
+          // Setup websocket handling for Metro-specific endpoints only
+          // Other paths (like Vite's /__vxrnhmr) are handled by Vite's internal HMR
           server.httpServer?.on('upgrade', (request, socket, head) => {
             const pathname = new URL(request.url!, `http://${request.headers.host}`)
               .pathname
 
-            if (websocketEndpoints[pathname]) {
-              websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
-                websocketEndpoints[pathname].emit('connection', ws, request)
+            const endpoint = websocketEndpoints[pathname]
+            if (endpoint) {
+              endpoint.handleUpgrade(request, socket, head, (ws) => {
+                endpoint.emit('connection', ws, request)
               })
             }
+            // if no endpoint matches, let other handlers (like Vite's HMR) handle it
           })
 
           // Insert devtools middleware

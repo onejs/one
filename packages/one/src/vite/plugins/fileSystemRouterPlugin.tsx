@@ -514,6 +514,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       // we're interested in.
       return () => {
         server.middlewares.use(async (req, res, next) => {
+          // prevent browsers (safari) from caching stale html/js in dev
+          res.setHeader('Cache-Control', 'no-store')
+
           try {
             const redirects = options.web?.redirects
             if (redirects) {
@@ -573,14 +576,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                   res.setHeader(key, value)
                 }
               })
-
-              // prevent browsers (safari) from caching stale html/js in dev
-              if (
-                !reply.headers.has('cache-control') &&
-                !reply.headers.has('Cache-Control')
-              ) {
-                res.setHeader('Cache-Control', 'no-store')
-              }
 
               if (isStatusRedirect(reply.status)) {
                 const location = `${reply.headers.get('location') || ''}`
