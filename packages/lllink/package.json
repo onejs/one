@@ -1,6 +1,6 @@
 {
   "name": "lllink",
-  "version": "1.8.0-1771176723058",
+  "version": "1.8.0-1771179611728",
   "type": "module",
   "module": "dist",
   "exports": {
