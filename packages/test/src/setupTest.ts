@@ -29,9 +29,14 @@ export type TestInfo = {
   testDir: string
 }
 
+// CI environments may have slower startup due to resource contention
+const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true'
+const DEFAULT_MAX_RETRIES = isCI ? 960 : 480 // 4 min on CI, 2 min locally
+const DEFAULT_RETRY_INTERVAL = 250
+
 const waitForServer = (
   url: string,
-  { maxRetries = 480, retryInterval = 250, getServerOutput = () => '' }
+  { maxRetries = DEFAULT_MAX_RETRIES, retryInterval = DEFAULT_RETRY_INTERVAL, getServerOutput = () => '' }
 ): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
@@ -59,6 +64,10 @@ const waitForServer = (
           )
         } else {
           retries++
+          // log progress every 30 seconds on CI to show we're still waiting
+          if (isCI && retries % 120 === 0) {
+            console.info(`Still waiting for ${url}... (${Math.round((performance.now() - startedAt) / 1000)}s)`)
+          }
           setTimeout(checkServer, retryInterval)
         }
       }
