@@ -88,6 +88,41 @@ module.exports = config;
 
 These configuration files work exactly as they would in a standard React Native project, giving you full control over the bundling process.
 
+## Lazy Startup
+
+By default, Metro starts as soon as the Vite dev server is ready. If you're primarily doing web development but have Metro configured, you can defer Metro startup until a native client actually connects:
+
+```tsx fileName=vite.config.ts
+import type { UserConfig } from 'vite'
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        bundler: 'metro',
+        bundlerOptions: {
+          startup: 'lazy',
+        },
+      },
+    }),
+  ],
+} satisfies UserConfig
+```
+
+Or via environment variable:
+
+```sh
+ONE_METRO_LAZY=1 one dev
+```
+
+With lazy startup:
+- Metro won't start when you run `one dev`
+- When a simulator or device connects and checks `/status`, it gets an immediate response while Metro starts in the background
+- The first bundle request waits for Metro to finish initializing
+
+This can significantly speed up dev server startup when you don't always need native builds.
+
 ## Performance
 
 Metro mode is designed for production stability, but it may not match the performance of Vite as it is not optimized for speed, and is using Babel instead of SWC for transformations. However, we observed that Metro mode somehow provides better memory efficiency.

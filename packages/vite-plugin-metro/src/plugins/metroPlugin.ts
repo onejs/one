@@ -58,6 +58,14 @@ export type MetroPluginOptions = {
    * the `main` field in `package.json`.
    */
   mainModuleName?: string
+  /**
+   * Controls when Metro bundler starts:
+   * - 'eager' (default): Start Metro as soon as Vite server is listening
+   * - 'lazy': Defer Metro startup until a bundle request or simulator connection is detected
+   *
+   * Use 'lazy' to speed up dev server startup when you don't always need Metro.
+   */
+  startup?: 'eager' | 'lazy'
 }
 
 export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
@@ -184,45 +192,86 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
         }
       }
 
-      // Wait for Vite server to be listening before starting Metro
-      // This ensures Metro logs appear AFTER Vite's server URLs
-      if (server.httpServer) {
-        if (server.httpServer.listening) {
-          // Server is already listening (unlikely but handle it)
-          startMetro().catch((err) => {
-            debug?.(`Failed to start Metro: ${err}`)
-          })
-        } else {
-          server.httpServer.on('listening', () => {
+      const isLazyStartup = options.startup === 'lazy'
+
+      // for lazy startup, we start Metro on-demand when a request triggers it
+      let metroStarting = false
+      const ensureMetroStarted = () => {
+        if (metroStarting || metroReady) return
+        metroStarting = true
+        debug?.('Starting Metro on-demand (lazy startup)')
+        startMetro().catch((err) => {
+          debug?.(`Failed to start Metro: ${err}`)
+        })
+      }
+
+      // Wait for Vite server to be listening before starting Metro (eager mode)
+      // For lazy mode, we defer startup until a request triggers it
+      if (!isLazyStartup) {
+        if (server.httpServer) {
+          if (server.httpServer.listening) {
+            // Server is already listening (unlikely but handle it)
             startMetro().catch((err) => {
               debug?.(`Failed to start Metro: ${err}`)
             })
-          })
-        }
-      } else {
-        // No httpServer yet, wait for it via a small delay and retry
-        // This shouldn't normally happen but is a safety fallback
-        const waitForServer = () => {
-          if (server.httpServer) {
-            if (server.httpServer.listening) {
+          } else {
+            server.httpServer.on('listening', () => {
               startMetro().catch((err) => {
                 debug?.(`Failed to start Metro: ${err}`)
               })
-            } else {
-              server.httpServer.on('listening', () => {
+            })
+          }
+        } else {
+          // No httpServer yet, wait for it via a small delay and retry
+          // This shouldn't normally happen but is a safety fallback
+          const waitForServer = () => {
+            if (server.httpServer) {
+              if (server.httpServer.listening) {
                 startMetro().catch((err) => {
                   debug?.(`Failed to start Metro: ${err}`)
                 })
-              })
+              } else {
+                server.httpServer.on('listening', () => {
+                  startMetro().catch((err) => {
+                    debug?.(`Failed to start Metro: ${err}`)
+                  })
+                })
+              }
+            } else {
+              setTimeout(waitForServer, 10)
             }
-          } else {
-            setTimeout(waitForServer, 10)
           }
+          waitForServer()
         }
-        waitForServer()
+      } else {
+        debug?.('Metro lazy startup enabled - will start on first native request')
       }
 
       server.middlewares.use(async (req, res, next) => {
+        const isNativeRequest =
+          req.headers['user-agent']?.includes('CFNetwork/') ||
+          req.headers['user-agent']?.includes('okhttp/')
+
+        // trigger lazy startup on bundle requests or native client connections
+        if (isLazyStartup && !metroReady) {
+          if (
+            req.url?.includes('.bundle') ||
+            (req.url === '/status' && isNativeRequest)
+          ) {
+            ensureMetroStarted()
+          }
+        }
+
+        // Handle `isPackagerRunning` request from native app.
+        // This must be handled before waiting for Metro, so simulators get an immediate response
+        // while Metro starts in the background (important for lazy startup mode)
+        // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
+        if (req.url === '/status' && isNativeRequest) {
+          res.statusCode = 200
+          res.end('packager-status:running')
+          return
+        }
+
         // Wait for Metro if it's a bundle request and Metro isn't ready yet
         if (req.url?.includes('.bundle') && !metroReady) {
           await metroPromise
@@ -243,21 +292,6 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
                   return
                 }
               }
-            }
-
-            // Handle `isPackagerRunning` request from native app.
-            // Without this, people may see a `No script URL provided. Make sure the packager is running or you have embedded a JS bundle in your application bundle.`, `unsanitizedScriptURLString = (null)` error in their native app running with the "Debug" configuration.
-            // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
-            if (
-              req.url === '/status' &&
-              // The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app.
-              // Failing to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
-              (req.headers['user-agent']?.includes('CFNetwork/' /* iOS */) ||
-                req.headers['user-agent']?.includes('okhttp/' /* Android */))
-            ) {
-              res.statusCode = 200
-              res.end('packager-status:running')
-              return
             }
 
             if (req.url === '/open-stack-frame' && req.method === 'POST') {

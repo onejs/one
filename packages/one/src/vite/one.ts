@@ -100,6 +100,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ],
       },
       mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
+      // allow env var to enable lazy startup
+      startup: process.env.ONE_METRO_LAZY ? 'lazy' : userMetroOptions?.startup,
     }
   })()
 
