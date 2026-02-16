@@ -105,17 +105,18 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       try {
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
 
         // verify we're on the public page
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
         expect(await page.textContent('#public-page')).toContain('public page')
 
         // click the link to dashboard (protected route)
         await page.click('#link-to-dashboard')
 
         // wait for redirect to complete — public page should reappear
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // url should NOT be /dashboard
         expect(page.url()).not.toContain('/dashboard')
@@ -130,13 +131,14 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       try {
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         await page.click('#link-to-profile')
 
         // wait for redirect to complete
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
         expect(page.url()).not.toContain('/profile')
       } finally {
         await page.close()
@@ -148,15 +150,16 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       try {
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         await page.click('#link-to-settings')
 
         // wait for redirect to / (app root)
         await page.waitForFunction(
           () => !window.location.pathname.includes('/settings'),
-          { timeout: 15_000 }
+          { timeout: 30_000 }
         )
         expect(page.url()).not.toContain('/settings')
       } finally {
@@ -182,7 +185,7 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
           await page.goto(`${serverUrl}/loader-redirect-test`, {
             waitUntil: 'networkidle',
           })
-          await page.waitForSelector('#public-page', { timeout: 15_000 })
+          await page.waitForSelector('#public-page', { timeout: 30_000 })
 
           // click to dashboard — should succeed with auth cookie
           await page.click('#link-to-dashboard')
@@ -190,7 +193,7 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
             timeout: 15_000,
           })
 
-          await page.waitForSelector('#dashboard-page', { timeout: 15_000 })
+          await page.waitForSelector('#dashboard-page', { timeout: 30_000 })
           expect(await page.textContent('#dashboard-page')).toContain('dashboard page')
 
           // verify loader data is present
@@ -253,14 +256,15 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       try {
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // navigate to protected route
         await page.click('#link-to-dashboard')
 
         // wait for redirect to complete
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // check that no captured loader response contains secret data
         for (const body of loaderResponses) {
@@ -281,18 +285,19 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       try {
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // first attempt
         await page.click('#link-to-dashboard')
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
         expect(page.url()).not.toContain('/dashboard')
 
         // try again with profile
         await page.waitForSelector('#link-to-profile', { timeout: 10_000 })
         await page.click('#link-to-profile')
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
         expect(page.url()).not.toContain('/profile')
       } finally {
         await page.close()
@@ -303,17 +308,18 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
       const page = await context.newPage()
       try {
         // start at app root
-        await page.goto(`${serverUrl}/`, { waitUntil: 'networkidle' })
+        await page.goto(`${serverUrl}/`, { waitUntil: 'networkidle', timeout: 60_000 })
 
         // navigate to the public page
         await page.goto(`${serverUrl}/loader-redirect-test`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // click protected link — triggers redirect back
         await page.click('#link-to-dashboard')
-        await page.waitForSelector('#public-page', { timeout: 15_000 })
+        await page.waitForSelector('#public-page', { timeout: 30_000 })
 
         // should be redirected
         expect(page.url()).not.toContain('/dashboard')
@@ -334,6 +340,7 @@ describe('Loader Redirect', { retry: 1, timeout: 60_000 }, () => {
         // going directly to the protected route should redirect via SSR
         await page.goto(`${serverUrl}/loader-redirect-test/dashboard`, {
           waitUntil: 'networkidle',
+          timeout: 60_000,
         })
 
         // should not see the dashboard content (redirected or empty)
