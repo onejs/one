@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/query-string",
-  "version": "1.8.0-1771185195516",
+  "version": "1.8.3",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
@@ -36,7 +36,7 @@
     "query-string": "^9.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "2.0.0-rc.7"
+    "@tamagui/build": "2.0.0-rc.13"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/react-native-prebuilt",
-  "version": "1.8.0-1771185195516",
+  "version": "1.8.3",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -43,7 +43,7 @@
     "import-meta-resolve": "^4.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "2.0.0-rc.7",
+    "@tamagui/build": "2.0.0-rc.13",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
