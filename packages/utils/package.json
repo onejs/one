@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.8.0-1771185195516",
+  "version": "1.8.3",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
@@ -37,7 +37,7 @@
     "@vxrn/resolve": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "2.0.0-rc.7"
+    "@tamagui/build": "2.0.0-rc.13"
   },
   "publishConfig": {
     "access": "public"

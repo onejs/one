@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/resolve",
-  "version": "1.8.0-1771185195516",
+  "version": "1.8.3",
   "sideEffects": false,
   "source": "src/index.tsx",
   "type": "module",
@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@tamagui/build": "2.0.0-rc.7",
+    "@tamagui/build": "2.0.0-rc.13",
     "vitest": "^4.0.6"
   },
   "publishConfig": {
