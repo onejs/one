@@ -1018,6 +1018,18 @@ export async function linkTo(
     return
   }
 
+  // detect loader 404 signal before proceeding with navigation
+  // (e.g., SSG route where the slug wasn't in generateStaticParams)
+  if (preloadResult?.__oneError === 404) {
+    delete preloadedLoaderData[normalizedPreloadPath]
+    delete preloadingLoader[normalizedPreloadPath]
+    delete preloadedLoaderData[href]
+    delete preloadingLoader[href]
+    setLoadingState('loaded')
+    linkTo('/+not-found', 'REPLACE')
+    return
+  }
+
   // Run async route validation before navigation
   const matchingRouteNode = findRouteNodeFromState(state, routeNode)
   if (matchingRouteNode?.loadRoute) {

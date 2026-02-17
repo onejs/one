@@ -165,6 +165,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
     }
 
     // detect 404 error signal during refetch
+    // don't clear data - keep existing data while navigating to not-found
     if (result?.__oneError === 404) {
       recordLoaderTiming?.({
         path: pathname,
@@ -173,11 +174,6 @@ export async function refetchLoader(pathname: string): Promise<void> {
         executionTime,
         totalTime,
         source: 'refetch',
-      })
-      updateState(pathname, {
-        data: undefined,
-        state: 'idle',
-        hasLoadedOnce: true,
       })
       router.replace('/+not-found')
       return
@@ -398,6 +394,7 @@ export function useLoaderState<
               }
 
               // detect 404 error signal on native
+              // don't update state so the component stays suspended while navigating
               if (data?.__oneError === 404) {
                 recordLoaderTiming?.({
                   path: currentPath,
@@ -407,13 +404,9 @@ export function useLoaderState<
                   totalTime,
                   source: 'initial',
                 })
-                updateState(currentPath, {
-                  data: undefined,
-                  hasLoadedOnce: true,
-                  promise: undefined,
-                })
                 router.replace('/+not-found')
-                return
+                // keep component suspended until navigation unmounts it
+                await new Promise(() => {})
               }
 
               updateState(currentPath, {
@@ -491,6 +484,7 @@ export function useLoaderState<
           }
 
           // detect 404 error signal - navigate to not-found page
+          // don't update state so the component stays suspended while navigating
           if (result?.__oneError === 404) {
             recordLoaderTiming?.({
               path: currentPath,
@@ -500,13 +494,9 @@ export function useLoaderState<
               totalTime,
               source: 'initial',
             })
-            updateState(currentPath, {
-              data: undefined,
-              hasLoadedOnce: true,
-              promise: undefined,
-            })
             router.replace('/+not-found')
-            return
+            // keep component suspended until navigation unmounts it
+            await new Promise(() => {})
           }
 
           updateState(currentPath, {

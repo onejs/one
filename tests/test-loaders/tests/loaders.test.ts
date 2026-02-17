@@ -1052,3 +1052,251 @@ describe('useMatches()', () => {
     await page.close()
   })
 })
+
+describe('not-found with loaders', () => {
+  // helper: collect console errors during a page visit
+  function collectErrors(page: Page) {
+    const errors: string[] = []
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') errors.push(msg.text())
+    })
+    page.on('pageerror', (err) => errors.push(err.message))
+    return errors
+  }
+
+  // -- valid slugs still work --
+
+  test('valid deep slug with loader renders correctly', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    await page.goto(serverUrl + '/not-found/deep/valid-item')
+    await page.waitForSelector('#deep-title', { timeout: 10000 })
+
+    expect(await page.textContent('#deep-title')).toBe('Deep: valid-item')
+    expect(await page.textContent('#deep-content')).toBe('content for valid-item')
+    expect(errors.filter((e) => e.includes('Cannot destructure'))).toHaveLength(0)
+
+    await page.close()
+  })
+
+  test('valid fallback slug with loader renders correctly', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    await page.goto(serverUrl + '/not-found/fallback/valid-entry')
+    await page.waitForSelector('#fallback-title', { timeout: 10000 })
+
+    expect(await page.textContent('#fallback-title')).toBe('Fallback: valid-entry')
+    expect(await page.textContent('#fallback-content')).toBe('content for valid-entry')
+    expect(errors.filter((e) => e.includes('Cannot destructure'))).toHaveLength(0)
+
+    await page.close()
+  })
+
+  // -- missing slug: nested +not-found exists --
+
+  test('missing slug with nested +not-found shows 404 without crashing', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    const response = await page.goto(serverUrl + '/not-found/deep/missing-item', {
+      timeout: 30000,
+    })
+    await page.waitForLoadState('networkidle')
+
+    // server should return 404 status
+    expect(response?.status()).toBe(404)
+
+    // should show the nested not-found page content
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+    expect(await page.textContent('#not-found-message')).toBe('deep not found')
+
+    // no destructuring crashes
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  // -- missing slug: no nested +not-found, falls back to root --
+
+  test('missing slug without nested +not-found falls back to root 404', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    const response = await page.goto(serverUrl + '/not-found/fallback/missing-entry', {
+      timeout: 30000,
+    })
+    await page.waitForLoadState('networkidle')
+
+    // server should return 404 status
+    expect(response?.status()).toBe(404)
+
+    // should show root not-found content (no nested +not-found in fallback/)
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+    expect(await page.textContent('#not-found-message')).toBe('root not found')
+
+    // no destructuring crashes
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  // -- missing slug on posts (no +not-found at all in posts/) --
+
+  test('missing post slug shows root 404 without crashing', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    const response = await page.goto(serverUrl + '/posts/nonexistent-post', {
+      timeout: 30000,
+    })
+    await page.waitForLoadState('networkidle')
+
+    expect(response?.status()).toBe(404)
+
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+    expect(await page.textContent('#not-found-message')).toBe('root not found')
+
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  // -- client-side navigation to missing slug --
+
+  test('client-side nav to missing slug with nested +not-found does not crash', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    // start at the test index page
+    await page.goto(serverUrl + '/not-found/test', { timeout: 30000 })
+    await page.waitForSelector('#link-missing-deep', { timeout: 10000 })
+
+    // click link to a missing slug under deep/ (which has its own +not-found)
+    await page.click('#link-missing-deep')
+    await page.waitForLoadState('networkidle')
+
+    // should show not-found content, no crash
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  test('client-side nav to missing slug without nested +not-found does not crash', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    await page.goto(serverUrl + '/not-found/test', { timeout: 30000 })
+    await page.waitForSelector('#link-missing-fallback', { timeout: 10000 })
+
+    // click link to a missing slug under fallback/ (no +not-found, falls back to root)
+    await page.click('#link-missing-fallback')
+    await page.waitForLoadState('networkidle')
+
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  test('client-side nav to missing post does not crash', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    // start at the posts index
+    await page.goto(serverUrl + '/posts', { timeout: 30000 })
+    await page.waitForLoadState('networkidle')
+
+    // navigate via JS to a missing slug
+    await page.evaluate(() => {
+      ;(window as any).__oneRouter?.push('/posts/nonexistent-post')
+    })
+    await page.waitForLoadState('networkidle')
+
+    // wait a bit for the router to settle
+    await page.waitForTimeout(2000)
+
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  // -- completely unknown path (no matching dynamic route) --
+
+  test('completely unknown path shows root 404', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    const response = await page.goto(serverUrl + '/this/path/does/not/exist', {
+      timeout: 30000,
+    })
+    await page.waitForLoadState('networkidle')
+
+    expect(response?.status()).toBe(404)
+
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+    expect(await page.textContent('#not-found-message')).toBe('root not found')
+
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+
+  // -- navigate AWAY from a 404 page via layout link --
+
+  test('can client-side navigate away from 404 via layout link', async () => {
+    const page = await context.newPage()
+    const errors = collectErrors(page)
+
+    // land on a missing slug — should show the nested 404
+    await page.goto(serverUrl + '/not-found/deep/missing-item', { timeout: 30000 })
+    await page.waitForLoadState('networkidle')
+    await page.waitForSelector('#not-found-message', { timeout: 10000 })
+    expect(await page.textContent('#not-found-message')).toBe('deep not found')
+
+    // the layout wraps the 404 page so its nav links are still rendered
+    await page.waitForSelector('#nav-valid-item', { timeout: 5000 })
+
+    // click the layout link to navigate to a valid page
+    await page.click('#nav-valid-item')
+    await page.waitForURL(`${serverUrl}/not-found/deep/valid-item`, { timeout: 10000 })
+    await page.waitForSelector('#deep-title', { timeout: 10000 })
+
+    // valid page should render with loader data
+    expect(await page.textContent('#deep-title')).toBe('Deep: valid-item')
+    expect(await page.textContent('#deep-content')).toBe('content for valid-item')
+
+    // no crashes at any point
+    const hasCrash = errors.some(
+      (e) => e.includes('Cannot destructure') || e.includes('Cannot read properties of')
+    )
+    expect(hasCrash).toBe(false)
+
+    await page.close()
+  })
+})

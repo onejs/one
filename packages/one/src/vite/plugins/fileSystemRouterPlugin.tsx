@@ -214,23 +214,59 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             LoaderDataCache[route.file] = loaderData
 
-            // detect 404: not-found routes, missing page exports, or ssg dynamic routes with no loader data
+            // detect 404: not-found routes, missing page exports, or ssg dynamic routes with invalid slugs
             const isDynamicRoute = Object.keys(route.routeKeys || {}).length > 0
+
+            // for ssg dynamic routes, check generateStaticParams to validate the slug
+            let isMissingSsgSlug = false
+            if (route.type === 'ssg' && isDynamicRoute && exported.generateStaticParams) {
+              const staticParams = await exported.generateStaticParams({
+                params: loaderProps?.params,
+              })
+              const currentParams = loaderProps?.params || {}
+              isMissingSsgSlug = !staticParams.some((sp: Record<string, string>) =>
+                Object.keys(sp).every((key) => sp[key] === currentParams[key])
+              )
+            }
+
             const is404 =
               route.isNotFound ||
               !getPageExport(exported) ||
+              isMissingSsgSlug ||
               (route.type === 'ssg' && isDynamicRoute && loaderData === undefined)
 
-            // for ssg dynamic routes with no data, the slug wasn't valid
-            // skip rendering (the component would crash on undefined loader data)
-            // render the not-found page instead
-            if (route.type === 'ssg' && isDynamicRoute && loaderData === undefined) {
-              const notFoundFile = path.join(routerRoot, '+not-found.tsx')
+            // for ssg dynamic routes with invalid slug, render the not-found page instead
+            if (
+              isMissingSsgSlug ||
+              (route.type === 'ssg' && isDynamicRoute && loaderData === undefined)
+            ) {
+              // find nearest +not-found by walking up the route's directory
               let notFoundExported: any = {}
-              try {
-                notFoundExported = await runner.import(notFoundFile)
-              } catch {
-                // no +not-found page
+              let notFoundRoutePath = '/+not-found'
+              const routeDir = route.file.replace(/\/[^/]+$/, '')
+              let searchDir = routeDir
+              while (true) {
+                for (const ext of ['.tsx', '.ts', '.jsx', '.js']) {
+                  const candidate = path.join(routerRoot, searchDir, `+not-found${ext}`)
+                  try {
+                    notFoundExported = await runner.import(candidate)
+                    if (notFoundExported?.default) {
+                      notFoundRoutePath = searchDir
+                        ? `/${searchDir}/+not-found`
+                        : '/+not-found'
+                      break
+                    }
+                  } catch {
+                    // not found at this level
+                  }
+                }
+                if (notFoundExported?.default || !searchDir) break
+                const parent = searchDir.replace(/\/[^/]+$/, '')
+                if (parent === searchDir) {
+                  searchDir = ''
+                } else {
+                  searchDir = parent
+                }
               }
 
               if (notFoundExported.default) {
@@ -245,7 +281,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                   mode: 'ssg',
                   loaderData: undefined,
                   loaderProps,
-                  path: '/+not-found',
+                  path: notFoundRoutePath,
                   preloads,
                   matches: [],
                 })
@@ -345,34 +381,62 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
           const exported = await runner.import(routeFile)
 
+          // for ssg dynamic routes, check generateStaticParams to validate the slug
+          const isDynamicRoute = Object.keys(route.routeKeys || {}).length > 0
+          if (route.type === 'ssg' && isDynamicRoute && exported.generateStaticParams) {
+            const staticParams = await exported.generateStaticParams({
+              params: loaderProps?.params,
+            })
+            const currentParams = loaderProps?.params || {}
+            const isValidSlug = staticParams.some((sp: Record<string, string>) =>
+              Object.keys(sp).every((key) => sp[key] === currentParams[key])
+            )
+            if (!isValidSlug) {
+              return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+            }
+          }
+
           // Track file dependencies from loader for hot reload
           let loaderData: any
           if (exported.loader) {
-            const tracked = await trackLoaderDependencies(() =>
-              exported.loader(loaderProps)
-            )
-            loaderData = tracked.result
+            try {
+              const tracked = await trackLoaderDependencies(() =>
+                exported.loader(loaderProps)
+              )
+              loaderData = tracked.result
 
-            // if the loader returned a Response (e.g. redirect()), throw it
-            // so it bubbles up through resolveResponse and can be transformed
-            // into a JS redirect module for client-side navigation
-            if (isResponse(loaderData)) {
-              throw loaderData
-            }
-
-            // Register dependencies: map file path -> route paths that depend on it
-            const routePath = loaderProps?.path || '/'
-            for (const dep of tracked.dependencies) {
-              // Resolve to absolute path for consistent lookup when file changes
-              const absoluteDep = path.resolve(dep)
-              if (!loaderFileDependencies.has(absoluteDep)) {
-                loaderFileDependencies.set(absoluteDep, new Set())
-                server?.watcher.add(absoluteDep)
-                if (debugLoaderDeps) {
-                  console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
-                }
+              // if the loader returned a Response (e.g. redirect()), throw it
+              // so it bubbles up through resolveResponse and can be transformed
+              // into a JS redirect module for client-side navigation
+              if (isResponse(loaderData)) {
+                throw loaderData
               }
-              loaderFileDependencies.get(absoluteDep)!.add(routePath)
+
+              // Register dependencies: map file path -> route paths that depend on it
+              const routePath = loaderProps?.path || '/'
+              for (const dep of tracked.dependencies) {
+                // Resolve to absolute path for consistent lookup when file changes
+                const absoluteDep = path.resolve(dep)
+                if (!loaderFileDependencies.has(absoluteDep)) {
+                  loaderFileDependencies.set(absoluteDep, new Set())
+                  server?.watcher.add(absoluteDep)
+                  if (debugLoaderDeps) {
+                    console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
+                  }
+                }
+                loaderFileDependencies.get(absoluteDep)!.add(routePath)
+              }
+            } catch (err) {
+              // re-throw Response errors (redirects)
+              if (isResponse(err)) {
+                throw err
+              }
+              // for file-not-found errors (e.g., missing MDX for non-existent slug),
+              // return a 404 signal so the client navigates to +not-found
+              if ((err as any)?.code === 'ENOENT') {
+                return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+              }
+              throw err
             }
           }
 
