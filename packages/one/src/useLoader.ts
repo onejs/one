@@ -32,37 +32,38 @@ export type LoaderTimingEntry = {
 const loaderTimingHistory: LoaderTimingEntry[] = []
 const MAX_TIMING_HISTORY = 50
 
-function recordLoaderTiming(entry: LoaderTimingEntry) {
-  if (process.env.NODE_ENV !== 'development') return
+const recordLoaderTiming =
+  process.env.NODE_ENV === 'development'
+    ? (entry: LoaderTimingEntry) => {
+        loaderTimingHistory.unshift(entry)
+        if (loaderTimingHistory.length > MAX_TIMING_HISTORY) {
+          loaderTimingHistory.pop()
+        }
+        // Dispatch event for devtools (web only - CustomEvent doesn't exist on native)
+        if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('one-loader-timing', { detail: entry }))
 
-  loaderTimingHistory.unshift(entry)
-  if (loaderTimingHistory.length > MAX_TIMING_HISTORY) {
-    loaderTimingHistory.pop()
-  }
-  // Dispatch event for devtools (web only - CustomEvent doesn't exist on native)
-  if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('one-loader-timing', { detail: entry }))
-
-    // Also dispatch error event if there was an error
-    if (entry.error) {
-      window.dispatchEvent(
-        new CustomEvent('one-error', {
-          detail: {
-            error: {
-              message: entry.error,
-              name: 'LoaderError',
-            },
-            route: {
-              pathname: entry.path,
-            },
-            timestamp: Date.now(),
-            type: 'loader',
-          },
-        })
-      )
-    }
-  }
-}
+          // Also dispatch error event if there was an error
+          if (entry.error) {
+            window.dispatchEvent(
+              new CustomEvent('one-error', {
+                detail: {
+                  error: {
+                    message: entry.error,
+                    name: 'LoaderError',
+                  },
+                  route: {
+                    pathname: entry.path,
+                  },
+                  timestamp: Date.now(),
+                  type: 'loader',
+                },
+              })
+            )
+          }
+        }
+      }
+    : undefined
 
 export function getLoaderTimingHistory(): LoaderTimingEntry[] {
   return loaderTimingHistory
@@ -146,7 +147,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
 
     // detect server redirect signal during refetch
     if (result?.__oneRedirect) {
-      recordLoaderTiming({
+      recordLoaderTiming?.({
         path: pathname,
         startTime,
         moduleLoadTime,
@@ -165,7 +166,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
 
     // detect 404 error signal during refetch
     if (result?.__oneError === 404) {
-      recordLoaderTiming({
+      recordLoaderTiming?.({
         path: pathname,
         startTime,
         moduleLoadTime,
@@ -189,7 +190,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
       hasLoadedOnce: true,
     })
 
-    recordLoaderTiming({
+    recordLoaderTiming?.({
       path: pathname,
       startTime,
       moduleLoadTime,
@@ -205,7 +206,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
       state: 'idle',
     })
 
-    recordLoaderTiming({
+    recordLoaderTiming?.({
       path: pathname,
       startTime,
       totalTime,
@@ -379,7 +380,7 @@ export function useLoaderState<
 
               // detect server redirect signal on native
               if (data?.__oneRedirect) {
-                recordLoaderTiming({
+                recordLoaderTiming?.({
                   path: currentPath,
                   startTime,
                   moduleLoadTime,
@@ -398,7 +399,7 @@ export function useLoaderState<
 
               // detect 404 error signal on native
               if (data?.__oneError === 404) {
-                recordLoaderTiming({
+                recordLoaderTiming?.({
                   path: currentPath,
                   startTime,
                   moduleLoadTime,
@@ -421,7 +422,7 @@ export function useLoaderState<
                 promise: undefined,
               })
 
-              recordLoaderTiming({
+              recordLoaderTiming?.({
                 path: currentPath,
                 startTime,
                 moduleLoadTime,
@@ -436,7 +437,7 @@ export function useLoaderState<
                 data: {},
                 promise: undefined,
               })
-              recordLoaderTiming({
+              recordLoaderTiming?.({
                 path: currentPath,
                 startTime,
                 totalTime,
@@ -472,7 +473,7 @@ export function useLoaderState<
 
           // detect server redirect signal (fallback if preload didn't catch it)
           if (result?.__oneRedirect) {
-            recordLoaderTiming({
+            recordLoaderTiming?.({
               path: currentPath,
               startTime,
               moduleLoadTime,
@@ -491,7 +492,7 @@ export function useLoaderState<
 
           // detect 404 error signal - navigate to not-found page
           if (result?.__oneError === 404) {
-            recordLoaderTiming({
+            recordLoaderTiming?.({
               path: currentPath,
               startTime,
               moduleLoadTime,
@@ -516,7 +517,7 @@ export function useLoaderState<
             promise: undefined,
           })
 
-          recordLoaderTiming({
+          recordLoaderTiming?.({
             path: currentPath,
             startTime,
             moduleLoadTime,
@@ -532,7 +533,7 @@ export function useLoaderState<
             promise: undefined,
           })
 
-          recordLoaderTiming({
+          recordLoaderTiming?.({
             path: currentPath,
             startTime,
             totalTime,
