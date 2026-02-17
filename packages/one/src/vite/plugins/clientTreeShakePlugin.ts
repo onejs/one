@@ -179,7 +179,7 @@ export async function transformTreeShakeClient(code: string, id: string) {
       // Restore any type imports that were incorrectly removed
       restoreTypeImports(ast, typeImports)
 
-      const out = generate(ast)
+      const out = generate(ast, { retainLines: true })
 
       // add back in empty or filled loader and genparams
       const codeOut =
