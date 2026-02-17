@@ -93,10 +93,7 @@ type TransformOut = { code: string; map?: null } | undefined
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
  */
-async function injectSourceToJsx(
-  code: string,
-  id: string
-): Promise<TransformOut> {
+async function injectSourceToJsx(code: string, id: string): Promise<TransformOut> {
   const [filePath] = id.split('?')
   if (!filePath) return
 
@@ -153,7 +150,7 @@ const vscodeClients = new Set<WebSocket>()
 
 export function sourceInspectorPlugin(): Plugin[] {
   const cache = new Map<string, TransformOut>()
-  
+
   return [
     // Transform plugin - injects data-one-source attributes
     {
@@ -177,7 +174,6 @@ export function sourceInspectorPlugin(): Plugin[] {
 
         if (!id.endsWith('.jsx') && !id.endsWith('.tsx')) return
 
-
         if (cache.has(code)) {
           return cache.get(code)
         }
@@ -188,7 +184,7 @@ export function sourceInspectorPlugin(): Plugin[] {
         if (cache.size > 100) {
           cache.clear()
         }
-        
+
         return out
       },
     },
