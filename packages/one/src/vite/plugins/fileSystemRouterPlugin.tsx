@@ -214,7 +214,54 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             LoaderDataCache[route.file] = loaderData
 
-            const is404 = route.isNotFound || !getPageExport(exported)
+            // detect 404: not-found routes, missing page exports, or ssg dynamic routes with no loader data
+            const isDynamicRoute = Object.keys(route.routeKeys || {}).length > 0
+            const is404 =
+              route.isNotFound ||
+              !getPageExport(exported) ||
+              (route.type === 'ssg' && isDynamicRoute && loaderData === undefined)
+
+            // for ssg dynamic routes with no data, the slug wasn't valid
+            // skip rendering (the component would crash on undefined loader data)
+            // render the not-found page instead
+            if (route.type === 'ssg' && isDynamicRoute && loaderData === undefined) {
+              const notFoundFile = path.join(routerRoot, '+not-found.tsx')
+              let notFoundExported: any = {}
+              try {
+                notFoundExported = await runner.import(notFoundFile)
+              } catch {
+                // no +not-found page
+              }
+
+              if (notFoundExported.default) {
+                // override the route to render the not-found page
+                setServerContext({
+                  loaderData: undefined,
+                  loaderProps,
+                  matches: [],
+                })
+
+                const notFoundHtml = await render({
+                  mode: 'ssg',
+                  loaderData: undefined,
+                  loaderProps,
+                  path: '/+not-found',
+                  preloads,
+                  matches: [],
+                })
+
+                return new Response(notFoundHtml, {
+                  status: 404,
+                  headers: { 'Content-Type': 'text/html' },
+                })
+              }
+
+              // fallback if no +not-found page exists
+              return new Response('<html><body><h1>404 - Not Found</h1></body></html>', {
+                status: 404,
+                headers: { 'Content-Type': 'text/html' },
+              })
+            }
 
             const html = await render({
               mode: isSpaShell
