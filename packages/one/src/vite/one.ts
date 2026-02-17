@@ -167,7 +167,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    environmentGuardPlugin(),
+    environmentGuardPlugin(options.environmentGuards),
 
     imageDataPlugin(),
 

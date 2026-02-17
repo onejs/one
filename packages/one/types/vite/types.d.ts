@@ -4,6 +4,7 @@ import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
+import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type RouteInfo<TRegex = string> = {
     file: string;
@@ -434,6 +435,22 @@ export declare namespace One {
              */
             autoDepsOptimization?: boolean | AutoDepOptimizationOptions;
         };
+        /**
+         * Configure environment guard behavior for `server-only`, `client-only`,
+         * `native-only`, and `web-only` imports.
+         *
+         * Some libraries like `floating-ui` import `client-only` even though the
+         * imported code works fine on the server. Use this to disable guards.
+         *
+         * @example
+         * // disable the client-only guard (allows importing on server)
+         * environmentGuards: { disableGuards: ['client-only'] }
+         *
+         * @example
+         * // disable all environment guards
+         * environmentGuards: { disabled: true }
+         */
+        environmentGuards?: EnvironmentGuardOptions;
     };
     export interface RouteContext {
         keys(): string[];
