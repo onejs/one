@@ -137,11 +137,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   if (compiler) {
     configureVXRNCompilerPlugin({
       enableCompiler:
-        compiler === 'native'
-          ? ['ios', 'android']
-          : compiler === 'web'
-            ? ['ssr', 'client']
-            : true,
+        // pass through object config, regex, or function directly
+        typeof compiler === 'object' || typeof compiler === 'function'
+          ? compiler
+          : compiler === 'native'
+            ? ['ios', 'android']
+            : compiler === 'web'
+              ? ['ssr', 'client']
+              : true,
     })
   }
 

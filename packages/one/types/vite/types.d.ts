@@ -31,6 +31,12 @@ export declare namespace One {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
     };
     type PluginPlatformTarget = 'native' | 'web';
+    type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';
+    type ReactCompilerFilter = boolean | RegExp | ((id: string, environment: CompilerEnvironment) => boolean);
+    type ReactCompilerConfig = boolean | PluginPlatformTarget | RegExp | ((id: string, environment: CompilerEnvironment) => boolean) | {
+        web?: ReactCompilerFilter;
+        native?: ReactCompilerFilter;
+    };
     export type PluginOptions = {
         /**
          * Enabling zero does a couple very simple things:
@@ -142,9 +148,28 @@ export declare namespace One {
         react?: {
             /**
              * Enable the React Compiler, for all or specific platforms
+             *
+             * - `true` - enable for all platforms
+             * - `'native'` - enable for iOS/Android only
+             * - `'web'` - enable for web only
+             * - `RegExp` - enable for files matching the pattern
+             * - `(id: string) => boolean` - custom function to determine per-file
+             * - `{ web, native }` - configure each platform separately
+             *
+             * @example
+             * // enable for all
+             * compiler: true
+             *
+             * @example
+             * // different config per platform
+             * compiler: {
+             *   web: true,
+             *   native: /\/components\//,
+             * }
+             *
              * @default false
              */
-            compiler?: boolean | PluginPlatformTarget;
+            compiler?: ReactCompilerConfig;
         };
         optimization?: {
             /**

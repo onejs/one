@@ -189,11 +189,60 @@ const shouldBabelReactCompiler = (props: Props) => {
   if (!configuration.enableCompiler) {
     return false
   }
-  if (Array.isArray(configuration.enableCompiler)) {
-    if (!configuration.enableCompiler.includes(props.environment)) {
+
+  const { enableCompiler } = configuration
+
+  // per-platform config object
+  if (
+    typeof enableCompiler === 'object' &&
+    !Array.isArray(enableCompiler) &&
+    !(enableCompiler instanceof RegExp)
+  ) {
+    const isNative = props.environment === 'ios' || props.environment === 'android'
+    const filter = isNative ? enableCompiler.native : enableCompiler.web
+    if (!filter) return false
+    return applyCompilerFilter(filter, props)
+  }
+
+  // function filter - let user control entirely
+  if (typeof enableCompiler === 'function') {
+    return enableCompiler(props.id, props.environment)
+  }
+
+  // regex filter
+  if (enableCompiler instanceof RegExp) {
+    return enableCompiler.test(props.id)
+  }
+
+  // environment array filter
+  if (Array.isArray(enableCompiler)) {
+    if (!enableCompiler.includes(props.environment)) {
       return false
     }
   }
+
+  // default filters for boolean/array modes
+  return applyDefaultFilters(props)
+}
+
+function applyCompilerFilter(
+  filter: boolean | RegExp | ((id: string, environment: Props['environment']) => boolean),
+  props: Props
+): boolean {
+  if (typeof filter === 'function') {
+    return filter(props.id, props.environment)
+  }
+  if (filter instanceof RegExp) {
+    return filter.test(props.id)
+  }
+  // boolean true - use default filters
+  if (filter === true) {
+    return applyDefaultFilters(props)
+  }
+  return false
+}
+
+function applyDefaultFilters(props: Props): boolean {
   if (!/(\.tsx?)$/.test(props.id)) return false
   // disable node modules for now...
   if (props.id.includes('node_modules')) return false
