@@ -34,6 +34,13 @@ export default {
 
       web: {
         inlineLayoutCSS: true,
+        redirects: [
+          {
+            source: '/blog/version-one-rc1',
+            destination: '/blog/version-one',
+            permanent: true,
+          },
+        ],
       },
 
       router: {
