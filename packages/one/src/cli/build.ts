@@ -63,7 +63,13 @@ export async function build(args: {
   process.env.IS_VXRN_CLI = 'true'
 
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
-  process.env.NODE_ENV = 'production'
+  if (!process.env.NODE_ENV) {
+    process.env.NODE_ENV = 'production'
+  } else if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      `\n ⚠️  Warning: NODE_ENV is set to "${process.env.NODE_ENV}" (builds default to "production")\n`
+    )
+  }
 
   labelProcess('build')
   checkNodeVersion()
