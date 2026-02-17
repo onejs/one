@@ -429,11 +429,34 @@ export default {
         compiler: 'web', // enable only for web
         // or
         compiler: 'native', // enable only for native
+        // or
+        compiler: /\/app\//, // enable for files matching regex
+        // or
+        compiler: (id, env) => {
+          // env is 'ios' | 'android' | 'client' | 'ssr'
+          return id.includes('/components/')
+        },
+        // or configure per-platform
+        compiler: {
+          web: true,
+          native: /\/components\//,
+        },
       },
     }),
   ],
 }
 ```
+
+**Options:**
+
+- **`true`**: Enable for all platforms (excluding node_modules, +api files)
+- **`'web'`**: Enable only for web (client and SSR)
+- **`'native'`**: Enable only for native (iOS and Android)
+- **`RegExp`**: Enable for files matching the pattern (full control, no default filtering)
+- **`(id, env) => boolean`**: Custom function with file path and environment (`'ios' | 'android' | 'client' | 'ssr'`)
+- **`{ web, native }`**: Configure each platform separately with any of the above options
+
+When using `RegExp` or a function, you have full control over which files are compiled - the default exclusions (node_modules, +api files) are not applied. When using `true` (or `true` within the object form), the default filters apply.
 
 **Default:** `false`
 

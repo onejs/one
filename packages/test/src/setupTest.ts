@@ -36,7 +36,11 @@ const DEFAULT_RETRY_INTERVAL = 250
 
 const waitForServer = (
   url: string,
-  { maxRetries = DEFAULT_MAX_RETRIES, retryInterval = DEFAULT_RETRY_INTERVAL, getServerOutput = () => '' }
+  {
+    maxRetries = DEFAULT_MAX_RETRIES,
+    retryInterval = DEFAULT_RETRY_INTERVAL,
+    getServerOutput = () => '',
+  }
 ): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
@@ -66,7 +70,9 @@ const waitForServer = (
           retries++
           // log progress every 30 seconds on CI to show we're still waiting
           if (isCI && retries % 120 === 0) {
-            console.info(`Still waiting for ${url}... (${Math.round((performance.now() - startedAt) / 1000)}s)`)
+            console.info(
+              `Still waiting for ${url}... (${Math.round((performance.now() - startedAt) / 1000)}s)`
+            )
           }
           setTimeout(checkServer, retryInterval)
         }
