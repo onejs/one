@@ -773,6 +773,37 @@ export default {
 
 **Default:** `{ include: /node_modules/ }`
 
+## environmentGuards
+
+Configure environment guard behavior for `server-only`, `client-only`, `native-only`, and `web-only` imports.
+
+One enforces these guard imports to prevent modules from being used in the wrong build environment. However, some libraries (like `floating-ui`) import `client-only` even though the imported code works fine on the server when you're only importing utilities.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      // Disable the client-only guard (allows importing on server)
+      environmentGuards: {
+        disableGuards: ['client-only'],
+      },
+
+      // Or disable all environment guards entirely
+      environmentGuards: {
+        disabled: true,
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`disabled`**: When `true`, disables all environment guard checks. All guard imports become no-ops regardless of environment.
+- **`disableGuards`**: An array of specific guard types to disable. Options are `'server-only'`, `'client-only'`, `'native-only'`, and `'web-only'`.
+
+**Default:** All guards are enabled.
+
 ## The Environment API
 
 One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).

@@ -1,6 +1,9 @@
 import type { Environment } from './types'
 
-type CompilerFilter = boolean | RegExp | ((id: string, environment: Environment) => boolean)
+type CompilerFilter =
+  | boolean
+  | RegExp
+  | ((id: string, environment: Environment) => boolean)
 
 type CompilerConfig =
   | boolean

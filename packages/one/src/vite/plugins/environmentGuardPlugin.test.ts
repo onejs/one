@@ -121,5 +121,52 @@ describe('environmentGuardPlugin', () => {
       const result = loadEnvironmentGuard('\0one-env-guard:web-only:android')
       expect(result).toContain('throw new Error')
     })
+
+    it('disabled guards always pass', () => {
+      const result = loadEnvironmentGuard('\0one-env-guard:client-only:disabled')
+      expect(result).toBe('export {}')
+    })
+  })
+
+  describe('options', () => {
+    it('disabled: true makes all guards no-ops', () => {
+      const id = resolveEnvironmentGuard('client-only', 'ssr', { disabled: true })
+      expect(id).toBe('\0one-env-guard:client-only:disabled')
+      // and it should pass when loaded
+      expect(loadEnvironmentGuard(id!)).toBe('export {}')
+    })
+
+    it('disableGuards: disables specific guard types', () => {
+      // client-only disabled
+      const id1 = resolveEnvironmentGuard('client-only', 'ssr', {
+        disableGuards: ['client-only'],
+      })
+      expect(id1).toBe('\0one-env-guard:client-only:disabled')
+
+      // server-only still works normally
+      const id2 = resolveEnvironmentGuard('server-only', 'client', {
+        disableGuards: ['client-only'],
+      })
+      expect(id2).toBe('\0one-env-guard:server-only:client')
+      expect(loadEnvironmentGuard(id2!)).toContain('throw new Error')
+    })
+
+    it('disableGuards: can disable multiple guards', () => {
+      const id1 = resolveEnvironmentGuard('client-only', 'ssr', {
+        disableGuards: ['client-only', 'server-only'],
+      })
+      expect(id1).toBe('\0one-env-guard:client-only:disabled')
+
+      const id2 = resolveEnvironmentGuard('server-only', 'client', {
+        disableGuards: ['client-only', 'server-only'],
+      })
+      expect(id2).toBe('\0one-env-guard:server-only:disabled')
+
+      // native-only still enforced
+      const id3 = resolveEnvironmentGuard('native-only', 'client', {
+        disableGuards: ['client-only', 'server-only'],
+      })
+      expect(id3).toBe('\0one-env-guard:native-only:client')
+    })
   })
 })
