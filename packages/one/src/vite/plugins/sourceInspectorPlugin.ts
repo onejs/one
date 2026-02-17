@@ -15,7 +15,6 @@ interface JsxLocation {
 
 /**
  * Parse code with oxc and find all JSX opening elements.
- * Returns insertion points sorted by offset (descending for safe insertion).
  */
 async function findJsxElements(code: string, filename: string): Promise<JsxLocation[]> {
   const result = await parse(filename, code)
@@ -53,14 +52,12 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
 
       // skip Fragment and already-tagged elements
       if (tagName && tagName !== 'Fragment' && !tagName.endsWith('.Fragment')) {
-        // Check if already has data-one-source
         const hasSourceAttr = node.attributes?.some(
           (attr: any) =>
             attr.type === 'JSXAttribute' && attr.name?.name === 'data-one-source'
         )
 
         if (!hasSourceAttr) {
-          // Insert position is right after the tag name
           const nameEnd = node.name.end
           const loc = getLocation(node.start)
 
@@ -73,7 +70,6 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
       }
     }
 
-    // Walk all child nodes in consistent order
     for (const key of Object.keys(node)) {
       if (key === 'parent') continue
       const value = node[key]
@@ -89,19 +85,18 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
 
   walk(result.program)
 
-  // Sort by offset descending so we can insert from end to start without shifting positions
   return locations.sort((a, b) => b.insertOffset - a.insertOffset)
 }
 
+type TransformOut = { code: string; map?: null } | undefined
+
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
- * Embeds line:column directly in the attribute - safe because both SSR and client
- * run this same transform with enforce:'pre' on the same source.
  */
 async function injectSourceToJsx(
   code: string,
   id: string
-): Promise<{ code: string; map?: null } | undefined> {
+): Promise<TransformOut> {
   const [filePath] = id.split('?')
   if (!filePath) return
 
@@ -155,9 +150,10 @@ async function openInEditor(
 
 // track connected vscode clients and browser clients
 const vscodeClients = new Set<WebSocket>()
-let viteServer: ViteDevServer | null = null
 
 export function sourceInspectorPlugin(): Plugin[] {
+  const cache = new Map<string, TransformOut>()
+  
   return [
     // Transform plugin - injects data-one-source attributes
     {
@@ -165,7 +161,7 @@ export function sourceInspectorPlugin(): Plugin[] {
       enforce: 'pre',
       apply: 'serve',
 
-      transform(code, id) {
+      async transform(code, id) {
         const envName = this.environment?.name
         // Skip native environments only - transform both client and SSR for consistency
         if (envName === 'ios' || envName === 'android') return
@@ -181,7 +177,19 @@ export function sourceInspectorPlugin(): Plugin[] {
 
         if (!id.endsWith('.jsx') && !id.endsWith('.tsx')) return
 
-        return injectSourceToJsx(code, id)
+
+        if (cache.has(code)) {
+          return cache.get(code)
+        }
+
+        const out = await injectSourceToJsx(code, id)
+        cache.set(code, out)
+
+        if (cache.size > 100) {
+          cache.clear()
+        }
+        
+        return out
       },
     },
 
@@ -193,8 +201,6 @@ export function sourceInspectorPlugin(): Plugin[] {
       apply: 'serve',
 
       configureServer(server: ViteDevServer) {
-        viteServer = server
-
         // set up websocket server for vscode cursor position
         let wss: InstanceType<typeof import('ws').WebSocketServer> | null = null
 
