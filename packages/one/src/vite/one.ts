@@ -385,6 +385,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: getPlatformEnvDefine('android'),
             },
           },
+
+          ssr: {
+            // ensure server-only/client-only go through vite so our environmentGuardPlugin can handle them
+            noExternal: ['server-only', 'client-only'],
+          },
         }
       },
     } satisfies Plugin,
