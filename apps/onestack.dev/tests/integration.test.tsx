@@ -99,3 +99,37 @@ test.skip('accordion auto-opens to Hooks section when visiting useRouter page', 
 
   await page.close()
 }, 50000)
+
+test('missing blog post shows 404 page instead of crashing', async () => {
+  const page = await context.newPage()
+
+  const consoleErrors: string[] = []
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') {
+      consoleErrors.push(msg.text())
+    }
+  })
+
+  // navigate to a non-existent blog post
+  await page.goto(`${serverUrl}/blog/this-post-does-not-exist`, { timeout: 120000 })
+
+  // wait for navigation to complete and potential redirects
+  await page.waitForLoadState('networkidle')
+
+  // should not have destructuring errors or other JS crashes
+  const hasDestructuringError = consoleErrors.some(
+    (msg) => msg.includes('Cannot destructure') || msg.includes('undefined')
+  )
+  expect(hasDestructuringError).toBe(false)
+
+  // should show 404 page content
+  const pageContent = await page.content()
+  const shows404 =
+    pageContent.includes('404') ||
+    page.url().includes('+not-found') ||
+    page.url().includes('not-found')
+
+  expect(shows404).toBe(true)
+
+  await page.close()
+}, 50000)

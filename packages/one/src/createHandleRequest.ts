@@ -185,6 +185,14 @@ export async function resolveLoaderRoute(
           return err
         }
 
+        // file not found (e.g., MDX file doesn't exist for this slug) - return 404 error loader
+        if ((err as any)?.code === 'ENOENT') {
+          const body = `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+          return new Response(body, {
+            headers: { 'Content-Type': 'text/javascript' },
+          })
+        }
+
         if ((err as any)?.code !== 'ERR_MODULE_NOT_FOUND') {
           console.error(`Error running loader: ${err}`)
         }

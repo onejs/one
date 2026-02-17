@@ -142,6 +142,10 @@ export async function oneServe(
         if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
           return null
         }
+        // file not found (e.g., MDX file doesn't exist for this slug)
+        if ((err as any)?.code === 'ENOENT') {
+          return null
+        }
         throw err
       }
 
@@ -706,12 +710,17 @@ url: ${url}`)
           )
           return resolved
         } catch (err) {
-          if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
-            // module doesn't exist (e.g., dynamic route with slug not in generateStaticParams)
-            // return empty loader so client doesn't get import error
+          if (
+            (err as any)?.code === 'ERR_MODULE_NOT_FOUND' ||
+            (err as any)?.code === 'ENOENT'
+          ) {
+            // module or file doesn't exist (e.g., dynamic route with slug not in generateStaticParams,
+            // or MDX file doesn't exist for this slug) - return 404 error loader
             c.header('Content-Type', 'text/javascript')
             c.status(200)
-            return c.body(`export function loader() { return undefined }`)
+            return c.body(
+              `export function loader() { return { __oneError: 404, __oneErrorMessage: 'Not Found' } }`
+            )
           }
           console.error(`Error running loader: ${err}`)
           return next()
