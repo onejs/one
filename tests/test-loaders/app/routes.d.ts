@@ -28,6 +28,8 @@ declare module 'one' {
         | `/nested-test`
         | `/nested-test/level2`
         | `/nested-test/level2/page`
+        | `/not-found/deep`
+        | `/not-found/test`
         | `/posts`
         | `/refactor-test`
         | `/refetch-test`
@@ -36,10 +38,18 @@ declare module 'one' {
         | `/simple-spa-refetch`
         | `/test-refetch`
         | `/test-refetch-ssr`
-      DynamicRoutes: `/posts/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: `/posts/[slug]`
+      DynamicRoutes: 
+        | `/not-found/deep/${OneRouter.SingleRoutePart<T>}`
+        | `/not-found/fallback/${OneRouter.SingleRoutePart<T>}`
+        | `/posts/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate: 
+        | `/not-found/deep/[slug]`
+        | `/not-found/fallback/[slug]`
+        | `/posts/[slug]`
       IsTyped: true
       RouteTypes: {
+        '/not-found/deep/[slug]': RouteInfo<{ slug: string }>
+        '/not-found/fallback/[slug]': RouteInfo<{ slug: string }>
         '/posts/[slug]': RouteInfo<{ slug: string }>
       }
     }
