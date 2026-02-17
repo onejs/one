@@ -163,6 +163,25 @@ export async function refetchLoader(pathname: string): Promise<void> {
       return
     }
 
+    // detect 404 error signal during refetch
+    if (result?.__oneError === 404) {
+      recordLoaderTiming({
+        path: pathname,
+        startTime,
+        moduleLoadTime,
+        executionTime,
+        totalTime,
+        source: 'refetch',
+      })
+      updateState(pathname, {
+        data: undefined,
+        state: 'idle',
+        hasLoadedOnce: true,
+      })
+      router.replace('/+not-found')
+      return
+    }
+
     updateState(pathname, {
       data: result,
       state: 'idle',
@@ -377,6 +396,25 @@ export function useLoaderState<
                 return
               }
 
+              // detect 404 error signal on native
+              if (data?.__oneError === 404) {
+                recordLoaderTiming({
+                  path: currentPath,
+                  startTime,
+                  moduleLoadTime,
+                  executionTime,
+                  totalTime,
+                  source: 'initial',
+                })
+                updateState(currentPath, {
+                  data: undefined,
+                  hasLoadedOnce: true,
+                  promise: undefined,
+                })
+                router.replace('/+not-found')
+                return
+              }
+
               updateState(currentPath, {
                 data,
                 hasLoadedOnce: true,
@@ -448,6 +486,27 @@ export function useLoaderState<
               promise: undefined,
             })
             router.replace(result.__oneRedirect)
+            return
+          }
+
+          // detect 404 error signal - navigate to not-found page
+          if (result?.__oneError === 404) {
+            recordLoaderTiming({
+              path: currentPath,
+              startTime,
+              moduleLoadTime,
+              executionTime,
+              totalTime,
+              source: 'initial',
+            })
+            updateState(currentPath, {
+              data: undefined,
+              hasLoadedOnce: true,
+              promise: undefined,
+              error: new Error(result.__oneErrorMessage || 'Not Found'),
+            })
+            // navigate to the not-found page for this path
+            router.replace('/+not-found')
             return
           }
 
