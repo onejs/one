@@ -11,6 +11,14 @@ async function fetchThing(path = '/', type: 'text' | 'json' | 'headers') {
 }
 
 describe('Middleware', () => {
+  test('middleware can dynamically import module with nested server-only import', async () => {
+    // this test verifies that middleware can dynamically import a module
+    // that imports another module that imports 'server-only' (nested chain)
+    // this is the pattern that fails when server-only is externalized
+    const res = await fetchThing('/?test-server-only-dynamic', 'json')
+    expect(res).toEqual({ auth: { authenticated: true, util: 'server-only-util-value' } })
+  })
+
   test('root middleware doesnt intercept', async () => {
     const res = await fetchThing('/', 'text')
     expect(res).includes(`<html`)
