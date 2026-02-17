@@ -142,10 +142,6 @@ export async function oneServe(
         if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
           return null
         }
-        // file not found (e.g., MDX file doesn't exist for this slug)
-        if ((err as any)?.code === 'ENOENT') {
-          return null
-        }
         throw err
       }
 
@@ -546,6 +542,18 @@ url: ${url}`)
           // this handles all loader refetches or fetches due to navigation
           if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
             const originalUrl = getPathFromLoaderPath(url.pathname)
+
+            // for ssg routes with dynamic params, check if this path was statically generated
+            // if not in routeMap, the slug wasn't in generateStaticParams - return 404
+            if (route.type === 'ssg' && Object.keys(route.routeKeys).length > 0) {
+              if (!routeMap[originalUrl]) {
+                return new Response(
+                  `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`,
+                  { headers: { 'Content-Type': 'text/javascript' } }
+                )
+              }
+            }
+
             const finalUrl = new URL(originalUrl, url.origin)
             const cleanedRequest = new Request(finalUrl, request)
             return resolveLoaderRoute(requestHandlers, cleanedRequest, finalUrl, route)
@@ -691,6 +699,19 @@ url: ${url}`)
           continue
         }
 
+        // for ssg routes with dynamic params, check if this path was statically generated
+        if (
+          route.type === 'ssg' &&
+          Object.keys(route.routeKeys).length > 0 &&
+          !routeMap[originalUrl]
+        ) {
+          c.header('Content-Type', 'text/javascript')
+          c.status(200)
+          return c.body(
+            `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+          )
+        }
+
         // for now just change this
         const loaderRoute = {
           ...route,
@@ -710,17 +731,12 @@ url: ${url}`)
           )
           return resolved
         } catch (err) {
-          if (
-            (err as any)?.code === 'ERR_MODULE_NOT_FOUND' ||
-            (err as any)?.code === 'ENOENT'
-          ) {
-            // module or file doesn't exist (e.g., dynamic route with slug not in generateStaticParams,
-            // or MDX file doesn't exist for this slug) - return 404 error loader
+          if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
+            // module doesn't exist (e.g., dynamic route with slug not in generateStaticParams)
+            // return empty loader so client doesn't get import error
             c.header('Content-Type', 'text/javascript')
             c.status(200)
-            return c.body(
-              `export function loader() { return { __oneError: 404, __oneErrorMessage: 'Not Found' } }`
-            )
+            return c.body(`export function loader() { return undefined }`)
           }
           console.error(`Error running loader: ${err}`)
           return next()

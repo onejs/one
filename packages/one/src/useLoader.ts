@@ -504,9 +504,7 @@ export function useLoaderState<
               data: undefined,
               hasLoadedOnce: true,
               promise: undefined,
-              error: new Error(result.__oneErrorMessage || 'Not Found'),
             })
-            // navigate to the not-found page for this path
             router.replace('/+not-found')
             return
           }
