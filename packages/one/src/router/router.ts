@@ -1026,7 +1026,7 @@ export async function linkTo(
     delete preloadedLoaderData[href]
     delete preloadingLoader[href]
     setLoadingState('loaded')
-    linkTo('/+not-found', 'REPLACE')
+    linkTo(preloadResult.__oneNotFoundPath || '/+not-found', 'REPLACE')
     return
   }
 

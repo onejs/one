@@ -40,7 +40,13 @@ describe('loader() SSG', () => {
     const page = await context.newPage()
 
     // Navigate to a page that throws a redirect in its loader
-    await page.goto(serverUrl + '/loader-redirect')
+    // retry goto in case the server isn't ready yet
+    await page
+      .goto(serverUrl + '/loader-redirect', { timeout: 30000 })
+      .catch(async () => {
+        await page.waitForTimeout(2000)
+        await page.goto(serverUrl + '/loader-redirect', { timeout: 30000 })
+      })
 
     // Should have been redirected to /loader
     expect(page.url()).toBe(`${serverUrl}/loader`)
