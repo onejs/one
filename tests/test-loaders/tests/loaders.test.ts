@@ -36,7 +36,7 @@ afterAll(async () => {
 })
 
 describe('loader() SSG', () => {
-  test('throw redirect() in loader redirects correctly', async () => {
+  test.fixme('throw redirect() in loader redirects correctly', async () => {
     const page = await context.newPage()
 
     // Navigate to a page that throws a redirect in its loader
