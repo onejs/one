@@ -175,7 +175,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
         totalTime,
         source: 'refetch',
       })
-      router.replace('/+not-found')
+      router.replace(result.__oneNotFoundPath || '/+not-found')
       return
     }
 
@@ -404,7 +404,7 @@ export function useLoaderState<
                   totalTime,
                   source: 'initial',
                 })
-                router.replace('/+not-found')
+                router.replace(data.__oneNotFoundPath || '/+not-found')
                 // keep component suspended until navigation unmounts it
                 await new Promise(() => {})
               }
@@ -494,7 +494,7 @@ export function useLoaderState<
               totalTime,
               source: 'initial',
             })
-            router.replace('/+not-found')
+            router.replace(result.__oneNotFoundPath || '/+not-found')
             // keep component suspended until navigation unmounts it
             await new Promise(() => {})
           }

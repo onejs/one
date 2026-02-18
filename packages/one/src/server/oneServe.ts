@@ -72,6 +72,20 @@ export async function oneServe(
 
   const { routeToBuildInfo, routeMap } = buildInfo as One.BuildInfo
 
+  // find nearest +not-found path by walking up from a url path
+  function findNearestNotFoundPath(urlPath: string): string {
+    let cur = urlPath
+    while (cur) {
+      const parent = cur.lastIndexOf('/') > 0 ? cur.slice(0, cur.lastIndexOf('/')) : ''
+      if (routeMap[`${parent}/+not-found`]) {
+        return `${parent}/+not-found`
+      }
+      if (!parent) break
+      cur = parent
+    }
+    return '/+not-found'
+  }
+
   const serverOptions = {
     ...oneOptions,
     root: '.',
@@ -547,8 +561,23 @@ url: ${url}`)
             // if not in routeMap, the slug wasn't in generateStaticParams - return 404
             if (route.type === 'ssg' && Object.keys(route.routeKeys).length > 0) {
               if (!routeMap[originalUrl]) {
+                // find nearest +not-found path from routeMap
+                let nfPath = '/+not-found'
+                let walkPath = originalUrl
+                while (walkPath) {
+                  const parentDir =
+                    walkPath.lastIndexOf('/') > 0
+                      ? walkPath.slice(0, walkPath.lastIndexOf('/'))
+                      : ''
+                  if (routeMap[`${parentDir}/+not-found`]) {
+                    nfPath = `${parentDir}/+not-found`
+                    break
+                  }
+                  if (!parentDir) break
+                  walkPath = parentDir
+                }
                 return new Response(
-                  `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`,
+                  `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`,
                   { headers: { 'Content-Type': 'text/javascript' } }
                 )
               }
@@ -705,10 +734,25 @@ url: ${url}`)
           Object.keys(route.routeKeys).length > 0 &&
           !routeMap[originalUrl]
         ) {
+          // find nearest +not-found path from routeMap
+          let nfPath = '/+not-found'
+          let walkPath = originalUrl
+          while (walkPath) {
+            const parentDir =
+              walkPath.lastIndexOf('/') > 0
+                ? walkPath.slice(0, walkPath.lastIndexOf('/'))
+                : ''
+            if (routeMap[`${parentDir}/+not-found`]) {
+              nfPath = `${parentDir}/+not-found`
+              break
+            }
+            if (!parentDir) break
+            walkPath = parentDir
+          }
           c.header('Content-Type', 'text/javascript')
           c.status(200)
           return c.body(
-            `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+            `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
           )
         }
 

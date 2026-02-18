@@ -50,6 +50,34 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
   function createRequestHandler() {
     const routerRoot = getRouterRootFromOneOptions(options)
+
+    // find the nearest +not-found route by walking up from a route's directory
+    async function findNearestNotFoundPath(routeFile: string): Promise<string> {
+      const routeDir = routeFile.replace(/\/[^/]+$/, '')
+      let searchDir = routeDir
+      while (true) {
+        for (const ext of ['.tsx', '.ts', '.jsx', '.js']) {
+          const candidate = path.join(routerRoot, searchDir, `+not-found${ext}`)
+          try {
+            const mod = await runner.import(candidate)
+            if (mod?.default) {
+              return searchDir ? `/${searchDir}/+not-found` : '/+not-found'
+            }
+          } catch {
+            // not found at this level
+          }
+        }
+        if (!searchDir) break
+        const parent = searchDir.replace(/\/[^/]+$/, '')
+        if (parent === searchDir) {
+          searchDir = ''
+        } else {
+          searchDir = parent
+        }
+      }
+      return '/+not-found'
+    }
+
     return createHandleRequest(
       {
         async handlePage({ route, url, loaderProps }) {
@@ -392,7 +420,8 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               Object.keys(sp).every((key) => sp[key] === currentParams[key])
             )
             if (!isValidSlug) {
-              return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+              const nfPath = await findNearestNotFoundPath(route.file)
+              return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
             }
           }
 
@@ -434,7 +463,8 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               // for file-not-found errors (e.g., missing MDX for non-existent slug),
               // return a 404 signal so the client navigates to +not-found
               if ((err as any)?.code === 'ENOENT') {
-                return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found'}}`
+                const nfPath = await findNearestNotFoundPath(route.file)
+                return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
               }
               throw err
             }
