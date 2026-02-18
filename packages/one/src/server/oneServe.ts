@@ -464,46 +464,36 @@ url: ${url}`)
         // dynamic route matched but no static HTML exists for this path
         // (slug wasn't in generateStaticParams) - return 404
         if (isDynamicRoute) {
-          // find nearest +not-found.html by walking up the path
-          let currentPath = url.pathname
-          while (currentPath) {
-            const parentDir =
-              currentPath.lastIndexOf('/') > 0
-                ? currentPath.slice(0, currentPath.lastIndexOf('/'))
-                : ''
-            const notFoundPath = routeMap[`${parentDir}/+not-found`]
+          const notFoundRoute = findNearestNotFoundPath(url.pathname)
+          const notFoundHtmlPath = routeMap[notFoundRoute]
 
-            if (notFoundPath) {
-              const fetchStaticHtml = getFetchStaticHtml()
-              let notFoundHtml: string | null = null
+          if (notFoundHtmlPath) {
+            const fetchStaticHtml = getFetchStaticHtml()
+            let notFoundHtml: string | null = null
 
-              if (fetchStaticHtml) {
-                notFoundHtml = await fetchStaticHtml(notFoundPath)
-              }
+            if (fetchStaticHtml) {
+              notFoundHtml = await fetchStaticHtml(notFoundHtmlPath)
+            }
 
-              if (!notFoundHtml) {
-                try {
-                  notFoundHtml = await readFile(
-                    join('dist/client', notFoundPath),
-                    'utf-8'
-                  )
-                } catch {
-                  // File not found
-                }
-              }
-
-              if (notFoundHtml) {
-                const headers = new Headers()
-                headers.set('content-type', 'text/html')
-                return new Response(notFoundHtml, {
-                  headers,
-                  status: 404,
-                })
+            if (!notFoundHtml) {
+              try {
+                notFoundHtml = await readFile(
+                  join('dist/client', notFoundHtmlPath),
+                  'utf-8'
+                )
+              } catch {
+                // File not found
               }
             }
 
-            if (!parentDir) break
-            currentPath = parentDir
+            if (notFoundHtml) {
+              const headers = new Headers()
+              headers.set('content-type', 'text/html')
+              return new Response(notFoundHtml, {
+                headers,
+                status: 404,
+              })
+            }
           }
 
           // no +not-found.html found, return basic 404
@@ -561,21 +551,7 @@ url: ${url}`)
             // if not in routeMap, the slug wasn't in generateStaticParams - return 404
             if (route.type === 'ssg' && Object.keys(route.routeKeys).length > 0) {
               if (!routeMap[originalUrl]) {
-                // find nearest +not-found path from routeMap
-                let nfPath = '/+not-found'
-                let walkPath = originalUrl
-                while (walkPath) {
-                  const parentDir =
-                    walkPath.lastIndexOf('/') > 0
-                      ? walkPath.slice(0, walkPath.lastIndexOf('/'))
-                      : ''
-                  if (routeMap[`${parentDir}/+not-found`]) {
-                    nfPath = `${parentDir}/+not-found`
-                    break
-                  }
-                  if (!parentDir) break
-                  walkPath = parentDir
-                }
+                const nfPath = findNearestNotFoundPath(originalUrl)
                 return new Response(
                   `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`,
                   { headers: { 'Content-Type': 'text/javascript' } }
@@ -734,21 +710,7 @@ url: ${url}`)
           Object.keys(route.routeKeys).length > 0 &&
           !routeMap[originalUrl]
         ) {
-          // find nearest +not-found path from routeMap
-          let nfPath = '/+not-found'
-          let walkPath = originalUrl
-          while (walkPath) {
-            const parentDir =
-              walkPath.lastIndexOf('/') > 0
-                ? walkPath.slice(0, walkPath.lastIndexOf('/'))
-                : ''
-            if (routeMap[`${parentDir}/+not-found`]) {
-              nfPath = `${parentDir}/+not-found`
-              break
-            }
-            if (!parentDir) break
-            walkPath = parentDir
-          }
+          const nfPath = findNearestNotFoundPath(originalUrl)
           c.header('Content-Type', 'text/javascript')
           c.status(200)
           return c.body(
