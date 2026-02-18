@@ -16,14 +16,21 @@ export const PrettyTextMedium = styled(PrettyText, {
 })
 
 export const PrettyTextBigger = styled(PrettyText, {
-  fontFamily: '$mono',
-  size: '$5',
+  fontFamily: '$body',
+  // fontFamily: '$mono',
+  size: '$8',
+  fontWeight: '300',
   my: 5,
   className: '',
   color: '$gray11',
 
   $gtSm: {
-    size: '$6',
+    size: '$9',
+    fontWeight: '300',
+  },
+
+  '$platform-web': {
+    textWrap: 'balanced',
   },
 
   variants: {

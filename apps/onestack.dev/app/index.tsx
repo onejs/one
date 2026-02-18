@@ -90,18 +90,9 @@ export default function HomePage() {
               <Link href="/docs/status" asChild>
                 <Button
                   size="$4"
-                  bg="$color4"
                   br="$10"
-                  group
-                  transition="quickest"
-                  containerType="normal"
-                  gap={0}
-                  bw={0}
-                  hoverStyle={{
-                    bg: '$color5',
-                  }}
-                  pressStyle={{
-                    bg: '$color6',
+                  $sm={{
+                    display: 'none',
                   }}
                 >
                   <ButtonText color="$color12" fontFamily="$mono" lh={0}>
@@ -150,10 +141,20 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="$4" pt="$5">
+        <View
+          theme="yellow"
+          gap="$4"
+          pt="$5"
+          $sm={{
+            pt: '$8',
+          }}
+        >
           <PrettyTextBigger>
-            Build websites and apps with React and React&nbsp;Native with a single Vite
-            plugin. Fully typed{' '}
+            The simplest, fastest, all-in-one React&nbsp;Native framework.
+          </PrettyTextBigger>
+
+          <PrettyTextBigger>
+            A single Vite plugin for fully-typed{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               file-system routes
             </Link>
@@ -170,30 +171,20 @@ export default function HomePage() {
               middleware
             </Link>
             , a{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/one-dev">
-              CLI
+            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
+              ton of features
             </Link>
-            , and production{' '}
+            , and a production-ready{' '}
             <Link target="_blank" href="https://hono.dev">
               Hono
             </Link>
-            , Vercel or Cloudflare output,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              plus more
-            </Link>
-            .
+            , Vercel or Cloudflare server.
           </PrettyTextBigger>
 
-          <PrettyTextMedium color="$gray9">
-            One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or
-            a sync-engine for data.
-          </PrettyTextMedium>
-
-          <YStack mt={30} als="center" ai="center" jc="center" gap="$1" px="$6">
-            <Paragraph size="$5" theme="gray" color="$color9" mb={-20}>
-              Bootstrap instantly with
+          <YStack mt={20} als="center" ai="center" jc="center" px="$6">
+            <Paragraph size="$5" theme="gray" color="$color9">
+              Get started:
             </Paragraph>
-            <br />
             <CopyCommand />
           </YStack>
 
@@ -392,8 +383,6 @@ function Video() {
         miw={250}
         maw={350}
         h={290}
-        mt={-33}
-        mb={60}
         w="100%"
         ai="center"
         contain="size layout"
@@ -401,6 +390,9 @@ function Video() {
         containerType="normal"
         onPress={() => setShowVideo(true)}
         zi={0}
+        scale={0.85}
+        m={-40}
+        mb={0}
       >
         <View
           transition="quick"
@@ -465,7 +457,7 @@ function Video() {
         <Paragraph
           transition="quickest"
           fontFamily="$mono"
-          size="$5"
+          size="$3"
           ta="center"
           w={340}
           zi={2}
@@ -561,7 +553,7 @@ const CopyCommand = () => {
             fow="bold"
             $sm={{
               fontSize: 32,
-              ls: 0,
+              ls: -1,
             }}
           >
             npx one
