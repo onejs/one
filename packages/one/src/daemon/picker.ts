@@ -247,6 +247,14 @@ function setupKeyboardInput(): void {
   }
 
   process.stdin.on('data', stdinDataListener)
+
+  // ensure terminal is restored on signals
+  const signalHandler = () => {
+    cleanupPicker()
+    process.exit(0)
+  }
+  process.on('SIGINT', signalHandler)
+  process.on('SIGTERM', signalHandler)
 }
 
 function processInput(input: string): void {
