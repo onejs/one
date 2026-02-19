@@ -22,8 +22,12 @@ export async function generateRouteTypes(
       matchBase: true,
     })
   }
+  // globDir returns paths relative to routerRoot (e.g. "./app/data.tsx" for a file at <routerRoot>/app/data.tsx).
+  // globbedRoutesToRouteContext expects Vite-style paths with the routerRoot as a prefix
+  // (e.g. "/app/app/data.tsx"), so it can strip it via `path.replace(`/${routerRoot}/`, './')`.
   const routes = routePaths.reduce((acc, cur) => {
-    acc[cur] = {}
+    const vitePath = `/${routerRoot}/${cur.replace(/^\.\//, '')}`
+    acc[vitePath] = {}
     return acc
   }, {})
   const context = globbedRoutesToRouteContext(routes, routerRoot)
