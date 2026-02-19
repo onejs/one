@@ -22,6 +22,7 @@
     "sharp"
   ],
   "scripts": {
+    "postinstall": "test -f packages/one/dist/esm/cli.mjs || bun run build:js",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check": "turbo check",
