@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "@tamagui/build": "2.0.0-rc.14"
+    "@tamagui/build": "2.0.0-rc.16"
   }
 }
