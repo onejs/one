@@ -53,6 +53,15 @@ const modes = {
   production: 'production',
 } as const
 
+// citty returns an array when the same arg is passed multiple times
+// use the last value (standard CLI behavior - later args override earlier)
+function lastValue<T>(arg: T | T[]): T | undefined {
+  if (Array.isArray(arg)) {
+    return arg[arg.length - 1]
+  }
+  return arg
+}
+
 const dev = defineCommand({
   meta: {
     name: 'dev',
@@ -90,8 +99,10 @@ const dev = defineCommand({
     const { dev } = await import('./cli/dev')
     await dev({
       ...args,
-      debugBundle: args['debug-bundle'],
-      mode: modes[args.mode],
+      port: lastValue(args.port),
+      host: lastValue(args.host),
+      debugBundle: lastValue(args['debug-bundle']),
+      mode: modes[lastValue(args.mode) as keyof typeof modes],
     })
   },
 })
@@ -172,9 +183,11 @@ const serveCommand = defineCommand({
   },
   async run({ args }) {
     const { serve } = await import('./serve')
+    const port = lastValue(args.port)
+    const host = lastValue(args.host)
     await serve({
-      port: args.port ? +args.port : undefined,
-      host: args.host,
+      port: port ? +port : undefined,
+      host,
       compress: args.compress,
       loadEnv: !!args.loadEnv,
     })
@@ -363,7 +376,11 @@ const daemonCommand = defineCommand({
   },
   async run({ args }) {
     const { daemon } = await import('./cli/daemon')
-    await daemon(args)
+    await daemon({
+      ...args,
+      port: lastValue(args.port),
+      host: lastValue(args.host),
+    })
   },
 })
 
