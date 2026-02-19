@@ -203,6 +203,14 @@ export function startTUI(state: DaemonState): void {
 
   process.stdin.on('data', stdinListener)
 
+  // ensure terminal is restored on signals
+  const signalHandler = () => {
+    stopTUI()
+    process.exit(0)
+  }
+  process.on('SIGINT', signalHandler)
+  process.on('SIGTERM', signalHandler)
+
   physicsInterval = setInterval(updatePhysics, 50)
   refreshInterval = setInterval(refreshData, 1000)
   refreshData()

@@ -150,6 +150,16 @@ function getCommandInfoInTerminal(
   return `\x1b[90m›\x1b[0m Press \x1b[1m${longestKeyLength ? command.keys.padEnd(longestKeyLength, ' ') : command.keys}\x1b[0m \x1b[90m│\x1b[0m ${command.terminalLabel}`
 }
 
+function restoreTerminal() {
+  const { stdin } = process
+  if (stdin.isTTY && stdin.setRawMode) {
+    try {
+      stdin.setRawMode(false)
+    } catch {}
+  }
+  process.stdout.write('\x1b[0m')
+}
+
 function startInterceptingKeyStrokes(context: Context) {
   const { stdin } = process
   if (!stdin.setRawMode) {
@@ -162,6 +172,17 @@ function startInterceptingKeyStrokes(context: Context) {
   stdin.on('data', handleKeypress.bind(null, context))
   // Allow Node.js to exit even if stdin is still listening
   stdin.unref()
+
+  // restore terminal on exit
+  process.on('exit', restoreTerminal)
+  process.on('SIGINT', () => {
+    restoreTerminal()
+    process.exit(0)
+  })
+  process.on('SIGTERM', () => {
+    restoreTerminal()
+    process.exit(0)
+  })
 }
 
 let pressedKeys = ''

@@ -1,5 +1,14 @@
 import readline from 'node:readline'
 
+function restoreTerminal() {
+  if (process.stdin.isTTY && process.stdin.setRawMode) {
+    try {
+      process.stdin.setRawMode(false)
+    } catch {}
+  }
+  process.stdout.write('\x1b[0m')
+}
+
 export function bindKeypressInput() {
   if (!process.stdin.setRawMode) {
     console.warn({
@@ -13,12 +22,24 @@ export function bindKeypressInput() {
   // Allow Node.js to exit even if stdin is still listening
   process.stdin.unref()
 
+  // restore terminal on exit
+  process.on('exit', restoreTerminal)
+  process.on('SIGINT', () => {
+    restoreTerminal()
+    process.exit(0)
+  })
+  process.on('SIGTERM', () => {
+    restoreTerminal()
+    process.exit(0)
+  })
+
   process.stdin.on('keypress', (_key, data) => {
     const { ctrl, name } = data
     if (ctrl === true) {
       switch (name) {
         // biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
         case 'c':
+          restoreTerminal()
           process.exit()
         case 'z':
           process.emit('SIGTSTP', 'SIGTSTP')
