@@ -22,7 +22,8 @@ jobs:
           install-playwright: 'false'
 
       - name: Security Audit
-        run: bun audit --audit-level high
+        # ignore minimatch ReDoS (GHSA-3ppc-4f35-3m26) - can't force resolve without breaking depcheck
+        run: bun audit --audit-level high --ignore=GHSA-3ppc-4f35-3m26
 
       - name: Check
         run: bun run check
