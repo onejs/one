@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "one-example",
-    "slug": "one-example",
+    "name": "one-basic",
+    "slug": "one-basic",
     "newArchEnabled": true,
     "platforms": [
       "ios",

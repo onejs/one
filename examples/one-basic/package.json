@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "one patch",
     "android": "one run:android",
     "build:web": "one build",
     "clean": "one clean",

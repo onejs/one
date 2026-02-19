@@ -15,35 +15,36 @@ For more instructions, see the ["Create your first build" guide in the EAS docum
   <br /><br />
   A common type of error you'll probably see in an EAS build is:
 
-  ```
-  The engine "node" is incompatible with this module. Expected version "^20.15.0". Got "18.18.0"
-  ```
+```
+The engine "node" is incompatible with this module. Expected version "^20.15.0". Got "18.18.0"
+```
 
-  This is because EAS defaults to a relatively old version of Node.js. To fix this, you can modify your `eas.json` and [specify the version of Node.js](https://docs.expo.dev/build/eas-json/#selecting-build-tool-versions) like this:
+This is because EAS defaults to a relatively old version of Node.js. To fix this, you can modify your `eas.json` and [specify the version of Node.js](https://docs.expo.dev/build/eas-json/#selecting-build-tool-versions) like this:
 
-  ```json
-  {
-    /* ... */
-    "build": {
-      "shared": {
-        "node": "20.15.0"
-      },
-      "development": {
-        "extends": "shared",
-        /* ... */
-      },
-      "preview": {
-        "extends": "shared",
-        /* ... */
-      },
-      "production": {
-        "extends": "shared",
-        /* ... */
-      }
+```json
+{
+  /* ... */
+  "build": {
+    "shared": {
+      "node": "20.15.0"
     },
-    /* ... */
+    "development": {
+      "extends": "shared"
+      /* ... */
+    },
+    "preview": {
+      "extends": "shared"
+      /* ... */
+    },
+    "production": {
+      "extends": "shared"
+      /* ... */
+    }
   }
-  ```
+  /* ... */
+}
+```
+
 </Notice>
 
 ## Setup Your One App for EAS
@@ -54,21 +55,33 @@ While our templates are configured in a way that works with EAS, if you're start
 
 2. Add a `react-native.config.cjs` to your project root (next to your `package.json`) with the following content:
 
-    ```js
-    module.exports = {
-      // Setting up and overriding some react-native CLI commands.
-      // Necessary for building native iOS and Android apps,
-      // where Vite shall be used instead of Metro for JS bundling during the build process.
-      commands: [...require('vxrn/react-native-commands')]
-    }
-    ```
+   ```js
+   module.exports = {
+     // Setting up and overriding some react-native CLI commands.
+     // Necessary for building native iOS and Android apps,
+     // where Vite shall be used instead of Metro for JS bundling during the build process.
+     commands: [...require('vxrn/react-native-commands')],
+   }
+   ```
 
 3. Modify your `app.json` (or `app.config.js`) and add `vxrn/expo-plugin` to `expo.plugins`. This plugin will hook into the Expo build process running on EAS to ensure your One app is built correctly:
 
-    ```json
-    {
-      "expo": {
-        "plugins": ["vxrn/expo-plugin"]
-      }
-    }
-    ```
+   ```json
+   {
+     "expo": {
+       "plugins": ["vxrn/expo-plugin"]
+     }
+   }
+   ```
+
+4. Add a `postinstall` script to your `package.json` that runs `one patch`. This applies necessary patches to Expo's CLI to ensure compatibility with One's build process:
+
+   ```json
+   {
+     "scripts": {
+       "postinstall": "one patch"
+     }
+   }
+   ```
+
+   One attempts to patch this but there can be timing issues, so this is a safer setup.
