@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "one patch",
+    "postinstall": "one patch || true",
     "android": "EXPO_NO_TELEMETRY=true one run:android",
     "build:web": "one build",
     "clean": "one clean",
