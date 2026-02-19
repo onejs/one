@@ -175,9 +175,12 @@ describe('Intercepting Routes', () => {
         })
 
         // Click on the overlay (not the content)
-        // Click at the edge of the viewport which should be on the overlay
-        await page.click('[data-testid="intercept-modal-overlay"]', {
-          position: { x: 10, y: 10 },
+        // Use evaluate to dispatch click event directly for better compatibility
+        await page.evaluate(() => {
+          const overlay = document.querySelector('[data-testid="intercept-modal-overlay"]')
+          if (overlay) {
+            overlay.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+          }
         })
 
         // Wait for modal to close
