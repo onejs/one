@@ -1,0 +1,9 @@
+#page-title {
+  color: rgb(0, 128, 0); /* green */
+}
+
+#styled-box {
+  background-color: rgb(255, 165, 0); /* orange */
+  padding: 20px;
+  border-radius: 8px;
+}
