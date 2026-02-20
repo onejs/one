@@ -514,7 +514,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
-
   ] satisfies Plugin[]
 
   // leaving this as a good example of an option that loads a library conditionally

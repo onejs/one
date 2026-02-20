@@ -353,7 +353,8 @@ export async function build(args: {
   const moduleIdToServerChunk = new Map<string, string>()
   for (const [, output] of outputEntries) {
     if (output.type === 'asset') continue
-    const moduleIds = output.moduleIds || (output.facadeModuleId ? [output.facadeModuleId] : [])
+    const moduleIds =
+      output.moduleIds || (output.facadeModuleId ? [output.facadeModuleId] : [])
     for (const moduleId of moduleIds) {
       moduleIdToServerChunk.set(moduleId, output.fileName)
     }
@@ -367,7 +368,11 @@ export async function build(args: {
     }
 
     // resolve the full module path for this route
-    const routeModulePath = join(resolve(process.cwd(), options.root), routerRoot, foundRoute.file.slice(2))
+    const routeModulePath = join(
+      resolve(process.cwd(), options.root),
+      routerRoot,
+      foundRoute.file.slice(2)
+    )
 
     // find the server chunk containing this route
     const serverFileName = moduleIdToServerChunk.get(routeModulePath)
