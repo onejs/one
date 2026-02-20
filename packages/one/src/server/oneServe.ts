@@ -86,6 +86,15 @@ export async function oneServe(
     return '/+not-found'
   }
 
+  // generate a 404 loader response that triggers client-side not-found navigation
+  function make404LoaderJs(path: string, logReason?: string): string {
+    const nfPath = findNearestNotFoundPath(path)
+    if (logReason) {
+      console.error(`[one] 404 loader for ${path}: ${logReason}`)
+    }
+    return `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
+  }
+
   const serverOptions = {
     ...oneOptions,
     root: '.',
@@ -165,7 +174,20 @@ export async function oneServe(
         return null
       }
 
-      const json = await loader(loaderProps)
+      let json
+      try {
+        json = await loader(loaderProps)
+      } catch (err) {
+        // for file-not-found errors (e.g., missing MDX for non-existent slug),
+        // return a 404 signal so the client navigates to +not-found
+        if ((err as any)?.code === 'ENOENT') {
+          return make404LoaderJs(
+            loaderProps?.path || '/',
+            `ENOENT ${(err as any)?.path || err}`
+          )
+        }
+        throw err
+      }
 
       // if the loader returned a Response (e.g. redirect()), throw it
       // so it bubbles up through resolveResponse and can be transformed
@@ -189,11 +211,6 @@ export async function oneServe(
         }
 
         try {
-          // Use lazy import if available (workers), otherwise dynamic import (Node.js)
-          const exported = options?.lazyRoutes?.pages?.[route.file]
-            ? await options.lazyRoutes.pages[route.file]()
-            : await import(toAbsolute(buildInfo.serverJsPath))
-
           // helper to import and run a single loader
           async function runLoader(
             routeId: string,
@@ -551,10 +568,11 @@ url: ${url}`)
             // if not in routeMap, the slug wasn't in generateStaticParams - return 404
             if (route.type === 'ssg' && Object.keys(route.routeKeys).length > 0) {
               if (!routeMap[originalUrl]) {
-                const nfPath = findNearestNotFoundPath(originalUrl)
                 return new Response(
-                  `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`,
-                  { headers: { 'Content-Type': 'text/javascript' } }
+                  make404LoaderJs(originalUrl, 'ssg route not in routeMap'),
+                  {
+                    headers: { 'Content-Type': 'text/javascript' },
+                  }
                 )
               }
             }
@@ -710,12 +728,9 @@ url: ${url}`)
           Object.keys(route.routeKeys).length > 0 &&
           !routeMap[originalUrl]
         ) {
-          const nfPath = findNearestNotFoundPath(originalUrl)
           c.header('Content-Type', 'text/javascript')
           c.status(200)
-          return c.body(
-            `export function loader(){return{__oneError:404,__oneErrorMessage:'Not Found',__oneNotFoundPath:${JSON.stringify(nfPath)}}}`
-          )
+          return c.body(make404LoaderJs(originalUrl, 'ssg route not in routeMap'))
         }
 
         // for now just change this
