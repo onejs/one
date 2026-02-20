@@ -274,12 +274,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
         input: ['virtual:one-entry'],
 
-        ...(shouldOutputCJS && {
-          output: {
-            format: 'cjs', // Ensure the format is set to 'cjs'
-            entryFileNames: '[name].cjs', // Customize the output file extension
-          },
-        }),
+        output: {
+          ...(shouldOutputCJS && {
+            format: 'cjs',
+            entryFileNames: '[name].cjs',
+          }),
+        },
       },
     },
   } satisfies UserConfig)
