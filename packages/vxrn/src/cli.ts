@@ -13,6 +13,15 @@ async function importCLIEndpoint<T>(path: string): Promise<T> {
   return (await import(path)) as any as T
 }
 
+// citty returns an array when the same arg is passed multiple times
+// use the last value (standard CLI behavior - later args override earlier)
+function lastValue<T>(arg: T | T[]): T | undefined {
+  if (Array.isArray(arg)) {
+    return arg[arg.length - 1]
+  }
+  return arg
+}
+
 if (typeof import.meta.dirname !== 'string') {
   console.error(
     `One uses "import.meta.dirname", for Node this is version 20.11.0 or greater`
@@ -44,13 +53,15 @@ const dev = defineCommand({
   async run({ args }) {
     const { dev } = await importCLIEndpoint<typeof devExport>('./exports/dev.mjs')
 
+    const port = lastValue(args.port)
+    const host = lastValue(args.host)
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
-      debugBundle: args['debug-bundle'] || '',
+      debugBundle: lastValue(args['debug-bundle']) || '',
       server: {
-        host: args.host,
-        port: args.port ? +args.port : undefined,
+        host,
+        port: port ? +port : undefined,
       },
     })
 
@@ -159,9 +170,11 @@ const serve = defineCommand({
       console.error(err?.message || err)
     })
 
+    const port = lastValue(args.port)
+    const host = lastValue(args.host)
     const results = await serve({
-      port: args.port ? +args.port : undefined,
-      host: args.host,
+      port: port ? +port : undefined,
+      host,
     })
 
     if (process.env.DEBUG) {
