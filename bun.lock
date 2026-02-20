@@ -834,6 +834,21 @@
         "wrangler": "4.60.0",
       },
     },
+    "tests/test-css-merged": {
+      "name": "test-css-merged",
+      "version": "1.9.6",
+      "dependencies": {
+        "one": "workspace:*",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
+      },
+      "devDependencies": {
+        "playwright": "^1.57.0",
+        "typescript": "^5.7.3",
+        "vite": "^7.1.12",
+        "vitest": "^4.0.6",
+      },
+    },
     "tests/test-css-preload": {
       "name": "test-css-preload",
       "version": "1.9.6",
@@ -4556,6 +4571,8 @@
     "test-app-cases": ["test-app-cases@workspace:tests/test-app-cases"],
 
     "test-cloudflare": ["test-cloudflare@workspace:tests/test-cloudflare"],
+
+    "test-css-merged": ["test-css-merged@workspace:tests/test-css-merged"],
 
     "test-css-preload": ["test-css-preload@workspace:tests/test-css-preload"],
 

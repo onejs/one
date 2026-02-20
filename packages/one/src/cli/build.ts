@@ -575,10 +575,18 @@ export async function build(args: {
       : allPreloads
 
     const allEntries = [clientManifestEntry, ...layoutEntries].filter(Boolean)
-    const allCSS = allEntries
-      .flatMap((entry) => collectImports(entry, { type: 'css' }))
-      // nested path pages need to reference root assets
-      .map((path) => `/${path}`)
+    const allCSS = [
+      ...new Set([
+        // css from entry imports
+        ...allEntries
+          .flatMap((entry) => collectImports(entry, { type: 'css' }))
+          .map((path) => `/${path}`),
+        // root-level css (handles cssCodeSplit: false)
+        ...Object.entries(vxrnOutput.clientManifest)
+          .filter(([key]) => key.endsWith('.css'))
+          .map(([, entry]) => `/${(entry as ClientManifestEntry).file}`),
+      ]),
+    ]
 
     // Read CSS file contents if inlineLayoutCSS is enabled (with caching)
     let allCSSContents: string[] | undefined
