@@ -9,12 +9,10 @@ import { getURL } from '../getURL'
 import { removeSearch } from './removeSearch'
 
 function cleanUrl(path: string) {
-  return (
-    removeSearch(path)
-      .replaceAll('/', '_')
-      // remove trailing _
-      .replace(/_$/, '')
-  )
+  return removeSearch(path)
+    .replace(/\/$/, '') // remove trailing slash before encoding
+    .replaceAll('_', '__') // escape existing underscores
+    .replaceAll('/', '_') // use underscore as path separator
 }
 
 const isClient = typeof window !== 'undefined'
@@ -45,9 +43,12 @@ export function getLoaderPath(
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {
-  return loaderPath
-    .replace(LOADER_JS_POSTFIX_REGEX, '')
-    .replace(/^(\/_one)?\/assets/, '')
-    .replace(/_refetch_\d+_/, '')
-    .replaceAll(/_/g, '/')
+  return (
+    loaderPath
+      .replace(LOADER_JS_POSTFIX_REGEX, '')
+      .replace(/^(\/_one)?\/assets/, '')
+      .replace(/_refetch_\d+_/, '')
+      // decode: __ → _ (escaped underscore), _ → / (path separator)
+      .replace(/__|_/g, (match) => (match === '__' ? '_' : '/'))
+  )
 }
