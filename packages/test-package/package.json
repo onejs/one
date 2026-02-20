@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/test-package",
-  "version": "1.9.7",
+  "version": "1.9.7-1771627830098",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
