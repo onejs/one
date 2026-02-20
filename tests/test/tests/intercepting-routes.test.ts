@@ -177,7 +177,9 @@ describe('Intercepting Routes', () => {
         // Click on the overlay (not the content)
         // Use evaluate to dispatch click event directly for better compatibility
         await page.evaluate(() => {
-          const overlay = document.querySelector('[data-testid="intercept-modal-overlay"]')
+          const overlay = document.querySelector(
+            '[data-testid="intercept-modal-overlay"]'
+          )
           if (overlay) {
             overlay.dispatchEvent(new MouseEvent('click', { bubbles: true }))
           }
