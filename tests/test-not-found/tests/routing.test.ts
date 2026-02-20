@@ -297,4 +297,66 @@ describe('Dynamic route 404 handling', () => {
       }
     })
   })
+
+  // case9: loader that throws ENOENT for invalid slugs (like MDX loading)
+  describe('case9: loader ENOENT handling', () => {
+    it('should render page with valid slug', async () => {
+      const page = await context.newPage()
+      try {
+        await page.goto(`${serverUrl}/case9/valid`, { waitUntil: 'domcontentloaded' })
+        await page.waitForSelector('#case9-page', { timeout: 5000, state: 'visible' })
+        expect(await page.textContent('#case9-slug')).toBe('valid')
+      } finally {
+        await page.close()
+      }
+    })
+
+    it('should return 404 for slug where loader throws ENOENT', async () => {
+      const response = await fetch(`${serverUrl}/case9/nonexistent`)
+      if (isProd) {
+        expect(response.status).toBe(404)
+      }
+    })
+
+    it('should show 404 page for slug where loader throws ENOENT', async () => {
+      const page = await context.newPage()
+      try {
+        await page.goto(`${serverUrl}/case9/nonexistent`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#case9-not-found', { timeout: 5000 })
+      } finally {
+        await page.close()
+      }
+    })
+
+    it('should handle client-side navigation to invalid slug gracefully', async () => {
+      const page = await context.newPage()
+      try {
+        // start on valid page
+        await page.goto(`${serverUrl}/case9/valid`, { waitUntil: 'domcontentloaded' })
+        await page.waitForSelector('#case9-page', { timeout: 5000 })
+
+        // navigate to invalid slug via client-side navigation
+        await page.evaluate(() => {
+          window.location.href = '/case9/nonexistent'
+        })
+
+        // should show 404 page without freezing (within 5 seconds)
+        await page.waitForSelector('#case9-not-found', { timeout: 5000 })
+      } finally {
+        await page.close()
+      }
+    })
+
+    it('should return 404 signal in loader response for invalid slug', async () => {
+      const response = await fetch(
+        `${serverUrl}/case9/nonexistent/_vxrn_loader.js?v=${Date.now()}`
+      )
+      const text = await response.text()
+      // should return valid JS with __oneError: 404
+      expect(text).toContain('__oneError')
+      expect(text).toContain('404')
+    })
+  })
 })

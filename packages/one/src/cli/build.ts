@@ -340,52 +340,56 @@ export async function build(args: {
     }
   }
 
-  for (const [index, output] of outputEntries) {
+  // collect assets from output
+  for (const [, output] of outputEntries) {
     if (output.type === 'asset') {
       assets.push(output)
+    }
+  }
+
+  // build a map from module ID to server chunk for route matching
+  // when experimentalMinChunkSize merges chunks, facadeModuleId only reflects
+  // one module. we check ALL moduleIds in each chunk to find routes.
+  const moduleIdToServerChunk = new Map<string, string>()
+  for (const [, output] of outputEntries) {
+    if (output.type === 'asset') continue
+    const moduleIds = output.moduleIds || (output.facadeModuleId ? [output.facadeModuleId] : [])
+    for (const moduleId of moduleIds) {
+      moduleIdToServerChunk.set(moduleId, output.fileName)
+    }
+  }
+
+  // iterate over routes (not chunks) to ensure all SSG routes are processed
+  // even when experimentalMinChunkSize merges their chunks
+  for (const foundRoute of manifest.pageRoutes) {
+    if (!foundRoute.file || foundRoute.isNotFound) {
       continue
     }
 
-    const id = output.facadeModuleId || ''
-    const file = Path.basename(id)
+    // resolve the full module path for this route
+    const routeModulePath = join(resolve(process.cwd(), options.root), routerRoot, foundRoute.file.slice(2))
 
-    if (!id || file[0] === '_' || file.includes('entry-server')) {
+    // find the server chunk containing this route
+    const serverFileName = moduleIdToServerChunk.get(routeModulePath)
+    if (!serverFileName) {
+      // SPA routes may not have server chunks - that's expected
+      if (foundRoute.type === 'spa') {
+        continue
+      }
+      console.warn(`[one] No server chunk found for route: ${foundRoute.file}`)
       continue
     }
-    if (id.includes('+api')) {
-      continue
-    }
-
-    // temp we should use manifest but lets just filter out non-app dir stuff
-    if (!id.includes(`/${routerRoot}/`)) {
-      continue
-    }
-
-    const relativeId = relative(process.cwd(), id).replace(`${routerRoot}/`, '/')
 
     const onlyBuild = vxrnOutput.buildArgs?.only
     if (onlyBuild) {
+      const relativeId = foundRoute.file.slice(1)
       if (!MicroMatch.contains(relativeId, onlyBuild)) {
         continue
       }
     }
 
-    // Match route by server output id against manifest.pageRoutes (O(1) lookup)
-    let foundRoute: RouteInfo<string> | undefined
-    for (const [routePath, route] of routeByPath) {
-      if (id.endsWith(routePath)) {
-        foundRoute = route
-        break
-      }
-    }
-
-    if (!foundRoute) {
-      continue
-    }
-
     // look up client chunk directly by source file path (from rollup output)
-    // this is more reliable than the manifest.json which can have ambiguous keys
-    const clientChunk = clientChunksBySource.get(id)
+    const clientChunk = clientChunksBySource.get(routeModulePath)
 
     // also look up in manifest for additional info (css, nested imports, etc)
     const manifestKey = `${routerRoot}${foundRoute.file.slice(1)}`
@@ -393,11 +397,14 @@ export async function build(args: {
 
     // SPA and SSG routes may not have client chunks - that's expected
     if (!clientChunk && foundRoute.type !== 'spa' && foundRoute.type !== 'ssg') {
-      console.warn(`No client chunk found for route: ${id}`)
+      console.warn(`No client chunk found for route: ${routeModulePath}`)
       continue
     }
 
-    foundRoute.loaderServerPath = output.fileName
+    foundRoute.loaderServerPath = serverFileName
+
+    // relativeId is used for logging and path generation
+    const relativeId = foundRoute.file
 
     // attach layout server paths for running layout loaders in production
     if (foundRoute.layouts) {
@@ -620,7 +627,7 @@ export async function build(args: {
       })
     }
 
-    const serverJsPath = join('dist/server', output.fileName)
+    const serverJsPath = join('dist/server', serverFileName)
 
     let exported
     try {
