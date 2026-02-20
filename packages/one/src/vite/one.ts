@@ -7,7 +7,6 @@ import {
 } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import path from 'node:path'
-import fg from 'fast-glob'
 import { mergeConfig, type Plugin, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
@@ -29,10 +28,6 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
-import {
-  ROUTE_GLOB_PATTERN,
-  ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
-} from '../router/glob-patterns'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
@@ -520,41 +515,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    // add route files as explicit entries for SSR build
-    // this ensures each route keeps its facadeModuleId even when
-    // experimentalMinChunkSize causes chunk merging
-    {
-      name: 'one:ssr-route-entries',
-
-      config(userConfig) {
-        // only apply to SSR builds
-        if (!userConfig.build?.ssr) return
-
-        const absoluteRouterRoot = path.resolve(root, routerRoot)
-
-        // glob for route files
-        const routeFiles = fg.sync(ROUTE_GLOB_PATTERN, {
-          cwd: absoluteRouterRoot,
-          absolute: true,
-          ignore: [
-            ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
-            '**/_*', // ignore layout files
-            '**/*+api.*', // ignore api routes
-          ],
-        })
-
-        if (routeFiles.length === 0) return
-
-        // add route files as additional entries
-        return {
-          build: {
-            rollupOptions: {
-              input: routeFiles,
-            },
-          },
-        }
-      },
-    },
   ] satisfies Plugin[]
 
   // leaving this as a good example of an option that loads a library conditionally
