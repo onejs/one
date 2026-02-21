@@ -13,6 +13,25 @@ describe('Simple Build Tests', () => {
 
   const fixturePath = inject('testInfo').testDir
 
+  it('routeMap keys should use "/" prefix, not "./"', async () => {
+    // regression test: build.ts used foundRoute.file (which starts with "./")
+    // as input to getPathnameFromFilePath, producing routeMap keys like
+    // "./:serverId" instead of "/:serverId". serve-time lookups use "/" prefix
+    // so all dynamic SPA routes would 404.
+    const buildInfoPath = join(fixturePath, 'dist', 'buildInfo.json')
+    const buildInfo = JSON.parse(await readFile(buildInfoPath, 'utf-8'))
+    const keys = Object.keys(buildInfo.routeMap)
+
+    for (const key of keys) {
+      expect(key, `routeMap key "${key}" should start with "/"`).toMatch(/^\//)
+      expect(key, `routeMap key "${key}" should not start with "./"`).not.toMatch(/^\.\//)
+    }
+
+    // sanity: should have some dynamic routes in the test fixture
+    const dynamicKeys = keys.filter((k) => k.includes(':'))
+    expect(dynamicKeys.length).toBeGreaterThan(0)
+  })
+
   it('should build api routes without including side effects', async () => {
     const sideEffectFreeApiRoute = await readFile(
       join(fixturePath, 'dist', 'api', 'api', 'react-dep.js')
