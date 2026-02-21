@@ -409,7 +409,8 @@ export async function build(args: {
     foundRoute.loaderServerPath = serverFileName
 
     // relativeId is used for logging and path generation
-    const relativeId = foundRoute.file
+    // foundRoute.file starts with "./" but getPathnameFromFilePath expects "/" prefix
+    const relativeId = foundRoute.file.replace(/^\.\//, '/')
 
     // attach layout server paths for running layout loaders in production
     if (foundRoute.layouts) {
