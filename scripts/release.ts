@@ -44,26 +44,32 @@ const confirmFinalPublish = process.argv.includes('--confirm-final-publish')
 const reRun = process.argv.includes('--rerun')
 const rePublish = reRun || process.argv.includes('--republish')
 const finish = process.argv.includes('--finish')
-const skipFinish = process.argv.includes('--skip-finish')
+
+// convenience flags
+const skipAll = process.argv.includes('--skip-all')
+const undocumented = process.argv.includes('--undocumented')
 
 const canary = process.argv.includes('--canary')
 const isRC = process.argv.includes('--rc')
 const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
 const shouldPatch = process.argv.includes('--patch')
-const dirty = finish || process.argv.includes('--dirty')
+const dirty = finish || rePublish || undocumented || process.argv.includes('--dirty')
 const skipPublish = process.argv.includes('--skip-publish')
 const skipTest =
   finish ||
   rePublish ||
+  skipAll ||
   process.argv.includes('--skip-test') ||
   process.argv.includes('--skip-tests')
 const skipNativeTest =
   process.argv.includes('--skip-native-test') ||
   process.argv.includes('--skip-native-tests')
-const skipBuild = finish || rePublish || process.argv.includes('--skip-build')
+const skipBuild = finish || rePublish || skipAll || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
 const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
-const isCI = finish || process.argv.includes('--ci')
+const isCI = finish || rePublish || undocumented || process.argv.includes('--ci')
+const skipFinish =
+  rePublish || skipAll || undocumented || process.argv.includes('--skip-finish')
 
 const curVersion = fs.readJSONSync('./packages/one/package.json').version
 
@@ -471,6 +477,13 @@ async function run() {
       )
 
       console.info(`✅ Published\n`)
+
+      // restore package.json files for undocumented releases
+      if (undocumented) {
+        console.info('Restoring package.json files...')
+        await spawnify(`git checkout -- **/package.json`)
+        console.info(`✅ Restored package.json files (undocumented release)\n`)
+      }
     }
 
     if (!skipFinish) {
