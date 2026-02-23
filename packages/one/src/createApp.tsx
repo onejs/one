@@ -187,27 +187,35 @@ export function createApp(options: CreateAppProps) {
       })
     : [options.routes[`/${options.routerRoot}/_layout.tsx`]?.()]
 
+  // for 404 pages, use history.state.__tempLocation to route to notFoundPath
+  // without changing the browser URL. the router checks __tempLocation and uses
+  // that path for routing instead of the URL. this ensures hydration matches
+  // the server-rendered +not-found page while keeping the original URL intact
+  const one404Marker = (window as any).__one404
+  if (one404Marker?.notFoundPath) {
+    const currentState = window.history.state || {}
+    window.history.replaceState(
+      {
+        ...currentState,
+        __tempLocation: { pathname: one404Marker.notFoundPath, search: '' },
+      },
+      ''
+    )
+  }
+
   return setupComplete
     .then(() => Promise.all(preloadPromises))
     .then(() => {
       return resolveClientLoader(serverContext)
     })
     .then(() => {
-      // for 404 pages, use the notFoundPath for initial routing to match server HTML
-      // the server renders the +not-found page at notFoundPath, so the client must use
-      // the same path to ensure hydration matches
-      const one404Marker = (window as any).__one404
-      const clientPath = one404Marker?.notFoundPath
-        ? new URL(one404Marker.notFoundPath, window.location.href).href
-        : window.location.href
-
       render(
         <Root
           isClient
           flags={options.flags}
           routes={options.routes}
           routerRoot={options.routerRoot}
-          path={clientPath}
+          path={window.location.href}
         />
       )
     })
