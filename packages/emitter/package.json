@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/emitter",
-  "version": "1.9.7-1771814492915",
+  "version": "1.9.8",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./src/index.ts",
