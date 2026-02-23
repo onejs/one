@@ -112,6 +112,10 @@ const body = createMainFont(
 const mono = createFont({
   ...body,
   family: '"IBM Plex Mono", Consolas, monospace, monospace',
+  weight: {
+    true: '400',
+    4: '400',
+  },
   size: {
     1: 11 * 1.4,
     2: 12 * 1.4,
@@ -151,11 +155,13 @@ const mono = createFont({
     16: 134 * 2.5 - 3,
   },
   letterSpacing: {
-    6: 1,
-    7: 1.5,
-    8: 2,
-    9: 2.5,
-    10: 3,
+    true: 0,
+    4: 0,
+    6: 0,
+    7: 0,
+    8: 0,
+    9: 0,
+    10: 0,
   },
 })
 
