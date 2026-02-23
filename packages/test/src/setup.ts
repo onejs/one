@@ -1,6 +1,5 @@
 import type { TestProject } from 'vitest/node'
 import type { Assertion } from 'vitest'
-import { spawn } from 'node:child_process'
 import { setupTestServers, type TestInfo } from './setupTest'
 
 // to keep the import which is needed for declare
@@ -31,84 +30,37 @@ export async function setup(project: TestProject) {
   project.provide('testInfo', testInfo)
 }
 
-// Get all child PIDs of a process using pgrep
-async function getChildPids(parentPid: number): Promise<number[]> {
-  try {
-    const proc = spawn('pgrep', ['-P', parentPid.toString()], {
-      stdio: ['ignore', 'pipe', 'pipe'],
-    })
-
-    return new Promise((resolve) => {
-      let output = ''
-      proc.stdout?.on('data', (data) => {
-        output += data.toString()
-      })
-
-      proc.on('close', () => {
-        const childPids = output.trim().split('\n').filter(Boolean).map(Number)
-        resolve(childPids)
-      })
-    })
-  } catch {
-    return []
-  }
-}
-
-// Recursively get all descendant PIDs
-async function getAllDescendantPids(parentPid: number): Promise<number[]> {
-  const childPids = await getChildPids(parentPid)
-  const descendantPids = [...childPids]
-
-  for (const childPid of childPids) {
-    const grandchildren = await getAllDescendantPids(childPid)
-    descendantPids.push(...grandchildren)
-  }
-
-  return descendantPids
-}
-
-// Kill a process and all its descendants
+// Kill a process group (for detached processes) or process tree
 async function killProcessTree(pid: number, name: string): Promise<void> {
   try {
-    const descendants = await getAllDescendantPids(pid)
-
-    // First send SIGTERM to all descendants (reverse order - children first)
-    for (const descendantPid of descendants.reverse()) {
-      try {
-        process.kill(descendantPid, 'SIGTERM')
-      } catch {
-        // process may already be gone
-      }
-    }
-
-    // Send SIGTERM to parent
+    // for detached processes, kill the entire process group using negative pid
     try {
-      process.kill(pid, 'SIGTERM')
+      process.kill(-pid, 'SIGTERM')
     } catch {
-      // process may already be gone
+      // fallback to killing individual process if process group kill fails
+      process.kill(pid, 'SIGTERM')
     }
 
-    // Wait for graceful shutdown
+    // wait for graceful shutdown
     await new Promise((r) => setTimeout(r, 200))
 
-    // Force kill any remaining processes with SIGKILL
-    for (const descendantPid of descendants.reverse()) {
+    // force kill with SIGKILL
+    try {
+      process.kill(-pid, 'SIGKILL')
+    } catch {
       try {
-        process.kill(descendantPid, 'SIGKILL')
+        process.kill(pid, 'SIGKILL')
       } catch {
         // process may already be gone
       }
-    }
-
-    try {
-      process.kill(pid, 'SIGKILL')
-    } catch {
-      // process may already be gone
     }
 
     console.info(`${name} process (PID: ${pid}) killed successfully.`)
   } catch (error) {
-    console.error(`Error killing ${name} process tree for ${pid}: ${error}`)
+    // process may already be gone, which is fine
+    if ((error as NodeJS.ErrnoException).code !== 'ESRCH') {
+      console.error(`Error killing ${name} process tree for ${pid}: ${error}`)
+    }
   }
 }
 

@@ -6,7 +6,9 @@ export default defineConfig({
     retry: 2,
     testTimeout: 60000,
     hookTimeout: 60000,
+    teardownTimeout: 10000,
     fileParallelism: false,
     maxConcurrency: 3,
+    pool: 'threads',
   },
 })

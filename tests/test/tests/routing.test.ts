@@ -308,13 +308,21 @@ describe(`Routing Tests`, () => {
         const page = await context.newPage()
         try {
           await page.goto(`${serverUrl}/ssg-not-found/invalid-slug`, {
-            waitUntil: 'networkidle',
+            waitUntil: 'domcontentloaded',
           })
+
+          // wait for 404 content first (proves hydration completed)
+          await page.waitForSelector('[data-testid="ssg-not-found-page"]', {
+            timeout: 10000,
+          })
+
+          // small delay for router to settle URL
+          await page.waitForTimeout(100)
 
           // URL should stay at the original path
           expect(page.url()).toContain('/ssg-not-found/invalid-slug')
 
-          // but content should be the +not-found page
+          // content should be the +not-found page
           const content = await page.textContent('body')
           expect(content).toContain('SSG 404: Page not found')
         } finally {

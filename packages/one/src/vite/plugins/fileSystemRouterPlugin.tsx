@@ -292,10 +292,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
               // if no +not-found page exists, return basic 404
               if (!notFoundRoutePath) {
-                return new Response('<html><body><h1>404 - Not Found</h1></body></html>', {
-                  status: 404,
-                  headers: { 'Content-Type': 'text/html' },
-                })
+                return new Response(
+                  '<html><body><h1>404 - Not Found</h1></body></html>',
+                  {
+                    status: 404,
+                    headers: { 'Content-Type': 'text/html' },
+                  }
+                )
               }
             }
 
