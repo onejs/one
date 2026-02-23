@@ -58,6 +58,11 @@ import {
   storeInterceptState,
 } from './interceptRoutes'
 import { setSlotState } from '../views/Navigator'
+import {
+  clearNotFoundState,
+  findNearestNotFoundRoute,
+  setNotFoundState,
+} from '../notFoundState'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -882,6 +887,9 @@ export async function linkTo(
   // This enables intercepting routes to activate
   setNavigationType('soft')
 
+  // clear any active not-found state on new navigation
+  clearNotFoundState()
+
   if (href[0] === '#') {
     // this is just linking to a section of the current page on web
     return
@@ -1026,7 +1034,13 @@ export async function linkTo(
     delete preloadedLoaderData[href]
     delete preloadingLoader[href]
     setLoadingState('loaded')
-    linkTo(preloadResult.__oneNotFoundPath || '/+not-found', 'REPLACE')
+    // render 404 inline at current URL instead of navigating
+    const notFoundRoute = findNearestNotFoundRoute(href, routeNode)
+    setNotFoundState({
+      notFoundPath: preloadResult.__oneNotFoundPath || '/+not-found',
+      notFoundRouteNode: notFoundRoute || undefined,
+      originalPath: href,
+    })
     return
   }
 

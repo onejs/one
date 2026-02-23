@@ -42,10 +42,10 @@ export declare function useNavigatorContext(): {
     descriptorsRef: React.MutableRefObject<NavigatorTypes["descriptors"]>;
     router: RouterFactory<any, any, any>;
 };
-export declare function useSlot(): React.FunctionComponentElement<any> | null;
+export declare function useSlot(): import("react/jsx-runtime").JSX.Element | null;
 /** Renders the currently selected content. */
 export declare const Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
-export declare function QualifiedSlot(): React.FunctionComponentElement<any> | null;
+export declare function QualifiedSlot(): import("react/jsx-runtime").JSX.Element | null;
 export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
 /**
  * Create a scoped slot key that includes the layout context.

@@ -504,9 +504,17 @@ url: ${url}`)
             }
 
             if (notFoundHtml) {
+              // inject 404 marker so client knows this is a 404 response
+              // this prevents hydration mismatch when the URL matches a dynamic route
+              const notFoundMarker = `<script>window.__one404={originalPath:"${url.pathname}",notFoundPath:"${notFoundRoute}"}</script>`
+              // inject before </head> or at start of <body>
+              const injectedHtml = notFoundHtml.includes('</head>')
+                ? notFoundHtml.replace('</head>', `${notFoundMarker}</head>`)
+                : notFoundHtml.replace('<body', `${notFoundMarker}<body`)
+
               const headers = new Headers()
               headers.set('content-type', 'text/html')
-              return new Response(notFoundHtml, {
+              return new Response(injectedHtml, {
                 headers,
                 status: 404,
               })

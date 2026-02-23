@@ -1,8 +1,9 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname } from './hooks'
+import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
 import { router } from './router/imperative-api'
-import { preloadedLoaderData, preloadingLoader } from './router/router'
+import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -165,7 +166,7 @@ export async function refetchLoader(pathname: string): Promise<void> {
     }
 
     // detect 404 error signal during refetch
-    // don't clear data - keep existing data while navigating to not-found
+    // render 404 inline at current URL instead of navigating
     if (result?.__oneError === 404) {
       recordLoaderTiming?.({
         path: pathname,
@@ -175,7 +176,12 @@ export async function refetchLoader(pathname: string): Promise<void> {
         totalTime,
         source: 'refetch',
       })
-      router.replace(result.__oneNotFoundPath || '/+not-found')
+      const notFoundRoute = findNearestNotFoundRoute(pathname, routeNode)
+      setNotFoundState({
+        notFoundPath: result.__oneNotFoundPath || '/+not-found',
+        notFoundRouteNode: notFoundRoute || undefined,
+        originalPath: pathname,
+      })
       return
     }
 
@@ -394,7 +400,7 @@ export function useLoaderState<
               }
 
               // detect 404 error signal on native
-              // don't update state so the component stays suspended while navigating
+              // render 404 inline at current URL instead of navigating
               if (data?.__oneError === 404) {
                 recordLoaderTiming?.({
                   path: currentPath,
@@ -404,9 +410,13 @@ export function useLoaderState<
                   totalTime,
                   source: 'initial',
                 })
-                router.replace(data.__oneNotFoundPath || '/+not-found')
-                // keep component suspended until navigation unmounts it
-                await new Promise(() => {})
+                const notFoundRoute = findNearestNotFoundRoute(currentPath, routeNode)
+                setNotFoundState({
+                  notFoundPath: data.__oneNotFoundPath || '/+not-found',
+                  notFoundRouteNode: notFoundRoute || undefined,
+                  originalPath: currentPath,
+                })
+                return
               }
 
               updateState(currentPath, {
@@ -483,8 +493,7 @@ export function useLoaderState<
             return
           }
 
-          // detect 404 error signal - navigate to not-found page
-          // don't update state so the component stays suspended while navigating
+          // detect 404 error signal - render 404 inline at current URL
           if (result?.__oneError === 404) {
             recordLoaderTiming?.({
               path: currentPath,
@@ -494,9 +503,13 @@ export function useLoaderState<
               totalTime,
               source: 'initial',
             })
-            router.replace(result.__oneNotFoundPath || '/+not-found')
-            // keep component suspended until navigation unmounts it
-            await new Promise(() => {})
+            const notFoundRoute = findNearestNotFoundRoute(currentPath, routeNode)
+            setNotFoundState({
+              notFoundPath: result.__oneNotFoundPath || '/+not-found',
+              notFoundRouteNode: notFoundRoute || undefined,
+              originalPath: currentPath,
+            })
+            return
           }
 
           updateState(currentPath, {

@@ -363,7 +363,7 @@ export async function build(args: {
   // iterate over routes (not chunks) to ensure all SSG routes are processed
   // even when experimentalMinChunkSize merges their chunks
   for (const foundRoute of manifest.pageRoutes) {
-    if (!foundRoute.file || foundRoute.isNotFound) {
+    if (!foundRoute.file) {
       continue
     }
 

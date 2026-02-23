@@ -3,6 +3,7 @@ import './setup'
 import { cloneElement } from 'react'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
+import { setNotFoundState } from './notFoundState'
 import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
@@ -162,6 +163,21 @@ export function createApp(options: CreateAppProps) {
   // initialize client matches from server context for useMatches hook
   if (serverContext.matches) {
     initClientMatches(serverContext.matches)
+  }
+
+  // if server returned 404 error, set notFoundState before rendering
+  // this ensures hydration renders the +not-found content, not the original route
+  // check both loaderData error flag and window marker (for SSG 404 HTML serving)
+  const loaderData = serverContext.loaderData
+  const one404Marker = (window as any).__one404
+  if (loaderData?.__oneError === 404 || one404Marker) {
+    const currentPath = window.location.pathname
+    setNotFoundState({
+      notFoundPath:
+        one404Marker?.notFoundPath || loaderData?.__oneNotFoundPath || '/+not-found',
+      notFoundRouteNode: undefined, // will be resolved at render time
+      originalPath: one404Marker?.originalPath || currentPath,
+    })
   }
 
   // Wait for setup file to complete first (if provided)

@@ -299,4 +299,83 @@ describe(`Routing Tests`, () => {
       }
     })
   })
+
+  describe('404 inline rendering', { retry: 2, timeout: 60_000 }, () => {
+    // prod-only tests - dev mode doesn't pre-check generateStaticParams
+    it.skipIf(!isProd)(
+      'should render +not-found inline without changing URL for SSG invalid slug',
+      async () => {
+        const page = await context.newPage()
+        try {
+          await page.goto(`${serverUrl}/ssg-not-found/invalid-slug`, {
+            waitUntil: 'networkidle',
+          })
+
+          // URL should stay at the original path
+          expect(page.url()).toContain('/ssg-not-found/invalid-slug')
+
+          // but content should be the +not-found page
+          const content = await page.textContent('body')
+          expect(content).toContain('SSG 404: Page not found')
+        } finally {
+          await page.close()
+        }
+      }
+    )
+
+    it('should render +not-found inline without changing URL', async () => {
+      const page = await context.newPage()
+      try {
+        await page.goto(`${serverUrl}/not-found/non-existent-page`, {
+          waitUntil: 'networkidle',
+        })
+
+        // URL should stay at the original path
+        expect(page.url()).toContain('/not-found/non-existent-page')
+
+        // content should be the +not-found page
+        const content = await page.textContent('body')
+        expect(content).toContain('Custom 404: Page not found')
+      } finally {
+        await page.close()
+      }
+    })
+
+    it('should render nested +not-found inline without changing URL', async () => {
+      const page = await context.newPage()
+      try {
+        await page.goto(`${serverUrl}/not-found/deep/non-existent-page`, {
+          waitUntil: 'networkidle',
+        })
+
+        // URL should stay at the original path
+        expect(page.url()).toContain('/not-found/deep/non-existent-page')
+
+        // content should be the deep +not-found page
+        const content = await page.textContent('body')
+        expect(content).toContain('Custom Deep 404: Page not found')
+      } finally {
+        await page.close()
+      }
+    })
+
+    it('should use nearest ancestor +not-found when no local one exists', async () => {
+      const page = await context.newPage()
+      try {
+        // /not-found/fallback/ has no +not-found, should use /not-found/+not-found
+        await page.goto(`${serverUrl}/not-found/fallback/non-existent-page`, {
+          waitUntil: 'networkidle',
+        })
+
+        // URL should stay at the original path
+        expect(page.url()).toContain('/not-found/fallback/non-existent-page')
+
+        // content should be the parent +not-found page
+        const content = await page.textContent('body')
+        expect(content).toContain('Custom 404: Page not found')
+      } finally {
+        await page.close()
+      }
+    })
+  })
 })

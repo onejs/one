@@ -7,7 +7,13 @@ import {
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
+import {
+  findNearestNotFoundRoute,
+  findRouteNodeByPath,
+  useNotFoundState,
+} from '../notFoundState'
 import { useContextKey } from '../router/Route'
+import { routeNode as globalRouteNode } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
 import { Screen } from './Screen'
@@ -211,6 +217,28 @@ export function useNavigatorContext() {
 export function useSlot() {
   const context = useNavigatorContext()
   const { state, descriptorsRef } = context
+  const notFoundState = useNotFoundState()
+
+  // if not-found state is active, render the not-found component inline
+  if (notFoundState) {
+    // try to get the route node:
+    // 1. use provided notFoundRouteNode if available
+    // 2. look up by notFoundPath (from server)
+    // 3. fall back to finding nearest from original path
+    const notFoundRouteNode =
+      notFoundState.notFoundRouteNode ||
+      findRouteNodeByPath(notFoundState.notFoundPath, globalRouteNode) ||
+      findNearestNotFoundRoute(notFoundState.originalPath, globalRouteNode)
+
+    if (notFoundRouteNode) {
+      const NotFoundComponent = getQualifiedRouteComponent(notFoundRouteNode)
+      return <NotFoundComponent key="one-not-found-inline" route={{ params: {} }} />
+    }
+
+    // fallback: return null to prevent rendering the wrong page
+    // this handles the edge case where +not-found route can't be found
+    return null
+  }
 
   const current = state.routes.find((route, i) => {
     return state.index === i
