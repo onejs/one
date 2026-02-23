@@ -259,18 +259,18 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             const is404 = route.isNotFound || !getPageExport(exported) || isMissingSsgSlug
 
-            // for ssg dynamic routes with invalid slug, render the not-found page instead
+            // for ssg dynamic routes with invalid slug, find and render the nearest +not-found page
+            let notFoundRoutePath: string | null = null
             if (isMissingSsgSlug) {
               // find nearest +not-found by walking up the route's directory
-              let notFoundExported: any = {}
-              let notFoundRoutePath = '/+not-found'
-              const routeDir = route.file.replace(/\/[^/]+$/, '')
+              // strip leading ./ and file name to get directory
+              const routeDir = route.file.replace(/^\.\//, '').replace(/\/[^/]+$/, '')
               let searchDir = routeDir
               while (true) {
                 for (const ext of ['.tsx', '.ts', '.jsx', '.js']) {
                   const candidate = path.join(routerRoot, searchDir, `+not-found${ext}`)
                   try {
-                    notFoundExported = await runner.import(candidate)
+                    const notFoundExported = await runner.import(candidate)
                     if (notFoundExported?.default) {
                       notFoundRoutePath = searchDir
                         ? `/${searchDir}/+not-found`
@@ -281,7 +281,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                     // not found at this level
                   }
                 }
-                if (notFoundExported?.default || !searchDir) break
+                if (notFoundRoutePath || !searchDir) break
                 const parent = searchDir.replace(/\/[^/]+$/, '')
                 if (parent === searchDir) {
                   searchDir = ''
@@ -290,37 +290,19 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
               }
 
-              if (notFoundExported.default) {
-                // override the route to render the not-found page
-                setServerContext({
-                  loaderData: undefined,
-                  loaderProps,
-                  matches: [],
-                })
-
-                const notFoundHtml = await render({
-                  mode: 'ssg',
-                  loaderData: undefined,
-                  loaderProps,
-                  path: notFoundRoutePath,
-                  preloads,
-                  matches: [],
-                })
-
-                return new Response(notFoundHtml, {
+              // if no +not-found page exists, return basic 404
+              if (!notFoundRoutePath) {
+                return new Response('<html><body><h1>404 - Not Found</h1></body></html>', {
                   status: 404,
                   headers: { 'Content-Type': 'text/html' },
                 })
               }
-
-              // fallback if no +not-found page exists
-              return new Response('<html><body><h1>404 - Not Found</h1></body></html>', {
-                status: 404,
-                headers: { 'Content-Type': 'text/html' },
-              })
             }
 
-            const html = await render({
+            // for 404 with notFoundRoutePath, render the +not-found page at that path
+            const renderPath = notFoundRoutePath || loaderProps?.path || '/'
+
+            let html = await render({
               mode: isSpaShell
                 ? 'spa-shell'
                 : route.type === 'ssg'
@@ -330,12 +312,20 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                     : 'spa',
               loaderData,
               loaderProps,
-              path: loaderProps?.path || '/',
+              path: renderPath,
               preloads,
               matches,
             })
 
             if (is404) {
+              // inject 404 marker for client-side not-found state awareness
+              if (notFoundRoutePath) {
+                const originalPath = loaderProps?.path || '/'
+                const notFoundMarker = `<script>window.__one404={originalPath:${JSON.stringify(originalPath)},notFoundPath:${JSON.stringify(notFoundRoutePath)}}</script>`
+                html = html.includes('</head>')
+                  ? html.replace('</head>', `${notFoundMarker}</head>`)
+                  : html.replace('<body', `${notFoundMarker}<body`)
+              }
               return new Response(html, {
                 status: 404,
                 headers: { 'Content-Type': 'text/html' },

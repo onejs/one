@@ -3,7 +3,6 @@ import './setup'
 import { cloneElement } from 'react'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
-import { setNotFoundState } from './notFoundState'
 import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
@@ -165,20 +164,11 @@ export function createApp(options: CreateAppProps) {
     initClientMatches(serverContext.matches)
   }
 
-  // if server returned 404 error, set notFoundState before rendering
-  // this ensures hydration renders the +not-found content, not the original route
-  // check both loaderData error flag and window marker (for SSG 404 HTML serving)
-  const loaderData = serverContext.loaderData
-  const one404Marker = (window as any).__one404
-  if (loaderData?.__oneError === 404 || one404Marker) {
-    const currentPath = window.location.pathname
-    setNotFoundState({
-      notFoundPath:
-        one404Marker?.notFoundPath || loaderData?.__oneNotFoundPath || '/+not-found',
-      notFoundRouteNode: undefined, // will be resolved at render time
-      originalPath: one404Marker?.originalPath || currentPath,
-    })
-  }
+  // NOTE: for SSG 404 pages, we DON'T set notFoundState before initial render
+  // because the server rendered the +not-found page through normal routing
+  // setting notFoundState would cause useSlot to skip the layout hierarchy,
+  // leading to hydration mismatch
+  // notFoundState is only set for client-side navigations that result in 404
 
   // Wait for setup file to complete first (if provided)
   // This ensures setup code (error handlers, analytics, etc.) runs before the app
@@ -196,6 +186,22 @@ export function createApp(options: CreateAppProps) {
         return mod
       })
     : [options.routes[`/${options.routerRoot}/_layout.tsx`]?.()]
+
+  // for 404 pages, use history.state.__tempLocation to route to notFoundPath
+  // without changing the browser URL. the router checks __tempLocation and uses
+  // that path for routing instead of the URL. this ensures hydration matches
+  // the server-rendered +not-found page while keeping the original URL intact
+  const one404Marker = (window as any).__one404
+  if (one404Marker?.notFoundPath) {
+    const currentState = window.history.state || {}
+    window.history.replaceState(
+      {
+        ...currentState,
+        __tempLocation: { pathname: one404Marker.notFoundPath, search: '' },
+      },
+      ''
+    )
+  }
 
   return setupComplete
     .then(() => Promise.all(preloadPromises))
