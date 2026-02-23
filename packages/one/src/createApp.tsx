@@ -3,7 +3,6 @@ import './setup'
 import { cloneElement } from 'react'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
-import { setNotFoundState } from './notFoundState'
 import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
@@ -165,20 +164,11 @@ export function createApp(options: CreateAppProps) {
     initClientMatches(serverContext.matches)
   }
 
-  // if server returned 404 error, set notFoundState before rendering
-  // this ensures hydration renders the +not-found content, not the original route
-  // check both loaderData error flag and window marker (for SSG 404 HTML serving)
-  const loaderData = serverContext.loaderData
-  const one404Marker = (window as any).__one404
-  if (loaderData?.__oneError === 404 || one404Marker) {
-    const currentPath = window.location.pathname
-    setNotFoundState({
-      notFoundPath:
-        one404Marker?.notFoundPath || loaderData?.__oneNotFoundPath || '/+not-found',
-      notFoundRouteNode: undefined, // will be resolved at render time
-      originalPath: one404Marker?.originalPath || currentPath,
-    })
-  }
+  // NOTE: for SSG 404 pages, we DON'T set notFoundState before initial render
+  // because the server rendered the +not-found page through normal routing
+  // setting notFoundState would cause useSlot to skip the layout hierarchy,
+  // leading to hydration mismatch
+  // notFoundState is only set for client-side navigations that result in 404
 
   // Wait for setup file to complete first (if provided)
   // This ensures setup code (error handlers, analytics, etc.) runs before the app
@@ -203,13 +193,21 @@ export function createApp(options: CreateAppProps) {
       return resolveClientLoader(serverContext)
     })
     .then(() => {
+      // for 404 pages, use the notFoundPath for initial routing to match server HTML
+      // the server renders the +not-found page at notFoundPath, so the client must use
+      // the same path to ensure hydration matches
+      const one404Marker = (window as any).__one404
+      const clientPath = one404Marker?.notFoundPath
+        ? new URL(one404Marker.notFoundPath, window.location.href).href
+        : window.location.href
+
       render(
         <Root
           isClient
           flags={options.flags}
           routes={options.routes}
           routerRoot={options.routerRoot}
-          path={window.location.href}
+          path={clientPath}
         />
       )
     })
