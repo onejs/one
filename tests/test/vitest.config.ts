@@ -29,6 +29,8 @@ export default defineConfig({
     // Add reasonable timeouts (60s for CI resource contention)
     testTimeout: 60000,
     hookTimeout: 60000,
+    teardownTimeout: 10000,
+    pool: 'threads',
   },
 
   // Need this because the default mode for testing will be 'test'.

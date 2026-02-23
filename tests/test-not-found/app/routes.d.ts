@@ -23,6 +23,8 @@ declare module 'one' {
         | `/case7/prefix/${OneRouter.SingleRoutePart<T>}/+not-found`
         | `/case8/${OneRouter.SingleRoutePart<T>}/+not-found`
         | `/case8/${OneRouter.SingleRoutePart<T>}/mid/${OneRouter.SingleRoutePart<T>}`
+        | `/case9/${OneRouter.SingleRoutePart<T>}`
+        | `/case9/${OneRouter.SingleRoutePart<T>}/+not-found`
       DynamicRouteTemplate: 
         | `/case1/[param1]`
         | `/case2/[param1]`
@@ -37,6 +39,8 @@ declare module 'one' {
         | `/case7/prefix/[param1]/+not-found`
         | `/case8/[param1]/+not-found`
         | `/case8/[param1]/mid/[param2]`
+        | `/case9/[slug]`
+        | `/case9/[slug]/+not-found`
       IsTyped: true
       RouteTypes: {
         '/case1/[param1]': RouteInfo<{ param1: string }>
@@ -52,6 +56,8 @@ declare module 'one' {
         '/case7/prefix/[param1]/+not-found': RouteInfo<{ param1: string }>
         '/case8/[param1]/+not-found': RouteInfo<{ param1: string }>
         '/case8/[param1]/mid/[param2]': RouteInfo<{ param1: string; param2: string }>
+        '/case9/[slug]': RouteInfo<{ slug: string }>
+        '/case9/[slug]/+not-found': RouteInfo<{ slug: string }>
       }
     }
   }
