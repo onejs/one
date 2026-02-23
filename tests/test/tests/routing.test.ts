@@ -88,7 +88,38 @@ describe(`Routing Tests`, () => {
       const html = await response.text()
       expect(html).toContain('My First Post')
     })
+  })
 
+  describe('Routes with @ in path', { retry: 1 }, () => {
+    it('should handle routes starting with @', async () => {
+      const response = await fetch(`${serverUrl}/@admin`)
+      expect(response.status).toBe(200)
+      const html = await response.text()
+      expect(html).toContain('Handle Page')
+      expect(html).toContain('@admin')
+    })
+
+    it('should handle different @ handles', async () => {
+      const response = await fetch(`${serverUrl}/@username123`)
+      expect(response.status).toBe(200)
+      const html = await response.text()
+      expect(html).toContain('@username123')
+    })
+
+    it('should work without a loader (generateStaticParams only)', async () => {
+      // [atHandle].tsx uses generateStaticParams without a loader
+      const admin = await fetch(`${serverUrl}/@admin`)
+      const user = await fetch(`${serverUrl}/@username123`)
+
+      expect(admin.status).toBe(200)
+      expect(user.status).toBe(200)
+
+      const adminHtml = await admin.text()
+      const userHtml = await user.text()
+
+      expect(adminHtml).toContain('@admin')
+      expect(userHtml).toContain('@username123')
+    })
   })
 
   describe('SSR routing', { retry: 2, timeout: 60_000 }, () => {
@@ -153,26 +184,6 @@ describe(`Routing Tests`, () => {
       expect(response.status).toBe(200)
       const html = await response.text()
       expect(html).toContain('Docs Page 1')
-    })
-
-    it('should render SSG dynamic route with generateStaticParams but no loader', async () => {
-      // [atHandle].tsx has generateStaticParams but no loader - should still work
-      const response = await fetch(`${serverUrl}/@admin`)
-      expect(response.status).toBe(200)
-      const html = await response.text()
-      expect(html).toContain('Handle Page')
-      expect(html).toContain('@admin')
-    })
-
-    it('should render multiple SSG dynamic routes without loaders', async () => {
-      const admin = await fetch(`${serverUrl}/@admin`)
-      const user = await fetch(`${serverUrl}/@username123`)
-
-      expect(admin.status).toBe(200)
-      expect(user.status).toBe(200)
-
-      expect(await admin.text()).toContain('@admin')
-      expect(await user.text()).toContain('@username123')
     })
 
     it('should render multiple SSG pages', async () => {

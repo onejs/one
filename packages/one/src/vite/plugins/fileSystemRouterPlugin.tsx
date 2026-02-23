@@ -257,17 +257,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               )
             }
 
-            const is404 =
-              route.isNotFound ||
-              !getPageExport(exported) ||
-              isMissingSsgSlug ||
-              (route.type === 'ssg' && isDynamicRoute && loaderData === undefined)
+            const is404 = route.isNotFound || !getPageExport(exported) || isMissingSsgSlug
 
             // for ssg dynamic routes with invalid slug, render the not-found page instead
-            if (
-              isMissingSsgSlug ||
-              (route.type === 'ssg' && isDynamicRoute && loaderData === undefined)
-            ) {
+            if (isMissingSsgSlug) {
               // find nearest +not-found by walking up the route's directory
               let notFoundExported: any = {}
               let notFoundRoutePath = '/+not-found'
