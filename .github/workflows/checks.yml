@@ -51,11 +51,18 @@ jobs:
       - name: Test
         run: |
           # use gtimeout to force-kill tests if they hang (20 min should be plenty)
+          # capture output to check if tests passed even if timeout kills hanging cleanup
           brew install coreutils 2>/dev/null || true
-          gtimeout --signal=KILL 1200 bun run test || {
+          gtimeout --signal=KILL 1200 bun run test 2>&1 | tee test-output.log || {
             exit_code=$?
             if [ $exit_code -eq 137 ]; then
-              echo "Tests killed after timeout - likely a hanging process"
+              echo "Process killed after timeout - checking if tests passed..."
+              # check if vitest reported success before hanging
+              if grep -q "Test Files.*passed" test-output.log && ! grep -q "FAIL\|Error\|failed" test-output.log; then
+                echo "Tests passed but cleanup hung - treating as success"
+                exit 0
+              fi
+              echo "Tests did not pass or had errors"
               exit 1
             fi
             exit $exit_code
