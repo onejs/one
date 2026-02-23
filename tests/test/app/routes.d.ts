@@ -125,6 +125,7 @@ declare module 'one' {
         | `/vite-features/import-meta-env`
         | `/web-extensions`
       DynamicRoutes: 
+        | `/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/dashboard/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
@@ -150,6 +151,7 @@ declare module 'one' {
       DynamicRouteTemplate: 
         | `/(app)/dashboard/(tabs)/feed/post/[postId]`
         | `/(app)/dashboard/feed/post/[postId]`
+        | `/[atHandle]`
         | `/dashboard/(tabs)/feed/post/[postId]`
         | `/dashboard/feed/post/[postId]`
         | `/dynamic-folder-routes/[serverId]/[channelId]`
@@ -174,6 +176,7 @@ declare module 'one' {
       RouteTypes: {
         '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/[atHandle]': RouteInfo<{ atHandle: string }>
         '/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/dynamic-folder-routes/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>

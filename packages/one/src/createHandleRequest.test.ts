@@ -140,10 +140,18 @@ describe('createHandleRequest', () => {
       expect(result).toBeNull()
     })
 
-    it('should skip paths starting with /@', async () => {
+    it('should skip vite internal paths like /@fs/', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
-      const result = await handler(createRequest('/@fs/some/path'))
-      expect(result).toBeNull()
+      expect(await handler(createRequest('/@fs/some/path'))).toBeNull()
+      expect(await handler(createRequest('/@vite/client'))).toBeNull()
+      expect(await handler(createRequest('/@id/__x00__virtual:one-entry'))).toBeNull()
+    })
+
+    it('should NOT skip user routes that start with @', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+      // routes like /@admin should be matched, not skipped
+      await handler(createRequest('/@admin'))
+      expect(mockHandlers.handlePage).toHaveBeenCalled()
     })
   })
 })

@@ -302,7 +302,9 @@ export function createHandleRequest(
       // skip paths handled by vite internals or react native dev middleware
       if (
         pathname === '/__vxrnhmr' ||
-        pathname.startsWith('/@') ||
+        pathname.startsWith('/@vite/') ||
+        pathname.startsWith('/@fs/') ||
+        pathname.startsWith('/@id/') ||
         pathname.startsWith('/debugger-frontend') ||
         pathname.startsWith('/inspector')
       ) {
