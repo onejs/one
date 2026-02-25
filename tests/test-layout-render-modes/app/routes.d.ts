@@ -17,6 +17,9 @@ declare module 'one' {
         | `/deeply-nested/ssr-section/spa-leaf/`
         | `/deeply-nested/ssr-section/ssg-leaf`
         | `/deeply-nested/ssr-section/ssg-leaf/`
+        | `/follow-ssr`
+        | `/follow-ssr/`
+        | `/follow-ssr/other`
         | `/loaders`
         | `/loaders/`
         | `/loaders/nested`
