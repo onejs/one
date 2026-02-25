@@ -1,6 +1,6 @@
 {
   "name": "test-routing-flicker",
-  "version": "1.9.8",
+  "version": "1.9.9",
   "private": true,
   "type": "module",
   "scripts": {
