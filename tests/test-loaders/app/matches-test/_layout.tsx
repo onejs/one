@@ -1,6 +1,6 @@
-import { Slot, useMatches } from 'one'
+import { Slot, useLoader, useMatches } from 'one'
 
-// layout loader - should appear in useMatches
+// layout loader - should appear in useMatches and be accessible via useLoader
 export async function loader() {
   return {
     layoutTitle: 'Matches Test Layout',
@@ -9,10 +9,12 @@ export async function loader() {
 }
 
 export default function MatchesTestLayout() {
+  const data = useLoader(loader)
   const matches = useMatches()
 
   return (
     <div>
+      <div id="layout-useloader-data">{JSON.stringify(data)}</div>
       <div id="layout-matches-count">Layout sees {matches.length} matches</div>
       <div id="layout-matches-data">
         {JSON.stringify(

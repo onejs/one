@@ -47,7 +47,7 @@ export function getPathFromLoaderPath(loaderPath: string) {
     loaderPath
       .replace(LOADER_JS_POSTFIX_REGEX, '')
       .replace(/^(\/_one)?\/assets/, '')
-      .replace(/_refetch_\d+_/, '')
+      .replace(/_refetch_\d+_?/, '')
       // decode: __ → _ (escaped underscore), _ → / (path separator)
       .replace(/__|_/g, (match) => (match === '__' ? '_' : '/'))
   )

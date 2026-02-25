@@ -139,7 +139,8 @@ export default function Layout() {
 `
       const result = await transformTreeShakeClient(code, '/project/app/_layout.tsx', '/project')
       expect(result).toBeDefined()
-      expect(result!.code).toContain('export function loader() {return "./app/_layout.tsx"}')
+      // routeId should be relative to app/ directory to match route contextKey format
+      expect(result!.code).toContain('export function loader() {return "./_layout.tsx"}')
       expect(result!.code).not.toContain('__vxrn__loader__')
     })
 
@@ -159,7 +160,7 @@ export default function Layout() {
 `
       const result = await transformTreeShakeClient(code, '/project/app/user+ssr.tsx', '/project')
       expect(result).toBeDefined()
-      expect(result!.code).toContain('export function loader() {return "./app/user+ssr.tsx"}')
+      expect(result!.code).toContain('export function loader() {return "./user+ssr.tsx"}')
     })
 
     it('should fall back to __vxrn__loader__ stub when no root provided', async () => {
@@ -179,6 +180,68 @@ export default function Page() {
       const result = await transformTreeShakeClient(code, '/app/index.tsx')
       expect(result).toBeDefined()
       expect(result!.code).toContain('__vxrn__loader__')
+    })
+
+    it('should not transform route file when loader is imported (no inline declaration)', async () => {
+      // importing a loader from another file is not a supported pattern
+      // the plugin only handles inline loader declarations
+      const code = `
+import { loader } from './loaders/my-loader'
+import { useLoader } from 'one'
+
+export { loader }
+
+export default function Layout() {
+  const data = useLoader(loader)
+  return data
+}
+`
+      const result = await transformTreeShakeClient(code, '/project/app/_layout.tsx', '/project')
+      expect(result).toBeUndefined()
+    })
+
+    it('should tree-shake server imports from source file where loader is defined', async () => {
+      // when loader is defined in a separate file, that file gets its own transform pass
+      // server-only imports should be removed, loader replaced with routeId stub
+      const sourceCode = `
+import { db } from 'server-only-db'
+
+export async function loader() {
+  return db.query('SELECT * FROM users')
+}
+
+export function helperUsedByClient() {
+  return 'hello'
+}
+`
+      const result = await transformTreeShakeClient(
+        sourceCode,
+        '/project/app/loaders/my-loader.ts',
+        '/project'
+      )
+      expect(result).toBeDefined()
+      // server-only import removed
+      expect(result!.code).not.toContain('server-only-db')
+      // client-safe export preserved
+      expect(result!.code).toContain('helperUsedByClient')
+      // loader replaced with stub (routeId relative to app/ dir)
+      expect(result!.code).toContain(
+        'export function loader() {return "./loaders/my-loader.ts"}'
+      )
+    })
+
+    it('should not transform re-export from source syntax', async () => {
+      // importing/re-exporting a loader from another file is not a supported pattern
+      const code = `
+export { loader } from './loaders/shared-loader'
+import { useLoader } from 'one'
+
+export default function Page() {
+  return 'hello'
+}
+`
+      const result = await transformTreeShakeClient(code, '/project/app/page.tsx', '/project')
+      expect(result).toBeUndefined()
     })
 
     it('should preserve type-only imports during tree shaking', async () => {
