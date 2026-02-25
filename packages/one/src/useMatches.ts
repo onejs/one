@@ -11,7 +11,7 @@ export type RouteMatch = One.RouteMatch
 let clientMatches: RouteMatch[] = []
 const clientMatchesListeners = new Set<() => void>()
 
-function subscribeToClientMatches(callback: () => void) {
+export function subscribeToClientMatches(callback: () => void) {
   clientMatchesListeners.add(callback)
   return () => clientMatchesListeners.delete(callback)
 }

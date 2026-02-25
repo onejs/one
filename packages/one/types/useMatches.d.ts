@@ -3,12 +3,19 @@ import type { One } from './vite/types';
  * Re-export for convenience
  */
 export type RouteMatch = One.RouteMatch;
+export declare function subscribeToClientMatches(callback: () => void): () => boolean;
+export declare function getClientMatchesSnapshot(): One.RouteMatch[];
 /**
  * Update the client-side matches store.
  * Called after navigation to update the matches with new loader data.
  * @internal
  */
 export declare function setClientMatches(matches: RouteMatch[]): void;
+/**
+ * Update the loaderData for a single match by routeId, leaving all other matches intact.
+ * @internal
+ */
+export declare function updateMatchLoaderData(routeId: string, loaderData: unknown): void;
 /**
  * Returns an array of all matched routes from root to the current page.
  * Each match contains the route's loader data, params, and route ID.

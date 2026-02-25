@@ -123,6 +123,9 @@ export async function transformTreeShakeClient(code: string, id: string, root?: 
     generateStaticParams: false,
   }
 
+  // note: only handles inline declarations (export function loader / export const loader)
+  // importing a loader from another file (export { loader } from './other') is not supported
+  // and will break client-side tree shaking. loaders must be defined in the route file.
   try {
     traverse(ast, {
       ExportNamedDeclaration(path) {
@@ -189,7 +192,10 @@ export async function transformTreeShakeClient(code: string, id: string, root?: 
           .map((key) => {
             if (key === 'loader') {
               if (root) {
-                const routeId = './' + relative(root, id).replace(/\\/g, '/')
+                // compute routeId relative to the app/ directory to match route contextKey format
+                // contextKeys are like "./_layout.tsx", "./matches-test/page1+ssg.tsx"
+                const fromRoot = relative(root, id).replace(/\\/g, '/')
+                const routeId = './' + fromRoot.replace(/^app\//, '')
                 return makeLoaderRouteIdStub(routeId)
               }
               return EMPTY_LOADER_STRING
