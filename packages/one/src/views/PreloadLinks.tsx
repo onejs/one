@@ -21,8 +21,39 @@ const PREFETCH_MODE = (process.env.ONE_LINK_PREFETCH || 'intent') as
  * - 'hover': Prefetches on mouseover
  * - 'false': Disabled
  */
+function getHrefFromTarget(url: string, target: EventTarget | null): string | null {
+  if (!(target instanceof HTMLElement)) return null
+  const anchor = target instanceof HTMLAnchorElement ? target : target.closest('a')
+  if (!(anchor instanceof HTMLAnchorElement)) return null
+  const href = anchor.getAttribute('href')
+  if (!href) return null
+  if (href[0] === '/' || href.startsWith(url)) {
+    return href.replace(url, '')
+  }
+  return null
+}
+
 export function PreloadLinks() {
-  if (typeof window === 'undefined' || !import.meta.env.PROD) {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  // dev: simple hover prefetch so linkTo can use sync fast-path
+  if (!import.meta.env.PROD) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      const url = getURL()
+      const controller = new AbortController()
+      document.addEventListener(
+        'mouseover',
+        (e) => {
+          const href = getHrefFromTarget(url, e.target)
+          if (href) preloadRoute(href)
+        },
+        { passive: true, signal: controller.signal }
+      )
+      return () => controller.abort()
+    }, [])
     return null
   }
 
@@ -37,25 +68,13 @@ export function PreloadLinks() {
   useEffect(() => {
     const url = getURL()
 
-    const getHrefFromTarget = (target: EventTarget | null): string | null => {
-      if (!(target instanceof HTMLElement)) return null
-      const anchor = target instanceof HTMLAnchorElement ? target : target.closest('a')
-      if (!(anchor instanceof HTMLAnchorElement)) return null
-      const href = anchor.getAttribute('href')
-      if (!href) return null
-      if (href[0] === '/' || href.startsWith(url)) {
-        return href.replace(url, '')
-      }
-      return null
-    }
-
     // hover mode: prefetch on mouseover (default behavior)
     if (PREFETCH_MODE === 'hover') {
       const controller = new AbortController()
       document.addEventListener(
         'mouseover',
         (e) => {
-          const href = getHrefFromTarget(e.target)
+          const href = getHrefFromTarget(url, e.target)
           if (href) preloadRoute(href)
         },
         { passive: true, signal: controller.signal }
@@ -155,7 +174,7 @@ export function PreloadLinks() {
           document.addEventListener(
             'mouseover',
             (e) => {
-              const href = getHrefFromTarget(e.target)
+              const href = getHrefFromTarget(url, e.target)
               if (href) preloadRoute(href)
             },
             { passive: true, signal: controller.signal }

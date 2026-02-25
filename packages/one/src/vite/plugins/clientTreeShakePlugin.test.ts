@@ -137,7 +137,11 @@ export default function Layout() {
   return data
 }
 `
-      const result = await transformTreeShakeClient(code, '/project/app/_layout.tsx', '/project')
+      const result = await transformTreeShakeClient(
+        code,
+        '/project/app/_layout.tsx',
+        '/project'
+      )
       expect(result).toBeDefined()
       // routeId should be relative to app/ directory to match route contextKey format
       expect(result!.code).toContain('export function loader() {return "./_layout.tsx"}')
@@ -158,7 +162,11 @@ export default function Layout() {
   return data
 }
 `
-      const result = await transformTreeShakeClient(code, '/project/app/user+ssr.tsx', '/project')
+      const result = await transformTreeShakeClient(
+        code,
+        '/project/app/user+ssr.tsx',
+        '/project'
+      )
       expect(result).toBeDefined()
       expect(result!.code).toContain('export function loader() {return "./user+ssr.tsx"}')
     })
@@ -196,7 +204,11 @@ export default function Layout() {
   return data
 }
 `
-      const result = await transformTreeShakeClient(code, '/project/app/_layout.tsx', '/project')
+      const result = await transformTreeShakeClient(
+        code,
+        '/project/app/_layout.tsx',
+        '/project'
+      )
       expect(result).toBeUndefined()
     })
 
@@ -240,7 +252,11 @@ export default function Page() {
   return 'hello'
 }
 `
-      const result = await transformTreeShakeClient(code, '/project/app/page.tsx', '/project')
+      const result = await transformTreeShakeClient(
+        code,
+        '/project/app/page.tsx',
+        '/project'
+      )
       expect(result).toBeUndefined()
     })
 

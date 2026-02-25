@@ -4,7 +4,11 @@ import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
 import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
-import { subscribeToClientMatches, getClientMatchesSnapshot, updateMatchLoaderData } from './useMatches'
+import {
+  subscribeToClientMatches,
+  getClientMatchesSnapshot,
+  updateMatchLoaderData,
+} from './useMatches'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -243,7 +247,10 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
  * dedicated per-layout refetch endpoint would be needed to truly re-run a layout
  * loader in isolation; that can be added in a follow-up.
  */
-export async function refetchMatchLoader(routeId: string, currentPath: string): Promise<void> {
+export async function refetchMatchLoader(
+  routeId: string,
+  currentPath: string
+): Promise<void> {
   const cacheBust = `${Date.now()}`
   const loaderJSUrl = getLoaderPath(currentPath, true, cacheBust)
 
@@ -314,10 +321,12 @@ export function useLoaderState<
 
   // detect if the loader stub returns a routeId string (set by clientTreeShakePlugin)
   // this enables looking up data from the matches array (needed for layout loaders)
-  const matchRouteId = loader ? (() => {
-    const result = loader()
-    return typeof result === 'string' && result.startsWith('./') ? result : null
-  })() : null
+  const matchRouteId = loader
+    ? (() => {
+        const result = loader()
+        return typeof result === 'string' && result.startsWith('./') ? result : null
+      })()
+    : null
 
   // subscribe to clientMatches changes so refetch triggers re-render
   const clientMatches = useSyncExternalStore(

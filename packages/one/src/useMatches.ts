@@ -37,7 +37,9 @@ export function setClientMatches(matches: RouteMatch[]) {
  * @internal
  */
 export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
-  clientMatches = clientMatches.map((m) => (m.routeId === routeId ? { ...m, loaderData } : m))
+  clientMatches = clientMatches.map((m) =>
+    m.routeId === routeId ? { ...m, loaderData } : m
+  )
   for (const listener of clientMatchesListeners) {
     listener()
   }
