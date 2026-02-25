@@ -585,6 +585,72 @@ describe('Protection Patterns (Loader-based)', () => {
   })
 })
 
+// --- layout follows route render mode (no suffix) ---
+
+describe('Layout follows route render mode (no suffix _layout.tsx + SSR routes)', () => {
+  test('layout and page content rendered in SSR html', async () => {
+    const html = await fetch(serverUrl + '/follow-ssr').then((r) => r.text())
+    // both layout and page should be fully rendered on server
+    expect(html).toContain('id="follow-ssr-layout"')
+    expect(html).toContain('id="follow-ssr-page"')
+    expect(html).toContain('follow-ssr-layout')
+    expect(html).toContain('follow-ssr-page')
+  })
+
+  test('layout loader runs per-request (SSR behavior, not cached SSG)', async () => {
+    // the critical test: a suffix-less _layout.tsx should follow the SSR route's
+    // render mode, meaning its loader runs fresh on each request
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/follow-ssr')
+    await page.waitForLoadState('networkidle')
+
+    const layoutRandom1 = await page.textContent('#follow-ssr-layout-random')
+
+    // reload to get a fresh SSR render
+    await page.goto(serverUrl + '/follow-ssr')
+    await page.waitForLoadState('networkidle')
+
+    const layoutRandom2 = await page.textContent('#follow-ssr-layout-random')
+
+    // layout loader should produce different random on each request (SSR behavior)
+    // if layout was SSG, the random would be the same (cached at build time)
+    expect(layoutRandom1).toBeDefined()
+    expect(layoutRandom2).toBeDefined()
+    expect(layoutRandom1).not.toBe(layoutRandom2)
+
+    await page.close()
+  })
+
+  test('layout loader data accessible via useMatches', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/follow-ssr')
+    await page.waitForLoadState('networkidle')
+
+    const layoutData = await page.textContent('#follow-ssr-layout-data')
+    expect(layoutData).toContain('follow-ssr-layout')
+    expect(layoutData).toContain('random')
+
+    // root + follow-ssr layout + page = 3 matches
+    expect(await page.textContent('#follow-ssr-matches')).toContain('3')
+
+    await page.close()
+  })
+
+  test('client navigation works within follow-ssr section', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/follow-ssr')
+    await page.waitForLoadState('networkidle')
+
+    await page.click('#link-to-other')
+    await page.waitForURL(`${serverUrl}/follow-ssr/other`)
+    await page.waitForSelector('#follow-ssr-other')
+
+    expect(await page.textContent('#follow-ssr-other-data')).toContain('follow-ssr-other')
+
+    await page.close()
+  })
+})
+
 // --- cross-route type navigation ---
 
 describe('Cross-Route Type Navigation', () => {

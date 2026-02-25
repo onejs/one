@@ -55,6 +55,11 @@ export default function Home() {
           </Link>
         </li>
         <li>
+          <Link href="/follow-ssr" id="link-follow-ssr">
+            Follow SSR (layout no suffix)
+          </Link>
+        </li>
+        <li>
           <Link href="/deeply-nested" id="link-deeply-nested">
             Deeply Nested
           </Link>
