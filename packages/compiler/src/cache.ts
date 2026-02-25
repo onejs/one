@@ -1,10 +1,11 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { configuration } from './configure'
 
 /**
  * Fast file-based cache for babel transforms
- * Uses file mtime + content hash for invalidation
+ * Uses file mtime + content hash + config fingerprint for invalidation
  */
 
 interface CacheEntry {
@@ -35,9 +36,25 @@ function getCacheDir(): string {
   return cacheDir
 }
 
+// hash config state so cache invalidates when compiler/reanimated/nativewind toggles change
+function getConfigFingerprint(): string {
+  return createHash('sha1')
+    .update(
+      JSON.stringify({
+        compiler: configuration.enableCompiler,
+        reanimated: configuration.enableReanimated,
+        nativewind: configuration.enableNativewind,
+        nativeCSS: configuration.enableNativeCSS,
+      })
+    )
+    .digest('hex')
+    .slice(0, 8)
+}
+
 function getCacheKey(filePath: string, environment: string): string {
-  // Create a hash of the file path + environment for the cache key
-  const hash = createHash('sha1').update(`${environment}:${filePath}`).digest('hex')
+  const hash = createHash('sha1')
+    .update(`${environment}:${filePath}:${getConfigFingerprint()}`)
+    .digest('hex')
   return hash
 }
 

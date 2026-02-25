@@ -81,9 +81,6 @@ export async function transformBabel(
   code: string,
   options: babel.TransformOptions
 ) {
-  const compilerPlugin = options.plugins?.find(
-    (x) => x && x[0] === 'babel-plugin-react-compiler'
-  )
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
@@ -118,16 +115,6 @@ export async function transformBabel(
         res(result!)
       })
     })
-
-    if (
-      compilerPlugin &&
-      // TODO this detection could be a lot faster
-      out.code?.includes(
-        compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
-      )
-    ) {
-      console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
-    }
 
     return out
   } catch (err) {

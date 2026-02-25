@@ -5,7 +5,7 @@
 
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { dirname, extname, join, sep } from 'node:path'
+import { dirname, extname, join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
@@ -116,10 +116,22 @@ async function performBabelTransform({
     })
 
     if (babelOptions) {
+      const hasCompilerPlugin = babelOptions.plugins?.some(
+        (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+      )
+      const relId = relative(process.cwd(), id)
+
       // Check cache first
       const cached = getCachedTransform(id, code, environment)
       if (cached) {
         perfStats.babel.byEnvironment[environment].transforms++
+        if (
+          hasCompilerPlugin &&
+          (cached.code.includes('react/compiler-runtime') ||
+            cached.code.includes('react-compiler-runtime'))
+        ) {
+          console.info(` 🪄 [compiler] ${relId} (cached)`)
+        }
         debug?.(`[babel/cached] ${id}`)
         return cached
       }
@@ -134,6 +146,14 @@ async function performBabelTransform({
         perfStats.babel.totalTime += babelTime
         perfStats.babel.byEnvironment[environment].transforms++
         perfStats.babel.byEnvironment[environment].time += babelTime
+
+        if (
+          hasCompilerPlugin &&
+          (babelOut.code.includes('react/compiler-runtime') ||
+            babelOut.code.includes('react-compiler-runtime'))
+        ) {
+          console.info(` 🪄 [compiler] ${relId} (${babelTime}ms)`)
+        }
 
         debug?.(`[babel] ${id}`)
         const outCode = `${babelOut.code}\n// vxrn-did-babel`
