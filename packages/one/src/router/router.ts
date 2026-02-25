@@ -1005,13 +1005,23 @@ export async function linkTo(
 
   setLoadingState('loading')
 
-  // Preload route modules first so loadRoute() won't throw Suspense promises
-  await preloadRoute(href, true)
+  const normalizedPreloadPath = normalizeLoaderPath(href)
+
+  // sync fast path: skip async preload when data is already cached
+  // (e.g., from hover/viewport/intent prefetching via PreloadLinks)
+  if (!(normalizedPreloadPath in preloadedLoaderData) && !(href in preloadedLoaderData)) {
+    await preloadRoute(href, true)
+  } else if (process.env.NODE_ENV !== 'development') {
+    // cached data in prod: still inject CSS (non-blocking so we don't delay nav)
+    const inject = cssInjectFunctions[href]
+    if (inject) {
+      inject().catch(() => {})
+    }
+  }
 
   // detect loader redirect signal before proceeding with navigation
   // this handles the case where a server loader returned redirect() during
   // a client-side navigation — we navigate to the redirect target instead
-  const normalizedPreloadPath = normalizeLoaderPath(href)
   const preloadResult = preloadedLoaderData[normalizedPreloadPath]
   if (preloadResult?.__oneRedirect) {
     const redirectTarget = preloadResult.__oneRedirect
