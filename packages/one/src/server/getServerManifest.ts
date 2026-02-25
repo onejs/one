@@ -11,7 +11,6 @@
 
 import { getContextKey, matchGroupName } from '../router/matchers'
 import type { RouteNode } from '../router/Route'
-import { sortRoutes } from '../router/sortRoutes'
 import type { One, RouteInfo } from '../vite/types'
 
 // TODO: Share these types across cli, server, router, etc.
@@ -39,6 +38,55 @@ export interface RouteRegex {
 
 function isNotFoundRoute(route: RouteNode) {
   return Boolean(route.dynamic && route.dynamic[route.dynamic.length - 1].notFound)
+}
+
+// sort flattened routes by URL pattern specificity so more specific routes match first
+// compares segment-by-segment: static > [param] > [...catchAll] > +not-found
+function sortByPathSpecificity(
+  [keyA, nodeA]: [string, RouteNode],
+  [keyB, nodeB]: [string, RouteNode]
+): number {
+  const partsA = keyA.split('/').filter(Boolean)
+  const partsB = keyB.split('/').filter(Boolean)
+
+  const minLen = Math.min(partsA.length, partsB.length)
+  for (let i = 0; i < minLen; i++) {
+    const aIsDynamic = partsA[i].startsWith('[') || partsA[i] === '+not-found'
+    const bIsDynamic = partsB[i].startsWith('[') || partsB[i] === '+not-found'
+
+    // static beats dynamic
+    if (!aIsDynamic && bIsDynamic) return -1
+    if (aIsDynamic && !bIsDynamic) return 1
+
+    // both dynamic: single param beats catch-all/not-found
+    if (aIsDynamic && bIsDynamic) {
+      const aIsCatchAll = partsA[i].startsWith('[...') || partsA[i] === '+not-found'
+      const bIsCatchAll = partsB[i].startsWith('[...') || partsB[i] === '+not-found'
+      if (!aIsCatchAll && bIsCatchAll) return -1
+      if (aIsCatchAll && !bIsCatchAll) return 1
+
+      // both catch-all: not-found goes last
+      if (aIsCatchAll && bIsCatchAll) {
+        const aNotFound = partsA[i] === '+not-found'
+        const bNotFound = partsB[i] === '+not-found'
+        if (aNotFound && !bNotFound) return 1
+        if (!aNotFound && bNotFound) return -1
+      }
+    }
+  }
+
+  // more segments = more specific
+  if (partsA.length !== partsB.length) {
+    return partsB.length - partsA.length
+  }
+
+  // not-found routes last
+  const aNotFound = isNotFoundRoute(nodeA)
+  const bNotFound = isNotFoundRoute(nodeB)
+  if (aNotFound && !bNotFound) return 1
+  if (!aNotFound && bNotFound) return -1
+
+  return 0
 }
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
@@ -76,9 +124,8 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   // TODO this could be a lot faster if not functional:
 
   // Remove duplicates from the runtime manifest which expands array syntax.
-  const flat = getFlatNodes(route)
-    .sort(([, a], [, b]) => sortRoutes(b, a))
-    .reverse()
+  // sort by URL pattern specificity so static segments beat dynamic ones at each position
+  const flat = getFlatNodes(route).sort(sortByPathSpecificity)
 
   // warn on having multiple routes with the same path!
   const pathToRoute: Record<string, RouteNode> = {}
