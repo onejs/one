@@ -8,7 +8,7 @@ import {
   findReferencedIdentifiers,
 } from 'babel-dead-code-elimination'
 import type { Plugin } from 'vite'
-import { EMPTY_LOADER_STRING } from '../constants'
+import { EMPTY_LOADER_STRING, makeLoaderRouteIdStub } from '../constants'
 
 const traverse = (BabelTraverse['default'] || BabelTraverse) as typeof BabelTraverse
 const generate = (BabelGenerate['default'] ||
@@ -74,7 +74,7 @@ export const clientTreeShakePlugin = (): Plugin => {
           return
         }
 
-        const out = await transformTreeShakeClient(code, id)
+        const out = await transformTreeShakeClient(code, id, process.cwd())
 
         return out
       },
@@ -82,7 +82,7 @@ export const clientTreeShakePlugin = (): Plugin => {
   } satisfies Plugin
 }
 
-export async function transformTreeShakeClient(code: string, id: string) {
+export async function transformTreeShakeClient(code: string, id: string, root?: string) {
   if (!/generateStaticParams|loader/.test(code)) {
     return
   }
@@ -188,6 +188,10 @@ export async function transformTreeShakeClient(code: string, id: string) {
         removedFunctions
           .map((key) => {
             if (key === 'loader') {
+              if (root) {
+                const routeId = './' + relative(root, id).replace(/\\/g, '/')
+                return makeLoaderRouteIdStub(routeId)
+              }
               return EMPTY_LOADER_STRING
             }
 

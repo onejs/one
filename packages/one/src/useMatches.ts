@@ -16,7 +16,7 @@ function subscribeToClientMatches(callback: () => void) {
   return () => clientMatchesListeners.delete(callback)
 }
 
-function getClientMatchesSnapshot() {
+export function getClientMatchesSnapshot() {
   return clientMatches
 }
 
@@ -27,6 +27,17 @@ function getClientMatchesSnapshot() {
  */
 export function setClientMatches(matches: RouteMatch[]) {
   clientMatches = matches
+  for (const listener of clientMatchesListeners) {
+    listener()
+  }
+}
+
+/**
+ * Update the loaderData for a single match by routeId, leaving all other matches intact.
+ * @internal
+ */
+export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
+  clientMatches = clientMatches.map((m) => (m.routeId === routeId ? { ...m, loaderData } : m))
   for (const listener of clientMatchesListeners) {
     listener()
   }

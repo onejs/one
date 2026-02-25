@@ -123,6 +123,64 @@ export default function Page() {
       expect(result).toBeUndefined()
     })
 
+    it('should embed routeId in loader stub when root is provided', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { useLoader } from 'one'
+
+export async function loader() {
+  return serverOnlyModule()
+}
+
+export default function Layout() {
+  const data = useLoader(loader)
+  return data
+}
+`
+      const result = await transformTreeShakeClient(code, '/project/app/_layout.tsx', '/project')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('export function loader() {return "./app/_layout.tsx"}')
+      expect(result!.code).not.toContain('__vxrn__loader__')
+    })
+
+    it('should embed routeId with render mode suffix in loader stub', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { useLoader } from 'one'
+
+export async function loader() {
+  return serverOnlyModule()
+}
+
+export default function Layout() {
+  const data = useLoader(loader)
+  return data
+}
+`
+      const result = await transformTreeShakeClient(code, '/project/app/user+ssr.tsx', '/project')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('export function loader() {return "./app/user+ssr.tsx"}')
+    })
+
+    it('should fall back to __vxrn__loader__ stub when no root provided', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { useLoader } from 'one'
+
+export async function loader() {
+  return serverOnlyModule()
+}
+
+export default function Page() {
+  const data = useLoader(loader)
+  return data
+}
+`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('__vxrn__loader__')
+    })
+
     it('should preserve type-only imports during tree shaking', async () => {
       const code = `
 import type { SomeType } from 'types-pkg'

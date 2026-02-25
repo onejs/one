@@ -4,6 +4,7 @@ import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
 import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
+import { getClientMatchesSnapshot, updateMatchLoaderData } from './useMatches'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -226,6 +227,28 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
 }
 
 /**
+ * Refetch the loader data for a specific match (identified by routeId) by fetching
+ * the current page's loader JS and updating only that match entry in clientMatches.
+ *
+ * Note: the server's loader JS endpoint runs the *page* loader, so for layout
+ * routeIds this fetches fresh page data and stores it on the layout match. A
+ * dedicated per-layout refetch endpoint would be needed to truly re-run a layout
+ * loader in isolation; that can be added in a follow-up.
+ */
+export async function refetchMatchLoader(routeId: string, currentPath: string): Promise<void> {
+  const cacheBust = `${Date.now()}`
+  const loaderJSUrl = getLoaderPath(currentPath, true, cacheBust)
+
+  const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
+  if (!module?.loader) return
+
+  const result = await module.loader()
+  if (result?.__oneRedirect || result?.__oneError) return
+
+  updateMatchLoaderData(routeId, result)
+}
+
+/**
  * Access loader data with full state control including refetch capability.
  * Use this when you need loading state or refetch; use `useLoader` for just data.
  *
@@ -279,6 +302,23 @@ export function useLoaderState<
       }
     )
     return { data: serverData, refetch: async () => {}, state: 'idle' } as any
+  }
+
+  // client-side fast path: if the loader stub returns a routeId string (set by
+  // clientTreeShakePlugin), look up the data directly from the matches array
+  // instead of fetching the loader JS file. This is how layout loaders are accessed.
+  if (loader) {
+    const loaderResult = loader()
+    if (typeof loaderResult === 'string' && loaderResult.startsWith('./')) {
+      const routeId = loaderResult
+      const matches = getClientMatchesSnapshot()
+      const match = matches.find((m) => m.routeId === routeId)
+      const refetch = useCallback(
+        () => refetchMatchLoader(routeId, currentPath),
+        [routeId, currentPath]
+      )
+      return { data: match?.loaderData, refetch, state: 'idle' } as any
+    }
   }
 
   // preloaded data from SSR/SSG - only use if server context path matches current path
