@@ -707,6 +707,49 @@ describe('useMatches()', () => {
     await page.close()
   })
 
+  test('layout useLoader returns layout data, not page data', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/page1')
+
+    // layout calls useLoader(loader) - should get its own data, not page data
+    const layoutUseLoaderData = await page.textContent('#layout-useloader-data')
+    const parsed = JSON.parse(layoutUseLoaderData || '{}')
+
+    // should have layout-specific fields
+    expect(parsed.layoutTitle).toBe('Matches Test Layout')
+    expect(parsed.navItems).toEqual(['page1', 'page2'])
+
+    // should NOT have page fields (which would indicate the bug)
+    expect(parsed.pageTitle).toBeUndefined()
+    expect(parsed.content).toBeUndefined()
+
+    await page.close()
+  })
+
+  test('layout useLoader persists correct data after client navigation', async () => {
+    const page = await context.newPage()
+
+    await page.goto(serverUrl + '/matches-test/page1')
+    await page.waitForLoadState('networkidle')
+
+    // navigate to page2 via client-side link
+    await page.click('#link-to-page2')
+    await page.waitForURL(`${serverUrl}/matches-test/page2`, { timeout: 5000 })
+    await waitForTextContent(page, '#page-title', 'Page 2')
+
+    // layout useLoader should still return layout data after navigation
+    const layoutUseLoaderData = await page.textContent('#layout-useloader-data')
+    const parsed = JSON.parse(layoutUseLoaderData || '{}')
+    expect(parsed.layoutTitle).toBe('Matches Test Layout')
+    expect(parsed.navItems).toEqual(['page1', 'page2'])
+
+    // should NOT have page2's data
+    expect(parsed.pageTitle).toBeUndefined()
+
+    await page.close()
+  })
+
   test('deeply nested layouts: 3+ levels of layout loaders', async () => {
     const page = await context.newPage()
 

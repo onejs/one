@@ -22,6 +22,16 @@ export declare function getLoaderTimingHistory(): LoaderTimingEntry[];
  */
 export declare function refetchLoader(pathname: string): Promise<void>;
 /**
+ * Refetch the loader data for a specific match (identified by routeId) by fetching
+ * the current page's loader JS and updating only that match entry in clientMatches.
+ *
+ * Note: the server's loader JS endpoint runs the *page* loader, so for layout
+ * routeIds this fetches fresh page data and stores it on the layout match. A
+ * dedicated per-layout refetch endpoint would be needed to truly re-run a layout
+ * loader in isolation; that can be added in a follow-up.
+ */
+export declare function refetchMatchLoader(routeId: string, currentPath: string): Promise<void>;
+/**
  * Access loader data with full state control including refetch capability.
  * Use this when you need loading state or refetch; use `useLoader` for just data.
  *

@@ -4,6 +4,7 @@ import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
 import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
+import { subscribeToClientMatches, getClientMatchesSnapshot, updateMatchLoaderData } from './useMatches'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -192,6 +193,14 @@ export async function refetchLoader(pathname: string): Promise<void> {
       hasLoadedOnce: true,
     })
 
+    // also sync to the page match in clientMatches so components using the
+    // match-based data path (useLoader with routeId stub) see the update
+    const currentMatches = getClientMatchesSnapshot()
+    const pageMatch = currentMatches[currentMatches.length - 1]
+    if (pageMatch && pageMatch.pathname === pathname) {
+      updateMatchLoaderData(pageMatch.routeId, result)
+    }
+
     recordLoaderTiming?.({
       path: pathname,
       startTime,
@@ -223,6 +232,28 @@ export async function refetchLoader(pathname: string): Promise<void> {
 // Expose refetchLoader globally for HMR in development
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   ;(window as any).__oneRefetchLoader = refetchLoader
+}
+
+/**
+ * Refetch the loader data for a specific match (identified by routeId) by fetching
+ * the current page's loader JS and updating only that match entry in clientMatches.
+ *
+ * Note: the server's loader JS endpoint runs the *page* loader, so for layout
+ * routeIds this fetches fresh page data and stores it on the layout match. A
+ * dedicated per-layout refetch endpoint would be needed to truly re-run a layout
+ * loader in isolation; that can be added in a follow-up.
+ */
+export async function refetchMatchLoader(routeId: string, currentPath: string): Promise<void> {
+  const cacheBust = `${Date.now()}`
+  const loaderJSUrl = getLoaderPath(currentPath, true, cacheBust)
+
+  const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
+  if (!module?.loader) return
+
+  const result = await module.loader()
+  if (result?.__oneRedirect || result?.__oneError) return
+
+  updateMatchLoaderData(routeId, result)
 }
 
 /**
@@ -281,11 +312,26 @@ export function useLoaderState<
     return { data: serverData, refetch: async () => {}, state: 'idle' } as any
   }
 
+  // detect if the loader stub returns a routeId string (set by clientTreeShakePlugin)
+  // this enables looking up data from the matches array (needed for layout loaders)
+  const matchRouteId = loader ? (() => {
+    const result = loader()
+    return typeof result === 'string' && result.startsWith('./') ? result : null
+  })() : null
+
+  // subscribe to clientMatches changes so refetch triggers re-render
+  const clientMatches = useSyncExternalStore(
+    subscribeToClientMatches,
+    getClientMatchesSnapshot,
+    getClientMatchesSnapshot
+  )
+
   // preloaded data from SSR/SSG - only use if server context path matches current path
   const serverContextPath = loaderPropsFromServerContext?.path
   const preloadedData =
     serverContextPath === currentPath ? loaderDataFromServerContext : undefined
 
+  // all hooks must be called unconditionally to satisfy React's rules of hooks
   const loaderStateEntry = useSyncExternalStore(
     subscribe,
     () => getLoaderState(currentPath, preloadedData),
@@ -293,6 +339,29 @@ export function useLoaderState<
   )
 
   const refetch = useCallback(() => refetchLoader(currentPath), [currentPath])
+
+  // if the loader returns a routeId, look up data from matches instead of loaderState
+  // only use this path when the match has data (layouts always have data preserved from SSR;
+  // pages might have null loaderData during client navigation if preloading hasn't completed,
+  // so they fall through to the regular loaderState path which handles suspension/loading)
+  if (matchRouteId) {
+    const match = clientMatches.find((m) => m.routeId === matchRouteId)
+    if (match && match.loaderData != null) {
+      return {
+        data: match.loaderData,
+        // refetch updates both loaderState (for useLoaderState() consumers without a loader)
+        // and the match entry (for this component and useMatches consumers)
+        refetch: async () => {
+          await refetchLoader(currentPath)
+          const fresh = loaderState[currentPath]
+          if (fresh?.data != null) {
+            updateMatchLoaderData(matchRouteId, fresh.data)
+          }
+        },
+        state: loaderStateEntry.state,
+      } as any
+    }
+  }
 
   // no loader, just return state/refetch for the path
   if (!loader) {
