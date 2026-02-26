@@ -83,4 +83,12 @@ export const teardown = async () => {
   }
 
   await Promise.all(killPromises)
+
+  // safety net: force exit if dangling handles (e.g. keep-alive HTTP connections
+  // from fetch() in waitForServer/warmupServer) prevent vitest from exiting.
+  // unref'd so it won't keep the event loop alive if vitest exits normally.
+  setTimeout(() => {
+    console.info('Force exiting after teardown (dangling handles detected)')
+    process.exit(0)
+  }, 2000).unref()
 }
