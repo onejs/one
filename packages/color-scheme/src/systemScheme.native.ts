@@ -3,8 +3,12 @@ import { Appearance, AppState, type AppStateStatus } from 'react-native'
 
 export type Scheme = 'light' | 'dark'
 
+function toScheme(colorScheme: string | null | undefined): Scheme {
+  return colorScheme === 'dark' ? 'dark' : 'light'
+}
+
 export function getSystemScheme(): Scheme {
-  return Appearance.getColorScheme() || 'light'
+  return toScheme(Appearance.getColorScheme())
 }
 
 export function useSystemScheme(): Scheme {
@@ -13,7 +17,7 @@ export function useSystemScheme(): Scheme {
   useEffect(() => {
     // Listen for appearance changes while app is active
     const appearanceSubscription = Appearance.addChangeListener(({ colorScheme }) => {
-      setScheme(colorScheme || 'light')
+      setScheme(toScheme(colorScheme))
     })
 
     // Also check when app comes back to foreground, as appearance change
