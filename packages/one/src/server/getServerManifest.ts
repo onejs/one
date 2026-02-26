@@ -75,16 +75,16 @@ function sortByPathSpecificity(
     }
   }
 
-  // more segments = more specific
-  if (partsA.length !== partsB.length) {
-    return partsB.length - partsA.length
-  }
-
-  // not-found routes last
+  // not-found routes always last regardless of segment count
   const aNotFound = isNotFoundRoute(nodeA)
   const bNotFound = isNotFoundRoute(nodeB)
   if (aNotFound && !bNotFound) return 1
   if (!aNotFound && bNotFound) return -1
+
+  // more segments = more specific
+  if (partsA.length !== partsB.length) {
+    return partsB.length - partsA.length
+  }
 
   return 0
 }
