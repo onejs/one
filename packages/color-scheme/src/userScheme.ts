@@ -33,10 +33,14 @@ function getInitialSetting(): SchemeSetting {
   return 'system'
 }
 
+function toScheme(colorScheme: string | null | undefined): Scheme {
+  return colorScheme === 'dark' ? 'dark' : 'light'
+}
+
 function getInitialValue(setting: SchemeSetting): Scheme {
   if (process.env.TAMAGUI_TARGET === 'native') {
     if (setting === 'system') {
-      return Appearance.getColorScheme() || 'light'
+      return toScheme(Appearance.getColorScheme())
     }
     return setting
   }
@@ -80,7 +84,7 @@ function startWebListener() {
 function resolveValue(setting: SchemeSetting): Scheme {
   if (setting === 'system') {
     if (process.env.TAMAGUI_TARGET === 'native') {
-      return Appearance.getColorScheme() || 'light'
+      return toScheme(Appearance.getColorScheme())
     }
     return getSystemScheme()
   }
@@ -112,8 +116,8 @@ function updateScheme(setting: SchemeSetting) {
       if (setting !== 'system') {
         Appearance.setColorScheme(value)
       } else {
-        // reset to null to re-enable system tracking
-        Appearance.setColorScheme(null)
+        // reset to 'unspecified' to re-enable system tracking
+        Appearance.setColorScheme('unspecified')
       }
     }
 
