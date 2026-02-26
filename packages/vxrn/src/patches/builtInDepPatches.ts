@@ -1,7 +1,20 @@
 import { assertString } from '../utils/assert'
-import { type DepPatch, bailIfUnchanged } from '../utils/patches'
+import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
+  // react-native-web doesn't export unstable_batchedUpdates but react-native does,
+  // so libraries like @legendapp/list break when aliased to rnw on web
+  {
+    module: 'react-native-web',
+    patchFiles: {
+      'dist/index.js': (contents) => {
+        assertString(contents)
+        bailIfExists(contents, 'unstable_batchedUpdates')
+        return `${contents}\nexport { unstable_batchedUpdates } from 'react-dom';\n`
+      },
+    },
+  },
+
   {
     module: 'react',
     patchFiles: {
