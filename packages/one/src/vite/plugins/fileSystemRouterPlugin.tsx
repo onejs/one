@@ -393,6 +393,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             throw new Error(`No transformed js returned`)
           }
 
+          // the client tree-shake plugin replaces loader exports with stubs
+          // like "export function loader()". if no stub exists, this route has
+          // no loader - skip the SSR module import to avoid evaluating modules
+          // with potentially SSR-incompatible deps (e.g. tamagui in SSR)
+          if (!/export function loader\(\)/.test(transformedJS)) {
+            return transformedJS
+          }
+
           const exported = await runner.import(routeFile)
 
           // for ssg dynamic routes, check generateStaticParams to validate the slug
