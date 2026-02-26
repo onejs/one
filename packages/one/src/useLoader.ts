@@ -359,7 +359,17 @@ export function useLoaderState<
   // so they fall through to the regular loaderState path which handles suspension/loading)
   if (matchRouteId) {
     const match = clientMatches.find((m) => m.routeId === matchRouteId)
-    if (match && match.loaderData != null) {
+    // for page matches (the deepest/last match), verify the pathname matches currentPath.
+    // during back/forward navigation, clientMatches may be stale (popstate doesn't update them),
+    // so a dynamic route like [slug] could have data from a different URL.
+    // layout matches (non-last) always use match data since their loaderState is path-keyed
+    // to the page path, not the layout's own data.
+    const isPageMatch =
+      clientMatches.length > 0 &&
+      clientMatches[clientMatches.length - 1]?.routeId === matchRouteId
+    const matchPathNormalized = (match?.pathname || '').replace(/\/$/, '') || '/'
+    const matchPathFresh = !isPageMatch || matchPathNormalized === currentPath
+    if (match && match.loaderData != null && matchPathFresh) {
       return {
         data: match.loaderData,
         // refetch updates both loaderState (for useLoaderState() consumers without a loader)
