@@ -204,7 +204,7 @@ export async function setupTestServers({
             })
           ) as typeof process.env,
           detached: true,
-          stdio: 'inherit',
+          stdio: 'ignore',
         }
       )
       devServer.unref()
@@ -225,7 +225,7 @@ export async function setupTestServers({
             ONE_SERVER_URL: `http://localhost:${prodPort}`,
           },
           detached: true,
-          stdio: 'inherit',
+          stdio: 'ignore',
         }
       )
       prodServer.unref()
