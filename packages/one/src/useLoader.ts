@@ -201,7 +201,11 @@ export async function refetchLoader(pathname: string): Promise<void> {
     // match-based data path (useLoader with routeId stub) see the update
     const currentMatches = getClientMatchesSnapshot()
     const pageMatch = currentMatches[currentMatches.length - 1]
-    if (pageMatch && pageMatch.pathname === pathname) {
+    // normalize trailing slashes: SSG matches may have trailing slash while
+    // useLoaderState strips it from currentPath
+    const normalizedPathname = pathname.replace(/\/$/, '') || '/'
+    const normalizedMatchPathname = (pageMatch?.pathname || '').replace(/\/$/, '') || '/'
+    if (pageMatch && normalizedMatchPathname === normalizedPathname) {
       updateMatchLoaderData(pageMatch.routeId, result)
     }
 
