@@ -5,7 +5,7 @@ import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
 
 const execAsync = promisify(exec)
 
-async function killProcessOnPort(port: number): Promise<void> {
+export async function killProcessOnPort(port: number): Promise<void> {
   try {
     const { stdout } = await execAsync(`lsof -i :${port} -t`)
     const pids = stdout.trim().split('\n').filter(Boolean)
@@ -207,7 +207,6 @@ export async function setupTestServers({
           stdio: 'inherit',
         }
       )
-      // Allow Node.js event loop to exit even if this process is still running
       devServer.unref()
     }
 
@@ -229,7 +228,6 @@ export async function setupTestServers({
           stdio: 'inherit',
         }
       )
-      // Allow Node.js event loop to exit even if this process is still running
       prodServer.unref()
     }
 
