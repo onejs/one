@@ -1,6 +1,6 @@
 import type { TestProject } from 'vitest/node'
 import type { Assertion } from 'vitest'
-import { setupTestServers, type TestInfo } from './setupTest'
+import { killProcessOnPort, setupTestServers, type TestInfo } from './setupTest'
 
 // to keep the import which is needed for declare
 const y: Assertion = 0 as any
@@ -83,4 +83,8 @@ export const teardown = async () => {
   }
 
   await Promise.all(killPromises)
+
+  // also kill any orphaned processes still listening on our ports
+  await killProcessOnPort(testInfo.testDevPort)
+  await killProcessOnPort(testInfo.testProdPort)
 }
