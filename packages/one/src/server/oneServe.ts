@@ -216,7 +216,7 @@ export async function oneServe(
             routeId: string,
             serverPath: string | undefined,
             lazyKey?: string
-          ): Promise<{ loaderData: unknown; routeId: string }> {
+          ): Promise<{ loaderData: unknown; routeId: string; isEnoent?: boolean }> {
             if (!serverPath && !lazyKey) {
               return { loaderData: undefined, routeId }
             }
@@ -241,6 +241,9 @@ export async function oneServe(
               if (isResponse(err)) {
                 throw err
               }
+              if ((err as any)?.code === 'ENOENT') {
+                return { loaderData: undefined, routeId, isEnoent: true }
+              }
               console.error(`[one] Error running loader for ${routeId}:`, err)
               return { loaderData: undefined, routeId }
             }
@@ -262,8 +265,8 @@ export async function oneServe(
           )
 
           // wait for all loaders in parallel
-          let layoutResults: Array<{ loaderData: unknown; routeId: string }>
-          let pageResult: { loaderData: unknown; routeId: string }
+          let layoutResults: Array<{ loaderData: unknown; routeId: string; isEnoent?: boolean }>
+          let pageResult: { loaderData: unknown; routeId: string; isEnoent?: boolean }
 
           try {
             ;[layoutResults, pageResult] = await Promise.all([
@@ -276,6 +279,25 @@ export async function oneServe(
               return err
             }
             throw err
+          }
+
+          // if loader threw ENOENT, serve the nearest +not-found page
+          if (pageResult.isEnoent) {
+            const nfPath = findNearestNotFoundPath(loaderProps?.path || '/')
+            const nfHtml = routeMap[nfPath]
+            if (nfHtml) {
+              try {
+                const html = await readFile(
+                  join(process.cwd(), 'dist/client', nfHtml),
+                  'utf-8'
+                )
+                return new Response(html, {
+                  headers: { 'content-type': 'text/html' },
+                  status: 404,
+                })
+              } catch {}
+            }
+            return new Response('404 Not Found', { status: 404 })
           }
 
           // build matches array (layouts + page)

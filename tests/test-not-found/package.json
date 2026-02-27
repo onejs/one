@@ -9,7 +9,7 @@
     "dev": "one dev",
     "serve": "one serve",
     "prod": "one build && one serve",
-    "test": "ONLY_TEST_DEV=true bun run vitest --run --reporter=verbose",
+    "test": "bun run vitest --run --reporter=verbose",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

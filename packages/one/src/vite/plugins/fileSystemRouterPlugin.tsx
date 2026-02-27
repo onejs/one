@@ -131,7 +131,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             async function runLoaderWithTracking(
               routeNode: RouteNode | { contextKey: string; file?: string },
               loaderFn: ((props: any) => any) | undefined
-            ): Promise<{ loaderData: any; routeId: string }> {
+            ): Promise<{ loaderData: any; routeId: string; isEnoent?: boolean }> {
               const routeId = routeNode.contextKey
               if (!loaderFn) {
                 return { loaderData: undefined, routeId }
@@ -160,6 +160,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 if (isResponse(err)) {
                   throw err
                 }
+                // ENOENT = file not found in loader (e.g. invalid slug for MDX/data file)
+                if ((err as any)?.code === 'ENOENT') {
+                  return { loaderData: undefined, routeId, isEnoent: true }
+                }
                 console.error(`[one] Error running loader for ${routeId}:`, err)
                 return { loaderData: undefined, routeId }
               }
@@ -167,6 +171,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             let loaderData: any
             let matches: One.RouteMatch[]
+            let pageResult: { loaderData: any; routeId: string; isEnoent?: boolean } | undefined
 
             if (isSpaShell) {
               // spa-shell: run layout loaders (page content is client-rendered)
@@ -202,7 +207,8 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               const pageLoaderPromise = runLoaderWithTracking(pageRoute, exported.loader)
 
               // wait for all loaders in parallel
-              const [layoutResults, pageResult] = await Promise.all([
+              let layoutResults: Awaited<ReturnType<typeof runLoaderWithTracking>>[]
+              ;[layoutResults, pageResult] = await Promise.all([
                 Promise.all(layoutLoaderPromises),
                 pageLoaderPromise,
               ])
@@ -257,11 +263,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               )
             }
 
-            const is404 = route.isNotFound || !getPageExport(exported) || isMissingSsgSlug
+            const isLoaderEnoent = !isSpaShell && pageResult?.isEnoent
+            const is404 = route.isNotFound || !getPageExport(exported) || isMissingSsgSlug || isLoaderEnoent
 
-            // for ssg dynamic routes with invalid slug, find and render the nearest +not-found page
+            // for routes with invalid slug (ssg or loader ENOENT), find and render the nearest +not-found page
             let notFoundRoutePath: string | null = null
-            if (isMissingSsgSlug) {
+            if (isMissingSsgSlug || isLoaderEnoent) {
               // find nearest +not-found by walking up the route's directory
               // strip leading ./ and file name to get directory
               const routeDir = route.file.replace(/^\.\//, '').replace(/\/[^/]+$/, '')
