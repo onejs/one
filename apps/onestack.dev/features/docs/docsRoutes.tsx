@@ -41,6 +41,7 @@ export const docsRoutes = [
       { title: 'Slot', route: '/docs/components-Slot' },
       { title: 'Stack', route: '/docs/components-Stack' },
       { title: 'Tabs', route: '/docs/components-Tabs' },
+      { title: 'NativeTabs', route: '/docs/components-NativeTabs' },
       { title: 'Drawer', route: '/docs/components-Drawer' },
       { title: 'Protected', route: '/docs/components-Protected' },
       { title: 'withLayoutContext', route: '/docs/exports-withLayoutContext' },
