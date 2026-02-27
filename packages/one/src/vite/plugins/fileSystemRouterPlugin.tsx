@@ -171,7 +171,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             let loaderData: any
             let matches: One.RouteMatch[]
-            let pageResult: { loaderData: any; routeId: string; isEnoent?: boolean } | undefined
+            let pageResult:
+              | { loaderData: any; routeId: string; isEnoent?: boolean }
+              | undefined
 
             if (isSpaShell) {
               // spa-shell: run layout loaders (page content is client-rendered)
@@ -264,7 +266,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             }
 
             const isLoaderEnoent = !isSpaShell && pageResult?.isEnoent
-            const is404 = route.isNotFound || !getPageExport(exported) || isMissingSsgSlug || isLoaderEnoent
+            const is404 =
+              route.isNotFound ||
+              !getPageExport(exported) ||
+              isMissingSsgSlug ||
+              isLoaderEnoent
 
             // for routes with invalid slug (ssg or loader ENOENT), find and render the nearest +not-found page
             let notFoundRoutePath: string | null = null
