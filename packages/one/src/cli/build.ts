@@ -767,7 +767,10 @@ export async function build(args: {
       })
     })
 
-    const results = (await Promise.all(pageBuilds)).filter(Boolean) as { built: any; path: string }[]
+    const results = (await Promise.all(pageBuilds)).filter(Boolean) as {
+      built: any
+      path: string
+    }[]
 
     for (const { built, path } of results) {
       builtRoutes.push(built)

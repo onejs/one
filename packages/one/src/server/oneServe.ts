@@ -265,7 +265,11 @@ export async function oneServe(
           )
 
           // wait for all loaders in parallel
-          let layoutResults: Array<{ loaderData: unknown; routeId: string; isEnoent?: boolean }>
+          let layoutResults: Array<{
+            loaderData: unknown
+            routeId: string
+            isEnoent?: boolean
+          }>
           let pageResult: { loaderData: unknown; routeId: string; isEnoent?: boolean }
 
           try {
