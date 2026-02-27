@@ -349,14 +349,11 @@ describe('Dynamic route 404 handling', () => {
       }
     })
 
-    it('should return 404 signal in loader response for invalid slug', async () => {
-      const response = await fetch(
-        `${serverUrl}/case9/nonexistent/_vxrn_loader.js?v=${Date.now()}`
-      )
+    it('should return 404 with not-found content for invalid slug', async () => {
+      const response = await fetch(`${serverUrl}/case9/nonexistent`)
+      expect(response.status).toBe(404)
       const text = await response.text()
-      // should return valid JS with __oneError: 404
-      expect(text).toContain('__oneError')
-      expect(text).toContain('404')
+      expect(text).toContain('case9-not-found')
     })
   })
 })

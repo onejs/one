@@ -223,7 +223,8 @@ prefetchCSS()
     t0 = performance.now()
     let loaderRedirectInfo: { path: string; status: number } | null = null
 
-    if (exported.loader) {
+    // skip loader execution for ssr routes - loaders run at request time, not build time
+    if (exported.loader && foundRoute.type !== 'ssr') {
       try {
         loaderData = (await exported.loader?.(loaderProps)) ?? null
       } catch (err) {
@@ -418,7 +419,7 @@ loaderData:\n\n${JSON.stringify(loaderData || null, null, 2)}
 params:\n\n${JSON.stringify(params || null, null, 2)}`
     )
     console.error(err)
-    process.exit(1)
+    throw err
   }
 
   const middlewares = (foundRoute.middlewares || []).map(
@@ -461,15 +462,14 @@ async function getRender(serverEntry: string) {
       serverImport.default.default?.render
 
     if (typeof render !== 'function') {
-      console.error(`❌ Error: didn't find render function in entry`, serverImport)
-      process.exit(1)
+      throw new Error(`didn't find render function in entry: ${serverEntry}`)
     }
   } catch (err) {
     console.error(`❌ Error importing the root entry:`)
     console.error(`  This error happened in the built file: ${serverEntry}`)
     // @ts-expect-error
     console.error(err['stack'])
-    process.exit(1)
+    throw err
   }
 
   return render
