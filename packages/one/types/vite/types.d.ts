@@ -373,6 +373,18 @@ export declare namespace One {
              * @default 'intent'
              */
             linkPrefetch?: false | 'hover' | 'viewport' | 'intent';
+            /**
+             * Skew protection detects when deployed assets have changed and handles
+             * stale client bundles gracefully instead of showing broken pages.
+             *
+             * - `true` (default): Detects chunk load failures and auto-reloads
+             * - `'proactive'`: Also polls for new versions and forces full-page
+             *   navigation when a new deployment is detected
+             * - `false`: Disable skew protection entirely
+             *
+             * @default true
+             */
+            skewProtection?: boolean | 'proactive';
         };
         /**
          * Development tools configuration. Set to `true` to enable all devtools,

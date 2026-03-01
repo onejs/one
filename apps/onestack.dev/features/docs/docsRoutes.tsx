@@ -94,6 +94,7 @@ export const docsRoutes = [
         route: '/docs/guides-migrating-create-react-app-cra-to-vite-with-one',
       },
       { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
+      { title: 'Skew Protection', route: '/docs/guides-skew-protection' },
     ],
   },
 

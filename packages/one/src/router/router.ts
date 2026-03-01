@@ -25,6 +25,7 @@ import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
+import { isVersionStale } from '../skewProtection'
 import { shouldLinkExternally } from '../utils/url'
 import {
   ParamValidationError,
@@ -653,9 +654,12 @@ async function doPreload(href: string) {
 
   try {
     const [_preload, cssPreloadModule, loader] = await Promise.all([
-      dynamicImport(preloadPath),
-      dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null), // graceful fail if no CSS preload
-      dynamicImport(loaderPath)?.catch(() => null) ?? Promise.resolve(null), // graceful fail if no loader file
+      dynamicImport(preloadPath)?.catch((err) => {
+        recordPreloadError(href, err instanceof Error ? err.message : String(err))
+        return null
+      }),
+      dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null),
+      dynamicImport(loaderPath)?.catch(() => null) ?? Promise.resolve(null),
       preloadRouteModules(href),
     ])
 
@@ -897,6 +901,12 @@ export async function linkTo(
 
   if (shouldLinkExternally(href)) {
     openExternalURL(href)
+    return
+  }
+
+  // if a new version was detected via polling, force full page navigation
+  if (isVersionStale()) {
+    window.location.href = href
     return
   }
 
