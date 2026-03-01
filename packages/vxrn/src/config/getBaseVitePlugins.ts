@@ -39,6 +39,13 @@ export function getBaseVitePlugins(): PluginOption[] {
         }
       },
 
+      load(id) {
+        if (id.startsWith('\0server-only-stub:')) {
+          const source = id.slice('\0server-only-stub:'.length)
+          return `throw new Error("[one] .server file cannot be imported on client: ${source}")`
+        }
+      },
+
       // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
       async resolveId(source, importer, options) {
         // Skip during Vite's dependency optimization scan to avoid interfering with dep discovery
@@ -58,11 +65,14 @@ export function getBaseVitePlugins(): PluginOption[] {
           return resolved
         }
 
-        // error if .server. files are explicitly imported on client/native
+        // resolve .server files to a throwing stub on client/native
+        // instead of erroring at build time, since dynamic imports behind
+        // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
+        // are still resolved by vite's import analysis
         if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
-          throw new Error(
-            `[one] .server file cannot be imported on ${this.environment.name}: ${source} (imported by ${importer})`
-          )
+          return {
+            id: `\0server-only-stub:${source}`,
+          }
         }
 
         // not in node_modules, vite doesn't apply extensions! we need to manually
