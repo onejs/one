@@ -372,6 +372,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ...(options.web?.linkPrefetch && {
               'process.env.ONE_LINK_PREFETCH': JSON.stringify(options.web.linkPrefetch),
             }),
+
+            ...(options.web?.skewProtection !== undefined && {
+              'process.env.ONE_SKEW_PROTECTION': JSON.stringify(
+                options.web.skewProtection === true
+                  ? 'true'
+                  : options.web.skewProtection === false
+                    ? 'false'
+                    : options.web.skewProtection // 'proactive'
+              ),
+            }),
           },
 
           environments: {

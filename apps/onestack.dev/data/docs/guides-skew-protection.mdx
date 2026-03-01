@@ -1,0 +1,93 @@
+---
+title: Skew Protection
+description: Handle stale client bundles gracefully after deployments
+---
+
+After a deployment, users with open tabs still have old JavaScript bundles. When they navigate, dynamic imports reference chunk URLs that no longer exist on the server, causing 404s, broken UI, or blank pages.
+
+One has built-in skew protection that detects these failures and recovers automatically.
+
+## Configuration
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        skewProtection: true // true (default) | 'proactive' | false
+      }
+    })
+  ]
+}
+```
+
+## Error Recovery (default)
+
+With `skewProtection: true` (the default), One detects chunk load failures and automatically reloads the page. This covers two failure paths:
+
+- **Vite preload errors** — caught via the `vite:preloadError` event when Vite's module preloader fails to fetch a chunk
+- **Dynamic import errors** — caught when One's own `dynamicImport()` calls fail with browser-specific chunk load error messages (Chrome, Firefox, Safari)
+
+When a failure is detected, the page reloads so the browser fetches fresh HTML with the new asset URLs. A sessionStorage guard prevents infinite reload loops — if a reload already happened within the last 10 seconds, the guard stops further reloads.
+
+No configuration needed. This is always on unless you explicitly set `skewProtection: false`.
+
+## Proactive Mode
+
+```tsx fileName=vite.config.ts
+one({
+  web: {
+    skewProtection: 'proactive'
+  }
+})
+```
+
+Proactive mode adds version polling on top of error recovery. Instead of waiting for a chunk to fail, the client periodically checks whether a new version has been deployed and forces a full-page navigation on the next link click.
+
+### How it works
+
+1. At build time, One emits a `version.json` file containing the build's cache key
+2. The client polls `version.json` every 2 minutes with cache-busting headers
+3. When the polled version doesn't match the running bundle's version, the app is marked as stale
+4. On the next client-side navigation, instead of doing an SPA transition, One does a full `window.location.href` navigation so the server returns fresh HTML with new assets
+
+This is similar to how SvelteKit handles version skew. The user never sees a broken page — they just get a slightly slower (full-page) navigation that loads the new deployment.
+
+### Events
+
+When a version mismatch is detected, One dispatches a `one-version-update` custom event on `window`:
+
+```ts
+window.addEventListener('one-version-update', (e) => {
+  console.log('new version available:', e.detail.version)
+  // show a toast, banner, etc.
+})
+```
+
+You can use this to show users a "new version available" banner with a manual refresh button instead of waiting for the next navigation.
+
+### Window flag
+
+The `window.__oneVersionStale` flag is set to `true` when a version mismatch is detected. You can check this from anywhere in your app:
+
+```ts
+if (window.__oneVersionStale) {
+  // app has a newer deployment available
+}
+```
+
+## Disabling
+
+To turn off skew protection entirely:
+
+```tsx fileName=vite.config.ts
+one({
+  web: {
+    skewProtection: false
+  }
+})
+```
+
+This disables both the error recovery reload and the proactive polling. Chunk load failures will be silently swallowed as they were before this feature existed.

@@ -874,6 +874,13 @@ export async function build(args: {
 
   await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
+  // emit version.json for skew protection polling
+  await FSExtra.writeFile(
+    join(clientDir, 'version.json'),
+    JSON.stringify({ version: constants.CACHE_KEY })
+  )
+  console.info(`\n 🛡 skew protection: emitted version.json\n`)
+
   // Generate sitemap.xml if enabled
   const sitemapConfig = oneOptions.web?.sitemap
   if (sitemapConfig) {

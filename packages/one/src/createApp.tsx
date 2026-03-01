@@ -7,6 +7,7 @@ import { Root } from './Root'
 import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
+import { setupSkewProtection } from './skewProtection'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
@@ -155,6 +156,22 @@ export function createApp(options: CreateAppProps) {
       },
     }
   }
+
+  // skew protection: auto-reload on chunk load failures
+  if (typeof window !== 'undefined' && process.env.ONE_SKEW_PROTECTION !== 'false') {
+    window.addEventListener('vite:preloadError', (e) => {
+      e.preventDefault()
+      const key = '__one_skew_reload'
+      const last = sessionStorage.getItem(key)
+      if (!last || Date.now() - Number(last) > 10_000) {
+        sessionStorage.setItem(key, String(Date.now()))
+        window.location.reload()
+      }
+    })
+  }
+
+  // skew protection: proactive version polling
+  setupSkewProtection()
 
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
