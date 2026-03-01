@@ -356,17 +356,10 @@ export function createHandleRequest(
             return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route)
           }
 
-          if (process.env.NODE_ENV === 'development') {
-            console.error(`No matching route found for loader!`, {
-              originalUrl,
-              pathname,
-              routes: manifest.pageRoutes,
-            })
-          }
-
-          // error no match!
-
-          return Response.error()
+          // no matching route - return empty module so client handles gracefully
+          return new Response('export {}', {
+            headers: { 'Content-Type': 'text/javascript' },
+          })
         }
       }
 
