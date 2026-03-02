@@ -26,6 +26,7 @@
       { id: 'loader', name: 'Loader Timing', type: 'panel', category: 'Panels' },
       { id: 'errors', name: 'Errors', type: 'panel', category: 'Panels' },
       { id: 'inspect', name: 'Inspect Source', type: 'tool', category: 'Panels' },
+      { id: 'record', name: 'Record Input', type: 'tool', category: 'Panels' },
       {
         id: 'clear-cookies',
         name: 'Clear Cookies',
@@ -195,6 +196,7 @@
         .panel-header:active { cursor: grabbing; }
         .panel-header svg { width: 18px; height: 18px; }
         .panel-title { font-weight: 500; color: #999; font-size: 12px; flex: 1; }
+        .panel-shortcut { font-size: 10px; color: #444; margin-right: 4px; }
         .panel-close { background: none; border: none; color: #666; cursor: pointer; padding: 4px; font-size: 16px; line-height: 1; }
         .panel-close:hover { color: #fff; }
         .tabs { display: flex; background: #1a1a1a; padding: 0 8px; gap: 2px; overflow-x: auto; }
@@ -374,6 +376,12 @@
         return
       }
 
+      if (item.id === 'record') {
+        hideSpotlight()
+        window.__oneSourceInspector?.startRecording()
+        return
+      }
+
       const actionFn = itemActions[item.id]
       if (!actionFn) return
 
@@ -457,7 +465,7 @@
       panel.innerHTML =
         '<div class="panel-header" id="panel-header">' +
         LOGO_SVG +
-        '<span class="panel-title">DevTools</span><button class="panel-close" id="panel-close">\u00d7</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>'
+        '<span class="panel-title">DevTools</span><span class="panel-shortcut">\u2325space</span><button class="panel-close" id="panel-close">\u00d7</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>'
 
       shadow.getElementById('panel-close').addEventListener('click', hidePanel)
 
@@ -571,12 +579,17 @@
 
     function showSpotlight() {
       if (!host) createHost()
+      // close source inspector picker if open
+      window.__oneSourceInspector?.closePicker?.()
       const searchInput = shadow.getElementById('spotlight-search')
       searchInput.value = ''
       renderSpotlightItems('')
       spotlightDialog.showModal()
       requestAnimationFrame(() => searchInput.focus())
     }
+
+    // listen for custom event from source inspector
+    window.addEventListener('one-open-devtools', showSpotlight)
 
     function hideSpotlight() {
       if (spotlightDialog?.open) spotlightDialog.close()

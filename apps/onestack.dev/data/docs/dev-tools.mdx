@@ -54,9 +54,46 @@ Errors are collected in real-time so you can see issues as they happen.
 
 ## Source Inspector
 
-Hold **Shift+Cmd** (Mac) or **Shift+Ctrl** (Windows/Linux) and hover over any element to see its source location. Click to open the file in your editor.
+Hold **Option** (Mac) or **Alt** (Windows/Linux) for 0.8 seconds and hover over any element to see its source location highlighted. Click to open a picker showing:
+
+- **Quick actions**:
+  - **Open** - Open topmost component in your editor
+  - **Path** - Copy all source paths to clipboard
+  - **Selector** - Copy a smart CSS selector (prefers IDs)
+  - **Record** - Start recording user input (see below)
+- **Parent list** - Click any parent component to open that file
 
 This requires the `data-one-source` attribute which One adds automatically to components during development.
+
+## Input Recording
+
+Record user interactions for bug reports or AI-assisted debugging. Start recording from:
+
+- The **Record** button in the Source Inspector picker
+- **Record Input** in the Alt+Space spotlight menu
+
+After a 2-second countdown, recording begins. Tap **Option** to stop and copy the log to clipboard.
+
+The output is a compact, line-based format optimized for AI consumption:
+
+```
+# Recording 2024-03-02T12:30:00.000Z
+# https://localhost:3000/dashboard
+# components: Button < Card < Dashboard
+# selector: [data-testid="submit-btn"]
+# window: 1920x1080 scroll:0,0
+# duration: 3200ms events: 28
+
+0 click 450,320 btn:0 [#submit] @Button.tsx:15 "Submit"
+85 keydown Tab
+142 focus [input.email]
+200 input val:"test@" [input.email]
+
+# final hover: [.sidebar > nav]
+# final source: Nav.tsx:42:5
+```
+
+Events captured include clicks, keyboard input, scroll, focus/blur, input changes, wheel, resize, and more.
 
 ## Panel Features
 
