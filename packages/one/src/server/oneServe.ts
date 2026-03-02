@@ -670,13 +670,21 @@ url: ${url}`)
               }
             }
 
-            // prevent browsers (safari) from caching html pages
-            // which causes stale js references after deploys
+            // set cache headers for page responses
+            // ssg/spa: enable CDN edge caching (skew protection handles stale assets)
+            // ssr: no-cache since content is dynamic per request
             if (
               !response.headers.has('cache-control') &&
               !response.headers.has('Cache-Control')
             ) {
-              response.headers.set('cache-control', 'no-cache')
+              if (route.type === 'ssg' || route.type === 'spa') {
+                response.headers.set(
+                  'cache-control',
+                  'public, s-maxage=60, stale-while-revalidate=120'
+                )
+              } else {
+                response.headers.set('cache-control', 'no-cache')
+              }
             }
 
             return response as Response
