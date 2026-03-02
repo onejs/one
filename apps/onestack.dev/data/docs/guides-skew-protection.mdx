@@ -91,3 +91,46 @@ one({
 ```
 
 This disables both the error recovery reload and the proactive polling. Chunk load failures will be silently swallowed as they were before this feature existed.
+
+## CDN Edge Caching
+
+With skew protection enabled, One automatically sets cache headers that allow CDN edge caching for SSG and SPA pages:
+
+```
+cache-control: public, s-maxage=60, stale-while-revalidate=120
+```
+
+This means:
+- **CDN caches pages for 60 seconds** — subsequent requests are served from edge, cutting TTFB to ~50ms
+- **Stale-while-revalidate for 120 seconds** — even after 60s, the CDN serves stale content while fetching fresh in the background
+- **SSR pages are not cached** — they return `no-cache` since content is dynamic per request
+
+### Why this is safe
+
+Previously, CDN caching HTML was risky: after a deploy, cached HTML references old JS bundles that may not exist, causing 404s and broken pages.
+
+Skew protection solves this. If a cached page tries to load a missing chunk:
+1. The chunk request 404s
+2. Skew protection detects the failure via `vite:preloadError`
+3. The page auto-reloads, fetching fresh HTML from the origin
+4. User sees the new deployment
+
+The worst case is a brief flash on reload — much better than a broken page.
+
+### Overriding cache headers
+
+If you need custom cache behavior, set headers in your loader or middleware:
+
+```tsx
+import { setResponseHeaders } from 'one'
+
+export function loader() {
+  // cache for 5 minutes at the edge
+  setResponseHeaders({
+    'cache-control': 'public, s-maxage=300'
+  })
+  return { data: '...' }
+}
+```
+
+Custom headers take precedence — One only sets defaults when no `cache-control` header is present.
