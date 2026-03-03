@@ -467,42 +467,84 @@
       showToast('\u25cf', 'Tap Option to stop and copy', 800)
     }
 
-    function buildSnapshot() {
+    function buildContextLines() {
       const lines = []
-      lines.push('# Snapshot ' + new Date().toISOString())
+      const projectRoot = window.__oneProjectRoot || ''
       lines.push('# url: ' + location.href)
-      lines.push('# mouse: ' + mousePos.x + ',' + mousePos.y)
-      lines.push('# window: ' + window.innerWidth + 'x' + window.innerHeight)
-      lines.push('# scroll: ' + window.scrollX + ',' + window.scrollY)
+      if (projectRoot) lines.push('# project: ' + projectRoot)
+      lines.push('# route: ' + location.pathname)
       lines.push('# title: ' + document.title)
+      lines.push(
+        '# window: ' +
+          window.innerWidth +
+          'x' +
+          window.innerHeight +
+          ' dpr:' +
+          devicePixelRatio
+      )
+      lines.push('# scroll: ' + window.scrollX + ',' + window.scrollY)
+      lines.push('# mouse: ' + mousePos.x + ',' + mousePos.y)
+      // color scheme
+      const dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      lines.push('# theme: ' + (dark ? 'dark' : 'light'))
+
       if (currentElementChain.length) {
         const topEl = currentElementChain[0]
+        const el = topEl.element
         const names = currentElementChain
           .slice(0, 6)
-          .map((el) => el.name)
+          .map((e) => e.name)
           .join(' < ')
-        const cssSelector = generateSelector(topEl.element)
-        const recordSelector = getRecordSelector(topEl.element)
+        const cssSelector = generateSelector(el)
+        const recordSelector = getRecordSelector(el)
         if (names) lines.push('# components: ' + names)
         if (cssSelector) lines.push('# selector: ' + cssSelector)
         if (recordSelector) lines.push('# test-selector: ' + recordSelector)
-        for (const el of currentElementChain) {
-          lines.push('# source: ' + el.source)
+        // bounding box
+        const rect = el.getBoundingClientRect()
+        lines.push(
+          '# rect: ' +
+            Math.round(rect.x) +
+            ',' +
+            Math.round(rect.y) +
+            ' ' +
+            Math.round(rect.width) +
+            'x' +
+            Math.round(rect.height)
+        )
+        // text content (innerText excludes scripts/hidden elements)
+        const text = (el.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 80)
+        if (text) lines.push('# text: ' + text)
+        // accessibility
+        const role = el.getAttribute('role')
+        const ariaLabel = el.getAttribute('aria-label')
+        const testId = el.getAttribute('data-testid')
+        const a11y = [
+          role && 'role=' + role,
+          ariaLabel && 'label=' + ariaLabel,
+          testId && 'testid=' + testId,
+        ]
+          .filter(Boolean)
+          .join(' ')
+        if (a11y) lines.push('# a11y: ' + a11y)
+        // key computed styles
+        const cs = window.getComputedStyle(el)
+        const styles = ['display:' + cs.display, 'position:' + cs.position]
+        if (cs.overflow !== 'visible') styles.push('overflow:' + cs.overflow)
+        if (cs.zIndex !== 'auto') styles.push('z:' + cs.zIndex)
+        lines.push('# style: ' + styles.join(' '))
+        // source chain
+        for (const e of currentElementChain) {
+          lines.push('# source: ' + e.source)
         }
       }
-      return lines.join('\n')
+      return lines
     }
 
-    function getRecordingHeader() {
-      // build header from current element chain
-      const names = currentElementChain
-        .slice(0, 4)
-        .map((el) => el.name)
-        .join(' < ')
-      const selector = currentElementChain.length
-        ? getRecordSelector(currentElementChain[0].element)
-        : ''
-      return { components: names, selector }
+    function buildSnapshot() {
+      const lines = ['# Snapshot ' + new Date().toISOString()]
+      lines.push(...buildContextLines())
+      return lines.join('\n')
     }
 
     function stopRecording() {
@@ -518,25 +560,11 @@
       const finalEl = document.elementFromPoint(mousePos.x, mousePos.y)
       const finalInfo = getRecordElementInfo(finalEl)
 
-      const header = getRecordingHeader()
       const duration = recordTs()
 
       // build compact line-based format
-      const lines = []
-      lines.push('# Recording ' + new Date().toISOString())
-      lines.push('# ' + location.href)
-      if (header.components) lines.push('# components: ' + header.components)
-      if (header.selector) lines.push('# selector: ' + header.selector)
-      lines.push(
-        '# window: ' +
-          window.innerWidth +
-          'x' +
-          window.innerHeight +
-          ' scroll:' +
-          window.scrollX +
-          ',' +
-          window.scrollY
-      )
+      const lines = ['# Recording ' + new Date().toISOString()]
+      lines.push(...buildContextLines())
       lines.push('# duration: ' + duration + 'ms events: ' + recordEvents.length)
       lines.push('')
 
@@ -889,7 +917,7 @@
         const chain = getElementChain(e.clientX, e.clientY)
         if (chain.length) {
           e.preventDefault()
-          e.stopPropagation()
+          e.stopImmediatePropagation()
           deactivate()
           showPicker(e.clientX, e.clientY, chain)
         }

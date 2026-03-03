@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 import { readFileSync } from 'node:fs'
+import path from 'node:path'
 import { resolvePath } from '@vxrn/resolve'
 
 const DEVTOOLS_VIRTUAL_ID = '/@one/dev.js'
@@ -36,7 +37,8 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
               const sourceInspectorPath = resolvePath('one/devtools/source-inspector.mjs')
               const devtools = readFileSync(devtoolsPath, 'utf-8')
               const sourceInspector = readFileSync(sourceInspectorPath, 'utf-8')
-              code = `${code}\n${devtools}\n${sourceInspector}`
+              const projectName = path.basename(process.cwd())
+              code = `window.__oneProjectRoot="${projectName}";\n${code}\n${devtools}\n${sourceInspector}`
             }
 
             res.setHeader('Content-Type', 'application/javascript')
