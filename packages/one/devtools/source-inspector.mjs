@@ -83,6 +83,9 @@
           .picker-btn:last-child { border-right: none; }
           .picker-btn:hover { color: #fff; }
           .picker-btn.copied { color: #4ade80; }
+          .picker-btn { position: relative; }
+          .rec-tooltip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #222; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.4); padding: 6px 10px; margin-bottom: 4px; font: 11px system-ui, sans-serif; color: #888; white-space: nowrap; pointer-events: none; }
+          .picker-btn:hover .rec-tooltip { display: block; }
           .picker-btn .rec-dot { display: inline-block; width: 8px; height: 8px; background: #f55; border-radius: 50%; }
           .toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(20,20,20,0.95); border-radius: 12px; padding: 24px 32px; text-align: center; z-index: 2147483647; box-shadow: 0 8px 32px rgba(0,0,0,0.5); pointer-events: none; font-family: system-ui, sans-serif; }
           .toast-big { font-size: 48px; font-weight: 600; color: #f55; }
@@ -108,9 +111,8 @@
             </div>
             <div class="picker-actions" id="picker-actions">
               <button class="picker-btn" data-action="open">Open</button>
-              <button class="picker-btn" data-action="path">Path</button>
-              <button class="picker-btn" data-action="selector">Selector</button>
-              <button class="picker-btn" data-action="record" id="record-btn"><span class="rec-dot"></span></button>
+              <button class="picker-btn" data-action="copy">Copy</button>
+              <button class="picker-btn" data-action="record" id="record-btn"><span class="rec-dot"></span><span class="rec-tooltip">Tap Option to stop</span></button>
             </div>
             <div class="picker-list" id="picker-list"></div>
           </div>
@@ -147,20 +149,19 @@
 
       actions.addEventListener('click', (e) => {
         const btn = e.target.closest('.picker-btn')
-        if (!btn || !currentElementChain.length) return
+        if (!btn) return
         const action = btn.dataset.action
-        const topEl = currentElementChain[0]
 
         if (action === 'open') {
-          fetch('/__one/open-source?source=' + encodeURIComponent(topEl.source))
+          if (!currentElementChain.length) return
+          fetch(
+            '/__one/open-source?source=' +
+              encodeURIComponent(currentElementChain[0].source)
+          )
           pickerDialog.close()
-        } else if (action === 'path') {
-          const paths = currentElementChain.map((el) => el.source).join('\n')
-          navigator.clipboard.writeText(paths)
-          flashCopied(btn)
-        } else if (action === 'selector') {
-          const selector = generateSelector(topEl.element)
-          navigator.clipboard.writeText(selector)
+        } else if (action === 'copy') {
+          if (!currentElementChain.length) return
+          navigator.clipboard.writeText(buildSnapshot())
           flashCopied(btn)
         } else if (action === 'record') {
           if (recording) {
@@ -310,183 +311,186 @@
       return toast
     }
 
-    function showCountdownToast(onComplete) {
-      if (!host) createHost()
-      const toast = document.createElement('div')
-      toast.className = 'toast'
-      toast.innerHTML =
-        '<div class="toast-big">2</div><div class="toast-hint">Tap Option to stop and copy</div>'
-      shadow.appendChild(toast)
-      const countEl = toast.querySelector('.toast-big')
-
-      let count = 2
-      const tick = () => {
-        count--
-        if (count > 0) {
-          countEl.textContent = count
-          setTimeout(tick, 1000)
-        } else {
-          toast.remove()
-          onComplete()
-        }
-      }
-      setTimeout(tick, 1000)
-    }
-
     function startRecording() {
       // exit inspection mode and close dialog
       deactivate()
       pickerDialog?.close()
 
-      showCountdownToast(() => {
-        recording = true
-        recordEvents = []
-        recordFrameCount = 0
-        recordStartTime = Date.now()
+      recording = true
+      recordEvents = []
+      recordFrameCount = 0
+      recordStartTime = Date.now()
 
-        recordEvents.push({
-          t: 0,
-          type: 'start',
-          window: {
-            w: window.innerWidth,
-            h: window.innerHeight,
+      recordEvents.push({
+        t: 0,
+        type: 'start',
+        window: {
+          w: window.innerWidth,
+          h: window.innerHeight,
+          scrollX: window.scrollX,
+          scrollY: window.scrollY,
+        },
+        url: location.href,
+        title: document.title,
+      })
+
+      recordHandlers = {
+        mousemove: (e) => {
+          recordFrameCount++
+          if (recordFrameCount % recordThrottle !== 0) return
+          recordEvents.push({ t: recordTs(), type: 'move', x: e.clientX, y: e.clientY })
+        },
+        click: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'click',
+            x: e.clientX,
+            y: e.clientY,
+            btn: e.button,
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        dblclick: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'dblclick',
+            x: e.clientX,
+            y: e.clientY,
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        contextmenu: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'contextmenu',
+            x: e.clientX,
+            y: e.clientY,
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        mousedown: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'mousedown',
+            x: e.clientX,
+            y: e.clientY,
+            btn: e.button,
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        mouseup: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'mouseup',
+            x: e.clientX,
+            y: e.clientY,
+            btn: e.button,
+          })
+        },
+        keydown: (e) => {
+          if (e.key === 'Alt' || e.key === 'Meta') return
+          recordEvents.push({
+            t: recordTs(),
+            type: 'keydown',
+            key: e.key,
+            code: e.code,
+            mods: getMods(e),
+            el: getRecordElementInfo(document.activeElement),
+          })
+        },
+        keyup: (e) => {
+          if (e.key === 'Alt' || e.key === 'Meta') return
+          recordEvents.push({ t: recordTs(), type: 'keyup', key: e.key, code: e.code })
+        },
+        input: (e) => {
+          const val = e.target.value
+          recordEvents.push({
+            t: recordTs(),
+            type: 'input',
+            val: val?.slice?.(-20),
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        change: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'change',
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        focus: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'focus',
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        blur: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'blur',
+            el: getRecordElementInfo(e.target),
+          })
+        },
+        scroll: () => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'scroll',
             scrollX: window.scrollX,
             scrollY: window.scrollY,
-          },
-          url: location.href,
-          title: document.title,
-        })
+          })
+        },
+        wheel: (e) => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'wheel',
+            x: e.clientX,
+            y: e.clientY,
+            dx: Math.round(e.deltaX),
+            dy: Math.round(e.deltaY),
+          })
+        },
+        resize: () => {
+          recordEvents.push({
+            t: recordTs(),
+            type: 'resize',
+            w: window.innerWidth,
+            h: window.innerHeight,
+          })
+        },
+      }
 
-        recordHandlers = {
-          mousemove: (e) => {
-            recordFrameCount++
-            if (recordFrameCount % recordThrottle !== 0) return
-            recordEvents.push({ t: recordTs(), type: 'move', x: e.clientX, y: e.clientY })
-          },
-          click: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'click',
-              x: e.clientX,
-              y: e.clientY,
-              btn: e.button,
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          dblclick: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'dblclick',
-              x: e.clientX,
-              y: e.clientY,
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          contextmenu: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'contextmenu',
-              x: e.clientX,
-              y: e.clientY,
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          mousedown: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'mousedown',
-              x: e.clientX,
-              y: e.clientY,
-              btn: e.button,
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          mouseup: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'mouseup',
-              x: e.clientX,
-              y: e.clientY,
-              btn: e.button,
-            })
-          },
-          keydown: (e) => {
-            if (e.key === 'Alt' || e.key === 'Meta') return
-            recordEvents.push({
-              t: recordTs(),
-              type: 'keydown',
-              key: e.key,
-              code: e.code,
-              mods: getMods(e),
-              el: getRecordElementInfo(document.activeElement),
-            })
-          },
-          keyup: (e) => {
-            if (e.key === 'Alt' || e.key === 'Meta') return
-            recordEvents.push({ t: recordTs(), type: 'keyup', key: e.key, code: e.code })
-          },
-          input: (e) => {
-            const val = e.target.value
-            recordEvents.push({
-              t: recordTs(),
-              type: 'input',
-              val: val?.slice?.(-20),
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          change: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'change',
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          focus: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'focus',
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          blur: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'blur',
-              el: getRecordElementInfo(e.target),
-            })
-          },
-          scroll: () => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'scroll',
-              scrollX: window.scrollX,
-              scrollY: window.scrollY,
-            })
-          },
-          wheel: (e) => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'wheel',
-              x: e.clientX,
-              y: e.clientY,
-              dx: Math.round(e.deltaX),
-              dy: Math.round(e.deltaY),
-            })
-          },
-          resize: () => {
-            recordEvents.push({
-              t: recordTs(),
-              type: 'resize',
-              w: window.innerWidth,
-              h: window.innerHeight,
-            })
-          },
-        }
-
-        Object.entries(recordHandlers).forEach(([evt, fn]) => {
-          window.addEventListener(evt, fn, { capture: true, passive: true })
-        })
+      Object.entries(recordHandlers).forEach(([evt, fn]) => {
+        window.addEventListener(evt, fn, { capture: true, passive: true })
       })
+
+      showToast('\u25cf', 'Tap Option to stop and copy', 800)
+    }
+
+    function buildSnapshot() {
+      const lines = []
+      lines.push('# Snapshot ' + new Date().toISOString())
+      lines.push('# url: ' + location.href)
+      lines.push('# mouse: ' + mousePos.x + ',' + mousePos.y)
+      lines.push('# window: ' + window.innerWidth + 'x' + window.innerHeight)
+      lines.push('# scroll: ' + window.scrollX + ',' + window.scrollY)
+      lines.push('# title: ' + document.title)
+      if (currentElementChain.length) {
+        const topEl = currentElementChain[0]
+        const names = currentElementChain
+          .slice(0, 6)
+          .map((el) => el.name)
+          .join(' < ')
+        const cssSelector = generateSelector(topEl.element)
+        const recordSelector = getRecordSelector(topEl.element)
+        if (names) lines.push('# components: ' + names)
+        if (cssSelector) lines.push('# selector: ' + cssSelector)
+        if (recordSelector) lines.push('# test-selector: ' + recordSelector)
+        for (const el of currentElementChain) {
+          lines.push('# source: ' + el.source)
+        }
+      }
+      return lines.join('\n')
     }
 
     function getRecordingHeader() {
