@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.10.0",
+  "version": "1.10.0-1772509508452",
   "private": true,
   "type": "module",
   "main": "index.js",
