@@ -227,6 +227,7 @@
 
     // recording functionality
     let recordHandlers = {}
+    let recordHoveredSource = null
 
     function getRecordSelector(el) {
       if (!el || el === document.body || el === document.documentElement) return null
@@ -278,7 +279,11 @@
         id: el.id || undefined,
         testId: el.getAttribute?.('data-testid') || undefined,
         source: oneSource || undefined,
-        text: el.textContent?.slice(0, 50).trim() || undefined,
+        text:
+          (el.innerText || el.textContent || '')
+            .trim()
+            .replace(/\s+/g, ' ')
+            .slice(0, 50) || undefined,
       }
     }
 
@@ -319,6 +324,7 @@
       recording = true
       recordEvents = []
       recordFrameCount = 0
+      recordHoveredSource = null
       recordStartTime = Date.now()
 
       recordEvents.push({
@@ -456,6 +462,28 @@
             type: 'resize',
             w: window.innerWidth,
             h: window.innerHeight,
+          })
+        },
+        mouseover: (e) => {
+          const src = e.target.closest?.('[data-one-source]')
+          if (!src || src === recordHoveredSource) return
+          recordHoveredSource = src
+          recordEvents.push({
+            t: recordTs(),
+            type: 'enter',
+            el: getRecordElementInfo(src),
+          })
+        },
+        mouseout: (e) => {
+          const src = e.target.closest?.('[data-one-source]')
+          if (!src || src !== recordHoveredSource) return
+          const related = e.relatedTarget?.closest?.('[data-one-source]')
+          if (related === src) return
+          recordHoveredSource = null
+          recordEvents.push({
+            t: recordTs(),
+            type: 'leave',
+            el: getRecordElementInfo(src),
           })
         },
       }
