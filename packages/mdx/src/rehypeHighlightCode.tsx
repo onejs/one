@@ -27,7 +27,10 @@ export const rehypeHighlightCode = (options = {}) => {
       return
     }
 
-    const [_, lang] = node.properties.className[0].split('-')
+    const langClass = node.properties.className[0]
+    if (!langClass) return
+    const [_, lang] = langClass.split('-')
+    if (!lang || !refractor.registered(lang)) return
     const codeString = toString(node)
     let result = refractor.highlight(codeString, lang)
 
