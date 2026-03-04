@@ -938,20 +938,36 @@
       updateOverlayAtPosition(e.clientX, e.clientY)
     })
 
-    document.addEventListener(
-      'click',
-      (e) => {
-        if (!active) return
-        const chain = getElementChain(e.clientX, e.clientY)
-        if (chain.length) {
-          e.preventDefault()
-          e.stopImmediatePropagation()
-          deactivate()
-          showPicker(e.clientX, e.clientY, chain)
-        }
-      },
-      true
-    )
+    function blockPageEvent(e) {
+      if (!pickerDialog?.open && !active) return false
+      // let events inside our shadow host through to the picker
+      if (host && e.composedPath().includes(host)) return false
+      if (pickerDialog?.open) {
+        e.preventDefault()
+        e.stopImmediatePropagation()
+        pickerDialog.close()
+        return true
+      }
+      return false
+    }
+
+    for (const evt of ['mousedown', 'mouseup', 'click']) {
+      document.addEventListener(
+        evt,
+        (e) => {
+          if (blockPageEvent(e)) return
+          if (evt !== 'click' || !active) return
+          const chain = getElementChain(e.clientX, e.clientY)
+          if (chain.length) {
+            e.preventDefault()
+            e.stopImmediatePropagation()
+            deactivate()
+            showPicker(e.clientX, e.clientY, chain)
+          }
+        },
+        true
+      )
+    }
 
     // close picker on escape, prevent bubbling
     document.addEventListener(
