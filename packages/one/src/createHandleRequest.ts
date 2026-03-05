@@ -403,7 +403,7 @@ function getLoaderParams(
   config: { compiledRegex: RegExp; routeKeys: Record<string, string> }
 ) {
   const params: Record<string, string> = {}
-  const match = new RegExp(config.compiledRegex).exec(url.pathname)
+  const match = config.compiledRegex.exec(url.pathname)
   if (match?.groups) {
     for (const [key, value] of Object.entries(match.groups)) {
       const namedKey = config.routeKeys[key]

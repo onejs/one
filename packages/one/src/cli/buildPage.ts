@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import FSExtra from 'fs-extra'
 import * as constants from '../constants'
-import type { LoaderProps, RenderApp } from '../types'
+import type { LoaderProps } from '../types'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
 import { toAbsolute } from '../utils/toAbsolute'
@@ -28,8 +28,8 @@ export function printBuildTimings() {
   if (!buildTiming) return
   console.info('\n📊 Build timing breakdown:')
   for (const [label, times] of Object.entries(timings)) {
-    const avg = times.reduce((a, b) => a + b, 0) / times.length
     const total = times.reduce((a, b) => a + b, 0)
+    const avg = total / times.length
     console.info(
       `  ${label}: ${avg.toFixed(1)}ms avg, ${total.toFixed(0)}ms total (${times.length} calls)`
     )
@@ -451,12 +451,10 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
 }
 
 async function getRender(serverEntry: string) {
-  let render: RenderApp | null = null
-
   try {
     const serverImport = await import(serverEntry)
 
-    render =
+    const render =
       serverImport.default.render ||
       // for an unknown reason this is necessary
       serverImport.default.default?.render
@@ -464,6 +462,8 @@ async function getRender(serverEntry: string) {
     if (typeof render !== 'function') {
       throw new Error(`didn't find render function in entry: ${serverEntry}`)
     }
+
+    return render
   } catch (err) {
     console.error(`❌ Error importing the root entry:`)
     console.error(`  This error happened in the built file: ${serverEntry}`)
@@ -471,8 +471,6 @@ async function getRender(serverEntry: string) {
     console.error(err['stack'])
     throw err
   }
-
-  return render
 }
 
 function removeTrailingSlash(path: string) {

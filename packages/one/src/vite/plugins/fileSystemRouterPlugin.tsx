@@ -5,7 +5,7 @@ import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
-import { getSpaHeaderElements, VIRTUAL_SSR_CSS_HREF } from '../../constants'
+import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RouteNode } from '../../router/Route' // used for type in runLoaderWithTracking
 import type { RenderAppProps } from '../../types'
@@ -397,7 +397,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           }
         },
 
-        async handleLoader({ request, route, url, loaderProps }) {
+        async handleLoader({ route, url, loaderProps }) {
           const routeFile = path.join(routerRoot, route.file)
 
           // this will remove all loaders
@@ -523,7 +523,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     enforce: 'post',
     apply: 'serve',
 
-    async config(userConfig) {
+    async config() {
       const setting = options.optimization?.autoEntriesScanning ?? 'flat'
 
       if (setting === false) {
@@ -569,43 +569,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           },
         }
       }
-      // if (USE_SERVER_ENV) {
-      //   return {
-      //     appType: 'custom',
-      //     environments: {
-      //       server: {
-      //         resolve: {
-      //           dedupe: optimizeDeps.include,
-      //           external: [],
-      //           noExternal: optimizeDeps.include,
-      //           conditions: ['vxrn-web'],
-      //           alias: {
-      //             react: '@vxrn/vendor/react-19',
-      //             'react-dom': '@vxrn/vendor/react-dom-19',
-      //           },
-      //         },
-      //         // webCompatible: true,
-      //         nodeCompatible: true,
-      //         dev: {
-      //           optimizeDeps,
-      //           createEnvironment(name, config) {
-      //             const worker = new Worker(path.join(import.meta.dirname, 'server.js'))
-      //             // const hot = new
-      //             return new DevEnvironment(name, config, {
-      //               hot: false,
-      //               runner: {
-      //                 transport: new RemoteEnvironmentTransport({
-      //                   send: (data) => worker.postMessage(data),
-      //                   onMessage: (listener) => worker.on('message', listener),
-      //                 }),
-      //               },
-      //             })
-      //           },
-      //         },
-      //       },
-      //     },
-      //   }
-      // }
     },
 
     configureServer(serverIn) {
@@ -746,20 +709,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               if (reply.body) {
                 if (reply.body.locked) {
                   console.warn(`Body is locked??`, req.url)
-                  res.write(``)
-                  res.end()
-                  return
-                }
-              }
-
-              if (reply.body) {
-                if (reply.body.locked) {
-                  console.warn(`Body is locked??`, req.url)
                   res.end()
                   return
                 }
                 try {
-                  // Use Node >=18's fromWeb to pipe the web-stream directly:
                   Readable.fromWeb(reply.body as any).pipe(res)
                 } catch (err) {
                   console.warn('Error piping reply body to response:', err)

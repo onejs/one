@@ -67,7 +67,7 @@ async function daemonStart(args: { port?: string; host?: string; tui?: boolean }
 }
 
 async function daemonStop() {
-  const { isDaemonRunning, getSocketPath, cleanupSocket } = await import('../daemon/ipc')
+  const { isDaemonRunning, getSocketPath } = await import('../daemon/ipc')
 
   if (!(await isDaemonRunning())) {
     console.log(colors.yellow('Daemon is not running'))
@@ -182,7 +182,7 @@ export async function openPlatform(platform: 'ios' | 'android') {
 }
 
 async function daemonRoute(args: { app?: string; slot?: string; project?: string }) {
-  const { isDaemonRunning, getDaemonStatus, setDaemonRoute, clearDaemonRoute } =
+  const { isDaemonRunning, getDaemonStatus, setDaemonRoute } =
     await import('../daemon/ipc')
 
   if (!(await isDaemonRunning())) {

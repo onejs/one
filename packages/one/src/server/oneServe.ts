@@ -22,6 +22,19 @@ import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
+async function readStaticHtml(htmlPath: string): Promise<string | null> {
+  const fetchStaticHtml = getFetchStaticHtml()
+  if (fetchStaticHtml) {
+    const html = await fetchStaticHtml(htmlPath)
+    if (html) return html
+  }
+  try {
+    return await readFile(join('dist/client', htmlPath), 'utf-8')
+  } catch {
+    return null
+  }
+}
+
 /**
  * Lazy import functions for route modules.
  * Modules are loaded on-demand when a route is matched, not all upfront.
@@ -101,6 +114,43 @@ export async function oneServe(
   }
 
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
+
+  // shared helper to import a route module and run its loader
+  async function importAndRunLoader(
+    routeId: string,
+    serverPath: string | undefined,
+    lazyKey: string | undefined,
+    loaderProps: any
+  ): Promise<{ loaderData: unknown; routeId: string; isEnoent?: boolean }> {
+    if (!serverPath && !lazyKey) {
+      return { loaderData: undefined, routeId }
+    }
+
+    try {
+      const pathToResolve = serverPath || lazyKey || ''
+      const resolvedPath = pathToResolve.includes('dist/server')
+        ? pathToResolve
+        : join('./', 'dist/server', pathToResolve)
+
+      const routeExported = lazyKey
+        ? options?.lazyRoutes?.pages?.[lazyKey]
+          ? await options.lazyRoutes.pages[lazyKey]()
+          : await import(toAbsolute(resolvedPath))
+        : await import(toAbsolute(serverPath!))
+
+      const loaderData = await routeExported?.loader?.(loaderProps)
+      return { loaderData, routeId }
+    } catch (err) {
+      if (isResponse(err)) {
+        throw err
+      }
+      if ((err as any)?.code === 'ENOENT') {
+        return { loaderData: undefined, routeId, isEnoent: true }
+      }
+      console.error(`[one] Error running loader for ${routeId}:`, err)
+      return { loaderData: undefined, routeId }
+    }
+  }
 
   // Lazy load server entry only when needed for SSR
   let render: ((props: RenderAppProps) => any) | null = null
@@ -211,57 +261,24 @@ export async function oneServe(
         }
 
         try {
-          // helper to import and run a single loader
-          async function runLoader(
-            routeId: string,
-            serverPath: string | undefined,
-            lazyKey?: string
-          ): Promise<{ loaderData: unknown; routeId: string; isEnoent?: boolean }> {
-            if (!serverPath && !lazyKey) {
-              return { loaderData: undefined, routeId }
-            }
-
-            try {
-              // serverPath may already include dist/server if it came from buildInfo.serverJsPath
-              const pathToResolve = serverPath || lazyKey || ''
-              const resolvedPath = pathToResolve.includes('dist/server')
-                ? pathToResolve
-                : join('./', 'dist/server', pathToResolve)
-
-              const routeExported = lazyKey
-                ? options?.lazyRoutes?.pages?.[lazyKey]
-                  ? await options.lazyRoutes.pages[lazyKey]()
-                  : await import(toAbsolute(resolvedPath))
-                : await import(toAbsolute(serverPath!))
-
-              const loaderData = await routeExported?.loader?.(loaderProps)
-              return { loaderData, routeId }
-            } catch (err) {
-              // if a loader throws a Response (redirect), re-throw it
-              if (isResponse(err)) {
-                throw err
-              }
-              if ((err as any)?.code === 'ENOENT') {
-                return { loaderData: undefined, routeId, isEnoent: true }
-              }
-              console.error(`[one] Error running loader for ${routeId}:`, err)
-              return { loaderData: undefined, routeId }
-            }
-          }
-
           // collect layout loaders to run in parallel
           const layoutRoutes = route.layouts || []
           const layoutLoaderPromises = layoutRoutes.map((layout: any) => {
-            // layouts may have loaderServerPath set from build, or we can try contextKey
             const serverPath = layout.loaderServerPath || layout.contextKey
-            return runLoader(layout.contextKey, serverPath, layout.contextKey)
+            return importAndRunLoader(
+              layout.contextKey,
+              serverPath,
+              layout.contextKey,
+              loaderProps
+            )
           })
 
           // run page loader
-          const pageLoaderPromise = runLoader(
+          const pageLoaderPromise = importAndRunLoader(
             route.file,
             buildInfo.serverJsPath,
-            route.file
+            route.file,
+            loaderProps
           )
 
           // wait for all loaders in parallel
@@ -375,43 +392,16 @@ url: ${url}`)
 
         if (needsSpaShell) {
           try {
-            // helper to import and run a single loader
-            async function runShellLoader(
-              routeId: string,
-              serverPath: string | undefined,
-              lazyKey?: string
-            ): Promise<{ loaderData: unknown; routeId: string }> {
-              if (!serverPath && !lazyKey) {
-                return { loaderData: undefined, routeId }
-              }
-              try {
-                const pathToResolve = serverPath || lazyKey || ''
-                const resolvedPath = pathToResolve.includes('dist/server')
-                  ? pathToResolve
-                  : join('./', 'dist/server', pathToResolve)
-
-                const routeExported = lazyKey
-                  ? options?.lazyRoutes?.pages?.[lazyKey]
-                    ? await options.lazyRoutes.pages[lazyKey]()
-                    : await import(toAbsolute(resolvedPath))
-                  : await import(toAbsolute(serverPath!))
-
-                const loaderData = await routeExported?.loader?.(loaderProps)
-                return { loaderData, routeId }
-              } catch (err) {
-                if (isResponse(err)) {
-                  throw err
-                }
-                console.error(`[one] Error running shell loader for ${routeId}:`, err)
-                return { loaderData: undefined, routeId }
-              }
-            }
-
             // run layout loaders only (page content is client-rendered)
             const layoutResults = await Promise.all(
               layoutRoutes.map((layout: any) => {
                 const serverPath = layout.loaderServerPath || layout.contextKey
-                return runShellLoader(layout.contextKey, serverPath, layout.contextKey)
+                return importAndRunLoader(
+                  layout.contextKey,
+                  serverPath,
+                  layout.contextKey,
+                  loaderProps
+                )
               })
             )
 
@@ -477,22 +467,7 @@ url: ${url}`)
             : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
-          // Try Worker ASSETS binding first (for Cloudflare Workers), fall back to filesystem
-          const fetchStaticHtml = getFetchStaticHtml()
-          let html: string | null = null
-
-          if (fetchStaticHtml) {
-            html = await fetchStaticHtml(htmlPath)
-          }
-
-          if (!html) {
-            // Fall back to filesystem (Node.js)
-            try {
-              html = await readFile(join('dist/client', htmlPath), 'utf-8')
-            } catch {
-              // File not found
-            }
-          }
+          const html = await readStaticHtml(htmlPath)
 
           if (html) {
             const headers = new Headers()
@@ -511,23 +486,7 @@ url: ${url}`)
           const notFoundHtmlPath = routeMap[notFoundRoute]
 
           if (notFoundHtmlPath) {
-            const fetchStaticHtml = getFetchStaticHtml()
-            let notFoundHtml: string | null = null
-
-            if (fetchStaticHtml) {
-              notFoundHtml = await fetchStaticHtml(notFoundHtmlPath)
-            }
-
-            if (!notFoundHtml) {
-              try {
-                notFoundHtml = await readFile(
-                  join('dist/client', notFoundHtmlPath),
-                  'utf-8'
-                )
-              } catch {
-                // File not found
-              }
-            }
+            const notFoundHtml = await readStaticHtml(notFoundHtmlPath)
 
             if (notFoundHtml) {
               // inject 404 marker so client knows this is a 404 response

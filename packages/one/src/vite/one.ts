@@ -7,7 +7,7 @@ import {
 } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import path from 'node:path'
-import { mergeConfig, type Plugin, type PluginOption } from 'vite'
+import { type Plugin, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
@@ -252,8 +252,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       config() {
-        // const forkPath = dirname(resolvePath('one'))
-
         let tslibLitePath = ''
 
         try {
@@ -279,22 +277,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 tslib: tslibLitePath,
               }),
             },
-
-            // [
-            //   {
-            //     find: /tslib/,
-            //     replacement: resolvePath('@vxrn/tslib-lite'),
-            //   },
-            //   // not working but would save ~30Kb stat
-            //   // {
-            //   //   find: /@react-navigation\/core.*\/getStateFromPath/,
-            //   //   replacement: join(forkPath, 'fork', 'getStateFromPath.mjs'),
-            //   // },
-            //   // {
-            //   //   find: /@react-navigation\/core.*\/getPathFromState/,
-            //   //   replacement: join(forkPath, 'fork', 'getPathFromState.mjs'),
-            //   // },
-            // ],
           },
         }
       },
@@ -526,88 +508,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
   ] satisfies Plugin[]
 
-  // leaving this as a good example of an option that loads a library conditionally
-  // // react scan
-  // const scan = options.react?.scan
-
-  // const reactScanPlugin = {
-  //   name: `one:react-scan`,
-  //   config() {
-  //     return reactScanConfig
-  //   },
-  // }
-  // devAndProdPlugins.push(reactScanPlugin)
-
-  // // do it here because it gets called a few times
-  // const reactScanConfig = ((): UserConfig => {
-  //   const stringify = (obj: Object) => JSON.stringify(JSON.stringify(obj))
-
-  //   const configs = {
-  //     disabled: {
-  //       define: {
-  //         'process.env.ONE_ENABLE_REACT_SCAN': '""',
-  //       },
-  //     },
-  //     enabled: {
-  //       define: {
-  //         'process.env.ONE_ENABLE_REACT_SCAN': stringify({
-  //           enabled: true,
-  //           animationSpeed: 'slow',
-  //           showToolbar: false,
-  //         }),
-  //       },
-  //     },
-  //   } satisfies Record<string, UserConfig>
-
-  //   const getConfigFor = (platform: 'ios' | 'android' | 'client'): UserConfig => {
-  //     if (process.env.NODE_ENV === 'production') {
-  //       return configs.disabled
-  //     }
-  //     if (!scan) {
-  //       return configs.disabled
-  //     }
-  //     if (scan === true) {
-  //       return configs.enabled
-  //     }
-  //     if (typeof scan === 'string') {
-  //       if (scan === 'native' && platform === 'client') {
-  //         return configs.disabled
-  //       }
-  //       if (scan === 'web' && platform !== 'client') {
-  //         return configs.disabled
-  //       }
-  //       return configs.enabled
-  //     }
-
-  //     const defaultConfig = scan.options || configs.enabled
-  //     const perPlatformConfig =
-  //       platform === 'ios' || platform === 'android' ? scan.native : scan.web
-
-  //     return {
-  //       define: {
-  //         'process.env.ONE_ENABLE_REACT_SCAN': stringify({
-  //           ...defaultConfig,
-  //           ...perPlatformConfig,
-  //         }),
-  //       },
-  //     }
-  //   }
-
-  //   return {
-  //     environments: {
-  //       client: getConfigFor('client'),
-  //       ios: getConfigFor('ios'),
-  //       android: getConfigFor('android'),
-  //     },
-  //   }
-  // })()
-
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [
-    clientTreeShakePlugin(),
-    //
-    // reactScanPlugin
-  ]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
