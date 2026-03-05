@@ -6,7 +6,7 @@ export const redirect = (
   path: '__branded__' extends keyof OneRouter.Href ? string : OneRouter.Href,
   status?: number
 ) => {
-  if (process.env.VITE_ENVIRONMENT === 'client') {
+  if (process.env.VITE_ENVIRONMENT !== 'ssr') {
     router.navigate(path)
     return
   }
