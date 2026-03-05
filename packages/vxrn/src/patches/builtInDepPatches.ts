@@ -410,6 +410,13 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-apple-authentication',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'react-native-css-interop',
     patchFiles: {
       'dist/**/*.js': ['jsx'],
