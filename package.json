@@ -72,7 +72,7 @@
   "resolutions": {
     "@isaacs/brace-expansion": "5.0.1",
     "fast-xml-parser": "5.3.6",
-    "tar": "7.5.8",
+    "tar": "7.5.10",
     "esbuild": "0.25.11",
     "vite": "^7.1.12",
     "rollup": "4.59.0",
@@ -82,10 +82,11 @@
     "minimatch": "3.1.5",
     "cross-spawn": "7.0.6",
     "got": "11.8.5",
+    "hono": "4.12.5",
     "fastify": "5.7.2"
   },
   "dependencies": {
-    "@hono/node-server": "^1.19.9",
+    "@hono/node-server": "^1.19.10",
     "@manypkg/cli": "^0.19.1",
     "@take-out/cli": "0.1.12",
     "@types/react": "^19.2.2",
