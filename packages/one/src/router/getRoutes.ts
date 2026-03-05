@@ -536,7 +536,7 @@ function getFileMeta(
   const isLayout = filenameWithoutExtensions.startsWith('_layout')
   const isMiddleware = filenameWithoutExtensions.startsWith('_middleware')
 
-  const [_fullname, renderModeFound] =
+  const [, renderModeFound] =
     filename.match(/\+(api|ssg|ssr|spa)\.(\w+\.)?[jt]sx?$/) || []
   const fileRenderMode = renderModeFound as 'api' | One.RouteRenderMode | undefined
 
@@ -656,6 +656,7 @@ function getFileMeta(
 }
 
 function getMostSpecific(routes: RouteNode[]) {
+  // holey array: .length includes holes, so last element is most specific
   const route = routes[routes.length - 1]
 
   if (!routes[0]) {
@@ -664,9 +665,7 @@ function getMostSpecific(routes: RouteNode[]) {
     )
   }
 
-  // This works even tho routes is holey array (e.g it might have index 0 and 2 but not 1)
-  // `.length` includes the holes in its count
-  return routes[routes.length - 1]
+  return route
 }
 
 export function getIgnoreList(options?: Options) {

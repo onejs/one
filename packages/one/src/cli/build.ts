@@ -9,7 +9,6 @@ import {
   type ClientManifestEntry,
   fillOptions,
   getOptimizeDeps,
-  loadEnv,
   rollupRemoveUnusedImportsPlugin,
   build as vxrnBuild,
 } from 'vxrn'
@@ -150,9 +149,7 @@ export async function build(args: {
       //   }) as any,
       // ],
 
-      define: {
-        ...vxrnOutput!.processEnvDefines,
-      },
+      define: vxrnOutput!.processEnvDefines,
 
       ssr: {
         noExternal: true,
@@ -183,7 +180,7 @@ export async function build(args: {
           // prevents it from shaking out the exports
           preserveEntrySignatures: 'strict',
           input: input,
-          external: (id) => false,
+          external: () => false,
           output: {
             entryFileNames: '[name]',
             exports: 'auto',
@@ -960,7 +957,7 @@ export async function build(args: {
 
       // Generate lazy imports for middlewares
       // The key must match the contextKey used to look up the middleware (e.g., "dist/middlewares/_middleware.js")
-      for (const [middlewareFile, builtPath] of Object.entries(builtMiddlewares)) {
+      for (const [, builtPath] of Object.entries(builtMiddlewares)) {
         const importPath = './' + builtPath.replace(/^dist\//, '')
         middlewareRouteMap.push(`  '${builtPath}': () => import('${importPath}')`)
       }
@@ -1159,18 +1156,4 @@ async function moveAllFiles(src: string, dest: string) {
   } catch (err) {
     console.error('Error moving files:', err)
   }
-}
-
-function escapeRegex(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
-}
-
-function buildRegexExcludingDeps(deps: string[]) {
-  // Sanitize each dependency
-  const sanitizedDeps = deps.map((dep) => escapeRegex(dep))
-  // Join them with the OR operator |
-  const exclusionPattern = sanitizedDeps.join('|')
-  // Build the final regex pattern
-  const regexPattern = `node_modules/(?!(${exclusionPattern})).*`
-  return new RegExp(regexPattern)
 }

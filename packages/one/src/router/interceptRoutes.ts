@@ -27,10 +27,6 @@ export function isHardNavigation(): boolean {
   return navigationMode === 'hard'
 }
 
-export function isSoftNavigation(): boolean {
-  return navigationMode === 'soft'
-}
-
 // ============================================
 // Intercept Route Matching
 // ============================================
@@ -241,8 +237,7 @@ function findMatchingInterceptInSlot(
     const resolvedTargetPath = resolveInterceptTargetPath(
       interceptTargetPath,
       levels,
-      layoutNode,
-      currentPath
+      layoutNode
     )
 
     // Try to match the target path against the resolved intercept path
@@ -273,24 +268,11 @@ function findMatchingInterceptInSlot(
 function resolveInterceptTargetPath(
   interceptTargetPath: string,
   levels: number,
-  layoutNode: RouteNode,
-  currentPath: string
+  layoutNode: RouteNode
 ): string {
-  // Get the base path for resolution
-  // contextKey is like './app/_layout.tsx' or './_layout.tsx'
-  // We need to extract just the route path portion
-  let layoutPath = layoutNode.contextKey
-    .replace(/^\.\//, '') // Remove leading ./
-    .replace(/\/?_layout.*$/, '') // Remove _layout and extension (with optional leading /)
-    .replace(/^app\/?/, '') // Remove 'app/' prefix since routes are relative to app dir
-
-  // Strip route groups like (app), (tabs) since they don't appear in URLs
-  layoutPath = stripGroupSegmentsFromPath(layoutPath)
-
-  // Normalize: empty string or '/' means root
-  if (!layoutPath || layoutPath === '/') {
-    layoutPath = ''
-  }
+  // reuse getLayoutPath and strip leading slash for internal resolution
+  const fullLayoutPath = getLayoutPath(layoutNode)
+  let layoutPath = fullLayoutPath === '/' ? '' : fullLayoutPath.slice(1)
 
   if (levels === Infinity) {
     // (...) matches from root - target path is absolute
@@ -466,13 +448,6 @@ export function setReturningFromIntercept(value: boolean) {
 
 export function isReturningFromIntercept(): boolean {
   return returningFromIntercept
-}
-
-// Store intercept state info for forward navigation restoration
-interface StoredInterceptState {
-  slotName: string
-  routeContextKey: string
-  params: Record<string, string>
 }
 
 // Callback to set slot state - set from Navigator.tsx to avoid circular deps

@@ -31,29 +31,17 @@ async function getAppNameForServer(root: string): Promise<string | null> {
       }
     }
 
-    // try app.config.ts - execute it to get the config
-    const appConfigTsPath = path.join(root, 'app.config.ts')
-    if (fs.existsSync(appConfigTsPath)) {
-      // read the file and look for name pattern
-      const content = fs.readFileSync(appConfigTsPath, 'utf-8')
-      // simple regex to find name: "..." or name: '...'
-      const nameMatch = content.match(/name:\s*['"]([^'"]+)['"]/)
-      if (nameMatch) {
-        const name = nameMatch[1]
-        serverAppNames.set(root, name)
-        return name
-      }
-    }
-
-    // try app.config.js
-    const appConfigJsPath = path.join(root, 'app.config.js')
-    if (fs.existsSync(appConfigJsPath)) {
-      const content = fs.readFileSync(appConfigJsPath, 'utf-8')
-      const nameMatch = content.match(/name:\s*['"]([^'"]+)['"]/)
-      if (nameMatch) {
-        const name = nameMatch[1]
-        serverAppNames.set(root, name)
-        return name
+    // try app.config.ts / app.config.js - read and regex for name pattern
+    for (const ext of ['ts', 'js']) {
+      const configPath = path.join(root, `app.config.${ext}`)
+      if (fs.existsSync(configPath)) {
+        const content = fs.readFileSync(configPath, 'utf-8')
+        const nameMatch = content.match(/name:\s*['"]([^'"]+)['"]/)
+        if (nameMatch) {
+          const name = nameMatch[1]
+          serverAppNames.set(root, name)
+          return name
+        }
       }
     }
 

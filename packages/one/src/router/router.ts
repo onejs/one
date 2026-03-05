@@ -475,7 +475,6 @@ export function subscribeToStore(subscriber: () => void) {
   }
 }
 
-// Subscription functions
 export function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListener) {
   loadingStateSubscribers.add(subscriber)
   return () => {
@@ -1163,8 +1162,6 @@ export async function linkTo(
       }, 1000)
     }
   })
-
-  return
 }
 
 const hashes: Record<string, string> = {}

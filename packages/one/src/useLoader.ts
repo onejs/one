@@ -398,8 +398,7 @@ export function useLoaderState<
   if (
     !loaderStateEntry.data &&
     !loaderStateEntry.promise &&
-    !loaderStateEntry.hasLoadedOnce &&
-    loader
+    !loaderStateEntry.hasLoadedOnce
   ) {
     // check for already-resolved preloaded data first (synchronous)
     // use != null to also exclude null values (which indicate preload failures)
@@ -641,33 +640,24 @@ export function useLoaderState<
     }
   }
 
-  // handle errors and suspension
-  if (loader) {
-    // only throw error on initial load
-    if (loaderStateEntry.error && !loaderStateEntry.hasLoadedOnce) {
-      throw loaderStateEntry.error
-    }
-
-    // only throw promise for suspension on initial load
-    if (
-      loaderStateEntry.data === undefined &&
-      loaderStateEntry.promise &&
-      !loaderStateEntry.hasLoadedOnce
-    ) {
-      throw loaderStateEntry.promise
-    }
-
-    return {
-      data: loaderStateEntry.data,
-      refetch,
-      state: loaderStateEntry.state,
-    } as any
-  } else {
-    return {
-      refetch,
-      state: loaderStateEntry.state,
-    } as any
+  // handle errors and suspension (only on initial load)
+  if (loaderStateEntry.error && !loaderStateEntry.hasLoadedOnce) {
+    throw loaderStateEntry.error
   }
+
+  if (
+    loaderStateEntry.data === undefined &&
+    loaderStateEntry.promise &&
+    !loaderStateEntry.hasLoadedOnce
+  ) {
+    throw loaderStateEntry.promise
+  }
+
+  return {
+    data: loaderStateEntry.data,
+    refetch,
+    state: loaderStateEntry.state,
+  } as any
 }
 
 /**

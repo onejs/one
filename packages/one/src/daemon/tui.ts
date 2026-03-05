@@ -52,6 +52,14 @@ interface TUIState {
   popup: { message: string; timeout: NodeJS.Timeout } | null
 }
 
+const CABLE_COLORS = [
+  colors.green,
+  colors.cyan,
+  colors.magenta,
+  colors.blue,
+  colors.yellow,
+]
+
 const ESC = '\x1b'
 const CSI = `${ESC}[`
 
@@ -447,8 +455,6 @@ async function refreshData(): Promise<void> {
   tuiState.simulators = newSims
   tuiState.servers = newServers
 
-  const isDragging = tuiState.draggingSimIndex !== null
-
   // get actual simulator -> server mappings from routing state
   const simMappings = getSimulatorMappings()
 
@@ -558,15 +564,7 @@ function render(): void {
       const isSelected = tuiState.selectedCol === 0 && tuiState.selectedRow === row
       const cable = tuiState.cables.get(row)
       const hasConnection = cable?.serverIndex !== null
-      // unique color per cable
-      const cableColors = [
-        colors.green,
-        colors.cyan,
-        colors.magenta,
-        colors.blue,
-        colors.yellow,
-      ]
-      const cableColor = cableColors[row % cableColors.length]
+      const cableColor = CABLE_COLORS[row % CABLE_COLORS.length]
       const plug = hasConnection ? cableColor('●') : colors.dim('○')
       const name = truncate(sim.name, simEndX - 5)
       simText = `${name} ${plug}`
@@ -591,18 +589,10 @@ function render(): void {
     let srvRight = ''
     if (server) {
       const isSelected = tuiState.selectedCol === 1 && tuiState.selectedRow === row
-      // check which cables are connected to this server and get their colors
-      const cableColors = [
-        colors.green,
-        colors.cyan,
-        colors.magenta,
-        colors.blue,
-        colors.yellow,
-      ]
       let connectedColor: ((s: string) => string) | null = null
       for (const [simIndex, cable] of tuiState.cables) {
         if (cable.serverIndex === row) {
-          connectedColor = cableColors[simIndex % cableColors.length]
+          connectedColor = CABLE_COLORS[simIndex % CABLE_COLORS.length]
           break
         }
       }
@@ -695,15 +685,7 @@ function getCableCharAt(x: number, y: number): string | null {
 
       if (px === x && py === y) {
         const connected = cable.serverIndex !== null
-        // unique color per cable based on sim index
-        const cableColors = [
-          colors.green,
-          colors.cyan,
-          colors.magenta,
-          colors.blue,
-          colors.yellow,
-        ]
-        const baseColor = cableColors[simIndex % cableColors.length]
+        const baseColor = CABLE_COLORS[simIndex % CABLE_COLORS.length]
         const color = connected ? baseColor : colors.dim
 
         // determine character based on curve direction

@@ -240,9 +240,7 @@ export function useSlot() {
     return null
   }
 
-  const current = state.routes.find((route, i) => {
-    return state.index === i
-  })
+  const current = state.routes[state.index]
 
   if (!current) {
     return null
