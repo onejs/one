@@ -2,7 +2,6 @@ import type { RouteNode } from './Route';
 export declare function setNavigationType(type: 'soft' | 'hard'): void;
 export declare function getNavigationType(): 'soft' | 'hard';
 export declare function isHardNavigation(): boolean;
-export declare function isSoftNavigation(): boolean;
 export interface InterceptResult {
     /** The intercept route that matched */
     interceptRoute: RouteNode;
