@@ -305,6 +305,7 @@ export function createHandleRequest(
         pathname.startsWith('/@vite/') ||
         pathname.startsWith('/@fs/') ||
         pathname.startsWith('/@id/') ||
+        pathname.startsWith('/node_modules/') ||
         pathname.startsWith('/debugger-frontend') ||
         pathname.startsWith('/inspector')
       ) {
