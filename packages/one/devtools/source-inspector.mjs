@@ -18,6 +18,8 @@
     const mousePos = { x: 0, y: 0 }
     let removalObserver = null
     let currentElementChain = []
+    let currentUnderChain = []
+    let currentPickerTab = 'above'
     let recording = false
     let recordEvents = []
     let recordStartTime = 0
@@ -91,6 +93,12 @@
           .toast-big { font-size: 48px; font-weight: 600; color: #f55; }
           .toast-big.success { color: #4ade80; }
           .toast-hint { font-size: 12px; color: #888; margin-top: 12px; }
+          .picker-tabs { display: flex; background: #111; border-bottom: 1px solid #252525; }
+          .picker-tab { flex: 1; background: none; border: none; color: #666; padding: 6px 8px; font: 11px system-ui, sans-serif; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.1s, border-color 0.1s; }
+          .picker-tab:hover { color: #aaa; }
+          .picker-tab.active { color: #fff; border-bottom-color: #888; }
+          .picker-tab-count { font-size: 10px; color: #555; margin-left: 4px; }
+          .picker-tab.active .picker-tab-count { color: #888; }
           .picker-list { max-height: 240px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #333 transparent; }
           .picker-list::-webkit-scrollbar { width: 4px; }
           .picker-list::-webkit-scrollbar-track { background: transparent; }
@@ -113,6 +121,10 @@
               <button class="picker-btn" data-action="open">Open</button>
               <button class="picker-btn" data-action="copy">Copy</button>
               <button class="picker-btn" data-action="record" id="record-btn"><span class="rec-dot"></span><span class="rec-tooltip">Tap Option to stop</span></button>
+            </div>
+            <div class="picker-tabs" id="picker-tabs">
+              <button class="picker-tab active" data-tab="above">Above</button>
+              <button class="picker-tab" data-tab="under">Under</button>
             </div>
             <div class="picker-list" id="picker-list"></div>
           </div>
@@ -172,6 +184,19 @@
         }
       })
 
+      // tab switching
+      const tabs = shadow.getElementById('picker-tabs')
+      tabs.addEventListener('click', (e) => {
+        const tab = e.target.closest('.picker-tab')
+        if (!tab) return
+        const tabName = tab.dataset.tab
+        if (tabName === currentPickerTab) return
+        currentPickerTab = tabName
+        tabs.querySelectorAll('.picker-tab').forEach((t) => t.classList.remove('active'))
+        tab.classList.add('active')
+        renderPickerList(tabName === 'under' ? currentUnderChain : currentElementChain)
+      })
+
       list.addEventListener('click', (e) => {
         const item = e.target.closest('.picker-item')
         if (!item) return
@@ -180,6 +205,21 @@
           fetch('/__one/open-source?source=' + encodeURIComponent(source))
           pickerDialog.close()
         }
+      })
+
+      // highlight element on hover in the list
+      list.addEventListener('mouseover', (e) => {
+        const item = e.target.closest('.picker-item')
+        if (!item) return
+        const source = item.dataset.source
+        if (!source) return
+        const chain = currentPickerTab === 'under' ? currentUnderChain : currentElementChain
+        const entry = chain.find((c) => c.source === source)
+        if (entry) showOverlay(entry.element, entry.source)
+      })
+
+      list.addEventListener('mouseleave', () => {
+        hideOverlay()
       })
     }
 
@@ -649,6 +689,20 @@
       return chain
     }
 
+    function getUnderChain(topElement) {
+      if (!topElement) return []
+      const chain = []
+      const descendants = topElement.querySelectorAll('[data-one-source]')
+      for (const element of descendants) {
+        chain.push({
+          element,
+          source: element.getAttribute('data-one-source'),
+          name: getComponentName(element.getAttribute('data-one-source')),
+        })
+      }
+      return chain
+    }
+
     function getComponentName(source) {
       const parts = source.split(':')
       const filePath = parts.slice(0, -2).join(':')
@@ -657,18 +711,17 @@
       return fileName.replace(/\.(tsx?|jsx?)$/, '')
     }
 
-    function showPicker(x, y, chain) {
-      if (!host) createHost()
-      currentElementChain = chain
-
-      // build list items
+    function renderPickerList(chain) {
       const listEl = shadow.getElementById('picker-list')
+      if (!chain.length) {
+        listEl.innerHTML = '<div class="picker-item" style="color:#555;cursor:default;">No elements</div>'
+        return
+      }
       listEl.innerHTML = chain
         .map((el) => {
           const parts = el.source.split(':')
           const filePath = parts.slice(0, -2).join(':')
           const line = parts[parts.length - 2]
-          // show just filename:line
           const shortFile = filePath.split('/').pop() + ':' + line
           return (
             '<div class="picker-item" data-source="' +
@@ -684,6 +737,38 @@
           )
         })
         .join('')
+    }
+
+    function showPicker(x, y, chain) {
+      if (!host) createHost()
+      currentElementChain = chain
+
+      // get descendants of the top element
+      const topElement = chain.length ? chain[0].element : null
+      currentUnderChain = topElement ? getUnderChain(topElement) : []
+
+      // reset to "above" tab
+      currentPickerTab = 'above'
+      const tabs = shadow.getElementById('picker-tabs')
+      const tabBtns = tabs.querySelectorAll('.picker-tab')
+      tabBtns.forEach((t) => {
+        const isAbove = t.dataset.tab === 'above'
+        t.classList.toggle('active', isAbove)
+      })
+
+      // set tab counts
+      tabBtns.forEach((t) => {
+        const count = t.dataset.tab === 'above' ? chain.length : currentUnderChain.length
+        let countSpan = t.querySelector('.picker-tab-count')
+        if (!countSpan) {
+          countSpan = document.createElement('span')
+          countSpan.className = 'picker-tab-count'
+          t.appendChild(countSpan)
+        }
+        countSpan.textContent = count
+      })
+
+      renderPickerList(chain)
 
       // position picker near click, smart about viewport edges
       const pickerWidth = 320
@@ -711,19 +796,22 @@
       const picker = shadow.getElementById('picker')
       const header = picker.querySelector('.picker-header')
       const actions = picker.querySelector('.picker-actions')
+      const pickerTabs = picker.querySelector('.picker-tabs')
       const list = picker.querySelector('.picker-list')
 
       if (flippedUp) {
         // picker is above click, put actions at bottom (closest to mouse)
         picker.style.flexDirection = 'column'
         header.style.order = '0'
-        list.style.order = '1'
-        actions.style.order = '2'
+        pickerTabs.style.order = '1'
+        list.style.order = '2'
+        actions.style.order = '3'
       } else {
         // picker is below click, put actions at top (closest to mouse)
         picker.style.flexDirection = 'column'
-        header.style.order = '1'
-        list.style.order = '2'
+        header.style.order = '2'
+        pickerTabs.style.order = '1'
+        list.style.order = '3'
         actions.style.order = '0'
       }
 
