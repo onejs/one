@@ -755,8 +755,25 @@ function appendSitemapRoute(directory: DirectoryNode) {
   }
 }
 
+function hasNotFoundInGroupSubdirs(directory: DirectoryNode): boolean {
+  for (const [dirName, subDir] of directory.subdirectories) {
+    if (!matchGroupName(dirName)) continue
+    for (const fileKey of subDir.files.keys()) {
+      if (fileKey.endsWith('+not-found')) {
+        return true
+      }
+    }
+    if (hasNotFoundInGroupSubdirs(subDir)) {
+      return true
+    }
+  }
+  return false
+}
+
 function appendNotFoundRoute(directory: DirectoryNode) {
-  if (!directory.files.has('+not-found')) {
+  // also check group subdirectories since groups are transparent in routing
+  // e.g. (site)/+not-found.tsx resolves to the same path as root +not-found
+  if (!directory.files.has('+not-found') && !hasNotFoundInGroupSubdirs(directory)) {
     directory.files.set('+not-found', [
       {
         loadRoute() {

@@ -213,7 +213,8 @@
         if (!item) return
         const source = item.dataset.source
         if (!source) return
-        const chain = currentPickerTab === 'under' ? currentUnderChain : currentElementChain
+        const chain =
+          currentPickerTab === 'under' ? currentUnderChain : currentElementChain
         const entry = chain.find((c) => c.source === source)
         if (entry) showOverlay(entry.element, entry.source)
       })
@@ -714,7 +715,8 @@
     function renderPickerList(chain) {
       const listEl = shadow.getElementById('picker-list')
       if (!chain.length) {
-        listEl.innerHTML = '<div class="picker-item" style="color:#555;cursor:default;">No elements</div>'
+        listEl.innerHTML =
+          '<div class="picker-item" style="color:#555;cursor:default;">No elements</div>'
         return
       }
       listEl.innerHTML = chain
