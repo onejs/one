@@ -128,6 +128,16 @@ async function openInEditor(
   column?: string
 ): Promise<void> {
   try {
+    // patch launch-editor's macos detection map for editors that renamed their binaries
+    // (VS Code renamed binary from Electron to Code)
+    if (process.platform === 'darwin') {
+      try {
+        const m = await import('launch-editor/editor-info/macos.js')
+        const editorInfo = m.default || m
+        editorInfo['/Applications/Visual Studio Code.app/Contents/MacOS/Code'] = 'code'
+      } catch {}
+    }
+
     const launch = (await import('launch-editor')).default
     const fullPath = path.join(process.cwd(), filePath)
     const location = `${fullPath}${line ? `:${line}` : ''}${column ? `:${column}` : ''}`
