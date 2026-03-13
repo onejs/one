@@ -1,4 +1,10 @@
+import { Platform } from 'react-native'
 import { NativeTabs } from '~/code/ui/BottomTabs.native'
+import newspaperIcon from '../../assets/icons/newspaper.svg'
+import bellIcon from '../../assets/icons/bell.svg'
+import userIcon from '../../assets/icons/user.svg'
+
+const isIOS = Platform.OS === 'ios'
 
 export function HomeLayout() {
   return (
@@ -7,7 +13,8 @@ export function HomeLayout() {
         name="index"
         options={{
           title: 'Feed',
-          tabBarIcon: () => ({ sfSymbol: 'newspaper' }),
+          tabBarIcon: () =>
+            isIOS ? { sfSymbol: 'newspaper' } : newspaperIcon,
         }}
       />
 
@@ -15,7 +22,8 @@ export function HomeLayout() {
         name="notifications"
         options={{
           title: 'Notifications',
-          tabBarIcon: () => ({ sfSymbol: 'bell' }),
+          tabBarIcon: () =>
+            isIOS ? { sfSymbol: 'bell' } : bellIcon,
         }}
       />
 
@@ -23,7 +31,8 @@ export function HomeLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: () => ({ sfSymbol: 'person' }),
+          tabBarIcon: () =>
+            isIOS ? { sfSymbol: 'person' } : userIcon,
         }}
       />
     </NativeTabs>

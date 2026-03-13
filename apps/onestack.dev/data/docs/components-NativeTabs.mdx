@@ -1,0 +1,106 @@
+---
+title: "<NativeTabs />"
+---
+
+The NativeTabs component provides a native platform tab bar using [`react-native-bottom-tabs`](https://github.com/okwasniewski/react-native-bottom-tabs). Unlike the regular [Tabs](/docs/components-Tabs) component which uses a JavaScript-based tab bar, NativeTabs renders using the platform's native tab bar (`UITabBarController` on iOS, Material Bottom Tabs on Android), giving you native feel and SF Symbol support on iOS.
+
+Import it from `one/native-tabs` to keep the bundle size minimal when not using native tabs.
+
+This component should only be rendered inside a `_layout.tsx` file, where it will serve as the location that children will render for routes below the layout.
+
+NativeTabs wraps the navigator from [`@bottom-tabs/react-navigation`](https://github.com/react-navigation/react-navigation) and accepts the same props.
+
+## Basic Usage
+
+```tsx fileName="_layout.native.tsx"
+import { NativeTabs } from 'one/native-tabs'
+
+export default function Layout() {
+  return (
+    <NativeTabs>
+      <NativeTabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: () => ({ sfSymbol: 'house' }),
+        }}
+      />
+      <NativeTabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
+        }}
+      />
+    </NativeTabs>
+  )
+}
+```
+
+## Tab Icons
+
+On iOS, you can use [SF Symbols](https://developer.apple.com/sf-symbols/) by returning an object with `sfSymbol`:
+
+```tsx
+tabBarIcon: () => ({ sfSymbol: 'house' })
+```
+
+On Android, SF Symbols are not available. You can use imported SVG or image assets instead:
+
+```tsx fileName="_layout.native.tsx"
+import { Platform } from 'react-native'
+import { NativeTabs } from 'one/native-tabs'
+import homeIcon from '../assets/icons/home.svg'
+
+export default function Layout() {
+  return (
+    <NativeTabs>
+      <NativeTabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: () =>
+            Platform.OS === 'ios' ? { sfSymbol: 'house' } : homeIcon,
+        }}
+      />
+    </NativeTabs>
+  )
+}
+```
+
+<Notice>
+  Use `import` for assets rather than `require()`.
+</Notice>
+
+## Platform-Specific Layouts
+
+Since NativeTabs is native-only, you'll typically pair it with a web layout using [platform-specific file extensions](/docs/routing):
+
+```
+app/
+├── _layout.tsx          # Web layout (Tabs or custom)
+├── _layout.native.tsx   # Native layout (NativeTabs)
+├── index.tsx
+└── profile.tsx
+```
+
+## Common Options
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `title` | `string` | Tab label text |
+| `tabBarIcon` | `() => ImageSource \| { sfSymbol: string }` | Tab icon (SF Symbol on iOS, image asset on Android) |
+| `tabBarBadge` | `string` | Badge text on the tab |
+| `tabBarActiveTintColor` | `string` | Active tab tint color |
+
+## Dependencies
+
+NativeTabs requires these optional peer dependencies to be installed:
+
+```bash
+npm install @bottom-tabs/react-navigation react-native-bottom-tabs
+```
+
+These are marked as optional peer dependencies in `one`, so they won't be installed automatically. This keeps bundle sizes smaller for apps that don't use NativeTabs.
+
+For more configuration options, see the [`react-native-bottom-tabs` documentation](https://github.com/okwasniewski/react-native-bottom-tabs).
