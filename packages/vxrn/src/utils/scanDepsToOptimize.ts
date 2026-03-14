@@ -68,6 +68,11 @@ export const EXCLUDE_LIST = [
 
   // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
+  // only used by static/plugin
+  '@tamagui/static',
+  '@tamagui/config-default',
+  '@tamagui/vite-plugin',
+
   '@take-out/scripts',
   '@take-out/cli',
 
