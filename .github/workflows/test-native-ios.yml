@@ -10,6 +10,29 @@ on:
     branches:
       - main
       - ci/native-tests-free-runners
+    paths:
+      - '.github/actions/install/**'
+      - '.github/workflows/build-ios-test-container-app.yml'
+      - '.github/workflows/test-native-ios.yml'
+      - 'bun.lock'
+      - 'package.json'
+      - 'packages/one/metro-entry.js'
+      - 'packages/one/metro-entry-ctx.js'
+      - 'packages/one/src/**/*.native.*'
+      - 'packages/one/src/**/*.ios.*'
+      - 'packages/one/src/**/*.android.*'
+      - 'packages/one/src/cli/prebuild.ts'
+      - 'packages/one/src/cli/runAndroid.ts'
+      - 'packages/one/src/cli/runIos.ts'
+      - 'packages/one/src/metro-config/**'
+      - 'packages/vite-plugin-metro/**'
+      - 'packages/vxrn/**'
+      - 'tests/rn-test-container/app.json'
+      - 'tests/rn-test-container/e2e/**'
+      - 'tests/rn-test-container/ios/**'
+      - 'tests/rn-test-container/package.json'
+      - 'tests/rn-test-container/react-native.config.cjs'
+      - 'tests/rn-test-container/scripts/**'
   workflow_dispatch:
 
 concurrency:

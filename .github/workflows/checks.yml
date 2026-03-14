@@ -2,7 +2,19 @@ name: Checks and Tests
 
 on:
   push:
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**/*.md'
+      - '**/CHANGELOG.md'
+      - '**/package.json'
+      - 'bun.lock'
   pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - '**/CHANGELOG.md'
+      - '**/package.json'
+      - 'bun.lock'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -38,7 +50,7 @@ jobs:
         run: bun run typecheck
 
   tests:
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     timeout-minutes: 45
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
@@ -50,10 +62,9 @@ jobs:
 
       - name: Test
         run: |
-          # use gtimeout to force-kill tests if they hang (20 min should be plenty)
+          # use timeout to force-kill tests if they hang (20 min should be plenty)
           # capture output to check if tests passed even if timeout kills hanging cleanup
-          brew install coreutils 2>/dev/null || true
-          gtimeout --signal=KILL 1200 bun run test 2>&1 | tee test-output.log || {
+          timeout --signal=KILL 1200 bun run test 2>&1 | tee test-output.log || {
             exit_code=$?
             if [ $exit_code -eq 137 ]; then
               echo "Process killed after timeout - checking if tests passed..."
