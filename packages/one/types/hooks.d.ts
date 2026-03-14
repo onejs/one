@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React from 'react';
 import type { OneRouter } from './interfaces/router';
 type SearchParams = OneRouter.SearchParams;
 /**
@@ -18,10 +18,7 @@ export declare function useRootNavigationState(): OneRouter.ResultState;
 export declare function useRouteInfo(): import("./router/getNormalizedStatePath").UrlObject;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export declare function useNavigationContainerRef(): OneRouter.NavigationRef;
-export declare function Frozen({ on, children }: {
-    on?: boolean;
-    children: ReactNode;
-}): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | import("react/jsx-runtime").JSX.Element | null | undefined;
+export declare const FrozeContext: React.Context<boolean>;
 /**
  * Returns the imperative router API for programmatic navigation.
  *

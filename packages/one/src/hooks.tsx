@@ -1,4 +1,4 @@
-import React, { createContext, type ReactNode, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
@@ -51,30 +51,7 @@ export function useNavigationContainerRef() {
   return navigationRef
 }
 
-const FrozeContext = createContext(false)
-
-export function Frozen({ on = false, children }: { on?: boolean; children: ReactNode }) {
-  // useEffect(() => {
-  //   enableFreeze(true)
-  //   return () => {
-  //     enableFreeze(false)
-  //   }
-  // }, [on])
-
-  if (typeof window === 'undefined') {
-    return children
-  }
-
-  return (
-    <FrozeContext.Provider value={on}>
-      {/* <Freeze freeze={on}> */}
-      <div {...(on && { inert: true })} style={{ display: 'contents' }}>
-        {children}
-      </div>
-      {/* </Freeze> */}
-    </FrozeContext.Provider>
-  )
-}
+export const FrozeContext = createContext(false)
 
 /**
  * Returns the imperative router API for programmatic navigation.
