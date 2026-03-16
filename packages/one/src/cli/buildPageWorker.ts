@@ -92,6 +92,7 @@ parentPort.on('message', async (msg: any) => {
           msg.args.serverJsPath,
           msg.args.preloads,
           msg.args.allCSS,
+          msg.args.layoutCSS,
           msg.args.routePreloads,
           msg.args.allCSSContents,
           msg.args.criticalPreloads,

@@ -1,0 +1,72 @@
+---
+title: CSS Loading
+description: Control CSS loading order and inlining for optimal performance with ?critical imports and layout CSS prioritization.
+---
+
+One automatically optimizes CSS loading in production builds. Layout CSS is loaded before scripts to prevent flash of unstyled content (FOUC), and you can mark individual CSS files as critical to inline them directly into the HTML.
+
+## CSS Loading Order
+
+In production builds, One separates CSS into two categories:
+
+- **Layout CSS** — CSS imported by `_layout` files. Loaded before any JavaScript to prevent FOUC.
+- **Page CSS** — CSS imported by page components. Loaded after scripts.
+
+This happens automatically based on your route structure. No configuration needed.
+
+## Critical CSS (`?critical`)
+
+For CSS that must be available before the first paint, use the `?critical` import suffix. This inlines the CSS content directly as a `<style>` tag in the HTML `<head>`, eliminating the network request entirely.
+
+```tsx fileName=app/_layout.tsx
+// inlined as <style> in HTML — zero network latency
+import './critical-styles.css?critical'
+
+// loaded via <link> tag — normal network request
+import './non-critical-styles.css'
+```
+
+### When to use `?critical`
+
+Use `?critical` for CSS that:
+
+- Defines the page layout structure (prevents layout shift)
+- Sets background colors or fonts visible above the fold
+- Is small enough that inlining doesn't bloat the HTML (under ~10KB)
+
+Don't use `?critical` for:
+
+- Large CSS files (defeats the purpose — better as a cacheable `<link>`)
+- CSS only needed after user interaction
+- Component-specific CSS that isn't visible on first paint
+
+### How it works
+
+1. The `?critical` suffix is stripped during the build — Vite processes the CSS normally
+2. The plugin tracks which CSS files are critical
+3. At HTML generation time, critical CSS is read from the build output and inlined as `<style>` tags
+4. Non-critical CSS remains as `<link rel="stylesheet">` tags
+
+### With `inlineLayoutCSS`
+
+`?critical` works independently of the [`inlineLayoutCSS`](/docs/configuration#webinlinelayoutcss) config option:
+
+- **`inlineLayoutCSS: true`** — inlines ALL CSS as `<style>` tags
+- **`?critical`** — inlines only the marked files, leaves the rest as `<link>` tags
+- **Both together** — `inlineLayoutCSS` takes precedence and inlines everything
+
+### TypeScript
+
+The `?critical` suffix works with any CSS file. Since it's a side-effect import (no default export), TypeScript handles it without additional type declarations:
+
+```tsx
+import './styles.css?critical' // works out of the box
+```
+
+## Comparison
+
+| Approach | What it does | Use case |
+|----------|-------------|----------|
+| Default | Layout CSS before scripts, page CSS after | Most apps |
+| `?critical` | Specific files inlined as `<style>` | Above-the-fold CSS |
+| `inlineLayoutCSS: true` | All CSS inlined as `<style>` | Small apps, maximum LCP |

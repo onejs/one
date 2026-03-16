@@ -31,6 +31,7 @@ import { getWorkerPool, terminateWorkerPool } from './workerPool'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
 import { pLimit } from '../utils/pLimit'
+import { getCriticalCSSOutputPaths } from '../vite/plugins/criticalCSSPlugin'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -272,6 +273,9 @@ export async function build(args: {
   // caches for expensive operations
   const collectImportsCache = new Map<string, string[]>()
   const cssFileContentsCache = new Map<string, string>()
+
+  // css files marked with ?critical import suffix — should be inlined as <style>
+  const criticalCSSOutputPaths = getCriticalCSSOutputPaths(vxrnOutput.clientManifest)
 
   // concurrency limiter for parallel page builds
   const limit = pLimit(BUILD_CONCURRENCY)
@@ -586,12 +590,26 @@ export async function build(args: {
       : allPreloads
 
     const allEntries = [clientManifestEntry, ...layoutEntries].filter(Boolean)
-    const allCSS = [
+
+    // layout css (from layout entries) - should load before scripts to prevent FOUC
+    const layoutCSS = [
       ...new Set([
-        // css from entry imports
-        ...allEntries
+        ...layoutEntries
           .flatMap((entry) => collectImports(entry, { type: 'css' }))
           .map((path) => `/${path}`),
+      ]),
+    ]
+
+    // all css including page entry and root-level css
+    const allCSS = [
+      ...new Set([
+        ...layoutCSS,
+        // css from page entry
+        ...(clientManifestEntry
+          ? collectImports(clientManifestEntry, { type: 'css' }).map(
+              (path) => `/${path}`
+            )
+          : []),
         // root-level css (handles cssCodeSplit: false)
         ...Object.entries(vxrnOutput.clientManifest)
           .filter(([key]) => key.endsWith('.css'))
@@ -599,11 +617,22 @@ export async function build(args: {
       ]),
     ]
 
-    // Read CSS file contents if inlineLayoutCSS is enabled (with caching)
+    // check if any css needs inlining (inlineLayoutCSS option or ?critical imports)
+    const hasCriticalCSS = allCSS.some((p) => criticalCSSOutputPaths.has(p))
+    const needsCSSContents = oneOptions.web?.inlineLayoutCSS || hasCriticalCSS
+
+    // read css file contents for inlining (with caching)
     let allCSSContents: string[] | undefined
-    if (oneOptions.web?.inlineLayoutCSS) {
+    if (needsCSSContents) {
       allCSSContents = await Promise.all(
         allCSS.map(async (cssPath) => {
+          // only read contents for css that should be inlined:
+          // - all css when inlineLayoutCSS is enabled
+          // - only ?critical css otherwise
+          if (!oneOptions.web?.inlineLayoutCSS && !criticalCSSOutputPaths.has(cssPath)) {
+            return ''
+          }
+
           // check cache first
           const cached = cssFileContentsCache.get(cssPath)
           if (cached !== undefined) return cached
@@ -715,6 +744,7 @@ export async function build(args: {
             serverJsPath,
             preloads,
             allCSS,
+            layoutCSS,
             routePreloads,
             allCSSContents,
             criticalPreloads,
@@ -748,6 +778,7 @@ export async function build(args: {
               serverJsPath,
               preloads,
               allCSS,
+              layoutCSS,
               routePreloads,
               allCSSContents,
               criticalPreloads,

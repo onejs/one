@@ -117,6 +117,7 @@ export class BuildWorkerPool {
     serverJsPath: string
     preloads: string[]
     allCSS: string[]
+    layoutCSS: string[]
     routePreloads: Record<string, string>
     allCSSContents?: string[]
     criticalPreloads?: string[]

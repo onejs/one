@@ -74,17 +74,33 @@ export const { Screen, Group } = createNavigatorFactory({} as any)()
 // Cache inline CSS elements at module load (before React hydrates).
 // Reads CSS content from SSR'd <style> elements and creates matching JSX
 // so hydration sees identical content without 100KB+ JSON payload.
+// Also captures <link> stylesheet elements for mixed inline/link CSS mode.
 const cachedInlineCSSElements: React.ReactNode[] =
   typeof document !== 'undefined'
-    ? Array.from(
-        document.querySelectorAll<HTMLStyleElement>('style[id^="__one_css_"]')
-      ).map((el, i) => (
-        <style
-          key={`inline-css-${i}`}
-          id={el.id}
-          dangerouslySetInnerHTML={{ __html: el.innerHTML }}
-        />
-      ))
+    ? (() => {
+        const elements: React.ReactNode[] = []
+        // collect all SSR CSS elements in order (both inline <style> and <link>)
+        const cssElements = document.querySelectorAll<HTMLElement>(
+          'style[id^="__one_css_"], link[rel="stylesheet"][data-one-css]'
+        )
+        cssElements.forEach((el, i) => {
+          if (el.tagName === 'STYLE') {
+            elements.push(
+              <style
+                key={`inline-css-${i}`}
+                id={el.id}
+                dangerouslySetInnerHTML={{ __html: el.innerHTML }}
+              />
+            )
+          } else {
+            const href = el.getAttribute('href')!
+            elements.push(
+              <link key={href} rel="stylesheet" href={href} data-one-css="" />
+            )
+          }
+        })
+        return elements
+      })()
     : []
 
 /**
@@ -154,15 +170,19 @@ function RootLayoutRenderer({
           }}
         />
         {serverContext?.cssContents?.length || serverContext?.cssInlineCount
-          ? // Inline CSS: SSR renders fresh, client uses cached elements from module load
+          ? // inline/mixed CSS: render each entry as <style> (if content) or <link>
             serverContext?.cssContents
-            ? serverContext.cssContents.map((content, i) => (
-                <style
-                  key={`inline-css-${i}`}
-                  id={`__one_css_${i}`}
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-              ))
+            ? serverContext.cssContents.map((content, i) =>
+                content ? (
+                  <style
+                    key={`inline-css-${i}`}
+                    id={`__one_css_${i}`}
+                    dangerouslySetInnerHTML={{ __html: content }}
+                  />
+                ) : serverContext.css?.[i] ? (
+                  <link key={serverContext.css[i]} rel="stylesheet" href={serverContext.css![i]} />
+                ) : null
+              )
             : cachedInlineCSSElements
           : serverContext?.css?.map((file) => (
               <link key={file} rel="stylesheet" href={file} />

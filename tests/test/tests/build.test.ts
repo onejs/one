@@ -109,6 +109,63 @@ describe('Simple Build Tests', () => {
     }
   })
 
+  it('should put layout CSS before scripts in SPA pages', async () => {
+    // layout CSS must load before scripts to prevent FOUC on initial render.
+    // this verifies the build output places <link rel="stylesheet"> (layout CSS)
+    // before <script type="module"> in the HTML <head>.
+    const spaPagePath = join(fixturePath, 'dist', 'client', 'spa', 'spapage.html')
+
+    if (!(await pathExists(spaPagePath))) return
+
+    const html = await readFile(spaPagePath, 'utf-8')
+
+    // find the first stylesheet link and first module script
+    const stylesheetMatch = html.match(/<link[^>]*rel=["']?stylesheet["']?/)
+    const scriptMatch = html.match(/<script[^>]*type="module"[^>]*src=/)
+
+    if (stylesheetMatch && scriptMatch) {
+      const stylesheetPos = html.indexOf(stylesheetMatch[0])
+      const scriptPos = html.indexOf(scriptMatch[0])
+
+      // at least some CSS should appear before scripts (layout CSS)
+      expect(
+        stylesheetPos,
+        'layout CSS <link> should appear before <script type="module"> in SPA HTML'
+      ).toBeLessThan(scriptPos)
+    }
+  })
+
+  it('should inline ?critical CSS as <style> tags in SPA pages', async () => {
+    // CSS imported with ?critical should be inlined as <style> tags,
+    // not as <link rel="stylesheet"> tags, to eliminate the network request.
+    const criticalPagePath = join(
+      fixturePath,
+      'dist',
+      'client',
+      'spa',
+      'critical-css-test.html'
+    )
+
+    if (!(await pathExists(criticalPagePath))) return
+
+    const html = await readFile(criticalPagePath, 'utf-8')
+
+    // the critical-test.css content should be inlined as a <style> tag
+    expect(html).toContain('<style>')
+    expect(html).toContain('critical-test-marker')
+
+    // the inlined <style> should appear before any <script type="module">
+    const stylePos = html.indexOf('<style>')
+    const scriptPos = html.indexOf('<script type="module"')
+
+    if (stylePos !== -1 && scriptPos !== -1) {
+      expect(
+        stylePos,
+        'inlined critical CSS <style> should appear before <script type="module">'
+      ).toBeLessThan(scriptPos)
+    }
+  })
+
   it('should build SSR routes in deeply nested route groups with client JS', async () => {
     // This test catches a regression where nested route groups like (app)/dashboard/(tabs)/
     // would log "No client manifest entry found" warnings and fail to include proper

@@ -22,6 +22,7 @@ import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
@@ -168,6 +169,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
 
     environmentGuardPlugin(options.environmentGuards),
+
+    criticalCSSPlugin(),
 
     imageDataPlugin(),
 
