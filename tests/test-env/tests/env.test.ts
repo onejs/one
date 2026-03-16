@@ -21,15 +21,31 @@ describe('Environment Variable Tests', () => {
     it('should have process.env.VITE_ENVIRONMENT in SSR HTML', async () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
-      // Use regex to match regardless of data-one-source attribute (added by source inspector in dev)
       expect(html).toMatch(/<div[^>]*id="process-env"[^>]*>ssr<\/div>/)
     })
 
     it('should have import.meta.env.VITE_ENVIRONMENT in SSR HTML', async () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
-      // Use regex to match regardless of data-one-source attribute (added by source inspector in dev)
       expect(html).toMatch(/<div[^>]*id="import-meta"[^>]*>ssr<\/div>/)
+    })
+
+    it('should have VITE_ENVIRONMENT from shared module in SSR HTML', async () => {
+      const response = await fetch(serverUrl)
+      const html = await response.text()
+      // shared module imported by both client and server must resolve correctly
+      expect(html).toMatch(/<div[^>]*id="shared-module"[^>]*>ssr<\/div>/)
+    })
+  })
+
+  describe('Server middleware (shared module)', () => {
+    it('should have correct VITE_ENVIRONMENT in middleware via shared module', async () => {
+      // regression: rolldown replaces process.env.VITE_ENVIRONMENT with undefined
+      // in shared modules at transform time before runtime setServerGlobals() runs
+      const response = await fetch(`${serverUrl}/test-env-middleware`)
+      expect(response.status).toBe(200)
+      const data = await response.json()
+      expect(data.viteEnvironment).toBe('ssr')
     })
   })
 
@@ -38,7 +54,6 @@ describe('Environment Variable Tests', () => {
       const page = await context.newPage()
       await page.goto(serverUrl, { waitUntil: 'networkidle' })
 
-      // Wait for hydration to update the value from 'ssr' to 'client'
       try {
         await page.waitForFunction(
           () => document.querySelector('#process-env')?.textContent === 'client',
@@ -59,7 +74,6 @@ describe('Environment Variable Tests', () => {
       const page = await context.newPage()
       await page.goto(serverUrl, { waitUntil: 'networkidle' })
 
-      // Wait for hydration to update the value from 'ssr' to 'client'
       try {
         await page.waitForFunction(
           () => document.querySelector('#import-meta')?.textContent === 'client',
@@ -71,6 +85,26 @@ describe('Environment Variable Tests', () => {
       }
 
       const text = await page.textContent('#import-meta')
+      expect(text).toBe('client')
+
+      await page.close()
+    })
+
+    it('should show VITE_ENVIRONMENT from shared module after hydration', async () => {
+      const page = await context.newPage()
+      await page.goto(serverUrl, { waitUntil: 'networkidle' })
+
+      try {
+        await page.waitForFunction(
+          () => document.querySelector('#shared-module')?.textContent === 'client',
+          { timeout: 15000 }
+        )
+      } catch (e) {
+        const text = await page.textContent('#shared-module')
+        throw new Error(`Hydration timeout - expected 'client' but got '${text}'`)
+      }
+
+      const text = await page.textContent('#shared-module')
       expect(text).toBe('client')
 
       await page.close()
