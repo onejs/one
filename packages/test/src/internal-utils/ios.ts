@@ -154,10 +154,12 @@ async function prepareTestApp() {
             )
             resolve()
           } else {
+            const body = await response.text().catch(() => '')
+            console.error(`Bundle request returned ${response.status}: ${body.slice(0, 500)}`)
             throw new Error(`${response.status}`)
           }
         } catch (error) {
-          if (retries >= 5) {
+          if (retries >= 30) {
             const errorMsg = error instanceof Error ? error.message : String(error)
             reject(
               new Error(
@@ -166,7 +168,7 @@ async function prepareTestApp() {
             )
           } else {
             retries++
-            setTimeout(checkUrl, 1000)
+            setTimeout(checkUrl, 2000)
           }
         }
       }

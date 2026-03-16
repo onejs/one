@@ -213,8 +213,8 @@ export function createReactNativeDevServerPlugin(
           console.error(
             `\n\n  Note, some errors may happen due to a stale Vite cache, you may want to try re-running with the "--clean" flag`
           )
-          res.writeHead(500)
-          res.end()
+          res.writeHead(500, { 'Content-Type': 'text/plain' })
+          res.end(err instanceof Error ? err.stack || err.message : String(err))
         }
       }
 
