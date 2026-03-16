@@ -1,6 +1,5 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
-import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
@@ -223,15 +222,12 @@ export declare namespace One {
         config?: {
             ensureTSConfig?: false;
             /**
-             * One automatically adds vite-tsconfig-paths, set this to false to disable, or
-             * pass in an object to pass options down. If you add your own vite-tsconfig-paths
-             * we will avoid adding it again internally.
+             * One enables Vite's native resolve.tsconfigPaths by default.
+             * Set this to false to disable tsconfig path resolution.
              *
-             * See: https://github.com/aleclarson/vite-tsconfig-paths
-             *
-             * @default false
+             * @default true
              */
-            tsConfigPaths?: boolean | TSConfigPluginOptions;
+            tsConfigPaths?: boolean;
         };
         native?: {
             /**

@@ -34,7 +34,6 @@
     "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@babel/plugin-transform-regenerator": "^7.28.4",
     "@react-native/babel-plugin-codegen": "^0.82.1",
-    "@swc/core": "^1.14.0",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",

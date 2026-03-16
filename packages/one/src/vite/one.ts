@@ -8,7 +8,6 @@ import {
 import events from 'node:events'
 import path from 'node:path'
 import { type Plugin, type PluginOption } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
@@ -216,35 +215,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.config?.tsConfigPaths === false
       ? []
       : [
-          (() => {
-            const pathsConfig = options.config?.tsConfigPaths
-            const skipDotDirs = (dir: string) => {
-              const name = dir.split('/').pop() || ''
-              return name.startsWith('.')
-            }
-
-            const tsPathsPlugin = tsconfigPaths({
-              projectDiscovery: 'eager',
-              ignoreConfigErrors: true,
-              skip: skipDotDirs,
-              ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-            })
-
-            return {
-              ...tsPathsPlugin,
-              // let vite aliases (e.g. react-native → react-native-web) resolve first
-              enforce: undefined,
-              // parallel viteBuild() calls share this plugin, so the second
-              // build's buildStart can fire before configResolved initializes
-              // tsconfigResolvers — swallow the error since buildStart only
-              // resets caches which isn't needed for parallel builds
-              buildStart() {
-                try {
-                  return tsPathsPlugin.buildStart?.call(this)
-                } catch {}
-              },
-            }
-          })(),
+          {
+            name: 'one:tsconfig-paths',
+            config() {
+              return {
+                resolve: {
+                  tsconfigPaths: true,
+                },
+              }
+            },
+          } satisfies Plugin,
         ]),
 
     {
