@@ -406,11 +406,10 @@ function patchPodfileForSwift6Workaround(config) {
       }
 
       const patch = `
-    # workaround: expo-modules-core 55.x swift 6.0 compiler crash (expo/expo#43199)
+    # workaround: expo-modules-core 55.x swift 6 strict concurrency crash (expo/expo#43199)
     installer.pods_project.targets.each do |target|
       if target.name == 'ExpoModulesCore'
         target.build_configurations.each do |build_config|
-          build_config.build_settings['SWIFT_VERSION'] = '5.10'
           build_config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'minimal'
           build_config.build_settings['SWIFT_COMPILATION_MODE'] = 'singlefile'
         end
