@@ -273,20 +273,8 @@ export async function setupTestServers({
       ) as typeof process.env
 
       const devArgs = runWithNonCliMode
-        ? [
-            '../../node_modules/.bin/vite',
-            'dev',
-            '--host',
-            '--port',
-            devPort.toString(),
-          ]
-        : [
-            '../../node_modules/.bin/one',
-            'dev',
-            '--clean',
-            '--port',
-            devPort.toString(),
-          ]
+        ? ['../../node_modules/.bin/vite', 'dev', '--host', '--port', devPort.toString()]
+        : ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()]
 
       const spawned = spawnServer('node', devArgs, {
         cwd: process.cwd(),

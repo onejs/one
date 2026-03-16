@@ -15,9 +15,7 @@ const isDebug = !!process.env.DEBUG
 async function spaNavigateTo(page: Page, target: string) {
   await page.evaluate((path) => {
     // dispatch custom event that triggers SPA navigation
-    window.dispatchEvent(
-      new CustomEvent('__test_navigate', { detail: { path } })
-    )
+    window.dispatchEvent(new CustomEvent('__test_navigate', { detail: { path } }))
   }, target)
 }
 

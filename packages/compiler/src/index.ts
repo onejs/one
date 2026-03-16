@@ -195,7 +195,10 @@ export async function createVXRNCompilerPlugin(
 
   // fix so we can align the diff between vite and rolldown id (rolldown resolves from root monorepo)
   const rolldownPath = resolvePath('rolldown')
-  const rolldownNodeMods = rolldownPath.slice(0, rolldownPath.indexOf(sep + 'node_modules'))
+  const rolldownNodeMods = rolldownPath.slice(
+    0,
+    rolldownPath.indexOf(sep + 'node_modules')
+  )
 
   /**
    * Vite config, filled by a `configResolved` hook.
@@ -343,8 +346,7 @@ ${rootJS.code}
                         return null
                       }
 
-                      perfStats.optimizeDeps.byEnvironment[environment]
-                        .filesTransformed++
+                      perfStats.optimizeDeps.byEnvironment[environment].filesTransformed++
 
                       return {
                         code: result.code,

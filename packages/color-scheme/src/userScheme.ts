@@ -36,7 +36,7 @@ function getInitialSetting(): SchemeSetting {
 function getInitialValue(setting: SchemeSetting): Scheme {
   if (process.env.TAMAGUI_TARGET === 'native') {
     if (setting === 'system') {
-      return (Appearance.getColorScheme() === 'dark' ? 'dark' : 'light')
+      return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'
     }
     return setting
   }
@@ -80,7 +80,7 @@ function startWebListener() {
 function resolveValue(setting: SchemeSetting): Scheme {
   if (setting === 'system') {
     if (process.env.TAMAGUI_TARGET === 'native') {
-      return (Appearance.getColorScheme() === 'dark' ? 'dark' : 'light')
+      return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'
     }
     return getSystemScheme()
   }
