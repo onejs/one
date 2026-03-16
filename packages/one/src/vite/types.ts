@@ -222,14 +222,6 @@ export namespace One {
        */
       autoEntriesScanning?: boolean | 'flat'
 
-      /**
-       * Routes to fetch after the dev server starts to trigger Vite's dependency
-       * discovery upfront. Discovered deps are cached in .vite and pre-included
-       * on next startup, eliminating "optimized dependencies changed. reloading" cascades.
-       *
-       * @example ['/', '/beta/signup', '/settings']
-       */
-      warmRoutes?: string[]
     }
 
     /**

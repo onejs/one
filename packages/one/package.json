@@ -32,6 +32,11 @@
       "import": "./dist/esm/vite.mjs",
       "require": "./dist/cjs/vite.js"
     },
+    "./vite-auto-warm": {
+      "types": "./types/vite-auto-warm.d.ts",
+      "import": "./dist/esm/vite-auto-warm.mjs",
+      "require": "./dist/cjs/vite-auto-warm.js"
+    },
     "./serve": {
       "types": "./types/serve.d.ts",
       "import": "./dist/esm/serve.mjs",
