@@ -1,0 +1,4 @@
+.critical-test-marker {
+  --critical-css-loaded: 1;
+  display: block;
+}

@@ -49,6 +49,7 @@ export async function buildPage(
   serverJsPath: string,
   preloads: string[],
   allCSS: string[],
+  layoutCSS: string[],
   routePreloads: Record<string, string>,
   allCSSContents?: string[],
   criticalPreloads?: string[],
@@ -372,36 +373,44 @@ if (typeof document === 'undefined') globalThis.document = {}
           await outputFile(htmlOutPath, html)
           recordTiming('writeHTML', performance.now() - t0)
         } else {
-          // Generate CSS - either inline styles or link tags
-          const cssOutput = allCSSContents
-            ? allCSSContents
-                .filter(Boolean)
-                .map((content) => `    <style>${content}</style>`)
-                .join('\n')
-            : allCSS
-                .map((file) => `    <link rel="stylesheet" href=${file} />`)
-                .join('\n')
+          // separate layout css (before scripts) from page css (after scripts)
+          const layoutCSSSet = new Set(layoutCSS)
+
+          // render css as either inline <style> (if content provided) or <link>
+          function renderCSSTag(file: string, index: number): string {
+            const content = allCSSContents?.[index]
+            if (content) {
+              return `    <style>${content}</style>`
+            }
+            return `    <link rel="stylesheet" href=${file} />`
+          }
+
+          const layoutCssOutput = allCSS
+            .map((file, i) => (layoutCSSSet.has(file) ? renderCSSTag(file, i) : ''))
+            .filter(Boolean)
+            .join('\n')
+
+          const pageCssOutput = allCSS
+            .map((file, i) => (!layoutCSSSet.has(file) ? renderCSSTag(file, i) : ''))
+            .filter(Boolean)
+            .join('\n')
 
           // Use separated preloads if available
           const criticalScripts = (criticalPreloads || preloads)
             .map((preload) => `   <script type="module" src="${preload}"></script>`)
             .join('\n')
 
-          // Non-critical scripts as modulepreload hints only
-          const deferredLinks = (deferredPreloads || [])
-            .map(
-              (preload) =>
-                `   <link rel="modulepreload" fetchPriority="low" href="${preload}"/>`
-            )
-            .join('\n')
+          // skip modulepreload hints for pure SPA pages - the JS module graph
+          // handles its own loading, and route preloading happens on hover intent
+          // emitting hundreds of modulepreload links saturates connections for no benefit
 
           await outputFile(
             htmlOutPath,
             `<!DOCTYPE html><html><head>
             ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
+            ${layoutCssOutput}
             ${criticalScripts}
-            ${deferredLinks}
-            ${cssOutput}
+            ${pageCssOutput}
           </head><body></body></html>`
           )
         }
@@ -431,6 +440,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
   return {
     type: foundRoute.type,
     css: allCSS,
+    layoutCSS,
     cssContents: allCSSContents,
     routeFile: foundRoute.file,
     middlewares,

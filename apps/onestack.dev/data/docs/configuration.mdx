@@ -338,7 +338,7 @@ export default {
 }
 ```
 
-This is particularly effective for layout CSS that's critical for the initial render. Combined with `experimental_scriptLoading`, you can achieve significant Lighthouse score improvements.
+This inlines ALL CSS. For per-file control, use the [`?critical` import suffix](/docs/guides-css#critical-css-critical) instead, which only inlines the files you mark.
 
 **Default:** `false`
 
