@@ -47,8 +47,12 @@ export async function runWithAsyncLocalContext<A>(
 
 export async function setResponseHeaders(cb: (headers: Headers) => void) {
   const id = ensureAsyncLocalID()
-  const headers = asyncHeadersCache.get(id) ?? new Headers()
-  asyncHeadersCache.set(id, headers)
+  // read from globalThis to work in bundled middleware where module-level
+  // vars may be lazily initialized by the bundler (rolldown __esmMin)
+  const cache: WeakMap<any, Headers> =
+    globalThis['__vxrnasyncHeadersCache'] ?? asyncHeadersCache
+  const headers = cache.get(id) ?? new Headers()
+  cache.set(id, headers)
   cb(headers)
 }
 
@@ -76,9 +80,16 @@ export function ensureAsyncLocalID() {
   // since Vercel ultimately deploys to AWS Lambda, which does not have this issue
   // The Error you willl see is something like this:
   //    Error: Internal One error, no AsyncLocalStorage id! at ensureAsyncLocalID (file:///var/task/server/_virtual_one-entry.js:37411:64)
+
+  // read from globalThis to work in bundled middleware where module-level
+  // vars may be lazily initialized by the bundler (rolldown __esmMin)
+  const globalIdKey = GLOBAL_ID_KEY || '__oneGlobalContextId'
+  const store =
+    requestAsyncLocalStore ?? globalThis['__vxrnrequestAsyncLocalStore']
+
   const id = process.env.VERCEL
-    ? globalThis[GLOBAL_ID_KEY]
-    : requestAsyncLocalStore?.getStore()
+    ? globalThis[globalIdKey]
+    : store?.getStore()
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)
