@@ -157,6 +157,43 @@ export function createApp(options: CreateAppProps) {
     }
   }
 
+  // find root layout in routes regardless of render mode suffix (+ssg, +ssr, +spa)
+  // the glob keys include the suffix (e.g., /app/_layout+ssg.tsx) but we need to
+  // match any root layout variant to ensure it's preloaded before rendering
+  function findAndPreloadRootLayout(
+    routes: Record<string, () => Promise<unknown>>,
+    routerRoot: string
+  ): Promise<unknown> | undefined {
+    // try exact match first (no suffix)
+    const exactKey = `/${routerRoot}/_layout.tsx`
+    if (routes[exactKey]) {
+      return routes[exactKey]()
+    }
+
+    // try with render mode suffixes
+    for (const suffix of ['+ssg', '+ssr', '+spa']) {
+      const key = `/${routerRoot}/_layout${suffix}.tsx`
+      if (routes[key]) {
+        return routes[key]()
+      }
+    }
+
+    // try .ts extension variants
+    const exactKeyTs = `/${routerRoot}/_layout.ts`
+    if (routes[exactKeyTs]) {
+      return routes[exactKeyTs]()
+    }
+
+    for (const suffix of ['+ssg', '+ssr', '+spa']) {
+      const key = `/${routerRoot}/_layout${suffix}.ts`
+      if (routes[key]) {
+        return routes[key]()
+      }
+    }
+
+    return undefined
+  }
+
   // skew protection: auto-reload on chunk load failures
   if (typeof window !== 'undefined' && process.env.ONE_SKEW_PROTECTION !== 'false') {
     window.addEventListener('vite:preloadError', (e) => {
@@ -202,7 +239,7 @@ export function createApp(options: CreateAppProps) {
         registerPreloadedRoute(routeKey, mod)
         return mod
       })
-    : [options.routes[`/${options.routerRoot}/_layout.tsx`]?.()]
+    : [findAndPreloadRootLayout(options.routes, options.routerRoot)]
 
   // for 404 pages, use history.state.__tempLocation to route to notFoundPath
   // without changing the browser URL. the router checks __tempLocation and uses
