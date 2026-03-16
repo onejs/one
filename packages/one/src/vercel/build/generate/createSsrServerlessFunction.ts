@@ -23,7 +23,8 @@ export async function createSsrServerlessFunction(
     )
     await fs.ensureDir(funcFolder)
 
-    const distServerFrom = resolve(join(oneOptionsRoot, 'dist', 'server'))
+    const outDir = buildInfo.outDir || 'dist'
+    const distServerFrom = resolve(join(oneOptionsRoot, outDir, 'server'))
     const distServerTo = resolve(join(funcFolder, 'server'))
     await fs.ensureDir(distServerTo)
     postBuildLogs.push(
@@ -118,7 +119,7 @@ export async function createSsrServerlessFunction(
       route = buildInfoConfig.default.routeToBuildInfo[routeName];
     }
 
-    const exported = await import(route.serverJsPath.replace('dist/','../'))
+    const exported = await import(route.serverJsPath.replace('${outDir}/','../'))
     const loaderData = await exported.loader?.(loaderProps)
 
     // For loader requests, return the loader data as a JavaScript module

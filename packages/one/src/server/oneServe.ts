@@ -22,14 +22,14 @@ import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
-async function readStaticHtml(htmlPath: string): Promise<string | null> {
+async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string | null> {
   const fetchStaticHtml = getFetchStaticHtml()
   if (fetchStaticHtml) {
     const html = await fetchStaticHtml(htmlPath)
     if (html) return html
   }
   try {
-    return await readFile(join('dist/client', htmlPath), 'utf-8')
+    return await readFile(join(`${outDir}/client`, htmlPath), 'utf-8')
   } catch {
     return null
   }
@@ -55,6 +55,7 @@ export async function oneServe(
     lazyRoutes?: LazyRoutes
   }
 ) {
+  const outDir = buildInfo.outDir || 'dist'
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } =
     await import('../createHandleRequest')
   const { isResponse } = await import('../utils/isResponse')
@@ -128,9 +129,9 @@ export async function oneServe(
 
     try {
       const pathToResolve = serverPath || lazyKey || ''
-      const resolvedPath = pathToResolve.includes('dist/server')
+      const resolvedPath = pathToResolve.includes(`${outDir}/server`)
         ? pathToResolve
-        : join('./', 'dist/server', pathToResolve)
+        : join('./', `${outDir}/server`, pathToResolve)
 
       const routeExported = lazyKey
         ? options?.lazyRoutes?.pages?.[lazyKey]
@@ -162,7 +163,7 @@ export async function oneServe(
         : await import(
             resolve(
               process.cwd(),
-              `${serverOptions.root}/dist/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
+              `${serverOptions.root}/${outDir}/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
             )
           )
       render = entry.default.render as (props: RenderAppProps) => any
@@ -180,7 +181,7 @@ export async function oneServe(
       const fileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
       const apiFile = join(
         process.cwd(),
-        'dist',
+        outDir,
         'api',
         fileName + (apiCJS ? '.cjs' : '.js')
       )
@@ -200,10 +201,10 @@ export async function oneServe(
       // For workers, look up by routeFile (original file path like "./dynamic/[id]+ssr.tsx")
       // For Node.js, use route.file which may be loaderServerPath (already includes dist/server)
       const routeFile = (route as any).routeFile || route.file
-      // route.file may already include dist/server if it came from loaderServerPath
-      const serverPath = route.file.includes('dist/server')
+      // route.file may already include outDir/server if it came from loaderServerPath
+      const serverPath = route.file.includes(`${outDir}/server`)
         ? route.file
-        : join('./', 'dist/server', route.file)
+        : join('./', `${outDir}/server`, route.file)
 
       let exports
       try {
@@ -309,7 +310,7 @@ export async function oneServe(
             if (nfHtml) {
               try {
                 const html = await readFile(
-                  join(process.cwd(), 'dist/client', nfHtml),
+                  join(process.cwd(), `${outDir}/client`, nfHtml),
                   'utf-8'
                 )
                 return new Response(html, {
@@ -467,7 +468,7 @@ url: ${url}`)
             : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
-          const html = await readStaticHtml(htmlPath)
+          const html = await readStaticHtml(htmlPath, outDir)
 
           if (html) {
             const headers = new Headers()
@@ -486,7 +487,7 @@ url: ${url}`)
           const notFoundHtmlPath = routeMap[notFoundRoute]
 
           if (notFoundHtmlPath) {
-            const notFoundHtml = await readStaticHtml(notFoundHtmlPath)
+            const notFoundHtml = await readStaticHtml(notFoundHtmlPath, outDir)
 
             if (notFoundHtml) {
               // inject 404 marker so client knows this is a 404 response

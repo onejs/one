@@ -8,9 +8,9 @@ export const getServerCJSSetting = (options: ServerOptions) => {
   return typeof serverOptions !== 'object' ? false : serverOptions.outputFormat === 'cjs'
 }
 
-export const getServerEntry = (options: ServerOptions) => {
+export const getServerEntry = (options: ServerOptions, outDir = 'dist') => {
   return resolve(
     process.cwd(),
-    `${options.root}/dist/server/_virtual_one-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
+    `${options.root}/${outDir}/server/_virtual_one-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
   )
 }

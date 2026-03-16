@@ -180,6 +180,10 @@ const serveCommand = defineCommand({
     loadEnv: {
       type: 'boolean',
     },
+    outDir: {
+      type: 'string',
+      description: 'Build output directory (default: dist)',
+    },
   },
   async run({ args }) {
     const { serve } = await import('./serve')
@@ -190,6 +194,7 @@ const serveCommand = defineCommand({
       host,
       compress: args.compress,
       loadEnv: !!args.loadEnv,
+      outDir: lastValue(args.outDir),
     })
   },
 })
