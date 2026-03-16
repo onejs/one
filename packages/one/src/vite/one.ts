@@ -21,6 +21,7 @@ import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
+import { warmRoutesPlugin } from './plugins/warmRoutesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
@@ -533,6 +534,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     generateFileSystemRouteTypesPlugin(options),
 
     fixDependenciesPlugin(options.patches),
+
+    ...(options.optimization?.warmRoutes?.length
+      ? [warmRoutesPlugin(options.optimization.warmRoutes)]
+      : []),
 
     createVirtualEntry({
       ...options,

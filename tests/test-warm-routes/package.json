@@ -1,0 +1,22 @@
+{
+  "name": "test-warm-routes",
+  "version": "1.10.6",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "test": "bun run tests/warm-routes.test.ts"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.1",
+    "react-native-screens": "~4.16.0",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "vite": "^7.1.12"
+  }
+}
