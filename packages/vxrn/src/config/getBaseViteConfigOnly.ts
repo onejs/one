@@ -127,9 +127,11 @@ export async function getBaseViteConfig(
     // enable OXC React Refresh so component registration ($RefreshReg$) is
     // injected into TSX/JSX output; the one:react-refresh-web compiler plugin
     // then wraps the output with the runtime preamble and import.meta.hot.accept
+    // only enable in dev mode - in production the refresh plugin doesn't run,
+    // leaving $RefreshReg$ undefined which crashes client-side JS
     oxc: {
       jsx: {
-        refresh: true,
+        refresh: mode === 'development',
       },
     },
   } satisfies Omit<InlineConfig, 'plugins'>
