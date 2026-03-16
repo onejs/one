@@ -66,6 +66,13 @@ async function warmRouteModules(
 
   if (filesToWarm.size === 0) return
 
+  // use the client environment to trigger client-side dep optimization
+  const clientEnv = server.environments?.client
+  const transformRequest = clientEnv
+    ? (url: string) => clientEnv.transformRequest(url)
+    : (url: string) => server.transformRequest(url)
+  const moduleGraph = clientEnv?.moduleGraph ?? server.moduleGraph
+
   // recursively transform through client pipeline to trigger dep discovery
   const seen = new Set<string>()
 
@@ -74,12 +81,12 @@ async function warmRouteModules(
     seen.add(url)
 
     try {
-      await server.transformRequest(url)
+      await transformRequest(url)
     } catch {
       return
     }
 
-    const mod = await server.moduleGraph.getModuleByUrl(url)
+    const mod = await moduleGraph.getModuleByUrl(url)
     if (!mod) return
 
     for (const imported of mod.importedModules) {
