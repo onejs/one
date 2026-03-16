@@ -70,6 +70,13 @@ export async function setup({ provide }: GlobalSetupContext) {
 
   console.log('[test-vercel] Starting Vercel local server...')
 
+  // kill any leftover process on the port from a previous test run
+  try {
+    execSync(`lsof -t -i :${PORT} | xargs kill -9 2>/dev/null`, { stdio: 'ignore' })
+    // brief pause to let the port release
+    await new Promise((resolve) => setTimeout(resolve, 500))
+  } catch {}
+
   // Start the Vercel local server
   serverProcess = spawn('node', ['vercel-server.mjs'], {
     cwd: testDir,

@@ -497,8 +497,10 @@ const server = createServer((req, res) => {
 
     // For preload/loader requests with cache key mismatch, try to find a matching file
     // The cache key is random per build, so client may request different key than what exists
+    // Note: root/index page preloads have no base name prefix (e.g., _12345_preload.js)
+    // while other pages have a prefix (e.g., ssr-page_12345_preload.js)
     const preloadMatch = originalPathname.match(
-      /^\/assets\/(.+?)_\d+_(preload(?:_css)?|vxrn_loader)\.js$/
+      /^\/assets\/(.*?)_?\d+_(preload(?:_css)?|vxrn_loader)\.js$/
     )
     if (preloadMatch) {
       const baseName = preloadMatch[1]
@@ -508,7 +510,12 @@ const server = createServer((req, res) => {
       try {
         const assetsDir = join(STATIC_DIR, 'assets')
         const files = await readdir(assetsDir)
-        const pattern = new RegExp(`^${baseName}_\\d+_${suffix}\\.js$`)
+        // for root page (empty baseName), match files like _12345_suffix.js
+        // for named pages, match files like baseName_12345_suffix.js
+        const escapedBase = baseName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        const pattern = baseName
+          ? new RegExp(`^${escapedBase}_\\d+_${suffix}\\.js$`)
+          : new RegExp(`^_\\d+_${suffix}\\.js$`)
         const match = files.find((f) => pattern.test(f))
         if (match) {
           const content = await readFile(join(assetsDir, match))
