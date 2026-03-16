@@ -478,6 +478,7 @@ export declare namespace One {
         permanent: boolean;
     };
     export type BuildInfo = {
+        outDir?: string;
         constants: {
             CACHE_KEY: string;
         };
@@ -518,6 +519,8 @@ export declare namespace One {
         /** Non-critical preloads that are modulepreload hints only */
         deferredPreloads?: string[];
         css: string[];
+        /** CSS from layout entries only - loaded before scripts to prevent FOUC */
+        layoutCSS: string[];
         /** When inlineLayoutCSS is enabled, contains the actual CSS content */
         cssContents?: string[];
     };
