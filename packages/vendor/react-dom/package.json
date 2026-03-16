@@ -20,7 +20,7 @@
     "scheduler": "^0.25.0"
   },
   "peerDependencies": {
-    "react": "19.1.0"
+    "react": "19.2.0"
   },
   "files": [
     "LICENSE",

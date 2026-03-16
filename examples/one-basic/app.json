@@ -2,7 +2,6 @@
   "expo": {
     "name": "one-basic",
     "slug": "one-basic",
-    "newArchEnabled": true,
     "platforms": [
       "ios",
       "android"

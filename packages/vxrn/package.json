@@ -62,9 +62,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@expo/config-plugins": "^8.0.8",
+    "@expo/config-plugins": "~55.0.6",
     "@hono/node-server": "^1.19.6",
-    "@react-native/dev-middleware": "^0.83.0",
+    "@react-native/dev-middleware": "^0.83.4",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "@react-native-community/cli": "^20.0.2",
+    "@react-native-community/cli": "^20.1.2",
     "@tamagui/build": "2.0.0-rc.22",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^24.10.0",
