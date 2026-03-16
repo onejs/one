@@ -342,6 +342,52 @@ This is particularly effective for layout CSS that's critical for the initial re
 
 **Default:** `false`
 
+### Code Splitting
+
+One uses Rolldown for production builds and configures sensible code splitting defaults out of the box. By default, chunks smaller than 42KB are merged together to reduce the number of HTTP requests on page load.
+
+You can customize the code splitting behavior through `build.rolldownOptions.output.codeSplitting`:
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      // ... your one() config
+    }),
+  ],
+
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          // minimum chunk size in bytes before merging (default: 42000)
+          minSize: 42_000,
+
+          // maximum chunk size - splits chunks larger than this
+          maxSize: 500_000,
+
+          // group specific modules into named chunks
+          groups: [
+            {
+              name: 'vendor',
+              test: /node_modules/,
+              priority: 1,
+              minSize: 50_000,
+              // only create chunk if shared by 2+ entry points
+              minShareCount: 2,
+            },
+          ],
+        },
+      },
+    },
+  },
+}
+```
+
+**Why this matters:** Without chunk merging, a large app can produce hundreds of tiny JS files (many under 1KB). Even with HTTP/2 multiplexing, this many requests saturates browser connections and increases total transfer overhead. The 42KB default strikes a balance between granular caching and fewer round-trips.
+
+**SPA page optimization:** For SPA pages, One skips emitting `<link rel="modulepreload">` hints in the HTML since the JS module graph handles its own lazy loading and route preloading happens on hover intent. This avoids saturating the connection with hundreds of preload hints that provide no benefit for client-rendered pages.
+
 ### web.experimental_scriptLoading
 
 Controls how scripts are loaded for improved performance. This is an experimental feature that can significantly improve Lighthouse scores by deferring non-critical JavaScript.

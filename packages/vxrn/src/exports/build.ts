@@ -204,11 +204,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         rolldownOptions: {
           input: ['virtual:one-entry'],
 
-          // output: {
-          //   manualChunks: {
-          //     preload: ['\0vite/preload-helper.js'],
-          //   },
-          // },
+          output: {
+            codeSplitting: {
+              // merge tiny chunks to reduce HTTP requests and total chunk count
+              minSize: 42_000,
+            },
+          },
         },
       },
     } satisfies UserConfig)
