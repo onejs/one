@@ -1,6 +1,7 @@
 import type { OutputAsset, OutputChunk } from 'rolldown';
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<void | {
+    outDir: string;
     processEnvDefines: {
         [k: string]: string;
     };
