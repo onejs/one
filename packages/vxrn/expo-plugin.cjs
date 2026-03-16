@@ -406,12 +406,11 @@ function patchPodfileForSwift6Workaround(config) {
       }
 
       const patch = `
-    # workaround: expo-modules-core 55.x swift 6 compiler errors with @MainActor conformances (expo/expo#43199)
-    # SWIFT_VERSION must be '5' (valid: 4, 4.2, 5, 6) - '5.10' is invalid and ignored
+    # workaround: expo-modules-core 55.x swift 6 strict concurrency errors (expo/expo#43199)
+    # keep swift 6 (needed for @MainActor conformance syntax) but relax concurrency checking
     installer.pods_project.targets.each do |target|
       if target.name == 'ExpoModulesCore'
         target.build_configurations.each do |build_config|
-          build_config.build_settings['SWIFT_VERSION'] = '5'
           build_config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'minimal'
           build_config.build_settings['SWIFT_COMPILATION_MODE'] = 'singlefile'
         end
