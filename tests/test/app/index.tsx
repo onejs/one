@@ -1,7 +1,7 @@
 import { Link, useLoader } from 'one'
 import { useAnimatedStyle } from 'react-native-reanimated'
 import { TestNavigationHelper } from '~/features/test-helpers/TestNavigationHelper'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Platform } from 'react-native'
 
 declare global {
   var __setupFileRan: {

@@ -1,7 +1,8 @@
 // matches the routeId stub return value in both minified and non-minified code:
 //   non-minified: return "./loader-refetch/index.tsx"
 //   minified:     return"./loader-refetch/index.tsx"
-const routeIdReturnRegex = /return\s*"\.\/[^"]+"/
+//   minified (rolldown): return`./loader-refetch/index.tsx`
+const routeIdReturnRegex = /return\s*["'`]\.\/[^"'`]+["'`]/
 
 export function replaceLoader({
   code,
