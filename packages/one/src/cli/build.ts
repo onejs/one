@@ -1092,8 +1092,16 @@ export default {
               replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root),
             },
             {
+              find: 'react-native/package.json',
+              replacement: resolvePath('react-native-web/package.json', options.root),
+            },
+            {
               find: 'react-native',
               replacement: resolvePath('react-native-web', options.root),
+            },
+            {
+              find: 'react-native-safe-area-context',
+              replacement: resolvePath('@vxrn/safe-area', options.root),
             },
           ],
         },
