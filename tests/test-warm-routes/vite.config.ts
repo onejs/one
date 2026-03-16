@@ -1,4 +1,4 @@
-import { one } from 'one/vite'
+import { one, autoWarmPlugin } from 'one/vite'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import type { UserConfig } from 'vite'
@@ -13,14 +13,12 @@ export default {
   },
 
   plugins: [
+    autoWarmPlugin(),
     one({
       config: {
         tsConfigPaths: {
           ignoreConfigErrors: true,
         },
-      },
-      optimization: {
-        warmRoutes: ['/', '/other'],
       },
     }),
   ],
