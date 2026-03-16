@@ -110,6 +110,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   const { optimizeDeps } = getOptimizeDeps('build')
+  const { rolldownOptions: optimizeDepsRolldownOptions, ...optimizeDepsWithoutRolldown } =
+    optimizeDeps
 
   let webBuildConfig = mergeConfig(
     await getBaseViteConfigWithPlugins({
@@ -121,7 +123,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clearScreen: false,
       configFile: false,
       ...(skipEnv && { envFile: false }),
-      optimizeDeps,
+      // rolldownOptions goes on environments.client to avoid Vite compat-proxy bug
+      optimizeDeps: optimizeDepsWithoutRolldown,
+      environments: {
+        client: {
+          optimizeDeps: {
+            rolldownOptions: optimizeDepsRolldownOptions,
+          },
+        },
+      },
       logLevel: 'warn',
       build: {
         rolldownOptions: {
@@ -245,7 +255,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       // we used to do this i think to make our patching react work?
       // but stopped working for prod builds due to duplicate react somehow
       // external: ['react', 'react-dom', 'expo-modules-core'],
-      optimizeDeps,
+      optimizeDeps: optimizeDepsWithoutRolldown,
+    },
+
+    environments: {
+      ssr: {
+        optimizeDeps: {
+          rolldownOptions: optimizeDepsRolldownOptions,
+        },
+      },
     },
 
     build: {
