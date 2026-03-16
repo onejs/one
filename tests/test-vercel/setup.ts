@@ -53,6 +53,8 @@ export async function setup({ provide }: GlobalSetupContext) {
         stdio: 'inherit',
         env: {
           ...process.env,
+          // vitest sets NODE_ENV=test which breaks static page generation
+          NODE_ENV: 'production',
           ONE_SERVER_URL: `http://localhost:${PORT}`,
         },
       })
