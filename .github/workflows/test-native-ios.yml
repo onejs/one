@@ -10,6 +10,7 @@ on:
     branches:
       - main
       - ci/native-tests-free-runners
+      - react-native-82
     paths:
       - '.github/actions/install/**'
       - '.github/workflows/build-ios-test-container-app.yml'
