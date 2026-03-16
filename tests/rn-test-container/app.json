@@ -1,7 +1,6 @@
 {
   "name": "RN Test Container",
   "slug": "rn-test-container",
-  "newArchEnabled": true,
   "plugins": [
     "vxrn/expo-plugin",
     [

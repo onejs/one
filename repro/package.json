@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "expo": "54.0.20",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-native": "0.81.5",
     "one": "1.10.6-1773632106645",
     "react-native-reanimated": "~4.1.3",
