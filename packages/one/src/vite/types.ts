@@ -220,7 +220,6 @@ export namespace One {
        * @default 'flat'
        */
       autoEntriesScanning?: boolean | 'flat'
-
     }
 
     /**

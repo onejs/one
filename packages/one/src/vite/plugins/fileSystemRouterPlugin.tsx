@@ -34,7 +34,6 @@ const routeTypeColors: Record<string, (s: string) => string> = {
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
-
 export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
   const preloads = ['/@vite/client', virtalEntryIdClient]
 

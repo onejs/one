@@ -1,9 +1,5 @@
 import type { Hono } from 'hono'
-import type {
-  OutputAsset,
-  OutputChunk,
-  TreeshakingOptions,
-} from 'rolldown'
+import type { OutputAsset, OutputChunk, TreeshakingOptions } from 'rolldown'
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]

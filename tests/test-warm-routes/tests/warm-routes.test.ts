@@ -52,7 +52,9 @@ function startDevServer(port: number): {
 
       // check existing output
       const existing = output.join('')
-      if (typeof pattern === 'string' ? existing.includes(pattern) : pattern.test(existing)) {
+      if (
+        typeof pattern === 'string' ? existing.includes(pattern) : pattern.test(existing)
+      ) {
         clearTimeout(timer)
         resolve(existing)
         return

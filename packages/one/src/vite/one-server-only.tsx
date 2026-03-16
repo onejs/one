@@ -84,12 +84,9 @@ export function ensureAsyncLocalID() {
   // read from globalThis to work in bundled middleware where module-level
   // vars may be lazily initialized by the bundler (rolldown __esmMin)
   const globalIdKey = GLOBAL_ID_KEY || '__oneGlobalContextId'
-  const store =
-    requestAsyncLocalStore ?? globalThis['__vxrnrequestAsyncLocalStore']
+  const store = requestAsyncLocalStore ?? globalThis['__vxrnrequestAsyncLocalStore']
 
-  const id = process.env.VERCEL
-    ? globalThis[globalIdKey]
-    : store?.getStore()
+  const id = process.env.VERCEL ? globalThis[globalIdKey] : store?.getStore()
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)

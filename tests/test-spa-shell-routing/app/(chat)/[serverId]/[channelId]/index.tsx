@@ -6,7 +6,9 @@ export default function ChannelPage() {
 
   return (
     <div id="channel-page">
-      <h1>Channel: {serverId}/{channelId}</h1>
+      <h1>
+        Channel: {serverId}/{channelId}
+      </h1>
       <span id="page-pathname">{pathname}</span>
       <span id="server-id">{serverId}</span>
       <span id="channel-id">{channelId}</span>

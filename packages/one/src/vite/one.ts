@@ -228,18 +228,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 if (!existsSync(configPath)) return
                 const raw = readFileSync(configPath, 'utf-8')
                 // strip single-line and multi-line comments for JSON.parse
-                const stripped = raw
-                  .replace(/\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
-                    (m, g) => g ? '' : m)
+                const stripped = raw.replace(
+                  /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+                  (m, g) => (g ? '' : m)
+                )
                 const config = JSON.parse(stripped)
                 const paths = config?.compilerOptions?.paths
                 const baseUrl = config?.compilerOptions?.baseUrl || '.'
                 if (!paths) return
-                for (const [pattern, targets] of Object.entries(paths as Record<string, string[]>)) {
+                for (const [pattern, targets] of Object.entries(
+                  paths as Record<string, string[]>
+                )) {
                   const target = targets[0]
                   if (!target) continue
                   if (pattern.endsWith('/*')) {
-                    const resolved = path.resolve(resolvedRoot, baseUrl, target.slice(0, -1))
+                    const resolved = path.resolve(
+                      resolvedRoot,
+                      baseUrl,
+                      target.slice(0, -1)
+                    )
                     mappings.push({
                       prefix: pattern.slice(0, -1),
                       replacement: resolved.endsWith('/') ? resolved : resolved + '/',
@@ -273,7 +280,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               },
 
               resolveId(source: string) {
-                const jsExts = ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cjs', '.cts']
+                const jsExts = [
+                  '.ts',
+                  '.tsx',
+                  '.js',
+                  '.jsx',
+                  '.mts',
+                  '.mjs',
+                  '.cjs',
+                  '.cts',
+                ]
                 for (const m of mappings) {
                   let candidate: string | undefined
                   if (m.wildcard) {
@@ -292,7 +308,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                   }
                   // try /index
                   for (const e of jsExts) {
-                    if (existsSync(candidate + '/index' + e)) return candidate + '/index' + e
+                    if (existsSync(candidate + '/index' + e))
+                      return candidate + '/index' + e
                   }
                   return candidate
                 }
@@ -308,10 +325,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       resolveId(source) {
-        if (
-          this.environment?.name === 'client' ||
-          this.environment?.name === 'ssr'
-        ) {
+        if (this.environment?.name === 'client' || this.environment?.name === 'ssr') {
           if (
             source.startsWith('react-native/Libraries/') ||
             /react-native-web(-lite)?\/.*\/Libraries\//.test(source)
@@ -657,4 +671,3 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   ]
 }
 // vite 8
-

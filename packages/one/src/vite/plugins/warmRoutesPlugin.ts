@@ -79,9 +79,7 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
 
       // deps that were already in the user's config before we added ours
       const userInclude = new Set(
-        (server.config.optimizeDeps.include || []).filter(
-          (d) => !cachedDeps.includes(d)
-        )
+        (server.config.optimizeDeps.include || []).filter((d) => !cachedDeps.includes(d))
       )
 
       function snapshotDeps() {
