@@ -136,7 +136,7 @@ export async function buildBundle(
 
   // hermes-compiler 0.14.x doesn't support class expressions or private fields,
   // run babel to downlevel if needed (same as what metro does)
-  if (!dev && /\bclass\s/.test(builtBundle)) {
+  if (!dev && /\bclass\s+[a-zA-Z]/.test(builtBundle)) {
     console.info('Transforming bundle for Hermes compatibility...')
     builtBundle = await transformForHermes(builtBundle)
   }
