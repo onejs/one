@@ -5,7 +5,7 @@ import type { Plugin } from 'vite';
  *
  * Use as a top-level plugin in vite.config.ts:
  *
- *   import { autoWarmPlugin } from 'one/vite-auto-warm'
+ *   import { autoWarmPlugin } from 'one/vite'
  *   plugins: [autoWarmPlugin(), ...]
  *
  * Pass a path string to persist permanently instead of in .vite cache:
