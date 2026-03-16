@@ -535,9 +535,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     fixDependenciesPlugin(options.patches),
 
-    ...(options.optimization?.warmRoutes?.length
-      ? [warmRoutesPlugin(options.optimization.warmRoutes)]
-      : []),
+    ...(options.optimization?.warmRoutes?.length ? [warmRoutesPlugin()] : []),
 
     createVirtualEntry({
       ...options,
