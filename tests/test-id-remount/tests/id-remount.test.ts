@@ -78,11 +78,11 @@ afterAll(async () => {
 })
 
 function isSSRFormat(id: string): boolean {
-  return id.startsWith(':R') || id.startsWith('«R')
+  return id.startsWith(':R') || id.startsWith('«R') || id.startsWith('_R')
 }
 
 function isClientFormat(id: string): boolean {
-  return id.startsWith(':r') || id.startsWith('«r')
+  return id.startsWith(':r') || id.startsWith('«r') || id.startsWith('_r')
 }
 
 describe('Hydration ID Remount Detection', () => {
