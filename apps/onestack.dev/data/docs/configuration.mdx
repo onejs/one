@@ -487,25 +487,30 @@ export default {
 - **`true`**: Scans and adds all routes as entries
 - **`false`**: Disables auto-scanning entirely
 
-### optimization.warmRoutes
+### autoWarmPlugin
 
-Routes to fetch after the dev server starts to trigger Vite's dependency discovery upfront. Discovered deps are cached in `.vite` and pre-included on next startup, eliminating "optimized dependencies changed. reloading" cascades.
+A standalone Vite plugin that passively tracks dependencies Vite discovers during normal development. On your next dev server startup, those deps are pre-included in `optimizeDeps.include`, eliminating "optimized dependencies changed. reloading" cascades.
 
-On first run, One fetches each route after the server starts, triggering Vite to discover and optimize all dependencies. These deps are saved to a cache file inside `node_modules/.vite` (which Vite automatically clears when your lockfile or config changes). On subsequent startups, the cached deps are injected into `optimizeDeps.include` so everything is pre-optimized before you open the browser.
+Import it from `one/vite` and add it as a top-level plugin:
 
 ```tsx fileName=vite.config.ts
+import { autoWarmPlugin, one } from 'one/vite'
+
 export default {
   plugins: [
-    one({
-      optimization: {
-        warmRoutes: ['/', '/dashboard', '/settings'],
-      },
-    }),
+    autoWarmPlugin(),
+    one({ ... }),
   ],
 }
 ```
 
-Add the routes you visit most frequently during development. The cache accumulates — if warming discovers new deps on any run, they're added to the cache for next time.
+During the first 5 minutes of each dev session, the plugin polls Vite's in-memory optimizer metadata and caches any newly discovered deps to `node_modules/.vite/one-warm-deps.json`. This file clears automatically when Vite clears its cache (lockfile or config changes).
+
+To persist the cache permanently (surviving `node_modules` reinstalls), pass a file path:
+
+```tsx
+autoWarmPlugin('./src/dev/warmDeps.json')
+```
 
 ## devtools
 
