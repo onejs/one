@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
  * Hydration useId Stability Tests
  *
  * Verifies that React's useId() returns stable values during hydration.
- * If useId changes from SSR format (:R or «R prefix) to client format (:r or «r),
+ * If useId changes from SSR format (:R, «R, or _R_ prefix) to client format (:r, «r, or _r_),
  * it means React abandoned hydration and created a fresh component tree.
  */
 
@@ -24,7 +24,7 @@ afterAll(async () => {
 })
 
 function isSSRFormat(id: string): boolean {
-  return id.startsWith(':R') || id.startsWith('«R')
+  return id.startsWith(':R') || id.startsWith('«R') || id.startsWith('_R')
 }
 
 describe('Hydration useId Stability', () => {
