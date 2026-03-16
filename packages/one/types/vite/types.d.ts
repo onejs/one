@@ -225,9 +225,14 @@ export declare namespace One {
              * One enables Vite's native resolve.tsconfigPaths by default.
              * Set this to false to disable tsconfig path resolution.
              *
+             * Pass an object for fine-grained control (options are accepted for
+             * backwards-compatibility; the built-in resolver always ignores config errors).
+             *
              * @default true
              */
-            tsConfigPaths?: boolean;
+            tsConfigPaths?: boolean | {
+                ignoreConfigErrors?: boolean;
+            };
         };
         native?: {
             /**
