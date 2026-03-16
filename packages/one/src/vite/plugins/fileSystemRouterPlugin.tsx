@@ -1,5 +1,3 @@
-import { readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
 import path from 'node:path'
 import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
@@ -19,7 +17,7 @@ import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
-import type { One, RouteInfo } from '../../vite/types'
+import type { One } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
@@ -36,96 +34,6 @@ const routeTypeColors: Record<string, (s: string) => string> = {
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
-const WARM_DEPS_FILE = 'one-warm-deps.json'
-
-async function warmRouteModules(
-  server: ViteDevServer,
-  pageRoutes: RouteInfo[],
-  warmRoutes: string[]
-) {
-  // map url paths to file paths using the route manifest
-  const filesToWarm = new Set<string>()
-
-  for (const urlPath of warmRoutes) {
-    const route = pageRoutes.find(
-      (r) => r.urlCleanPath === urlPath || r.urlPath === urlPath
-    )
-    if (!route?.file) continue
-
-    filesToWarm.add(path.join('./app', route.file))
-
-    // include layouts
-    if (route.layouts) {
-      for (const layout of route.layouts) {
-        if (layout.contextKey) {
-          filesToWarm.add(path.join('./app', layout.contextKey))
-        }
-      }
-    }
-  }
-
-  if (filesToWarm.size === 0) return
-
-  // use the client environment to trigger client-side dep optimization
-  const clientEnv = server.environments?.client
-  const transformRequest = clientEnv
-    ? (url: string) => clientEnv.transformRequest(url)
-    : (url: string) => server.transformRequest(url)
-  const moduleGraph = clientEnv?.moduleGraph ?? server.moduleGraph
-
-  // recursively transform through client pipeline to trigger dep discovery
-  const seen = new Set<string>()
-
-  async function crawl(url: string, depth = 0) {
-    if (seen.has(url) || depth > 30) return
-    seen.add(url)
-
-    try {
-      await transformRequest(url)
-    } catch {
-      return
-    }
-
-    const mod = await moduleGraph.getModuleByUrl(url)
-    if (!mod) return
-
-    for (const imported of mod.importedModules) {
-      // follow app code, skip node_modules (those are already handled by the optimizer)
-      if (imported.url && !imported.url.includes('node_modules')) {
-        await crawl(imported.url, depth + 1)
-      }
-    }
-  }
-
-  for (const file of filesToWarm) {
-    console.info(`[one] warming ${file}`)
-    await crawl(file)
-  }
-
-  // wait for dep optimization to settle
-  await new Promise((r) => setTimeout(r, 2000))
-
-  // cache discovered deps for next startup
-  const cacheDir = server.config.cacheDir
-  const metadataFile = join(cacheDir, 'deps', '_metadata.json')
-
-  try {
-    const metadata = JSON.parse(readFileSync(metadataFile, 'utf-8'))
-    const deps = Object.keys(metadata.optimized || {})
-    if (deps.length === 0) return
-
-    writeFileSync(
-      join(cacheDir, WARM_DEPS_FILE),
-      JSON.stringify({ deps: deps.sort() }, null, 2)
-    )
-
-    console.info(
-      `[one] warmed ${filesToWarm.size} files (${seen.size} modules), cached ${deps.length} deps`
-    )
-  } catch {
-    // metadata not available yet
-  }
-}
 
 export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
   const preloads = ['/@vite/client', virtalEntryIdClient]
@@ -666,20 +574,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
     configureServer(serverIn) {
       server = serverIn
-
-      // warm routes: transform route files through the client pipeline to trigger dep discovery
-      const warmRoutes = options.optimization?.warmRoutes
-      if (warmRoutes?.length) {
-        server.httpServer?.once('listening', () => {
-          setTimeout(() => {
-            warmRouteModules(server, handleRequest.manifest.pageRoutes, warmRoutes).catch(
-              (err) => {
-                console.warn('[one] warm routes failed:', err)
-              }
-            )
-          }, 1000)
-        })
-      }
 
       // change this to .server to test using the indepedently scoped env
       runner = createServerModuleRunner(

@@ -183,14 +183,6 @@ export declare namespace One {
              * @default 'flat'
              */
             autoEntriesScanning?: boolean | 'flat';
-            /**
-             * Routes to fetch after the dev server starts to trigger Vite's dependency
-             * discovery upfront. Discovered deps are cached in .vite and pre-included
-             * on next startup, eliminating "optimized dependencies changed. reloading" cascades.
-             *
-             * @example ['/', '/beta/signup', '/settings']
-             */
-            warmRoutes?: string[];
         };
         /**
          * Path to a js or ts file to import before the rest of your app runs
