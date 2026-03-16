@@ -101,7 +101,7 @@ export async function getBaseViteConfig(
         },
         {
           find: 'react-native',
-          replacement: resolvePath('vxrn/react-native-web-shim', root),
+          replacement: resolvePath('react-native-web', root),
         },
         {
           find: 'react-native-safe-area-context',

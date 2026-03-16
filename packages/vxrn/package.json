@@ -9,7 +9,6 @@
     "./react-native-commands": "./react-native-commands.cjs",
     "./expo-plugin": "./expo-plugin.cjs",
     "./expo-js-native-debugging-plugin": "./expo-js-native-debugging-plugin.cjs",
-    "./react-native-web-shim": "./react-native-web-shim.js",
     ".": {
       "types": "./types/index.d.ts",
       "default": "./dist/index.mjs"
@@ -52,8 +51,7 @@
     "expo-js-native-debugging-plugin.cjs",
     "react-native-template.js",
     "react-native-commands.cjs",
-    "expo-plugin.cjs",
-    "react-native-web-shim.js"
+    "expo-plugin.cjs"
   ],
   "scripts": {
     "build": "tamagui-build",
