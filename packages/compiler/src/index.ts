@@ -453,5 +453,58 @@ ${rootJS.code}
         })
       },
     },
+
+    // wraps client-side TSX/JSX with React Refresh preamble + import.meta.hot.accept
+    // runs after vite:oxc (no enforce:'pre') so it sees the already-transformed code
+    {
+      name: 'one:react-refresh-web',
+      apply: 'serve',
+
+      transform(code, _id) {
+        if (this.environment.name !== 'client') return
+        if (code.includes(runtimePublicPath)) return // already wrapped
+
+        const id = _id.split('?')[0]
+        if (id.includes('node_modules')) return
+        if (id.includes('virtual:')) return
+        if (id === runtimePublicPath) return
+
+        const ext = extname(id)
+        if (ext !== '.tsx' && ext !== '.jsx') return
+
+        const hasRefreshCalls = /\$RefreshReg\$\(/.test(code)
+
+        let out = `import * as RefreshRuntime from "${runtimePublicPath}";\n\n`
+
+        if (hasRefreshCalls) {
+          out += `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
+const prevRefreshReg = window.$RefreshReg$;
+const prevRefreshSig = window.$RefreshSig$;
+window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
+window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+
+`
+        }
+
+        out += code
+
+        if (hasRefreshCalls) {
+          out += `\n\nwindow.$RefreshReg$ = prevRefreshReg;\nwindow.$RefreshSig$ = prevRefreshSig;\n`
+        }
+
+        out += `
+RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+  RefreshRuntime.registerExportsForReactRefresh("${id}", currentExports);
+  import.meta.hot.accept((nextExports) => {
+    if (!nextExports) return;
+    const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("${id}", currentExports, nextExports);
+    if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+  });
+});
+`
+
+        return { code: out, map: null }
+      },
+    },
   ]
 }
