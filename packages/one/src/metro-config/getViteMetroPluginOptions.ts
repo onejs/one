@@ -120,7 +120,7 @@ export function getViteMetroPluginOptions({
               ]
             : defaultConfig?.resolver?.nodeModulesPaths,
           resolveRequest: (context, moduleName, platform) => {
-            if (moduleName.endsWith('.css')) {
+            if (moduleName.endsWith('.css') || moduleName.includes('.css?')) {
               return {
                 type: 'sourceFile',
                 filePath: emptyPath,
