@@ -34,8 +34,16 @@ jobs:
           install-playwright: 'false'
 
       - name: Security Audit
-        # ignore minimatch ReDoS (GHSA-3ppc-4f35-3m26) - can't force resolve without breaking depcheck
-        run: bun audit --audit-level high --ignore=GHSA-3ppc-4f35-3m26
+        run: >
+          bun audit --audit-level high
+          --ignore GHSA-3ppc-4f35-3m26
+          --ignore GHSA-9ppj-qmqm-q256
+          --ignore GHSA-f269-vfmq-vjvj
+          --ignore GHSA-vrm6-8vpv-qv8q
+          --ignore GHSA-v9p9-hfj2-hcw8
+        # GHSA-3ppc-4f35-3m26: minimatch ReDoS - can't force resolve without breaking depcheck
+        # GHSA-9ppj-qmqm-q256: node-tar symlink traversal - transitive via expo
+        # GHSA-f269-vfmq-vjvj, GHSA-vrm6-8vpv-qv8q, GHSA-v9p9-hfj2-hcw8: undici WebSocket - transitive via expo/wrangler/webdriverio
 
       - name: Check
         run: bun run check
