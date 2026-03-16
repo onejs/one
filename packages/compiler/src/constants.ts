@@ -1,5 +1,3 @@
-import type { ParserConfig } from '@swc/core'
-
 import { createDebugger } from '@vxrn/utils'
 
 export const { debug } = createDebugger('vxrn:compiler-plugin')
@@ -8,7 +6,8 @@ export const runtimePublicPath = '/@react-refresh'
 
 export const asyncGeneratorRegex = /(async \*|async function\*|for await)/
 
-export const parsers: Record<string, ParserConfig> = {
+// parser configs for swc (used by transformSWC consumers)
+export const parsers: Record<string, any> = {
   '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
   '.ts': { syntax: 'typescript', tsx: false, decorators: true },
   '.jsx': {

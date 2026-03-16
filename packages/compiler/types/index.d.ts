@@ -1,6 +1,7 @@
 /**
- * Adapted from https://github.com/vitejs/vite-plugin-react-swc/blob/main/src/index.ts
- * to work on both native and web, and with reanimated and other babel fallbacks
+ * Compiler plugin for One/VXRN
+ * Automates babel transforms (react compiler, codegen, user transforms) and
+ * react native CSS-to-JS conversion.
  */
 import type { PluginOption } from 'vite';
 import type { Options } from './types';

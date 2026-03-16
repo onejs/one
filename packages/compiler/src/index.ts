@@ -1,6 +1,7 @@
 /**
- * Adapted from https://github.com/vitejs/vite-plugin-react-swc/blob/main/src/index.ts
- * to work on both native and web, and with reanimated and other babel fallbacks
+ * Compiler plugin for One/VXRN
+ * Automates babel transforms (react compiler, codegen, user transforms) and
+ * react native CSS-to-JS conversion.
  */
 
 import { readFileSync } from 'node:fs'
@@ -14,7 +15,6 @@ import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
 import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
-import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
 import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
@@ -107,9 +107,7 @@ async function performBabelTransform({
     return null
   }
 
-  const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
-
-  if (!isPreProcess && userTransform !== 'swc') {
+  if (userTransform !== 'swc') {
     const babelOptions = getBabelOptions({
       ...transformProps,
       userSetting: userTransform,
@@ -168,108 +166,6 @@ async function performBabelTransform({
   }
 
   return null
-}
-
-// Full transform (Babel + SWC) for Vite transform hook
-async function performFullTransform({
-  codeIn,
-  _id,
-  environment,
-  production,
-  reactForRNVersion,
-  optionsIn,
-  mode,
-}: {
-  codeIn: string
-  _id: string
-  environment: Environment
-  production: boolean
-  reactForRNVersion: '18' | '19'
-  optionsIn?: Partial<Options>
-  mode: 'serve' | 'build'
-}) {
-  const shouldDebug =
-    process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
-
-  if (shouldDebug) {
-    console.info(`[one] ${_id} input:`)
-    console.info(codeIn)
-  }
-
-  let id = _id.split('?')[0]
-
-  const extension = extname(id)
-
-  if (extension === '.css') {
-    return
-  }
-
-  if (!validParsers.has(extension)) {
-    return
-  }
-
-  const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
-  if (isPreProcess) {
-    id = id.replace(`vxrn-swc-preprocess:`, '')
-  }
-
-  if (id.includes(`virtual:`)) {
-    return
-  }
-
-  let code = codeIn
-  let out: {
-    code: string
-    map?: any
-  } | null = null
-
-  // avoid double-processing files already handled by optimizeDeps
-  if (codeIn.endsWith(`// vxrn-did-babel`)) {
-    debug?.(`[skip babel] ${id}`)
-  } else {
-    const babelResult = await performBabelTransform({
-      id,
-      code,
-      environment,
-      production,
-      reactForRNVersion,
-      optionsIn,
-    })
-
-    if (babelResult) {
-      out = babelResult
-      code = babelResult.code
-    }
-  }
-
-  // Always run SWC for class transforms + react refresh
-  const swcOptions = {
-    environment,
-    mode: optionsIn?.mode || mode,
-    production,
-    ...optionsIn,
-  } satisfies Options
-
-  const swcOut = await transformSWC(id, code, {
-    es5: true,
-    noHMR: isPreProcess || environment === 'ssr',
-    ...swcOptions,
-  })
-
-  if (swcOut) {
-    debug?.(`[swc] ${id}`)
-    out = {
-      code: swcOut.code,
-      map: swcOut.map,
-    }
-  }
-
-  if (shouldDebug) {
-    console.info(`swcOptions`, swcOptions)
-    console.info(`final output:`, out?.code)
-  }
-
-  return out
 }
 
 export async function createVXRNCompilerPlugin(
@@ -529,14 +425,31 @@ ${rootJS.code}
           return code
         }
 
-        return performFullTransform({
-          codeIn,
-          _id,
+        // filter out non-transformable files
+        const id = _id.split('?')[0]
+        const extension = extname(id)
+
+        if (extension === '.css' || !validParsers.has(extension)) {
+          return
+        }
+
+        if (id.includes(`virtual:`)) {
+          return
+        }
+
+        // avoid double-processing files already handled by optimizeDeps
+        if (codeIn.endsWith(`// vxrn-did-babel`)) {
+          debug?.(`[skip babel] ${id}`)
+          return
+        }
+
+        return performBabelTransform({
+          id,
+          code: codeIn,
           environment,
           production,
           reactForRNVersion,
           optionsIn,
-          mode: config.command,
         })
       },
     },
