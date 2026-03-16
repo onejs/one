@@ -314,7 +314,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ) {
           if (
             source.startsWith('react-native/Libraries/') ||
-            /react-native-web\/.*\/Libraries\//.test(source)
+            /react-native-web(-lite)?\/.*\/Libraries\//.test(source)
           ) {
             return '\0rn-empty-module'
           }
