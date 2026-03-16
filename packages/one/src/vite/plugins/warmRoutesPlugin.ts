@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
-import type { Plugin } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 
 const WARM_DEPS_FILE = 'one-warm-deps.json'
 
@@ -13,7 +13,7 @@ const TRACKING_WINDOW = 5 * 60 * 1000
  *
  * Use as a top-level plugin in vite.config.ts:
  *
- *   import { autoWarmPlugin } from 'one/vite-auto-warm'
+ *   import { autoWarmPlugin } from 'one/vite'
  *   plugins: [autoWarmPlugin(), ...]
  *
  * Pass a path string to persist permanently instead of in .vite cache:
@@ -22,6 +22,8 @@ const TRACKING_WINDOW = 5 * 60 * 1000
  */
 export function autoWarmPlugin(persistPath?: string): Plugin {
   let cacheFile: string
+  let cachedDeps: string[] = []
+  let excludeSet: Set<string>
 
   return {
     name: 'one:auto-warm',
@@ -36,7 +38,8 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
         if (existsSync(cacheFile)) {
           const cached = JSON.parse(readFileSync(cacheFile, 'utf-8'))
           if (Array.isArray(cached.deps) && cached.deps.length > 0) {
-            console.info(`[one] loading ${cached.deps.length} cached warm deps`)
+            cachedDeps = cached.deps
+            // inject as include, will be filtered in configResolved
             return {
               optimizeDeps: {
                 include: cached.deps,
@@ -49,13 +52,39 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
       }
     },
 
+    configResolved(config: ResolvedConfig) {
+      // build the exclude set from the resolved config
+      excludeSet = new Set(config.optimizeDeps.exclude || [])
+
+      if (cachedDeps.length > 0 && excludeSet.size > 0) {
+        // remove any cached deps that are in the exclude list
+        const conflicts = cachedDeps.filter((d) => excludeSet.has(d))
+        if (conflicts.length > 0) {
+          console.info(`[one] filtered ${conflicts.length} excluded deps from warm cache`)
+
+          // mutate the resolved include to remove conflicts
+          if (config.optimizeDeps.include) {
+            ;(config.optimizeDeps as any).include = config.optimizeDeps.include.filter(
+              (d: string) => !excludeSet.has(d)
+            )
+          }
+        }
+      }
+    },
+
     configureServer(server) {
       let lastDepsCount = 0
       let timer: ReturnType<typeof setInterval>
 
+      // deps that were already in the user's config before we added ours
+      const userInclude = new Set(
+        (server.config.optimizeDeps.include || []).filter(
+          (d) => !cachedDeps.includes(d)
+        )
+      )
+
       function snapshotDeps() {
         try {
-          // read from the live in-memory optimizer metadata
           const optimizer =
             (server as any).environments?.client?.depsOptimizer ??
             (server as any)._depsOptimizer
@@ -73,13 +102,22 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
           if (currentDeps.length === 0 || currentDeps.length === lastDepsCount) return
           lastDepsCount = currentDeps.length
 
-          // merge with existing cache (append only)
-          const allDeps = new Set(currentDeps)
+          // only cache deps that:
+          // 1. aren't in the user's original config (no point caching what they already have)
+          // 2. aren't in the exclude list
+          const depsToCache = currentDeps.filter(
+            (d) => !userInclude.has(d) && !excludeSet.has(d)
+          )
+
+          // merge with existing cache
+          const allDeps = new Set(depsToCache)
           try {
             if (existsSync(cacheFile)) {
               const existing = JSON.parse(readFileSync(cacheFile, 'utf-8'))
               if (Array.isArray(existing.deps)) {
-                for (const d of existing.deps) allDeps.add(d)
+                for (const d of existing.deps) {
+                  if (!excludeSet.has(d)) allDeps.add(d)
+                }
               }
             }
           } catch {}
