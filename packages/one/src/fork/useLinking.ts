@@ -630,24 +630,6 @@ export function useLinking(
       } else {
         // If no common navigation state was found, assume it's a replace
         // This would happen if the user did a reset/conditionally changed navigators
-        //
-        // spa-shell fix: when navigators remount during the spa-shell hydration
-        // transition (SpaShellContext flips from true to false), react navigation
-        // may temporarily compute a wrong focused route. if the computed path
-        // diverges from the current URL and no explicit navigation happened,
-        // preserve the current URL to prevent redirect chains like
-        // /beta/signup -> /admin -> /app/undefined
-        if (
-          typeof window !== 'undefined' &&
-          globalThis['__one_server_context__']?.mode === 'spa-shell' &&
-          path !== window.location.pathname + window.location.search &&
-          path !== pendingPath
-        ) {
-          // state changed but path doesn't match URL - likely a spa-shell
-          // transition artifact. skip the URL replace, the next proper
-          // navigation will reconcile
-          return
-        }
         history.replace({ path, state, displayPath, unmaskOnReload })
       }
     }

@@ -348,10 +348,15 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }, [])
     }
 
-    // in spa-shell mode, non-root-layout routes render a placeholder
+    // in spa-shell mode, only leaf pages render a placeholder.
+    // layouts (routes with children) must render normally so their
+    // navigators stay mounted across the hydration transition.
+    // without this, navigators remount when SpaShellContext flips
+    // and react navigation loses url-matched state, causing
+    // redirects like /beta/signup -> /admin -> /app/undefined
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isSpaShell = useContext(SpaShellContext)
-    if (isSpaShell && props.segment !== '') {
+    if (isSpaShell && props.segment !== '' && !value.children?.length) {
       return <div data-one-spa-content="" />
     }
 
