@@ -15,7 +15,7 @@ Out of the box, the One Vite plugin does the following:
 - Generates [types for routes](/docs/routing#types) and updates them when routes change
 - Enables [loaders](/docs/routing-loader) and tree shakes them out on client using [babel-dead-code-elimination](https://github.com/pcattori/babel-dead-code-elimination)
 - Supports [loader HMR](/docs/routing-loader#hot-reload-for-file-dependencies) with `watchFile` for instant content updates during development
-- Enables the [`deps` option](/docs/configuration#deps) that allows for easy node_module patching
+- Enables the [`patches` option](/docs/configuration#patches) that allows for easy node_module patching
 - Uses React 19 for both native and web
 - Adds [vite-tsconfig-paths](https://github.com/aleclarson/vite-tsconfig-paths) plugin, unless it detects you've added it already
 - Loads `.env` file into `process.env` before running anything using [dotenv](https://www.npmjs.com/package/dotenv)

@@ -20,47 +20,15 @@ First, we've found turning off Vite external dependencies entirely will often he
 
 The reason we don't turn this on by default it is can cause other issues, namely if a node module relies on, say, __dirname, or __filename, then when they are transformed into the `.vite` folder these paths will change. Another reason we don't turn it on by default is that it can slow things down.
 
-If you do find the individual module that is causing an issue, you can also configure it quickly using the `deps` option in the [One Vite plugin configuration](/docs/configuration#deps).
+If you do find the individual module that is causing an issue, you can also configure it quickly using the `patches` option in the [One Vite plugin configuration](/docs/configuration#patches).
 
 ### Uncaught SyntaxError: The requested module ... does not provide an export named 'default'
 
-In general you want to add any dependency like this to `optimizeDeps.exclude`. But One has some default optimizeDeps options we add that may prevent that.
-
-You can use `fixDependencies` in your `vite.config.ts`:
-
-```tsx
-import { one } from 'one/vite'
-
-export default {
-  plugins: [
-    one({
-      fixDependencies: {
-        'erroring-dep': 'exclude'
-      }
-    })
-  ]
-}
-```
+In general you want to add any dependency like this to `optimizeDeps.exclude` in your Vite config.
 
 ### `require` is not defined
 
-The first thing you'll want to try is optimizing this dependency using the Vite interop transforms:
-
-```tsx fileName=vite.config.ts
-import { one } from 'one/vite'
-
-{
-  plugins: [
-    one({
-      deps: {
-        '@bad/dependency': 'interop',
-      }
-    })
-  ]
-}
-```
-
-You can also try using one of the commonjs plugins, either `vite-require` or `vite-plugin-commonjs`.
+You can try using one of the commonjs plugins, either `vite-require` or `vite-plugin-commonjs`.
 
 ### Common React Native package issues
 
@@ -84,7 +52,7 @@ export default {
   plugins: [
     one({
       // ...
-      deps: {
+      patches: {
         'react-native-vector-icons': {
           '**/*.js': [
             'jsx', // Transpile JSX in .js files
@@ -97,7 +65,7 @@ export default {
 }
 ```
 
-For more details, see the [`deps` section in Configuration](/docs/configuration#deps).
+For more details, see the [`patches` section in Configuration](/docs/configuration#patches).
 
 <Notice>
   We encourage you to [open an issue](https://github.com/onejs/one/issues/new) on our GitHub repository if you encounter similar issues, as your feedback helps us improve One's compatibility with React Native packages.

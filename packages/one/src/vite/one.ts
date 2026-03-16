@@ -532,7 +532,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     generateFileSystemRouteTypesPlugin(options),
 
-    fixDependenciesPlugin(options.deps),
+    fixDependenciesPlugin(options.patches),
 
     createVirtualEntry({
       ...options,

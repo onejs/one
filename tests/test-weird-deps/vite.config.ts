@@ -4,7 +4,7 @@ import type { UserConfig } from 'vite'
 export default {
   plugins: [
     one({
-      deps: {
+      patches: {
         '@rn-primitives/slot': {
           '**/*.mjs': ['jsx'],
         },
