@@ -239,7 +239,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           this.environment?.name === 'ssr'
         ) {
           if (
-            /^react-native\/Libraries\//.test(source) ||
+            source.startsWith('react-native/Libraries/') ||
             /react-native-web\/.*\/Libraries\//.test(source)
           ) {
             return '\0rn-empty-module'
