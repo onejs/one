@@ -91,12 +91,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         await rm('dist', { recursive: true, force: true })
       }
     })(),
-    (async () => {
-      // lets always clean dist folder for now to be sure were correct
-      if (existsSync('node_modules/.vite')) {
-        await rm('node_modules/.vite', { recursive: true, force: true })
-      }
-    })(),
   ])
 
   if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
