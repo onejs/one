@@ -5,3 +5,5 @@ ignores:
   - "@babel/plugin-transform-react-jsx"
   - "@babel/plugin-transform-regenerator"
   - "@vxrn/vite-native-client"
+  # kept as export for vxrn native HMR consumers, dep provided by workspace
+  - "@swc/core"
