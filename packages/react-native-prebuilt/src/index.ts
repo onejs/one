@@ -399,7 +399,6 @@ export const RNExportNames = [
   'useWindowDimensions',
   'UTFSequence',
   'Vibration',
-  'YellowBox',
   'DeviceEventEmitter',
   'DynamicColorIOS',
   'NativeAppEventEmitter',
@@ -409,7 +408,6 @@ export const RNExportNames = [
   'processColor',
   'requireNativeComponent',
   'RootTagContext',
-  'unstable_enableLogBox',
   'AssetRegistry', // Normally not exported by React Native, but with a hack we make @react-native/assets-registry/registry available here.
 ]
 

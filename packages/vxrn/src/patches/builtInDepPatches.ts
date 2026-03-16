@@ -300,7 +300,7 @@ ${contents}
   {
     module: 'expo',
     patchFiles: {
-      version: '>=52.0.0 <55.0.0',
+      version: '>=52.0.0 <56.0.0',
       'src/winter/runtime.native.ts': (contents) => {
         assertString(contents)
 
@@ -333,7 +333,7 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: 'expo-modules-core',
     patchFiles: {
-      version: '<=3.*',
+      version: '<=55.*',
       'src/**/*.ts': addNoCheck,
       'src/**/*.tsx': addNoCheck,
     },
@@ -342,7 +342,7 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: '@expo/cli',
     patchFiles: {
-      version: '<=54',
+      version: '<=55',
 
       'build/src/export/embed/exportEmbedAsync.js': (contents) => {
         return contents?.replace(

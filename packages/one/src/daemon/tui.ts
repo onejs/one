@@ -49,7 +49,7 @@ interface TUIState {
   simEndX: number
   serverStartX: number
   rowStartY: number
-  popup: { message: string; timeout: NodeJS.Timeout } | null
+  popup: { message: string; timeout: ReturnType<typeof setTimeout> } | null
 }
 
 const CABLE_COLORS = [
@@ -72,8 +72,8 @@ const ansi = {
 
 let tuiState: TUIState | null = null
 let daemonState: DaemonState | null = null
-let refreshInterval: NodeJS.Timeout | null = null
-let physicsInterval: NodeJS.Timeout | null = null
+let refreshInterval: ReturnType<typeof setInterval> | null = null
+let physicsInterval: ReturnType<typeof setInterval> | null = null
 let stdinListener: ((key: Buffer) => void) | null = null
 let resizeListener: (() => void) | null = null
 

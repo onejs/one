@@ -135,7 +135,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     depsToOptimize,
     optimizeDeps: {
       include: depsToOptimize,
-      exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
+      exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author', '@expo/log-box'],
       needsInterop,
       // Enable lazy optimization - don't wait for all deps before starting server
       // This allows browser to process requests in parallel for faster initial load
