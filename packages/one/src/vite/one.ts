@@ -248,6 +248,33 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ]),
 
     {
+      // rolldown fails on deep react-native/Libraries/* imports during dep pre-bundling.
+      // these are native-only paths that don't exist in react-native-web.
+      name: 'one:redirect-rn-deep-imports',
+      enforce: 'pre',
+
+      resolveId(source) {
+        if (
+          this.environment?.name === 'client' ||
+          this.environment?.name === 'ssr'
+        ) {
+          if (
+            /^react-native\/Libraries\//.test(source) ||
+            /react-native-web\/.*\/Libraries\//.test(source)
+          ) {
+            return '\0rn-empty-module'
+          }
+        }
+      },
+
+      load(id) {
+        if (id === '\0rn-empty-module') {
+          return 'export default {}; export {};'
+        }
+      },
+    } satisfies Plugin,
+
+    {
       name: 'one-aliases',
       enforce: 'pre',
 

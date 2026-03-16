@@ -1,7 +1,7 @@
 import { join, resolve } from 'node:path'
 
 import FSExtra from 'fs-extra'
-import type { RollupOutput } from 'rollup'
+import type { RolldownOutput } from 'rolldown'
 import { isMatching, P } from 'ts-pattern'
 import type { One } from '../../vite/types'
 import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
@@ -42,7 +42,7 @@ export const buildVercelOutputDirectory = async ({
   oneOptionsRoot,
   postBuildLogs,
 }: {
-  apiOutput: RollupOutput | null
+  apiOutput: RolldownOutput | null
   buildInfoForWriting: One.BuildInfo
   clientDir: string
   oneOptionsRoot: string

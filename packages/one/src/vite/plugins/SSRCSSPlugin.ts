@@ -118,7 +118,7 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
           filename: 'code.css',
           code: codeOut,
           ...server.config.css.lightningcss,
-        }).code.toString()
+        } as any).code.toString()
 
         return [prefix, processed]
       } catch (err) {
@@ -138,7 +138,7 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       filename: 'code.css',
       code: codeOut,
       ...server.config.css.lightningcss,
-    }).code.toString()
+    } as any).code.toString()
   } catch (err) {
     console.error(` [one] Error post-processing merged CSS, leaving un-processed`)
   }

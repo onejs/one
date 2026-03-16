@@ -192,7 +192,7 @@
     "ts-pattern": "^5.6.2",
     "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
-    "vite": "^7.1.12",
+    "vite": "^8.0.0",
     "vite-tsconfig-paths": "^6.0.5",
     "vxrn": "workspace:*",
     "ws": "^8.18.0",
@@ -238,7 +238,7 @@
     "depcheck": "^1.4.7",
     "immer": "^10.1.1",
     "react-native": "0.81.5",
-    "rollup": "^4.29.1",
+    "rolldown": "^1.0.0-rc.9",
     "sharp": "^0.34.5",
     "typescript": "^5.7.3",
     "vitest": "^4.0.6"

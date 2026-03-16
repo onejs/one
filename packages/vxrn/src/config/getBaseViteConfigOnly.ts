@@ -87,24 +87,41 @@ export async function getBaseViteConfig(
     },
 
     resolve: {
-      alias: {
-        'react-native/package.json': resolvePath('react-native-web/package.json', root),
-        'react-native': resolvePath('react-native-web', root),
-        'react-native-safe-area-context': resolvePath('@vxrn/safe-area', root),
-
+      alias: [
+        // deep react-native/Libraries/* paths must be caught BEFORE the general
+        // react-native → react-native-web alias, since react-native-web doesn't
+        // have these native-only subpaths
+        {
+          find: /^react-native\/Libraries\/.*/,
+          replacement: resolvePath('@vxrn/vite-plugin-metro/empty', root),
+        },
+        {
+          find: 'react-native/package.json',
+          replacement: resolvePath('react-native-web/package.json', root),
+        },
+        {
+          find: 'react-native',
+          replacement: resolvePath('vxrn/react-native-web-shim', root),
+        },
+        {
+          find: 'react-native-safe-area-context',
+          replacement: resolvePath('@vxrn/safe-area', root),
+        },
         // bundle size optimizations
-        'query-string': resolvePath('@vxrn/query-string', root),
-        'url-parse': resolvePath('@vxrn/url-parse', root),
-      },
+        {
+          find: 'query-string',
+          replacement: resolvePath('@vxrn/query-string', root),
+        },
+        {
+          find: 'url-parse',
+          replacement: resolvePath('@vxrn/url-parse', root),
+        },
+      ],
 
       // TODO auto dedupe all include optimize deps?
       dedupe,
     },
 
-    build: {
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
-    },
+    build: {},
   } satisfies Omit<InlineConfig, 'plugins'>
 }

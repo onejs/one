@@ -12,26 +12,19 @@ export function removeReactNativeWebAnimatedPlugin(opts?: {
     : /(react-native\/Animated\/Animated|PlatformPressable)/
 
   const optimizeDeps = {
-    esbuildOptions: {
+    rolldownOptions: {
       plugins: [
         {
           name: 'remove-react-native-web-animated',
-          setup(build) {
-            build.onResolve(
-              {
-                filter,
-              },
-              (args) => {
-                return { path: args.path, namespace: 'proxy-wormify' }
-              }
-            )
-
-            build.onLoad({ filter: /.*/, namespace: 'proxy-wormify' }, (args) => {
-              return {
-                contents: `export * from "@tamagui/proxy-worm";`,
-                loader: 'js',
-              }
-            })
+          resolveId(source: string) {
+            if (filter.test(source)) {
+              return `\0proxy-wormify:${source}`
+            }
+          },
+          load(id: string) {
+            if (id.startsWith('\0proxy-wormify:')) {
+              return `export * from "@tamagui/proxy-worm";`
+            }
           },
         },
       ],

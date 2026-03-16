@@ -24,18 +24,16 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
       client: {
         optimizeDeps: {
           include: ['react-native-screens'],
-          esbuildOptions: {
-            resolveExtensions: webExtensions,
+          rolldownOptions: {
+            resolve: {
+              extensions: webExtensions,
+            },
           },
         },
       },
     },
 
-    optimizeDeps: {
-      esbuildOptions: {
-        target: 'esnext',
-      },
-    },
+    optimizeDeps: {},
 
     server: {
       cors: true,

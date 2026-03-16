@@ -3,8 +3,7 @@ import type {
   OutputAsset,
   OutputChunk,
   TreeshakingOptions,
-  TreeshakingPreset,
-} from 'rollup'
+} from 'rolldown'
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
@@ -46,7 +45,7 @@ export type ClientManifestEntry = {
   css?: string[]
 }
 
-export type RollupTreeshakeOptions = boolean | TreeshakingPreset | TreeshakingOptions
+export type RollupTreeshakeOptions = boolean | TreeshakingOptions
 
 export type VXRNBuildOptions = {
   /**

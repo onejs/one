@@ -3,7 +3,7 @@ import { cpus } from 'node:os'
 import Path, { join, relative, resolve } from 'node:path'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
-import type { OutputAsset, RollupOutput } from 'rollup'
+import type { OutputAsset, RolldownOutput } from 'rolldown'
 import { type InlineConfig, mergeConfig, build as viteBuild } from 'vite'
 import {
   type ClientManifestEntry,
@@ -163,7 +163,7 @@ export async function build(args: {
         outDir: `dist/${subFolder}`,
         copyPublicDir: false,
         minify: false,
-        rollupOptions: {
+        rolldownOptions: {
           treeshake: treeshake ?? {
             moduleSideEffects: false,
           },
@@ -180,7 +180,7 @@ export async function build(args: {
           // prevents it from shaking out the exports
           preserveEntrySignatures: 'strict',
           input: input,
-          external: () => false,
+          external: [],
           output: {
             entryFileNames: '[name]',
             exports: 'auto',
@@ -228,7 +228,7 @@ export async function build(args: {
       finalApiBuildConf
     )
 
-    return output as RollupOutput
+    return output as RolldownOutput
   }
 
   // build api routes and middlewares in parallel
@@ -1056,7 +1056,7 @@ export default {
           emptyOutDir: false,
           // Use SSR mode with node target for proper Node.js module resolution
           ssr: workerSrcPath,
-          rollupOptions: {
+          rolldownOptions: {
             external: [
               // React Native dev tools - not needed in production
               '@react-native/dev-middleware',

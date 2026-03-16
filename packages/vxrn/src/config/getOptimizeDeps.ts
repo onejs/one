@@ -140,10 +140,17 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       // Enable lazy optimization - don't wait for all deps before starting server
       // This allows browser to process requests in parallel for faster initial load
       holdUntilCrawlEnd: false,
-      esbuildOptions: {
-        resolveExtensions: webExtensions,
-        // Some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js)
-        loader: { '.js': 'jsx' },
+      rolldownOptions: {
+        resolve: {
+          extensions: webExtensions,
+        },
+        // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js)
+        moduleTypes: { '.js': 'jsx' },
+        // react-native packages import native-only exports (TurboModuleRegistry etc.)
+        // from react-native, which is aliased to react-native-web on web. react-native-web
+        // doesn't export these, so rolldown would error. shimMissingExports creates
+        // undefined shims instead, matching esbuild's lenient behavior.
+        shimMissingExports: true,
       },
     } satisfies UserConfig['optimizeDeps'],
   }

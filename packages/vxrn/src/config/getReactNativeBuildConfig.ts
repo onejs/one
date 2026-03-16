@@ -214,8 +214,8 @@ export async function getReactNativeBuildConfig(
 
     optimizeDeps: {
       ...optimizeDeps,
-      esbuildOptions: {
-        jsx: 'automatic',
+      rolldownOptions: {
+        moduleTypes: { '.js': 'jsx' },
       },
     },
 
@@ -244,13 +244,7 @@ export async function getReactNativeBuildConfig(
     build: {
       ssr: true,
       minify: false,
-      commonjsOptions: {
-        transformMixedEsModules: true,
-        ignore(id) {
-          return id === 'react/jsx-runtime' || id === 'react/jsx-dev-runtime'
-        },
-      },
-      rollupOptions: {
+      rolldownOptions: {
         input: options.entries.native,
         treeshake: false,
         preserveEntrySignatures: 'strict',

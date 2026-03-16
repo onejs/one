@@ -96,7 +96,7 @@ export function reactNativeCommonJsPlugin(options: {
           // Avoids the extra step of testing Brotli compression, which isn't really pertinent to a file served locally
           reportCompressedSize: false,
 
-          rollupOptions: {
+          rolldownOptions: {
             treeshake: false,
 
             output: {
@@ -208,8 +208,8 @@ export function reactNativeCommonJsPlugin(options: {
           noDiscovery: true,
           include: undefined,
 
-          esbuildOptions: {
-            loader: {
+          rolldownOptions: {
+            moduleTypes: {
               '.js': 'jsx',
             },
           },
@@ -232,24 +232,18 @@ export function reactNativeCommonJsPlugin(options: {
             },
 
             optimizeDeps: {
-              esbuildOptions: {
-                resolveExtensions: getNativeExtensions('ios'),
+              rolldownOptions: {
+                resolve: {
+                  extensions: getNativeExtensions('ios'),
+                },
 
                 plugins: [
                   {
                     name: 'react-native-assets',
-                    setup(build) {
-                      build.onResolve(
-                        {
-                          filter: /\.(png|jpg|gif|webp)$/,
-                        },
-                        async ({ path, namespace }) => {
-                          return {
-                            path: '',
-                            external: true,
-                          }
-                        }
-                      )
+                    resolveId(source) {
+                      if (/\.(png|jpg|gif|webp)$/.test(source)) {
+                        return { id: '', external: true }
+                      }
                     },
                   },
                 ],
@@ -269,8 +263,10 @@ export function reactNativeCommonJsPlugin(options: {
             },
 
             optimizeDeps: {
-              esbuildOptions: {
-                resolveExtensions: getNativeExtensions('android'),
+              rolldownOptions: {
+                resolve: {
+                  extensions: getNativeExtensions('android'),
+                },
               },
             },
           } satisfies UserConfig),

@@ -26,12 +26,14 @@ export declare function getReactNativeBuildConfig(options: Pick<VXRNOptionsFille
         warnOnce(msg: string, options?: import("vite").LogOptions): void;
         error(msg: string, options?: import("vite").LogErrorOptions): void;
         clearScreen(type: import("vite").LogType): void;
-        hasErrorLogged(error: Error | import("rollup").RollupError): boolean;
+        hasErrorLogged(error: Error | import("rolldown").RolldownError): boolean;
         hasWarned: boolean;
     };
     optimizeDeps: {
-        esbuildOptions: {
-            jsx: "automatic";
+        rolldownOptions: {
+            moduleTypes: {
+                '.js': "jsx";
+            };
         };
         include: string[];
         exclude: string[];
@@ -52,11 +54,7 @@ export declare function getReactNativeBuildConfig(options: Pick<VXRNOptionsFille
     build: {
         ssr: true;
         minify: false;
-        commonjsOptions: {
-            transformMixedEsModules: true;
-            ignore(id: string): id is "react/jsx-runtime" | "react/jsx-dev-runtime";
-        };
-        rollupOptions: {
+        rolldownOptions: {
             input: string;
             treeshake: false;
             preserveEntrySignatures: "strict";
@@ -64,8 +62,8 @@ export declare function getReactNativeBuildConfig(options: Pick<VXRNOptionsFille
                 preserveModules: true;
                 format: "cjs";
             };
-            onwarn(message: import("rollup").RollupLog, warn: import("rollup").LoggingFunction): void;
-            onLog(level: import("rollup").LogLevel, log: import("rollup").RollupLog, handler: import("rollup").LogOrStringHandler): void;
+            onwarn(message: import("rolldown").RolldownLog, warn: (warning: import("rolldown").RolldownLogWithString | (() => import("rolldown").RolldownLogWithString)) => void): void;
+            onLog(level: import("rolldown").LogLevel, log: import("rolldown").RolldownLog, handler: import("rolldown").LogOrStringHandler): void;
         };
     };
 }>;
