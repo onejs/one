@@ -218,8 +218,14 @@ export function createReactNativeDevServerPlugin(
         }
       }
 
-      server.middlewares.use('/index.bundle', handleRNBundle)
-      server.middlewares.use('/.expo/.virtual-metro-entry.bundle', handleRNBundle)
+      // handle any .bundle request (expo sdk 55 may use /packages/one/metro-entry.bundle)
+      server.middlewares.use((req, res, next) => {
+        if (req.url?.split('?')[0].endsWith('.bundle')) {
+          handleRNBundle(req, res, next)
+        } else {
+          next()
+        }
+      })
 
       // Status endpoint
       server.middlewares.use('/status', (_req, res) => {
