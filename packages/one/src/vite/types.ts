@@ -3,7 +3,6 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   AutoDepOptimizationOptions,
-  DepOptimize,
   DepPatch,
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
@@ -45,7 +44,7 @@ export namespace One {
 
   // todo move into vxrn
   export type FixDependencies = {
-    [key: string]: DepOptimize | DepPatch['patchFiles']
+    [key: string]: DepPatch['patchFiles']
   }
 
   type PluginPlatformTarget = 'native' | 'web'
@@ -501,7 +500,7 @@ export namespace One {
       workers?: boolean
     }
 
-    deps?: FixDependencies
+    patches?: FixDependencies
 
     ssr?: {
       /**

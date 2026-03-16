@@ -5,15 +5,11 @@ import FSExtra from 'fs-extra'
 import { join } from 'node:path'
 import { rename } from 'node:fs/promises'
 import semver from 'semver'
-import type { UserConfig } from 'vite'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { deepMergeOptimizeDeps } from '../config/mergeUserConfig'
 import { builtInDepPatches } from '../patches/builtInDepPatches'
 import { globDir } from './globDir'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
-
-export type DepOptimize = boolean | 'exclude' | 'interop'
 
 export type DepFileStrategy =
   | ((contents?: string) => void | string | Promise<void | string>)
@@ -22,7 +18,7 @@ export type DepFileStrategy =
 
 export type DepPatch = {
   module: string
-  patchFiles: { optimize?: DepOptimize; version?: string } & {
+  patchFiles: { version?: string } & {
     [key: string]: DepFileStrategy
   }
 }
@@ -72,35 +68,6 @@ export async function applyBuiltInPatches(
   }
 
   await applyDependencyPatches(all, { root: options.root })
-}
-
-export async function applyOptimizePatches(patches: DepPatch[], config: UserConfig) {
-  const optimizeDeps = {
-    include: [] as string[],
-    exclude: [] as string[],
-    needsInterop: [] as string[],
-  } satisfies Partial<UserConfig['optimizeDeps']>
-
-  patches.forEach((patch) => {
-    // apply non-file-specific optimizations:
-    const optimize = patch.patchFiles.optimize
-    if (typeof optimize !== 'undefined') {
-      if (optimize === true) {
-        optimizeDeps.include.push(patch.module)
-      } else if (optimize === false || optimize === 'exclude') {
-        if (optimizeDeps?.include) {
-          optimizeDeps.include = optimizeDeps.include.filter((x) => x !== patch.module)
-        }
-        optimizeDeps.exclude.push(patch.module)
-      } else if (optimize === 'interop') {
-        optimizeDeps?.include?.push(patch.module)
-        optimizeDeps?.needsInterop?.push(patch.module)
-      }
-    }
-  })
-
-  deepMergeOptimizeDeps(config, { optimizeDeps }, undefined, true)
-  deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
 // stats file stores {[filePath]: {size, mtimeMs}} of patched files for fast comparison
@@ -162,7 +129,7 @@ export async function applyDependencyPatches(
               patchDefinition: DepFileStrategy
             }[] = []
             for (const file in patch.patchFiles) {
-              if (file === 'optimize' || file === 'version') continue
+              if (file === 'version') continue
               const filesToApply = file.includes('*')
                 ? globDir(nodeModuleDir, file)
                 : [file]

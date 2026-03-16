@@ -45,7 +45,6 @@ export function mergeUserConfig(
     serverConfig.ssr ||= {}
     userViteConfig.ssr ||= {}
     deepMergeOptimizeDeps(serverConfig.ssr, userViteConfig.ssr, optimizeDeps)
-    deepMergeOptimizeDeps(serverConfig.ssr, userViteConfig, optimizeDeps)
   }
 
   return serverConfig

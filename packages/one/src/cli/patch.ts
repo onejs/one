@@ -6,15 +6,15 @@ export async function run(args: { force?: boolean }) {
   const { patch } = await import('vxrn')
 
   const options = await loadUserOneOptions('build')
-  const deps = options.oneOptions.deps as SimpleDepPatchObject | undefined
+  const patches = options.oneOptions.patches as SimpleDepPatchObject | undefined
 
   if (process.env.DEBUG) {
-    console.info('User deps:', Object.keys(deps || {}))
+    console.info('User patches:', Object.keys(patches || {}))
   }
 
   await patch({
     root: process.cwd(),
-    deps,
+    deps: patches,
     force: args.force,
   } satisfies PatchOptions)
 }

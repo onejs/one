@@ -97,12 +97,9 @@ export default {
         compiler: true,
       },
 
-      // The deps configuration is a powerful way to apply patches to node_modules
-      // to configure patching and optimizeDeps for server-side.
-      // we found the React Native and general node module package ecosystem to not always
-      // play nice with universal apps, and this provides an easy way to configure them
-      deps: {
-        'moti/author': true,
+      // apply patches to node_modules - the React Native and general node module
+      // package ecosystem doesn't always play nice with universal apps
+      patches: {
         '@sentry/react-native': {
           version: '~15.2.0',
           '**/*.js': ['jsx'],
@@ -594,13 +591,13 @@ The Error Panel shows errors caught by error boundaries and loaders during devel
 
 The panel automatically appears when the first error is caught, making it easy to spot issues immediately. Click "Clear" to reset the error history. Error boundaries and loaders dispatch events that the panel listens to, giving you a unified view of all errors in your app.
 
-## deps
+## patches
 
 While building One we found ourselves needing to apply small patches to a variety of packages. Packages in the React Native ecosystem are often published only for Metro, and so have a variety of weird setups.
 
 We built an internal Vite plugin to easily apply patches across any package manager, but after installing One into a few larger production projects, we found ourselves wanting to have access to it.
 
-The `deps` option is a powerful way to coerce your node_modules to be compatible with Vite.
+The `patches` option lets you coerce your node_modules to be compatible with Vite.
 
 Here's an example:
 
@@ -611,16 +608,7 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     one({
-      deps: {
-        // setting to true is the same as setting:
-        // viteConfig.ssr.optimizeDeps.include.push('moti/author')
-        'moti/author': true,
-
-        // setting to 'interop' is the same as setting:
-        // viteConfig.ssr.optimizeDeps.include.push('node-fetch')
-        // viteConfig.ssr.optimizeDeps.needsInterop.push('node-fetch')
-        'node-fetch': 'interop',
-
+      patches: {
         // passing an object lets you easily apply patches to your actual node_modules
         '@sentry/react-native': {
           // you can specify a semver range to only apply to certain versions:
