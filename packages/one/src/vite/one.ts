@@ -6,6 +6,7 @@ import {
   getPlatformEnvDefine,
 } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
+import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { type Plugin, type PluginOption } from 'vite'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
@@ -215,16 +216,89 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.config?.tsConfigPaths === false
       ? []
       : [
-          {
-            name: 'one:tsconfig-paths',
-            config() {
-              return {
-                resolve: {
-                  tsconfigPaths: true,
-                },
-              }
-            },
-          } satisfies Plugin,
+          (() => {
+            // vite 8's native resolve.tsconfigPaths works for client but fetchModule
+            // hardcodes tsconfigPaths: false for SSR, so we also resolve via resolveId
+            type PathMapping = { prefix: string; replacement: string; wildcard: boolean }
+            let mappings: PathMapping[] = []
+
+            function loadMappings(resolvedRoot: string) {
+              try {
+                const configPath = path.resolve(resolvedRoot, 'tsconfig.json')
+                if (!existsSync(configPath)) return
+                const raw = readFileSync(configPath, 'utf-8')
+                // strip single-line and multi-line comments for JSON.parse
+                const stripped = raw
+                  .replace(/\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+                    (m, g) => g ? '' : m)
+                const config = JSON.parse(stripped)
+                const paths = config?.compilerOptions?.paths
+                const baseUrl = config?.compilerOptions?.baseUrl || '.'
+                if (!paths) return
+                for (const [pattern, targets] of Object.entries(paths as Record<string, string[]>)) {
+                  const target = targets[0]
+                  if (!target) continue
+                  if (pattern.endsWith('/*')) {
+                    const resolved = path.resolve(resolvedRoot, baseUrl, target.slice(0, -1))
+                    mappings.push({
+                      prefix: pattern.slice(0, -1),
+                      replacement: resolved.endsWith('/') ? resolved : resolved + '/',
+                      wildcard: true,
+                    })
+                  } else {
+                    mappings.push({
+                      prefix: pattern,
+                      replacement: path.resolve(resolvedRoot, baseUrl, target),
+                      wildcard: false,
+                    })
+                  }
+                }
+              } catch {}
+            }
+
+            return {
+              name: 'one:tsconfig-paths',
+              enforce: 'pre',
+
+              config() {
+                return {
+                  resolve: { tsconfigPaths: true },
+                }
+              },
+
+              configResolved(config) {
+                if (mappings.length === 0) {
+                  loadMappings(config.root)
+                }
+              },
+
+              resolveId(source: string) {
+                const jsExts = ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cjs', '.cts']
+                for (const m of mappings) {
+                  let candidate: string | undefined
+                  if (m.wildcard) {
+                    if (source.startsWith(m.prefix)) {
+                      candidate = m.replacement + source.slice(m.prefix.length)
+                    }
+                  } else if (source === m.prefix) {
+                    candidate = m.replacement
+                  }
+                  if (!candidate) continue
+                  // already has a js/ts extension
+                  if (jsExts.includes(path.extname(candidate))) return candidate
+                  // try appending extensions
+                  for (const e of jsExts) {
+                    if (existsSync(candidate + e)) return candidate + e
+                  }
+                  // try /index
+                  for (const e of jsExts) {
+                    if (existsSync(candidate + '/index' + e)) return candidate + '/index' + e
+                  }
+                  return candidate
+                }
+              },
+            } satisfies Plugin
+          })(),
         ]),
 
     {
