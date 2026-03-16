@@ -120,6 +120,7 @@ export async function build(args: {
   const options = await fillOptions(vxrnOutput.options, { mode: 'prod' })
 
   const { optimizeDeps } = getOptimizeDeps('build')
+  const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
 
   const apiBuildConfig = mergeConfig(
     // feels like this should build off the *server* build config not web
@@ -127,7 +128,12 @@ export async function build(args: {
     {
       configFile: false,
       appType: 'custom',
-      optimizeDeps,
+      optimizeDeps: optimizeDepsNoRolldown,
+      environments: {
+        client: {
+          optimizeDeps: { rolldownOptions: _rolldownOptions },
+        },
+      },
     } satisfies InlineConfig
   )
 
@@ -156,7 +162,13 @@ export async function build(args: {
       ssr: {
         noExternal: true,
         external: ['react', 'react-dom'],
-        optimizeDeps,
+        optimizeDeps: optimizeDepsNoRolldown,
+      },
+
+      environments: {
+        ssr: {
+          optimizeDeps: { rolldownOptions: _rolldownOptions },
+        },
       },
 
       build: {

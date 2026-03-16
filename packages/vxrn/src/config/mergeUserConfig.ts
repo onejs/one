@@ -6,7 +6,7 @@ type OptimizeDepsConf = {
   include: string[]
   exclude: string[]
   needsInterop: string[]
-  rolldownOptions: {
+  rolldownOptions?: {
     resolve?: {
       extensions?: string[]
     }
@@ -109,9 +109,7 @@ export function deepMergeOptimizeDeps(
     ...(extraDepsOpt?.needsInterop || []),
   ]).filter((dep) => !excludeSet.has(dep))
 
-  a.optimizeDeps.rolldownOptions = {
-    ...a.optimizeDeps.rolldownOptions,
-    ...b.optimizeDeps.rolldownOptions,
-    ...extraDepsOpt?.rolldownOptions,
-  } as any
+  // don't merge rolldownOptions onto ssr.optimizeDeps — it must live on
+  // environments.ssr.optimizeDeps to avoid a Vite compat-proxy bug that fires
+  // a spurious deprecation warning when both paths carry rolldownOptions
 }

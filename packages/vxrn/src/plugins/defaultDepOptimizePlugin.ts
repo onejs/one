@@ -37,6 +37,19 @@ export function defaultDepOptimizePlugin(): Plugin {
       if (!config.ssr) config.ssr = {}
       // only apply framework deps to ssr, don't merge regular optimizeDeps into ssr
       deepMergeOptimizeDeps(config.ssr, {}, optimizeDeps)
+
+      // rolldownOptions must go on environments.ssr.optimizeDeps to avoid a Vite
+      // compat-proxy bug when both ssr.optimizeDeps and environments.ssr.optimizeDeps
+      // carry rolldownOptions
+      return {
+        environments: {
+          ssr: {
+            optimizeDeps: {
+              rolldownOptions: optimizeDeps.rolldownOptions,
+            },
+          },
+        },
+      }
     },
   } satisfies Plugin
 }

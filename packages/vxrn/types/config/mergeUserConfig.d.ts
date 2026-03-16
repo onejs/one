@@ -3,7 +3,7 @@ type OptimizeDepsConf = {
     include: string[];
     exclude: string[];
     needsInterop: string[];
-    rolldownOptions: {
+    rolldownOptions?: {
         resolve?: {
             extensions?: string[];
         };
