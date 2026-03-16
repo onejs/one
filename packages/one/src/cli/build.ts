@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module'
 import { cpus } from 'node:os'
 import Path, { join, relative, resolve } from 'node:path'
+import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import type { OutputAsset, RolldownOutput } from 'rolldown'
@@ -1050,6 +1051,7 @@ export default {
       console.info('\n [cloudflare] Bundling worker...')
       await viteBuild({
         root: options.root,
+        mode: 'production',
         logLevel: 'warn',
         build: {
           outDir: 'dist',
@@ -1083,6 +1085,17 @@ export default {
         },
         resolve: {
           conditions: ['workerd', 'worker', 'node', 'module', 'default'],
+          alias: [
+            // rolldown can't parse react-native's Flow syntax; alias to react-native-web for ssr
+            {
+              find: /^react-native\/Libraries\/.*/,
+              replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root),
+            },
+            {
+              find: 'react-native',
+              replacement: resolvePath('react-native-web', options.root),
+            },
+          ],
         },
         ssr: {
           target: 'node',

@@ -53,6 +53,7 @@ export async function setup({ provide }: GlobalSetupContext) {
         stdio: 'inherit',
         env: {
           ...process.env,
+          NODE_ENV: 'production',
           ONE_SERVER_URL: `http://localhost:${PORT}`,
         },
       })
