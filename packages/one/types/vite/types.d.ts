@@ -1,7 +1,7 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
-import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
+import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
@@ -29,7 +29,7 @@ export declare namespace One {
         routeModes?: Record<string, RouteRenderMode>;
     };
     export type FixDependencies = {
-        [key: string]: DepOptimize | DepPatch['patchFiles'];
+        [key: string]: DepPatch['patchFiles'];
     };
     type PluginPlatformTarget = 'native' | 'web';
     type CompilerEnvironment = 'ios' | 'android' | 'client' | 'ssr';
@@ -432,7 +432,7 @@ export declare namespace One {
              */
             workers?: boolean;
         };
-        deps?: FixDependencies;
+        patches?: FixDependencies;
         ssr?: {
             /**
              * One scans dependencies on startup and decides which ones to optimize based on known broken
