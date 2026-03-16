@@ -99,10 +99,18 @@ async function main() {
   const run1 = startDevServer(port)
 
   try {
-    // wait for the warm routes to complete (or server to be ready)
-    await run1.waitFor('warmed', 90_000).catch(() => {
-      // if we don't see "warmed", check if server even started
-      console.info('\nDid not see "warmed" message. Checking server...')
+    // wait for the server to start
+    await run1.waitFor('Server running', 60_000)
+
+    // send requests to trigger dep optimization discovery
+    console.info('\nSending requests to trigger dep discovery...')
+    await fetch(`http://localhost:${port}/`).catch(() => {})
+    await fetch(`http://localhost:${port}/other`).catch(() => {})
+
+    // wait for dep optimization to run and the cache to be written (~5s interval)
+    await run1.waitFor('cached', 30_000).catch(() => {
+      // if we don't see "cached", check if cache file was written anyway
+      console.info('\nDid not see "cached" message. Checking server...')
     })
 
     // also wait a bit for the metadata file to be written
@@ -136,14 +144,11 @@ async function main() {
   const run2 = startDevServer(port)
 
   try {
-    await run2.waitFor('loading', 60_000).catch(() => {
-      console.info('\nDid not see "loading" message')
-    })
-
     // wait for server to be ready
     await run2.waitFor('Server running', 60_000)
 
     const fullOutput = run2.output.join('')
+    // autoWarmPlugin logs "loading X cached warm deps" on startup when cache exists
     const loadedCache = fullOutput.includes('cached warm deps')
 
     if (loadedCache) {

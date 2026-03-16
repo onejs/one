@@ -39,6 +39,7 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
           const cached = JSON.parse(readFileSync(cacheFile, 'utf-8'))
           if (Array.isArray(cached.deps) && cached.deps.length > 0) {
             cachedDeps = cached.deps
+            console.info(`[one] loading ${cached.deps.length} cached warm deps`)
             // inject as include, will be filtered in configResolved
             return {
               optimizeDeps: {
