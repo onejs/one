@@ -15,6 +15,7 @@ on:
       - '**/CHANGELOG.md'
       - '**/package.json'
       - 'bun.lock'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,7 +24,7 @@ concurrency:
 jobs:
   checks:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,7 +53,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -62,6 +63,7 @@ jobs:
 
       - name: Test
         run: |
+          set -o pipefail
           # use timeout to force-kill tests if they hang (20 min should be plenty)
           # capture output to check if tests passed even if timeout kills hanging cleanup
           timeout --signal=KILL 1200 bun run test 2>&1 | tee test-output.log || {
