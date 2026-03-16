@@ -1,25 +1,27 @@
-// runs test:dev, test:prod, and test:dev-non-cli
-// dev and prod run in parallel since they use separate servers on random ports
-// non-cli runs after since it's a variant of dev mode
+// runs test:dev, test:prod, and test:dev-non-cli sequentially
+// sequential to avoid resource contention when running under turbo
 
 import { resolve } from 'node:path'
 
 const cwd = resolve(import.meta.dir, '..')
 
-const dev = Bun.spawn(['bun', 'run', 'test:dev'], {
+const devExit = await Bun.spawn(['bun', 'run', 'test:dev'], {
   stdio: ['inherit', 'inherit', 'inherit'],
   cwd,
-})
+}).exited
 
-const prod = Bun.spawn(['bun', 'run', 'test:prod'], {
+if (devExit !== 0) {
+  console.error(`test:dev failed with exit code ${devExit}`)
+  process.exit(1)
+}
+
+const prodExit = await Bun.spawn(['bun', 'run', 'test:prod'], {
   stdio: ['inherit', 'inherit', 'inherit'],
   cwd,
-})
+}).exited
 
-const [devExit, prodExit] = await Promise.all([dev.exited, prod.exited])
-
-if (devExit !== 0 || prodExit !== 0) {
-  console.error(`parallel tests failed: dev=${devExit}, prod=${prodExit}`)
+if (prodExit !== 0) {
+  console.error(`test:prod failed with exit code ${prodExit}`)
   process.exit(1)
 }
 
