@@ -1,0 +1,170 @@
+import { spawn, type ChildProcess } from 'node:child_process'
+import { existsSync, readFileSync, rmSync } from 'node:fs'
+import { join } from 'node:path'
+
+const testDir = join(import.meta.dirname, '..')
+const cacheFile = join(testDir, 'node_modules', '.vite', 'one-warm-deps.json')
+const oneBin = join(testDir, '..', '..', 'node_modules', '.bin', 'one')
+
+function cleanup() {
+  // clear .vite cache so we start fresh
+  const viteCache = join(testDir, 'node_modules', '.vite')
+  if (existsSync(viteCache)) {
+    rmSync(viteCache, { recursive: true })
+  }
+}
+
+function startDevServer(port: number): {
+  proc: ChildProcess
+  output: string[]
+  waitFor: (pattern: string | RegExp, timeoutMs?: number) => Promise<string>
+  kill: () => void
+} {
+  const output: string[] = []
+
+  const proc = spawn('node', [oneBin, 'dev', '--port', port.toString()], {
+    cwd: testDir,
+    env: { ...process.env },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+
+  proc.stdout?.on('data', (data) => {
+    const line = data.toString()
+    output.push(line)
+    process.stdout.write(`[dev] ${line}`)
+  })
+
+  proc.stderr?.on('data', (data) => {
+    const line = data.toString()
+    output.push(line)
+    process.stderr.write(`[dev:err] ${line}`)
+  })
+
+  function waitFor(pattern: string | RegExp, timeoutMs = 60_000): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(
+          new Error(
+            `Timed out waiting for "${pattern}" after ${timeoutMs}ms.\nOutput so far:\n${output.join('')}`
+          )
+        )
+      }, timeoutMs)
+
+      // check existing output
+      const existing = output.join('')
+      if (typeof pattern === 'string' ? existing.includes(pattern) : pattern.test(existing)) {
+        clearTimeout(timer)
+        resolve(existing)
+        return
+      }
+
+      // listen for new output
+      const onData = (data: Buffer) => {
+        const all = output.join('')
+        if (typeof pattern === 'string' ? all.includes(pattern) : pattern.test(all)) {
+          clearTimeout(timer)
+          proc.stdout?.off('data', onData)
+          proc.stderr?.off('data', onData)
+          resolve(all)
+        }
+      }
+      proc.stdout?.on('data', onData)
+      proc.stderr?.on('data', onData)
+    })
+  }
+
+  function kill() {
+    try {
+      process.kill(-proc.pid!, 'SIGKILL')
+    } catch {
+      try {
+        proc.kill('SIGKILL')
+      } catch {}
+    }
+  }
+
+  return { proc, output, waitFor, kill }
+}
+
+async function main() {
+  const port = 18765
+
+  console.info('\n=== Test: warmRoutes plugin ===\n')
+
+  // clean slate
+  cleanup()
+
+  console.info('--- Run 1: warming routes, expecting cache to be written ---\n')
+
+  const run1 = startDevServer(port)
+
+  try {
+    // wait for the warm routes to complete (or server to be ready)
+    await run1.waitFor('warmed', 90_000).catch(() => {
+      // if we don't see "warmed", check if server even started
+      console.info('\nDid not see "warmed" message. Checking server...')
+    })
+
+    // also wait a bit for the metadata file to be written
+    await new Promise((r) => setTimeout(r, 3000))
+
+    const cacheExists = existsSync(cacheFile)
+    console.info(`\nCache file exists: ${cacheExists}`)
+
+    if (cacheExists) {
+      const cached = JSON.parse(readFileSync(cacheFile, 'utf-8'))
+      console.info(`Cached deps count: ${cached.deps?.length ?? 0}`)
+      console.info(`First few deps: ${cached.deps?.slice(0, 5).join(', ')}`)
+      console.info('\n✅ Run 1 PASSED: cache file was written\n')
+    } else {
+      console.info('\n❌ Run 1 FAILED: cache file was not written')
+      console.info('Full output:')
+      console.info(run1.output.join(''))
+    }
+  } finally {
+    run1.kill()
+    await new Promise((r) => setTimeout(r, 1000))
+  }
+
+  if (!existsSync(cacheFile)) {
+    console.info('\nSkipping run 2 since run 1 failed')
+    process.exit(1)
+  }
+
+  console.info('--- Run 2: expecting cached deps to be loaded on startup ---\n')
+
+  const run2 = startDevServer(port)
+
+  try {
+    await run2.waitFor('loading', 60_000).catch(() => {
+      console.info('\nDid not see "loading" message')
+    })
+
+    // wait for server to be ready
+    await run2.waitFor('Server running', 60_000)
+
+    const fullOutput = run2.output.join('')
+    const loadedCache = fullOutput.includes('cached warm deps')
+
+    if (loadedCache) {
+      console.info('\n✅ Run 2 PASSED: cached deps were loaded on startup\n')
+    } else {
+      console.info('\n❌ Run 2 FAILED: cached deps were NOT loaded on startup')
+      console.info('Full output:')
+      console.info(fullOutput)
+    }
+  } finally {
+    run2.kill()
+    await new Promise((r) => setTimeout(r, 1000))
+  }
+
+  // cleanup
+  cleanup()
+
+  console.info('=== Done ===\n')
+}
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

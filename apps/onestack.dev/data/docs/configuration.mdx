@@ -487,6 +487,26 @@ export default {
 - **`true`**: Scans and adds all routes as entries
 - **`false`**: Disables auto-scanning entirely
 
+### optimization.warmRoutes
+
+Routes to fetch after the dev server starts to trigger Vite's dependency discovery upfront. Discovered deps are cached in `.vite` and pre-included on next startup, eliminating "optimized dependencies changed. reloading" cascades.
+
+On first run, One fetches each route after the server starts, triggering Vite to discover and optimize all dependencies. These deps are saved to a cache file inside `node_modules/.vite` (which Vite automatically clears when your lockfile or config changes). On subsequent startups, the cached deps are injected into `optimizeDeps.include` so everything is pre-optimized before you open the browser.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      optimization: {
+        warmRoutes: ['/', '/dashboard', '/settings'],
+      },
+    }),
+  ],
+}
+```
+
+Add the routes you visit most frequently during development. The cache accumulates — if warming discovers new deps on any run, they're added to the cache for next time.
+
 ## devtools
 
 Development tools to help debug and understand your app. Enabled by default in development mode.
