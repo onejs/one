@@ -16,7 +16,7 @@ export async function killProcessOnPort(port: number): Promise<void> {
       await new Promise((resolve) => setTimeout(resolve, 500))
     }
   } catch (error) {
-    // No process found on port, which is fine
+    // no process found on port, which is fine
   }
 }
 
@@ -34,33 +34,119 @@ const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true'
 const DEFAULT_MAX_RETRIES = isCI ? 960 : 480 // 4 min on CI, 2 min locally
 const DEFAULT_RETRY_INTERVAL = 250
 
+// max lines of server output to keep for diagnostics (ring buffer)
+const MAX_OUTPUT_LINES = 200
+
+/**
+ * spawn a server process with piped stdio so we can capture output for
+ * diagnostics and detect early crashes. the streams are unref'd so the
+ * parent process can still exit cleanly.
+ */
+function spawnServer(
+  command: string,
+  args: string[],
+  options: {
+    cwd: string
+    env: typeof process.env
+    detached?: boolean
+  }
+): { child: ChildProcess; getOutput: () => string; exited: Promise<number | null> } {
+  const outputLines: string[] = []
+
+  const child = spawn(command, args, {
+    ...options,
+    detached: options.detached ?? true,
+    // pipe so we can capture output for crash diagnostics
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+
+  const appendOutput = (data: Buffer) => {
+    const lines = data.toString().split('\n')
+    for (const line of lines) {
+      if (line) {
+        outputLines.push(line)
+        // ring buffer: drop oldest lines when we exceed the limit
+        if (outputLines.length > MAX_OUTPUT_LINES) {
+          outputLines.shift()
+        }
+      }
+    }
+  }
+
+  child.stdout?.on('data', appendOutput)
+  child.stderr?.on('data', appendOutput)
+
+  // unref streams and process so parent can exit even if child is alive
+  child.stdout?.unref?.()
+  child.stderr?.unref?.()
+  child.unref()
+
+  const exited = new Promise<number | null>((resolve) => {
+    child.once('exit', (code) => resolve(code))
+    child.once('error', () => resolve(null))
+  })
+
+  return {
+    child,
+    getOutput: () => outputLines.join('\n'),
+    exited,
+  }
+}
+
 const waitForServer = (
   url: string,
   {
     maxRetries = DEFAULT_MAX_RETRIES,
     retryInterval = DEFAULT_RETRY_INTERVAL,
     getServerOutput = () => '',
+    serverExited,
+  }: {
+    maxRetries?: number
+    retryInterval?: number
+    getServerOutput?: () => string
+    // if provided, reject immediately when the server process exits
+    serverExited?: Promise<number | null>
   }
 ): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
+    let done = false
+
+    // fail fast if the server process exits before becoming ready
+    if (serverExited) {
+      serverExited.then((code) => {
+        if (!done) {
+          done = true
+          const elapsed = Math.round(performance.now() - startedAt)
+          reject(
+            new Error(
+              `Server process exited with code ${code} after ${elapsed}ms before becoming ready.\nLogs:\n${getServerOutput()}`
+            )
+          )
+        }
+      })
+    }
+
     let retries = 0
     const checkServer = async () => {
+      if (done) return
       try {
         const response = await fetch(url)
         if (response.ok) {
+          done = true
           console.info(
             `Server at ${url} is ready after ${Math.round(performance.now() - startedAt)}ms`
           )
-          // Warmup: make a few more requests to ensure server is stable
-          // This helps prevent crashes from the initial burst of test requests
+          // warmup: make a few more requests to ensure server is stable
           await warmupServer(url)
           resolve()
         } else {
           throw new Error('Server not ready')
         }
       } catch (error) {
+        if (done) return
         if (retries >= maxRetries) {
+          done = true
           reject(
             new Error(
               `Server at ${url} did not start within the expected time (timeout after waiting for ${Math.round(performance.now() - startedAt)}ms).\nLogs:\n${getServerOutput()}`
@@ -68,8 +154,8 @@ const waitForServer = (
           )
         } else {
           retries++
-          // log progress every 30 seconds on CI to show we're still waiting
-          if (isCI && retries % 120 === 0) {
+          // log progress every 30 seconds to show we're still waiting
+          if (retries % 120 === 0) {
             console.info(
               `Still waiting for ${url}... (${Math.round((performance.now() - startedAt) / 1000)}s)`
             )
@@ -96,31 +182,36 @@ export async function setupTestServers({
   skipDev = false,
 }: { skipDev?: boolean } = {}): Promise<TestInfo> {
   const runWithNonCliMode = !!process.env.TEST_NON_CLI_MODE
-  console.info('Setting up tests 🛠️')
+  console.info('Setting up tests')
 
   let prodServer: ChildProcess | null = null
   let devServer: ChildProcess | null = null
-  let buildProcess: ChildProcess | null = null // Add this line
+  let buildProcess: ChildProcess | null = null
 
   const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
   const shouldStartProdServer = !ONLY_TEST_DEV && !process.env.IS_NATIVE_TEST
 
-  // Get available ports in a high range to avoid conflicts with common dev servers
-  // Use wider random offset to reduce race conditions when multiple tests start simultaneously
-  // Range: 10000-60000 gives 50000 ports, much less likely to collide than the previous 200
+  // get available ports in a high range to avoid conflicts with common dev servers
+  // use wider random offset to reduce race conditions when multiple tests start simultaneously
+  // range: 10000-60000 gives 50000 ports, much less likely to collide than the previous 200
   const portRangeStart = 10000 + Math.floor(Math.random() * 50000)
   const prodPort = await getPort({ port: portNumbers(portRangeStart, 65000) })
   const devPort =
     (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) ||
     (await getPort({ port: portNumbers(prodPort + 100, 65000) }))
 
-  // Ensure ports are clear before starting servers
+  // ensure ports are clear before starting servers
   await killProcessOnPort(prodPort)
   await killProcessOnPort(devPort)
 
+  let devServerGetOutput = () => ''
+  let devServerExited: Promise<number | null> | undefined
+  let prodServerGetOutput = () => ''
+  let prodServerExited: Promise<number | null> | undefined
+
   try {
     if (shouldStartProdServer && !process.env.SKIP_BUILD && !process.env.IS_NATIVE_TEST) {
-      // Run prod build using spawn
+      // run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
       buildProcess = spawn('bun', ['run', 'build:web'], {
@@ -139,7 +230,7 @@ export async function setupTestServers({
         buildProcessOutput += data.toString()
       })
 
-      // Wait for build process to complete
+      // wait for build process to complete
       await new Promise<void>((resolve, reject) => {
         buildProcess!.once('exit', (code) => {
           if (code === 0) {
@@ -160,62 +251,57 @@ export async function setupTestServers({
       })
     }
 
-    // No need to kill the build process here, as it should have completed
-
-    // Start dev server
-    let devServerOutput = ''
-
+    // start dev server
     if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
       if (runWithNonCliMode) {
         console.info('Running in non-CLI mode, using Vite directly.')
       }
-      devServer = spawn(
-        'node',
-        runWithNonCliMode
-          ? [
-              '../../node_modules/.bin/vite',
-              'dev',
-              '--host',
-              '--port',
-              devPort.toString(),
-            ]
-          : [
-              '../../node_modules/.bin/one',
-              'dev',
-              '--clean',
-              '--port',
-              devPort.toString(),
-            ],
-        {
-          cwd: process.cwd(),
-          env: Object.fromEntries(
-            Object.entries(process.env).filter(([k, _v]) => {
-              // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
-              // MODE=test, also it exposes those env to underlying shell processes, which
-              // those explicit env vars will override Vite loading `.env` and `.env.*`,
-              // making some of our test fail because env vars are not loaded correctly.
-              // So we need to use `env -u` to unset MODE and any env vars we care here.
-              if (k === 'MODE' || k === 'VITE_TEST_ENV_MODE') {
-                return false
-              }
 
-              return true
-            })
-          ) as typeof process.env,
-          detached: true,
-          stdio: 'ignore',
-        }
-      )
-      devServer.unref()
+      const devEnv = Object.fromEntries(
+        Object.entries(process.env).filter(([k, _v]) => {
+          // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
+          // MODE=test, also it exposes those env to underlying shell processes, which
+          // those explicit env vars will override Vite loading `.env` and `.env.*`,
+          // making some of our test fail because env vars are not loaded correctly.
+          // So we need to use `env -u` to unset MODE and any env vars we care here.
+          if (k === 'MODE' || k === 'VITE_TEST_ENV_MODE') {
+            return false
+          }
+          return true
+        })
+      ) as typeof process.env
+
+      const devArgs = runWithNonCliMode
+        ? [
+            '../../node_modules/.bin/vite',
+            'dev',
+            '--host',
+            '--port',
+            devPort.toString(),
+          ]
+        : [
+            '../../node_modules/.bin/one',
+            'dev',
+            '--clean',
+            '--port',
+            devPort.toString(),
+          ]
+
+      const spawned = spawnServer('node', devArgs, {
+        cwd: process.cwd(),
+        env: devEnv,
+        detached: true,
+      })
+      devServer = spawned.child
+      devServerGetOutput = spawned.getOutput
+      devServerExited = spawned.exited
     }
 
-    // Start prod server
-    let prodServerOutput = ''
-
+    // start prod server
     if (shouldStartProdServer) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
-      prodServer = spawn(
+      const spawned = spawnServer(
         'node',
         ['../../node_modules/.bin/one', 'serve', '--port', prodPort.toString()],
         {
@@ -225,27 +311,30 @@ export async function setupTestServers({
             ONE_SERVER_URL: `http://localhost:${prodPort}`,
           },
           detached: true,
-          stdio: 'ignore',
         }
       )
-      prodServer.unref()
+      prodServer = spawned.child
+      prodServerGetOutput = spawned.getOutput
+      prodServerExited = spawned.exited
     }
 
-    // Wait for both servers to be ready
+    // wait for both servers to be ready
     await Promise.all([
       shouldStartProdServer
         ? waitForServer(`http://localhost:${prodPort}`, {
-            getServerOutput: () => 'Server output in terminal',
+            getServerOutput: prodServerGetOutput,
+            serverExited: prodServerExited,
           })
         : null,
       shouldStartDevServer
         ? waitForServer(`http://localhost:${devPort}`, {
-            getServerOutput: () => 'Server output in terminal',
+            getServerOutput: devServerGetOutput,
+            serverExited: devServerExited,
           })
         : null,
     ])
 
-    console.info('Servers are running.🎉 \n')
+    console.info('Servers are running.\n')
 
     return {
       testProdPort: prodPort,
@@ -258,7 +347,6 @@ export async function setupTestServers({
   } catch (error) {
     devServer?.kill()
     prodServer?.kill()
-    // No need to kill buildProcess here as it should have completed or failed
     console.error('Setup error:', error)
     throw error
   }
