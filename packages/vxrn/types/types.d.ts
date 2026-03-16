@@ -1,5 +1,5 @@
 import type { Hono } from 'hono';
-import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup';
+import type { OutputAsset, OutputChunk, TreeshakingOptions } from 'rolldown';
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type Mode = 'dev' | 'prod';
@@ -33,7 +33,7 @@ export type ClientManifestEntry = {
     imports: string[];
     css?: string[];
 };
-export type RollupTreeshakeOptions = boolean | TreeshakingPreset | TreeshakingOptions;
+export type RollupTreeshakeOptions = boolean | TreeshakingOptions;
 export type VXRNBuildOptions = {
     /**
      * Control the output format of the server build

@@ -6,8 +6,11 @@ type OptimizeDepsConf = {
   include: string[]
   exclude: string[]
   needsInterop: string[]
-  esbuildOptions: {
-    resolveExtensions: string[]
+  rolldownOptions: {
+    resolve?: {
+      extensions?: string[]
+    }
+    moduleTypes?: Record<string, string>
   }
 }
 
@@ -106,9 +109,9 @@ export function deepMergeOptimizeDeps(
     ...(extraDepsOpt?.needsInterop || []),
   ]).filter((dep) => !excludeSet.has(dep))
 
-  a.optimizeDeps.esbuildOptions = {
-    ...a.optimizeDeps.esbuildOptions,
-    ...b.optimizeDeps.esbuildOptions,
-    ...extraDepsOpt?.esbuildOptions,
-  }
+  a.optimizeDeps.rolldownOptions = {
+    ...a.optimizeDeps.rolldownOptions,
+    ...b.optimizeDeps.rolldownOptions,
+    ...extraDepsOpt?.rolldownOptions,
+  } as any
 }

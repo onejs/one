@@ -1,4 +1,4 @@
-import type { OutputAsset, OutputChunk } from 'rollup';
+import type { OutputAsset, OutputChunk } from 'rolldown';
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<void | {
     processEnvDefines: {

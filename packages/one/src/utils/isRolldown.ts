@@ -1,17 +1,7 @@
-let _isRolldown: boolean | undefined
+import { version } from 'vite'
 
-export async function isRolldown(): Promise<boolean> {
-  if (_isRolldown !== undefined) {
-    return _isRolldown
-  }
+const majorVersion = parseInt(version.split('.')[0], 10)
 
-  try {
-    const vite = await import('vite')
-    // withFilter only exists in rolldown-vite
-    _isRolldown = 'withFilter' in vite
-  } catch {
-    _isRolldown = false
-  }
-
-  return _isRolldown
+export function isRolldown(): boolean {
+  return majorVersion >= 8
 }

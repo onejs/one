@@ -3,8 +3,11 @@ type OptimizeDepsConf = {
     include: string[];
     exclude: string[];
     needsInterop: string[];
-    esbuildOptions: {
-        resolveExtensions: string[];
+    rolldownOptions: {
+        resolve?: {
+            extensions?: string[];
+        };
+        moduleTypes?: Record<string, string>;
     };
 };
 type DepsOptConf = {

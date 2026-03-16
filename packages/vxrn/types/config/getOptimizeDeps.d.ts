@@ -6,11 +6,14 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
         exclude: string[];
         needsInterop: string[];
         holdUntilCrawlEnd: false;
-        esbuildOptions: {
-            resolveExtensions: string[];
-            loader: {
+        rolldownOptions: {
+            resolve: {
+                extensions: string[];
+            };
+            moduleTypes: {
                 '.js': "jsx";
             };
+            shimMissingExports: true;
         };
     };
 };

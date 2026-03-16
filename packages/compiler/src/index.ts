@@ -9,7 +9,7 @@ import { dirname, extname, join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
-import type { OutputChunk } from 'rollup'
+import type { OutputChunk } from 'rolldown'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
 import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
@@ -297,9 +297,9 @@ export async function createVXRNCompilerPlugin(
 
   const cssTransformCache = new Map<string, string>()
 
-  // fix so we can align the diff between vite and rollup id (rollup resolves from root monorepo)
-  const rollupPath = resolvePath('rollup')
-  const rollupNodeMods = rollupPath.slice(0, rollupPath.indexOf(sep + 'node_modules'))
+  // fix so we can align the diff between vite and rolldown id (rolldown resolves from root monorepo)
+  const rolldownPath = resolvePath('rolldown')
+  const rolldownNodeMods = rolldownPath.slice(0, rolldownPath.indexOf(sep + 'node_modules'))
 
   /**
    * Vite config, filled by a `configResolved` hook.
@@ -349,7 +349,7 @@ export async function createVXRNCompilerPlugin(
             const newId = `${id}.js`
 
             // rollup uses relative to its node_modules parent dir, vite here uses absolute
-            const cssId = newId.replace(rollupNodeMods + sep, '')
+            const cssId = newId.replace(rolldownNodeMods + sep, '')
             cssTransformCache.set(cssId, code)
 
             return {
@@ -402,87 +402,77 @@ ${rootJS.code}
       enforce: 'pre',
 
       config: () => {
+        const nodeModulesFilter = /node_modules\/.*\.(tsx?|jsx?|mjs|cjs)$/
+
         const createEnvironmentConfig = (environment: Environment) => {
+          // init stats for this environment
+          if (!perfStats.optimizeDeps.byEnvironment[environment]) {
+            perfStats.optimizeDeps.byEnvironment[environment] = {
+              filesChecked: 0,
+              filesTransformed: 0,
+              startTime: Date.now(),
+            }
+          }
+
           return {
             optimizeDeps: {
-              esbuildOptions: {
+              rolldownOptions: {
                 plugins: [
                   {
                     name: `transform-before-optimize-deps-${environment}`,
-                    setup(build) {
-                      // Init stats for this environment
-                      if (!perfStats.optimizeDeps.byEnvironment[environment]) {
-                        perfStats.optimizeDeps.byEnvironment[environment] = {
-                          filesChecked: 0,
-                          filesTransformed: 0,
-                          startTime: Date.now(),
-                        }
+
+                    async transform(code: string, id: string) {
+                      if (!nodeModulesFilter.test(id)) {
+                        return null
                       }
 
-                      build.onLoad(
-                        { filter: /node_modules\/.*\.(tsx?|jsx?|mjs|cjs)$/ },
-                        async (args) => {
-                          perfStats.optimizeDeps.byEnvironment[environment].filesChecked++
+                      perfStats.optimizeDeps.byEnvironment[environment].filesChecked++
 
-                          const production =
-                            process.env.NODE_ENV === 'production' ||
-                            process.env.NODE_ENV === 'test'
-                          const code = await readFile(args.path, 'utf-8')
+                      const production =
+                        process.env.NODE_ENV === 'production' ||
+                        process.env.NODE_ENV === 'test'
 
-                          debug?.(`[esbuild optimizeDeps] ${args.path}`)
+                      debug?.(`[rolldown optimizeDeps] ${id}`)
 
-                          const result = await performBabelTransform({
-                            id: args.path,
-                            code,
-                            environment,
-                            production,
-                            reactForRNVersion,
-                            optionsIn,
-                          })
-
-                          if (!result) {
-                            return null
-                          }
-
-                          perfStats.optimizeDeps.byEnvironment[environment]
-                            .filesTransformed++
-
-                          // Determine loader based on file extension
-                          const ext = extname(args.path)
-                          const loader =
-                            ext === '.tsx'
-                              ? 'tsx'
-                              : ext === '.ts'
-                                ? 'ts'
-                                : ext === '.jsx'
-                                  ? 'jsx'
-                                  : 'js'
-
-                          return {
-                            contents: result.code,
-                            loader,
-                          }
-                        }
-                      )
-
-                      build.onEnd(() => {
-                        // Only log detailed stats when debugging
-                        if (process.env.DEBUG_COMPILER_PERF) {
-                          const stats = perfStats.optimizeDeps.byEnvironment[environment]
-                          const elapsed = Date.now() - stats.startTime
-                          console.info(
-                            `[optimizeDeps ${environment}] Done: ${stats.filesChecked} files checked, ${stats.filesTransformed} transformed (${elapsed}ms)`
-                          )
-                        }
-
-                        // Log cache stats when all environments are done
-                        const allDone =
-                          Object.keys(perfStats.optimizeDeps.byEnvironment).length >= 2
-                        if (allDone) {
-                          logCacheStats()
-                          logPerfSummary()
-                        }
+                      const result = await performBabelTransform({
+                        id,
+                        code,
+                        environment,
+                        production,
+                        reactForRNVersion,
+                        optionsIn,
                       })
+
+                      if (!result) {
+                        return null
+                      }
+
+                      perfStats.optimizeDeps.byEnvironment[environment]
+                        .filesTransformed++
+
+                      return {
+                        code: result.code,
+                        map: result.map,
+                      }
+                    },
+
+                    buildEnd() {
+                      // only log detailed stats when debugging
+                      if (process.env.DEBUG_COMPILER_PERF) {
+                        const stats = perfStats.optimizeDeps.byEnvironment[environment]
+                        const elapsed = Date.now() - stats.startTime
+                        console.info(
+                          `[optimizeDeps ${environment}] Done: ${stats.filesChecked} files checked, ${stats.filesTransformed} transformed (${elapsed}ms)`
+                        )
+                      }
+
+                      // log cache stats when all environments are done
+                      const allDone =
+                        Object.keys(perfStats.optimizeDeps.byEnvironment).length >= 2
+                      if (allDone) {
+                        logCacheStats()
+                        logPerfSummary()
+                      }
                     },
                   },
                 ],

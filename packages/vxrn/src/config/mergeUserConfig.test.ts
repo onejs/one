@@ -76,7 +76,7 @@ describe('deepMergeOptimizeDeps', () => {
       include: [],
       exclude: ['c'],
       needsInterop: [],
-      esbuildOptions: { resolveExtensions: [] },
+      rolldownOptions: {},
     }
 
     deepMergeOptimizeDeps(a, b, extra)
