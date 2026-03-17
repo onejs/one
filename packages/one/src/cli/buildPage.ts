@@ -64,7 +64,7 @@ export async function buildPage(
 
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
   const clientJsPath = clientManifestEntry
-    ? join(`dist/client`, clientManifestEntry.file)
+    ? join(clientDir, clientManifestEntry.file)
     : ''
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
@@ -191,8 +191,10 @@ prefetchCSS()
             if (!layoutServerPath) {
               return { contextKey: layout.contextKey, loaderData: undefined }
             }
+            // derive server dir from clientDir (e.g. dist/client -> dist/server)
+            const serverDir = join(clientDir, '..', 'server')
             const layoutExported = await import(
-              toAbsolute(join('./', 'dist/server', layoutServerPath))
+              toAbsolute(join(serverDir, layoutServerPath))
             )
             const layoutLoaderData = await layoutExported?.loader?.(loaderProps)
             return { contextKey: layout.contextKey, loaderData: layoutLoaderData }

@@ -14,7 +14,7 @@ export const applyCompression = (app: Hono, options: VXRNServeOptions) => {
 export const createProdServer = async (
   app: Hono,
   options: VXRNServeOptions,
-  { skipCompression }: { skipCompression?: boolean } = {}
+  { skipCompression, outDir = 'dist' }: { skipCompression?: boolean; outDir?: string } = {}
 ) => {
   // when called via serve(), compression is already applied before beforeRegisterRoutes
   if (!skipCompression) {
@@ -22,7 +22,7 @@ export const createProdServer = async (
   }
 
   app.use('*', async (context, next) => {
-    return await serveStaticAssets({ context, next })
+    return await serveStaticAssets({ context, next, outDir })
   })
 
   app.notFound(async (c) => {
@@ -31,7 +31,7 @@ export const createProdServer = async (
 
     while (true) {
       const response = await serveStatic({
-        root: './dist/client',
+        root: `./${outDir}/client`,
         path: join(currentDir, '+not-found.html'),
       })(c, async () => {})
 

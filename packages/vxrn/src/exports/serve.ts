@@ -12,6 +12,7 @@ export const serve = async ({
   afterRegisterRoutes,
   beforeRegisterRoutes,
   app = new Hono(),
+  outDir = 'dist',
   ...optionsIn
 }: VXRNServeOptions) => {
   const { getServerOptionsFilled } = await import('../config/getServerOptionsFilled')
@@ -25,7 +26,7 @@ export const serve = async ({
   }
 
   // createProdServer will skip compression since we already applied it
-  await createProdServer(app, options, { skipCompression: true })
+  await createProdServer(app, options, { skipCompression: true, outDir })
 
   if (afterRegisterRoutes) {
     await afterRegisterRoutes(options, app)

@@ -18,7 +18,8 @@ export async function createApiServerlessFunction(
   route: RouteInfo<string>,
   code: string,
   oneOptionsRoot: string,
-  postBuildLogs: string[]
+  postBuildLogs: string[],
+  outDir = 'dist'
 ) {
   try {
     const path = getPathFromRoute(route, { includeIndex: true })
@@ -45,7 +46,7 @@ export async function createApiServerlessFunction(
     postBuildLogs.push(
       `[one.build][vercel.createSsrServerlessFunction] copy shared assets to ${distAssetsFolder}`
     )
-    const sourceAssetsFolder = resolve(join(oneOptionsRoot, 'dist', 'api', 'assets'))
+    const sourceAssetsFolder = resolve(join(oneOptionsRoot, outDir, 'api', 'assets'))
     if (await FSExtra.pathExists(sourceAssetsFolder)) {
       await fs.copy(sourceAssetsFolder, distAssetsFolder)
     }

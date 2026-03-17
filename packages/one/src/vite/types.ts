@@ -549,6 +549,7 @@ export namespace One {
   }
 
   export type BuildInfo = {
+    outDir?: string
     constants: {
       CACHE_KEY: string
     }

@@ -155,8 +155,10 @@ export async function getReactNativeBundle(
               'module.exports = RN;'
             )
             .replace(
-              // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
-              /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m,
+              // Step 2: Remove the variable assignment lines between the ESM_MANUAL_EXPORTS markers
+              // (inside __esmMin block). Must use `= "` anchor to avoid matching the __exportAll
+              // object keys which use `: () =>` syntax.
+              /^\tREACT_NATIVE_ESM_MANUAL_EXPORTS_START = "[\s\S]*?REACT_NATIVE_ESM_MANUAL_EXPORTS_END = ".*$/m,
               ''
             )
         }

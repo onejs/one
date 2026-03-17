@@ -79,12 +79,14 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     console.error(`\n 🥺 error applying built-in patches`, err)
   })
 
+  const outDir = userViteConfig?.build?.outDir ?? 'dist'
+
   // clean
   await Promise.all([
     (async () => {
-      // lets always clean dist folder for now to be sure were correct
-      if (existsSync('dist')) {
-        await rm('dist', { recursive: true, force: true })
+      // lets always clean output folder for now to be sure were correct
+      if (existsSync(outDir)) {
+        await rm(outDir, { recursive: true, force: true })
       }
     })(),
   ])
@@ -97,7 +99,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       { root: options.root },
       {
         platform: buildArgs.platform,
-        bundleOutput: `dist${sep}${buildArgs.platform}.js`,
+        bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
         dev: false,
         entryFile: '',
         resetCache: true,
@@ -208,7 +210,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
       build: {
         ssrManifest: true,
-        outDir: 'dist/client',
+        outDir: `${outDir}/client`,
         sourcemap: false,
         manifest: true,
         rolldownOptions: {
@@ -271,7 +273,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       cssCodeSplit: false,
       ssr: true,
       sourcemap: false,
-      outDir: 'dist/server',
+      outDir: `${outDir}/server`,
       rolldownOptions: {
         treeshake: true,
         // fixes some weird issues with optimizing tamagui and other packages
@@ -297,7 +299,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverBuildConfig.ssr!.noExternal = true
   }
 
-  const serverEntry = getServerEntry(options)
+  const serverEntry = getServerEntry(options, outDir)
 
   let serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined
   let clientManifest
@@ -336,7 +338,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   if (serverOptions !== false) {
-    clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+    clientManifest = await FSExtra.readJSON(`${outDir}/client/.vite/manifest.json`)
 
     // temp fix - react native web is importing non-existent react 19 apis
     const old = await FSExtra.readFile(serverEntry, 'utf-8')
@@ -355,6 +357,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   return {
+    outDir,
     processEnvDefines,
     options,
     buildArgs,

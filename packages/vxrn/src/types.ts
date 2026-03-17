@@ -142,6 +142,7 @@ export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
 
 export type VXRNServeOptions = VXRNServeOptionsBase & {
   app?: Hono
+  outDir?: string
   beforeRegisterRoutes?: (
     options: VXRNServeOptionsFilled,
     app: Hono

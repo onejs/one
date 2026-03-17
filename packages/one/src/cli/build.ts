@@ -76,13 +76,16 @@ export async function build(args: {
   checkNodeVersion()
   setServerGlobals()
 
-  const { oneOptions } = await loadUserOneOptions('build')
+  const { oneOptions, config: viteLoadedConfig } = await loadUserOneOptions('build')
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
 
   // Set defaultRenderMode env var so getManifest knows the correct route types
   if (oneOptions.web?.defaultRenderMode) {
     process.env.ONE_DEFAULT_RENDER_MODE = oneOptions.web.defaultRenderMode
   }
+
+  // respect vite's build.outDir config, default to 'dist'
+  const outDir = viteLoadedConfig?.config?.build?.outDir ?? 'dist'
 
   const manifest = getManifest({ routerRoot })!
 
@@ -174,7 +177,7 @@ export async function build(args: {
       build: {
         ssr: true,
         emptyOutDir: false,
-        outDir: `dist/${subFolder}`,
+        outDir: `${outDir}/${subFolder}`,
         copyPublicDir: false,
         minify: false,
         rolldownOptions: {
@@ -270,7 +273,7 @@ export async function build(args: {
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
-      builtMiddlewares[middleware.file] = join('dist', 'middlewares', chunk.fileName)
+      builtMiddlewares[middleware.file] = join(outDir, 'middlewares', chunk.fileName)
     }
   }
 
@@ -286,7 +289,7 @@ export async function build(args: {
   const collectImportsCache = new Map<string, string[]>()
   const cssFileContentsCache = new Map<string, string>()
 
-  // css files marked with ?critical import suffix — should be inlined as <style>
+  // css files with .inline.css extension — should be inlined as <style>
   const criticalCSSOutputPaths = getCriticalCSSOutputPaths(vxrnOutput.clientManifest)
 
   // concurrency limiter for parallel page builds
@@ -305,8 +308,8 @@ export async function build(args: {
     : `concurrency: ${BUILD_CONCURRENCY}`
   console.info(`\n 🔨 build static routes (${modeLabel})\n`)
 
-  const staticDir = join(`dist/static`)
-  const clientDir = join(`dist/client`)
+  const staticDir = join(`${outDir}/static`)
+  const clientDir = join(`${outDir}/client`)
   await ensureDir(staticDir)
 
   if (!vxrnOutput.serverOutput) {
@@ -629,7 +632,7 @@ export async function build(args: {
       ]),
     ]
 
-    // check if any css needs inlining (inlineLayoutCSS option or ?critical imports)
+    // check if any css needs inlining (inlineLayoutCSS option or .inline.css imports)
     const hasCriticalCSS = allCSS.some((p) => criticalCSSOutputPaths.has(p))
     const needsCSSContents = oneOptions.web?.inlineLayoutCSS || hasCriticalCSS
 
@@ -640,7 +643,7 @@ export async function build(args: {
         allCSS.map(async (cssPath) => {
           // only read contents for css that should be inlined:
           // - all css when inlineLayoutCSS is enabled
-          // - only ?critical css otherwise
+          // - only .inline.css otherwise
           if (!oneOptions.web?.inlineLayoutCSS && !criticalCSSOutputPaths.has(cssPath)) {
             return ''
           }
@@ -672,7 +675,7 @@ export async function build(args: {
       })
     }
 
-    const serverJsPath = join('dist/server', serverFileName)
+    const serverJsPath = join(`${outDir}/server`, serverFileName)
 
     let exported
     try {
@@ -897,6 +900,7 @@ export async function build(args: {
   }
 
   const buildInfoForWriting: One.BuildInfo = {
+    outDir,
     oneOptions,
     routeToBuildInfo,
     pathToRoute,
@@ -913,7 +917,7 @@ export async function build(args: {
     useRolldown: await isRolldown(),
   }
 
-  await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
+  await writeJSON(toAbsolute(`${outDir}/buildInfo.json`), buildInfoForWriting)
 
   // emit version.json for skew protection polling
   await FSExtra.writeFile(
@@ -982,7 +986,7 @@ export async function build(args: {
         buildInfoForWriting.routeToBuildInfo
       )) {
         if (info.serverJsPath) {
-          const importPath = './' + info.serverJsPath.replace(/^dist\//, '')
+          const importPath = './' + info.serverJsPath.replace(new RegExp(`^${outDir}/`), '')
           pageRouteMap.push(`  '${routeFile}': () => import('${importPath}')`)
         }
       }
@@ -1002,11 +1006,11 @@ export async function build(args: {
       // Generate lazy imports for middlewares
       // The key must match the contextKey used to look up the middleware (e.g., "dist/middlewares/_middleware.js")
       for (const [, builtPath] of Object.entries(builtMiddlewares)) {
-        const importPath = './' + builtPath.replace(/^dist\//, '')
+        const importPath = './' + builtPath.replace(new RegExp(`^${outDir}/`), '')
         middlewareRouteMap.push(`  '${builtPath}': () => import('${importPath}')`)
       }
 
-      const workerSrcPath = join(options.root, 'dist', '_worker-src.js')
+      const workerSrcPath = join(options.root, outDir, '_worker-src.js')
       const workerCode = `// Polyfill MessageChannel for React SSR (not available in Cloudflare Workers by default)
 if (typeof MessageChannel === 'undefined') {
   globalThis.MessageChannel = class MessageChannel {
@@ -1097,7 +1101,7 @@ export default {
         mode: 'production',
         logLevel: 'warn',
         build: {
-          outDir: 'dist',
+          outDir,
           emptyOutDir: false,
           // Use SSR mode with node target for proper Node.js module resolution
           ssr: workerSrcPath,
@@ -1174,12 +1178,12 @@ export default {
 }
 `
       await FSExtra.writeFile(
-        join(options.root, 'dist', 'wrangler.jsonc'),
+        join(options.root, outDir, 'wrangler.jsonc'),
         wranglerConfig
       )
 
-      postBuildLogs.push(`Cloudflare worker bundled at dist/worker.js`)
-      postBuildLogs.push(`To deploy: cd dist && wrangler deploy`)
+      postBuildLogs.push(`Cloudflare worker bundled at ${outDir}/worker.js`)
+      postBuildLogs.push(`To deploy: cd ${outDir} && wrangler deploy`)
 
       break
     }
