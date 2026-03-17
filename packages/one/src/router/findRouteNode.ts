@@ -8,7 +8,7 @@ export function findRouteNodeFromState(
   state: { routes: Array<{ name: string; state?: any }> } | undefined,
   rootNode: RouteNode | null
 ): RouteNode | null {
-  if (!state || !rootNode) {
+  if (!state || !state.routes || !rootNode) {
     return null
   }
 
@@ -65,7 +65,7 @@ export function extractParamsFromState(
     | { routes: Array<{ name: string; params?: Record<string, any>; state?: any }> }
     | undefined
 ): Record<string, string | string[]> {
-  if (!state) {
+  if (!state || !state.routes) {
     return {}
   }
 
@@ -135,7 +135,7 @@ export function findAllRouteNodesFromState(
   state: { routes: Array<{ name: string; state?: any }> } | undefined,
   rootNode: RouteNode | null
 ): RouteNode[] {
-  if (!state || !rootNode) {
+  if (!state || !state.routes || !rootNode) {
     return []
   }
 
@@ -147,7 +147,7 @@ export function findAllRouteNodesFromState(
       | undefined,
     parentNode: RouteNode | null
   ) {
-    if (!currentState || !parentNode) {
+    if (!currentState || !currentState.routes || !parentNode) {
       return
     }
 

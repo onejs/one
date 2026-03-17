@@ -240,6 +240,10 @@ export function useSlot() {
     return null
   }
 
+  if (!state.routes) {
+    return null
+  }
+
   const current = state.routes[state.index]
 
   if (!current) {
