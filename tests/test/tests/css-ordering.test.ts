@@ -78,7 +78,7 @@ describe('CSS Ordering Tests', () => {
     }
   })
 
-  it('?critical CSS should be inlined as <style> not <link>', async () => {
+  it('.inline.css should be inlined as <style> not <link>', async () => {
     const criticalPagePath = join(
       fixturePath,
       'dist',
@@ -107,7 +107,7 @@ describe('CSS Ordering Tests', () => {
     expect(foundInStyle, 'critical CSS should be inside a <style> tag').toBe(true)
   })
 
-  it('?critical CSS <style> should appear before all <script type="module">', async () => {
+  it('.inline.css <style> should appear before all <script type="module">', async () => {
     const criticalPagePath = join(
       fixturePath,
       'dist',
