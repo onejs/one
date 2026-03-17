@@ -22,13 +22,15 @@ async function moveAllFiles(src: string, dest: string) {
 }
 
 function getMiddlewaresByNamedRegex(buildInfoForWriting: One.BuildInfo) {
+  const outDir = buildInfoForWriting.outDir || 'dist'
+  const prefix = `${outDir}/middlewares/`
   return buildInfoForWriting.manifest.allRoutes
     .filter((r) => r.middlewares && r.middlewares.length > 0)
     .map((r) => [
       r.namedRegex,
       r.middlewares!.map((m) =>
-        m.contextKey.startsWith('dist/middlewares/')
-          ? m.contextKey.substring('dist/middlewares/'.length)
+        m.contextKey.startsWith(prefix)
+          ? m.contextKey.substring(prefix.length)
           : m.contextKey
       ),
     ])
@@ -48,6 +50,8 @@ export const buildVercelOutputDirectory = async ({
   oneOptionsRoot: string
   postBuildLogs: string[]
 }) => {
+  const outDir = buildInfoForWriting.outDir || 'dist'
+
   // clean the vercel output directory to avoid stale files from previous builds
   const vercelOutputDir = resolve(join(oneOptionsRoot, '.vercel/output'))
   if (existsSync(vercelOutputDir)) {
@@ -73,7 +77,8 @@ export const buildVercelOutputDirectory = async ({
           route,
           compiledRoute.code,
           oneOptionsRoot,
-          postBuildLogs
+          postBuildLogs,
+          outDir
         )
       } else {
         console.warn(
@@ -112,7 +117,7 @@ export const buildVercelOutputDirectory = async ({
     }
   }
 
-  const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
+  const distMiddlewareDir = resolve(join(oneOptionsRoot, outDir, 'middlewares'))
   if (existsSync(distMiddlewareDir)) {
     const vercelMiddlewareDir = resolve(
       join(oneOptionsRoot, '.vercel/output/functions/_middleware.func')
@@ -122,7 +127,7 @@ export const buildVercelOutputDirectory = async ({
       `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`
     )
     await moveAllFiles(
-      resolve(join(oneOptionsRoot, 'dist', 'middlewares')),
+      resolve(join(oneOptionsRoot, outDir, 'middlewares')),
       vercelMiddlewareDir
     )
     const vercelMiddlewarePackageJsonFilePath = resolve(

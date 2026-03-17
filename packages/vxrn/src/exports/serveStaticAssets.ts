@@ -7,14 +7,16 @@ const hashedAssetRe = /[.-][a-zA-Z0-9_-]{8,}\.\w+$/
 export async function serveStaticAssets({
   context,
   next,
+  outDir = 'dist',
 }: {
   context: Context
   next?: () => Promise<void>
+  outDir?: string
 }) {
   let didCallNext = false
 
   const response = await serveStatic({
-    root: './dist/client',
+    root: `./${outDir}/client`,
     onFound: (path, c) => {
       if (hashedAssetRe.test(path)) {
         c.header('Cache-Control', 'public, immutable, max-age=31536000')

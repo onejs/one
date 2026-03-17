@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "1.10.6-1773677542781",
+  "version": "1.10.6-1773697060872",
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
@@ -182,6 +182,7 @@
     "micromatch": "^4.0.7",
     "nanoid": "^3.3.7",
     "oxc-parser": "^0.112.0",
+    "tsconfig-paths": "^4",
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "react": "19.2.0",
@@ -190,7 +191,6 @@
     "react-native-css-interop": "^0.2.1",
     "react-native-worklets": "~0.7.4",
     "ts-pattern": "^5.6.2",
-    "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
     "vite": "^8.0.0",
     "vxrn": "workspace:*",
