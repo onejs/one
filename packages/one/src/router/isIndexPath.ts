@@ -3,6 +3,10 @@ import type { State } from '../fork/getPathFromState'
 type RouteLikeTree = { name: string; state?: { routes?: RouteLikeTree[] } }
 
 export function isIndexPath(state: State) {
+  if (!state.routes) {
+    return false
+  }
+
   const route = getActualLastRoute(state.routes[state.index ?? state.routes.length - 1])
 
   if (route.state) {

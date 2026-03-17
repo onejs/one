@@ -169,6 +169,25 @@ jobs:
             sleep 1
           done
 
+      - name: Pre-build WebDriverAgent
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+        run: |
+          # WDA builds on first session and can take 15+ min on CI.
+          # use appium's xcodebuild to compile WDA ahead of time.
+          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>/dev/null || echo "")
+          if [ -n "$APPIUM_XCUITEST_PATH" ]; then
+            echo "Building WDA from: $APPIUM_XCUITEST_PATH"
+            xcodebuild build-for-testing \
+              -project "$APPIUM_XCUITEST_PATH/WebDriverAgent.xcodeproj" \
+              -scheme WebDriverAgentRunner \
+              -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+              -derivedDataPath /tmp/wda-build \
+              -quiet || echo "WDA pre-build failed, will build on first session"
+          else
+            echo "Could not find WDA path, will build on first session"
+          fi
+
       - name: Test Dev
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
