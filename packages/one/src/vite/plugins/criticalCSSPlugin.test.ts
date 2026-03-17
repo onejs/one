@@ -10,7 +10,7 @@ describe('criticalCSSPlugin', () => {
   })
 
   describe('resolveId', () => {
-    it('should return null for non-critical imports', async () => {
+    it('should return null for non-inline CSS imports', async () => {
       const { criticalCSSPlugin } = await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
 
@@ -24,7 +24,7 @@ describe('criticalCSSPlugin', () => {
       expect(result).toBeNull()
     })
 
-    it('should return null for non-css ?critical imports', async () => {
+    it('should return null for non-css imports', async () => {
       const { criticalCSSPlugin } = await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
 
@@ -38,34 +38,32 @@ describe('criticalCSSPlugin', () => {
       expect(result).toBeNull()
     })
 
-    it('should strip ?critical and resolve normally', async () => {
+    it('should resolve .inline.css and track it', async () => {
       const { criticalCSSPlugin } = await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
 
       ;(plugin.configResolved as any)({ root: '/project' })
 
       const mockResolve = vi.fn().mockResolvedValue({
-        id: '/project/src/styles.css',
+        id: '/project/src/styles.inline.css',
       })
 
       const result = await (plugin.resolveId as any).call(
         { resolve: mockResolve },
-        './styles.css?critical',
+        './styles.inline.css',
         '/project/src/App.tsx'
       )
 
-      // should call resolve with the clean id (no ?critical)
       expect(mockResolve).toHaveBeenCalledWith(
-        './styles.css',
+        './styles.inline.css',
         '/project/src/App.tsx',
         { skipSelf: true }
       )
 
-      // should return the resolved result
-      expect(result).toEqual({ id: '/project/src/styles.css' })
+      expect(result).toEqual({ id: '/project/src/styles.inline.css' })
     })
 
-    it('should track critical CSS source paths', async () => {
+    it('should track inline CSS source paths', async () => {
       const { criticalCSSPlugin, getCriticalCSSSources } = await import(
         './criticalCSSPlugin'
       )
@@ -74,17 +72,17 @@ describe('criticalCSSPlugin', () => {
       ;(plugin.configResolved as any)({ root: '/project' })
 
       const mockResolve = vi.fn().mockResolvedValue({
-        id: '/project/src/layout.css',
+        id: '/project/src/layout.inline.css',
       })
 
       await (plugin.resolveId as any).call(
         { resolve: mockResolve },
-        './layout.css?critical',
+        './layout.inline.css',
         '/project/src/App.tsx'
       )
 
       const sources = getCriticalCSSSources()
-      expect(sources.has('src/layout.css')).toBe(true)
+      expect(sources.has('src/layout.inline.css')).toBe(true)
     })
 
     it('should return null when resolve fails', async () => {
@@ -97,7 +95,7 @@ describe('criticalCSSPlugin', () => {
 
       const result = await (plugin.resolveId as any).call(
         { resolve: mockResolve },
-        './nonexistent.css?critical',
+        './nonexistent.inline.css',
         '/project/src/App.tsx'
       )
 
@@ -106,28 +104,26 @@ describe('criticalCSSPlugin', () => {
   })
 
   describe('getCriticalCSSOutputPaths', () => {
-    it('should map critical source CSS to output paths via manifest', async () => {
+    it('should map inline CSS source to output paths via manifest', async () => {
       const { criticalCSSPlugin, getCriticalCSSSources, getCriticalCSSOutputPaths } =
         await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
 
       ;(plugin.configResolved as any)({ root: '/project' })
 
-      // simulate a ?critical import being resolved
       const mockResolve = vi.fn().mockResolvedValue({
-        id: '/project/app/layout.css',
+        id: '/project/app/layout.inline.css',
       })
       await (plugin.resolveId as any).call(
         { resolve: mockResolve },
-        './layout.css?critical',
+        './layout.inline.css',
         '/project/app/_layout.tsx'
       )
 
-      // simulate a client manifest with the CSS entry
       const manifest = {
-        'app/layout.css': {
+        'app/layout.inline.css': {
           file: 'assets/layout-abc123.css',
-          src: 'app/layout.css',
+          src: 'app/layout.inline.css',
         },
         'app/_layout.tsx': {
           file: 'assets/layout-def456.js',
@@ -141,8 +137,7 @@ describe('criticalCSSPlugin', () => {
       expect(outputPaths.has('/assets/layout-abc123.css')).toBe(true)
     })
 
-    it('should return empty set when no critical CSS exists', async () => {
-      // fresh import to reset module state
+    it('should return empty set when no inline CSS exists', async () => {
       const { getCriticalCSSOutputPaths } = await import('./criticalCSSPlugin')
 
       const manifest = {
@@ -152,7 +147,6 @@ describe('criticalCSSPlugin', () => {
       }
 
       const outputPaths = getCriticalCSSOutputPaths(manifest as any)
-      // may contain paths from prior tests in same module, but should not error
       expect(outputPaths).toBeDefined()
     })
   })

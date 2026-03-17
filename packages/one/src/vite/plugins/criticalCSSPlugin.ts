@@ -2,21 +2,20 @@ import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 
 /**
- * Tracks CSS files imported with `?critical` suffix.
+ * Tracks CSS files with `.inline.css` extension.
  * These CSS files will be inlined as <style> tags before scripts.
  *
  * Usage:
- *   import './layout.css?critical'
+ *   import './layout.inline.css'
  *
- * The plugin strips `?critical`, lets Vite process the CSS normally,
- * and records which source CSS files are critical. After the build,
+ * The plugin records which source CSS files should be inlined. After the build,
  * getCriticalCSSOutputPaths() maps source paths to output paths
  * using the client manifest.
  */
 
-const CRITICAL_SUFFIX = '?critical'
+const INLINE_CSS_EXT = '.inline.css'
 
-// source paths of CSS files imported with ?critical (relative to root)
+// source paths of CSS files with .inline.css extension (relative to root)
 const criticalCSSSources = new Set<string>()
 
 let root = ''
@@ -27,7 +26,7 @@ export function getCriticalCSSSources(): Set<string> {
 
 /**
  * Given the client manifest, returns the set of output CSS paths
- * that were imported with ?critical.
+ * that use .inline.css extension.
  */
 export function getCriticalCSSOutputPaths(
   clientManifest: Record<string, { file: string; css?: string[] }>
@@ -58,10 +57,9 @@ export function criticalCSSPlugin(): Plugin {
     },
 
     async resolveId(id, importer) {
-      if (!id.endsWith(CRITICAL_SUFFIX)) return null
+      if (!id.endsWith(INLINE_CSS_EXT)) return null
 
-      const cleanId = id.slice(0, -CRITICAL_SUFFIX.length)
-      const resolved = await this.resolve(cleanId, importer, { skipSelf: true })
+      const resolved = await this.resolve(id, importer, { skipSelf: true })
 
       if (resolved) {
         // store as relative path to match manifest keys

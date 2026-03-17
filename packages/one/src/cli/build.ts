@@ -289,7 +289,7 @@ export async function build(args: {
   const collectImportsCache = new Map<string, string[]>()
   const cssFileContentsCache = new Map<string, string>()
 
-  // css files marked with ?critical import suffix — should be inlined as <style>
+  // css files with .inline.css extension — should be inlined as <style>
   const criticalCSSOutputPaths = getCriticalCSSOutputPaths(vxrnOutput.clientManifest)
 
   // concurrency limiter for parallel page builds
@@ -632,7 +632,7 @@ export async function build(args: {
       ]),
     ]
 
-    // check if any css needs inlining (inlineLayoutCSS option or ?critical imports)
+    // check if any css needs inlining (inlineLayoutCSS option or .inline.css imports)
     const hasCriticalCSS = allCSS.some((p) => criticalCSSOutputPaths.has(p))
     const needsCSSContents = oneOptions.web?.inlineLayoutCSS || hasCriticalCSS
 
@@ -643,7 +643,7 @@ export async function build(args: {
         allCSS.map(async (cssPath) => {
           // only read contents for css that should be inlined:
           // - all css when inlineLayoutCSS is enabled
-          // - only ?critical css otherwise
+          // - only .inline.css otherwise
           if (!oneOptions.web?.inlineLayoutCSS && !criticalCSSOutputPaths.has(cssPath)) {
             return ''
           }
