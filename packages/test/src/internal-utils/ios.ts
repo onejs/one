@@ -204,26 +204,12 @@ async function prepareTestApp() {
   // Try multiple locations for hermesc
   const possibleHermescPaths = [
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    path.join(
-      root,
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
-    path.join(
-      root,
-      '..',
-      '..',
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
+    // RN 0.83+: hermes-compiler package
+    path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
+    // RN <0.83: react-native/sdks
+    path.join(root, 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
   ]
 
   let hermescPath: string | undefined
