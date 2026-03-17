@@ -72,6 +72,26 @@ Or via environment variable:
 ONE_BUILD_WORKERS=0 npx one build
 ```
 
+### Security scanning
+
+One automatically scans your client bundles for leaked secrets after building. By default it logs warnings — for production deployments, we recommend setting `securityScan` to `'error'` to fail the build if secrets are found:
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      build: {
+        securityScan: 'error'
+      }
+    })
+  ]
+}
+```
+
+The scanner detects common API key patterns (Anthropic, OpenAI, Stripe, GitHub, AWS), bearer tokens, and generic secret assignments. See [Configuration: build.securityScan](/docs/configuration#buildsecurityscan) for all options.
+
 ## Building for native
 
 We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.

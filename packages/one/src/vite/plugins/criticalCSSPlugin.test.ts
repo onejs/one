@@ -64,9 +64,8 @@ describe('criticalCSSPlugin', () => {
     })
 
     it('should track inline CSS source paths', async () => {
-      const { criticalCSSPlugin, getCriticalCSSSources } = await import(
-        './criticalCSSPlugin'
-      )
+      const { criticalCSSPlugin, getCriticalCSSSources } =
+        await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
 
       ;(plugin.configResolved as any)({ root: '/project' })

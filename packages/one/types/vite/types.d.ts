@@ -432,6 +432,43 @@ export declare namespace One {
              * @default true
              */
             workers?: boolean;
+            /**
+             * Scan client bundles for leaked secrets (API keys, tokens, passwords)
+             * after building. Catches accidental exposure of server-side secrets
+             * in client-facing JavaScript.
+             *
+             * - `'warn'` (default): Log warnings but don't fail the build
+             * - `'error'`: Fail the build if secrets are found
+             * - `false`: Disable scanning entirely
+             *
+             * Pass an object for fine-grained control:
+             *
+             * @example
+             * securityScan: {
+             *   level: 'error',
+             *   safePatterns: [
+             *     'sk_live_test_placeholder',
+             *     /my-custom-uuid-[a-f0-9-]+/,
+             *   ]
+             * }
+             *
+             * For production deployments, we recommend setting this to `'error'`
+             * to prevent secrets from being shipped to clients.
+             *
+             * @default 'warn'
+             */
+            securityScan?: boolean | 'warn' | 'error' | {
+                /**
+                 * @default 'warn'
+                 */
+                level?: 'warn' | 'error';
+                /**
+                 * Strings or regex patterns that should be considered safe
+                 * and ignored by the scanner. Useful for test tokens, known
+                 * UUIDs, or domain-specific patterns.
+                 */
+                safePatterns?: (string | RegExp)[];
+            };
         };
         patches?: FixDependencies;
         ssr?: {

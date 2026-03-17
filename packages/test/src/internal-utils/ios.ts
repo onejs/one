@@ -155,7 +155,9 @@ async function prepareTestApp() {
             resolve()
           } else {
             const body = await response.text().catch(() => '')
-            console.error(`Bundle request returned ${response.status}: ${body.slice(0, 500)}`)
+            console.error(
+              `Bundle request returned ${response.status}: ${body.slice(0, 500)}`
+            )
             throw new Error(`${response.status}`)
           }
         } catch (error) {
@@ -206,10 +208,37 @@ async function prepareTestApp() {
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
     // RN 0.83+: hermes-compiler package
     path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
-    path.join(root, '..', '..', 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(
+      root,
+      '..',
+      '..',
+      'node_modules',
+      'hermes-compiler',
+      'hermesc',
+      'osx-bin',
+      'hermesc'
+    ),
     // RN <0.83: react-native/sdks
-    path.join(root, 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
-    path.join(root, '..', '..', 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(
+      root,
+      'node_modules',
+      'react-native',
+      'sdks',
+      'hermesc',
+      'osx-bin',
+      'hermesc'
+    ),
+    path.join(
+      root,
+      '..',
+      '..',
+      'node_modules',
+      'react-native',
+      'sdks',
+      'hermesc',
+      'osx-bin',
+      'hermesc'
+    ),
   ]
 
   let hermescPath: string | undefined

@@ -267,6 +267,11 @@ prefetchCSS()
             loaderPartialPath,
             `export function loader(){return ${redirectData}}`
           )
+          // native-friendly CJS version
+          await outputFile(
+            loaderPartialPath.replace(/\.js$/, '.native.js'),
+            `exports.loader = function(){return ${redirectData}}`
+          )
           loaderPath = getLoaderPath(path)
           loaderData = {}
         } else {
@@ -281,6 +286,11 @@ if (typeof document === 'undefined') globalThis.document = {}
               loaderData,
             })
           await outputFile(loaderPartialPath, withLoader)
+          // native-friendly CJS version with just the data (no ESM imports)
+          await outputFile(
+            loaderPartialPath.replace(/\.js$/, '.native.js'),
+            `exports.loader = function(){return ${JSON.stringify(loaderData)}}`
+          )
           loaderPath = getLoaderPath(path)
         }
       }

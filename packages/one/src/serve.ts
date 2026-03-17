@@ -12,11 +12,12 @@ process.on('uncaughtException', (err) => {
   console.error(`[one] Uncaught exception`, err?.stack || err)
 })
 
-export async function serve(args: VXRNOptions['server'] & { app?: Hono; outDir?: string } = {}) {
+export async function serve(
+  args: VXRNOptions['server'] & { app?: Hono; outDir?: string } = {}
+) {
   // resolve outDir: explicit arg > buildInfo.json in cwd (serving from within outDir) > default 'dist'
-  const outDir = args.outDir
-    || (FSExtra.existsSync('buildInfo.json') ? '.' : null)
-    || 'dist'
+  const outDir =
+    args.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 

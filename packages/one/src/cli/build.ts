@@ -608,11 +608,9 @@ export async function build(args: {
 
     // layout css (from layout entries) - should load before scripts to prevent FOUC
     const layoutCSS = [
-      ...new Set([
-        ...layoutEntries
+      ...new Set(layoutEntries
           .flatMap((entry) => collectImports(entry, { type: 'css' }))
-          .map((path) => `/${path}`),
-      ]),
+          .map((path) => `/${path}`)),
     ]
 
     // all css including page entry and root-level css
@@ -621,9 +619,7 @@ export async function build(args: {
         ...layoutCSS,
         // css from page entry
         ...(clientManifestEntry
-          ? collectImports(clientManifestEntry, { type: 'css' }).map(
-              (path) => `/${path}`
-            )
+          ? collectImports(clientManifestEntry, { type: 'css' }).map((path) => `/${path}`)
           : []),
         // root-level css (handles cssCodeSplit: false)
         ...Object.entries(vxrnOutput.clientManifest)
@@ -986,7 +982,8 @@ export async function build(args: {
         buildInfoForWriting.routeToBuildInfo
       )) {
         if (info.serverJsPath) {
-          const importPath = './' + info.serverJsPath.replace(new RegExp(`^${outDir}/`), '')
+          const importPath =
+            './' + info.serverJsPath.replace(new RegExp(`^${outDir}/`), '')
           pageRouteMap.push(`  '${routeFile}': () => import('${importPath}')`)
         }
       }
@@ -1186,6 +1183,35 @@ export default {
       postBuildLogs.push(`To deploy: cd ${outDir} && wrangler deploy`)
 
       break
+    }
+  }
+
+  // security scan for leaked secrets in client bundles
+  const securityScanOption = oneOptions.build?.securityScan
+  // default to 'warn', normalize all forms
+  const securityScanLevel: 'warn' | 'error' | null =
+    securityScanOption === false
+      ? null
+      : securityScanOption === true || securityScanOption === undefined
+        ? 'warn'
+        : typeof securityScanOption === 'string'
+          ? securityScanOption
+          : (securityScanOption.level ?? 'warn')
+
+  const securitySafePatterns =
+    typeof securityScanOption === 'object' && securityScanOption !== null
+      ? securityScanOption.safePatterns
+      : undefined
+
+  if (securityScanLevel) {
+    const { runSecurityScan } = await import('./securityScan')
+    const passed = await runSecurityScan(
+      clientDir,
+      securityScanLevel,
+      securitySafePatterns
+    )
+    if (!passed) {
+      process.exit(1)
     }
   }
 

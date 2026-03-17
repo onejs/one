@@ -14,7 +14,10 @@ export const applyCompression = (app: Hono, options: VXRNServeOptions) => {
 export const createProdServer = async (
   app: Hono,
   options: VXRNServeOptions,
-  { skipCompression, outDir = 'dist' }: { skipCompression?: boolean; outDir?: string } = {}
+  {
+    skipCompression,
+    outDir = 'dist',
+  }: { skipCompression?: boolean; outDir?: string } = {}
 ) => {
   // when called via serve(), compression is already applied before beforeRegisterRoutes
   if (!skipCompression) {

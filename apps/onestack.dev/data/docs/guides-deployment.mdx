@@ -17,11 +17,17 @@ export default {
     one({
       web: {
         deploy: 'node' // 'node' (default), 'vercel', or 'cloudflare'
+      },
+      build: {
+        // fail the build if secrets leak into client bundles
+        securityScan: 'error'
       }
     })
   ]
 }
 ```
+
+We recommend setting `securityScan: 'error'` for production deployments to prevent accidentally shipping API keys or tokens in client-facing JavaScript. See [Configuration: build.securityScan](/docs/configuration#buildsecurityscan) for details.
 
 ## Deployment Targets
 

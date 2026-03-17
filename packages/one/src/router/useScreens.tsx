@@ -180,7 +180,11 @@ function RootLayoutRenderer({
                     dangerouslySetInnerHTML={{ __html: content }}
                   />
                 ) : serverContext.css?.[i] ? (
-                  <link key={serverContext.css[i]} rel="stylesheet" href={serverContext.css![i]} />
+                  <link
+                    key={serverContext.css[i]}
+                    rel="stylesheet"
+                    href={serverContext.css![i]}
+                  />
                 ) : null
               )
             : cachedInlineCSSElements
