@@ -798,6 +798,49 @@ This modifies the `<Slot />` navigator to set a static `key` on screen elements,
 
 **Default:** `false`
 
+### build.securityScan
+
+Scan client bundles for leaked secrets (API keys, tokens, passwords) after building. This catches accidental exposure of server-side secrets in client-facing JavaScript before they reach production.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      build: {
+        // Log warnings when secrets are found (default)
+        securityScan: 'warn',
+
+        // Fail the build if secrets are found (recommended for production)
+        securityScan: 'error',
+
+        // Disable scanning entirely
+        securityScan: false,
+
+        // Object form for fine-grained control
+        securityScan: {
+          level: 'error',
+          safePatterns: [
+            // exact strings that are known safe
+            '09259e3b-7be8-46f6-9801-106bf1866e1c',
+            // regex patterns for domain-specific matches
+            /my-app-test-token-[a-z]+/,
+          ],
+        },
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`'warn'`** (default): Log warnings but don't fail the build
+- **`'error'`**: Fail the build if secrets are detected — **recommended for production CI/CD**
+- **`false`**: Disable scanning entirely
+- **`{ level, safePatterns }`**: Object form with `level` (`'warn'` or `'error'`) and `safePatterns` (array of strings or RegExp to ignore)
+
+The scanner checks for common secret patterns including Anthropic, OpenAI, Stripe, GitHub, and AWS keys, as well as generic secret/password/token assignments. Known safe patterns (WebRTC constants, CSS tokens) are automatically excluded. Use `safePatterns` to add your own.
+
 ## ssr
 
 Server-side rendering configuration.

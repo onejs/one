@@ -213,6 +213,8 @@ export function getViteMetroPluginOptions({
             })(),
           },
         ],
+        // inline ONE_SERVER_URL so native prod bundles know where to fetch loaders
+        'one/babel-plugin-inline-one-server-url',
       ],
     },
   }

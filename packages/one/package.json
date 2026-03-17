@@ -85,6 +85,11 @@
       "import": "./dist/esm/babel-plugins/environment-guard.mjs",
       "require": "./dist/cjs/babel-plugins/environment-guard.cjs"
     },
+    "./babel-plugin-inline-one-server-url": {
+      "types": "./types/babel-plugins/inline-one-server-url.d.ts",
+      "import": "./dist/esm/babel-plugins/inline-one-server-url.mjs",
+      "require": "./dist/cjs/babel-plugins/inline-one-server-url.cjs"
+    },
     "./getViteMetroPluginOptions": {
       "types": "./types/metro-config/getViteMetroPluginOptions.d.ts",
       "import": "./dist/esm/metro-config/getViteMetroPluginOptions.mjs",

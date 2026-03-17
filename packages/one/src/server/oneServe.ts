@@ -171,7 +171,22 @@ export async function oneServe(
     return render
   }
 
+  const clientDir = join(process.cwd(), outDir, 'client')
+
   const requestHandlers: RequestHandlers = {
+    async handleStaticFile(filePath: string) {
+      try {
+        // filePath is like /assets/index_123_vxrn_loader.native.js
+        const fullPath = join(clientDir, filePath)
+        const content = await readFile(fullPath, 'utf-8')
+        return new Response(content, {
+          headers: { 'Content-Type': 'text/javascript' },
+        })
+      } catch {
+        return null
+      }
+    },
+
     async handleAPI({ route }) {
       // Use lazy import if available (workers), otherwise dynamic import (Node.js)
       if (options?.lazyRoutes?.api?.[route.page]) {

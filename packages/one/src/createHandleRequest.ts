@@ -13,6 +13,7 @@ export type RequestHandlers = {
   handlePage?: (props: RequestHandlerProps) => Promise<any>
   handleLoader?: (props: RequestHandlerProps) => Promise<any>
   handleAPI?: (props: RequestHandlerProps) => Promise<any>
+  handleStaticFile?: (path: string) => Promise<Response | null>
   loadMiddleware?: (route: RouteNode) => Promise<any>
 }
 
@@ -158,6 +159,10 @@ export async function resolveLoaderRoute(
     console.info(`[one] 📦 loader ${url.pathname} → ${route.file}`)
   }
 
+  const isNativeRequest =
+    url.searchParams.get('platform') === 'ios' ||
+    url.searchParams.get('platform') === 'android'
+
   const response = await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {
       const headers = new Headers()
@@ -176,7 +181,13 @@ export async function resolveLoaderRoute(
           },
         })
 
-        return new Response(loaderResponse, {
+        // native needs CJS format for eval()
+        const body =
+          isNativeRequest && loaderResponse
+            ? toCjsLoader(loaderResponse)
+            : loaderResponse
+
+        return new Response(body, {
           headers,
         })
       } catch (err) {
@@ -202,7 +213,10 @@ export async function resolveLoaderRoute(
     if (location) {
       const redirectUrl = new URL(location, url.origin)
       const redirectPath = redirectUrl.pathname + redirectUrl.search + redirectUrl.hash
-      const body = `export function loader(){return{__oneRedirect:${JSON.stringify(redirectPath)},__oneRedirectStatus:${response.status}}}`
+      const data = `{__oneRedirect:${JSON.stringify(redirectPath)},__oneRedirectStatus:${response.status}}`
+      const body = isNativeRequest
+        ? `exports.loader=function(){return ${data}}`
+        : `export function loader(){return${data}}`
       return new Response(body, {
         headers: { 'Content-Type': 'text/javascript' },
       })
@@ -212,13 +226,33 @@ export async function resolveLoaderRoute(
   // transform auth error responses (401/403) into js modules so the client
   // gets a clean error signal instead of a parse failure
   if (response.status === 401 || response.status === 403) {
-    const body = `export function loader(){return{__oneError:${response.status},__oneErrorMessage:${JSON.stringify(response.statusText || 'Unauthorized')}}}`
+    const data = `{__oneError:${response.status},__oneErrorMessage:${JSON.stringify(response.statusText || 'Unauthorized')}}`
+    const body = isNativeRequest
+      ? `exports.loader=function(){return ${data}}`
+      : `export function loader(){return${data}}`
     return new Response(body, {
       headers: { 'Content-Type': 'text/javascript' },
     })
   }
 
   return response
+}
+
+/**
+ * convert an ESM loader response to CJS for native eval().
+ * extracts the JSON data from `export function loader() { return {...} }`
+ * and wraps it as `exports.loader = function() { return {...} }`
+ */
+function toCjsLoader(esmCode: string): string {
+  // match: export function loader() { return DATA }
+  const match = esmCode.match(
+    /export\s+function\s+loader\s*\(\)\s*\{\s*return\s+([\s\S]+)\s*\}/
+  )
+  if (match) {
+    return `exports.loader=function(){return ${match[1]}}`
+  }
+  // fallback: wrap the whole thing
+  return `exports.loader=function(){return {}}`
 }
 
 export async function resolvePageRoute(
@@ -338,6 +372,20 @@ export function createHandleRequest(
         const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)
 
         if (isClientRequestingNewRoute) {
+          const isNativePlatform =
+            url.searchParams.get('platform') === 'ios' ||
+            url.searchParams.get('platform') === 'android'
+
+          // for native requests, try serving the pre-built .native.js static file first
+          // (SSG/SPA routes generate standalone CJS loaders at build time)
+          if (isNativePlatform && handlers.handleStaticFile) {
+            const nativeLoaderPath = pathname.replace(/\.js$/, '.native.js')
+            const staticResponse = await handlers.handleStaticFile(nativeLoaderPath)
+            if (staticResponse) {
+              return staticResponse
+            }
+          }
+
           const originalUrl = getPathFromLoaderPath(pathname)
 
           for (const route of compiledManifest.pageRoutes) {
@@ -358,7 +406,8 @@ export function createHandleRequest(
           }
 
           // no matching route - return empty module so client handles gracefully
-          return new Response('export {}', {
+          const emptyBody = isNativePlatform ? 'exports.loader=function(){return{}}' : 'export {}'
+          return new Response(emptyBody, {
             headers: { 'Content-Type': 'text/javascript' },
           })
         }

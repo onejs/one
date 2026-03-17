@@ -6,6 +6,7 @@ export type RequestHandlers = {
     handlePage?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
+    handleStaticFile?: (path: string) => Promise<Response | null>;
     loadMiddleware?: (route: RouteNode) => Promise<any>;
 };
 type RequestHandlerProps<RouteExtraProps extends object = {}> = {
