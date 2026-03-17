@@ -135,8 +135,8 @@ describe('Simple Build Tests', () => {
     }
   })
 
-  it('should inline ?critical CSS as <style> tags in SPA pages', async () => {
-    // CSS imported with ?critical should be inlined as <style> tags,
+  it('should inline .inline.css as <style> tags in SPA pages', async () => {
+    // CSS imported with .inline.css should be inlined as <style> tags,
     // not as <link rel="stylesheet"> tags, to eliminate the network request.
     const criticalPagePath = join(
       fixturePath,
