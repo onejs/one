@@ -154,10 +154,12 @@ async function prepareTestApp() {
             )
             resolve()
           } else {
+            const body = await response.text().catch(() => '')
+            console.error(`Bundle request returned ${response.status}: ${body.slice(0, 500)}`)
             throw new Error(`${response.status}`)
           }
         } catch (error) {
-          if (retries >= 5) {
+          if (retries >= 30) {
             const errorMsg = error instanceof Error ? error.message : String(error)
             reject(
               new Error(
@@ -166,7 +168,7 @@ async function prepareTestApp() {
             )
           } else {
             retries++
-            setTimeout(checkUrl, 1000)
+            setTimeout(checkUrl, 2000)
           }
         }
       }
@@ -202,26 +204,12 @@ async function prepareTestApp() {
   // Try multiple locations for hermesc
   const possibleHermescPaths = [
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    path.join(
-      root,
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
-    path.join(
-      root,
-      '..',
-      '..',
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
+    // RN 0.83+: hermes-compiler package
+    path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
+    // RN <0.83: react-native/sdks
+    path.join(root, 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
   ]
 
   let hermescPath: string | undefined
@@ -275,7 +263,7 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 5 * 60 * 1000,
+    connectionRetryTimeout: 10 * 60 * 1000,
     connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,

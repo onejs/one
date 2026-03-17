@@ -1,15 +1,16 @@
 name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
-  simulator_ios_version: 17
+  simulator_ios_version: 18
   # Name of the simulator device to use.
-  simulator_device_name: iPhone 15 Pro
+  simulator_device_name: iPhone 16 Pro
 
 on:
   push:
     branches:
       - main
       - ci/native-tests-free-runners
+      - react-native-82
     paths:
       - '.github/actions/install/**'
       - '.github/workflows/build-ios-test-container-app.yml'
@@ -65,9 +66,12 @@ jobs:
     needs:
       - build-ios-test-container-dev
       - build-ios-test-container-prod
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 60
     steps:
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_26.2.app
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -129,7 +133,7 @@ jobs:
             ~/.appium
             /usr/local/lib/node_modules/appium
             /usr/local/bin/appium
-          key: appium-xcuitest-${{ runner.os }}-v1
+          key: appium-xcuitest-${{ runner.os }}-v2
 
       - name: Install Appium
         if: steps.appium-cache.outputs.cache-hit != 'true'
@@ -143,8 +147,10 @@ jobs:
           if ! appium --version 2>/dev/null; then
             echo "appium not functional, reinstalling..."
             npm install -g appium
+            appium driver install xcuitest
           fi
           appium --version
+          appium driver list --installed
 
       - name: Start Appium Server
         run: |
