@@ -39,11 +39,56 @@ export function StackScreen({ children, options, ...rest }: StackScreenProps) {
   return <Screen {...rest} options={updatedOptions} />
 }
 
+const VALID_PRESENTATIONS = [
+  'card',
+  'modal',
+  'transparentModal',
+  'containedModal',
+  'containedTransparentModal',
+  'fullScreenModal',
+  'formSheet',
+  'pageSheet',
+] as const
+
+// validates presentation value in dev to prevent native crashes from invalid values
+export function validateStackPresentation(
+  options: NativeStackNavigationOptions
+): NativeStackNavigationOptions
+export function validateStackPresentation<
+  F extends (...args: never[]) => NativeStackNavigationOptions,
+>(options: F): F
+export function validateStackPresentation(
+  options: NativeStackNavigationOptions | ((...args: never[]) => NativeStackNavigationOptions)
+): ((...args: never[]) => NativeStackNavigationOptions) | NativeStackNavigationOptions {
+  if (typeof options === 'function') {
+    return (...args: never[]) => {
+      const resolved = options(...args)
+      validateStackPresentation(resolved)
+      return resolved
+    }
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    const presentation = options.presentation
+    if (
+      presentation &&
+      !VALID_PRESENTATIONS.includes(presentation as (typeof VALID_PRESENTATIONS)[number])
+    ) {
+      console.warn(
+        `Invalid presentation value "${presentation}" passed to Stack.Screen. Valid values are: ${VALID_PRESENTATIONS.map((v) => `"${v}"`).join(', ')}.`
+      )
+    }
+  }
+  return options
+}
+
 export function appendScreenStackPropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackScreenProps
 ): NativeStackNavigationOptions {
   let updatedOptions = { ...options, ...props.options }
+
+  validateStackPresentation(updatedOptions)
 
   function appendChildOptions(
     child: React.ReactElement,
