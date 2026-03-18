@@ -147,6 +147,7 @@ export {
 } from './useServerHeadInsertion'
 export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
+export { removeParams } from './utils/removeParams'
 export { watchFile } from './utils/watchFile'
 export { ErrorBoundary } from './views/ErrorBoundary'
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
