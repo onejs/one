@@ -618,9 +618,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       options.router?.experimental?.preventLayoutRemounting,
   }
 
+  // source inspector must come before clientTreeShakePlugin so line numbers
+  // are computed from original source (tree-shaking removes loader code, shifting lines)
+  const inspectorPlugins = (() => {
+    const devtools = options.devtools ?? true
+    const inspector =
+      devtools === true || (devtools !== false && (devtools.inspector ?? true))
+    return inspector ? sourceInspectorPlugin() : []
+  })()
+
   return [
     ...vxrnPlugins,
     ...devAndProdPlugins,
+    ...inspectorPlugins,
     ...nativeWebDevAndProdPlugsin,
 
     /**
@@ -663,12 +673,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(() => {
       const devtools = options.devtools ?? true
       const includeUI = devtools !== false
-      const inspector =
-        devtools === true || (devtools !== false && (devtools.inspector ?? true))
       return [
         // always include devtools plugin for refresh preamble (required for HMR)
         createDevtoolsPlugin({ includeUI }),
-        ...(inspector ? sourceInspectorPlugin() : []),
       ]
     })(),
   ]

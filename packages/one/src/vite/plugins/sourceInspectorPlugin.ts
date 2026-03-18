@@ -168,34 +168,39 @@ export function sourceInspectorPlugin(): Plugin[] {
       enforce: 'pre',
       apply: 'serve',
 
-      async transform(code, id) {
-        const envName = this.environment?.name
-        // Skip native environments only - transform both client and SSR for consistency
-        if (envName === 'ios' || envName === 'android') return
+      transform: {
+        // must run before clientTreeShakePlugin which also uses order: 'pre'
+        // (within same order, plugin array position determines precedence)
+        order: 'pre',
+        async handler(code, id) {
+          const envName = this.environment?.name
+          // skip native environments only - transform both client and SSR for consistency
+          if (envName === 'ios' || envName === 'android') return
 
-        if (
-          id.includes('node_modules') ||
-          id.includes('?raw') ||
-          id.includes('dist') ||
-          id.includes('build')
-        ) {
-          return
-        }
+          if (
+            id.includes('node_modules') ||
+            id.includes('?raw') ||
+            id.includes('dist') ||
+            id.includes('build')
+          ) {
+            return
+          }
 
-        if (!id.endsWith('.jsx') && !id.endsWith('.tsx')) return
+          if (!id.endsWith('.jsx') && !id.endsWith('.tsx')) return
 
-        if (cache.has(code)) {
-          return cache.get(code)
-        }
+          if (cache.has(code)) {
+            return cache.get(code)
+          }
 
-        const out = await injectSourceToJsx(code, id)
-        cache.set(code, out)
+          const out = await injectSourceToJsx(code, id)
+          cache.set(code, out)
 
-        if (cache.size > 100) {
-          cache.clear()
-        }
+          if (cache.size > 100) {
+            cache.clear()
+          }
 
-        return out
+          return out
+        },
       },
     },
 
