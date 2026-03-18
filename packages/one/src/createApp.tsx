@@ -11,8 +11,6 @@ import { setupSkewProtection } from './skewProtection'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
-import { safeJsonStringify } from './utils/htmlEscape'
-import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
@@ -101,14 +99,13 @@ export function createApp(options: CreateAppProps) {
           />
         )
 
+        // deferred preloads are now rendered in Root (React 19 hoists to <head>)
+        // postRenderData is now serialized directly in ServerContextScript
         let html = await renderToString(rootElement, {
           preloads: props.preloads,
-          deferredPreloads: props.deferredPreloads,
         })
 
-        // post-render: inject head elements and server data
-        // collect extra head elements (RNW styles + head insertions)
-        let extraHeadHTML = ''
+        // post-render: inject any extra head elements (RNW styles + head insertions)
         try {
           const extraHeadElements: React.ReactElement[] = []
 
@@ -140,34 +137,17 @@ export function createApp(options: CreateAppProps) {
           }
 
           if (extraHeadElements.length) {
-            extraHeadHTML = renderToStaticMarkup(
+            const extraHeadHTML = renderToStaticMarkup(
               <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
             )
+            if (extraHeadHTML) {
+              html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
+            }
           }
         } catch (err) {
           if (!`${err}`.includes(`sheet is not defined`)) {
             throw err
           }
-        }
-
-        // serialize post-render data
-        const postRenderData = getServerContext()?.postRenderData
-
-        // single pass string replacement when possible
-        if (extraHeadHTML && postRenderData) {
-          html = html
-            .replace(`</head>`, `${extraHeadHTML}</head>`)
-            .replace(
-              safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
-              safeJsonStringify(postRenderData)
-            )
-        } else if (extraHeadHTML) {
-          html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
-        } else if (postRenderData) {
-          html = html.replace(
-            safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
-            safeJsonStringify(postRenderData)
-          )
         }
 
         return html
@@ -318,7 +298,7 @@ export function createApp(options: CreateAppProps) {
   // for SPA/dev mode, fall back to importing root layout directly
   const preloadPromises = routePreloads
     ? Object.entries(routePreloads).map(async ([routeKey, bundlePath]) => {
-        const mod = await import(/* @vite-ignore */ bundlePath)
+        const mod = await import(/* @vite-ignore */ bundlePath as string)
         registerPreloadedRoute(routeKey, mod)
         return mod
       })
