@@ -19,13 +19,19 @@ describe('CSS Ordering Tests', () => {
 
     const html = await readFile(spaPagePath, 'utf-8')
 
-    // extract all <link rel="stylesheet"> and <script type="module"> positions
+    // extract all CSS positions (either <link rel="stylesheet"> or inline <style>)
     const cssPositions: number[] = []
     const scriptPositions: number[] = []
 
     let match: RegExpExecArray | null
-    const cssRegex = /<link[^>]*rel=["']?stylesheet["']?[^>]*>/g
-    while ((match = cssRegex.exec(html)) !== null) {
+    // check for external CSS links
+    const cssLinkRegex = /<link[^>]*rel=["']?stylesheet["']?[^>]*>/g
+    while ((match = cssLinkRegex.exec(html)) !== null) {
+      cssPositions.push(match.index)
+    }
+    // also check for inline <style> tags (when inlineLayoutCSS is enabled)
+    const styleRegex = /<style[^>]*>/g
+    while ((match = styleRegex.exec(html)) !== null) {
       cssPositions.push(match.index)
     }
 
@@ -34,12 +40,15 @@ describe('CSS Ordering Tests', () => {
       scriptPositions.push(match.index)
     }
 
-    // there should be CSS and scripts
-    expect(cssPositions.length, 'should have CSS links').toBeGreaterThan(0)
+    // there should be CSS (links or inline styles) and scripts
+    expect(
+      cssPositions.length,
+      'should have CSS (links or inline styles)'
+    ).toBeGreaterThan(0)
     expect(scriptPositions.length, 'should have module scripts').toBeGreaterThan(0)
 
-    // the first CSS link should come before the first script
-    // (layout CSS loads before scripts to prevent FOUC)
+    // sort positions and check the first CSS comes before the first script
+    cssPositions.sort((a, b) => a - b)
     expect(
       cssPositions[0],
       `first CSS at pos ${cssPositions[0]} should be before first script at pos ${scriptPositions[0]}`
