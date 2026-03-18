@@ -4,7 +4,10 @@ import type { One } from '../vite/types'
 import * as routerStore from './router'
 import { initialize } from './router'
 
-let initialized = false
+// per-request initialization tracking via a simple counter
+// each SSR request increments the version so the router re-initializes
+let initVersion = 0
+let lastInitVersion = -1
 
 export function useInitializeOneRouter(
   context: One.RouteContext,
@@ -12,28 +15,27 @@ export function useInitializeOneRouter(
 ) {
   const navigationRef = useNavigationContainerRef()
 
-  if (!initialized) {
+  if (lastInitVersion !== initVersion) {
+    // reset react navigation contexts to avoid stale provider warnings
+    const contexts = '__react_navigation__elements_contexts'
+    globalThis[contexts] = new Map<string, React.Context<any>>()
+
     initialize(context, navigationRef, initialLocation)
-    initialized = true
+    lastInitVersion = initVersion
   }
 
   return routerStore
 }
 
+// called before each SSR render to ensure fresh router state
+export function prepareForSSRRender() {
+  initVersion++
+}
+
+// keep backwards compat but make it lightweight
 export function resetState() {
-  initialized = false
-  resetReactNavigationContexts()
+  prepareForSSRRender()
   resetLoaderState()
 }
 
-// TODO remove global
 globalThis['__vxrnresetState'] = resetState
-
-function resetReactNavigationContexts() {
-  // https://github.com/expo/router/discussions/588
-  // https://github.com/react-navigation/react-navigation/blob/9fe34b445fcb86e5666f61e144007d7540f014fa/packages/elements/src/getNamedContext.tsx#LL3C1-L4C1
-  // React Navigation is storing providers in a global, this is fine for the first static render
-  // but subsequent static renders of Stack or Tabs will cause React to throw a warning. To prevent this warning, we'll reset the globals before rendering.
-  const contexts = '__react_navigation__elements_contexts'
-  globalThis[contexts] = new Map<string, React.Context<any>>()
-}

@@ -8,6 +8,10 @@ import type { RouteNode } from './Route'
 
 let linkingConfig: OneLinkingOptions | undefined
 
+// cache the base linking config (route-tree dependent, not URL-dependent)
+let cachedBaseLinkingConfig: OneLinkingOptions | undefined
+let cachedRouteNodeForLinking: RouteNode | null = null
+
 export function getLinking() {
   return linkingConfig
 }
@@ -27,7 +31,14 @@ export function setupLinking(
   let initialState: OneRouter.ResultState | undefined
 
   if (routeNode) {
-    linkingConfig = createLinkingConfig(routeNode)
+    // cache the base config - only rebuild when route tree changes
+    if (routeNode !== cachedRouteNodeForLinking || !cachedBaseLinkingConfig) {
+      cachedBaseLinkingConfig = createLinkingConfig(routeNode)
+      cachedRouteNodeForLinking = routeNode
+    }
+
+    // shallow copy so per-request mutations (getInitialURL) don't affect cache
+    linkingConfig = { ...cachedBaseLinkingConfig }
 
     if (initialLocation) {
       linkingConfig.getInitialURL = () => initialLocation.toString()
@@ -35,7 +46,6 @@ export function setupLinking(
       let path = initialLocation.pathname + (initialLocation.search || '')
 
       if (isWebClient) {
-        // Check history.state for temp location (client-only)
         const historyState = window.history.state
         if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
           path =
