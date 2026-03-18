@@ -184,17 +184,23 @@ const serveCommand = defineCommand({
       type: 'string',
       description: 'Build output directory (default: dist)',
     },
+    cluster: {
+      type: 'string',
+      description: 'Enable cluster mode with N workers (default: cpu count)',
+    },
   },
   async run({ args }) {
     const { serve } = await import('./serve')
     const port = lastValue(args.port)
     const host = lastValue(args.host)
+    const clusterArg = lastValue(args.cluster)
     await serve({
       port: port ? +port : undefined,
       host,
       compress: args.compress,
       loadEnv: !!args.loadEnv,
       outDir: lastValue(args.outDir),
+      cluster: clusterArg !== undefined ? (clusterArg ? +clusterArg : true) : undefined,
     })
   },
 })
