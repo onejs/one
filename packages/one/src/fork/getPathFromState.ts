@@ -330,7 +330,7 @@ export function getPathDataFromState<ParamList extends {}>(
     // @modified - end
 
     if (!focusedParams) {
-      focusedParams = focusedRoute.params
+      focusedParams = { ...focusedRoute.params }
     }
 
     if (route.state) {
