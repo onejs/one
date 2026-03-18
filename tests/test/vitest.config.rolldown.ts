@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  clearScreen: false,
   test: {
     globalSetup: '@vxrn/test/setup',
     retry: 1,

@@ -2,6 +2,7 @@ import { defineConfig } from 'vitest/config'
 import { resolve } from 'node:path'
 
 export default defineConfig({
+  clearScreen: false,
   define: {
     __DEV__: true,
     'process.env.EXPO_OS': JSON.stringify('web'),

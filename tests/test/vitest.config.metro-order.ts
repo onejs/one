@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  clearScreen: false,
   test: {
     include: ['tests/metro-startup-order.test.ts'],
     testTimeout: 90000,

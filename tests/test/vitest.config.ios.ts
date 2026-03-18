@@ -3,6 +3,7 @@ import { defineConfig } from 'vitest/config'
 import defaultConfig from './vitest.config'
 
 export default defineConfig({
+  clearScreen: false,
   ...defaultConfig,
   test: {
     ...defaultConfig.test,
