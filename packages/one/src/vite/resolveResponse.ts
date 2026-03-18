@@ -5,22 +5,18 @@ import {
   runWithAsyncLocalContext,
 } from './one-server-only'
 
-export function resolveResponse(getResponse: () => Promise<Response>) {
-  return new Promise<Response>((res, rej) => {
-    runWithAsyncLocalContext(async (id) => {
-      try {
-        const response = await getResponse()
-        const modifiedResponse = await getResponseWithAddedHeaders(response, id)
-        res(modifiedResponse)
-      } catch (err) {
-        // allow throwing a response
-        if (isResponse(err)) {
-          res(err)
-        } else {
-          rej(err) // reject the promise on any other error
-        }
+export async function resolveResponse(getResponse: () => Promise<Response>) {
+  return runWithAsyncLocalContext(async (id) => {
+    try {
+      const response = await getResponse()
+      return await getResponseWithAddedHeaders(response, id)
+    } catch (err) {
+      // allow throwing a response
+      if (isResponse(err)) {
+        return err as Response
       }
-    })
+      throw err
+    }
   })
 }
 
