@@ -14,9 +14,13 @@ import { NavigationStateContext } from '@react-navigation/core/lib/module/Naviga
 // @ts-ignore internal module
 import { SingleNavigatorContext } from '@react-navigation/core/lib/module/EnsureSingleNavigator'
 import { ThemeProvider } from '@react-navigation/core'
+import { LinkingContext } from '@react-navigation/native'
 import * as React from 'react'
 
 const noop = () => {}
+
+// minimal linking context for SSR — tabs needs .options to resolve triggers
+const SSR_LINKING_CTX = { options: undefined as any }
 
 // static context values — never change, zero allocations per render
 const SSR_BUILDER_CTX = {
@@ -67,19 +71,24 @@ function getStateContext(initialState: any) {
 export function SSRNavigationContainer({
   initialState,
   theme,
+  linking,
   children,
 }: {
   initialState: any
   theme: any
+  linking?: any
   children: React.ReactNode
 }) {
+  const linkingCtx = linking ? { options: linking } : SSR_LINKING_CTX
   return (
-    <NavigationBuilderContext.Provider value={SSR_BUILDER_CTX}>
-      <NavigationStateContext.Provider value={getStateContext(initialState)}>
-        <SingleNavigatorContext.Provider value={SSR_SINGLE_NAV_CTX}>
-          <ThemeProvider value={theme}>{children}</ThemeProvider>
-        </SingleNavigatorContext.Provider>
-      </NavigationStateContext.Provider>
-    </NavigationBuilderContext.Provider>
+    <LinkingContext.Provider value={linkingCtx}>
+      <NavigationBuilderContext.Provider value={SSR_BUILDER_CTX}>
+        <NavigationStateContext.Provider value={getStateContext(initialState)}>
+          <SingleNavigatorContext.Provider value={SSR_SINGLE_NAV_CTX}>
+            <ThemeProvider value={theme}>{children}</ThemeProvider>
+          </SingleNavigatorContext.Provider>
+        </NavigationStateContext.Provider>
+      </NavigationBuilderContext.Provider>
+    </LinkingContext.Provider>
   )
 }

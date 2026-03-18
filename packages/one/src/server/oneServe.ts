@@ -18,7 +18,7 @@ import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
-import { setSSRLoaderData } from '../useLoader'
+import { setSSRLoaderData } from './ssrLoaderData'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER

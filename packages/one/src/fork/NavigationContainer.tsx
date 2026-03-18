@@ -90,9 +90,9 @@ function NavigationContainerInner(
   // @modified - SSR fast path: bypass BaseNavigationContainer entirely
   // eliminates 32+ hooks and reduces 8 providers to 4
   if (typeof window === 'undefined') {
-    const { theme = DefaultTheme, initialState, children } = props
+    const { theme = DefaultTheme, initialState, linking, children } = props
     return (
-      <SSRNavigationContainer initialState={initialState} theme={theme}>
+      <SSRNavigationContainer initialState={initialState} theme={theme} linking={linking}>
         {children}
       </SSRNavigationContainer>
     )

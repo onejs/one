@@ -2,6 +2,21 @@ import { assertString } from '../utils/assert'
 import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
+  // fix broken ESM: NavigationContainer.js uses extensionless relative imports
+  // which fail in Node.js ESM (lib/module has "type": "module")
+  {
+    module: '@react-navigation/native',
+    patchFiles: {
+      'lib/module/NavigationContainer.js': (contents) => {
+        assertString(contents)
+        return contents
+          .replace(`from './useBackButton'`, `from './useBackButton.js'`)
+          .replace(`from './useDocumentTitle'`, `from './useDocumentTitle.js'`)
+          .replace(`from './useLinking'`, `from './useLinking.js'`)
+      },
+    },
+  },
+
   // expose internal contexts for SSR-optimized NavigationContainer
   {
     module: '@react-navigation/core',
