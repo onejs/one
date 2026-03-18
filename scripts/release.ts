@@ -461,7 +461,7 @@ async function run() {
           const npmFilename = `${name.replace('@', '').replace('/', '-')}-${version}.tgz`
           await fs.rename(join(tmpDir, npmFilename), absolutePath)
 
-          const publishCommand = ['npm publish', absolutePath, publishOptions, '--quiet']
+          const publishCommand = ['npm publish', absolutePath, publishOptions]
             .filter(Boolean)
             .join(' ')
 
