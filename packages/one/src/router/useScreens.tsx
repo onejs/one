@@ -1,5 +1,8 @@
 import { createNavigatorFactory } from '@react-navigation/core'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
+// avoid importing @react-navigation/elements at module level — it chains to
+// react-native which is Flow source and fails in Node ESM during `one serve`
+import { Fragment } from 'react'
+const SafeAreaProviderCompat = Fragment
 import type {
   EventMapBase,
   NavigationState,
