@@ -83,13 +83,12 @@ export class BuildWorkerPool {
     return this.workers.length
   }
 
-  // initialize all workers - they load config themselves from vite.config
-  async initialize() {
+  // initialize all workers with pre-loaded config from main thread
+  async initialize(oneOptions?: any) {
     await this._ready
-    // send init message to all workers
-    // workers load the vite config themselves to avoid serialization issues
+    // pass oneOptions via postMessage so workers skip loading vite config
     for (const worker of this.workers) {
-      worker.postMessage({ type: 'init', id: this.nextId++ })
+      worker.postMessage({ type: 'init', id: this.nextId++, oneOptions })
     }
     // wait for all workers to be initialized
     await this._initialized
