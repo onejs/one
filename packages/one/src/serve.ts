@@ -65,7 +65,9 @@ export async function serve(
         process.exit(1)
       }
 
-      console.error(`[one] worker ${worker.process.pid} died (code ${code}, signal ${signal}), restarting`)
+      console.error(
+        `[one] worker ${worker.process.pid} died (code ${code}, signal ${signal}), restarting`
+      )
       setTimeout(() => cluster.fork(), Math.min(recentCrashes * 500, 5000))
     })
 
