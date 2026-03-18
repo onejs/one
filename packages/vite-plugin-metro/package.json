@@ -51,7 +51,7 @@
   },
   "peerDependencies": {
     "@expo/metro-config": "~55.0.9",
-    "expo": "~55.0.6",
+    "expo": "~55.0.7",
     "metro": "^0.83",
     "metro-config": "*",
     "react-native": "~0.83.2",
@@ -75,7 +75,7 @@
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",
-    "expo": "~55.0.6",
+    "expo": "~55.0.7",
     "metro": "^0.83",
     "vite": "^8.0.0"
   },
