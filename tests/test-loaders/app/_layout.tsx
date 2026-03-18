@@ -5,10 +5,7 @@ import config from '../config/tamagui.config'
 
 export default function Layout() {
   return (
-    <html lang="en-US">
-      <head>
-        <meta charSet="utf-8" />
-      </head>
+    <html lang="ab">
       <SchemeProvider>
         <TamaguiRootProvider>
           <Slot />
