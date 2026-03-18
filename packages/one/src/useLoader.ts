@@ -315,18 +315,12 @@ export function useLoaderState<
   // avoids re-executing the loader (which already ran in importAndRunLoader)
   if (typeof window === 'undefined') {
     // check WeakMap first — each loader fn maps to its own route's data
+    // this handles both page and layout loaders correctly in production SSR
     if (loader && ssrLoaderData.has(loader)) {
       return { data: ssrLoaderData.get(loader), refetch: async () => {}, state: 'idle' } as any
     }
-    // fallback to page-level loaderData from server context
-    if (loaderDataFromServerContext !== undefined) {
-      return {
-        data: loaderDataFromServerContext,
-        refetch: async () => {},
-        state: 'idle',
-      } as any
-    }
-    // last resort: run loader directly (e.g. layout loaders without pre-resolved data)
+    // if a loader function is provided, run it to get the correct data
+    // (loaderDataFromServerContext is always the PAGE's data, not the layout's)
     if (loader) {
       const serverData = useAsyncFn(
         loader,
@@ -336,6 +330,14 @@ export function useLoaderState<
         }
       )
       return { data: serverData, refetch: async () => {}, state: 'idle' } as any
+    }
+    // no loader function — use page-level loaderData from server context
+    if (loaderDataFromServerContext !== undefined) {
+      return {
+        data: loaderDataFromServerContext,
+        refetch: async () => {},
+        state: 'idle',
+      } as any
     }
   }
 
