@@ -107,6 +107,28 @@ export function useLinking(
   }: Options,
   onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
 ) {
+  // SSR fast path: skip all client-only linking logic
+  // on the server we already have initialState from setupLinkingAndRouteInfo
+  if (typeof window === 'undefined') {
+    const location = React.useContext(ServerLocationContext)
+    const getInitialState = React.useCallback(() => {
+      let value: ResultState | undefined
+      if (enabled && location) {
+        const path = location.pathname + (location.search || '')
+        value = getStateFromPath(path, config)
+        onUnhandledLinking(path)
+      }
+      return {
+        then(fn?: (state: ResultState | undefined) => void) {
+          return Promise.resolve(fn ? fn(value) : value)
+        },
+        catch() { return this },
+      } as PromiseLike<ResultState | undefined>
+    }, [])
+
+    return { getInitialState }
+  }
+
   const independent = useNavigationIndependentTree()
 
   React.useEffect(() => {
