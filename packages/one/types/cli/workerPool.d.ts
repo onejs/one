@@ -13,7 +13,7 @@ export declare class BuildWorkerPool {
     private _terminated;
     constructor(size?: number);
     get size(): number;
-    initialize(): Promise<void>;
+    initialize(oneOptions?: any): Promise<void>;
     private dispatch;
     buildPage(args: {
         serverEntry: string;

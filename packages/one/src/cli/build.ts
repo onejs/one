@@ -299,7 +299,13 @@ export async function build(args: {
   const useWorkers = shouldUseWorkers(oneOptions)
   const workerPool = useWorkers ? getWorkerPool(BUILD_CONCURRENCY) : null
   if (workerPool) {
-    await workerPool.initialize()
+    // strip non-cloneable values so workers skip re-loading vite config
+    const serializableOptions = JSON.parse(
+      JSON.stringify(oneOptions, (_key, value) =>
+        typeof value === 'function' ? undefined : value
+      )
+    )
+    await workerPool.initialize(serializableOptions)
   }
 
   const staticStartTime = performance.now()

@@ -22,8 +22,6 @@ let buildPageFn: typeof import('./buildPage').buildPage | null = null
 let runWithAsyncLocalContextFn:
   | typeof import('../vite/one-server-only').runWithAsyncLocalContext
   | null = null
-let loadUserOneOptionsFn: typeof import('../vite/loadConfig').loadUserOneOptions | null =
-  null
 let initialized = false
 
 async function ensureImports() {
@@ -41,35 +39,24 @@ async function ensureImports() {
     )
     runWithAsyncLocalContextFn = mod.runWithAsyncLocalContext
   }
-  if (!loadUserOneOptionsFn) {
-    const mod = await workerImport<typeof import('../vite/loadConfig')>(
-      '../vite/loadConfig',
-      import.meta.url
-    )
-    loadUserOneOptionsFn = mod.loadUserOneOptions
-  }
   return {
     buildPage: buildPageFn!,
     runWithAsyncLocalContext: runWithAsyncLocalContextFn!,
-    loadUserOneOptions: loadUserOneOptionsFn!,
   }
 }
 
-async function initializeWorker() {
+async function initializeWorker(oneOptions: any) {
   if (initialized) return
-  // load the user's vite config to get oneOptions
-  // this avoids needing to serialize config through postMessage
-  const { loadUserOneOptions } = await ensureImports()
-  const { oneOptions } = await loadUserOneOptions('build', true)
-  // set global plugin config that createManifest needs
+  if (!oneOptions) {
+    throw new Error('Worker must receive oneOptions from main thread')
+  }
   globalThis['__vxrnPluginConfig__'] = oneOptions
   initialized = true
 }
 
 parentPort.on('message', async (msg: any) => {
   if (msg.type === 'init') {
-    // initialize worker by loading config from vite.config
-    await initializeWorker()
+    await initializeWorker(msg.oneOptions)
     parentPort!.postMessage({ type: 'init-done', id: msg.id })
     return
   }
