@@ -15,7 +15,8 @@ import {
   useLayoutEffect,
   useState,
 } from 'react'
-import { SERVER_CONTEXT_KEY } from './constants'
+import { SERVER_CONTEXT_KEY, isNative } from './constants'
+import { initScreensFeatureFlags } from './screensFeatureFlags'
 import { SpaShellContext } from './router/SpaShellContext'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
@@ -68,6 +69,11 @@ globalThis['__vxrnGetContextFromReactContext'] = () =>
   useContext(ServerAsyncLocalIDContext)
 
 export function Root(props: RootProps) {
+  // enable synchronous screen updates on native for proper layout behavior
+  if (isNative) {
+    initScreensFeatureFlags()
+  }
+
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
     props
 
