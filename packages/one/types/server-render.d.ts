@@ -13,4 +13,10 @@ export type RenderToStringOptions = {
     deferredPreloads?: string[];
 };
 export declare const renderToString: (app: React.ReactElement, options: RenderToStringOptions) => Promise<string>;
+/**
+ * streaming SSR - returns a ReadableStream instead of a string.
+ * skips allReady wait and post-processing. deferred preloads should
+ * be in the React tree (React 19 hoists <link> to <head>).
+ */
+export declare const renderToStream: (app: React.ReactElement, options: RenderToStringOptions) => Promise<ReadableStream>;
 //# sourceMappingURL=server-render.d.ts.map

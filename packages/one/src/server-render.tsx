@@ -21,14 +21,24 @@ export const renderToString = async (
   options: RenderToStringOptions
 ) => {
   const readableStream = await ReactDOMServer.renderToReadableStream(app, {
-    // Only pass critical scripts to bootstrapModules
-    // These generate both modulepreload links AND async script tags
     bootstrapModules: options.preloads,
   })
+  // wait for suspense boundaries - should be near-instant since loaders are pre-resolved
   await readableStream.allReady
-  let out = await streamToString(readableStream)
 
-  // Add non-critical modulepreload links to head (just hints, no script execution)
+  // read all chunks efficiently
+  const reader = readableStream.getReader()
+  const decoder = new TextDecoder('utf-8')
+  let out = ''
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    out += decoder.decode(value, { stream: true })
+  }
+  out += decoder.decode()
+
+  // add non-critical modulepreload links to head
   if (options.deferredPreloads?.length) {
     const modulepreloadLinks = options.deferredPreloads
       .map((src) => `<link rel="modulepreload" fetchPriority="low" href="${src}"/>`)
@@ -39,15 +49,17 @@ export const renderToString = async (
   return out
 }
 
-async function streamToString(stream: ReadableStream<Uint8Array>): Promise<string> {
-  const decoder = new TextDecoder('utf-8', { fatal: true })
-  let result = ''
-
-  // @ts-expect-error TS is wrong, see https://nodejs.org/api/webstreams.html#async-iteration
-  for await (const chunk of stream) {
-    result += decoder.decode(chunk, { stream: true })
-  }
-
-  result += decoder.decode()
-  return result
+/**
+ * streaming SSR - returns a ReadableStream instead of a string.
+ * skips allReady wait and post-processing. deferred preloads should
+ * be in the React tree (React 19 hoists <link> to <head>).
+ */
+export const renderToStream = async (
+  app: React.ReactElement,
+  options: RenderToStringOptions
+): Promise<ReadableStream> => {
+  const stream = await ReactDOMServer.renderToReadableStream(app, {
+    bootstrapModules: options.preloads,
+  })
+  return stream
 }
