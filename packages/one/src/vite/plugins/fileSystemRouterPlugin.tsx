@@ -487,10 +487,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
           const platform = url.searchParams.get('platform')
 
-          if (platform === 'ios' || platform === 'android') {
+          if (platform === 'ios' || platform === 'android' || platform === 'native') {
             // Need to transpile to CommonJS for React Native
 
-            const environment = server.environments[platform || '']
+            const environment =
+              server.environments[platform === 'native' ? 'ios' : platform || '']
             if (!environment) {
               throw new Error(
                 `[handleLoader] No Vite environment found for platform '${platform}'`

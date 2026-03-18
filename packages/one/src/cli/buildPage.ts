@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import FSExtra from 'fs-extra'
 import * as constants from '../constants'
+import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import type { LoaderProps } from '../types'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
@@ -256,6 +257,11 @@ prefetchCSS()
       if (clientJsPath) {
         const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
 
+        // uncached native loader path for native prod (metro can't inline cache keys)
+        const uncachedNativePath = loaderPartialPath
+          .replace(constants.LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED)
+          .replace(/\.js$/, '.native.js')
+
         if (loaderRedirectInfo) {
           // generate a static redirect loader — the client detects __oneRedirect
           // and navigates before the protected page ever renders
@@ -268,10 +274,9 @@ prefetchCSS()
             `export function loader(){return ${redirectData}}`
           )
           // native-friendly CJS version
-          await outputFile(
-            loaderPartialPath.replace(/\.js$/, '.native.js'),
-            `exports.loader = function(){return ${redirectData}}`
-          )
+          const nativeCjs = `exports.loader = function(){return ${redirectData}}`
+          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+          await outputFile(uncachedNativePath, nativeCjs)
           loaderPath = getLoaderPath(path)
           loaderData = {}
         } else {
@@ -287,10 +292,9 @@ if (typeof document === 'undefined') globalThis.document = {}
             })
           await outputFile(loaderPartialPath, withLoader)
           // native-friendly CJS version with just the data (no ESM imports)
-          await outputFile(
-            loaderPartialPath.replace(/\.js$/, '.native.js'),
-            `exports.loader = function(){return ${JSON.stringify(loaderData)}}`
-          )
+          const nativeCjs = `exports.loader = function(){return ${JSON.stringify(loaderData)}}`
+          await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
+          await outputFile(uncachedNativePath, nativeCjs)
           loaderPath = getLoaderPath(path)
         }
       }
