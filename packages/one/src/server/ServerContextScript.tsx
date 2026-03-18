@@ -1,6 +1,7 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
 import { safeJsonStringify } from '../utils/htmlEscape'
-import { getServerContext, useServerContext } from '../vite/one-server-only'
+import { SERVER_CONTEXT_POST_RENDER_STRING } from '../vite/constants'
+import { useServerContext } from '../vite/one-server-only'
 
 export function ServerContextScript() {
   if (process.env.VITE_ENVIRONMENT === 'client') {
@@ -32,14 +33,13 @@ export function ServerContextScript() {
       ...(m.loaderData !== restContext.loaderData ? { loaderData: m.loaderData } : {}),
     }))
 
-    // serialize postRenderData directly (loaders run before render, so data is ready)
-    const postRenderData = getServerContext()?.postRenderData
-
     const clientContext = {
       ...restContext,
       matches: compactMatches,
       cssInlineCount: cssContents?.length || 0,
-      postRenderData: postRenderData || undefined,
+      // use placeholder — postRenderData is set during render (after this component)
+      // and replaced in the HTML string after rendering completes
+      postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
     }
 
     return (

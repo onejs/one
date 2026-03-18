@@ -36,10 +36,19 @@ test(
 
     const page = await context.newPage()
 
-    await page.goto(url)
+    const errors: string[] = []
+    page.on('console', (msg) => {
+      if (msg.type() === 'error' || msg.text().includes('hydrat')) {
+        errors.push(msg.text())
+      }
+    })
+    page.on('pageerror', (err) => errors.push(err.message))
+
+    await page.goto(url, { waitUntil: 'networkidle' })
 
     const textContent = await page.textContent('#server-data')
     expect(textContent).toContain(`{"fromServer":true}`)
+    expect(errors, 'no console errors or hydration warnings').toEqual([])
 
     await page.close()
   }

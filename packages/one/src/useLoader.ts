@@ -2,6 +2,8 @@ import { useCallback, useSyncExternalStore } from 'react'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
+import { useContextKey } from './router/Route'
+import { getContextKey } from './router/matchers'
 import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
 import { ssrLoaderData } from './server/ssrLoaderData'
@@ -312,26 +314,39 @@ export function useLoaderState<
   // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
   const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 
-  // server-side only
+  // server-side only — use pre-resolved loader data so dev and prod behave identically
+  // (no re-running loaders during render, data comes from the same source the client gets)
   if (typeof window === 'undefined') {
-    // production: use pre-resolved data from WeakMap (set by oneServe)
-    if (loader && ssrLoaderData.has(loader)) {
-      return {
-        data: ssrLoaderData.get(loader),
-        refetch: async () => {},
-        state: 'idle',
-      } as any
-    }
-    // dev/fallback: run the loader via useAsyncFn
-    // this correctly handles both page and layout loaders
     if (loader) {
+      // 1) prod: WeakMap keyed by loader function (set by oneServe)
+      if (ssrLoaderData.has(loader)) {
+        return {
+          data: ssrLoaderData.get(loader),
+          refetch: async () => {},
+          state: 'idle',
+        } as any
+      }
+      // 2) dev/fallback: look up this route's data from the matches array in server context
+      //    matches are built with per-route loaderData by both dev and prod handlers
+      //    this avoids re-running loaders during render and keeps dev/prod identical
+      const serverContext = useServerContext()
+      if (serverContext?.matches) {
+        const contextKey = useContextKey()
+        const match = serverContext.matches.find(
+          (m: any) => getContextKey(m.routeId) === contextKey
+        )
+        if (match && match.loaderData !== undefined) {
+          return { data: match.loaderData, refetch: async () => {}, state: 'idle' } as any
+        }
+      }
+      // 3) last resort fallback: run the loader
       const serverData = useAsyncFn(
         loader,
         loaderPropsFromServerContext || { path: pathname, params }
       )
       return { data: serverData, refetch: async () => {}, state: 'idle' } as any
     }
-    // no loader function (useLoaderState without loader arg)
+    // no loader function (useLoaderState without loader arg) — use page-level data
     if (loaderDataFromServerContext !== undefined) {
       return {
         data: loaderDataFromServerContext,

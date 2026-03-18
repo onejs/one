@@ -11,6 +11,8 @@ import { setupSkewProtection } from './skewProtection'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
+import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
+import { safeJsonStringify } from './utils/htmlEscape'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
@@ -99,8 +101,6 @@ export function createApp(options: CreateAppProps) {
           />
         )
 
-        // deferred preloads are now rendered in Root (React 19 hoists to <head>)
-        // postRenderData is now serialized directly in ServerContextScript
         let html = await renderToString(rootElement, {
           preloads: props.preloads,
         })
@@ -148,6 +148,15 @@ export function createApp(options: CreateAppProps) {
           if (!`${err}`.includes(`sheet is not defined`)) {
             throw err
           }
+        }
+
+        // replace postRenderData placeholder with actual data set during render
+        const postRenderData = getServerContext()?.postRenderData
+        if (postRenderData) {
+          html = html.replace(
+            safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
+            safeJsonStringify(postRenderData)
+          )
         }
 
         return html
