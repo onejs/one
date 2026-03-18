@@ -32,7 +32,11 @@ export async function buildBundle(
     )
   }
 
-  const metroConfig = await getMetroConfigFromViteConfig(viteConfig, metroPluginOptions)
+  // disable watchman for one-shot bundle builds — avoids recrawl warnings
+  const metroConfig = await getMetroConfigFromViteConfig(viteConfig, {
+    ...metroPluginOptions,
+    watchman: metroPluginOptions.watchman ?? false,
+  })
 
   const args = {
     ...argsIn,
