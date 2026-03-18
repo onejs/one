@@ -117,7 +117,9 @@ export function useLinking(
         then(fn?: (state: ResultState | undefined) => void) {
           return Promise.resolve(fn ? fn(undefined) : undefined)
         },
-        catch() { return this },
+        catch() {
+          return this
+        },
       } as PromiseLike<ResultState | undefined>
     }, [])
 

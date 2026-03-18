@@ -315,7 +315,11 @@ export function useLoaderState<
   // avoids re-executing the loader (which already ran in importAndRunLoader)
   if (typeof window === 'undefined') {
     if (loaderDataFromServerContext !== undefined) {
-      return { data: loaderDataFromServerContext, refetch: async () => {}, state: 'idle' } as any
+      return {
+        data: loaderDataFromServerContext,
+        refetch: async () => {},
+        state: 'idle',
+      } as any
     }
     // fallback: run loader if no pre-resolved data (e.g. layout loaders)
     if (loader) {
