@@ -4,6 +4,7 @@ import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
 import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
+import { ssrLoaderData } from './server/ssrLoaderData'
 import {
   subscribeToClientMatches,
   getClientMatchesSnapshot,
@@ -315,7 +316,11 @@ export function useLoaderState<
   if (typeof window === 'undefined') {
     // production: use pre-resolved data from WeakMap (set by oneServe)
     if (loader && ssrLoaderData.has(loader)) {
-      return { data: ssrLoaderData.get(loader), refetch: async () => {}, state: 'idle' } as any
+      return {
+        data: ssrLoaderData.get(loader),
+        refetch: async () => {},
+        state: 'idle',
+      } as any
     }
     // dev/fallback: run the loader via useAsyncFn
     // this correctly handles both page and layout loaders
@@ -328,7 +333,11 @@ export function useLoaderState<
     }
     // no loader function (useLoaderState without loader arg)
     if (loaderDataFromServerContext !== undefined) {
-      return { data: loaderDataFromServerContext, refetch: async () => {}, state: 'idle' } as any
+      return {
+        data: loaderDataFromServerContext,
+        refetch: async () => {},
+        state: 'idle',
+      } as any
     }
   }
 
@@ -361,7 +370,6 @@ export function useLoaderState<
   )
 
   const refetch = useCallback(() => refetchLoader(currentPath), [currentPath])
-
 
   // if the loader returns a routeId, look up data from matches instead of loaderState
   // only use this path when the match has data (layouts always have data preserved from SSR;
@@ -703,16 +711,8 @@ const started = new Map()
 
 // maps loader function → its route's loaderData for SSR
 // populated before render in oneServe.ts, cleared after
-const ssrLoaderData = new WeakMap<Function, any>()
-
-/**
- * register a loader function's pre-resolved data for SSR
- * called from oneServe before rendering so useLoader can look up
- * the correct data per-route without re-executing the loader
- */
-export function setSSRLoaderData(loaderFn: Function, data: any) {
-  ssrLoaderData.set(loaderFn, data)
-}
+// re-export for backwards compat
+export { setSSRLoaderData } from './server/ssrLoaderData'
 
 export function resetLoaderState() {
   results.clear()
