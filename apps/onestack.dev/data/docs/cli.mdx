@@ -99,9 +99,11 @@ one serve [options]
 --port          # set the port to bind to
 --compress      # enable gzip compression (default: true)
 --loadEnv       # load .env files before running
+--cluster       # enable cluster mode using all CPU cores
+--cluster=N     # enable cluster mode with N workers
 ```
 
-One comes with a serve command that is powered by [Hono](https://hono.dev).
+One comes with a serve command that is powered by [Hono](https://hono.dev). For high-traffic production deployments, use `--cluster` to fork multiple worker processes that share the same port. See [one serve](/docs/one-serve) for details.
 
 If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` - you can statically serve the results of `dist/client` using any server you'd like.
 
