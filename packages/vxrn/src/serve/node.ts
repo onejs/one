@@ -1,4 +1,3 @@
-import cluster from 'node:cluster'
 import { networkInterfaces } from 'node:os'
 import { serve as honoServe } from '@hono/node-server'
 import type { Hono } from 'hono'
@@ -22,28 +21,25 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
     hostname: options.host,
   })
 
-  // only print URL banner once (primary or first worker)
-  if (!cluster.isWorker || cluster.worker?.id === 1) {
-    const colorUrl = (url: string) =>
-      colors.cyan(url.replace(/:(\d+)\//, (_, port) => `:${colors.bold(port)}/`))
+  const colorUrl = (url: string) =>
+    colors.cyan(url.replace(/:(\d+)\//, (_, port) => `:${colors.bold(port)}/`))
 
-    const displayHost = options.host === '0.0.0.0' ? 'localhost' : options.host
-    const localUrl = `http://${displayHost}:${options.port}/`
+  const displayHost = options.host === '0.0.0.0' ? 'localhost' : options.host
+  const localUrl = `http://${displayHost}:${options.port}/`
 
-    console.info()
-    console.info(`  ${colors.green('➜')}  ${colors.bold('Local')}:   ${colorUrl(localUrl)}`)
+  console.info()
+  console.info(`  ${colors.green('➜')}  ${colors.bold('Local')}:   ${colorUrl(localUrl)}`)
 
-    if (options.host === '0.0.0.0') {
-      const networkHost = getNetworkAddress()
-      if (networkHost) {
-        const networkUrl = `http://${networkHost}:${options.port}/`
-        console.info(
-          `  ${colors.green('➜')}  ${colors.bold('Network')}: ${colorUrl(networkUrl)}`
-        )
-      }
+  if (options.host === '0.0.0.0') {
+    const networkHost = getNetworkAddress()
+    if (networkHost) {
+      const networkUrl = `http://${networkHost}:${options.port}/`
+      console.info(
+        `  ${colors.green('➜')}  ${colors.bold('Network')}: ${colorUrl(networkUrl)}`
+      )
     }
-    console.info()
   }
+  console.info()
 
   const shutdown = () => {
     server.close(() => {

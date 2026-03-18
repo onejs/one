@@ -1,4 +1,3 @@
-import cluster from 'node:cluster'
 import { getPort } from 'get-port-please'
 import type { Mode, VXRNOptions, VXRNServeOptionsFilled } from '../types'
 
@@ -15,27 +14,19 @@ export async function getServerOptionsFilled(
   const portToUse = requestedPort ?? defaultPort
   const protocol = 'http:' as const
 
-  let port: number
+  // if a specific port was requested, only try that port (strict mode)
+  // otherwise, allow finding an available port in a range
+  const port = await getPort({
+    port: portToUse,
+    portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
+    host,
+  })
 
-  // cluster workers skip port check - primary already validated, and
-  // Node's cluster module shares the socket across workers
-  if (cluster.isWorker) {
-    port = portToUse
-  } else {
-    // if a specific port was requested, only try that port (strict mode)
-    // otherwise, allow finding an available port in a range
-    port = await getPort({
-      port: portToUse,
-      portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
-      host,
-    })
-
-    // if user explicitly requested a port and we couldn't get it, error out
-    if (requestedPort && port !== requestedPort) {
-      throw new Error(
-        `Port ${requestedPort} is already in use. Either free the port or use a different one.`
-      )
-    }
+  // if user explicitly requested a port and we couldn't get it, error out
+  if (requestedPort && port !== requestedPort) {
+    throw new Error(
+      `Port ${requestedPort} is already in use. Either free the port or use a different one.`
+    )
   }
 
   // Use localhost for the URL when host is 0.0.0.0 since that's how clients will access it
