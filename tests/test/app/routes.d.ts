@@ -104,6 +104,7 @@ declare module 'one' {
         | `/sheet`
         | `/simple-refetch`
         | `/simple-spa-refetch`
+        | `/spa/critical-css-test`
         | `/spa/spapage`
         | `/ssg-flicker-test`
         | `/ssr`
