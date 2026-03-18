@@ -251,6 +251,9 @@ export function useTabTrigger(options: TabTriggerProps): UseTabTriggerResult {
 
       if (!shouldHandleMouseEvent(event)) return
 
+      // skip dispatch if this trigger's tab is already focused
+      if (trigger.isFocused) return
+
       switchTab(name, { resetOnFocus })
     },
     [onPress, name, resetOnFocus, trigger, navigation, switchTab]

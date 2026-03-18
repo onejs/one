@@ -37,6 +37,24 @@ export function ExpoTabRouter(options: ExpoTabRouterOptions) {
   > = {
     ...rnTabRouter,
     getStateForAction(state, action, options) {
+      // convert REPLACE to JUMP_TO so tab navigators handle it as a tab switch
+      if ((action as any).type === 'REPLACE') {
+        const payload = (action as any).payload
+        return router.getStateForAction(
+          state,
+          {
+            type: 'JUMP_TO' as const,
+            source: (action as any).source,
+            target: (action as any).target,
+            payload: {
+              name: payload?.name ?? '',
+              params: payload?.params,
+            },
+          },
+          options
+        )
+      }
+
       if (action.type !== 'JUMP_TO') {
         return rnTabRouter.getStateForAction(state, action, options)
       }

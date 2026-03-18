@@ -317,7 +317,14 @@ export function useSortedScreens(
       : []
 
     return sorted
-      .filter((value) => !options?.protectedScreens?.has(value.route.route))
+      .filter((value) => {
+        const routeName = value.route.route
+        const normalized = routeName.replace(/\/index$/, '')
+        return !(
+          options?.protectedScreens?.has(routeName) ||
+          options?.protectedScreens?.has(normalized)
+        )
+      })
       .map((value) => routeToScreen(value.route, value.props))
   }, [node?.children, node?.initialRouteName, order, options?.protectedScreens])
 
