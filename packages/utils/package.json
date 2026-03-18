@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.10.6-1773808005140",
+  "version": "1.10.6-1773867455908",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
