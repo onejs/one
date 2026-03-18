@@ -41,5 +41,6 @@ export {
 export {
   StackScreen,
   appendScreenStackPropsToOptions,
+  validateStackPresentation,
   type StackScreenProps,
 } from './StackScreen'

@@ -18,5 +18,7 @@ export interface StackScreenProps extends PropsWithChildren {
  * ```
  */
 export declare function StackScreen({ children, options, ...rest }: StackScreenProps): import("react/jsx-runtime").JSX.Element;
+export declare function validateStackPresentation(options: NativeStackNavigationOptions): NativeStackNavigationOptions;
+export declare function validateStackPresentation<F extends (...args: never[]) => NativeStackNavigationOptions>(options: F): F;
 export declare function appendScreenStackPropsToOptions(options: NativeStackNavigationOptions, props: StackScreenProps): NativeStackNavigationOptions;
 //# sourceMappingURL=StackScreen.d.ts.map
