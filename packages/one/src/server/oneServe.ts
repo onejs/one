@@ -389,8 +389,7 @@ export async function oneServe(
           const headers = new Headers()
           headers.set('content-type', 'text/html')
 
-          // prepare router for this SSR render (lightweight version bump)
-          globalThis['__vxrnresetState']?.()
+          // router state is now computed per-request in useInitializeOneRouter
 
           const renderProps = {
             mode: route.type,
@@ -467,8 +466,6 @@ url: ${url}`)
 
             const headers = new Headers()
             headers.set('content-type', 'text/html')
-
-            globalThis['__vxrnresetState']?.()
 
             const _rl3 = ensureRenderLoaded()
             if (_rl3) await _rl3
