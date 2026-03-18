@@ -1,14 +1,11 @@
-import { setServerData, getServerData } from 'one'
+import { setServerData, useLoader } from 'one'
+
+export function loader() {
+  setServerData('test', { fromServer: true })
+  return { fromServer: true }
+}
 
 export default function () {
-  let serverData
-
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    serverData = { fromServer: true }
-    setServerData(`test`, serverData)
-  } else {
-    serverData = getServerData(`test`)
-  }
-
-  return <div id="server-data">{JSON.stringify(serverData)}</div>
+  const data = useLoader(loader)
+  return <div id="server-data">{JSON.stringify(data)}</div>
 }
