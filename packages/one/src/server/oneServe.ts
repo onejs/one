@@ -19,7 +19,6 @@ import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
-import { initSSRWorkerPool, renderOnWorker, isWorkerPoolAvailable } from './ssrWorkerPool'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
