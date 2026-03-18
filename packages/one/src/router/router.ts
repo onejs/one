@@ -198,6 +198,11 @@ export function useValidationState() {
   )
 }
 
+// cache route tree + root component across SSR requests (they don't change)
+let cachedRouteNode: RouteNode | null = null
+let cachedRootComponent: ComponentType | null = null
+let cachedContext: One.RouteContext | null = null
+
 // Initialize function
 export function initialize(
   context: One.RouteContext,
@@ -206,12 +211,18 @@ export function initialize(
 ) {
   cleanUpState()
 
-  routeNode = getRoutes(context, {
-    ignoreEntryPoints: true,
-    platform: Platform.OS,
-  })
+  // cache route tree - only rebuild when context changes (never in production)
+  if (context !== cachedContext || !cachedRouteNode) {
+    cachedRouteNode = getRoutes(context, {
+      ignoreEntryPoints: true,
+      platform: Platform.OS,
+    })
+    cachedRootComponent = cachedRouteNode ? getQualifiedRouteComponent(cachedRouteNode) : Fragment
+    cachedContext = context
+  }
 
-  rootComponent = routeNode ? getQualifiedRouteComponent(routeNode) : Fragment
+  routeNode = cachedRouteNode
+  rootComponent = cachedRootComponent || Fragment
 
   if (!routeNode && process.env.NODE_ENV === 'production') {
     throw new Error('No routes found')
