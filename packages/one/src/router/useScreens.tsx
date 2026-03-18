@@ -1,5 +1,4 @@
 import { createNavigatorFactory } from '@react-navigation/core'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import type {
   EventMapBase,
   NavigationState,
@@ -26,6 +25,11 @@ import {
 import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
+
+// use Fragment instead of SafeAreaProviderCompat from @react-navigation/elements
+// elements has .png asset imports that fail in Node ESM during `one serve`
+// expo-router also dropped this wrapper
+const SafeArea = React.Fragment
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -195,7 +199,7 @@ function RootLayoutRenderer({
         {headChildren}
       </head>
       <body key="body" suppressHydrationWarning {...bodyProps}>
-        <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
+        <SafeArea>{finalChildren}</SafeArea>
       </body>
     </>
   )
