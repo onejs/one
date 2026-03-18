@@ -11,6 +11,8 @@ It takes the following arguments:
 --port          # string, set the port to bind to
 --compress      # boolean, enable gzip compression, defaults to true
 --loadEnv       # boolean, whether to load .env files before running
+--cluster       # enable cluster mode using all CPU cores
+--cluster=N     # enable cluster mode with N workers
 ```
 
 One comes with a serve command that is powered by [Hono](https://hono.dev).
@@ -18,6 +20,41 @@ One comes with a serve command that is powered by [Hono](https://hono.dev).
 If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` if you don't want to - you can statically serve the results of `dist/client` using any server you'd like.
 
 You must run a `one build` before serve.
+
+## Cluster Mode
+
+For production deployments under heavy load, `one serve` supports cluster mode. This forks multiple Node.js worker processes that share the same port, distributing requests across CPU cores.
+
+```bash
+one serve --cluster       # use all CPU cores
+one serve --cluster=4     # use 4 workers
+one serve                 # single process (default)
+```
+
+Each worker handles requests independently. If a worker crashes, it automatically restarts with backoff protection to prevent crash loops.
+
+### When to use cluster mode
+
+- High-traffic production deployments
+- Servers with many CPU cores
+- Handling 200+ concurrent connections
+- SSR-heavy workloads where renders block the event loop
+
+### When single process is better
+
+- Development (use `one dev` instead)
+- Low-traffic sites where single process is simpler and has less overhead
+- Less than ~100 concurrent connections, where single process may be faster due to less IPC overhead
+
+### Performance
+
+At 500 concurrent connections (production-style load test):
+
+- Single process: ~2,150 req/s
+- 8 workers: ~2,939 req/s (1.4x improvement)
+- At 200 connections, cluster is 2.4x faster than single process
+
+## Programmatic Usage
 
 You can also run your production server programmatically:
 
@@ -33,7 +70,7 @@ Which takes options:
 type ServeOptions = {
   // you can pass in your own Hono server
   app?: Hono
-  
+
   host?: string
   port?: number
   compress?: boolean
@@ -43,5 +80,11 @@ type ServeOptions = {
     * @default false
     */
   loadEnv?: boolean
+
+  /**
+    * Enable cluster mode with multiple worker processes.
+    * Pass true to use all CPU cores, or a number for specific worker count.
+    */
+  cluster?: boolean | number
 }
 ```
