@@ -13,6 +13,7 @@ export type CreateAppProps = {
 };
 export declare function createApp(options: CreateAppProps): Promise<void> | {
     options: CreateAppProps;
-    render: (props: RenderAppProps) => Promise<string>;
+    render: (props: RenderAppProps) => Promise<any>;
+    renderStream: (props: RenderAppProps) => Promise<ReadableStream>;
 };
 //# sourceMappingURL=createApp.d.ts.map

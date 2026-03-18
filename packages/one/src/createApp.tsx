@@ -29,6 +29,13 @@ export type CreateAppProps = {
 
 export function createApp(options: CreateAppProps) {
   if (import.meta.env.SSR) {
+    // cache server module imports across requests
+    let cachedReactDOMServer: any
+    let cachedServerRender: any
+    let cachedRenderToStaticMarkup: any
+    let cachedRenderToString: any
+    let setupDone = false
+
     return {
       options,
       render: async (props: RenderAppProps) => {
@@ -36,20 +43,26 @@ export function createApp(options: CreateAppProps) {
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
         process.env.ONE_RENDER_MODE = renderMode
 
-        if (options.getSetupPromise) {
+        if (!setupDone && options.getSetupPromise) {
           await options.getSetupPromise()
+          setupDone = true
         }
 
-        // Dynamic imports for server-only modules to avoid bundling in client
-        const [ReactDOMServer, serverRender] = await Promise.all([
-          import('react-dom/server.browser'),
-          import('./server-render'),
-        ])
+        // cache dynamic imports - only resolve once
+        if (!cachedReactDOMServer) {
+          const [rds, sr] = await Promise.all([
+            import('react-dom/server.browser'),
+            import('./server-render'),
+          ])
+          cachedReactDOMServer = rds
+          cachedServerRender = sr
+          cachedRenderToStaticMarkup =
+            rds.renderToStaticMarkup || rds.default?.renderToStaticMarkup
+          cachedRenderToString = sr.renderToString
+        }
 
-        const renderToStaticMarkup =
-          ReactDOMServer.renderToStaticMarkup ||
-          ReactDOMServer.default?.renderToStaticMarkup
-        const renderToString = serverRender.renderToString
+        const renderToStaticMarkup = cachedRenderToStaticMarkup
+        const renderToString = cachedRenderToString
 
         const {
           loaderData,
@@ -75,77 +88,82 @@ export function createApp(options: CreateAppProps) {
 
         let renderId: string | undefined
 
-        const App = () => {
-          return (
-            <Root
-              flags={options.flags}
-              onRenderId={(id) => {
-                renderId = id
-              }}
-              routes={options.routes}
-              routerRoot={options.routerRoot}
-              {...props}
-            />
-          )
-        }
-
-        AppRegistry.registerComponent('App', () => App)
-
-        // @ts-expect-error
-        const Application = AppRegistry.getApplication('App', {})
-
-        // we've got to remove the outer containers because it messes up the fact we render root html
-        const rootElement = Application.element.props.children
+        // render Root directly, skip AppRegistry overhead on server
+        const rootElement = (
+          <Root
+            flags={options.flags}
+            onRenderId={(id) => {
+              renderId = id
+            }}
+            routes={options.routes}
+            routerRoot={options.routerRoot}
+            {...props}
+          />
+        )
 
         let html = await renderToString(rootElement, {
           preloads: props.preloads,
           deferredPreloads: props.deferredPreloads,
         })
 
+        // post-render: inject head elements and server data
+        // collect extra head elements (RNW styles + head insertions)
+        let extraHeadHTML = ''
         try {
           const extraHeadElements: React.ReactElement[] = []
 
-          const styleTag = Application.getStyleElement({
-            nonce: process.env.ONE_NONCE,
-          })
-          if (styleTag) {
-            extraHeadElements.push(styleTag)
+          // get style elements from AppRegistry (for react-native-web styles)
+          try {
+            AppRegistry.registerComponent('__oneStyles', () => () => null)
+            // @ts-expect-error
+            const app = AppRegistry.getApplication('__oneStyles', {})
+            const styleTag = app.getStyleElement({
+              nonce: process.env.ONE_NONCE,
+            })
+            if (styleTag) {
+              extraHeadElements.push(styleTag)
+            }
+          } catch {
+            // ok if no styles
           }
 
-          ensureExists(renderId)
-          const insertions = getServerHeadInsertions(renderId)
-          if (insertions) {
-            for (const insertion of insertions) {
-              const out = insertion()
-              if (out) {
-                extraHeadElements.push(out)
+          if (renderId) {
+            const insertions = getServerHeadInsertions(renderId)
+            if (insertions) {
+              for (const insertion of insertions) {
+                const out = insertion()
+                if (out) {
+                  extraHeadElements.push(out)
+                }
               }
             }
           }
 
           if (extraHeadElements.length) {
-            const extraHeadHTML = renderToStaticMarkup(
+            extraHeadHTML = renderToStaticMarkup(
               <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
             )
-
-            if (extraHeadHTML) {
-              html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
-            }
           }
         } catch (err) {
-          // react-native-web-lite has a bug but its fine we don't need it for now
-          // but TODO is fix this in react-native-web-lite
-          if (`${err}`.includes(`sheet is not defined`)) {
-            // ok
-          } else {
+          if (!`${err}`.includes(`sheet is not defined`)) {
             throw err
           }
         }
 
-        // now we can grab and serialize in our zero queries
+        // serialize post-render data
         const postRenderData = getServerContext()?.postRenderData
 
-        if (postRenderData) {
+        // single pass string replacement when possible
+        if (extraHeadHTML && postRenderData) {
+          html = html
+            .replace(`</head>`, `${extraHeadHTML}</head>`)
+            .replace(
+              safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
+              safeJsonStringify(postRenderData)
+            )
+        } else if (extraHeadHTML) {
+          html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
+        } else if (postRenderData) {
           html = html.replace(
             safeJsonStringify(SERVER_CONTEXT_POST_RENDER_STRING),
             safeJsonStringify(postRenderData)
@@ -153,6 +171,64 @@ export function createApp(options: CreateAppProps) {
         }
 
         return html
+      },
+
+      // streaming SSR - returns ReadableStream, no post-processing
+      renderStream: async (props: RenderAppProps): Promise<ReadableStream> => {
+        const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
+        process.env.ONE_RENDER_MODE = renderMode
+
+        if (!setupDone && options.getSetupPromise) {
+          await options.getSetupPromise()
+          setupDone = true
+        }
+
+        if (!cachedServerRender) {
+          const [rds, sr] = await Promise.all([
+            import('react-dom/server.browser'),
+            import('./server-render'),
+          ])
+          cachedReactDOMServer = rds
+          cachedServerRender = sr
+          cachedRenderToStaticMarkup =
+            rds.renderToStaticMarkup || rds.default?.renderToStaticMarkup
+          cachedRenderToString = sr.renderToString
+        }
+
+        const {
+          loaderData,
+          loaderProps,
+          css,
+          cssContents,
+          mode,
+          loaderServerData,
+          routePreloads,
+          matches,
+        } = props
+
+        setServerContext({
+          postRenderData: loaderServerData,
+          loaderData,
+          loaderProps,
+          mode,
+          css,
+          cssContents,
+          routePreloads,
+          matches,
+        })
+
+        const rootElement = (
+          <Root
+            flags={options.flags}
+            routes={options.routes}
+            routerRoot={options.routerRoot}
+            {...props}
+          />
+        )
+
+        return cachedServerRender.renderToStream(rootElement, {
+          preloads: props.preloads,
+        })
       },
     }
   }
@@ -214,8 +290,15 @@ export function createApp(options: CreateAppProps) {
   const routePreloads = serverContext.routePreloads
 
   // initialize client matches from server context for useMatches hook
+  // restore page loaderData into matches (stripped during SSR to avoid double-serialization)
   if (serverContext.matches) {
-    initClientMatches(serverContext.matches)
+    const restoredMatches = serverContext.matches.map((m: any) => {
+      if (!m.loaderData && serverContext.loaderData) {
+        return { ...m, loaderData: serverContext.loaderData }
+      }
+      return m
+    })
+    initClientMatches(restoredMatches)
   }
 
   // NOTE: for SSG 404 pages, we DON'T set notFoundState before initial render
