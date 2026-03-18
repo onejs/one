@@ -1152,18 +1152,20 @@ export async function linkTo(
   currentMatches = newMatches
   setClientMatches(newMatches)
 
-  const rootState = navigationRef.getRootState()
+  const currentRootState = navigationRef.getRootState()
 
   const hash = href.indexOf('#')
-  if (rootState.key && hash > 0) {
-    hashes[rootState.key] = href.slice(hash)
+  if (currentRootState.key && hash > 0) {
+    hashes[currentRootState.key] = href.slice(hash)
   }
 
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
 
   startTransition(() => {
-    const action = getNavigateAction(state, rootState, event)
+    // compute target at dispatch time to avoid stale state during first render/effects
+    const freshRootState = navigationRef.getRootState() as NavigationState
+    const action = getNavigateAction(state, freshRootState, event)
     const current = navigationRef.getCurrentRoute()
     navigationRef.dispatch(action)
 

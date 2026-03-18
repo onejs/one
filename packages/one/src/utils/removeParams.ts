@@ -5,10 +5,7 @@ type AnyState = NavigationState | PartialState<NavigationState>
 /**
  * removes specified params from all routes at every nesting level of a navigation state
  */
-export function removeParams<T extends AnyState>(
-  state: T,
-  paramNames: string[]
-): T {
+export function removeParams<T extends AnyState>(state: T, paramNames: string[]): T {
   if (!state?.routes) return state
 
   return {
