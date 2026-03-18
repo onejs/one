@@ -47,3 +47,4 @@ node_modules
 
 .expo
 .vite-inspect
+.claude/worktrees/
