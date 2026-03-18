@@ -5,8 +5,8 @@ import * as routerStore from './router'
 import { initialize } from './router'
 import { getSSRInitialState, ensureBaseLinkingConfig } from './linkingConfig'
 
-// per-request initialization tracking via a simple counter
-// each SSR request increments the version so the router re-initializes
+// client-side initialization tracking via a simple counter
+// resetState increments the version so the router re-initializes on client
 let initVersion = 0
 let lastInitVersion = -1
 
@@ -55,13 +55,14 @@ export function useInitializeOneRouter(
   return routerStore
 }
 
-// called before each SSR render to ensure fresh router state
+// increment version to trigger re-initialization on next client render
 export function prepareForSSRRender() {
   initVersion++
 }
 
 // keep backwards compat but make it lightweight
-// on SSR, no longer needs to reset router state since it's computed per-request
+// on SSR, router state is computed per-request in useInitializeOneRouter;
+// this only clears useAsyncFn caches used by layout loader fallback path
 export function resetState() {
   prepareForSSRRender()
   resetLoaderState()

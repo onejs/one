@@ -33,7 +33,10 @@ export function resetLinking() {
  * Does not set any per-request state.
  */
 export function ensureBaseLinkingConfig(routeNode: RouteNode | null) {
-  if (routeNode && (routeNode !== cachedRouteNodeForLinking || !cachedBaseLinkingConfig)) {
+  if (
+    routeNode &&
+    (routeNode !== cachedRouteNodeForLinking || !cachedBaseLinkingConfig)
+  ) {
     cachedBaseLinkingConfig = createLinkingConfig(routeNode)
     cachedRouteNodeForLinking = routeNode
   }
@@ -53,10 +56,12 @@ export function getSSRInitialState(
   if (!cachedBaseLinkingConfig) return undefined
 
   const path = initialLocation.pathname + (initialLocation.search || '')
-  const cached = ssrStateCache.get(path)
-  if (cached !== undefined) return cached
+  if (ssrStateCache.has(path)) return ssrStateCache.get(path)
 
-  const state = cachedBaseLinkingConfig.getStateFromPath?.(path, cachedBaseLinkingConfig.config)
+  const state = cachedBaseLinkingConfig.getStateFromPath?.(
+    path,
+    cachedBaseLinkingConfig.config
+  )
   // bound cache to prevent memory growth on sites with many unique URLs
   if (ssrStateCache.size > 10000) ssrStateCache.clear()
   ssrStateCache.set(path, state)
@@ -70,14 +75,11 @@ export function setupLinking(
   let initialState: OneRouter.ResultState | undefined
 
   if (routeNode) {
-    // cache the base config - only rebuild when route tree changes
-    if (routeNode !== cachedRouteNodeForLinking || !cachedBaseLinkingConfig) {
-      cachedBaseLinkingConfig = createLinkingConfig(routeNode)
-      cachedRouteNodeForLinking = routeNode
-    }
+    // reuse ensureBaseLinkingConfig to avoid duplicating cache logic
+    ensureBaseLinkingConfig(routeNode)
 
     // shallow copy so per-request mutations (getInitialURL) don't affect cache
-    linkingConfig = { ...cachedBaseLinkingConfig }
+    linkingConfig = { ...cachedBaseLinkingConfig! }
 
     if (initialLocation) {
       linkingConfig.getInitialURL = () => initialLocation.toString()

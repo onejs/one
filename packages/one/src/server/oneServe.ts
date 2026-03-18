@@ -19,6 +19,7 @@ import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
+import { initSSRWorkerPool, renderOnWorker, isWorkerPoolAvailable } from './ssrWorkerPool'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
@@ -120,6 +121,14 @@ export async function oneServe(
   const loaderCache = new Map<string, Function | null>()
   const moduleImportCache = new Map<string, any>()
 
+  // loader coalescing via static loaderCache export
+  // when a route exports loaderCache, concurrent requests with the same key share one execution
+  const loaderCacheFnMap = new Map<string, Function | null>()
+  const pendingLoaderResults = new Map<
+    string,
+    { promise: Promise<any>; expires: number }
+  >()
+
   // resolve a route module's loader - sync on cache hit, async on cold start
   function resolveLoaderSync(
     serverPath: string | undefined,
@@ -157,11 +166,6 @@ export async function oneServe(
     })()
   }
 
-  // loader coalescing via static loaderCache export
-  // when a route exports loaderCache, concurrent requests with the same key share one execution
-  const loaderCacheFnMap = new Map<string, Function | null>()
-  const pendingLoaderResults = new Map<string, { promise: Promise<any>; expires: number }>()
-
   // shared helper to import a route module and run its loader
   async function importAndRunLoader(
     routeId: string,
@@ -182,11 +186,12 @@ export async function oneServe(
     if (loaderCacheFn) {
       const cacheResult = loaderCacheFn(loaderProps?.params, loaderProps?.request)
       const cacheKey = typeof cacheResult === 'string' ? cacheResult : cacheResult?.key
-      coalTtl = typeof cacheResult === 'string' ? 0 : cacheResult?.ttl ?? 0
+      coalTtl = typeof cacheResult === 'string' ? 0 : (cacheResult?.ttl ?? 0)
 
       if (cacheKey != null) {
         coalFullKey = routeId + '\0' + cacheKey
         const existing = pendingLoaderResults.get(coalFullKey)
+        // expires=0 means pending or no-TTL (coalesce-only), so !0 is true
         if (existing && (!existing.expires || Date.now() < existing.expires)) {
           // coalesce: reuse pending/cached result (never even resolves the loader fn)
           const loaderData = await existing.promise
@@ -197,7 +202,8 @@ export async function oneServe(
 
     try {
       const loaderOrPromise = resolveLoaderSync(serverPath, lazyKey)
-      const loader = loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
+      const loader =
+        loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
       if (!loader) {
         return { loaderData: undefined, routeId }
       }
@@ -207,14 +213,17 @@ export async function oneServe(
         const promise = loader(loaderProps)
         const entry = { promise, expires: 0 }
         pendingLoaderResults.set(coalFullKey, entry)
-        promise.then(() => {
-          entry.expires = coalTtl > 0 ? Date.now() + coalTtl : 0
-          if (coalTtl <= 0) {
-            Promise.resolve().then(() => pendingLoaderResults.delete(coalFullKey!))
+        promise.then(
+          () => {
+            entry.expires = coalTtl > 0 ? Date.now() + coalTtl : 0
+            if (coalTtl <= 0) {
+              Promise.resolve().then(() => pendingLoaderResults.delete(coalFullKey!))
+            }
+          },
+          () => {
+            pendingLoaderResults.delete(coalFullKey!)
           }
-        }, () => {
-          pendingLoaderResults.delete(coalFullKey!)
-        })
+        )
 
         const loaderData = await promise
         return { loaderData, routeId }
@@ -253,9 +262,26 @@ export async function oneServe(
             )
           )
       render = entry.default.render as (props: RenderAppProps) => any
-      renderStream = entry.default.renderStream as ((props: RenderAppProps) => Promise<ReadableStream>) | null
+      renderStream = entry.default.renderStream as
+        | ((props: RenderAppProps) => Promise<ReadableStream>)
+        | null
     })()
     return renderLoading
+  }
+
+  // initialize SSR worker pool for parallel rendering (non-blocking)
+  const useWorkers = !process.env.ONE_NO_SSR_WORKERS
+  if (useWorkers) {
+    const serverEntryPath = resolve(
+      process.cwd(),
+      `${serverOptions.root}/${outDir}/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
+    )
+    initSSRWorkerPool(serverEntryPath).catch((err) => {
+      console.error(
+        '[one] Failed to init SSR worker pool, falling back to main thread:',
+        err
+      )
+    })
   }
 
   const clientDir = join(process.cwd(), outDir, 'client')
@@ -453,17 +479,49 @@ export async function oneServe(
             matches,
           }
 
-          // streaming SSR by default, fall back to buffered with ONE_BUFFERED_SSR=1
-          const _rl = ensureRenderLoaded(); if (_rl) await _rl; const streamFn = !process.env.ONE_BUFFERED_SSR ? renderStream : null
-          if (streamFn) {
-            const stream = await streamFn(renderProps)
-            return new Response(stream, {
-              headers,
-              status: route.isNotFound ? 404 : 200,
-            })
+          // use worker pool for buffered SSR when available
+          // workers free the main thread event loop for loader setTimeout callbacks
+          let rendered: string | undefined
+          if (useWorkers && isWorkerPoolAvailable()) {
+            // strip non-serializable request from loaderProps for worker transfer
+            const workerRenderProps = {
+              ...renderProps,
+              loaderProps: renderProps.loaderProps
+                ? {
+                    path: renderProps.loaderProps.path,
+                    search: renderProps.loaderProps.search,
+                    params: renderProps.loaderProps.params,
+                  }
+                : undefined,
+            }
+            try {
+              rendered = await renderOnWorker(workerRenderProps)
+            } catch (workerErr) {
+              console.error(
+                '[one] Worker render failed, falling back to main thread:',
+                workerErr
+              )
+            }
           }
 
-          const _rl2 = ensureRenderLoaded(); if (_rl2) await _rl2; const rendered = await render!(renderProps)
+          if (!rendered) {
+            // fallback: streaming SSR or buffered on main thread
+            const _rl = ensureRenderLoaded()
+            if (_rl) await _rl
+
+            const streamFn = !process.env.ONE_BUFFERED_SSR ? renderStream : null
+            if (streamFn) {
+              const stream = await streamFn(renderProps)
+              return new Response(stream, {
+                headers,
+                status: route.isNotFound ? 404 : 200,
+              })
+            }
+
+            const _rl2 = ensureRenderLoaded()
+            if (_rl2) await _rl2
+            rendered = await render!(renderProps)
+          }
 
           return new Response(rendered, {
             headers,
