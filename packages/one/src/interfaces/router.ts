@@ -210,12 +210,11 @@ export namespace OneRouter {
 
   /**
    * Returns the search parameters for a route.
+   * Static routes return UnknownOutputParams to allow extra query params.
    */
   export type SearchParams<T extends AllRoutes = never> = T extends DynamicRouteTemplate
     ? OutputRouteParams<T>
-    : T extends StaticRoutes
-      ? never
-      : UnknownOutputParams
+    : UnknownOutputParams
 
   /*********
    * Href  *
