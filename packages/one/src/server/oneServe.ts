@@ -20,7 +20,6 @@ import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
-
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
 async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string | null> {
@@ -268,7 +267,6 @@ export async function oneServe(
     })()
     return renderLoading
   }
-
 
   const clientDir = join(process.cwd(), outDir, 'client')
 

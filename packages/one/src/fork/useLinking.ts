@@ -233,7 +233,9 @@ export function useLinking(
       const location =
         server?.location ?? (typeof window !== 'undefined' ? window.location : undefined)
 
-      let path = location ? location.pathname + location.search + (location.hash ?? '') : undefined
+      let path = location
+        ? location.pathname + location.search + (location.hash ?? '')
+        : undefined
 
       // Check history.state for temp location (client-only)
       if (location && typeof window !== 'undefined') {

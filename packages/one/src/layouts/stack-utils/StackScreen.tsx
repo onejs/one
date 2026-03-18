@@ -58,7 +58,9 @@ export function validateStackPresentation<
   F extends (...args: never[]) => NativeStackNavigationOptions,
 >(options: F): F
 export function validateStackPresentation(
-  options: NativeStackNavigationOptions | ((...args: never[]) => NativeStackNavigationOptions)
+  options:
+    | NativeStackNavigationOptions
+    | ((...args: never[]) => NativeStackNavigationOptions)
 ): ((...args: never[]) => NativeStackNavigationOptions) | NativeStackNavigationOptions {
   if (typeof options === 'function') {
     return (...args: never[]) => {

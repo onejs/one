@@ -96,7 +96,10 @@ export async function getBaseViteConfig(
         // have these native-only subpaths
         {
           find: /^react-native\/Libraries\/.*/,
-          replacement: resolvePath('@vxrn/vite-plugin-metro/empty', root),
+          replacement: resolvePath(
+            '@vxrn/vite-plugin-metro/empty',
+            new URL('.', import.meta.url).pathname
+          ),
         },
         {
           find: 'react-native/package.json',
