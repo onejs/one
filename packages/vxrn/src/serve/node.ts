@@ -27,23 +27,19 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
   const displayHost = options.host === '0.0.0.0' ? 'localhost' : options.host
   const localUrl = `http://${displayHost}:${options.port}/`
 
-  // only print URLs from primary process (or single-process mode)
-  const cluster = await import('node:cluster').then(m => m.default)
-  if (!cluster.isWorker) {
-    console.info()
-    console.info(`  ${colors.green('➜')}  ${colors.bold('Local')}:   ${colorUrl(localUrl)}`)
+  console.info()
+  console.info(`  ${colors.green('➜')}  ${colors.bold('Local')}:   ${colorUrl(localUrl)}`)
 
-    if (options.host === '0.0.0.0') {
-      const networkHost = getNetworkAddress()
-      if (networkHost) {
-        const networkUrl = `http://${networkHost}:${options.port}/`
-        console.info(
-          `  ${colors.green('➜')}  ${colors.bold('Network')}: ${colorUrl(networkUrl)}`
-        )
-      }
+  if (options.host === '0.0.0.0') {
+    const networkHost = getNetworkAddress()
+    if (networkHost) {
+      const networkUrl = `http://${networkHost}:${options.port}/`
+      console.info(
+        `  ${colors.green('➜')}  ${colors.bold('Network')}: ${colorUrl(networkUrl)}`
+      )
     }
-    console.info()
   }
+  console.info()
 
   const shutdown = () => {
     server.close(() => {
