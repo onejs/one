@@ -22,6 +22,12 @@ import type { NavigationState, PartialState, Route } from '@react-navigation/rou
 import type { PathConfig, PathConfigMap } from '@react-navigation/core' // @modified: import from package instead of relative code
 import { validatePathConfig } from './validatePathConfig'
 
+// @modified - start: use constants for internal navigation param names to avoid magic strings
+const NAV_PARAM_SCREEN = 'screen'
+const NAV_PARAM_PARAMS = 'params'
+const NAV_PARAM_KEY = 'key'
+// @modified - end
+
 type Options<ParamList extends {}> = {
   path?: string
   initialRouteName?: string
@@ -175,7 +181,7 @@ export function getPathDataFromState<ParamList extends {}>(
           Object.entries(route.params!).flatMap(([key, value]) => {
             // Filter out internal navigation params that shouldn't appear in URL
             // 'key' is our deterministic route key used for React reconciliation
-            if (key === 'screen' || key === 'params' || key === 'key') {
+            if (key === NAV_PARAM_SCREEN || key === NAV_PARAM_PARAMS || key === NAV_PARAM_KEY) {
               return []
             }
 
@@ -238,8 +244,8 @@ export function getPathDataFromState<ParamList extends {}>(
         // We can get around this by providing a fake state
         const screens = currentOptions[route.name].screens
         const screen =
-          route.params && 'screen' in route.params
-            ? route.params.screen?.toString()
+          route.params && NAV_PARAM_SCREEN in route.params
+            ? route.params[NAV_PARAM_SCREEN]?.toString()
             : screens
               ? Object.keys(screens)[0]
               : undefined
@@ -249,7 +255,7 @@ export function getPathDataFromState<ParamList extends {}>(
             ...screens[screen],
             name: screen,
             key: screen,
-            params: (route.params as any)?.params,
+            params: (route.params as any)?.[NAV_PARAM_PARAMS],
           }
           currentOptions = screens
         } else {
