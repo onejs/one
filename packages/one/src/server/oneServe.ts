@@ -400,8 +400,8 @@ export async function oneServe(
             matches,
           }
 
-          // streaming SSR path - skip string buffering and post-processing
-          const streamFn = process.env.ONE_STREAMING_SSR ? await getRenderStream() : null
+          // streaming SSR by default, fall back to buffered with ONE_BUFFERED_SSR=1
+          const streamFn = !process.env.ONE_BUFFERED_SSR ? await getRenderStream() : null
           if (streamFn) {
             const stream = await streamFn(renderProps)
             return new Response(stream, {

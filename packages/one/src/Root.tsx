@@ -102,10 +102,16 @@ export function Root(props: RootProps) {
     ? globalThis['__oneGlobalContextId']
     : globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
 
+  // render deferred modulepreload links in the tree
+  // React 19 auto-hoists <link> tags to <head>
+  const deferredPreloads = (props as any).deferredPreloads as string[] | undefined
+
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
       <ServerRenderID.Provider value={id}>
-        {/* for some reason warning if no key here */}
+        {typeof window === 'undefined' && deferredPreloads?.map((src) => (
+          <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
+        ))}
         <UpstreamNavigationContainer
           ref={store.navigationRef}
           initialState={store.initialState}
@@ -118,24 +124,13 @@ export function Root(props: RootProps) {
           {...navigationContainerProps}
         >
           <ServerLocationContext.Provider value={location}>
-            {/* <GestureHandlerRootView> */}
-            {/*
-             * Due to static rendering we need to wrap these top level views in second wrapper
-             * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-             * is a HTML document, we need to ensure its inside the <body>
-             */}
             <>
-              {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
               <ScrollBehavior />
 
               <RootErrorBoundary>
                 <Component />
               </RootErrorBoundary>
-
-              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
             </>
-            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-            {/* </GestureHandlerRootView> */}
           </ServerLocationContext.Provider>
         </UpstreamNavigationContainer>
         {typeof window !== 'undefined' && <PreloadLinks key="preload-links" />}
