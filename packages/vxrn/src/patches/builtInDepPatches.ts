@@ -2,6 +2,32 @@ import { assertString } from '../utils/assert'
 import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
+  // expose internal contexts for SSR-optimized NavigationContainer
+  {
+    module: '@react-navigation/core',
+    patchFiles: {
+      'package.json': (contents) => {
+        assertString(contents)
+        const pkg = JSON.parse(contents)
+        const exports = pkg.exports || {}
+        let changed = false
+        for (const path of [
+          './lib/module/NavigationBuilderContext',
+          './lib/module/NavigationStateContext',
+          './lib/module/EnsureSingleNavigator',
+        ]) {
+          if (!exports[path]) {
+            exports[path] = path + '.js'
+            changed = true
+          }
+        }
+        if (!changed) return
+        pkg.exports = exports
+        return JSON.stringify(pkg, null, 2)
+      },
+    },
+  },
+
   // react-native-web doesn't export unstable_batchedUpdates but react-native does,
   // so libraries like @legendapp/list break when aliased to rnw on web
   {
