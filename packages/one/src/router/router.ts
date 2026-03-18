@@ -116,7 +116,12 @@ export function isRouteProtected(href: string): boolean {
         .replace(/^\//, '')
       const routeName = relativePath.split('/')[0] || 'index'
 
-      if (protectedScreens.has(routeName)) {
+      // normalize /index suffix so e.g. "otp/[flow]" matches "otp/[flow]/index"
+      const normalizedRouteName = routeName.replace(/\/index$/, '')
+      if (
+        protectedScreens.has(routeName) ||
+        protectedScreens.has(normalizedRouteName)
+      ) {
         return true
       }
     }

@@ -23,6 +23,13 @@ import { StyleSheet, type ViewProps } from 'react-native'
  */
 function ShimSlotForReactNative(Component: typeof RUISlot): typeof RUISlot {
   return forwardRef(function RNSlotHOC({ style, ...props }, ref) {
+    if (process.env.NODE_ENV !== 'production') {
+      if (Array.isArray(style)) {
+        throw new Error(
+          'Slot does not support array styles. Use StyleSheet.flatten() or an object style instead.'
+        )
+      }
+    }
     style = useMemo(() => StyleSheet.flatten(style), [style])
     return <Component ref={ref} {...props} style={style} />
   })
