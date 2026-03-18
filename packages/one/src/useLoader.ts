@@ -311,33 +311,24 @@ export function useLoaderState<
   // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
   const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 
-  // server-side only - use pre-resolved loader data from server context
-  // avoids re-executing the loader (which already ran in importAndRunLoader)
+  // server-side only
   if (typeof window === 'undefined') {
-    // check WeakMap first — each loader fn maps to its own route's data
-    // this handles both page and layout loaders correctly in production SSR
+    // production: use pre-resolved data from WeakMap (set by oneServe)
     if (loader && ssrLoaderData.has(loader)) {
       return { data: ssrLoaderData.get(loader), refetch: async () => {}, state: 'idle' } as any
     }
-    // if a loader function is provided, run it to get the correct data
-    // (loaderDataFromServerContext is always the PAGE's data, not the layout's)
+    // dev/fallback: run the loader via useAsyncFn
+    // this correctly handles both page and layout loaders
     if (loader) {
       const serverData = useAsyncFn(
         loader,
-        loaderPropsFromServerContext || {
-          path: pathname,
-          params,
-        }
+        loaderPropsFromServerContext || { path: pathname, params }
       )
       return { data: serverData, refetch: async () => {}, state: 'idle' } as any
     }
-    // no loader function — use page-level loaderData from server context
+    // no loader function (useLoaderState without loader arg)
     if (loaderDataFromServerContext !== undefined) {
-      return {
-        data: loaderDataFromServerContext,
-        refetch: async () => {},
-        state: 'idle',
-      } as any
+      return { data: loaderDataFromServerContext, refetch: async () => {}, state: 'idle' } as any
     }
   }
 
@@ -370,6 +361,7 @@ export function useLoaderState<
   )
 
   const refetch = useCallback(() => refetchLoader(currentPath), [currentPath])
+
 
   // if the loader returns a routeId, look up data from matches instead of loaderState
   // only use this path when the match has data (layouts always have data preserved from SSR;
