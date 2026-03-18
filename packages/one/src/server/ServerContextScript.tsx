@@ -27,8 +27,21 @@ export function ServerContextScript() {
     // The CSSPrehydrateScript reads the actual <style> elements' innerHTML
     // and stores them in globalThis.__oneCSSContents for hydration matching.
     const { cssContents, ...restContext } = context || {}
+
+    // Strip loaderData from matches to avoid double-serialization.
+    // The page's loaderData is already at context.loaderData, and layout
+    // loaderData is typically small. Only the page match duplicates data.
+    const compactMatches = restContext.matches?.map((m: any) => ({
+      routeId: m.routeId,
+      pathname: m.pathname,
+      params: m.params,
+      // only include layout loaderData (not page - it's in context.loaderData)
+      ...(m.loaderData !== restContext.loaderData ? { loaderData: m.loaderData } : {}),
+    }))
+
     const clientContext = {
       ...restContext,
+      matches: compactMatches,
       cssInlineCount: cssContents?.length || 0,
     }
 
