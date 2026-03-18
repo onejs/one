@@ -314,6 +314,11 @@ export function useLoaderState<
   // server-side only - use pre-resolved loader data from server context
   // avoids re-executing the loader (which already ran in importAndRunLoader)
   if (typeof window === 'undefined') {
+    // check WeakMap first — each loader fn maps to its own route's data
+    if (loader && ssrLoaderData.has(loader)) {
+      return { data: ssrLoaderData.get(loader), refetch: async () => {}, state: 'idle' } as any
+    }
+    // fallback to page-level loaderData from server context
     if (loaderDataFromServerContext !== undefined) {
       return {
         data: loaderDataFromServerContext,
@@ -321,7 +326,7 @@ export function useLoaderState<
         state: 'idle',
       } as any
     }
-    // fallback: run loader if no pre-resolved data (e.g. layout loaders)
+    // last resort: run loader directly (e.g. layout loaders without pre-resolved data)
     if (loader) {
       const serverData = useAsyncFn(
         loader,
@@ -701,6 +706,19 @@ export function useLoader<
 
 const results = new Map()
 const started = new Map()
+
+// maps loader function → its route's loaderData for SSR
+// populated before render in oneServe.ts, cleared after
+const ssrLoaderData = new WeakMap<Function, any>()
+
+/**
+ * register a loader function's pre-resolved data for SSR
+ * called from oneServe before rendering so useLoader can look up
+ * the correct data per-route without re-executing the loader
+ */
+export function setSSRLoaderData(loaderFn: Function, data: any) {
+  ssrLoaderData.set(loaderFn, data)
+}
 
 export function resetLoaderState() {
   results.clear()

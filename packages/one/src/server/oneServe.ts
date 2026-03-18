@@ -18,6 +18,7 @@ import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import { setSSRLoaderData } from '../useLoader'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
@@ -444,6 +445,22 @@ export async function oneServe(
 
           // for backwards compat, loaderData is still the page's loader data
           const loaderData = pageResult.loaderData
+
+          // populate per-loader WeakMap so layout useLoader gets correct data
+          for (const layout of layoutRoutes) {
+            const key = layout.contextKey
+            const loaderFn = loaderCache.get(key)
+            if (loaderFn) {
+              const result = layoutResults.find((r) => r.routeId === key)
+              if (result) {
+                setSSRLoaderData(loaderFn, result.loaderData)
+              }
+            }
+          }
+          const pageLoaderFn = loaderCache.get(route.file)
+          if (pageLoaderFn) {
+            setSSRLoaderData(pageLoaderFn, pageResult.loaderData)
+          }
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
