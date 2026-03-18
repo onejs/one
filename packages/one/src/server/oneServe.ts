@@ -116,6 +116,41 @@ export async function oneServe(
 
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
+  // cache resolved loader functions directly (not just modules)
+  const loaderCache = new Map<string, Function | null>()
+  const moduleImportCache = new Map<string, any>()
+
+  // resolve and cache a route module's loader function
+  async function resolveLoader(
+    serverPath: string | undefined,
+    lazyKey: string | undefined
+  ): Promise<Function | null> {
+    const cacheKey = lazyKey || serverPath || ''
+    const cached = loaderCache.get(cacheKey)
+    if (cached !== undefined) return cached
+
+    const pathToResolve = serverPath || lazyKey || ''
+    const resolvedPath = pathToResolve.includes(`${outDir}/server`)
+      ? pathToResolve
+      : join('./', `${outDir}/server`, pathToResolve)
+
+    let routeExported: any
+    if (moduleImportCache.has(cacheKey)) {
+      routeExported = moduleImportCache.get(cacheKey)
+    } else {
+      routeExported = lazyKey
+        ? options?.lazyRoutes?.pages?.[lazyKey]
+          ? await options.lazyRoutes.pages[lazyKey]()
+          : await import(toAbsolute(resolvedPath))
+        : await import(toAbsolute(serverPath!))
+      moduleImportCache.set(cacheKey, routeExported)
+    }
+
+    const loader = routeExported?.loader || null
+    loaderCache.set(cacheKey, loader)
+    return loader
+  }
+
   // shared helper to import a route module and run its loader
   async function importAndRunLoader(
     routeId: string,
@@ -128,18 +163,11 @@ export async function oneServe(
     }
 
     try {
-      const pathToResolve = serverPath || lazyKey || ''
-      const resolvedPath = pathToResolve.includes(`${outDir}/server`)
-        ? pathToResolve
-        : join('./', `${outDir}/server`, pathToResolve)
-
-      const routeExported = lazyKey
-        ? options?.lazyRoutes?.pages?.[lazyKey]
-          ? await options.lazyRoutes.pages[lazyKey]()
-          : await import(toAbsolute(resolvedPath))
-        : await import(toAbsolute(serverPath!))
-
-      const loaderData = await routeExported?.loader?.(loaderProps)
+      const loader = await resolveLoader(serverPath, lazyKey)
+      if (!loader) {
+        return { loaderData: undefined, routeId }
+      }
+      const loaderData = await loader(loaderProps)
       return { loaderData, routeId }
     } catch (err) {
       if (isResponse(err)) {
@@ -155,6 +183,7 @@ export async function oneServe(
 
   // Lazy load server entry only when needed for SSR
   let render: ((props: RenderAppProps) => any) | null = null
+  let renderStream: ((props: RenderAppProps) => Promise<ReadableStream>) | null = null
   async function getRender() {
     if (!render) {
       // Use lazy import if available (workers), otherwise dynamic import (Node.js)
@@ -167,8 +196,14 @@ export async function oneServe(
             )
           )
       render = entry.default.render as (props: RenderAppProps) => any
+      renderStream = entry.default.renderStream as ((props: RenderAppProps) => Promise<ReadableStream>) | null
     }
     return render
+  }
+
+  async function getRenderStream() {
+    await getRender()
+    return renderStream
   }
 
   const clientDir = join(process.cwd(), outDir, 'client')
@@ -212,29 +247,20 @@ export async function oneServe(
     },
 
     async handleLoader({ route, loaderProps }) {
-      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
-      // For workers, look up by routeFile (original file path like "./dynamic/[id]+ssr.tsx")
-      // For Node.js, use route.file which may be loaderServerPath (already includes dist/server)
       const routeFile = (route as any).routeFile || route.file
-      // route.file may already include outDir/server if it came from loaderServerPath
       const serverPath = route.file.includes(`${outDir}/server`)
         ? route.file
         : join('./', `${outDir}/server`, route.file)
 
-      let exports
+      let loader: Function | null
       try {
-        exports = options?.lazyRoutes?.pages?.[routeFile]
-          ? await options.lazyRoutes.pages[routeFile]()
-          : await import(toAbsolute(serverPath))
+        loader = await resolveLoader(serverPath, routeFile)
       } catch (err) {
-        // module doesn't exist (e.g., dynamic route with slug not in generateStaticParams)
         if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
           return null
         }
         throw err
       }
-
-      const { loader } = exports
 
       if (!loader) {
         return null
@@ -359,25 +385,32 @@ export async function oneServe(
           const headers = new Headers()
           headers.set('content-type', 'text/html')
 
-          // Reset router state for each SSR request to ensure correct routing
-          // TODO: Consider using AsyncLocalStorage to isolate router state per request
-          // instead of using global reset, for better concurrency handling
+          // prepare router for this SSR render (lightweight version bump)
           globalThis['__vxrnresetState']?.()
 
-          const rendered = await (
-            await getRender()
-          )({
+          const renderProps = {
             mode: route.type,
             loaderData,
             loaderProps,
             path: loaderProps?.path || '/',
-            // Use separated preloads for optimal loading
             preloads: buildInfo.criticalPreloads || buildInfo.preloads,
             deferredPreloads: buildInfo.deferredPreloads,
             css: buildInfo.css,
             cssContents: buildInfo.cssContents,
             matches,
-          })
+          }
+
+          // streaming SSR path - skip string buffering and post-processing
+          const streamFn = process.env.ONE_STREAMING_SSR ? await getRenderStream() : null
+          if (streamFn) {
+            const stream = await streamFn(renderProps)
+            return new Response(stream, {
+              headers,
+              status: route.isNotFound ? 404 : 200,
+            })
+          }
+
+          const rendered = await (await getRender())(renderProps)
 
           return new Response(rendered, {
             headers,
