@@ -318,6 +318,7 @@ export function handleNavigationContainerStateChange(
 ) {
   if (!navState) return
 
+  // @ts-expect-error
   let state = { ...navState } as OneRouter.ResultState
 
   if (state.key) {
