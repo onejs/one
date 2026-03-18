@@ -17,7 +17,7 @@
         "oxlint": "^1.31.0",
         "p-map": "^7.0.3",
         "patch-package": "^8.0.0",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "prettier": "^3.5.3",
         "tamagui": "2.0.0-rc.22",
         "ts-pattern": "^5.6.2",
@@ -90,7 +90,7 @@
         "@vxrn/test": "workspace:*",
         "gray-matter": "^4.0.3",
         "marked": "^14.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "satori": "^0.19.1",
         "sharp": "^0.34.5",
         "subset-font": "^2.4.0",
@@ -691,7 +691,7 @@
         "vite": "^7.1.12",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "vitest": "^4.0.6",
         "webdriverio": "^9.5.4",
       },
@@ -783,7 +783,7 @@
         "@react-native-community/cli": "^20.0.2",
         "@vxrn/utils": "workspace:*",
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
@@ -807,7 +807,7 @@
         "tamagui": "2.0.0-rc.22",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -822,7 +822,7 @@
       "devDependencies": {
         "@playwright/test": "^1.42.1",
         "kill-my-port": "1.1.2",
-        "playwright": "^1.42.1",
+        "playwright": "^1.58.2",
         "typescript": "^5.4.0",
         "vitest": "^4.0.6",
         "wrangler": "4.60.0",
@@ -837,7 +837,7 @@
         "react-dom": "19.2.0",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -852,7 +852,7 @@
         "react-dom": "19.2.0",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -868,7 +868,7 @@
       },
       "devDependencies": {
         "@vxrn/test": "workspace:*",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -887,7 +887,7 @@
       },
       "devDependencies": {
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -925,7 +925,7 @@
       },
       "devDependencies": {
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -940,7 +940,7 @@
         "react-dom": "19.2.0",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
@@ -967,7 +967,7 @@
       "devDependencies": {
         "@react-native-community/cli": "^20.0.2",
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
@@ -1009,7 +1009,7 @@
       },
       "devDependencies": {
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -1031,7 +1031,7 @@
       },
       "devDependencies": {
         "fs-extra": "^11.2.0",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "vitest": "^4.0.6",
       },
     },
@@ -1054,7 +1054,7 @@
       "devDependencies": {
         "@react-native-community/cli": "^20.0.2",
         "get-port-please": "^3.1.2",
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
@@ -1070,7 +1070,7 @@
         "react-dom": "19.2.0",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
         "vitest": "^4.0.6",
@@ -1085,7 +1085,7 @@
         "react-dom": "19.2.0",
       },
       "devDependencies": {
-        "playwright": "^1.57.0",
+        "playwright": "^1.58.2",
         "tsx": "^4.20.6",
         "typescript": "^5.7.3",
         "vite": "^7.1.12",
@@ -1122,7 +1122,7 @@
       "devDependencies": {
         "@vxrn/test": "workspace:*",
         "hono": "^4.12.8",
-        "playwright": "^1.45.0",
+        "playwright": "^1.58.2",
         "typescript": "^5.5.3",
         "vitest": "^4.0.6",
       },
@@ -4093,9 +4093,9 @@
 
     "pkg-up": ["pkg-up@3.1.0", "", { "dependencies": { "find-up": "^3.0.0" } }, "sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA=="],
 
-    "playwright": ["playwright@1.57.0", "", { "dependencies": { "playwright-core": "1.57.0" }, "optionalDependencies": { "fsevents": "2.3.2" }, "bin": { "playwright": "cli.js" } }, "sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw=="],
+    "playwright": ["playwright@1.58.2", "", { "dependencies": { "playwright-core": "1.58.2" }, "optionalDependencies": { "fsevents": "2.3.2" }, "bin": { "playwright": "cli.js" } }, "sha512-vA30H8Nvkq/cPBnNw4Q8TWz1EJyqgpuinBcHET0YVJVFldr8JDNiU9LaWAE1KqSkRYazuaBhTpB5ZzShOezQ6A=="],
 
-    "playwright-core": ["playwright-core@1.57.0", "", { "bin": { "playwright-core": "cli.js" } }, "sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ=="],
+    "playwright-core": ["playwright-core@1.58.2", "", { "bin": { "playwright-core": "cli.js" } }, "sha512-yZkEtftgwS8CsfYo7nm0KE8jsvm6i/PTgVtB8DL726wNf6H2IMsDuxCpJj59KDaxCtSnrWan2AeDqM7JBaultg=="],
 
     "please-upgrade-node": ["please-upgrade-node@3.2.0", "", { "dependencies": { "semver-compare": "^1.0.0" } }, "sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg=="],
 
@@ -5009,6 +5009,8 @@
 
     "@mdx-js/mdx/unist-util-visit": ["unist-util-visit@5.0.0", "", { "dependencies": { "@types/unist": "^3.0.0", "unist-util-is": "^6.0.0", "unist-util-visit-parents": "^6.0.0" } }, "sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg=="],
 
+    "@playwright/test/playwright": ["playwright@1.57.0", "", { "dependencies": { "playwright-core": "1.57.0" }, "optionalDependencies": { "fsevents": "2.3.2" }, "bin": { "playwright": "cli.js" } }, "sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw=="],
+
     "@poppinss/colors/kleur": ["kleur@4.1.5", "", {}, "sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ=="],
 
     "@poppinss/dumper/@sindresorhus/is": ["@sindresorhus/is@7.2.0", "", {}, "sha512-P1Cz1dWaFfR4IR+U13mqqiGsLFf1KbayybWwdd2vfctdV6hDpUkgCY0nKOLLTMSoRd/jJNjtbqzf13K8DCCXQw=="],
@@ -5646,6 +5648,8 @@
     "@mdx-js/mdx/unist-util-visit/unist-util-is": ["unist-util-is@6.0.1", "", { "dependencies": { "@types/unist": "^3.0.0" } }, "sha512-LsiILbtBETkDz8I9p1dQ0uyRUWuaQzd/cuEeS1hoRSyW5E5XGmTzlwY1OrNzzakGowI9Dr/I8HVaw4hTtnxy8g=="],
 
     "@mdx-js/mdx/unist-util-visit/unist-util-visit-parents": ["unist-util-visit-parents@6.0.2", "", { "dependencies": { "@types/unist": "^3.0.0", "unist-util-is": "^6.0.0" } }, "sha512-goh1s1TBrqSqukSc8wrjwWhL0hiJxgA8m4kFxGlQ+8FYQ3C/m11FcTs4YYem7V664AhHVvgoQLk890Ssdsr2IQ=="],
+
+    "@playwright/test/playwright/playwright-core": ["playwright-core@1.57.0", "", { "bin": { "playwright-core": "cli.js" } }, "sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ=="],
 
     "@puppeteer/browsers/yargs/cliui": ["cliui@8.0.1", "", { "dependencies": { "string-width": "^4.2.0", "strip-ansi": "^6.0.1", "wrap-ansi": "^7.0.0" } }, "sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ=="],
 

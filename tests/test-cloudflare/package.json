@@ -15,7 +15,7 @@
   "devDependencies": {
     "kill-my-port": "1.1.2",
     "@playwright/test": "^1.42.1",
-    "playwright": "^1.42.1",
+    "playwright": "^1.58.2",
     "typescript": "^5.4.0",
     "vitest": "^4.0.6",
     "wrangler": "4.60.0"
