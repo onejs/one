@@ -107,20 +107,15 @@ export function useLinking(
   }: Options,
   onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
 ) {
-  // SSR fast path: skip all client-only linking logic
-  // on the server we already have initialState from setupLinkingAndRouteInfo
+  // @modified - SSR fast path: skip all client-only linking logic
+  // on the server, initialState is already computed and passed as a prop
+  // to NavigationContainer, so getInitialState result is never used.
+  // returning a no-op avoids redundant getStateFromPath per-request.
   if (typeof window === 'undefined') {
-    const location = React.useContext(ServerLocationContext)
     const getInitialState = React.useCallback(() => {
-      let value: ResultState | undefined
-      if (enabled && location) {
-        const path = location.pathname + (location.search || '')
-        value = getStateFromPath(path, config)
-        onUnhandledLinking(path)
-      }
       return {
         then(fn?: (state: ResultState | undefined) => void) {
-          return Promise.resolve(fn ? fn(value) : value)
+          return Promise.resolve(fn ? fn(undefined) : undefined)
         },
         catch() { return this },
       } as PromiseLike<ResultState | undefined>

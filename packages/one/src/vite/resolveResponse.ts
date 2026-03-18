@@ -2,16 +2,36 @@ import { isResponse } from '../utils/isResponse'
 import {
   asyncHeadersCache,
   mergeHeaders,
+  requestAsyncLocalStore,
   runWithAsyncLocalContext,
 } from './one-server-only'
 
 export async function resolveResponse(getResponse: () => Promise<Response>) {
+  // inline ALS to reduce async nesting (each await = microtask = event loop pressure)
+  const store = requestAsyncLocalStore
+  if (store) {
+    const id = { _id: Math.random() }
+    let response: Response
+    await store.run(id, async () => {
+      try {
+        response = await getResponse()
+        response = await getResponseWithAddedHeaders(response!, id)
+      } catch (err) {
+        if (isResponse(err)) {
+          response = err as Response
+        } else {
+          throw err
+        }
+      }
+    })
+    return response!
+  }
+  // fallback for non-SSR contexts
   return runWithAsyncLocalContext(async (id) => {
     try {
       const response = await getResponse()
       return await getResponseWithAddedHeaders(response, id)
     } catch (err) {
-      // allow throwing a response
       if (isResponse(err)) {
         return err as Response
       }

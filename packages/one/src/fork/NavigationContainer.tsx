@@ -77,7 +77,34 @@ type Props<ParamList extends {}> = NavigationContainerProps & {
  * @param props.ref Ref object which refers to the navigation object containing helper methods.
  */
 function NavigationContainerInner(
+  props: Props<ParamListBase>,
+  ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
+) {
+  // @modified - SSR fast path: skip all client-only hooks and providers
+  // this eliminates ~12 hook calls and 3 context providers per SSR render,
+  // significantly reducing fiber allocation under concurrent requests
+  if (typeof window === 'undefined') {
+    const { theme = DefaultTheme, ...rest } = props
+    const refContainer = React.useRef<NavigationContainerRef<ParamListBase> | null>(null)
+    React.useImperativeHandle(ref, () => refContainer.current!)
+
+    return (
+      <BaseNavigationContainer
+        {...rest}
+        theme={theme}
+        initialState={rest.initialState}
+        ref={refContainer}
+      />
+    )
+  }
+
+  return <NavigationContainerClientInner {...props} forwardedRef={ref} />
+}
+
+// @modified - full client NavigationContainer with all hooks and providers
+function NavigationContainerClientInner(
   {
+    forwardedRef,
     direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
     theme = DefaultTheme,
     linking,
@@ -86,9 +113,9 @@ function NavigationContainerInner(
     onReady,
     onStateChange,
     ...rest
-  }: Props<ParamListBase>,
-  ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
+  }: Props<ParamListBase> & { forwardedRef?: React.Ref<NavigationContainerRef<ParamListBase> | null> }
 ) {
+  const ref = forwardedRef
   const isLinkingEnabled = linking ? linking.enabled !== false : false
 
   if (linking?.config) {
@@ -120,7 +147,6 @@ function NavigationContainerInner(
   )
 
   const onReadyForLinkingHandling = useLatestCallback(() => {
-    // If the screen path matches lastUnhandledLink, we do not track it
     const path = refContainer.current?.getCurrentRoute()?.path
     setLastUnhandledLink((previousLastUnhandledLink) => {
       if (previousLastUnhandledLink === path) {
@@ -133,7 +159,6 @@ function NavigationContainerInner(
 
   const onStateChangeForLinkingHandling = useLatestCallback(
     (state: Readonly<NavigationState> | undefined) => {
-      // If the screen path matches lastUnhandledLink, we do not track it
       const path = refContainer.current?.getCurrentRoute()?.path
       setLastUnhandledLink((previousLastUnhandledLink) => {
         if (previousLastUnhandledLink === path) {
@@ -144,8 +169,7 @@ function NavigationContainerInner(
       onStateChange?.(state)
     }
   )
-  // Add additional linking related info to the ref
-  // This will be used by the devtools
+
   React.useEffect(() => {
     if (refContainer.current) {
       // @ts-ignore - Type differs between react-navigation versions in monorepo
@@ -179,8 +203,6 @@ function NavigationContainerInner(
   const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved
 
   if (!isLinkingReady) {
-    // This is temporary until we have Suspense for data-fetching
-    // Then the fallback will be handled by a parent `Suspense` component
     return <ThemeProvider value={theme}>{fallback}</ThemeProvider>
   }
 
