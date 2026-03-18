@@ -8,6 +8,8 @@ ignores:
   - "expo"
   # should probably be a peer dependency, this is only used while running prebuild without expo
   - "@react-native-community/template"
+  # dynamically imported for hermes transforms in rn bundle command
+  - "@babel/core"
   # used dynamically via resolvePath() for vite aliases
   - "@vxrn/safe-area"
   - "@vxrn/query-string"
