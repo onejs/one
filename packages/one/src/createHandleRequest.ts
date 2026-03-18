@@ -183,9 +183,7 @@ export async function resolveLoaderRoute(
 
         // native needs CJS format for eval()
         const body =
-          isNativeRequest && loaderResponse
-            ? toCjsLoader(loaderResponse)
-            : loaderResponse
+          isNativeRequest && loaderResponse ? toCjsLoader(loaderResponse) : loaderResponse
 
         return new Response(body, {
           headers,
@@ -408,7 +406,9 @@ export function createHandleRequest(
           }
 
           // no matching route - return empty module so client handles gracefully
-          const emptyBody = isNativePlatform ? 'exports.loader=function(){return{}}' : 'export {}'
+          const emptyBody = isNativePlatform
+            ? 'exports.loader=function(){return{}}'
+            : 'export {}'
           return new Response(emptyBody, {
             headers: { 'Content-Type': 'text/javascript' },
           })

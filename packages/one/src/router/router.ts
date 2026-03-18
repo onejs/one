@@ -217,7 +217,9 @@ export function initialize(
       ignoreEntryPoints: true,
       platform: Platform.OS,
     })
-    cachedRootComponent = cachedRouteNode ? getQualifiedRouteComponent(cachedRouteNode) : Fragment
+    cachedRootComponent = cachedRouteNode
+      ? getQualifiedRouteComponent(cachedRouteNode)
+      : Fragment
     cachedContext = context
   }
 

@@ -109,9 +109,10 @@ export function Root(props: RootProps) {
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
       <ServerRenderID.Provider value={id}>
-        {typeof window === 'undefined' && deferredPreloads?.map((src) => (
-          <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
-        ))}
+        {typeof window === 'undefined' &&
+          deferredPreloads?.map((src) => (
+            <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
+          ))}
         <UpstreamNavigationContainer
           ref={store.navigationRef}
           initialState={store.initialState}

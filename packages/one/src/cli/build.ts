@@ -608,9 +608,11 @@ export async function build(args: {
 
     // layout css (from layout entries) - should load before scripts to prevent FOUC
     const layoutCSS = [
-      ...new Set(layoutEntries
+      ...new Set(
+        layoutEntries
           .flatMap((entry) => collectImports(entry, { type: 'css' }))
-          .map((path) => `/${path}`)),
+          .map((path) => `/${path}`)
+      ),
     ]
 
     // all css including page entry and root-level css

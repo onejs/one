@@ -102,19 +102,19 @@ function NavigationContainerInner(
 }
 
 // @modified - full client NavigationContainer with all hooks and providers
-function NavigationContainerClientInner(
-  {
-    forwardedRef,
-    direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
-    theme = DefaultTheme,
-    linking,
-    fallback = null,
-    documentTitle,
-    onReady,
-    onStateChange,
-    ...rest
-  }: Props<ParamListBase> & { forwardedRef?: React.Ref<NavigationContainerRef<ParamListBase> | null> }
-) {
+function NavigationContainerClientInner({
+  forwardedRef,
+  direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
+  theme = DefaultTheme,
+  linking,
+  fallback = null,
+  documentTitle,
+  onReady,
+  onStateChange,
+  ...rest
+}: Props<ParamListBase> & {
+  forwardedRef?: React.Ref<NavigationContainerRef<ParamListBase> | null>
+}) {
   const ref = forwardedRef
   const isLinkingEnabled = linking ? linking.enabled !== false : false
 
