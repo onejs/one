@@ -22,6 +22,7 @@ import { NavigationContainer as UpstreamNavigationContainer } from './fork/Navig
 import { getURL } from './getURL'
 import { FlagsContext } from './router/FlagsContext'
 import { getLinking } from './router/linkingConfig'
+import { handleNavigationContainerStateChange } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
@@ -124,6 +125,7 @@ export function Root(props: RootProps) {
           initialState={store.initialState}
           linking={getLinking()}
           onUnhandledAction={onUnhandledAction}
+          onStateChange={handleNavigationContainerStateChange}
           theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
           documentTitle={{
             enabled: false,
