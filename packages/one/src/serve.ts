@@ -25,8 +25,7 @@ export async function serve(
     const { cpus } = await import('node:os')
 
     if (cluster.default.isPrimary) {
-      const numWorkers =
-        typeof args.cluster === 'number' ? args.cluster : cpus().length
+      const numWorkers = typeof args.cluster === 'number' ? args.cluster : cpus().length
 
       console.info(`[one] cluster: starting ${numWorkers} workers`)
 

@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "fs-extra": "^11.2.0",
-    "playwright": "^1.57.0",
+    "playwright": "^1.58.2",
     "vitest": "^4.0.6"
   }
 }

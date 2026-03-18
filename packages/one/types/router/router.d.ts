@@ -3,7 +3,7 @@
  * We need to treat exports as an API and not change them, maybe not
  * the best decision.
  */
-import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
+import { type NavigationContainerRefWithCurrent, type NavigationState } from '@react-navigation/native';
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
@@ -42,6 +42,13 @@ export declare function setValidationState(state: ValidationState): void;
 export declare function getValidationState(): ValidationState;
 export declare function useValidationState(): ValidationState;
 export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
+/**
+ * called by NavigationContainer's onStateChange callback
+ * uses onStateChange instead of addListener('state') because onStateChange
+ * always provides the full resolved state, avoiding partial state issues
+ * that can cause stale usePathname/useSegments values
+ */
+export declare function handleNavigationContainerStateChange(navState: Readonly<NavigationState> | undefined): void;
 export declare function navigate(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
 export declare function push(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
 export declare function dismiss(count?: number): void;
@@ -69,7 +76,6 @@ export declare function snapshot(): {
     routeInfo: UrlObject | undefined;
     splashScreenAnimationFrame: number | undefined;
     navigationRef: OneRouter.NavigationRef;
-    navigationRefSubscription: () => void;
     rootStateSubscribers: Set<OneRouter.RootStateListener>;
     storeSubscribers: Set<() => void>;
 };
@@ -87,7 +93,6 @@ export declare function useOneRouter(): {
     routeInfo: UrlObject | undefined;
     splashScreenAnimationFrame: number | undefined;
     navigationRef: OneRouter.NavigationRef;
-    navigationRefSubscription: () => void;
     rootStateSubscribers: Set<OneRouter.RootStateListener>;
     storeSubscribers: Set<() => void>;
 };
