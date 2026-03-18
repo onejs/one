@@ -150,64 +150,17 @@ export async function oneServe(
 
       const loader = routeExported?.loader || null
       loaderCache.set(cacheKey, loader)
+      // also cache loaderCache export for coalescing
+      const loaderCacheFn = routeExported?.loaderCache ?? null
+      loaderCacheFnMap.set(cacheKey, loaderCacheFn)
       return loader
     })()
   }
 
-  // loader cache: user-controlled via cache(key, ttlOrConfig) inside loaders
-  // throws CacheHit to short-circuit concurrent/stale callers
-  class CacheHit {
-    constructor(public pending: Promise<unknown>) {}
-  }
-
-  type CacheEntry = {
-    promise: Promise<unknown>
-    data?: unknown
-    resolved: boolean
-    expires: number // 0 = no TTL, just coalesce concurrent
-  }
-
-  const loaderCacheEntries = new Map<string, CacheEntry>()
-
-  function createCacheFunction(routeId: string) {
-    return function cache(key: string, ttlOrConfig?: number | { ttl?: number }) {
-      const ttl = typeof ttlOrConfig === 'number'
-        ? ttlOrConfig
-        : ttlOrConfig?.ttl ?? 0
-      const fullKey = routeId + '\0' + key
-      const entry = loaderCacheEntries.get(fullKey)
-
-      if (entry) {
-        // still pending (concurrent coalescing) or within TTL
-        if (!entry.resolved || (entry.expires > 0 && Date.now() < entry.expires)) {
-          throw new CacheHit(entry.promise)
-        }
-        // expired, clean up
-        loaderCacheEntries.delete(fullKey)
-      }
-    }
-  }
-
-  function registerCacheEntry(routeId: string, key: string, ttl: number, promise: Promise<unknown>) {
-    const fullKey = routeId + '\0' + key
-    const entry: CacheEntry = {
-      promise,
-      resolved: false,
-      expires: 0,
-    }
-    loaderCacheEntries.set(fullKey, entry)
-    promise.then((data) => {
-      entry.data = data
-      entry.resolved = true
-      entry.expires = ttl > 0 ? Date.now() + ttl : 0
-      // if no TTL, clean up after microtask (only coalesces concurrent calls)
-      if (ttl <= 0) {
-        Promise.resolve().then(() => loaderCacheEntries.delete(fullKey))
-      }
-    }, () => {
-      loaderCacheEntries.delete(fullKey)
-    })
-  }
+  // loader coalescing via static loaderCache export
+  // when a route exports loaderCache, concurrent requests with the same key share one execution
+  const loaderCacheFnMap = new Map<string, Function | null>()
+  const pendingLoaderResults = new Map<string, { promise: Promise<any>; expires: number }>()
 
   // shared helper to import a route module and run its loader
   async function importAndRunLoader(
@@ -220,6 +173,28 @@ export async function oneServe(
       return { loaderData: undefined, routeId }
     }
 
+    // check loaderCache BEFORE resolving the loader (fast path for coalesced requests)
+    const cacheMapKey = lazyKey || serverPath || ''
+    const loaderCacheFn = loaderCacheFnMap.get(cacheMapKey)
+    let coalFullKey: string | undefined
+    let coalTtl = 0
+
+    if (loaderCacheFn) {
+      const cacheResult = loaderCacheFn(loaderProps?.params, loaderProps?.request)
+      const cacheKey = typeof cacheResult === 'string' ? cacheResult : cacheResult?.key
+      coalTtl = typeof cacheResult === 'string' ? 0 : cacheResult?.ttl ?? 0
+
+      if (cacheKey != null) {
+        coalFullKey = routeId + '\0' + cacheKey
+        const existing = pendingLoaderResults.get(coalFullKey)
+        if (existing && (!existing.expires || Date.now() < existing.expires)) {
+          // coalesce: reuse pending/cached result (never even resolves the loader fn)
+          const loaderData = await existing.promise
+          return { loaderData, routeId }
+        }
+      }
+    }
+
     try {
       const loaderOrPromise = resolveLoaderSync(serverPath, lazyKey)
       const loader = loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
@@ -227,43 +202,28 @@ export async function oneServe(
         return { loaderData: undefined, routeId }
       }
 
-      // inject cache function into loaderProps
-      let cacheKey: string | undefined
-      let cacheTtl = 0
-      const cacheProps = {
-        ...loaderProps,
-        cache(key: string, ttlOrConfig?: number | { ttl?: number }) {
-          cacheKey = key
-          cacheTtl = typeof ttlOrConfig === 'number'
-            ? ttlOrConfig
-            : ttlOrConfig?.ttl ?? 0
-
-          // check for existing entry (throws CacheHit if found)
-          const fullKey = routeId + '\0' + key
-          const entry = loaderCacheEntries.get(fullKey)
-          if (entry) {
-            if (!entry.resolved || (entry.expires > 0 && Date.now() < entry.expires)) {
-              throw new CacheHit(entry.promise)
-            }
-            loaderCacheEntries.delete(fullKey)
+      // first caller with loaderCache: execute and register for coalescing
+      if (coalFullKey) {
+        const promise = loader(loaderProps)
+        const entry = { promise, expires: 0 }
+        pendingLoaderResults.set(coalFullKey, entry)
+        promise.then(() => {
+          entry.expires = coalTtl > 0 ? Date.now() + coalTtl : 0
+          if (coalTtl <= 0) {
+            Promise.resolve().then(() => pendingLoaderResults.delete(coalFullKey!))
           }
-        },
-      }
+        }, () => {
+          pendingLoaderResults.delete(coalFullKey!)
+        })
 
-      const loaderPromise = loader(cacheProps)
-
-      // if cache() was called, register this execution for coalescing
-      if (cacheKey !== undefined) {
-        registerCacheEntry(routeId, cacheKey, cacheTtl, loaderPromise)
-      }
-
-      const loaderData = await loaderPromise
-      return { loaderData, routeId }
-    } catch (err) {
-      if (err instanceof CacheHit) {
-        const loaderData = await err.pending
+        const loaderData = await promise
         return { loaderData, routeId }
       }
+
+      // no coalescing: run loader directly
+      const loaderData = await loader(loaderProps)
+      return { loaderData, routeId }
+    } catch (err) {
       if (isResponse(err)) {
         throw err
       }
