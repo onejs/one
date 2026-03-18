@@ -242,6 +242,10 @@ export async function resolveLoaderRoute(
  * and wraps it as `exports.loader = function() { return {...} }`
  */
 function toCjsLoader(esmCode: string): string {
+  // already CJS (dev plugin pre-converts for native)
+  if (esmCode.startsWith('exports.')) {
+    return esmCode
+  }
   // match: export function loader() { return DATA }
   const match = esmCode.match(
     /export\s+function\s+loader\s*\(\)\s*\{\s*return\s+([\s\S]+)\s*\}/
