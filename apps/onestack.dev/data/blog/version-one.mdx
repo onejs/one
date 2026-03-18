@@ -93,6 +93,9 @@ The major features in version 1 are:
   root layout into the HTML shell for SPA pages, giving users immediate visual content
   (nav, head tags, CSS) while page content loads client-side. Supports per-route titles
   via `usePathname()` and static, SSR, or hybrid modes.
+- <New /> **[Loader Cache](/docs/routing-loader#loader-cache)** - Deduplicate concurrent SSR
+  loader calls with `loaderCache`, with optional TTL. Up to 3.5x throughput improvement
+  on high-concurrency routes.
 
 For the full changelog, see [the release notes](https://github.com/onejs/one/releases).
 
