@@ -94,6 +94,9 @@ export default defineConfig({
   }
 
   await ensureDir(cacheDir)
+  // Ensure compiler-cache exists before Metro starts, as its FallbackWatcher
+  // will try to watch this directory before the compiler lazily creates it
+  await ensureDir(`${cacheDir}/compiler-cache`)
 
   const serverConfig = await getViteServerConfig(options, config)
 
