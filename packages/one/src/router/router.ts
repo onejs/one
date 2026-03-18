@@ -276,24 +276,6 @@ export function initialize(
   subscribeToNavigationChanges()
 }
 
-// lightweight SSR re-initialization: skip route tree rebuild, just update path-specific state
-// returns the initialState for this specific request (concurrency-safe)
-export function initializeSSR(
-  ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
-  initialLocation?: URL
-): OneRouter.ResultState | undefined {
-  navigationRef = ref as unknown as OneRouter.NavigationRef
-  // compute state for this URL without writing to globals
-  const state = setupLinking(routeNode, initialLocation)
-  // still need to set these for NavigationContainer internals
-  initialState = state
-  rootState = state
-  if (state) {
-    routeInfo = getRouteInfo(state)
-  }
-  return state
-}
-
 function cleanUpState() {
   initialState = undefined
   rootState = undefined
