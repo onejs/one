@@ -311,16 +311,23 @@ export function useLoaderState<
   // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
   const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 
-  // server-side only - typeof window check ensures this never runs on client
-  if (typeof window === 'undefined' && loader) {
-    const serverData = useAsyncFn(
-      loader,
-      loaderPropsFromServerContext || {
-        path: pathname,
-        params,
-      }
-    )
-    return { data: serverData, refetch: async () => {}, state: 'idle' } as any
+  // server-side only - use pre-resolved loader data from server context
+  // avoids re-executing the loader (which already ran in importAndRunLoader)
+  if (typeof window === 'undefined') {
+    if (loaderDataFromServerContext !== undefined) {
+      return { data: loaderDataFromServerContext, refetch: async () => {}, state: 'idle' } as any
+    }
+    // fallback: run loader if no pre-resolved data (e.g. layout loaders)
+    if (loader) {
+      const serverData = useAsyncFn(
+        loader,
+        loaderPropsFromServerContext || {
+          path: pathname,
+          params,
+        }
+      )
+      return { data: serverData, refetch: async () => {}, state: 'idle' } as any
+    }
   }
 
   // detect if the loader stub returns a routeId string (set by clientTreeShakePlugin)
