@@ -98,6 +98,9 @@ export function getReactNavigationConfig(
   initialRouteName?: string
   screens: Record<string, Screen>
 } {
+  if (!routes) {
+    return { screens: {} }
+  }
   return {
     initialRouteName: routes.initialRouteName,
     screens: getReactNavigationScreensConfig(routes.children, metaOnly),
