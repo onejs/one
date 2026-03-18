@@ -6,6 +6,7 @@
 
 import {
   type NavigationContainerRefWithCurrent,
+  type NavigationState,
   StackActions,
 } from '@react-navigation/native'
 import {
@@ -137,7 +138,6 @@ let splashScreenAnimationFrame: number | undefined
 
 // we always set it
 export let navigationRef: OneRouter.NavigationRef = null as any
-let navigationRefSubscription: () => void
 
 const rootStateSubscribers = new Set<OneRouter.RootStateListener>()
 const loadingStateSubscribers = new Set<OneRouter.LoadingStateListener>()
@@ -286,7 +286,6 @@ function cleanUpState() {
   nextState = undefined
   routeInfo = undefined
   resetLinking()
-  navigationRefSubscription?.()
   rootStateSubscribers.clear()
   storeSubscribers.clear()
 }
@@ -308,46 +307,56 @@ function setupLinkingAndRouteInfo(initialLocation?: URL) {
   }
 }
 
-function subscribeToNavigationChanges() {
-  navigationRefSubscription = navigationRef.addListener('state', (data) => {
-    let state = { ...data.data.state } as OneRouter.ResultState
+/**
+ * called by NavigationContainer's onStateChange callback
+ * uses onStateChange instead of addListener('state') because onStateChange
+ * always provides the full resolved state, avoiding partial state issues
+ * that can cause stale usePathname/useSegments values
+ */
+export function handleNavigationContainerStateChange(
+  navState: Readonly<NavigationState> | undefined
+) {
+  if (!navState) return
 
-    if (state.key) {
-      if (hashes[state.key]) {
-        state.hash = hashes[state.key]
-        delete hashes[state.key]
+  let state = { ...navState } as OneRouter.ResultState
+
+  if (state.key) {
+    if (hashes[state.key]) {
+      state.hash = hashes[state.key]
+      delete hashes[state.key]
+    }
+  }
+
+  if (!hasAttemptedToHideSplash) {
+    hasAttemptedToHideSplash = true
+    splashScreenAnimationFrame = requestAnimationFrame(() => {
+      // SplashScreen._internal_maybeHideAsync?.();
+    })
+  }
+
+  if (nextOptions) {
+    state = { ...state, linkOptions: nextOptions }
+    nextOptions = null
+  }
+
+  let shouldUpdateSubscribers = nextState === state
+  nextState = undefined
+
+  if (state && state !== rootState) {
+    updateState(state, undefined)
+    shouldUpdateSubscribers = true
+  }
+
+  if (shouldUpdateSubscribers) {
+    startTransition(() => {
+      for (const subscriber of rootStateSubscribers) {
+        subscriber(state)
       }
-    }
+    })
+  }
+}
 
-    if (!hasAttemptedToHideSplash) {
-      hasAttemptedToHideSplash = true
-      splashScreenAnimationFrame = requestAnimationFrame(() => {
-        // SplashScreen._internal_maybeHideAsync?.();
-      })
-    }
-
-    if (nextOptions) {
-      state = { ...state, linkOptions: nextOptions }
-      nextOptions = null
-    }
-
-    let shouldUpdateSubscribers = nextState === state
-    nextState = undefined
-
-    if (state && state !== rootState) {
-      updateState(state, undefined)
-      shouldUpdateSubscribers = true
-    }
-
-    if (shouldUpdateSubscribers) {
-      startTransition(() => {
-        for (const subscriber of rootStateSubscribers) {
-          subscriber(state)
-        }
-      })
-    }
-  })
-
+function subscribeToNavigationChanges() {
   startTransition(() => {
     updateSnapshot()
     for (const subscriber of storeSubscribers) {
@@ -530,7 +539,6 @@ function getSnapshot() {
     routeInfo,
     splashScreenAnimationFrame,
     navigationRef,
-    navigationRefSubscription,
     rootStateSubscribers,
     storeSubscribers,
   }
