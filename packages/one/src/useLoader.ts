@@ -13,6 +13,7 @@ import {
   updateMatchLoaderData,
 } from './useMatches'
 import { getLoaderPath } from './utils/cleanUrl'
+import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
 import { useServerContext } from './vite/one-server-only'
@@ -479,8 +480,22 @@ export function useLoaderState<
 
         try {
           if (process.env.TAMAGUI_TARGET === 'native') {
-            const loaderJSUrl = getLoaderPath(currentPath, true)
-            const nativeLoaderJSUrl = `${loaderJSUrl}?platform=ios`
+            let nativeLoaderJSUrl: string
+            if (process.env.NODE_ENV === 'development') {
+              // dev: ?platform=native tells vite plugin to return CJS
+              nativeLoaderJSUrl = `${getLoaderPath(currentPath, true)}?platform=native`
+            } else {
+              // prod: request the .native.js static file directly
+              // use uncached postfix since metro can't inline ONE_CACHE_KEY
+              const { getURL } = require('./getURL')
+              const base = getURL()
+              const cleanedPath = currentPath
+                .slice(1)
+                .replace(/\/$/, '')
+                .replaceAll('_', '__')
+                .replaceAll('/', '_')
+              nativeLoaderJSUrl = `${base}/assets/${cleanedPath}${LOADER_JS_POSTFIX_UNCACHED.replace('.js', '.native.js')}`
+            }
 
             try {
               const moduleLoadStart = performance.now()
@@ -559,6 +574,11 @@ export function useLoaderState<
               })
               return
             } catch (e) {
+              console.error(
+                `[one] native loader error for ${currentPath}:`,
+                e instanceof Error ? e.message : e,
+                `url: ${nativeLoaderJSUrl}`
+              )
               const totalTime = performance.now() - startTime
               updateState(currentPath, {
                 data: {},

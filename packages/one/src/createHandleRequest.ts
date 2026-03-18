@@ -376,9 +376,11 @@ export function createHandleRequest(
         const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)
 
         if (isClientRequestingNewRoute) {
+          const platformParam = url.searchParams.get('platform')
           const isNativePlatform =
-            url.searchParams.get('platform') === 'ios' ||
-            url.searchParams.get('platform') === 'android'
+            platformParam === 'ios' ||
+            platformParam === 'android' ||
+            platformParam === 'native'
 
           // for native requests, try serving the pre-built .native.js static file first
           // (SSG/SPA routes generate standalone CJS loaders at build time)
