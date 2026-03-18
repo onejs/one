@@ -1,45 +1,41 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
 import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
-import type { OneRouter } from '../interfaces/router'
 import * as routerStore from './router'
-import { initialize, initializeSSR } from './router'
+import { initialize } from './router'
 
-let initialized = false
+// per-request initialization tracking via a simple counter
+// each SSR request increments the version so the router re-initializes
+let initVersion = 0
+let lastInitVersion = -1
 
 export function useInitializeOneRouter(
   context: One.RouteContext,
   initialLocation: URL | undefined
 ) {
   const navigationRef = useNavigationContainerRef()
-  let ssrInitialState: OneRouter.ResultState | undefined
 
-  if (typeof window === 'undefined') {
-    // SSR: route tree + root component initialized once, per-request state computed fresh
-    if (!initialized) {
-      const contexts = '__react_navigation__elements_contexts'
-      globalThis[contexts] = new Map<string, React.Context<any>>()
-      initialize(context, navigationRef, initialLocation)
-      initialized = true
-    }
-    // always compute fresh state for this request's URL (concurrency-safe)
-    ssrInitialState = initializeSSR(navigationRef, initialLocation)
-  } else {
-    // client: initialize once
-    if (!initialized) {
-      initialize(context, navigationRef, initialLocation)
-      initialized = true
-    }
+  if (lastInitVersion !== initVersion) {
+    // reset react navigation contexts to avoid stale provider warnings
+    const contexts = '__react_navigation__elements_contexts'
+    globalThis[contexts] = new Map<string, React.Context<any>>()
+
+    initialize(context, navigationRef, initialLocation)
+    lastInitVersion = initVersion
   }
 
   return routerStore
 }
 
+// called before each SSR render to ensure fresh router state
+export function prepareForSSRRender() {
+  initVersion++
+}
+
+// keep backwards compat but make it lightweight
 export function resetState() {
-  initialized = false
+  prepareForSSRRender()
   resetLoaderState()
-  const contexts = '__react_navigation__elements_contexts'
-  globalThis[contexts] = new Map<string, React.Context<any>>()
 }
 
 globalThis['__vxrnresetState'] = resetState
