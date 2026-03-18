@@ -14,6 +14,39 @@ process.on('uncaughtException', (err) => {
   console.error(`[one] Uncaught exception`, err?.stack || err)
 })
 
+// warmup the hono app by making in-process requests to ssr routes
+// this pre-loads modules, populates loader caches, and triggers v8 jit compilation
+async function warmupApp(
+  app: Hono,
+  routeMap: Record<string, string>,
+  warmupPasses = 2
+) {
+  const routes = Object.keys(routeMap)
+
+  // pick concrete routes (no params) for warmup
+  const warmupPaths = routes
+    .filter((r) => !r.includes(':') && !r.includes('+not-found'))
+    .slice(0, 8)
+
+  if (warmupPaths.length === 0) {
+    warmupPaths.push('/')
+  }
+
+  for (let pass = 0; pass < warmupPasses; pass++) {
+    await Promise.all(
+      warmupPaths.map(async (path) => {
+        try {
+          // app.request() is hono's built-in method that properly constructs urls
+          // must include Host header so getURLfromRequestURL can parse the url
+          await app.request(path, { headers: { Host: 'localhost' } })
+        } catch {
+          // warmup failures are non-fatal
+        }
+      })
+    )
+  }
+}
+
 export async function serve(
   args: VXRNOptions['server'] & { app?: Hono; outDir?: string } = {}
 ) {
@@ -40,8 +73,35 @@ export async function serve(
 
     console.info(`[one] cluster: starting ${numWorkers} workers`)
 
+    // track worker readiness via ipc
+    let warmCount = 0
+    const allWarm = new Promise<void>((resolve) => {
+      cluster.on('message', (_worker, msg: any) => {
+        if (msg?.type === 'one:warm') {
+          warmCount++
+          if (warmCount >= numWorkers) {
+            resolve()
+          }
+        }
+      })
+    })
+
     for (let i = 0; i < numWorkers; i++) {
       cluster.fork()
+    }
+
+    // wait for all workers to finish warmup (timeout after 15s)
+    await Promise.race([
+      allWarm,
+      new Promise<void>((resolve) => setTimeout(resolve, 15_000)),
+    ])
+
+    if (warmCount >= numWorkers) {
+      console.info(`[one] cluster: all ${numWorkers} workers warm and ready`)
+    } else {
+      console.info(
+        `[one] cluster: ${warmCount}/${numWorkers} workers warm (timeout reached)`
+      )
     }
 
     // restart crashed workers with backoff protection
@@ -87,7 +147,9 @@ export async function serve(
   // worker (or single-process mode): run the full server
   const outDir =
     args.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
-  const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
+  const buildInfo = (await FSExtra.readJSON(
+    `${outDir}/buildInfo.json`
+  )) as One.BuildInfo
   const { oneOptions } = buildInfo
 
   setServerGlobals()
@@ -97,7 +159,9 @@ export async function serve(
   // to avoid loading the CACHE_KEY before we set it use async imports:
   const { labelProcess } = await import('./cli/label-process')
   const { removeUndefined } = await import('./utils/removeUndefined')
-  const { loadEnv, serve: vxrnServe, serveStaticAssets } = await import('vxrn/serve')
+  const { loadEnv, serve: vxrnServe, serveStaticAssets } = await import(
+    'vxrn/serve'
+  )
   const { oneServe } = await import('./server/oneServe')
 
   labelProcess('serve')
@@ -122,6 +186,19 @@ export async function serve(
       await oneServe(oneOptions, buildInfo, app, { serveStaticAssets })
     },
 
-    async afterRegisterRoutes(options, app) {},
+    async afterRegisterRoutes(options, app) {
+      // warmup: pre-load modules, populate caches, trigger jit
+      const routeMap = buildInfo.routeMap || {}
+      const warmStart = Date.now()
+      await warmupApp(app, routeMap)
+      const warmMs = Date.now() - warmStart
+
+      if (useCluster && cluster.isWorker) {
+        // notify primary that this worker is warm
+        process.send?.({ type: 'one:warm', pid: process.pid, ms: warmMs })
+      } else {
+        console.info(`[one] server warmed up in ${warmMs}ms`)
+      }
+    },
   })
 }
