@@ -410,7 +410,8 @@ async function run() {
       await fs.remove(tmpDir)
       await ensureDir(tmpDir)
 
-      // if all successful, re-tag as latest
+      const failedPublishes: string[] = []
+
       await pMap(
         packageJsons,
         async ({ name, cwd }) => {
@@ -418,7 +419,7 @@ async function run() {
             ? 'canary'
             : version.includes('-rc.')
               ? 'rc'
-              : undefined
+              : 'latest'
           const publishOptions = [publishTag && `--tag ${publishTag}`]
             .filter(Boolean)
             .join(' ')
@@ -467,14 +468,25 @@ async function run() {
 
           console.info(`Publishing ${name}: ${publishCommand}`)
 
-          await spawnify(publishCommand, {
-            cwd: tmpDir,
-          }).catch((err) => console.error(err))
+          try {
+            await spawnify(publishCommand, {
+              cwd: tmpDir,
+            })
+          } catch (err) {
+            console.error(`Failed to publish ${name}:`, err)
+            failedPublishes.push(name)
+          }
         },
         {
           concurrency: 15,
         }
       )
+
+      if (failedPublishes.length > 0) {
+        throw new Error(
+          `Failed to publish ${failedPublishes.length} packages:\n${failedPublishes.join('\n')}\n\nRe-run with --republish to retry.`
+        )
+      }
 
       console.info(`✅ Published\n`)
 
