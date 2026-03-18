@@ -120,35 +120,38 @@ export async function oneServe(
   const loaderCache = new Map<string, Function | null>()
   const moduleImportCache = new Map<string, any>()
 
-  // resolve and cache a route module's loader function
-  async function resolveLoader(
+  // resolve a route module's loader - sync on cache hit, async on cold start
+  function resolveLoaderSync(
     serverPath: string | undefined,
     lazyKey: string | undefined
-  ): Promise<Function | null> {
+  ): Function | null | Promise<Function | null> {
     const cacheKey = lazyKey || serverPath || ''
     const cached = loaderCache.get(cacheKey)
-    if (cached !== undefined) return cached
+    if (cached !== undefined) return cached // sync!
 
-    const pathToResolve = serverPath || lazyKey || ''
-    const resolvedPath = pathToResolve.includes(`${outDir}/server`)
-      ? pathToResolve
-      : join('./', `${outDir}/server`, pathToResolve)
+    // cold path - async import
+    return (async () => {
+      const pathToResolve = serverPath || lazyKey || ''
+      const resolvedPath = pathToResolve.includes(`${outDir}/server`)
+        ? pathToResolve
+        : join('./', `${outDir}/server`, pathToResolve)
 
-    let routeExported: any
-    if (moduleImportCache.has(cacheKey)) {
-      routeExported = moduleImportCache.get(cacheKey)
-    } else {
-      routeExported = lazyKey
-        ? options?.lazyRoutes?.pages?.[lazyKey]
-          ? await options.lazyRoutes.pages[lazyKey]()
-          : await import(toAbsolute(resolvedPath))
-        : await import(toAbsolute(serverPath!))
-      moduleImportCache.set(cacheKey, routeExported)
-    }
+      let routeExported: any
+      if (moduleImportCache.has(cacheKey)) {
+        routeExported = moduleImportCache.get(cacheKey)
+      } else {
+        routeExported = lazyKey
+          ? options?.lazyRoutes?.pages?.[lazyKey]
+            ? await options.lazyRoutes.pages[lazyKey]()
+            : await import(toAbsolute(resolvedPath))
+          : await import(toAbsolute(serverPath!))
+        moduleImportCache.set(cacheKey, routeExported)
+      }
 
-    const loader = routeExported?.loader || null
-    loaderCache.set(cacheKey, loader)
-    return loader
+      const loader = routeExported?.loader || null
+      loaderCache.set(cacheKey, loader)
+      return loader
+    })()
   }
 
   // shared helper to import a route module and run its loader
@@ -163,7 +166,9 @@ export async function oneServe(
     }
 
     try {
-      const loader = await resolveLoader(serverPath, lazyKey)
+      // resolveLoaderSync returns sync on cache hit, avoiding microtask hop
+      const loaderOrPromise = resolveLoaderSync(serverPath, lazyKey)
+      const loader = loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
       if (!loader) {
         return { loaderData: undefined, routeId }
       }
@@ -181,12 +186,15 @@ export async function oneServe(
     }
   }
 
-  // Lazy load server entry only when needed for SSR
+  // lazy load server entry - sync on cache hit
   let render: ((props: RenderAppProps) => any) | null = null
   let renderStream: ((props: RenderAppProps) => Promise<ReadableStream>) | null = null
-  async function getRender() {
-    if (!render) {
-      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+  let renderLoading: Promise<void> | null = null
+
+  function ensureRenderLoaded(): void | Promise<void> {
+    if (render) return // sync!
+    if (renderLoading) return renderLoading
+    renderLoading = (async () => {
       const entry = options?.lazyRoutes?.serverEntry
         ? await options.lazyRoutes.serverEntry()
         : await import(
@@ -197,13 +205,8 @@ export async function oneServe(
           )
       render = entry.default.render as (props: RenderAppProps) => any
       renderStream = entry.default.renderStream as ((props: RenderAppProps) => Promise<ReadableStream>) | null
-    }
-    return render
-  }
-
-  async function getRenderStream() {
-    await getRender()
-    return renderStream
+    })()
+    return renderLoading
   }
 
   const clientDir = join(process.cwd(), outDir, 'client')
@@ -254,7 +257,8 @@ export async function oneServe(
 
       let loader: Function | null
       try {
-        loader = await resolveLoader(serverPath, routeFile)
+        const loaderResult = resolveLoaderSync(serverPath, routeFile)
+        loader = loaderResult instanceof Promise ? await loaderResult : loaderResult
       } catch (err) {
         if ((err as any)?.code === 'ERR_MODULE_NOT_FOUND') {
           return null
@@ -401,7 +405,7 @@ export async function oneServe(
           }
 
           // streaming SSR by default, fall back to buffered with ONE_BUFFERED_SSR=1
-          const streamFn = !process.env.ONE_BUFFERED_SSR ? await getRenderStream() : null
+          const _rl = ensureRenderLoaded(); if (_rl) await _rl; const streamFn = !process.env.ONE_BUFFERED_SSR ? renderStream : null
           if (streamFn) {
             const stream = await streamFn(renderProps)
             return new Response(stream, {
@@ -410,7 +414,7 @@ export async function oneServe(
             })
           }
 
-          const rendered = await (await getRender())(renderProps)
+          const _rl2 = ensureRenderLoaded(); if (_rl2) await _rl2; const rendered = await render!(renderProps)
 
           return new Response(rendered, {
             headers,
@@ -466,9 +470,9 @@ url: ${url}`)
 
             globalThis['__vxrnresetState']?.()
 
-            const rendered = await (
-              await getRender()
-            )({
+            const _rl3 = ensureRenderLoaded()
+            if (_rl3) await _rl3
+            const rendered = await render!({
               mode: 'spa-shell',
               // don't pass loaderData for spa-shell - the page loader runs on client
               // passing {} here would make useLoaderState think data is preloaded
