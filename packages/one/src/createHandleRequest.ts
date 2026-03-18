@@ -267,22 +267,24 @@ export async function resolvePageRoute(
     console.info(`[one] 📄 page ${pathname} → ${route.file} (${route.type})`)
   }
 
-  return resolveResponse(async () => {
-    const resolved = await runMiddlewares(handlers, request, route, async () => {
-      return await handlers.handlePage!({
-        request,
-        route,
-        url,
-        loaderProps: {
-          path: pathname,
-          search: search,
-          // Ensure SSR loaders receive the original request
-          request: route.type === 'ssr' ? request : undefined,
-          params: getLoaderParams(url, route),
-        },
-      })
+  const loaderProps = {
+    path: pathname,
+    search: search,
+    request: route.type === 'ssr' ? request : undefined,
+    params: getLoaderParams(url, route),
+  }
+
+  // flatten the async chain for SSR: skip runMiddlewares wrapper when no middlewares
+  if (!route.middlewares?.length) {
+    return resolveResponse(() => {
+      return handlers.handlePage!({ request, route, url, loaderProps })
     })
-    return resolved
+  }
+
+  return resolveResponse(async () => {
+    return await runMiddlewares(handlers, request, route, async () => {
+      return await handlers.handlePage!({ request, route, url, loaderProps })
+    })
   })
 }
 

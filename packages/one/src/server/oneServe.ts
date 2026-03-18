@@ -154,6 +154,61 @@ export async function oneServe(
     })()
   }
 
+  // loader cache: user-controlled via cache(key, ttlOrConfig) inside loaders
+  // throws CacheHit to short-circuit concurrent/stale callers
+  class CacheHit {
+    constructor(public pending: Promise<unknown>) {}
+  }
+
+  type CacheEntry = {
+    promise: Promise<unknown>
+    data?: unknown
+    resolved: boolean
+    expires: number // 0 = no TTL, just coalesce concurrent
+  }
+
+  const loaderCacheEntries = new Map<string, CacheEntry>()
+
+  function createCacheFunction(routeId: string) {
+    return function cache(key: string, ttlOrConfig?: number | { ttl?: number }) {
+      const ttl = typeof ttlOrConfig === 'number'
+        ? ttlOrConfig
+        : ttlOrConfig?.ttl ?? 0
+      const fullKey = routeId + '\0' + key
+      const entry = loaderCacheEntries.get(fullKey)
+
+      if (entry) {
+        // still pending (concurrent coalescing) or within TTL
+        if (!entry.resolved || (entry.expires > 0 && Date.now() < entry.expires)) {
+          throw new CacheHit(entry.promise)
+        }
+        // expired, clean up
+        loaderCacheEntries.delete(fullKey)
+      }
+    }
+  }
+
+  function registerCacheEntry(routeId: string, key: string, ttl: number, promise: Promise<unknown>) {
+    const fullKey = routeId + '\0' + key
+    const entry: CacheEntry = {
+      promise,
+      resolved: false,
+      expires: 0,
+    }
+    loaderCacheEntries.set(fullKey, entry)
+    promise.then((data) => {
+      entry.data = data
+      entry.resolved = true
+      entry.expires = ttl > 0 ? Date.now() + ttl : 0
+      // if no TTL, clean up after microtask (only coalesces concurrent calls)
+      if (ttl <= 0) {
+        Promise.resolve().then(() => loaderCacheEntries.delete(fullKey))
+      }
+    }, () => {
+      loaderCacheEntries.delete(fullKey)
+    })
+  }
+
   // shared helper to import a route module and run its loader
   async function importAndRunLoader(
     routeId: string,
@@ -166,15 +221,49 @@ export async function oneServe(
     }
 
     try {
-      // resolveLoaderSync returns sync on cache hit, avoiding microtask hop
       const loaderOrPromise = resolveLoaderSync(serverPath, lazyKey)
       const loader = loaderOrPromise instanceof Promise ? await loaderOrPromise : loaderOrPromise
       if (!loader) {
         return { loaderData: undefined, routeId }
       }
-      const loaderData = await loader(loaderProps)
+
+      // inject cache function into loaderProps
+      let cacheKey: string | undefined
+      let cacheTtl = 0
+      const cacheProps = {
+        ...loaderProps,
+        cache(key: string, ttlOrConfig?: number | { ttl?: number }) {
+          cacheKey = key
+          cacheTtl = typeof ttlOrConfig === 'number'
+            ? ttlOrConfig
+            : ttlOrConfig?.ttl ?? 0
+
+          // check for existing entry (throws CacheHit if found)
+          const fullKey = routeId + '\0' + key
+          const entry = loaderCacheEntries.get(fullKey)
+          if (entry) {
+            if (!entry.resolved || (entry.expires > 0 && Date.now() < entry.expires)) {
+              throw new CacheHit(entry.promise)
+            }
+            loaderCacheEntries.delete(fullKey)
+          }
+        },
+      }
+
+      const loaderPromise = loader(cacheProps)
+
+      // if cache() was called, register this execution for coalescing
+      if (cacheKey !== undefined) {
+        registerCacheEntry(routeId, cacheKey, cacheTtl, loaderPromise)
+      }
+
+      const loaderData = await loaderPromise
       return { loaderData, routeId }
     } catch (err) {
+      if (err instanceof CacheHit) {
+        const loaderData = await err.pending
+        return { loaderData, routeId }
+      }
       if (isResponse(err)) {
         throw err
       }
