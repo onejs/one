@@ -8,7 +8,7 @@ import {
   type NavigationContainerRefWithCurrent,
   type NavigationState,
   StackActions,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
 import {
   type ComponentType,
   Fragment,

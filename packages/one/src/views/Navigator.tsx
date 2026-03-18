@@ -3,7 +3,7 @@ import {
   type RouterFactory,
   StackRouter,
   useNavigationBuilder,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'

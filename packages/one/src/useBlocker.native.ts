@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from './reactNavigationImports'
 import * as React from 'react'
 
 export type BlockerState = 'unblocked' | 'blocked' | 'proceeding'

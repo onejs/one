@@ -1,9 +1,4 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  type NavigationAction,
-  type NavigationContainerProps,
-} from '@react-navigation/native'
+import type { NavigationAction, NavigationContainerProps } from '@react-navigation/core'
 import { useUserScheme } from '@vxrn/color-scheme'
 import {
   createContext,
@@ -16,7 +11,6 @@ import {
   useState,
 } from 'react'
 import { SERVER_CONTEXT_KEY, isNative } from './constants'
-import { initScreensFeatureFlags } from './screensFeatureFlags'
 import { SpaShellContext } from './router/SpaShellContext'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
@@ -32,6 +26,12 @@ import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
 import type { One } from './vite/types'
+
+import { DarkTheme, DefaultTheme } from '@react-navigation/native'
+
+// lazy import to avoid loading react-native-screens on web/server
+const initScreensFeatureFlags = () =>
+  import('./screensFeatureFlags').then((m) => m.initScreensFeatureFlags()).catch(() => {})
 
 type RootProps = Omit<InnerProps, 'context'> & {
   onRenderId?: (id: string) => void

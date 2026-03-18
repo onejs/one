@@ -1,13 +1,13 @@
-import type { RouterFactory } from '@react-navigation/native'
+import type { RouterFactory } from '../reactNavigationImports'
 import {
   type DefaultNavigatorOptions,
-  LinkingContext,
   type ParamListBase,
   type TabActionHelpers,
   type TabNavigationState,
   type TabRouterOptions,
   useNavigationBuilder,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
+import { LinkingContext } from '@react-navigation/native'
 import {
   Children,
   type ComponentProps,

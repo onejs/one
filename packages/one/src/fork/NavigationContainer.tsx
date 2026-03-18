@@ -18,12 +18,6 @@ import {
   ThemeProvider,
   validatePathConfig,
 } from '@react-navigation/core'
-// @modified - start
-// import { LinkingContext } from './LinkingContext'
-// import { LocaleDirContext } from './LocaleDirContext'
-// import { DefaultTheme } from './theming/DefaultTheme'
-// import type { DocumentTitleOptions, LinkingOptions, LocaleDirection } from './types'
-// import { UnhandledLinkingContext } from './UnhandledLinkingContext'
 import {
   DefaultTheme,
   type DocumentTitleOptions,
@@ -36,7 +30,6 @@ import {
 import * as React from 'react'
 import { I18nManager } from 'react-native'
 import useLatestCallback from 'use-latest-callback'
-// @modified - end
 import { useBackButton } from './useBackButton'
 import { useDocumentTitle } from './useDocumentTitle'
 import { useLinking } from './useLinking'
@@ -104,7 +97,7 @@ function NavigationContainerInner(
 // @modified - full client NavigationContainer with all hooks and providers
 function NavigationContainerClientInner({
   forwardedRef,
-  direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
+  direction,
   theme = DefaultTheme,
   linking,
   fallback = null,
@@ -115,6 +108,8 @@ function NavigationContainerClientInner({
 }: Props<ParamListBase> & {
   forwardedRef?: React.Ref<NavigationContainerRef<ParamListBase> | null>
 }) {
+  const resolvedDirection =
+    direction ?? (I18nManager.getConstants().isRTL ? 'rtl' : 'ltr')
   const ref = forwardedRef
   const isLinkingEnabled = linking ? linking.enabled !== false : false
 
@@ -207,7 +202,7 @@ function NavigationContainerClientInner({
   }
 
   return (
-    <LocaleDirContext.Provider value={direction}>
+    <LocaleDirContext.Provider value={resolvedDirection}>
       <UnhandledLinkingContext.Provider value={unhandledLinkingContext}>
         <LinkingContext.Provider value={linkingContext}>
           <BaseNavigationContainer
@@ -215,7 +210,9 @@ function NavigationContainerClientInner({
             theme={theme}
             onReady={onReadyForLinkingHandling}
             onStateChange={onStateChangeForLinkingHandling}
-            initialState={rest.initialState == null ? initialState : rest.initialState}
+            initialState={
+              rest.initialState == null ? (initialState as any) : rest.initialState
+            }
             ref={refContainer}
           />
         </LinkingContext.Provider>

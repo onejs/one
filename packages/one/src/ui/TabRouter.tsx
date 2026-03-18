@@ -6,7 +6,7 @@ import {
   type TabRouterOptions as RNTabRouterOptions,
   type Router,
   type TabNavigationState,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
 
 import type { TriggerMap } from './common'
 

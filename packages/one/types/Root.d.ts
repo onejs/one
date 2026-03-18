@@ -1,4 +1,4 @@
-import { type NavigationContainerProps } from '@react-navigation/native';
+import type { NavigationContainerProps } from '@react-navigation/core';
 import { type FunctionComponent, type ReactNode } from 'react';
 import type { GlobbedRouteImports } from './types';
 import type { One } from './vite/types';

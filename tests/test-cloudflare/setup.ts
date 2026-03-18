@@ -9,7 +9,7 @@
  */
 
 import { spawn, execSync, type ChildProcess } from 'node:child_process'
-import { existsSync } from 'node:fs'
+import { existsSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import type { GlobalSetupContext } from 'vitest/node'
 
@@ -45,6 +45,10 @@ export async function setup({ provide }: GlobalSetupContext) {
 
   // Skip build if SKIP_BUILD is set (useful for debugging)
   if (!process.env.SKIP_BUILD) {
+    // clean dist to avoid stale build artifacts (e.g. missing worker.js)
+    const distDir = join(testDir, 'dist')
+    rmSync(distDir, { recursive: true, force: true })
+
     console.log('[test-cloudflare] Building with Cloudflare deploy target...')
 
     try {

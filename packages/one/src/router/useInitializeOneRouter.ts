@@ -1,4 +1,4 @@
-import { useNavigationContainerRef } from '@react-navigation/native'
+import { useNavigationContainerRef } from '../reactNavigationImports'
 import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
 import * as routerStore from './router'

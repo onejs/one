@@ -1,4 +1,4 @@
-import { type DefaultNavigatorOptions, type ParamListBase, type TabActionHelpers, type TabNavigationState, type TabRouterOptions } from '@react-navigation/native';
+import { type DefaultNavigatorOptions, type ParamListBase, type TabActionHelpers, type TabNavigationState, type TabRouterOptions } from '../reactNavigationImports';
 import { type PropsWithChildren } from 'react';
 import { type ViewProps } from 'react-native';
 import { type ScreenTrigger } from './common';

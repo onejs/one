@@ -1,7 +1,7 @@
 // forked from @react-navigation/routers/src/StackRouter.tsx
 // the only changes have @nate before them
 
-import { StackRouter, type StackRouterOptions } from '@react-navigation/native'
+import { StackRouter, type StackRouterOptions } from '../reactNavigationImports'
 
 export const CustomStackRouter = (options: StackRouterOptions) => {
   const router = StackRouter(options)

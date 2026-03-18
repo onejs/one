@@ -2,6 +2,35 @@ import { assertString } from '../utils/assert'
 import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
+  // react-native needs explicit "type": "commonjs" to prevent Node from treating
+  // its CJS index.js as ESM (which chokes on typeof)
+  {
+    module: 'react-native',
+    patchFiles: {
+      'package.json': (contents) => {
+        assertString(contents)
+        const pkg = JSON.parse(contents)
+        if (pkg.type) return
+        pkg.type = 'commonjs'
+        return JSON.stringify(pkg, null, 2)
+      },
+    },
+  },
+
+  // @react-navigation/native and elements need CJS type for Node ESM compat
+  {
+    module: '@react-navigation/native',
+    patchFiles: {
+      'package.json': (contents) => {
+        assertString(contents)
+        const pkg = JSON.parse(contents)
+        if (pkg.type) return
+        pkg.type = 'commonjs'
+        return JSON.stringify(pkg, null, 2)
+      },
+    },
+  },
+
   // expose internal contexts for SSR-optimized NavigationContainer
   {
     module: '@react-navigation/core',

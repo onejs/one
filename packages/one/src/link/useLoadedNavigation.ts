@@ -2,7 +2,7 @@ import {
   type NavigationProp,
   type NavigationState,
   useNavigation,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useOneRouter } from '../router/router'

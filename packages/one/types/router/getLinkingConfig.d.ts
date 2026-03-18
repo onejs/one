@@ -1,4 +1,4 @@
-import { type LinkingOptions } from '@react-navigation/native';
+import { type LinkingOptions } from '../reactNavigationImports';
 import { type Screen } from '../getReactNavigationConfig';
 import { getPathFromState } from '../link/linking';
 import type { RouteNode } from './Route';

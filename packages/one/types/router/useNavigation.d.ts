@@ -1,4 +1,4 @@
-import { type NavigationProp } from '@react-navigation/native';
+import { type NavigationProp } from '../reactNavigationImports';
 /**
  * Returns the React Navigation navigation object for the current route.
  * Provides low-level access to navigation actions, events, and screen options.

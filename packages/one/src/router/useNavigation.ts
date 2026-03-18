@@ -1,7 +1,7 @@
 import {
   type NavigationProp,
   useNavigation as useUpstreamNavigation,
-} from '@react-navigation/native'
+} from '../reactNavigationImports'
 import React from 'react'
 
 import { getNameFromFilePath } from './matchers'
