@@ -484,6 +484,18 @@ export declare namespace One {
              * @default { include: /node_modules/ }
              */
             autoDepsOptimization?: boolean | AutoDepOptimizationOptions;
+            /**
+             * In monorepos with symlinked workspace packages, Vite's SSR optimizer registers
+             * pre-bundled deps by their node_modules path, but the resolver follows symlinks
+             * to the real (source) path. This causes duplicate module instances — the optimizer
+             * serves one copy while source imports create another.
+             *
+             * Enable this to redirect symlink-resolved paths back to node_modules paths so
+             * the optimizer can recognize and deduplicate them.
+             *
+             * @default false
+             */
+            dedupeSymlinkedModules?: boolean;
         };
         /**
          * Configure environment guard behavior for `server-only`, `client-only`,
