@@ -10,7 +10,16 @@ import { AsyncLocalStorage } from 'node:async_hooks'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from './types'
 
-type ALSInstance = AsyncLocalStorage<unknown>
+// symbol key for storing context directly on the ALS id object (faster than WeakMap)
+const _ctxKey = Symbol.for('__oneCtx')
+
+/** shape of the object stored as the ALS context id */
+export interface ALSId {
+  _id: number
+  [_ctxKey]?: One.ServerContext
+}
+
+type ALSInstance = AsyncLocalStorage<ALSId>
 
 const key = '__vxrnrequestAsyncLocalStore'
 const read = () => globalThis[key] as ALSInstance | undefined
@@ -18,7 +27,7 @@ const read = () => globalThis[key] as ALSInstance | undefined
 const ASYNC_LOCAL_STORE = {
   get current() {
     if (read()) return read()
-    const _ = new AsyncLocalStorage()
+    const _ = new AsyncLocalStorage<ALSId>()
     globalThis[key] = _
     return _
   },
@@ -35,9 +44,9 @@ export const asyncHeadersCache =
 globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
 export async function runWithAsyncLocalContext<A>(
-  cb: (id: object) => Promise<A>
+  cb: (id: ALSId) => Promise<A>
 ): Promise<A> {
-  const id = { _id: Math.random() }
+  const id: ALSId = { _id: Math.random() }
   let out: A = null as any
   await ASYNC_LOCAL_STORE.current!.run(id, async () => {
     out = await cb(id)
@@ -92,7 +101,7 @@ export function ensureAsyncLocalID() {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)
   }
 
-  return id as object
+  return id as ALSId
 }
 
 export type MaybeServerContext = null | One.ServerContext
@@ -104,12 +113,9 @@ if (!globalThis[SERVER_CONTEXTS_KEY]) {
 }
 const serverContexts = globalThis[SERVER_CONTEXTS_KEY] as WeakMap<any, One.ServerContext>
 
-// symbol key for storing context directly on the ALS id object (faster than WeakMap)
-const _ctxKey = Symbol.for('__oneCtx')
-
 export function setServerContext(data: One.ServerContext) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    const id = ensureAsyncLocalID() as any
+    const id = ensureAsyncLocalID()
     // fast path: store context directly on the id object to skip WeakMap ops
     let context = id[_ctxKey]
     if (!context) {
@@ -127,7 +133,7 @@ export function setServerContext(data: One.ServerContext) {
 export function getServerContext() {
   const out = (() => {
     if (process.env.VITE_ENVIRONMENT === 'ssr') {
-      const id = ensureAsyncLocalID() as any
+      const id = ensureAsyncLocalID()
       // fast path: read from id object directly
       return id[_ctxKey] || serverContexts.get(id)
     }
@@ -142,8 +148,8 @@ export function useServerContext() {
     try {
       const useContext = globalThis['__vxrnGetContextFromReactContext']
       if (useContext) {
-        const id = useContext() as any
-        return id?.[_ctxKey] || serverContexts.get(id)
+        const id = useContext() as ALSId | null
+        if (id) return id[_ctxKey] || serverContexts.get(id)
       }
     } catch {
       // ok, not in react tree

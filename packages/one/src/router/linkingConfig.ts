@@ -1,5 +1,6 @@
 import { isWebClient } from '../constants'
 import type { OneRouter } from '../interfaces/router'
+import { evictOldest } from '../utils/evictOldest'
 import {
   getLinkingConfig as createLinkingConfig,
   type OneLinkingOptions,
@@ -62,15 +63,7 @@ export function getSSRInitialState(
     path,
     cachedBaseLinkingConfig.config
   )
-  // LRU-style eviction: delete oldest entries when cache is large
-  // avoids clearing all at once which causes GC spikes
-  if (ssrStateCache.size > 5000) {
-    const iter = ssrStateCache.keys()
-    for (let i = 0; i < 1000; i++) {
-      const key = iter.next().value
-      if (key) ssrStateCache.delete(key)
-    }
-  }
+  evictOldest(ssrStateCache, 5000, 1000)
   ssrStateCache.set(path, state)
   return state
 }
