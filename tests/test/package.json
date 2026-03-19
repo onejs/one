@@ -27,7 +27,7 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.19",
+    "@react-navigation/native": "~7.1.33",
     "@tamagui/config": "2.0.0-rc.22",
     "@tamagui/lucide-icons": "2.0.0-rc.22",
     "@tamagui/vite-plugin": "2.0.0-rc.22",
@@ -55,13 +55,13 @@
     "tamagui": "2.0.0-rc.22"
   },
   "devDependencies": {
-    "@react-native-community/cli": "^20.0.2",
+    "@react-native-community/cli": "^20.1.2",
     "@vxrn/utils": "workspace:*",
     "get-port-please": "^3.1.2",
     "playwright": "^1.58.2",
     "tsx": "^4.20.6",
     "typescript": "^5.7.3",
-    "vite": "^7.1.12",
-    "vitest": "^4.0.6"
+    "vite": "^8.0.0",
+    "vitest": "^4.1.0"
   }
 }

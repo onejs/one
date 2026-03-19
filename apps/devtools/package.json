@@ -14,7 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.19",
+    "@react-navigation/native": "~7.1.33",
     "@tamagui/config": "2.0.0-rc.22",
     "@tamagui/lucide-icons": "2.0.0-rc.22",
     "@tamagui/vite-plugin": "2.0.0-rc.22",
@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
-    "vite": "^7.1.12"
+    "vite": "^8.0.0"
   }
 }

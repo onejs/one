@@ -23,12 +23,12 @@
   "dependencies": {
     "@bottom-tabs/react-navigation": "^0.9.1",
     "@dotenvx/dotenvx": "^1.12.1",
-    "@react-navigation/native": "~7.1.19",
+    "@react-navigation/native": "~7.1.33",
     "@tamagui/config": "2.0.0-rc.22",
     "@tamagui/lucide-icons": "2.0.0-rc.22",
     "@vxrn/color-scheme": "workspace:*",
     "better-sqlite3": "^11.2.1",
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.2.1",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
     "expo": "~55.0.6",
@@ -50,9 +50,9 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@faker-js/faker": "next",
-    "@react-native-community/cli": "^20.0.2",
+    "@react-native-community/cli": "^20.1.2",
     "@tamagui/vite-plugin": "2.0.0-rc.22",
     "tsx": "^4.20.6",
-    "vite": "^7.1.12"
+    "vite": "^8.0.0"
   }
 }

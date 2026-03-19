@@ -184,7 +184,7 @@
     "hono": "^4.12.8",
     "launch-editor": "^2.10.0",
     "lightningcss": "^1.30.1",
-    "micromatch": "^4.0.7",
+    "micromatch": "^4.0.8",
     "nanoid": "^3.3.7",
     "oxc-parser": "^0.112.0",
     "tsconfig-paths": "^4",
@@ -204,13 +204,13 @@
   },
   "peerDependencies": {
     "@react-navigation/drawer": "~7.9.4",
-    "@react-navigation/native": "~7.1.28",
-    "react-native": "*",
+    "@react-navigation/native": "~7.1.33",
+    "react-native": "0.83.2",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-reanimated": "~4.2.1",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
-    "sharp": ">=0.33.0"
+    "sharp": "^0.34.5"
   },
   "peerDependenciesMeta": {
     "@react-navigation/drawer": {
@@ -232,10 +232,12 @@
   "devDependencies": {
     "@react-navigation/core": "^7.16.1",
     "@react-navigation/drawer": "~7.9.4",
-    "@react-navigation/native": "~7.1.28",
+    "@react-navigation/native": "~7.1.33",
     "@tamagui/build": "2.0.0-rc.22",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-reanimated": "~4.2.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.2.2",
     "@types/xxhashjs": "^0.2.4",
@@ -245,7 +247,7 @@
     "rolldown": "^1.0.0-rc.9",
     "sharp": "^0.34.5",
     "typescript": "^5.7.3",
-    "vitest": "^4.0.6"
+    "vitest": "^4.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -18,6 +18,6 @@
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@vxrn/vite-plugin-metro": "workspace:*",
-    "vite": "^7.1.12"
+    "vite": "^8.0.0"
   }
 }

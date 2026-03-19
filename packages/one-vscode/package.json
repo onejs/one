@@ -45,12 +45,12 @@
     "package": "vsce package"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^24.10.0",
     "@types/vscode": "^1.80.0",
-    "esbuild": "^0.20.0",
-    "typescript": "^5.0.0"
+    "esbuild": "^0.25.12",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "ws": "^8.16.0"
+    "ws": "^8.18.0"
   }
 }

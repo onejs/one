@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@tamagui/build": "2.0.0-rc.22",
-    "vitest": "^4.0.6"
+    "vitest": "^4.1.0"
   },
   "publishConfig": {
     "access": "public"
