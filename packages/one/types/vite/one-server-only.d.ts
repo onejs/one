@@ -9,8 +9,8 @@ export declare function mergeHeaders(onto: Headers, from: Headers): void;
 export declare function ensureAsyncLocalID(): object;
 export type MaybeServerContext = null | One.ServerContext;
 export declare function setServerContext(data: One.ServerContext): void;
-export declare function getServerContext(): MaybeServerContext | undefined;
-export declare function useServerContext(): MaybeServerContext | undefined;
+export declare function getServerContext(): any;
+export declare function useServerContext(): any;
 /**
  * For passing data from the server to the client. Can only be called on the server.
  * You can type it by overriding `One.ClientData` type using declare module 'one'.

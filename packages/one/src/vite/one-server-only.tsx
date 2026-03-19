@@ -104,14 +104,20 @@ if (!globalThis[SERVER_CONTEXTS_KEY]) {
 }
 const serverContexts = globalThis[SERVER_CONTEXTS_KEY] as WeakMap<any, One.ServerContext>
 
+// symbol key for storing context directly on the ALS id object (faster than WeakMap)
+const _ctxKey = Symbol.for('__oneCtx')
+
 export function setServerContext(data: One.ServerContext) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    const id = ensureAsyncLocalID()
-    if (!serverContexts.has(id)) {
-      serverContexts.set(id, {})
+    const id = ensureAsyncLocalID() as any
+    // fast path: store context directly on the id object to skip WeakMap ops
+    let context = id[_ctxKey]
+    if (!context) {
+      context = {}
+      id[_ctxKey] = context
+      // also set in WeakMap for backwards compatibility
+      serverContexts.set(id, context)
     }
-
-    const context = serverContexts.get(id)!
     Object.assign(context, data)
   } else {
     throw new Error(`Don't call setServerContext on client`)
@@ -121,8 +127,9 @@ export function setServerContext(data: One.ServerContext) {
 export function getServerContext() {
   const out = (() => {
     if (process.env.VITE_ENVIRONMENT === 'ssr') {
-      const id = ensureAsyncLocalID()
-      return serverContexts.get(id)
+      const id = ensureAsyncLocalID() as any
+      // fast path: read from id object directly
+      return id[_ctxKey] || serverContexts.get(id)
     }
     return globalThis[SERVER_CONTEXT_KEY] as MaybeServerContext
   })()
@@ -135,7 +142,8 @@ export function useServerContext() {
     try {
       const useContext = globalThis['__vxrnGetContextFromReactContext']
       if (useContext) {
-        return serverContexts.get(useContext())
+        const id = useContext() as any
+        return id?.[_ctxKey] || serverContexts.get(id)
       }
     } catch {
       // ok, not in react tree

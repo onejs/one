@@ -33,6 +33,25 @@ import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
 import type { One } from './vite/types'
 
+// cache URL objects for SSR to avoid per-render allocation
+// keyed by path string, evicted when cache grows too large
+const ssrLocationCache = new Map<string, URL>()
+function getCachedSSRLocation(path: string): URL {
+  let url = ssrLocationCache.get(path)
+  if (url) return url
+  url = new URL(path, getURL())
+  if (ssrLocationCache.size > 5000) {
+    // LRU-style eviction
+    const iter = ssrLocationCache.keys()
+    for (let i = 0; i < 1000; i++) {
+      const key = iter.next().value
+      if (key) ssrLocationCache.delete(key)
+    }
+  }
+  ssrLocationCache.set(path, url)
+  return url
+}
+
 type RootProps = Omit<InnerProps, 'context'> & {
   onRenderId?: (id: string) => void
   path: string
@@ -87,7 +106,7 @@ export function Root(props: RootProps) {
   const location =
     typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
-      : new URL(path || '/', getURL())
+      : getCachedSSRLocation(path || '/')
 
   const store = useInitializeOneRouter(context, location)
   const userScheme = useUserScheme()

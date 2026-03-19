@@ -34,5 +34,9 @@ export declare function createHandleRequest(handlers: RequestHandlers, { routerR
     manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
     handler: (request: Request) => Promise<RequestHandlerResponse>;
 };
+export declare function getLoaderParams(url: URL, config: {
+    compiledRegex: RegExp;
+    routeKeys: Record<string, string>;
+}): Record<string, string>;
 export {};
 //# sourceMappingURL=createHandleRequest.d.ts.map

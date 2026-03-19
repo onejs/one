@@ -62,8 +62,15 @@ export function getSSRInitialState(
     path,
     cachedBaseLinkingConfig.config
   )
-  // bound cache to prevent memory growth on sites with many unique URLs
-  if (ssrStateCache.size > 10000) ssrStateCache.clear()
+  // LRU-style eviction: delete oldest entries when cache is large
+  // avoids clearing all at once which causes GC spikes
+  if (ssrStateCache.size > 5000) {
+    const iter = ssrStateCache.keys()
+    for (let i = 0; i < 1000; i++) {
+      const key = iter.next().value
+      if (key) ssrStateCache.delete(key)
+    }
+  }
   ssrStateCache.set(path, state)
   return state
 }

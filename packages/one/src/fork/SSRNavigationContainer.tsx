@@ -49,14 +49,34 @@ const getPartialState = (state: any): any => {
   }
 }
 
-// cache by initialState reference
-let _cachedState: any = null
-let _cachedCtx: any = null
+// cache state contexts by navigation state identity to avoid deep clone thrashing
+// under concurrent SSR requests with different URLs
+const stateCtxCache = new WeakMap<object, {
+  state: any
+  getKey: () => string | undefined
+  setKey: () => void
+  getState: () => any
+  setState: () => void
+  getIsInitial: () => boolean
+}>()
 
 function getStateContext(initialState: any) {
-  if (_cachedState === initialState && _cachedCtx) return _cachedCtx
+  if (!initialState) {
+    return {
+      state: undefined,
+      getKey: () => undefined as string | undefined,
+      setKey: noop,
+      getState: () => undefined,
+      setState: noop,
+      getIsInitial: () => true,
+    }
+  }
+
+  const cached = stateCtxCache.get(initialState)
+  if (cached) return cached
+
   const partial = getPartialState(initialState)
-  _cachedCtx = {
+  const ctx = {
     state: partial,
     getKey: () => undefined as string | undefined,
     setKey: noop,
@@ -64,8 +84,8 @@ function getStateContext(initialState: any) {
     setState: noop,
     getIsInitial: () => true,
   }
-  _cachedState = initialState
-  return _cachedCtx
+  stateCtxCache.set(initialState, ctx)
+  return ctx
 }
 
 export function SSRNavigationContainer({

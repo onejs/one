@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import { extname, join, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import {
@@ -9,6 +9,7 @@ import {
 } from '../constants'
 import {
   compileManifest,
+  getLoaderParams,
   getURLfromRequestURL,
   type RequestHandlers,
   runMiddlewares,
@@ -61,6 +62,7 @@ export async function oneServe(
     await import('../createHandleRequest')
   const { isResponse } = await import('../utils/isResponse')
   const { isStatusRedirect } = await import('../utils/isStatus')
+  const { withRequestContext } = await import('../vite/resolveResponse')
 
   const isAPIRequest = new WeakMap<any, boolean>()
 
@@ -116,6 +118,12 @@ export async function oneServe(
   }
 
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
+
+  // pre-computed constants to avoid per-request overhead
+  const useStreaming = !process.env.ONE_BUFFERED_SSR
+  const htmlHeaders = { 'content-type': 'text/html' }
+  // SSR responses get no-cache by default — include it in headers to avoid per-response mutation
+  const ssrHtmlHeaders = { 'content-type': 'text/html', 'cache-control': 'no-cache' }
 
   // cache resolved loader functions directly (not just modules)
   const loaderCache = new Map<string, Function | null>()
@@ -369,15 +377,31 @@ export async function oneServe(
         try {
           // collect layout loaders to run in parallel
           const layoutRoutes = route.layouts || []
-          const layoutLoaderPromises = layoutRoutes.map((layout: any) => {
+
+          // fast path: check which layouts actually have loaders (sync on cache hit)
+          // skip importAndRunLoader entirely for layouts with no loader
+          const layoutLoaderPromises: Array<ReturnType<typeof importAndRunLoader>> = []
+          const noLoaderResults: Array<{ loaderData: unknown; routeId: string }> = []
+
+          for (const layout of layoutRoutes) {
             const serverPath = layout.loaderServerPath || layout.contextKey
-            return importAndRunLoader(
-              layout.contextKey,
-              serverPath,
-              layout.contextKey,
-              loaderProps
-            )
-          })
+            const cacheKey = layout.contextKey || serverPath || ''
+            const cachedLoader = loaderCache.get(cacheKey)
+
+            if (cachedLoader === null) {
+              // loader already resolved to null - skip the async call entirely
+              noLoaderResults.push({ loaderData: undefined, routeId: layout.contextKey })
+            } else {
+              layoutLoaderPromises.push(
+                importAndRunLoader(
+                  layout.contextKey,
+                  serverPath,
+                  layout.contextKey,
+                  loaderProps
+                )
+              )
+            }
+          }
 
           // run page loader
           const pageLoaderPromise = importAndRunLoader(
@@ -396,10 +420,18 @@ export async function oneServe(
           let pageResult: { loaderData: unknown; routeId: string; isEnoent?: boolean }
 
           try {
-            ;[layoutResults, pageResult] = await Promise.all([
-              Promise.all(layoutLoaderPromises),
-              pageLoaderPromise,
-            ])
+            if (layoutLoaderPromises.length === 0) {
+              // fast path: all layout loaders are null or no layouts
+              layoutResults = noLoaderResults
+              pageResult = await pageLoaderPromise
+            } else {
+              const [asyncLayoutResults, pr] = await Promise.all([
+                Promise.all(layoutLoaderPromises),
+                pageLoaderPromise,
+              ])
+              layoutResults = [...noLoaderResults, ...asyncLayoutResults]
+              pageResult = pr
+            }
           } catch (err) {
             // Handle thrown responses (e.g., redirect) from any loader
             if (isResponse(err)) {
@@ -428,20 +460,24 @@ export async function oneServe(
           }
 
           // build matches array (layouts + page)
-          const matches: One.RouteMatch[] = [
-            ...layoutResults.map((result) => ({
+          const matchPathname = loaderProps?.path || '/'
+          const matchParams = loaderProps?.params || {}
+          const matches: One.RouteMatch[] = new Array(layoutResults.length + 1)
+          for (let i = 0; i < layoutResults.length; i++) {
+            const result = layoutResults[i]
+            matches[i] = {
               routeId: result.routeId,
-              pathname: loaderProps?.path || '/',
-              params: loaderProps?.params || {},
+              pathname: matchPathname,
+              params: matchParams,
               loaderData: result.loaderData,
-            })),
-            {
-              routeId: pageResult.routeId,
-              pathname: loaderProps?.path || '/',
-              params: loaderProps?.params || {},
-              loaderData: pageResult.loaderData,
-            },
-          ]
+            }
+          }
+          matches[layoutResults.length] = {
+            routeId: pageResult.routeId,
+            pathname: matchPathname,
+            params: matchParams,
+            loaderData: pageResult.loaderData,
+          }
 
           // for backwards compat, loaderData is still the page's loader data
           const loaderData = pageResult.loaderData
@@ -462,9 +498,6 @@ export async function oneServe(
             setSSRLoaderData(pageLoaderFn, pageResult.loaderData)
           }
 
-          const headers = new Headers()
-          headers.set('content-type', 'text/html')
-
           // prepare router for this SSR render (lightweight version bump)
           globalThis['__vxrnresetState']?.()
 
@@ -480,16 +513,20 @@ export async function oneServe(
             matches,
           }
 
-          // streaming SSR by default, fall back to buffered with ONE_BUFFERED_SSR=1
           const _rl = ensureRenderLoaded()
           if (_rl) await _rl
 
-          const streamFn = !process.env.ONE_BUFFERED_SSR ? renderStream : null
-          if (streamFn) {
-            const stream = await streamFn(renderProps)
+          const status = route.isNotFound ? 404 : 200
+          // use ssrHtmlHeaders (includes cache-control: no-cache) to avoid
+          // per-response header mutation in the Hono handler
+          const responseHeaders = route.isNotFound ? htmlHeaders : ssrHtmlHeaders
+
+          // streaming SSR by default, fall back to buffered with ONE_BUFFERED_SSR=1
+          if (useStreaming) {
+            const stream = await renderStream!(renderProps)
             return new Response(stream, {
-              headers,
-              status: route.isNotFound ? 404 : 200,
+              headers: responseHeaders,
+              status,
             })
           }
 
@@ -497,8 +534,8 @@ export async function oneServe(
           const rendered = await render!(renderProps)
 
           return new Response(rendered, {
-            headers,
-            status: route.isNotFound ? 404 : 200,
+            headers: responseHeaders,
+            status,
           })
         } catch (err) {
           // Handle thrown responses (e.g., redirect) that weren't caught above
@@ -545,9 +582,6 @@ url: ${url}`)
               loaderData: result.loaderData,
             }))
 
-            const headers = new Headers()
-            headers.set('content-type', 'text/html')
-
             globalThis['__vxrnresetState']?.()
 
             const _rl3 = ensureRenderLoaded()
@@ -567,7 +601,7 @@ url: ${url}`)
             })
 
             return new Response(rendered, {
-              headers,
+              headers: htmlHeaders,
               status: route.isNotFound ? 404 : 200,
             })
           } catch (err) {
@@ -649,14 +683,16 @@ url: ${url}`)
   function createHonoHandler(
     route: RouteInfoCompiled
   ): MiddlewareHandler<BlankEnv, never, {}> {
+    // pre-compute per-route checks (constant for the lifetime of the handler)
+    const isDynamicOrNotFound =
+      route.page.endsWith('/+not-found') ||
+      Object.keys(route.routeKeys).length > 0
+
     return async (context, next) => {
       try {
         const request = context.req.raw
 
-        if (
-          route.page.endsWith('/+not-found') ||
-          Reflect.ownKeys(route.routeKeys).length > 0
-        ) {
+        if (isDynamicOrNotFound) {
           // Static assets should have the highest priority - which is the behavior of the dev server.
           // But if we handle every matching static asset here, it seems to break some of the static routes.
           // So we only handle it if there's a matching not-found or dynamic route, to prevent One from taking over the static asset.
@@ -677,9 +713,73 @@ url: ${url}`)
           }
         }
 
-        // for js we want to serve our js files directly, as they can match a route on accident
-        // middleware my want to handle this eventually as well but for now this is a fine balance
-        if (extname(request.url) === '.js' || extname(request.url) === '.css') {
+        // for js/css we want to serve our files directly, as they can match a route on accident
+        // use the hono-parsed path to avoid parsing the full URL string
+        const reqPath = context.req.path
+        if (reqPath.endsWith('.js') || reqPath.endsWith('.css')) {
+          return next()
+        }
+
+        // fast path for SSR pages without middleware:
+        // skip URL parsing, resolvePageRoute, and resolveResponse entirely.
+        // use hono's pre-parsed path and compute params inline.
+        if (route.type === 'ssr' && !route.middlewares?.length && !reqPath.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
+          if (debugRouter) {
+            console.info(
+              `[one] ⚡ ${reqPath} → matched page route: ${route.page} (ssr)`
+            )
+          }
+          const pathname = reqPath
+          // extract search from raw URL (after ?)
+          const rawUrl = request.url
+          const qIdx = rawUrl.indexOf('?')
+          const search = qIdx >= 0 ? rawUrl.slice(qIdx) : ''
+
+          // compute params from compiled regex using pathname
+          const params: Record<string, string> = {}
+          const match = route.compiledRegex.exec(pathname)
+          if (match?.groups) {
+            for (const [key, value] of Object.entries(match.groups)) {
+              const namedKey = route.routeKeys[key]
+              params[namedKey] = value as string
+            }
+          }
+
+          const loaderProps = {
+            path: pathname,
+            search,
+            request,
+            params,
+          }
+
+          // lazy-create URL only when needed (error paths, non-SSR branches)
+          const url = getURLfromRequestURL(request)
+
+          const response = await withRequestContext(async () => {
+            try {
+              return await requestHandlers.handlePage!({ request, route, url, loaderProps })
+            } catch (err) {
+              if (isResponse(err)) {
+                return err as Response
+              }
+              throw err
+            }
+          })
+
+          if (response) {
+            if (isResponse(response)) {
+              if (isStatusRedirect(response.status)) {
+                const location = `${response.headers.get('location') || ''}`
+                response.headers.forEach((value, key) => {
+                  context.header(key, value)
+                })
+                return context.redirect(location, response.status)
+              }
+              // cache-control is already set in ssrHtmlHeaders for SSR responses
+              return response as Response
+            }
+            return next()
+          }
           return next()
         }
 
