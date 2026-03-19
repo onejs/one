@@ -158,6 +158,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const ssrSymlinkDedupPlugin: Plugin = {
     name: 'one:ssr-symlink-dedup',
+    enforce: 'pre',
 
     configResolved(config) {
       if (!dedupeSymlinks) return
@@ -180,17 +181,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       if (!dedupeSymlinks) return
       // skip relative/absolute imports
       if (source[0] === '.' || source[0] === '/') return
-      if (!ssrDedup_optimizedPackages?.size) return
 
-      // extract package name
+      // extract package name and check for subpath
       let pkgName: string
+      let subpath: string | null = null
       if (source.startsWith('@')) {
         const parts = source.split('/')
         pkgName = parts.length >= 2 ? `${parts[0]}/${parts[1]}` : source
+        if (parts.length > 2) subpath = `./${parts.slice(2).join('/')}`
       } else {
-        pkgName = source.split('/')[0]
+        const parts = source.split('/')
+        pkgName = parts[0]
+        if (parts.length > 1) subpath = `./${parts.slice(1).join('/')}`
       }
-      if (!ssrDedup_optimizedPackages.has(pkgName)) return
 
       // resolve normally
       const resolved = await this.resolve(source, importer, {
@@ -199,18 +202,37 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       })
       if (!resolved?.id) return
 
-      // if it already goes through node_modules, optimizer will find it
+      // if it already goes through node_modules, no fixup needed
       if (resolved.id.includes('/node_modules/')) return
 
       // resolved to a real (source) path — find the node_modules equivalent
       const path = await import('node:path')
       const fs = await import('node:fs')
       const { join, dirname } = path
-      const { realpathSync, existsSync } = fs
+      const { realpathSync, existsSync, readFileSync } = fs
       let dir = ssrDedup_projectRoot
       while (dir !== dirname(dir)) {
         const nmPkgDir = join(dir, 'node_modules', pkgName)
         if (existsSync(nmPkgDir)) {
+          // for subpath imports, use package.json exports to resolve correctly
+          // (filesystem resolution hits CJS metro-compat shims)
+          if (subpath) {
+            try {
+              const pkg = JSON.parse(readFileSync(join(nmPkgDir, 'package.json'), 'utf8'))
+              const exportEntry = pkg.exports?.[subpath]
+              if (exportEntry && typeof exportEntry === 'object') {
+                const target =
+                  exportEntry.import || exportEntry.module || exportEntry.default
+                if (target) {
+                  const fullPath = join(nmPkgDir, target)
+                  if (existsSync(fullPath))
+                    return { id: fullPath, external: resolved.external }
+                }
+              }
+            } catch {}
+          }
+
+          // for bare imports, map real path → node_modules path
           const realPkgDir = realpathSync(nmPkgDir)
           if (resolved.id.startsWith(realPkgDir)) {
             const relativePart = resolved.id.slice(realPkgDir.length)
