@@ -1,6 +1,6 @@
 {
   "name": "devtools",
-  "version": "1.12.0-1773893346572",
+  "version": "1.12.1",
   "private": true,
   "type": "module",
   "scripts": {
