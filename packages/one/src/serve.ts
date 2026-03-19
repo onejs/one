@@ -21,60 +21,146 @@ export async function serve(
 ) {
   // cluster mode: --cluster or --cluster=N
   if (args.cluster) {
-    const cluster = await import('node:cluster')
-    const { cpus } = await import('node:os')
+    const { cpus, platform } = await import('node:os')
+    const numWorkers = typeof args.cluster === 'number' ? args.cluster : cpus().length
 
-    if (cluster.default.isPrimary) {
-      const numWorkers = typeof args.cluster === 'number' ? args.cluster : cpus().length
+    // check if we can use SO_REUSEPORT (linux with node 22.12+)
+    const [major, minor] = process.versions.node.split('.').map(Number)
+    const canReusePort =
+      !['win32', 'darwin'].includes(platform()) &&
+      (major > 22 || (major === 22 && minor >= 12) || major >= 23)
 
-      console.info(`[one] cluster: starting ${numWorkers} workers`)
-
-      for (let i = 0; i < numWorkers; i++) {
-        cluster.default.fork()
-      }
-
-      // restart crashed workers with backoff
-      let recentCrashes = 0
-      let lastCrashTime = 0
-
-      cluster.default.on('exit', (worker, code, signal) => {
-        if (code === 0 || signal === 'SIGTERM' || signal === 'SIGINT') return
-
-        const now = Date.now()
-        if (now - lastCrashTime < 5000) {
-          recentCrashes++
-        } else {
-          recentCrashes = 1
-        }
-        lastCrashTime = now
-
-        if (recentCrashes > numWorkers * 2) {
-          console.error(`[one] too many worker crashes, stopping`)
-          process.exit(1)
-        }
-
-        console.error(
-          `[one] worker ${worker.process.pid} died (code ${code}, signal ${signal}), restarting`
-        )
-        setTimeout(() => cluster.default.fork(), Math.min(recentCrashes * 500, 5000))
-      })
-
-      const shutdown = () => {
-        for (const id in cluster.default.workers) {
-          cluster.default.workers[id]?.process.kill('SIGTERM')
-        }
-        setTimeout(() => process.exit(0), 5000)
-      }
-      process.on('SIGINT', shutdown)
-      process.on('SIGTERM', shutdown)
-
-      return
+    if (canReusePort) {
+      // SO_REUSEPORT: spawn independent child processes, each binds to port directly
+      // kernel distributes connections - no IPC bottleneck
+      return await serveWithReusePort(args, numWorkers)
+    } else {
+      // fallback: node cluster module (IPC-based, works on macOS)
+      return await serveWithCluster(args, numWorkers)
     }
   }
 
-  // worker (or single-process mode)
+  // single-process mode
+  return await startWorker(args)
+}
+
+async function serveWithReusePort(args: Parameters<typeof serve>[0], numWorkers: number) {
+  const { fork } = await import('node:child_process')
+
+  console.info(`[one] cluster: starting ${numWorkers} workers (SO_REUSEPORT)`)
+
+  const workers: ReturnType<typeof fork>[] = []
+  let recentCrashes = 0
+  let lastCrashTime = 0
+
+  function spawnWorker() {
+    const child = fork(
+      process.argv[1]!,
+      process.argv.slice(2).filter((a) => !a.startsWith('--cluster')),
+      {
+        env: { ...process.env, ONE_CLUSTER_WORKER: '1' },
+        stdio: 'inherit',
+      }
+    )
+    workers.push(child)
+
+    child.on('exit', (code, signal) => {
+      const idx = workers.indexOf(child)
+      if (idx >= 0) workers.splice(idx, 1)
+
+      if (code === 0 || signal === 'SIGTERM' || signal === 'SIGINT') return
+
+      const now = Date.now()
+      if (now - lastCrashTime < 5000) {
+        recentCrashes++
+      } else {
+        recentCrashes = 1
+      }
+      lastCrashTime = now
+
+      if (recentCrashes > numWorkers * 2) {
+        console.error(`[one] too many worker crashes, stopping`)
+        process.exit(1)
+      }
+
+      console.error(
+        `[one] worker ${child.pid} died (code ${code}, signal ${signal}), restarting`
+      )
+      setTimeout(spawnWorker, Math.min(recentCrashes * 500, 5000))
+    })
+  }
+
+  for (let i = 0; i < numWorkers; i++) {
+    spawnWorker()
+  }
+
+  const shutdown = () => {
+    for (const w of workers) {
+      w.kill('SIGTERM')
+    }
+    setTimeout(() => process.exit(0), 5000)
+  }
+  process.on('SIGINT', shutdown)
+  process.on('SIGTERM', shutdown)
+
+  // keep primary alive
+  await new Promise(() => {})
+}
+
+async function serveWithCluster(args: Parameters<typeof serve>[0], numWorkers: number) {
+  const cluster = await import('node:cluster')
+
+  if (cluster.default.isPrimary) {
+    console.info(`[one] cluster: starting ${numWorkers} workers (IPC)`)
+
+    for (let i = 0; i < numWorkers; i++) {
+      cluster.default.fork()
+    }
+
+    let recentCrashes = 0
+    let lastCrashTime = 0
+
+    cluster.default.on('exit', (worker, code, signal) => {
+      if (code === 0 || signal === 'SIGTERM' || signal === 'SIGINT') return
+
+      const now = Date.now()
+      if (now - lastCrashTime < 5000) {
+        recentCrashes++
+      } else {
+        recentCrashes = 1
+      }
+      lastCrashTime = now
+
+      if (recentCrashes > numWorkers * 2) {
+        console.error(`[one] too many worker crashes, stopping`)
+        process.exit(1)
+      }
+
+      console.error(
+        `[one] worker ${worker.process.pid} died (code ${code}, signal ${signal}), restarting`
+      )
+      setTimeout(() => cluster.default.fork(), Math.min(recentCrashes * 500, 5000))
+    })
+
+    const shutdown = () => {
+      for (const id in cluster.default.workers) {
+        cluster.default.workers[id]?.process.kill('SIGTERM')
+      }
+      setTimeout(() => process.exit(0), 5000)
+    }
+    process.on('SIGINT', shutdown)
+    process.on('SIGTERM', shutdown)
+
+    return
+  }
+
+  // cluster worker
+  return await startWorker(args)
+}
+
+async function startWorker(args: Parameters<typeof serve>[0]) {
   const outDir =
-    args.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
+    args?.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 
@@ -89,18 +175,18 @@ export async function serve(
 
   labelProcess('serve')
 
-  if (args.loadEnv) {
+  if (args?.loadEnv) {
     await loadEnv('production')
   }
 
   return await vxrnServe({
     outDir: buildInfo.outDir || outDir,
-    app: args.app,
+    app: args?.app,
     ...oneOptions.server,
     ...removeUndefined({
-      port: args.port ? +args.port : undefined,
-      host: args.host,
-      compress: args.compress,
+      port: args?.port ? +args.port : undefined,
+      host: args?.host,
+      compress: args?.compress,
     }),
 
     async beforeRegisterRoutes(options, app) {
