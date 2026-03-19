@@ -685,8 +685,7 @@ url: ${url}`)
   ): MiddlewareHandler<BlankEnv, never, {}> {
     // pre-compute per-route checks (constant for the lifetime of the handler)
     const isDynamicOrNotFound =
-      route.page.endsWith('/+not-found') ||
-      Object.keys(route.routeKeys).length > 0
+      route.page.endsWith('/+not-found') || Object.keys(route.routeKeys).length > 0
 
     return async (context, next) => {
       try {
@@ -723,11 +722,13 @@ url: ${url}`)
         // fast path for SSR pages without middleware:
         // skip URL parsing, resolvePageRoute, and resolveResponse entirely.
         // use hono's pre-parsed path and compute params inline.
-        if (route.type === 'ssr' && !route.middlewares?.length && !reqPath.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
+        if (
+          route.type === 'ssr' &&
+          !route.middlewares?.length &&
+          !reqPath.endsWith(LOADER_JS_POSTFIX_UNCACHED)
+        ) {
           if (debugRouter) {
-            console.info(
-              `[one] ⚡ ${reqPath} → matched page route: ${route.page} (ssr)`
-            )
+            console.info(`[one] ⚡ ${reqPath} → matched page route: ${route.page} (ssr)`)
           }
           const pathname = reqPath
           // extract search from raw URL (after ?)
@@ -757,7 +758,12 @@ url: ${url}`)
 
           const response = await withRequestContext(async () => {
             try {
-              return await requestHandlers.handlePage!({ request, route, url, loaderProps })
+              return await requestHandlers.handlePage!({
+                request,
+                route,
+                url,
+                loaderProps,
+              })
             } catch (err) {
               if (isResponse(err)) {
                 return err as Response
