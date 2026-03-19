@@ -1,6 +1,6 @@
 {
   "name": "create-vxrn",
-  "version": "1.11.0-1773892075292",
+  "version": "1.12.0",
   "bin": "run.js",
   "main": "dist/cjs",
   "module": "dist/esm",
