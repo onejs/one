@@ -150,6 +150,78 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   }
 
   const autoDepsOptions = options.ssr?.autoDepsOptimization
+  const dedupeSymlinks = options.ssr?.dedupeSymlinkedModules ?? false
+
+  // closure state for ssr-symlink-dedup plugin
+  let ssrDedup_optimizedPackages: Set<string> | null = null
+  let ssrDedup_projectRoot = ''
+
+  const ssrSymlinkDedupPlugin: Plugin = {
+    name: 'one:ssr-symlink-dedup',
+
+    configResolved(config) {
+      if (!dedupeSymlinks) return
+      ssrDedup_projectRoot = config.root || process.cwd()
+      const ssrInclude = config.ssr?.optimizeDeps?.include
+      if (!ssrInclude?.length) return
+
+      ssrDedup_optimizedPackages = new Set<string>()
+      for (const entry of ssrInclude) {
+        if (entry.startsWith('@')) {
+          const parts = entry.split('/')
+          ssrDedup_optimizedPackages.add(`${parts[0]}/${parts[1]}`)
+        } else {
+          ssrDedup_optimizedPackages.add(entry.split('/')[0])
+        }
+      }
+    },
+
+    async resolveId(source, importer, options) {
+      if (!dedupeSymlinks) return
+      // skip relative/absolute imports
+      if (source[0] === '.' || source[0] === '/') return
+      if (!ssrDedup_optimizedPackages?.size) return
+
+      // extract package name
+      let pkgName: string
+      if (source.startsWith('@')) {
+        const parts = source.split('/')
+        pkgName = parts.length >= 2 ? `${parts[0]}/${parts[1]}` : source
+      } else {
+        pkgName = source.split('/')[0]
+      }
+      if (!ssrDedup_optimizedPackages.has(pkgName)) return
+
+      // resolve normally
+      const resolved = await this.resolve(source, importer, {
+        ...options,
+        skipSelf: true,
+      })
+      if (!resolved?.id) return
+
+      // if it already goes through node_modules, optimizer will find it
+      if (resolved.id.includes('/node_modules/')) return
+
+      // resolved to a real (source) path — find the node_modules equivalent
+      const path = await import('node:path')
+      const fs = await import('node:fs')
+      const { join, dirname } = path
+      const { realpathSync, existsSync } = fs
+      let dir = ssrDedup_projectRoot
+      while (dir !== dirname(dir)) {
+        const nmPkgDir = join(dir, 'node_modules', pkgName)
+        if (existsSync(nmPkgDir)) {
+          const realPkgDir = realpathSync(nmPkgDir)
+          if (resolved.id.startsWith(realPkgDir)) {
+            const relativePart = resolved.id.slice(realPkgDir.length)
+            return { id: nmPkgDir + relativePart, external: resolved.external }
+          }
+          break
+        }
+        dir = dirname(dir)
+      }
+    },
+  }
 
   const devAndProdPlugins: Plugin[] = [
     {
@@ -604,6 +676,35 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
+
+    // packages in resolve.dedupe must also be pre-bundled for SSR to prevent
+    // duplicate module instances (e.g. symlinked monorepo packages resolving
+    // to different paths)
+    {
+      name: 'one:ssr-dedupe-prebundle',
+
+      config(config) {
+        if (!dedupeSymlinks) return
+        const dedupeList = config.resolve?.dedupe
+        if (!Array.isArray(dedupeList) || dedupeList.length === 0) return
+
+        return {
+          ssr: {
+            optimizeDeps: {
+              include: [...dedupeList],
+            },
+            noExternal: [...dedupeList],
+          },
+        }
+      },
+    },
+
+    // fix: vite's ssr dep optimizer registers pre-bundled deps by their
+    // node_modules path, but symlinks cause imports to resolve to the real
+    // (source) path. the optimizer doesn't recognize the real path, so it
+    // loads from source — creating a duplicate instance.
+    // this plugin forces optimized SSR deps to resolve via node_modules.
+    ssrSymlinkDedupPlugin,
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments
