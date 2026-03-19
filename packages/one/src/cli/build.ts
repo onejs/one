@@ -55,6 +55,39 @@ process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
 })
 
+const HOOK_KEYS = [
+  'resolveId',
+  'load',
+  'transform',
+  'renderChunk',
+  'generateBundle',
+  'writeBundle',
+  'buildStart',
+  'buildEnd',
+  'moduleParsed',
+]
+
+// vite defines non-configurable getters on plugin hook objects during a build.
+// when the same plugins are reused in a second build (eg api routes), the new
+// vite instance can't redefine those properties and throws. this clones the
+// hook objects so each build gets its own references.
+function clonePluginHooks(config: InlineConfig): InlineConfig {
+  if (!config.plugins) return config
+  return {
+    ...config,
+    plugins: config.plugins.map((p: any) => {
+      if (!p || typeof p !== 'object') return p
+      const cloned = { ...p }
+      for (const key of HOOK_KEYS) {
+        if (cloned[key] && typeof cloned[key] === 'object' && 'handler' in cloned[key]) {
+          cloned[key] = { ...cloned[key] }
+        }
+      }
+      return cloned
+    }),
+  }
+}
+
 export async function build(args: {
   step?: string
   only?: string
@@ -125,9 +158,13 @@ export async function build(args: {
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
 
+  // clone plugin hooks so vite's wrapHookObject doesn't fail on reuse across builds
+  // (vite defines non-configurable getters on hook objects during the first build)
+  const clonedWebBuildConfig = clonePluginHooks(vxrnOutput.webBuildConfig)
+
   const apiBuildConfig = mergeConfig(
     // feels like this should build off the *server* build config not web
-    vxrnOutput.webBuildConfig,
+    clonedWebBuildConfig,
     {
       configFile: false,
       appType: 'custom',
@@ -1168,8 +1205,19 @@ export default {
 
       // Use jsonc for wrangler config (recommended for new projects)
       // Use assets with run_worker_first so all requests go through worker (enables middleware on SSG pages)
+      // Read project name from package.json if available
+      let projectName = 'one-app'
+      try {
+        const pkgPath = join(options.root, 'package.json')
+        const pkg = JSON.parse(await FSExtra.readFile(pkgPath, 'utf-8'))
+        if (pkg.name) {
+          // strip scope prefix for CF worker name
+          projectName = pkg.name.replace(/^@[^/]+\//, '')
+        }
+      } catch {}
+
       const wranglerConfig = `{
-  "name": "one-app",
+  "name": ${JSON.stringify(projectName)},
   "main": "worker.js",
   "compatibility_date": "2024-12-05",
   "compatibility_flags": ["nodejs_compat"],
@@ -1177,7 +1225,8 @@ export default {
   "rules": [
     { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
     { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./middlewares/**/*.js"], "fallthrough": true }
+    { "type": "ESModule", "globs": ["./middlewares/**/*.js"], "fallthrough": true },
+    { "type": "ESModule", "globs": ["./assets/**/*.js"], "fallthrough": true }
   ],
   "assets": { "directory": "client", "binding": "ASSETS", "run_worker_first": true }
 }

@@ -227,8 +227,7 @@ async function recoverSimulator(config: WebdriverIOConfig) {
 
   // terminate the test app if it's stuck
   const udid =
-    (config.capabilities as any)?.['appium:options']?.udid ||
-    process.env.SIMULATOR_UDID
+    (config.capabilities as any)?.['appium:options']?.udid || process.env.SIMULATOR_UDID
   if (udid) {
     try {
       // terminate any running app on the simulator
