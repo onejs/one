@@ -51,14 +51,17 @@ const getPartialState = (state: any): any => {
 
 // cache state contexts by navigation state identity to avoid deep clone thrashing
 // under concurrent SSR requests with different URLs
-const stateCtxCache = new WeakMap<object, {
-  state: any
-  getKey: () => string | undefined
-  setKey: () => void
-  getState: () => any
-  setState: () => void
-  getIsInitial: () => boolean
-}>()
+const stateCtxCache = new WeakMap<
+  object,
+  {
+    state: any
+    getKey: () => string | undefined
+    setKey: () => void
+    getState: () => any
+    setState: () => void
+    getIsInitial: () => boolean
+  }
+>()
 
 function getStateContext(initialState: any) {
   if (!initialState) {

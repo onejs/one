@@ -112,6 +112,7 @@ declare module 'one' {
         | `/ssr/basic`
         | `/ssr/cache-headers`
         | `/ssr/cookie-test`
+        | `/ssr/nav-test`
         | `/ssr/request-test`
         | `/sticky-test`
         | `/sub-page`
