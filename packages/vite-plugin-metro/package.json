@@ -54,8 +54,8 @@
     "expo": "~55.0.6",
     "metro": "^0.83",
     "metro-config": "*",
-    "react-native": "~0.83.2",
-    "vite": "^6.1.0 || ^7.0.0 || ^8.0.0"
+    "react-native": "0.83.2",
+    "vite": "^8.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
@@ -70,13 +70,15 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@expo/metro-config": "~55.0.9",
-    "@react-native/dev-middleware": "^0.83.0",
+    "@react-native/dev-middleware": "^0.83.4",
     "@tamagui/build": "2.0.0-rc.22",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",
     "expo": "~55.0.6",
     "metro": "^0.83",
+    "metro-config": "*",
+    "react-native": "0.83.2",
     "vite": "^8.0.0"
   },
   "publishConfig": {

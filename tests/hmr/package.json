@@ -11,7 +11,7 @@
     "test-ios:prod": ":"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.19",
+    "@react-navigation/native": "~7.1.33",
     "expo": "~55.0.6",
     "one": "workspace:*",
     "react": "19.2.0",
@@ -19,11 +19,11 @@
     "react-native": "0.83.2",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
-    "vite": "^7.1.12"
+    "vite": "^8.0.0"
   },
   "devDependencies": {
     "playwright": "^1.58.2",
-    "vitest": "^4.0.6",
+    "vitest": "^4.1.0",
     "webdriverio": "^9.5.4"
   }
 }

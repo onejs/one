@@ -30,10 +30,10 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@tamagui/build": "2.0.0-rc.22",
-    "react-native": "0.81.5"
+    "react-native": "0.83.2"
   },
   "peerDependencies": {
-    "react-native": "*"
+    "react-native": "0.83.2"
   },
   "publishConfig": {
     "access": "public"
