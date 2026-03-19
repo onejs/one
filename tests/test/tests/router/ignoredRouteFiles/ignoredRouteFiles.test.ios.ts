@@ -1,10 +1,9 @@
 import { expect, test } from 'vitest'
-import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
+import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
 test('ignoredRouteFiles', { timeout: 5 * 60 * 1000, retry: 2 }, async () => {
-  const driver = await remote(getWebDriverConfig())
+  const driver = await createSession(getWebDriverConfig())
   await navigateTo(driver, '/router/ignoredRouteFiles/route.normal')
 
   expect(
