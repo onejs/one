@@ -1,5 +1,6 @@
 import { isResponse } from '../utils/isResponse'
 import {
+  type ALSId,
   asyncHeadersCache,
   mergeHeaders,
   requestAsyncLocalStore,
@@ -8,7 +9,7 @@ import {
 
 // lightweight monotonic id - avoids Math.random() per request
 let _nextId = 1
-function createId() {
+function createId(): ALSId {
   return { _id: _nextId++ }
 }
 
@@ -47,33 +48,7 @@ export async function resolveResponse(getResponse: () => Promise<Response>) {
 }
 
 /**
- * lightweight version that assumes ALS context is already active.
- * skips store.run() overhead and just handles response + error wrapping.
- * use inside a `withRequestContext()` scope.
- */
-export async function resolveResponseLite(getResponse: () => Promise<Response>): Promise<Response> {
-  try {
-    const response = await getResponse()
-    // still check for async headers in case middleware set them
-    const store = requestAsyncLocalStore
-    if (store) {
-      const id = store.getStore()
-      if (id) {
-        return await getResponseWithAddedHeaders(response, id as object)
-      }
-    }
-    return response
-  } catch (err) {
-    if (isResponse(err)) {
-      return err as Response
-    }
-    throw err
-  }
-}
-
-/**
  * enter ALS context once for the entire request handler.
- * downstream code can use resolveResponseLite to skip redundant store.run().
  */
 export function withRequestContext<T>(fn: () => Promise<T>): Promise<T> {
   const store = requestAsyncLocalStore

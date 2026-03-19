@@ -27,6 +27,7 @@ import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
+import { evictOldest } from './utils/evictOldest'
 import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
@@ -40,14 +41,7 @@ function getCachedSSRLocation(path: string): URL {
   let url = ssrLocationCache.get(path)
   if (url) return url
   url = new URL(path, getURL())
-  if (ssrLocationCache.size > 5000) {
-    // LRU-style eviction
-    const iter = ssrLocationCache.keys()
-    for (let i = 0; i < 1000; i++) {
-      const key = iter.next().value
-      if (key) ssrLocationCache.delete(key)
-    }
-  }
+  evictOldest(ssrLocationCache, 5000, 1000)
   ssrLocationCache.set(path, url)
   return url
 }

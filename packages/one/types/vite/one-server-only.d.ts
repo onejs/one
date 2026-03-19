@@ -1,16 +1,22 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
 import type { One } from './types';
-type ALSInstance = AsyncLocalStorage<unknown>;
+declare const _ctxKey: unique symbol;
+/** shape of the object stored as the ALS context id */
+export interface ALSId {
+    _id: number;
+    [_ctxKey]?: One.ServerContext;
+}
+type ALSInstance = AsyncLocalStorage<ALSId>;
 export declare const requestAsyncLocalStore: ALSInstance | null | undefined;
 export declare const asyncHeadersCache: WeakMap<any, Headers>;
-export declare function runWithAsyncLocalContext<A>(cb: (id: object) => Promise<A>): Promise<A>;
+export declare function runWithAsyncLocalContext<A>(cb: (id: ALSId) => Promise<A>): Promise<A>;
 export declare function setResponseHeaders(cb: (headers: Headers) => void): Promise<void>;
 export declare function mergeHeaders(onto: Headers, from: Headers): void;
-export declare function ensureAsyncLocalID(): object;
+export declare function ensureAsyncLocalID(): ALSId;
 export type MaybeServerContext = null | One.ServerContext;
 export declare function setServerContext(data: One.ServerContext): void;
-export declare function getServerContext(): any;
-export declare function useServerContext(): any;
+export declare function getServerContext(): MaybeServerContext | undefined;
+export declare function useServerContext(): MaybeServerContext | undefined;
 /**
  * For passing data from the server to the client. Can only be called on the server.
  * You can type it by overriding `One.ClientData` type using declare module 'one'.
