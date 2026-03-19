@@ -292,8 +292,8 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 20 * 60 * 1000,
-    connectionRetryCount: 3,
+    connectionRetryTimeout: 90 * 1000,
+    connectionRetryCount: 2,
     logLevel: 'warn' as const,
     capabilities,
   } satisfies WebdriverIOConfig

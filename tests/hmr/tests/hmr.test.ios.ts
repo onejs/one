@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, expect, test, inject } from 'vitest'
 import path from 'node:path'
-import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
+import { createSession } from '@vxrn/test/utils/appium'
 import {
   editComponentFile,
   editFile,
@@ -28,7 +28,7 @@ async function testHMR(
   editFn: () => void,
   editedText: string
 ) {
-  const driver = await remote(getWebDriverConfig())
+  const driver = await createSession(getWebDriverConfig())
 
   const textInput = driver.$('~text-input')
   await textInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })

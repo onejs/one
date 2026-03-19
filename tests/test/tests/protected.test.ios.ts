@@ -1,7 +1,6 @@
 import { expect, test } from 'vitest'
-import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
+import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
 const sharedTestOptions = { timeout: 5 * 60 * 1000, retry: 2 }
 
@@ -9,7 +8,7 @@ test(
   'Protected routes - shows public page and can toggle auth',
   sharedTestOptions,
   async () => {
-    const driver = await remote(getWebDriverConfig())
+    const driver = await createSession(getWebDriverConfig())
     await navigateTo(driver, '/protected-test')
 
     // Wait for public page to be displayed
@@ -34,7 +33,7 @@ test(
   'Protected routes - can access protected route after auth',
   sharedTestOptions,
   async () => {
-    const driver = await remote(getWebDriverConfig())
+    const driver = await createSession(getWebDriverConfig())
     await navigateTo(driver, '/protected-test')
 
     // Wait for page to load
@@ -60,7 +59,7 @@ test(
   'Protected routes - cannot access protected route when not authed',
   sharedTestOptions,
   async () => {
-    const driver = await remote(getWebDriverConfig())
+    const driver = await createSession(getWebDriverConfig())
     await navigateTo(driver, '/protected-test')
 
     // Wait for page to load

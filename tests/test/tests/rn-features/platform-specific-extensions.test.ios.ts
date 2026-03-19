@@ -1,10 +1,9 @@
 import { expect, test } from 'vitest'
-import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
+import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
 test('platform-specific-extensions', { timeout: 5 * 60 * 1000, retry: 2 }, async () => {
-  const driver = await remote(getWebDriverConfig())
+  const driver = await createSession(getWebDriverConfig())
   await navigateTo(driver, '/rn-features/platform-specific-extensions/test')
 
   await waitForDisplayed(driver, driver.$('~TestComponent1'))

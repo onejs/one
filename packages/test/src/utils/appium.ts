@@ -1,5 +1,8 @@
+import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import type { ChainablePromiseElement, Browser } from 'webdriverio'
+import { remote } from 'webdriverio'
+import type { WebdriverIOConfig } from '../internal-utils/ios'
 
 /**
  * Like `element.setValue` but types slowly, character by character, to reduce the risk of missing characters.
@@ -176,4 +179,66 @@ function sanitizeFileName(input: string): string {
     .replace(/[^a-zA-Z0-9-_. ]/g, '')
     .replace(/\s+/g, '_')
     .slice(0, 100)
+}
+
+/**
+ * create a webdriver session with retry and recovery logic.
+ * when WDA fails (ECONNREFUSED, app unknown to FrontBoard, etc),
+ * this terminates the app and verifies appium health between retries.
+ */
+export async function createSession(
+  config: WebdriverIOConfig | Promise<WebdriverIOConfig>,
+  { maxRetries = 3 }: { maxRetries?: number } = {}
+): Promise<Browser> {
+  const resolvedConfig = await config
+  let lastError: unknown
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      if (attempt > 1) {
+        console.info(`[createSession] attempt ${attempt}/${maxRetries}`)
+        await recoverSimulator(resolvedConfig)
+      }
+
+      const driver = await remote(resolvedConfig)
+      return driver
+    } catch (err) {
+      lastError = err
+      const msg = err instanceof Error ? err.message : String(err)
+      console.warn(`[createSession] attempt ${attempt}/${maxRetries} failed: ${msg}`)
+    }
+  }
+
+  throw lastError
+}
+
+async function recoverSimulator(config: WebdriverIOConfig) {
+  try {
+    // check appium is still alive
+    const appiumPort = config.port || 4723
+    const resp = await fetch(`http://localhost:${appiumPort}/status`)
+    const data = (await resp.json()) as { value?: { ready?: boolean } }
+    if (!data?.value?.ready) {
+      console.warn('[createSession] appium reports not ready')
+    }
+  } catch {
+    console.warn('[createSession] appium health check failed')
+  }
+
+  // terminate the test app if it's stuck
+  const udid =
+    (config.capabilities as any)?.['appium:options']?.udid ||
+    process.env.SIMULATOR_UDID
+  if (udid) {
+    try {
+      // terminate any running app on the simulator
+      execSync(
+        `xcrun simctl terminate ${udid} dev.onestack.rntestcontainer 2>/dev/null || true`,
+        { timeout: 10_000 }
+      )
+    } catch {}
+  }
+
+  // brief pause for system recovery
+  await new Promise((r) => setTimeout(r, 3000))
 }
