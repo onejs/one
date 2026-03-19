@@ -140,8 +140,9 @@ export async function build(args: {
 
   // auto-detect ONE_SERVER_URL from deploy config when not explicitly set
   if (!process.env.ONE_SERVER_URL && deployConfig) {
-    const url = deployConfig.url
-      ?? (deployConfig.target === 'cloudflare'
+    const url =
+      deployConfig.url ??
+      (deployConfig.target === 'cloudflare'
         ? `https://${await getCloudflareProjectName(process.cwd())}.workers.dev`
         : undefined)
 

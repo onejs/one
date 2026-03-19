@@ -5,6 +5,12 @@ import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
+export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
+export type DeployConfig = {
+    target: DeployTarget;
+    /** production URL, auto-detected from package name for cloudflare if not set */
+    url?: string;
+};
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
@@ -306,13 +312,23 @@ export declare namespace One {
             redirects?: Redirect[];
             /**
              * Deployment target for production builds.
+             *
+             * String shorthand:
              * - 'node': Default Node.js server using Hono
              * - 'vercel': Vercel serverless functions
              * - 'cloudflare': Cloudflare Workers
              *
-             * @default node
+             * Object form allows additional configuration:
+             * ```ts
+             * deploy: {
+             *   target: 'cloudflare',
+             *   url: 'https://my-app.example.com',
+             * }
+             * ```
+             *
+             * @default 'node'
              */
-            deploy?: 'node' | 'vercel' | 'cloudflare';
+            deploy?: DeployTarget | DeployConfig;
             /**
              * @experimental
              * When true, inlines the CSS content directly into the HTML instead of using <link> tags.
