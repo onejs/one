@@ -290,12 +290,19 @@ export async function resolvePageRoute(
   })
 }
 
+// weakmap cache to avoid re-parsing the same request URL
+const _urlCache = new WeakMap<Request, URL>()
+
 export function getURLfromRequestURL(request: Request) {
+  let url = _urlCache.get(request)
+  if (url) return url
   const urlString = request.url || ''
-  return new URL(
+  url = new URL(
     urlString || '',
     request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
   )
+  _urlCache.set(request, url)
+  return url
 }
 
 function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {
@@ -456,7 +463,7 @@ export function createHandleRequest(
   }
 }
 
-function getLoaderParams(
+export function getLoaderParams(
   url: URL,
   config: { compiledRegex: RegExp; routeKeys: Record<string, string> }
 ) {

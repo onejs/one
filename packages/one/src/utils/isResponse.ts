@@ -1,7 +1,7 @@
 // for some reason instanceof isnt working reliably
 export function isResponse(res: any): res is Response {
-  return (
-    res instanceof Response ||
-    (typeof res.status === 'number' && 'body' in res && typeof res.ok === 'boolean')
-  )
+  // fast path: most responses are instances
+  if (res instanceof Response) return true
+  // fallback: duck-type check for response-like objects
+  return res != null && typeof res.status === 'number' && typeof res.ok === 'boolean'
 }

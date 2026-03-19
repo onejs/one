@@ -6,11 +6,17 @@ import {
   runWithAsyncLocalContext,
 } from './one-server-only'
 
+// lightweight monotonic id - avoids Math.random() per request
+let _nextId = 1
+function createId() {
+  return { _id: _nextId++ }
+}
+
 export async function resolveResponse(getResponse: () => Promise<Response>) {
   // inline ALS to reduce async nesting (each await = microtask = event loop pressure)
   const store = requestAsyncLocalStore
   if (store) {
-    const id = { _id: Math.random() }
+    const id = createId()
     let response: Response
     await store.run(id, async () => {
       try {
@@ -38,6 +44,44 @@ export async function resolveResponse(getResponse: () => Promise<Response>) {
       throw err
     }
   })
+}
+
+/**
+ * lightweight version that assumes ALS context is already active.
+ * skips store.run() overhead and just handles response + error wrapping.
+ * use inside a `withRequestContext()` scope.
+ */
+export async function resolveResponseLite(getResponse: () => Promise<Response>): Promise<Response> {
+  try {
+    const response = await getResponse()
+    // still check for async headers in case middleware set them
+    const store = requestAsyncLocalStore
+    if (store) {
+      const id = store.getStore()
+      if (id) {
+        return await getResponseWithAddedHeaders(response, id as object)
+      }
+    }
+    return response
+  } catch (err) {
+    if (isResponse(err)) {
+      return err as Response
+    }
+    throw err
+  }
+}
+
+/**
+ * enter ALS context once for the entire request handler.
+ * downstream code can use resolveResponseLite to skip redundant store.run().
+ */
+export function withRequestContext<T>(fn: () => Promise<T>): Promise<T> {
+  const store = requestAsyncLocalStore
+  if (store) {
+    const id = createId()
+    return store.run(id, fn) as Promise<T>
+  }
+  return fn()
 }
 
 export function resolveAPIEndpoint(
