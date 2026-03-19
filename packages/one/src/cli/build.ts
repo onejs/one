@@ -24,7 +24,7 @@ import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDir
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
-import type { One, RouteInfo } from '../vite/types'
+import type { DeployConfig, DeployTarget, One, RouteInfo } from '../vite/types'
 import { buildPage, printBuildTimings } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { getWorkerPool, terminateWorkerPool } from './workerPool'
@@ -34,6 +34,25 @@ import { pLimit } from '../utils/pLimit'
 import { getCriticalCSSOutputPaths } from '../vite/plugins/criticalCSSPlugin'
 
 const { ensureDir, writeJSON } = FSExtra
+
+function normalizeDeploy(
+  deploy?: DeployTarget | DeployConfig
+): { target: DeployTarget; url?: string } | undefined {
+  if (!deploy) return undefined
+  if (typeof deploy === 'string') return { target: deploy }
+  return deploy
+}
+
+// reads package.json name, strips npm scope prefix for use as cloudflare worker name
+async function getCloudflareProjectName(root: string): Promise<string> {
+  try {
+    const pkg = JSON.parse(await FSExtra.readFile(join(root, 'package.json'), 'utf-8'))
+    if (pkg.name) {
+      return pkg.name.replace(/^@[^/]+\//, '')
+    }
+  } catch {}
+  return 'one-app'
+}
 
 // concurrency limit for parallel page builds
 // can be overridden with ONE_BUILD_CONCURRENCY env var
@@ -115,6 +134,21 @@ export async function build(args: {
   // Set defaultRenderMode env var so getManifest knows the correct route types
   if (oneOptions.web?.defaultRenderMode) {
     process.env.ONE_DEFAULT_RENDER_MODE = oneOptions.web.defaultRenderMode
+  }
+
+  const deployConfig = normalizeDeploy(oneOptions.web?.deploy)
+
+  // auto-detect ONE_SERVER_URL from deploy config when not explicitly set
+  if (!process.env.ONE_SERVER_URL && deployConfig) {
+    const url = deployConfig.url
+      ?? (deployConfig.target === 'cloudflare'
+        ? `https://${await getCloudflareProjectName(process.cwd())}.workers.dev`
+        : undefined)
+
+    if (url) {
+      process.env.ONE_SERVER_URL = url
+      console.info(`\n ☁️  ONE_SERVER_URL: ${url}\n`)
+    }
   }
 
   // respect vite's build.outDir config, default to 'dist'
@@ -981,7 +1015,7 @@ export async function build(args: {
 
   const postBuildLogs: string[] = []
 
-  const platform = oneOptions.web?.deploy
+  const platform = deployConfig?.target
 
   if (platform) {
     postBuildLogs.push(`[one.build] platform ${platform}`)
@@ -1205,16 +1239,7 @@ export default {
 
       // Use jsonc for wrangler config (recommended for new projects)
       // Use assets with run_worker_first so all requests go through worker (enables middleware on SSG pages)
-      // Read project name from package.json if available
-      let projectName = 'one-app'
-      try {
-        const pkgPath = join(options.root, 'package.json')
-        const pkg = JSON.parse(await FSExtra.readFile(pkgPath, 'utf-8'))
-        if (pkg.name) {
-          // strip scope prefix for CF worker name
-          projectName = pkg.name.replace(/^@[^/]+\//, '')
-        }
-      } catch {}
+      const projectName = await getCloudflareProjectName(options.root)
 
       const wranglerConfig = `{
   "name": ${JSON.stringify(projectName)},
