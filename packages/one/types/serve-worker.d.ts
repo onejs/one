@@ -1,27 +1,16 @@
-import { Hono } from 'hono';
+import { type LazyRoutes } from './server/workerHandler';
 import type { One } from './vite/types';
 export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher';
+export type { LazyRoutes };
 /**
- * Lazy import functions for route modules.
- * Modules are loaded on-demand when a route is matched, not all upfront.
- */
-export type LazyRoutes = {
-    serverEntry: () => Promise<{
-        default: {
-            render: (props: any) => any;
-        };
-    }>;
-    pages: Record<string, () => Promise<any>>;
-    api: Record<string, () => Promise<any>>;
-    middlewares: Record<string, () => Promise<any>>;
-};
-/**
- * Creates a Hono app for edge/worker environments (Cloudflare Workers, etc.)
- * Static assets should be handled by the platform (e.g., wrangler's [assets] config)
- * This only sets up the dynamic routes (SSR, API, loaders)
+ * Creates a fetch handler for edge/worker environments (Cloudflare Workers, service workers, etc.)
+ * No Hono dependency — routes are matched dynamically via compiled regexes against a mutable table.
  *
- * @param buildInfo - Build configuration and route metadata
- * @param lazyRoutes - Lazy import functions for route modules (loaded on-demand)
+ * @returns `{ fetch, updateRoutes }` — call `fetch(request)` to handle requests,
+ *          `updateRoutes(newBuildInfo, newLazyRoutes?)` to hot-swap the route table.
  */
-export declare function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes): Promise<Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">>;
+export declare function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes): Promise<{
+    fetch: (request: Request) => Promise<Response | null>;
+    updateRoutes(newBuildInfo: One.BuildInfo, newLazyRoutes?: LazyRoutes): void;
+}>;
 //# sourceMappingURL=serve-worker.d.ts.map
