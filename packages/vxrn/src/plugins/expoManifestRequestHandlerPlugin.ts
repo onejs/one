@@ -129,15 +129,18 @@ export function expoManifestRequestHandlerPlugin(
 
         manifestHandlerMiddleware._getManifestResponseAsync = async (...args) => {
           try {
-            const results = await manifestHandlerMiddleware._origGetManifestResponseAsync(
-              ...args
-            )
+            const response =
+              await manifestHandlerMiddleware._origGetManifestResponseAsync(...args)
 
-            // Seems that results.body may have a leading and trailing string that is not JSON, so we need to extract the JSON from it.
+            // Expo 55.0.7+ returns a web Response object instead of { body: string, headers }
+            const isWebResponse = response instanceof Response
+            const bodyText = isWebResponse ? await response.text() : response.body
+
+            // the body may have a leading and trailing string that is not JSON, so we need to extract the JSON from it
             const [, beforeBodyJson, bodyJson, afterBodyJson] =
-              results.body.match(/([^{]*)({.*})([^}]*)/) || []
+              bodyText.match(/([^{]*)({.*})([^}]*)/) || []
             if (!bodyJson) {
-              throw new Error(`Unrecognized manifest response from expo: ${results.body}`)
+              throw new Error(`Unrecognized manifest response from expo: ${bodyText}`)
             }
 
             const parsedBody = JSON.parse(bodyJson)
@@ -167,9 +170,18 @@ export function expoManifestRequestHandlerPlugin(
               imageUrl:
                 'https://github.com/user-attachments/assets/e816c207-e7d2-4c2e-8aa5-0d4cbaa622bf', // TODO: Host this image somewhere.
             }
-            results.body = beforeBodyJson + JSON.stringify(parsedBody) + afterBodyJson
 
-            return results
+            const newBody = beforeBodyJson + JSON.stringify(parsedBody) + afterBodyJson
+
+            if (isWebResponse) {
+              return new Response(newBody, {
+                status: response.status,
+                headers: response.headers,
+              })
+            }
+
+            response.body = newBody
+            return response
           } catch (e) {
             if (e instanceof Error) {
               e.message = `[vxrn:expo-manifest-request-handler] Failed to parse the Expo manifest response from expo: ${e.message}`

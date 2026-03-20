@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "~7.1.33",
-    "expo": "~55.0.6",
+    "expo": "~55.0.7",
     "one": "workspace:*",
     "react": "19.2.0",
     "react-native": "0.83.2",
