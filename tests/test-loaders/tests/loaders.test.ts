@@ -610,6 +610,7 @@ describe('useMatches()', () => {
     })
 
     await page.goto(serverUrl + '/matches-test/page1')
+    await waitForTextContent(page, '#all-matches-debug', 'routeId')
 
     // debug: show all matches
     const allMatches = await page.textContent('#all-matches-debug')
@@ -689,6 +690,7 @@ describe('useMatches()', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/matches-test/page1')
+    await waitForTextContent(page, '#layout-matches-data', 'hasLoaderData')
 
     // the layout renders its own view of matches
     const layoutMatchesData = await page.textContent('#layout-matches-data')
@@ -711,6 +713,7 @@ describe('useMatches()', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/matches-test/page1')
+    await waitForTextContent(page, '#layout-useloader-data', 'layoutTitle')
 
     // layout calls useLoader(loader) - should get its own data, not page data
     const layoutUseLoaderData = await page.textContent('#layout-useloader-data')
