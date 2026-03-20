@@ -1,4 +1,3 @@
-import { execSync } from 'node:child_process'
 import path from 'node:path'
 import { parse } from 'oxc-parser'
 import type { Plugin, ViteDevServer } from 'vite'
@@ -123,72 +122,39 @@ async function injectSourceToJsx(code: string, id: string): Promise<TransformOut
   return { code: result, map: null }
 }
 
-// editors to try in order — first one found in PATH wins
-const EDITOR_CMDS = ['code', 'cursor', 'zed', 'subl', 'codium', 'webstorm', 'idea']
-
-let detectedEditor: string | null | undefined
-
-function detectEditor(): string | null {
-  if (detectedEditor !== undefined) return detectedEditor
-
-  // check env vars first (same priority as launch-editor)
-  if (process.env.LAUNCH_EDITOR) {
-    detectedEditor = process.env.LAUNCH_EDITOR
-    return detectedEditor
-  }
-
-  // try to find a known editor CLI in PATH
-  for (const cmd of EDITOR_CMDS) {
-    try {
-      execSync(`which ${cmd}`, { stdio: 'pipe' })
-      detectedEditor = cmd
-      return detectedEditor
-    } catch {}
-  }
-
-  detectedEditor = null
-  return null
-}
+let editorWarned = false
 
 async function openInEditor(
+  editor: string | undefined,
   filePath: string,
   line?: string,
   column?: string
 ): Promise<void> {
-  try {
-    const editor = detectEditor()
+  const resolved = editor || process.env.LAUNCH_EDITOR || process.env.EDITOR
 
-    // patch launch-editor's macos detection map for editors that renamed their binaries
-    // (VS Code renamed binary from Electron to Code)
-    if (process.platform === 'darwin') {
-      try {
-        const m = await import('launch-editor/editor-info/macos.js')
-        const editorInfo = m.default || m
-        editorInfo['/Applications/Visual Studio Code.app/Contents/MacOS/Code'] = 'code'
-      } catch {}
+  if (!resolved) {
+    if (!editorWarned) {
+      editorWarned = true
+      console.warn(
+        `[one] Set devtools.editor in your one config or LAUNCH_EDITOR env var to open files from the inspector (e.g. 'cursor', 'code', 'zed')`
+      )
     }
+    return
+  }
 
+  try {
     const launch = (await import('launch-editor')).default
     const fullPath = path.join(process.cwd(), filePath)
     const location = `${fullPath}${line ? `:${line}` : ''}${column ? `:${column}` : ''}`
 
-    // pass detected editor so launch-editor doesn't rely on ps x
-    launch(
-      location,
-      editor || undefined,
-      (filename: string, errorMessage: string | null) => {
-        if (errorMessage) {
-          console.warn(
-            `[one:source-inspector] Failed to open ${filename} in editor:`,
-            errorMessage
-          )
-        } else if (!editor) {
-          console.warn(
-            `[one:source-inspector] Could not detect an editor. Set LAUNCH_EDITOR env var (e.g. export LAUNCH_EDITOR=code)`
-          )
-        }
+    launch(location, resolved, (filename: string, errorMessage: string | null) => {
+      if (errorMessage) {
+        console.warn(
+          `[one:source-inspector] Failed to open ${filename} in editor:`,
+          errorMessage
+        )
       }
-    )
+    })
   } catch (err) {
     console.warn('[one:source-inspector] Failed to launch editor:', err)
   }
@@ -197,7 +163,7 @@ async function openInEditor(
 // track connected vscode clients and browser clients
 const vscodeClients = new Set<WebSocket>()
 
-export function sourceInspectorPlugin(): Plugin[] {
+export function sourceInspectorPlugin(opts?: { editor?: string }): Plugin[] {
   const cache = new Map<string, TransformOut>()
 
   return [
@@ -312,7 +278,7 @@ export function sourceInspectorPlugin(): Plugin[] {
             const line = parts.pop()!
             const filePath = parts.join(':')
 
-            await openInEditor(filePath, line, column)
+            await openInEditor(opts?.editor, filePath, line, column)
 
             res.statusCode = 200
             res.end('OK')
