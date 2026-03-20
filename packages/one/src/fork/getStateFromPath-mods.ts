@@ -35,14 +35,14 @@ export function getUrlWithReactNavigationConcessions(
   let pathname = ''
   let hash = ''
   try {
-    // NOTE: This used to use a dummy base URL for parsing (phony.example)
-    // However, this seems to get flagged since it's preserved 1:1 in the output bytecode by certain scanners
-    // Instead, we use an empty `file:` URL. This will still perform `pathname` normalization, search parameter parsing
-    // encoding, and all other logic, except the logic that applies to hostnames and protocols, and also not leave a
-    // dummy URL in the output bytecode
-    const parsed = new URL(path, 'file:')
-    pathname = parsed.pathname
-    hash = parsed.hash
+    // parse pathname and hash without URL constructor (Hermes doesn't support file: base URLs)
+    const hashIndex = path.indexOf('#')
+    const queryIndex = path.indexOf('?')
+    if (hashIndex >= 0) {
+      hash = path.slice(hashIndex)
+    }
+    const end = hashIndex >= 0 ? hashIndex : queryIndex >= 0 ? queryIndex : path.length
+    pathname = path.slice(0, end)
   } catch {
     // Do nothing with invalid URLs.
   }
@@ -385,7 +385,8 @@ export function parseQueryParamsExtended(
   parseConfig?: Record<string, (value: string) => any>,
   hash?: string
 ) {
-  const searchParams = new URL(path, 'file:').searchParams
+  const queryIndex = path.indexOf('?')
+  const searchParams = new URLSearchParams(queryIndex >= 0 ? path.slice(queryIndex + 1) : '')
   const params: Record<string, string | string[]> = Object.create(null)
 
   if (hash) {
