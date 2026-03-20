@@ -1,4 +1,4 @@
-import { ChevronLeft } from '@tamagui/lucide-icons'
+import { ChevronLeft } from '@tamagui/lucide-icons-2'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { createRoute, Link, useLoader } from 'one'
 import { useMemo } from 'react'

@@ -4,7 +4,8 @@ description: SSR safe and with meta theme-color
 ---
 
 <IntroParagraph>
-Supporting SSR safe styling while also supporting Native and web requires a lot of work - until now.
+  Supporting SSR safe styling while also supporting Native and web requires a lot of work
+  - until now.
 </IntroParagraph>
 
 There's about one cross-platform React style library that has excellent SSR support - [Tamagui](https://tamagui.dev) 👌.
@@ -52,7 +53,7 @@ const TamaguiRoot = ({ children }) => {
 Now lets make a toggle button:
 
 ```tsx fileName=features/theme/ThemeToggleButton.tsx
-import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons'
+import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons-2'
 import { useUserScheme } from '@vxrn/color-scheme'
 import { View, Paragraph, YStack } from 'tamagui'
 
@@ -100,7 +101,8 @@ export function ThemeToggleButton() {
 
 export function useToggleTheme() {
   const userScheme = useUserScheme()
-  const Icon = userScheme.setting === 'system' ? SunMoon : userScheme.setting === 'dark' ? Moon : Sun
+  const Icon =
+    userScheme.setting === 'system' ? SunMoon : userScheme.setting === 'dark' ? Moon : Sun
 
   return {
     setting: userScheme.setting,

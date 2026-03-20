@@ -1,4 +1,4 @@
-import { Search } from '@tamagui/lucide-icons'
+import { Search } from '@tamagui/lucide-icons-2'
 import { useContext, useRef } from 'react'
 import { Separator, styled, View, XStack, YStack } from 'tamagui'
 import { Link, usePathname } from 'one'

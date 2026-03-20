@@ -1,4 +1,4 @@
-import { ChevronRight } from '@tamagui/lucide-icons'
+import { ChevronRight } from '@tamagui/lucide-icons-2'
 import { Link } from 'one'
 import React from 'react'
 import {

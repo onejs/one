@@ -1,4 +1,4 @@
-import { Link2 } from '@tamagui/lucide-icons'
+import { Link2 } from '@tamagui/lucide-icons-2'
 import type { ViewProps } from 'tamagui'
 import { View } from 'tamagui'
 

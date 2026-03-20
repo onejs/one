@@ -1,4 +1,4 @@
-import { Menu } from '@tamagui/lucide-icons'
+import { Menu } from '@tamagui/lucide-icons-2'
 import * as React from 'react'
 import {
   Adapt,

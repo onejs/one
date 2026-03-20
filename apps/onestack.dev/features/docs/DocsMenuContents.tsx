@@ -4,7 +4,7 @@ import { Link } from 'one'
 import { DocsRouteNavItem } from './DocsRouteNavItem'
 import { docsRoutes } from './docsRoutes'
 import { useDocsMenu } from './useDocsMenu'
-import { ChevronDown } from '@tamagui/lucide-icons'
+import { ChevronDown } from '@tamagui/lucide-icons-2'
 
 const allItems = docsRoutes.flatMap((section, sectionIndex) =>
   section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
