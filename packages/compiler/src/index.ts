@@ -217,7 +217,7 @@ export async function createVXRNCompilerPlugin(
         if (id === runtimePublicPath) {
           // tamagui-build adds a sourceMappingURL to the dist copy of this file,
           // strip it since the browser resolves it relative to the page causing a 404
-          return readFileSync(join(basePath, 'refresh-runtime.js'), 'utf-8').replace(
+          return readFileSync(join(basePath, 'refresh-runtime.mjs'), 'utf-8').replace(
             /\/\/# sourceMappingURL=.*/,
             ''
           )
