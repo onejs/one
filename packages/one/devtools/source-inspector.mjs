@@ -772,50 +772,30 @@
 
       renderPickerList(chain)
 
-      // position picker near click, smart about viewport edges
+      // position picker near click, clamped to viewport
       const pickerWidth = 320
       const pickerHeight = Math.min(300, 80 + chain.length * 36)
       const pad = 10
 
       let left = x + 10
       let top = y + 10
-      let flippedUp = false
 
-      // flip to left if too close to right edge
-      if (left + pickerWidth > window.innerWidth - pad) {
-        left = x - pickerWidth - 10
-      }
-      // flip up if too close to bottom
-      if (top + pickerHeight > window.innerHeight - pad) {
-        top = y - pickerHeight - 10
-        flippedUp = true
-      }
       // clamp to viewport
       left = Math.max(pad, Math.min(left, window.innerWidth - pickerWidth - pad))
       top = Math.max(pad, Math.min(top, window.innerHeight - pickerHeight - pad))
 
-      // reorder elements so actions row is closest to mouse
+      // consistent layout order
       const picker = shadow.getElementById('picker')
       const header = picker.querySelector('.picker-header')
       const actions = picker.querySelector('.picker-actions')
       const pickerTabs = picker.querySelector('.picker-tabs')
       const list = picker.querySelector('.picker-list')
 
-      if (flippedUp) {
-        // picker is above click, put actions at bottom (closest to mouse)
-        picker.style.flexDirection = 'column'
-        header.style.order = '0'
-        pickerTabs.style.order = '1'
-        list.style.order = '2'
-        actions.style.order = '3'
-      } else {
-        // picker is below click, put actions at top (closest to mouse)
-        picker.style.flexDirection = 'column'
-        header.style.order = '2'
-        pickerTabs.style.order = '1'
-        list.style.order = '3'
-        actions.style.order = '0'
-      }
+      picker.style.flexDirection = 'column'
+      header.style.order = '0'
+      actions.style.order = '1'
+      pickerTabs.style.order = '2'
+      list.style.order = '3'
 
       pickerDialog.style.left = left + 'px'
       pickerDialog.style.top = top + 'px'
