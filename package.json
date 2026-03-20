@@ -42,7 +42,7 @@
     "dev:test": "bun ./scripts/dev.ts test",
     "dev:uniswap": "bun run dev:test uniswap",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test .",
-    "fix": "bun run fix:packages",
+    "fix": "bun run format & bun run fix:packages",
     "fix:packages": "manypkg fix",
     "fix:references": "update-ts-references",
     "format": "oxfmt -c .prettierrc",

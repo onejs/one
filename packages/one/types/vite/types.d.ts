@@ -419,6 +419,13 @@ export declare namespace One {
              */
             inspector?: boolean;
             /**
+             * Editor CLI command for the source inspector to open files with.
+             * Examples: 'cursor', 'code', 'zed', 'subl', 'webstorm'
+             *
+             * Can also be set via the LAUNCH_EDITOR or EDITOR env var.
+             */
+            editor?: string;
+            /**
              * Enable the SEO preview panel.
              * Press Alt+S to toggle a panel showing how the page appears in
              * Google search results, Twitter cards, and Open Graph shares.
