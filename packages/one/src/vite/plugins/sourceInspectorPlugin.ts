@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process'
 import path from 'node:path'
 import { parse } from 'oxc-parser'
 import type { Plugin, ViteDevServer } from 'vite'
@@ -122,12 +123,41 @@ async function injectSourceToJsx(code: string, id: string): Promise<TransformOut
   return { code: result, map: null }
 }
 
+// editors to try in order — first one found in PATH wins
+const EDITOR_CMDS = ['code', 'cursor', 'zed', 'subl', 'codium', 'webstorm', 'idea']
+
+let detectedEditor: string | null | undefined
+
+function detectEditor(): string | null {
+  if (detectedEditor !== undefined) return detectedEditor
+
+  // check env vars first (same priority as launch-editor)
+  if (process.env.LAUNCH_EDITOR) {
+    detectedEditor = process.env.LAUNCH_EDITOR
+    return detectedEditor
+  }
+
+  // try to find a known editor CLI in PATH
+  for (const cmd of EDITOR_CMDS) {
+    try {
+      execSync(`which ${cmd}`, { stdio: 'pipe' })
+      detectedEditor = cmd
+      return detectedEditor
+    } catch {}
+  }
+
+  detectedEditor = null
+  return null
+}
+
 async function openInEditor(
   filePath: string,
   line?: string,
   column?: string
 ): Promise<void> {
   try {
+    const editor = detectEditor()
+
     // patch launch-editor's macos detection map for editors that renamed their binaries
     // (VS Code renamed binary from Electron to Code)
     if (process.platform === 'darwin') {
@@ -142,14 +172,23 @@ async function openInEditor(
     const fullPath = path.join(process.cwd(), filePath)
     const location = `${fullPath}${line ? `:${line}` : ''}${column ? `:${column}` : ''}`
 
-    launch(location, undefined, (filename: string, errorMessage: string | null) => {
-      if (errorMessage) {
-        console.warn(
-          `[one:source-inspector] Failed to open ${filename} in editor:`,
-          errorMessage
-        )
+    // pass detected editor so launch-editor doesn't rely on ps x
+    launch(
+      location,
+      editor || undefined,
+      (filename: string, errorMessage: string | null) => {
+        if (errorMessage) {
+          console.warn(
+            `[one:source-inspector] Failed to open ${filename} in editor:`,
+            errorMessage
+          )
+        } else if (!editor) {
+          console.warn(
+            `[one:source-inspector] Could not detect an editor. Set LAUNCH_EDITOR env var (e.g. export LAUNCH_EDITOR=code)`
+          )
+        }
       }
-    })
+    )
   } catch (err) {
     console.warn('[one:source-inspector] Failed to launch editor:', err)
   }
