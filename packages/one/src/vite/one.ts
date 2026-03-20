@@ -747,7 +747,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     const devtools = options.devtools ?? true
     const inspector =
       devtools === true || (devtools !== false && (devtools.inspector ?? true))
-    return inspector ? sourceInspectorPlugin() : []
+    const editor = devtools !== true && devtools !== false ? devtools.editor : undefined
+    return inspector ? sourceInspectorPlugin({ editor }) : []
   })()
 
   return [
