@@ -19,7 +19,7 @@
     "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^7.4.0",
     "@shopify/flash-list": "^2.1.0",
-    "expo": "~55.0.6",
+    "expo": "~55.0.7",
     "expo-image": "^3.0.10",
     "expo-structured-headers": "~55.0.0",
     "expo-updates": "~55.0.13",

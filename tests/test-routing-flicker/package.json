@@ -23,7 +23,7 @@
     "@react-navigation/native": "~7.1.33",
     "@tamagui/config": "2.0.0-rc.28",
     "@vxrn/color-scheme": "workspace:*",
-    "expo": "~55.0.6",
+    "expo": "~55.0.7",
     "one": "workspace:*",
     "react": "19.2.0",
     "react-dom": "19.2.0",
