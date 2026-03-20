@@ -175,8 +175,13 @@ jobs:
         run: |
           # WDA builds on first session and can take 15+ min on CI.
           # use appium's xcodebuild to compile WDA ahead of time.
-          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>/dev/null || echo "")
-          if [ -n "$APPIUM_XCUITEST_PATH" ]; then
+          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>&1 || echo "")
+          # fallback: search known appium driver install locations
+          if [ -z "$APPIUM_XCUITEST_PATH" ] || [ ! -d "$APPIUM_XCUITEST_PATH" ]; then
+            echo "print-wda-path returned: '$APPIUM_XCUITEST_PATH'"
+            APPIUM_XCUITEST_PATH=$(find ~/.appium -name "WebDriverAgent.xcodeproj" -print -quit 2>/dev/null | xargs dirname 2>/dev/null || echo "")
+          fi
+          if [ -n "$APPIUM_XCUITEST_PATH" ] && [ -d "$APPIUM_XCUITEST_PATH" ]; then
             echo "Building WDA from: $APPIUM_XCUITEST_PATH"
             xcodebuild build-for-testing \
               -project "$APPIUM_XCUITEST_PATH/WebDriverAgent.xcodeproj" \
