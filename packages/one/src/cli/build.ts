@@ -1116,15 +1116,15 @@ ${middlewareRouteMap.join(',\n')}
 
 const buildInfo = ${JSON.stringify(buildInfoForWriting)}
 
-let app
+let server
 
 export default {
   async fetch(request, env, ctx) {
-    if (!app) {
-      app = await serve(buildInfo, lazyRoutes)
+    if (!server) {
+      server = await serve(buildInfo, lazyRoutes)
     }
 
-    // Set up static HTML fetcher for this request (uses ASSETS binding)
+    // set up static HTML fetcher for this request (uses ASSETS binding)
     if (env.ASSETS) {
       setFetchStaticHtml(async (path) => {
         try {
@@ -1135,34 +1135,31 @@ export default {
             return await assetResponse.text()
           }
         } catch (e) {
-          // Asset not found
+          // asset not found
         }
         return null
       })
     }
 
     try {
-      // Try the app first
-      const response = await app.fetch(request, env, ctx)
+      const response = await server.fetch(request)
 
-      // If no route matched (404) or no response, try serving static assets
+      // no route matched or 404 → try static assets
       if (!response || response.status === 404) {
         if (env.ASSETS) {
           try {
             const assetResponse = await env.ASSETS.fetch(request)
-            // If asset exists, return it
             if (assetResponse && assetResponse.status !== 404) {
               return assetResponse
             }
           } catch (e) {
-            // Asset not found, continue with original response
+            // asset not found, continue with original response
           }
         }
       }
 
       return response
     } finally {
-      // Clean up per-request state
       setFetchStaticHtml(null)
     }
   }
