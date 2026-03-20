@@ -386,7 +386,9 @@ export function parseQueryParamsExtended(
   hash?: string
 ) {
   const queryIndex = path.indexOf('?')
-  const searchParams = new URLSearchParams(queryIndex >= 0 ? path.slice(queryIndex + 1) : '')
+  const searchParams = new URLSearchParams(
+    queryIndex >= 0 ? path.slice(queryIndex + 1) : ''
+  )
   const params: Record<string, string | string[]> = Object.create(null)
 
   if (hash) {
