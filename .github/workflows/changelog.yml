@@ -12,13 +12,9 @@ jobs:
     # needs: release
 
     permissions:
-          id-token: "write"
-          contents: "write"
-          packages: "write"
-          pull-requests: "read"
+      contents: write
 
     steps:
-      - uses: marvinpinto/action-automatic-releases@latest
+      - uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ github.token }}"
-          prerelease: false
+          generate_release_notes: true
