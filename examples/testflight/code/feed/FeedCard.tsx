@@ -1,4 +1,4 @@
-import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
+import { Heart, Repeat, Reply } from '@tamagui/lucide-icons-2'
 import { Link, usePathname } from 'one'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Card } from '../ui/Card'

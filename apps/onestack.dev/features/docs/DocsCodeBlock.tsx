@@ -5,7 +5,7 @@ import {
   Copy,
   FileCode2,
   TerminalSquare,
-} from '@tamagui/lucide-icons'
+} from '@tamagui/lucide-icons-2'
 import { useStore } from '@tamagui/use-store'
 import { forwardRef, useEffect, useRef, useState } from 'react'
 import {

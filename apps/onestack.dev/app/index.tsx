@@ -6,7 +6,7 @@ import {
   TabletSmartphone,
   Triangle,
   X,
-} from '@tamagui/lucide-icons'
+} from '@tamagui/lucide-icons-2'
 import { useState, type KeyboardEvent } from 'react'
 import {
   Circle,

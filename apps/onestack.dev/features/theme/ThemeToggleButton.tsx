@@ -1,5 +1,5 @@
 import { View } from '@tamagui/core'
-import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons'
+import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons-2'
 import { useUserScheme } from '@vxrn/color-scheme'
 import { Paragraph, YStack } from 'tamagui'
 
