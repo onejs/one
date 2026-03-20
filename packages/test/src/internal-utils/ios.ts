@@ -286,14 +286,19 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       automationName: 'XCUITest',
       udid: getSimulatorUdid(),
       app: await prepareTestApp(),
+      // use pre-built WDA if available (built by CI pre-build step)
+      ...(process.env.CI && {
+        usePrebuiltWDA: true,
+        derivedDataPath: '/tmp/wda-build',
+      }),
     },
   }
 
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 90 * 1000,
-    connectionRetryCount: 2,
+    connectionRetryTimeout: 180 * 1000,
+    connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,
   } satisfies WebdriverIOConfig
