@@ -143,9 +143,12 @@ async function openInEditor(
   }
 
   try {
-    const launch = (await import('launch-editor')).default
+    const launchModule = await import('launch-editor')
+    const launch = launchModule.default || launchModule
     const fullPath = path.join(process.cwd(), filePath)
     const location = `${fullPath}${line ? `:${line}` : ''}${column ? `:${column}` : ''}`
+
+    console.info(`[one:source-inspector] Opening ${location} with ${resolved}`)
 
     launch(location, resolved, (filename: string, errorMessage: string | null) => {
       if (errorMessage) {
@@ -278,6 +281,7 @@ export function sourceInspectorPlugin(opts?: { editor?: string }): Plugin[] {
             const line = parts.pop()!
             const filePath = parts.join(':')
 
+            console.info(`[one:source-inspector] Request to open: ${filePath}:${line}:${column}`)
             await openInEditor(opts?.editor, filePath, line, column)
 
             res.statusCode = 200
