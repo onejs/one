@@ -73,7 +73,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_26.2.app
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install
         uses: ./.github/actions/install
@@ -81,14 +81,14 @@ jobs:
           install-playwright: 'false'
 
       - name: Download Built Test Container App (Dev)
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
           key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
           path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
 
       - name: Download Built Test Container App (Prod)
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
           key: ${{ needs.build-ios-test-container-prod.outputs.built-app-cache-key }}
@@ -127,7 +127,7 @@ jobs:
 
       - name: Cache Appium
         id: appium-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.appium
@@ -203,7 +203,7 @@ jobs:
           bun run --filter test-test test-ios:prod
 
       - name: Upload Appium Logs
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v7
         if: ${{ always() }}
         continue-on-error: true
         with:
@@ -211,7 +211,7 @@ jobs:
           path: /tmp/appium.log
 
       - name: Upload Appium Screenshots
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v7
         if: ${{ always() }}
         continue-on-error: true
         with:

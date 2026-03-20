@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Build release
         run: |
@@ -23,7 +23,7 @@ jobs:
           zip -r OneTray.zip OneTray.app
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: OneTray
           path: apps/one-tray/OneTray.zip
@@ -33,4 +33,3 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: apps/one-tray/OneTray.zip
-          generate_release_notes: true
