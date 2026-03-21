@@ -1,3 +1,4 @@
+import { spawn } from 'node:child_process'
 import path from 'node:path'
 import { parse } from 'oxc-parser'
 import type { Plugin, ViteDevServer } from 'vite'
@@ -124,12 +125,28 @@ async function injectSourceToJsx(code: string, id: string): Promise<TransformOut
 
 let editorWarned = false
 
-async function openInEditor(
+// editor cli → args builder
+const editorArgs: Record<string, (file: string, line: string, col: string) => string[]> =
+  {
+    code: (f, l, c) => ['-g', `${f}:${l}:${c}`],
+    cursor: (f, l, c) => ['-g', `${f}:${l}:${c}`],
+    codium: (f, l, c) => ['-g', `${f}:${l}:${c}`],
+    vscodium: (f, l, c) => ['-g', `${f}:${l}:${c}`],
+    zed: (f, l, c) => [`${f}:${l}:${c}`],
+    subl: (f, l, c) => [`${f}:${l}:${c}`],
+    webstorm: (f, l, c) => ['--line', l, '--column', c, f],
+    idea: (f, l, c) => ['--line', l, '--column', c, f],
+    vim: (f, l) => [`+${l}`, f],
+    nvim: (f, l) => [`+${l}`, f],
+    emacs: (f, l, c) => [`+${l}:${c}`, f],
+  }
+
+function openInEditor(
   editor: string | undefined,
   filePath: string,
   line?: string,
   column?: string
-): Promise<void> {
+): void {
   const resolved = editor || process.env.LAUNCH_EDITOR || process.env.EDITOR
 
   if (!resolved) {
@@ -142,22 +159,19 @@ async function openInEditor(
     return
   }
 
-  try {
-    const launch = (await import('launch-editor')).default
-    const fullPath = path.join(process.cwd(), filePath)
-    const location = `${fullPath}${line ? `:${line}` : ''}${column ? `:${column}` : ''}`
+  const fullPath = path.join(process.cwd(), filePath)
+  const l = line || '1'
+  const c = column || '1'
+  const buildArgs = editorArgs[resolved]
+  const args = buildArgs ? buildArgs(fullPath, l, c) : [fullPath]
 
-    launch(location, resolved, (filename: string, errorMessage: string | null) => {
-      if (errorMessage) {
-        console.warn(
-          `[one:source-inspector] Failed to open ${filename} in editor:`,
-          errorMessage
-        )
-      }
-    })
-  } catch (err) {
-    console.warn('[one:source-inspector] Failed to launch editor:', err)
-  }
+  const child = spawn(resolved, args, { stdio: 'ignore', detached: true })
+  child.unref()
+  child.on('error', (err) => {
+    console.warn(
+      `[one:source-inspector] Failed to open editor '${resolved}': ${err.message}`
+    )
+  })
 }
 
 // track connected vscode clients and browser clients
@@ -278,7 +292,7 @@ export function sourceInspectorPlugin(opts?: { editor?: string }): Plugin[] {
             const line = parts.pop()!
             const filePath = parts.join(':')
 
-            await openInEditor(opts?.editor, filePath, line, column)
+            openInEditor(opts?.editor, filePath, line, column)
 
             res.statusCode = 200
             res.end('OK')
