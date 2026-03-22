@@ -17,6 +17,16 @@ export default {
     ],
   },
 
+  optimizeDeps: {
+    include: [
+      'react-dom',
+      '@react-native/normalize-color',
+      '@tamagui/web',
+      '@tamagui/core',
+      'tamagui',
+    ],
+  },
+
   ssr: {
     noExternal: true,
     external: ['@vxrn/mdx'],
@@ -30,6 +40,12 @@ export default {
     one({
       react: {
         compiler: process.env.NODE_ENV === 'production',
+      },
+
+      alias: {
+        web: {
+          'react-native-web': '@tamagui/react-native-web-lite',
+        },
       },
 
       web: {
