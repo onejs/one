@@ -10,7 +10,8 @@ export const LayoutDecorativeStripe = memo(() => {
 
   return (
     <YStack
-      pos={isHome ? 'absolute' : ('fixed' as any)}
+      pos="absolute"
+      pe="none"
       zi={100000}
       t={0}
       l={0}
