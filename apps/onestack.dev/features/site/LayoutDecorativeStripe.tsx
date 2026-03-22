@@ -3,27 +3,31 @@ import { YStack } from 'tamagui'
 import { usePathname } from 'one'
 import { themeTokenNumber } from '~/features/site/headerColors'
 
+const convex = getClipPath(0.04)[0]
+const concave = getClipPath(0.06)[1]
+
 export const LayoutDecorativeStripe = memo(() => {
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const y = isHome ? -52 : -69
+
+  const y = isHome ? -72 : -86
 
   return (
     <YStack
       pos="absolute"
+      className="layout-decorative-stripe"
       pe="none"
       zi={100000}
       t={0}
       l={0}
       r={0}
-      h={150}
-      scaleY={-1}
+      h={180}
       bg={`$yellow${themeTokenNumber.light}`}
       $theme-dark={{
         bg: `#000`,
       }}
-      y={y}
-      $platform-web={{
+      style={{
+        transform: `translateY(${y}px) scaleY(-1)`,
         transition: `
           clip-path 400ms cubic-bezier(0.175, 0.885, 0.32, 2),
           transform 400ms cubic-bezier(0.175, 0.885, 0.32, 2)`,
@@ -32,14 +36,12 @@ export const LayoutDecorativeStripe = memo(() => {
     />
   )
 })
-const convex = getClipPath(0.05)[0]
-const concave = getClipPath(0.05)[1]
 
 function getClipPath(
   // adjust the bendyness
   amplitude = 0.5
 ) {
-  const N = 300 // number of points / smoothness
+  const N = 100 // number of points / smoothness
   const cx = 0.5 // center x-coordinate
   const cy = 0.5 // center y-coordinate
   const r = 0.5 // radius
