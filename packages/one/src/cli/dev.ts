@@ -80,7 +80,7 @@ export async function dev(args: {
   if (useDaemon && bundleId) {
     try {
       daemonServerId = await registerWithDaemon({
-        port: effectivePort,
+        port: effectivePort!,
         bundleId,
         root,
       })
@@ -90,7 +90,7 @@ export async function dev(args: {
         )
       )
       // persist for daemon restart recovery
-      writeServerFile({ port: effectivePort, bundleId, root, pid: process.pid })
+      writeServerFile({ port: effectivePort!, bundleId, root, pid: process.pid })
     } catch (err) {
       console.log(colors.yellow(`[daemon] Failed to register: ${err}`))
     }
