@@ -68,17 +68,19 @@ function removeServerCodePlugin(_: unknown, options: PluginOptions): PluginObj {
             // remove server exports from the fresh AST
             traverse(freshAst, {
               ExportNamedDeclaration(expPath) {
-                if (
-                  expPath.node.declaration?.type === 'FunctionDeclaration' &&
-                  expPath.node.declaration.id
-                ) {
-                  const name = expPath.node.declaration.id.name
+                const declaration = expPath.node.declaration
+                if (!declaration) return
+
+                if (declaration.type === 'FunctionDeclaration' && declaration.id) {
+                  const name = declaration.id.name
                   if (name === 'loader' || name === 'generateStaticParams') {
                     expPath.remove()
                     removed[name] = true
                   }
-                } else if (expPath.node.declaration?.type === 'VariableDeclaration') {
-                  const decl = expPath.get('declaration') as NodePath<t.VariableDeclaration>
+                } else if (declaration.type === 'VariableDeclaration') {
+                  const decl = expPath.get(
+                    'declaration'
+                  ) as NodePath<t.VariableDeclaration>
                   const declarators = decl.get('declarations')
                   // iterate in reverse so indices stay valid after removal
                   for (let i = declarators.length - 1; i >= 0; i--) {
@@ -93,10 +95,7 @@ function removeServerCodePlugin(_: unknown, options: PluginOptions): PluginObj {
                     }
                   }
                   // if all declarators were removed, clean up the empty export
-                  if (
-                    expPath.node.declaration?.type === 'VariableDeclaration' &&
-                    expPath.node.declaration.declarations.length === 0
-                  ) {
+                  if (decl.node && decl.node.declarations.length === 0) {
                     expPath.remove()
                   }
                 }
