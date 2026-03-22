@@ -41,8 +41,19 @@ export function getUrlWithReactNavigationConcessions(
     if (hashIndex >= 0) {
       hash = path.slice(hashIndex)
     }
-    const end = hashIndex >= 0 ? hashIndex : queryIndex >= 0 ? queryIndex : path.length
+    // pathname ends before query or hash, whichever comes first
+    let end = path.length
+    if (queryIndex >= 0) end = Math.min(end, queryIndex)
+    if (hashIndex >= 0) end = Math.min(end, hashIndex)
     pathname = path.slice(0, end)
+
+    // strip origin from absolute URLs (e.g. https://acme.com/path -> /path)
+    if (pathname.startsWith('http://') || pathname.startsWith('https://')) {
+      const originEnd = pathname.indexOf('/', pathname.indexOf('//') + 2)
+      if (originEnd >= 0) {
+        pathname = pathname.slice(originEnd)
+      }
+    }
   } catch {
     // Do nothing with invalid URLs.
   }
@@ -386,8 +397,11 @@ export function parseQueryParamsExtended(
   hash?: string
 ) {
   const queryIndex = path.indexOf('?')
+  const hashIndex = path.indexOf('#')
+  // only parse between ? and # to avoid hash leaking into search params
+  const queryEnd = hashIndex >= 0 && hashIndex > queryIndex ? hashIndex : undefined
   const searchParams = new URLSearchParams(
-    queryIndex >= 0 ? path.slice(queryIndex + 1) : ''
+    queryIndex >= 0 ? path.slice(queryIndex + 1, queryEnd) : ''
   )
   const params: Record<string, string | string[]> = Object.create(null)
 
