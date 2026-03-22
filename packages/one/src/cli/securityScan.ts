@@ -157,7 +157,7 @@ export async function runSecurityScan(
   const { clean, findings } = await scanBundleForSecrets(clientDir, safePatterns)
 
   if (clean) {
-    console.info(` 🔒 security scan passed — no secrets found\n`)
+    console.info(`\n 🔒 security scan passed — no secrets found\n`)
     return true
   }
 
