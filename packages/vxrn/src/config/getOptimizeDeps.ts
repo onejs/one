@@ -33,7 +33,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-dom/server',
     'react-dom/client',
     'react-native-web-internals',
-    'react-native-web',
     '@react-native-masked-view/masked-view',
     'url-parse',
     'query-string',
@@ -115,13 +114,10 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-native/normalize-color',
     'expo-modules-core',
     'expo-status-bar',
-    'react-native-web',
-    'react-native-web-lite',
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
     'tamagui',
-    'react-native-web',
     'reforest',
   ]
 

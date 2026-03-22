@@ -415,6 +415,58 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           })(),
         ]),
 
+    // resolveId-based aliases that work during both vite transforms AND
+    // rolldown dep pre-bundling (where resolve.alias is not applied)
+    ...(options.alias
+      ? [
+          (() => {
+            const resolveMap = (map?: Record<string, string>) => {
+              if (!map) return null
+              const out: Record<string, string> = {}
+              for (const [key, value] of Object.entries(map)) {
+                try {
+                  out[key] = path.isAbsolute(value) ? value : resolvePath(value)
+                } catch {
+                  out[key] = value
+                }
+              }
+              return out
+            }
+
+            const a = options.alias!
+            const resolved = {
+              web: resolveMap(a.web),
+              native: resolveMap(a.native),
+              client: resolveMap(a.client),
+              ssr: resolveMap(a.ssr),
+              ios: resolveMap(a.ios),
+              android: resolveMap(a.android),
+            }
+
+            return {
+              name: 'one:alias',
+              enforce: 'pre',
+              resolveId(source) {
+                const env = this.environment?.name
+
+                // specific env wins over general
+                const specific = env ? resolved[env as keyof typeof resolved] : null
+                if (specific && source in specific) {
+                  return { id: specific[source], external: false }
+                }
+
+                // fall back to general (web/native)
+                const isWeb = !env || env === 'client' || env === 'ssr'
+                const general = isWeb ? resolved.web : resolved.native
+                if (general && source in general) {
+                  return { id: general[source], external: false }
+                }
+              },
+            } satisfies Plugin
+          })(),
+        ]
+      : []),
+
     {
       // rolldown fails on deep react-native/Libraries/* imports during dep pre-bundling.
       // these are native-only paths that don't exist in react-native-web.

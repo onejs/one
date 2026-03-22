@@ -75,6 +75,37 @@ export namespace One {
 
   export type PluginOptions = {
     /**
+     * Per-environment module aliases applied via resolveId so they work
+     * during both vite transforms AND rolldown dep pre-bundling (where
+     * resolve.alias is not applied).
+     *
+     * @example
+     * ```ts
+     * one({
+     *   alias: {
+     *     web: {
+     *       'react-native-web': '@tamagui/react-native-web-lite',
+     *     },
+     *   },
+     * })
+     * ```
+     */
+    alias?: {
+      /** applies to client + ssr */
+      web?: Record<string, string>
+      /** applies to ios + android */
+      native?: Record<string, string>
+      /** overrides web */
+      client?: Record<string, string>
+      /** overrides web */
+      ssr?: Record<string, string>
+      /** overrides native */
+      ios?: Record<string, string>
+      /** overrides native */
+      android?: Record<string, string>
+    }
+
+    /**
      * Enabling zero does a couple very simple things:
      *
      *   - It makes zero hand of seamelessly from server to client without flicker
