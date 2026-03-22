@@ -66,6 +66,9 @@ export const EXCLUDE_LIST = [
   'react-native-fast-squircle',
   'react-native-device-info',
 
+  // dev server UI only, lazy-imported at runtime
+  'qrcode-terminal',
+
   // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
   // only used by static/plugin
