@@ -148,7 +148,7 @@ export async function build(args: {
 
     if (url) {
       process.env.ONE_SERVER_URL = url
-      console.info(`\n ☁️  ONE_SERVER_URL: ${url}\n`)
+      console.info(`\n ☁️ ONE_SERVER_URL: ${url}\n`)
     }
   }
 
@@ -182,7 +182,7 @@ export async function build(args: {
   )
 
   const bundleTime = performance.now() - buildStartTime
-  console.info(`\n ⏱️  vite bundle: ${(bundleTime / 1000).toFixed(2)}s\n`)
+  console.info(`\n ⏱️ vite bundle: ${(bundleTime / 1000).toFixed(2)}s\n`)
 
   if (!vxrnOutput || args.platform !== 'web') {
     return
@@ -912,7 +912,7 @@ export async function build(args: {
 
   const staticTime = performance.now() - staticStartTime
   console.info(
-    `\n ⏱️  static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`
+    `\n ⏱️ static routes: ${(staticTime / 1000).toFixed(2)}s (${builtRoutes.length} pages)\n`
   )
   printBuildTimings()
 
@@ -1302,7 +1302,7 @@ export default {
     })
   }
 
-  console.info(`\n\n  💛 build complete\n\n`)
+  console.info(`\n 💛 build complete\n`)
 }
 
 const TRAILING_INDEX_REGEX = /\/index(\.(web))?/
