@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.12.6-1774176523823",
+  "version": "1.12.7",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
