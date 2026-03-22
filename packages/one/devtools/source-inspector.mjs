@@ -43,6 +43,7 @@
       if (host) return
       host = document.createElement('div')
       host.id = 'one-source-inspector'
+      host.style.pointerEvents = 'auto'
       shadow = host.attachShadow({ mode: 'open' })
       shadow.innerHTML = `
         <style>
