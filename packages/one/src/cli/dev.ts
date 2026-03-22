@@ -24,7 +24,8 @@ export async function dev(args: {
   const root = process.cwd()
   let daemonServerId: string | undefined
   let useDaemon = false
-  let effectivePort = args.port ? +args.port : DEFAULT_PORT
+  // only set port if user explicitly passed --port; otherwise let vite.config.ts decide
+  let effectivePort: number | undefined = args.port ? +args.port : undefined
 
   // check if daemon is running
   const {
