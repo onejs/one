@@ -83,6 +83,12 @@ export default {
         bundler: 'metro', // defaults to 'vite'
       },
 
+      alias: {
+        web: {
+          'react-native-web': '@tamagui/react-native-web-lite',
+        },
+      },
+
       config: {
         // Disable or configure the auto-added vite-tsconfig-paths
         // https://www.npmjs.com/package/vite-tsconfig-paths
@@ -161,6 +167,39 @@ export default {
 ```
 
 Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) automatically, accessible in your apps and website. For TypeScript support, add `/// <reference types="one/env" />` to get typed access to these variables.
+
+## alias
+
+Per-environment module aliases that work during both Vite transforms and rolldown dep pre-bundling. Unlike Vite's `resolve.alias`, these are applied via `resolveId` hooks so they're respected by the optimizer.
+
+Specify aliases per environment. More specific environments (`client`, `ssr`, `ios`, `android`) override the general ones (`web`, `native`).
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      alias: {
+        // applies to client + ssr environments
+        web: {
+          'react-native-web': '@tamagui/react-native-web-lite',
+        },
+
+        // applies to ios + android environments
+        native: {
+          'some-package': 'some-package-native',
+        },
+
+        // overrides web for ssr only
+        ssr: {
+          'some-package': 'some-package-ssr',
+        },
+      },
+    }),
+  ],
+}
+```
+
+Replacement values can be bare specifiers — One resolves them internally.
 
 ## setupFile
 
