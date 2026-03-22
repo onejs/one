@@ -76,9 +76,7 @@ function spawnServer(
   child.stdout?.on('data', appendOutput)
   child.stderr?.on('data', appendOutput)
 
-  // unref streams and process so parent can exit even if child is alive
-  child.stdout?.unref?.()
-  child.stderr?.unref?.()
+  // unref process so parent can exit even if child is alive
   child.unref()
 
   const exited = new Promise<number | null>((resolve) => {

@@ -1,3 +1,4 @@
+import './setup';
 import { Root } from './Root';
 import type { One } from './vite/types';
 export { Root };
