@@ -23,6 +23,7 @@
     "test:with-rolldown": "bun run test:with-rolldown:dev && bun run test:with-rolldown:prod",
     "test:with-rolldown:dev": "TEST_ONLY=dev bun run vitest --config ./vitest.config.rolldown.ts --run --reporter=dot --color=false",
     "test:with-rolldown:prod": "TEST_ONLY=prod bun run vitest --config ./vitest.config.rolldown.ts --run --reporter=dot --color=false",
+    "test:metro-compiler": "ONE_METRO_MODE=1 vitest --config ./vitest.config.metro-compiler.ts --run",
     "typecheck": "tsc --noEmit",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
