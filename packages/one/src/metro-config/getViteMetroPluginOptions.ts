@@ -135,6 +135,22 @@ export function getViteMetroPluginOptions({
               }
             }
 
+            // react-native-svg's package.json has "react-native": "src/index.ts"
+            // which points to TS source that only type-exports Svg/Circle/Path etc.
+            // force resolution to the compiled JS which has proper named value exports.
+            if (moduleName === 'react-native-svg') {
+              const defaultResolveRequest =
+                defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+              const res = defaultResolveRequest(context, moduleName, platform)
+              if (res && 'filePath' in res && res.filePath.includes('/src/index.ts')) {
+                return {
+                  ...res,
+                  filePath: res.filePath.replace('/src/index.ts', '/lib/commonjs/index.js'),
+                }
+              }
+              return res
+            }
+
             const defaultResolveRequest =
               defaultConfig?.resolver?.resolveRequest || context.resolveRequest
             const res = defaultResolveRequest(context, moduleName, platform)
