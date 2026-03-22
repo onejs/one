@@ -40,13 +40,27 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
     name: 'one-router-metro',
     visitor: {
       Program(path: NodePath<t.Program>, state: any) {
-        // Inject setup file import at the top of metro-entry.js
-        if (ONE_SETUP_FILE_NATIVE && state.filename?.includes('metro-entry')) {
+        // Inject setup file import AFTER existing imports in metro-entry.js
+        // This ensures react-native is initialized (via createApp's import) before
+        // the setup file runs, so native modules like react-native-mmkv can safely
+        // access Platform/PlatformConstants at module scope.
+        if (ONE_SETUP_FILE_NATIVE && state.filename?.endsWith('metro-entry.js')) {
           const importDeclaration = t.importDeclaration(
             [],
             t.stringLiteral(ONE_SETUP_FILE_NATIVE)
           )
-          path.unshiftContainer('body', importDeclaration)
+          const body = path.get('body')
+          let lastImportIndex = -1
+          for (let i = 0; i < body.length; i++) {
+            if (body[i].isImportDeclaration()) {
+              lastImportIndex = i
+            }
+          }
+          if (lastImportIndex >= 0) {
+            body[lastImportIndex].insertAfter(importDeclaration)
+          } else {
+            path.unshiftContainer('body', importDeclaration)
+          }
         }
       },
       MemberExpression(path: any, state: any) {

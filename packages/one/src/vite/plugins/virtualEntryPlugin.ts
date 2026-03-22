@@ -168,11 +168,11 @@ export function createVirtualEntry(options: {
           ? `getSetupPromise: ${setupResult.promiseVarName},`
           : ''
         return `
-${setupResult.importStatement}
 ${setupResult.promiseDeclaration}
 ${nativewindImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
+${setupResult.importStatement}
 
 // Export registerPreloadedRoute so preload files can import it from this bundle
 // Named export that wraps the original function
@@ -204,9 +204,8 @@ export default createApp({
           viteRoot
         )
         return `
-${setupResult.importStatement}
-
 import { createApp } from 'one'
+${setupResult.importStatement}
 
 // globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
