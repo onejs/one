@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "~7.1.33",
-    "@tamagui/config": "2.0.0-rc.28",
+    "@tamagui/config": "2.0.0-rc.30",
     "@vxrn/color-scheme": "workspace:*",
     "expo": "~55.0.7",
     "one": "workspace:*",
@@ -29,7 +29,7 @@
     "react-native": "0.83.2",
     "react-native-reanimated": "~4.2.1",
     "react-native-web": "^0.21.2",
-    "tamagui": "2.0.0-rc.28"
+    "tamagui": "2.0.0-rc.30"
   },
   "devDependencies": {
     "@react-native-community/cli": "^20.1.2",
