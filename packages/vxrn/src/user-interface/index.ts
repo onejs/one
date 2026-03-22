@@ -1,6 +1,5 @@
 import { exec } from 'node:child_process'
 import module from 'node:module'
-import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
 
@@ -283,7 +282,8 @@ function clearPrintedInfo() {
 }
 
 async function printNativeQrCodeAndInstructions(url: string) {
-  qrcode.generate(url, { small: true }, (code) => {
+  const qrcode = await import('qrcode-terminal')
+  ;(qrcode.default || qrcode).generate(url, { small: true }, (code: string) => {
     console.info(
       `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
     )

@@ -141,6 +141,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         '@swc/core-darwin-arm64',
         'moti/author',
         '@expo/log-box',
+        'qrcode-terminal',
+        '@hot-updater/cli-tools',
       ],
       needsInterop,
       // Enable lazy optimization - don't wait for all deps before starting server
