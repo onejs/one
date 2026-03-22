@@ -3,10 +3,7 @@ const {
   withXcodeProject,
   withAppBuildGradle,
   withMainActivity,
-  withDangerousMod,
 } = require('@expo/config-plugins')
-const fs = require('fs')
-const path = require('path')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
@@ -56,7 +53,6 @@ const plugin = (config, options = {}) => {
         return config
       },
     ],
-    [patchPodfileForSwift6Workaround],
   ])
 }
 
@@ -387,47 +383,6 @@ function addReactNativeScreensFix(input) {
   }
 
   return input
-}
-
-/**
- * Workaround for expo-modules-core 55.x setting swift_version to 6.0, which
- * triggers a Swift compiler crash in the SendNonSendable pass.
- * See: https://github.com/expo/expo/issues/43199
- */
-function patchPodfileForSwift6Workaround(config) {
-  return withDangerousMod(config, [
-    'ios',
-    async (config) => {
-      const podfilePath = path.join(config.modRequest.platformProjectRoot, 'Podfile')
-      let contents = fs.readFileSync(podfilePath, 'utf-8')
-
-      if (contents.includes('SWIFT_STRICT_CONCURRENCY')) {
-        return config
-      }
-
-      const patch = `
-    # workaround: expo-modules-core 55.x swift 6 strict concurrency errors (expo/expo#43199)
-    # keep swift 6 (needed for @MainActor conformance syntax) but relax concurrency checking
-    installer.pods_project.targets.each do |target|
-      if target.name == 'ExpoModulesCore'
-        target.build_configurations.each do |build_config|
-          build_config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'minimal'
-          build_config.build_settings['SWIFT_COMPILATION_MODE'] = 'singlefile'
-        end
-      end
-    end
-`
-
-      // inject before the closing `end` of the post_install block
-      contents = contents.replace(
-        /(post_install\s+do\s+\|installer\|.*?\n)/s,
-        `$1${patch}\n`
-      )
-
-      fs.writeFileSync(podfilePath, contents)
-      return config
-    },
-  ])
 }
 
 module.exports = plugin
