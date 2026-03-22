@@ -1,2 +1,5 @@
-export { default as getDevServer } from 'react-native/Libraries/Core/Devtools/getDevServer';
+export declare const getDevServer: () => {
+    url: string;
+    bundleLoadedFromServer: boolean;
+};
 //# sourceMappingURL=getDevServer.native.d.ts.map
