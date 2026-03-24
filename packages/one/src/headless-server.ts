@@ -96,10 +96,7 @@ export async function createServer(options: HeadlessServerOptions) {
     fetch: handler.handleRequest,
 
     /** hot-swap the route table without recreating the server */
-    updateRoutes(
-      newManifest: One.BuildInfo['manifest'],
-      newRoutes?: LazyRoutes,
-    ) {
+    updateRoutes(newManifest: One.BuildInfo['manifest'], newRoutes?: LazyRoutes) {
       const newBuildInfo: One.BuildInfo = {
         ...buildInfo,
         manifest: newManifest,
