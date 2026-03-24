@@ -225,13 +225,21 @@ function addDepsPatchToAppBuildGradle(input) {
     `
 /**
  * [vxrn/one] ensure patches are applied
+ * uses ExecOperations injection (Gradle 9 compatible)
  */
+interface InjectedExecOps {
+    @Inject
+    ExecOperations getExecOps()
+}
+
+def injected = objects.newInstance(InjectedExecOps)
+
 gradle.taskGraph.whenReady { taskGraph ->
     tasks.named("createBundleReleaseJsAndAssets").configure {
         doFirst {
             def vxrnCli = new File(["node", "--print", "require.resolve('vxrn/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsolutePath() + "/run.mjs"
-            exec {
-                commandLine vxrnCli, "patch"
+            injected.execOps.exec {
+                commandLine "node", vxrnCli, "patch"
             }
         }
     }
