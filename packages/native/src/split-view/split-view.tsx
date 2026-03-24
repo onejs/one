@@ -1,16 +1,21 @@
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
 import React, { createContext, isValidElement, useContext, type ReactNode } from 'react'
-import { Platform } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Split, type SplitHostProps } from 'react-native-screens/experimental'
+import { Platform, View, Text, UIManager } from 'react-native'
 
 const IsWithinSplitViewContext = createContext(false)
+
+// check if gamma native views are registered
+const isSplitViewAvailable =
+  Platform.OS === 'ios' && UIManager.getViewManagerConfig?.('RNSSplitViewHost') != null
 
 export interface SplitViewColumnProps {
   children?: React.ReactNode
 }
 
 function SplitViewColumnComponent(props: SplitViewColumnProps) {
+  if (!isSplitViewAvailable) return <View>{props.children}</View>
+  const { Split } = require('react-native-screens/experimental')
+  const { SafeAreaProvider } = require('react-native-safe-area-context')
   return (
     <Split.Column>
       <SafeAreaProvider>{props.children}</SafeAreaProvider>
@@ -19,20 +24,17 @@ function SplitViewColumnComponent(props: SplitViewColumnProps) {
 }
 
 function SplitViewInspectorComponent(props: SplitViewColumnProps) {
+  if (!isSplitViewAvailable) return <View>{props.children}</View>
+  const { Split } = require('react-native-screens/experimental')
   return <Split.Inspector>{props.children}</Split.Inspector>
 }
 
-export interface SplitViewProps extends Omit<SplitHostProps, 'children'> {
+export interface SplitViewProps {
   children?: ReactNode
-  /** slot component to render for the main content area */
   slot?: React.ComponentType
 }
 
-function SplitViewNavigator({
-  children,
-  slot: Slot,
-  ...splitViewHostProps
-}: SplitViewProps) {
+function SplitViewNavigator({ children, slot: Slot, ...rest }: SplitViewProps) {
   if (useContext(IsWithinSplitViewContext)) {
     throw new Error('There can only be one SplitView in the navigation hierarchy.')
   }
@@ -42,6 +44,15 @@ function SplitViewNavigator({
     return Slot ? <Slot /> : null
   }
 
+  if (!isSplitViewAvailable) {
+    console.warn(
+      "SplitView requires react-native-screens gamma. Add ENV['RNS_GAMMA_ENABLED'] ||= '1' to the top of your Podfile and run pod install."
+    )
+    return Slot ? <Slot /> : null
+  }
+
+  const { Split } = require('react-native-screens/experimental')
+
   const allChildrenArray = React.Children.toArray(children)
   const columnChildren = allChildrenArray.filter(
     (child) => isValidElement(child) && child.type === SplitViewColumnComponent
@@ -49,28 +60,24 @@ function SplitViewNavigator({
   const inspectorChildren = allChildrenArray.filter(
     (child) => isValidElement(child) && child.type === SplitViewInspectorComponent
   )
-  const numberOfSidebars = columnChildren.length
 
-  if (numberOfSidebars > 2) {
+  if (columnChildren.length > 2) {
     throw new Error('There can only be two SplitView.Column in the SplitView.')
   }
 
-  if (numberOfSidebars + inspectorChildren.length === 0) {
+  if (columnChildren.length + inspectorChildren.length === 0) {
     console.warn('No SplitView.Column found in SplitView.')
     return Slot ? <Slot /> : null
   }
 
   return (
-    <IsWithinSplitViewContext value>
-      <Split.Host
-        key={numberOfSidebars + inspectorChildren.length}
-        {...splitViewHostProps}
-      >
+    <IsWithinSplitViewContext.Provider value={true}>
+      <Split.Host key={columnChildren.length + inspectorChildren.length} {...rest}>
         {columnChildren}
         <Split.Column>{Slot ? <Slot /> : null}</Split.Column>
         {inspectorChildren}
       </Split.Host>
-    </IsWithinSplitViewContext>
+    </IsWithinSplitViewContext.Provider>
   )
 }
 

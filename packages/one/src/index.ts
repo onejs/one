@@ -74,6 +74,7 @@ export { href } from './href'
 // components
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
+export { NativeTabs } from './layouts/NativeTabs'
 export { Protected, type ProtectedProps } from './views/Protected'
 // Stack header compositional API types
 export type {

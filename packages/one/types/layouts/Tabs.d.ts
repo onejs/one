@@ -96,6 +96,8 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
     id: string;
 })), "children">> & import("react").RefAttributes<unknown>> & {
     Screen: typeof import("../views/Screen").Screen;
+} & {
+    Protected: import("react").FunctionComponent<import("..").ProtectedProps>;
 };
 export default Tabs;
 //# sourceMappingURL=Tabs.d.ts.map

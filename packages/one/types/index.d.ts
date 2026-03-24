@@ -44,6 +44,7 @@ export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNaviga
 export { href } from './href';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
+export { NativeTabs } from './layouts/NativeTabs';
 export { Protected, type ProtectedProps } from './views/Protected';
 export type { StackHeaderProps, StackHeaderBackButtonProps, StackHeaderTitleProps, StackHeaderLeftProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackScreenProps, } from './layouts/stack-utils';
 export { withLayoutContext } from './layouts/withLayoutContext';
