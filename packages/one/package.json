@@ -121,6 +121,11 @@
       "import": "./dist/esm/headless.mjs",
       "require": "./dist/cjs/headless.js"
     },
+    "./headless-server": {
+      "types": "./types/headless-server.d.ts",
+      "import": "./dist/esm/headless-server.mjs",
+      "require": "./dist/cjs/headless-server.js"
+    },
     "./devtools/*": "./devtools/*"
   },
   "main": "dist/cjs",
