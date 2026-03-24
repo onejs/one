@@ -54,14 +54,22 @@ export async function serveStaticAssets({
 }) {
   let didCallNext = false
 
+  const root = `./${outDir}/client`
+  // path.join normalizes "./" away, so pre-compute the normalized prefix
+  const rootPrefix = `${outDir}/client/`
+
   const response = await serveStatic({
-    root: `./${outDir}/client`,
-    onFound: (path, c) => {
+    root,
+    onFound: (fsPath, c) => {
+      // onFound receives the joined fs path (e.g. "dist/client/foo.js")
+      // strip root prefix to get the URL-relative path for glob matching
+      const path = fsPath.startsWith(rootPrefix)
+        ? fsPath.slice(rootPrefix.length)
+        : fsPath
+
       // single regex test for all custom rules
       if (cacheRules) {
-        // strip leading / so globs like "*.wasm" and "deps-web/**" match naturally
-        const p = path[0] === '/' ? path.slice(1) : path
-        const m = cacheRules.re.exec(p)
+        const m = cacheRules.re.exec(path)
         if (m) {
           // find which capturing group matched
           for (let i = 1; i < m.length; i++) {
@@ -73,7 +81,7 @@ export async function serveStaticAssets({
         }
       }
 
-      if (hashedAssetRe.test(path)) {
+      if (hashedAssetRe.test(fsPath)) {
         c.header('Cache-Control', 'public, immutable, max-age=31536000')
       } else {
         c.header('Cache-Control', 'public, max-age=0, must-revalidate')
