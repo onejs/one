@@ -3,7 +3,7 @@ import { compress } from 'hono/compress'
 import { dirname, join } from 'node:path'
 import type { VXRNServeOptions } from '../types'
 import type { Hono } from 'hono'
-import { serveStaticAssets } from './serveStaticAssets'
+import { compileCacheRules, serveStaticAssets } from './serveStaticAssets'
 
 // paths that look like static assets (have a file extension or known prefix)
 const staticExtRe = /\.\w{2,5}$/
@@ -26,13 +26,18 @@ export const createProdServer = async (
     applyCompression(app, options)
   }
 
+  // compile cache rules once at startup
+  const cacheRules = options.cacheControl
+    ? compileCacheRules(options.cacheControl)
+    : undefined
+
   // skip static file lookup for SSR routes (paths without file extensions)
   app.use('*', async (context, next) => {
     const path = context.req.path
     if (!staticExtRe.test(path) && !path.startsWith('/assets/')) {
       return await next()
     }
-    return await serveStaticAssets({ context, next, outDir })
+    return await serveStaticAssets({ context, next, outDir, cacheRules })
   })
 
   app.notFound(async (c) => {
