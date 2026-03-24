@@ -14,19 +14,28 @@ export async function getServerOptionsFilled(
   const portToUse = requestedPort ?? defaultPort
   const protocol = 'http:' as const
 
-  // if a specific port was requested, only try that port (strict mode)
-  // otherwise, allow finding an available port in a range
-  const port = await getPort({
-    port: portToUse,
-    portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
-    host,
-  })
+  // in cluster worker mode with SO_REUSEPORT, skip the port check —
+  // multiple processes intentionally bind the same port
+  const isClusterWorker = process.env.ONE_CLUSTER_WORKER === '1'
 
-  // if user explicitly requested a port and we couldn't get it, error out
-  if (requestedPort && port !== requestedPort) {
-    throw new Error(
-      `Port ${requestedPort} is already in use. Either free the port or use a different one.`
-    )
+  let port: number
+  if (isClusterWorker) {
+    port = portToUse
+  } else {
+    // if a specific port was requested, only try that port (strict mode)
+    // otherwise, allow finding an available port in a range
+    port = await getPort({
+      port: portToUse,
+      portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
+      host,
+    })
+
+    // if user explicitly requested a port and we couldn't get it, error out
+    if (requestedPort && port !== requestedPort) {
+      throw new Error(
+        `Port ${requestedPort} is already in use. Either free the port or use a different one.`
+      )
+    }
   }
 
   // Use localhost for the URL when host is 0.0.0.0 since that's how clients will access it
