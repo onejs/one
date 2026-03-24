@@ -608,6 +608,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                     : options.web.skewProtection // 'proactive'
               ),
             }),
+
+            ...(options.web?.suspendRoutes !== undefined && {
+              'process.env.ONE_SUSPEND_ROUTES': JSON.stringify(
+                options.web.suspendRoutes ? '1' : '0'
+              ),
+            }),
           },
 
           environments: {
@@ -615,10 +621,24 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: getPlatformEnvDefine('ssr'),
             },
             ios: {
-              define: getPlatformEnvDefine('ios'),
+              define: {
+                ...getPlatformEnvDefine('ios'),
+                ...(options.native?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    options.native.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
             },
             android: {
-              define: getPlatformEnvDefine('android'),
+              define: {
+                ...getPlatformEnvDefine('android'),
+                ...(options.native?.suspendRoutes !== undefined && {
+                  'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
+                    options.native.suspendRoutes ? '1' : '0'
+                  ),
+                }),
+              },
             },
           },
 

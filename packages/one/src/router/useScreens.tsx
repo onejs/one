@@ -432,15 +432,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   })
 
   const wrapSuspense = (children: any) => {
-    // so as far as i understand, adding suspense causes flickers on web during nav because
-    // we can't seem to get react navigation to properly respect startTransition(() => {})
-    // i tried a lot of things, but didn't find the root cause, but native needs suspense or
-    // else it hits an error about no suspense boundary being set
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      // native opt-out: set native.suspendRoutes to false in your one() config
+      // useful for JS-driven animations (e.g. SOI) where the null fallback
+      // causes a blank flash before the route component mounts
+      if (process.env.ONE_SUSPEND_ROUTES_NATIVE === '0') {
+        return children
+      }
+      return <Suspense fallback={null}>{children}</Suspense>
+    }
 
-    if (
-      process.env.TAMAGUI_TARGET === 'native' ||
-      process.env.ONE_SUSPEND_ROUTES === '1'
-    ) {
+    // web opt-in: set web.suspendRoutes to true in your one() config
+    // off by default because suspense causes flickers on web during nav
+    // since react navigation doesn't properly respect startTransition
+    if (process.env.ONE_SUSPEND_ROUTES === '1') {
       return <Suspense fallback={null}>{children}</Suspense>
     }
     return children
