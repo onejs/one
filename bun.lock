@@ -798,6 +798,21 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-cache-headers": {
+      "name": "test-cache-headers",
+      "version": "1.12.7",
+      "dependencies": {
+        "one": "workspace:*",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+      },
+      "devDependencies": {
+        "playwright": "^1.58.2",
+        "typescript": "^5.7.3",
+        "vite": "^8.0.0",
+        "vitest": "^4.1.0",
+      },
+    },
     "tests/test-cloudflare": {
       "name": "test-cloudflare",
       "version": "1.12.7-1774330054118",
@@ -4491,6 +4506,8 @@
     "terser": ["terser@5.44.1", "", { "dependencies": { "@jridgewell/source-map": "^0.3.3", "acorn": "^8.15.0", "commander": "^2.20.0", "source-map-support": "~0.5.20" }, "bin": { "terser": "bin/terser" } }, "sha512-t/R3R/n0MSwnnazuPpPNVO60LX0SKL45pyl9YlvxIdkH0Of7D5qM2EVe+yASRIlY5pZ73nclYJfNANGWPwFDZw=="],
 
     "test-app-cases": ["test-app-cases@workspace:tests/test-app-cases"],
+
+    "test-cache-headers": ["test-cache-headers@workspace:tests/test-cache-headers"],
 
     "test-cloudflare": ["test-cloudflare@workspace:tests/test-cloudflare"],
 
