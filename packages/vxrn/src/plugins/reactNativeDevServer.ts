@@ -14,6 +14,7 @@ import { createDevMiddleware } from '@react-native/dev-middleware'
 import { runOnWorker } from '../worker'
 import { getCacheDir } from '../utils/getCacheDir'
 import { debounce } from 'perfect-debounce'
+import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 
 type ClientMessage = {
   type: 'client-log'
@@ -150,6 +151,13 @@ export function createReactNativeDevServerPlugin(
         }
       })
 
+      // rolldown DevEngine instances (per platform)
+      const devEngines: Record<
+        string,
+        Awaited<ReturnType<typeof createNativeDevEngine>> | null
+      > = {}
+      const useRolldownDev = !!process.env.VXRN_USE_ROLLDOWN_DEV
+
       // React Native bundle handler
       const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {
         const url = new URL(req.url!, `http://${req.headers.host}`)
@@ -162,6 +170,26 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (async () => {
+            // new rolldown dev() path
+            if (useRolldownDev) {
+              if (!devEngines[platform]) {
+                console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
+                devEngines[platform] = await createNativeDevEngine({
+                  root,
+                  port,
+                  host: typeof host === 'string' ? host : 'localhost',
+                  platform,
+                  entry: './app/_layout.tsx',
+                  serverUrl: `http://${host}:${port}`,
+                })
+                console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+              }
+
+              const result = await devEngines[platform]!.getBundle()
+              return result.code
+            }
+
+            // existing vite builder path
             if (typeof options?.debugBundle === 'string' && options.debugBundlePaths) {
               const path = options.debugBundlePaths[platform]
               if (existsSync(path)) {

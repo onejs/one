@@ -5,27 +5,6 @@ import { loadEnv } from '../../exports/loadEnv'
 import { fillOptions } from '../../config/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
 
-async function transformForHermes(code: string): Promise<string> {
-  const babel = await import('@babel/core')
-  const result = await babel.transformAsync(code, {
-    compact: false,
-    retainLines: true,
-    assumptions: {
-      setPublicClassFields: true,
-      privateFieldsAsSymbols: true,
-    },
-    plugins: [
-      '@babel/plugin-transform-class-properties',
-      '@babel/plugin-transform-private-methods',
-      '@babel/plugin-transform-private-property-in-object',
-      '@babel/plugin-transform-classes',
-      '@babel/plugin-transform-async-to-generator',
-    ],
-    sourceType: 'script',
-  })
-  return result?.code || code
-}
-
 export type BundleCommandArgs = {
   assetsDest?: string
   assetCatalogDest?: string
@@ -134,12 +113,7 @@ export async function buildBundle(
     )
   }
 
-  // hermes-compiler 0.14.x doesn't support class expressions or private fields,
-  // run babel to downlevel if needed (same as what metro does)
-  if (!dev && /\bclass\s+[a-zA-Z]/.test(builtBundle)) {
-    console.info('Transforming bundle for Hermes compatibility...')
-    builtBundle = await transformForHermes(builtBundle)
-  }
+  // note: hermes es5 transform is now applied in getReactNativeBundle
 
   console.info(`Writing bundle to ${bundleOutput}...`)
   FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: 'utf8' })
