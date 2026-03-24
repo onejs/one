@@ -6,7 +6,6 @@
 // but what happens is that somehow one is imported directly by node right away
 // and then later its imported through optimizeDeps, a seaprate instance, creating a separate requestAsyncLocalStore
 
-import { AsyncLocalStorage } from 'node:async_hooks'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from './types'
 
@@ -19,15 +18,27 @@ export interface ALSId {
   [_ctxKey]?: One.ServerContext
 }
 
-type ALSInstance = AsyncLocalStorage<ALSId>
+// AsyncLocalStorage — loaded conditionally for browser/edge compatibility.
+// in browser (Web Workers, headless-server), ALS isn't available and isn't needed
+// since there's only one request at a time. the fallback uses a simple global id.
+let _AsyncLocalStorage: any = null
+try {
+  // dynamic require so bundlers can tree-shake or stub this for browser builds
+  _AsyncLocalStorage = require('node:async_hooks').AsyncLocalStorage
+} catch {
+  // not available (browser, edge, etc.) — ALS features will be no-ops
+}
+
+type ALSInstance = { run: (id: any, fn: () => any) => any; getStore: () => any } | null
 
 const key = '__vxrnrequestAsyncLocalStore'
 const read = () => globalThis[key] as ALSInstance | undefined
 
 const ASYNC_LOCAL_STORE = {
-  get current() {
-    if (read()) return read()
-    const _ = new AsyncLocalStorage<ALSId>()
+  get current(): ALSInstance {
+    if (read()) return read()!
+    if (!_AsyncLocalStorage) return null
+    const _ = new _AsyncLocalStorage()
     globalThis[key] = _
     return _
   },
@@ -47,8 +58,13 @@ export async function runWithAsyncLocalContext<A>(
   cb: (id: ALSId) => Promise<A>
 ): Promise<A> {
   const id: ALSId = { _id: Math.random() }
+  const store = ASYNC_LOCAL_STORE.current
+  if (!store) {
+    // no ALS (browser/edge) — run directly with the id
+    return cb(id)
+  }
   let out: A = null as any
-  await ASYNC_LOCAL_STORE.current!.run(id, async () => {
+  await store.run(id, async () => {
     out = await cb(id)
   })
   return out
