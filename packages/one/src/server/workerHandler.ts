@@ -14,7 +14,7 @@ import {
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
-import { withRequestContext } from '../vite/resolveResponse'
+import { resolveResponse } from '../vite/resolveResponse'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { setSSRLoaderData } from './ssrLoaderData'
@@ -708,7 +708,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
             params,
           }
 
-          const response = await withRequestContext(async () => {
+          const response = await resolveResponse(async () => {
             try {
               return await requestHandlers.handlePage!({
                 request,

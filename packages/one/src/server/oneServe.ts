@@ -61,7 +61,7 @@ export async function oneServe(
     await import('../createHandleRequest')
   const { isResponse } = await import('../utils/isResponse')
   const { isStatusRedirect } = await import('../utils/isStatus')
-  const { withRequestContext } = await import('../vite/resolveResponse')
+  const { resolveResponse } = await import('../vite/resolveResponse')
 
   const isAPIRequest = new WeakMap<any, boolean>()
 
@@ -755,7 +755,7 @@ url: ${url}`)
           // lazy-create URL only when needed (error paths, non-SSR branches)
           const url = getURLfromRequestURL(request)
 
-          const response = await withRequestContext(async () => {
+          const response = await resolveResponse(async () => {
             try {
               return await requestHandlers.handlePage!({
                 request,
