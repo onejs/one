@@ -324,6 +324,20 @@ export namespace One {
       key?: string
 
       /**
+       * Wrap each route screen in a React Suspense boundary on native.
+       *
+       * On native the JS bundle already contains all route modules, so the
+       * Suspense boundary only catches the async `import()` wrapper which
+       * resolves on the next microtick. Setting this to `false` removes
+       * the `<Suspense fallback={null}>` wrapper, which prevents a blank
+       * flash when JS-driven navigation animations (e.g. SOI) slide a
+       * screen in before the Suspense fallback is replaced.
+       *
+       * @default true
+       */
+      suspendRoutes?: boolean
+
+      /**
        * Turns on react-native-css-interop support when importing CSS on native
        */
       css?: boolean
@@ -492,6 +506,17 @@ export namespace One {
        * @default true
        */
       skewProtection?: boolean | 'proactive'
+
+      /**
+       * Wrap each route screen in a React Suspense boundary on web.
+       *
+       * By default web does not wrap routes in Suspense (to avoid flickers
+       * during navigation). Enable this if your routes use React `use()`
+       * or lazy loading and you want Suspense boundaries per-route.
+       *
+       * @default false
+       */
+      suspendRoutes?: boolean
     }
 
     /**
