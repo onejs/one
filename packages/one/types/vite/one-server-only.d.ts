@@ -5,11 +5,9 @@ export interface ALSId {
     _id: number;
     [_ctxKey]?: One.ServerContext;
 }
-type ALSInstance = {
-    run: (id: any, fn: () => any) => any;
-    getStore: () => any;
-} | null;
-export declare const requestAsyncLocalStore: ALSInstance;
+import { AsyncLocalStorage } from 'node:async_hooks';
+type ALSInstance = AsyncLocalStorage<ALSId>;
+export declare const requestAsyncLocalStore: ALSInstance | null | undefined;
 export declare const asyncHeadersCache: WeakMap<any, Headers>;
 export declare function runWithAsyncLocalContext<A>(cb: (id: ALSId) => Promise<A>): Promise<A>;
 export declare function setResponseHeaders(cb: (headers: Headers) => void): Promise<void>;
