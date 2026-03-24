@@ -1,0 +1,79 @@
+---
+title: "<NativeTabs />"
+---
+
+Platform-native tab bars. Renders `UITabBarController` on iOS and Material `BottomNavigationView` on Android, providing the native look and feel for tab navigation.
+
+<Notice theme="yellow">
+  Experimental — requires additional dependencies.
+</Notice>
+
+## Install
+
+```bash
+npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs
+```
+
+## Usage
+
+Use `NativeTabs` in a `_layout.tsx` file just like `Tabs`:
+
+```tsx
+import { NativeTabs } from 'one'
+
+export default function Layout() {
+  return (
+    <NativeTabs>
+      <NativeTabs.Screen
+        name="feed"
+        options={{
+          title: 'Feed',
+          tabBarIcon: () => ({ sfSymbol: 'newspaper' }),
+        }}
+      />
+      <NativeTabs.Screen
+        name="notifications"
+        options={{
+          title: 'Notifications',
+          tabBarIcon: () => ({ sfSymbol: 'bell' }),
+        }}
+      />
+      <NativeTabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
+        }}
+      />
+    </NativeTabs>
+  )
+}
+```
+
+## Protected Routes
+
+Guard tabs behind authentication with `NativeTabs.Protected`:
+
+```tsx
+import { NativeTabs } from 'one'
+
+export default function Layout() {
+  const { isAuthed } = useAuth()
+  return (
+    <NativeTabs>
+      <NativeTabs.Screen name="login" />
+      <NativeTabs.Protected guard={isAuthed}>
+        <NativeTabs.Screen name="dashboard" />
+        <NativeTabs.Screen name="settings" />
+      </NativeTabs.Protected>
+    </NativeTabs>
+  )
+}
+```
+
+## Notes
+
+- `@bottom-tabs/react-navigation` and `react-native-bottom-tabs` are optional peer dependencies — the app won't crash if they're not installed, but `NativeTabs` will throw a clear error message when used.
+- On iOS, SF Symbols are used for tab icons via the `sfSymbol` property.
+- On Android, Material Symbols can be used via the `md` property.
+- `NativeTabs` is also available as a standalone import: `import { NativeTabs } from 'one/native-tabs'`
