@@ -1,6 +1,7 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
 import { createVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import { hermesCompatPlugin } from '../plugins/hermesCompatPlugin'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
