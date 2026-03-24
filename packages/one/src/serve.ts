@@ -24,19 +24,28 @@ export async function serve(
     const { cpus, platform } = await import('node:os')
     const numWorkers = typeof args.cluster === 'number' ? args.cluster : cpus().length
 
-    // check if we can use SO_REUSEPORT (linux with node 22.12+)
-    const [major, minor] = process.versions.node.split('.').map(Number)
+    const isBun = typeof process.versions.bun !== 'undefined'
+
+    // check if we can use SO_REUSEPORT (linux with node 22.12+ or bun)
     const canReusePort =
       !['win32', 'darwin'].includes(platform()) &&
-      (major > 22 || (major === 22 && minor >= 12) || major >= 23)
+      (isBun ||
+        (() => {
+          const [major, minor] = process.versions.node.split('.').map(Number)
+          return major > 22 || (major === 22 && minor >= 12) || major >= 23
+        })())
 
     if (canReusePort) {
       // SO_REUSEPORT: spawn independent child processes, each binds to port directly
       // kernel distributes connections - no IPC bottleneck
       return await serveWithReusePort(args, numWorkers)
-    } else {
-      // fallback: node cluster module (IPC-based, works on macOS)
+    } else if (!isBun) {
+      // node cluster module (IPC-based, works on macOS with node)
       return await serveWithCluster(args, numWorkers)
+    } else {
+      // bun on macOS/windows: cluster not supported, fall back to single process
+      console.warn(`[one] cluster mode not supported on ${platform()} with bun, running single process`)
+      return await startWorker(args)
     }
   }
 

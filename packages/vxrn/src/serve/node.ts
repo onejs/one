@@ -17,13 +17,17 @@ function getNetworkAddress(): string | undefined {
   }
 }
 
-// linux 3.9+ with node 22.12+ supports SO_REUSEPORT
+const isBun = typeof process.versions.bun !== 'undefined'
+
+// linux 3.9+ supports SO_REUSEPORT
+// node 22.12+ exposes reusePort in listen(), bun supports it natively
 const canReusePort =
   !['win32', 'darwin'].includes(platform()) &&
-  (() => {
-    const [major, minor] = process.versions.node.split('.').map(Number)
-    return major > 22 || (major === 22 && minor >= 12) || major >= 23
-  })()
+  (isBun ||
+    (() => {
+      const [major, minor] = process.versions.node.split('.').map(Number)
+      return major > 22 || (major === 22 && minor >= 12) || major >= 23
+    })())
 
 export { canReusePort }
 
