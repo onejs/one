@@ -76,7 +76,9 @@ export function mergeHeaders(onto: Headers, from: Headers) {
     if (value === undefined || value === 'undefined') {
       onto.delete(key)
     } else {
-      onto.append(key, value)
+      // use set so user-defined headers from setResponseHeaders override defaults
+      // (e.g. cache-control from loader overrides the default no-cache)
+      onto.set(key, value)
     }
   })
 }

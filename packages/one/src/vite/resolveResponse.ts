@@ -14,8 +14,10 @@ function createId(): ALSId {
 }
 
 export async function resolveResponse(getResponse: () => Promise<Response>) {
-  // inline ALS to reduce async nesting (each await = microtask = event loop pressure)
-  const store = requestAsyncLocalStore
+  // always read ALS from globalThis to match the bundled server code
+  const store =
+    requestAsyncLocalStore ??
+    (globalThis['__vxrnrequestAsyncLocalStore'] as typeof requestAsyncLocalStore)
   if (store) {
     const id = createId()
     let response: Response
@@ -78,12 +80,24 @@ export function resolveAPIEndpoint(
 }
 
 async function getResponseWithAddedHeaders(response: any, id: object) {
-  const asyncHeaders = asyncHeadersCache.get(id)
+  // read from globalThis to match the bundled server code's cache instance
+  const cache: WeakMap<any, Headers> =
+    globalThis['__vxrnasyncHeadersCache'] ?? asyncHeadersCache
+  const asyncHeaders = cache.get(id)
 
   if (asyncHeaders) {
     try {
       if (response instanceof Response) {
-        mergeHeaders(response.headers, asyncHeaders)
+        // create a new response with merged headers rather than mutating in place,
+        // because hono's compress middleware captures headers at response creation time
+        // and won't see mutations made to response.headers after the fact
+        const headers = new Headers(response.headers)
+        mergeHeaders(headers, asyncHeaders)
+        response = new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers,
+        })
       } else {
         if (response && typeof response === 'object') {
           response = Response.json(response, { headers: asyncHeaders })
@@ -100,40 +114,9 @@ async function getResponseWithAddedHeaders(response: any, id: object) {
         }
       }
     } catch (err) {
-      if (`${err}`.includes('immutable')) {
-        // we have to create a new response
-        const body = response.body ? await streamToString(response.body) : ''
-        response = new Response(body, {
-          headers: response.headers,
-          status: response.status,
-          statusText: response.statusText,
-        })
-        mergeHeaders(response.headers, asyncHeaders)
-      } else {
-        console.error(` [one] error adding headers: ${err}`)
-      }
+      console.error(` [one] error adding headers: ${err}`)
     }
   }
 
   return response
-}
-
-async function streamToString(stream: ReadableStream) {
-  const reader = stream.getReader()
-  const decoder = new TextDecoder()
-  let result = ''
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      result += decoder.decode(value, { stream: true })
-    }
-  } catch (error) {
-    console.error('Error reading the stream:', error)
-  } finally {
-    reader.releaseLock()
-  }
-
-  return result
 }
