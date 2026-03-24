@@ -1,0 +1,23 @@
+{
+  "name": "NativeFeatureTests",
+  "slug": "native-feature-tests",
+  "plugins": [
+    "vxrn/expo-plugin",
+    [
+      "expo-build-properties",
+      {
+        "ios": {
+          "deploymentTarget": "16.0",
+          "ccacheEnabled": true
+        }
+      }
+    ]
+  ],
+  "platforms": ["ios", "android"],
+  "android": {
+    "package": "dev.vxrn.native.tests"
+  },
+  "ios": {
+    "bundleIdentifier": "dev.vxrn.native.tests"
+  }
+}

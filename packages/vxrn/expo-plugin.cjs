@@ -3,10 +3,27 @@ const {
   withXcodeProject,
   withAppBuildGradle,
   withMainActivity,
+  withDangerousMod,
 } = require('@expo/config-plugins')
+const fs = require('fs')
+const path = require('path')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
+    // react-native-screens gamma features (SplitView, NativeTabs)
+    // currently disabled — gamma causes "duplicate RNSScreen registration" crash with Fabric on RN 0.83
+    // tracking: https://github.com/software-mansion/react-native-screens/issues/XXXX
+    // to enable manually, add ENV['RNS_GAMMA_ENABLED'] ||= '1' to the top of your Podfile
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (config) => {
+          // gamma disabled until react-native-screens fixes duplicate view registration
+          return config
+        },
+      ],
+    ],
     [
       withXcodeProject,
       async (config) => {
