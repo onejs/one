@@ -15,3 +15,5 @@ ignores:
   - "@vxrn/query-string"
   - "@vxrn/url-parse"
   - "@vxrn/vendor"
+  # intentionally removed from deps due to vite 8 conflict, dynamically imported at runtime
+  - "qrcode-terminal"
