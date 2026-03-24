@@ -10,6 +10,7 @@ import { Platform, Pressable } from 'react-native'
 
 import type { OneRouter } from '../interfaces/router'
 import { Link } from '../link/Link'
+import { Protected } from '../views/Protected'
 import { withLayoutContext } from './withLayoutContext'
 
 const TabBar = ({ state, ...restProps }: BottomTabBarProps) => {
@@ -41,7 +42,7 @@ type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & {
   href?: OneRouter.Href | null
 }
 
-export const Tabs = withLayoutContext<
+export const Tabs = Object.assign(withLayoutContext<
   BottomTabNavigationOptionsWithHref,
   typeof BottomTabNavigator,
   TabNavigationState<ParamListBase>,
@@ -88,6 +89,6 @@ export const Tabs = withLayoutContext<
     })
   },
   { props: { tabBar: TabBar } }
-)
+), { Protected })
 
 export default Tabs
