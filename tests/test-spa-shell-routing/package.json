@@ -1,6 +1,6 @@
 {
   "name": "test-spa-shell-routing",
-  "version": "1.12.7-1774342651257",
+  "version": "1.12.8",
   "private": true,
   "type": "module",
   "scripts": {
