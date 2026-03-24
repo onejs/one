@@ -44,7 +44,9 @@ export async function serve(
       return await serveWithCluster(args, numWorkers)
     } else {
       // bun on macOS/windows: cluster not supported, fall back to single process
-      console.warn(`[one] cluster mode not supported on ${platform()} with bun, running single process`)
+      console.warn(
+        `[one] cluster mode not supported on ${platform()} with bun, running single process`
+      )
       return await startWorker(args)
     }
   }

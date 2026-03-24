@@ -145,7 +145,10 @@ export function getViteMetroPluginOptions({
               if (res && 'filePath' in res && res.filePath.includes('/src/index.ts')) {
                 return {
                   ...res,
-                  filePath: res.filePath.replace('/src/index.ts', '/lib/commonjs/index.js'),
+                  filePath: res.filePath.replace(
+                    '/src/index.ts',
+                    '/lib/commonjs/index.js'
+                  ),
                 }
               }
               return res
