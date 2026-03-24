@@ -181,7 +181,9 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
 
   const { labelProcess } = await import('./cli/label-process')
   const { removeUndefined } = await import('./utils/removeUndefined')
-  const { loadEnv, serve: vxrnServe, serveStaticAssets } = await import('vxrn/serve')
+  const { loadEnv, serve: vxrnServe, serveStaticAssets, compileCacheRules } = await import(
+    'vxrn/serve'
+  )
   const { oneServe } = await import('./server/oneServe')
 
   labelProcess('serve')
@@ -189,6 +191,11 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
   if (args?.loadEnv) {
     await loadEnv('production')
   }
+
+  // compile cache rules once at startup so every request is a single regex test
+  const cacheRules = oneOptions.server?.cacheControl
+    ? compileCacheRules(oneOptions.server.cacheControl)
+    : undefined
 
   return await vxrnServe({
     outDir: buildInfo.outDir || outDir,
@@ -201,7 +208,9 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
     }),
 
     async beforeRegisterRoutes(options, app) {
-      await oneServe(oneOptions, buildInfo, app, { serveStaticAssets })
+      await oneServe(oneOptions, buildInfo, app, {
+        serveStaticAssets: (ctx) => serveStaticAssets({ ...ctx, cacheRules }),
+      })
     },
 
     async afterRegisterRoutes(options, app) {},

@@ -112,6 +112,21 @@ export type VXRNOptions = {
      * @default false
      */
     loadEnv?: boolean
+
+    /**
+     * Custom cache-control rules for static assets.
+     * Map of glob patterns to Cache-Control header values.
+     * Hashed assets (e.g. app-CB4EB78V.js) are always immutable.
+     * Unmatched assets default to must-revalidate.
+     *
+     * @example
+     * cacheControl: {
+     *   '*.worker.js': 'public, max-age=86400, stale-while-revalidate=604800',
+     *   '*.wasm': 'public, max-age=86400',
+     *   '/deps-*\/**': 'public, max-age=86400',
+     * }
+     */
+    cacheControl?: Record<string, string>
   }
 
   /**
@@ -135,10 +150,13 @@ export type HMRListener = (update: { file: string; contents: string }) => void
 
 type VXRNServeOptionsBase = VXRNOptions['server']
 
-export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
-  url: string
-  protocol: string
-}
+export type VXRNServeOptionsFilled = Required<
+  Omit<NonNullable<VXRNServeOptionsBase>, 'cacheControl'>
+> &
+  Pick<NonNullable<VXRNServeOptionsBase>, 'cacheControl'> & {
+    url: string
+    protocol: string
+  }
 
 export type VXRNServeOptions = VXRNServeOptionsBase & {
   app?: Hono

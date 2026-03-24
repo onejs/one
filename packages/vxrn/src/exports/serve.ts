@@ -6,7 +6,8 @@ import { applyCompression, createProdServer } from './createServer'
 export { loadEnv } from '../exports/loadEnv'
 export * from '../utils/getServerEntry'
 export { createProdServer, applyCompression } from './createServer'
-export { serveStaticAssets } from './serveStaticAssets'
+export { serveStaticAssets, compileCacheRules } from './serveStaticAssets'
+export type { CompiledCacheRules } from './serveStaticAssets'
 
 export const serve = async ({
   afterRegisterRoutes,
