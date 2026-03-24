@@ -1,0 +1,82 @@
+{
+  "name": "@vxrn/native",
+  "version": "1.12.8",
+  "type": "module",
+  "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
+  "license": "MIT",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "types/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tamagui-build",
+    "clean": "tamagui-build clean"
+  },
+  "exports": {
+    ".": {
+      "react-native": {
+        "import": "./dist/esm/index.native.js",
+        "require": "./dist/cjs/index.native.js"
+      },
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
+    },
+    "./color": {
+      "react-native": {
+        "import": "./dist/esm/color/index.native.js",
+        "require": "./dist/cjs/color/index.native.js"
+      },
+      "import": "./dist/esm/color/index.mjs",
+      "require": "./dist/cjs/color/index.cjs"
+    },
+    "./zoom": {
+      "react-native": {
+        "import": "./dist/esm/zoom/index.native.js",
+        "require": "./dist/cjs/zoom/index.native.js"
+      },
+      "import": "./dist/esm/zoom/index.mjs",
+      "require": "./dist/cjs/zoom/index.cjs"
+    },
+    "./toolbar": {
+      "react-native": {
+        "import": "./dist/esm/toolbar/index.native.js",
+        "require": "./dist/cjs/toolbar/index.native.js"
+      },
+      "import": "./dist/esm/toolbar/index.mjs",
+      "require": "./dist/cjs/toolbar/index.cjs"
+    },
+    "./menu": {
+      "react-native": {
+        "import": "./dist/esm/menu/index.native.js",
+        "require": "./dist/cjs/menu/index.native.js"
+      },
+      "import": "./dist/esm/menu/index.mjs",
+      "require": "./dist/cjs/menu/index.cjs"
+    },
+    "./split-view": {
+      "react-native": {
+        "import": "./dist/esm/split-view/index.native.js",
+        "require": "./dist/cjs/split-view/index.native.js"
+      },
+      "import": "./dist/esm/split-view/index.mjs",
+      "require": "./dist/cjs/split-view/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-screens": "~4.24.0",
+    "react-native-safe-area-context": ">=5.4.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-safe-area-context": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@tamagui/build": "2.0.0-rc.31"
+  }
+}
