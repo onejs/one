@@ -85,11 +85,22 @@ export async function getMetroConfigFromViteConfig(
     }
   }
 
+  // merge dist exclusion into blockList to prevent Metro's FallbackWatcher
+  // from crashing on volatile build output directories during parallel runs
+  const existingBlockList = _defaultConfig?.resolver?.blockList
+  const distExclusion = /(?:^|[/\\])dist(?:[/\\]|$)/
+  const blockList: RegExp | RegExp[] = existingBlockList
+    ? Array.isArray(existingBlockList)
+      ? [...existingBlockList, distExclusion]
+      : [existingBlockList, distExclusion]
+    : distExclusion
+
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
     resolver: {
       ..._defaultConfig?.resolver,
       ...(watchman !== undefined ? { useWatchman: watchman } : {}),
+      blockList,
       sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
