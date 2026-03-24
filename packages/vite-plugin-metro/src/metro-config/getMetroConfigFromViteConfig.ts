@@ -87,15 +87,21 @@ export async function getMetroConfigFromViteConfig(
 
   // exclude app-level build output directories from Metro's watcher to prevent
   // FallbackWatcher from crashing on volatile dirs during parallel CI runs.
-  // only target one's web build outputs (dist/static, dist/server), not package
+  // block test app dist dirs and one's web build outputs, but not package
   // dist/ dirs which Metro needs for module resolution.
   const existingBlockList = _defaultConfig?.resolver?.blockList
-  const buildOutputExclusion = /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/
-  const blockList: RegExp | RegExp[] = existingBlockList
-    ? Array.isArray(existingBlockList)
-      ? [...existingBlockList, buildOutputExclusion]
-      : [existingBlockList, buildOutputExclusion]
-    : buildOutputExclusion
+  const buildOutputExclusions = [
+    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+  ]
+  const blockList: RegExp[] = [
+    ...(existingBlockList
+      ? Array.isArray(existingBlockList)
+        ? existingBlockList
+        : [existingBlockList]
+      : []),
+    ...buildOutputExclusions,
+  ]
 
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
