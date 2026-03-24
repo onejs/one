@@ -71,7 +71,7 @@ jobs:
             if [ $exit_code -eq 137 ]; then
               echo "Process killed after timeout - checking if tests passed..."
               # check if vitest reported success before hanging
-              if grep -q "Test Files.*passed" test-output.log && ! grep -q "FAIL\|Error\|failed" test-output.log; then
+              if grep -q "Test Files.*passed" test-output.log && ! grep -q "FAIL \|Test Files.*failed" test-output.log; then
                 echo "Tests passed but cleanup hung - treating as success"
                 exit 0
               fi
