@@ -26,7 +26,6 @@ describe('Cache Headers / ISR', () => {
       const response = await fetch(`${serverUrl}/ssr/cache-headers`)
       const html = await response.text()
 
-      // Verify we get HTML back (page rendered)
       expect(html).toContain('<!DOCTYPE html>')
       expect(html).toContain('<html')
     })
@@ -64,7 +63,6 @@ describe('Cache Headers / ISR', () => {
     it('should set headers from middleware', async () => {
       const response = await fetch(`${serverUrl}/middleware`)
 
-      // The middleware sets test-header via setResponseHeaders
       const testHeader = response.headers.get('test-header')
       expect(testHeader).toBe('test-value')
     })
@@ -76,11 +74,9 @@ describe('Cache Headers / ISR', () => {
 
       expect(response.status).toBe(200)
 
-      // verify cookie is set
       const setCookie = response.headers.get('set-cookie')
       expect(setCookie).toContain('test-cookie=hello')
 
-      // verify content-type is still text/html (this is the bug!)
       const contentType = response.headers.get('content-type')
       expect(contentType).toContain('text/html')
     })
@@ -89,7 +85,6 @@ describe('Cache Headers / ISR', () => {
       const response = await fetch(`${serverUrl}/ssr/cookie-test`)
       const html = await response.text()
 
-      // verify we get HTML back, not plain text
       expect(html).toContain('<!DOCTYPE html>')
       expect(html).toContain('<html')
       expect(html).toContain('Cookie test page')
