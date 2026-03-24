@@ -244,7 +244,7 @@ function updatePackageJsonVersions(version: string, dir: string) {
     const contentWithUpdatedVersions = content
       .replace(/"workspace:\^"/gm, `"^${version}"`)
       .replace(/"workspace:~"/gm, `"~${version}"`)
-      .replace(/"workspace:\*"/gm, `"${version}"`)
+      .replace(/"workspace:\*"/gm, `"^${version}"`)
     writeFileSync(packageJsonPath, contentWithUpdatedVersions)
   }
 }
