@@ -18,27 +18,17 @@ export interface ALSId {
   [_ctxKey]?: One.ServerContext
 }
 
-// AsyncLocalStorage — loaded conditionally for browser/edge compatibility.
-// in browser (Web Workers, headless-server), ALS isn't available and isn't needed
-// since there's only one request at a time. the fallback uses a simple global id.
-let _AsyncLocalStorage: any = null
-try {
-  // dynamic require so bundlers can tree-shake or stub this for browser builds
-  _AsyncLocalStorage = require('node:async_hooks').AsyncLocalStorage
-} catch {
-  // not available (browser, edge, etc.) — ALS features will be no-ops
-}
+import { AsyncLocalStorage } from 'node:async_hooks'
 
-type ALSInstance = { run: (id: any, fn: () => any) => any; getStore: () => any } | null
+type ALSInstance = AsyncLocalStorage<ALSId>
 
 const key = '__vxrnrequestAsyncLocalStore'
 const read = () => globalThis[key] as ALSInstance | undefined
 
 const ASYNC_LOCAL_STORE = {
-  get current(): ALSInstance {
-    if (read()) return read()!
-    if (!_AsyncLocalStorage) return null
-    const _ = new _AsyncLocalStorage()
+  get current() {
+    if (read()) return read()
+    const _ = new AsyncLocalStorage<ALSId>()
     globalThis[key] = _
     return _
   },
