@@ -1,7 +1,7 @@
-import { readFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
+import { readFile } from 'node:fs/promises'
+import { join, resolve } from 'node:path'
 import {
   CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX_UNCACHED,
@@ -9,7 +9,6 @@ import {
 } from '../constants'
 import {
   compileManifest,
-  getLoaderParams,
   getURLfromRequestURL,
   type RequestHandlers,
   runMiddlewares,
