@@ -614,7 +614,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 options.web.suspendRoutes ? '1' : '0'
               ),
             }),
-
           },
 
           environments: {
