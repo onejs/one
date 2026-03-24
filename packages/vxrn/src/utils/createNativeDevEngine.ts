@@ -66,11 +66,11 @@ export async function createNativeDevEngine(
     plugins: userPlugins = [],
   } = options
 
-  const { dev } = await import('rolldown/experimental')
+  const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
 
-  // compile HMR runtime to ES5 like rollipop does
-  // (rolldown injects this string raw, so class fields must be pre-compiled)
-  const hmrRuntimeSource = await compileHmrRuntime(getHmrRuntimeSource())
+  // our inline HMR runtime is already written without class field declarations,
+  // so no SWC compilation needed (unlike rollipop which compiles from TS)
+  const hmrRuntimeSource = getHmrRuntimeSource()
 
   const prelude = getNativePrelude({
     dev: true,
@@ -109,11 +109,7 @@ export async function createNativeDevEngine(
     },
 
     experimental: {
-      devMode: {
-        implement: hmrRuntimeSource,
-        host,
-        port,
-      },
+      devMode: { implement: hmrRuntimeSource, host, port },
       incrementalBuild: true,
     },
 
@@ -124,6 +120,9 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
+      // prepend RN initialization to the entry file
+      rnInitPlugin(entry, root),
+
       // strip Flow types from react-native and @react-native packages
       flowStripPlugin(),
 
@@ -141,10 +140,9 @@ export async function createNativeDevEngine(
   }
 
   const outputOptions: OutputOptions = {
-    format: 'iife',
+    format: 'esm',
     sourcemap: true,
     intro: prelude,
-    // critical for devMode to wrap all modules including entry
     codeSplitting: false,
     strictExecutionOrder: true,
   }
@@ -159,11 +157,12 @@ export async function createNativeDevEngine(
       const output = result as RolldownOutput
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
-        // rolldown's internal DevRuntime has class field declarations (e.g. `modules = {}`)
-        // that hermes can't parse. rollipop solves this with a custom rolldown fork.
-        // we move field initializers into constructors via string replacement.
         let code = chunk.code
-        code = moveClassFieldsToConstructor(code)
+        // strip ESM export statements (hermes doesn't support ESM)
+        code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
+        // transform entire bundle to ES5 for hermes (class syntax not supported)
+        // rollipop forks rolldown for this; we use SWC post-processing
+        code = await transformBundleForHermes(code)
 
         currentBundle = {
           code,
@@ -216,115 +215,263 @@ export async function createNativeDevEngine(
 // --- utils ---
 
 /**
- * Move class field declarations/initializers into constructors.
- * Hermes doesn't support `class { field = value; }` syntax.
- * Instead of running a full SWC/babel transform (which converts classes to
- * functions and breaks ordering), we do targeted string replacements.
+ * Transform rolldown's runtime section (Module, DevRuntime, HMR runtime)
+ * from ES6 class syntax to ES5 functions using SWC.
  *
- * Matches patterns like:
- *   class Foo {
- *     field;           → removed, added to constructor as this.field = undefined
- *     field = value;   → removed, added to constructor as this.field = value
- *   }
+ * Hermes doesn't support class syntax. rollipop forks rolldown to emit ES5
+ * in the Rust crate. We post-process the ~300 line runtime section with SWC
+ * target:'es5' instead, avoiding a fork while working with vanilla rolldown.
  */
-function moveClassFieldsToConstructor(code: string): string {
-  // regex to find class bodies and extract field declarations
-  // this is a simplified approach that works for rolldown's output format
-  return code.replace(
-    /class\s+(\w*)\s*(?:extends\s+[^{]+)?\{([\s\S]*?)\n\t*\}/g,
-    (classMatch, className, classBody) => {
-      const lines = classBody.split('\n')
-      const fieldInits: string[] = []
-      const cleanedLines: string[] = []
-
-      for (const line of lines) {
-        const trimmed = line.trim()
-        // match bare field declarations: `fieldName;`
-        if (/^[a-zA-Z_$]\w*\s*;$/.test(trimmed) && !trimmed.includes('(')) {
-          // bare field - skip it (undefined by default)
-          continue
-        }
-        // match field initializers: `fieldName = expression;`
-        const fieldMatch = trimmed.match(/^([a-zA-Z_$]\w*)\s*=\s*(.+);$/)
-        if (
-          fieldMatch &&
-          !trimmed.includes('(') &&
-          !trimmed.startsWith('//') &&
-          !trimmed.startsWith('*')
-        ) {
-          const [, fieldName, initializer] = fieldMatch
-          // skip if it looks like a method or has complex nesting
-          if (!initializer.includes('=>') || initializer.includes('{')) {
-            fieldInits.push(`this.${fieldName} = ${initializer};`)
-            continue
-          }
-        }
-        cleanedLines.push(line)
-      }
-
-      if (fieldInits.length === 0) return classMatch
-
-      // inject field inits at the start of the constructor
-      let result = cleanedLines.join('\n')
-      const constructorMatch = result.match(/(constructor\s*\([^)]*\)\s*\{)/)
-      if (constructorMatch) {
-        const idx = result.indexOf(constructorMatch[0])
-        const insertPoint = idx + constructorMatch[0].length
-        const indent = '\n\t\t\t'
-        result =
-          result.slice(0, insertPoint) +
-          indent +
-          fieldInits.join(indent) +
-          result.slice(insertPoint)
-      }
-
-      // rebuild the class
-      const classPrefix = classMatch.slice(0, classMatch.indexOf('{') + 1)
-      const classSuffix = classMatch.slice(classMatch.lastIndexOf('}'))
-      return classPrefix + result + '\n' + classSuffix
-    }
-  )
+/**
+ * Transform entire bundle to ES5 for Hermes using SWC.
+ * Hermes doesn't support class syntax at all.
+ * Wraps in IIFE for function scope, transforms, keeps IIFE in output.
+ */
+async function transformBundleForHermes(code: string): Promise<string> {
+  const wrapped = ';(function(){' + code + '\n})();'
+  try {
+    const swc = await import('@swc/core')
+    const result = await swc.transform(wrapped, {
+      filename: 'bundle.js',
+      configFile: false,
+      swcrc: false,
+      sourceMaps: false,
+      jsc: {
+        target: 'es5',
+        parser: { syntax: 'ecmascript' },
+        keepClassNames: true,
+        externalHelpers: false,
+        assumptions: {
+          setPublicClassFields: true,
+          privateFieldsAsProperties: true,
+        },
+      },
+      isModule: true,
+    })
+    return result.code
+  } catch (err: any) {
+    console.warn('[vxrn] SWC bundle transform failed:', err.message)
+    return code
+  }
 }
 
-/**
- * Pre-compile HMR runtime to ES5 using SWC.
- * Same approach as rollipop's tsdown build step:
- * https://github.com/leegeunhyeok/rollipop/blob/main/packages/rollipop/tsdown.config.ts
- *
- * rolldown injects the `devMode.implement` string raw into the bundle,
- * so class field declarations must be pre-compiled before injection.
- */
-async function compileHmrRuntime(source: string): Promise<string> {
-  const swc = await import('@swc/core')
-  const result = await swc.transform(source, {
-    filename: 'hmr-runtime.js',
-    configFile: false,
-    swcrc: false,
-    sourceMaps: false,
-    env: {
-      targets: { node: 9999 },
-      include: [
-        'transform-class-properties',
-        'transform-class-static-block',
-        'transform-private-methods',
-        'transform-private-property-in-object',
-      ],
-    },
-    jsc: {
-      parser: { syntax: 'ecmascript' },
-      keepClassNames: true,
-      externalHelpers: false,
-      assumptions: {
-        setPublicClassFields: true,
-        privateFieldsAsProperties: true,
+// kept for reference but no longer used
+async function transformRuntimeToES5(code: string): Promise<string> {
+  const runtimeMarker = 'globalThis.__rolldown_runtime__'
+  const markerIdx = code.indexOf(runtimeMarker)
+  if (markerIdx < 0) return code
+
+  // find the start of rolldown's runtime (var Module = class)
+  const moduleStart = code.indexOf('var Module = class')
+  if (moduleStart < 0) return code
+
+  const endOfMarkerLine = code.indexOf('\n', markerIdx)
+  const runtimeEnd = code.indexOf('\n', endOfMarkerLine + 1)
+
+  // extract runtime section, wrap in IIFE for balanced parsing
+  const runtimeSection = '(function(){\n' + code.slice(moduleStart, runtimeEnd) + '\n})()'
+
+  try {
+    const swc = await import('@swc/core')
+    const result = await swc.transform(runtimeSection, {
+      filename: 'rolldown-runtime.js',
+      configFile: false,
+      swcrc: false,
+      sourceMaps: false,
+      jsc: {
+        target: 'es5',
+        parser: { syntax: 'ecmascript' },
+        keepClassNames: true,
+        externalHelpers: false,
+        assumptions: {
+          setPublicClassFields: true,
+          privateFieldsAsProperties: true,
+        },
       },
-    },
-    isModule: false,
-  })
-  return result.code
+      isModule: false,
+    })
+
+    // keep the SWC IIFE wrapper - hermes needs runtime in function scope
+    return code.slice(0, moduleStart) + result.code + '\n' + code.slice(runtimeEnd)
+  } catch (err: any) {
+    console.warn('[vxrn] SWC runtime transform failed:', err.message)
+    return code
+  }
+}
+
+// legacy compat - kept as alias
+function moveClassFieldsToConstructor(code: string): string {
+  // process all rolldown runtime classes (Module and DevRuntime)
+  // apply to Module first, then DevRuntime
+  code = processRuntimeClass(code, 'var Module = class {')
+  code = processRuntimeClass(code, 'var DevRuntime = class {')
+  return code
+}
+
+function processRuntimeClass(code: string, classMarker: string): string {
+  const devRuntimeStart = code.indexOf(classMarker)
+  if (devRuntimeStart < 0) return code
+
+  // find the end of the DevRuntime class by matching braces
+  let braceCount = 0
+  let devRuntimeEnd = -1
+  for (let i = code.indexOf('{', devRuntimeStart); i < code.length; i++) {
+    if (code[i] === '{') braceCount++
+    else if (code[i] === '}') {
+      braceCount--
+      if (braceCount === 0) {
+        devRuntimeEnd = i + 1
+        break
+      }
+    }
+  }
+  if (devRuntimeEnd < 0) return code
+
+  let classBody = code.slice(devRuntimeStart, devRuntimeEnd)
+
+  // remove bare field declarations (e.g. `\tclientId;` or `\t\tclientId;`)
+  classBody = classBody.replace(/^\t+[a-zA-Z_$]\w*;\s*$/gm, '')
+
+  // convert ALL field initializers to constructor assignments
+  // we need to handle both simple and complex (arrow fns, IIFEs)
+  // strategy: find lines that start a field assignment at class level (2 tabs)
+  // and collect everything until the next method/field/closing brace
+  const lines = classBody.split('\n')
+  const fieldInits: string[] = []
+  const cleanedLines: string[] = []
+  let i = 0
+  while (i < lines.length) {
+    const line = lines[i]
+    const trimmed = line.trim()
+
+    // match field initializer start: `name = ...` at 2-tab indent
+    // must not be inside a method (check it's not preceded by () {)
+    const fieldStart = line.match(/^\t+([a-zA-Z_$]\w*)\s*=\s*/)
+    if (fieldStart && !trimmed.startsWith('this.') && !trimmed.startsWith('//') && !trimmed.startsWith('*')) {
+      // collect the entire field value (may span multiple lines)
+      let fieldCode = line
+      // count braces/parens to find the end
+      let opens = (fieldCode.match(/[({]/g) || []).length
+      let closes = (fieldCode.match(/[)}]/g) || []).length
+      while (opens > closes && i + 1 < lines.length) {
+        i++
+        fieldCode += '\n' + lines[i]
+        opens = (fieldCode.match(/[({]/g) || []).length
+        closes = (fieldCode.match(/[)}]/g) || []).length
+      }
+      // extract name and value
+      const eqIdx = fieldCode.indexOf('=')
+      const name = fieldCode.slice(0, eqIdx).trim().replace(/^\t+/, '')
+      let value = fieldCode.slice(eqIdx + 1).trim()
+      if (value.endsWith(';')) value = value.slice(0, -1)
+      fieldInits.push(`this.${name} = ${value};`)
+      i++
+      continue
+    }
+
+    cleanedLines.push(line)
+    i++
+  }
+  classBody = cleanedLines.join('\n')
+
+  // inject into constructor
+  if (fieldInits.length > 0) {
+    const ctorPattern = /(constructor\s*\([^)]*\)\s*\{)/
+    const m = classBody.match(ctorPattern)
+    if (m) {
+      const at = classBody.indexOf(m[0]) + m[0].length
+      const inits = fieldInits.map((f) => `\n\t\t\t${f}`).join('')
+      classBody = classBody.slice(0, at) + inits + classBody.slice(at)
+    }
+  }
+
+  return code.slice(0, devRuntimeStart) + classBody + code.slice(devRuntimeEnd)
 }
 
 // --- plugins ---
+
+/**
+ * Prepend RN initialization to the entry file.
+ * Imports react-native (which triggers InitializeCore + polyfills)
+ * before any app code runs.
+ */
+function rnInitPlugin(entryFile: string, root: string): Plugin {
+  const resolvedEntry = join(root, entryFile)
+  let loaded = false
+
+  return {
+    name: 'vxrn:rn-init',
+    load(id) {
+      if (loaded) return
+      // match the entry file
+      if (id === resolvedEntry || id === entryFile) {
+        loaded = true
+        const original = readFileSync(id, 'utf-8')
+        // prepend react-native import which triggers InitializeCore
+        return `import 'react-native';\n${original}`
+      }
+    },
+  }
+}
+
+/**
+ * Prepend React Native polyfills and InitializeCore to the entry module.
+ * This provides URLSearchParams, fetch, console polyfills, etc.
+ * Inspired by rollipop's prelude-plugin.ts.
+ */
+async function rnPreludePlugin(root: string): Promise<Plugin> {
+  const IS_ENTRY = Symbol('IS_ENTRY')
+  let processed = false
+
+  // get polyfill paths from react-native
+  let polyfillPaths: string[] = []
+  try {
+    const { resolvePath } = await import('@vxrn/resolve')
+    const getPolyfillsPath = resolvePath('react-native/rn-get-polyfills', root)
+    const { default: getPolyfills } = await import(getPolyfillsPath)
+    polyfillPaths = getPolyfills()
+  } catch {}
+
+  // add InitializeCore
+  const initCorePath = (() => {
+    try {
+      const { resolvePath } = require('@vxrn/resolve')
+      return resolvePath('react-native/Libraries/Core/InitializeCore', root)
+    } catch {
+      return null
+    }
+  })()
+
+  const imports = [
+    ...polyfillPaths.map((p: string) => `import '${p}';`),
+    ...(initCorePath ? [`import '${initCorePath}';`] : []),
+  ].join('\n')
+
+  return {
+    name: 'vxrn:rn-prelude',
+    buildStart() {
+      processed = false
+    },
+    resolveId: {
+      handler(source, _importer, extraOptions) {
+        if ((extraOptions as any).isEntry) {
+          return { id: source, meta: { [IS_ENTRY]: true } }
+        }
+      },
+    },
+    load: {
+      handler(id) {
+        if (processed) return
+        const info = this.getModuleInfo(id)
+        if (info && IS_ENTRY in (info.meta || {})) {
+          const original = readFileSync(id, 'utf-8')
+          processed = true
+          return imports + '\n' + original
+        }
+      },
+    },
+  }
+}
 
 /**
  * Strip Flow types from react-native source files.

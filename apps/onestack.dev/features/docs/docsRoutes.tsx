@@ -43,6 +43,7 @@ export const docsRoutes = [
       { title: 'Tabs', route: '/docs/components-Tabs' },
       { title: 'Drawer', route: '/docs/components-Drawer' },
       { title: 'Protected', route: '/docs/components-Protected' },
+      { title: 'NativeTabs', route: '/docs/components-NativeTabs' },
       { title: 'withLayoutContext', route: '/docs/exports-withLayoutContext' },
     ],
   },
@@ -95,6 +96,7 @@ export const docsRoutes = [
       },
       { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
       { title: 'Skew Protection', route: '/docs/guides-skew-protection' },
+      { title: 'Native Features (Alpha)', route: '/docs/native-features' },
     ],
   },
 

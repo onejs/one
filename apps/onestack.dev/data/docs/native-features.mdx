@@ -1,0 +1,273 @@
+---
+title: Native Features (Alpha)
+description: Experimental native navigation features for iOS and Android
+---
+
+One ships `@vxrn/native` — a package of native navigation primitives that bring iOS and Android platform features to your app. These are experimental and the API may change.
+
+<Notice theme="yellow">
+  These features are experimental. Install the package and try them out, but expect API changes.
+</Notice>
+
+## Install
+
+```bash
+npm install @vxrn/native
+```
+
+No Expo Modules dependency — `@vxrn/native` uses standard React Native native modules (RCTViewManager + TurboModules).
+
+For iOS, add to your Podfile:
+
+```ruby
+pod 'VxrnNative', :path => '../node_modules/@vxrn/native/ios'
+```
+
+---
+
+## Color API
+
+Type-safe platform colors for iOS and Android. Works with `PlatformColor` under the hood.
+
+```tsx
+import { Color } from '@vxrn/native'
+
+// iOS system colors
+<View style={{ backgroundColor: Color.ios.systemBlue }} />
+<Text style={{ color: Color.ios.label }} />
+
+// Android Material Design 3
+<View style={{ backgroundColor: Color.android.dynamic.primary }} />
+<View style={{ backgroundColor: Color.android.material.surface }} />
+```
+
+### iOS Colors
+
+All UIKit semantic colors: `systemBlue`, `systemRed`, `systemGreen`, `label`, `secondaryLabel`, `systemBackground`, `separator`, `systemFill`, `systemGray` through `systemGray6`, and more.
+
+### Android Colors
+
+- `Color.android.black`, `Color.android.white` — system colors via `PlatformColor`
+- `Color.android.material.primary` — static Material Design 3 baseline colors
+- `Color.android.dynamic.primary` — dynamic colors that adapt to the user's wallpaper (Android 12+)
+
+---
+
+## Zoom Transitions
+
+Native iOS 18+ zoom transitions. The destination screen expands from a source element with a fluid animation.
+
+<Notice>
+  Requires iOS 18+. Falls back to standard push transition on older versions.
+</Notice>
+
+```tsx
+import { ZoomTransitionSource, ZoomTransitionEnabler } from '@vxrn/native'
+
+// source screen — wrap the tappable element
+function ListScreen() {
+  const router = useRouter()
+  return (
+    <ZoomTransitionSource identifier="item-1">
+      <Pressable onPress={() => router.push('/detail?id=item-1')}>
+        <Text>Mountain View</Text>
+      </Pressable>
+    </ZoomTransitionSource>
+  )
+}
+
+// destination screen — place the enabler anywhere
+function DetailScreen() {
+  const { id } = useParams()
+  return (
+    <View>
+      <Stack.Screen options={{ headerShown: false }} />
+      <ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
+      <Text>Detail for {id}</Text>
+    </View>
+  )
+}
+```
+
+### Tips
+
+- Set `headerShown: false` on the detail screen to avoid the header overlapping during the zoom animation
+- The `identifier` must match between `ZoomTransitionSource` and `ZoomTransitionEnabler`
+- Use `ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
+
+---
+
+## Toolbar
+
+Native iOS `UIToolbar` rendered at the bottom of the screen. Supports SF Symbols, badges, and Liquid Glass on iOS 26.
+
+```tsx
+import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'
+
+function MyScreen() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Text>Content</Text>
+
+      <ToolbarHost>
+        <ToolbarItem
+          identifier="add"
+          title="Add"
+          systemImageName="plus"
+          tintColor={Color.ios.systemBlue}
+          onSelected={() => console.log('add tapped')}
+        />
+        <ToolbarItem identifier="spacer" type="fluidSpacer" />
+        <ToolbarItem
+          identifier="share"
+          title="Share"
+          systemImageName="square.and.arrow.up"
+          barButtonItemStyle="prominent"
+          onSelected={() => console.log('share tapped')}
+        />
+        <ToolbarItem
+          identifier="settings"
+          systemImageName="gearshape"
+          badgeConfiguration={{ value: '3' }}
+          onSelected={() => console.log('settings tapped')}
+        />
+      </ToolbarHost>
+    </View>
+  )
+}
+```
+
+### ToolbarItem Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `identifier` | `string` | Unique ID (required) |
+| `title` | `string` | Button title |
+| `systemImageName` | `string` | SF Symbol name |
+| `type` | `'normal' \| 'fixedSpacer' \| 'fluidSpacer' \| 'searchBar'` | Item type |
+| `barButtonItemStyle` | `'plain' \| 'prominent'` | Button style |
+| `badgeConfiguration` | `{ value?: string }` | Badge (iOS 26+) |
+| `disabled` | `boolean` | Disable the button |
+| `hidden` | `boolean` | Hide the button |
+| `onSelected` | `() => void` | Tap handler |
+
+---
+
+## Menu Actions
+
+Native iOS `UIMenu` and `UIAction` for context menus in toolbars.
+
+```tsx
+import { MenuAction } from '@vxrn/native'
+
+<MenuAction
+  identifier="edit"
+  title="Edit"
+  icon="pencil"
+  onSelected={() => console.log('edit')}
+/>
+
+<MenuAction
+  identifier="delete"
+  title="Delete"
+  icon="trash"
+  destructive
+  onSelected={() => console.log('delete')}
+/>
+```
+
+---
+
+## SplitView
+
+Native `UISplitViewController` for iPad multi-column layouts.
+
+<Notice theme="yellow">
+  SplitView requires `react-native-screens` gamma mode. Add this to the top of your Podfile:
+
+  ```ruby
+  ENV['RNS_GAMMA_ENABLED'] ||= '1'
+  ```
+
+  Then run `pod install`. Currently blocked on a react-native-screens upstream issue with Fabric — tracking for a fix.
+</Notice>
+
+```tsx
+import { SplitView } from '@vxrn/native'
+
+function Layout() {
+  return (
+    <SplitView>
+      <SplitView.Column>
+        <SidebarContent />
+      </SplitView.Column>
+    </SplitView>
+  )
+}
+```
+
+On iPhone, SplitView collapses to a single column automatically.
+
+---
+
+## NativeTabs
+
+Platform-native tab bars using `react-native-bottom-tabs`. Renders `UITabBarController` on iOS and `BottomNavigationView` on Android.
+
+```bash
+npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs
+```
+
+```tsx
+import { NativeTabs } from 'one'
+
+export default function Layout() {
+  return (
+    <NativeTabs>
+      <NativeTabs.Screen
+        name="feed"
+        options={{
+          title: 'Feed',
+          tabBarIcon: () => ({ sfSymbol: 'newspaper' }),
+        }}
+      />
+      <NativeTabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
+        }}
+      />
+    </NativeTabs>
+  )
+}
+```
+
+### Tabs.Protected / NativeTabs.Protected
+
+Guard routes behind authentication:
+
+```tsx
+<NativeTabs>
+  <NativeTabs.Screen name="login" />
+  <NativeTabs.Protected guard={isAuthed}>
+    <NativeTabs.Screen name="dashboard" />
+    <NativeTabs.Screen name="settings" />
+  </NativeTabs.Protected>
+</NativeTabs>
+```
+
+---
+
+## Platform Support
+
+| Feature | iOS | Android | Web |
+|---------|-----|---------|-----|
+| Color API | system colors via PlatformColor | Material 3 dynamic/static | returns null |
+| Zoom Transitions | iOS 18+ | — | — |
+| Toolbar | UIToolbar + SF Symbols | — | — |
+| Menu Actions | UIMenu / UIAction | — | — |
+| SplitView | iPad (gamma required) | — | — |
+| NativeTabs | UITabBarController | BottomNavigationView | — |
+
+All components return `null` on unsupported platforms — safe to use in cross-platform code.
