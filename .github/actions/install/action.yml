@@ -53,7 +53,7 @@ runs:
     - name: Install Playwright
       if: ${{ inputs.install-playwright == 'true' }}
       shell: bash
-      run: npx playwright install chromium
+      run: bunx playwright install chromium
 
     - name: Build
       shell: bash
