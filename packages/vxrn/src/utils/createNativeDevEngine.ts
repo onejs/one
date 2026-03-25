@@ -290,13 +290,111 @@ try {
   }
 }
 
-function generateNativeEntry(root: string, _userEntry: string): string {
+// --- production build ---
+
+interface NativeBuildOptions {
+  root: string
+  platform: 'ios' | 'android'
+  dev?: boolean
+  serverUrl?: string
+  plugins?: Plugin[]
+}
+
+export async function buildNativeBundle(
+  options: NativeBuildOptions
+): Promise<{ code: string; map?: string }> {
+  const { root, platform, dev = false, serverUrl, plugins: userPlugins = [] } = options
+
+  const { build } = await import('rolldown')
+  const { viteImportGlobPlugin } = await import('rolldown/experimental')
+
+  const prelude = getNativePrelude({
+    dev,
+    platform,
+    serverUrl,
+  })
+
+  const entryFile = generateNativeEntry(root, '', { dev })
+
+  const platformExts =
+    platform === 'ios'
+      ? ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
+      : ['.android.tsx', '.android.ts', '.android.jsx', '.android.js']
+  const nativeExts = ['.native.tsx', '.native.ts', '.native.jsx', '.native.js']
+  const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
+
+  const inputOptions: InputOptions = {
+    input: entryFile,
+    cwd: root,
+    platform: 'neutral',
+
+    resolve: {
+      extensions: [...platformExts, ...nativeExts, ...defaultExts],
+      conditionNames: ['react-native', 'import', 'require', 'default'],
+      mainFields: ['react-native', 'module', 'main'],
+    },
+
+    transform: {
+      jsx: { runtime: 'classic' },
+      define: {
+        'process.env.NODE_ENV': dev ? '"development"' : '"production"',
+        __DEV__: dev ? 'true' : 'false',
+      },
+      inject: { React: 'react' },
+    },
+
+    treeshake: !dev,
+
+    moduleTypes: { '.js': 'jsx' },
+
+    plugins: [
+      viteImportGlobPlugin({ root }) as any,
+      flowStripPlugin(),
+      assetPlugin({ root, platform }),
+      hermesCompatSWCPlugin(),
+      codegenPlugin(),
+      ...userPlugins,
+    ],
+  }
+
+  const result = await build({
+    ...inputOptions,
+    output: {
+      format: 'esm',
+      sourcemap: true,
+      intro: prelude,
+      codeSplitting: false,
+    },
+  })
+  const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
+
+  if (!chunk || !('code' in chunk)) {
+    throw new Error('[vxrn] production build produced no output')
+  }
+
+  let code = chunk.code
+  // strip ESM exports (hermes doesn't support them)
+  code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
+  // strip DevSettings reference in prod
+  if (!dev) {
+    code = code.replace(
+      '.getEnforcing("DevSettings")',
+      '.patched_getEnforcing_DevSettings_will_not_work_in_production'
+    )
+  }
+  code = code.replace(/process\.env\.VXRN_REACT_19/g, 'false')
+
+  return { code, map: chunk.map?.toString() }
+}
+
+function generateNativeEntry(root: string, _userEntry: string, opts?: { dev?: boolean }): string {
+  const isDev = opts?.dev !== false
   // write entry at project root so import.meta.glob('./app/...') resolves correctly
   const entryPath = join(root, '.vxrn-entry-native.tsx')
-  const entryCode = `
-// auto-generated native entry for rolldown dev()
+
+  const refreshSetup = isDev
+    ? `
 // react-refresh/runtime MUST initialize before React loads
-// so it can intercept the renderer via __REACT_DEVTOOLS_GLOBAL_HOOK__
 import RefreshRuntime from 'react-refresh/runtime';
 RefreshRuntime.injectIntoGlobalHook(globalThis);
 globalThis.__ReactRefresh = RefreshRuntime;
@@ -304,7 +402,12 @@ globalThis.$RefreshReg$ = function(type, id) {
   RefreshRuntime.register(type, id);
 };
 globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+`
+    : ''
 
+  const entryCode = `
+// auto-generated native entry for rolldown
+${refreshSetup}
 import { createApp } from 'one';
 
 var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true });

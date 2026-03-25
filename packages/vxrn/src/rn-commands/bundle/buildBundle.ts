@@ -4,6 +4,7 @@ import { bundle as metroBundle } from '@vxrn/vite-plugin-metro/rn-commands'
 import { loadEnv } from '../../exports/loadEnv'
 import { fillOptions } from '../../config/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
+import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
 export type BundleCommandArgs = {
   assetsDest?: string
@@ -73,47 +74,48 @@ export async function buildBundle(
   loadEnv(dev ? 'development' : 'production', root)
 
   if (!dev) {
-    // Vite will set `process.env.NODE_ENV` to 'development' if it's not set. See: https://github.com/vitejs/vite/blob/v6.0.7/packages/vite/src/node/config.ts#L973-L977.
-    // So we need to do this here to make sure that won't break our production build, since some plugins' behavior will be overridden if `NODE_ENV` is set to 'development'.
     process.env.NODE_ENV = 'production'
   }
 
-  let nativeEntry: string | undefined = undefined
+  const useLegacyBuilder = !!process.env.VXRN_USE_LEGACY_BUILDER
 
-  // If there's an `app` directory, then we assume that the user is using One.
-  // FIXME: should use a better way to detect this.
-  const appDir = path.join(root, 'app')
-  if (FSExtra.existsSync(appDir) && FSExtra.statSync(appDir).isDirectory()) {
-    console.info('One project detected. Using One virtual entry.')
-    // TODO: Hardcoded for now to work with one. See `virtualEntryIdNative` in `packages/one/src/vite/virtualEntryPlugin.ts` and also `native: virtualEntryIdNative` in `packages/one/src/cli/run.ts`.
-    nativeEntry = 'virtual:one-entry-native'
+  let builtBundle: string
+
+  if (useLegacyBuilder) {
+    // legacy Vite builder path
+    let nativeEntry: string | undefined = undefined
+    const appDir = path.join(root, 'app')
+    if (FSExtra.existsSync(appDir) && FSExtra.statSync(appDir).isDirectory()) {
+      nativeEntry = 'virtual:one-entry-native'
+    }
+    const optionsIn = {
+      root,
+      host: '0.0.0.0',
+      entries: nativeEntry ? { native: nativeEntry } : {},
+    }
+    const options = await fillOptions(optionsIn, { mode: dev ? 'dev' : 'prod' })
+    builtBundle = await getReactNativeBundle(options, platform, {
+      mode: dev ? 'dev' : 'prod',
+      assetsDest,
+      useCache: false,
+    })
+    builtBundle = builtBundle.replace(/process\.env\.VXRN_REACT_19/g, 'false')
+    if (!dev) {
+      builtBundle = builtBundle.replace(
+        '.getEnforcing("DevSettings")',
+        '.patched_getEnforcing_DevSettings_will_not_work_in_production'
+      )
+    }
+  } else {
+    // rolldown build path
+    console.info(`[vxrn] building native bundle for ${platform}...`)
+    const result = await buildNativeBundle({
+      root,
+      platform,
+      dev,
+    })
+    builtBundle = result.code
   }
-
-  const optionsIn = {
-    root,
-    host: '0.0.0.0', // TODO: Hardcoded for now.
-    entries: nativeEntry ? { native: nativeEntry } : {},
-  }
-
-  const options = await fillOptions(optionsIn, { mode: dev ? 'dev' : 'prod' })
-  let builtBundle = await getReactNativeBundle(options, platform, {
-    mode: dev ? 'dev' : 'prod',
-    assetsDest,
-    useCache: false,
-  })
-
-  // Assuming we are not enabling this on native as it will break anyway.
-  builtBundle = builtBundle.replace(/process\.env\.VXRN_REACT_19/g, 'false')
-
-  if (!dev) {
-    // TODO: There should be a legitimate way to do this.
-    builtBundle = builtBundle.replace(
-      '.getEnforcing("DevSettings")',
-      '.patched_getEnforcing_DevSettings_will_not_work_in_production'
-    )
-  }
-
-  // note: hermes es5 transform is now applied in getReactNativeBundle
 
   console.info(`Writing bundle to ${bundleOutput}...`)
   FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: 'utf8' })
