@@ -1,9 +1,7 @@
 /**
  * native bundle prelude - minimal globals for React Native.
  * injected via rolldown's `intro` output option.
- *
- * this replaces the 375-line react-native-template.js
- * since rolldown's devMode handles the module system.
+ * rolldown's devMode handles the module system.
  */
 
 // this is output as a raw string, not compiled as a module

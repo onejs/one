@@ -2,8 +2,6 @@ import path from 'node:path'
 import FSExtra from 'fs-extra'
 import { bundle as metroBundle } from '@vxrn/vite-plugin-metro/rn-commands'
 import { loadEnv } from '../../exports/loadEnv'
-import { fillOptions } from '../../config/getOptionsFilled'
-import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
 export type BundleCommandArgs = {
@@ -77,49 +75,17 @@ export async function buildBundle(
     process.env.NODE_ENV = 'production'
   }
 
-  const useLegacyBuilder = !!process.env.VXRN_USE_LEGACY_BUILDER
+  console.info(`[vxrn] building native bundle for ${platform}...`)
+  const result = await buildNativeBundle({
+    root,
+    platform,
+    dev,
+  })
+  const builtBundle = result.code
 
-  let builtBundle: string
-
-  if (useLegacyBuilder) {
-    // legacy Vite builder path
-    let nativeEntry: string | undefined = undefined
-    const appDir = path.join(root, 'app')
-    if (FSExtra.existsSync(appDir) && FSExtra.statSync(appDir).isDirectory()) {
-      nativeEntry = 'virtual:one-entry-native'
-    }
-    const optionsIn = {
-      root,
-      host: '0.0.0.0',
-      entries: nativeEntry ? { native: nativeEntry } : {},
-    }
-    const options = await fillOptions(optionsIn, { mode: dev ? 'dev' : 'prod' })
-    builtBundle = await getReactNativeBundle(options, platform, {
-      mode: dev ? 'dev' : 'prod',
-      assetsDest,
-      useCache: false,
-    })
-    builtBundle = builtBundle.replace(/process\.env\.VXRN_REACT_19/g, 'false')
-    if (!dev) {
-      builtBundle = builtBundle.replace(
-        '.getEnforcing("DevSettings")',
-        '.patched_getEnforcing_DevSettings_will_not_work_in_production'
-      )
-    }
-  } else {
-    // rolldown build path
-    console.info(`[vxrn] building native bundle for ${platform}...`)
-    const result = await buildNativeBundle({
-      root,
-      platform,
-      dev,
-    })
-    builtBundle = result.code
-
-    // write sourcemap if available and requested
-    if (result.map && args.sourcemapOutput) {
-      FSExtra.writeFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
-    }
+  // write sourcemap if available and requested
+  if (result.map && args.sourcemapOutput) {
+    FSExtra.writeFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)

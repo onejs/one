@@ -11,9 +11,6 @@
       "path": "../query-string"
     },
     {
-      "path": "../react-native-prebuilt"
-    },
-    {
       "path": "../resolve"
     },
     {

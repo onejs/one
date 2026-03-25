@@ -18,5 +18,4 @@ export * from './utils/getServerEntry';
 export * from './plugins/rollupRemoveUnusedImports';
 export * from './plugins/autoDepOptimizePlugin';
 export * from './types';
-export { prebuildReactNativeModules } from './utils/swapPrebuiltReactModules';
 //# sourceMappingURL=index.d.ts.map

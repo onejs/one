@@ -5,7 +5,6 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    "./react-native-template.js": "./react-native-template.js",
     "./react-native-commands": "./react-native-commands.cjs",
     "./expo-plugin": "./expo-plugin.cjs",
     "./expo-js-native-debugging-plugin": "./expo-js-native-debugging-plugin.cjs",
@@ -24,10 +23,6 @@
     "./serve": {
       "types": "./types/exports/serve.d.ts",
       "default": "./dist/exports/serve.mjs"
-    },
-    "./worker": {
-      "types": "./types/worker.d.ts",
-      "default": "./dist/worker.mjs"
     },
     "./loadEnv": {
       "types": "./types/exports/loadEnv.d.ts",
@@ -49,7 +44,6 @@
     "dist",
     "run.mjs",
     "expo-js-native-debugging-plugin.cjs",
-    "react-native-template.js",
     "react-native-commands.cjs",
     "expo-plugin.cjs"
   ],
@@ -69,7 +63,6 @@
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/query-string": "workspace:*",
-    "@vxrn/react-native-prebuilt": "workspace:*",
     "@vxrn/resolve": "workspace:*",
     "@vxrn/safe-area": "workspace:*",
     "@vxrn/url-parse": "workspace:*",
