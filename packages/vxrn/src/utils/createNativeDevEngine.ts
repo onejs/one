@@ -61,6 +61,7 @@ function getNativeTransformConfig(dev: boolean) {
     },
     define: {
       'process.env.NODE_ENV': dev ? '"development"' : '"production"',
+      'process.env.VXRN_REACT_19': 'false',
       __DEV__: dev ? 'true' : 'false',
     },
     // auto-inject React import for classic JSX (React.createElement)
@@ -74,7 +75,8 @@ function getNativeTransformConfig(dev: boolean) {
 function getNativePlugins(
   root: string,
   platform: string,
-  viteImportGlobPlugin: any
+  viteImportGlobPlugin: any,
+  dev: boolean
 ): Plugin[] {
   return [
     // handle import.meta.glob (used by One's route system)
@@ -87,6 +89,10 @@ function getNativePlugins(
     hermesCompatSWCPlugin(),
     // react-native codegen for native component specs
     codegenPlugin(),
+    // downgrade polyfill "not configurable" errors to warnings (hermes v1)
+    polyfillErrorDowngradePlugin(),
+    // strip DevSettings in prod (dev-only native module)
+    stripDevSettingsPlugin(dev),
   ]
 }
 
@@ -102,29 +108,19 @@ function getNativeOutputOptions(prelude: string): OutputOptions {
 }
 
 /**
- * Post-process a native bundle to fix compatibility issues.
- * Shared between dev and prod paths.
+ * Post-process a native bundle to fix rolldown devMode output quirks.
+ * Most concerns have been moved to plugins/config:
+ * - VXRN_REACT_19 → handled by define in getNativeTransformConfig
+ * - polyfill error downgrade → polyfillErrorDowngradePlugin
+ * - DevSettings stripping → stripDevSettingsPlugin
  */
-function postProcessNativeBundle(code: string, opts?: { dev?: boolean }): string {
-  // strip ESM export statements (hermes doesn't support ESM)
+function postProcessNativeBundle(code: string): string {
+  // rolldown devMode still emits ESM export statements that hermes can't parse.
+  // this is a rolldown behavior we can't configure away yet.
   code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
-  // strip raw import.meta.hot lines (from devMode runtime, not compiled by rolldown)
+  // rolldown devMode runtime leaves some raw import.meta.hot references
+  // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
-  // downgrade polyfill "not configurable" errors to warnings
-  // hermes v1 has native fetch/Headers/etc that are non-configurable
-  code = code.replace(
-    /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
-    'console.warn("Failed to set polyfill. " +'
-  )
-  // replace VXRN_REACT_19 env reference
-  code = code.replace(/process\.env\.VXRN_REACT_19/g, 'false')
-  // strip DevSettings reference in prod
-  if (!opts?.dev) {
-    code = code.replace(
-      /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
-      'patched_getEnforcing_DevSettings_will_not_work_in_production()'
-    )
-  }
   return code
 }
 
@@ -179,7 +175,7 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
-      ...getNativePlugins(root, platform, viteImportGlobPlugin),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
 
       // add import.meta.hot.accept() to user files for HMR boundaries
       // rolldown compiles import.meta.hot -> createModuleHotContext at build time
@@ -233,7 +229,7 @@ try {
       const output = result as RolldownOutput
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
-        let code = postProcessNativeBundle(chunk.code, { dev: true })
+        let code = postProcessNativeBundle(chunk.code)
 
         // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
         // our actual HMR is handled via the outro WebSocket connection
@@ -353,7 +349,7 @@ export async function buildNativeBundle(
     treeshake: !dev,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
-      ...getNativePlugins(root, platform, viteImportGlobPlugin),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev),
       ...userPlugins,
     ],
     output: getNativeOutputOptions(prelude),
@@ -364,14 +360,11 @@ export async function buildNativeBundle(
     throw new Error('[vxrn] production build produced no output')
   }
 
-  const code = postProcessNativeBundle(chunk.code, { dev })
+  const code = postProcessNativeBundle(chunk.code)
   return { code, map: chunk.map?.toString() }
 }
 
-function generateNativeEntry(
-  root: string,
-  opts?: { dev?: boolean }
-): string {
+function generateNativeEntry(root: string, opts?: { dev?: boolean }): string {
   const isDev = opts?.dev !== false
   // write entry at project root so import.meta.glob('./app/...') resolves correctly
   const entryPath = join(root, '.vxrn-entry-native.tsx')
@@ -573,6 +566,50 @@ function codegenPlugin(): Plugin {
         })
         if (result?.code) return { code: result.code }
       } catch {}
+    },
+  }
+}
+
+/**
+ * Downgrade polyfill "not configurable" errors to warnings.
+ * hermes v1 has native fetch/Headers/etc that are non-configurable,
+ * so polyfill attempts throw errors that are noisy but harmless.
+ */
+function polyfillErrorDowngradePlugin(): Plugin {
+  return {
+    name: 'vxrn:polyfill-error-downgrade',
+    transform(code, id) {
+      if (!id.includes('node_modules')) return
+      if (!code.includes('console.error("Failed to set polyfill.')) return
+
+      return {
+        code: code.replace(
+          /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
+          'console.warn("Failed to set polyfill. " +'
+        ),
+      }
+    },
+  }
+}
+
+/**
+ * Strip DevSettings reference in production builds.
+ * In production, NativeModules.getEnforcing('DevSettings') will fail
+ * since DevSettings is a dev-only module.
+ */
+function stripDevSettingsPlugin(dev: boolean): Plugin {
+  return {
+    name: 'vxrn:strip-dev-settings',
+    transform(code, id) {
+      if (dev) return
+      if (!code.includes('DevSettings')) return
+
+      return {
+        code: code.replace(
+          /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
+          'patched_getEnforcing_DevSettings_will_not_work_in_production()'
+        ),
+      }
     },
   }
 }
