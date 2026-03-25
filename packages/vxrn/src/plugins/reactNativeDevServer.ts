@@ -5,15 +5,8 @@ import {
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
-import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
-import { existsSync } from 'node:fs'
-import { readFile, writeFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
-import { runOnWorker } from '../worker'
-import { getCacheDir } from '../utils/getCacheDir'
-import { debounce } from 'perfect-debounce'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 
 type ClientMessage = {
@@ -33,7 +26,6 @@ export function createReactNativeDevServerPlugin(
     configureServer(server: ViteDevServer) {
       const { host, port } = server.config.server
       const { root } = server.config
-      const cacheDir = options?.cacheDir || getCacheDir(root)
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
 
@@ -76,15 +68,6 @@ export function createReactNativeDevServerPlugin(
                 }
               } catch {}
             })
-            hmrWSS.emit('connection', ws, req)
-          })
-          return
-        }
-
-        // hmr socket (legacy vite HMR)
-        if (url.startsWith('/__hmr')) {
-          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
-            console.info('[vxrn] HMR client connected')
             hmrWSS.emit('connection', ws, req)
           })
           return
@@ -151,32 +134,12 @@ export function createReactNativeDevServerPlugin(
         android: 'android',
       }
 
-      // Handle React Native endpoints
-      server.middlewares.use('/file', async (req, res) => {
-        const url = new URL(req.url!, `http://${req.headers.host}`)
-        const file = url.searchParams.get('file')
-
-        if (file) {
-          const source = hotUpdateCache.get(file)
-          if (!source) {
-            console.warn(`No hot source found for`, file)
-            res.writeHead(200, { 'Content-Type': 'text/javascript' })
-            res.end('')
-            return
-          }
-
-          res.writeHead(200, { 'Content-Type': 'text/javascript' })
-          res.end(source)
-        }
-      })
-
       // rolldown DevEngine instances (per platform)
       const devEngines: Record<
         string,
         Awaited<ReturnType<typeof createNativeDevEngine>> | null
       > = {}
       const devEngineCreating: Record<string, Promise<any> | null> = {}
-      const useRolldownDev = !process.env.VXRN_USE_LEGACY_BUILDER
 
       // React Native bundle handler
       const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {
@@ -190,86 +153,39 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (async () => {
-            // new rolldown dev() path
-            if (useRolldownDev) {
-              if (!devEngines[platform]) {
-                // prevent duplicate creation from concurrent requests
-                if (!devEngineCreating[platform]) {
-                  devEngineCreating[platform] = (async () => {
-                    try {
-                      console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
-                      devEngines[platform] = await createNativeDevEngine({
-                        root,
-                        port: port || 8081,
-                        host: typeof host === 'string' ? host : 'localhost',
-                        platform,
-                        serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
-                        onHmrUpdate: (update) => {
-                          const msg = JSON.stringify(update)
-                          hmrWSS.clients.forEach((client: any) => {
-                            if (client.readyState === 1) {
-                              client.send(msg)
-                            }
-                          })
-                        },
-                      })
-                      console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
-                    } catch (err) {
-                      // clear so next request retries instead of permanently failing
-                      devEngineCreating[platform] = null
-                      throw err
-                    }
-                  })()
-                }
-                await devEngineCreating[platform]
+            if (!devEngines[platform]) {
+              // prevent duplicate creation from concurrent requests
+              if (!devEngineCreating[platform]) {
+                devEngineCreating[platform] = (async () => {
+                  try {
+                    console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
+                    devEngines[platform] = await createNativeDevEngine({
+                      root,
+                      port: port || 8081,
+                      host: typeof host === 'string' ? host : 'localhost',
+                      platform,
+                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
+                      onHmrUpdate: (update) => {
+                        const msg = JSON.stringify(update)
+                        hmrWSS.clients.forEach((client: any) => {
+                          if (client.readyState === 1) {
+                            client.send(msg)
+                          }
+                        })
+                      },
+                    })
+                    console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+                  } catch (err) {
+                    // clear so next request retries instead of permanently failing
+                    devEngineCreating[platform] = null
+                    throw err
+                  }
+                })()
               }
-
-              const result = await devEngines[platform]!.getBundle()
-              return result.code
+              await devEngineCreating[platform]
             }
 
-            // existing vite builder path
-            if (typeof options?.debugBundle === 'string' && options.debugBundlePaths) {
-              const path = options.debugBundlePaths[platform]
-              if (existsSync(path)) {
-                console.info(`  !!! - serving debug bundle from`, path)
-                return await readFile(path, 'utf-8')
-              }
-            }
-
-            const getRnBundleOptions = {
-              root,
-              cacheDir,
-              server: {
-                port: port,
-                url: `http://${host}:${port}`,
-              },
-              entries: { native: options?.entries?.native || './src/entry-native.tsx' },
-              ...options,
-            }
-
-            let outBundle = process.env.VXRN_WORKER_BUNDLE
-              ? await runOnWorker('bundle-react-native', {
-                  options: getRnBundleOptions,
-                  platform,
-                })
-              : await getReactNativeBundle(getRnBundleOptions, platform, {
-                  mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
-                })
-
-            if (server.config.webSocketToken) {
-              outBundle = `globalThis.__VITE_WS_TOKEN__ = "${server.config.webSocketToken}";\n${outBundle}`
-            }
-
-            if (options?.debugBundle && options.debugBundlePaths) {
-              const path = options.debugBundlePaths[platform]
-              if (!existsSync(path)) {
-                console.info(`  !!! - writing debug bundle to`, path)
-                await writeFile(path, outBundle)
-              }
-            }
-
-            return outBundle
+            return await devEngines[platform]!.getBundle().then((r) => r.code)
           })()
 
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
@@ -304,16 +220,6 @@ export function createReactNativeDevServerPlugin(
       server.middlewares.use('/symbolicate', (_req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('TODO')
-      })
-
-      // Clear bundle cache on file changes (debounced to avoid CPU spikes during builds)
-      const debouncedClearCache = debounce(clearCachedBundle, 100)
-      server.watcher.on('change', (path: string) => {
-        // Skip clearing cache for dist files to avoid loops during builds
-        if (path.includes('/dist/') || path.includes('\\dist\\')) {
-          return
-        }
-        debouncedClearCache()
       })
     },
   }

@@ -52,7 +52,6 @@ export const EXCLUDE_LIST = [
 
   // Native only, we don't expect SSR to use these packages.
   // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
-  '@vxrn/react-native-prebuilt',
   '@vxrn/vite-native-hmr',
   '@vxrn/compiler',
   '@vxrn/vite-native-client',
