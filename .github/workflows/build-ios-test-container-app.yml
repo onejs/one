@@ -8,9 +8,6 @@ env:
   ios_app_name: RNTestContainer
   # A unique ID to identify the app on GitHub Actions, this is used as part of cache keys and artifact names, must be unique among all workflows
   app_id: ios-rn-test-container-app
-  # use legacy builder until rn-test-container migrates to Hermes V1
-  # (rolldown output has class extends syntax that old Hermes can't parse)
-  VXRN_USE_LEGACY_BUILDER: '1'
   # The command used to prebuild the app
   prebuild_command: bun run prebuild:native --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 
