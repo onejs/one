@@ -30,9 +30,7 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
         optimizeDeps: {
           include: ['react-native-screens'],
           rolldownOptions: {
-            resolve: {
-              extensions: webExtensions,
-            },
+            ...rolldownOptions,
           },
         },
       },
