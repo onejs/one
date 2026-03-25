@@ -149,8 +149,9 @@ export async function createNativeDevEngine(
       // react-native codegen for native component specs
       codegenPlugin(),
 
-      // devMode already adds createModuleHotContext for all modules
-      // no additional React Refresh wrapper needed
+      // add import.meta.hot.accept() to user files for HMR boundaries
+      // rolldown compiles import.meta.hot → createModuleHotContext at build time
+      nativeReactRefreshPlugin(),
 
       ...userPlugins,
     ],
@@ -178,6 +179,10 @@ try {
         var g = typeof global !== 'undefined' ? global : globalThis;
         if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
         else (0, eval)(msg.code);
+        // trigger React re-render after module replacement
+        setTimeout(function() {
+          try { if (g.__ReactRefresh) g.__ReactRefresh.performReactRefresh(); } catch(re) {}
+        }, 50);
       } else if (msg.type === 'hmr:reload') {
         var g = typeof global !== 'undefined' ? global : globalThis;
         var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
@@ -210,8 +215,10 @@ try {
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
         let code = chunk.code
-        // strip ESM export statements (hermes doesn't support ESM)
+        // strip ESM export statements and raw import.meta (hermes doesn't support ESM)
         code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
+        // strip raw import.meta.hot lines (from devMode runtime, not compiled by rolldown)
+        code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
         // with hermes V1, no whole-bundle SWC transform needed
         // hermes V1 supports: classes, let/const, async/await, maps, sets
         // only class-properties/private-fields handled per-file by hermesCompatSWCPlugin
@@ -495,8 +502,9 @@ function nativeReactRefreshPlugin(): Plugin {
   return {
     name: 'vxrn:react-refresh',
     transform(code, id) {
-      // only wrap user files (not node_modules)
+      // only wrap user app files (not node_modules, not generated entry)
       if (id.includes('node_modules')) return
+      if (id.includes('.vxrn-entry-native')) return
       if (!/\.[tj]sx?$/.test(id)) return
       // skip non-component files (must have JSX or function components)
       if (!code.includes('createElement') && !code.includes('jsx') && !code.includes('function ')) return
