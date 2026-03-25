@@ -90,6 +90,15 @@ if (globalThis.ErrorUtils && globalThis.ErrorUtils.setGlobalHandler) {
   });
 }
 
+// reanimated compat - these console methods must exist to avoid EXC_BAD_ACCESS crash
+console.assert = console.assert || function() {};
+console.clear = console.clear || function() {};
+console.dir = console.dir || function() {};
+console.dirxml = console.dirxml || function() {};
+console.profile = console.profile || function() {};
+console.profileEnd = console.profileEnd || function() {};
+console.table = console.table || function() {};
+
 // react refresh stubs (overridden by react-refresh plugin in dev)
 ${
   options.dev
