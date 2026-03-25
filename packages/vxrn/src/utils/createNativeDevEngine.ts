@@ -106,6 +106,11 @@ export async function createNativeDevEngine(
       jsx: {
         runtime: 'automatic',
         development: true,
+        importSource: 'react',
+      },
+      define: {
+        'process.env.NODE_ENV': '"development"',
+        __DEV__: 'true',
       },
     },
 
@@ -176,11 +181,9 @@ if (__g.__fbBatchedBridge) {
         let code = chunk.code
         // strip ESM export statements (hermes doesn't support ESM)
         code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
-        // transform entire bundle to ES5 for hermes (class syntax not supported)
-        // rollipop forks rolldown for this; we use SWC post-processing
-        if (!process.env.VXRN_SKIP_ES5) {
-          code = await transformBundleForHermes(code)
-        }
+        // with hermes V1, no whole-bundle SWC transform needed
+        // hermes V1 supports: classes, let/const, async/await, maps, sets
+        // only class-properties/private-fields handled per-file by hermesCompatSWCPlugin
 
         // inject HMRClient registration right after AppRegistry registration
         code = code.replace(
@@ -254,7 +257,8 @@ if (__g.__fbBatchedBridge) {
  */
 async function transformBundleForHermes(code: string): Promise<string> {
   // wrap in IIFE for hermes (class syntax not supported at top level)
-  const wrapped = ';(function(){' + code + '\n})();'
+  // don't wrap in IIFE - hermes runtime (not hermesc) supports class at top level
+  const wrapped = code
   try {
     const swc = await import('@swc/core')
     const result = await swc.transform(wrapped, {
@@ -268,12 +272,11 @@ async function transformBundleForHermes(code: string): Promise<string> {
       env: {
         targets: { node: 9999 },
         include: [
-          'transform-classes',
+          // no transform-classes: hermes V1 supports class syntax natively
           'transform-class-properties',
           'transform-class-static-block',
           'transform-private-methods',
           'transform-private-property-in-object',
-          'transform-block-scoping',
         ],
       },
       jsc: {
@@ -491,7 +494,8 @@ function flowStripPlugin(): Plugin {
             dialect: 'flow',
             format: 'pretty',
           })
-          return { code: result.code, map: result.map, moduleType: 'jsx' as any }
+          // don't set moduleType - let rolldown's global moduleTypes config handle it
+          return { code: result.code, map: result.map }
         } catch (err: any) {
           console.warn(`[vxrn:flow-strip] ${id}: ${err.message}`)
         }
