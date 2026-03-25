@@ -112,6 +112,10 @@ export async function createNativeDevEngine(
         'process.env.NODE_ENV': '"development"',
         __DEV__: 'true',
       },
+      // auto-inject React import for classic JSX (React.createElement)
+      inject: {
+        React: 'react',
+      },
     },
 
     experimental: {
@@ -443,18 +447,31 @@ function generateNativeEntry(root: string, _userEntry: string): string {
   const entryPath = join(root, '.vxrn-entry-native.tsx')
   const entryCode = `
 // auto-generated native entry for rolldown dev()
-import { AppRegistry } from 'react-native';
+import React from 'react';
+import { AppRegistry, Alert } from 'react-native';
 import { createApp } from 'one';
 
+// make React available globally for classic JSX runtime (React.createElement)
+globalThis.React = React;
+
+var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true });
+// fix route keys: One expects '/app/...' prefix but import.meta.glob returns './app/...'
+var routes = {};
+Object.keys(_routes).forEach(function(key) {
+  routes[key.replace(/^\\./, '')] = _routes[key];
+});
+
+// debug: show route keys
+var routeKeys = Object.keys(routes);
+console.warn('[VXRN] Route keys (' + routeKeys.length + '): ' + routeKeys.join(', '));
+
 createApp({
-  routes: import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true }),
+  routes: routes,
   routerRoot: 'app',
   flags: {},
 });
 
-// native bridge calls runApplication automatically through Fabric
-// do NOT call runApplication from JS - it would use Legacy Architecture
-// which conflicts with the Fabric-built binary
+console.warn('[VXRN] createApp completed');
 `
   writeFileSync(entryPath, entryCode)
   return entryPath
