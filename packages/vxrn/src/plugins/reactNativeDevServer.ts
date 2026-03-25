@@ -180,7 +180,7 @@ export function createReactNativeDevServerPlugin(
                   host: typeof host === 'string' ? host : 'localhost',
                   platform,
                   entry: './app/_layout.tsx',
-                  serverUrl: `http://${host}:${port}`,
+                  serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port}`,
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
               }
