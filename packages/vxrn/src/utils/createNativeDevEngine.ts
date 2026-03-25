@@ -85,8 +85,8 @@ function getNativePlugins(
     flowStripPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
-    // hermes compat: transform class properties and private fields
-    hermesCompatSWCPlugin(),
+    // hermes compat: transform class properties, private fields, and classes (prod)
+    hermesCompatSWCPlugin(dev),
     // react-native codegen for native component specs
     codegenPlugin(),
     // downgrade polyfill "not configurable" errors to warnings (hermes v1)
@@ -491,7 +491,7 @@ function assetPlugin(opts: { root: string; platform: string }): Plugin {
  * Transforms class properties and private fields that Hermes doesn't support.
  * Inspired by rollipop's swc-plugin.ts.
  */
-function hermesCompatSWCPlugin(): Plugin {
+function hermesCompatSWCPlugin(dev: boolean): Plugin {
   let swc: typeof import('@swc/core') | null = null
 
   return {
@@ -499,13 +499,26 @@ function hermesCompatSWCPlugin(): Plugin {
     async transform(code, id) {
       if (!/\.[cm]?[jt]sx?$/.test(id)) return
       if (id.includes('\0') || id.includes('virtual:')) return
-      // only transform files with class syntax (skip files without it for perf)
-      if (!code.includes('class ') && !code.includes('class{')) return
+      // skip files that don't need transformation
+      const hasClass = code.includes('class ') || code.includes('class{')
+      const hasAsync = !dev && code.includes('async ')
+      if (!hasClass && !hasAsync) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
       try {
         if (!swc) swc = await import('@swc/core')
+
+        // prod builds: hermes bytecode compiler rejects class declarations/expressions
+        // and async functions, so we downlevel them
+        const envIncludes = [
+          'transform-class-properties',
+          'transform-class-static-block',
+          'transform-private-methods',
+          'transform-private-property-in-object',
+          ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
+        ]
+
         const result = await swc.transform(code, {
           filename: id,
           configFile: false,
@@ -514,12 +527,7 @@ function hermesCompatSWCPlugin(): Plugin {
           inputSourceMap: false,
           env: {
             targets: { node: 9999 },
-            include: [
-              'transform-class-properties',
-              'transform-class-static-block',
-              'transform-private-methods',
-              'transform-private-property-in-object',
-            ],
+            include: envIncludes,
           },
           jsc: {
             parser: { syntax: 'typescript', tsx: true },
