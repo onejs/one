@@ -6,7 +6,7 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { basename, dirname, extname, join, relative } from 'node:path'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -68,8 +68,6 @@ export async function createNativeDevEngine(
 
   const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
 
-  // our inline HMR runtime is already written without class field declarations,
-  // so no SWC compilation needed (unlike rollipop which compiles from TS)
   const hmrRuntimeSource = getHmrRuntimeSource()
 
   const prelude = getNativePrelude({
@@ -77,6 +75,9 @@ export async function createNativeDevEngine(
     platform,
     serverUrl: serverUrl || `http://${host}:${port}`,
   })
+
+  // generate a real entry file on disk (virtual modules can't use import.meta.glob)
+  const entryFile = generateNativeEntry(root, entry)
 
   let currentBundle: { code: string; map?: string } | null = null
   let bundleResolve: ((value: any) => void) | null = null
@@ -91,7 +92,7 @@ export async function createNativeDevEngine(
   const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
 
   const inputOptions: InputOptions = {
-    input: entry,
+    input: entryFile,
     cwd: root,
     platform: 'neutral',
 
@@ -109,7 +110,8 @@ export async function createNativeDevEngine(
     },
 
     experimental: {
-      devMode: { implement: hmrRuntimeSource, host, port },
+      // disable devMode temporarily to test rendering without lazy module loading
+      // devMode: { implement: hmrRuntimeSource, host, port },
       incrementalBuild: true,
     },
 
@@ -120,8 +122,8 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
-      // prepend RN initialization to the entry file
-      rnInitPlugin(entry, root),
+      // handle import.meta.glob (used by One's route system)
+      viteImportGlobPlugin({ root }) as any,
 
       // strip Flow types from react-native and @react-native packages
       flowStripPlugin(),
@@ -140,9 +142,23 @@ export async function createNativeDevEngine(
   }
 
   const outputOptions: OutputOptions = {
-    format: 'esm',
+    format: 'iife',
     sourcemap: true,
     intro: prelude,
+    // register HMRClient after all modules have initialized
+    // native side calls HMRClient.setup() right after bundle execution
+    outro: `
+var __g = typeof globalThis !== 'undefined' ? globalThis : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : this;
+if (__g.__fbBatchedBridge) {
+  __g.__fbBatchedBridge.registerCallableModule('HMRClient', {
+    setup: function() {},
+    enable: function() {},
+    disable: function() {},
+    registerBundle: function() {},
+    log: function() {},
+  });
+}
+`,
     codeSplitting: false,
     strictExecutionOrder: true,
   }
@@ -162,7 +178,16 @@ export async function createNativeDevEngine(
         code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
         // transform entire bundle to ES5 for hermes (class syntax not supported)
         // rollipop forks rolldown for this; we use SWC post-processing
-        code = await transformBundleForHermes(code)
+        if (!process.env.VXRN_SKIP_ES5) {
+          code = await transformBundleForHermes(code)
+        }
+
+        // inject HMRClient registration right after AppRegistry registration
+        code = code.replace(
+          /registerCallableModule\s*\(\s*["']AppRegistry["']/,
+          (match) =>
+            `registerCallableModule("HMRClient",{setup:function(){},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}}),${match}`
+        )
 
         currentBundle = {
           code,
@@ -228,6 +253,7 @@ export async function createNativeDevEngine(
  * Wraps in IIFE for function scope, transforms, keeps IIFE in output.
  */
 async function transformBundleForHermes(code: string): Promise<string> {
+  // wrap in IIFE for hermes (class syntax not supported at top level)
   const wrapped = ';(function(){' + code + '\n})();'
   try {
     const swc = await import('@swc/core')
@@ -236,8 +262,21 @@ async function transformBundleForHermes(code: string): Promise<string> {
       configFile: false,
       swcrc: false,
       sourceMaps: false,
+      // CRITICAL: use env.include, NOT target:'es5'
+      // target:'es5' converts property access patterns (obj.prop → (0, obj.prop))
+      // which breaks rolldown's lazy module exports (__esmMin)
+      env: {
+        targets: { node: 9999 },
+        include: [
+          'transform-classes',
+          'transform-class-properties',
+          'transform-class-static-block',
+          'transform-private-methods',
+          'transform-private-property-in-object',
+          'transform-block-scoping',
+        ],
+      },
       jsc: {
-        target: 'es5',
         parser: { syntax: 'ecmascript' },
         keepClassNames: true,
         externalHelpers: false,
@@ -388,90 +427,49 @@ function processRuntimeClass(code: string, classMarker: string): string {
   return code.slice(0, devRuntimeStart) + classBody + code.slice(devRuntimeEnd)
 }
 
-// --- plugins ---
-
 /**
- * Prepend RN initialization to the entry file.
- * Imports react-native (which triggers InitializeCore + polyfills)
- * before any app code runs.
+ * Generate a real entry file on disk for the native bundle.
+ * Uses import.meta.glob for route discovery (can't do this in virtual modules).
+ * Imports createApp from One which handles all RN initialization.
  */
-function rnInitPlugin(entryFile: string, root: string): Plugin {
-  const resolvedEntry = join(root, entryFile)
-  let loaded = false
+function generateNativeEntry(root: string, _userEntry: string): string {
+  // write entry at project root so import.meta.glob('./app/...') resolves correctly
+  const entryPath = join(root, '.vxrn-entry-native.tsx')
+  const entryCode = `
+// auto-generated native entry for rolldown dev()
+import { AppRegistry, Alert, View, Text } from 'react-native';
+import React from 'react';
 
-  return {
-    name: 'vxrn:rn-init',
-    load(id) {
-      if (loaded) return
-      // match the entry file
-      if (id === resolvedEntry || id === entryFile) {
-        loaded = true
-        const original = readFileSync(id, 'utf-8')
-        // prepend react-native import which triggers InitializeCore
-        return `import 'react-native';\n${original}`
-      }
-    },
-  }
+// no debug alerts - just run
+
+// minimal component - no hooks, just createElement
+function App() {
+  return React.createElement(View, {
+    style: { flex: 1, backgroundColor: '#2196F3', justifyContent: 'center', alignItems: 'center' }
+  },
+    React.createElement(Text, {
+      style: { color: 'white', fontSize: 28, fontWeight: 'bold' }
+    }, 'Hello from Rolldown!')
+  );
 }
 
-/**
- * Prepend React Native polyfills and InitializeCore to the entry module.
- * This provides URLSearchParams, fetch, console polyfills, etc.
- * Inspired by rollipop's prelude-plugin.ts.
- */
-async function rnPreludePlugin(root: string): Promise<Plugin> {
-  const IS_ENTRY = Symbol('IS_ENTRY')
-  let processed = false
+AppRegistry.registerComponent('main', function() { return App; });
 
-  // get polyfill paths from react-native
-  let polyfillPaths: string[] = []
+// native bridge doesn't call runApplication automatically with rolldown bundles
+// explicitly trigger it (rootTag 11 is Fabric default)
+setTimeout(function() {
   try {
-    const { resolvePath } = await import('@vxrn/resolve')
-    const getPolyfillsPath = resolvePath('react-native/rn-get-polyfills', root)
-    const { default: getPolyfills } = await import(getPolyfillsPath)
-    polyfillPaths = getPolyfills()
-  } catch {}
-
-  // add InitializeCore
-  const initCorePath = (() => {
-    try {
-      const { resolvePath } = require('@vxrn/resolve')
-      return resolvePath('react-native/Libraries/Core/InitializeCore', root)
-    } catch {
-      return null
-    }
-  })()
-
-  const imports = [
-    ...polyfillPaths.map((p: string) => `import '${p}';`),
-    ...(initCorePath ? [`import '${initCorePath}';`] : []),
-  ].join('\n')
-
-  return {
-    name: 'vxrn:rn-prelude',
-    buildStart() {
-      processed = false
-    },
-    resolveId: {
-      handler(source, _importer, extraOptions) {
-        if ((extraOptions as any).isEntry) {
-          return { id: source, meta: { [IS_ENTRY]: true } }
-        }
-      },
-    },
-    load: {
-      handler(id) {
-        if (processed) return
-        const info = this.getModuleInfo(id)
-        if (info && IS_ENTRY in (info.meta || {})) {
-          const original = readFileSync(id, 'utf-8')
-          processed = true
-          return imports + '\n' + original
-        }
-      },
-    },
+    AppRegistry.runApplication('main', { rootTag: 11, initialProps: {} });
+  } catch(e) {
+    Alert.alert('runApplication error', e.message);
   }
+}, 100);
+`
+  writeFileSync(entryPath, entryCode)
+  return entryPath
 }
+
+// --- plugins ---
 
 /**
  * Strip Flow types from react-native source files.

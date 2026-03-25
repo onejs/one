@@ -30,6 +30,19 @@ global.dispatchEvent = global.dispatchEvent || function() {};
 global.window = global.window || global;
 global.self = global.self || global;
 global.navigator = global.navigator || { product: 'ReactNative', userAgent: '' };
+global.performance = global.performance || { now: function() { return Date.now(); } };
+
+// ErrorUtils - used by RN's error handling system
+if (!global.ErrorUtils) {
+  var _handler = null;
+  global.ErrorUtils = {
+    setGlobalHandler: function(h) { _handler = h; },
+    getGlobalHandler: function() { return _handler; },
+    reportFatalError: function(e) { if (_handler) _handler(e, true); else throw e; },
+    reportError: function(e) { if (_handler) _handler(e, false); },
+    applyWithGuard: function(fn, ctx, args) { try { return fn.apply(ctx, args); } catch(e) { this.reportError(e); } },
+  };
+}
 
 if (typeof process === 'undefined') {
   globalThis.process = { env: {} };
@@ -61,6 +74,20 @@ if (typeof globalThis.URLSearchParams === 'undefined') {
   globalThis.URLSearchParams.prototype.toString = function() {
     return Object.keys(this._params).map(function(k) { return encodeURIComponent(k) + '=' + encodeURIComponent(this._params[k]); }.bind(this)).join('&');
   };
+}
+
+// suppress HMRClient.setup() error from native side
+// native calls HMRClient.setup() during bundle load but we don't use Metro HMR
+// this intercept catches the error and prevents the red screen
+var __origErrorHandler = globalThis.ErrorUtils && globalThis.ErrorUtils.getGlobalHandler && globalThis.ErrorUtils.getGlobalHandler();
+if (globalThis.ErrorUtils && globalThis.ErrorUtils.setGlobalHandler) {
+  globalThis.ErrorUtils.setGlobalHandler(function(error, isFatal) {
+    if (error && error.message && error.message.indexOf('HMRClient') !== -1) {
+      // suppress HMRClient errors silently
+      return;
+    }
+    if (__origErrorHandler) __origErrorHandler(error, isFatal);
+  });
 }
 
 // react refresh stubs (overridden by react-refresh plugin in dev)
