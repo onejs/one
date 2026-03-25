@@ -5,7 +5,7 @@ description: Using Metro bundler for more stable native builds
 
 ## Overview
 
-One supports using Metro as the bundler for native builds, providing a more stable and battle-tested bundling experience. While the default Vite bundler for native is experimental, Metro mode offers production-ready stability by leveraging React Native's standard bundler.
+One supports using Metro as the bundler for native builds, providing a more stable and battle-tested bundling experience. The default native bundler now uses Rolldown's experimental `dev()` API (alpha), while Metro mode offers production-ready stability by leveraging React Native's standard bundler.
 
 ## Why Use Metro Mode?
 
@@ -14,7 +14,7 @@ One supports using Metro as the bundler for native builds, providing a more stab
 - **Familiar Tooling**: If you're coming from standard React Native development, Metro works as expected
 
 <Notice theme="blue">
-  While Metro mode provides stability today, the One team is actively working on bringing Rolldown support to Vite mode and developing it to be production-ready.
+  The Rolldown-based native pipeline is now the default in Vite mode (alpha). It provides fast dev builds with HMR via React Refresh, and production builds with treeshaking. It requires Hermes V1. Metro mode remains recommended for production applications.
 </Notice>
 
 

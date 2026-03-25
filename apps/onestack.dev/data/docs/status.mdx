@@ -39,12 +39,14 @@ Web is production ready.
 
 Native is fully stable in [Metro mode](/docs/metro-mode). Every feature is stable and ready for production, including building to production and deploying to app stores, as it is in every way a normal Metro-built app.
 
-In Vite-native mode, we are waiting for some Rolldown APIs to continue our work. Currently, it is working but paused:
+In Vite-native mode, we now use [Rolldown](https://rolldown.rs)'s experimental `dev()` API for both development and production builds. This replaces the previous Vite builder pipeline and is the default as of v1.13. It requires Hermes V1.
 
-- Local development <Status is="stable" />
-- Production builds <Status is="stable" />
+- Local development <Status is="alpha" /> (rolldown dev() with HMR via React Refresh)
+- Production builds <Status is="alpha" /> (rolldown build() with treeshaking)
 - Assets <Status is="developing" />
 - Symbolicator <Status is="early" />
+
+Set `VXRN_USE_LEGACY_BUILDER=1` to fall back to the previous Vite-based pipeline.
 
 ---
 
