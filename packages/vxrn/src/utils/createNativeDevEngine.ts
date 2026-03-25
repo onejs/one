@@ -45,6 +45,7 @@ interface NativeDevEngineOptions {
   entry: string
   serverUrl?: string
   plugins?: Plugin[]
+  onHmrUpdate?: (update: { type: string; code?: string }) => void
 }
 
 interface NativeDevEngineResult {
@@ -64,6 +65,7 @@ export async function createNativeDevEngine(
     entry,
     serverUrl,
     plugins: userPlugins = [],
+    onHmrUpdate,
   } = options
 
   const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
@@ -119,8 +121,7 @@ export async function createNativeDevEngine(
     },
 
     experimental: {
-      // disable devMode temporarily to test rendering without lazy module loading
-      // devMode: { implement: hmrRuntimeSource, host, port },
+      devMode: { implement: hmrRuntimeSource, host, port },
       incrementalBuild: true,
     },
 
@@ -154,7 +155,7 @@ export async function createNativeDevEngine(
   }
 
   const outputOptions: OutputOptions = {
-    format: 'iife',
+    format: 'esm',
     sourcemap: true,
     intro: prelude,
     // register HMRClient after all modules have initialized
@@ -217,6 +218,20 @@ if (__g.__fbBatchedBridge) {
     onHmrUpdates: (result) => {
       if (result instanceof Error) {
         console.error('[vxrn] HMR error:', result.message)
+        onHmrUpdate?.({ type: 'hmr:error' })
+        return
+      }
+      // forward HMR patches to connected clients
+      const updates = (result as any).updates || []
+      for (const clientUpdate of updates) {
+        const update = clientUpdate.update || clientUpdate
+        if (update.type === 'Patch' && update.code) {
+          console.info('[vxrn] HMR patch sent')
+          onHmrUpdate?.({ type: 'hmr:update', code: update.code })
+        } else if (update.type === 'FullReload') {
+          console.info('[vxrn] HMR full reload')
+          onHmrUpdate?.({ type: 'hmr:reload' })
+        }
       }
     },
 
@@ -247,212 +262,12 @@ if (__g.__fbBatchedBridge) {
   }
 }
 
-// --- utils ---
-
-/**
- * Transform rolldown's runtime section (Module, DevRuntime, HMR runtime)
- * from ES6 class syntax to ES5 functions using SWC.
- *
- * Hermes doesn't support class syntax. rollipop forks rolldown to emit ES5
- * in the Rust crate. We post-process the ~300 line runtime section with SWC
- * target:'es5' instead, avoiding a fork while working with vanilla rolldown.
- */
-/**
- * Transform entire bundle to ES5 for Hermes using SWC.
- * Hermes doesn't support class syntax at all.
- * Wraps in IIFE for function scope, transforms, keeps IIFE in output.
- */
-async function transformBundleForHermes(code: string): Promise<string> {
-  // wrap in IIFE for hermes (class syntax not supported at top level)
-  // don't wrap in IIFE - hermes runtime (not hermesc) supports class at top level
-  const wrapped = code
-  try {
-    const swc = await import('@swc/core')
-    const result = await swc.transform(wrapped, {
-      filename: 'bundle.js',
-      configFile: false,
-      swcrc: false,
-      sourceMaps: false,
-      // CRITICAL: use env.include, NOT target:'es5'
-      // target:'es5' converts property access patterns (obj.prop → (0, obj.prop))
-      // which breaks rolldown's lazy module exports (__esmMin)
-      env: {
-        targets: { node: 9999 },
-        include: [
-          // no transform-classes: hermes V1 supports class syntax natively
-          'transform-class-properties',
-          'transform-class-static-block',
-          'transform-private-methods',
-          'transform-private-property-in-object',
-        ],
-      },
-      jsc: {
-        parser: { syntax: 'ecmascript' },
-        keepClassNames: true,
-        externalHelpers: false,
-        assumptions: {
-          setPublicClassFields: true,
-          privateFieldsAsProperties: true,
-        },
-      },
-      isModule: true,
-    })
-    return result.code
-  } catch (err: any) {
-    console.warn('[vxrn] SWC bundle transform failed:', err.message)
-    return code
-  }
-}
-
-// kept for reference but no longer used
-async function transformRuntimeToES5(code: string): Promise<string> {
-  const runtimeMarker = 'globalThis.__rolldown_runtime__'
-  const markerIdx = code.indexOf(runtimeMarker)
-  if (markerIdx < 0) return code
-
-  // find the start of rolldown's runtime (var Module = class)
-  const moduleStart = code.indexOf('var Module = class')
-  if (moduleStart < 0) return code
-
-  const endOfMarkerLine = code.indexOf('\n', markerIdx)
-  const runtimeEnd = code.indexOf('\n', endOfMarkerLine + 1)
-
-  // extract runtime section, wrap in IIFE for balanced parsing
-  const runtimeSection = '(function(){\n' + code.slice(moduleStart, runtimeEnd) + '\n})()'
-
-  try {
-    const swc = await import('@swc/core')
-    const result = await swc.transform(runtimeSection, {
-      filename: 'rolldown-runtime.js',
-      configFile: false,
-      swcrc: false,
-      sourceMaps: false,
-      jsc: {
-        target: 'es5',
-        parser: { syntax: 'ecmascript' },
-        keepClassNames: true,
-        externalHelpers: false,
-        assumptions: {
-          setPublicClassFields: true,
-          privateFieldsAsProperties: true,
-        },
-      },
-      isModule: false,
-    })
-
-    // keep the SWC IIFE wrapper - hermes needs runtime in function scope
-    return code.slice(0, moduleStart) + result.code + '\n' + code.slice(runtimeEnd)
-  } catch (err: any) {
-    console.warn('[vxrn] SWC runtime transform failed:', err.message)
-    return code
-  }
-}
-
-// legacy compat - kept as alias
-function moveClassFieldsToConstructor(code: string): string {
-  // process all rolldown runtime classes (Module and DevRuntime)
-  // apply to Module first, then DevRuntime
-  code = processRuntimeClass(code, 'var Module = class {')
-  code = processRuntimeClass(code, 'var DevRuntime = class {')
-  return code
-}
-
-function processRuntimeClass(code: string, classMarker: string): string {
-  const devRuntimeStart = code.indexOf(classMarker)
-  if (devRuntimeStart < 0) return code
-
-  // find the end of the DevRuntime class by matching braces
-  let braceCount = 0
-  let devRuntimeEnd = -1
-  for (let i = code.indexOf('{', devRuntimeStart); i < code.length; i++) {
-    if (code[i] === '{') braceCount++
-    else if (code[i] === '}') {
-      braceCount--
-      if (braceCount === 0) {
-        devRuntimeEnd = i + 1
-        break
-      }
-    }
-  }
-  if (devRuntimeEnd < 0) return code
-
-  let classBody = code.slice(devRuntimeStart, devRuntimeEnd)
-
-  // remove bare field declarations (e.g. `\tclientId;` or `\t\tclientId;`)
-  classBody = classBody.replace(/^\t+[a-zA-Z_$]\w*;\s*$/gm, '')
-
-  // convert ALL field initializers to constructor assignments
-  // we need to handle both simple and complex (arrow fns, IIFEs)
-  // strategy: find lines that start a field assignment at class level (2 tabs)
-  // and collect everything until the next method/field/closing brace
-  const lines = classBody.split('\n')
-  const fieldInits: string[] = []
-  const cleanedLines: string[] = []
-  let i = 0
-  while (i < lines.length) {
-    const line = lines[i]
-    const trimmed = line.trim()
-
-    // match field initializer start: `name = ...` at 2-tab indent
-    // must not be inside a method (check it's not preceded by () {)
-    const fieldStart = line.match(/^\t+([a-zA-Z_$]\w*)\s*=\s*/)
-    if (fieldStart && !trimmed.startsWith('this.') && !trimmed.startsWith('//') && !trimmed.startsWith('*')) {
-      // collect the entire field value (may span multiple lines)
-      let fieldCode = line
-      // count braces/parens to find the end
-      let opens = (fieldCode.match(/[({]/g) || []).length
-      let closes = (fieldCode.match(/[)}]/g) || []).length
-      while (opens > closes && i + 1 < lines.length) {
-        i++
-        fieldCode += '\n' + lines[i]
-        opens = (fieldCode.match(/[({]/g) || []).length
-        closes = (fieldCode.match(/[)}]/g) || []).length
-      }
-      // extract name and value
-      const eqIdx = fieldCode.indexOf('=')
-      const name = fieldCode.slice(0, eqIdx).trim().replace(/^\t+/, '')
-      let value = fieldCode.slice(eqIdx + 1).trim()
-      if (value.endsWith(';')) value = value.slice(0, -1)
-      fieldInits.push(`this.${name} = ${value};`)
-      i++
-      continue
-    }
-
-    cleanedLines.push(line)
-    i++
-  }
-  classBody = cleanedLines.join('\n')
-
-  // inject into constructor
-  if (fieldInits.length > 0) {
-    const ctorPattern = /(constructor\s*\([^)]*\)\s*\{)/
-    const m = classBody.match(ctorPattern)
-    if (m) {
-      const at = classBody.indexOf(m[0]) + m[0].length
-      const inits = fieldInits.map((f) => `\n\t\t\t${f}`).join('')
-      classBody = classBody.slice(0, at) + inits + classBody.slice(at)
-    }
-  }
-
-  return code.slice(0, devRuntimeStart) + classBody + code.slice(devRuntimeEnd)
-}
-
-/**
- * Generate a real entry file on disk for the native bundle.
- * Uses import.meta.glob for route discovery (can't do this in virtual modules).
- * Imports createApp from One which handles all RN initialization.
- */
 function generateNativeEntry(root: string, _userEntry: string): string {
   // write entry at project root so import.meta.glob('./app/...') resolves correctly
   const entryPath = join(root, '.vxrn-entry-native.tsx')
   const entryCode = `
 // auto-generated native entry for rolldown dev()
-import React from 'react';
-import { AppRegistry, Alert } from 'react-native';
 import { createApp } from 'one';
-
-// make React available globally for classic JSX runtime (React.createElement)
-globalThis.React = React;
 
 var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true });
 // fix route keys: One expects '/app/...' prefix but import.meta.glob returns './app/...'
@@ -461,17 +276,11 @@ Object.keys(_routes).forEach(function(key) {
   routes[key.replace(/^\\./, '')] = _routes[key];
 });
 
-// debug: show route keys
-var routeKeys = Object.keys(routes);
-console.warn('[VXRN] Route keys (' + routeKeys.length + '): ' + routeKeys.join(', '));
-
 createApp({
   routes: routes,
   routerRoot: 'app',
   flags: {},
 });
-
-console.warn('[VXRN] createApp completed');
 `
   writeFileSync(entryPath, entryCode)
   return entryPath

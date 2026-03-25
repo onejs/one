@@ -181,6 +181,13 @@ export function createReactNativeDevServerPlugin(
                   platform,
                   entry: './app/_layout.tsx',
                   serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port}`,
+                  onHmrUpdate: (update) => {
+                    // forward HMR updates to connected native clients via the /__hmr WebSocket
+                    const ws = hmrSocket as any
+                    if (ws && ws.readyState === 1) {
+                      ws.send(JSON.stringify(update))
+                    }
+                  },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
               }
