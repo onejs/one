@@ -5,20 +5,6 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import colors from 'picocolors'
 import { isNativeEnvironment } from '../utils/environmentUtils'
 
-const IMAGE_ASSET_EXTS = [
-  'png',
-  'jpg',
-  'jpeg',
-  'bmp',
-  'gif',
-  'webp',
-  'psd',
-  'svg',
-  'tiff',
-  'ktx',
-]
-const IMAGE_ASSET_EXTS_SET = new Set(IMAGE_ASSET_EXTS)
-
 const ASSET_DEST_DIR = 'assets'
 /** `/assets` is too common and might conflict with web, using another path for dev server in development. */
 const DEV_ASSET_DEST_PATH = '__vxrn_dev_native_assets'
@@ -172,11 +158,4 @@ export default asset;
       })
     },
   }
-}
-
-function isAssetTypeAnImage(
-  /** Normally an file extension without the leading dot. */
-  type: string
-) {
-  return IMAGE_ASSET_EXTS_SET.has(type)
 }

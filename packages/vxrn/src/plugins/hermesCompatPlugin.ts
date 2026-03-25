@@ -9,10 +9,6 @@ async function getSwc() {
   return swcModule
 }
 
-// regex to detect class features hermes can't handle:
-// class properties (field = value) and private fields (#field)
-const CLASS_PROPERTY_RE = /class\s*[\w{][\s\S]*?(?:=\s|#\w)/
-
 /**
  * SWC transform plugin for Hermes compatibility.
  * Hermes doesn't support class field initializers or private fields/methods.
@@ -80,7 +76,7 @@ export function hermesCompatPlugin(): Plugin {
               privateFieldsAsProperties: true,
             },
           },
-          isModule: id.endsWith('.cjs') ? false : true,
+          isModule: !id.endsWith('.cjs'),
         })
 
         return { code: result.code }

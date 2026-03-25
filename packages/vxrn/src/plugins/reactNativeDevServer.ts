@@ -206,7 +206,6 @@ export function createReactNativeDevServerPlugin(
                       port: port || 8081,
                       host: typeof host === 'string' ? host : 'localhost',
                       platform,
-                      entry: './app/_layout.tsx',
                       serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
                       onHmrUpdate: (update) => {
                         const msg = JSON.stringify(update)
