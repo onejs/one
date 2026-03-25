@@ -105,8 +105,8 @@ jobs:
         id: pre-check-has-build
         if: ${{ steps.get-build-hash-from-cache.outputs.build_hash != 'null' }}
         with:
-          # v2: force rebuild after RN 0.81 migration to ensure Hermes bytecode compatibility
-          key: ${{ env.app_id }}-${{ inputs.configuration }}-v2-${{ steps.get-build-hash-from-cache.outputs.build_hash }}
+          # v3: force rebuild for Hermes V1 (rolldown ESM native bundles)
+          key: ${{ env.app_id }}-${{ inputs.configuration }}-v3-${{ steps.get-build-hash-from-cache.outputs.build_hash }}
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
 
@@ -133,7 +133,7 @@ jobs:
           cache-name: ${{ env.app_id }}-pods
         with:
           path: ${{ env.test_container_app_path }}/ios/Pods
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path)) }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-hermesv1-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path)) }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
 
@@ -169,8 +169,8 @@ jobs:
         uses: actions/cache/restore@v5
         id: check-has-build
         with:
-          # v2: force rebuild after RN 0.81 migration to ensure Hermes bytecode compatibility
-          key: ${{ env.app_id }}-${{ inputs.configuration }}-v2-${{ steps.calculate-build-hash.outputs.build_hash }}
+          # v3: force rebuild for Hermes V1 (rolldown ESM native bundles)
+          key: ${{ env.app_id }}-${{ inputs.configuration }}-v3-${{ steps.calculate-build-hash.outputs.build_hash }}
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
 
@@ -186,8 +186,8 @@ jobs:
           # restore-keys: |
           #   ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
           #   ${{ runner.os }}-${{ env.cache-name }}-
-          # v2: invalidate stale build cache from RN 0.81 migration
-          key: ${{ runner.os }}-${{ env.cache-name }}-v2
+          # v3: invalidate for Hermes V1 (rolldown ESM native bundles)
+          key: ${{ runner.os }}-${{ env.cache-name }}-v3
           path: |
             ${{ env.test_container_app_path }}/build
 
