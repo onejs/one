@@ -27,8 +27,6 @@ export function createReactNativeDevServerPlugin(
     Pick<VXRNOptionsFilled, 'cacheDir' | 'debugBundle' | 'debugBundlePaths' | 'entries'>
   >
 ): Plugin {
-  let hmrSocket: WebSocket | null = null
-
   return {
     name: 'vite-plugin-react-native-server',
 
@@ -50,39 +48,27 @@ export function createReactNativeDevServerPlugin(
 
       // link up sockets
       server.httpServer?.on('upgrade', (req, socket, head) => {
+        const url = req.url || ''
+
         // devtools sockets
         for (const endpoint of devToolsSocketEndpoints) {
-          if (req.url.startsWith(endpoint)) {
+          if (url.startsWith(endpoint)) {
             const wss = websocketEndpoints[endpoint]
             wss.handleUpgrade(req, socket, head, (ws) => {
               wss.emit('connection', ws, req)
             })
+            return
           }
         }
 
-        // hmr socket
-        if (
-          req.url.startsWith(
-            '/__hmr'
-          ) /* TODO: handle '/__hmr?platform=ios' and android differently */
-        ) {
-          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
-            hmrSocket = ws as any
-            console.info('[vxrn] HMR client connected')
-            hmrWSS.emit('connection', ws, req)
-          })
-        }
-
         // rolldown HMR socket (used by rolldown dev() HMR client)
-        if (req.url?.startsWith('/hot')) {
+        if (url.startsWith('/hot')) {
           hmrWSS.handleUpgrade(req, socket, head, (ws) => {
-            hmrSocket = ws as any
             // listen for module registration messages from client
             ws.on('message', async (data: any) => {
               try {
                 const msg = JSON.parse(data.toString())
                 if (msg.type === 'hmr:module-registered' && msg.modules) {
-                  // register modules with the dev engine for HMR tracking
                   const currentEngine = devEngines['ios'] || devEngines['android']
                   if (currentEngine?.engine) {
                     await currentEngine.engine.registerModules('vxrn-dev', msg.modules)
@@ -92,10 +78,20 @@ export function createReactNativeDevServerPlugin(
             })
             hmrWSS.emit('connection', ws, req)
           })
+          return
+        }
+
+        // hmr socket (legacy vite HMR)
+        if (url.startsWith('/__hmr')) {
+          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
+            console.info('[vxrn] HMR client connected')
+            hmrWSS.emit('connection', ws, req)
+          })
+          return
         }
 
         // client socket
-        if (req.url === '/__client') {
+        if (url === '/__client') {
           clientWSS.handleUpgrade(req, socket, head, (ws) => {
             clientWSS.emit('connection', ws, req)
           })
@@ -200,23 +196,29 @@ export function createReactNativeDevServerPlugin(
                 // prevent duplicate creation from concurrent requests
                 if (!devEngineCreating[platform]) {
                   devEngineCreating[platform] = (async () => {
-                    console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
-                    devEngines[platform] = await createNativeDevEngine({
-                      root,
-                      port: port || 8081,
-                      host: typeof host === 'string' ? host : 'localhost',
-                      platform,
-                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
-                      onHmrUpdate: (update) => {
-                        const msg = JSON.stringify(update)
-                        hmrWSS.clients.forEach((client: any) => {
-                          if (client.readyState === 1) {
-                            client.send(msg)
-                          }
-                        })
-                      },
-                    })
-                    console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+                    try {
+                      console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
+                      devEngines[platform] = await createNativeDevEngine({
+                        root,
+                        port: port || 8081,
+                        host: typeof host === 'string' ? host : 'localhost',
+                        platform,
+                        serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
+                        onHmrUpdate: (update) => {
+                          const msg = JSON.stringify(update)
+                          hmrWSS.clients.forEach((client: any) => {
+                            if (client.readyState === 1) {
+                              client.send(msg)
+                            }
+                          })
+                        },
+                      })
+                      console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+                    } catch (err) {
+                      // clear so next request retries instead of permanently failing
+                      devEngineCreating[platform] = null
+                      throw err
+                    }
                   })()
                 }
                 await devEngineCreating[platform]

@@ -295,10 +295,13 @@ try {
     async getBundle() {
       if (currentBundle) return currentBundle
       if (!bundlePromise) {
+        let timeoutId: ReturnType<typeof setTimeout>
         bundlePromise = new Promise((resolve, reject) => {
-          bundleResolve = resolve
-          // timeout to prevent hanging forever if build fails
-          setTimeout(
+          bundleResolve = (value) => {
+            clearTimeout(timeoutId)
+            resolve(value)
+          }
+          timeoutId = setTimeout(
             () => reject(new Error('[vxrn] bundle build timed out after 120s')),
             120_000
           )
@@ -591,13 +594,9 @@ function nativeReactRefreshPlugin(): Plugin {
       if (id.includes('.vxrn-entry-native')) return
       if (id.startsWith('\0')) return
       if (!/\.[tj]sx?$/.test(id)) return
-      // skip non-component files
-      if (
-        !code.includes('createElement') &&
-        !code.includes('jsx') &&
-        !code.includes('function ')
-      )
-        return
+      // skip files that clearly have no components (raw source before JSX transform)
+      // check for JSX syntax (<), function keyword, or arrow functions (=>)
+      if (!/[<]|function\s|=>\s*[{(]/.test(code)) return
 
       try {
         // run react-refresh/babel to add $RefreshReg$ and $RefreshSig$
