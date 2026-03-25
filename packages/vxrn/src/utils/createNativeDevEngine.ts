@@ -180,8 +180,16 @@ try {
         if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
         else (0, eval)(msg.code);
         // trigger React re-render after module replacement
+        // the accept() callback in each file also calls this, but as a safety net:
         setTimeout(function() {
-          try { if (g.__ReactRefresh) g.__ReactRefresh.performReactRefresh(); } catch(re) {}
+          try {
+            if (g.__ReactRefresh) {
+              var result = g.__ReactRefresh.performReactRefresh();
+              console.warn('[vxrn HMR] performReactRefresh result:', result ? JSON.stringify({updated: result.updatedFamilies ? result.updatedFamilies.size : 0, stale: result.staleFamilies ? result.staleFamilies.size : 0}) : 'null (no pending updates)');
+            } else {
+              console.warn('[vxrn HMR] __ReactRefresh not available');
+            }
+          } catch(re) { console.warn('[vxrn HMR] refresh error:', re.message); }
         }, 50);
       } else if (msg.type === 'hmr:reload') {
         var g = typeof global !== 'undefined' ? global : globalThis;
@@ -308,6 +316,16 @@ function generateNativeEntry(root: string, _userEntry: string): string {
   const entryPath = join(root, '.vxrn-entry-native.tsx')
   const entryCode = `
 // auto-generated native entry for rolldown dev()
+// react-refresh/runtime MUST initialize before React loads
+// so it can intercept the renderer via __REACT_DEVTOOLS_GLOBAL_HOOK__
+import RefreshRuntime from 'react-refresh/runtime';
+RefreshRuntime.injectIntoGlobalHook(globalThis);
+globalThis.__ReactRefresh = RefreshRuntime;
+globalThis.$RefreshReg$ = function(type, id) {
+  RefreshRuntime.register(type, id);
+};
+globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+
 import { createApp } from 'one';
 
 var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true });
@@ -494,28 +512,84 @@ function codegenPlugin(): Plugin {
 }
 
 /**
- * Simple React Refresh wrapper for native HMR.
- * Appends import.meta.hot.accept() to component files so rolldown
- * generates proper HMR boundaries.
+ * React Refresh wrapper for native HMR.
+ * 1. Runs react-refresh/babel to add $RefreshReg$/$RefreshSig$ calls
+ * 2. Wraps each file with per-module $RefreshReg$ that includes the file path
+ *    (react-refresh needs unique IDs like "filepath ComponentName")
+ * 3. Appends import.meta.hot.accept() for HMR boundaries
+ * 4. Schedules performReactRefresh() after module re-execution
  */
 function nativeReactRefreshPlugin(): Plugin {
   return {
     name: 'vxrn:react-refresh',
-    transform(code, id) {
-      // only wrap user app files (not node_modules, not generated entry)
+    async transform(code, id) {
+      // only wrap user app files (not node_modules, not generated entry, not virtual)
       if (id.includes('node_modules')) return
       if (id.includes('.vxrn-entry-native')) return
+      if (id.startsWith('\0')) return
       if (!/\.[tj]sx?$/.test(id)) return
-      // skip non-component files (must have JSX or function components)
+      // skip non-component files
       if (!code.includes('createElement') && !code.includes('jsx') && !code.includes('function ')) return
 
-      // append HMR acceptance
-      const hotCode = `
+      try {
+        // run react-refresh/babel to add $RefreshReg$ and $RefreshSig$
+        const babel = await import('@babel/core')
+
+        // babel needs parser plugins for TypeScript/JSX
+        const parserPlugins: any[] = []
+        if (/\.tsx$/.test(id)) {
+          parserPlugins.push(['@babel/plugin-syntax-typescript', { isTSX: true }])
+        } else if (/\.ts$/.test(id)) {
+          parserPlugins.push('@babel/plugin-syntax-typescript')
+        } else if (/\.jsx$/.test(id)) {
+          parserPlugins.push('@babel/plugin-syntax-jsx')
+        }
+
+        const result = await babel.transformAsync(code, {
+          filename: id,
+          babelrc: false,
+          configFile: false,
+          compact: false,
+          plugins: [...parserPlugins, 'react-refresh/babel'],
+          sourceType: 'unambiguous',
+        })
+
+        if (result?.code) {
+          // escape the id for use in string literal
+          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+
+          // wrap with per-file $RefreshReg$ that includes the file path as unique ID
+          // and schedule performReactRefresh() after HMR patch re-execution
+          const wrappedCode = `
+var __prevRefreshReg = globalThis.$RefreshReg$;
+var __prevRefreshSig = globalThis.$RefreshSig$;
+if (globalThis.__ReactRefresh) {
+  globalThis.$RefreshReg$ = function(type, id) {
+    globalThis.__ReactRefresh.register(type, "${escapedId}" + " " + id);
+  };
+  globalThis.$RefreshSig$ = globalThis.__ReactRefresh.createSignatureFunctionForTransform;
+}
+
+${result.code}
+
+globalThis.$RefreshReg$ = __prevRefreshReg;
+globalThis.$RefreshSig$ = __prevRefreshSig;
 if (import.meta.hot) {
-  import.meta.hot.accept();
+  import.meta.hot.accept(function() {
+    if (globalThis.__ReactRefresh) {
+      setTimeout(function() { globalThis.__ReactRefresh.performReactRefresh(); }, 30);
+    }
+  });
 }
 `
-      return { code: code + hotCode }
+          return { code: wrappedCode }
+        }
+      } catch {
+        // if babel transform fails, just add the accept boundary
+        return {
+          code: code + `\nif (import.meta.hot) { import.meta.hot.accept(); }\n`,
+        }
+      }
     },
   }
 }
