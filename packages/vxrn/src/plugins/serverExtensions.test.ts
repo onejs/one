@@ -63,26 +63,24 @@ describe('platform-specific-resolve', () => {
       vi.restoreAllMocks()
     })
 
-    it('errors when .server file is explicitly imported on client', async () => {
+    it('stubs .server file when explicitly imported on client', async () => {
       const plugin = await getPlatformResolvePlugin()
       const resolveId = plugin.resolveId as Function
 
       const ctx = createMockContext('client', '/src/db.server.ts')
 
-      await expect(
-        resolveId.call(ctx, './db.server', '/src/page.tsx', {})
-      ).rejects.toThrow('.server file cannot be imported on client')
+      const result = await resolveId.call(ctx, './db.server', '/src/page.tsx', {})
+      expect(result).toEqual({ id: '\0server-only-stub:./db.server' })
     })
 
-    it('errors when .server file is explicitly imported on ios', async () => {
+    it('stubs .server file when explicitly imported on ios', async () => {
       const plugin = await getPlatformResolvePlugin()
       const resolveId = plugin.resolveId as Function
 
       const ctx = createMockContext('ios', '/src/db.server.ts')
 
-      await expect(
-        resolveId.call(ctx, './db.server', '/src/page.tsx', {})
-      ).rejects.toThrow('.server file cannot be imported on ios')
+      const result = await resolveId.call(ctx, './db.server', '/src/page.tsx', {})
+      expect(result).toEqual({ id: '\0server-only-stub:./db.server' })
     })
 
     it('allows .server file import on ssr', async () => {
