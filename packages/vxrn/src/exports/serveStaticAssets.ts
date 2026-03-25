@@ -1,6 +1,6 @@
 import { serveStatic } from '@hono/node-server/serve-static'
 import type { Context } from 'hono'
-import picomatch from 'picomatch'
+import micromatch from 'micromatch'
 
 // hashed assets can be cached forever, html must revalidate
 const hashedAssetRe = /[.-](?=[a-zA-Z0-9_-]*\d)[a-zA-Z0-9_-]{8,}\.\w+$/
@@ -33,7 +33,7 @@ export function compileCacheRules(
 
   for (const [value, patterns] of groups) {
     values.push(value)
-    const sources = patterns.map((p) => picomatch.makeRe(p).source)
+    const sources = patterns.map((p) => micromatch.makeRe(p).source)
     groupSources.push(`(${sources.join('|')})`)
   }
 
