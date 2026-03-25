@@ -67,6 +67,17 @@ export function createReactNativeDevServerPlugin(
           ) /* TODO: handle '/__hmr?platform=ios' and android differently */
         ) {
           hmrWSS.handleUpgrade(req, socket, head, (ws) => {
+            hmrSocket = ws as any
+            console.info('[vxrn] HMR client connected')
+            hmrWSS.emit('connection', ws, req)
+          })
+        }
+
+        // rolldown HMR socket (used by rolldown dev() HMR client)
+        if (req.url?.startsWith('/hot')) {
+          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
+            hmrSocket = ws as any
+            console.info('[vxrn] rolldown HMR client connected via /hot')
             hmrWSS.emit('connection', ws, req)
           })
         }
@@ -182,11 +193,13 @@ export function createReactNativeDevServerPlugin(
                   entry: './app/_layout.tsx',
                   serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port}`,
                   onHmrUpdate: (update) => {
-                    // forward HMR updates to connected native clients via the /__hmr WebSocket
-                    const ws = hmrSocket as any
-                    if (ws && ws.readyState === 1) {
-                      ws.send(JSON.stringify(update))
-                    }
+                    // broadcast to ALL connected /hot and /__hmr clients
+                    const msg = JSON.stringify(update)
+                    hmrWSS.clients.forEach((client: any) => {
+                      if (client.readyState === 1) {
+                        client.send(msg)
+                      }
+                    })
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
