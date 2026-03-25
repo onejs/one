@@ -137,6 +137,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       logLevel: 'warn',
       build: {
         rolldownOptions: {
+          // react-native packages import native-only exports (codegenNativeComponent etc.)
+          // from react-native, which is aliased to react-native-web on web. react-native-web
+          // doesn't export these, so rolldown would error. shimMissingExports creates
+          // undefined shims instead, matching esbuild's lenient behavior.
+          shimMissingExports: true,
           onwarn(warning, defaultHandler) {
             if (
               warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
