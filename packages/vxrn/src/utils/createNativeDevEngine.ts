@@ -68,9 +68,7 @@ export async function createNativeDevEngine(
     onHmrUpdate,
   } = options
 
-  const { dev, viteImportGlobPlugin, viteReactRefreshWrapperPlugin } = await import(
-    'rolldown/experimental'
-  )
+  const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
 
   const hmrRuntimeSource = getHmrRuntimeSource()
 
@@ -166,47 +164,33 @@ export async function createNativeDevEngine(
     // outro: connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
 try {
-  // access RN's WebSocket class via the lazy module init (not the broken global)
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
   var __hmrUrl = 'ws://${host === '0.0.0.0' ? 'localhost' : host}:${port}/hot';
   var __hmrWS = new __WS(__hmrUrl);
   __hmrWS.onmessage = function(event) {
     try {
-      console.warn('[vxrn HMR] received message: ' + (typeof event.data === 'string' ? event.data.slice(0, 100) : typeof event.data));
       var msg = JSON.parse(event.data);
       if (msg.type === 'hmr:update' && msg.code) {
-        console.warn('[vxrn HMR] evaluating patch (' + msg.code.length + ' chars)');
         var g = typeof global !== 'undefined' ? global : globalThis;
         if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
         else (0, eval)(msg.code);
-        // trigger React re-render after module replacement
-        // the accept() callback in each file also calls this, but as a safety net:
         setTimeout(function() {
-          try {
-            if (g.__ReactRefresh) {
-              var result = g.__ReactRefresh.performReactRefresh();
-              console.warn('[vxrn HMR] performReactRefresh result:', result ? JSON.stringify({updated: result.updatedFamilies ? result.updatedFamilies.size : 0, stale: result.staleFamilies ? result.staleFamilies.size : 0}) : 'null (no pending updates)');
-            } else {
-              console.warn('[vxrn HMR] __ReactRefresh not available');
-            }
-          } catch(re) { console.warn('[vxrn HMR] refresh error:', re.message); }
+          try { if (g.__ReactRefresh) g.__ReactRefresh.performReactRefresh(); } catch(e) {}
         }, 50);
       } else if (msg.type === 'hmr:reload') {
         var g = typeof global !== 'undefined' ? global : globalThis;
         var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
         if (ds && ds.reload) ds.reload();
       }
-    } catch(e) { console.error('[vxrn HMR] eval error:', e); }
+    } catch(e) { console.error('[vxrn] HMR eval error:', e); }
   };
   __hmrWS.onopen = function() {
-    console.warn('[vxrn HMR] connected, flushing ' + (__rolldown_runtime__ && __rolldown_runtime__._shared ? __rolldown_runtime__._shared._queue.length : 0) + ' queued messages');
-    // connect the rolldown runtime's messenger to this WebSocket
     if (typeof __rolldown_runtime__ !== 'undefined' && __rolldown_runtime__.setup) {
       __rolldown_runtime__.setup(__hmrWS, __hmrUrl.replace('ws://', 'http://'));
     }
   };
-  __hmrWS.onerror = function(e) { console.warn('[vxrn HMR] ws error:', e.message || e); };
-} catch(e) { console.warn('[vxrn HMR] setup failed:', e.message); }
+  __hmrWS.onerror = function(e) { console.warn('[vxrn] HMR connection error:', e.message || e); };
+} catch(e) {}
 `,
     codeSplitting: false,
     strictExecutionOrder: true,
@@ -231,12 +215,12 @@ try {
         // hermes V1 supports: classes, let/const, async/await, maps, sets
         // only class-properties/private-fields handled per-file by hermesCompatSWCPlugin
 
-        // inject our HMR client BEFORE RN's own HMRClient registration
-        // (RN's lazy HMRClient at line ~29563 would override our outro otherwise)
-        const hmrClientCode = `registerCallableModule("HMRClient",{setup:function(p,b,h,port,e,s){setTimeout(function(){try{var WS=typeof WebSocket!=="undefined"?WebSocket:typeof globalThis!=="undefined"&&globalThis.WebSocket?globalThis.WebSocket:typeof global!=="undefined"&&global.WebSocket?global.WebSocket:typeof window!=="undefined"&&window.WebSocket?window.WebSocket:null;if(!WS){console.warn("[vxrn HMR] WebSocket not available on any global");return}var ws=new WS((s||"http")+"://"+h+(port?":"+port:"")+"/hot");ws.onmessage=function(ev){try{var m=JSON.parse(ev.data);if(m.type==="hmr:update"&&m.code){if(g.globalEvalWithSourceUrl)g.globalEvalWithSourceUrl(m.code);else(0,eval)(m.code)}else if(m.type==="hmr:reload"){(g.__turboModuleProxy?g.__turboModuleProxy("DevSettings"):g.nativeModuleProxy.DevSettings).reload()}}catch(e){console.error("[vxrn HMR]",e)}};console.warn("[vxrn HMR] connected to "+h+":"+port)}catch(e){console.warn("[vxrn HMR] failed:",e)}},0)},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}})`
+        // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
+        // our actual HMR is handled via the outro WebSocket connection
+        const hmrClientStub = `registerCallableModule("HMRClient",{setup:function(){},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}})`
         code = code.replace(
           /registerCallableModule\s*\(\s*["']AppRegistry["']/,
-          (match) => hmrClientCode + ',' + match
+          (match) => hmrClientStub + ',' + match
         )
 
         currentBundle = {
@@ -261,12 +245,9 @@ try {
         return
       }
       const updates = (result as any).updates || []
-      const changedFiles = (result as any).changedFiles || []
-      console.info(`[vxrn] HMR: ${updates.length} updates, ${changedFiles.length} changed files`)
 
       for (const item of updates) {
         const update = item.update || item
-        console.info(`[vxrn] HMR update: type=${update.type}, code=${update.code?.length || 0}`)
         if (update.type === 'Patch' && update.code) {
           onHmrUpdate?.({ type: 'hmr:update', code: update.code })
         } else if (update.type === 'FullReload') {
@@ -274,9 +255,7 @@ try {
         }
       }
 
-      // if no real patches, send full reload as fallback
-      if (updates.length === 0 || (updates.length === 1 && (updates[0]?.update?.code?.length || 0) < 100)) {
-        console.info('[vxrn] HMR: no patch content, sending reload')
+      if (updates.length === 0) {
         onHmrUpdate?.({ type: 'hmr:reload' })
       }
     },

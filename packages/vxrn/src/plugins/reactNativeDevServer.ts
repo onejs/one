@@ -77,7 +77,6 @@ export function createReactNativeDevServerPlugin(
         if (req.url?.startsWith('/hot')) {
           hmrWSS.handleUpgrade(req, socket, head, (ws) => {
             hmrSocket = ws as any
-            console.info('[vxrn] rolldown HMR client connected via /hot')
             // listen for module registration messages from client
             ws.on('message', async (data: any) => {
               try {
@@ -87,7 +86,6 @@ export function createReactNativeDevServerPlugin(
                   const currentEngine = devEngines['ios'] || devEngines['android']
                   if (currentEngine?.engine) {
                     await currentEngine.engine.registerModules('vxrn-dev', msg.modules)
-                    console.info(`[vxrn] registered ${msg.modules.length} modules for HMR`)
                   }
                 }
               } catch {}
@@ -181,7 +179,7 @@ export function createReactNativeDevServerPlugin(
         string,
         Awaited<ReturnType<typeof createNativeDevEngine>> | null
       > = {}
-      const useRolldownDev = !!process.env.VXRN_USE_ROLLDOWN_DEV
+      const useRolldownDev = !process.env.VXRN_USE_LEGACY_BUILDER
 
       // React Native bundle handler
       const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {
