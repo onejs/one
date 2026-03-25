@@ -11,7 +11,6 @@ interface NativeDevEngineOptions {
     port: number;
     host?: string;
     platform: 'ios' | 'android';
-    entry: string;
     serverUrl?: string;
     plugins?: Plugin[];
     onHmrUpdate?: (update: {

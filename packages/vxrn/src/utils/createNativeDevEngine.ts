@@ -9,30 +9,8 @@
 import { writeFileSync } from 'node:fs'
 import { basename, dirname, extname, join, relative } from 'node:path'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
+import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
-
-// asset extensions that should be handled as RN assets
-const ASSET_EXTS = new Set([
-  'bmp',
-  'gif',
-  'jpg',
-  'jpeg',
-  'png',
-  'psd',
-  'svg',
-  'webp', // images
-  'mp4',
-  'mov',
-  'mp3',
-  'wav',
-  'aac',
-  'ogg', // media
-  'ttf',
-  'otf', // fonts
-  'html',
-  'pdf',
-  'zip', // documents
-])
 
 // files that contain Flow syntax and need stripping
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
@@ -42,7 +20,6 @@ interface NativeDevEngineOptions {
   port: number
   host?: string
   platform: 'ios' | 'android'
-  entry: string
   serverUrl?: string
   plugins?: Plugin[]
   onHmrUpdate?: (update: { type: string; code?: string }) => void
@@ -54,6 +31,103 @@ interface NativeDevEngineResult {
   close: () => Promise<void>
 }
 
+// shared resolve extensions for native builds
+function getResolveExtensions(platform: 'ios' | 'android'): string[] {
+  const platformExts =
+    platform === 'ios'
+      ? ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
+      : ['.android.tsx', '.android.ts', '.android.jsx', '.android.js']
+  const nativeExts = ['.native.tsx', '.native.ts', '.native.jsx', '.native.js']
+  const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
+  return [...platformExts, ...nativeExts, ...defaultExts]
+}
+
+// shared rolldown resolve config for native builds
+function getNativeResolveConfig(platform: 'ios' | 'android') {
+  return {
+    extensions: getResolveExtensions(platform),
+    conditionNames: ['react-native', 'import', 'require', 'default'],
+    mainFields: ['react-native', 'module', 'main'],
+  }
+}
+
+// shared rolldown transform config for native builds
+function getNativeTransformConfig(dev: boolean) {
+  return {
+    jsx: {
+      // use 'classic' mode (babel plugin-transform-react-jsx)
+      // 'automatic' has files where jsxDEV import fails to resolve
+      runtime: 'classic' as const,
+    },
+    define: {
+      'process.env.NODE_ENV': dev ? '"development"' : '"production"',
+      __DEV__: dev ? 'true' : 'false',
+    },
+    // auto-inject React import for classic JSX (React.createElement)
+    inject: {
+      React: 'react',
+    },
+  }
+}
+
+// shared plugins used by both dev and prod native builds
+function getNativePlugins(
+  root: string,
+  platform: string,
+  viteImportGlobPlugin: any
+): Plugin[] {
+  return [
+    // handle import.meta.glob (used by One's route system)
+    viteImportGlobPlugin({ root }) as any,
+    // strip Flow types from react-native and @react-native packages
+    flowStripPlugin(),
+    // handle asset imports (.png, .jpg, .ttf, etc.)
+    assetPlugin({ root, platform }),
+    // hermes compat: transform class properties and private fields
+    hermesCompatSWCPlugin(),
+    // react-native codegen for native component specs
+    codegenPlugin(),
+  ]
+}
+
+// shared output options for native builds
+function getNativeOutputOptions(prelude: string): OutputOptions {
+  return {
+    format: 'esm',
+    sourcemap: true,
+    intro: prelude,
+    codeSplitting: false,
+    strictExecutionOrder: true,
+  }
+}
+
+/**
+ * Post-process a native bundle to fix compatibility issues.
+ * Shared between dev and prod paths.
+ */
+function postProcessNativeBundle(code: string, opts?: { dev?: boolean }): string {
+  // strip ESM export statements (hermes doesn't support ESM)
+  code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
+  // strip raw import.meta.hot lines (from devMode runtime, not compiled by rolldown)
+  code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
+  // downgrade polyfill "not configurable" errors to warnings
+  // hermes v1 has native fetch/Headers/etc that are non-configurable
+  code = code.replace(
+    /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
+    'console.warn("Failed to set polyfill. " +'
+  )
+  // replace VXRN_REACT_19 env reference
+  code = code.replace(/process\.env\.VXRN_REACT_19/g, 'false')
+  // strip DevSettings reference in prod
+  if (!opts?.dev) {
+    code = code.replace(
+      /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
+      'patched_getEnforcing_DevSettings_will_not_work_in_production()'
+    )
+  }
+  return code
+}
+
 export async function createNativeDevEngine(
   options: NativeDevEngineOptions
 ): Promise<NativeDevEngineResult> {
@@ -62,7 +136,6 @@ export async function createNativeDevEngine(
     port,
     host = 'localhost',
     platform,
-    entry,
     serverUrl,
     plugins: userPlugins = [],
     onHmrUpdate,
@@ -79,46 +152,20 @@ export async function createNativeDevEngine(
   })
 
   // generate a real entry file on disk (virtual modules can't use import.meta.glob)
-  const entryFile = generateNativeEntry(root, entry)
+  const entryFile = generateNativeEntry(root)
 
   let currentBundle: { code: string; map?: string } | null = null
   let bundleResolve: ((value: any) => void) | null = null
   let bundlePromise: Promise<any> | null = null
 
-  // platform-specific extensions
-  const platformExts =
-    platform === 'ios'
-      ? ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
-      : ['.android.tsx', '.android.ts', '.android.jsx', '.android.js']
-  const nativeExts = ['.native.tsx', '.native.ts', '.native.jsx', '.native.js']
-  const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
+  const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
 
   const inputOptions: InputOptions = {
     input: entryFile,
     cwd: root,
     platform: 'neutral',
-
-    resolve: {
-      extensions: [...platformExts, ...nativeExts, ...defaultExts],
-      conditionNames: ['react-native', 'import', 'require', 'default'],
-      mainFields: ['react-native', 'module', 'main'],
-    },
-
-    transform: {
-      jsx: {
-        // use 'classic' mode like the old pipeline (babel plugin-transform-react-jsx)
-        // 'automatic' has 24 files where jsxDEV import fails to resolve
-        runtime: 'classic',
-      },
-      define: {
-        'process.env.NODE_ENV': '"development"',
-        __DEV__: 'true',
-      },
-      // auto-inject React import for classic JSX (React.createElement)
-      inject: {
-        React: 'react',
-      },
-    },
+    resolve: getNativeResolveConfig(platform),
+    transform: getNativeTransformConfig(true),
 
     experimental: {
       devMode: { implement: hmrRuntimeSource, host, port },
@@ -132,23 +179,10 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
-      // handle import.meta.glob (used by One's route system)
-      viteImportGlobPlugin({ root }) as any,
-
-      // strip Flow types from react-native and @react-native packages
-      flowStripPlugin(),
-
-      // handle asset imports (.png, .jpg, .ttf, etc.)
-      assetPlugin({ root, platform }),
-
-      // hermes compat: transform class properties and private fields
-      hermesCompatSWCPlugin(),
-
-      // react-native codegen for native component specs
-      codegenPlugin(),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin),
 
       // add import.meta.hot.accept() to user files for HMR boundaries
-      // rolldown compiles import.meta.hot → createModuleHotContext at build time
+      // rolldown compiles import.meta.hot -> createModuleHotContext at build time
       nativeReactRefreshPlugin(),
 
       ...userPlugins,
@@ -156,29 +190,24 @@ export async function createNativeDevEngine(
   }
 
   const outputOptions: OutputOptions = {
-    format: 'esm',
-    sourcemap: true,
-    intro: prelude,
-    // register HMRClient after all modules have initialized
-    // native side calls HMRClient.setup() right after bundle execution
-    // outro: connect HMR WebSocket using RN's WebSocket module (not the global)
+    ...getNativeOutputOptions(prelude),
+    // connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
 try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
-  var __hmrUrl = 'ws://${host === '0.0.0.0' ? 'localhost' : host}:${port}/hot';
+  var __hmrUrl = 'ws://${resolvedHost}:${port}/hot';
   var __hmrWS = new __WS(__hmrUrl);
   __hmrWS.onmessage = function(event) {
     try {
       var msg = JSON.parse(event.data);
+      var g = typeof global !== 'undefined' ? global : globalThis;
       if (msg.type === 'hmr:update' && msg.code) {
-        var g = typeof global !== 'undefined' ? global : globalThis;
         if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
         else (0, eval)(msg.code);
         setTimeout(function() {
           try { if (g.__ReactRefresh) g.__ReactRefresh.performReactRefresh(); } catch(e) {}
         }, 50);
       } else if (msg.type === 'hmr:reload') {
-        var g = typeof global !== 'undefined' ? global : globalThis;
         var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
         if (ds && ds.reload) ds.reload();
       }
@@ -192,8 +221,6 @@ try {
   __hmrWS.onerror = function(e) { console.warn('[vxrn] HMR connection error:', e.message || e); };
 } catch(e) {}
 `,
-    codeSplitting: false,
-    strictExecutionOrder: true,
   }
 
   const engine = await dev(inputOptions, outputOptions, {
@@ -206,14 +233,7 @@ try {
       const output = result as RolldownOutput
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
-        let code = chunk.code
-        // strip ESM export statements and raw import.meta (hermes doesn't support ESM)
-        code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
-        // strip raw import.meta.hot lines (from devMode runtime, not compiled by rolldown)
-        code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
-        // with hermes V1, no whole-bundle SWC transform needed
-        // hermes V1 supports: classes, let/const, async/await, maps, sets
-        // only class-properties/private-fields handled per-file by hermesCompatSWCPlugin
+        let code = postProcessNativeBundle(chunk.code, { dev: true })
 
         // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
         // our actual HMR is handled via the outro WebSocket connection
@@ -221,13 +241,6 @@ try {
         code = code.replace(
           /registerCallableModule\s*\(\s*["']AppRegistry["']/,
           (match) => hmrClientStub + ',' + match
-        )
-
-        // downgrade polyfill "not configurable" errors to warnings
-        // hermes v1 has native fetch/Headers/etc that are non-configurable
-        code = code.replace(
-          /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
-          'console.warn("Failed to set polyfill. " +'
         )
 
         currentBundle = {
@@ -326,58 +339,21 @@ export async function buildNativeBundle(
     serverUrl,
   })
 
-  const entryFile = generateNativeEntry(root, '', { dev })
+  const entryFile = generateNativeEntry(root, { dev })
 
-  const platformExts =
-    platform === 'ios'
-      ? ['.ios.tsx', '.ios.ts', '.ios.jsx', '.ios.js']
-      : ['.android.tsx', '.android.ts', '.android.jsx', '.android.js']
-  const nativeExts = ['.native.tsx', '.native.ts', '.native.jsx', '.native.js']
-  const defaultExts = ['.tsx', '.ts', '.jsx', '.js', '.mjs', '.cjs', '.json']
-
-  const inputOptions: InputOptions = {
+  const result = await build({
     input: entryFile,
     cwd: root,
     platform: 'neutral',
-
-    resolve: {
-      extensions: [...platformExts, ...nativeExts, ...defaultExts],
-      conditionNames: ['react-native', 'import', 'require', 'default'],
-      mainFields: ['react-native', 'module', 'main'],
-    },
-
-    transform: {
-      jsx: { runtime: 'classic' },
-      define: {
-        'process.env.NODE_ENV': dev ? '"development"' : '"production"',
-        __DEV__: dev ? 'true' : 'false',
-      },
-      inject: { React: 'react' },
-    },
-
+    resolve: getNativeResolveConfig(platform),
+    transform: getNativeTransformConfig(dev),
     treeshake: !dev,
-
     moduleTypes: { '.js': 'jsx' },
-
     plugins: [
-      viteImportGlobPlugin({ root }) as any,
-      flowStripPlugin(),
-      assetPlugin({ root, platform }),
-      hermesCompatSWCPlugin(),
-      codegenPlugin(),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin),
       ...userPlugins,
     ],
-  }
-
-  const result = await build({
-    ...inputOptions,
-    output: {
-      format: 'esm',
-      sourcemap: true,
-      intro: prelude,
-      codeSplitting: false,
-      strictExecutionOrder: true,
-    },
+    output: getNativeOutputOptions(prelude),
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
 
@@ -385,32 +361,12 @@ export async function buildNativeBundle(
     throw new Error('[vxrn] production build produced no output')
   }
 
-  let code = chunk.code
-  // strip ESM exports (hermes doesn't support them)
-  code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
-  // strip DevSettings reference in prod
-  if (!dev) {
-    code = code.replace(
-      /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
-      'patched_getEnforcing_DevSettings_will_not_work_in_production()'
-    )
-  }
-  code = code.replace(/process\.env\.VXRN_REACT_19/g, 'false')
-
-  // downgrade polyfill "not configurable" errors to warnings
-  // hermes v1 has native fetch/Headers/Request/Response that are non-configurable
-  // RN's polyfillGlobal logs console.error for these which triggers the red screen
-  code = code.replace(
-    /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
-    'console.warn("Failed to set polyfill. " +'
-  )
-
+  const code = postProcessNativeBundle(chunk.code, { dev })
   return { code, map: chunk.map?.toString() }
 }
 
 function generateNativeEntry(
   root: string,
-  _userEntry: string,
   opts?: { dev?: boolean }
 ): string {
   const isDev = opts?.dev !== false
@@ -489,7 +445,7 @@ function flowStripPlugin(): Plugin {
  * Returns JS code that registers the asset with RN's AssetRegistry.
  */
 function assetPlugin(opts: { root: string; platform: string }): Plugin {
-  const assetRegex = new RegExp(`\\.(?:${[...ASSET_EXTS].join('|')})$`)
+  const assetRegex = new RegExp(`\\.(?:${DEFAULT_ASSET_EXTS.join('|')})$`)
 
   return {
     name: 'vxrn:asset',
@@ -729,7 +685,6 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
   }
 
   createModuleHotContext(moduleId) {
-    var self = this;
     var ctx = {
       acceptCallbacks: [],
       accept: function(cb) {
