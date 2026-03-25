@@ -160,17 +160,32 @@ export async function createNativeDevEngine(
     intro: prelude,
     // register HMRClient after all modules have initialized
     // native side calls HMRClient.setup() right after bundle execution
+    // outro: connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
-var __g = typeof globalThis !== 'undefined' ? globalThis : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : this;
-if (__g.__fbBatchedBridge) {
-  __g.__fbBatchedBridge.registerCallableModule('HMRClient', {
-    setup: function() {},
-    enable: function() {},
-    disable: function() {},
-    registerBundle: function() {},
-    log: function() {},
-  });
-}
+try {
+  // access RN's WebSocket class via the lazy module init (not the broken global)
+  var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
+  var __hmrUrl = 'ws://${host === '0.0.0.0' ? 'localhost' : host}:${port}/hot';
+  var __hmrWS = new __WS(__hmrUrl);
+  __hmrWS.onmessage = function(event) {
+    try {
+      console.warn('[vxrn HMR] received message: ' + (typeof event.data === 'string' ? event.data.slice(0, 100) : typeof event.data));
+      var msg = JSON.parse(event.data);
+      if (msg.type === 'hmr:update' && msg.code) {
+        console.warn('[vxrn HMR] evaluating patch (' + msg.code.length + ' chars)');
+        var g = typeof global !== 'undefined' ? global : globalThis;
+        if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
+        else (0, eval)(msg.code);
+      } else if (msg.type === 'hmr:reload') {
+        var g = typeof global !== 'undefined' ? global : globalThis;
+        var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
+        if (ds && ds.reload) ds.reload();
+      }
+    } catch(e) { console.error('[vxrn HMR] eval error:', e); }
+  };
+  __hmrWS.onopen = function() { console.warn('[vxrn HMR] connected to ' + __hmrUrl); };
+  __hmrWS.onerror = function(e) { console.warn('[vxrn HMR] ws error:', e.message || e); };
+} catch(e) { console.warn('[vxrn HMR] setup failed:', e.message); }
 `,
     codeSplitting: false,
     strictExecutionOrder: true,
@@ -193,11 +208,12 @@ if (__g.__fbBatchedBridge) {
         // hermes V1 supports: classes, let/const, async/await, maps, sets
         // only class-properties/private-fields handled per-file by hermesCompatSWCPlugin
 
-        // inject HMRClient registration right after AppRegistry registration
+        // inject our HMR client BEFORE RN's own HMRClient registration
+        // (RN's lazy HMRClient at line ~29563 would override our outro otherwise)
+        const hmrClientCode = `registerCallableModule("HMRClient",{setup:function(p,b,h,port,e,s){setTimeout(function(){try{var WS=typeof WebSocket!=="undefined"?WebSocket:typeof globalThis!=="undefined"&&globalThis.WebSocket?globalThis.WebSocket:typeof global!=="undefined"&&global.WebSocket?global.WebSocket:typeof window!=="undefined"&&window.WebSocket?window.WebSocket:null;if(!WS){console.warn("[vxrn HMR] WebSocket not available on any global");return}var ws=new WS((s||"http")+"://"+h+(port?":"+port:"")+"/hot");ws.onmessage=function(ev){try{var m=JSON.parse(ev.data);if(m.type==="hmr:update"&&m.code){if(g.globalEvalWithSourceUrl)g.globalEvalWithSourceUrl(m.code);else(0,eval)(m.code)}else if(m.type==="hmr:reload"){(g.__turboModuleProxy?g.__turboModuleProxy("DevSettings"):g.nativeModuleProxy.DevSettings).reload()}}catch(e){console.error("[vxrn HMR]",e)}};console.warn("[vxrn HMR] connected to "+h+":"+port)}catch(e){console.warn("[vxrn HMR] failed:",e)}},0)},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}})`
         code = code.replace(
           /registerCallableModule\s*\(\s*["']AppRegistry["']/,
-          (match) =>
-            `registerCallableModule("HMRClient",{setup:function(){},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}}),${match}`
+          (match) => hmrClientCode + ',' + match
         )
 
         currentBundle = {
@@ -221,25 +237,33 @@ if (__g.__fbBatchedBridge) {
         onHmrUpdate?.({ type: 'hmr:error' })
         return
       }
-      // forward HMR patches to connected clients
+      // log the raw structure to understand the format
       const updates = (result as any).updates || []
-      for (const clientUpdate of updates) {
-        const update = clientUpdate.update || clientUpdate
+      console.info(`[vxrn] HMR updates: ${updates.length} items`)
+      for (let i = 0; i < updates.length; i++) {
+        const item = updates[i]
+        const update = item.update || item
+        console.info(`[vxrn] HMR[${i}]: type=${update.type}, code=${update.code?.length || 0} chars`)
         if (update.type === 'Patch' && update.code) {
-          console.info('[vxrn] HMR patch sent')
           onHmrUpdate?.({ type: 'hmr:update', code: update.code })
         } else if (update.type === 'FullReload') {
-          console.info('[vxrn] HMR full reload')
           onHmrUpdate?.({ type: 'hmr:reload' })
         }
       }
+      if (updates.length > 0) console.info('[vxrn] HMR patch sent')
     },
 
     rebuildStrategy: 'auto',
-    watch: { skipWrite: true },
+    watch: {},
   })
 
   await engine.run()
+
+  // register a dummy client so the watcher tracks module changes
+  // (rolldown only generates HMR patches for registered clients)
+  try {
+    await engine.registerModules('vxrn-dev', [])
+  } catch {}
 
   return {
     engine,
