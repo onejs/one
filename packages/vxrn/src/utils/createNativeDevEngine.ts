@@ -68,7 +68,9 @@ export async function createNativeDevEngine(
     onHmrUpdate,
   } = options
 
-  const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
+  const { dev, viteImportGlobPlugin, viteReactRefreshWrapperPlugin } = await import(
+    'rolldown/experimental'
+  )
 
   const hmrRuntimeSource = getHmrRuntimeSource()
 
@@ -147,8 +149,8 @@ export async function createNativeDevEngine(
       // react-native codegen for native component specs
       codegenPlugin(),
 
-      // TODO: add native-compatible react refresh plugin
-      // viteReactRefreshWrapperPlugin is web-only (uses HTTP imports)
+      // devMode already adds createModuleHotContext for all modules
+      // no additional React Refresh wrapper needed
 
       ...userPlugins,
     ],
@@ -183,7 +185,13 @@ try {
       }
     } catch(e) { console.error('[vxrn HMR] eval error:', e); }
   };
-  __hmrWS.onopen = function() { console.warn('[vxrn HMR] connected to ' + __hmrUrl); };
+  __hmrWS.onopen = function() {
+    console.warn('[vxrn HMR] connected, flushing ' + (__rolldown_runtime__ && __rolldown_runtime__._shared ? __rolldown_runtime__._shared._queue.length : 0) + ' queued messages');
+    // connect the rolldown runtime's messenger to this WebSocket
+    if (typeof __rolldown_runtime__ !== 'undefined' && __rolldown_runtime__.setup) {
+      __rolldown_runtime__.setup(__hmrWS, __hmrUrl.replace('ws://', 'http://'));
+    }
+  };
   __hmrWS.onerror = function(e) { console.warn('[vxrn HMR] ws error:', e.message || e); };
 } catch(e) { console.warn('[vxrn HMR] setup failed:', e.message); }
 `,
@@ -231,26 +239,31 @@ try {
       }
     },
 
-    onHmrUpdates: (result) => {
+    onHmrUpdates: async (result) => {
       if (result instanceof Error) {
         console.error('[vxrn] HMR error:', result.message)
         onHmrUpdate?.({ type: 'hmr:error' })
         return
       }
-      // log the raw structure to understand the format
       const updates = (result as any).updates || []
-      console.info(`[vxrn] HMR updates: ${updates.length} items`)
-      for (let i = 0; i < updates.length; i++) {
-        const item = updates[i]
+      const changedFiles = (result as any).changedFiles || []
+      console.info(`[vxrn] HMR: ${updates.length} updates, ${changedFiles.length} changed files`)
+
+      for (const item of updates) {
         const update = item.update || item
-        console.info(`[vxrn] HMR[${i}]: type=${update.type}, code=${update.code?.length || 0} chars`)
+        console.info(`[vxrn] HMR update: type=${update.type}, code=${update.code?.length || 0}`)
         if (update.type === 'Patch' && update.code) {
           onHmrUpdate?.({ type: 'hmr:update', code: update.code })
         } else if (update.type === 'FullReload') {
           onHmrUpdate?.({ type: 'hmr:reload' })
         }
       }
-      if (updates.length > 0) console.info('[vxrn] HMR patch sent')
+
+      // if no real patches, send full reload as fallback
+      if (updates.length === 0 || (updates.length === 1 && (updates[0]?.update?.code?.length || 0) < 100)) {
+        console.info('[vxrn] HMR: no patch content, sending reload')
+        onHmrUpdate?.({ type: 'hmr:reload' })
+      }
     },
 
     rebuildStrategy: 'auto',
@@ -259,11 +272,8 @@ try {
 
   await engine.run()
 
-  // register a dummy client so the watcher tracks module changes
-  // (rolldown only generates HMR patches for registered clients)
-  try {
-    await engine.registerModules('vxrn-dev', [])
-  } catch {}
+  // modules are registered via WebSocket messages from the HMR client
+  // (the devMode runtime sends hmr:module-registered messages)
 
   return {
     engine,
@@ -476,6 +486,32 @@ function codegenPlugin(): Plugin {
   }
 }
 
+/**
+ * Simple React Refresh wrapper for native HMR.
+ * Appends import.meta.hot.accept() to component files so rolldown
+ * generates proper HMR boundaries.
+ */
+function nativeReactRefreshPlugin(): Plugin {
+  return {
+    name: 'vxrn:react-refresh',
+    transform(code, id) {
+      // only wrap user files (not node_modules)
+      if (id.includes('node_modules')) return
+      if (!/\.[tj]sx?$/.test(id)) return
+      // skip non-component files (must have JSX or function components)
+      if (!code.includes('createElement') && !code.includes('jsx') && !code.includes('function ')) return
+
+      // append HMR acceptance
+      const hotCode = `
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
+`
+      return { code: code + hotCode }
+    },
+  }
+}
+
 // --- HMR runtime ---
 
 function getHmrRuntimeSource(): string {
@@ -485,12 +521,14 @@ var BaseDevRuntime = DevRuntime;
 
 class ReactNativeDevRuntime extends BaseDevRuntime {
   constructor() {
+    var _shared = { _socket: null, _queue: [] };
     var clientId = 'rn-' + Date.now() + '-' + Math.random().toString(36).slice(2);
     super({ send: function(msg) {
       var s = JSON.stringify(msg);
-      if (this._socket && this._socket.readyState === 1) { this._socket.send(s); }
-      else { this._queue.push(s); }
-    }.bind({ _socket: null, _queue: [] })}, clientId);
+      if (_shared._socket && _shared._socket.readyState === 1) { _shared._socket.send(s); }
+      else { _shared._queue.push(s); }
+    }}, clientId);
+    this._shared = _shared;
     this._socket = null;
     this._queue = [];
     this.moduleHotContexts = {};
@@ -549,15 +587,25 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
   setup(socket, origin) {
     if (this._socket) return;
     this._socket = socket;
+    // also set the shared messenger socket so queued messages can flush
+    if (this._shared) this._shared._socket = socket;
 
-    if (socket.readyState === 1) {
+    var flushQueues = function() {
+      // flush messenger queue
+      if (this._shared && this._shared._queue.length) {
+        for (var i = 0; i < this._shared._queue.length; i++) socket.send(this._shared._queue[i]);
+        this._shared._queue = [];
+      }
+      // flush instance queue
       for (var i = 0; i < this._queue.length; i++) socket.send(this._queue[i]);
       this._queue = [];
+    }.bind(this);
+
+    if (socket.readyState === 1) {
+      flushQueues();
     } else {
-      var self = this;
       socket.addEventListener('open', function() {
-        for (var i = 0; i < self._queue.length; i++) socket.send(self._queue[i]);
-        self._queue = [];
+        flushQueues();
       }, { once: true });
     }
 

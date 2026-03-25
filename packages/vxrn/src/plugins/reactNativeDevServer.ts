@@ -78,6 +78,20 @@ export function createReactNativeDevServerPlugin(
           hmrWSS.handleUpgrade(req, socket, head, (ws) => {
             hmrSocket = ws as any
             console.info('[vxrn] rolldown HMR client connected via /hot')
+            // listen for module registration messages from client
+            ws.on('message', async (data: any) => {
+              try {
+                const msg = JSON.parse(data.toString())
+                if (msg.type === 'hmr:module-registered' && msg.modules) {
+                  // register modules with the dev engine for HMR tracking
+                  const currentEngine = devEngines['ios'] || devEngines['android']
+                  if (currentEngine?.engine) {
+                    await currentEngine.engine.registerModules('vxrn-dev', msg.modules)
+                    console.info(`[vxrn] registered ${msg.modules.length} modules for HMR`)
+                  }
+                }
+              } catch {}
+            })
             hmrWSS.emit('connection', ws, req)
           })
         }
