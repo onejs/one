@@ -171,6 +171,35 @@ function QualifiedNavigator({
   contextKey,
   router = StackRouter,
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
+  // LATE MOUNT FIX: when a parent layout conditionally renders (e.g. auth gate),
+  // this navigator may mount after initialState was consumed. compute the
+  // correct initialRouteName from the browser URL so the navigator starts on
+  // the right route instead of defaulting to the first one.
+  const resolvedInitialRouteName = React.useMemo(() => {
+    if (initialRouteName) return initialRouteName
+    if (typeof window === 'undefined') return undefined
+
+    const browserPath = window.location.pathname
+    if (!browserPath) return undefined
+
+    // extract screen names from the screens array
+    const screenNames: string[] = []
+    for (const screen of screens) {
+      const props = (screen as any)?.props
+      if (props?.name) screenNames.push(props.name)
+    }
+
+    // find which screen matches the URL
+    for (const name of screenNames) {
+      const base = name.replace(/\/index$/, '')
+      if (browserPath.endsWith('/' + base) || browserPath.includes('/' + base + '/')) {
+        return name
+      }
+    }
+
+    return undefined
+  }, [initialRouteName, screens])
+
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
     router,
     {
@@ -178,7 +207,7 @@ function QualifiedNavigator({
       id: contextKey,
       children: screens,
       screenOptions,
-      initialRouteName,
+      initialRouteName: resolvedInitialRouteName,
     }
   )
 
@@ -252,11 +281,13 @@ export function useSlot() {
 
   const renderedElement = descriptorsRef.current[current.key]?.render() ?? null
 
-  // Use static key to prevent layout remounts when route keys change during navigation.
-  // Safe because Slot only renders one screen at a time.
-  // Use cloneElement to properly clone the React element with a new key.
+  // Use key based on route name to prevent layout remounts when route keys change
+  // (same route, different key), while allowing React to swap components when
+  // the actual route changes (e.g. late-mounting navigator correcting its state).
   if (renderedElement !== null) {
-    return React.cloneElement(renderedElement, { key: SLOT_STATIC_KEY })
+    return React.cloneElement(renderedElement, {
+      key: `${SLOT_STATIC_KEY}-${current.name}`,
+    })
   }
 
   return renderedElement

@@ -68,6 +68,12 @@ declare module 'one' {
         | `/hooks/cases/navigating-into-nested-navigator/nested-1`
         | `/hooks/cases/navigating-into-nested-navigator/nested-1/nested-2`
         | `/hooks/cases/navigating-into-nested-navigator/nested-1/nested-2/page`
+        | `/hooks/cases/route-group-pathname`
+        | `/hooks/cases/route-group-pathname/(tabs)`
+        | `/hooks/cases/route-group-pathname/(tabs)/feed`
+        | `/hooks/cases/route-group-pathname/(tabs)/search`
+        | `/hooks/cases/route-group-pathname/feed`
+        | `/hooks/cases/route-group-pathname/search`
         | `/hooks/contents`
         | `/hooks/contents/page-1`
         | `/hooks/contents/page-2`

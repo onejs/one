@@ -567,6 +567,17 @@ function syncStoreRootState() {
   if (navigationRef.isReady()) {
     const currentState = navigationRef.getRootState() as unknown as OneRouter.ResultState
     if (rootState !== currentState) {
+      // when a parent layout conditionally renders (e.g. auth gate), getRootState()
+      // can return incomplete/wrong state before all navigators mount. don't
+      // overwrite routeInfo with wrong pathname while initial state is still valid.
+      if (initialState && routeInfo?.pathname) {
+        const nextRouteInfo = getRouteInfo(currentState)
+        if (nextRouteInfo.pathname !== routeInfo.pathname) {
+          // pathname would change — skip to preserve initial URL truth
+          rootState = currentState
+          return
+        }
+      }
       updateState(currentState)
     }
   }
