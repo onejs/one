@@ -181,9 +181,12 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
 
   const { labelProcess } = await import('./cli/label-process')
   const { removeUndefined } = await import('./utils/removeUndefined')
-  const { loadEnv, serve: vxrnServe, serveStaticAssets, compileCacheRules } = await import(
-    'vxrn/serve'
-  )
+  const {
+    loadEnv,
+    serve: vxrnServe,
+    serveStaticAssets,
+    compileCacheRules,
+  } = await import('vxrn/serve')
   const { oneServe } = await import('./server/oneServe')
 
   labelProcess('serve')

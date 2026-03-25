@@ -6,7 +6,7 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { basename, dirname, extname, join, relative } from 'node:path'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -275,8 +275,13 @@ try {
     async getBundle() {
       if (currentBundle) return currentBundle
       if (!bundlePromise) {
-        bundlePromise = new Promise((resolve) => {
+        bundlePromise = new Promise((resolve, reject) => {
           bundleResolve = resolve
+          // timeout to prevent hanging forever if build fails
+          setTimeout(
+            () => reject(new Error('[vxrn] bundle build timed out after 120s')),
+            120_000
+          )
         })
       }
       await engine.ensureLatestBuildOutput()
@@ -364,6 +369,7 @@ export async function buildNativeBundle(
       sourcemap: true,
       intro: prelude,
       codeSplitting: false,
+      strictExecutionOrder: true,
     },
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
@@ -387,7 +393,11 @@ export async function buildNativeBundle(
   return { code, map: chunk.map?.toString() }
 }
 
-function generateNativeEntry(root: string, _userEntry: string, opts?: { dev?: boolean }): string {
+function generateNativeEntry(
+  root: string,
+  _userEntry: string,
+  opts?: { dev?: boolean }
+): string {
   const isDev = opts?.dev !== false
   // write entry at project root so import.meta.glob('./app/...') resolves correctly
   const entryPath = join(root, '.vxrn-entry-native.tsx')
@@ -611,7 +621,12 @@ function nativeReactRefreshPlugin(): Plugin {
       if (id.startsWith('\0')) return
       if (!/\.[tj]sx?$/.test(id)) return
       // skip non-component files
-      if (!code.includes('createElement') && !code.includes('jsx') && !code.includes('function ')) return
+      if (
+        !code.includes('createElement') &&
+        !code.includes('jsx') &&
+        !code.includes('function ')
+      )
+        return
 
       try {
         // run react-refresh/babel to add $RefreshReg$ and $RefreshSig$
@@ -773,23 +788,8 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
       }, { once: true });
     }
 
-    var runtime = this;
-    socket.addEventListener('message', function(event) {
-      var msg = JSON.parse(event.data);
-      if (msg.type === 'hmr:update') {
-        if (globalThis.globalEvalWithSourceUrl) {
-          globalThis.globalEvalWithSourceUrl(msg.code);
-        } else {
-          (0, eval)(msg.code);
-        }
-      } else if (msg.type === 'hmr:reload') {
-        var moduleName = 'DevSettings';
-        (globalThis.__turboModuleProxy
-          ? globalThis.__turboModuleProxy(moduleName)
-          : globalThis.nativeModuleProxy[moduleName]
-        ).reload();
-      }
-    });
+    // HMR message handling is done by the outro WebSocket handler
+    // the runtime's setup() only needs to flush queued messages
   }
 }
 

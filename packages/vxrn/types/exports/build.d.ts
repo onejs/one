@@ -13,15 +13,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         readonly mode: "development" | "production";
         readonly clean: false | "vite";
         readonly root: string;
-        readonly server: Required<{
-            host?: string;
-            port?: number;
-            compress?: boolean;
-            loadEnv?: boolean;
-        }> & {
-            url: string;
-            protocol: string;
-        };
+        readonly server: import("..").VXRNServeOptionsFilled;
         readonly entries: {
             native: string;
             readonly web?: string;

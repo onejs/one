@@ -179,6 +179,7 @@ export function createReactNativeDevServerPlugin(
         string,
         Awaited<ReturnType<typeof createNativeDevEngine>> | null
       > = {}
+      const devEngineCreating: Record<string, Promise<any> | null> = {}
       const useRolldownDev = !process.env.VXRN_USE_LEGACY_BUILDER
 
       // React Native bundle handler
@@ -196,25 +197,30 @@ export function createReactNativeDevServerPlugin(
             // new rolldown dev() path
             if (useRolldownDev) {
               if (!devEngines[platform]) {
-                console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
-                devEngines[platform] = await createNativeDevEngine({
-                  root,
-                  port,
-                  host: typeof host === 'string' ? host : 'localhost',
-                  platform,
-                  entry: './app/_layout.tsx',
-                  serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port}`,
-                  onHmrUpdate: (update) => {
-                    // broadcast to ALL connected /hot and /__hmr clients
-                    const msg = JSON.stringify(update)
-                    hmrWSS.clients.forEach((client: any) => {
-                      if (client.readyState === 1) {
-                        client.send(msg)
-                      }
+                // prevent duplicate creation from concurrent requests
+                if (!devEngineCreating[platform]) {
+                  devEngineCreating[platform] = (async () => {
+                    console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
+                    devEngines[platform] = await createNativeDevEngine({
+                      root,
+                      port: port || 8081,
+                      host: typeof host === 'string' ? host : 'localhost',
+                      platform,
+                      entry: './app/_layout.tsx',
+                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
+                      onHmrUpdate: (update) => {
+                        const msg = JSON.stringify(update)
+                        hmrWSS.clients.forEach((client: any) => {
+                          if (client.readyState === 1) {
+                            client.send(msg)
+                          }
+                        })
+                      },
                     })
-                  },
-                })
-                console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+                    console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+                  })()
+                }
+                await devEngineCreating[platform]
               }
 
               const result = await devEngines[platform]!.getBundle()

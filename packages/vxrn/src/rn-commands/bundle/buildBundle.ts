@@ -115,6 +115,11 @@ export async function buildBundle(
       dev,
     })
     builtBundle = result.code
+
+    // write sourcemap if available and requested
+    if (result.map && args.sourcemapOutput) {
+      FSExtra.writeFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
+    }
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
