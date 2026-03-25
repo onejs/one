@@ -104,9 +104,9 @@ export async function createNativeDevEngine(
 
     transform: {
       jsx: {
-        runtime: 'automatic',
-        development: true,
-        importSource: 'react',
+        // use 'classic' mode like the old pipeline (babel plugin-transform-react-jsx)
+        // 'automatic' has 24 files where jsxDEV import fails to resolve
+        runtime: 'classic',
       },
       define: {
         'process.env.NODE_ENV': '"development"',
@@ -138,6 +138,9 @@ export async function createNativeDevEngine(
 
       // hermes compat: transform class properties and private fields
       hermesCompatSWCPlugin(),
+
+      // react-native codegen for native component specs
+      codegenPlugin(),
 
       // TODO: add native-compatible react refresh plugin
       // viteReactRefreshWrapperPlugin is web-only (uses HTTP imports)
@@ -440,33 +443,18 @@ function generateNativeEntry(root: string, _userEntry: string): string {
   const entryPath = join(root, '.vxrn-entry-native.tsx')
   const entryCode = `
 // auto-generated native entry for rolldown dev()
-import { AppRegistry, Alert, View, Text } from 'react-native';
-import React from 'react';
+import { AppRegistry } from 'react-native';
+import { createApp } from 'one';
 
-// no debug alerts - just run
+createApp({
+  routes: import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true }),
+  routerRoot: 'app',
+  flags: {},
+});
 
-// minimal component - no hooks, just createElement
-function App() {
-  return React.createElement(View, {
-    style: { flex: 1, backgroundColor: '#2196F3', justifyContent: 'center', alignItems: 'center' }
-  },
-    React.createElement(Text, {
-      style: { color: 'white', fontSize: 28, fontWeight: 'bold' }
-    }, 'Hello from Rolldown!')
-  );
-}
-
-AppRegistry.registerComponent('main', function() { return App; });
-
-// native bridge doesn't call runApplication automatically with rolldown bundles
-// explicitly trigger it (rootTag 11 is Fabric default)
-setTimeout(function() {
-  try {
-    AppRegistry.runApplication('main', { rootTag: 11, initialProps: {} });
-  } catch(e) {
-    Alert.alert('runApplication error', e.message);
-  }
-}, 100);
+// native bridge calls runApplication automatically through Fabric
+// do NOT call runApplication from JS - it would use Legacy Architecture
+// which conflicts with the Fabric-built binary
 `
   writeFileSync(entryPath, entryCode)
   return entryPath
@@ -604,6 +592,36 @@ function hermesCompatSWCPlugin(): Plugin {
       } catch (err: any) {
         // don't crash on SWC transform errors (eg static blocks not supported)
       }
+    },
+  }
+}
+
+/**
+ * Run @react-native/babel-plugin-codegen on native component spec files.
+ * Without this, native components (RNSScreen, SafeAreaView, etc.) get
+ * "Codegen didn't run" warnings and may not render correctly.
+ */
+function codegenPlugin(): Plugin {
+  const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
+  const SPEC_FILE_RE = /[/\\]specs?[/\\]/
+
+  return {
+    name: 'vxrn:codegen',
+    async transform(code, id) {
+      if (!NATIVE_COMPONENT_RE.test(id) && !SPEC_FILE_RE.test(id)) return
+
+      try {
+        const babel = await import('@babel/core')
+        const result = await babel.transformAsync(code, {
+          filename: id,
+          babelrc: false,
+          configFile: false,
+          compact: false,
+          plugins: ['@react-native/babel-plugin-codegen'],
+          sourceType: 'unambiguous',
+        })
+        if (result?.code) return { code: result.code }
+      } catch {}
     },
   }
 }
