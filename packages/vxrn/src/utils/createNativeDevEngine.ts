@@ -223,6 +223,13 @@ try {
           (match) => hmrClientStub + ',' + match
         )
 
+        // downgrade polyfill "not configurable" errors to warnings
+        // hermes v1 has native fetch/Headers/etc that are non-configurable
+        code = code.replace(
+          /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
+          'console.warn("Failed to set polyfill. " +'
+        )
+
         currentBundle = {
           code,
           map: chunk.map?.toString(),
@@ -384,11 +391,19 @@ export async function buildNativeBundle(
   // strip DevSettings reference in prod
   if (!dev) {
     code = code.replace(
-      '.getEnforcing("DevSettings")',
-      '.patched_getEnforcing_DevSettings_will_not_work_in_production'
+      /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
+      'patched_getEnforcing_DevSettings_will_not_work_in_production()'
     )
   }
   code = code.replace(/process\.env\.VXRN_REACT_19/g, 'false')
+
+  // downgrade polyfill "not configurable" errors to warnings
+  // hermes v1 has native fetch/Headers/Request/Response that are non-configurable
+  // RN's polyfillGlobal logs console.error for these which triggers the red screen
+  code = code.replace(
+    /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
+    'console.warn("Failed to set polyfill. " +'
+  )
 
   return { code, map: chunk.map?.toString() }
 }
