@@ -11,7 +11,12 @@ export function render(element: React.ReactNode) {
 
   if (globalThis['__vxrnRoot']) {
     globalThis['__vxrnVersion']++
-    globalThis['__vxrnRoot'].render(element)
+    // wrap in startTransition so Suspense-based route resolution keeps the
+    // old tree visible while new route modules resolve, instead of flashing
+    // the fallback (or losing the tree entirely in error boundaries)
+    startTransition(() => {
+      globalThis['__vxrnRoot'].render(element)
+    })
   } else {
     startTransition(() => {
       const rootElement = process.env.ONE_USE_FASTER_DOCUMENT
