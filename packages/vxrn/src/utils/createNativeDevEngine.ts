@@ -124,6 +124,55 @@ function postProcessNativeBundle(code: string): string {
   return code
 }
 
+/**
+ * Downlevel class fields in the final bundle for Hermes compatibility.
+ * Rolldown's internal runtime (\0rolldown/runtime.js) is injected directly
+ * into the output — it never passes through the per-file transform pipeline,
+ * so hermesCompatSWCPlugin can't touch it. This post-bundle pass catches
+ * class field declarations (e.g. `modules = {}`, `clientId;`) that old
+ * Hermes cannot parse.
+ *
+ * Note: sourcemaps are not chained here — the transform only affects the
+ * rolldown runtime preamble (~100 lines), so user code offsets shift by a
+ * small constant. Full sourcemap chaining would add complexity for minimal
+ * benefit since the runtime is not user-debuggable code.
+ */
+async function downlevelClassFieldsInBundle(code: string): Promise<string> {
+  try {
+    const swc = await import('@swc/core')
+    const result = await swc.transform(code, {
+      filename: 'bundle.js',
+      configFile: false,
+      swcrc: false,
+      sourceMaps: false,
+      inputSourceMap: false,
+      isModule: false,
+      env: {
+        targets: { node: 9999 },
+        include: [
+          'transform-class-properties',
+          'transform-class-static-block',
+          'transform-private-methods',
+          'transform-private-property-in-object',
+        ],
+      },
+      jsc: {
+        parser: { syntax: 'ecmascript' },
+        transform: { react: { runtime: 'preserve' } },
+        externalHelpers: false,
+        assumptions: {
+          setPublicClassFields: true,
+          privateFieldsAsProperties: true,
+        },
+      },
+    })
+    return result.code
+  } catch (err) {
+    console.warn('[vxrn] downlevelClassFieldsInBundle failed, returning original:', err)
+    return code
+  }
+}
+
 export async function createNativeDevEngine(
   options: NativeDevEngineOptions
 ): Promise<NativeDevEngineResult> {
@@ -230,6 +279,10 @@ try {
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
         let code = postProcessNativeBundle(chunk.code)
+
+        // downlevel class fields from the rolldown runtime (virtual module
+        // skipped by the per-file SWC plugin) so old Hermes can parse them
+        code = await downlevelClassFieldsInBundle(code)
 
         // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
         // our actual HMR is handled via the outro WebSocket connection
@@ -360,7 +413,8 @@ export async function buildNativeBundle(
     throw new Error('[vxrn] production build produced no output')
   }
 
-  const code = postProcessNativeBundle(chunk.code)
+  let code = postProcessNativeBundle(chunk.code)
+  code = await downlevelClassFieldsInBundle(code)
   return { code, map: chunk.map?.toString() }
 }
 
