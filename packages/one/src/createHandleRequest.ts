@@ -28,6 +28,21 @@ type RequestHandlerResponse = null | string | Response
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
+// ensure handler results are always a proper Response so middleware
+// can safely use response.body / response.headers / new Response(response.body, ...)
+function ensureResponse(value: any): Response {
+  if (value instanceof Response) return value
+  if (typeof value === 'string') {
+    return new Response(value, {
+      headers: { 'Content-Type': 'text/html' },
+    })
+  }
+  if (value && typeof value === 'object') {
+    return Response.json(value)
+  }
+  return new Response(value)
+}
+
 export async function runMiddlewares(
   handlers: RequestHandlers,
   request: Request,
@@ -57,7 +72,7 @@ export async function runMiddlewares(
       if (debugRouter) {
         console.info(`[one] ✓ middleware chain complete`)
       }
-      return await getResponse()
+      return ensureResponse(await getResponse())
     }
 
     if (debugRouter) {
