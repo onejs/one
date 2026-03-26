@@ -131,6 +131,10 @@ export function isRouteProtected(href: string): boolean {
 export let hasAttemptedToHideSplash = false
 export let initialState: OneRouter.ResultState | undefined
 export let rootState: OneRouter.ResultState | undefined
+// the original pathname from the initial page load, used by late-mounting
+// navigators to determine the correct initial route even after React Navigation's
+// linking has pushed a different URL during unmount/remount cycles
+export let initialPathname: string | undefined
 
 let nextState: OneRouter.ResultState | undefined
 export let routeInfo: UrlObject | undefined
@@ -282,6 +286,7 @@ export function initialize(
 
 function cleanUpState() {
   initialState = undefined
+  initialPathname = undefined
   rootState = undefined
   nextState = undefined
   routeInfo = undefined
@@ -292,6 +297,11 @@ function cleanUpState() {
 
 function setupLinkingAndRouteInfo(initialLocation?: URL) {
   initialState = setupLinking(routeNode, initialLocation)
+
+  // capture the original pathname before React Navigation's linking can modify it
+  initialPathname =
+    initialLocation?.pathname ??
+    (typeof window !== 'undefined' ? window.location.pathname : undefined)
 
   if (initialState) {
     rootState = initialState

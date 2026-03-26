@@ -641,7 +641,6 @@
         "@vxrn/compiler": "workspace:*",
         "@vxrn/debug": "workspace:*",
         "@vxrn/query-string": "workspace:*",
-        "@vxrn/react-native-prebuilt": "workspace:*",
         "@vxrn/resolve": "workspace:*",
         "@vxrn/safe-area": "workspace:*",
         "@vxrn/url-parse": "workspace:*",

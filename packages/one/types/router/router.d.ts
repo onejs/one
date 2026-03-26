@@ -30,6 +30,7 @@ export declare function isRouteProtected(href: string): boolean;
 export declare let hasAttemptedToHideSplash: boolean;
 export declare let initialState: OneRouter.ResultState | undefined;
 export declare let rootState: OneRouter.ResultState | undefined;
+export declare let initialPathname: string | undefined;
 export declare let routeInfo: UrlObject | undefined;
 export declare let navigationRef: OneRouter.NavigationRef;
 export type ValidationState = {
