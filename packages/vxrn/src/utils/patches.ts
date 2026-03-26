@@ -103,6 +103,8 @@ export async function applyDependencyPatches(
 
   // track results per module
   const results = new Map<string, PatchResult>()
+  // track modules that already warned about transform failures (to avoid spam)
+  const transformWarnedModules = new Set<string>()
 
   await Promise.all(
     nodeModulesDirs.map(async (nodeModulesDir) => {
@@ -202,26 +204,42 @@ export async function applyDependencyPatches(
                   if (typeof patchDef === 'string') {
                     patchedContent = patchDef
                   } else if (Array.isArray(patchDef)) {
-                    let contents = sourceContent
-                    for (const strategy of patchDef) {
-                      if (strategy === 'flow') {
-                        contents = await transformFlowBabel(contents)
+                    // strategy-array patches (flow/jsx/swc transforms) are non-critical
+                    // if they fail (e.g. babel + lru-cache incompatibility on Node 24+),
+                    // warn and skip rather than crashing the whole patch process
+                    try {
+                      let contents = sourceContent
+                      for (const strategy of patchDef) {
+                        if (strategy === 'flow') {
+                          contents = await transformFlowBabel(contents)
+                        }
+                        if (strategy === 'swc' || strategy === 'jsx') {
+                          contents =
+                            (
+                              await transformSWC(fullPath, contents, {
+                                mode: 'build',
+                                environment: 'ios',
+                                forceJSX: strategy === 'jsx',
+                                noHMR: true,
+                                fixNonTypeSpecificImports: true,
+                              })
+                            )?.code || contents
+                        }
                       }
-                      if (strategy === 'swc' || strategy === 'jsx') {
-                        contents =
-                          (
-                            await transformSWC(fullPath, contents, {
-                              mode: 'build',
-                              environment: 'ios',
-                              forceJSX: strategy === 'jsx',
-                              noHMR: true,
-                              fixNonTypeSpecificImports: true,
-                            })
-                          )?.code || contents
+                      if (contents !== sourceContent) {
+                        patchedContent = contents
                       }
-                    }
-                    if (contents !== sourceContent) {
-                      patchedContent = contents
+                    } catch (transformErr) {
+                      if (!transformWarnedModules.has(patch.module)) {
+                        transformWarnedModules.add(patch.module)
+                        console.warn(
+                          `  ⚠ Patch transform failed for ${patch.module} (likely Node version compat), skipping non-critical patch`
+                        )
+                        if (process.env.DEBUG) {
+                          console.warn(transformErr)
+                        }
+                      }
+                      return
                     }
                   } else {
                     const out = await patchDef(sourceContent)

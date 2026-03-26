@@ -28,6 +28,35 @@ export const builtInDepPatches: DepPatch[] = [
     },
   },
 
+  // @react-navigation/core 7.17 renamed createComponentForStaticNavigation to
+  // createComponentForStaticConfigDeprecated, breaking @react-navigation/native
+  // which still imports the old name. re-export the old name as an alias.
+  {
+    module: '@react-navigation/core',
+    patchFiles: {
+      'lib/module/index.js': (contents) => {
+        assertString(contents)
+        // only patch if the old export is missing and the new one exists
+        if (contents.includes('createComponentForStaticNavigation')) return
+        if (!contents.includes('createComponentForStaticConfigDeprecated')) return
+        return contents.replace(
+          /export \{ createComponentForStaticConfigDeprecated as createComponentForStaticConfig,/,
+          'export { createComponentForStaticConfigDeprecated as createComponentForStaticConfig, createComponentForStaticConfigDeprecated as createComponentForStaticNavigation,'
+        )
+      },
+
+      'lib/commonjs/index.js': (contents) => {
+        if (!contents) return
+        if (contents.includes('createComponentForStaticNavigation')) return
+        if (!contents.includes('createComponentForStaticConfigDeprecated')) return
+        return contents.replace(
+          /createComponentForStaticConfigDeprecated as createComponentForStaticConfig,/,
+          'createComponentForStaticConfigDeprecated as createComponentForStaticConfig, createComponentForStaticConfigDeprecated as createComponentForStaticNavigation,'
+        )
+      },
+    },
+  },
+
   // react-native-web doesn't export unstable_batchedUpdates but react-native does,
   // so libraries like @legendapp/list break when aliased to rnw on web
   {
