@@ -15,9 +15,15 @@ export function useViteRoutes(
   version?: number
 ) {
   if (version && version > lastVersion) {
-    // reload
+    // reload — clear stale route caches so fresh modules are used
     context = null
     lastVersion = version
+    // clear preloaded modules from previous render cycle — they point to
+    // old route module instances and would short-circuit resolve() before
+    // it reaches the new routesSync functions
+    for (const key of Object.keys(preloadedModules)) {
+      delete preloadedModules[key]
+    }
   }
 
   if (!context) {
