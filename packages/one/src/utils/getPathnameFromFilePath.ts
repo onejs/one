@@ -7,13 +7,6 @@ export function getPathnameFromFilePath(
   options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
 ) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
-  // remove groups, folder render mode suffixes, and convert [param] to :param in dirname
-  const dirname = Path.dirname(path)
-    .split('/')
-    .map((segment) => segment.replace(/\+(api|ssg|ssr|spa)$/, ''))
-    .join('/')
-    .replace(/\([^/]+\)/gi, '')
-    .replace(/\[([^\]]+)\]/g, ':$1')
   const file = Path.basename(path)
   const fileName = options.preserveExtensions ? file : file.replace(/\.[a-z]+$/, '')
 
@@ -29,6 +22,19 @@ export function getPathnameFromFilePath(
 ${JSON.stringify(params, null, 2)}`
     )
   }
+
+  // remove groups, folder render mode suffixes, and substitute [param] in dirname
+  const dirname = Path.dirname(path)
+    .split('/')
+    .map((segment) => segment.replace(/\+(api|ssg|ssr|spa)$/, ''))
+    .join('/')
+    .replace(/\([^/]+\)/gi, '')
+    .replace(/\[([^\]]+)\]/g, (_, paramName) => {
+      const value = params[paramName]
+      if (value != null) return String(value)
+      if (strict) throw paramsError(paramName)
+      return ':' + paramName
+    })
 
   const nameWithParams = (() => {
     if (fileName === 'index' && !options.includeIndex) {
