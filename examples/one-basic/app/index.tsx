@@ -12,6 +12,7 @@ export function Index() {
         minHeight: '100%',
         minWidth: '100%',
         backgroundColor: '#fff',
+        paddingVertical: 40,
       }}
     >
       <Text>Hello world, from One</Text>

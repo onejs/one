@@ -2,9 +2,9 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Base`,
-    value: 'Base',
-    description: 'The simplest starting point',
+    title: `Basic`,
+    value: 'Basic',
+    description: 'The simplest starting point, vanilla Rreact Native',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
@@ -17,7 +17,7 @@ export const templates = [
   },
 
   {
-    title: `Takeout`,
+    title: `Takeout Free`,
     value: 'Takeout',
     description: 'One, Tamagui, Zero, Better Auth',
     type: 'external-repo',
