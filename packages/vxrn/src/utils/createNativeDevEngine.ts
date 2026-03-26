@@ -649,11 +649,11 @@ function nativeReactRefreshPlugin(): Plugin {
 
         // babel needs parser plugins for TypeScript/JSX
         const parserPlugins: any[] = []
-        if (/\.tsx$/.test(id)) {
+        if (id.endsWith('.tsx')) {
           parserPlugins.push(['@babel/plugin-syntax-typescript', { isTSX: true }])
-        } else if (/\.ts$/.test(id)) {
+        } else if (id.endsWith('.ts')) {
           parserPlugins.push('@babel/plugin-syntax-typescript')
-        } else if (/\.jsx$/.test(id)) {
+        } else if (id.endsWith('.jsx')) {
           parserPlugins.push('@babel/plugin-syntax-jsx')
         }
 
