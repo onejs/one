@@ -25,19 +25,39 @@ function getSimulatorUdid() {
 
     const runtimes = Reflect.ownKeys(devicesData)
 
-    const runtime = runtimes.find(
+    const ios18Runtimes = runtimes.filter(
       (r) => typeof r === 'string' && r.includes('SimRuntime.iOS-18')
     )
 
-    if (!runtime) {
+    if (!ios18Runtimes.length) {
       throw new Error(`No available runtime found from ${JSON.stringify(runtimes)}`)
     }
 
-    const device = devicesData[runtime].find((d) => d.name.includes('iPhone 16 Pro'))
+    // find the first runtime that actually has the target device
+    let runtime: string | undefined
+    let device: any
+    for (const r of ios18Runtimes) {
+      device = devicesData[r].find((d: any) => d.name.includes('iPhone 16 Pro'))
+      if (device) {
+        runtime = r as string
+        break
+      }
+    }
+
+    if (!runtime) {
+      // fallback: find any iPhone in any iOS 18 runtime
+      for (const r of ios18Runtimes) {
+        device = devicesData[r].find((d: any) => d.name.includes('iPhone'))
+        if (device) {
+          runtime = r as string
+          break
+        }
+      }
+    }
 
     if (!device) {
       throw new Error(
-        `No available device found from ${JSON.stringify(devicesData[runtime])}`
+        `No iPhone device found in iOS 18 runtimes: ${JSON.stringify(ios18Runtimes)}`
       )
     }
 
