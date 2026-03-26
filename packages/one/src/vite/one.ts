@@ -14,6 +14,7 @@ import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
 import '../polyfills-server'
+import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
@@ -50,6 +51,10 @@ globalThis.__vxrnEnableNativeEnv = true
 // until then we want to avoid double loading everything on first start
 
 export function one(options: One.PluginOptions = {}): PluginOption {
+  // ensure server globals are set before any plugin code runs
+  // (the side-effect import in vite.ts gets tree-shaken by the build)
+  setServerGlobals()
+
   const routerRoot = getRouterRootFromOneOptions(options)
 
   /**
