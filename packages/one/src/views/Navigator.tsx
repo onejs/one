@@ -13,7 +13,7 @@ import {
   useNotFoundState,
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
-import { routeNode as globalRouteNode } from '../router/router'
+import { routeNode as globalRouteNode, initialPathname } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
 import { Screen } from './Screen'
@@ -173,13 +173,16 @@ function QualifiedNavigator({
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
   // LATE MOUNT FIX: when a parent layout conditionally renders (e.g. auth gate),
   // this navigator may mount after initialState was consumed. compute the
-  // correct initialRouteName from the browser URL so the navigator starts on
+  // correct initialRouteName from the original URL so the navigator starts on
   // the right route instead of defaulting to the first one.
+  // uses initialPathname (captured at setup) instead of window.location.pathname
+  // because React Navigation's linking can push a wrong URL during the delay.
   const resolvedInitialRouteName = React.useMemo(() => {
     if (initialRouteName) return initialRouteName
-    if (typeof window === 'undefined') return undefined
 
-    const browserPath = window.location.pathname
+    const browserPath =
+      initialPathname ??
+      (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
 
     // extract screen names from the screens array
