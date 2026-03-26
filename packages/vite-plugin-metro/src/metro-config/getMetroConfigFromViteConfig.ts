@@ -20,7 +20,10 @@ export async function getMetroConfigFromViteConfig(
   metroPluginOptions: MetroPluginOptions
 ): Promise<MetroConfigExtended> {
   const extraConfig: ExtraConfig = {}
-  const { root: projectRoot } = config
+  // prefer argv.projectRoot (user override) over config.root (vite resolved)
+  // this is needed for monorepo setups where config.root may resolve to
+  // the monorepo root instead of the app subdirectory
+  const projectRoot = metroPluginOptions.argv?.projectRoot ?? config.root
   const { mainModuleName, argv, defaultConfigOverrides, watchman, excludeModules } =
     metroPluginOptions
 
