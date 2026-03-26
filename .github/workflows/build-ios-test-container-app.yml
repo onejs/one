@@ -75,7 +75,8 @@ jobs:
           # This hash MUST be different if the build_hash will be different.
           #
           # This hash can be different if the build_hash remains the same. For example, if `bun.lock` changes, `Podfile.lock` may not change if the updated package contains no native code.
-          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs') }}
+          # include workflow file itself so env var changes (like RCT_HERMES_V1_ENABLED) bust the cache
+          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$PRE_BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate pre-build hash.'
@@ -88,11 +89,13 @@ jobs:
         env:
           KV_STORE_REDIS_REST_URL: ${{ secrets.KV_STORE_REDIS_REST_URL }}
           KV_STORE_REDIS_REST_TOKEN: ${{ secrets.KV_STORE_REDIS_REST_TOKEN }}
+          # include configuration in key so Debug/Release don't share stale hashes
+          REDIS_KEY: ${{ env.app_id }}-${{ inputs.configuration }}-build-hash-from-pre-build-hash-${{ steps.calculate-pre-build-hash.outputs.pre_build_hash }}
         run: |
-          BUILD_HASH_FROM_CACHE=$(curl "$KV_STORE_REDIS_REST_URL/get/${{ env.app_id }}-build-hash-from-pre-build-hash-${{ steps.calculate-pre-build-hash.outputs.pre_build_hash }}" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" | jq -r '.result')
+          BUILD_HASH_FROM_CACHE=$(curl "$KV_STORE_REDIS_REST_URL/get/$REDIS_KEY" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" | jq -r '.result')
 
           if [ "$BUILD_HASH_FROM_CACHE" != "null" ]; then
-            curl -X POST "$KV_STORE_REDIS_REST_URL/EXPIRE/${{ env.app_id }}-build-hash-from-pre-build-hash-${{ steps.calculate-pre-build-hash.outputs.pre_build_hash }}/2592000" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" # Reset TTL to 30 days
+            curl -X POST "$KV_STORE_REDIS_REST_URL/EXPIRE/$REDIS_KEY/2592000" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" # Reset TTL to 30 days
             echo "Build hash from cache: $BUILD_HASH_FROM_CACHE"
             echo "build_hash=$BUILD_HASH_FROM_CACHE" >> $GITHUB_OUTPUT
           else
@@ -105,8 +108,7 @@ jobs:
         id: pre-check-has-build
         if: ${{ steps.get-build-hash-from-cache.outputs.build_hash != 'null' }}
         with:
-          # v3: force rebuild for Hermes V1 (rolldown ESM native bundles)
-          key: ${{ env.app_id }}-${{ inputs.configuration }}-v3-${{ steps.get-build-hash-from-cache.outputs.build_hash }}
+          key: ${{ env.app_id }}-${{ inputs.configuration }}-${{ steps.get-build-hash-from-cache.outputs.build_hash }}
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
 
@@ -133,9 +135,8 @@ jobs:
           cache-name: ${{ env.app_id }}-pods
         with:
           path: ${{ env.test_container_app_path }}/ios/Pods
-          key: ${{ runner.os }}-${{ env.cache-name }}-hermesv1-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path)) }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
+          # hash Podfile + workflow (for env vars like RCT_HERMES_V1_ENABLED that affect pod install)
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path), '.github/workflows/build-ios-test-container-app.yml') }}
 
       - name: Pod Install
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
@@ -146,8 +147,8 @@ jobs:
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
         id: calculate-build-hash
         env:
-          # We need to list all files that will affect native code in hashFiles.
-          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs') }}
+          # include all files that affect native code + the workflow itself (for env var changes)
+          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate build hash.'
@@ -161,16 +162,16 @@ jobs:
         env:
           KV_STORE_REDIS_REST_URL: ${{ secrets.KV_STORE_REDIS_REST_URL }}
           KV_STORE_REDIS_REST_TOKEN: ${{ secrets.KV_STORE_REDIS_REST_TOKEN }}
+          REDIS_KEY: ${{ env.app_id }}-${{ inputs.configuration }}-build-hash-from-pre-build-hash-${{ steps.calculate-pre-build-hash.outputs.pre_build_hash }}
         run: |
-          curl -X POST "$KV_STORE_REDIS_REST_URL/SETEX/${{ env.app_id }}-build-hash-from-pre-build-hash-${{ steps.calculate-pre-build-hash.outputs.pre_build_hash }}/2592000/${{ steps.calculate-build-hash.outputs.build_hash }}" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" # Save and set TTL to 30 days
+          curl -X POST "$KV_STORE_REDIS_REST_URL/SETEX/$REDIS_KEY/2592000/${{ steps.calculate-build-hash.outputs.build_hash }}" -H "Authorization: Bearer $KV_STORE_REDIS_REST_TOKEN" # Save and set TTL to 30 days
 
       - name: Check If Build Already Exists
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
         uses: actions/cache/restore@v5
         id: check-has-build
         with:
-          # v3: force rebuild for Hermes V1 (rolldown ESM native bundles)
-          key: ${{ env.app_id }}-${{ inputs.configuration }}-v3-${{ steps.calculate-build-hash.outputs.build_hash }}
+          key: ${{ env.app_id }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
 
@@ -181,13 +182,10 @@ jobs:
         env:
           cache-name: ${{ env.app_id }}-build
         with:
-          # This cache can be huge, so we share it among all configurations instead of creating a cache for each one.
-          # key: ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
-          # restore-keys: |
-          #   ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
-          #   ${{ runner.os }}-${{ env.cache-name }}-
-          # v3: invalidate for Hermes V1 (rolldown ESM native bundles)
-          key: ${{ runner.os }}-${{ env.cache-name }}-v3
+          # per-configuration so Debug/Release don't stomp each other's derived data
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
           path: |
             ${{ env.test_container_app_path }}/build
 
