@@ -90,12 +90,15 @@ async function getResponseWithAddedHeaders(response: any, id: object) {
       if (response instanceof Response) {
         // create a new response with merged headers rather than mutating in place,
         // because hono's compress middleware captures headers at response creation time
-        // and won't see mutations made to response.headers after the fact
-        const headers = new Headers(response.headers)
+        // and won't see mutations made to response.headers after the fact.
+        // clone first so the original body stream isn't locked/consumed
+        // (Response.json() bodies are single-use ReadableStreams)
+        const cloned = response.clone()
+        const headers = new Headers(cloned.headers)
         mergeHeaders(headers, asyncHeaders)
-        response = new Response(response.body, {
-          status: response.status,
-          statusText: response.statusText,
+        response = new Response(cloned.body, {
+          status: cloned.status,
+          statusText: cloned.statusText,
           headers,
         })
       } else {
