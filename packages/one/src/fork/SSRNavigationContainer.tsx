@@ -1,7 +1,7 @@
 /**
  * SSR-optimized replacement for BaseNavigationContainer.
- * Provides only the 4 contexts that child navigators need during SSR render,
- * with static/no-op values. Eliminates 32+ hooks and reduces 8 providers to 4.
+ * Provides only the 5 contexts that child navigators need during SSR render,
+ * with static/no-op values. Eliminates 32+ hooks and reduces 8 providers to 5.
  *
  * Requires @react-navigation/core package.json exports to include internal context paths.
  * See postinstall patch in the repo.
@@ -13,7 +13,7 @@ import { NavigationBuilderContext } from '@react-navigation/core/lib/module/Navi
 import { NavigationStateContext } from '@react-navigation/core/lib/module/NavigationStateContext'
 // @ts-ignore internal module
 import { SingleNavigatorContext } from '@react-navigation/core/lib/module/EnsureSingleNavigator'
-import { ThemeProvider } from '@react-navigation/core'
+import { NavigationContainerRefContext, ThemeProvider } from '@react-navigation/core'
 import { LinkingContext } from '@react-navigation/native'
 import * as React from 'react'
 
@@ -36,6 +36,35 @@ const SSR_SINGLE_NAV_CTX = {
   register: noop,
   unregister: noop,
 }
+
+// no-op navigation ref so useNavigation() doesn't throw during SSR
+const SSR_NAV_REF = {
+  dispatch: noop,
+  navigate: noop,
+  reset: noop,
+  goBack: noop,
+  isFocused: () => false,
+  canGoBack: () => false,
+  getParent: () => undefined,
+  getState: () => undefined,
+  getRootState: () => undefined,
+  getCurrentRoute: () => undefined,
+  getCurrentOptions: () => undefined,
+  isReady: () => false,
+  addListener: () => noop,
+  removeListener: noop,
+  resetRoot: noop,
+  setOptions: noop,
+  // CommonActions methods
+  setParams: noop,
+  popTo: noop,
+  pop: noop,
+  popToTop: noop,
+  push: noop,
+  replace: noop,
+  jumpTo: noop,
+  preload: noop,
+} as any
 
 const getPartialState = (state: any): any => {
   if (!state) return undefined
@@ -105,13 +134,15 @@ export function SSRNavigationContainer({
   const linkingCtx = linking ? { options: linking } : SSR_LINKING_CTX
   return (
     <LinkingContext.Provider value={linkingCtx}>
-      <NavigationBuilderContext.Provider value={SSR_BUILDER_CTX}>
-        <NavigationStateContext.Provider value={getStateContext(initialState)}>
-          <SingleNavigatorContext.Provider value={SSR_SINGLE_NAV_CTX}>
-            <ThemeProvider value={theme}>{children}</ThemeProvider>
-          </SingleNavigatorContext.Provider>
-        </NavigationStateContext.Provider>
-      </NavigationBuilderContext.Provider>
+      <NavigationContainerRefContext.Provider value={SSR_NAV_REF}>
+        <NavigationBuilderContext.Provider value={SSR_BUILDER_CTX}>
+          <NavigationStateContext.Provider value={getStateContext(initialState)}>
+            <SingleNavigatorContext.Provider value={SSR_SINGLE_NAV_CTX}>
+              <ThemeProvider value={theme}>{children}</ThemeProvider>
+            </SingleNavigatorContext.Provider>
+          </NavigationStateContext.Provider>
+        </NavigationBuilderContext.Provider>
+      </NavigationContainerRefContext.Provider>
     </LinkingContext.Provider>
   )
 }
