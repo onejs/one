@@ -31,7 +31,9 @@ const debugRouter = process.env.ONE_DEBUG_ROUTER
 // ensure handler results are always a proper Response so middleware
 // can safely use response.body / response.headers / new Response(response.body, ...)
 function ensureResponse(value: any): Response {
-  if (value instanceof Response) return value
+  // use isResponse (duck-type check) instead of instanceof — the Response
+  // constructor may differ across module realms (e.g. API handler vs middleware)
+  if (isResponse(value)) return value
   if (typeof value === 'string') {
     return new Response(value, {
       headers: { 'Content-Type': 'text/html' },
