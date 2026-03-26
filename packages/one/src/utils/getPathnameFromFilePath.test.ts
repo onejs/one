@@ -92,15 +92,35 @@ describe('getPathnameFromFilePath', () => {
       )
     })
 
-    it('substitutes filename param, dirname params become placeholders', () => {
-      // getPathnameFromFilePath only substitutes params in the filename segment,
-      // dirname params are converted to :param placeholders via regex
+    it('substitutes params in both dirname and filename', () => {
       expect(
         getPathnameFromFilePath('/servers/[serverId]/[channelId]+spa.tsx', {
           serverId: 'abc',
           channelId: '123',
         })
-      ).toBe('/servers/:serverId/123')
+      ).toBe('/servers/abc/123')
+    })
+
+    it('substitutes dirname params for SSG dynamic routes', () => {
+      expect(getPathnameFromFilePath('/[lang]/index+ssg.tsx', { lang: 'en' }, true)).toBe(
+        '/en/'
+      )
+      expect(getPathnameFromFilePath('/[lang]/index+ssg.tsx', { lang: 'ko' }, true)).toBe(
+        '/ko/'
+      )
+    })
+
+    it('substitutes nested dirname params', () => {
+      expect(
+        getPathnameFromFilePath(
+          '/[lang]/[region]/index+ssg.tsx',
+          {
+            lang: 'en',
+            region: 'us',
+          },
+          true
+        )
+      ).toBe('/en/us/')
     })
   })
 
