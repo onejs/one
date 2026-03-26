@@ -2,7 +2,7 @@ import { createDebugger } from '@vxrn/debug'
 import FSExtra from 'fs-extra'
 import path, { dirname, extname, join, sep } from 'node:path'
 
-const { debug } = createDebugger(`vxrn:scanDepsToOptimize`)
+const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
   prebundleDeps: string[]
@@ -293,7 +293,7 @@ export async function scanDepsToOptimize(
 
         const result = [...depsToPreBundle, ...subDeps.prebundleDeps]
 
-        debug?.(`final result ${JSON.stringify(result, null, 2)}`)
+        debugDetails?.(`final result ${JSON.stringify(result, null, 2)}`)
 
         proceededDeps.set(dep, result)
         return result
