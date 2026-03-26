@@ -125,23 +125,28 @@ function postProcessNativeBundle(code: string): string {
 }
 
 /**
- * Downlevel class fields in the final bundle for Hermes compatibility.
- * Rolldown's internal runtime (\0rolldown/runtime.js) is injected directly
- * into the output — it never passes through the per-file transform pipeline,
- * so hermesCompatSWCPlugin can't touch it. This post-bundle pass catches
- * class field declarations (e.g. `modules = {}`, `clientId;`) that old
- * Hermes cannot parse.
- *
- * Note: sourcemaps are not chained here — the transform only affects the
- * rolldown runtime preamble (~100 lines), so user code offsets shift by a
- * small constant. Full sourcemap chaining would add complexity for minimal
- * benefit since the runtime is not user-debuggable code.
+ * Downlevel class fields in the rolldown runtime for Hermes compatibility.
+ * The runtime (\0rolldown/runtime.js) is injected directly into the output,
+ * bypassing hermesCompatSWCPlugin. We extract just that section (~5KB) and
+ * transform it rather than re-parsing the entire 6MB bundle.
  */
 async function downlevelClassFieldsInBundle(code: string): Promise<string> {
+  const startMarker = '//#region \\0rolldown/runtime.js'
+  const endMarker = '//#endregion'
+
+  const startIdx = code.indexOf(startMarker)
+  if (startIdx === -1) return code
+
+  const endIdx = code.indexOf(endMarker, startIdx)
+  if (endIdx === -1) return code
+
+  const runtimeEnd = endIdx + endMarker.length
+  const runtimeSection = code.slice(startIdx, runtimeEnd)
+
   try {
     const swc = await import('@swc/core')
-    const result = await swc.transform(code, {
-      filename: 'bundle.js',
+    const result = await swc.transform(runtimeSection, {
+      filename: 'rolldown-runtime.js',
       configFile: false,
       swcrc: false,
       sourceMaps: false,
@@ -166,7 +171,7 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
         },
       },
     })
-    return result.code
+    return code.slice(0, startIdx) + result.code + code.slice(runtimeEnd)
   } catch (err) {
     console.warn('[vxrn] downlevelClassFieldsInBundle failed, returning original:', err)
     return code
