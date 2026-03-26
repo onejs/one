@@ -57,6 +57,9 @@ async function getCloudflareProjectName(root: string): Promise<string> {
 // concurrency limit for parallel page builds
 // can be overridden with ONE_BUILD_CONCURRENCY env var
 // default based on CPU count for I/O parallelism benefits
+// ensure worker threads inherit the same CACHE_KEY as the main process
+process.env.ONE_CACHE_KEY = constants.CACHE_KEY
+
 const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
   ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10))
   : Math.max(1, Math.min(cpus().length, 8))
