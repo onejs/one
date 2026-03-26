@@ -65,6 +65,14 @@ describe('Middleware', () => {
   //   `)
   // })
 
+  test('wrapping response with new Response preserves body and adds headers', async () => {
+    const res = await fetch(`${process.env.ONE_SERVER_URL}/middleware?test-wrap-response`)
+    expect(res.headers.get('X-Custom-Wrap')).toBe('wrapped')
+    expect(res.headers.get('Cache-Control')).toBe('no-cache')
+    const text = await res.text()
+    expect(text).toContain('middleware-route')
+  })
+
   test.skip('sub middleware runs and changes headers', async () => {
     const res = (await fetchThing('/middleware', 'headers')) as Headers
     // TODO intercept not working

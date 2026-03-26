@@ -21,5 +21,18 @@ export default createMiddleware(async ({ request, next }) => {
     return Response.json({ notFound: true })
   }
 
+  // test: wrap response in new Response with extra headers
+  // validates that next() always returns a proper Response object
+  if (response && request.url.includes('test-wrap-response')) {
+    const headers = new Headers(response.headers)
+    headers.set('X-Custom-Wrap', 'wrapped')
+    headers.set('Cache-Control', 'no-cache')
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    })
+  }
+
   return response
 })
