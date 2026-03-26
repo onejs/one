@@ -25,14 +25,13 @@ if (prodExit !== 0) {
   process.exit(1)
 }
 
-// TODO: non-cli mode tests disabled — SSR context broken in plain vite mode
-// see setServerContext "Don't call setServerContext on client" error
-// const nonCli = Bun.spawn(['bun', 'run', 'test:dev-non-cli'], {
-//   stdio: ['inherit', 'inherit', 'inherit'],
-//   cwd,
-// })
-//
-// const nonCliExit = await nonCli.exited
-// if (nonCliExit !== 0) {
-//   process.exit(1)
-// }
+// run non-cli mode after dev+prod pass
+const nonCli = Bun.spawn(['bun', 'run', 'test:dev-non-cli'], {
+  stdio: ['inherit', 'inherit', 'inherit'],
+  cwd,
+})
+
+const nonCliExit = await nonCli.exited
+if (nonCliExit !== 0) {
+  process.exit(1)
+}
