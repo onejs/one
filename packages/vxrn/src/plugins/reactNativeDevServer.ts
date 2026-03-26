@@ -1,6 +1,5 @@
 import type { Connect, Plugin, ViteDevServer } from 'vite'
-import ws from 'ws'
-const { WebSocketServer } = ws
+import { WebSocketServer } from 'ws'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
