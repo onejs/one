@@ -200,6 +200,20 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build | tee xcodebuild.log | xcpretty
 
+      - name: Bundle hermesc into .app
+        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
+        run: |
+          # Copy the Pods hermesc into the .app so the test runner can use it.
+          # The Pods hermesc matches the Hermes engine bytecode version in the binary.
+          HERMESC_SRC="ios/Pods/hermes-engine/destroot/bin/hermesc"
+          HERMESC_DST="${{ steps.get-built-app-path.outputs.built_app_path }}/hermesc"
+          if [ -f "$HERMESC_SRC" ]; then
+            cp "$HERMESC_SRC" "$HERMESC_DST"
+            echo "Copied hermesc to $HERMESC_DST ($($HERMESC_DST --version 2>&1 | grep 'HBC bytecode'))"
+          else
+            echo "Warning: hermesc not found at $HERMESC_SRC"
+          fi
+
       - name: Upload Built App to Cache
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
         uses: actions/cache/save@v5

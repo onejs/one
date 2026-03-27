@@ -227,9 +227,9 @@ async function prepareTestApp() {
   // The Pods hermesc MUST match the Hermes engine in the .app binary.
   // The npm hermes-compiler may be a different bytecode version (e.g. V0 vs V1).
   const possibleHermescPaths = [
-    // from the .app bundle itself (most reliable - matches the engine exactly)
-    path.join(appPath, '..', '..', '..', '..', 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    // rn-test-container Pods (monorepo sibling)
+    // bundled into .app by CI build workflow (matches engine exactly)
+    path.join(appPath, 'hermesc'),
+    // rn-test-container Pods (local builds)
     path.join(root, '..', 'rn-test-container', 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
     // local project Pods
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
