@@ -586,9 +586,9 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
-      const hasAsyncGen = code.includes('async *') || code.includes('async*')
+      const hasAsyncIter = code.includes('async *') || code.includes('async*') || code.includes('for await')
       const hasAsync = !dev && code.includes('async ')
-      if (!hasClass && !hasAsync && !hasAsyncGen) return
+      if (!hasClass && !hasAsync && !hasAsyncIter) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
@@ -607,7 +607,7 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
 
         // for files with async generators, use a lower target so SWC
         // fully downlevels them (hermes doesn't support async generators)
-        const needsAsyncGenDownlevel = hasAsyncGen
+        const needsAsyncGenDownlevel = hasAsyncIter
 
         const result = await swc.transform(code, {
           filename: id,
