@@ -8,8 +8,12 @@ env:
   ios_app_name: RNTestContainer
   # A unique ID to identify the app on GitHub Actions, this is used as part of cache keys and artifact names, must be unique among all workflows
   app_id: ios-rn-test-container-app
-  # rolldown native pipeline outputs ESM which requires Hermes V1
-  RCT_HERMES_V1_ENABLED: '1'
+  # rolldown native pipeline needs Hermes V1 for ESM, but the iOS tests
+  # currently use Metro which produces CJS bytecode compiled by the npm
+  # hermes-compiler (bytecode v96). Enabling V1 here creates a version
+  # mismatch — the app ships hermesvm (v98) but hermesc produces v96.
+  # Disabled until the test infra can find a matching V1 hermesc on CI.
+  # RCT_HERMES_V1_ENABLED: '1'
   # The command used to prebuild the app
   prebuild_command: bun run prebuild:native --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 
@@ -199,35 +203,6 @@ jobs:
             -sdk 'iphonesimulator' \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build | tee xcodebuild.log | xcpretty
-
-      - name: Bundle hermesc into .app
-        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
-        run: |
-          # Copy the Pods hermesc into the .app so the test runner can use it.
-          # The Pods hermesc matches the Hermes engine bytecode version in the binary.
-          APP_DIR="${{ steps.get-built-app-path.outputs.built_app_path }}"
-          if [ ! -d "$APP_DIR" ]; then
-            echo "Warning: app not built at $APP_DIR"
-            exit 0
-          fi
-          # search known paths then fall back to find
-          HERMESC=""
-          for p in \
-            "ios/Pods/hermes-engine/destroot/bin/hermesc" \
-            "ios/Pods/hermes-engine/hermesc/osx-bin/hermesc" \
-            "build/Build/Products/${{ inputs.configuration }}-iphonesimulator/hermes/hermesc"; do
-            if [ -f "$p" ]; then HERMESC="$p"; break; fi
-          done
-          if [ -z "$HERMESC" ]; then
-            HERMESC=$(find ios/Pods build -name hermesc -type f 2>/dev/null | head -1)
-          fi
-          if [ -n "$HERMESC" ]; then
-            cp "$HERMESC" "$APP_DIR/hermesc"
-            echo "Copied hermesc from $HERMESC ($("$APP_DIR/hermesc" --version 2>&1 | grep 'HBC bytecode'))"
-          else
-            echo "Warning: hermesc not found anywhere in Pods or build"
-            find ios/Pods -name "hermes*" -type f 2>/dev/null | head -20
-          fi
 
       - name: Upload Built App to Cache
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}

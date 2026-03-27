@@ -223,17 +223,10 @@ async function prepareTestApp() {
 
   // Compile the JS bundle to Hermes bytecode
   // The Release app is built with Hermes enabled, so we must emit bytecode
-  // Try multiple locations for hermesc.
-  // The Pods hermesc MUST match the Hermes engine in the .app binary.
-  // The npm hermes-compiler may be a different bytecode version (e.g. V0 vs V1).
+  // Try multiple locations for hermesc
   const possibleHermescPaths = [
-    // bundled into .app by CI build workflow (matches engine exactly)
-    path.join(appPath, 'hermesc'),
-    // rn-test-container Pods (local builds)
-    path.join(root, '..', 'rn-test-container', 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    // local project Pods
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    // RN 0.83+: hermes-compiler package (fallback — may be wrong bytecode version)
+    // RN 0.83+: hermes-compiler package
     path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
     path.join(root, '..', '..', 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
     // RN <0.83: react-native/sdks
