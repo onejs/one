@@ -56,7 +56,6 @@ export const prebuild = async ({
       } catch (e) {
         // ignore
       }
-
     } catch (e) {
       throw new Error(
         `Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`

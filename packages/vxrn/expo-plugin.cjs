@@ -26,7 +26,9 @@ const plugin = (config, options = {}) => {
             try {
               const props = JSON.parse(fs.readFileSync(propsPath, 'utf8'))
               if (props['one.disableSwift6Workaround'] === 'true') {
-                console.info('[vxrn] swift 6 workaround disabled via Podfile.properties.json')
+                console.info(
+                  '[vxrn] swift 6 workaround disabled via Podfile.properties.json'
+                )
                 return config
               }
             } catch {}
@@ -35,7 +37,9 @@ const plugin = (config, options = {}) => {
           // version-gate: only needed for expo-modules-core <56
           const emcVersion = getExpoModulesCoreVersion(config.modRequest.projectRoot)
           if (emcVersion && semverMajor(emcVersion) >= 56) {
-            console.info(`[vxrn] expo-modules-core@${emcVersion} — swift 6 workaround not needed, skipping`)
+            console.info(
+              `[vxrn] expo-modules-core@${emcVersion} — swift 6 workaround not needed, skipping`
+            )
             return config
           }
 
@@ -48,7 +52,7 @@ const plugin = (config, options = {}) => {
           fs.writeFileSync(podfilePath, podfile, 'utf8')
           console.info(
             `[vxrn] applied swift 6 workaround for expo-modules-core@${emcVersion || '?'} (expo/expo#43199)\n` +
-            `       to disable: set "one.disableSwift6Workaround": "true" in ios/Podfile.properties.json`
+              `       to disable: set "one.disableSwift6Workaround": "true" in ios/Podfile.properties.json`
           )
           return config
         },
@@ -505,7 +509,7 @@ function injectSwift6WorkaroundIntoPodfile(podfile) {
   // if no post_install found, warn
   console.warn(
     '[vxrn/expo-plugin] could not find post_install block in Podfile to inject Swift 6 workaround.\n' +
-    'You may need to manually add the workaround. See: https://onestack.dev/docs/guides-ios-native'
+      'You may need to manually add the workaround. See: https://onestack.dev/docs/guides-ios-native'
   )
   return podfile
 }

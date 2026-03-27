@@ -87,10 +87,11 @@ function getNativePlugins(
     flowStripPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
-    // hermes compat: transform class properties, private fields, and classes (prod)
+    // @vxrn/compiler babel transforms: reanimated worklets, async generators,
+    // react-native codegen, react compiler — same pipeline as metro
+    vxrnCompilerPlugin(platform, dev),
+    // hermes compat: transform class properties and private fields
     hermesCompatSWCPlugin(dev),
-    // react-native codegen for native component specs
-    codegenPlugin(),
     // downgrade polyfill "not configurable" errors to warnings (hermes v1)
     polyfillErrorDowngradePlugin(),
     // strip DevSettings in prod (dev-only native module)
@@ -492,6 +493,50 @@ function cssStubPlugin(): Plugin {
 }
 
 /**
+ * Pipe files through @vxrn/compiler's babel transforms.
+ * Handles reanimated worklet compilation, async generator downleveling,
+ * react-native codegen, and react compiler — same pipeline as metro.
+ * Auto-detects which transforms are needed per file.
+ */
+function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
+  let compiler: typeof import('@vxrn/compiler') | null = null
+
+  return {
+    name: 'vxrn:compiler',
+    async transform(code, id) {
+      if (!/\.[cm]?[jt]sx?$/.test(id)) return
+      if (id.includes('\0') || id.includes('virtual:')) return
+
+      try {
+        if (!compiler) compiler = await import('@vxrn/compiler')
+
+        const props = {
+          id,
+          code,
+          development: dev,
+          environment: platform as 'ios' | 'android',
+          reactForRNVersion: '19' as const,
+        }
+
+        const babelOptions = compiler.getBabelOptions(props)
+        if (!babelOptions) return
+
+        const result = await compiler.transformBabel(id, code, babelOptions)
+
+        if (result?.code) {
+          return { code: result.code }
+        }
+      } catch (err: any) {
+        // log but don't crash — fallback to rolldown's own transform
+        if (dev) {
+          console.warn(`[vxrn:compiler] ${id}: ${err.message || err}`)
+        }
+      }
+    },
+  }
+}
+
+/**
  * Strip Flow types from react-native source files.
  * Uses hermes-parser which is already a dep of react-native.
  */
@@ -594,8 +639,8 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // prod builds: hermes bytecode compiler rejects class declarations/expressions
-        // and async functions, so we downlevel them
+        // hermes needs class properties downleveled; prod also needs
+        // classes and async-to-generator for bytecode compilation
         const envIncludes = [
           'transform-class-properties',
           'transform-class-static-block',
