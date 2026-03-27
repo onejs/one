@@ -79,6 +79,8 @@ function getNativePlugins(
   dev: boolean
 ): Plugin[] {
   return [
+    // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
+    cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
     viteImportGlobPlugin({ root }) as any,
     // strip Flow types from react-native and @react-native packages
@@ -223,6 +225,11 @@ export async function createNativeDevEngine(
     },
 
     treeshake: false,
+    // some react-native ecosystem packages import symbols that don't exist in
+    // the declared entry (e.g. @react-navigation/elements imports NavigationProvider
+    // from @react-navigation/native which doesn't export it). metro silently shims
+    // these — rolldown needs an explicit opt-in.
+    shimMissingExports: true,
 
     moduleTypes: {
       '.js': 'jsx',
@@ -405,6 +412,7 @@ export async function buildNativeBundle(
     resolve: getNativeResolveConfig(platform),
     transform: getNativeTransformConfig(dev),
     treeshake: !dev,
+    shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...getNativePlugins(root, platform, viteImportGlobPlugin, dev),
@@ -464,6 +472,24 @@ createApp({
 }
 
 // --- plugins ---
+
+/**
+ * Stub CSS imports for native builds.
+ * Native doesn't support CSS and rolldown removed CSS bundling support.
+ * Without this, any `import './foo.css'` will cause a build error.
+ */
+function cssStubPlugin(): Plugin {
+  return {
+    name: 'vxrn:css-stub',
+    load: {
+      handler(id) {
+        if (/\.css$/.test(id)) {
+          return { code: '', moduleType: 'js' as any }
+        }
+      },
+    },
+  }
+}
 
 /**
  * Strip Flow types from react-native source files.
@@ -560,16 +586,17 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
+      const hasAsyncGen = code.includes('async *') || code.includes('async*')
       const hasAsync = !dev && code.includes('async ')
-      if (!hasClass && !hasAsync) return
+      if (!hasClass && !hasAsync && !hasAsyncGen) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // prod builds: hermes bytecode compiler rejects class declarations/expressions
-        // and async functions, so we downlevel them
+        // hermes doesn't support async generators (even in dev) and rejects
+        // class declarations in prod bytecode compilation
         const envIncludes = [
           'transform-class-properties',
           'transform-class-static-block',
@@ -578,25 +605,45 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
           ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
         ]
 
+        // for files with async generators, use a lower target so SWC
+        // fully downlevels them (hermes doesn't support async generators)
+        const needsAsyncGenDownlevel = hasAsyncGen
+
         const result = await swc.transform(code, {
           filename: id,
           configFile: false,
           swcrc: false,
           sourceMaps: false,
           inputSourceMap: false,
-          env: {
-            targets: { node: 9999 },
-            include: envIncludes,
-          },
-          jsc: {
-            parser: { syntax: 'typescript', tsx: true },
-            transform: { react: { runtime: 'preserve' } },
-            externalHelpers: false,
-            assumptions: {
-              setPublicClassFields: true,
-              privateFieldsAsProperties: true,
-            },
-          },
+          ...(needsAsyncGenDownlevel
+            ? {
+                // use es2017 target to downlevel async generators while keeping async/await
+                jsc: {
+                  parser: { syntax: 'typescript', tsx: true },
+                  target: 'es2016',
+                  transform: { react: { runtime: 'preserve' } },
+                  externalHelpers: false,
+                  assumptions: {
+                    setPublicClassFields: true,
+                    privateFieldsAsProperties: true,
+                  },
+                },
+              }
+            : {
+                env: {
+                  targets: { node: 9999 },
+                  include: envIncludes,
+                },
+                jsc: {
+                  parser: { syntax: 'typescript', tsx: true },
+                  transform: { react: { runtime: 'preserve' } },
+                  externalHelpers: false,
+                  assumptions: {
+                    setPublicClassFields: true,
+                    privateFieldsAsProperties: true,
+                  },
+                },
+              }),
           isModule: !id.endsWith('.cjs'),
         })
         return { code: result.code }
