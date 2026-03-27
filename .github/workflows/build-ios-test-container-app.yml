@@ -206,12 +206,12 @@ jobs:
           # Copy the Pods hermesc into the .app so the test runner can use it.
           # The Pods hermesc matches the Hermes engine bytecode version in the binary.
           HERMESC_SRC="ios/Pods/hermes-engine/destroot/bin/hermesc"
-          HERMESC_DST="${{ steps.get-built-app-path.outputs.built_app_path }}/hermesc"
-          if [ -f "$HERMESC_SRC" ]; then
-            cp "$HERMESC_SRC" "$HERMESC_DST"
-            echo "Copied hermesc to $HERMESC_DST ($($HERMESC_DST --version 2>&1 | grep 'HBC bytecode'))"
+          APP_DIR="${{ steps.get-built-app-path.outputs.built_app_path }}"
+          if [ -f "$HERMESC_SRC" ] && [ -d "$APP_DIR" ]; then
+            cp "$HERMESC_SRC" "$APP_DIR/hermesc"
+            echo "Copied hermesc ($("$APP_DIR/hermesc" --version 2>&1 | grep 'HBC bytecode'))"
           else
-            echo "Warning: hermesc not found at $HERMESC_SRC"
+            echo "Warning: hermesc not found at $HERMESC_SRC or app not built"
           fi
 
       - name: Upload Built App to Cache
