@@ -9,6 +9,7 @@ import {
 } from '../constants'
 import {
   compileManifest,
+  getSubdomain,
   getURLfromRequestURL,
   type RequestHandlers,
   runMiddlewares,
@@ -748,6 +749,7 @@ url: ${url}`)
           const loaderProps = {
             path: pathname,
             search,
+            subdomain: getSubdomain(getURLfromRequestURL(request)),
             request,
             params,
           }

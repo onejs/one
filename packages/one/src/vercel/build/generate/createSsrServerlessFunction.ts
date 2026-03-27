@@ -101,9 +101,17 @@ export async function createSsrServerlessFunction(
       originalPath = originalPath.replace(\`:$\{key}\`, String(value));
     }
 
+    const host = url.hostname;
+    let subdomain;
+    if (host && host !== 'localhost' && !/^\\d+\\.\\d+\\.\\d+\\.\\d+$/.test(host)) {
+      const parts = host.split('.');
+      if (parts.length >= 3) subdomain = parts.slice(0, -2).join('.');
+    }
+
     const loaderProps = {
       path: originalPath,
       params: routeParams,
+      subdomain,
       request,
     }
 

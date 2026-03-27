@@ -140,6 +140,7 @@ export async function resolveAPIRoute(
             loaderProps: {
               path: pathname,
               search: url.search,
+              subdomain: getSubdomain(url),
               params,
             },
           }),
@@ -193,6 +194,7 @@ export async function resolveLoaderRoute(
           loaderProps: {
             path: url.pathname,
             search: url.search,
+            subdomain: getSubdomain(url),
             request: route.type === 'ssr' ? request : undefined,
             params: getLoaderParams(url, route),
           },
@@ -289,6 +291,7 @@ export async function resolvePageRoute(
   const loaderProps = {
     path: pathname,
     search: search,
+    subdomain: getSubdomain(url),
     request: route.type === 'ssr' ? request : undefined,
     params: getLoaderParams(url, route),
   }
@@ -320,6 +323,21 @@ export function getURLfromRequestURL(request: Request) {
   )
   _urlCache.set(request, url)
   return url
+}
+
+export function getSubdomain(url: URL): string | undefined {
+  const host = url.hostname
+  // skip for IP addresses and localhost
+  if (!host || host === 'localhost' || /^\d+\.\d+\.\d+\.\d+$/.test(host)) {
+    return undefined
+  }
+  const parts = host.split('.')
+  // need at least 3 parts for a subdomain (sub.example.com)
+  if (parts.length < 3) {
+    return undefined
+  }
+  // return everything before the last two parts (domain.tld)
+  return parts.slice(0, -2).join('.')
 }
 
 function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {

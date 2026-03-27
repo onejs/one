@@ -12,6 +12,7 @@ export type RenderApp = (props: RenderAppProps) => Promise<string>
 export type LoaderProps<Params extends object = Record<string, string | string[]>> = {
   path: string
   search?: string
+  subdomain?: string
   params: Params
   request?: Request
 }
