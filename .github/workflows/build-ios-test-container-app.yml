@@ -205,13 +205,28 @@ jobs:
         run: |
           # Copy the Pods hermesc into the .app so the test runner can use it.
           # The Pods hermesc matches the Hermes engine bytecode version in the binary.
-          HERMESC_SRC="ios/Pods/hermes-engine/destroot/bin/hermesc"
           APP_DIR="${{ steps.get-built-app-path.outputs.built_app_path }}"
-          if [ -f "$HERMESC_SRC" ] && [ -d "$APP_DIR" ]; then
-            cp "$HERMESC_SRC" "$APP_DIR/hermesc"
-            echo "Copied hermesc ($("$APP_DIR/hermesc" --version 2>&1 | grep 'HBC bytecode'))"
+          if [ ! -d "$APP_DIR" ]; then
+            echo "Warning: app not built at $APP_DIR"
+            exit 0
+          fi
+          # search known paths then fall back to find
+          HERMESC=""
+          for p in \
+            "ios/Pods/hermes-engine/destroot/bin/hermesc" \
+            "ios/Pods/hermes-engine/hermesc/osx-bin/hermesc" \
+            "build/Build/Products/${{ inputs.configuration }}-iphonesimulator/hermes/hermesc"; do
+            if [ -f "$p" ]; then HERMESC="$p"; break; fi
+          done
+          if [ -z "$HERMESC" ]; then
+            HERMESC=$(find ios/Pods build -name hermesc -type f 2>/dev/null | head -1)
+          fi
+          if [ -n "$HERMESC" ]; then
+            cp "$HERMESC" "$APP_DIR/hermesc"
+            echo "Copied hermesc from $HERMESC ($("$APP_DIR/hermesc" --version 2>&1 | grep 'HBC bytecode'))"
           else
-            echo "Warning: hermesc not found at $HERMESC_SRC or app not built"
+            echo "Warning: hermesc not found anywhere in Pods or build"
+            find ios/Pods -name "hermes*" -type f 2>/dev/null | head -20
           fi
 
       - name: Upload Built App to Cache
