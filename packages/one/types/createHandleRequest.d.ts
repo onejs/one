@@ -21,6 +21,7 @@ export declare function resolveAPIRoute(handlers: RequestHandlers, request: Requ
 export declare function resolveLoaderRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
 export declare function resolvePageRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<any>;
 export declare function getURLfromRequestURL(request: Request): URL;
+export declare function getSubdomain(url: URL): string | undefined;
 export declare function compileManifest(manifest: {
     pageRoutes: RouteInfo[];
     apiRoutes: RouteInfo[];
