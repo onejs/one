@@ -10,16 +10,46 @@ const path = require('path')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
-    // react-native-screens gamma features (SplitView, NativeTabs)
-    // currently disabled — gamma causes "duplicate RNSScreen registration" crash with Fabric on RN 0.83
-    // tracking: https://github.com/software-mansion/react-native-screens/issues/XXXX
-    // to enable manually, add ENV['RNS_GAMMA_ENABLED'] ||= '1' to the top of your Podfile
+    // auto-inject swift 6 workaround for expo-modules-core into Podfile (version-gated, opt-out-able)
     [
       withDangerousMod,
       [
         'ios',
         async (config) => {
-          // gamma disabled until react-native-screens fixes duplicate view registration
+          const iosRoot = config.modRequest.platformProjectRoot
+          const podfilePath = path.join(iosRoot, 'Podfile')
+          if (!fs.existsSync(podfilePath)) return config
+
+          // opt-out: set "one.disableSwift6Workaround": "true" in Podfile.properties.json
+          const propsPath = path.join(iosRoot, 'Podfile.properties.json')
+          if (fs.existsSync(propsPath)) {
+            try {
+              const props = JSON.parse(fs.readFileSync(propsPath, 'utf8'))
+              if (props['one.disableSwift6Workaround'] === 'true') {
+                console.info('[vxrn] swift 6 workaround disabled via Podfile.properties.json')
+                return config
+              }
+            } catch {}
+          }
+
+          // version-gate: only needed for expo-modules-core <56
+          const emcVersion = getExpoModulesCoreVersion(config.modRequest.projectRoot)
+          if (emcVersion && semverMajor(emcVersion) >= 56) {
+            console.info(`[vxrn] expo-modules-core@${emcVersion} — swift 6 workaround not needed, skipping`)
+            return config
+          }
+
+          let podfile = fs.readFileSync(podfilePath, 'utf8')
+          if (podfile.includes('SWIFT_STRICT_CONCURRENCY')) {
+            return config
+          }
+
+          podfile = injectSwift6WorkaroundIntoPodfile(podfile)
+          fs.writeFileSync(podfilePath, podfile, 'utf8')
+          console.info(
+            `[vxrn] applied swift 6 workaround for expo-modules-core@${emcVersion || '?'} (expo/expo#43199)\n` +
+            `       to disable: set "one.disableSwift6Workaround": "true" in ios/Podfile.properties.json`
+          )
           return config
         },
       ],
@@ -410,5 +440,76 @@ function addReactNativeScreensFix(input) {
   return input
 }
 
+function getExpoModulesCoreVersion(projectRoot) {
+  try {
+    const pkgPath = require.resolve('expo-modules-core/package.json', {
+      paths: [projectRoot],
+    })
+    return JSON.parse(fs.readFileSync(pkgPath, 'utf8')).version
+  } catch {
+    return null
+  }
+}
+
+function semverMajor(version) {
+  const match = version.match(/^(\d+)/)
+  return match ? Number.parseInt(match[1], 10) : 0
+}
+
+/**
+ * Inject the Swift 6 workaround for expo-modules-core into a Podfile's post_install block.
+ *
+ * expo-modules-core 55.x uses Swift 6 @MainActor conformance syntax (SE-0470) but has
+ * strict concurrency errors. We keep Swift 6 but relax concurrency checking.
+ *
+ * only applied when expo-modules-core <56. users can opt out by setting
+ * "one.disableSwift6Workaround": "true" in ios/Podfile.properties.json.
+ *
+ * tracking: expo/expo#43199, expo/expo#42525
+ */
+function injectSwift6WorkaroundIntoPodfile(podfile) {
+  const workaround = `
+    # [vxrn/one] workaround: expo-modules-core 55.x requires Swift 6 mode with isolated
+    # conformances (SE-0470) for @MainActor in protocol conformance syntax.
+    # SWIFT_STRICT_CONCURRENCY=minimal suppresses concurrency warnings/errors.
+    # tracking: expo/expo#43199, expo/expo#42525
+    installer.pods_project.targets.each do |target|
+      if target.name == 'ExpoModulesCore'
+        target.build_configurations.each do |build_config|
+          build_config.build_settings['SWIFT_VERSION'] = '6'
+          build_config.build_settings['SWIFT_STRICT_CONCURRENCY'] = 'minimal'
+          flags = build_config.build_settings['OTHER_SWIFT_FLAGS'] || '$(inherited)'
+          unless flags.include?('IsolatedConformances')
+            build_config.build_settings['OTHER_SWIFT_FLAGS'] = "#{flags} -enable-upcoming-feature IsolatedConformances"
+          end
+        end
+      end
+      # workaround: ContextMenuAuxiliaryPreview uses deprecated transform: .default
+      # which is an error in Xcode 26 / Swift 6.2 strict mode.
+      if target.name == 'ContextMenuAuxiliaryPreview'
+        target.build_configurations.each do |build_config|
+          build_config.build_settings['SWIFT_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
+          build_config.build_settings['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
+        end
+      end
+    end
+`
+
+  // inject right after `post_install do |installer|`
+  const postInstallMatch = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (postInstallMatch) {
+    const insertPos = postInstallMatch.index + postInstallMatch[0].length
+    return podfile.slice(0, insertPos) + '\n' + workaround + podfile.slice(insertPos)
+  }
+
+  // if no post_install found, warn
+  console.warn(
+    '[vxrn/expo-plugin] could not find post_install block in Podfile to inject Swift 6 workaround.\n' +
+    'You may need to manually add the workaround. See: https://onestack.dev/docs/guides-ios-native'
+  )
+  return podfile
+}
+
 module.exports = plugin
 module.exports.addReactNativeScreensFix = addReactNativeScreensFix
+module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
