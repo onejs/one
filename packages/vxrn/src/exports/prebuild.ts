@@ -56,10 +56,17 @@ export const prebuild = async ({
       } catch (e) {
         // ignore
       }
+
     } catch (e) {
       throw new Error(
         `Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`
       )
+    }
+
+    // validate swift 6 workaround was injected into Podfile (outside prebuild try/catch
+    // so a validation error doesn't produce a misleading "Is expo listed?" message)
+    if (!platform || platform === 'ios') {
+      validateSwift6Workaround(root)
     }
 
     if (!platform || platform === 'ios') {
@@ -203,6 +210,45 @@ Android:
     } else {
       throw e
     }
+  }
+}
+
+function validateSwift6Workaround(root: string) {
+  const podfilePath = path.join(root, 'ios', 'Podfile')
+  if (!FSExtra.existsSync(podfilePath)) return
+
+  // check opt-out
+  const propsPath = path.join(root, 'ios', 'Podfile.properties.json')
+  if (FSExtra.existsSync(propsPath)) {
+    try {
+      const props = JSON.parse(FSExtra.readFileSync(propsPath, 'utf8'))
+      if (props['one.disableSwift6Workaround'] === 'true') return
+    } catch {}
+  }
+
+  // check version — only needed for <56
+  try {
+    const emcPkgPath = resolvePath('expo-modules-core/package.json', root)
+    const emcVersion = JSON.parse(FSExtra.readFileSync(emcPkgPath, 'utf8')).version
+    const major = Number.parseInt(emcVersion.match(/^(\d+)/)?.[1] || '0', 10)
+    if (major >= 56) return
+  } catch {}
+
+  const podfile = FSExtra.readFileSync(podfilePath, 'utf8')
+  if (!podfile.includes('SWIFT_STRICT_CONCURRENCY')) {
+    console.warn(
+      colors.yellow(`
+⚠️  Your ios/Podfile is missing the Swift 6 workaround for expo-modules-core.
+   Without this, your iOS build will fail with Swift concurrency errors.
+
+   Fix: add "vxrn/expo-plugin" to your app.json plugins and re-run prebuild.
+
+   To disable this check: set "one.disableSwift6Workaround": "true"
+   in ios/Podfile.properties.json.
+
+   See: expo/expo#43199
+`)
+    )
   }
 }
 
