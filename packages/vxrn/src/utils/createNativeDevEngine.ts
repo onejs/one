@@ -586,7 +586,8 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
-      const hasAsyncIter = code.includes('async *') || code.includes('async*') || code.includes('for await')
+      const hasAsyncIter =
+        code.includes('async *') || code.includes('async*') || code.includes('for await')
       const hasAsync = !dev && code.includes('async ')
       if (!hasClass && !hasAsync && !hasAsyncIter) return
       // skip very large prebuilt files
