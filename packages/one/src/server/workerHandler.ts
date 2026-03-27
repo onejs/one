@@ -5,6 +5,7 @@ import {
 } from '../constants'
 import {
   compileManifest,
+  getSubdomain,
   getURLfromRequestURL,
   type RequestHandlers,
   resolveAPIRoute,
@@ -704,6 +705,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           const loaderProps = {
             path: pathname,
             search: url.search,
+            subdomain: getSubdomain(url),
             request,
             params,
           }
