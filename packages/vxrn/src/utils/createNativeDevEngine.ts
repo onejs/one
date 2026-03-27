@@ -586,18 +586,16 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
-      const hasAsyncIter =
-        code.includes('async *') || code.includes('async*') || code.includes('for await')
       const hasAsync = !dev && code.includes('async ')
-      if (!hasClass && !hasAsync && !hasAsyncIter) return
+      if (!hasClass && !hasAsync) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // hermes doesn't support async generators (even in dev) and rejects
-        // class declarations in prod bytecode compilation
+        // prod builds: hermes bytecode compiler rejects class declarations/expressions
+        // and async functions, so we downlevel them
         const envIncludes = [
           'transform-class-properties',
           'transform-class-static-block',
@@ -606,45 +604,25 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
           ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
         ]
 
-        // for files with async generators, use a lower target so SWC
-        // fully downlevels them (hermes doesn't support async generators)
-        const needsAsyncGenDownlevel = hasAsyncIter
-
         const result = await swc.transform(code, {
           filename: id,
           configFile: false,
           swcrc: false,
           sourceMaps: false,
           inputSourceMap: false,
-          ...(needsAsyncGenDownlevel
-            ? {
-                // use es2017 target to downlevel async generators while keeping async/await
-                jsc: {
-                  parser: { syntax: 'typescript', tsx: true },
-                  target: 'es2016',
-                  transform: { react: { runtime: 'preserve' } },
-                  externalHelpers: false,
-                  assumptions: {
-                    setPublicClassFields: true,
-                    privateFieldsAsProperties: true,
-                  },
-                },
-              }
-            : {
-                env: {
-                  targets: { node: 9999 },
-                  include: envIncludes,
-                },
-                jsc: {
-                  parser: { syntax: 'typescript', tsx: true },
-                  transform: { react: { runtime: 'preserve' } },
-                  externalHelpers: false,
-                  assumptions: {
-                    setPublicClassFields: true,
-                    privateFieldsAsProperties: true,
-                  },
-                },
-              }),
+          env: {
+            targets: { node: 9999 },
+            include: envIncludes,
+          },
+          jsc: {
+            parser: { syntax: 'typescript', tsx: true },
+            transform: { react: { runtime: 'preserve' } },
+            externalHelpers: false,
+            assumptions: {
+              setPublicClassFields: true,
+              privateFieldsAsProperties: true,
+            },
+          },
           isModule: !id.endsWith('.cjs'),
         })
         return { code: result.code }
