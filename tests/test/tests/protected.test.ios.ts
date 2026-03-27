@@ -22,9 +22,12 @@ test(
     // Toggle auth
     const toggleAuth = await driver.$('~toggle-auth')
     await toggleAuth.click()
-    await driver.pause(500)
 
-    // Verify auth status changed
+    // Wait for auth status to update (re-render can take time on CI)
+    await driver.waitUntil(
+      async () => (await driver.$('~auth-status').getText()).includes('Auth: true'),
+      { timeout: 10_000, interval: 500 }
+    )
     expect(await driver.$('~auth-status').getText()).toContain('Auth: true')
   }
 )
