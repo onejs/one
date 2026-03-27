@@ -10,19 +10,13 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "react-native": {
-        "import": "./dist/esm/index.native.js",
-        "require": "./dist/cjs/index.native.js"
-      },
+      "react-native": "./dist/esm/index.native.js",
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
     "./ui": {
-      "react-native": {
-        "import": "./dist/esm/ui/index.native.js",
-        "require": "./dist/cjs/ui/index.native.js"
-      },
+      "react-native": "./dist/esm/ui/index.native.js",
       "types": "./types/ui/index.d.ts",
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
@@ -108,10 +102,7 @@
       "require": "./dist/cjs/image.js"
     },
     "./drawer": {
-      "react-native": {
-        "import": "./dist/esm/drawer.native.js",
-        "require": "./dist/cjs/drawer.native.js"
-      },
+      "react-native": "./dist/esm/drawer.native.js",
       "types": "./types/drawer.d.ts",
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.js"
