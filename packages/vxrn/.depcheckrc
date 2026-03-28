@@ -17,3 +17,5 @@ ignores:
   - "@vxrn/vendor"
   # intentionally removed from deps due to vite 8 conflict, dynamically imported at runtime
   - "qrcode-terminal"
+  # resolved from user's project root in expo-plugin.cjs, not a direct dependency
+  - "expo-modules-core"
