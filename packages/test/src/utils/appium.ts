@@ -4,6 +4,60 @@ import type { ChainablePromiseElement, Browser } from 'webdriverio'
 import { remote } from 'webdriverio'
 import type { WebdriverIOConfig } from '../internal-utils/ios'
 
+export class AppCrashedError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'AppCrashedError'
+  }
+}
+
+/**
+ * checks if the app is still running by querying the WebDriver session.
+ * throws AppCrashedError if the app has crashed.
+ */
+export async function assertAppRunning(driver: Browser): Promise<void> {
+  try {
+    await driver.getPageSource()
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e)
+    if (msg.includes('is not running') || msg.includes('possibly crashed')) {
+      throw new AppCrashedError(`App has crashed: ${msg}`)
+    }
+    // other errors (e.g. transient WDA issues) - don't throw
+  }
+}
+
+/**
+ * like element.waitForDisplayed but checks for app crashes periodically.
+ * if the app crashes, fails immediately instead of waiting for the full timeout.
+ */
+async function waitForDisplayedOrAppCrash(
+  driver: Browser,
+  element: ChainablePromiseElement,
+  timeout: number,
+  crashCheckInterval = 10_000
+): Promise<void> {
+  const start = Date.now()
+  while (true) {
+    const remaining = timeout - (Date.now() - start)
+    if (remaining <= 0) {
+      throw new Error(
+        `Element "${await element.selector}" not displayed after ${timeout}ms`
+      )
+    }
+
+    const waitChunk = Math.min(crashCheckInterval, remaining)
+    try {
+      await element.waitForDisplayed({ timeout: waitChunk })
+      return
+    } catch {
+      // check if the app crashed before continuing to wait
+      await assertAppRunning(driver)
+      // app is alive, element just not found yet - keep waiting
+    }
+  }
+}
+
 /**
  * Like `element.setValue` but types slowly, character by character, to reduce the risk of missing characters.
  *
@@ -100,9 +154,11 @@ export async function setValueSafe(
  * Currently, this only works when the `TestNavigationHelper` component is shown on the screen.
  */
 export async function navigateTo(driver: Browser, path: string) {
+  const NAVIGATE_TIMEOUT = 2 * 60 * 1000
+
   const quickNavigatePixel = driver.$('~quick-navigate-pixel')
   try {
-    await quickNavigatePixel.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+    await waitForDisplayedOrAppCrash(driver, quickNavigatePixel, NAVIGATE_TIMEOUT)
     await driver.setClipboard(Buffer.from(path).toString('base64'), 'plaintext')
     await quickNavigatePixel.click()
     await driver.pause(50)
@@ -135,6 +191,9 @@ export async function navigateTo(driver: Browser, path: string) {
 
     return
   } catch (e) {
+    // if the app crashed, don't bother with fallback - fail immediately
+    if (e instanceof AppCrashedError) throw e
+
     console.warn(
       `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
     )
@@ -142,7 +201,7 @@ export async function navigateTo(driver: Browser, path: string) {
   }
 
   const navigatePathInput = driver.$('~test-navigate-path-input')
-  await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+  await waitForDisplayedOrAppCrash(driver, navigatePathInput, NAVIGATE_TIMEOUT)
   await setValueSafe(driver, navigatePathInput, path)
   await driver.$('~test-navigate').click()
   await driver.pause(100)
@@ -151,6 +210,7 @@ export async function navigateTo(driver: Browser, path: string) {
 /**
  * Note that this will not throw an error if the element is not displayed.
  * Instead, it will return the element as is.
+ * DOES throw AppCrashedError if the app has crashed.
  */
 export async function waitForDisplayed(
   driver: Browser,
@@ -160,6 +220,8 @@ export async function waitForDisplayed(
   try {
     await element.waitForDisplayed({ timeout })
   } catch (err) {
+    // if app crashed, throw immediately - no point continuing
+    await assertAppRunning(driver)
     await takeScreenshotForError(driver, err)
   }
   return element
@@ -173,9 +235,13 @@ async function takeScreenshotForError(driver: Browser, err: unknown) {
   const screenshotPath = `/tmp/appium-screenshots/${fileName}.png`
   const sourcePath = `/tmp/appium-screenshots/${fileName}.xml`
 
-  await driver.saveScreenshot(screenshotPath)
-  const source = await driver.getPageSource()
-  await fs.promises.writeFile(sourcePath, source)
+  try {
+    await driver.saveScreenshot(screenshotPath)
+    const source = await driver.getPageSource()
+    await fs.promises.writeFile(sourcePath, source)
+  } catch {
+    // app may have crashed, screenshot/source not available
+  }
 }
 
 function sanitizeFileName(input: string): string {
@@ -205,6 +271,36 @@ export async function createSession(
       }
 
       const driver = await remote(resolvedConfig)
+
+      // verify the app actually launched successfully
+      try {
+        await assertAppRunning(driver)
+      } catch (e) {
+        if (e instanceof AppCrashedError) {
+          console.error(
+            `[createSession] app crashed immediately after launch on attempt ${attempt}`
+          )
+          // dump simulator system log for crash diagnostics
+          const udid =
+            (resolvedConfig.capabilities as any)?.['appium:options']?.udid ||
+            process.env.SIMULATOR_UDID
+          if (udid) {
+            try {
+              const log = execSync(
+                `xcrun simctl spawn ${udid} log show --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CrashReporter"' --last 30s --style compact 2>/dev/null || true`,
+                { timeout: 10_000, encoding: 'utf8' }
+              )
+              if (log.trim()) {
+                console.error(
+                  '[createSession] simulator crash log:\n' + log.slice(0, 3000)
+                )
+              }
+            } catch {}
+          }
+          throw e
+        }
+      }
+
       return driver
     } catch (err) {
       lastError = err
