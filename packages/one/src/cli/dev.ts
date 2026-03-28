@@ -16,6 +16,7 @@ export async function dev(args: {
   mode?: 'development' | 'production'
   debugBundle?: string
   debug?: string
+  extraConfig?: string
 }) {
   labelProcess('dev')
   checkNodeVersion()
@@ -65,6 +66,7 @@ export async function dev(args: {
     root,
     debugBundle: args.debugBundle,
     debug: args.debug,
+    extraConfig: args.extraConfig,
     server: {
       host: args.host,
       port: effectivePort,

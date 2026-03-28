@@ -94,6 +94,10 @@ const dev = defineCommand({
       type: 'string',
       description: `Pass debug args to Vite`,
     },
+    'extra-config': {
+      type: 'string',
+      description: `Path to an extra vite config file to merge on top of the project config`,
+    },
   },
   async run({ args }) {
     const { dev } = await import('./cli/dev')
@@ -103,6 +107,7 @@ const dev = defineCommand({
       host: lastValue(args.host),
       debugBundle: lastValue(args['debug-bundle']),
       mode: modes[lastValue(args.mode) as keyof typeof modes],
+      extraConfig: lastValue(args['extra-config']),
     })
   },
 })
