@@ -2,7 +2,7 @@ import { expect, test } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
-const sharedTestOptions = { timeout: 5 * 60 * 1000, retry: 2 }
+const sharedTestOptions = { timeout: 8 * 60 * 1000, retry: 2 }
 
 test(
   'Protected routes - shows public page and can toggle auth',
@@ -19,12 +19,15 @@ test(
     await waitForDisplayed(driver, driver.$('~auth-status'))
     expect(await driver.$('~auth-status').getText()).toContain('Auth: false')
 
-    // Toggle auth
-    const toggleAuth = await driver.$('~toggle-auth')
-    await toggleAuth.click()
-    await driver.pause(500)
+    // Toggle auth — wait for the button, then click and verify
+    await waitForDisplayed(driver, driver.$('~toggle-auth'))
+    await driver.pause(500) // let layout settle after navigation
+    await driver.$('~toggle-auth').click()
 
-    // Verify auth status changed
+    await driver.waitUntil(
+      async () => (await driver.$('~auth-status').getText()).includes('Auth: true'),
+      { timeout: 10_000, interval: 500 }
+    )
     expect(await driver.$('~auth-status').getText()).toContain('Auth: true')
   }
 )

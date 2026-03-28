@@ -8,8 +8,12 @@ env:
   ios_app_name: RNTestContainer
   # A unique ID to identify the app on GitHub Actions, this is used as part of cache keys and artifact names, must be unique among all workflows
   app_id: ios-rn-test-container-app
-  # rolldown native pipeline outputs ESM which requires Hermes V1
-  RCT_HERMES_V1_ENABLED: '1'
+  # rolldown native pipeline needs Hermes V1 for ESM, but the iOS tests
+  # currently use Metro which produces CJS bytecode compiled by the npm
+  # hermes-compiler (bytecode v96). Enabling V1 here creates a version
+  # mismatch — the app ships hermesvm (v98) but hermesc produces v96.
+  # Disabled until the test infra can find a matching V1 hermesc on CI.
+  # RCT_HERMES_V1_ENABLED: '1'
   # The command used to prebuild the app
   prebuild_command: bun run prebuild:native --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 

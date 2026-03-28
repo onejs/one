@@ -228,37 +228,10 @@ async function prepareTestApp() {
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
     // RN 0.83+: hermes-compiler package
     path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
-    path.join(
-      root,
-      '..',
-      '..',
-      'node_modules',
-      'hermes-compiler',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
+    path.join(root, '..', '..', 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
     // RN <0.83: react-native/sdks
-    path.join(
-      root,
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
-    path.join(
-      root,
-      '..',
-      '..',
-      'node_modules',
-      'react-native',
-      'sdks',
-      'hermesc',
-      'osx-bin',
-      'hermesc'
-    ),
+    path.join(root, 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
   ]
 
   let hermescPath: string | undefined
@@ -317,7 +290,7 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 180 * 1000,
+    connectionRetryTimeout: 120 * 1000,
     connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,
