@@ -1,7 +1,9 @@
 import { transformSWC } from '@vxrn/compiler'
 import { transformFlowBabel } from '@vxrn/vite-flow'
+import Glob from 'fast-glob'
 import findNodeModules from 'find-node-modules'
 import FSExtra from 'fs-extra'
+import { realpathSync } from 'node:fs'
 import { join } from 'node:path'
 import { rename } from 'node:fs/promises'
 import semver from 'semver'
@@ -93,22 +95,58 @@ async function writePatchStats(nodeModulesDir: string, stats: PatchStats) {
 
 type PatchResult = 'applied' | 'ok' | 'skipped'
 
+/**
+ * Convert a module name to a pnpm content-addressable store glob pattern.
+ * Scoped packages: @scope/name -> @scope+name
+ * Unscoped packages pass through unchanged.
+ */
+export function moduleToPnpmStorePattern(moduleName: string): string {
+  return moduleName.replace('/', '+')
+}
+
 export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
 ) {
+  // collect unique module names for pnpm store globbing
+  const patchModuleNames = [...new Set(patches.map((p) => p.module))]
+
   const nodeModulesDirs = findNodeModules({ cwd: root }).flatMap((relativePath) => {
     const dir = join(root, relativePath)
+    const dirs = [dir]
+
+    const pnpmBase = join(dir, '.pnpm')
+    if (!FSExtra.existsSync(pnpmBase)) return dirs
+
     // pnpm hoists transitive deps into .pnpm/node_modules/ (symlinks to store)
-    // so we need to patch there too
-    const pnpmDir = join(dir, '.pnpm', 'node_modules')
-    return FSExtra.existsSync(pnpmDir) ? [dir, pnpmDir] : [dir]
+    const pnpmHoistedDir = join(pnpmBase, 'node_modules')
+    if (FSExtra.existsSync(pnpmHoistedDir)) {
+      dirs.push(pnpmHoistedDir)
+    }
+
+    // pnpm content-addressable store: scan for store entries matching our patch modules
+    // handles cases where packages aren't hoisted (strict mode, peer dep conflicts, hoist=false)
+    for (const moduleName of patchModuleNames) {
+      const storePattern = moduleToPnpmStorePattern(moduleName)
+      const storeMatches = Glob.sync(`${storePattern}@*/node_modules`, {
+        cwd: pnpmBase,
+        onlyDirectories: true,
+      })
+      for (const match of storeMatches) {
+        dirs.push(join(pnpmBase, match))
+      }
+    }
+
+    return dirs
   })
 
   // track results per module
   const results = new Map<string, PatchResult>()
   // track modules that already warned about transform failures (to avoid spam)
   const transformWarnedModules = new Set<string>()
+  // track real paths per (patch index, real dir) to prevent double-patching
+  // when symlinks and store entries resolve to the same physical files
+  const patchedRealPaths = new Set<string>()
 
   await Promise.all(
     nodeModulesDirs.map(async (nodeModulesDir) => {
@@ -122,6 +160,19 @@ export async function applyDependencyPatches(
             const nodeModuleDir = join(nodeModulesDir, patch.module)
 
             if (!FSExtra.existsSync(nodeModuleDir)) return
+
+            // deduplicate by real path to avoid patching the same files twice
+            // (multiple symlinks/paths can resolve to the same pnpm store entry)
+            let realModuleDir: string
+            try {
+              realModuleDir = realpathSync(nodeModuleDir)
+            } catch {
+              return
+            }
+            const patchIdx = patches.indexOf(patch)
+            const dedupKey = `${patchIdx}\0${realModuleDir}`
+            if (patchedRealPaths.has(dedupKey)) return
+            patchedRealPaths.add(dedupKey)
 
             const version = patch.patchFiles.version
             if (typeof version === 'string') {
