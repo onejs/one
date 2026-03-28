@@ -97,9 +97,13 @@ export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
 ) {
-  const nodeModulesDirs = findNodeModules({ cwd: root }).map((relativePath) =>
-    join(root, relativePath)
-  )
+  const nodeModulesDirs = findNodeModules({ cwd: root }).flatMap((relativePath) => {
+    const dir = join(root, relativePath)
+    // pnpm hoists transitive deps into .pnpm/node_modules/ (symlinks to store)
+    // so we need to patch there too
+    const pnpmDir = join(dir, '.pnpm', 'node_modules')
+    return FSExtra.existsSync(pnpmDir) ? [dir, pnpmDir] : [dir]
+  })
 
   // track results per module
   const results = new Map<string, PatchResult>()
