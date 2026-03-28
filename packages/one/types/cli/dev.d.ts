@@ -6,5 +6,6 @@ export declare function dev(args: {
     mode?: 'development' | 'production';
     debugBundle?: string;
     debug?: string;
+    extraConfig?: string;
 }): Promise<void>;
 //# sourceMappingURL=dev.d.ts.map

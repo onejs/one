@@ -8,7 +8,9 @@ describe('loaders on native', () => {
   test('loader data renders on native', sharedTestOptions, async () => {
     const driver = await createSession(getWebDriverConfig())
 
-    const loaderDataElement = await waitForDisplayed(driver, driver.$(`~test-loader`), { timeout: 2 * 60 * 1000 })
+    const loaderDataElement = await waitForDisplayed(driver, driver.$(`~test-loader`), {
+      timeout: 2 * 60 * 1000,
+    })
     const text = await loaderDataElement.getText()
     expect(text).toContain('hello')
   })

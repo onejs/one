@@ -22,6 +22,10 @@ function setupOrphanDetection() {
 
 export type DevOptions = VXRNOptions & {
   clean?: boolean
+  /**
+   * Path to an extra vite config file to merge on top of the project config (dev only)
+   */
+  extraConfig?: string
 }
 
 export const dev = async (optionsIn: DevOptions) => {
@@ -46,7 +50,7 @@ export const dev = async (optionsIn: DevOptions) => {
   const { removeUndefined } = await import('../utils/removeUndefined')
   const { createServer, loadConfigFromFile } = await import('vite')
 
-  const { config } =
+  let { config } =
     (await loadConfigFromFile({
       mode: 'dev',
       command: 'serve',
@@ -67,6 +71,22 @@ export default defineConfig({
 
 `)
     process.exit(0)
+  }
+
+  if (optionsIn.extraConfig) {
+    const { resolve } = await import('node:path')
+    const extraConfigPath = resolve(optionsIn.extraConfig)
+    const extraResult = await loadConfigFromFile(
+      { mode: 'dev', command: 'serve' },
+      extraConfigPath
+    )
+    if (extraResult?.config) {
+      const { mergeConfig } = await import('vite')
+      config = mergeConfig(config, extraResult.config)
+      console.info(colors.cyan(`Merged extra config from ${extraConfigPath}`))
+    } else {
+      console.warn(colors.yellow(`Could not load extra config from ${extraConfigPath}`))
+    }
   }
 
   // use one server config as defaults
