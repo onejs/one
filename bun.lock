@@ -37,7 +37,7 @@
       "version": "1.13.0-1774659724735",
       "dependencies": {
         "@docsearch/react": "^3.9.0",
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@supabase/supabase-js": "^2.44.4",
         "@tamagui/lucide-icons-2": "2.0.0-rc.32",
         "@tamagui/react-native-web": "2.0.0-rc.32",
@@ -126,7 +126,7 @@
       "name": "example-basic",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "one": "workspace:*",
         "react": "19.2.0",
@@ -149,7 +149,7 @@
       "dependencies": {
         "@bottom-tabs/react-navigation": "^0.9.1",
         "@dotenvx/dotenvx": "^1.12.1",
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@tamagui/lucide-icons-2": "2.0.0-rc.32",
         "@vxrn/color-scheme": "workspace:*",
@@ -386,7 +386,7 @@
       "devDependencies": {
         "@react-navigation/core": "^7.16.1",
         "@react-navigation/drawer": "~7.9.4",
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/build": "2.0.0-rc.32",
         "@types/node": "^24.10.0",
         "@types/react-dom": "^19.2.2",
@@ -407,7 +407,7 @@
       },
       "peerDependencies": {
         "@react-navigation/drawer": "~7.9.4",
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "react-native": "0.83.2",
@@ -684,7 +684,7 @@
       "name": "test-hmr",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "one": "workspace:*",
         "react": "19.2.0",
@@ -704,7 +704,7 @@
       "name": "test-native-features",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@vxrn/native": "workspace:*",
         "expo": "~55.0.7",
         "expo-build-properties": "~55.0.9",
@@ -726,7 +726,7 @@
       "name": "rn-test-container",
       "version": "0.0.0",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "expo-build-properties": "~55.0.9",
         "expo-clipboard": "~55.0.8",
@@ -752,7 +752,7 @@
       "name": "test-sandbox",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@tamagui/lucide-icons-2": "2.0.0-rc.32",
         "@tamagui/vite-plugin": "2.0.0-rc.32",
@@ -778,7 +778,7 @@
       "name": "test-test",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@tamagui/lucide-icons-2": "2.0.0-rc.32",
         "@tamagui/vite-plugin": "2.0.0-rc.32",
@@ -820,7 +820,7 @@
       "name": "test-app-cases",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@vxrn/color-scheme": "workspace:*",
         "one": "workspace:*",
@@ -919,7 +919,7 @@
       "name": "test-hydration-id",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "one": "workspace:*",
         "react": "19.2.0",
         "react-dom": "19.2.0",
@@ -938,7 +938,7 @@
       "name": "test-id-remount",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "one": "workspace:*",
         "react": "19.2.0",
         "react-dom": "19.2.0",
@@ -956,7 +956,7 @@
       "name": "test-layout-flicker",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "one": "workspace:*",
         "react": "19.2.0",
@@ -992,7 +992,7 @@
       "name": "test-loaders",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@vxrn/color-scheme": "workspace:*",
         "expo": "~55.0.7",
@@ -1019,7 +1019,7 @@
       "name": "test-native-tree-shaking",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@vxrn/mdx": "workspace:*",
         "expo": "~55.0.7",
         "mdx-bundler": "^10.0.2",
@@ -1041,7 +1041,7 @@
       "name": "test-not-found",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "one": "workspace:*",
         "react": "19.2.0",
         "react-dom": "19.2.0",
@@ -1061,7 +1061,7 @@
       "name": "test-route-file-watching",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1081,7 +1081,7 @@
       "name": "test-routing-flicker",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "@tamagui/config": "2.0.0-rc.32",
         "@vxrn/color-scheme": "workspace:*",
         "expo": "~55.0.7",
@@ -1138,7 +1138,7 @@
       "name": "test-use-dom",
       "version": "1.13.0-1774659724735",
       "dependencies": {
-        "@react-navigation/native": "~7.1.33",
+        "@react-navigation/native": "~7.2.1",
         "expo": "~55.0.7",
         "one": "workspace:*",
         "react": "19.2.0",

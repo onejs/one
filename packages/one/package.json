@@ -202,7 +202,7 @@
   },
   "peerDependencies": {
     "@react-navigation/drawer": "~7.9.4",
-    "@react-navigation/native": "~7.1.33",
+    "@react-navigation/native": "~7.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-native": "0.83.2",
@@ -232,7 +232,7 @@
   "devDependencies": {
     "@react-navigation/core": "^7.16.1",
     "@react-navigation/drawer": "~7.9.4",
-    "@react-navigation/native": "~7.1.33",
+    "@react-navigation/native": "~7.2.1",
     "@tamagui/build": "2.0.0-rc.32",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-reanimated": "~4.2.1",
