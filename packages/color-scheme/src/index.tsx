@@ -1,6 +1,6 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 import type { Scheme } from './systemScheme'
-import { useUserScheme } from './userScheme'
+import { setUserScheme, useUserScheme } from './userScheme'
 
 // re-export types
 export type { Scheme } from './systemScheme'
@@ -20,23 +20,43 @@ const storageKey = 'vxrn-scheme'
 export function SchemeProvider({
   children,
   getClassName = (name) => `t_${name}`,
+  defaultScheme,
 }: {
   children: any
   getClassName?: (name: Scheme) => string
+  /** Force a default scheme when no user preference is stored. Without this, falls back to system preference. */
+  defaultScheme?: Scheme
 }) {
   const { value } = useUserScheme()
 
   if (process.env.TAMAGUI_TARGET !== 'native') {
+    // when defaultScheme is set and no stored preference, apply it on mount
+    useIsomorphicLayoutEffect(() => {
+      if (defaultScheme && typeof localStorage !== 'undefined') {
+        if (!localStorage.getItem(storageKey)) {
+          setUserScheme(defaultScheme)
+        }
+      }
+    }, [])
+
     useIsomorphicLayoutEffect(() => {
       const toAdd = getClassName(value)
+      const toRemove = getClassName(value === 'light' ? 'dark' : 'light')
       const { classList } = document.documentElement
+      classList.remove(toRemove)
       if (!classList.contains(toAdd)) {
-        const toRemove = value === 'light' ? 'dark' : 'light'
-        classList.remove(getClassName(toRemove))
         classList.add(toAdd)
       }
     }, [value])
   }
+
+  const fallback = defaultScheme
+    ? `'${defaultScheme}' === 'dark'`
+    : `window.matchMedia('(prefers-color-scheme: dark)').matches`
+
+  const seedStorage = defaultScheme
+    ? `if(!e){localStorage.setItem('${storageKey}','${defaultScheme}')}`
+    : ''
 
   return (
     <>
@@ -48,8 +68,9 @@ export function SchemeProvider({
 d.remove('${getClassName('light')}')
 d.remove('${getClassName('dark')}')
 let e = localStorage.getItem('${storageKey}')
+${seedStorage}
 let t = 'system' === e || !e
-  ? window.matchMedia('(prefers-color-scheme: dark)').matches
+  ? ${fallback}
   : e === 'dark'
 t ? d.add('${getClassName('dark')}') : d.add('${getClassName('light')}')
 `,
