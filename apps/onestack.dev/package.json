@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
-    "@react-navigation/native": "~7.2.1",
+    "@react-navigation/native": "~7.2.2",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/lucide-icons-2": "2.0.0-rc.32",
     "@tamagui/react-native-web": "2.0.0-rc.32",

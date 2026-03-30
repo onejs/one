@@ -20,7 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.1",
+    "@react-navigation/native": "~7.2.2",
     "@tamagui/config": "2.0.0-rc.32",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
