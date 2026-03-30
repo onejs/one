@@ -39,7 +39,7 @@ export function useInitializeOneRouter(
       rootComponent: routerStore.rootComponent,
       navigationRef,
       initialState,
-    } as typeof routerStore
+    } as unknown as typeof routerStore
   }
 
   // client: use version tracking (no concurrency issue)

@@ -115,7 +115,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
         isFocused(): boolean;
         canGoBack(): boolean;
         getId(): string | undefined;
-        getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
+        getParent<T = import("@react-navigation/native").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
         getState(): Readonly<{
             key: string;
             index: number;
@@ -125,11 +125,11 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             type: string;
             stale: false;
         }>;
-    } & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]> & import("@react-navigation/core").EventEmitter<TabNavigationEventMap> & {
+    } & import("@react-navigation/native").PrivateValueStore<[ParamListBase, unknown, unknown]> & import("@react-navigation/native").EventEmitter<TabNavigationEventMap> & {
         setParams(params: Partial<object | undefined>): void;
         replaceParams(params: object | undefined): void;
     } & TabActionHelpers<ParamListBase>;
-    describe: (route: import("@react-navigation/core").RouteProp<ParamListBase>, placeholder: boolean) => import("@react-navigation/core").Descriptor<import("./TabContext").ExpoTabsNavigatorScreenOptions, Omit<{
+    describe: (route: import("@react-navigation/native").RouteProp<ParamListBase>, placeholder: boolean) => import("@react-navigation/native").Descriptor<import("./TabContext").ExpoTabsNavigatorScreenOptions, Omit<{
         dispatch(action: Readonly<{
             type: string;
             payload?: object;
@@ -164,10 +164,10 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
         isFocused(): boolean;
         canGoBack(): boolean;
         getId(): string | undefined;
-        getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
+        getParent<T = import("@react-navigation/native").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
         getState(): TabNavigationState<any>;
-    } & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
-        getParent<T = import("@react-navigation/core").NavigationProp<ParamListBase, string, string | undefined, Readonly<{
+    } & import("@react-navigation/native").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
+        getParent<T = import("@react-navigation/native").NavigationProp<ParamListBase, string, string | undefined, Readonly<{
             key: string;
             index: number;
             routeNames: string[];
@@ -180,8 +180,8 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
     } & {
         setParams(params: Partial<object | undefined>): void;
         replaceParams(params: object | undefined): void;
-    } & import("@react-navigation/core").EventConsumer<TabNavigationEventMap & import("@react-navigation/core").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/core").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/core").RouteProp<ParamListBase, string>>;
-    descriptors: Record<string, import("@react-navigation/core").Descriptor<import("./TabContext").ExpoTabsNavigatorScreenOptions, Omit<{
+    } & import("@react-navigation/native").EventConsumer<TabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/native").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/native").RouteProp<ParamListBase, string>>;
+    descriptors: Record<string, import("@react-navigation/native").Descriptor<import("./TabContext").ExpoTabsNavigatorScreenOptions, Omit<{
         dispatch(action: Readonly<{
             type: string;
             payload?: object;
@@ -216,10 +216,10 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
         isFocused(): boolean;
         canGoBack(): boolean;
         getId(): string | undefined;
-        getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
+        getParent<T = import("@react-navigation/native").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
         getState(): TabNavigationState<any>;
-    } & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
-        getParent<T = import("@react-navigation/core").NavigationProp<ParamListBase, string, string | undefined, Readonly<{
+    } & import("@react-navigation/native").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
+        getParent<T = import("@react-navigation/native").NavigationProp<ParamListBase, string, string | undefined, Readonly<{
             key: string;
             index: number;
             routeNames: string[];
@@ -232,7 +232,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
     } & {
         setParams(params: Partial<object | undefined>): void;
         replaceParams(params: object | undefined): void;
-    } & import("@react-navigation/core").EventConsumer<TabNavigationEventMap & import("@react-navigation/core").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/core").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/core").RouteProp<ParamListBase, string>>>;
+    } & import("@react-navigation/native").EventConsumer<TabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/native").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/native").RouteProp<ParamListBase, string>>>;
     NavigationContent: ({ children }: {
         children: React.ReactNode;
     }) => import("react/jsx-runtime").JSX.Element;
