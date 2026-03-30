@@ -6,8 +6,7 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { writeFileSync } from 'node:fs'
-import { basename, dirname, extname, join, relative } from 'node:path'
+import { basename, dirname, extname, join, relative, resolve } from 'node:path'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -204,9 +203,6 @@ export async function createNativeDevEngine(
     serverUrl: serverUrl || `http://${host}:${port}`,
   })
 
-  // generate a real entry file on disk (virtual modules can't use import.meta.glob)
-  const entryFile = generateNativeEntry(root)
-
   let currentBundle: { code: string; map?: string } | null = null
   let bundleResolve: ((value: any) => void) | null = null
   let bundlePromise: Promise<any> | null = null
@@ -214,7 +210,7 @@ export async function createNativeDevEngine(
   const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
 
   const inputOptions: InputOptions = {
-    input: entryFile,
+    input: VIRTUAL_NATIVE_ENTRY,
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
@@ -237,6 +233,7 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
+      nativeVirtualEntryPlugin(root, { dev: true }),
       ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
 
       // add import.meta.hot.accept() to user files for HMR boundaries
@@ -404,10 +401,8 @@ export async function buildNativeBundle(
     serverUrl,
   })
 
-  const entryFile = generateNativeEntry(root, { dev })
-
   const result = await build({
-    input: entryFile,
+    input: VIRTUAL_NATIVE_ENTRY,
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
@@ -416,6 +411,7 @@ export async function buildNativeBundle(
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
+      nativeVirtualEntryPlugin(root, { dev }),
       ...getNativePlugins(root, platform, viteImportGlobPlugin, dev),
       ...userPlugins,
     ],
@@ -432,10 +428,12 @@ export async function buildNativeBundle(
   return { code, map: chunk.map?.toString() }
 }
 
-function generateNativeEntry(root: string, opts?: { dev?: boolean }): string {
+const VIRTUAL_NATIVE_ENTRY = 'virtual:native-entry'
+
+function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugin {
   const isDev = opts?.dev !== false
-  // write entry at project root so import.meta.glob('./app/...') resolves correctly
-  const entryPath = join(root, '.vxrn-entry-native.tsx')
+  // resolve to an absolute path rooted in the project so import.meta.glob('./app/...') resolves correctly
+  const resolvedId = resolve(root, '__virtual-native-entry.tsx')
 
   const refreshSetup = isDev
     ? `
@@ -451,7 +449,6 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
     : ''
 
   const entryCode = `
-// auto-generated native entry for rolldown
 ${refreshSetup}
 import { createApp } from 'one';
 
@@ -468,8 +465,20 @@ createApp({
   flags: {},
 });
 `
-  writeFileSync(entryPath, entryCode)
-  return entryPath
+
+  return {
+    name: 'vxrn:native-virtual-entry',
+    resolveId(id) {
+      if (id === VIRTUAL_NATIVE_ENTRY) {
+        return resolvedId
+      }
+    },
+    load(id) {
+      if (id === resolvedId) {
+        return entryCode
+      }
+    },
+  }
 }
 
 // --- plugins ---
@@ -766,7 +775,7 @@ function nativeReactRefreshPlugin(): Plugin {
     async transform(code, id) {
       // only wrap user app files (not node_modules, not generated entry, not virtual)
       if (id.includes('node_modules')) return
-      if (id.includes('.vxrn-entry-native')) return
+      if (id.includes('__virtual-native-entry')) return
       if (id.startsWith('\0')) return
       if (!/\.[tj]sx?$/.test(id)) return
       // skip files that clearly have no components (raw source before JSX transform)
