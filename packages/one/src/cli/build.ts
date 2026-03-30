@@ -158,7 +158,10 @@ export async function build(args: {
   // respect vite's build.outDir config, default to 'dist'
   const outDir = viteLoadedConfig?.config?.build?.outDir ?? 'dist'
 
-  const manifest = getManifest({ routerRoot })!
+  const manifest = getManifest({
+    routerRoot,
+    ignoredRouteFiles: oneOptions.router?.ignoredRouteFiles,
+  })!
 
   const serverOutputFormat =
     oneOptions.build?.server === false

@@ -515,7 +515,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           return await runner.import(path.join(routerRoot, route.contextKey))
         },
       },
-      { routerRoot }
+      { routerRoot, ignoredRouteFiles: options.router?.ignoredRouteFiles }
     )
   }
 
