@@ -14,7 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.1",
+    "@react-navigation/native": "~7.2.2",
     "@tamagui/config": "2.0.0-rc.32",
     "@tamagui/lucide-icons-2": "2.0.0-rc.32",
     "@tamagui/vite-plugin": "2.0.0-rc.32",
