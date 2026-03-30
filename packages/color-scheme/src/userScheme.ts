@@ -19,6 +19,54 @@ type SchemeListener = (setting: SchemeSetting, value: Scheme) => void
 const listeners = new Set<SchemeListener>()
 const storageKey = 'vxrn-scheme'
 
+// force scheme: when set, locks the scheme and ignores user/system preferences
+let _forceScheme: Scheme | null = null
+
+function notifyListeners() {
+  listeners.forEach((listener) => {
+    listener(currentSetting, currentValue)
+  })
+}
+
+function restoreUnforcedScheme() {
+  if (typeof localStorage !== 'undefined') {
+    const stored = localStorage.getItem(storageKey) as SchemeSetting | null
+    if (stored) {
+      currentSetting = stored
+      currentValue = stored === 'system' ? resolveValue('system') : stored
+      return
+    }
+  }
+
+  currentSetting = 'system'
+  currentValue = resolveValue('system')
+}
+
+/**
+ * Lock the color scheme to a fixed value. When set, user preferences and system
+ * changes are ignored, and `setUserScheme` becomes a no-op.
+ * Pass `null` to clear the force and restore normal behavior.
+ */
+export function setForceScheme(scheme: Scheme | null) {
+  const wasForced = _forceScheme
+
+  if (wasForced === scheme) return
+
+  _forceScheme = scheme
+
+  if (scheme) {
+    currentSetting = scheme
+    currentValue = scheme
+  } else if (wasForced) {
+    restoreUnforcedScheme()
+    startWebListener()
+  }
+}
+
+export function getForceScheme(): Scheme | null {
+  return _forceScheme
+}
+
 // eagerly init from localStorage on module load (native only - web uses effect for SSR)
 function getInitialSetting(): SchemeSetting {
   if (process.env.TAMAGUI_TARGET === 'native') {
@@ -89,17 +137,17 @@ function resolveValue(setting: SchemeSetting): Scheme {
 
 // Only update the resolved value when system theme changes (don't change setting)
 function updateValueFromSystem() {
+  if (_forceScheme) return
   const value = resolveValue('system')
   if (value !== currentValue) {
     currentValue = value
     // don't call Appearance.setColorScheme when following system - it breaks the listener
-    listeners.forEach((l) => {
-      l(currentSetting, currentValue)
-    })
+    notifyListeners()
   }
 }
 
 function updateScheme(setting: SchemeSetting) {
+  if (_forceScheme) return
   const value = setting === 'system' ? resolveValue('system') : setting
 
   if (value !== currentValue || currentSetting !== setting) {
@@ -117,9 +165,7 @@ function updateScheme(setting: SchemeSetting) {
       }
     }
 
-    listeners.forEach((l) => {
-      l(currentSetting, currentValue)
-    })
+    notifyListeners()
   }
 }
 
@@ -130,6 +176,7 @@ function updateScheme(setting: SchemeSetting) {
  * @param setting - 'system', 'light', or 'dark'
  */
 export function setUserScheme(setting: SchemeSetting) {
+  if (_forceScheme) return
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem(storageKey, setting)
   }
@@ -142,6 +189,7 @@ export function setUserScheme(setting: SchemeSetting) {
  * @returns Object with setting and resolved value
  */
 export function getUserScheme(): { setting: SchemeSetting; value: Scheme } {
+  if (_forceScheme) return { setting: _forceScheme, value: _forceScheme }
   return { setting: currentSetting, value: currentValue }
 }
 
@@ -174,31 +222,38 @@ export function onUserSchemeChange(listener: SchemeListener) {
  */
 export function useUserScheme(): UserScheme {
   const [state, setState] = useState(() => getUserScheme())
+  const snapshot = getUserScheme()
+  const resolvedState =
+    state.setting === snapshot.setting && state.value === snapshot.value
+      ? state
+      : snapshot
 
   useIsomorphicLayoutEffect(() => {
-    // restore from localStorage on mount
-    if (typeof localStorage !== 'undefined') {
-      const stored = localStorage.getItem(storageKey) as SchemeSetting | null
-      if (stored) {
-        updateScheme(stored)
+    if (!_forceScheme) {
+      // restore from localStorage on mount
+      if (typeof localStorage !== 'undefined') {
+        const stored = localStorage.getItem(storageKey) as SchemeSetting | null
+        if (stored) {
+          updateScheme(stored)
+        }
       }
+      startWebListener()
     }
 
+    // always subscribe so force→unforce transitions propagate via setForceScheme(null)
     const dispose = onUserSchemeChange((setting, value) => {
       setState({ setting, value })
     })
-
-    startWebListener()
 
     return dispose
   }, [])
 
   return useMemo(
     () => ({
-      setting: state.setting,
-      value: state.value,
+      setting: resolvedState.setting,
+      value: resolvedState.value,
       set: setUserScheme,
     }),
-    [state.setting, state.value]
+    [resolvedState.setting, resolvedState.value]
   )
 }

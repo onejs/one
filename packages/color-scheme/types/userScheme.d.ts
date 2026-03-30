@@ -10,6 +10,13 @@ export type UserScheme = {
 };
 type SchemeListener = (setting: SchemeSetting, value: Scheme) => void;
 /**
+ * Lock the color scheme to a fixed value. When set, user preferences and system
+ * changes are ignored, and `setUserScheme` becomes a no-op.
+ * Pass `null` to clear the force and restore normal behavior.
+ */
+export declare function setForceScheme(scheme: Scheme | null): void;
+export declare function getForceScheme(): Scheme | null;
+/**
  * Imperatively set the user's color scheme preference.
  * Persists to localStorage and updates all listeners.
  *
