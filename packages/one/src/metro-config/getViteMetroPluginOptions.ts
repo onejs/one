@@ -135,6 +135,17 @@ export function getViteMetroPluginOptions({
               }
             }
 
+            // server-only files should never be in the native bundle.
+            // metro follows dynamic import chains (e.g. zero models →
+            // server effects → server packages) and tries to resolve
+            // everything, even though the code only runs on the server.
+            if (/\.server(\.[jt]sx?)?$/.test(moduleName)) {
+              return {
+                type: 'sourceFile',
+                filePath: emptyPath,
+              }
+            }
+
             // react-native-svg's package.json has "react-native": "src/index.ts"
             // which points to TS source that only type-exports Svg/Circle/Path etc.
             // force resolution to the compiled JS which has proper named value exports.
@@ -157,6 +168,12 @@ export function getViteMetroPluginOptions({
             const defaultResolveRequest =
               defaultConfig?.resolver?.resolveRequest || context.resolveRequest
             const res = defaultResolveRequest(context, moduleName, platform)
+
+            // catch .server files that were resolved by path
+            if (res && 'filePath' in res && /\.server\.[jt]sx?$/.test(res.filePath)) {
+              return { type: 'sourceFile', filePath: emptyPath }
+            }
+
             return res
           },
         },
