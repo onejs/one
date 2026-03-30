@@ -1189,7 +1189,34 @@ export async function linkTo(
     const freshRootState = navigationRef.getRootState() as NavigationState
     const action = getNavigateAction(state, freshRootState, event)
     const current = navigationRef.getCurrentRoute()
-    navigationRef.dispatch(action)
+
+    // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
+    // the NAVIGATE action can fail to initialize the target group's child navigator
+    // with the nested screen. use reset to directly apply the full target state instead.
+    const targetName = action.payload?.name
+    const isGroupTarget =
+      typeof targetName === 'string' &&
+      targetName.startsWith('(') &&
+      targetName.endsWith(')')
+    const hasFreshRootState = freshRootState.type === 'stack'
+    const currentFocusedName = freshRootState.routes[freshRootState.index]?.name
+
+    if (isGroupTarget && hasFreshRootState && currentFocusedName !== targetName) {
+      // merge the target state onto the existing root state so we preserve
+      // other groups' state (back navigation etc.)
+      const existingRoutes = freshRootState.routes.filter((r) => r.name !== targetName)
+      const targetRoute = {
+        ...state.routes[state.routes.length - 1],
+        key: `${targetName}-${freshRootState.key}`,
+      }
+      navigationRef.resetRoot({
+        ...freshRootState,
+        routes: [...existingRoutes, targetRoute],
+        index: existingRoutes.length,
+      } as any)
+    } else {
+      navigationRef.dispatch(action)
+    }
 
     let warningTm
     const interval = setInterval(() => {
