@@ -45,7 +45,7 @@ export declare const TabTriggerMapContext: import("react").Context<TriggerMap>;
 /**
  * @hidden
  */
-export declare const TabsDescriptorsContext: import("react").Context<Record<string, import("@react-navigation/native").Descriptor<ExpoTabsNavigatorScreenOptions, Omit<{
+export declare const TabsDescriptorsContext: import("react").Context<Record<string, import("@react-navigation/core").Descriptor<ExpoTabsNavigatorScreenOptions, Omit<{
     dispatch(action: Readonly<{
         type: string;
         payload?: object;
@@ -80,9 +80,9 @@ export declare const TabsDescriptorsContext: import("react").Context<Record<stri
     isFocused(): boolean;
     canGoBack(): boolean;
     getId(): string | undefined;
-    getParent<T = import("@react-navigation/native").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
+    getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
     getState(): TabNavigationState<any>;
-} & import("@react-navigation/native").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
+} & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
     getParent<T = NavigationProp<ParamListBase, string, string | undefined, Readonly<{
         key: string;
         index: number;
@@ -96,7 +96,7 @@ export declare const TabsDescriptorsContext: import("react").Context<Record<stri
 } & {
     setParams(params: Partial<object | undefined>): void;
     replaceParams(params: object | undefined): void;
-} & import("@react-navigation/native").EventConsumer<TabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/native").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/native").RouteProp<ParamListBase, string>>>>;
+} & import("@react-navigation/core").EventConsumer<TabNavigationEventMap & import("@react-navigation/core").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/core").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/core").RouteProp<ParamListBase, string>>>>;
 /**
  * @hidden
  */
@@ -167,7 +167,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
     isFocused(): boolean;
     canGoBack(): boolean;
     getId(): string | undefined;
-    getParent<T = import("@react-navigation/native").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
+    getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
     getState(): Readonly<{
         key: string;
         index: number;
@@ -177,7 +177,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
         type: string;
         stale: false;
     }>;
-} & import("@react-navigation/native").PrivateValueStore<[ParamListBase, unknown, unknown]> & import("@react-navigation/native").EventEmitter<TabNavigationEventMap> & {
+} & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]> & import("@react-navigation/core").EventEmitter<TabNavigationEventMap> & {
     setParams(params: Partial<object | undefined>): void;
     replaceParams(params: object | undefined): void;
 } & TabActionHelpers<ParamListBase>) | null>;
