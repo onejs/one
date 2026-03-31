@@ -8,7 +8,7 @@ export default defineConfig({
         key: 'native-feature-tests',
       },
       native: {
-        bundler: 'metro',
+        bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
     }),
   ],
