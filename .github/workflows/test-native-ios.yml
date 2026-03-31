@@ -10,6 +10,7 @@ on:
     branches:
       - main
       - ci/native-tests-free-runners
+      - ci/rolldown-native-tests
       - react-native-82
     paths:
       - '.github/actions/install/**'
