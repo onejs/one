@@ -96,6 +96,9 @@ export async function getMetroConfigFromViteConfig(
   const buildOutputExclusions = [
     /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
     /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+    // exclude dotfile data dirs (e.g. .docker/zero sqlite WAL writes trigger endless re-bundles)
+    /[/\\]\.docker(?:[/\\]|$)/,
+    /[/\\]\.vite(?:[/\\]|$)/,
   ]
   const blockList: RegExp[] = [
     ...(existingBlockList
