@@ -3,6 +3,9 @@ import type { Context } from 'hono'
 import micromatch from 'micromatch'
 
 // hashed assets can be cached forever, html must revalidate
+// vite/rolldown always puts content-hashed files in the assets/ directory
+const assetsPathRe = /[\\/]assets[\\/]/
+// fallback regex for hashed filenames outside assets/
 const hashedAssetRe = /[.-](?=[a-zA-Z0-9_-]*\d)[a-zA-Z0-9_-]{8,}\.\w+$/
 
 export type CompiledCacheRules = { re: RegExp; values: string[] }
@@ -81,7 +84,7 @@ export async function serveStaticAssets({
         }
       }
 
-      if (hashedAssetRe.test(fsPath)) {
+      if (assetsPathRe.test(fsPath) || hashedAssetRe.test(fsPath)) {
         c.header('Cache-Control', 'public, immutable, max-age=31536000')
       } else {
         c.header('Cache-Control', 'public, max-age=0, must-revalidate')
