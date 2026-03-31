@@ -811,12 +811,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
 
   // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
+  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
   const flags: One.Flags = {
     experimentalPreventLayoutRemounting:
       options.router?.experimental?.preventLayoutRemounting,
+  }
+
+  // pass config to the rolldown native entry (createNativeDevEngine reads this)
+  globalThis.__vxrnNativeEntryConfig = {
+    routerRoot: routerRoot,
+    ignoredRouteFiles: options.router?.ignoredRouteFiles,
+    setupFile: options.setupFile,
+    flags,
   }
 
   // source inspector must come before clientTreeShakePlugin so line numbers
