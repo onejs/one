@@ -51,7 +51,11 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 }
 
 // shared rolldown transform config for native builds
-function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string) {
+function getNativeTransformConfig(
+  platform: 'ios' | 'android',
+  dev: boolean,
+  root: string
+) {
   // read setupFile defines from One's config (mirrors one:init-config define block)
   const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
   const setupFileDefines = (() => {
@@ -64,10 +68,16 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, roo
           ? { client: sf.client, server: sf.server, ios: sf.native, android: sf.native }
           : sf
     return {
-      ...(files.client && { 'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(files.client) }),
-      ...(files.server && { 'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(files.server) }),
+      ...(files.client && {
+        'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(files.client),
+      }),
+      ...(files.server && {
+        'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(files.server),
+      }),
       ...(files.ios && { 'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(files.ios) }),
-      ...(files.android && { 'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(files.android) }),
+      ...(files.android && {
+        'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(files.android),
+      }),
     }
   })()
 
@@ -79,7 +89,12 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, roo
       const { join } = require('node:path')
       const mode = dev ? 'development' : 'production'
       // load .env, .env.local, .env.[mode], .env.[mode].local (same order as Vite)
-      for (const envFile of ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`]) {
+      for (const envFile of [
+        '.env',
+        '.env.local',
+        `.env.${mode}`,
+        `.env.${mode}.local`,
+      ]) {
         const envPath = join(root, envFile)
         if (!existsSync(envPath)) continue
         const content = readFileSync(envPath, 'utf8')
@@ -113,7 +128,11 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, roo
   for (const [key, val] of Object.entries(envDefines)) {
     const match = key.match(/^import\.meta\.env\.(.+)$/)
     if (match) {
-      try { envObject[match[1]] = JSON.parse(val as string) } catch { envObject[match[1]] = val }
+      try {
+        envObject[match[1]] = JSON.parse(val as string)
+      } catch {
+        envObject[match[1]] = val
+      }
     }
   }
 
@@ -522,12 +541,7 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
     const sf = entryConfig.setupFile
     if (!sf) return ''
     // resolve which file to use for ios (covers both formats)
-    const file =
-      typeof sf === 'string'
-        ? sf
-        : 'native' in sf
-          ? sf.native
-          : sf.ios
+    const file = typeof sf === 'string' ? sf : 'native' in sf ? sf.native : sf.ios
     if (!file) return ''
     const resolved = resolve(root, file)
     return `import ${JSON.stringify(resolved)};`
@@ -640,8 +654,7 @@ function environmentGuardPlugin(): Plugin {
           moduleType: 'js' as any,
         }
       }
-      if (id.startsWith('\0env-guard-noop:'))
-        return { code: '', moduleType: 'js' as any }
+      if (id.startsWith('\0env-guard-noop:')) return { code: '', moduleType: 'js' as any }
     },
   }
 }
