@@ -51,20 +51,27 @@ function restoreTypeImports(ast: t.File, typeImports: t.ImportDeclaration[]) {
   }
 }
 
-export const clientTreeShakePlugin = (): Plugin => {
+export const clientTreeShakePlugin = (opts?: {
+  // 'rolldown' when used in the native rolldown DevEngine (no vite environment context)
+  runtime?: 'vite' | 'rolldown'
+}): Plugin => {
+  const runtime = opts?.runtime ?? 'vite'
+
   return {
     name: 'one-client-tree-shake',
 
     enforce: 'pre',
 
-    applyToEnvironment(env) {
-      return env.name === 'client' || env.name === 'ios' || env.name === 'android'
-    },
+    ...(runtime === 'vite' && {
+      applyToEnvironment(env: { name: string }) {
+        return env.name === 'client' || env.name === 'ios' || env.name === 'android'
+      },
+    }),
 
     transform: {
       order: 'pre',
       async handler(code, id, settings) {
-        if (this.environment.name === 'ssr') {
+        if (runtime === 'vite' && this.environment?.name === 'ssr') {
           return
         }
         if (!/\.(js|jsx|ts|tsx)/.test(extname(id))) {

@@ -811,7 +811,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
 
   // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
+  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
   const flags: One.Flags = {

@@ -94,6 +94,14 @@ jobs:
           key: ${{ needs.build-ios-test-container-prod.outputs.built-app-cache-key }}
           path: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
 
+      - name: Download Hermes V1 hermesc
+        if: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
+        id: download-hermesc
+        uses: actions/cache/restore@v5
+        with:
+          key: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
+          path: ${{ needs.build-ios-test-container-prod.outputs.hermesc-path }}
+
       - name: Get Simulator UDID
         id: get-simulator-udid
         env:
@@ -193,19 +201,34 @@ jobs:
             echo "Could not find WDA path, will build on first session"
           fi
 
-      - name: Test Dev
+      - name: Test Dev (Metro)
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
           bun run --filter test-test test-ios:dev
 
-      - name: Test Prod
+      - name: Test Dev (Rolldown)
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+          IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
+        run: |
+          bun run --filter test-test test-ios:rolldown:dev
+
+      - name: Test Prod (Metro)
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
         run: |
           bun run --filter test-test test-ios:prod
+
+      - name: Test Prod (Rolldown)
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+          IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
+          HERMESC_PATH: ${{ needs.build-ios-test-container-prod.outputs.hermesc-path && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
+        run: |
+          bun run --filter test-test test-ios:rolldown:prod
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v7

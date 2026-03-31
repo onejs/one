@@ -51,7 +51,7 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 }
 
 // shared rolldown transform config for native builds
-function getNativeTransformConfig(dev: boolean) {
+function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
   return {
     jsx: {
       // use 'classic' mode (babel plugin-transform-react-jsx)
@@ -61,6 +61,10 @@ function getNativeTransformConfig(dev: boolean) {
     define: {
       'process.env.NODE_ENV': dev ? '"development"' : '"production"',
       'process.env.VXRN_REACT_19': 'false',
+      'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
+      'process.env.VITE_NATIVE': '"1"',
+      'process.env.EXPO_OS': JSON.stringify(platform),
+      'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',
     },
     // auto-inject React import for classic JSX (React.createElement)
@@ -211,7 +215,7 @@ export async function createNativeDevEngine(
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
-    transform: getNativeTransformConfig(true),
+    transform: getNativeTransformConfig(platform, true),
 
     experimental: {
       devMode: { implement: hmrRuntimeSource, host, port },
@@ -398,7 +402,7 @@ export async function buildNativeBundle(
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
-    transform: getNativeTransformConfig(dev),
+    transform: getNativeTransformConfig(platform, dev),
     treeshake: !dev,
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },

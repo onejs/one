@@ -31,6 +31,70 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
     ...platformEnv,
   }
 
+  // after inlining env values, try to evaluate and eliminate dead if/ternary branches
+  // so metro doesn't try to resolve imports inside dead code
+  function tryEliminateDeadBranch(path: any) {
+    const parent = path.parentPath
+    if (!parent) return
+
+    // handle binary expressions: "ios" === "ssr" → false
+    if (parent.isBinaryExpression()) {
+      const result = parent.evaluate()
+      if (result.confident) {
+        parent.replaceWith(t.valueToNode(result.value))
+        tryEliminateDeadBranch(parent)
+      }
+      return
+    }
+
+    // handle unary expressions: !"" → true
+    if (parent.isUnaryExpression()) {
+      const result = parent.evaluate()
+      if (result.confident) {
+        parent.replaceWith(t.valueToNode(result.value))
+        tryEliminateDeadBranch(parent)
+      }
+      return
+    }
+
+    // handle if statements: if (false) { ... } else { ... }
+    if (parent.isIfStatement() && parent.get('test') === path) {
+      const result = path.evaluate()
+      if (result.confident) {
+        if (result.value) {
+          // condition is truthy — keep consequent, remove alternate
+          const consequent = parent.node.consequent
+          if (t.isBlockStatement(consequent)) {
+            parent.replaceWithMultiple(consequent.body)
+          } else {
+            parent.replaceWith(consequent)
+          }
+        } else {
+          // condition is falsy — keep alternate (or remove entirely)
+          const alternate = parent.node.alternate
+          if (alternate) {
+            if (t.isBlockStatement(alternate)) {
+              parent.replaceWithMultiple(alternate.body)
+            } else {
+              parent.replaceWith(alternate)
+            }
+          } else {
+            parent.remove()
+          }
+        }
+      }
+      return
+    }
+
+    // handle ternary: false ? a : b → b
+    if (parent.isConditionalExpression() && parent.get('test') === path) {
+      const result = path.evaluate()
+      if (result.confident) {
+        parent.replaceWith(result.value ? parent.node.consequent : parent.node.alternate)
+      }
+    }
+  }
+
   return {
     name: 'import-meta-env',
     visitor: {
@@ -74,6 +138,7 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
           path.replaceWith(
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
+          tryEliminateDeadBranch(path)
           return
         }
 
@@ -95,6 +160,7 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
           path.replaceWith(
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
+          tryEliminateDeadBranch(path)
         }
       },
     },
