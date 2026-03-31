@@ -819,6 +819,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       options.router?.experimental?.preventLayoutRemounting,
   }
 
+  // pass config to the rolldown native entry (createNativeDevEngine reads this)
+  globalThis.__vxrnNativeEntryConfig = {
+    routerRoot: routerRoot,
+    ignoredRouteFiles: options.router?.ignoredRouteFiles,
+    setupFile: options.setupFile,
+    flags,
+  }
+
   // source inspector must come before clientTreeShakePlugin so line numbers
   // are computed from original source (tree-shaking removes loader code, shifting lines)
   const inspectorPlugins = (() => {

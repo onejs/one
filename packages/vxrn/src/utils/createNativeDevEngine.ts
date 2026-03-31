@@ -52,6 +52,25 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 
 // shared rolldown transform config for native builds
 function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
+  // read setupFile defines from One's config (mirrors one:init-config define block)
+  const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
+  const setupFileDefines = (() => {
+    const sf = entryConfig.setupFile
+    if (!sf) return {}
+    const files =
+      typeof sf === 'string'
+        ? { client: sf, server: sf, ios: sf, android: sf }
+        : 'native' in sf
+          ? { client: sf.client, server: sf.server, ios: sf.native, android: sf.native }
+          : sf
+    return {
+      ...(files.client && { 'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(files.client) }),
+      ...(files.server && { 'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(files.server) }),
+      ...(files.ios && { 'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(files.ios) }),
+      ...(files.android && { 'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(files.android) }),
+    }
+  })()
+
   return {
     jsx: {
       // use 'classic' mode (babel plugin-transform-react-jsx)
@@ -66,6 +85,7 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
       'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',
+      ...setupFileDefines,
     },
     // auto-inject React import for classic JSX (React.createElement)
     inject: {
@@ -84,6 +104,10 @@ function getNativePlugins(
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...(globalThis.__vxrnAddNativePlugins || []),
+    // block .server.* and _middleware.* files from entering the native bundle
+    serverFileExclusionPlugin(),
+    // guard server-only / client-only / web-only / native-only imports
+    environmentGuardPlugin(),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -431,6 +455,43 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
   // resolve to an absolute path rooted in the project so import.meta.glob('./app/...') resolves correctly
   const resolvedId = resolve(root, '__virtual-native-entry.tsx')
 
+  // read config passed from One's vite plugin via globalThis
+  const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
+  const routerRoot = entryConfig.routerRoot || 'app'
+  const flags = entryConfig.flags || {}
+
+  // build setupFile import (static import for native)
+  const setupFileImport = (() => {
+    const sf = entryConfig.setupFile
+    if (!sf) return ''
+    // resolve which file to use for ios (covers both formats)
+    const file =
+      typeof sf === 'string'
+        ? sf
+        : 'native' in sf
+          ? sf.native
+          : sf.ios
+    if (!file) return ''
+    const resolved = resolve(root, file)
+    return `import ${JSON.stringify(resolved)};`
+  })()
+
+  // build glob patterns matching One's virtualEntryPlugin
+  const routeGlobs = [
+    `./${routerRoot}/**/*.tsx`,
+    `./${routerRoot}/**/*.ts`,
+    `!./${routerRoot}/**/*+api.*`,
+    `!./${routerRoot}/**/*.test.*`,
+    `!./${routerRoot}/**/*.d.ts`,
+    `!./${routerRoot}/**/*.server.*`,
+    `!./${routerRoot}/**/_middleware.*`,
+    `!./${routerRoot}/**/*.web.*`,
+    // ignoredRouteFiles from One's router config
+    ...(entryConfig.ignoredRouteFiles || []).map(
+      (pattern: string) => `!./${routerRoot}/${pattern}`
+    ),
+  ]
+
   const refreshSetup = isDev
     ? `
 // react-refresh/runtime MUST initialize before React loads
@@ -446,10 +507,11 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
   const entryCode = `
 ${refreshSetup}
+${setupFileImport}
 import { createApp } from 'one';
 
-var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts', '!./app/**/*.server.*', '!./app/**/_middleware.*', '!./app/**/*.web.*'], { exhaustive: true });
-// fix route keys: One expects '/app/...' prefix but import.meta.glob returns './app/...'
+var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true });
+// fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
 var routes = {};
 Object.keys(_routes).forEach(function(key) {
   routes[key.replace(/^\\./, '')] = _routes[key];
@@ -457,8 +519,8 @@ Object.keys(_routes).forEach(function(key) {
 
 createApp({
   routes: routes,
-  routerRoot: 'app',
-  flags: {},
+  routerRoot: ${JSON.stringify(routerRoot)},
+  flags: ${JSON.stringify(flags)},
 });
 `
 
@@ -478,6 +540,54 @@ createApp({
 }
 
 // --- plugins ---
+
+/**
+ * Block .server.* and _middleware.* files from entering the native bundle.
+ * These are server-only code paths that should never ship to the client.
+ */
+function serverFileExclusionPlugin(): Plugin {
+  return {
+    name: 'vxrn:server-file-exclusion',
+    load(id) {
+      if (/\.server\.\w+$/.test(id)) {
+        return { code: 'export default undefined;', moduleType: 'js' as any }
+      }
+      if (/[\\/]_middleware\.\w+$/.test(id)) {
+        return { code: 'export default undefined;', moduleType: 'js' as any }
+      }
+    },
+  }
+}
+
+/**
+ * Guard environment-specific bare imports in native bundles.
+ * - server-only, client-only, web-only → throw at runtime
+ * - native-only → no-op (we ARE native)
+ */
+function environmentGuardPlugin(): Plugin {
+  const THROWING = ['server-only', 'client-only', 'web-only']
+  const NOOP = ['native-only']
+  return {
+    name: 'vxrn:environment-guard',
+    resolveId(source) {
+      if (THROWING.includes(source))
+        return { id: `\0env-guard-throw:${source}`, external: false }
+      if (NOOP.includes(source))
+        return { id: `\0env-guard-noop:${source}`, external: false }
+    },
+    load(id) {
+      if (id.startsWith('\0env-guard-throw:')) {
+        const pkg = id.slice('\0env-guard-throw:'.length)
+        return {
+          code: `throw new Error("Cannot import '${pkg}' in a native bundle.");`,
+          moduleType: 'js' as any,
+        }
+      }
+      if (id.startsWith('\0env-guard-noop:'))
+        return { code: '', moduleType: 'js' as any }
+    },
+  }
+}
 
 /**
  * Stub CSS imports for native builds.
