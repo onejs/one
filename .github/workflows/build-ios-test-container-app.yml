@@ -213,19 +213,19 @@ jobs:
       - name: Find hermesc binary
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
         id: find-hermesc
+        continue-on-error: true
         run: |
-          # Hermes V1 source build puts hermesc in the Pods build output
+          # Hermes V1 source build puts hermesc in the Pods or derived data output
           HERMESC=$(find ios/Pods -name hermesc -type f 2>/dev/null | head -1)
           if [ -z "$HERMESC" ]; then
             HERMESC=$(find build -name hermesc -type f 2>/dev/null | head -1)
           fi
           if [ -n "$HERMESC" ]; then
-            # copy to a stable path for caching
-            DEST="${{ env.test_container_app_path }}/hermesc"
-            cp "$HERMESC" "$DEST"
-            chmod +x "$DEST"
-            echo "hermesc_path=$DEST" >> $GITHUB_OUTPUT
-            echo "Found hermesc: $HERMESC -> $DEST"
+            # copy to a stable path for caching (working dir is already test_container_app_path)
+            cp "$HERMESC" hermesc
+            chmod +x hermesc
+            echo "hermesc_path=${{ env.test_container_app_path }}/hermesc" >> $GITHUB_OUTPUT
+            echo "Found hermesc: $HERMESC"
           else
             echo "hermesc not found in source build"
           fi

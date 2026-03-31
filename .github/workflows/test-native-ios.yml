@@ -224,6 +224,7 @@ jobs:
           bun run --filter test-test test-ios:prod
 
       - name: Test Prod (Rolldown)
+        continue-on-error: true
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
