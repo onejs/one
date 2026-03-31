@@ -225,6 +225,8 @@ async function prepareTestApp() {
   // The Release app is built with Hermes enabled, so we must emit bytecode
   // Try multiple locations for hermesc
   const possibleHermescPaths = [
+    // explicit override (e.g. Hermes V1 binary from CI build cache)
+    ...(process.env.HERMESC_PATH ? [process.env.HERMESC_PATH] : []),
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
     // RN 0.83+: hermes-compiler package
     path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),

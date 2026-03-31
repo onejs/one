@@ -31,7 +31,7 @@ export default {
       },
 
       native: {
-        bundler: 'metro',
+        bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
 
       react: {

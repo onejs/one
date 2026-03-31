@@ -8,12 +8,10 @@ env:
   ios_app_name: RNTestContainer
   # A unique ID to identify the app on GitHub Actions, this is used as part of cache keys and artifact names, must be unique among all workflows
   app_id: ios-rn-test-container-app
-  # rolldown native pipeline needs Hermes V1 for ESM, but the iOS tests
-  # currently use Metro which produces CJS bytecode compiled by the npm
-  # hermes-compiler (bytecode v96). Enabling V1 here creates a version
-  # mismatch — the app ships hermesvm (v98) but hermesc produces v96.
-  # Disabled until the test infra can find a matching V1 hermesc on CI.
-  # RCT_HERMES_V1_ENABLED: '1'
+  # Hermes V1 supports both ESM (rolldown) and CJS (metro) so we always
+  # enable it — this lets us run native tests against both bundlers
+  # without building two separate app binaries.
+  RCT_HERMES_V1_ENABLED: '1'
   # The command used to prebuild the app
   prebuild_command: bun run prebuild:native --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 
@@ -38,6 +36,12 @@ on:
       built-app-path:
         description: "The path to the built .app relative to the repository root."
         value: ${{ jobs.build-ios.outputs.built-app-path }}
+      hermesc-cache-key:
+        description: "Cache key for the Hermes V1 hermesc binary."
+        value: ${{ jobs.build-ios.outputs.hermesc-cache-key }}
+      hermesc-path:
+        description: "Path to the hermesc binary relative to the repository root."
+        value: ${{ jobs.build-ios.outputs.hermesc-path }}
 
 jobs:
   build-ios:
@@ -51,6 +55,8 @@ jobs:
       built-app-cache-key: ${{ steps.check-has-build.outputs.cache-primary-key || steps.pre-check-has-build.outputs.cache-primary-key }} # The order is important here, since in the "pre-check-has-build" step, it's possible that the build hash part of the key is "null" - in such case, the cache won't be found at that step and the `check-has-build` step will be executed. So it's always safe to place the `check-has-build` before the `pre-check-has-build` step for this condition.
       build-hash: ${{ steps.calculate-build-hash.outputs.build_hash || steps.get-build-hash-from-cache.outputs.build_hash }} # Same as above, the order is important here.
       built-app-path: ${{ steps.get-built-app-path.outputs.built_app_path }}
+      hermesc-cache-key: ${{ steps.cache-hermesc.outputs.cache-primary-key || '' }}
+      hermesc-path: ${{ steps.find-hermesc.outputs.hermesc_path || '' }}
     defaults:
       run:
         working-directory: ${{ env.test_container_app_path }}
@@ -203,6 +209,34 @@ jobs:
             -sdk 'iphonesimulator' \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build | tee xcodebuild.log | xcpretty
+
+      - name: Find hermesc binary
+        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
+        id: find-hermesc
+        continue-on-error: true
+        run: |
+          # Hermes V1 source build puts hermesc in the Pods or derived data output
+          HERMESC=$(find ios/Pods -name hermesc -type f 2>/dev/null | head -1)
+          if [ -z "$HERMESC" ]; then
+            HERMESC=$(find build -name hermesc -type f 2>/dev/null | head -1)
+          fi
+          if [ -n "$HERMESC" ]; then
+            # copy to a stable path for caching (working dir is already test_container_app_path)
+            cp "$HERMESC" hermesc
+            chmod +x hermesc
+            echo "hermesc_path=${{ env.test_container_app_path }}/hermesc" >> $GITHUB_OUTPUT
+            echo "Found hermesc: $HERMESC"
+          else
+            echo "hermesc not found in source build"
+          fi
+
+      - name: Cache hermesc
+        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit && steps.find-hermesc.outputs.hermesc_path }}
+        id: cache-hermesc
+        uses: actions/cache/save@v5
+        with:
+          key: ${{ env.app_id }}-hermesc-${{ steps.calculate-build-hash.outputs.build_hash }}
+          path: ${{ steps.find-hermesc.outputs.hermesc_path }}
 
       - name: Upload Built App to Cache
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
