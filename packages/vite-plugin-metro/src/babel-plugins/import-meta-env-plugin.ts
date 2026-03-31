@@ -31,69 +31,11 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
     ...platformEnv,
   }
 
-  // after inlining env values, try to evaluate and eliminate dead if/ternary branches
-  // so metro doesn't try to resolve imports inside dead code
-  function tryEliminateDeadBranch(path: any) {
-    const parent = path.parentPath
-    if (!parent) return
-
-    // handle binary expressions: "ios" === "ssr" → false
-    if (parent.isBinaryExpression()) {
-      const result = parent.evaluate()
-      if (result.confident) {
-        parent.replaceWith(t.valueToNode(result.value))
-        tryEliminateDeadBranch(parent)
-      }
-      return
-    }
-
-    // handle unary expressions: !"" → true
-    if (parent.isUnaryExpression()) {
-      const result = parent.evaluate()
-      if (result.confident) {
-        parent.replaceWith(t.valueToNode(result.value))
-        tryEliminateDeadBranch(parent)
-      }
-      return
-    }
-
-    // handle if statements: if (false) { ... } else { ... }
-    if (parent.isIfStatement() && parent.get('test') === path) {
-      const result = path.evaluate()
-      if (result.confident) {
-        if (result.value) {
-          // condition is truthy — keep consequent, remove alternate
-          const consequent = parent.node.consequent
-          if (t.isBlockStatement(consequent)) {
-            parent.replaceWithMultiple(consequent.body)
-          } else {
-            parent.replaceWith(consequent)
-          }
-        } else {
-          // condition is falsy — keep alternate (or remove entirely)
-          const alternate = parent.node.alternate
-          if (alternate) {
-            if (t.isBlockStatement(alternate)) {
-              parent.replaceWithMultiple(alternate.body)
-            } else {
-              parent.replaceWith(alternate)
-            }
-          } else {
-            parent.remove()
-          }
-        }
-      }
-      return
-    }
-
-    // handle ternary: false ? a : b → b
-    if (parent.isConditionalExpression() && parent.get('test') === path) {
-      const result = path.evaluate()
-      if (result.confident) {
-        parent.replaceWith(result.value ? parent.node.consequent : parent.node.alternate)
-      }
-    }
-  }
+  // after inlining env values, evaluate and eliminate dead if/ternary branches
+  // so metro doesn't try to resolve imports inside dead code.
+  // uses a second pass (Program:exit) to avoid infinite re-visitation when
+  // ternary replacement introduces new env references.
+  const replacedNodes = new Set<any>()
 
   return {
     name: 'import-meta-env',
@@ -138,7 +80,6 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
           path.replaceWith(
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
-          tryEliminateDeadBranch(path)
           return
         }
 
@@ -160,8 +101,47 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
           path.replaceWith(
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
-          tryEliminateDeadBranch(path)
         }
+      },
+
+      // second pass: after all env values are inlined, eliminate dead branches.
+      // runs once at Program exit so there's no re-visitation loop.
+      Program: {
+        exit(programPath: any) {
+          programPath.traverse({
+            ConditionalExpression(cePath: any) {
+              const result = cePath.get('test').evaluate()
+              if (result.confident) {
+                cePath.replaceWith(
+                  result.value ? cePath.node.consequent : cePath.node.alternate
+                )
+              }
+            },
+            IfStatement(ifPath: any) {
+              const result = ifPath.get('test').evaluate()
+              if (!result.confident) return
+              if (result.value) {
+                const c = ifPath.node.consequent
+                if (t.isBlockStatement(c)) {
+                  ifPath.replaceWithMultiple(c.body)
+                } else {
+                  ifPath.replaceWith(c)
+                }
+              } else {
+                const a = ifPath.node.alternate
+                if (a) {
+                  if (t.isBlockStatement(a)) {
+                    ifPath.replaceWithMultiple(a.body)
+                  } else {
+                    ifPath.replaceWith(a)
+                  }
+                } else {
+                  ifPath.remove()
+                }
+              }
+            },
+          })
+        },
       },
     },
   }
