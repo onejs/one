@@ -569,6 +569,10 @@ if (intoIdx !== -1) {
     const tmpDir = `/tmp/one-release-into`
     await ensureDir(tmpDir)
 
+    await spawnify(`bun run build`, {
+      avoidLog: true,
+    })
+
     let released = 0
 
     await pMap(

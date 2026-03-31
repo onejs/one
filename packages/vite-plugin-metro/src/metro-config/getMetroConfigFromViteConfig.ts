@@ -96,6 +96,8 @@ export async function getMetroConfigFromViteConfig(
   const buildOutputExclusions = [
     /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
     /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+    /[/\\]\.docker(?:[/\\]|$)/,
+    /[/\\]\.vite(?:[/\\]|$)/,
   ]
   const blockList: RegExp[] = [
     ...(existingBlockList

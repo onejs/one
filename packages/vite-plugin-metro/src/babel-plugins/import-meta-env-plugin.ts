@@ -31,6 +31,12 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
     ...platformEnv,
   }
 
+  // after inlining env values, evaluate and eliminate dead if/ternary branches
+  // so metro doesn't try to resolve imports inside dead code.
+  // uses a second pass (Program:exit) to avoid infinite re-visitation when
+  // ternary replacement introduces new env references.
+  const replacedNodes = new Set<any>()
+
   return {
     name: 'import-meta-env',
     visitor: {
@@ -96,6 +102,46 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
             value === undefined ? t.identifier('undefined') : t.valueToNode(value)
           )
         }
+      },
+
+      // second pass: after all env values are inlined, eliminate dead branches.
+      // runs once at Program exit so there's no re-visitation loop.
+      Program: {
+        exit(programPath: any) {
+          programPath.traverse({
+            ConditionalExpression(cePath: any) {
+              const result = cePath.get('test').evaluate()
+              if (result.confident) {
+                cePath.replaceWith(
+                  result.value ? cePath.node.consequent : cePath.node.alternate
+                )
+              }
+            },
+            IfStatement(ifPath: any) {
+              const result = ifPath.get('test').evaluate()
+              if (!result.confident) return
+              if (result.value) {
+                const c = ifPath.node.consequent
+                if (t.isBlockStatement(c)) {
+                  ifPath.replaceWithMultiple(c.body)
+                } else {
+                  ifPath.replaceWith(c)
+                }
+              } else {
+                const a = ifPath.node.alternate
+                if (a) {
+                  if (t.isBlockStatement(a)) {
+                    ifPath.replaceWithMultiple(a.body)
+                  } else {
+                    ifPath.replaceWith(a)
+                  }
+                } else {
+                  ifPath.remove()
+                }
+              }
+            },
+          })
+        },
       },
     },
   }
