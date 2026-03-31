@@ -117,7 +117,12 @@ export async function transformBabel(
     })
 
     return out
-  } catch (err) {
+  } catch (err: any) {
+    // codegen failures are expected for NativeComponent files without type
+    // declarations — codegenNativeComponent has a runtime fallback
+    if (err?.message?.includes('Could not find component config')) {
+      return
+    }
     console.error(
       `[vxrn:compiler] babel transform error`,
       err,
