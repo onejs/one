@@ -62,6 +62,19 @@ export const prebuild = async ({
       )
     }
 
+    // in rolldown mode (not metro), ensure Podfile.properties.json has the
+    // settings needed for hermes v1 with source-built react native
+    if (!platform || platform === 'ios') {
+      const isMetro =
+        process.env.ONE_METRO_MODE ||
+        globalThis['__vxrnMetroOptions__'] ||
+        globalThis['__vxrnPluginConfig__']?.native?.bundler === 'metro'
+
+      if (!isMetro) {
+        ensureRolldownPodfileProperties(root)
+      }
+    }
+
     // validate swift 6 workaround was injected into Podfile (outside prebuild try/catch
     // so a validation error doesn't produce a misleading "Is expo listed?" message)
     if (!platform || platform === 'ios') {
@@ -290,4 +303,42 @@ function findXcworkspaceName(directory: string): string | null {
     }
   }
   return null
+}
+
+/**
+ * In rolldown mode the bundle contains class syntax that only hermes v1
+ * can parse, and hermes v1 requires react native to be built from source
+ * so the frameworks link against the correct hermes symbols.
+ */
+function ensureRolldownPodfileProperties(root: string) {
+  const propsPath = path.join(root, 'ios', 'Podfile.properties.json')
+  if (!FSExtra.existsSync(path.join(root, 'ios'))) return
+
+  let props: Record<string, string> = {}
+  if (FSExtra.existsSync(propsPath)) {
+    try {
+      props = JSON.parse(FSExtra.readFileSync(propsPath, 'utf8'))
+    } catch {}
+  }
+
+  let changed = false
+
+  if (props['expo.useHermesV1'] !== 'true') {
+    props['expo.useHermesV1'] = 'true'
+    changed = true
+  }
+
+  if (props['ios.buildReactNativeFromSource'] !== 'true') {
+    props['ios.buildReactNativeFromSource'] = 'true'
+    changed = true
+  }
+
+  if (changed) {
+    FSExtra.writeFileSync(propsPath, JSON.stringify(props, null, 2) + '\n', 'utf8')
+    console.info(
+      colors.cyan(
+        `[vxrn] Updated ios/Podfile.properties.json for rolldown mode (hermes v1 + build from source)`
+      )
+    )
+  }
 }
