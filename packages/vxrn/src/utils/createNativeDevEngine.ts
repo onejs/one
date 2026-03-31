@@ -71,6 +71,53 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
     }
   })()
 
+  // load .env files for VITE_* variables (mirrors what Vite does)
+  const envDefines = (() => {
+    const defines: Record<string, string> = {}
+    try {
+      const { readFileSync, existsSync } = require('node:fs')
+      const { join } = require('node:path')
+      const root = (globalThis as any).__vxrnNativeEntryConfig?.root || process.cwd()
+      const mode = dev ? 'development' : 'production'
+      // load .env, .env.local, .env.[mode], .env.[mode].local (same order as Vite)
+      for (const envFile of ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`]) {
+        const envPath = join(root, envFile)
+        if (!existsSync(envPath)) continue
+        const content = readFileSync(envPath, 'utf8')
+        for (const line of content.split('\n')) {
+          const match = line.match(/^\s*(VITE_\w+)\s*=\s*(.*)$/)
+          if (match) {
+            const [, key, rawVal] = match
+            const val = rawVal.replace(/^['"]|['"]$/g, '').trim()
+            defines[`import.meta.env.${key}`] = JSON.stringify(val)
+            defines[`process.env.${key}`] = JSON.stringify(val)
+          }
+        }
+      }
+    } catch {}
+    return defines
+  })()
+
+  const mode = dev ? 'development' : 'production'
+
+  // build the full import.meta.env object for when it's used as a whole (e.g. JSON.stringify(import.meta.env))
+  const envObject: Record<string, any> = {
+    MODE: mode,
+    DEV: dev,
+    PROD: !dev,
+    SSR: false,
+    VITE_ENVIRONMENT: platform,
+    VITE_NATIVE: '1',
+    EXPO_OS: platform,
+  }
+  // add VITE_* from .env files
+  for (const [key, val] of Object.entries(envDefines)) {
+    const match = key.match(/^import\.meta\.env\.(.+)$/)
+    if (match) {
+      try { envObject[match[1]] = JSON.parse(val as string) } catch { envObject[match[1]] = val }
+    }
+  }
+
   return {
     jsx: {
       // use 'classic' mode (babel plugin-transform-react-jsx)
@@ -78,13 +125,24 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
       runtime: 'classic' as const,
     },
     define: {
-      'process.env.NODE_ENV': dev ? '"development"' : '"production"',
+      'process.env.NODE_ENV': JSON.stringify(mode),
       'process.env.VXRN_REACT_19': 'false',
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
       'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',
+      // import.meta.env as a whole object (for JSON.stringify(import.meta.env) etc.)
+      'import.meta.env': JSON.stringify(envObject),
+      // import.meta.env.* individual properties (for direct access)
+      'import.meta.env.MODE': JSON.stringify(mode),
+      'import.meta.env.DEV': dev ? 'true' : 'false',
+      'import.meta.env.PROD': dev ? 'false' : 'true',
+      'import.meta.env.SSR': 'false',
+      'import.meta.env.VITE_ENVIRONMENT': JSON.stringify(platform),
+      'import.meta.env.VITE_NATIVE': '"1"',
+      'import.meta.env.EXPO_OS': JSON.stringify(platform),
+      ...envDefines,
       ...setupFileDefines,
     },
     // auto-inject React import for classic JSX (React.createElement)
