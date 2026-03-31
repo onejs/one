@@ -6,7 +6,8 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { basename, dirname, extname, relative, resolve } from 'node:path'
+import { basename, dirname, extname, join, relative, resolve } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -85,8 +86,6 @@ function getNativeTransformConfig(
   const envDefines = (() => {
     const defines: Record<string, string> = {}
     try {
-      const { readFileSync, existsSync } = require('node:fs')
-      const { join } = require('node:path')
       const mode = dev ? 'development' : 'production'
       // load .env, .env.local, .env.[mode], .env.[mode].local (same order as Vite)
       for (const envFile of [
@@ -548,6 +547,8 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
   })()
 
   // build glob patterns matching One's virtualEntryPlugin
+  // platform-specific files (.native/.ios/.android) are resolved by rolldown's
+  // resolve.extensions at import time — they must NOT appear as separate route entries
   const routeGlobs = [
     `./${routerRoot}/**/*.tsx`,
     `./${routerRoot}/**/*.ts`,
@@ -557,6 +558,9 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
     `!./${routerRoot}/**/*.server.*`,
     `!./${routerRoot}/**/_middleware.*`,
     `!./${routerRoot}/**/*.web.*`,
+    `!./${routerRoot}/**/*.native.*`,
+    `!./${routerRoot}/**/*.ios.*`,
+    `!./${routerRoot}/**/*.android.*`,
     // ignoredRouteFiles from One's router config
     ...(entryConfig.ignoredRouteFiles || []).map(
       (pattern: string) => `!./${routerRoot}/${pattern}`
