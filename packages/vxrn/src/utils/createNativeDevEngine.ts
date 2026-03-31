@@ -6,7 +6,7 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { basename, dirname, extname, join, relative, resolve } from 'node:path'
+import { basename, dirname, extname, relative, resolve } from 'node:path'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -78,10 +78,12 @@ function getNativePlugins(
   dev: boolean
 ): Plugin[] {
   return [
+    // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
+    ...(globalThis.__vxrnAddNativePlugins || []),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
-    viteImportGlobPlugin({ root }) as any,
+    viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
@@ -91,10 +93,6 @@ function getNativePlugins(
     vxrnCompilerPlugin(platform, dev),
     // hermes compat: transform class properties and private fields
     hermesCompatSWCPlugin(dev),
-    // downgrade polyfill "not configurable" errors to warnings (hermes v1)
-    polyfillErrorDowngradePlugin(),
-    // strip DevSettings in prod (dev-only native module)
-    stripDevSettingsPlugin(dev),
   ]
 }
 
@@ -113,7 +111,6 @@ function getNativeOutputOptions(prelude: string): OutputOptions {
  * Post-process a native bundle to fix rolldown devMode output quirks.
  * Most concerns have been moved to plugins/config:
  * - VXRN_REACT_19 → handled by define in getNativeTransformConfig
- * - polyfill error downgrade → polyfillErrorDowngradePlugin
  * - DevSettings stripping → stripDevSettingsPlugin
  */
 function postProcessNativeBundle(code: string): string {
@@ -235,11 +232,6 @@ export async function createNativeDevEngine(
     plugins: [
       nativeVirtualEntryPlugin(root, { dev: true }),
       ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
-
-      // add import.meta.hot.accept() to user files for HMR boundaries
-      // rolldown compiles import.meta.hot -> createModuleHotContext at build time
-      nativeReactRefreshPlugin(),
-
       ...userPlugins,
     ],
   }
@@ -452,7 +444,7 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 ${refreshSetup}
 import { createApp } from 'one';
 
-var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts'], { exhaustive: true });
+var _routes = import.meta.glob(['./app/**/*.tsx', './app/**/*.ts', '!./app/**/*+api.*', '!./app/**/*.test.*', '!./app/**/*.d.ts', '!./app/**/*.server.*', '!./app/**/_middleware.*', '!./app/**/*.web.*'], { exhaustive: true });
 // fix route keys: One expects '/app/...' prefix but import.meta.glob returns './app/...'
 var routes = {};
 Object.keys(_routes).forEach(function(key) {
@@ -504,17 +496,26 @@ function cssStubPlugin(): Plugin {
 /**
  * Pipe files through @vxrn/compiler's babel transforms.
  * Handles reanimated worklet compilation, async generator downleveling,
- * react-native codegen, and react compiler — same pipeline as metro.
- * Auto-detects which transforms are needed per file.
+ * react-native codegen, react compiler, and react-refresh (dev only) —
+ * same pipeline as metro, single babel pass per file.
  */
 function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
+
+  // whether a file is a user file that should get react-refresh wiring
+  const isRefreshCandidate = (id: string) =>
+    dev &&
+    !id.includes('node_modules') &&
+    !id.includes('__virtual-native-entry') &&
+    /\.[tj]sx?$/.test(id)
 
   return {
     name: 'vxrn:compiler',
     async transform(code, id) {
       if (!/\.[cm]?[jt]sx?$/.test(id)) return
       if (id.includes('\0') || id.includes('virtual:')) return
+
+      const needsRefresh = isRefreshCandidate(id)
 
       try {
         if (!compiler) compiler = await import('@vxrn/compiler')
@@ -527,18 +528,64 @@ function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
           reactForRNVersion: '19' as const,
         }
 
-        const babelOptions = compiler.getBabelOptions(props)
+        let babelOptions = compiler.getBabelOptions(props)
+
+        if (needsRefresh) {
+          // merge react-refresh/babel into the existing plugins (or create new options)
+          const existingPlugins = babelOptions?.plugins || []
+          babelOptions = {
+            ...babelOptions,
+            plugins: [...existingPlugins, 'react-refresh/babel'],
+          }
+        }
+
         if (!babelOptions) return
 
         const result = await compiler.transformBabel(id, code, babelOptions)
 
         if (result?.code) {
-          return { code: result.code }
+          let out = result.code
+
+          if (needsRefresh) {
+            // wrap with per-file $RefreshReg$ that includes the file path as unique ID
+            // and schedule performReactRefresh() after HMR patch re-execution
+            const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+            out = `
+var __prevRefreshReg = globalThis.$RefreshReg$;
+var __prevRefreshSig = globalThis.$RefreshSig$;
+if (globalThis.__ReactRefresh) {
+  globalThis.$RefreshReg$ = function(type, id) {
+    globalThis.__ReactRefresh.register(type, "${escapedId}" + " " + id);
+  };
+  globalThis.$RefreshSig$ = globalThis.__ReactRefresh.createSignatureFunctionForTransform;
+}
+
+${out}
+
+globalThis.$RefreshReg$ = __prevRefreshReg;
+globalThis.$RefreshSig$ = __prevRefreshSig;
+if (import.meta.hot) {
+  import.meta.hot.accept(function() {
+    if (globalThis.__ReactRefresh) {
+      setTimeout(function() { globalThis.__ReactRefresh.performReactRefresh(); }, 30);
+    }
+  });
+}
+`
+          }
+
+          return { code: out }
         }
       } catch (err: any) {
         // log but don't crash — fallback to rolldown's own transform
         if (dev) {
           console.warn(`[vxrn:compiler] ${id}: ${err.message || err}`)
+        }
+        // if babel transform fails for a refresh candidate, still add accept boundary
+        if (needsRefresh) {
+          return {
+            code: code + `\nif (import.meta.hot) { import.meta.hot.accept(); }\n`,
+          }
         }
       }
     },
@@ -682,164 +729,6 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
         return { code: result.code }
       } catch (err: any) {
         // don't crash on SWC transform errors (eg static blocks not supported)
-      }
-    },
-  }
-}
-
-/**
- * Run @react-native/babel-plugin-codegen on native component spec files.
- * Without this, native components (RNSScreen, SafeAreaView, etc.) get
- * "Codegen didn't run" warnings and may not render correctly.
- */
-function codegenPlugin(): Plugin {
-  const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
-  const SPEC_FILE_RE = /[/\\]specs?[/\\]/
-
-  return {
-    name: 'vxrn:codegen',
-    async transform(code, id) {
-      if (!NATIVE_COMPONENT_RE.test(id) && !SPEC_FILE_RE.test(id)) return
-
-      try {
-        const babel = await import('@babel/core')
-        const result = await babel.transformAsync(code, {
-          filename: id,
-          babelrc: false,
-          configFile: false,
-          compact: false,
-          plugins: ['@react-native/babel-plugin-codegen'],
-          sourceType: 'unambiguous',
-        })
-        if (result?.code) return { code: result.code }
-      } catch {}
-    },
-  }
-}
-
-/**
- * Downgrade polyfill "not configurable" errors to warnings.
- * hermes v1 has native fetch/Headers/etc that are non-configurable,
- * so polyfill attempts throw errors that are noisy but harmless.
- */
-function polyfillErrorDowngradePlugin(): Plugin {
-  return {
-    name: 'vxrn:polyfill-error-downgrade',
-    transform(code, id) {
-      if (!id.includes('node_modules')) return
-      if (!code.includes('console.error("Failed to set polyfill.')) return
-
-      return {
-        code: code.replace(
-          /console\.error\(\s*"Failed to set polyfill\.\s*"\s*\+/g,
-          'console.warn("Failed to set polyfill. " +'
-        ),
-      }
-    },
-  }
-}
-
-/**
- * Strip DevSettings reference in production builds.
- * In production, NativeModules.getEnforcing('DevSettings') will fail
- * since DevSettings is a dev-only module.
- */
-function stripDevSettingsPlugin(dev: boolean): Plugin {
-  return {
-    name: 'vxrn:strip-dev-settings',
-    transform(code, id) {
-      if (dev) return
-      if (!code.includes('DevSettings')) return
-
-      return {
-        code: code.replace(
-          /getEnforcing\s*\(\s*["']DevSettings["']\s*\)/g,
-          'patched_getEnforcing_DevSettings_will_not_work_in_production()'
-        ),
-      }
-    },
-  }
-}
-
-/**
- * React Refresh wrapper for native HMR.
- * 1. Runs react-refresh/babel to add $RefreshReg$/$RefreshSig$ calls
- * 2. Wraps each file with per-module $RefreshReg$ that includes the file path
- *    (react-refresh needs unique IDs like "filepath ComponentName")
- * 3. Appends import.meta.hot.accept() for HMR boundaries
- * 4. Schedules performReactRefresh() after module re-execution
- */
-function nativeReactRefreshPlugin(): Plugin {
-  return {
-    name: 'vxrn:react-refresh',
-    async transform(code, id) {
-      // only wrap user app files (not node_modules, not generated entry, not virtual)
-      if (id.includes('node_modules')) return
-      if (id.includes('__virtual-native-entry')) return
-      if (id.startsWith('\0')) return
-      if (!/\.[tj]sx?$/.test(id)) return
-      // skip files that clearly have no components (raw source before JSX transform)
-      // check for JSX syntax (<), function keyword, or arrow functions (=>)
-      if (!/[<]|function\s|=>\s*[{(]/.test(code)) return
-
-      try {
-        // run react-refresh/babel to add $RefreshReg$ and $RefreshSig$
-        const babel = await import('@babel/core')
-
-        // babel needs parser plugins for TypeScript/JSX
-        const parserPlugins: any[] = []
-        if (id.endsWith('.tsx')) {
-          parserPlugins.push(['@babel/plugin-syntax-typescript', { isTSX: true }])
-        } else if (id.endsWith('.ts')) {
-          parserPlugins.push('@babel/plugin-syntax-typescript')
-        } else if (id.endsWith('.jsx')) {
-          parserPlugins.push('@babel/plugin-syntax-jsx')
-        }
-
-        const result = await babel.transformAsync(code, {
-          filename: id,
-          babelrc: false,
-          configFile: false,
-          compact: false,
-          plugins: [...parserPlugins, 'react-refresh/babel'],
-          sourceType: 'unambiguous',
-        })
-
-        if (result?.code) {
-          // escape the id for use in string literal
-          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-
-          // wrap with per-file $RefreshReg$ that includes the file path as unique ID
-          // and schedule performReactRefresh() after HMR patch re-execution
-          const wrappedCode = `
-var __prevRefreshReg = globalThis.$RefreshReg$;
-var __prevRefreshSig = globalThis.$RefreshSig$;
-if (globalThis.__ReactRefresh) {
-  globalThis.$RefreshReg$ = function(type, id) {
-    globalThis.__ReactRefresh.register(type, "${escapedId}" + " " + id);
-  };
-  globalThis.$RefreshSig$ = globalThis.__ReactRefresh.createSignatureFunctionForTransform;
-}
-
-${result.code}
-
-globalThis.$RefreshReg$ = __prevRefreshReg;
-globalThis.$RefreshSig$ = __prevRefreshSig;
-if (import.meta.hot) {
-  import.meta.hot.accept(function() {
-    if (globalThis.__ReactRefresh) {
-      setTimeout(function() { globalThis.__ReactRefresh.performReactRefresh(); }, 30);
-    }
-  });
-}
-`
-          return { code: wrappedCode }
-        }
-      } catch {
-        // if babel transform fails, just add the accept boundary
-        return {
-          code: code + `\nif (import.meta.hot) { import.meta.hot.accept(); }\n`,
-        }
       }
     },
   }
