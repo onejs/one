@@ -51,7 +51,7 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 }
 
 // shared rolldown transform config for native builds
-function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
+function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string) {
   // read setupFile defines from One's config (mirrors one:init-config define block)
   const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
   const setupFileDefines = (() => {
@@ -77,7 +77,6 @@ function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean) {
     try {
       const { readFileSync, existsSync } = require('node:fs')
       const { join } = require('node:path')
-      const root = (globalThis as any).__vxrnNativeEntryConfig?.root || process.cwd()
       const mode = dev ? 'development' : 'production'
       // load .env, .env.local, .env.[mode], .env.[mode].local (same order as Vite)
       for (const envFile of ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`]) {
@@ -297,7 +296,7 @@ export async function createNativeDevEngine(
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
-    transform: getNativeTransformConfig(platform, true),
+    transform: getNativeTransformConfig(platform, true, root),
 
     experimental: {
       devMode: { implement: hmrRuntimeSource, host, port },
@@ -484,7 +483,7 @@ export async function buildNativeBundle(
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
-    transform: getNativeTransformConfig(platform, dev),
+    transform: getNativeTransformConfig(platform, dev, root),
     treeshake: !dev,
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
