@@ -1,6 +1,12 @@
 /// <reference types="vite/client" />
 
 interface OneEnvVariables {
+  // Server
+  /** Set the port for both dev and serve. Lower priority than --port CLI flag. */
+  ONE_PORT: string
+  /** Override the port for both dev and serve. Takes precedence over --port and ONE_PORT. */
+  ONE_FORCE_PORT: string
+
   // Core One variables
   /** Random number for each production build, or stable per dev server run. Useful for cache keys. */
   ONE_CACHE_KEY: string

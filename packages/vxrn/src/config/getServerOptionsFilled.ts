@@ -10,8 +10,12 @@ export async function getServerOptionsFilled(
     port: requestedPort,
   } = serverOptions || {}
 
+  const envPort = process.env.ONE_PORT ? Number(process.env.ONE_PORT) : undefined
+  const forcePort = process.env.ONE_FORCE_PORT
+    ? Number(process.env.ONE_FORCE_PORT)
+    : undefined
   const defaultPort = mode === 'dev' ? 8081 : 3000
-  const portToUse = requestedPort ?? defaultPort
+  const portToUse = forcePort ?? requestedPort ?? envPort ?? defaultPort
   const protocol = 'http:' as const
 
   // in cluster worker mode with SO_REUSEPORT, skip the port check —
@@ -22,18 +26,19 @@ export async function getServerOptionsFilled(
   if (isClusterWorker) {
     port = portToUse
   } else {
-    // if a specific port was requested, only try that port (strict mode)
+    // if a specific port was requested (via CLI, env, or force), only try that port (strict mode)
     // otherwise, allow finding an available port in a range
+    const isExplicitPort = !!(forcePort ?? requestedPort ?? envPort)
     port = await getPort({
       port: portToUse,
-      portRange: requestedPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
+      portRange: isExplicitPort ? [portToUse, portToUse] : [portToUse, portToUse + 100],
       host,
     })
 
-    // if user explicitly requested a port and we couldn't get it, error out
-    if (requestedPort && port !== requestedPort) {
+    // if an explicit port was requested and we couldn't get it, error out
+    if (isExplicitPort && port !== portToUse) {
       throw new Error(
-        `Port ${requestedPort} is already in use. Either free the port or use a different one.`
+        `Port ${portToUse} is already in use. Either free the port or use a different one.`
       )
     }
   }
