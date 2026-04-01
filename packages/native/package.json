@@ -50,7 +50,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-screens": "~4.23.0",
+    "react-native-screens": ">=4.0.0",
     "react-native-safe-area-context": ">=5.4.0"
   },
   "peerDependenciesMeta": {
