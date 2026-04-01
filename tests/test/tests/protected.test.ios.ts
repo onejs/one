@@ -2,14 +2,9 @@ import { expect, test } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
-// rolldown native stack: Animated.event with useNativeDriver triggers
-// addAnimatedEventToView which is undefined in the rolldown bundle's
-// NativeAnimatedModule — needs runtime debugging on iOS to root-cause
-const isRolldown = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
-
 const sharedTestOptions = { timeout: 8 * 60 * 1000, retry: 2 }
 
-test.skipIf(isRolldown)(
+test(
   'Protected routes - shows public page and can toggle auth',
   sharedTestOptions,
   async () => {
@@ -37,7 +32,7 @@ test.skipIf(isRolldown)(
   }
 )
 
-test.skipIf(isRolldown)(
+test(
   'Protected routes - can access protected route after auth',
   sharedTestOptions,
   async () => {
@@ -63,7 +58,7 @@ test.skipIf(isRolldown)(
   }
 )
 
-test.skipIf(isRolldown)(
+test(
   'Protected routes - cannot access protected route when not authed',
   sharedTestOptions,
   async () => {
