@@ -142,7 +142,7 @@ jobs:
             ~/.appium
             /usr/local/lib/node_modules/appium
             /usr/local/bin/appium
-          key: appium-xcuitest-${{ runner.os }}-v2
+          key: appium-xcuitest-${{ runner.os }}-v3
 
       - name: Install Appium
         if: steps.appium-cache.outputs.cache-hit != 'true'
@@ -158,6 +158,8 @@ jobs:
             npm install -g appium
             appium driver install xcuitest 2>/dev/null || appium driver update xcuitest
           fi
+          # ensure xcuitest driver is up to date
+          appium driver update xcuitest 2>/dev/null || true
           appium --version
           appium driver list --installed
 
@@ -184,10 +186,12 @@ jobs:
         run: |
           # WDA builds on first session and can take 15+ min on CI.
           # use appium's xcodebuild to compile WDA ahead of time.
-          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>&1 || echo "")
+          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>/dev/null || echo "")
+          # strip ansi codes and whitespace
+          APPIUM_XCUITEST_PATH=$(echo "$APPIUM_XCUITEST_PATH" | sed 's/\x1b\[[0-9;]*m//g' | tr -d '[:space:]')
           # fallback: search known appium driver install locations
           if [ -z "$APPIUM_XCUITEST_PATH" ] || [ ! -d "$APPIUM_XCUITEST_PATH" ]; then
-            echo "print-wda-path returned: '$APPIUM_XCUITEST_PATH'"
+            echo "print-wda-path failed or returned invalid path: '$APPIUM_XCUITEST_PATH'"
             APPIUM_XCUITEST_PATH=$(find ~/.appium -name "WebDriverAgent.xcodeproj" -print -quit 2>/dev/null | xargs dirname 2>/dev/null || echo "")
           fi
           if [ -n "$APPIUM_XCUITEST_PATH" ] && [ -d "$APPIUM_XCUITEST_PATH" ]; then
