@@ -319,6 +319,10 @@ export async function createNativeDevEngine(
     experimental: {
       devMode: { implement: hmrRuntimeSource, host, port },
       incrementalBuild: true,
+      // lazyBarrel defers barrel re-export initialization — needed in dev mode
+      // to avoid breaking worklet closure serialization order.
+      // removed from prod builds (buildNativeBundle) where it caused build errors.
+      lazyBarrel: true,
     },
 
     treeshake: false,
