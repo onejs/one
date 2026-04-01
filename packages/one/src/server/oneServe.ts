@@ -1,7 +1,7 @@
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { readFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
 import {
   CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX_UNCACHED,
@@ -16,7 +16,7 @@ import {
 } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
-import { toAbsolute } from '../utils/toAbsolute'
+import { toAbsoluteUrl } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { setSSRLoaderData } from './ssrLoaderData'
@@ -175,8 +175,8 @@ export async function oneServe(
         routeExported = lazyKey
           ? options?.lazyRoutes?.pages?.[lazyKey]
             ? await options.lazyRoutes.pages[lazyKey]()
-            : await import(toAbsolute(resolvedPath))
-          : await import(toAbsolute(serverPath!))
+            : await import(toAbsoluteUrl(resolvedPath))
+          : await import(toAbsoluteUrl(serverPath!))
         moduleImportCache.set(cacheKey, routeExported)
       }
 
@@ -279,8 +279,7 @@ export async function oneServe(
       const entry = options?.lazyRoutes?.serverEntry
         ? await options.lazyRoutes.serverEntry()
         : await import(
-            resolve(
-              process.cwd(),
+            toAbsoluteUrl(
               `${serverOptions.root}/${outDir}/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
             )
           )
@@ -315,13 +314,8 @@ export async function oneServe(
       }
       // both vite and rolldown-vite replace brackets with underscores in output filenames
       const fileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
-      const apiFile = join(
-        process.cwd(),
-        outDir,
-        'api',
-        fileName + (apiCJS ? '.cjs' : '.js')
-      )
-      return await import(apiFile)
+      const apiFile = join(outDir, 'api', fileName + (apiCJS ? '.cjs' : '.js'))
+      return await import(toAbsoluteUrl(apiFile))
     },
 
     async loadMiddleware(route) {
@@ -329,7 +323,7 @@ export async function oneServe(
       if (options?.lazyRoutes?.middlewares?.[route.contextKey]) {
         return await options.lazyRoutes.middlewares[route.contextKey]()
       }
-      return await import(toAbsolute(route.contextKey))
+      return await import(toAbsoluteUrl(route.contextKey))
     },
 
     async handleLoader({ route, loaderProps }) {

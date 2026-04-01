@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import module from 'node:module'
 import { TLSSocket } from 'node:tls'
+import { pathToFileURL } from 'node:url'
 
 import type { Plugin } from 'vite'
 import colors from 'picocolors'
@@ -48,8 +49,8 @@ export function expoManifestRequestHandlerPlugin(
             '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js',
             { paths: [projectRoot] }
           )
-          ExpoGoManifestHandlerMiddleware = (await import(importPath)).default
-            .ExpoGoManifestHandlerMiddleware
+          ExpoGoManifestHandlerMiddleware = (await import(pathToFileURL(importPath).href))
+            .default.ExpoGoManifestHandlerMiddleware
         } catch (e) {
           expoGoManifestHandlerMiddlewareImportError = e
         }

@@ -1,4 +1,5 @@
 import type { ResolvedConfig } from 'vite'
+import { resolve } from 'node:path'
 import micromatch from 'micromatch'
 
 // For Metro and Expo, we only import types here.
@@ -23,7 +24,7 @@ export async function getMetroConfigFromViteConfig(
   // prefer argv.projectRoot (user override) over config.root (vite resolved)
   // this is needed for monorepo setups where config.root may resolve to
   // the monorepo root instead of the app subdirectory
-  const projectRoot = metroPluginOptions.argv?.projectRoot ?? config.root
+  const projectRoot = resolve(metroPluginOptions.argv?.projectRoot ?? config.root)
   const { mainModuleName, argv, defaultConfigOverrides, watchman, excludeModules } =
     metroPluginOptions
 

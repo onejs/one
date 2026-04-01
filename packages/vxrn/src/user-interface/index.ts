@@ -1,5 +1,6 @@
 import { exec } from 'node:child_process'
 import module from 'node:module'
+import { pathToFileURL } from 'node:url'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
 
@@ -313,7 +314,9 @@ async function openIos(ctx: Context) {
         paths: [projectRoot],
       }
     )
-    const applePlatformManagerModule = await import(applePlatformManagerModuleImportPath)
+    const applePlatformManagerModule = await import(
+      pathToFileURL(applePlatformManagerModuleImportPath).href
+    )
     const PlatformManager = applePlatformManagerModule.default.ApplePlatformManager
 
     // TODO: Support dev client
@@ -347,7 +350,7 @@ async function openAndroid(ctx: Context) {
       }
     )
     const androidPlatformManagerModule = await import(
-      androidPlatformManagerModuleImportPath
+      pathToFileURL(androidPlatformManagerModuleImportPath).href
     )
     const PlatformManager = androidPlatformManagerModule.default.AndroidPlatformManager
 

@@ -4,7 +4,7 @@
  *
  * Usage: Pass the caller's import.meta.url to resolve relative paths correctly.
  */
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
 type ModuleCache = Map<string, any>
@@ -33,7 +33,7 @@ export async function workerImport<T = any>(
   const mjsPath = absolutePath.endsWith('.mjs') ? absolutePath : `${absolutePath}.mjs`
 
   // @ts-ignore - runtime needs .mjs extension for proper ESM resolution
-  const mod = await import(mjsPath)
+  const mod = await import(pathToFileURL(mjsPath).href)
   cache.set(cacheKey, mod)
   return mod
 }

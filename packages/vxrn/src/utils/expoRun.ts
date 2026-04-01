@@ -1,4 +1,5 @@
 import module from 'node:module'
+import { pathToFileURL } from 'node:url'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
@@ -23,7 +24,7 @@ export async function expoRun({
     const importPath = require.resolve(`@expo/cli/build/src/run/${platform}/index.js`, {
       paths: [root],
     })
-    const expoRun = (await import(importPath)).default[
+    const expoRun = (await import(pathToFileURL(importPath).href)).default[
       `expoRun${platform.charAt(0).toUpperCase() + platform.slice(1)}`
     ]
     await expoRun([

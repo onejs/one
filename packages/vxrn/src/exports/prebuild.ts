@@ -2,6 +2,7 @@ import { resolvePath } from '@vxrn/resolve'
 import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 import colors from 'picocolors'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
@@ -29,7 +30,8 @@ export const prebuild = async ({
     try {
       // Import Expo from the user's project instead of from where vxrn is installed, since vxrn may be installed globally or at the root workspace.
       const importPath = resolvePath('@expo/cli/build/src/prebuild/index.js', root)
-      const expoPrebuild = (await import(importPath)).default.expoPrebuild
+      const expoPrebuild = (await import(pathToFileURL(importPath).href)).default
+        .expoPrebuild
       await expoPrebuild([
         ...(platform ? ['--platform', platform] : []),
         ...(noInstall ? ['--no-install'] : []),

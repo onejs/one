@@ -1,5 +1,6 @@
 import module from 'node:module'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 import FSExtra from 'fs-extra'
 
 /*
@@ -27,7 +28,7 @@ export const generateForPlatform = async (
     ),
     platform
   )
-  const walk = (await import(importPath)).default.default
+  const walk = (await import(pathToFileURL(importPath).href)).default.default
   walk(src).forEach((absoluteSrc: string) => {
     const relativeFilePath = transformPath(path.relative(src, absoluteSrc))
       .replace(/HelloWorld/g, appName)

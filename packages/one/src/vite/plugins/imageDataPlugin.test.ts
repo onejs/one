@@ -1,4 +1,11 @@
+import { resolve } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+// Platform-correct test paths — resolve() normalizes to native separators
+const PROJECT_ROOT = resolve('/project')
+const PUBLIC_DIR = resolve('/project/public')
+const COMPONENTS_DIR = resolve('/project/src/components')
+const HERO_FILE = resolve('/project/src/components/Hero.tsx')
 
 // Mock fs before importing the plugin
 vi.mock('node:fs', async () => {
@@ -10,6 +17,13 @@ vi.mock('node:fs', async () => {
     }),
   }
 })
+
+function mockConfig() {
+  return {
+    publicDir: PUBLIC_DIR,
+    root: PROJECT_ROOT,
+  }
+}
 
 describe('imageDataPlugin', () => {
   beforeEach(() => {
@@ -25,13 +39,8 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)('./image.jpg', undefined)
@@ -42,13 +51,8 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       // ?imagedata in the middle should not match
@@ -60,53 +64,38 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
         '/test-image.jpg?imagedata',
         undefined
       )
-      expect(result).toBe('\0imagedata:/project/public/test-image.jpg')
+      expect(result).toBe('\0imagedata:' + resolve(PUBLIC_DIR, 'test-image.jpg'))
     })
 
     it('should resolve relative imports', async () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
         './test-image.jpg?imagedata',
-        '/project/src/components/Hero.tsx'
+        HERO_FILE
       )
-      expect(result).toBe('\0imagedata:/project/src/components/test-image.jpg')
+      expect(result).toBe('\0imagedata:' + resolve(COMPONENTS_DIR, 'test-image.jpg'))
     })
 
     it('should return null for non-existent files', async () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
@@ -122,13 +111,8 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
@@ -142,18 +126,13 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
         '../../../../etc/passwd?imagedata',
-        '/project/src/components/Hero.tsx'
+        HERO_FILE
       )
       expect(result).toBeNull()
     })
@@ -162,13 +141,8 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const result = await (plugin.resolveId as any)(
@@ -182,22 +156,17 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       // Going up and back down should still work if within bounds
       // From /project/src/components, ../.. goes to /project, then src/test-image.jpg
       const result = await (plugin.resolveId as any)(
         '../../src/test-image.jpg?imagedata',
-        '/project/src/components/Hero.tsx'
+        HERO_FILE
       )
-      expect(result).toBe('\0imagedata:/project/src/test-image.jpg')
+      expect(result).toBe('\0imagedata:' + resolve(PROJECT_ROOT, 'src/test-image.jpg'))
     })
   })
 
@@ -206,13 +175,8 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const mockContext = {
@@ -227,33 +191,28 @@ describe('imageDataPlugin', () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
 
-      const mockConfig = {
-        publicDir: '/project/public',
-        root: '/project',
-      }
-
       if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig)
+        ;(plugin.configResolved as any)(mockConfig())
       }
 
       const mockContext = {
         addWatchFile: vi.fn(),
       }
 
+      const testFilePath = resolve(PUBLIC_DIR, 'test-image.jpg')
+
       // This will fail because the file doesn't actually exist
       // But it should gracefully fallback
       const result = await (plugin.load as any).call(
         mockContext,
-        '\0imagedata:/project/public/test-image.jpg'
+        '\0imagedata:' + testFilePath
       )
 
       expect(result).toContain('export default')
       expect(result).toContain('"src":"/test-image.jpg"')
       expect(result).toContain('"width":')
       expect(result).toContain('"height":')
-      expect(mockContext.addWatchFile).toHaveBeenCalledWith(
-        '/project/public/test-image.jpg'
-      )
+      expect(mockContext.addWatchFile).toHaveBeenCalledWith(testFilePath)
     })
   })
 
@@ -279,22 +238,19 @@ describe('imageDataPlugin output format', () => {
     const { imageDataPlugin } = await import('./imageDataPlugin')
     const plugin = imageDataPlugin()
 
-    const mockConfig = {
-      publicDir: '/project/public',
-      root: '/project',
-    }
-
     if (plugin.configResolved) {
-      ;(plugin.configResolved as any)(mockConfig)
+      ;(plugin.configResolved as any)(mockConfig())
     }
 
     const mockContext = {
       addWatchFile: vi.fn(),
     }
 
+    const testFilePath = resolve(PUBLIC_DIR, 'test-image.jpg')
+
     const result = await (plugin.load as any).call(
       mockContext,
-      '\0imagedata:/project/public/test-image.jpg'
+      '\0imagedata:' + testFilePath
     )
 
     // Extract JSON from the export

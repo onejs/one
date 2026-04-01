@@ -5,7 +5,7 @@ import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import type { LoaderProps } from '../types'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
-import { toAbsolute } from '../utils/toAbsolute'
+import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One, RouteInfo } from '../vite/types'
 
@@ -174,7 +174,7 @@ prefetchCSS()
     recordTiming('writeCSSPreload', performance.now() - t0)
 
     t0 = performance.now()
-    const exported = await import(toAbsolute(serverJsPath))
+    const exported = await import(toAbsoluteUrl(serverJsPath))
     recordTiming('importServerModule', performance.now() - t0)
 
     const loaderProps: LoaderProps = { path, params }
@@ -195,7 +195,7 @@ prefetchCSS()
             // derive server dir from clientDir (e.g. dist/client -> dist/server)
             const serverDir = join(clientDir, '..', 'server')
             const layoutExported = await import(
-              toAbsolute(join(serverDir, layoutServerPath))
+              toAbsoluteUrl(join(serverDir, layoutServerPath))
             )
             const layoutLoaderData = await layoutExported?.loader?.(loaderProps)
             return { contextKey: layout.contextKey, loaderData: layoutLoaderData }
@@ -478,7 +478,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
 
 async function getRender(serverEntry: string) {
   try {
-    const serverImport = await import(serverEntry)
+    const serverImport = await import(toAbsoluteUrl(serverEntry))
 
     const render =
       serverImport.default.render ||

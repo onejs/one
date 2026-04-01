@@ -8,6 +8,14 @@ import {
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
 } from '../router/glob-patterns'
 
+/**
+ * On Windows, micromatch.makeRe() produces regex patterns with `[\\/]` or `[^\\/]`
+ * instead of `\/` and `[^/]`. Normalize them so the startsWith check works.
+ */
+export function normalizeReSource(source: string): string {
+  return source.replace(/\[\\\\\/\]/g, '\\/').replace(/\[\^\\\\\/\]/g, '[^/]')
+}
+
 export function getViteMetroPluginOptions({
   projectRoot,
   relativeRouterRoot,
@@ -56,7 +64,7 @@ export function getViteMetroPluginOptions({
        * ^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\+api\.(ts|tsx))$
        * ```
        */
-      const reSource = re.source
+      const reSource = normalizeReSource(re.source)
 
       if (
         !(
@@ -112,13 +120,7 @@ export function getViteMetroPluginOptions({
             //     .filter((i): i is NonNullable<typeof i> => !!i)
             // ),
           },
-          nodeModulesPaths: tsconfigPathsConfigLoadResult.absoluteBaseUrl
-            ? [
-                // "vite-tsconfig-paths" for Metro
-                tsconfigPathsConfigLoadResult.absoluteBaseUrl,
-                ...(defaultConfig?.resolver?.nodeModulesPaths || []),
-              ]
-            : defaultConfig?.resolver?.nodeModulesPaths,
+          nodeModulesPaths: defaultConfig?.resolver?.nodeModulesPaths,
           resolveRequest: (context, moduleName, platform) => {
             if (moduleName.endsWith('.css')) {
               return {
@@ -153,12 +155,13 @@ export function getViteMetroPluginOptions({
               const defaultResolveRequest =
                 defaultConfig?.resolver?.resolveRequest || context.resolveRequest
               const res = defaultResolveRequest(context, moduleName, platform)
-              if (res && 'filePath' in res && res.filePath.includes('/src/index.ts')) {
+              const svgSrcSuffix = `${path.sep}src${path.sep}index.ts`
+              if (res && 'filePath' in res && res.filePath.includes(svgSrcSuffix)) {
                 return {
                   ...res,
                   filePath: res.filePath.replace(
-                    '/src/index.ts',
-                    '/lib/commonjs/index.js'
+                    svgSrcSuffix,
+                    `${path.sep}lib${path.sep}commonjs${path.sep}index.js`
                   ),
                 }
               }

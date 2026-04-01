@@ -1,13 +1,24 @@
 import module from 'node:module'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 /**
  * Resolves a module path from the specified directory.
  * For npm packages, returns the ESM entry point when available.
  */
 export const resolvePath = (path: string, from = process.cwd()): string => {
-  const require = module.createRequire(from.endsWith('/') ? from : from + '/')
+  if (process.platform === 'win32' && from.startsWith('/')) {
+    try {
+      from = fileURLToPath('file://' + from)
+    } catch {
+      from = from.slice(1)
+    }
+  }
+  from = resolve(from)
+  const require = module.createRequire(
+    from.endsWith('/') || from.endsWith('\\') ? from : from + '/'
+  )
   const resolved = require.resolve(path, { paths: [from] })
 
   // For relative paths or node: builtins, just return the resolved path
