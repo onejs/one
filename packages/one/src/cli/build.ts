@@ -5,7 +5,7 @@ import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import type { OutputAsset, RolldownOutput } from 'rolldown'
-import { type InlineConfig, mergeConfig, build as viteBuild } from 'vite'
+import { type InlineConfig, mergeConfig, normalizePath, build as viteBuild } from 'vite'
 import {
   type ClientManifestEntry,
   fillOptions,
@@ -19,7 +19,7 @@ import { setServerGlobals } from '../server/setServerGlobals'
 import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { isRolldown } from '../utils/isRolldown'
-import { toAbsolute } from '../utils/toAbsolute'
+import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
 import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
@@ -347,7 +347,7 @@ export async function build(args: {
   if (middlewareBuildInfo) {
     for (const middleware of manifest.middlewareRoutes) {
       const absoluteRoot = resolve(process.cwd(), options.root)
-      const fullPath = join(absoluteRoot, routerRoot, middleware.file)
+      const fullPath = normalizePath(join(absoluteRoot, routerRoot, middleware.file))
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
@@ -356,7 +356,7 @@ export async function build(args: {
   }
 
   // for the require Sitemap in getRoutes
-  globalThis['require'] = createRequire(join(import.meta.url, '..'))
+  globalThis['require'] = createRequire(import.meta.dirname + '/')
 
   const assets: OutputAsset[] = []
 
@@ -426,7 +426,10 @@ export async function build(args: {
     // layout files start with _layout
     if (file.startsWith('_layout') && id.includes(`/${routerRoot}/`)) {
       // contextKey format is "./_layout.tsx" or "./subdir/_layout.tsx"
-      const relativePath = relative(process.cwd(), id).replace(`${routerRoot}/`, '')
+      const relativePath = normalizePath(relative(process.cwd(), id)).replace(
+        `${routerRoot}/`,
+        ''
+      )
       const contextKey = `./${relativePath}`
       layoutServerPaths.set(contextKey, output.fileName)
     }
@@ -469,10 +472,8 @@ export async function build(args: {
     }
 
     // resolve the full module path for this route
-    const routeModulePath = join(
-      resolve(process.cwd(), options.root),
-      routerRoot,
-      foundRoute.file.slice(2)
+    const routeModulePath = normalizePath(
+      join(resolve(process.cwd(), options.root), routerRoot, foundRoute.file.slice(2))
     )
 
     // find the server chunk containing this route
@@ -761,7 +762,7 @@ export async function build(args: {
 
     let exported
     try {
-      exported = await import(toAbsolute(serverJsPath))
+      exported = await import(toAbsoluteUrl(serverJsPath))
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something

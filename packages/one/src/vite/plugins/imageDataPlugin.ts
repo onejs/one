@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs'
-import { dirname, relative, resolve } from 'node:path'
+import { dirname, relative, resolve, sep } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
+import { normalizePath } from 'vite'
 import { processImageMeta } from '../../image/getImageData'
 
 const IMAGEDATA_SUFFIX = '?imagedata'
@@ -12,14 +13,14 @@ export function imageDataPlugin(): Plugin {
 
   function getSrcPath(filePath: string): string {
     return filePath.startsWith(publicDir)
-      ? '/' + relative(publicDir, filePath)
-      : '/' + relative(root, filePath)
+      ? '/' + normalizePath(relative(publicDir, filePath))
+      : '/' + normalizePath(relative(root, filePath))
   }
 
   function isPathWithinBounds(filePath: string, allowedDir: string): boolean {
     const resolved = resolve(filePath)
     const allowed = resolve(allowedDir)
-    return resolved.startsWith(allowed + '/') || resolved === allowed
+    return resolved.startsWith(allowed + sep) || resolved === allowed
   }
 
   function createImageDataExport(src: string, width = 0, height = 0, blurDataURL = '') {

@@ -1,5 +1,6 @@
 import { createDebugger } from '@vxrn/debug'
 import module from 'node:module'
+import { pathToFileURL } from 'node:url'
 
 export const { debug } = createDebugger('vite-metro:projectImport')
 
@@ -18,7 +19,7 @@ export async function projectImport<T = any>(
 
     debug?.(`Importing "${path}" from project root: "${projectRoot}" at "${importPath}"`)
 
-    const out = await import(importPath)
+    const out = await import(pathToFileURL(importPath).href)
 
     // somewhat hacky fix but for some reason in new takeout repo its double-wrapping default export
     if (out?.default?.default) {
