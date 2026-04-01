@@ -1,6 +1,6 @@
 {
   "name": "test-layout-flicker",
-  "version": "1.13.7",
+  "version": "1.14.0",
   "private": true,
   "type": "module",
   "scripts": {
