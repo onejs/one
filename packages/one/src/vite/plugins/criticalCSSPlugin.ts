@@ -1,4 +1,5 @@
 import { relative } from 'node:path'
+import { normalizePath } from 'vite'
 import type { Plugin } from 'vite'
 
 /**
@@ -62,8 +63,8 @@ export function criticalCSSPlugin(): Plugin {
       const resolved = await this.resolve(id, importer, { skipSelf: true })
 
       if (resolved) {
-        // store as relative path to match manifest keys
-        const relativePath = relative(root, resolved.id)
+        // store as relative path to match manifest keys (forward slashes to match Vite)
+        const relativePath = normalizePath(relative(root, resolved.id))
         criticalCSSSources.add(relativePath)
         return resolved
       }

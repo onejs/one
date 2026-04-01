@@ -878,7 +878,8 @@ function assetPlugin(opts: { root: string; platform: string }): Plugin {
         const name = basename(id, `.${ext}`)
         const dir = dirname(id)
         const relativePath = relative(opts.root, id)
-        const httpLocation = '/assets/' + dirname(relativePath)
+        // On Windows, change backslashes to slashes to get proper URL path from file path.
+        const httpLocation = '/assets/' + dirname(relativePath).replace(/\\/g, '/')
 
         // simple asset registration (TODO: scale detection like rollipop)
         const assetData = {

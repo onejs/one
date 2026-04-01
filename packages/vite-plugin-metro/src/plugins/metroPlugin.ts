@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
 import { createDebugger } from '@vxrn/debug'
@@ -84,7 +85,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
     // },
 
     configureServer(server) {
-      const { root: projectRoot } = server.config
+      const projectRoot = resolve(server.config.root)
 
       let metroReady = false
 
