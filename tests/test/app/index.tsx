@@ -1,5 +1,4 @@
 import { Link, useLoader } from 'one'
-import { useAnimatedStyle } from 'react-native-reanimated'
 import { TestNavigationHelper } from '~/features/test-helpers/TestNavigationHelper'
 import { View, Text, Pressable, Platform } from 'react-native'
 
@@ -20,14 +19,6 @@ export async function loader() {
 export default () => {
   const data = useLoader(loader)
   const setupStatus = globalThis.__setupFileRan || {}
-
-  // testing babel reanimated
-  useAnimatedStyle(() => {
-    'worklet'
-    return {
-      backgroundColor: 'red',
-    }
-  })
 
   return (
     <View
