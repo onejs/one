@@ -551,8 +551,8 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
   })()
 
   // build glob patterns matching One's virtualEntryPlugin
-  // platform-specific files (.native/.ios/.android) are resolved by rolldown's
-  // resolve.extensions at import time — they must NOT appear as separate route entries
+  // platform-specific files (.native/.ios/.android) must be included so getRoutes()
+  // can score them by specificity and pick the right variant per platform
   const routeGlobs = [
     `./${routerRoot}/**/*.tsx`,
     `./${routerRoot}/**/*.ts`,
@@ -562,9 +562,6 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
     `!./${routerRoot}/**/*.server.*`,
     `!./${routerRoot}/**/_middleware.*`,
     `!./${routerRoot}/**/*.web.*`,
-    `!./${routerRoot}/**/*.native.*`,
-    `!./${routerRoot}/**/*.ios.*`,
-    `!./${routerRoot}/**/*.android.*`,
     // ignoredRouteFiles from One's router config
     ...(entryConfig.ignoredRouteFiles || []).map(
       (pattern: string) => `!./${routerRoot}/${pattern}`
