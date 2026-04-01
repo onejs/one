@@ -142,6 +142,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
           // doesn't export these, so rolldown would error. shimMissingExports creates
           // undefined shims instead, matching esbuild's lenient behavior.
           shimMissingExports: true,
+          experimental: {
+            // skip compilation of unused re-exports in side-effect-free barrel modules
+            lazyBarrel: true,
+          },
           onwarn(warning, defaultHandler) {
             if (
               warning.code === 'MODULE_LEVEL_DIRECTIVE' &&

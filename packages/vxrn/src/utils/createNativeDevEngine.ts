@@ -319,6 +319,7 @@ export async function createNativeDevEngine(
     experimental: {
       devMode: { implement: hmrRuntimeSource, host, port },
       incrementalBuild: true,
+      lazyBarrel: true,
     },
 
     treeshake: false,
@@ -505,6 +506,9 @@ export async function buildNativeBundle(
     treeshake: !dev,
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
+    experimental: {
+      lazyBarrel: true,
+    },
     plugins: [
       nativeVirtualEntryPlugin(root, { dev }),
       ...getNativePlugins(root, platform, viteImportGlobPlugin, dev),
