@@ -35,6 +35,8 @@ on:
       - 'tests/rn-test-container/package.json'
       - 'tests/rn-test-container/react-native.config.cjs'
       - 'tests/rn-test-container/scripts/**'
+      - 'tests/test/**'
+      - 'packages/test/**'
   workflow_dispatch:
 
 concurrency:
