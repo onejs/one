@@ -5,7 +5,6 @@ import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
 
-const DEFAULT_PORT = 8081
 const DAEMON_PORT = 8081
 
 export async function dev(args: {
@@ -25,8 +24,11 @@ export async function dev(args: {
   const root = process.cwd()
   let daemonServerId: string | undefined
   let useDaemon = false
-  // only set port if user explicitly passed --port; otherwise let vite.config.ts decide
-  let effectivePort: number | undefined = args.port ? +args.port : undefined
+  // port priority: ONE_FORCE_PORT > --port > ONE_PORT > default
+  const forcePort = process.env.ONE_FORCE_PORT ? +process.env.ONE_FORCE_PORT : undefined
+  const envPort = process.env.ONE_PORT ? +process.env.ONE_PORT : undefined
+  let effectivePort: number | undefined =
+    forcePort ?? (args.port ? +args.port : undefined) ?? envPort
 
   // check if daemon is running
   const {
@@ -43,19 +45,15 @@ export async function dev(args: {
   const bundleId = getBundleIdFromConfig(root) || path.basename(root)
 
   if (daemonRunning) {
-    const requestedPort = args.port ? +args.port : null
-
-    if (!requestedPort || requestedPort === DAEMON_PORT) {
+    if (!effectivePort || effectivePort === DAEMON_PORT) {
       // no port specified, or user requested the daemon port - use daemon mode
       effectivePort = await getAvailablePort(8082, DAEMON_PORT)
 
       console.log(colors.cyan(`[daemon] Detected running daemon on :${DAEMON_PORT}`))
       console.log(colors.cyan(`[daemon] Using port :${effectivePort} for this server`))
       useDaemon = true
-    } else {
-      // user requested a specific non-daemon port, use it directly without daemon
-      effectivePort = requestedPort
     }
+    // otherwise, explicit port (CLI or env) takes precedence — skip daemon
   }
 
   const { dev } = await import('vxrn/dev')

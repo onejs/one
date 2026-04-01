@@ -20,6 +20,18 @@ But, `SOME_RANDOM_VAR=2` would *not* be exposed to the client side, because it l
 
 One also sets some environment variables for you, available on both `process.env` and `import.meta.env`.
 
+#### Server
+
+- `ONE_PORT` sets the port for both `one dev` and `one serve`. This is equivalent to passing `--port` on the command line, but works across both commands and can be set in your `.env` file or deployment config. If `--port` is also passed, the CLI flag takes precedence.
+- `ONE_FORCE_PORT` overrides the port for both `one dev` and `one serve`, taking precedence over `--port` and `ONE_PORT`. Useful for CI or deployment environments where the port must be fixed regardless of other configuration.
+
+Port priority (highest wins):
+
+1. `ONE_FORCE_PORT`
+2. `--port` CLI flag
+3. `ONE_PORT`
+4. Built-in defaults (8081 for dev, 3000 for serve)
+
 #### Core Variables
 
 - `ONE_CACHE_KEY` is set to a random number for each production build, or stable per dev server run. Useful for cache keys.
