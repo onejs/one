@@ -224,17 +224,18 @@ function postProcessNativeBundle(code: string): string {
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
 
-  // diagnostic: after NativeAnimatedModule is resolved, throw if broken
-  // so the error message contains the diagnostic data in the screenshot
+  // fix: on bridgeless iOS, rolldown's module init order can resolve
+  // NativeAnimatedModule to null when both spec modules race.
+  // if both defaults are null, re-resolve directly from the turbo proxy.
   code = code.replace(
-    /NativeOperations = createNativeOperations\(\)/,
-    `NativeOperations = createNativeOperations();
-if (NativeAnimatedModule != null && typeof NativeAnimatedModule.addAnimatedEventToView !== 'function') {
-  throw new Error('[vxrn] NativeAnimatedModule missing addAnimatedEventToView. ' +
-    'type=' + typeof NativeAnimatedModule +
-    ' keys=' + (function() { try { var k=[]; for(var p in NativeAnimatedModule) k.push(p); return k.join(','); } catch(e) { return 'enum-err:'+e.message; } })() +
-    ' preludeDiag=' + JSON.stringify(globalThis.__vxrnAnimDiag || 'not-set'));
-}`
+    /NativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
+    `NativeAnimatedModule = (function() {
+  var _mod = $1;
+  if (_mod == null && global.__turboModuleProxy) {
+    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
+  }
+  return _mod;
+})()`
   )
 
   return code

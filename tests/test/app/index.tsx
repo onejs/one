@@ -35,6 +35,10 @@ export default () => {
         Welcome to One
       </Text>
 
+      <Text testID="anim-diag" style={{ fontSize: 10 }}>
+        {JSON.stringify((globalThis as any).__vxrnAnimDiag || 'no-diag')}
+      </Text>
+
       <Text
         testID="native-setup-ran"
         accessibilityLabel={`native-setup: ${setupStatus.native ? 'true' : 'false'}`}
