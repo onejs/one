@@ -49,6 +49,23 @@ process.env.NODE_ENV = ${JSON.stringify(options.dev ? 'development' : 'productio
 process.env.EXPO_OS = ${JSON.stringify(options.platform)};
 ${options.serverUrl ? `process.env.ONE_SERVER_URL = ${JSON.stringify(options.serverUrl)};` : ''}
 
+// diagnostic: probe native animated module state directly from turbo proxy
+// results stored on globalThis so error boundaries can report them
+if (global.__turboModuleProxy) {
+  var _animTurbo = global.__turboModuleProxy('NativeAnimatedTurboModule');
+  var _animLegacy = global.__turboModuleProxy('NativeAnimatedModule');
+  globalThis.__vxrnAnimDiag = {
+    turboProxy: 'available',
+    bridgeless: !!global.RN$Bridgeless,
+    turboModule: _animTurbo ? 'present' : 'null',
+    turboHasMethod: _animTurbo ? typeof _animTurbo.addAnimatedEventToView : 'N/A',
+    legacyModule: _animLegacy ? 'present' : 'null',
+    legacyHasMethod: _animLegacy ? typeof _animLegacy.addAnimatedEventToView : 'N/A',
+  };
+} else {
+  globalThis.__vxrnAnimDiag = { turboProxy: 'NOT AVAILABLE' };
+}
+
 // polyfill setImmediate (used by react-native internals)
 if (typeof globalThis.setImmediate === 'undefined') {
   globalThis.setImmediate = function(fn) { return setTimeout(fn, 0); };

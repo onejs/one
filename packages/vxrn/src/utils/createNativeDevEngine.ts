@@ -224,20 +224,27 @@ function postProcessNativeBundle(code: string): string {
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
 
-  // diagnostic: instrument createNativeOperations to log NativeAnimatedModule state
+  // diagnostic: after NativeAnimatedModule is resolved, log its state.
+  // the diag is stored on globalThis so error screenshots reveal it.
   code = code.replace(
     /NativeOperations = createNativeOperations\(\)/,
     `NativeOperations = createNativeOperations();
-console.log('[vxrn:animated] NativeAnimatedModule:', typeof NativeAnimatedModule, NativeAnimatedModule != null ? 'exists' : 'NULL');
-if (NativeAnimatedModule != null) {
-  try {
-    var _keys = [];
-    for (var _k in NativeAnimatedModule) _keys.push(_k);
-    console.log('[vxrn:animated] methods:', _keys.join(', '));
-    console.log('[vxrn:animated] addAnimatedEventToView:', typeof NativeAnimatedModule.addAnimatedEventToView);
-  } catch(e) { console.log('[vxrn:animated] error enumerating:', e.message); }
-}
-console.log('[vxrn:animated] bridgeless:', global.RN$Bridgeless, 'turboProxy:', typeof global.__turboModuleProxy);`
+globalThis.__vxrnAnimDiag2 = {
+  moduleType: typeof NativeAnimatedModule,
+  isNull: NativeAnimatedModule === null,
+  hasMethod: NativeAnimatedModule != null ? typeof NativeAnimatedModule.addAnimatedEventToView : 'mod-is-null',
+  shouldUseTurbo: typeof shouldUseTurboAnimatedModule === 'function' ? shouldUseTurboAnimatedModule() : 'fn-missing',
+  cxxEnabled: typeof cxxNativeAnimatedEnabled === 'function' ? cxxNativeAnimatedEnabled() : 'fn-missing',
+};
+if (typeof ErrorUtils !== 'undefined') {
+  var _origHandler = ErrorUtils.getGlobalHandler();
+  ErrorUtils.setGlobalHandler(function(e, isFatal) {
+    if (e && e.message && e.message.indexOf('addAnimatedEventToView') !== -1) {
+      e.message += ' | DIAG: ' + JSON.stringify(globalThis.__vxrnAnimDiag) + ' | DIAG2: ' + JSON.stringify(globalThis.__vxrnAnimDiag2);
+    }
+    if (_origHandler) _origHandler(e, isFatal);
+  });
+}`
   )
 
   return code
