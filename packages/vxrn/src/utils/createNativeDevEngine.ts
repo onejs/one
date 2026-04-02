@@ -224,6 +224,21 @@ function postProcessNativeBundle(code: string): string {
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
 
+  // fix: rolldown's module init order can leave NativeAnimatedModule null
+  // because both spec variants (legacy + turbo) resolve to null when their
+  // shouldUseTurboAnimatedModule() guard runs before turbo proxy is ready.
+  // re-resolve directly from the turbo proxy as a last resort.
+  code = code.replace(
+    /NativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
+    `NativeAnimatedModule = (function() {
+  var _mod = $1;
+  if (_mod == null && global.__turboModuleProxy) {
+    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
+  }
+  return _mod;
+})()`
+  )
+
   return code
 }
 
