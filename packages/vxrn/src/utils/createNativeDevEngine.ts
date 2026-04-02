@@ -647,21 +647,12 @@ function nativeModuleProxyFixPlugin(): Plugin {
             /const turboModuleProxy = global\.__turboModuleProxy;?/,
             '// vxrn: removed eager capture — read lazily in requireModule'
           )
-          // make requireModule read proxy fresh + filter empty legacy stubs
+          // make requireModule read proxy fresh
           .replace(
             /function requireModule[^{]*\{/,
             `$&
   // vxrn: read turbo proxy lazily so rolldown init order doesn't matter
   var turboModuleProxy = global.__turboModuleProxy;`
-          )
-          .replace(
-            /const legacyModule[^=]*= NativeModules\[name\];?\s*\n\s*if \(legacyModule != null\) [^}]*return legacyModule;?\s*\}/,
-            `const legacyModule = NativeModules[name];
-    // vxrn: filter empty stub objects from nativeModuleProxy on bridgeless
-    if (legacyModule != null && typeof legacyModule === 'object') {
-      try { if (Object.keys(legacyModule).length === 0) return null; } catch(e) {}
-    }
-    if (legacyModule != null) { return legacyModule; }`
           ),
       }
     },
