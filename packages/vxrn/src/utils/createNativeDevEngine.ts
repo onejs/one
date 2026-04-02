@@ -658,7 +658,7 @@ function nativeModuleProxyFixPlugin(): Plugin {
           // on bridgeless iOS, nativeModuleProxy returns {} for missing modules.
           // plain {} has Object.prototype, while real JSI host objects don't.
           .replace(
-            /(const legacyModule[^=]*= NativeModules\[name\];?)/,
+            /(const legacyModule\S*\s*=\s*NativeModules\S*\[name\];?)/,
             `$1
     if (legacyModule != null && Object.getPrototypeOf(legacyModule) === Object.prototype) return null;`
           ),
