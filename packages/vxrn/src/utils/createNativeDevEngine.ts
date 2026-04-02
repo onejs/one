@@ -223,6 +223,23 @@ function postProcessNativeBundle(code: string): string {
   // rolldown devMode runtime leaves some raw import.meta.hot references
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
+
+  // diagnostic: instrument createNativeOperations to log NativeAnimatedModule state
+  code = code.replace(
+    /NativeOperations = createNativeOperations\(\)/,
+    `NativeOperations = createNativeOperations();
+console.log('[vxrn:animated] NativeAnimatedModule:', typeof NativeAnimatedModule, NativeAnimatedModule != null ? 'exists' : 'NULL');
+if (NativeAnimatedModule != null) {
+  try {
+    var _keys = [];
+    for (var _k in NativeAnimatedModule) _keys.push(_k);
+    console.log('[vxrn:animated] methods:', _keys.join(', '));
+    console.log('[vxrn:animated] addAnimatedEventToView:', typeof NativeAnimatedModule.addAnimatedEventToView);
+  } catch(e) { console.log('[vxrn:animated] error enumerating:', e.message); }
+}
+console.log('[vxrn:animated] bridgeless:', global.RN$Bridgeless, 'turboProxy:', typeof global.__turboModuleProxy);`
+  )
+
   return code
 }
 
