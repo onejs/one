@@ -189,6 +189,9 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
+    // fix: rolldown's module init order can leave NativeAnimatedModule null.
+    // patch the source to re-resolve from turbo proxy at runtime.
+    nativeAnimatedFixPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -223,21 +226,6 @@ function postProcessNativeBundle(code: string): string {
   // rolldown devMode runtime leaves some raw import.meta.hot references
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
-
-  // fix: rolldown's module init order can leave NativeAnimatedModule null
-  // because both spec variants (legacy + turbo) resolve to null when their
-  // shouldUseTurboAnimatedModule() guard runs before turbo proxy is ready.
-  // re-resolve directly from the turbo proxy as a last resort.
-  code = code.replace(
-    /\bNativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
-    `NativeAnimatedModule = (function() {
-  var _mod = $1;
-  if (_mod == null && global.__turboModuleProxy) {
-    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
-  }
-  return _mod;
-})()`
-  )
 
   return code
 }
@@ -632,6 +620,37 @@ createApp({
 }
 
 // --- plugins ---
+
+/**
+ * Fix NativeAnimatedModule resolution in rolldown bundles.
+ * Rolldown's module init order can cause both NativeAnimatedModule variants
+ * to resolve to null. This patches the source to re-resolve from the turbo
+ * proxy at runtime when the standard resolution fails.
+ */
+function nativeAnimatedFixPlugin(): Plugin {
+  return {
+    name: 'vxrn:native-animated-fix',
+    transform(code, id) {
+      if (!id.includes('animated/NativeAnimatedHelper')) return
+
+      const target = 'NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule'
+      if (!code.includes(target)) return
+
+      return {
+        code: code.replace(
+          target,
+          `(function() {
+  var _mod = NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule;
+  if (_mod == null && global.__turboModuleProxy) {
+    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
+  }
+  return _mod;
+})()`
+        ),
+      }
+    },
+  }
+}
 
 /**
  * Block .server.* and _middleware.* files from entering the native bundle.
