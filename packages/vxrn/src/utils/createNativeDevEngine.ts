@@ -229,7 +229,7 @@ function postProcessNativeBundle(code: string): string {
   // shouldUseTurboAnimatedModule() guard runs before turbo proxy is ready.
   // re-resolve directly from the turbo proxy as a last resort.
   code = code.replace(
-    /NativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
+    /\bNativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
     `NativeAnimatedModule = (function() {
   var _mod = $1;
   if (_mod == null && global.__turboModuleProxy) {
