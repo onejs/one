@@ -647,12 +647,20 @@ function nativeModuleProxyFixPlugin(): Plugin {
             /const turboModuleProxy = global\.__turboModuleProxy;?/,
             '// vxrn: removed eager capture — read lazily in requireModule'
           )
-          // make requireModule read proxy fresh
+          // make requireModule read proxy fresh + filter plain empty objects
           .replace(
             /function requireModule[^{]*\{/,
             `$&
   // vxrn: read turbo proxy lazily so rolldown init order doesn't matter
   var turboModuleProxy = global.__turboModuleProxy;`
+          )
+          // filter empty plain-object stubs from nativeModuleProxy.
+          // on bridgeless iOS, nativeModuleProxy returns {} for missing modules.
+          // plain {} has Object.prototype, while real JSI host objects don't.
+          .replace(
+            /(const legacyModule[^=]*= NativeModules\[name\];?)/,
+            `$1
+    if (legacyModule != null && Object.getPrototypeOf(legacyModule) === Object.prototype) return null;`
           ),
       }
     },
