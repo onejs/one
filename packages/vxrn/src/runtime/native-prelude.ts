@@ -49,6 +49,22 @@ process.env.NODE_ENV = ${JSON.stringify(options.dev ? 'development' : 'productio
 process.env.EXPO_OS = ${JSON.stringify(options.platform)};
 ${options.serverUrl ? `process.env.ONE_SERVER_URL = ${JSON.stringify(options.serverUrl)};` : ''}
 
+// fix: ensure NativeModules proxy doesn't return empty objects for missing modules.
+// on bridgeless iOS, global.nativeModuleProxy can return truthy empty objects
+// for any module name, which breaks TurboModuleRegistry fallback logic.
+// wrapping it to return undefined for modules that are actually empty.
+if (global.nativeModuleProxy) {
+  var _origProxy = global.nativeModuleProxy;
+  global.nativeModuleProxy = new Proxy(_origProxy, {
+    get: function(target, prop) {
+      var mod = target[prop];
+      // if the module is an empty object (no own properties), treat as missing
+      if (mod && typeof mod === 'object' && Object.keys(mod).length === 0) return undefined;
+      return mod;
+    }
+  });
+}
+
 // polyfill setImmediate (used by react-native internals)
 if (typeof globalThis.setImmediate === 'undefined') {
   globalThis.setImmediate = function(fn) { return setTimeout(fn, 0); };

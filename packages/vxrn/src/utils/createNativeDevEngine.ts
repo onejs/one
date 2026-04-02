@@ -189,9 +189,6 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
-    // fix: rolldown can init TurboModuleRegistry before native sets __turboModuleProxy.
-    // patch it to read the proxy lazily instead of caching at module init time.
-    turboModuleRegistryFixPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -627,38 +624,6 @@ createApp({
  * to resolve to null. This patches the source to re-resolve from the turbo
  * proxy at runtime when the standard resolution fails.
  */
-/**
- * Fix TurboModuleRegistry to read __turboModuleProxy lazily.
- * In rolldown's concatenated bundle, the TurboModuleRegistry module can
- * initialize before the native side sets global.__turboModuleProxy,
- * causing all turbo module lookups to silently return null.
- */
-function turboModuleRegistryFixPlugin(): Plugin {
-  return {
-    name: 'vxrn:turbo-module-registry-fix',
-    transform(code, id) {
-      if (!id.includes('TurboModule/TurboModuleRegistry')) return
-
-      // replace the eager capture with a lazy read
-      const target = 'const turboModuleProxy = global.__turboModuleProxy;'
-      const targetFlow = 'const turboModuleProxy = global.__turboModuleProxy;' // same after flow strip
-      if (!code.includes('turboModuleProxy')) return
-
-      return {
-        code: code
-          .replace(
-            /const turboModuleProxy = global\.__turboModuleProxy;?/,
-            '// read lazily — rolldown may init this module before native sets the proxy'
-          )
-          .replace(
-            /if \(turboModuleProxy != null\)/,
-            'var turboModuleProxy = global.__turboModuleProxy;\n  if (turboModuleProxy != null)'
-          ),
-      }
-    },
-  }
-}
-
 /**
  * Block .server.* and _middleware.* files from entering the native bundle.
  * These are server-only code paths that should never ship to the client.
