@@ -634,8 +634,12 @@ function nativeAnimatedFixPlugin(): Plugin {
       if (!id.includes('animated/NativeAnimatedHelper')) return
 
       const target = 'NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule'
-      if (!code.includes(target)) return
+      if (!code.includes(target)) {
+        console.info(`[vxrn:native-animated-fix] target not found in ${id}, code snippet: ${code.slice(0, 200)}`)
+        return
+      }
 
+      console.info(`[vxrn:native-animated-fix] patching ${id}`)
       return {
         code: code.replace(
           target,
