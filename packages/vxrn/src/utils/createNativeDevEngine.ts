@@ -189,6 +189,8 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
+    // fix: make TurboModuleRegistry read __turboModuleProxy lazily
+    nativeModuleProxyFixPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -624,6 +626,48 @@ createApp({
  * to resolve to null. This patches the source to re-resolve from the turbo
  * proxy at runtime when the standard resolution fails.
  */
+/**
+ * Fix TurboModuleRegistry to read __turboModuleProxy lazily.
+ * In rolldown's concatenated bundle, TurboModuleRegistry can capture
+ * global.__turboModuleProxy at module scope before native sets it,
+ * causing all turbo module lookups to silently return null.
+ * Also filters empty stub objects from nativeModuleProxy fallback.
+ */
+function nativeModuleProxyFixPlugin(): Plugin {
+  return {
+    name: 'vxrn:native-module-proxy-fix',
+    transform(code, id) {
+      if (!id.includes('TurboModule/TurboModuleRegistry')) return
+      if (!code.includes('turboModuleProxy')) return
+
+      return {
+        code: code
+          // remove the eager module-scope capture
+          .replace(
+            /const turboModuleProxy = global\.__turboModuleProxy;?/,
+            '// vxrn: removed eager capture — read lazily in requireModule'
+          )
+          // make requireModule read proxy fresh + filter empty legacy stubs
+          .replace(
+            /function requireModule[^{]*\{/,
+            `$&
+  // vxrn: read turbo proxy lazily so rolldown init order doesn't matter
+  var turboModuleProxy = global.__turboModuleProxy;`
+          )
+          .replace(
+            /const legacyModule[^=]*= NativeModules\[name\];?\s*\n\s*if \(legacyModule != null\) [^}]*return legacyModule;?\s*\}/,
+            `const legacyModule = NativeModules[name];
+    // vxrn: filter empty stub objects from nativeModuleProxy on bridgeless
+    if (legacyModule != null && typeof legacyModule === 'object') {
+      try { if (Object.keys(legacyModule).length === 0) return null; } catch(e) {}
+    }
+    if (legacyModule != null) { return legacyModule; }`
+          ),
+      }
+    },
+  }
+}
+
 /**
  * Block .server.* and _middleware.* files from entering the native bundle.
  * These are server-only code paths that should never ship to the client.
