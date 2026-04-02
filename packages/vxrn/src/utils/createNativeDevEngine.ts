@@ -189,9 +189,9 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
-    // fix: rolldown's module init order can leave NativeAnimatedModule null.
-    // patch the source to re-resolve from turbo proxy at runtime.
-    nativeAnimatedFixPlugin(),
+    // fix: rolldown can init TurboModuleRegistry before native sets __turboModuleProxy.
+    // patch it to read the proxy lazily instead of caching at module init time.
+    turboModuleRegistryFixPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -627,30 +627,33 @@ createApp({
  * to resolve to null. This patches the source to re-resolve from the turbo
  * proxy at runtime when the standard resolution fails.
  */
-function nativeAnimatedFixPlugin(): Plugin {
+/**
+ * Fix TurboModuleRegistry to read __turboModuleProxy lazily.
+ * In rolldown's concatenated bundle, the TurboModuleRegistry module can
+ * initialize before the native side sets global.__turboModuleProxy,
+ * causing all turbo module lookups to silently return null.
+ */
+function turboModuleRegistryFixPlugin(): Plugin {
   return {
-    name: 'vxrn:native-animated-fix',
+    name: 'vxrn:turbo-module-registry-fix',
     transform(code, id) {
-      if (!id.includes('animated/NativeAnimatedHelper')) return
+      if (!id.includes('TurboModule/TurboModuleRegistry')) return
 
-      const target = 'NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule'
-      if (!code.includes(target)) {
-        console.info(`[vxrn:native-animated-fix] target not found in ${id}, code snippet: ${code.slice(0, 200)}`)
-        return
-      }
+      // replace the eager capture with a lazy read
+      const target = 'const turboModuleProxy = global.__turboModuleProxy;'
+      const targetFlow = 'const turboModuleProxy = global.__turboModuleProxy;' // same after flow strip
+      if (!code.includes('turboModuleProxy')) return
 
-      console.info(`[vxrn:native-animated-fix] patching ${id}`)
       return {
-        code: code.replace(
-          target,
-          `(function() {
-  var _mod = NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule;
-  if (_mod == null && global.__turboModuleProxy) {
-    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
-  }
-  return _mod;
-})()`
-        ),
+        code: code
+          .replace(
+            /const turboModuleProxy = global\.__turboModuleProxy;?/,
+            '// read lazily — rolldown may init this module before native sets the proxy'
+          )
+          .replace(
+            /if \(turboModuleProxy != null\)/,
+            'var turboModuleProxy = global.__turboModuleProxy;\n  if (turboModuleProxy != null)'
+          ),
       }
     },
   }
