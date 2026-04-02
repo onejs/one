@@ -660,6 +660,10 @@ function nativeModuleProxyFixPlugin(): Plugin {
           .replace(
             /(const legacyModule\S*\s*=\s*NativeModules\S*\[name\];?)/,
             `$1
+    if (name === 'NativeAnimatedTurboModule' || name === 'NativeAnimatedModule') {
+      var _tp2 = global.__turboModuleProxy;
+      throw new Error('[vxrn:diag] requireModule(' + name + ') turboProxy=' + typeof _tp2 + ' turboResult=' + (_tp2 ? typeof _tp2(name) : 'no-proxy') + ' legacy=' + typeof legacyModule + ' legacyIsPlain=' + (legacyModule != null ? Object.getPrototypeOf(legacyModule) === Object.prototype : 'null') + ' bridgeless=' + !!global.RN$Bridgeless);
+    }
     if (legacyModule != null && Object.getPrototypeOf(legacyModule) === Object.prototype) return null;`
           ),
       }
