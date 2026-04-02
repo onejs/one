@@ -224,20 +224,6 @@ function postProcessNativeBundle(code: string): string {
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
 
-  // fix: on bridgeless iOS, rolldown's module init order can resolve
-  // NativeAnimatedModule to null when both spec modules race.
-  // if both defaults are null, re-resolve directly from the turbo proxy.
-  code = code.replace(
-    /NativeAnimatedModule = (NativeAnimatedModule_default \?\? NativeAnimatedTurboModule_default)/,
-    `NativeAnimatedModule = (function() {
-  var _mod = $1;
-  if (_mod == null && global.__turboModuleProxy) {
-    _mod = global.__turboModuleProxy('NativeAnimatedTurboModule') || global.__turboModuleProxy('NativeAnimatedModule');
-  }
-  return _mod;
-})()`
-  )
-
   return code
 }
 
