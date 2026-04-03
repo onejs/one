@@ -222,13 +222,38 @@ async function prepareTestApp() {
   })`env -u MODE -u VITE_TEST_ENV_MODE ONE_SERVER_URL=http://localhost:3456 bun react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
 
   // Compile the JS bundle to Hermes bytecode
-  // The Release app is built with Hermes enabled, so we must emit bytecode
-  // Try multiple locations for hermesc
+  // The app is built with Hermes V1 (RCT_HERMES_V1_ENABLED=1) which uses a different
+  // bytecode version (v98) than the hermes-compiler npm package (v96).
+  // We must use the hermesc built from source alongside the app to match.
+  const fs = await import('node:fs')
+
+  const __filename_ios = fileURLToPath(import.meta.url)
+  const __dirname_ios = dirname(__filename_ios)
+  const testContainerProjectPath = path.join(
+    __dirname_ios,
+    '..',
+    '..',
+    '..',
+    '..',
+    'tests',
+    'rn-test-container'
+  )
+
   const possibleHermescPaths = [
-    // explicit override (e.g. Hermes V1 binary from CI build cache)
+    // explicit override (CI caches the V1 hermesc from the build step)
     ...(process.env.HERMESC_PATH ? [process.env.HERMESC_PATH] : []),
+    // Hermes V1 source-built hermesc in rn-test-container Pods
+    path.join(
+      testContainerProjectPath,
+      'ios',
+      'Pods',
+      'hermes-engine',
+      'destroot',
+      'bin',
+      'hermesc'
+    ),
     path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
-    // RN 0.83+: hermes-compiler package
+    // hermes-compiler npm package (only works if app wasn't built with V1)
     path.join(root, 'node_modules', 'hermes-compiler', 'hermesc', 'osx-bin', 'hermesc'),
     path.join(
       root,
@@ -240,7 +265,6 @@ async function prepareTestApp() {
       'osx-bin',
       'hermesc'
     ),
-    // RN <0.83: react-native/sdks
     path.join(
       root,
       'node_modules',
@@ -265,13 +289,10 @@ async function prepareTestApp() {
 
   let hermescPath: string | undefined
   for (const p of possibleHermescPaths) {
-    try {
-      const fs = await import('node:fs')
-      if (fs.existsSync(p)) {
-        hermescPath = p
-        break
-      }
-    } catch {}
+    if (fs.existsSync(p)) {
+      hermescPath = p
+      break
+    }
   }
 
   if (!hermescPath) {
