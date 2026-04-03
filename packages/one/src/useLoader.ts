@@ -499,11 +499,20 @@ export function useLoaderState<
 
             try {
               const moduleLoadStart = performance.now()
-              const loaderJsCodeResp = await fetch(nativeLoaderJSUrl)
-              if (!loaderJsCodeResp.ok) {
-                throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
+              const controller = new AbortController()
+              const timeoutId = setTimeout(() => controller.abort(), 60_000)
+              let loaderJsCode: string
+              try {
+                const loaderJsCodeResp = await fetch(nativeLoaderJSUrl, {
+                  signal: controller.signal,
+                })
+                if (!loaderJsCodeResp.ok) {
+                  throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
+                }
+                loaderJsCode = await loaderJsCodeResp.text()
+              } finally {
+                clearTimeout(timeoutId)
               }
-              const loaderJsCode = await loaderJsCodeResp.text()
               // biome-ignore lint/security/noGlobalEval: we need eval for native
               const result = eval(
                 `() => { var exports = {}; ${loaderJsCode}; return exports; }`
