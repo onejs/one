@@ -69,9 +69,11 @@ test(
     await waitForDisplayed(driver, driver.$('~public-page'))
 
     // Verify auth is false
+    await waitForDisplayed(driver, driver.$('~auth-status'))
     expect(await driver.$('~auth-status').getText()).toContain('Auth: false')
 
     // Try to click the dashboard link
+    await waitForDisplayed(driver, driver.$('~link-dashboard'))
     const dashboardLink = await driver.$('~link-dashboard')
     await dashboardLink.click()
     await driver.pause(500)
