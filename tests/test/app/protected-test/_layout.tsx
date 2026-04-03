@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import { Stack, Protected } from 'one'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function ProtectedTestLayout() {
   const [isAuthed, setIsAuthed] = useState(false)
@@ -9,9 +10,11 @@ export default function ProtectedTestLayout() {
     setIsAuthed(!isAuthed)
   }
 
+  const insets = useSafeAreaInsets()
+
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ padding: 10, backgroundColor: '#eee' }}>
+      <View style={{ paddingTop: insets.top + 10, paddingHorizontal: 10, paddingBottom: 10, backgroundColor: '#eee' }}>
         <Text
           testID="auth-status"
           accessibilityLabel={`Auth: ${isAuthed ? 'true' : 'false'}`}
