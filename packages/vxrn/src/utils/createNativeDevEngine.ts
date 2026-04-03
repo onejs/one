@@ -189,6 +189,8 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
+    // guard undefined native methods in NativeAnimatedHelper
+    nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -223,6 +225,30 @@ function postProcessNativeBundle(code: string): string {
   // rolldown devMode runtime leaves some raw import.meta.hot references
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
+
+  // remove the stale NativeAnimatedModule IIFE wrapper from transform cache
+  {
+    const marker = 'NativeAnimatedModule_default ?? NativeAnimatedTurboModule_default;'
+    const idx = code.indexOf(marker)
+    if (idx !== -1) {
+      const beforeMarker = code.lastIndexOf('NativeAnimatedModule = ', idx)
+      if (beforeMarker !== -1) {
+        const lineStart = code.lastIndexOf('\n', beforeMarker)
+        const snippet = code.slice(lineStart + 1, beforeMarker + 50)
+        if (snippet.includes('(function()') || snippet.includes('new Proxy')) {
+          const afterMarker = code.indexOf('})();', idx)
+          if (afterMarker !== -1) {
+            const end = afterMarker + '})();'.length
+            code =
+              code.slice(0, beforeMarker) +
+              'NativeAnimatedModule = NativeAnimatedModule_default ?? NativeAnimatedTurboModule_default;' +
+              code.slice(end)
+          }
+        }
+      }
+    }
+  }
+
   return code
 }
 
@@ -616,6 +642,30 @@ createApp({
 }
 
 // --- plugins ---
+
+/**
+ * Guard NativeAnimatedHelper's createNativeOperations against undefined methods.
+ * The methodNames array includes "removeListener" (singular) but the TurboModule
+ * spec only has "removeListeners" (plural). The closure calls
+ * nullthrows(NativeAnimatedModule)[methodName] which returns undefined, then
+ * method(...args) throws "undefined is not a function".
+ */
+function nativeAnimatedGuardPlugin(): Plugin {
+  return {
+    name: 'vxrn:native-animated-guard',
+    transform(code, id) {
+      if (!id.includes('animated/NativeAnimatedHelper')) return
+      const target = 'const method = nullthrows(NativeAnimatedModule)[methodName];'
+      if (!code.includes(target)) return
+      return {
+        code: code.replace(
+          target,
+          `const method = nullthrows(NativeAnimatedModule)[methodName];\n        if (typeof method !== 'function') return;`
+        ),
+      }
+    },
+  }
+}
 
 /**
  * Block .server.* and _middleware.* files from entering the native bundle.

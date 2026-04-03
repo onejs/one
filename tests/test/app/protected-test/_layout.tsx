@@ -14,7 +14,14 @@ export default function ProtectedTestLayout() {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ paddingTop: insets.top + 10, paddingHorizontal: 10, paddingBottom: 10, backgroundColor: '#eee' }}>
+      <View
+        style={{
+          paddingTop: insets.top + 10,
+          paddingHorizontal: 10,
+          paddingBottom: 10,
+          backgroundColor: '#eee',
+        }}
+      >
         <Text
           testID="auth-status"
           accessibilityLabel={`Auth: ${isAuthed ? 'true' : 'false'}`}
