@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "@tamagui/build": "2.0.0-rc.32",
+    "@tamagui/build": "2.0.0-rc.36-1775243248161",
     "react-native": "0.83.2"
   },
   "peerDependencies": {
