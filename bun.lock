@@ -1203,6 +1203,9 @@
     "esbuild",
     "@swc/core",
   ],
+  "patchedDependencies": {
+    "@tamagui/config@2.0.0-rc.32": "patches/@tamagui%2Fconfig@2.0.0-rc.32.patch",
+  },
   "overrides": {
     "@isaacs/brace-expansion": "5.0.1",
     "@react-navigation/native": "7.2.2",

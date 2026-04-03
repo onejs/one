@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 68be2d675cac5a5b394e10d130224d0e05c10e1b..dfb9b690163f84352eb03cdb2995d46f8fb7831d 100644
+--- a/package.json
++++ b/package.json
+@@ -46,7 +46,7 @@
+     },
+     "./v5": {
+       "types": "./types/v5.d.ts",
+-      "react-native": "./dist/esm/v5.native.js",
++      "react-native": "./v5/index.native.cjs",
+       "browser": "./dist/esm/v5.mjs",
+       "module": "./dist/esm/v5.mjs",
+       "import": "./dist/esm/v5.mjs",
