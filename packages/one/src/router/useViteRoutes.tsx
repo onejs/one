@@ -279,9 +279,14 @@ export function globbedRoutesToRouteContext(
           delete promises[id]
 
           // clear cache so we get fresh contents in dev mode (hacky)
-          clears[id] = setTimeout(() => {
-            delete loadedRoutes[id]
-          }, 500)
+          // only in dev — in production routes never change and clearing causes
+          // a race with useLoader suspension: if the loader fetch takes >500ms
+          // the route module is evicted, forcing a re-suspend + re-fetch loop
+          if (process.env.NODE_ENV === 'development') {
+            clears[id] = setTimeout(() => {
+              delete loadedRoutes[id]
+            }, 500)
+          }
 
           return val
         })
