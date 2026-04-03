@@ -32,7 +32,7 @@
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@tamagui/build": "2.0.0-rc.36-1775243248161"
+    "@tamagui/build": "2.0.0-rc.36-1775258360494"
   },
   "publishConfig": {
     "access": "public"
