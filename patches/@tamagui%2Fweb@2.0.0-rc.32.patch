@@ -1,0 +1,65 @@
+diff --git a/Users/n8/one/node_modules/@tamagui/web/.bun-tag-ce55637766521ab3 b/.bun-tag-ce55637766521ab3
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/dist/cjs/createTamagui.cjs b/dist/cjs/createTamagui.cjs
+index 21fbe40ef4b4c47df6db56e0e648ba1131dad996..5c8291d1c8a6de6c6371f6a19b3eb5f27d08b174 100644
+--- a/dist/cjs/createTamagui.cjs
++++ b/dist/cjs/createTamagui.cjs
+@@ -161,7 +161,10 @@ ${JSON.stringify(variable, null, 2)}`);
+       // const tokens = [...getToken(tokens.size[0])]
+       // .spacer-sm + ._dsp_contents._dsp-sm-hidden { margin-left: -var(--${}) }
+     };
+-  return (0, import_config.setConfig)(config), (0, import_useMedia.configureMedia)(config), process.env.NODE_ENV === "development" && (process.env.DEBUG?.startsWith("tamagui") && console.info("Tamagui config:", config), globalThis.Tamagui || (globalThis.Tamagui = import_Tamagui.Tamagui)), config;
++  (0, import_config.setConfig)(config);
++  (0, import_useMedia.configureMedia)(config);
++  if (process.env.NODE_ENV === "development") { process.env.DEBUG?.startsWith("tamagui") && console.info("Tamagui config:", config); globalThis.Tamagui || (globalThis.Tamagui = import_Tamagui.Tamagui); }
++  return config;
+ }
+ function getThemesDeduped(themes, colorTokens) {
+   const dedupedThemes = [],
+diff --git a/dist/cjs/createTamagui.native.js b/dist/cjs/createTamagui.native.js
+index 8db14a99b6333597ca9cab174f2c129d639097d0..fea4ae10997a3db3e2875f7dfc53bfe585708530 100644
+--- a/dist/cjs/createTamagui.native.js
++++ b/dist/cjs/createTamagui.native.js
+@@ -203,7 +203,9 @@ ${JSON.stringify(variable, null, 2)}`);
+       specificTokens,
+       defaultFontToken
+     };
+-  if ((0, import_config.setConfig)(config), (0, import_useMedia.configureMedia)(config), process.env.NODE_ENV === "development") {
++  (0, import_config.setConfig)(config);
++  (0, import_useMedia.configureMedia)(config);
++  if (process.env.NODE_ENV === "development") {
+     var _process_env_DEBUG;
+     !((_process_env_DEBUG = process.env.DEBUG) === null || _process_env_DEBUG === void 0) && _process_env_DEBUG.startsWith("tamagui") && console.info("Tamagui config:", config), globalThis.Tamagui || (globalThis.Tamagui = import_Tamagui.Tamagui);
+   }
+diff --git a/dist/esm/createTamagui.mjs b/dist/esm/createTamagui.mjs
+index 180f6ee9621ed420952008d402fd1f2f4c86197e..6dfc4addfefeebb1b996a0a1ca4241e38d7bc117 100644
+--- a/dist/esm/createTamagui.mjs
++++ b/dist/esm/createTamagui.mjs
+@@ -136,7 +136,10 @@ ${JSON.stringify(variable, null, 2)}`);
+       // const tokens = [...getToken(tokens.size[0])]
+       // .spacer-sm + ._dsp_contents._dsp-sm-hidden { margin-left: -var(--${}) }
+     };
+-  return setConfig(config), configureMedia(config), process.env.NODE_ENV === "development" && (process.env.DEBUG?.startsWith("tamagui") && console.info("Tamagui config:", config), globalThis.Tamagui || (globalThis.Tamagui = Tamagui)), config;
++  setConfig(config);
++  configureMedia(config);
++  if (process.env.NODE_ENV === "development") { process.env.DEBUG?.startsWith("tamagui") && console.info("Tamagui config:", config); globalThis.Tamagui || (globalThis.Tamagui = Tamagui); }
++  return config;
+ }
+ function getThemesDeduped(themes, colorTokens) {
+   const dedupedThemes = [],
+diff --git a/dist/esm/createTamagui.native.js b/dist/esm/createTamagui.native.js
+index 084c715d3b9106ba2bb0a69063ec13e04f01ee75..0af7081b6a14c1353a15a7c4c06196b48b457d12 100644
+--- a/dist/esm/createTamagui.native.js
++++ b/dist/esm/createTamagui.native.js
+@@ -176,7 +176,9 @@ ${JSON.stringify(variable, null, 2)}`);
+       specificTokens,
+       defaultFontToken
+     };
+-  if (setConfig(config), configureMedia(config), process.env.NODE_ENV === "development") {
++  setConfig(config);
++  configureMedia(config);
++  if (process.env.NODE_ENV === "development") {
+     var _process_env_DEBUG;
+     !((_process_env_DEBUG = process.env.DEBUG) === null || _process_env_DEBUG === void 0) && _process_env_DEBUG.startsWith("tamagui") && console.info("Tamagui config:", config), globalThis.Tamagui || (globalThis.Tamagui = Tamagui);
+   }

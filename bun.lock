@@ -1205,6 +1205,7 @@
   ],
   "patchedDependencies": {
     "@tamagui/config@2.0.0-rc.32": "patches/@tamagui%2Fconfig@2.0.0-rc.32.patch",
+    "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
   },
   "overrides": {
     "@isaacs/brace-expansion": "5.0.1",
