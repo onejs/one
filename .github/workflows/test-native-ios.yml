@@ -100,6 +100,7 @@ jobs:
       - name: Download Hermes V1 hermesc
         if: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
         id: download-hermesc
+        continue-on-error: true
         uses: actions/cache/restore@v5
         with:
           key: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
@@ -226,7 +227,7 @@ jobs:
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
-          HERMESC_PATH: ${{ needs.build-ios-test-container-prod.outputs.hermesc-path && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
+          HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
         run: |
           bun run --filter test-test test-ios:prod
 
@@ -235,7 +236,7 @@ jobs:
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
-          HERMESC_PATH: ${{ needs.build-ios-test-container-prod.outputs.hermesc-path && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
+          HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
         run: |
           bun run --filter test-test test-ios:rolldown:prod
 

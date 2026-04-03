@@ -145,5 +145,8 @@
   },
   "agent": {
     "memory": true
+  },
+  "patchedDependencies": {
+    "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch"
   }
 }

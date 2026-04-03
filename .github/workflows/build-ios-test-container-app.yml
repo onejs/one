@@ -55,8 +55,8 @@ jobs:
       built-app-cache-key: ${{ steps.check-has-build.outputs.cache-primary-key || steps.pre-check-has-build.outputs.cache-primary-key }} # The order is important here, since in the "pre-check-has-build" step, it's possible that the build hash part of the key is "null" - in such case, the cache won't be found at that step and the `check-has-build` step will be executed. So it's always safe to place the `check-has-build` before the `pre-check-has-build` step for this condition.
       build-hash: ${{ steps.calculate-build-hash.outputs.build_hash || steps.get-build-hash-from-cache.outputs.build_hash }} # Same as above, the order is important here.
       built-app-path: ${{ steps.get-built-app-path.outputs.built_app_path }}
-      hermesc-cache-key: ${{ format('{0}-hermesc-{1}', 'ios-rn-test-container-app', steps.calculate-build-hash.outputs.build_hash || steps.get-build-hash-from-cache.outputs.build_hash) }}
-      hermesc-path: tests/rn-test-container/hermesc
+      hermesc-cache-key: ${{ steps.cache-hermesc.outputs.cache-primary-key || format('{0}-hermesc-{1}', 'ios-rn-test-container-app', steps.calculate-build-hash.outputs.build_hash || steps.get-build-hash-from-cache.outputs.build_hash) }}
+      hermesc-path: ${{ steps.find-hermesc.outputs.hermesc_path || 'tests/rn-test-container/hermesc' }}
     defaults:
       run:
         working-directory: ${{ env.test_container_app_path }}
