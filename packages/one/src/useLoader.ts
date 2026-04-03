@@ -38,6 +38,10 @@ export type LoaderTimingEntry = {
   source: 'preload' | 'initial' | 'refetch'
 }
 
+const LOADER_TIMEOUT = process.env.ONE_LOADER_TIMEOUT_MS
+  ? +process.env.ONE_LOADER_TIMEOUT_MS
+  : 60_000
+
 // Store timing history for devtools - only populated in development
 const loaderTimingHistory: LoaderTimingEntry[] = []
 const MAX_TIMING_HISTORY = 50
@@ -500,7 +504,7 @@ export function useLoaderState<
             try {
               const moduleLoadStart = performance.now()
               const controller = new AbortController()
-              const timeoutId = setTimeout(() => controller.abort(), 60_000)
+              const timeoutId = setTimeout(() => controller.abort(), LOADER_TIMEOUT)
               let loaderJsCode: string
               try {
                 const loaderJsCodeResp = await fetch(nativeLoaderJSUrl, {
