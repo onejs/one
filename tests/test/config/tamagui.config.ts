@@ -2,6 +2,12 @@ import { defaultConfig as configOptions } from '@tamagui/config/v5'
 import { createTamagui } from '@tamagui/core'
 import { animations } from './animations'
 
+if (!configOptions) {
+  console.error('[tamagui.config.ts] defaultConfig is', configOptions)
+} else if (!configOptions.settings) {
+  console.error('[tamagui.config.ts] defaultConfig.settings is', configOptions.settings, 'keys:', Object.keys(configOptions))
+}
+
 export const config = createTamagui({
   ...configOptions,
   animations,
