@@ -189,8 +189,8 @@ function getNativePlugins(
     viteImportGlobPlugin({ root }),
     // strip Flow types from react-native and @react-native packages
     flowStripPlugin(),
-    // fix: make TurboModuleRegistry read __turboModuleProxy lazily
-    nativeModuleProxyFixPlugin(),
+    // fix: NativeAnimatedModule resolution on bridgeless iOS
+    nativeAnimatedFixPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
@@ -627,45 +627,48 @@ createApp({
  * proxy at runtime when the standard resolution fails.
  */
 /**
- * Fix TurboModuleRegistry to read __turboModuleProxy lazily.
- * In rolldown's concatenated bundle, TurboModuleRegistry can capture
- * global.__turboModuleProxy at module scope before native sets it,
- * causing all turbo module lookups to silently return null.
- * Also filters empty stub objects from nativeModuleProxy fallback.
+ * Fix NativeAnimatedModule resolution on bridgeless iOS in rolldown bundles.
+ *
+ * On bridgeless, global.__turboModuleProxy doesn't exist — turbo modules are
+ * accessed via global.nativeModuleProxy (NativeModules). But rolldown's module
+ * init order can cause nativeModuleProxy to return a partially-initialized JSI
+ * host object that lacks the animated methods.
+ *
+ * Fix: wrap the NativeAnimatedModule assignment to lazily re-resolve via
+ * nativeModuleProxy on first method access, giving the native side time to
+ * finish initializing the module.
  */
-function nativeModuleProxyFixPlugin(): Plugin {
+function nativeAnimatedFixPlugin(): Plugin {
   return {
-    name: 'vxrn:native-module-proxy-fix',
+    name: 'vxrn:native-animated-fix',
     transform(code, id) {
-      if (!id.includes('TurboModule/TurboModuleRegistry')) return
-      if (!code.includes('turboModuleProxy')) return
+      if (!id.includes('animated/NativeAnimatedHelper')) return
+      if (!code.includes('NativeAnimatedNonTurboModule')) return
 
+      // wrap the NativeAnimatedModule const with a Proxy that re-resolves
+      // from nativeModuleProxy on first property access
       return {
-        code: code
-          // remove the eager module-scope capture
-          .replace(
-            /const turboModuleProxy = global\.__turboModuleProxy;?/,
-            '// vxrn: removed eager capture — read lazily in requireModule'
-          )
-          // make requireModule read proxy fresh + filter plain empty objects
-          .replace(
-            /function requireModule[^{]*\{/,
-            `$&
-  // vxrn: read turbo proxy lazily so rolldown init order doesn't matter
-  var turboModuleProxy = global.__turboModuleProxy;`
-          )
-          // filter empty plain-object stubs from nativeModuleProxy.
-          // on bridgeless iOS, nativeModuleProxy returns {} for missing modules.
-          // plain {} has Object.prototype, while real JSI host objects don't.
-          .replace(
-            /(const legacyModule\S*\s*=\s*NativeModules\S*\[name\];?)/,
-            `$1
-    if (name === 'NativeAnimatedTurboModule' || name === 'NativeAnimatedModule') {
-      var _tp2 = global.__turboModuleProxy;
-      throw new Error('[vxrn:diag] requireModule(' + name + ') turboProxy=' + typeof _tp2 + ' turboResult=' + (_tp2 ? typeof _tp2(name) : 'no-proxy') + ' legacy=' + typeof legacyModule + ' legacyIsPlain=' + (legacyModule != null ? Object.getPrototypeOf(legacyModule) === Object.prototype : 'null') + ' bridgeless=' + !!global.RN$Bridgeless);
-    }
-    if (legacyModule != null && Object.getPrototypeOf(legacyModule) === Object.prototype) return null;`
-          ),
+        code: code.replace(
+          'NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule',
+          `(function() {
+  var _mod = NativeAnimatedNonTurboModule ?? NativeAnimatedTurboModule;
+  // on bridgeless iOS, nativeModuleProxy may return a partially-init'd module.
+  // wrap in a Proxy that re-resolves on first method access.
+  if (_mod != null && typeof _mod.createAnimatedNode !== 'function' && global.nativeModuleProxy) {
+    return new Proxy(_mod, {
+      get: function(target, prop) {
+        if (typeof prop === 'string' && !(prop in target)) {
+          // try re-resolving — native side may have finished init by now
+          var fresh = global.nativeModuleProxy.NativeAnimatedTurboModule || global.nativeModuleProxy.NativeAnimatedModule;
+          if (fresh && prop in fresh) return fresh[prop];
+        }
+        return target[prop];
+      }
+    });
+  }
+  return _mod;
+})()`
+        ),
       }
     },
   }
