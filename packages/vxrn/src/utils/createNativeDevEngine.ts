@@ -657,12 +657,16 @@ function nativeAnimatedFixPlugin(): Plugin {
   if (_mod != null && typeof _mod.createAnimatedNode !== 'function' && global.nativeModuleProxy) {
     return new Proxy(_mod, {
       get: function(target, prop) {
-        if (typeof prop === 'string' && !(prop in target)) {
-          // try re-resolving — native side may have finished init by now
+        var val = target[prop];
+        if (typeof prop === 'string' && typeof val === 'undefined') {
+          // method missing on partially-init'd module — re-resolve from proxy
           var fresh = global.nativeModuleProxy.NativeAnimatedTurboModule || global.nativeModuleProxy.NativeAnimatedModule;
-          if (fresh && prop in fresh) return fresh[prop];
+          if (fresh) {
+            var freshVal = fresh[prop];
+            if (typeof freshVal !== 'undefined') return freshVal;
+          }
         }
-        return target[prop];
+        return val;
       }
     });
   }
