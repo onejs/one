@@ -109,6 +109,11 @@ describe('Simple Build Tests', () => {
     }
   })
 
+  it('should not execute server setupFile during SSG build', async () => {
+    const ssgSetupSentinelPath = join(fixturePath, 'setup-file-ssg-ran.txt')
+    expect(await pathExists(ssgSetupSentinelPath)).toBeFalsy()
+  })
+
   it('should put layout CSS before scripts in SPA pages', async () => {
     // layout CSS must load before scripts to prevent FOUC on initial render.
     // this verifies the build output places <link rel="stylesheet"> (layout CSS)

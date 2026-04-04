@@ -1,5 +1,7 @@
 // Shared setup file that runs before app initializes
 // This sets a global variable that tests can check to verify setupFile ran
+import { writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 declare global {
   var __setupFileRan: {
@@ -20,4 +22,11 @@ if (typeof window !== 'undefined') {
   // Server-side
   globalThis.__setupFileRan.server = true
   console.log('[setup.ts] Server setup file ran')
+
+  if (process.env.ONE_RENDER_MODE === 'ssg') {
+    writeFileSync(
+      fileURLToPath(new URL('./setup-file-ssg-ran.txt', import.meta.url)),
+      'setup file ran during ssg build'
+    )
+  }
 }

@@ -42,12 +42,13 @@ export function createApp(options: CreateAppProps) {
       render: async (props: RenderAppProps) => {
         // set render mode env before setup so users can conditionally skip setup in ssg/spa
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
+        const shouldRunSetup = renderMode !== 'ssg'
         // only set if changed to avoid process.env setter overhead
         if (process.env.ONE_RENDER_MODE !== renderMode) {
           process.env.ONE_RENDER_MODE = renderMode
         }
 
-        if (!setupDone && options.getSetupPromise) {
+        if (shouldRunSetup && !setupDone && options.getSetupPromise) {
           await options.getSetupPromise()
           setupDone = true
         }
@@ -169,12 +170,13 @@ export function createApp(options: CreateAppProps) {
       // streaming SSR - returns ReadableStream, no post-processing
       renderStream: async (props: RenderAppProps): Promise<ReadableStream> => {
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
+        const shouldRunSetup = renderMode !== 'ssg'
         // only set if changed to avoid process.env setter overhead
         if (process.env.ONE_RENDER_MODE !== renderMode) {
           process.env.ONE_RENDER_MODE = renderMode
         }
 
-        if (!setupDone && options.getSetupPromise) {
+        if (shouldRunSetup && !setupDone && options.getSetupPromise) {
           await options.getSetupPromise()
           setupDone = true
         }
