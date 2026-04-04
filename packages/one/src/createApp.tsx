@@ -42,7 +42,12 @@ export function createApp(options: CreateAppProps) {
       render: async (props: RenderAppProps) => {
         // set render mode env before setup so users can conditionally skip setup in ssg/spa
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
-        const shouldRunSetup = renderMode !== 'ssg'
+        // skip setup for all build-time renders (ssg pages + spa-shell pages).
+        // both are generated at build time and persisted as static HTML, so
+        // running user setup code (analytics, db connections, etc.) would
+        // leak build-time side effects and can also race on process.env when
+        // renders run in parallel.
+        const shouldRunSetup = props.mode !== 'ssg' && props.mode !== 'spa-shell'
         // only set if changed to avoid process.env setter overhead
         if (process.env.ONE_RENDER_MODE !== renderMode) {
           process.env.ONE_RENDER_MODE = renderMode
@@ -170,7 +175,8 @@ export function createApp(options: CreateAppProps) {
       // streaming SSR - returns ReadableStream, no post-processing
       renderStream: async (props: RenderAppProps): Promise<ReadableStream> => {
         const renderMode = props.mode === 'spa-shell' ? 'spa' : props.mode
-        const shouldRunSetup = renderMode !== 'ssg'
+        // skip setup for build-time renders (ssg + spa-shell) — see render() above
+        const shouldRunSetup = props.mode !== 'ssg' && props.mode !== 'spa-shell'
         // only set if changed to avoid process.env setter overhead
         if (process.env.ONE_RENDER_MODE !== renderMode) {
           process.env.ONE_RENDER_MODE = renderMode
