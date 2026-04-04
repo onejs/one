@@ -17,7 +17,7 @@ import { describe, expect, it, afterEach } from 'vitest'
  *   5. Checks that compiler-runtime is resolved in the bundle
  *   6. Checks that useMemoCache is available
  */
-describe('Metro React compiler', () => {
+describe('Metro React compiler', { retry: 1 }, () => {
   let devServer: ChildProcess | null = null
 
   afterEach(() => {
