@@ -625,6 +625,18 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       // Vite's transform middleware so that we can focus on handling the requests
       // we're interested in.
       return () => {
+        // packager status fallback — runs after one's routing so user-defined
+        // /status routes, +api handlers, and custom middleware take priority.
+        // only fires if nothing else handled the request.
+        server.middlewares.use((req, res, next) => {
+          if (req.url === '/status' || req.url?.startsWith('/status?')) {
+            res.writeHead(200, { 'Content-Type': 'text/plain' })
+            res.end('packager-status:running')
+            return
+          }
+          next()
+        })
+
         server.middlewares.use(async (req, res, next) => {
           // prevent browsers (safari) from caching stale html/js in dev
           res.setHeader('Cache-Control', 'no-store')
