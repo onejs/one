@@ -25,7 +25,7 @@ if (typeof window !== 'undefined') {
 
   if (process.env.ONE_RENDER_MODE === 'ssg') {
     writeFileSync(
-      fileURLToPath(new URL('./setup-file-ssg-ran.txt', import.meta.url)),
+      fileURLToPath(new URL('./setup-file-ssg-ran.txt', import.meta.url).toString()),
       'setup file ran during ssg build'
     )
   }

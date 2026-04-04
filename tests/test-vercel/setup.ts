@@ -118,6 +118,12 @@ export async function teardown() {
   if (serverProcess?.pid) {
     killProcessTree(serverProcess.pid)
   }
+
+  // vercel dev leaves dangling handles (keep-alive sockets, inherited stdio)
+  // that prevent vitest from exiting. test results were already printed
+  // before this teardown runs, so hard-exit is safe.
+  console.log('[test-vercel] Force exiting')
+  process.exit(0)
 }
 
 declare module 'vitest' {
