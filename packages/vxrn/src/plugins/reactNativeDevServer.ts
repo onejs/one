@@ -210,12 +210,6 @@ export function createReactNativeDevServerPlugin(
         }
       })
 
-      // Status endpoint
-      server.middlewares.use('/status', (_req, res) => {
-        res.writeHead(200, { 'Content-Type': 'text/plain' })
-        res.end('packager-status:running')
-      })
-
       // Symbolicate endpoint
       server.middlewares.use('/symbolicate', (_req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
