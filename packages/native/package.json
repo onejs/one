@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/native",
-  "version": "1.14.4",
+  "version": "1.14.4-1775265364626",
   "type": "module",
   "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
   "license": "MIT",
