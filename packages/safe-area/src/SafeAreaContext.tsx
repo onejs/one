@@ -24,6 +24,8 @@ export interface SafeAreaProviderProps {
   initialSafeAreaInsets?: EdgeInsets | null
 }
 
+const ZERO_INSETS: EdgeInsets = { top: 0, bottom: 0, left: 0, right: 0 }
+
 export function SafeAreaProvider({
   children,
   initialMetrics,
@@ -32,8 +34,12 @@ export function SafeAreaProvider({
 }: SafeAreaProviderProps) {
   const parentInsets = useParentSafeAreaInsets()
   const parentFrame = useParentSafeAreaFrame()
-  const [insets, setInsets] = React.useState<EdgeInsets | null>(
-    initialMetrics?.insets ?? initialSafeAreaInsets ?? parentInsets ?? null
+  // default to zero insets so useSafeAreaInsets() doesn't throw on the first
+  // render. Real insets are populated shortly after mount (on web via
+  // NativeSafeAreaProvider's useEffect DOM measurement, on native via the
+  // native insetChanged event).
+  const [insets, setInsets] = React.useState<EdgeInsets>(
+    initialMetrics?.insets ?? initialSafeAreaInsets ?? parentInsets ?? ZERO_INSETS
   )
   const [frame, setFrame] = React.useState<Rect>(
     initialMetrics?.frame ??
