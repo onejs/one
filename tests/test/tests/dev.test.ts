@@ -23,7 +23,9 @@ describe('Simple Run Tests', () => {
   })
 
   it('should enable babel reanimated compiler', async () => {
-    const response = await fetch(`${serverUrl}/app/index.tsx`)
+    // _old-index.tsx still uses useAnimatedStyle; index.tsx had it removed
+    // in d00bf7252 to unblock rolldown native tests.
+    const response = await fetch(`${serverUrl}/app/_old-index.tsx`)
     const code = await response.text()
     expect(code).toMatch(/__workletHash/)
   })
