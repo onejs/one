@@ -41,4 +41,5 @@ tsconfig.tsbuildinfo
 /dev-server.pid
 /dev-server.log
 /test-bundle-output
+/setup-file-ssg-ran.txt
 .vercel
