@@ -724,7 +724,7 @@ function cssStubPlugin(): Plugin {
     name: 'vxrn:css-stub',
     load: {
       handler(id) {
-        if (/\.css$/.test(id)) {
+        if (id.endsWith('.css')) {
           return { code: '', moduleType: 'js' as any }
         }
       },
