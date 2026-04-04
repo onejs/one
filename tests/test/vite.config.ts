@@ -20,8 +20,8 @@ export default {
       },
 
       setupFile: {
-        client: './setup.ts',
-        server: './setup.ts',
+        client: './setup.client.ts',
+        server: './setup.server.ts',
         native: './setup.native.ts',
       },
 
