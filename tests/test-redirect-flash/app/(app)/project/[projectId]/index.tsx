@@ -13,7 +13,11 @@ export default function ProjectRoute() {
       ;(window as any).__projectRouteMounted = true
       ;(window as any).__projectRouteMountLog = (
         (window as any).__projectRouteMountLog ?? []
-      ).concat({ at: performance.now(), url: location.pathname, projectId: params.projectId })
+      ).concat({
+        at: performance.now(),
+        url: location.pathname,
+        projectId: params.projectId,
+      })
     }
   }, [])
   return (

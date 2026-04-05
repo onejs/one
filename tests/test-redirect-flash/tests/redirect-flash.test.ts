@@ -214,9 +214,75 @@ describe('initial load of deep /project/[projectId] route', () => {
     ).toBeUndefined()
 
     // happy path: the project route should have mounted and stayed mounted
-    expect(results.projectRouteMounted, 'project route should have mounted').toBe(
-      true
-    )
+    expect(results.projectRouteMounted, 'project route should have mounted').toBe(true)
+
+    expect(errors).toHaveLength(0)
+    await page.close()
+  })
+
+  test('loading /nested/foo should land on index, not the dynamic [sub] sibling', async () => {
+    // regression for soot commit 134dd5d9: when a nested navigator's layout
+    // path contains a dynamic segment (here /nested/[id], in soot
+    // /project/[projectId]), the late-mount resolver used to literal-
+    // startsWith-strip the layout prefix from browserPath. that strip
+    // fails because "/nested/foo" doesn't start with "/nested/[id]", so
+    // the [sub] screen — a single dynamic segment — outscored the empty
+    // index pattern and won as initialRouteName. React Navigation then
+    // wrote the URL back with the undefined sub param serialized as the
+    // string "undefined", landing the user on /nested/foo/undefined.
+    //
+    // the fix prepends the layout prefix to each screen name and matches
+    // the full pattern segment-by-segment (which correctly treats
+    // [id] as a dynamic segment matching foo), so index wins.
+    const page = await context.newPage()
+    const errors: string[] = []
+    page.on('pageerror', (err) => errors.push(err.message))
+
+    const cdp = await context.newCDPSession(page)
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 6 })
+
+    await page.addInitScript(() => {
+      ;(window as any).__testSuppressHomeRedirect = true
+    })
+    await installFlashDetector(page)
+
+    await page.goto(serverUrl + '/nested/foo', { waitUntil: 'domcontentloaded' })
+    await new Promise((r) => setTimeout(r, 1500))
+
+    const results = await page.evaluate(() => ({
+      url: location.pathname,
+      indexMountLog: ((window as any).__nestedIndexMountLog ?? []) as Array<{
+        at: number
+        url: string
+        id: string
+      }>,
+      subMountLog: ((window as any).__nestedSubMountLog ?? []) as Array<{
+        at: number
+        url: string
+        id: string
+        sub: string
+      }>,
+    }))
+
+    // primary: URL must not gain a trailing /undefined from the sub route
+    // being mistakenly mounted and linked back
+    expect(
+      results.url,
+      `URL drifted to ${results.url} — expected to stay on /nested/foo.\n` +
+        `index mounts: ${JSON.stringify(results.indexMountLog)}\n` +
+        `sub mounts: ${JSON.stringify(results.subMountLog)}`
+    ).toBe('/nested/foo')
+
+    // primary: [sub] must never mount for a /nested/foo URL
+    expect(
+      results.subMountLog,
+      `[sub] leaf mounted for /nested/foo URL — navigator picked wrong initial route.\n` +
+        `sub mounts: ${JSON.stringify(results.subMountLog, null, 2)}`
+    ).toHaveLength(0)
+
+    // happy path: index should have mounted with the right id
+    expect(results.indexMountLog.length).toBeGreaterThan(0)
+    expect(results.indexMountLog[0].id).toBe('foo')
 
     expect(errors).toHaveLength(0)
     await page.close()
