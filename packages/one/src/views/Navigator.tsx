@@ -13,7 +13,7 @@ import {
   useNotFoundState,
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
-import { matchRoutePattern } from '../router/matchers'
+import { matchRoutePattern, stripGroupSegmentsFromPath } from '../router/matchers'
 import { routeNode as globalRouteNode, initialPathname } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
@@ -198,17 +198,27 @@ function QualifiedNavigator({
       (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
 
+    // screen names are relative to this navigator's parent layout, so we
+    // need to strip the parent layout's URL prefix from browserPath before
+    // matching. contextKey is the layout's path (including group segments),
+    // e.g. `/hooks/cases/route-group-pathname/(tabs)` — we strip groups
+    // to get the URL-relevant prefix and remove it from browserPath.
+    const layoutUrlPrefix = stripGroupSegmentsFromPath(contextKey).replace(/\/+$/, '')
+    let relativePath = browserPath
+    if (layoutUrlPrefix && browserPath.startsWith(layoutUrlPrefix)) {
+      relativePath = browserPath.slice(layoutUrlPrefix.length) || '/'
+    }
+
     // score each screen by how specifically its pattern matches the URL.
-    // screen names are relative to this navigator's parent layout, e.g.
-    // `index`, `factory`, or `project/[projectId]/index`, and may contain
-    // dynamic segments `[param]`/`[...param]`. `matchRoutePattern` does a
-    // prefix match so layout screens (like `project`) can match deeper URLs;
-    // the specificity score then tiebreaks to pick the best leaf.
+    // screen names may contain dynamic segments `[param]`/`[...param]`.
+    // `matchRoutePattern` does a prefix match so layout screens (like
+    // `project`) can match deeper URLs; the specificity score then tiebreaks
+    // to pick the best leaf.
     let best: { name: string; specificity: number } | undefined
     for (const screen of screens) {
       const name = (screen as any)?.props?.name
       if (!name) continue
-      const match = matchRoutePattern(name, browserPath)
+      const match = matchRoutePattern(name, relativePath)
       if (!match) continue
       if (!best || match.specificity > best.specificity) {
         best = { name, specificity: match.specificity }
@@ -216,7 +226,7 @@ function QualifiedNavigator({
     }
 
     return best?.name
-  }, [initialRouteName, screens])
+  }, [initialRouteName, screens, contextKey])
 
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
     router,
