@@ -198,27 +198,31 @@ function QualifiedNavigator({
       (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
 
-    // screen names are relative to this navigator's parent layout, so we
-    // need to strip the parent layout's URL prefix from browserPath before
-    // matching. contextKey is the layout's path (including group segments),
-    // e.g. `/hooks/cases/route-group-pathname/(tabs)` — we strip groups
-    // to get the URL-relevant prefix and remove it from browserPath.
+    // screen names are relative to this navigator's parent layout. rather
+    // than trying to strip the layout prefix from browserPath (which fails
+    // when the layout path contains dynamic segments like
+    // /project/[projectId] — a literal startsWith won't match `/project/foo`),
+    // prepend the layout prefix to each screen name and match the full
+    // pattern against browserPath. matchRoutePattern handles dynamic segments
+    // segment-by-segment, so both the prefix and the screen-relative suffix
+    // resolve correctly.
+    //
+    // contextKey is the layout's path including group segments, e.g.
+    // `/(app)/project/[projectId]` or `/hooks/cases/route-group-pathname/(tabs)`.
+    // stripping groups gives the URL-relevant prefix the screens live under.
     const layoutUrlPrefix = stripGroupSegmentsFromPath(contextKey).replace(/\/+$/, '')
-    let relativePath = browserPath
-    if (layoutUrlPrefix && browserPath.startsWith(layoutUrlPrefix)) {
-      relativePath = browserPath.slice(layoutUrlPrefix.length) || '/'
-    }
 
-    // score each screen by how specifically its pattern matches the URL.
-    // screen names may contain dynamic segments `[param]`/`[...param]`.
-    // `matchRoutePattern` does a prefix match so layout screens (like
+    // score each screen by how specifically its full pattern matches the
+    // URL. screen names may contain dynamic segments `[param]`/`[...param]`.
+    // matchRoutePattern does a prefix match so layout screens (like
     // `project`) can match deeper URLs; the specificity score then tiebreaks
     // to pick the best leaf.
     let best: { name: string; specificity: number } | undefined
     for (const screen of screens) {
       const name = (screen as any)?.props?.name
       if (!name) continue
-      const match = matchRoutePattern(name, relativePath)
+      const fullPattern = layoutUrlPrefix ? `${layoutUrlPrefix}/${name}` : name
+      const match = matchRoutePattern(fullPattern, browserPath)
       if (!match) continue
       if (!best || match.specificity > best.specificity) {
         best = { name, specificity: match.specificity }

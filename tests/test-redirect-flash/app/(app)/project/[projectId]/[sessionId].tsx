@@ -13,7 +13,11 @@ export default function SessionRoute() {
     }
   }, [])
   return (
-    <div id="session-marker" data-project-id={params.projectId} data-session-id={params.sessionId}>
+    <div
+      id="session-marker"
+      data-project-id={params.projectId}
+      data-session-id={params.sessionId}
+    >
       SESSION:{params.projectId}:{params.sessionId}
     </div>
   )
