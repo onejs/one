@@ -13,6 +13,7 @@ import {
   useNotFoundState,
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
+import { matchRoutePattern } from '../router/matchers'
 import { routeNode as globalRouteNode, initialPathname } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
@@ -171,12 +172,24 @@ function QualifiedNavigator({
   contextKey,
   router = StackRouter,
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
-  // LATE MOUNT FIX: when a parent layout conditionally renders (e.g. auth gate),
-  // this navigator may mount after initialState was consumed. compute the
-  // correct initialRouteName from the original URL so the navigator starts on
-  // the right route instead of defaulting to the first one.
-  // uses initialPathname (captured at setup) instead of window.location.pathname
-  // because React Navigation's linking can push a wrong URL during the delay.
+  // LATE MOUNT FIX: when a parent layout conditionally renders (auth gate,
+  // suspense resolve, provider init, etc.), this navigator may mount after
+  // initialState was consumed. compute the correct initialRouteName from the
+  // original URL so the navigator starts on the right route instead of
+  // defaulting to the first child. uses initialPathname (captured at setup)
+  // instead of window.location.pathname because React Navigation's linking
+  // can push a wrong URL during the delay.
+  //
+  // this is especially important for hoisted deep dynamic routes: when a
+  // directory has no _layout.tsx file, one flattens its children into the
+  // nearest parent navigator. so for e.g. app/(app)/project/[projectId]/index.tsx
+  // with no intermediate _layout.tsx files, the (app) navigator ends up with
+  // children like ["index", "factory", "project/[projectId]/index"] as
+  // flat siblings. if this navigator re-initializes during hydration and we
+  // don't resolve the URL ourselves, React Navigation picks the first sibling
+  // as the default — mounting `index` while the browser is still on
+  // /project/foo. that produces a visible redirect flash (seen in soot,
+  // commit ea96e360).
   const resolvedInitialRouteName = React.useMemo(() => {
     if (initialRouteName) return initialRouteName
 
@@ -185,22 +198,24 @@ function QualifiedNavigator({
       (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
 
-    // extract screen names from the screens array
-    const screenNames: string[] = []
+    // score each screen by how specifically its pattern matches the URL.
+    // screen names are relative to this navigator's parent layout, e.g.
+    // `index`, `factory`, or `project/[projectId]/index`, and may contain
+    // dynamic segments `[param]`/`[...param]`. `matchRoutePattern` does a
+    // prefix match so layout screens (like `project`) can match deeper URLs;
+    // the specificity score then tiebreaks to pick the best leaf.
+    let best: { name: string; specificity: number } | undefined
     for (const screen of screens) {
-      const props = (screen as any)?.props
-      if (props?.name) screenNames.push(props.name)
-    }
-
-    // find which screen matches the URL
-    for (const name of screenNames) {
-      const base = name.replace(/\/index$/, '')
-      if (browserPath.endsWith('/' + base) || browserPath.includes('/' + base + '/')) {
-        return name
+      const name = (screen as any)?.props?.name
+      if (!name) continue
+      const match = matchRoutePattern(name, browserPath)
+      if (!match) continue
+      if (!best || match.specificity > best.specificity) {
+        best = { name, specificity: match.specificity }
       }
     }
 
-    return undefined
+    return best?.name
   }, [initialRouteName, screens])
 
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(

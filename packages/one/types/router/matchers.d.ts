@@ -6,6 +6,28 @@ export interface DynamicNameMatch {
 /** Match `[page]` -> `{ name: 'page', deep: false }` or `[...page]` -> `{ name: 'page', deep: true }` */
 export declare function matchDynamicName(name: string): DynamicNameMatch | undefined;
 /**
+ * Match a route pattern against a URL path, segment-by-segment, as a prefix.
+ *
+ * - Dynamic segments `[param]` match any single path segment
+ * - Catch-all `[...param]` matches all remaining path segments
+ * - Route groups like `(app)` in the pattern are skipped (they don't appear in URLs)
+ * - A trailing `/index` in the pattern is stripped (index routes match their parent path)
+ * - The pattern must match as a prefix of the path (leftover path segments are allowed)
+ *
+ * Returns `null` if the pattern doesn't match. Otherwise returns a specificity
+ * score — higher means the pattern is more specific. Callers that want an
+ * "exact" match (no leftover path) can check `result.specificity === pathSegmentsCount`.
+ * Callers picking the best match among several patterns should pick the
+ * highest specificity.
+ *
+ * Shared between:
+ *  - `views/Navigator.tsx` — resolving initialRouteName for late-mounted navigators
+ *  - `router/interceptRoutes.ts` — finding layouts that are ancestors of a path
+ */
+export declare function matchRoutePattern(pattern: string, path: string): {
+    specificity: number;
+} | null;
+/**
  * Match `[...page]` -> `page`
  * @deprecated Use matchDynamicName instead which returns {name, deep}
  */
