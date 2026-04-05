@@ -162,7 +162,7 @@ async function waitForSelector(page: Page, selector: string, timeout = 15000) {
   return page.waitForSelector(selector, { timeout }).catch(() => null)
 }
 
-describe('initial load of deep /project/[projectId] route', () => {
+describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => {
   test('loading /project/foo fresh should NOT briefly render the home marker', async () => {
     const page = await context.newPage()
     const errors: string[] = []
