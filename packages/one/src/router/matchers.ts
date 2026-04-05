@@ -21,6 +21,64 @@ export function matchDynamicName(name: string): DynamicNameMatch | undefined {
 }
 
 /**
+ * Match a route pattern against a URL path, segment-by-segment, as a prefix.
+ *
+ * - Dynamic segments `[param]` match any single path segment
+ * - Catch-all `[...param]` matches all remaining path segments
+ * - Route groups like `(app)` in the pattern are skipped (they don't appear in URLs)
+ * - A trailing `/index` in the pattern is stripped (index routes match their parent path)
+ * - The pattern must match as a prefix of the path (leftover path segments are allowed)
+ *
+ * Returns `null` if the pattern doesn't match. Otherwise returns a specificity
+ * score — higher means the pattern is more specific. Callers that want an
+ * "exact" match (no leftover path) can check `result.specificity === pathSegmentsCount`.
+ * Callers picking the best match among several patterns should pick the
+ * highest specificity.
+ *
+ * Shared between:
+ *  - `views/Navigator.tsx` — resolving initialRouteName for late-mounted navigators
+ *  - `router/interceptRoutes.ts` — finding layouts that are ancestors of a path
+ */
+export function matchRoutePattern(
+  pattern: string,
+  path: string
+): { specificity: number } | null {
+  const patternSegments = pattern.split('/').filter(Boolean)
+  // strip trailing `/index` — index routes match the parent path with nothing after
+  if (patternSegments[patternSegments.length - 1] === 'index') {
+    patternSegments.pop()
+  }
+  const pathSegments = path.split('/').filter(Boolean)
+
+  let specificity = 0
+  let pi = 0
+  for (let ui = 0; ui < patternSegments.length; ui++) {
+    const seg = patternSegments[ui]
+    // route groups like (app) don't appear in URLs — skip them but don't count specificity
+    if (seg.startsWith('(') && seg.endsWith(')')) continue
+    // catch-all [...param] consumes the rest of the path
+    if (seg.startsWith('[...') && seg.endsWith(']')) {
+      // count remaining path segments so a catch-all beats a non-catch-all at the same depth
+      return { specificity: specificity + (pathSegments.length - pi) }
+    }
+    // pattern has more segments than path → not a prefix match
+    if (pi >= pathSegments.length) return null
+    // dynamic [param] matches any single path segment (less specific than literal)
+    if (seg.startsWith('[') && seg.endsWith(']')) {
+      specificity += 1
+      pi += 1
+      continue
+    }
+    // literal segment must match exactly (most specific)
+    if (seg !== pathSegments[pi]) return null
+    specificity += 2
+    pi += 1
+  }
+  // all pattern segments consumed — this is a valid prefix match
+  return { specificity }
+}
+
+/**
  * Match `[...page]` -> `page`
  * @deprecated Use matchDynamicName instead which returns {name, deep}
  */

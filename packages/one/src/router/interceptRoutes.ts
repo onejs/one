@@ -1,5 +1,9 @@
 import type { RouteNode, SlotConfig } from './Route'
-import { matchDynamicName, stripGroupSegmentsFromPath } from './matchers'
+import {
+  matchDynamicName,
+  matchRoutePattern,
+  stripGroupSegmentsFromPath,
+} from './matchers'
 import { isNative } from '../constants'
 
 // ============================================
@@ -84,50 +88,15 @@ function getLayoutPath(node: RouteNode): string {
 
 /**
  * Check if a layout path is an ancestor of (or equal to) the current path.
- * A layout at /settings/account is an ancestor of /settings/account/foo
- * Handles dynamic segments: /[serverId]/[channelId] matches /tamagui/tamagui-apps
+ * A layout at /settings/account is an ancestor of /settings/account/foo.
+ * Handles dynamic segments: /[serverId]/[channelId] matches /tamagui/tamagui-apps.
  */
 function isLayoutAncestorOfPath(layoutPath: string, currentPath: string): boolean {
-  // Normalize paths
-  const normalizedLayout = layoutPath.replace(/\/+$/, '') || '/'
-  const normalizedCurrent = currentPath.replace(/\/+$/, '') || '/'
-
-  // Root layout is ancestor of everything
-  if (normalizedLayout === '/') return true
-
-  // Split into segments for dynamic matching
-  const layoutParts = normalizedLayout.split('/').filter(Boolean)
-  const currentParts = normalizedCurrent.split('/').filter(Boolean)
-
-  // Layout can't be ancestor if it has more segments than current path
-  if (layoutParts.length > currentParts.length) return false
-
-  // Check each layout segment matches the corresponding current segment
-  // Dynamic segments like [id] match any value
-  for (let i = 0; i < layoutParts.length; i++) {
-    const layoutPart = layoutParts[i]
-    const currentPart = currentParts[i]
-
-    // Check if this is a dynamic segment
-    const dynamicMatch = matchDynamicName(layoutPart)
-    if (dynamicMatch) {
-      // Dynamic segment - matches any value (including catch-all)
-      if (dynamicMatch.deep) {
-        // Catch-all matches rest of path, so layout is definitely an ancestor
-        return true
-      }
-      // Single dynamic segment - matches this position, continue checking
-      continue
-    }
-
-    // Static segment - must match exactly
-    if (layoutPart !== currentPart) {
-      return false
-    }
-  }
-
-  // All layout segments matched
-  return true
+  // root layout is ancestor of everything
+  if (!layoutPath.replace(/\/+$/, '')) return true
+  // matchRoutePattern does prefix matching with dynamic segment support —
+  // a null result means the layout isn't an ancestor of currentPath
+  return matchRoutePattern(layoutPath, currentPath) !== null
 }
 
 /**

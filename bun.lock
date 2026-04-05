@@ -1062,6 +1062,26 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-redirect-flash": {
+      "name": "test-redirect-flash",
+      "version": "1.15.0",
+      "dependencies": {
+        "@react-navigation/native": "~7.2.2",
+        "expo": "~55.0.7",
+        "one": "workspace:*",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "react-native": "0.83.2",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.58.2",
+        "typescript": "^5.7.3",
+        "vite": "^8.0.0",
+        "vitest": "^4.1.0",
+      },
+    },
     "tests/test-route-file-watching": {
       "name": "test-route-file-watching",
       "version": "1.15.0",
@@ -4597,6 +4617,8 @@
     "test-native-tree-shaking": ["test-native-tree-shaking@workspace:tests/test-native-tree-shaking"],
 
     "test-not-found": ["test-not-found@workspace:tests/test-not-found"],
+
+    "test-redirect-flash": ["test-redirect-flash@workspace:tests/test-redirect-flash"],
 
     "test-route-file-watching": ["test-route-file-watching@workspace:tests/test-route-file-watching"],
 
