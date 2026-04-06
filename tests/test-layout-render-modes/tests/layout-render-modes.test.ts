@@ -182,19 +182,8 @@ describe('Pure SPA (layout+spa, page+spa)', () => {
     await page.waitForSelector('#pure-spa-page', { timeout: 15000 })
     await page.waitForTimeout(1000)
 
-    // expected: spa-shell pages intentionally mismatch (server=placeholder, client=real content).
-    // React recovers by client-rendering the SPA subtree, which is the desired behavior.
-    // filter out the expected hydration mismatch and any recoverable errors.
-    const unexpected = errors.filter(
-      (e) =>
-        !e.includes('Hydration') &&
-        !e.includes('hydration') &&
-        !e.includes('did not match') &&
-        !e.includes('content does not match') &&
-        !e.includes('server-rendered HTML') &&
-        !e.includes('Non-critical recoverable')
-    )
-    expect(unexpected).toEqual([])
+    // check: no tree regeneration or hydration errors
+    expect(errors).toEqual([])
     await page.close()
   })
 
