@@ -24,6 +24,21 @@ import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
+// forwards response headers to a hono context, preserving individual
+// set-cookie values (Headers.forEach joins them into one unparseable string)
+function forwardHeaders(response: Response, context: { header: Function }) {
+  const setCookies = (response.headers as any).getSetCookie?.() as string[] | undefined
+  if (setCookies?.length) {
+    for (const cookie of setCookies) {
+      context.header('set-cookie', cookie, { append: true })
+    }
+  }
+  response.headers.forEach((value: string, key: string) => {
+    if (key === 'set-cookie') return
+    context.header(key, value)
+  })
+}
+
 async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string | null> {
   const fetchStaticHtml = getFetchStaticHtml()
   if (fetchStaticHtml) {
@@ -777,9 +792,7 @@ url: ${url}`)
             if (isResponse(response)) {
               if (isStatusRedirect(response.status)) {
                 const location = `${response.headers.get('location') || ''}`
-                response.headers.forEach((value, key) => {
-                  context.header(key, value)
-                })
+                forwardHeaders(response, context)
                 return context.redirect(location, response.status)
               }
               // cache-control is already set in ssrHtmlHeaders for SSR responses
@@ -845,9 +858,7 @@ url: ${url}`)
 
             if (isStatusRedirect(response.status)) {
               const location = `${response.headers.get('location') || ''}`
-              response.headers.forEach((value, key) => {
-                context.header(key, value)
-              })
+              forwardHeaders(response, context)
               return context.redirect(location, response.status)
             }
 

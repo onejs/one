@@ -72,7 +72,18 @@ export async function setResponseHeaders(cb: (headers: Headers) => void) {
 }
 
 export function mergeHeaders(onto: Headers, from: Headers) {
+  // set-cookie must be handled specially: Headers.forEach joins multiple
+  // set-cookie values into one string, which browsers can't parse.
+  // use getSetCookie() to get individual values and append each one.
+  const setCookies = from.getSetCookie?.()
+  if (setCookies?.length) {
+    for (const cookie of setCookies) {
+      onto.append('set-cookie', cookie)
+    }
+  }
+
   from.forEach((value, key) => {
+    if (key === 'set-cookie') return // already handled above
     if (value === undefined || value === 'undefined') {
       onto.delete(key)
     } else {
