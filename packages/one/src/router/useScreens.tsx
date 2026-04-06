@@ -391,7 +391,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         value.children?.length &&
         (value.layoutRenderMode === 'ssg' || value.layoutRenderMode === 'ssr')
       if (!isServerRenderedLayout) {
-        return <div data-one-spa-content="" />
+        return <div data-one-spa-content="" suppressHydrationWarning />
       }
     }
 
