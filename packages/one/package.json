@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "1.15.2-1775461660680",
+  "version": "1.15.3",
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
