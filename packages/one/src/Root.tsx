@@ -188,8 +188,8 @@ export function Root(props: RootProps) {
 
     if (serverMode === 'spa-shell') {
       // hydrate matching server placeholder, then flip to render real content.
-      // after the flip, reset navigation state from the URL so that
-      // late-mounting navigators (inside SPA layouts) get their params.
+      // the flip happens in useLayoutEffect (synchronous, before paint) so the
+      // first client render matches the server (no hydration mismatch).
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isSpaShell, setIsSpaShell] = useState(true)
 
@@ -198,10 +198,10 @@ export function Root(props: RootProps) {
         setIsSpaShell(false)
       }, [])
 
-      // after the flip, reset nav state from URL ONLY if params are missing.
-      // late-mounting navigators (inside SPA layouts) lose their params because
-      // they weren't in the tree during initial state computation. but if params
-      // are already populated, skip the reset to avoid re-triggering route guards.
+      // after the flip, re-resolve navigation state from the URL so that
+      // late-mounting navigators (inside SPA layouts) get their params.
+      // the onStateChange handler in useLinking preserves query params
+      // from the URL when the focused route has no params yet.
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useLayoutEffect(() => {
         if (!isSpaShell) {
@@ -210,28 +210,11 @@ export function Root(props: RootProps) {
             if (window.location.pathname + window.location.search !== initialPath) return
             const nav = store.navigationRef?.current
             if (!nav) return
-
-            // walk focused route chain to check if params are populated
-            let state = nav.getRootState()
-            let needsReset = false
-            while (state) {
-              const route = state.routes[state.index ?? 0]
-              if (!route) break
-              // if any focused route name contains '[' (dynamic segment) but has no params, we need reset
-              if (route.name.includes('[') && (!route.params || Object.keys(route.params).length === 0)) {
-                needsReset = true
-                break
-              }
-              state = route.state as typeof state
-            }
-
-            if (needsReset) {
-              const linking = getLinking()
-              if (linking?.getStateFromPath) {
-                const freshState = linking.getStateFromPath(initialPath, linking.config)
-                if (freshState) {
-                  nav.resetRoot(freshState)
-                }
+            const linking = getLinking()
+            if (linking?.getStateFromPath) {
+              const freshState = linking.getStateFromPath(initialPath, linking.config)
+              if (freshState) {
+                nav.resetRoot(freshState)
               }
             }
           })

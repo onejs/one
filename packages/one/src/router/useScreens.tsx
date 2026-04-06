@@ -381,8 +381,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
     // in spa-shell mode, only SSG/SSR layouts render on the server.
     // SPA layouts and leaf pages get a placeholder, swapped for real
-    // content after hydration. navigation state is reset from the URL
-    // after the flip so late-mounting navigators get their params.
+    // content after hydration.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isSpaShell = useContext(SpaShellContext)
     if (isSpaShell && props.segment !== '') {
