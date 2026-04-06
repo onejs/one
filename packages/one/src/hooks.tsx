@@ -131,7 +131,7 @@ export function usePathname(): string {
       // no ALS context available, fall through
     }
   }
-  return routeInfoPathname
+  return stripTrailingSlash(routeInfoPathname)
 }
 
 function stripTrailingSlash(path: string): string {

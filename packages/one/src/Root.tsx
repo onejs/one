@@ -203,13 +203,15 @@ export function Root(props: RootProps) {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useLayoutEffect(() => {
         if (!isSpaShell) {
+          const initialPath = window.location.pathname + window.location.search
           // defer to next frame so all nested navigators have mounted
           requestAnimationFrame(() => {
+            // bail if user already navigated away
+            if (window.location.pathname + window.location.search !== initialPath) return
             const linking = getLinking()
             const nav = store.navigationRef?.current
             if (linking?.getStateFromPath && nav) {
-              const path = window.location.pathname + window.location.search
-              const freshState = linking.getStateFromPath(path, linking.config)
+              const freshState = linking.getStateFromPath(initialPath, linking.config)
               if (freshState) {
                 nav.resetRoot(freshState)
               }
