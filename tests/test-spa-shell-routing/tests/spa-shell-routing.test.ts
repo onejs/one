@@ -174,6 +174,27 @@ describe('Route stability on page reload', () => {
     await page.close()
   })
 
+  test('/my-server/my-channel does not redirect to a different route', async () => {
+    // regression: resetRoot after spa-shell hydration must not re-resolve
+    // the URL to a different route (e.g. /deploy?projectId=...)
+    const page = await context.newPage()
+    const { urls, errors } = await collectNavigations(
+      page,
+      serverUrl + '/my-server/my-channel'
+    )
+
+    await waitForSpaContent(page, '#channel-page')
+    expect(page.url()).toContain('/my-server/my-channel')
+
+    // no unexpected navigations — only /my-server/my-channel and about:blank
+    const unexpectedNavs = urls.filter(
+      (u) => !u.includes('/my-server/my-channel') && !u.includes('about:blank')
+    )
+    expect(unexpectedNavs).toEqual([])
+
+    await page.close()
+  })
+
   test('/ stays on / after reload', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/')

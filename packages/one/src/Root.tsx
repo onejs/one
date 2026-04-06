@@ -198,22 +198,40 @@ export function Root(props: RootProps) {
         setIsSpaShell(false)
       }, [])
 
-      // after the flip, wait for navigators to mount then reset state
-      // from URL so late-mounting navigators get their params
+      // after the flip, reset nav state from URL ONLY if params are missing.
+      // late-mounting navigators (inside SPA layouts) lose their params because
+      // they weren't in the tree during initial state computation. but if params
+      // are already populated, skip the reset to avoid re-triggering route guards.
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useLayoutEffect(() => {
         if (!isSpaShell) {
           const initialPath = window.location.pathname + window.location.search
-          // defer to next frame so all nested navigators have mounted
           requestAnimationFrame(() => {
-            // bail if user already navigated away
             if (window.location.pathname + window.location.search !== initialPath) return
-            const linking = getLinking()
             const nav = store.navigationRef?.current
-            if (linking?.getStateFromPath && nav) {
-              const freshState = linking.getStateFromPath(initialPath, linking.config)
-              if (freshState) {
-                nav.resetRoot(freshState)
+            if (!nav) return
+
+            // walk focused route chain to check if params are populated
+            let state = nav.getRootState()
+            let needsReset = false
+            while (state) {
+              const route = state.routes[state.index ?? 0]
+              if (!route) break
+              // if any focused route name contains '[' (dynamic segment) but has no params, we need reset
+              if (route.name.includes('[') && (!route.params || Object.keys(route.params).length === 0)) {
+                needsReset = true
+                break
+              }
+              state = route.state as typeof state
+            }
+
+            if (needsReset) {
+              const linking = getLinking()
+              if (linking?.getStateFromPath) {
+                const freshState = linking.getStateFromPath(initialPath, linking.config)
+                if (freshState) {
+                  nav.resetRoot(freshState)
+                }
               }
             }
           })
