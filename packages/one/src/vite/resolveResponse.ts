@@ -94,7 +94,8 @@ async function getResponseWithAddedHeaders(response: any, id: object) {
         // clone first so the original body stream isn't locked/consumed
         // (Response.json() bodies are single-use ReadableStreams)
         const cloned = response.clone()
-        const headers = new Headers(cloned.headers)
+        const headers = new Headers()
+        mergeHeaders(headers, cloned.headers)
         mergeHeaders(headers, asyncHeaders)
         response = new Response(cloned.body, {
           status: cloned.status,
