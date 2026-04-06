@@ -154,9 +154,17 @@ describe('@vxrn/native integration tests', () => {
         expect(await box.isDisplayed()).toBe(true)
       }
 
-      // verify the complete render status
-      const status = await waitForElement(driver, 'color-render-complete')
-      expect(await status.getText()).toBe('Color render complete')
+      // verify the complete render status (at bottom of scroll view)
+      const statusEl = driver.$('~color-render-complete')
+      for (let i = 0; i < 5; i++) {
+        try {
+          await statusEl.waitForDisplayed({ timeout: 3000 })
+          break
+        } catch {
+          await driver.execute('mobile: scroll', { direction: 'down' })
+        }
+      }
+      expect(await statusEl.getText()).toBe('Color render complete')
 
       await captureScreenshot(driver, 'color-api-ios-background-colors')
     })
