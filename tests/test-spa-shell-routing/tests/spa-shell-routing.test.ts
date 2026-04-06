@@ -346,6 +346,50 @@ describe('Client-side navigation between route groups', () => {
   })
 })
 
+// --- query param preservation ---
+
+describe('Query params survive spa-shell hydration', () => {
+  test('search params preserved on dynamic route /my-server/my-channel?testParam=hello', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/my-server/my-channel?testParam=hello')
+    await waitForSpaContent(page, '#channel-page')
+
+    // query param must still be in the URL after hydration
+    expect(page.url()).toContain('testParam=hello')
+
+    // component must see the param via useSearchParams
+    const searchParams = await page.textContent('#search-params')
+    expect(searchParams).toContain('testParam=hello')
+
+    await page.close()
+  })
+
+  test('multiple search params preserved on dynamic route', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/my-server/my-channel?foo=bar&disableZero=true')
+    await waitForSpaContent(page, '#channel-page')
+
+    expect(page.url()).toContain('foo=bar')
+    expect(page.url()).toContain('disableZero=true')
+
+    const searchParams = await page.textContent('#search-params')
+    expect(searchParams).toContain('foo=bar')
+    expect(searchParams).toContain('disableZero=true')
+
+    await page.close()
+  })
+
+  test('search params preserved on static route /beta/signup?ref=test', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/beta/signup?ref=test')
+    await waitForSpaContent(page, '#beta-signup-page')
+
+    expect(page.url()).toContain('ref=test')
+
+    await page.close()
+  })
+})
+
 // --- no hydration errors ---
 
 describe('No hydration or console errors', () => {

@@ -566,7 +566,18 @@ export function useLinking(
 
       const pendingPath = pendingPopStatePathRef.current
       const route = findFocusedRoute(state)
-      const path = getPathForRoute(route, state)
+      let path = getPathForRoute(route, state)
+
+      // when navigators mount late (e.g. during spa-shell hydration), the
+      // focused route may have no params yet. if the pathname matches the
+      // current URL but search params were lost, preserve them so query
+      // params like ?disableZero aren't stripped during the transition.
+      if (typeof window !== 'undefined' && !route?.params) {
+        const currentSearch = window.location.search
+        if (currentSearch && !path.includes('?') && window.location.pathname === path) {
+          path = path + currentSearch
+        }
+      }
 
       // @modified - extract mask from linkOptions for route masking
       const maskOptions = (state as any).linkOptions?.mask
