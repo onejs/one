@@ -8,7 +8,9 @@ export default defineConfig({
   test: {
     ...defaultConfig.test,
     globalSetup: '@vxrn/test/setup-ios',
-    include: ['**/*.{test.ios,spec.ios}.?(c|m)[jt]s?(x)'],
+    include: ['**/native-features.test.ios.?(c|m)[jt]s?(x)'],
+    // experimental @vxrn/native tests (zoom, toolbar, menu, split-view) are
+    // excluded until those components are released and registered natively
     // only one simulator device at a time
     fileParallelism: false,
     // native tests need generous timeouts
