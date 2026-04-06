@@ -4,6 +4,7 @@ import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
+import { getServerContext } from './vite/one-server-only'
 
 type SearchParams = OneRouter.SearchParams
 
@@ -117,7 +118,20 @@ export function useSegments<TSegments extends string[] = string[]>(): TSegments 
  * ```
  */
 export function usePathname(): string {
-  return useRouteInfo().pathname
+  const routeInfoPathname = useRouteInfo().pathname
+  if (import.meta.env.SSR) {
+    // on server, prefer path from per-request async local storage
+    // to avoid stale module-level routeInfo between SSR renders
+    try {
+      const ctx = getServerContext()
+      if (ctx?.loaderProps?.path) {
+        return ctx.loaderProps.path
+      }
+    } catch {
+      // no ALS context available, fall through
+    }
+  }
+  return routeInfoPathname
 }
 
 /**
