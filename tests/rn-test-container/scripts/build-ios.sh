@@ -124,11 +124,13 @@ rm -rf "$BUILD_DIR" ios/Pods ios/Podfile.lock 2>/dev/null || true
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 bun run prebuild:native --platform ios
 
-# Enable precompiled React Native builds (RN 0.81+) and ccache for faster builds
-# RCT_USE_RN_DEP=1 - Use precompiled ReactNativeDependencies.xcframework
-# RCT_USE_PREBUILT_RNCORE=1 - Use precompiled RN core
-export RCT_USE_RN_DEP=1
-export RCT_USE_PREBUILT_RNCORE=1
+# Use precompiled React Native builds for faster builds — UNLESS building from
+# source (required for Hermes V1 symbol compatibility: precompiled React links
+# against default Hermes, not V1, causing missing symbol crashes at launch).
+if ! grep -q '"ios.buildReactNativeFromSource": "true"' ios/Podfile.properties.json 2>/dev/null; then
+  export RCT_USE_RN_DEP=1
+  export RCT_USE_PREBUILT_RNCORE=1
+fi
 pod install --project-directory=ios
 
 # Build with xcodebuild
