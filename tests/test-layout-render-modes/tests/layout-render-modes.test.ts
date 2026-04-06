@@ -146,11 +146,10 @@ describe('Pure SSR (layout+ssr, page+ssr)', () => {
 describe('Pure SPA (layout+spa, page+spa)', () => {
   test('initial html has minimal content', async () => {
     const html = await fetch(serverUrl + '/pure-spa').then((r) => r.text())
-    // with renderRootLayout, root SSG layout is rendered
+    // root SSG layout is rendered
     expect(html).toContain('id="root-nav"')
-    // layouts (with children) render normally in spa-shell mode to preserve
-    // navigator mounts; only leaf SPA pages are placeholdered
-    expect(html).toContain('id="pure-spa-layout"')
+    // SPA layouts should NOT render on server — only SSG/SSR layouts render in spa-shell mode
+    expect(html).not.toContain('id="pure-spa-layout"')
     // leaf SPA page content is NOT rendered on server
     expect(html).not.toContain('id="pure-spa-page"')
   })
@@ -165,6 +164,30 @@ describe('Pure SPA (layout+spa, page+spa)', () => {
 
     expect(await page.textContent('#pure-spa-page-mode')).toContain('spa')
 
+    await page.close()
+  })
+
+  test('no hydration errors on spa-shell pages', async () => {
+    const page = await context.newPage()
+    const errors: string[] = []
+    page.on('console', (msg) => {
+      const text = msg.text()
+      if (
+        msg.type() === 'error' &&
+        (text.includes('Hydration') ||
+          text.includes('hydration') ||
+          text.includes('did not match') ||
+          text.includes('content does not match') ||
+          text.includes('server-rendered HTML'))
+      ) {
+        errors.push(text)
+      }
+    })
+    await page.goto(serverUrl + '/pure-spa')
+    await page.waitForSelector('#pure-spa-page', { timeout: 15000 })
+    await page.waitForTimeout(1000)
+
+    expect(errors).toEqual([])
     await page.close()
   })
 
@@ -194,6 +217,18 @@ describe('SSG Shell + SPA Content (renderRootLayout replacement)', () => {
     expect(html).toContain('id="root-nav"')
     // mode is spa-shell
     expect(html).toContain('"mode":"spa-shell"')
+  })
+
+  test('usePathname shows correct path in server HTML across requests', async () => {
+    // fetch a different route first to populate stale router state
+    await fetch(serverUrl + '/pure-ssg')
+    // then fetch ssg-shell-spa
+    const html = await fetch(serverUrl + '/ssg-shell-spa').then((r) => r.text())
+    // root layout renders usePathname into #root-pathname
+    // strip React comment markers and check the path is correct (not stale from /pure-ssg)
+    const match = html.match(/id="root-pathname"[^>]*>([\s\S]*?)<\/span>/)
+    const content = match?.[1]?.replace(/<!--.*?-->/g, '')
+    expect(content?.trim()).toContain('/ssg-shell-spa')
   })
 
   test('layout loaders run and data is in matches', async () => {
