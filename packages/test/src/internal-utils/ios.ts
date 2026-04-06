@@ -323,24 +323,28 @@ async function prepareTestApp() {
 }
 
 export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
+  const wdaDerivedDataPath = '/tmp/wda-build'
+  const fs = await import('node:fs')
+  const wdaIsPrebuilt = fs.existsSync(
+    `${wdaDerivedDataPath}/Build/Products/Debug-iphonesimulator/WebDriverAgentRunner-Runner.app`
+  )
+
   const capabilities = {
     platformName: 'iOS',
     'appium:options': {
       automationName: 'XCUITest',
       udid: getSimulatorUdid(),
       app: await prepareTestApp(),
-      // use pre-built WDA if available (built by CI pre-build step)
-      ...(process.env.CI && {
-        usePrebuiltWDA: true,
-        derivedDataPath: '/tmp/wda-build',
-      }),
+      // always cache WDA builds so subsequent sessions skip the rebuild
+      derivedDataPath: wdaDerivedDataPath,
+      ...(wdaIsPrebuilt && { usePrebuiltWDA: true }),
     },
   }
 
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 120 * 1000,
+    connectionRetryTimeout: 240 * 1000,
     connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,
