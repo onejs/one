@@ -148,8 +148,9 @@ describe('Pure SPA (layout+spa, page+spa)', () => {
     const html = await fetch(serverUrl + '/pure-spa').then((r) => r.text())
     // root SSG layout is rendered
     expect(html).toContain('id="root-nav"')
-    // SPA layouts should NOT render on server — only SSG/SSR layouts render in spa-shell mode
-    expect(html).not.toContain('id="pure-spa-layout"')
+    // SPA layouts render normally in spa-shell mode to keep navigators mounted
+    // (navigators need to be in the tree for URL params to resolve during hydration)
+    expect(html).toContain('id="pure-spa-layout"')
     // leaf SPA page content is NOT rendered on server
     expect(html).not.toContain('id="pure-spa-page"')
   })
