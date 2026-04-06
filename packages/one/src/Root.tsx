@@ -187,7 +187,9 @@ export function Root(props: RootProps) {
     }
 
     if (serverMode === 'spa-shell') {
-      // hydrate matching server placeholder, then flip to render real content
+      // hydrate matching server placeholder, then flip to render real content.
+      // after the flip, reset navigation state from the URL so that
+      // late-mounting navigators (inside SPA layouts) get their params.
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isSpaShell, setIsSpaShell] = useState(true)
 
@@ -195,6 +197,26 @@ export function Root(props: RootProps) {
       useLayoutEffect(() => {
         setIsSpaShell(false)
       }, [])
+
+      // after the flip, wait for navigators to mount then reset state
+      // from URL so late-mounting navigators get their params
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLayoutEffect(() => {
+        if (!isSpaShell) {
+          // defer to next frame so all nested navigators have mounted
+          requestAnimationFrame(() => {
+            const linking = getLinking()
+            const nav = store.navigationRef?.current
+            if (linking?.getStateFromPath && nav) {
+              const path = window.location.pathname + window.location.search
+              const freshState = linking.getStateFromPath(path, linking.config)
+              if (freshState) {
+                nav.resetRoot(freshState)
+              }
+            }
+          })
+        }
+      }, [isSpaShell])
 
       return (
         <SpaShellContext.Provider value={isSpaShell}>{contents}</SpaShellContext.Provider>
