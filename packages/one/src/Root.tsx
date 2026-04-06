@@ -187,18 +187,12 @@ export function Root(props: RootProps) {
     }
 
     if (serverMode === 'spa-shell') {
-      // hydrate with shell placeholder, then flip to render real page content
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const [isSpaShell, setIsSpaShell] = useState(true)
-
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useLayoutEffect(() => {
-        setIsSpaShell(false)
-      }, [])
-
-      return (
-        <SpaShellContext.Provider value={isSpaShell}>{contents}</SpaShellContext.Provider>
-      )
+      // client renders real content directly — no SpaShellContext needed.
+      // the server sent placeholders for SPA subtrees; React will see the
+      // mismatch and client-render those nodes, which is exactly what we want.
+      // suppressHydrationWarning on the placeholder div (in useScreens)
+      // keeps it quiet.
+      return contents
     }
 
     return contents
