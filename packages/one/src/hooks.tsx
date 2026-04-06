@@ -125,13 +125,17 @@ export function usePathname(): string {
     try {
       const ctx = getServerContext()
       if (ctx?.loaderProps?.path) {
-        return ctx.loaderProps.path
+        return stripTrailingSlash(ctx.loaderProps.path)
       }
     } catch {
       // no ALS context available, fall through
     }
   }
   return routeInfoPathname
+}
+
+function stripTrailingSlash(path: string): string {
+  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
 }
 
 /**
