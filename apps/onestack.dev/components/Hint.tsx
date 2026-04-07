@@ -55,10 +55,12 @@ export const Hint = ({
         br="$8"
         elevation="$8"
         p="$5"
-        maw={250}
+        maw={300}
         animateOnly={['transform', 'opacity']}
         bg={bg}
         style={{
+          width: 'min(300px, calc(100vw - 32px))',
+          minWidth: 0,
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
         }}
@@ -82,7 +84,15 @@ export const Hint = ({
           bg={bg}
           size="$4"
         />
-        <Paragraph color={color} size="$6">
+        <Paragraph
+          color={color}
+          size="$6"
+          width="100%"
+          whiteSpace="normal"
+          style={{
+            overflowWrap: 'anywhere',
+          }}
+        >
           {hintContents}
         </Paragraph>
       </Tooltip.Content>
