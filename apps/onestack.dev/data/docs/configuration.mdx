@@ -815,28 +815,6 @@ The insertion happens automatically when route files are created or modified, wi
 
 For more information, see the [Typed Routes documentation](/docs/routing-typed-routes).
 
-### router.experimental.preventLayoutRemounting
-
-When enabled, the router will try to avoid unnecessary remounts of `_layout` components during navigation.
-
-```tsx fileName=vite.config.ts
-export default {
-  plugins: [
-    one({
-      router: {
-        experimental: {
-          preventLayoutRemounting: true,
-        },
-      },
-    }),
-  ],
-}
-```
-
-This modifies the `<Slot />` navigator to set a static `key` on screen elements, preventing React from remounting them. This is still experimental as it may cause unexpected side effects in some cases.
-
-**Default:** `false`
-
 ### build.securityScan
 
 Scan client bundles for leaked secrets (API keys, tokens, passwords) after building. This catches accidental exposure of server-side secrets in client-facing JavaScript before they reach production.
