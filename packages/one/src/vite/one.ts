@@ -580,6 +580,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           }
         })()
 
+        // if user overrides it use theirs
+        const serverURL = process.env.ONE_SERVER_URL || vxrnOptions?.server.url
+
         return {
           // Platform env defined at root level for client (workaround for Vite bug with environment.client.define)
           define: {
@@ -596,9 +599,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             }),
 
             ...(process.env.NODE_ENV !== 'production' &&
-              vxrnOptions && {
-                'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
-                'import.meta.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+              serverURL && {
+                'process.env.ONE_SERVER_URL': JSON.stringify(serverURL),
+                'import.meta.env.ONE_SERVER_URL': JSON.stringify(serverURL),
               }),
 
             ...(options.web?.linkPrefetch && {
