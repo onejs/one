@@ -147,14 +147,6 @@ export declare namespace One {
             root?: string;
             experimental?: {
                 /**
-                 * If enabled, the router will try to avoid unnecessary remounts of _layout components.
-                 *
-                 * We aren't sure that this won't cause any side effects and break things, so this is still experimental and defaults to `false`.
-                 *
-                 * Currently, this will only effect the `<Slot />` navigator, where it will modify the screen element provided by `react-navigation` and set the `key` to a static value to prevent re-mounting.
-                 */
-                preventLayoutRemounting?: boolean;
-                /**
                  * Auto-generate route type helpers in route files.
                  *
                  * Route types are always generated in routes.d.ts. This option controls whether
@@ -680,10 +672,7 @@ export declare namespace One {
          */
         matches?: RouteMatch[];
     };
-    export type Flags = {
-        /** See PluginOptions.router.experimental.PreventLayoutRemounting */
-        experimentalPreventLayoutRemounting?: boolean;
-    };
+    export type Flags = {};
     export type SitemapChangefreq = OneShared.SitemapChangefreq;
     export type RouteSitemap = OneShared.RouteSitemap;
     export type SitemapOptions = {

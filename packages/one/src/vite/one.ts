@@ -814,10 +814,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
-  const flags: One.Flags = {
-    experimentalPreventLayoutRemounting:
-      options.router?.experimental?.preventLayoutRemounting,
-  }
+  const flags: One.Flags = {}
 
   // pass config to the rolldown native entry (createNativeDevEngine reads this)
   globalThis.__vxrnNativeEntryConfig = {
