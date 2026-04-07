@@ -22,7 +22,7 @@ type ResultState = ReturnType<typeof getStateFromPathDefault>
 
 type Options = LinkingOptions<ParamListBase>
 
-const linkingHandlers: symbol[] = []
+const linkingHandlers = new Set<symbol>()
 
 export function useLinking(
   ref: React.RefObject<NavigationContainerRef<ParamListBase>>,
@@ -47,23 +47,13 @@ export function useLinking(
         | { remove(): void }
         | undefined
 
-      // Storing this in a local variable stops Jest from complaining about import after teardown
-      // @ts-expect-error: removeEventListener is not present in newer RN versions
-      const removeEventListener = Linking.removeEventListener?.bind(Linking)
-
       return () => {
-        // https://github.com/facebook/react-native/commit/6d1aca806cee86ad76de771ed3a1cc62982ebcd7
-        if (subscription?.remove) {
-          subscription.remove()
-        } else {
-          removeEventListener?.('url', callback)
-        }
+        subscription?.remove()
       }
     },
     getStateFromPath = getStateFromPathDefault,
     getActionFromState = getActionFromStateDefault,
-  }: Options,
-  onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
+  }: Options
 ) {
   const independent = useNavigationIndependentTree()
 
@@ -78,8 +68,8 @@ export function useLinking(
 
     // @modified - start: reduce spurious warnings on android where activity recreation
     // causes remounts, and only warn when there are truly multiple handlers
-    if (enabled !== false && linkingHandlers.length && Platform.OS !== 'android') {
-      if (linkingHandlers.length > 1) {
+    if (enabled !== false && linkingHandlers.size && Platform.OS !== 'android') {
+      if (linkingHandlers.size > 1) {
         console.error(
           [
             'Looks like you have configured linking in multiple places. This is likely an error since deep links should only be handled in one place to avoid conflicts. Make sure that:',
@@ -96,15 +86,11 @@ export function useLinking(
     const handler = Symbol()
 
     if (enabled !== false) {
-      linkingHandlers.push(handler)
+      linkingHandlers.add(handler)
     }
 
     return () => {
-      const index = linkingHandlers.indexOf(handler)
-
-      if (index > -1) {
-        linkingHandlers.splice(index, 1)
-      }
+      linkingHandlers.delete(handler)
     }
   }, [enabled, independent])
 
@@ -134,7 +120,7 @@ export function useLinking(
       return undefined
     }
 
-    const path = extractPathFromURL(prefixesRef.current, url)
+    const path = extractPathFromURL(prefixesRef.current as string[], url)
 
     return path !== undefined
       ? getStateFromPathRef.current(path, configRef.current)
@@ -150,17 +136,8 @@ export function useLinking(
       if (url != null) {
         if (typeof url !== 'string') {
           return url.then((url) => {
-            const state = getStateFromURL(url)
-
-            if (typeof url === 'string') {
-              // If the link were handled, it gets cleared in NavigationContainer
-              onUnhandledLinking(extractPathFromURL(prefixes, url))
-            }
-
-            return state
+            return getStateFromURL(url)
           })
-        } else {
-          onUnhandledLinking(extractPathFromURL(prefixes, url))
         }
       }
 
@@ -178,7 +155,7 @@ export function useLinking(
     }
 
     return thenable as PromiseLike<ResultState | undefined>
-  }, [getStateFromURL, onUnhandledLinking, prefixes])
+  }, [getStateFromURL])
 
   React.useEffect(() => {
     const listener = (url: string) => {
@@ -190,8 +167,6 @@ export function useLinking(
       const state = navigation ? getStateFromURL(url) : undefined
 
       if (navigation && state) {
-        // If the link were handled, it gets cleared in NavigationContainer
-        onUnhandledLinking(extractPathFromURL(prefixes, url))
         const rootState = navigation.getRootState()
         if (state.routes.some((r) => !rootState?.routeNames?.includes(r.name))) {
           return
@@ -218,7 +193,7 @@ export function useLinking(
     }
 
     return subscribe(listener)
-  }, [enabled, getStateFromURL, onUnhandledLinking, prefixes, ref, subscribe])
+  }, [enabled, getStateFromURL, ref, subscribe])
 
   return {
     getInitialState,

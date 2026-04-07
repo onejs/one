@@ -60,7 +60,6 @@ export * from './TabTrigger'
 export type UseTabsOptions = Omit<
   DefaultNavigatorOptions<
     ParamListBase,
-    any,
     TabNavigationState<any>,
     ExpoTabsScreenOptions,
     TabNavigationEventMap,
@@ -199,7 +198,6 @@ export function useTabsWithTriggers(
     children,
     ...rest,
     triggerMap,
-    id: contextKey,
     initialRouteName,
   })
 
@@ -207,7 +205,6 @@ export function useTabsWithTriggers(
     state,
     descriptors,
     navigation,
-    describe,
     NavigationContent: RNNavigationContent,
   } = navigatorContext
 
@@ -234,7 +231,7 @@ export function useTabsWithTriggers(
     </TabTriggerMapContext.Provider>
   )) as TabsContextValue['NavigationContent']
 
-  return { state, descriptors, navigation, NavigationContent, describe }
+  return { state, descriptors, navigation, NavigationContent }
 }
 
 function parseTriggersFromChildren(

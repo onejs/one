@@ -24,7 +24,6 @@ export type ExpoTabsNavigatorScreenOptions = {
 
 export type ExpoTabsNavigatorOptions = DefaultNavigatorOptions<
   ParamListBase,
-  string | undefined,
   TabNavigationState<ParamListBase>,
   ExpoTabsScreenOptions,
   TabNavigationEventMap,
@@ -37,20 +36,16 @@ export type ExpoTabsNavigatorOptions = DefaultNavigatorOptions<
 export type ExpoTabsNavigationProp<
   ParamList extends ParamListBase,
   RouteName extends keyof ParamList = keyof ParamList,
-  NavigatorID extends string | undefined = undefined,
 > = NavigationProp<
   ParamList,
   RouteName,
-  NavigatorID,
   TabNavigationState<ParamListBase>,
   ExpoTabsScreenOptions,
   TabNavigationEventMap
 >
 
-export type ExpoTabsScreenOptions = Pick<
-  BottomTabNavigationOptions,
-  'title' | 'lazy' | 'freezeOnBlur'
-> & {
+export type ExpoTabsScreenOptions = Pick<BottomTabNavigationOptions, 'title' | 'lazy'> & {
+  freezeOnBlur?: boolean
   params?: object
   title: string
   action: NavigationAction

@@ -1,4 +1,4 @@
-import type { NavigationContainerRefWithCurrent, NavigationState, PartialState } from '@react-navigation/core';
+import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase, PartialState } from '@react-navigation/core';
 import type { JSX, ReactNode } from 'react';
 import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native';
 export declare namespace OneRouter {
@@ -38,7 +38,7 @@ export declare namespace OneRouter {
     export type DynamicRouteTemplate = __routes extends {
         DynamicRouteTemplate: string;
     } ? __routes['DynamicRouteTemplate'] : string;
-    export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
+    export type NavigationRef = NavigationContainerRefWithCurrent<ParamListBase>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
     export type ExternalPathString = `${string}:${string}`;

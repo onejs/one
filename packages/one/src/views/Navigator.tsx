@@ -235,8 +235,6 @@ function QualifiedNavigator({
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
     router,
     {
-      // Used for getting the parent with navigation.getParent('/normalized/path')
-      id: contextKey,
       children: screens,
       screenOptions,
       initialRouteName: resolvedInitialRouteName,

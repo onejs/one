@@ -7,6 +7,7 @@
 import {
   type NavigationContainerRefWithCurrent,
   type NavigationState,
+  type ParamListBase,
   StackActions,
 } from '@react-navigation/native'
 import {
@@ -212,7 +213,7 @@ let cachedContext: One.RouteContext | null = null
 // Initialize function
 export function initialize(
   context: One.RouteContext,
-  ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
+  ref: NavigationContainerRefWithCurrent<ParamListBase>,
   initialLocation?: URL
 ) {
   cleanUpState()
@@ -399,7 +400,7 @@ export function replace(url: OneRouter.Href, options?: OneRouter.LinkToOptions) 
 export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
   assertIsReady(navigationRef)
   return navigationRef?.current?.setParams(
-    // @ts-expect-error
+    // @ts-ignore
     params
   )
 }

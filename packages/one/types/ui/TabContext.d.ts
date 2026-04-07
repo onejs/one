@@ -8,9 +8,10 @@ export type ExpoTabsNavigatorScreenOptions = {
     freezeOnBlur?: boolean;
     lazy?: boolean;
 };
-export type ExpoTabsNavigatorOptions = DefaultNavigatorOptions<ParamListBase, string | undefined, TabNavigationState<ParamListBase>, ExpoTabsScreenOptions, TabNavigationEventMap, ExpoTabsNavigationProp<ParamListBase>> & Omit<TabRouterOptions, 'initialRouteName'> & ExpoTabsNavigatorScreenOptions;
-export type ExpoTabsNavigationProp<ParamList extends ParamListBase, RouteName extends keyof ParamList = keyof ParamList, NavigatorID extends string | undefined = undefined> = NavigationProp<ParamList, RouteName, NavigatorID, TabNavigationState<ParamListBase>, ExpoTabsScreenOptions, TabNavigationEventMap>;
-export type ExpoTabsScreenOptions = Pick<BottomTabNavigationOptions, 'title' | 'lazy' | 'freezeOnBlur'> & {
+export type ExpoTabsNavigatorOptions = DefaultNavigatorOptions<ParamListBase, TabNavigationState<ParamListBase>, ExpoTabsScreenOptions, TabNavigationEventMap, ExpoTabsNavigationProp<ParamListBase>> & Omit<TabRouterOptions, 'initialRouteName'> & ExpoTabsNavigatorScreenOptions;
+export type ExpoTabsNavigationProp<ParamList extends ParamListBase, RouteName extends keyof ParamList = keyof ParamList> = NavigationProp<ParamList, RouteName, TabNavigationState<ParamListBase>, ExpoTabsScreenOptions, TabNavigationEventMap>;
+export type ExpoTabsScreenOptions = Pick<BottomTabNavigationOptions, 'title' | 'lazy'> & {
+    freezeOnBlur?: boolean;
     params?: object;
     title: string;
     action: NavigationAction;
@@ -45,112 +46,57 @@ export declare const TabTriggerMapContext: import("react").Context<TriggerMap>;
 /**
  * @hidden
  */
-export declare const TabsDescriptorsContext: import("react").Context<Record<string, import("@react-navigation/core").Descriptor<ExpoTabsNavigatorScreenOptions, Omit<{
-    dispatch(action: Readonly<{
-        type: string;
-        payload?: object;
-        source?: string;
-        target?: string;
-    }> | ((state: Readonly<TabNavigationState<any>>) => Readonly<{
-        type: string;
-        payload?: object;
-        source?: string;
-        target?: string;
-    }>)): void;
-    navigate<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined, options?: {
-        merge?: boolean;
-        pop?: boolean;
-    } | undefined] : never): void;
-    navigate<RouteName extends string>(options: RouteName extends unknown ? {
-        name: RouteName;
-        params: object | undefined;
-        path?: string;
-        merge?: boolean;
-        pop?: boolean;
-    } : never): void;
-    navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
-    navigateDeprecated<RouteName extends string>(options: RouteName extends unknown ? {
-        name: RouteName;
-        params: object | undefined;
-        merge?: boolean;
-    } : never): void;
-    preload<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
-    reset(state: TabNavigationState<any> | import("@react-navigation/routers").PartialState<TabNavigationState<any>>): void;
-    goBack(): void;
-    isFocused(): boolean;
-    canGoBack(): boolean;
-    getId(): string | undefined;
-    getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
-    getState(): TabNavigationState<any>;
-} & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]>, "getParent"> & {
-    getParent<T = NavigationProp<ParamListBase, string, string | undefined, Readonly<{
-        key: string;
-        index: number;
-        routeNames: string[];
-        history?: unknown[];
-        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
-        type: string;
-        stale: false;
-    }>, {}, {}> | undefined>(id?: string | undefined): T;
-    setOptions(options: Partial<ExpoTabsNavigatorScreenOptions>): void;
-} & {
-    setParams(params: Partial<object | undefined>): void;
-    replaceParams(params: object | undefined): void;
-} & import("@react-navigation/core").EventConsumer<TabNavigationEventMap & import("@react-navigation/core").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/core").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/core").RouteProp<ParamListBase, string>>>>;
+export declare const TabsDescriptorsContext: import("react").Context<Record<string, import("@react-navigation/core").Descriptor<ExpoTabsNavigatorScreenOptions, NavigationProp<ParamListBase, string, TabNavigationState<any>, ExpoTabsNavigatorScreenOptions, TabNavigationEventMap, TabActionHelpers<ParamListBase>>, Readonly<{
+    key: string;
+    name: string;
+    path?: string | undefined;
+    history?: {
+        type: "params";
+        params: object;
+    }[] | undefined;
+} & Readonly<{
+    params?: Readonly<object | undefined>;
+}>>>>>;
 /**
  * @hidden
  */
 export declare const TabsNavigatorContext: import("react").Context<({
     dispatch(action: Readonly<{
         type: string;
-        payload?: object;
-        source?: string;
-        target?: string;
+        payload?: object | undefined;
+        source?: string | undefined;
+        target?: string | undefined;
     }> | ((state: Readonly<Readonly<{
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
     }>>) => Readonly<{
         type: string;
-        payload?: object;
-        source? /**
-         * Event which fires on long press on the tab in the tab bar.
-         */: string;
-        target?: string;
+        payload?: object | undefined;
+        source?: string | undefined;
+        target?: string | undefined;
     }>)): void;
     navigate<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined, options?: {
-        merge?: boolean;
-        pop?: boolean;
+        merge?: boolean | undefined;
+        pop?: boolean | undefined;
     } | undefined] : never): void;
     navigate<RouteName extends string>(options: RouteName extends unknown ? {
         name: RouteName;
         params: object | undefined;
-        path?: string;
-        merge?: boolean;
-        pop?: boolean;
-    } : never): void;
-    navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params
-    /**
-     * @hidden
-     */
-    ? /**
-     * @hidden
-     */: object | undefined] : never): void;
-    navigateDeprecated<RouteName extends string>(options: RouteName extends unknown ? {
-        name: RouteName;
-        params: object | undefined;
-        merge?: boolean;
+        path?: string | undefined;
+        merge?: boolean | undefined;
+        pop?: boolean | undefined;
     } : never): void;
     preload<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
     reset(state: Readonly<{
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
@@ -158,7 +104,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
@@ -166,13 +112,11 @@ export declare const TabsNavigatorContext: import("react").Context<({
     goBack(): void;
     isFocused(): boolean;
     canGoBack(): boolean;
-    getId(): string | undefined;
-    getParent<T = import("@react-navigation/core").NavigationHelpers<ParamListBase, {}> | undefined>(id?: string): T;
     getState(): Readonly<{
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
@@ -180,6 +124,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
 } & import("@react-navigation/core").PrivateValueStore<[ParamListBase, unknown, unknown]> & import("@react-navigation/core").EventEmitter<TabNavigationEventMap> & {
     setParams(params: Partial<object | undefined>): void;
     replaceParams(params: object | undefined): void;
+    pushParams(params: object | undefined): void;
 } & TabActionHelpers<ParamListBase>) | null>;
 /**
  * @hidden

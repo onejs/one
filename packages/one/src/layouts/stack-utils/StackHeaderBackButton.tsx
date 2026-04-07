@@ -26,7 +26,7 @@ export function appendStackHeaderBackButtonPropsToOptions(
     ...options,
     headerBackTitle: props.children,
     headerBackTitleStyle: props.style,
-    headerBackImageSource: props.src,
+    headerBackIcon: props.src ? { type: 'image' as const, source: props.src } : undefined,
     headerBackButtonDisplayMode: props.displayMode,
     headerBackButtonMenuEnabled: props.withMenu,
     headerBackVisible: props.hidden !== undefined ? !props.hidden : undefined,

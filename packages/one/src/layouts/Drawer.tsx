@@ -9,7 +9,7 @@ import { withLayoutContext } from './withLayoutContext'
 
 const DrawerNavigator = createDrawerNavigator().Navigator
 
-export const Drawer = withLayoutContext<
+export const Drawer: ReturnType<typeof withLayoutContext> = withLayoutContext<
   DrawerNavigationOptions,
   typeof DrawerNavigator,
   DrawerNavigationState<ParamListBase>,

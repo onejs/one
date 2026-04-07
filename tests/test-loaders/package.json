@@ -18,7 +18,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native": "~8.0.0-alpha.17",
     "@tamagui/config": "2.0.0-rc.36-1775258360494",
     "@vxrn/color-scheme": "workspace:*",
     "expo": "~55.0.7",

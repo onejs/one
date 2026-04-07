@@ -1,13 +1,14 @@
 import {
   type NavigationProp,
   type NavigationState,
+  type ParamListBase,
   useNavigation,
 } from '@react-navigation/native'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useOneRouter } from '../router/router'
 
-type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
+type GenericNavigation = NavigationProp<ParamListBase> & {
   getState(): NavigationState | undefined
 }
 

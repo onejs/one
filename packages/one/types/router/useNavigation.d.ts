@@ -1,4 +1,4 @@
-import { type NavigationProp } from '@react-navigation/native';
+import { type NavigationProp, type ParamListBase } from '@react-navigation/native';
 /**
  * Returns the React Navigation navigation object for the current route.
  * Provides low-level access to navigation actions, events, and screen options.
@@ -13,6 +13,6 @@ import { type NavigationProp } from '@react-navigation/native';
  * navigation.setOptions({ title: 'My Screen' })
  * ```
  */
-export declare function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>(parent?: string): T;
+export declare function useNavigation<T = NavigationProp<ParamListBase>>(parent?: string): T;
 export declare function resolveParentId(contextKey: string, parentId?: string | null): string | null;
 //# sourceMappingURL=useNavigation.d.ts.map

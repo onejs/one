@@ -1,5 +1,5 @@
 import { createNavigatorFactory } from '@react-navigation/core'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
+import { SafeAreaProviderCompat } from '@react-navigation/elements/internal'
 import type {
   EventMapBase,
   NavigationState,

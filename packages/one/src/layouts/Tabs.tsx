@@ -42,7 +42,7 @@ type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & {
   href?: OneRouter.Href | null
 }
 
-export const Tabs = Object.assign(
+export const Tabs: ReturnType<typeof withLayoutContext> & { Protected: typeof Protected } = Object.assign(
   withLayoutContext<
     BottomTabNavigationOptionsWithHref,
     typeof BottomTabNavigator,

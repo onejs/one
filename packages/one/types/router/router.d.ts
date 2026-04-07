@@ -3,7 +3,7 @@
  * We need to treat exports as an API and not change them, maybe not
  * the best decision.
  */
-import { type NavigationContainerRefWithCurrent, type NavigationState } from '@react-navigation/native';
+import { type NavigationContainerRefWithCurrent, type NavigationState, type ParamListBase } from '@react-navigation/native';
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
@@ -42,7 +42,7 @@ export declare function subscribeToValidationState(subscriber: (state: Validatio
 export declare function setValidationState(state: ValidationState): void;
 export declare function getValidationState(): ValidationState;
 export declare function useValidationState(): ValidationState;
-export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
+export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ParamListBase>, initialLocation?: URL): void;
 /**
  * called by NavigationContainer's onStateChange callback
  * uses onStateChange instead of addListener('state') because onStateChange

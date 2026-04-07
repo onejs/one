@@ -74,7 +74,8 @@ export { href } from './href'
 // components
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
-export { NativeTabs } from './layouts/NativeTabs'
+/** @deprecated Native tabs are now the default on iOS/Android in `Tabs`. Use `Tabs` instead. */
+export { Tabs as NativeTabs } from './layouts/Tabs'
 export { Protected, type ProtectedProps } from './views/Protected'
 // Stack header compositional API types
 export type {

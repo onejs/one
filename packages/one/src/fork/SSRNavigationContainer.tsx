@@ -131,7 +131,16 @@ export function SSRNavigationContainer({
   linking?: any
   children: React.ReactNode
 }) {
-  const linkingCtx = linking ? { options: linking } : SSR_LINKING_CTX
+  // v8: pre-process linking options to match client NavigationContainer shape
+  const linkingCtx = linking
+    ? {
+        options: {
+          ...linking,
+          enabled: linking.enabled !== false,
+          prefixes: linking.prefixes ?? [],
+        },
+      }
+    : SSR_LINKING_CTX
   return (
     <LinkingContext.Provider value={linkingCtx}>
       <NavigationContainerRefContext.Provider value={SSR_NAV_REF}>

@@ -63,7 +63,7 @@ export function appendStackHeaderTitlePropsToOptions(
   return {
     ...options,
     title: props.children,
-    headerLargeTitle: props.large,
+    headerLargeTitleEnabled: props.large,
     // Large titles on iOS require headerTransparent for proper scroll behavior
     // Only set on iOS since headerLargeTitle is iOS-only
     ...(props.large && Platform.OS === 'ios' && { headerTransparent: true }),
