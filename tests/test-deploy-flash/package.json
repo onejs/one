@@ -1,0 +1,32 @@
+{
+  "name": "test-deploy-flash",
+  "version": "1.15.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "one build",
+    "clean": "one clean",
+    "dev": "one dev",
+    "serve": "one serve",
+    "prod": "one build && one serve",
+    "test": "TEST_ONLY=dev bun run vitest --run --reporter=verbose",
+    "test:prod": "TEST_ONLY=prod bun run vitest --run --reporter=verbose",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-navigation/native": "~7.2.2",
+    "expo": "~55.0.7",
+    "one": "workspace:*",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-native": "0.83.2",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "get-port-please": "^3.1.2",
+    "playwright": "^1.58.2",
+    "typescript": "^5.7.3",
+    "vite": "^8.0.0",
+    "vitest": "^4.1.0"
+  }
+}

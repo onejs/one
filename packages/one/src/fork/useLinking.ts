@@ -566,6 +566,26 @@ export function useLinking(
 
       const pendingPath = pendingPopStatePathRef.current
       const route = findFocusedRoute(state)
+
+      // guard: during spa-shell hydration, child navigators may not have
+      // mounted yet. getRootState() returns a state where group routes like
+      // (app) have no nested state. findFocusedRoute stops at the group
+      // route because there's nothing to drill into. if we compute the path
+      // from this incomplete state, getPathFromState picks the first child
+      // alphabetically (e.g. /deploy) instead of the correct route (e.g. /).
+      // detect this by checking if the focused route is a group route — leaf
+      // routes are never named with parentheses.
+      if (route && /^\(.*\)$/.test(route.name)) {
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(
+            `[one] 📜 onStateChange - skipping: focused route is a group`,
+            route.name,
+            `(child navigator not mounted yet)`
+          )
+        }
+        return
+      }
+
       let path = getPathForRoute(route, state)
 
       // when navigators mount late (e.g. during spa-shell hydration), the
