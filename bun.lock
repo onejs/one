@@ -904,6 +904,26 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-deploy-flash": {
+      "name": "test-deploy-flash",
+      "version": "1.15.4",
+      "dependencies": {
+        "@react-navigation/native": "~7.2.2",
+        "expo": "~55.0.7",
+        "one": "workspace:*",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "react-native": "0.83.2",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.58.2",
+        "typescript": "^5.7.3",
+        "vite": "^8.0.0",
+        "vitest": "^4.1.0",
+      },
+    },
     "tests/test-env": {
       "name": "test-env",
       "version": "1.15.4",
@@ -4595,6 +4615,8 @@
     "test-css-merged": ["test-css-merged@workspace:tests/test-css-merged"],
 
     "test-css-preload": ["test-css-preload@workspace:tests/test-css-preload"],
+
+    "test-deploy-flash": ["test-deploy-flash@workspace:tests/test-deploy-flash"],
 
     "test-env": ["test-env@workspace:tests/test-env"],
 
