@@ -125,16 +125,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // path.join(routerRoot, '') would resolve to routerRoot ('app'),
             // so we must branch on route.file, not the joined path.
             const isGeneratedNotFound = route.file === ''
-            const routeFile = isGeneratedNotFound
-              ? ''
-              : path.join(routerRoot, route.file)
+            const routeFile = isGeneratedNotFound ? '' : path.join(routerRoot, route.file)
             runner.clearCache()
 
             globalThis['__vxrnresetState']?.()
 
-            const exported = isGeneratedNotFound
-              ? {}
-              : await runner.import(routeFile)
+            const exported = isGeneratedNotFound ? {} : await runner.import(routeFile)
 
             // helper to run a loader and track dependencies
             async function runLoaderWithTracking(

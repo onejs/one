@@ -142,8 +142,7 @@ test('browser back then forward restores the pushed stack (regression for extern
   // The bug: createMemoryHistory's closure `index` is NOT updated by external
   // popstate, so history.replace writes to items[staleIndex] — overwriting
   // the '/todo/abc' record we just navigated away from.
-  const popStateLog: Array<{ path: string; recordPath?: string; recordState: any }> =
-    []
+  const popStateLog: Array<{ path: string; recordPath?: string; recordState: any }> = []
   const unlisten = history.listen(() => {
     const idx = history.index
     const rec = history.get(idx)
