@@ -436,9 +436,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   const wrapSuspense = (children: any) => {
     if (process.env.TAMAGUI_TARGET === 'native') {
       // native opt-out: set native.suspendRoutes to false in your one() config
-      // useful for JS-driven animations (e.g. SOI) where the null fallback
-      // causes a blank flash before the route component mounts
-      if (process.env.ONE_SUSPEND_ROUTES_NATIVE === '0') {
+      // OR set globalThis.__ONE_DISABLE_SUSPENSE_ROUTES__ = true at runtime
+      // (the env var is used at the consuming app's build time, the runtime
+      // flag is for environments like sootsim that need to disable it after
+      // one has already been bundled).
+      //
+      // useful for JS-driven animations (e.g. sootsim canvas renderer) where
+      // the rAF-driven stack push animation dominates the main thread and
+      // React 18 defers the suspense subtree commit until rAF stops, which
+      // means the new route content is null for the entire enter animation
+      // (user sees only the drop shadow with no card content).
+      if (
+        process.env.ONE_SUSPEND_ROUTES_NATIVE === '0' ||
+        (globalThis as any).__ONE_DISABLE_SUSPENSE_ROUTES__ === true
+      ) {
         return children
       }
       return <Suspense fallback={null}>{children}</Suspense>
@@ -447,7 +458,10 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     // web opt-in: set web.suspendRoutes to true in your one() config
     // off by default because suspense causes flickers on web during nav
     // since react navigation doesn't properly respect startTransition
-    if (process.env.ONE_SUSPEND_ROUTES === '1') {
+    if (
+      process.env.ONE_SUSPEND_ROUTES === '1' &&
+      (globalThis as any).__ONE_DISABLE_SUSPENSE_ROUTES__ !== true
+    ) {
       return <Suspense fallback={null}>{children}</Suspense>
     }
     return children
