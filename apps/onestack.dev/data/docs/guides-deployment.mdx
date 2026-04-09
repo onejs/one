@@ -287,7 +287,9 @@ The generated `wrangler.jsonc` includes:
 
 #### Wrangler Configuration
 
-The generated `wrangler.jsonc` is ready to use. To customize, create your own `wrangler.jsonc` in your project root and One will use it as a base.
+The generated `wrangler.jsonc` is ready to use. To customize it, create your own `wrangler.jsonc` in your project root and One will merge it into the generated `dist/wrangler.jsonc`.
+
+One preserves build-required settings like `main`, `assets.directory`, `assets.binding`, `assets.run_worker_first`, `find_additional_modules`, the lazy-loading `rules`, and it always includes `nodejs_compat` in `compatibility_flags`.
 
 Key settings:
 
