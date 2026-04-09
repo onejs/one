@@ -298,6 +298,22 @@ export function createMemoryHistory() {
           return
         }
 
+        // @modified - Sync closure `index` with window.history.state on external
+        // back/forward navigation. Without this, the closure `index` stays stale
+        // after browser back/forward, and any subsequent push/replace writes to
+        // the wrong slot in `items`, corrupting the stored navigation state.
+        // Specifically: after back, onStateChange calls history.replace, which
+        // writes to `items[closureIndex]` — if closureIndex still points at the
+        // entry we just navigated away from, we overwrite it and lose the
+        // forward entry's state, so forward can't restore the real stack.
+        const popId = window.history.state?.id
+        if (popId) {
+          const foundIndex = items.findIndex((item) => item.id === popId)
+          if (foundIndex > -1) {
+            index = foundIndex
+          }
+        }
+
         listener()
       }
 
