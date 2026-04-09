@@ -11,6 +11,8 @@
  * - Dynamic routes
  */
 
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { type Browser, type BrowserContext, type Page, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -27,6 +29,38 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await browser.close()
+})
+
+describe('Cloudflare Wrangler config', () => {
+  it('should merge root wrangler.jsonc into the generated dist config', () => {
+    const config = JSON.parse(
+      readFileSync(join(process.cwd(), 'dist', 'wrangler.jsonc'), 'utf-8')
+    )
+
+    expect(config.name).toBe('test-cloudflare-user-config')
+    expect(config.main).toBe('worker.js')
+    expect(config.compatibility_date).toBe('2025-01-01')
+    expect(config.compatibility_flags).toEqual(
+      expect.arrayContaining(['nodejs_compat', 'nodejs_als'])
+    )
+    expect(config.find_additional_modules).toBe(true)
+    expect(config.vars.CUSTOM_VALUE).toBe('from-root-config')
+    expect(config.assets).toMatchObject({
+      directory: 'client',
+      binding: 'ASSETS',
+      run_worker_first: true,
+      html_handling: 'auto-trailing-slash',
+    })
+    expect(config.rules).toEqual(
+      expect.arrayContaining([
+        { type: 'ESModule', globs: ['./server/**/*.js'], fallthrough: true },
+        { type: 'ESModule', globs: ['./api/**/*.js'], fallthrough: true },
+        { type: 'ESModule', globs: ['./middlewares/**/*.js'], fallthrough: true },
+        { type: 'ESModule', globs: ['./assets/**/*.js'], fallthrough: true },
+        { type: 'ESModule', globs: ['./extra/**/*.js'], fallthrough: true },
+      ])
+    )
+  })
 })
 
 describe('Cloudflare Middleware', () => {

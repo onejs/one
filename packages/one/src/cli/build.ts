@@ -43,6 +43,183 @@ function normalizeDeploy(
   return deploy
 }
 
+type JsonPrimitive = string | number | boolean | null
+type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
+
+const GENERATED_CLOUDFLARE_WRANGLER_RULES = [
+  { type: 'ESModule', globs: ['./server/**/*.js'], fallthrough: true },
+  { type: 'ESModule', globs: ['./api/**/*.js'], fallthrough: true },
+  { type: 'ESModule', globs: ['./middlewares/**/*.js'], fallthrough: true },
+  { type: 'ESModule', globs: ['./assets/**/*.js'], fallthrough: true },
+]
+
+function isPlainObject(value: unknown): value is Record<string, JsonValue> {
+  return !!value && typeof value === 'object' && !Array.isArray(value)
+}
+
+function mergeJsonObjects(
+  base: Record<string, JsonValue>,
+  overrides: Record<string, JsonValue>
+): Record<string, JsonValue> {
+  const merged: Record<string, JsonValue> = { ...base }
+
+  for (const [key, value] of Object.entries(overrides)) {
+    const baseValue = merged[key]
+    if (isPlainObject(baseValue) && isPlainObject(value)) {
+      merged[key] = mergeJsonObjects(baseValue, value)
+    } else {
+      merged[key] = value
+    }
+  }
+
+  return merged
+}
+
+function dedupeJsonValues<T extends JsonValue>(values: T[]): T[] {
+  const seen = new Set<string>()
+  return values.filter((value) => {
+    const key = JSON.stringify(value)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function mergeCloudflareCompatibilityFlags(flags: unknown): string[] {
+  const userFlags = Array.isArray(flags) ? flags.filter((flag): flag is string => typeof flag === 'string') : []
+
+  return dedupeJsonValues<string>(['nodejs_compat', ...userFlags])
+}
+
+function mergeCloudflareRules(rules: unknown): JsonValue[] {
+  const userRules = Array.isArray(rules)
+    ? rules.filter((rule): rule is JsonValue => isPlainObject(rule))
+    : []
+
+  return dedupeJsonValues<JsonValue>([
+    ...GENERATED_CLOUDFLARE_WRANGLER_RULES,
+    ...userRules,
+  ])
+}
+
+// minimal JSONC parser: strips line/block comments (string-aware) and trailing
+// commas, then runs JSON.parse. sufficient for small hand-written config files.
+function parseJsonc(text: string): unknown {
+  let out = ''
+  let i = 0
+  let inString = false
+  let quote = ''
+  while (i < text.length) {
+    const ch = text[i]
+    const next = text[i + 1]
+    if (inString) {
+      if (ch === '\\') {
+        out += ch + (next ?? '')
+        i += 2
+        continue
+      }
+      if (ch === quote) inString = false
+      out += ch
+      i++
+      continue
+    }
+    if (ch === '"' || ch === "'") {
+      inString = true
+      quote = ch
+      out += ch
+      i++
+      continue
+    }
+    if (ch === '/' && next === '/') {
+      while (i < text.length && text[i] !== '\n') i++
+      continue
+    }
+    if (ch === '/' && next === '*') {
+      i += 2
+      while (i < text.length - 1 && !(text[i] === '*' && text[i + 1] === '/')) i++
+      i += 2
+      continue
+    }
+    out += ch
+    i++
+  }
+  return JSON.parse(out.replace(/,(\s*[}\]])/g, '$1'))
+}
+
+async function loadUserWranglerConfig(
+  root: string
+): Promise<{ path: string; config: Record<string, JsonValue> } | null> {
+  const candidateRoots = [...new Set([root, process.cwd()])]
+
+  for (const candidateRoot of candidateRoots) {
+    for (const fileName of ['wrangler.jsonc', 'wrangler.json']) {
+      const configPath = join(candidateRoot, fileName)
+      if (!(await FSExtra.pathExists(configPath))) {
+        continue
+      }
+
+      const contents = await FSExtra.readFile(configPath, 'utf-8')
+      let parsed: unknown
+      try {
+        parsed = parseJsonc(contents)
+      } catch (err) {
+        throw new Error(
+          `Failed to parse ${relative(process.cwd(), configPath)}: ${(err as Error).message}`
+        )
+      }
+
+      if (!isPlainObject(parsed)) {
+        throw new Error(
+          `Expected ${relative(process.cwd(), configPath)} to contain a top-level JSON object`
+        )
+      }
+
+      return {
+        path: configPath,
+        config: parsed,
+      }
+    }
+  }
+
+  return null
+}
+
+function createCloudflareWranglerConfig(
+  projectName: string,
+  userConfig?: Record<string, JsonValue>
+): Record<string, JsonValue> {
+  const generatedConfig: Record<string, JsonValue> = {
+    name: projectName,
+    main: 'worker.js',
+    compatibility_date: '2024-12-05',
+    compatibility_flags: ['nodejs_compat'],
+    find_additional_modules: true,
+    rules: GENERATED_CLOUDFLARE_WRANGLER_RULES,
+    assets: {
+      directory: 'client',
+      binding: 'ASSETS',
+      run_worker_first: true,
+    },
+  }
+
+  const mergedConfig = userConfig ? mergeJsonObjects(generatedConfig, userConfig) : generatedConfig
+
+  mergedConfig.main = 'worker.js'
+  mergedConfig.find_additional_modules = true
+  mergedConfig.compatibility_flags = mergeCloudflareCompatibilityFlags(
+    mergedConfig.compatibility_flags
+  )
+  mergedConfig.rules = mergeCloudflareRules(mergedConfig.rules)
+  mergedConfig.assets = {
+    ...(isPlainObject(mergedConfig.assets) ? mergedConfig.assets : {}),
+    directory: 'client',
+    binding: 'ASSETS',
+    run_worker_first: true,
+  }
+
+  return mergedConfig
+}
+
 // reads package.json name, strips npm scope prefix for use as cloudflare worker name
 async function getCloudflareProjectName(root: string): Promise<string> {
   try {
@@ -1244,25 +1421,21 @@ export default {
       // Use jsonc for wrangler config (recommended for new projects)
       // Use assets with run_worker_first so all requests go through worker (enables middleware on SSG pages)
       const projectName = await getCloudflareProjectName(options.root)
+      const userWranglerConfig = await loadUserWranglerConfig(options.root)
+      const wranglerConfig = createCloudflareWranglerConfig(
+        projectName,
+        userWranglerConfig?.config
+      )
 
-      const wranglerConfig = `{
-  "name": ${JSON.stringify(projectName)},
-  "main": "worker.js",
-  "compatibility_date": "2024-12-05",
-  "compatibility_flags": ["nodejs_compat"],
-  "find_additional_modules": true,
-  "rules": [
-    { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./middlewares/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./assets/**/*.js"], "fallthrough": true }
-  ],
-  "assets": { "directory": "client", "binding": "ASSETS", "run_worker_first": true }
-}
-`
+      if (userWranglerConfig) {
+        console.info(
+          ` [cloudflare] Merging ${relative(options.root, userWranglerConfig.path)} into ${outDir}/wrangler.jsonc`
+        )
+      }
+
       await FSExtra.writeFile(
         join(options.root, outDir, 'wrangler.jsonc'),
-        wranglerConfig
+        `${JSON.stringify(wranglerConfig, null, 2)}\n`
       )
 
       postBuildLogs.push(`Cloudflare worker bundled at ${outDir}/worker.js`)

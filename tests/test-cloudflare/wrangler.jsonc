@@ -1,0 +1,14 @@
+{
+  "name": "test-cloudflare-user-config",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_als"],
+  "vars": {
+    "CUSTOM_VALUE": "from-root-config"
+  },
+  "assets": {
+    "html_handling": "auto-trailing-slash"
+  },
+  "rules": [
+    { "type": "ESModule", "globs": ["./extra/**/*.js"], "fallthrough": true }
+  ]
+}
