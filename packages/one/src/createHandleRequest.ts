@@ -483,6 +483,24 @@ export function createHandleRequest(
             continue
           }
 
+          // static-looking probes (sourcemaps, .well-known, favicons) that
+          // only match the auto-generated placeholder +not-found (route.file
+          // is '' — no user-defined +not-found page exists) should get a bare
+          // 404 rather than a full SSR render. browser devtools & crawlers
+          // want a status code, not an HTML shell, and rendering the layout
+          // tree for every probe is wasteful.
+          if (looksLikeStaticFile && route.file === '') {
+            if (debugRouter) {
+              console.info(
+                `[one] ⚡ ${pathname} → 404 for probe path (no +not-found defined)`
+              )
+            }
+            return new Response(null, {
+              status: 404,
+              headers: { 'Content-Type': 'text/plain' },
+            })
+          }
+
           if (debugRouter) {
             console.info(
               `[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`
