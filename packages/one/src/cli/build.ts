@@ -86,7 +86,9 @@ function dedupeJsonValues<T extends JsonValue>(values: T[]): T[] {
 }
 
 function mergeCloudflareCompatibilityFlags(flags: unknown): string[] {
-  const userFlags = Array.isArray(flags) ? flags.filter((flag): flag is string => typeof flag === 'string') : []
+  const userFlags = Array.isArray(flags)
+    ? flags.filter((flag): flag is string => typeof flag === 'string')
+    : []
 
   return dedupeJsonValues<string>(['nodejs_compat', ...userFlags])
 }
@@ -202,7 +204,9 @@ function createCloudflareWranglerConfig(
     },
   }
 
-  const mergedConfig = userConfig ? mergeJsonObjects(generatedConfig, userConfig) : generatedConfig
+  const mergedConfig = userConfig
+    ? mergeJsonObjects(generatedConfig, userConfig)
+    : generatedConfig
 
   mergedConfig.main = 'worker.js'
   mergedConfig.find_additional_modules = true
