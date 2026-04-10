@@ -34,6 +34,9 @@ export function createReactNativeDevServerPlugin(
       const { middleware, websocketEndpoints } = createDevMiddleware({
         serverBaseUrl: reactNativeDevToolsUrl,
         logger: console,
+        unstable_experiments: {
+          enableStandaloneFuseboxShell: false,
+        },
       })
 
       server.middlewares.use(middleware)

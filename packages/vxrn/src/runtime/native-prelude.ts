@@ -88,6 +88,16 @@ if (globalThis.ErrorUtils && globalThis.ErrorUtils.setGlobalHandler) {
   });
 }
 
+// ensure console exists before any library prelude touches it in release bundles
+globalThis.console = globalThis.console || {};
+var console = globalThis.console;
+console.log = console.log || function() {};
+console.info = console.info || function() {};
+console.warn = console.warn || function() {};
+console.error = console.error || function() {};
+console.debug = console.debug || function() {};
+console.trace = console.trace || function() {};
+
 // reanimated compat - these console methods must exist to avoid EXC_BAD_ACCESS crash
 console.assert = console.assert || function() {};
 console.clear = console.clear || function() {};
