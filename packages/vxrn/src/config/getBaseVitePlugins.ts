@@ -1,17 +1,32 @@
+import { createVXRNCompilerPlugin } from '@vxrn/compiler'
+import { existsSync } from 'node:fs'
+import { extname } from 'node:path'
 import type { PluginOption } from 'vite'
 import { ssrExtensions, webExtensions } from '../constants'
-import FSExtra from 'fs-extra'
-import { extname } from 'node:path'
-import { createVXRNCompilerPlugin } from '@vxrn/compiler'
 
 // essentially base web config not base everything
 
 export function getBaseVitePlugins(): PluginOption[] {
+  // cache pathExists results during build (files don't change)
+  // skip caching in dev since files can be added/removed
+  const pathExistsCache = new Map<string, boolean>()
+  let isBuild = false
+
+  function cachedPathExists(path: string): boolean {
+    if (!isBuild) return existsSync(path)
+    const cached = pathExistsCache.get(path)
+    if (cached !== undefined) return cached
+    const exists = existsSync(path)
+    pathExistsCache.set(path, exists)
+    return exists
+  }
+
   return [
     {
       name: 'platform-specific-resolve',
       enforce: 'pre',
-      config() {
+      config(_, { command }) {
+        isBuild = command === 'build'
         return {
           resolve: {
             // if this is on it breaks resolveId below
@@ -75,25 +90,27 @@ export function getBaseVitePlugins(): PluginOption[] {
           }
         }
 
-        // not in node_modules, vite doesn't apply extensions! we need to manually
-        const jsExtension = extname(resolved.id)
-        const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), '')
+        if (!process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
+          // not in node_modules, vite doesn't apply extensions! we need to manually
+          const jsExtension = extname(resolved.id)
+          const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), '')
 
-        const extensionsByEnvironment = {
-          client: ['web'],
-          ssr: ['server', 'web'],
-          ios: ['ios', 'native'],
-          android: ['android', 'native'],
-        }
+          const extensionsByEnvironment = {
+            client: ['web'],
+            ssr: ['server', 'web'],
+            ios: ['ios', 'native'],
+            android: ['android', 'native'],
+          }
 
-        const platformSpecificExtension = extensionsByEnvironment[this.environment.name]
+          const platformSpecificExtension = extensionsByEnvironment[this.environment.name]
 
-        if (platformSpecificExtension) {
-          for (const platformExtension of platformSpecificExtension) {
-            const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
-            if (await FSExtra.pathExists(fullPath)) {
-              return {
-                id: fullPath,
+          if (platformSpecificExtension) {
+            for (const platformExtension of platformSpecificExtension) {
+              const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
+              if (cachedPathExists(fullPath)) {
+                return {
+                  id: fullPath,
+                }
               }
             }
           }
