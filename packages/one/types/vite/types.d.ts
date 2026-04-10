@@ -24,6 +24,7 @@ export type RouteInfo<TRegex = string> = {
     middlewares?: RouteNode[];
     type: One.RouteType;
     isNotFound?: boolean;
+    hasLoader?: boolean;
 };
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
