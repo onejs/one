@@ -951,6 +951,11 @@ export async function build(args: {
       })
     }
 
+    // record whether this route exports a loader. the worker checks this and
+    // skips importing the page bundle for loader requests on routes with no
+    // loader — otherwise workerd may crash evaluating RN/Tamagui deps.
+    foundRoute.hasLoader = typeof exported.loader === 'function'
+
     const isDynamic = !!Object.keys(foundRoute.routeKeys).length
 
     if (

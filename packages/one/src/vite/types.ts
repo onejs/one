@@ -34,6 +34,10 @@ export type RouteInfo<TRegex = string> = {
   middlewares?: RouteNode[]
   type: One.RouteType
   isNotFound?: boolean
+  // when explicitly false, the loader dispatch short-circuits with an empty
+  // module instead of importing the route's server bundle. avoids evaluating
+  // page modules in workerd for routes that have no loader export.
+  hasLoader?: boolean
 }
 
 export namespace One {
