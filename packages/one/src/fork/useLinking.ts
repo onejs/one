@@ -40,6 +40,24 @@ import { appendBaseUrl } from './getPathFromState-mods'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
 
+// @modified - Convert a full navigation state snapshot from history into a
+// partial state so React Navigation rehydrates fresh navigator/route keys on
+// browser back/forward restoration.
+const getPartialState = (state: any): any => {
+  if (!state) return undefined
+
+  const { key, routeNames, stale, routes, ...partial } = state
+
+  return {
+    ...partial,
+    stale: true as const,
+    routes: routes.map(({ key: routeKey, state: childState, ...route }: any) => ({
+      ...route,
+      ...(childState ? { state: getPartialState(childState) } : null),
+    })),
+  }
+}
+
 /**
  * Find the matching navigation state that changed between 2 navigation states
  * e.g.: a -> b -> c -> d and a -> b -> c -> e -> f, if history in b changed, b is the matching state
@@ -343,7 +361,7 @@ export function useLinking(
         if (process.env.ONE_DEBUG_ROUTER) {
           console.info(`[one] 📜 history record found, resetRoot to:`, record.state)
         }
-        navigation.resetRoot(record.state)
+        navigation.resetRoot(getPartialState(record.state))
         return
       }
 
