@@ -18,3 +18,27 @@ export const webExtensions = [
 ]
 
 export const ssrExtensions = ['.server.tsx', '.server.ts', ...webExtensions]
+
+export const iosExtensions = [
+  '.ios.tsx',
+  '.ios.ts',
+  '.ios.mjs',
+  '.ios.js',
+  '.native.tsx',
+  '.native.ts',
+  '.native.mjs',
+  '.native.js',
+  ...viteDefaultExtensions,
+]
+
+export const androidExtensions = [
+  '.android.tsx',
+  '.android.ts',
+  '.android.mjs',
+  '.android.js',
+  '.native.tsx',
+  '.native.ts',
+  '.native.mjs',
+  '.native.js',
+  ...viteDefaultExtensions,
+]
