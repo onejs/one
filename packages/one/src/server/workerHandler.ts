@@ -632,6 +632,16 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           })
         }
 
+        // route is known to export no loader → return empty module without
+        // importing the page bundle. evaluating the server bundle for a no-loader
+        // SSG page inside workerd can crash when the page pulls in RN/Tamagui
+        // modules that aren't compatible with the workers runtime.
+        if (route.hasLoader === false) {
+          return new Response('export function loader() { return undefined }', {
+            headers: { 'Content-Type': 'text/javascript' },
+          })
+        }
+
         const loaderRoute = {
           ...route,
           routeFile: route.file,

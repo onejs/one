@@ -449,6 +449,19 @@ export function createHandleRequest(
               continue
             }
 
+            // route is known to export no loader → return empty module without
+            // importing the page bundle. on workerd/cloudflare, evaluating a
+            // no-loader SSG page's server bundle can crash when it pulls in
+            // RN/Tamagui modules that aren't compatible with the workers runtime.
+            if (route.hasLoader === false) {
+              const emptyBody = isNativePlatform
+                ? 'exports.loader=function(){return undefined}'
+                : 'export function loader() { return undefined }'
+              return new Response(emptyBody, {
+                headers: { 'Content-Type': 'text/javascript' },
+              })
+            }
+
             const cleanedRequest = new Request(finalUrl, request)
             return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route)
           }
