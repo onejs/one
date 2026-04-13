@@ -1,4 +1,6 @@
 import React from 'react'
+import { checkSkewAndReload } from '../skewProtection'
+import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 
 /**
  * Route context information passed to error boundaries.
@@ -63,6 +65,22 @@ export class Try extends React.Component<TryProps, TryState> {
         '\nComponent Stack:',
         errorInfo.componentStack
       )
+    }
+
+    // skew protection: chunk-load errors at the route level are unambiguous,
+    // reload immediately. for any other render error, do a one-shot version
+    // check and only reload if the deployed build actually changed. genuine
+    // bugs fall through to the route's own ErrorBoundary UI below.
+    if (
+      process.env.TAMAGUI_TARGET !== 'native' &&
+      process.env.NODE_ENV === 'production' &&
+      process.env.ONE_SKEW_PROTECTION !== 'false'
+    ) {
+      if (isChunkLoadError(error)) {
+        handleSkewError()
+      } else {
+        checkSkewAndReload()
+      }
     }
 
     // Dispatch error event for devtools integration (web only - CustomEvent doesn't exist on native)

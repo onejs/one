@@ -1,5 +1,7 @@
 import React from 'react'
 import { Platform, Text, View } from 'react-native'
+import { checkSkewAndReload } from '../skewProtection'
+import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 
 type RootErrorBoundaryState = {
   hasError: boolean
@@ -27,6 +29,22 @@ export class RootErrorBoundary extends React.Component<
     console.error(
       `[One] Root error boundary caught error:\n${printError(error)}\n${info.componentStack}`
     )
+
+    // skew protection: chunk-load errors are unambiguous → reload immediately.
+    // for any other render error, do a one-shot version check and only reload
+    // if the deployed build actually changed. genuine bugs fall through to the
+    // fallback UI below.
+    if (
+      process.env.TAMAGUI_TARGET !== 'native' &&
+      process.env.NODE_ENV === 'production' &&
+      process.env.ONE_SKEW_PROTECTION !== 'false'
+    ) {
+      if (isChunkLoadError(error)) {
+        handleSkewError()
+      } else {
+        checkSkewAndReload()
+      }
+    }
 
     // Dispatch error event for devtools (web only - CustomEvent doesn't exist on native)
     if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
