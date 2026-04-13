@@ -57,13 +57,24 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const routerRoot = getRouterRootFromOneOptions(options)
 
+  // when native is explicitly disabled, skip metro, the vxrn RN plugin set,
+  // and all native-only globals — One runs as a pure web framework.
+  const nativeDisabled = options.native === false
+  const nativeOptions = options.native === false ? undefined : options.native
+
+  if (nativeDisabled) {
+    // tamagui compiler reads this to decide whether to process the native env
+    globalThis.__vxrnEnableNativeEnv = false
+  }
+
   /**
    * A non-null value means that we are going to use Metro.
    */
   const metroOptions:
     | (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions)
     | null = (() => {
-    if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
+    if (nativeDisabled) return null
+    if (nativeOptions?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
 
     if (process.env.ONE_METRO_MODE) {
       console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
@@ -73,15 +84,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     const defaultMetroOptions = getViteMetroPluginOptions({
       projectRoot:
-        (options.native?.bundlerOptions as any)?.argv?.projectRoot || process.cwd(),
+        (nativeOptions?.bundlerOptions as any)?.argv?.projectRoot || process.cwd(),
       relativeRouterRoot: routerRoot,
       ignoredRouteFiles: options.router?.ignoredRouteFiles,
-      userDefaultConfigOverrides: (options.native?.bundlerOptions as any)
+      userDefaultConfigOverrides: (nativeOptions?.bundlerOptions as any)
         ?.defaultConfigOverrides,
       setupFile: options.setupFile,
     })
 
-    const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
+    const userMetroOptions = nativeOptions?.bundlerOptions as typeof defaultMetroOptions
 
     const babelConfig = {
       ...defaultMetroOptions?.babelConfig,
@@ -119,6 +130,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     vxrnPlugins.push(
       vxrnVitePlugin({
         metro: metroOptions,
+        disableNative: nativeDisabled,
       })
     )
   } else {
@@ -306,7 +318,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             onScannedDeps({ hasReanimated, hasNativewind }) {
               configureVXRNCompilerPlugin({
                 enableReanimated: hasReanimated,
-                enableNativeCSS: options.native?.css ?? hasNativewind,
+                enableNativeCSS: nativeOptions?.css ?? hasNativewind,
                 enableNativewind: hasNativewind,
               })
             },
@@ -632,9 +644,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ios: {
               define: {
                 ...getPlatformEnvDefine('ios'),
-                ...(options.native?.suspendRoutes !== undefined && {
+                ...(nativeOptions?.suspendRoutes !== undefined && {
                   'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
-                    options.native.suspendRoutes ? '1' : '0'
+                    nativeOptions.suspendRoutes ? '1' : '0'
                   ),
                 }),
               },
@@ -642,9 +654,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             android: {
               define: {
                 ...getPlatformEnvDefine('android'),
-                ...(options.native?.suspendRoutes !== undefined && {
+                ...(nativeOptions?.suspendRoutes !== undefined && {
                   'process.env.ONE_SUSPEND_ROUTES_NATIVE': JSON.stringify(
-                    options.native.suspendRoutes ? '1' : '0'
+                    nativeOptions.suspendRoutes ? '1' : '0'
                   ),
                 }),
               },
@@ -814,17 +826,21 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
 
   // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
+  if (!nativeDisabled) {
+    globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
+  }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
   const flags: One.Flags = {}
 
   // pass config to the rolldown native entry (createNativeDevEngine reads this)
-  globalThis.__vxrnNativeEntryConfig = {
-    routerRoot: routerRoot,
-    ignoredRouteFiles: options.router?.ignoredRouteFiles,
-    setupFile: options.setupFile,
-    flags,
+  if (!nativeDisabled) {
+    globalThis.__vxrnNativeEntryConfig = {
+      routerRoot: routerRoot,
+      ignoredRouteFiles: options.router?.ignoredRouteFiles,
+      setupFile: options.setupFile,
+      flags,
+    }
   }
 
   // source inspector must come before clientTreeShakePlugin so line numbers
@@ -863,9 +879,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...(options.native?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(options.native.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.native.key),
+            ...(nativeOptions?.key && {
+              'process.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
