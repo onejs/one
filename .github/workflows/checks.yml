@@ -2,8 +2,8 @@ name: Checks and Tests
 
 on:
   push:
-    tags-ignore:
-      - '**'
+    branches:
+      - main
     paths-ignore:
       - '**/*.md'
       - '**/CHANGELOG.md'
@@ -11,9 +11,6 @@ on:
     paths-ignore:
       - '**/*.md'
       - '**/CHANGELOG.md'
-  schedule:
-    # daily safety net so checks run even if every recent push was doc-only
-    - cron: '0 12 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -23,7 +20,6 @@ concurrency:
 jobs:
   checks:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -52,7 +48,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
