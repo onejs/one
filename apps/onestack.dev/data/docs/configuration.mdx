@@ -235,6 +235,18 @@ export default {
 
 The native object allows you to configure your native apps.
 
+Pass `false` to completely disable native (iOS/Android) support. When disabled, One will not register the `ios`/`android` Vite environments, skip the Metro / React Native dev server plugins, and skip the rolldown native bundle pipeline — useful when you want to use One purely as a web framework.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      native: false,
+    }),
+  ],
+}
+```
+
 ### native.key
 
 One will set up your React Native app to run via `AppRegistry.registerComponent(app.key)`.

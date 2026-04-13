@@ -15,6 +15,11 @@ import type {
 type VxrnPluginOptions = {
   /** Passing a non-null value will enable metro mode. */
   metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null
+  /**
+   * When true, skip all native (React Native / Metro) plugins so the host
+   * runs as a pure web framework.
+   */
+  disableNative?: boolean
 }
 
 /**
@@ -67,7 +72,9 @@ export function vxrn(options?: VxrnPluginOptions): PluginOption {
     },
     ...getBaseVitePlugins(),
     ...getNonCliModeOnlyVitePlugins(),
-    ...getReactNativePlugins({}, { metro: options?.metro || null }),
+    ...(options?.disableNative
+      ? []
+      : getReactNativePlugins({}, { metro: options?.metro || null })),
   ]
 }
 

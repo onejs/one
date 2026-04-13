@@ -263,7 +263,14 @@ export declare namespace One {
                 ignoreConfigErrors?: boolean;
             };
         };
-        native?: {
+        /**
+         * Set to `false` to completely disable native (iOS/Android) support.
+         *
+         * When disabled, One will not register the `ios`/`android` Vite environments,
+         * skip the Metro / React Native dev server plugins, and skip all native-only
+         * globals. Use this when you want to use One purely as a web framework.
+         */
+        native?: false | ({
             /**
              * The uid of your native app, this will be used internally in one to call
              * `AppRegistry.registerComponent(key)`
@@ -305,7 +312,7 @@ export declare namespace One {
             bundlerOptions?: {
                 currentlyHaveNoOptions?: null;
             };
-        });
+        }));
         web?: {
             /**
              * Choose the default strategy for pages to be rendered on the web.

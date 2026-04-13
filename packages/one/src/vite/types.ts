@@ -311,53 +311,62 @@ export namespace One {
       tsConfigPaths?: boolean | { ignoreConfigErrors?: boolean }
     }
 
-    native?: {
-      /**
-       * The uid of your native app, this will be used internally in one to call
-       * `AppRegistry.registerComponent(key)`
-       */
-      key?: string
+    /**
+     * Set to `false` to completely disable native (iOS/Android) support.
+     *
+     * When disabled, One will not register the `ios`/`android` Vite environments,
+     * skip the Metro / React Native dev server plugins, and skip all native-only
+     * globals. Use this when you want to use One purely as a web framework.
+     */
+    native?:
+      | false
+      | ({
+          /**
+           * The uid of your native app, this will be used internally in one to call
+           * `AppRegistry.registerComponent(key)`
+           */
+          key?: string
 
-      /**
-       * Wrap each route screen in a React Suspense boundary on native.
-       *
-       * On native the JS bundle already contains all route modules, so the
-       * Suspense boundary only catches the async `import()` wrapper which
-       * resolves on the next microtick. Setting this to `false` removes
-       * the `<Suspense fallback={null}>` wrapper, which prevents a blank
-       * flash when JS-driven navigation animations (e.g. SOI) slide a
-       * screen in before the Suspense fallback is replaced.
-       *
-       * @default true
-       */
-      suspendRoutes?: boolean
+          /**
+           * Wrap each route screen in a React Suspense boundary on native.
+           *
+           * On native the JS bundle already contains all route modules, so the
+           * Suspense boundary only catches the async `import()` wrapper which
+           * resolves on the next microtick. Setting this to `false` removes
+           * the `<Suspense fallback={null}>` wrapper, which prevents a blank
+           * flash when JS-driven navigation animations (e.g. SOI) slide a
+           * screen in before the Suspense fallback is replaced.
+           *
+           * @default true
+           */
+          suspendRoutes?: boolean
 
-      /**
-       * Turns on react-native-css-interop support when importing CSS on native
-       */
-      css?: boolean
+          /**
+           * Turns on react-native-css-interop support when importing CSS on native
+           */
+          css?: boolean
 
-      /**
-       * Specifies the bundler to use for native builds. Defaults to 'vite'.
-       *
-       * - 'metro' is recommended for production stability. Note that this option comes with some limitations, see https://onestack.dev/docs/metro-mode#limitations for more info.
-       * - 'vite' is experimental but offers faster builds with SWC.
-       *
-       * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
-       */
-      bundler?: 'metro' | 'vite'
-    } & (
-      | {
-          bundler: 'metro'
-          /** Options merging for Metro is not fully implemented in the One plugin, changing this may not work properly. Search for "METRO-OPTIONS-MERGING" in the codebase for details. */
-          bundlerOptions?: MetroPluginOptions
-        }
-      | {
-          bundler?: 'vite'
-          /** No configurable options with the default vite bundler. */
-          bundlerOptions?: { currentlyHaveNoOptions?: null }
-        }
-    )
+          /**
+           * Specifies the bundler to use for native builds. Defaults to 'vite'.
+           *
+           * - 'metro' is recommended for production stability. Note that this option comes with some limitations, see https://onestack.dev/docs/metro-mode#limitations for more info.
+           * - 'vite' is experimental but offers faster builds with SWC.
+           *
+           * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
+           */
+          bundler?: 'metro' | 'vite'
+        } & (
+          | {
+              bundler: 'metro'
+              /** Options merging for Metro is not fully implemented in the One plugin, changing this may not work properly. Search for "METRO-OPTIONS-MERGING" in the codebase for details. */
+              bundlerOptions?: MetroPluginOptions
+            }
+          | {
+              bundler?: 'vite'
+              /** No configurable options with the default vite bundler. */
+              bundlerOptions?: { currentlyHaveNoOptions?: null }
+            }
+        ))
 
     web?: {
       /**
