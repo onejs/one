@@ -13,6 +13,8 @@ import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
 import { Try } from '../views/Try'
+import { checkSkewAndReload } from '../skewProtection'
+import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { DevHead } from '../vite/DevHead'
 import { useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
@@ -626,6 +628,22 @@ class RouteErrorBoundary extends React.Component<
       }\n\n${error.stack}\n\nComponent Stack:\n${errorInfo.componentStack}`
     )
     this.setState({ errorInfo })
+
+    // skew protection: chunk-load errors at the route level are unambiguous,
+    // reload immediately. for any other render error, do a one-shot version
+    // check and only reload if the deployed build actually changed. genuine
+    // bugs fall through to the route error UI.
+    if (
+      process.env.TAMAGUI_TARGET !== 'native' &&
+      process.env.NODE_ENV === 'production' &&
+      process.env.ONE_SKEW_PROTECTION !== 'false'
+    ) {
+      if (isChunkLoadError(error)) {
+        handleSkewError()
+      } else {
+        checkSkewAndReload()
+      }
+    }
   }
 
   clearError() {

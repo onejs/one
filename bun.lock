@@ -1163,6 +1163,26 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-skew-protection": {
+      "name": "test-skew-protection",
+      "version": "1.15.10",
+      "dependencies": {
+        "@react-navigation/native": "~7.2.2",
+        "one": "workspace:*",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "react-native": "0.83.2",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "@vxrn/test": "workspace:*",
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.58.2",
+        "typescript": "^5.7.3",
+        "vite": "^8.0.0",
+        "vitest": "^4.1.0",
+      },
+    },
     "tests/test-spa-shell-routing": {
       "name": "test-spa-shell-routing",
       "version": "1.15.10",
@@ -4649,6 +4669,8 @@
     "test-sandbox": ["test-sandbox@workspace:tests/sandbox"],
 
     "test-script-loading": ["test-script-loading@workspace:tests/test-script-loading"],
+
+    "test-skew-protection": ["test-skew-protection@workspace:tests/test-skew-protection"],
 
     "test-spa-shell-routing": ["test-spa-shell-routing@workspace:tests/test-spa-shell-routing"],
 

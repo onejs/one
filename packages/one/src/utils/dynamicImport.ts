@@ -28,12 +28,12 @@ const CHUNK_ERROR_PATTERNS = [
   'Importing a module script failed', // safari
 ]
 
-function isChunkLoadError(err: unknown): boolean {
+export function isChunkLoadError(err: unknown): boolean {
   const msg = err instanceof Error ? err.message : String(err)
   return CHUNK_ERROR_PATTERNS.some((p) => msg.includes(p))
 }
 
-function handleSkewError() {
+export function handleSkewError() {
   if (typeof window === 'undefined') return
   const key = '__one_skew_reload'
   const last = sessionStorage.getItem(key)
