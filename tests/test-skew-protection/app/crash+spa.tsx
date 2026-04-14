@@ -19,7 +19,7 @@ export default function Crash() {
     if (type === 'chunk') {
       // matches the chrome chunk-load message in CHUNK_ERROR_PATTERNS
       throw new Error(
-        "Failed to fetch dynamically imported module: https://example.com/assets/foo-abc123.js"
+        'Failed to fetch dynamically imported module: https://example.com/assets/foo-abc123.js'
       )
     }
     if (type === 'other') {
