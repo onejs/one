@@ -162,6 +162,48 @@ async function waitForSelector(page: Page, selector: string, timeout = 15000) {
   return page.waitForSelector(selector, { timeout }).catch(() => null)
 }
 
+async function waitForHydrationToSettle(page: Page, timeout = 10000) {
+  await page.waitForFunction(
+    () => {
+      const w = window as any
+      return (
+        !!w.__testUserReady &&
+        !!w.__testProjectResolved &&
+        !document.querySelector('#app-fallback')
+      )
+    },
+    { timeout }
+  )
+}
+
+async function waitForProjectRouteOutcome(page: Page, timeout = 10000) {
+  await page.waitForFunction(
+    () => {
+      const w = window as any
+      const homeMountsOnProjectUrl = (
+        (w.__homeRouteMountLog ?? []) as Array<{ url?: string }>
+      ).some((entry) => entry.url?.startsWith('/project/'))
+
+      return homeMountsOnProjectUrl || !!w.__redirectFired || !!w.__projectRouteMounted
+    },
+    { timeout }
+  )
+}
+
+async function waitForNestedRouteOutcome(page: Page, timeout = 10000) {
+  await page.waitForFunction(
+    () => {
+      const w = window as any
+      return (
+        location.pathname !== '/nested/foo' ||
+        ((w.__nestedSubMountLog ?? []) as unknown[]).length > 0 ||
+        ((w.__nestedIndexMountLog ?? []) as unknown[]).length > 0
+      )
+    },
+    { timeout }
+  )
+}
+
 describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => {
   test('loading /project/foo fresh should NOT briefly render the home marker', async () => {
     const page = await context.newPage()
@@ -179,8 +221,9 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
     // fresh load of the deep route — this is the scenario soot hit
     await page.goto(serverUrl + '/project/foo', { waitUntil: 'domcontentloaded' })
 
-    // give hydration + any intermediate navigator resets time to settle
-    await new Promise((r) => setTimeout(r, 1500))
+    await waitForHydrationToSettle(page)
+    await waitForProjectRouteOutcome(page)
+    await new Promise((r) => setTimeout(r, 100))
 
     const results = await collectResults(page)
 
@@ -247,7 +290,9 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
     await installFlashDetector(page)
 
     await page.goto(serverUrl + '/nested/foo', { waitUntil: 'domcontentloaded' })
-    await new Promise((r) => setTimeout(r, 1500))
+    await waitForHydrationToSettle(page)
+    await waitForNestedRouteOutcome(page)
+    await new Promise((r) => setTimeout(r, 100))
 
     const results = await page.evaluate(() => ({
       url: location.pathname,
