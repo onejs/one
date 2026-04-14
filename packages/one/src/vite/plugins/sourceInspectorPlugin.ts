@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { parse } from 'oxc-parser'
 import type { Plugin, ViteDevServer } from 'vite'
@@ -91,6 +92,33 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
 
 type TransformOut = { code: string; map?: null } | undefined
 
+export function getSourceInspectorPath(filePath: string, cwd = process.cwd()): string {
+  const normalizedFilePath = normalizePath(filePath)
+  const normalizedCwd = normalizePath(cwd)
+
+  if (normalizedFilePath === normalizedCwd) {
+    return '/'
+  }
+
+  if (normalizedFilePath.startsWith(`${normalizedCwd}/`)) {
+    return normalizedFilePath.slice(normalizedCwd.length)
+  }
+
+  return normalizedFilePath
+}
+
+export function resolveEditorFilePath(
+  filePath: string,
+  cwd = process.cwd(),
+  fileExists: (path: string) => boolean = existsSync
+): string {
+  const projectPath = path.join(cwd, filePath)
+
+  // data-one-source uses "/foo.tsx" for project-relative paths, but files outside
+  // cwd are stored as absolute paths and must not be re-joined onto cwd.
+  return fileExists(projectPath) ? projectPath : filePath
+}
+
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
  */
@@ -98,7 +126,7 @@ async function injectSourceToJsx(code: string, id: string): Promise<TransformOut
   const [filePath] = id.split('?')
   if (!filePath) return
 
-  const location = filePath.replace(normalizePath(process.cwd()), '')
+  const location = getSourceInspectorPath(filePath)
 
   // Quick check - skip if no JSX-like content
   if (!code.includes('<') || !code.includes('>')) {
@@ -159,7 +187,7 @@ function openInEditor(
     return
   }
 
-  const fullPath = path.join(process.cwd(), filePath)
+  const fullPath = resolveEditorFilePath(filePath)
   const l = line || '1'
   const c = column || '1'
   const buildArgs = editorArgs[resolved]
