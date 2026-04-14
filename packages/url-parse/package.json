@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/url-parse",
-  "version": "1.15.10-1776080717541",
+  "version": "1.15.10-1776206383682",
   "sideEffects": false,
   "type": "module",
   "types": "./src/index.ts",
