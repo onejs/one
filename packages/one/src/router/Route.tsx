@@ -1,8 +1,10 @@
 import React, { createContext, type ReactNode, useContext } from 'react'
+import { findFocusedRoute } from '../fork/findFocusedRoute'
 import type { ErrorBoundaryProps } from '../views/Try'
 import type { LoaderProps } from '../types'
 import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
+import { getLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
@@ -136,6 +138,26 @@ export function useContextKey(): string {
   return getContextKey(node.contextKey)
 }
 
+/**
+ * Resolve path params from the current URL using the same linking
+ * config (getStateFromPath) that the router uses for navigation.
+ * Returns `undefined` if linking isn't set up yet (SSR, pre-init) or
+ * the URL doesn't produce a focused route with params.
+ *
+ * Reuses the router's existing URL-parsing rather than re-implementing
+ * segment matching, so group/catch-all/index semantics stay consistent.
+ */
+function getParamsFromCurrentUrl(): Record<string, any> | undefined {
+  if (typeof window === 'undefined') return undefined
+  const linking = getLinking()
+  if (!linking?.getStateFromPath) return undefined
+  const path = window.location.pathname + window.location.search
+  const state = linking.getStateFromPath(path, linking.config)
+  if (!state) return undefined
+  const focused = findFocusedRoute(state)
+  return focused?.params as Record<string, any> | undefined
+}
+
 /** Provides the matching routes and filename to the children. */
 export function Route({
   children,
@@ -146,8 +168,29 @@ export function Route({
   node: RouteNode
   route?: { params?: Record<string, string | undefined> }
 }) {
+  // URL is the source of truth for path params. React Navigation can
+  // transiently provide a `route` whose `params` is undefined or missing
+  // the dynamic segments this node expects (observed in spa-shell mode
+  // under StrictMode, when a late-mounting child navigator falls through
+  // to StackRouter.getInitialState — which produces a default route with
+  // no params because `routeParamList` has no entry for dynamic routes).
+  //
+  // to keep useParams() stable for userland, recover missing dynamic
+  // segment params by re-parsing the URL through the router's linking
+  // config. `route.params` wins on overlap so query params / static
+  // params keep flowing from React Navigation.
+  const resolvedParams = React.useMemo(() => {
+    const rp = route?.params
+    if (!node.dynamic?.length) return rp
+    const missing = node.dynamic.some((d) => !rp || rp[d.name] == null)
+    if (!missing) return rp
+    const fromUrl = getParamsFromCurrentUrl()
+    if (!fromUrl) return rp
+    return { ...fromUrl, ...rp }
+  }, [node, route?.params])
+
   return (
-    <RouteParamsContext.Provider value={route?.params}>
+    <RouteParamsContext.Provider value={resolvedParams}>
       <CurrentRouteContext.Provider value={node}>
         <RouteInfoContextProvider>{children}</RouteInfoContextProvider>
       </CurrentRouteContext.Provider>

@@ -4,7 +4,7 @@ import {
   matchRoutePattern,
   stripGroupSegmentsFromPath,
 } from './matchers'
-import { isNative } from '../constants'
+import { hasWebHistory, isNative } from '../constants'
 
 // ============================================
 // Navigation Type Tracking
@@ -333,7 +333,7 @@ let preInterceptUrl: string | null = null
  * Used when activating an intercept route to show the target URL.
  */
 export function updateURLWithoutNavigation(href: string) {
-  if (typeof window !== 'undefined') {
+  if (hasWebHistory) {
     // Store the URL before we change it
     preInterceptUrl = window.location.pathname + window.location.search
 
@@ -361,7 +361,7 @@ export function registerClearSlotStates(callback: () => void) {
  * This should be called from modal close handlers instead of router.back().
  */
 export function closeIntercept(): boolean {
-  if (typeof window === 'undefined') return false
+  if (!hasWebHistory) return false
 
   const state = window.history.state
   if (!state?.__intercepted) {
@@ -385,7 +385,7 @@ export function closeIntercept(): boolean {
  * Check if the current navigation state is from an interception
  */
 export function isInterceptedNavigation(): boolean {
-  if (typeof window === 'undefined') return false
+  if (!hasWebHistory) return false
   return window.history.state?.__intercepted === true
 }
 
@@ -393,7 +393,7 @@ export function isInterceptedNavigation(): boolean {
  * Get the actual path from an intercepted navigation
  */
 export function getInterceptedActualPath(): string | null {
-  if (typeof window === 'undefined') return null
+  if (!hasWebHistory) return null
   return window.history.state?.__actualPath ?? null
 }
 
@@ -401,7 +401,7 @@ export function getInterceptedActualPath(): string | null {
  * Get the URL from before the interception
  */
 export function getPreInterceptUrl(): string | null {
-  if (typeof window === 'undefined') return null
+  if (!hasWebHistory) return null
   return window.history.state?.__preInterceptUrl ?? preInterceptUrl
 }
 
@@ -456,7 +456,7 @@ export function storeInterceptState(
  * Returns true if an intercept was restored, false otherwise.
  */
 export function restoreInterceptFromHistory(): boolean {
-  if (typeof window === 'undefined') return false
+  if (!hasWebHistory) return false
 
   const state = window.history.state
   if (!state?.__intercepted) {

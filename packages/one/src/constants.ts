@@ -3,9 +3,24 @@ import type { One } from './vite/types'
 
 export const isWebClient =
   process.env.TAMAGUI_TARGET !== 'native' && typeof window !== 'undefined'
+
 export const isWebServer =
   process.env.TAMAGUI_TARGET !== 'native' && typeof window === 'undefined'
+
 export const isNative = process.env.TAMAGUI_TARGET === 'native'
+
+/**
+ * True only in a browser main-thread context with a navigable history —
+ * i.e. `window` AND `window.history` are available. Excludes native,
+ * SSR, web workers / service workers (no `window`), and exotic sandboxed
+ * environments where `window` exists but history is stripped. Use this
+ * for guarding any `window.history` / `window.location` access so
+ * intercept routes, URL masking, etc. don't assume a full browser.
+ */
+export const hasWebHistory =
+  isWebClient &&
+  typeof window.history !== 'undefined' &&
+  typeof window.location !== 'undefined'
 
 export const CACHE_KEY = `${process.env.ONE_CACHE_KEY ?? Math.round(Math.random() * 100_000_000)}`
 
