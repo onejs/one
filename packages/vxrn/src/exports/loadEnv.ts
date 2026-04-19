@@ -49,11 +49,7 @@ export async function loadEnv(
         const stringified = JSON.stringify(val)
         return [
           [`process.env.${key}`, stringified],
-          [`process.env["${key}"]`, stringified],
-          [`process.env['${key}']`, stringified],
           [`import.meta.env.${key}`, stringified],
-          [`import.meta.env["${key}"]`, stringified],
-          [`import.meta.env['${key}']`, stringified],
         ]
       })
     ),
