@@ -20,51 +20,19 @@ describe('loadEnv', () => {
     expect(clientEnvDefine['process.env.ONE_PUBLIC_TEST_KEY']).toBe('"test-value"')
   })
 
-  it('generates double-quote bracket-notation define keys for process.env', async () => {
-    const { clientEnvDefine } = await loadEnv('test')
-
-    expect(clientEnvDefine['process.env["ONE_PUBLIC_TEST_KEY"]']).toBe('"test-value"')
-  })
-
-  it('generates single-quote bracket-notation define keys for process.env', async () => {
-    const { clientEnvDefine } = await loadEnv('test')
-
-    expect(clientEnvDefine["process.env['ONE_PUBLIC_TEST_KEY']"]).toBe('"test-value"')
-  })
-
   it('generates dot-notation define keys for import.meta.env', async () => {
     const { clientEnvDefine } = await loadEnv('test')
 
     expect(clientEnvDefine['import.meta.env.ONE_PUBLIC_TEST_KEY']).toBe('"test-value"')
   })
 
-  it('generates double-quote bracket-notation define keys for import.meta.env', async () => {
+  it('does not generate bracket-notation keys (rolldown/oxc rejects them in define)', async () => {
     const { clientEnvDefine } = await loadEnv('test')
 
-    expect(clientEnvDefine['import.meta.env["ONE_PUBLIC_TEST_KEY"]']).toBe('"test-value"')
-  })
-
-  it('generates single-quote bracket-notation define keys for import.meta.env', async () => {
-    const { clientEnvDefine } = await loadEnv('test')
-
-    expect(clientEnvDefine["import.meta.env['ONE_PUBLIC_TEST_KEY']"]).toBe('"test-value"')
-  })
-
-  it('generates all six define keys per env var', async () => {
-    const { clientEnvDefine } = await loadEnv('test')
-
-    const expectedKeys = [
-      'process.env.ONE_PUBLIC_TEST_KEY',
-      'process.env["ONE_PUBLIC_TEST_KEY"]',
-      "process.env['ONE_PUBLIC_TEST_KEY']",
-      'import.meta.env.ONE_PUBLIC_TEST_KEY',
-      'import.meta.env["ONE_PUBLIC_TEST_KEY"]',
-      "import.meta.env['ONE_PUBLIC_TEST_KEY']",
-    ]
-
-    for (const key of expectedKeys) {
-      expect(clientEnvDefine).toHaveProperty(key)
-    }
+    expect(clientEnvDefine).not.toHaveProperty('process.env["ONE_PUBLIC_TEST_KEY"]')
+    expect(clientEnvDefine).not.toHaveProperty("process.env['ONE_PUBLIC_TEST_KEY']")
+    expect(clientEnvDefine).not.toHaveProperty('import.meta.env["ONE_PUBLIC_TEST_KEY"]')
+    expect(clientEnvDefine).not.toHaveProperty("import.meta.env['ONE_PUBLIC_TEST_KEY']")
   })
 
   it('does not generate define keys for non-public env vars', async () => {
@@ -73,7 +41,6 @@ describe('loadEnv', () => {
     const { clientEnvDefine } = await loadEnv('test')
 
     expect(clientEnvDefine['process.env.SECRET_KEY']).toBeUndefined()
-    expect(clientEnvDefine['process.env["SECRET_KEY"]']).toBeUndefined()
   })
 
   it('includes VITE_ prefixed vars in clientEnvDefine', async () => {
@@ -82,7 +49,6 @@ describe('loadEnv', () => {
     const { clientEnvDefine } = await loadEnv('test')
 
     expect(clientEnvDefine['process.env.VITE_APP_TITLE']).toBe('"My App"')
-    expect(clientEnvDefine['process.env["VITE_APP_TITLE"]']).toBe('"My App"')
   })
 
   it('includes TAMAGUI_ prefixed vars in clientEnvDefine', async () => {
@@ -91,7 +57,6 @@ describe('loadEnv', () => {
     const { clientEnvDefine } = await loadEnv('test')
 
     expect(clientEnvDefine['process.env.TAMAGUI_TARGET']).toBe('"web"')
-    expect(clientEnvDefine['process.env["TAMAGUI_TARGET"]']).toBe('"web"')
   })
 
   it('includes vars matching custom userPrefix', async () => {
@@ -100,6 +65,5 @@ describe('loadEnv', () => {
     const { clientEnvDefine } = await loadEnv('test', process.cwd(), 'CUSTOM_PUBLIC_')
 
     expect(clientEnvDefine['process.env.CUSTOM_PUBLIC_FOO']).toBe('"bar"')
-    expect(clientEnvDefine['process.env["CUSTOM_PUBLIC_FOO"]']).toBe('"bar"')
   })
 })
