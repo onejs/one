@@ -150,13 +150,10 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   const addedMiddlewares: Record<string, boolean> = {}
 
   for (const [path, node] of flat) {
-    if (node.type === 'api') {
-      const route = getGeneratedNamedRouteRegex(path, node)
-      apiRoutes.push(route)
-      allRoutes.push(route)
-      continue
-    }
-
+    // collect middlewares for every route type, not just pages. a middleware
+    // nested under api/ (e.g. app/api/admin/_middleware.ts) must still end up
+    // in middlewareRoutes so the build pipeline compiles it — otherwise the
+    // compiled file never exists and runtime lookups return undefined.
     if (node.middlewares?.length) {
       for (const middleware of node.middlewares) {
         if (!addedMiddlewares[middleware.contextKey]) {
@@ -164,6 +161,13 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
           middlewareRoutes.push(getGeneratedNamedRouteRegex(path, middleware))
         }
       }
+    }
+
+    if (node.type === 'api') {
+      const route = getGeneratedNamedRouteRegex(path, node)
+      apiRoutes.push(route)
+      allRoutes.push(route)
+      continue
     }
 
     const route = getGeneratedNamedRouteRegex(path, node)

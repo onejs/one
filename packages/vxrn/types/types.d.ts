@@ -45,6 +45,19 @@ export type VXRNBuildOptions = {
      * Uses Vite mergeConfig to overwrite any build configuration during build
      */
     config?: InlineConfig;
+    /**
+     * Unify the server-side build. Api routes and middlewares share the SSR
+     * server's config (same defines, plugins, externalization rules) instead of
+     * deriving from the web/client build. Also drops the blanket
+     * `ssr.noExternal: true` so rolldown can externalize what it cannot bundle.
+     *
+     * This is the direction One is moving — in the next major it becomes the
+     * default and api/middleware lose their separate config surfaces entirely.
+     * Opt in now to avoid surprise later.
+     *
+     * @default false
+     */
+    unified?: boolean;
 };
 export type VXRNOptions = {
     /**

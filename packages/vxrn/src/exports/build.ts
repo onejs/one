@@ -247,6 +247,13 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // default to cjs
   const shouldOutputCJS = getServerCJSSetting(options)
 
+  // unified mode: drop the blanket ssr.noExternal, keep only react inlined
+  // (externalizing react broke prod builds, see commit 423b9cb0c).
+  // other deps let rolldown decide — user can still add externals via
+  // build.server.config.ssr.external or rolldownOptions.external.
+  const isUnified =
+    typeof serverOptions === 'object' && serverOptions !== null && serverOptions.unified === true
+
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
 
@@ -258,10 +265,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     },
 
     ssr: {
-      noExternal: true,
-      // we used to do this i think to make our patching react work?
-      // but stopped working for prod builds due to duplicate react somehow
-      // external: ['react', 'react-dom', 'expo-modules-core'],
+      noExternal: isUnified ? ['react', 'react-dom'] : true,
       optimizeDeps: optimizeDepsWithoutRolldown,
     },
 
