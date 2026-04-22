@@ -112,6 +112,28 @@ describe('unified build — runtime behavior', () => {
     expect(res.headers.get('access-control-allow-methods')).toContain('OPTIONS')
   })
 
+  it('answers grouped api HEAD handlers via the clean route path', async () => {
+    const res = await fetch(`${serverUrl}/api/method-under-group`, {
+      method: 'HEAD',
+    })
+    expect(res.status).toBe(200)
+    expect(res.headers.get('x-group-head-ok')).toBe('true')
+  })
+
+  it('answers grouped api OPTIONS handlers via the clean route path', async () => {
+    const res = await fetch(`${serverUrl}/api/method-under-group`, {
+      method: 'OPTIONS',
+      headers: {
+        Origin: 'https://onestack.dev',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'authorization',
+      },
+    })
+    expect(res.status).toBe(204)
+    expect(res.headers.get('access-control-allow-origin')).toBe('https://onestack.dev')
+    expect(res.headers.get('access-control-allow-methods')).toContain('OPTIONS')
+  })
+
   it('zod-based api route validates input (pure ESM dep bundles correctly)', async () => {
     const res = await fetch(`${serverUrl}/api/zod-validate`, {
       method: 'POST',
