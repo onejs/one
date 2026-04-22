@@ -380,13 +380,51 @@ export async function build(args: {
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
 
+  // unified mode: api + middleware routes share config with the SSR server build —
+  // same defines, plugins, externalization rules, no blanket noExternal: true.
+  // when off, keep the legacy path that derives from webBuildConfig with
+  // ssr.noExternal: true hard-coded (back-compat).
+  const serverOpts = oneOptions.build?.server
+  const isUnified =
+    typeof serverOpts === 'object' && serverOpts !== null && serverOpts.unified === true
+
   // clone plugin hooks so vite's wrapHookObject doesn't fail on reuse across builds
   // (vite defines non-configurable getters on hook objects during the first build)
-  const clonedWebBuildConfig = clonePluginHooks(vxrnOutput.webBuildConfig)
+  let baseForApi = isUnified
+    ? clonePluginHooks(vxrnOutput.serverBuildConfig ?? vxrnOutput.webBuildConfig)
+    : clonePluginHooks(vxrnOutput.webBuildConfig)
+
+  if (isUnified) {
+    // serverBuildConfig has rolldownOptions.input: ['virtual:one-entry'] —
+    // vite mergeConfig concatenates that with the api build's input object,
+    // which rolldown then tries to iterate as a string list. strip it so the
+    // per-routes input map in buildCustomRoutes takes effect cleanly.
+    //
+    // also strip `omit-api-routes`, the server's transform plugin that empties
+    // any +api / _middleware file. correct for the SSR render bundle, wrong
+    // for api/middleware builds where those files ARE the entry points.
+    const clone: InlineConfig = {
+      ...baseForApi,
+      build: baseForApi.build ? { ...baseForApi.build } : undefined,
+      plugins: baseForApi.plugins
+        ? (baseForApi.plugins as any[]).filter(
+            (p) => p && typeof p === 'object' && p.name !== 'omit-api-routes'
+          )
+        : undefined,
+    }
+    if (clone.build && (clone.build as any).rolldownOptions) {
+      const ro = { ...((clone.build as any).rolldownOptions as any) }
+      delete ro.input
+      ;(clone.build as any).rolldownOptions = ro
+    }
+    if (clone.build) {
+      delete (clone.build as any).outDir
+    }
+    baseForApi = clone
+  }
 
   const apiBuildConfig = mergeConfig(
-    // feels like this should build off the *server* build config not web
-    clonedWebBuildConfig,
+    baseForApi,
     {
       configFile: false,
       appType: 'custom',
@@ -413,19 +451,20 @@ export async function build(args: {
       appType: 'custom',
       configFile: false,
 
-      // plugins: [
-      //   nodeExternals({
-      //     exclude: optimizeDeps.include,
-      //   }) as any,
-      // ],
-
       define: vxrnOutput!.processEnvDefines,
 
-      ssr: {
-        noExternal: true,
-        external: ['react', 'react-dom'],
-        optimizeDeps: optimizeDepsNoRolldown,
-      },
+      ssr: isUnified
+        ? {
+            // in unified mode let the base (serverBuildConfig) set ssr.noExternal
+            // — default is now ['react', 'react-dom'] instead of `true`, so
+            // rolldown can externalize the rest.
+            optimizeDeps: optimizeDepsNoRolldown,
+          }
+        : {
+            noExternal: true,
+            external: ['react', 'react-dom'],
+            optimizeDeps: optimizeDepsNoRolldown,
+          },
 
       environments: {
         ssr: {
@@ -456,7 +495,10 @@ export async function build(args: {
           // prevents it from shaking out the exports
           preserveEntrySignatures: 'strict',
           input: input,
-          external: [],
+          // in unified mode, inherit externals from serverBuildConfig (user
+          // ssr.external / rolldownOptions.external). the legacy path resets
+          // them to [] so per-route files bundle everything.
+          ...(isUnified ? {} : { external: [] }),
           output: {
             entryFileNames: '[name]',
             exports: 'auto',
@@ -1153,11 +1195,22 @@ export async function build(args: {
       }))
     }
 
-    // swap out for the built middleware path
+    // swap out for the built middleware path.
+    // page routes have compiled middleware paths attached via buildPage
+    // (buildInfo.middlewares). api routes don't go through buildPage, so fall
+    // back to the builtMiddlewares map keyed by the middleware source file.
     const buildInfo = builtRoutes.find((x) => x.routeFile === route.file)
-    if (built.middlewares && buildInfo?.middlewares) {
+    if (built.middlewares) {
       for (const [index, mw] of built.middlewares.entries()) {
-        mw.contextKey = buildInfo.middlewares[index]
+        const viaBuildInfo = buildInfo?.middlewares?.[index]
+        if (viaBuildInfo) {
+          mw.contextKey = viaBuildInfo
+          continue
+        }
+        const viaMiddlewareMap = builtMiddlewares[mw.contextKey]
+        if (viaMiddlewareMap) {
+          mw.contextKey = viaMiddlewareMap
+        }
       }
     }
 

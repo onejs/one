@@ -8,6 +8,16 @@ export default defineConfig({
         defaultRenderMode: 'ssg',
       },
 
+      // unified build mode — pages, api routes, and middlewares all build
+      // against the same SSR server config (same defines, same plugins, same
+      // externalization rules) and drops the blanket `ssr.noExternal: true`.
+      // this is the direction One is moving; in the next major it becomes the
+      // default and `build.api` / `build.middleware` lose their separate
+      // config surfaces.
+      build: {
+        server: { unified: true },
+      },
+
       ...(process.env.TEST_METRO && {
         native: {
           bundler: 'metro',
