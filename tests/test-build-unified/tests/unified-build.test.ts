@@ -53,7 +53,9 @@ describe('unified build — dist layout', () => {
   })
 
   it('wrangler output comes from the plugin-generated worker config', () => {
-    const config = JSON.parse(readFileSync(join(distDir, 'worker', 'wrangler.json'), 'utf-8'))
+    const config = JSON.parse(
+      readFileSync(join(distDir, 'worker', 'wrangler.json'), 'utf-8')
+    )
     expect(config.main).toBe('index.js')
     expect(config.no_bundle).toBe(true)
     expect(config.find_additional_modules).toBeUndefined()
@@ -86,6 +88,28 @@ describe('unified build — runtime behavior', () => {
     const res = await fetch(`${serverUrl}/api/hello`)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ hello: 'world' })
+  })
+
+  it('answers api HEAD handlers in serve mode', async () => {
+    const res = await fetch(`${serverUrl}/api/hello`, {
+      method: 'HEAD',
+    })
+    expect(res.status).toBe(200)
+    expect(res.headers.get('x-head-ok')).toBe('true')
+  })
+
+  it('answers api OPTIONS handlers in serve mode', async () => {
+    const res = await fetch(`${serverUrl}/api/hello`, {
+      method: 'OPTIONS',
+      headers: {
+        Origin: 'https://sootsim.com',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'content-type',
+      },
+    })
+    expect(res.status).toBe(204)
+    expect(res.headers.get('access-control-allow-origin')).toBe('https://sootsim.com')
+    expect(res.headers.get('access-control-allow-methods')).toContain('OPTIONS')
   })
 
   it('zod-based api route validates input (pure ESM dep bundles correctly)', async () => {

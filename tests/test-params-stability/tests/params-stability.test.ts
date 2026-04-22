@@ -64,11 +64,13 @@ afterAll(async () => {
 
 async function collectRenders(page: Page) {
   return page.evaluate(() => {
-    return (((window as any).__previewRenders as Array<{
-      at: number
-      url: string
-      params: Record<string, unknown>
-    }>) ?? []).map((r) => ({ ...r, params: { ...r.params } }))
+    return (
+      ((window as any).__previewRenders as Array<{
+        at: number
+        url: string
+        params: Record<string, unknown>
+      }>) ?? []
+    ).map((r) => ({ ...r, params: { ...r.params } }))
   })
 }
 
@@ -98,7 +100,7 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
     // there should be at least one render
     expect(
       renders.length,
-      `preview page never rendered. got ${renders.length} renders.`,
+      `preview page never rendered. got ${renders.length} renders.`
     ).toBeGreaterThan(0)
 
     // every render's params must have the id from the URL
@@ -107,7 +109,7 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
       bad,
       `useParams returned unexpected params on ${bad.length} of ${renders.length} renders.\n` +
         `bad renders: ${JSON.stringify(bad, null, 2)}\n` +
-        `full log: ${JSON.stringify(renders, null, 2)}`,
+        `full log: ${JSON.stringify(renders, null, 2)}`
     ).toHaveLength(0)
 
     // and the rendered DOM must show the id (not "(empty)")
