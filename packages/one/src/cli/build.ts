@@ -5,7 +5,13 @@ import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import type { OutputAsset, RolldownOutput } from 'rolldown'
-import { type InlineConfig, mergeConfig, normalizePath, build as viteBuild } from 'vite'
+import {
+  createBuilder,
+  type InlineConfig,
+  mergeConfig,
+  normalizePath,
+  build as viteBuild,
+} from 'vite'
 import {
   type ClientManifestEntry,
   fillOptions,
@@ -1298,7 +1304,14 @@ export async function build(args: {
 
     case 'cloudflare': {
       // Generate lazy import functions - modules load on-demand, not all upfront
-      // Uses find_additional_modules in wrangler config to keep modules separate
+      // The worker config keeps route modules separate so they can stay lazy.
+      const workerSrcDir = join(options.root, outDir)
+      const getWorkerSourceImportPath = (routeFile: string) => {
+        const importPath = normalizePath(
+          relative(workerSrcDir, join(options.root, routerRoot, routeFile))
+        )
+        return importPath.startsWith('.') ? importPath : `./${importPath}`
+      }
       const pageRouteMap: string[] = []
       const apiRouteMap: string[] = []
       const middlewareRouteMap: string[] = []
@@ -1317,19 +1330,18 @@ export async function build(args: {
       // Generate lazy imports for API routes
       for (const route of buildInfoForWriting.manifest.apiRoutes) {
         if (route.file) {
-          // API files are built to dist/api/
-          // route.page is like "/api/hello", files are at "dist/api/api/hello.js"
-          // both vite and rolldown-vite replace brackets with underscores in output filenames
-          const apiFileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
-          const importPath = `./api/${apiFileName}.js`
+          // Import API routes from source so the Cloudflare plugin can apply its
+          // own unenv/CJS transforms instead of re-bundling pre-built chunks.
+          const importPath = getWorkerSourceImportPath(route.file)
           apiRouteMap.push(`  '${route.page}': () => import('${importPath}')`)
         }
       }
 
       // Generate lazy imports for middlewares
-      // The key must match the contextKey used to look up the middleware (e.g., "dist/middlewares/_middleware.js")
-      for (const [, builtPath] of Object.entries(builtMiddlewares)) {
-        const importPath = './' + builtPath.replace(new RegExp(`^${outDir}/`), '')
+      // Keep the built output path as the lookup key, but import the source
+      // file so the plugin owns the middleware dependency graph too.
+      for (const [sourceFile, builtPath] of Object.entries(builtMiddlewares)) {
+        const importPath = getWorkerSourceImportPath(sourceFile)
         middlewareRouteMap.push(`  '${builtPath}': () => import('${importPath}')`)
       }
 
@@ -1413,45 +1425,41 @@ export default {
 `
       await FSExtra.writeFile(workerSrcPath, workerCode)
 
-      // Bundle the worker using Vite/esbuild
-      // Cloudflare Workers with nodejs_compat supports Node.js built-ins
+      const projectName = await getCloudflareProjectName(options.root)
+      const userWranglerConfig = await loadUserWranglerConfig(options.root)
+      const wranglerInputConfig = createCloudflareWranglerConfig(
+        projectName,
+        userWranglerConfig?.config
+      )
+      wranglerInputConfig.main = relative(join(options.root, outDir), workerSrcPath)
+
+      const wranglerInputPath = join(options.root, outDir, '_wrangler.input.jsonc')
+      await FSExtra.writeFile(
+        wranglerInputPath,
+        `${JSON.stringify(wranglerInputConfig, null, 2)}\n`
+      )
+
+      // Bundle the worker using Cloudflare's Vite plugin so we pick up unenv
+      // polyfills and esmExternalRequirePlugin for Node-first CJS deps.
       console.info('\n [cloudflare] Bundling worker...')
-      await viteBuild({
+      const { cloudflare } = await import('@cloudflare/vite-plugin')
+      const builder = await createBuilder({
         root: options.root,
         mode: 'production',
         logLevel: 'warn',
-        build: {
-          outDir,
-          emptyOutDir: false,
-          // Use SSR mode with node target for proper Node.js module resolution
-          ssr: workerSrcPath,
-          rolldownOptions: {
-            external: [
-              // React Native dev tools - not needed in production
-              '@react-native/dev-middleware',
-              '@react-native/debugger-shell',
-              'metro',
-              'metro-core',
-              'metro-runtime',
-              // Native modules that can't run in workers
-              /\.node$/,
-            ],
-            output: {
-              entryFileNames: 'worker.js',
-              format: 'es',
-              // Keep dynamic imports separate for lazy loading
-              inlineDynamicImports: false,
-            },
-          },
-          minify: true,
-          target: 'esnext',
-        },
+        configFile: false,
         define: {
           'process.env.NODE_ENV': JSON.stringify('production'),
           'process.env.VITE_ENVIRONMENT': JSON.stringify('ssr'),
+          'process.env.ONE_CACHE_KEY': JSON.stringify(constants.CACHE_KEY),
         },
+        plugins: [
+          cloudflare({
+            configPath: wranglerInputPath,
+            viteEnvironment: { name: 'worker' },
+          }),
+        ],
         resolve: {
-          conditions: ['workerd', 'worker', 'node', 'module', 'default'],
           alias: [
             // rolldown can't parse react-native's Flow syntax; alias to react-native-web for ssr
             {
@@ -1472,37 +1480,35 @@ export default {
             },
           ],
         },
-        ssr: {
-          target: 'node',
-          noExternal: true,
+        build: {
+          outDir,
+          emptyOutDir: false,
+          rolldownOptions: {
+            // Match the main web build behavior so RN packages that import
+            // native-only symbols from react-native can still bundle against
+            // the react-native-web alias in the worker graph.
+            shimMissingExports: true,
+          },
         },
       })
+      const workerEnv = builder.environments.worker
+      if (!workerEnv) {
+        throw new Error('[one] plugin did not register "worker" environment')
+      }
+      await builder.build(workerEnv)
 
       // Clean up temp file
       await FSExtra.remove(workerSrcPath)
-
-      // Use jsonc for wrangler config (recommended for new projects)
-      // Use assets with run_worker_first so all requests go through worker (enables middleware on SSG pages)
-      const projectName = await getCloudflareProjectName(options.root)
-      const userWranglerConfig = await loadUserWranglerConfig(options.root)
-      const wranglerConfig = createCloudflareWranglerConfig(
-        projectName,
-        userWranglerConfig?.config
-      )
+      await FSExtra.remove(wranglerInputPath)
 
       if (userWranglerConfig) {
         console.info(
-          ` [cloudflare] Merging ${relative(options.root, userWranglerConfig.path)} into ${outDir}/wrangler.jsonc`
+          ` [cloudflare] Merging ${relative(options.root, userWranglerConfig.path)} into ${outDir}/worker/wrangler.json`
         )
       }
 
-      await FSExtra.writeFile(
-        join(options.root, outDir, 'wrangler.jsonc'),
-        `${JSON.stringify(wranglerConfig, null, 2)}\n`
-      )
-
-      postBuildLogs.push(`Cloudflare worker bundled at ${outDir}/worker.js`)
-      postBuildLogs.push(`To deploy: cd ${outDir} && wrangler deploy`)
+      postBuildLogs.push(`Cloudflare worker bundled at ${outDir}/worker/index.js`)
+      postBuildLogs.push(`To deploy: cd ${outDir}/worker && wrangler deploy`)
 
       break
     }

@@ -22,7 +22,7 @@ const distDir = join(process.cwd(), 'dist')
 
 describe('unified build — dist layout', () => {
   it('produces a cloudflare worker bundle', () => {
-    expect(existsSync(join(distDir, 'worker.js'))).toBe(true)
+    expect(existsSync(join(distDir, 'worker', 'index.js'))).toBe(true)
   })
 
   it('emits server entry at dist/server/_virtual_one-entry.js', () => {
@@ -52,13 +52,17 @@ describe('unified build — dist layout', () => {
     expect(distFiles).toContain('middlewares')
   })
 
-  it('wrangler.jsonc still references api/middlewares via find_additional_modules', () => {
-    const config = JSON.parse(readFileSync(join(distDir, 'wrangler.jsonc'), 'utf-8'))
-    expect(config.find_additional_modules).toBe(true)
-    const globs = (config.rules as Array<{ globs: string[] }>).flatMap((r) => r.globs)
-    expect(globs).toContain('./api/**/*.js')
-    expect(globs).toContain('./middlewares/**/*.js')
-    expect(globs).toContain('./server/**/*.js')
+  it('wrangler output comes from the plugin-generated worker config', () => {
+    const config = JSON.parse(readFileSync(join(distDir, 'worker', 'wrangler.json'), 'utf-8'))
+    expect(config.main).toBe('index.js')
+    expect(config.no_bundle).toBe(true)
+    expect(config.find_additional_modules).toBeUndefined()
+    expect(config.assets).toMatchObject({
+      directory: '../client',
+      binding: 'ASSETS',
+      run_worker_first: true,
+    })
+    expect(config.rules).toEqual([{ type: 'ESModule', globs: ['**/*.js', '**/*.mjs'] }])
   })
 })
 
@@ -103,11 +107,7 @@ describe('unified build — runtime behavior', () => {
     expect(res.status).toBe(400)
   })
 
-  // KNOWN-BROKEN on Cloudflare: these deps (and the whole klaviyo-api /
-  // stripe-node / twilio class) fail under rolldown's CJS bundling into the
-  // hand-rolled worker. Orthogonal to unified mode — separate CF/rolldown
-  // bundling issue. Kept as reproducers, skipped in CI.
-  it.skip('date-fns + ms bundle and run (CJS/dual-package deps)', async () => {
+  it('date-fns + ms bundle and run (CJS/dual-package deps)', async () => {
     const res = await fetch(`${serverUrl}/api/date-fmt`)
     expect(res.status).toBe(200)
     const json = (await res.json()) as { formatted: string; ms: number }
@@ -115,7 +115,7 @@ describe('unified build — runtime behavior', () => {
     expect(json.ms).toBe(3_600_000)
   })
 
-  it.skip('axios can be imported in an api route (node-first CJS + node:http)', async () => {
+  it('axios can be imported in an api route (node-first CJS + node:http)', async () => {
     const res = await fetch(`${serverUrl}/api/axios-import`)
     expect(res.status).toBe(200)
     const json = (await res.json()) as {
@@ -176,4 +176,3 @@ describe('unified build — middleware chain', () => {
     expect(res.headers.get('X-Root-Middleware')).toBe('root-ran')
   })
 })
-

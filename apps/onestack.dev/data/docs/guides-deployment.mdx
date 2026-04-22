@@ -251,32 +251,35 @@ export default {
 npx one build
 
 # Deploy using Wrangler
-cd dist && wrangler deploy
+cd dist/worker && wrangler deploy
 ```
 
 #### What Gets Built
 
 When targeting Cloudflare, One generates:
 
-- `dist/worker.js` - The Cloudflare Worker entry point
-- `dist/wrangler.jsonc` - Wrangler configuration with lazy loading
+- `dist/worker/index.js` - The Cloudflare Worker entry point
+- `dist/worker/wrangler.json` - Wrangler configuration for the generated worker
 - `dist/client` - Static assets served from Cloudflare's edge
 - `dist/server` - Server-side bundles (lazy-loaded per route)
 - `dist/api` - API route handlers (lazy-loaded per route)
+- `dist/middlewares` - Middleware bundles used by the worker runtime
 
 #### Lazy Loading
 
 One uses a lazy loading pattern for Cloudflare Workers. Route modules are loaded on-demand when matched, not all upfront. This improves cold start times for apps with many routes.
 
-The generated `wrangler.jsonc` includes:
+The generated worker config lives at `dist/worker/wrangler.json` and is ready to deploy with Wrangler. The worker serves static assets from `../client` and loads route bundles from the generated `dist/server`, `dist/api`, and `dist/middlewares` outputs as requests come in.
 
 ```json
 {
-  "find_additional_modules": true,
-  "rules": [
-    { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true }
-  ]
+  "main": "index.js",
+  "no_bundle": true,
+  "assets": {
+    "directory": "../client",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
 }
 ```
 
@@ -287,9 +290,9 @@ The generated `wrangler.jsonc` includes:
 
 #### Wrangler Configuration
 
-The generated `wrangler.jsonc` is ready to use. To customize it, create your own `wrangler.jsonc` in your project root and One will merge it into the generated `dist/wrangler.jsonc`.
+The generated worker config is ready to use. To customize it, create your own `wrangler.jsonc` in your project root and One will merge it into the generated `dist/worker/wrangler.json`.
 
-One preserves build-required settings like `main`, `assets.directory`, `assets.binding`, `assets.run_worker_first`, `find_additional_modules`, the lazy-loading `rules`, and it always includes `nodejs_compat` in `compatibility_flags`.
+One preserves build-required settings like `main`, `assets.directory`, `assets.binding`, `assets.run_worker_first`, the module-loading `rules`, and it always includes `nodejs_compat` in `compatibility_flags`.
 
 Key settings:
 
@@ -297,6 +300,6 @@ Key settings:
 {
   "name": "your-app-name",
   "compatibility_flags": ["nodejs_compat"],
-  "assets": { "directory": "client" }
+  "assets": { "directory": "../client" }
 }
 ```

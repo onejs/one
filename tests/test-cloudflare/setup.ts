@@ -15,6 +15,7 @@ import type { GlobalSetupContext } from 'vitest/node'
 
 const testDir = process.cwd()
 const PORT = 3457
+const INSPECTOR_PORT = 9237
 let serverProcess: ChildProcess | null = null
 
 async function waitForServer(url: string, maxRetries = 60): Promise<boolean> {
@@ -66,7 +67,7 @@ export async function setup({ provide }: GlobalSetupContext) {
   execSync(`bun kill-my-port 3457`)
 
   // Verify build output exists
-  const workerFile = join(testDir, 'dist', 'worker.js')
+  const workerFile = join(testDir, 'dist', 'worker', 'index.js')
   if (!existsSync(workerFile)) {
     throw new Error(`Cloudflare worker not found at ${workerFile}`)
   }
@@ -79,11 +80,12 @@ export async function setup({ provide }: GlobalSetupContext) {
     [
       'wrangler',
       'dev',
-      'dist/worker.js',
       '--port',
       String(PORT),
+      '--inspector-port',
+      String(INSPECTOR_PORT),
       '--config',
-      join(testDir, 'dist', 'wrangler.jsonc'),
+      join(testDir, 'dist', 'worker', 'wrangler.json'),
     ],
     {
       cwd: testDir,
