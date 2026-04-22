@@ -429,19 +429,16 @@ export async function build(args: {
     baseForApi = clone
   }
 
-  const apiBuildConfig = mergeConfig(
-    baseForApi,
-    {
-      configFile: false,
-      appType: 'custom',
-      optimizeDeps: optimizeDepsNoRolldown,
-      environments: {
-        client: {
-          optimizeDeps: { rolldownOptions: _rolldownOptions },
-        },
+  const apiBuildConfig = mergeConfig(baseForApi, {
+    configFile: false,
+    appType: 'custom',
+    optimizeDeps: optimizeDepsNoRolldown,
+    environments: {
+      client: {
+        optimizeDeps: { rolldownOptions: _rolldownOptions },
       },
-    } satisfies InlineConfig
-  )
+    },
+  } satisfies InlineConfig)
 
   async function buildCustomRoutes(subFolder: string, routes: RouteInfo<string>[]) {
     const input = routes.reduce((entries, { page, file }) => {
@@ -1400,7 +1397,7 @@ export default {
     }
 
     try {
-      const response = await server.fetch(request)
+      const response = await server.fetch(request, env, ctx)
 
       // no route matched or 404 → try static assets
       if (!response || response.status === 404) {

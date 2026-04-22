@@ -283,6 +283,27 @@ The generated worker config lives at `dist/worker/wrangler.json` and is ready to
 }
 ```
 
+#### Accessing Bindings and `waitUntil`
+
+API route handlers receive the worker runtime's `env` and `executionCtx` on their second argument as `worker`:
+
+```tsx fileName=app/api/track+api.ts
+import { createAPIRoute } from 'one'
+
+export const POST = createAPIRoute(async (request, { worker }) => {
+  // env holds the bindings you defined in wrangler.json (KV, D1, R2, secrets, ASSETS)
+  const db = worker?.env?.DB
+
+  // waitUntil keeps the worker alive for fire-and-forget work after the
+  // response is sent — useful for analytics, logging, cache warming, etc.
+  worker?.executionCtx?.waitUntil(trackAsync(request))
+
+  return Response.json({ ok: true })
+})
+```
+
+`worker` is `undefined` outside the worker runtime (dev/Node), so the optional chaining keeps the handler runtime-portable. See the [API Routes](/docs/routing-api-routes) doc for full details.
+
 #### Requirements
 
 - Cloudflare Workers with `nodejs_compat` compatibility flag (auto-configured)

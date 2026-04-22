@@ -145,6 +145,26 @@ describe('unified build — runtime behavior', () => {
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ nested: true, slug: 'abc123' })
   })
+
+  it('api handler receives worker-runtime context (env + executionCtx)', async () => {
+    const res = await fetch(`${serverUrl}/api/exec-ctx`)
+    expect(res.status).toBe(200)
+    const json = (await res.json()) as {
+      hasWorker: boolean
+      hasEnv: boolean
+      hasExecutionCtx: boolean
+      hasWaitUntil: boolean
+      hasPassThroughOnException: boolean
+      hasAssetsBinding: boolean
+    }
+    expect(json.hasWorker).toBe(true)
+    expect(json.hasEnv).toBe(true)
+    expect(json.hasExecutionCtx).toBe(true)
+    expect(json.hasWaitUntil).toBe(true)
+    expect(json.hasPassThroughOnException).toBe(true)
+    // ASSETS binding comes from the framework-generated wrangler config
+    expect(json.hasAssetsBinding).toBe(true)
+  })
 })
 
 describe('unified build — middleware chain', () => {

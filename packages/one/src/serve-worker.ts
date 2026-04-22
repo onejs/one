@@ -14,8 +14,10 @@ export type { LazyRoutes }
  * Creates a fetch handler for edge/worker environments (Cloudflare Workers, service workers, etc.)
  * No Hono dependency — routes are matched dynamically via compiled regexes against a mutable table.
  *
- * @returns `{ fetch, updateRoutes }` — call `fetch(request)` to handle requests,
- *          `updateRoutes(newBuildInfo, newLazyRoutes?)` to hot-swap the route table.
+ * @returns `{ fetch, updateRoutes }` — call `fetch(request, env?, ctx?)` to handle requests
+ *          (`env` and `ctx` are forwarded from the worker's fetch handler and surfaced on
+ *          API route handler contexts as `{ env, executionCtx }`).
+ *          Call `updateRoutes(newBuildInfo, newLazyRoutes?)` to hot-swap the route table.
  */
 export async function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes) {
   setupBuildInfo(buildInfo)

@@ -120,7 +120,9 @@ export async function resolveAPIRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoCompiled
+  route: RouteInfoCompiled,
+  env?: unknown,
+  executionCtx?: unknown
 ) {
   const { pathname } = url
   const params = getRouteParams(pathname, route)
@@ -145,7 +147,9 @@ export async function resolveAPIRoute(
             },
           }),
         request,
-        params || {}
+        params || {},
+        env,
+        executionCtx
       )
     } catch (err) {
       if (isResponse(err)) {

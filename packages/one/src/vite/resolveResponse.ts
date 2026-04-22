@@ -65,7 +65,9 @@ export function resolveAPIEndpoint(
   // this is the result of importing the file:
   runEndpoint: () => Promise<any>,
   request: Request,
-  params: Record<string, string>
+  params: Record<string, string>,
+  env?: unknown,
+  executionCtx?: unknown
 ) {
   return resolveResponse(async () => {
     const imported = await runEndpoint()
@@ -75,7 +77,9 @@ export function resolveAPIEndpoint(
       console.warn(`No handler found for request ${requestType}`)
       return
     }
-    return await handler(request, { params })
+    const worker =
+      env !== undefined || executionCtx !== undefined ? { env, executionCtx } : undefined
+    return await handler(request, { params, worker })
   })
 }
 
