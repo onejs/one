@@ -258,7 +258,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // other deps let rolldown decide — user can still add externals via
   // build.server.config.ssr.external or rolldownOptions.external.
   const isUnified =
-    typeof serverOptions === 'object' && serverOptions !== null && serverOptions.unified === true
+    typeof serverOptions === 'object' &&
+    serverOptions !== null &&
+    serverOptions.unified === true
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
