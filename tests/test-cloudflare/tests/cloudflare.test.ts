@@ -34,32 +34,25 @@ afterAll(async () => {
 describe('Cloudflare Wrangler config', () => {
   it('should merge root wrangler.jsonc into the generated dist config', () => {
     const config = JSON.parse(
-      readFileSync(join(process.cwd(), 'dist', 'wrangler.jsonc'), 'utf-8')
+      readFileSync(join(process.cwd(), 'dist', 'worker', 'wrangler.json'), 'utf-8')
     )
 
     expect(config.name).toBe('test-cloudflare-user-config')
-    expect(config.main).toBe('worker.js')
+    expect(config.main).toBe('index.js')
     expect(config.compatibility_date).toBe('2025-01-01')
     expect(config.compatibility_flags).toEqual(
       expect.arrayContaining(['nodejs_compat', 'nodejs_als'])
     )
-    expect(config.find_additional_modules).toBe(true)
+    expect(config.no_bundle).toBe(true)
+    expect(config.find_additional_modules).toBeUndefined()
     expect(config.vars.CUSTOM_VALUE).toBe('from-root-config')
     expect(config.assets).toMatchObject({
-      directory: 'client',
+      directory: '../client',
       binding: 'ASSETS',
       run_worker_first: true,
       html_handling: 'auto-trailing-slash',
     })
-    expect(config.rules).toEqual(
-      expect.arrayContaining([
-        { type: 'ESModule', globs: ['./server/**/*.js'], fallthrough: true },
-        { type: 'ESModule', globs: ['./api/**/*.js'], fallthrough: true },
-        { type: 'ESModule', globs: ['./middlewares/**/*.js'], fallthrough: true },
-        { type: 'ESModule', globs: ['./assets/**/*.js'], fallthrough: true },
-        { type: 'ESModule', globs: ['./extra/**/*.js'], fallthrough: true },
-      ])
-    )
+    expect(config.rules).toEqual([{ type: 'ESModule', globs: ['**/*.js', '**/*.mjs'] }])
   })
 })
 

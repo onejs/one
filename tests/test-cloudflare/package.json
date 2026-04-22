@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "one dev",
     "build:web": "one build",
-    "serve": "wrangler dev dist/worker.js --port 3457",
+    "serve": "wrangler dev --port 3457 --inspector-port 9237 --config dist/worker/wrangler.json",
     "test": "vitest --run --reporter=verbose"
   },
   "dependencies": {
