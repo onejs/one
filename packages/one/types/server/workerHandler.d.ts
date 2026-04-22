@@ -16,7 +16,7 @@ type WorkerHandlerOptions = {
     lazyRoutes: LazyRoutes;
 };
 export declare function createWorkerHandler(options: WorkerHandlerOptions): {
-    handleRequest: (request: Request) => Promise<Response | null>;
+    handleRequest: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
     updateRoutes: (newBuildInfo: One.BuildInfo, newLazyRoutes?: LazyRoutes) => void;
 };
 export {};

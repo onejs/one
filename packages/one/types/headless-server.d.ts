@@ -62,7 +62,7 @@ export type HeadlessServerOptions = {
  */
 export declare function createServer(options: HeadlessServerOptions): Promise<{
     /** handle an incoming request — returns Response or null (unmatched) */
-    fetch: (request: Request) => Promise<Response | null>;
+    fetch: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
     /** hot-swap the route table without recreating the server */
     updateRoutes(newManifest: One.BuildInfo["manifest"], newRoutes?: LazyRoutes): void;
 }>;

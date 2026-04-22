@@ -183,3 +183,40 @@ export const GET = createAPIRoute<'/api/users/[id]'>((request, { params }) => {
   return Response.json({ id: params.id })
 })
 ```
+
+## Cloudflare Worker Runtime
+
+When deployed to Cloudflare Workers, API handlers also receive a `worker` context containing the worker's `env` bindings and `executionCtx` (with `waitUntil` and `passThroughOnException`). The `worker` key is `undefined` on Node/dev so you can write runtime-portable code.
+
+```tsx fileName=app/api/track+api.ts
+import { createAPIRoute } from 'one'
+
+export const POST = createAPIRoute(async (request, { worker }) => {
+  const body = await request.json()
+
+  // fire-and-forget: keep the worker alive for the background task
+  // without blocking the response
+  worker?.executionCtx?.waitUntil(
+    fetch('https://analytics.example.com/track', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  )
+
+  return Response.json({ ok: true })
+})
+```
+
+The `worker` context has this shape:
+
+```ts
+type WorkerContext = {
+  env?: Record<string, unknown>      // your wrangler bindings (KV, D1, R2, etc.)
+  executionCtx?: {
+    waitUntil: (p: Promise<unknown>) => void
+    passThroughOnException: () => void
+  }
+}
+```
+
+Use `env` to access bindings you've configured in `wrangler.json` (databases, KV namespaces, secrets, the `ASSETS` static-asset binding), and `executionCtx.waitUntil()` for background work that should outlive the response.

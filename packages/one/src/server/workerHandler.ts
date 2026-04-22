@@ -566,7 +566,11 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   }
 
   // the main fetch handler - matches request to route and dispatches
-  async function handleRequest(request: Request): Promise<Response | null> {
+  async function handleRequest(
+    request: Request,
+    env?: unknown,
+    executionCtx?: unknown
+  ): Promise<Response | null> {
     const url = getURLfromRequestURL(request)
     const pathname = url.pathname
     const method = request.method
@@ -683,7 +687,14 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       if (route.compiledRegex.test(pathname)) {
         if (debugRouter)
           console.info(`[one] ⚡ ${pathname} → matched API route: ${route.page}`)
-        const response = await resolveAPIRoute(requestHandlers, request, url, route)
+        const response = await resolveAPIRoute(
+          requestHandlers,
+          request,
+          url,
+          route,
+          env,
+          executionCtx
+        )
         if (response && isResponse(response)) {
           return setCacheHeaders(response, route, true)
         }
