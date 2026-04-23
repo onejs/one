@@ -34,6 +34,26 @@ export function PUT(request: Request) {
 export function DELETE(request: Request) {
   // handle DELETE
 }
+
+export function PATCH(request: Request) {
+  // handle PATCH
+}
+
+export function HEAD(request: Request) {
+  // set headers for a GET without returning a body
+  return new Response(null, { headers: { 'x-total-count': '42' } })
+}
+
+export function OPTIONS(request: Request) {
+  // shape CORS preflight responses — see the parity note below
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'access-control-allow-origin': request.headers.get('origin') || '*',
+      'access-control-allow-methods': 'GET, POST, OPTIONS',
+    },
+  })
+}
 ```
 
 You can also export a `default` function as a catch-all:
@@ -43,6 +63,12 @@ export default function handler(request: Request) {
   return Response.json({ method: request.method })
 }
 ```
+
+## Dev and prod parity
+
+API route handlers — including `HEAD` and `OPTIONS` — are dispatched the same way in both `one dev` (Vite) and `one serve` (Hono on Node / Cloudflare Workers / Vercel). Your middleware chain and method exports are the source of truth: whatever response they produce in dev is what ships in prod.
+
+For `OPTIONS` preflight specifically, One configures Vite's dev server with `server.cors: { preflightContinue: true, origin: true, credentials: true }` so the built-in cors middleware sets permissive headers on non-preflight requests but lets preflight `OPTIONS` fall through to your handlers. If you override `server.cors` in your own `vite.config.ts`, keep `preflightContinue: true` or your middleware's preflight response won't reach the browser in dev.
 
 ## Dynamic Routes
 
