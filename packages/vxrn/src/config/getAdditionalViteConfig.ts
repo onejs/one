@@ -44,7 +44,16 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
     optimizeDeps: {},
 
     server: {
-      cors: true,
+      // preflightContinue lets OPTIONS fall through Vite's cors middleware so
+      // user middleware / api route OPTIONS handlers get to shape the preflight
+      // response — same as prod where Hono dispatches OPTIONS to the api handler
+      // (see oneServe.ts). origin: true + credentials: true keep non-preflight
+      // cross-origin dev asset fetches permissive (echo origin + allow creds).
+      cors: {
+        origin: true,
+        credentials: true,
+        preflightContinue: true,
+      },
     },
   } satisfies Omit<UserConfig, 'plugins'>
 }
