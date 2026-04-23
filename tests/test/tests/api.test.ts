@@ -142,6 +142,26 @@ describe(`API Tests`, () => {
     })
   })
 
+  describe('OPTIONS /api/cors-preflight', () => {
+    it('reaches the user-defined OPTIONS handler (not intercepted by dev cors)', async () => {
+      const res = await fetch(`${serverUrl}/api/cors-preflight`, {
+        method: 'OPTIONS',
+        headers: {
+          Origin: 'https://sootsim.com',
+          'Access-Control-Request-Method': 'GET',
+          'Access-Control-Request-Headers': 'authorization, content-type',
+        },
+      })
+
+      expect(res.status).toBe(204)
+      expect(res.headers.get('x-one-options-handler')).toBe('user')
+      expect(res.headers.get('access-control-allow-origin')).toBe('https://sootsim.com')
+      expect(res.headers.get('access-control-allow-credentials')).toBe('true')
+      expect(res.headers.get('access-control-allow-methods')).toContain('OPTIONS')
+      expect(res.headers.get('access-control-allow-headers')).toContain('authorization')
+    })
+  })
+
   describe('GET /api/api-under-group', () => {
     it('should work', async () => {
       const url = `${serverUrl}/api/api-under-group`
