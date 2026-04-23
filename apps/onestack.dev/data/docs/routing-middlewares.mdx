@@ -135,6 +135,10 @@ export default createMiddleware(async ({ request, next }) => {
 })
 ```
 
+<Notice>
+  The middleware above runs identically in `one dev` and `one serve` — the same `OPTIONS` branch answers preflight requests in both. One configures Vite's dev server with `server.cors.preflightContinue: true` so that Vite's built-in cors middleware doesn't intercept preflight before your middleware sees it. If you override `server.cors` in your `vite.config.ts`, keep `preflightContinue: true`. See [API Routes → Dev and prod parity](/docs/routing-api-routes#dev-and-prod-parity) for details.
+</Notice>
+
 Or modify the response directly:
 
 ```tsx fileName=app/_middleware.ts
