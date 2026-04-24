@@ -127,6 +127,10 @@ const COMMANDS = [
 ] satisfies Command[]
 
 export async function startUserInterface(context: Context) {
+  if (!supportsKeyboardCommands()) {
+    return
+  }
+
   printCommandsTable(context)
   startInterceptingKeyStrokes(context)
 }
@@ -160,10 +164,14 @@ function restoreTerminal() {
   process.stdout.write('\x1b[0m')
 }
 
+function supportsKeyboardCommands() {
+  const { stdin } = process
+  return Boolean(stdin.isTTY && stdin.setRawMode)
+}
+
 function startInterceptingKeyStrokes(context: Context) {
   const { stdin } = process
-  if (!stdin.setRawMode) {
-    console.warn('Using a non-interactive terminal, keyboard commands are disabled.')
+  if (!supportsKeyboardCommands()) {
     return
   }
   stdin.setRawMode(true)
