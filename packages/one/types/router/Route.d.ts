@@ -108,6 +108,7 @@ export declare function Route({ children, node, route, }: {
     children: ReactNode;
     node: RouteNode;
     route?: {
+        path?: string;
         params?: Record<string, string | undefined>;
     };
 }): import("react/jsx-runtime").JSX.Element;

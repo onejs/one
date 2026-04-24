@@ -95,6 +95,16 @@ CACHE_FILE="$CACHE_DIR/rn-test-container-${CONFIGURATION}-${FINGERPRINT}.tar.gz"
 BUILD_DIR="ios/build/${CONFIGURATION}"
 APP_PATH="$BUILD_DIR/Build/Products/${CONFIGURATION}-iphonesimulator/RNTestContainer.app"
 
+XCODEBUILD_ARCH_ARGS=()
+if [ "$(uname -m)" = "arm64" ]; then
+  # avoid building the unused x86_64 simulator slice on Apple Silicon
+  XCODEBUILD_ARCH_ARGS+=(
+    "ARCHS=arm64"
+    "ONLY_ACTIVE_ARCH=YES"
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]=x86_64"
+  )
+fi
+
 echo "Build fingerprint: $FINGERPRINT"
 echo "Cache file: $CACHE_FILE"
 
@@ -133,6 +143,14 @@ if ! grep -q '"ios.buildReactNativeFromSource": "true"' ios/Podfile.properties.j
 fi
 pod install --project-directory=ios
 
+FMT_BASE_H="ios/Pods/fmt/include/fmt/base.h"
+if [ -f "$FMT_BASE_H" ]; then
+  # Xcode 26's Apple clang still fails fmt's consteval path for simulator builds.
+  perl -0pi -e \
+    's/#elif defined\(__apple_build_version__\) && __apple_build_version__ < 14000029L/#elif defined(__apple_build_version__)/' \
+    "$FMT_BASE_H"
+fi
+
 # Build with xcodebuild
 xcrun xcodebuild -scheme 'RNTestContainer' \
   -workspace "ios/RNTestContainer.xcworkspace" \
@@ -140,7 +158,8 @@ xcrun xcodebuild -scheme 'RNTestContainer' \
   -sdk 'iphonesimulator' \
   -destination 'generic/platform=iOS Simulator' \
   -archivePath "$BUILD_DIR" \
-  -derivedDataPath "$BUILD_DIR" | tee xcodebuild.log | xcpretty
+  -derivedDataPath "$BUILD_DIR" \
+  "${XCODEBUILD_ARCH_ARGS[@]}" | tee xcodebuild.log | xcpretty
 
 # Cache the build
 if [ -d "$APP_PATH" ]; then

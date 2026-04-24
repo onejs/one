@@ -86,7 +86,7 @@
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.3",
-    "rolldown": "^1.0.0-rc.12",
+    "rolldown": "^1.0.0-rc.17",
     "semver": "^7.6.3",
     "vite": "^8.0.0",
     "ws": "^8.18.0"

@@ -6,6 +6,7 @@ import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
 import { getLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
+import { routeInfo } from './router'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
 export type DynamicConvention = {
@@ -147,11 +148,19 @@ export function useContextKey(): string {
  * Reuses the router's existing URL-parsing rather than re-implementing
  * segment matching, so group/catch-all/index semantics stay consistent.
  */
-function getParamsFromCurrentUrl(): Record<string, any> | undefined {
-  if (typeof window === 'undefined') return undefined
+function getParamsFromCurrentUrl(route?: {
+  path?: string
+  params?: Record<string, string | undefined>
+}): Record<string, any> | undefined {
   const linking = getLinking()
   if (!linking?.getStateFromPath) return undefined
-  const path = window.location.pathname + window.location.search
+  const path =
+    (typeof window !== 'undefined' && window.location
+      ? window.location.pathname + window.location.search
+      : undefined) ||
+    route?.path ||
+    routeInfo?.unstable_globalHref
+  if (!path) return undefined
   const state = linking.getStateFromPath(path, linking.config)
   if (!state) return undefined
   const focused = findFocusedRoute(state)
@@ -166,7 +175,10 @@ export function Route({
 }: {
   children: ReactNode
   node: RouteNode
-  route?: { params?: Record<string, string | undefined> }
+  route?: {
+    path?: string
+    params?: Record<string, string | undefined>
+  }
 }) {
   // URL is the source of truth for path params. React Navigation can
   // transiently provide a `route` whose `params` is undefined or missing
@@ -184,10 +196,10 @@ export function Route({
     if (!node.dynamic?.length) return rp
     const missing = node.dynamic.some((d) => !rp || rp[d.name] == null)
     if (!missing) return rp
-    const fromUrl = getParamsFromCurrentUrl()
+    const fromUrl = getParamsFromCurrentUrl(route)
     if (!fromUrl) return rp
     return { ...fromUrl, ...rp }
-  }, [node, route?.params])
+  }, [node, route])
 
   return (
     <RouteParamsContext.Provider value={resolvedParams}>
