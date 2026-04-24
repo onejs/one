@@ -9,11 +9,12 @@ function restoreTerminal() {
   process.stdout.write('\x1b[0m')
 }
 
+function supportsKeypressInput() {
+  return Boolean(process.stdin.isTTY && process.stdin.setRawMode)
+}
+
 export function bindKeypressInput() {
-  if (!process.stdin.setRawMode) {
-    console.warn({
-      msg: 'Interactive mode is not supported in this environment',
-    })
+  if (!supportsKeypressInput()) {
     return
   }
 
