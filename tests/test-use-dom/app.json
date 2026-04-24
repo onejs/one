@@ -7,7 +7,7 @@
       "android"
     ],
     "plugins": [
-      "vxrn/expo-plugin"
+      "one/expo-plugin"
     ],
     "icon": "./public/app-icon.png",
     "splash": {

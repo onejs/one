@@ -2,7 +2,7 @@
   "name": "NativeFeatureTests",
   "slug": "native-feature-tests",
   "plugins": [
-    "vxrn/expo-plugin",
+    "one/expo-plugin",
     [
       "expo-build-properties",
       {

@@ -60,16 +60,16 @@ While our templates are configured in a way that works with EAS, if you're start
      // Setting up and overriding some react-native CLI commands.
      // Necessary for building native iOS and Android apps,
      // where Vite shall be used instead of Metro for JS bundling during the build process.
-     commands: [...require('vxrn/react-native-commands')],
+     commands: [...require('one/react-native-commands')],
    }
    ```
 
-3. Modify your `app.json` (or `app.config.js`) and add `vxrn/expo-plugin` to `expo.plugins`. This plugin will hook into the Expo build process running on EAS to ensure your One app is built correctly:
+3. Modify your `app.json` (or `app.config.js`) and add `one/expo-plugin` to `expo.plugins`. This plugin will hook into the Expo build process running on EAS to ensure your One app is built correctly:
 
    ```json
    {
      "expo": {
-       "plugins": ["vxrn/expo-plugin"]
+       "plugins": ["one/expo-plugin"]
      }
    }
    ```

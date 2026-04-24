@@ -124,7 +124,7 @@ You should add a `react-native.config.cjs` file in your project root to configur
 
 ```js
 module.exports = {
-  commands: [...require('vxrn/react-native-commands')]
+  commands: [...require('one/react-native-commands')]
 }
 ```
 
@@ -136,12 +136,12 @@ By doing so, the `react-native build` command will be overwritten to use Vite as
 
 ### Expo Prebuild
 
-If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you should also add `"vxrn/expo-plugin"` in your app config (app.json/app.config.js/app.config.ts):
+If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you should also add `"one/expo-plugin"` in your app config (app.json/app.config.js/app.config.ts):
 
 ```json
 {
   "expo": {
-    "plugins": ["vxrn/expo-plugin"]
+    "plugins": ["one/expo-plugin"]
   }
 }
 ```
@@ -149,7 +149,7 @@ If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you sh
 ### iOS Project Setup
 
 <Notice>
-  This isn't necessary if you're using Expo Prebuild, as `vxrn/expo-plugin` already takes care of this.
+  This isn't necessary if you're using Expo Prebuild, as `one/expo-plugin` already takes care of this.
 </Notice>
 
 In the "Bundle React Native code and images" phase, make the following change in the shell script:
@@ -183,15 +183,15 @@ Try to delete `ios/.xcode.env.local`.
 
     ```js
     module.exports = {
-      commands: [...require('vxrn/react-native-commands')]
+      commands: [...require('one/react-native-commands')]
     }
     ```
-2. Make sure you have `vxrn/expo-plugin` included in your `app.json` (or .js, etc.):
+2. Make sure you have `one/expo-plugin` included in your `app.json` (or .js, etc.):
 
     ```json
     {
       "expo": {
-        "plugins": ["vxrn/expo-plugin"]
+        "plugins": ["one/expo-plugin"]
       }
     }
     ```
