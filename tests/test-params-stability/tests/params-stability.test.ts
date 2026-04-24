@@ -74,6 +74,57 @@ async function collectRenders(page: Page) {
   })
 }
 
+async function collectThingState(page: Page) {
+  return page.evaluate(() => {
+    return {
+      url: location.pathname,
+      pathname: document.querySelector('#thing-pathname')?.textContent ?? null,
+      paramId: document.querySelector('#thing-id')?.textContent ?? null,
+      renders: (
+        ((window as any).__thingRenders as Array<{
+          at: number
+          url: string
+          pathname: string
+          params: Record<string, unknown>
+        }>) ?? []
+      ).map((r) => ({ ...r, params: { ...r.params } })),
+    }
+  })
+}
+
+async function assertSiblingDynamicNavigation(method: 'replace' | 'push') {
+  const page = await context.newPage()
+  const errors: string[] = []
+  page.on('pageerror', (err) => errors.push(err.message))
+
+  try {
+    await page.goto(`${serverUrl}/thing/a/main`, { waitUntil: 'domcontentloaded' })
+    await page.waitForSelector('#thing-page', { timeout: 15000 })
+
+    const initial = await collectThingState(page)
+    expect(initial.pathname).toBe('/thing/a/main')
+    expect(initial.paramId).toBe('a')
+
+    await page.locator(`#${method}-thing`).click()
+    await page.waitForFunction(
+      () => document.querySelector('#thing-pathname')?.textContent === '/thing/b/main',
+      { timeout: 10000 }
+    )
+
+    const after = await collectThingState(page)
+    expect(after.pathname).toBe('/thing/b/main')
+    expect(
+      after.paramId,
+      `${method} left useParams().id stale after sibling dynamic navigation.\n` +
+        `expected: usePathname() === "/thing/b/main" and useParams().id === "b"\n` +
+        `actual: ${JSON.stringify(after, null, 2)}`
+    ).toBe('b')
+    expect(errors).toEqual([])
+  } finally {
+    await page.close()
+  }
+}
+
 describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
   test('loading /preview/<id> fresh — every render sees { id }, never {}', async () => {
     const id = 'c33226705841ff0d'
@@ -119,4 +170,20 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
     expect(errors).toEqual([])
     await page.close()
   })
+
+  test(
+    'router.replace between sibling dynamic routes keeps useParams aligned with usePathname',
+    { retry: 0 },
+    async () => {
+      await assertSiblingDynamicNavigation('replace')
+    }
+  )
+
+  test(
+    'router.push between sibling dynamic routes keeps useParams aligned with usePathname',
+    { retry: 0 },
+    async () => {
+      await assertSiblingDynamicNavigation('push')
+    }
+  )
 })

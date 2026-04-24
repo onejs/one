@@ -6,6 +6,7 @@ import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
 import { getLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
+import { mergeDynamicParams } from './params'
 import { routeInfo } from './router'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
@@ -155,11 +156,11 @@ function getParamsFromCurrentUrl(route?: {
   const linking = getLinking()
   if (!linking?.getStateFromPath) return undefined
   const path =
+    routeInfo?.unstable_globalHref ||
+    route?.path ||
     (typeof window !== 'undefined' && window.location
       ? window.location.pathname + window.location.search
-      : undefined) ||
-    route?.path ||
-    routeInfo?.unstable_globalHref
+      : undefined)
   if (!path) return undefined
   const state = linking.getStateFromPath(path, linking.config)
   if (!state) return undefined
@@ -180,26 +181,20 @@ export function Route({
     params?: Record<string, string | undefined>
   }
 }) {
-  // URL is the source of truth for path params. React Navigation can
-  // transiently provide a `route` whose `params` is undefined or missing
-  // the dynamic segments this node expects (observed in spa-shell mode
-  // under StrictMode, when a late-mounting child navigator falls through
-  // to StackRouter.getInitialState — which produces a default route with
-  // no params because `routeParamList` has no entry for dynamic routes).
+  // url is the source of truth for path params. react navigation can provide
+  // a `route` whose `params` are missing or stale for the dynamic segments
+  // this node expects (observed in spa-shell mode under strictmode, and when
+  // navigating between sibling dynamic routes under the same layout).
   //
-  // to keep useParams() stable for userland, recover missing dynamic
-  // segment params by re-parsing the URL through the router's linking
-  // config. `route.params` wins on overlap so query params / static
-  // params keep flowing from React Navigation.
+  // to keep useParams() aligned with the current route, recover dynamic
+  // segment params by re-parsing the router path through the linking config.
+  // non-dynamic params keep flowing from React Navigation.
   const resolvedParams = React.useMemo(() => {
     const rp = route?.params
     if (!node.dynamic?.length) return rp
-    const missing = node.dynamic.some((d) => !rp || rp[d.name] == null)
-    if (!missing) return rp
     const fromUrl = getParamsFromCurrentUrl(route)
-    if (!fromUrl) return rp
-    return { ...fromUrl, ...rp }
-  }, [node, route])
+    return mergeDynamicParams(rp, node.dynamic, fromUrl)
+  }, [node, route, routeInfo?.unstable_globalHref])
 
   return (
     <RouteParamsContext.Provider value={resolvedParams}>
