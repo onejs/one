@@ -43,7 +43,7 @@
   "devDependencies": {
     "@tamagui/build": "2.0.0-rc.40",
     "depcheck": "^1.4.7",
-    "rolldown": "^1.0.0-rc.12",
+    "rolldown": "^1.0.0-rc.17",
     "vite": "^8.0.0"
   },
   "peerDependencies": {

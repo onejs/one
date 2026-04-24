@@ -4,10 +4,11 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "build:web": "one build",
     "dev": "one dev",
     "ios": "EXPO_NO_TELEMETRY=true one run:ios",
     "prebuild:native": "one prebuild",
-    "test-ios": "bun run test-ios:dev",
+    "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run"
   },

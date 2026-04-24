@@ -1,4 +1,4 @@
-import { exec, execSync } from 'node:child_process'
+import { execFileSync, execSync } from 'node:child_process'
 import path, { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
@@ -70,6 +70,124 @@ function getSimulatorUdid() {
     }
 
     throw error
+  }
+}
+
+function getBundleIdFromApp(appPath: string) {
+  const infoPlistPath = path.join(appPath, 'Info.plist')
+
+  try {
+    return execFileSync(
+      'plutil',
+      ['-extract', 'CFBundleIdentifier', 'raw', '-o', '-', infoPlistPath],
+      { encoding: 'utf8' }
+    ).trim()
+  } catch (error) {
+    if (error instanceof Error) {
+      error.message = `Failed to read CFBundleIdentifier from ${infoPlistPath}: ${error.message}`
+    }
+
+    throw error
+  }
+}
+
+function ensureSimulatorBooted(udid: string) {
+  try {
+    execFileSync('xcrun', ['simctl', 'bootstatus', udid, '-b'], {
+      stdio: 'ignore',
+    })
+    return
+  } catch (error) {
+    // simulator is not booted yet
+  }
+
+  execFileSync('xcrun', ['simctl', 'boot', udid], {
+    stdio: 'inherit',
+  })
+
+  execFileSync('xcrun', ['simctl', 'bootstatus', udid, '-b'], {
+    stdio: 'inherit',
+  })
+}
+
+function installPreparedAppToSimulator({
+  appPath,
+  bundleId,
+  udid,
+}: {
+  appPath: string
+  bundleId: string
+  udid: string
+}) {
+  console.info(`Installing ${bundleId} to simulator ${udid} from ${appPath}...`)
+
+  ensureSimulatorBooted(udid)
+
+  try {
+    execFileSync('xcrun', ['simctl', 'terminate', udid, bundleId], {
+      stdio: 'ignore',
+    })
+  } catch {}
+
+  try {
+    execFileSync('xcrun', ['simctl', 'uninstall', udid, bundleId], {
+      stdio: 'ignore',
+    })
+  } catch {}
+
+  execFileSync('xcrun', ['simctl', 'install', udid, appPath], {
+    stdio: 'inherit',
+  })
+}
+
+async function getAvailablePort() {
+  const net = await import('node:net')
+
+  return await new Promise<number>((resolve, reject) => {
+    const server = net.createServer()
+    server.unref()
+    server.on('error', reject)
+    server.listen(0, '127.0.0.1', () => {
+      const address = server.address()
+      if (!address || typeof address === 'string') {
+        reject(new Error(`Failed to allocate a TCP port: ${String(address)}`))
+        return
+      }
+      const { port } = address
+      server.close((error) => {
+        if (error) {
+          reject(error)
+          return
+        }
+        resolve(port)
+      })
+    })
+  })
+}
+
+async function ensureReactNativeBundleConfig(root: string) {
+  const fs = await import('node:fs')
+  const existingConfigPath = ['react-native.config.cjs', 'react-native.config.js'].find(
+    (fileName) => fs.existsSync(path.join(root, fileName))
+  )
+
+  if (existingConfigPath) {
+    return async () => {}
+  }
+
+  const generatedConfigPath = path.join(root, 'react-native.config.cjs')
+
+  await fs.promises.writeFile(
+    generatedConfigPath,
+    `module.exports = {
+  // allow test bundling to route through vxrn without per-app scaffolding.
+  commands: [...require('vxrn/react-native-commands')],
+}
+`
+  )
+
+  return async () => {
+    await fs.promises.rm(generatedConfigPath, { force: true })
   }
 }
 
@@ -211,15 +329,20 @@ async function prepareTestApp() {
 
   // First, bundle the JS to a temporary file
   const jsBundlePath = `${appPath}/main.jsbundle.js`
+  const cleanupReactNativeBundleConfig = await ensureReactNativeBundleConfig(root)
 
   // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
   // MODE=test, also it exposes those env to underlying shell processes, which
   // those explicit env vars will override Vite loading `.env` and `.env.*`,
   // making some of our test fail because env vars are not loaded correctly.
   // So we need to use `env -u` to unset MODE and any env vars we care here.
-  await $({
-    stdio: 'inherit',
-  })`env -u MODE -u VITE_TEST_ENV_MODE ONE_SERVER_URL=http://localhost:3456 bun react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
+  try {
+    await $({
+      stdio: 'inherit',
+    })`env -u MODE -u VITE_TEST_ENV_MODE ONE_SERVER_URL=http://localhost:3456 bun react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
+  } finally {
+    await cleanupReactNativeBundleConfig()
+  }
 
   // Compile the JS bundle to Hermes bytecode
   // The app is built with Hermes V1 (RCT_HERMES_V1_ENABLED=1) which uses a different
@@ -328,13 +451,24 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const wdaIsPrebuilt = fs.existsSync(
     `${wdaDerivedDataPath}/Build/Products/Debug-iphonesimulator/WebDriverAgentRunner-Runner.app`
   )
+  const udid = getSimulatorUdid()
+  const appPath = await prepareTestApp()
+  const bundleId = getBundleIdFromApp(appPath)
+  const wdaLocalPort = await getAvailablePort()
+
+  installPreparedAppToSimulator({
+    appPath,
+    bundleId,
+    udid,
+  })
 
   const capabilities = {
     platformName: 'iOS',
     'appium:options': {
       automationName: 'XCUITest',
-      udid: getSimulatorUdid(),
-      app: await prepareTestApp(),
+      udid,
+      bundleId,
+      wdaLocalPort,
       // always cache WDA builds so subsequent sessions skip the rebuild
       derivedDataPath: wdaDerivedDataPath,
       ...(wdaIsPrebuilt && { usePrebuiltWDA: true }),

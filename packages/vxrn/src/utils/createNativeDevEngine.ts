@@ -616,7 +616,8 @@ var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true
 // fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
 var routes = {};
 Object.keys(_routes).forEach(function(key) {
-  routes[key.replace(/^\\./, '')] = _routes[key];
+  var normalizedKey = key.replace(/^\\.\\//, '');
+  routes['/' + normalizedKey] = _routes[key];
 });
 
 createApp({

@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
     paddingTop: 60,
-    paddingBottom: 40,
+    paddingBottom: 140,
   },
   title: {
     fontSize: 22,

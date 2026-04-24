@@ -56,7 +56,7 @@ export default function ZoomTestScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f5f5f5' },
-  content: { padding: 16, paddingTop: 60, paddingBottom: 40 },
+  content: { padding: 16, paddingTop: 60, paddingBottom: 140 },
   title: { fontSize: 22, fontWeight: 'bold', marginBottom: 4 },
   description: { fontSize: 14, color: '#666', marginBottom: 16 },
   grid: { gap: 12 },

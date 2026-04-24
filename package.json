@@ -83,7 +83,7 @@
     "tar": "7.5.11",
     "undici": "7.24.3",
     "esbuild": "0.25.11",
-    "vite": "8.0.8",
+    "vite": "8.0.10",
     "basic-ftp": "5.2.2",
     "drizzle-orm": "0.45.2",
     "lodash": "4.18.1",
@@ -150,6 +150,8 @@
     "memory": true
   },
   "patchedDependencies": {
+    "@expo/plist@0.5.2": "patches/@expo%2Fplist@0.5.2.patch",
+    "plist@3.1.0": "patches/plist@3.1.0.patch",
     "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch"
   }
 }

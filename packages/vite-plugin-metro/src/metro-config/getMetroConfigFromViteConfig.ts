@@ -1,4 +1,5 @@
 import type { ResolvedConfig } from 'vite'
+import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import micromatch from 'micromatch'
 
@@ -16,6 +17,48 @@ import type { ExtraConfig, MetroConfigExtended } from './types'
 
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 
+const WATCHMAN_PROBE_TIMEOUT_MS = 2000
+const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
+let didWarnAboutWatchmanFallback = false
+
+async function isWatchmanResponsive(projectRoot: string) {
+  let probe = watchmanResponsivePromises.get(projectRoot)
+  if (probe) {
+    return probe
+  }
+
+  probe = new Promise<boolean>((resolve) => {
+    let settled = false
+
+    const finish = (value: boolean) => {
+      if (settled) return
+      settled = true
+      clearTimeout(timeout)
+      resolve(value)
+    }
+
+    const child = spawn('watchman', ['watch-project', projectRoot], {
+      stdio: 'ignore',
+    })
+
+    const timeout = setTimeout(() => {
+      child.kill()
+      finish(false)
+    }, WATCHMAN_PROBE_TIMEOUT_MS)
+
+    child.once('error', () => {
+      finish(false)
+    })
+
+    child.once('exit', (code) => {
+      finish(code === 0)
+    })
+  })
+
+  watchmanResponsivePromises.set(projectRoot, probe)
+  return probe
+}
+
 export async function getMetroConfigFromViteConfig(
   config: ResolvedConfig,
   metroPluginOptions: MetroPluginOptions
@@ -27,6 +70,14 @@ export async function getMetroConfigFromViteConfig(
   const projectRoot = resolve(metroPluginOptions.argv?.projectRoot ?? config.root)
   const { mainModuleName, argv, defaultConfigOverrides, watchman, excludeModules } =
     metroPluginOptions
+  const useWatchman = watchman ?? (await isWatchmanResponsive(projectRoot))
+
+  if (watchman === undefined && !useWatchman && !didWarnAboutWatchmanFallback) {
+    didWarnAboutWatchmanFallback = true
+    console.warn(
+      '[vxrn/metro] Watchman is unavailable or unresponsive; falling back to Node file watching.'
+    )
+  }
 
   const { loadConfig } = await projectImport<{
     loadConfig: typeof loadConfigT
@@ -113,7 +164,7 @@ export async function getMetroConfigFromViteConfig(
     ..._defaultConfig,
     resolver: {
       ..._defaultConfig?.resolver,
-      ...(watchman !== undefined ? { useWatchman: watchman } : {}),
+      useWatchman,
       blockList,
       sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
       resolveRequest: (context, moduleName, platform) => {

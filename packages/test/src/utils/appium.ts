@@ -251,6 +251,51 @@ function sanitizeFileName(input: string): string {
     .slice(0, 100)
 }
 
+async function getAvailablePort() {
+  const net = await import('node:net')
+
+  return await new Promise<number>((resolve, reject) => {
+    const server = net.createServer()
+    server.unref()
+    server.on('error', reject)
+    server.listen(0, '127.0.0.1', () => {
+      const address = server.address()
+      if (!address || typeof address === 'string') {
+        reject(new Error(`Failed to allocate a TCP port: ${String(address)}`))
+        return
+      }
+      const { port } = address
+      server.close((error) => {
+        if (error) {
+          reject(error)
+          return
+        }
+        resolve(port)
+      })
+    })
+  })
+}
+
+async function withFreshWdaLocalPort(config: WebdriverIOConfig): Promise<WebdriverIOConfig> {
+  const capabilities = config.capabilities as any
+  const appiumOptions = capabilities?.['appium:options']
+
+  if (!appiumOptions || appiumOptions.webDriverAgentUrl) {
+    return config
+  }
+
+  return {
+    ...config,
+    capabilities: {
+      ...capabilities,
+      'appium:options': {
+        ...appiumOptions,
+        wdaLocalPort: await getAvailablePort(),
+      },
+    },
+  }
+}
+
 /**
  * create a webdriver session with retry and recovery logic.
  * when WDA fails (ECONNREFUSED, app unknown to FrontBoard, etc),
@@ -270,7 +315,8 @@ export async function createSession(
         await recoverSimulator(resolvedConfig)
       }
 
-      const driver = await remote(resolvedConfig)
+      const sessionConfig = await withFreshWdaLocalPort(resolvedConfig)
+      const driver = await remote(sessionConfig)
 
       // verify the app actually launched successfully
       try {
@@ -282,7 +328,7 @@ export async function createSession(
           )
           // dump simulator system log for crash diagnostics
           const udid =
-            (resolvedConfig.capabilities as any)?.['appium:options']?.udid ||
+            (sessionConfig.capabilities as any)?.['appium:options']?.udid ||
             process.env.SIMULATOR_UDID
           if (udid) {
             try {
@@ -326,15 +372,15 @@ async function recoverSimulator(config: WebdriverIOConfig) {
   }
 
   // terminate the test app if it's stuck
-  const udid =
-    (config.capabilities as any)?.['appium:options']?.udid || process.env.SIMULATOR_UDID
-  if (udid) {
+  const appiumOptions = (config.capabilities as any)?.['appium:options'] || {}
+  const udid = appiumOptions.udid || process.env.SIMULATOR_UDID
+  const bundleId = appiumOptions.bundleId || 'dev.onestack.rntestcontainer'
+  if (udid && bundleId) {
     try {
-      // terminate any running app on the simulator
-      execSync(
-        `xcrun simctl terminate ${udid} dev.onestack.rntestcontainer 2>/dev/null || true`,
-        { timeout: 10_000 }
-      )
+      // terminate the configured test app if it is stuck
+      execSync(`xcrun simctl terminate ${udid} ${bundleId} 2>/dev/null || true`, {
+        timeout: 10_000,
+      })
     } catch {}
   }
 
