@@ -61,12 +61,14 @@ async function installUrlTracker(page: Page) {
 
     const origPush = history.pushState.bind(history)
     const origReplace = history.replaceState.bind(history)
+    type PushStateArgs = Parameters<History['pushState']>
+    type ReplaceStateArgs = Parameters<History['replaceState']>
 
-    history.pushState = function (...args: any[]) {
+    history.pushState = function (...args: PushStateArgs) {
       origPush(...args)
       record('pushState')
     }
-    history.replaceState = function (...args: any[]) {
+    history.replaceState = function (...args: ReplaceStateArgs) {
       origReplace(...args)
       record('replaceState')
     }
