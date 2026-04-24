@@ -181,7 +181,7 @@ async function ensureReactNativeBundleConfig(root: string) {
     generatedConfigPath,
     `module.exports = {
   // allow test bundling to route through vxrn without per-app scaffolding.
-  commands: [...require('vxrn/react-native-commands')],
+  commands: [...require('one/react-native-commands')],
 }
 `
   )

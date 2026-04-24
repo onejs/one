@@ -10,7 +10,7 @@
     },
     "platforms": ["ios", "android"],
     "plugins": [
-      "vxrn/expo-plugin",
+      "one/expo-plugin",
       "react-native-bottom-tabs",
       [
         "expo-build-properties",
