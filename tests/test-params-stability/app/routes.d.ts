@@ -10,17 +10,25 @@ declare module 'one' {
         | `/`
         | `/(site)`
         | `/(site)/`
+        | `/(site)/thing/[id]/main`
         | `/_sitemap`
+        | `/thing/[id]/main`
       DynamicRoutes: 
         | `/(site)/preview/${OneRouter.SingleRoutePart<T>}`
+        | `/(site)/thing/${OneRouter.SingleRoutePart<T>}`
         | `/preview/${OneRouter.SingleRoutePart<T>}`
+        | `/thing/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: 
         | `/(site)/preview/[id]`
+        | `/(site)/thing/[id]`
         | `/preview/[id]`
+        | `/thing/[id]`
       IsTyped: true
       RouteTypes: {
         '/(site)/preview/[id]': RouteInfo<{ id: string }>
+        '/(site)/thing/[id]': RouteInfo<{ id: string }>
         '/preview/[id]': RouteInfo<{ id: string }>
+        '/thing/[id]': RouteInfo<{ id: string }>
       }
     }
   }

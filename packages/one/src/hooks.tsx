@@ -2,6 +2,7 @@ import React, { createContext, useContext } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
+import { mergeDynamicParams } from './router/params'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { getServerContext } from './vite/one-server-only'
@@ -177,7 +178,14 @@ export const useGlobalSearchParams = useActiveParams
  * ```
  */
 export function useParams<TParams extends object = SearchParams>(): Partial<TParams> {
-  const params = React.useContext(RouteParamsContext) ?? {}
+  const contextParams = React.useContext(RouteParamsContext) ?? {}
+  const routeNode = useRouteNode()
+  const routeInfoParams = useRouteInfo().params
+
+  const params = React.useMemo(
+    () => mergeDynamicParams(contextParams, routeNode?.dynamic, routeInfoParams),
+    [contextParams, routeInfoParams, routeNode]
+  )
 
   return React.useMemo(() => {
     return Object.fromEntries(
