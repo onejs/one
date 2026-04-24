@@ -122,6 +122,30 @@ async function collectUrlResults(page: Page) {
   })
 }
 
+function getPathname(url: string) {
+  return new URL(url || '/', 'http://localhost').pathname
+}
+
+async function waitForHomeRedirect(page: Page) {
+  await page.waitForFunction(
+    () => {
+      const w = window as any
+      return !!w.__homeRouteMounted && !!w.__redirectFired && location.pathname === '/project/target/main'
+    },
+    { timeout: 10000 }
+  )
+}
+
+async function waitForDeployRouteActivity(page: Page) {
+  await page.waitForFunction(
+    () => {
+      const w = window as any
+      return !!w.__deployRouteMounted || location.pathname === '/project/target/main/deploy'
+    },
+    { timeout: 10000 }
+  )
+}
+
 describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
   test('URL should never contain /deploy when loading /', async () => {
     const page = await context.newPage()
@@ -136,8 +160,7 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
 
     await page.goto(serverUrl + '/', { waitUntil: 'domcontentloaded' })
 
-    // wait for hydration + redirects to settle
-    await new Promise((r) => setTimeout(r, 3000))
+    await waitForHomeRedirect(page)
 
     const results = await collectUrlResults(page)
 
@@ -190,13 +213,12 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
 
     await page.goto(serverUrl + '/', { waitUntil: 'domcontentloaded' })
 
-    // wait for the home route's redirect to fire
-    await new Promise((r) => setTimeout(r, 3000))
+    await waitForHomeRedirect(page)
 
     const results = await collectUrlResults(page)
 
     // after the home redirect, we should be on /project/target/main
-    expect(results.finalUrl).toBe('/project/target/main')
+    expect(getPathname(results.finalUrl)).toBe('/project/target/main')
 
     // home route should have mounted
     expect(results.homeRouteMounted).toBe(true)
@@ -220,7 +242,7 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
 
     await page.goto(serverUrl + '/deploy', { waitUntil: 'domcontentloaded' })
 
-    await new Promise((r) => setTimeout(r, 3000))
+    await waitForDeployRouteActivity(page)
 
     const results = await collectUrlResults(page)
 
@@ -238,6 +260,8 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       wrongFlash,
       `unexpected URLs during /deploy load:\n${JSON.stringify(wrongFlash, null, 2)}`
     ).toHaveLength(0)
+
+    expect(['/deploy', '/project/target/main/deploy']).toContain(getPathname(results.finalUrl))
 
     expect(errors).toHaveLength(0)
     await page.close()
