@@ -517,10 +517,12 @@ export function useLoaderState<
               } finally {
                 clearTimeout(timeoutId)
               }
-              // biome-ignore lint/security/noGlobalEval: we need eval for native
-              const result = eval(
-                `() => { var exports = {}; ${loaderJsCode}; return exports; }`
-              )()
+              // use Function constructor instead of direct eval. hermes treats
+              // direct eval as indirect (no lexical scope) and rolldown warns
+              // about it; new Function is predictable across both engines and
+              // explicitly threads the exports object through as a parameter.
+              const result: { loader?: () => any } = {}
+              new Function('exports', loaderJsCode)(result)
               const moduleLoadTime = performance.now() - moduleLoadStart
 
               if (typeof result.loader !== 'function') {
