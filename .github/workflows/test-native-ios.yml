@@ -11,6 +11,7 @@ on:
       - main
       - ci/native-tests-free-runners
       - ci/rolldown-native-tests
+      - ci/test-native-ios-matrix-split
       - react-native-82
     paths:
       - '.github/actions/install/**'
@@ -65,12 +66,31 @@ jobs:
       configuration: Release
 
   test-ios-native:
-    name: Native iOS Tests
+    name: Native iOS Tests (${{ matrix.env }}, ${{ matrix.bundler }})
     needs:
       - build-ios-test-container-dev
       - build-ios-test-container-prod
     runs-on: macos-15
-    timeout-minutes: 90
+    timeout-minutes: 45
+    # rolldown:prod is experimental — don't fail the workflow on it
+    continue-on-error: ${{ matrix.env == 'prod' && matrix.bundler == 'rolldown' }}
+    strategy:
+      # one matrix entry's failure shouldn't kill the others — they're independent runs
+      fail-fast: false
+      matrix:
+        include:
+          - env: dev
+            bundler: metro
+            test-script: test-ios:dev
+          - env: dev
+            bundler: rolldown
+            test-script: test-ios:rolldown:dev
+          - env: prod
+            bundler: metro
+            test-script: test-ios:prod
+          - env: prod
+            bundler: rolldown
+            test-script: test-ios:rolldown:prod
     steps:
       - name: Set Xcode version
         run: sudo xcode-select -s /Applications/Xcode_26.2.app
@@ -84,6 +104,7 @@ jobs:
           install-playwright: 'false'
 
       - name: Download Built Test Container App (Dev)
+        if: ${{ matrix.env == 'dev' }}
         uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
@@ -91,6 +112,7 @@ jobs:
           path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
 
       - name: Download Built Test Container App (Prod)
+        if: ${{ matrix.env == 'prod' }}
         uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
@@ -98,7 +120,7 @@ jobs:
           path: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
 
       - name: Download Hermes V1 hermesc
-        if: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
+        if: ${{ matrix.env == 'prod' && needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
         id: download-hermesc
         continue-on-error: true
         uses: actions/cache/restore@v5
@@ -209,43 +231,21 @@ jobs:
             echo "Could not find WDA path, will build on first session"
           fi
 
-      - name: Test Dev (Metro)
+      - name: Run Tests
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
-        run: |
-          bun run --filter test-test test-ios:dev
-
-      - name: Test Dev (Rolldown)
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
-        run: |
-          bun run --filter test-test test-ios:rolldown:dev
-
-      - name: Test Prod (Metro)
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
+          IOS_TEST_CONTAINER_PATH_DEV: ${{ matrix.env == 'dev' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.built-app-path) || '' }}
+          IOS_TEST_CONTAINER_PATH_PROD: ${{ matrix.env == 'prod' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.built-app-path) || '' }}
           HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
         run: |
-          bun run --filter test-test test-ios:prod
-
-      - name: Test Prod (Rolldown)
-        continue-on-error: true
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
-          HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
-        run: |
-          bun run --filter test-test test-ios:rolldown:prod
+          bun run --filter test-test ${{ matrix.test-script }}
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v7
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-tests.log
+          name: appium-tests-${{ matrix.env }}-${{ matrix.bundler }}.log
           path: /tmp/appium.log
 
       - name: Upload Appium Screenshots
@@ -253,5 +253,5 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-screenshots
+          name: appium-screenshots-${{ matrix.env }}-${{ matrix.bundler }}
           path: /tmp/appium-screenshots
