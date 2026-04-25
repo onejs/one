@@ -80,6 +80,10 @@ export async function buildBundle(
     root,
     platform,
     dev,
+    // pass through ONE_SERVER_URL so the native prelude can inject it into
+    // process.env. without this, getURL.native falls back to the dummy
+    // 'http://one-server.example.com' and runtime loader fetches fail in prod.
+    serverUrl: process.env.ONE_SERVER_URL,
   })
   const builtBundle = result.code
 
