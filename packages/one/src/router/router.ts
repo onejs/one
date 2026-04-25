@@ -347,6 +347,10 @@ export function handleNavigationContainerStateChange(
     })
   }
 
+  if (shouldKeepPendingNavigationState(state)) {
+    return
+  }
+
   if (nextOptions) {
     state = { ...state, linkOptions: nextOptions }
     nextOptions = null
@@ -508,6 +512,12 @@ export function subscribeToRootState(subscriber: OneRouter.RootStateListener) {
   }
 }
 
+function notifyRootStateSubscribers(state: OneRouter.ResultState) {
+  for (const subscriber of rootStateSubscribers) {
+    subscriber(state)
+  }
+}
+
 export function subscribeToStore(subscriber: () => void) {
   storeSubscribers.add(subscriber)
   return () => {
@@ -577,6 +587,15 @@ function getBrowserPathname() {
   return normalizePathname(window.location.pathname)
 }
 
+function shouldKeepPendingNavigationState(currentState: OneRouter.ResultState) {
+  if (!pendingNavigationPathname) {
+    return false
+  }
+
+  const nextPathname = getRouteInfo(currentState).pathname
+  return nextPathname !== pendingNavigationPathname
+}
+
 function shouldPreserveInitialRouteInfo(currentState: OneRouter.ResultState) {
   if (!initialState || !routeInfo?.pathname) {
     return false
@@ -617,6 +636,9 @@ function syncStoreRootState() {
   if (navigationRef.isReady()) {
     const currentState = navigationRef.getRootState() as unknown as OneRouter.ResultState
     if (rootState !== currentState) {
+      if (shouldKeepPendingNavigationState(currentState)) {
+        return
+      }
       if (shouldPreserveInitialRouteInfo(currentState)) {
         return
       }
@@ -1217,11 +1239,19 @@ export async function linkTo(
   nextOptions = options ?? null
   pendingNavigationPathname = normalizePathname(extractPathnameFromHref(href))
 
-  startTransition(() => {
-    // compute target at dispatch time to avoid stale state during first render/effects
-    const freshRootState = navigationRef.getRootState() as NavigationState
+  // compute target at dispatch time to avoid stale state during first render/effects
+  const freshRootState = navigationRef.getRootState() as NavigationState
+  const currentRouteBeforeDispatch = navigationRef.getCurrentRoute()
+
+  if (event === 'REPLACE') {
+    const targetPathname = pendingNavigationPathname
+    const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
+    updateState(optimisticState)
+    pendingNavigationPathname = targetPathname
+    notifyRootStateSubscribers(optimisticState)
+    navigationRef.resetRoot(state)
+  } else {
     const action = getNavigateAction(state, freshRootState, event)
-    const current = navigationRef.getCurrentRoute()
 
     // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
     // the NAVIGATE action can fail to initialize the target group's child navigator
@@ -1242,33 +1272,34 @@ export async function linkTo(
         ...state.routes[state.routes.length - 1],
         key: `${targetName}-${freshRootState.key}`,
       }
-      navigationRef.resetRoot({
+      const nextRootState: NavigationState = {
         ...freshRootState,
         routes: [...existingRoutes, targetRoute],
         index: existingRoutes.length,
-      } as any)
+      }
+      navigationRef.resetRoot(nextRootState)
     } else {
       navigationRef.dispatch(action)
     }
+  }
 
-    let warningTm
-    const interval = setInterval(() => {
-      const next = navigationRef.getCurrentRoute()
-      if (current !== next) {
-        // let the main thread clear at least before running
-        setTimeout(() => {
-          setLoadingState('loaded')
-        })
-      }
-      clearTimeout(warningTm)
-      clearTimeout(interval)
-    }, 16)
-    if (process.env.NODE_ENV === 'development') {
-      warningTm = setTimeout(() => {
-        console.warn(`Routing took more than 8 seconds`)
-      }, 1000)
+  let warningTm
+  const interval = setInterval(() => {
+    const next = navigationRef.getCurrentRoute()
+    if (currentRouteBeforeDispatch !== next) {
+      // let the main thread clear at least before running
+      setTimeout(() => {
+        setLoadingState('loaded')
+      })
     }
-  })
+    clearTimeout(warningTm)
+    clearTimeout(interval)
+  }, 16)
+  if (process.env.NODE_ENV === 'development') {
+    warningTm = setTimeout(() => {
+      console.warn(`Routing took more than 8 seconds`)
+    }, 1000)
+  }
 }
 
 const hashes: Record<string, string> = {}

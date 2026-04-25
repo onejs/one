@@ -181,6 +181,8 @@ export function Route({
     params?: Record<string, string | undefined>
   }
 }) {
+  const parentParams = useContext(RouteParamsContext)
+
   // url is the source of truth for path params. react navigation can provide
   // a `route` whose `params` are missing or stale for the dynamic segments
   // this node expects (observed in spa-shell mode under strictmode, and when
@@ -191,10 +193,14 @@ export function Route({
   // non-dynamic params keep flowing from React Navigation.
   const resolvedParams = React.useMemo(() => {
     const rp = route?.params
-    if (!node.dynamic?.length) return rp
-    const fromUrl = getParamsFromCurrentUrl(route)
-    return mergeDynamicParams(rp, node.dynamic, fromUrl)
-  }, [node, route, routeInfo?.unstable_globalHref])
+    const ownParams = node.dynamic?.length
+      ? mergeDynamicParams(rp, node.dynamic, getParamsFromCurrentUrl(route))
+      : rp
+
+    if (!parentParams) return ownParams
+    if (!ownParams) return parentParams
+    return { ...parentParams, ...ownParams }
+  }, [node, parentParams, route, routeInfo?.unstable_globalHref])
 
   return (
     <RouteParamsContext.Provider value={resolvedParams}>

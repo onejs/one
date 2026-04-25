@@ -10,6 +10,9 @@ declare module 'one' {
         | `/`
         | `/(app)`
         | `/(app)/`
+        | `/(app)/(panel)`
+        | `/(app)/(workspace)`
+        | `/(app)/(workspace)/(panel)`
         | `/(app)/analytics`
         | `/(app)/console`
         | `/(app)/deploy`
@@ -30,11 +33,14 @@ declare module 'one' {
         | `/(auth)`
         | `/(auth)/auth/login`
         | `/(auth)/auth/login-success`
+        | `/(panel)`
         | `/(site)`
         | `/(site)/compat`
         | `/(site)/docs`
         | `/(site)/docs/`
         | `/(site)/download`
+        | `/(workspace)`
+        | `/(workspace)/(panel)`
         | `/_sitemap`
         | `/analytics`
         | `/auth/login`
@@ -60,25 +66,49 @@ declare module 'one' {
         | `/settings`
         | `/terminal`
       DynamicRoutes: 
+        | `/(app)/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
+        | `/(app)/(workspace)/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
+        | `/(app)/(workspace)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
+        | `/(app)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/project/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
+        | `/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(site)/docs/${string}`
+        | `/(workspace)/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
+        | `/(workspace)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/docs/${string}`
+        | `/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: 
+        | `/(app)/(panel)/nested-project/[projectId]/[sessionId]`
+        | `/(app)/(workspace)/(panel)/nested-project/[projectId]/[sessionId]`
+        | `/(app)/(workspace)/nested-project/[projectId]/[sessionId]`
+        | `/(app)/nested-project/[projectId]/[sessionId]`
         | `/(app)/project/[projectId]`
         | `/(app)/project/[projectId]/[sessionId]`
+        | `/(panel)/nested-project/[projectId]/[sessionId]`
         | `/(site)/docs/[...slug]`
+        | `/(workspace)/(panel)/nested-project/[projectId]/[sessionId]`
+        | `/(workspace)/nested-project/[projectId]/[sessionId]`
         | `/docs/[...slug]`
+        | `/nested-project/[projectId]/[sessionId]`
         | `/project/[projectId]`
         | `/project/[projectId]/[sessionId]`
       IsTyped: true
       RouteTypes: {
+        '/(app)/(panel)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
+        '/(app)/(workspace)/(panel)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
+        '/(app)/(workspace)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
+        '/(app)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/(app)/project/[projectId]': RouteInfo<{ projectId: string }>
         '/(app)/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
+        '/(panel)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/(site)/docs/[...slug]': RouteInfo<{ slug: string[] }>
+        '/(workspace)/(panel)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
+        '/(workspace)/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/docs/[...slug]': RouteInfo<{ slug: string[] }>
+        '/nested-project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/project/[projectId]': RouteInfo<{ projectId: string }>
         '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
       }
