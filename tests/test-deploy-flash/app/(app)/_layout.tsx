@@ -12,7 +12,7 @@ import { Slot, usePathname } from 'one'
 // deploy) and pushes its URL before correcting.
 
 function parseProjectId(pathname: string): string | null {
-  const match = pathname.match(/^\/project\/([^/]+)/)
+  const match = pathname.match(/^\/(?:project|nested-project)\/([^/]+)/)
   return match ? match[1] : null
 }
 
