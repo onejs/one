@@ -92,6 +92,25 @@ async function collectThingState(page: Page) {
   })
 }
 
+async function collectProjectState(page: Page) {
+  return page.evaluate(() => {
+    return {
+      url: location.pathname,
+      pathname:
+        document.querySelector('#project-topbar-pathname')?.textContent ?? null,
+      page: document.querySelector('#project-page')?.textContent ?? null,
+      renders: (
+        ((window as any).__projectRenders as Array<{
+          at: number
+          url: string
+          pathname: string
+          tick: number
+        }>) ?? []
+      ).map((r) => ({ ...r })),
+    }
+  })
+}
+
 async function assertSiblingDynamicNavigation(method: 'replace' | 'push') {
   const page = await context.newPage()
   const errors: string[] = []
@@ -184,6 +203,43 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
     { retry: 0 },
     async () => {
       await assertSiblingDynamicNavigation('push')
+    }
+  )
+
+  test(
+    'render-time root state sync publishes pathname when browser URL already changed',
+    { retry: 0 },
+    async () => {
+      const page = await context.newPage()
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
+      try {
+        await page.goto(`${serverUrl}/project/default_anon-123/main`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#project-page', { timeout: 15000 })
+
+        const initial = await collectProjectState(page)
+        expect(initial.pathname).toBe('/project/default_anon-123/main')
+        expect(initial.page).toBe('project default_anon-123')
+
+        await page.evaluate(() => {
+          ;(window as any).__simulateProjectRootStateRace()
+        })
+
+        await page.waitForTimeout(100)
+
+        const after = await collectProjectState(page)
+        expect(
+          after.pathname,
+          `persistent layout usePathname stayed stale after browser URL and root state changed.\n` +
+            `actual: ${JSON.stringify(after, null, 2)}`
+        ).toBe('/project/new/main')
+        expect(errors).toEqual([])
+      } finally {
+        await page.close()
+      }
     }
   )
 })

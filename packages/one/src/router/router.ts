@@ -139,6 +139,7 @@ export let initialPathname: string | undefined
 let nextState: OneRouter.ResultState | undefined
 export let routeInfo: UrlObject | undefined
 let splashScreenAnimationFrame: number | undefined
+let pendingNavigationPathname: string | undefined
 
 // we always set it
 export let navigationRef: OneRouter.NavigationRef = null as any
@@ -290,6 +291,7 @@ function cleanUpState() {
   rootState = undefined
   nextState = undefined
   routeInfo = undefined
+  pendingNavigationPathname = undefined
   resetLinking()
   rootStateSubscribers.clear()
   storeSubscribers.clear()
@@ -454,6 +456,9 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   nextState = nextStateParam
 
   const nextRouteInfo = getRouteInfo(state)
+  if (pendingNavigationPathname === nextRouteInfo.pathname) {
+    pendingNavigationPathname = undefined
+  }
 
   if (!deepEqual(routeInfo, nextRouteInfo)) {
     if (process.env.ONE_DEBUG_ROUTER) {
@@ -563,6 +568,41 @@ export function routeInfoSnapshot() {
   return routeInfo!
 }
 
+function normalizePathname(pathname: string) {
+  return pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+}
+
+function getBrowserPathname() {
+  if (typeof window === 'undefined') return undefined
+  return normalizePathname(window.location.pathname)
+}
+
+function shouldPreserveInitialRouteInfo(currentState: OneRouter.ResultState) {
+  if (!initialState || !routeInfo?.pathname) {
+    return false
+  }
+
+  const nextRouteInfo = getRouteInfo(currentState)
+  const nextPathname = nextRouteInfo.pathname
+
+  if (nextPathname === routeInfo.pathname) {
+    return false
+  }
+
+  if (nextPathname && nextPathname === pendingNavigationPathname) {
+    return false
+  }
+
+  const browserPathname = getBrowserPathname()
+  if (nextPathname && browserPathname && nextPathname === browserPathname) {
+    return false
+  }
+
+  // parent layouts can render before child navigators mount. during that window
+  // getRootState() may describe a fallback child route instead of the URL route.
+  return true
+}
+
 // Hook functions
 export function useOneRouter() {
   const state = useSyncExternalStore(subscribeToStore, snapshot, snapshot)
@@ -577,16 +617,8 @@ function syncStoreRootState() {
   if (navigationRef.isReady()) {
     const currentState = navigationRef.getRootState() as unknown as OneRouter.ResultState
     if (rootState !== currentState) {
-      // when a parent layout conditionally renders (e.g. auth gate), getRootState()
-      // can return incomplete/wrong state before all navigators mount. don't
-      // overwrite routeInfo with wrong pathname while initial state is still valid.
-      if (initialState && routeInfo?.pathname) {
-        const nextRouteInfo = getRouteInfo(currentState)
-        if (nextRouteInfo.pathname !== routeInfo.pathname) {
-          // pathname would change — skip to preserve initial URL truth
-          rootState = currentState
-          return
-        }
+      if (shouldPreserveInitialRouteInfo(currentState)) {
+        return
       }
       updateState(currentState)
     }
@@ -1183,6 +1215,7 @@ export async function linkTo(
 
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
+  pendingNavigationPathname = normalizePathname(extractPathnameFromHref(href))
 
   startTransition(() => {
     // compute target at dispatch time to avoid stale state during first render/effects
