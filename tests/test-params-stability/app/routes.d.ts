@@ -15,19 +15,25 @@ declare module 'one' {
         | `/thing/[id]/main`
       DynamicRoutes: 
         | `/(site)/preview/${OneRouter.SingleRoutePart<T>}`
+        | `/(site)/project/${OneRouter.SingleRoutePart<T>}/main`
         | `/(site)/thing/${OneRouter.SingleRoutePart<T>}`
         | `/preview/${OneRouter.SingleRoutePart<T>}`
+        | `/project/${OneRouter.SingleRoutePart<T>}/main`
         | `/thing/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: 
         | `/(site)/preview/[id]`
+        | `/(site)/project/[id]/main`
         | `/(site)/thing/[id]`
         | `/preview/[id]`
+        | `/project/[id]/main`
         | `/thing/[id]`
       IsTyped: true
       RouteTypes: {
         '/(site)/preview/[id]': RouteInfo<{ id: string }>
+        '/(site)/project/[id]/main': RouteInfo<{ id: string }>
         '/(site)/thing/[id]': RouteInfo<{ id: string }>
         '/preview/[id]': RouteInfo<{ id: string }>
+        '/project/[id]/main': RouteInfo<{ id: string }>
         '/thing/[id]': RouteInfo<{ id: string }>
       }
     }
