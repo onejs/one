@@ -440,6 +440,53 @@ describe('No hydration or console errors', () => {
     await page.close()
   })
 
+  test('sibling route group layouts do not mount on hard load of /', async () => {
+    // regression: hard-loading a (public) URL must not mount the sibling
+    // (authed) layout. when both groups' layouts mount in parallel during
+    // SPA hydration, an Auth-gate Redirect inside (authed)/_layout fires
+    // even though the user is on a public URL, causing a bounce.
+    const page = await context.newPage()
+    const navigations: string[] = []
+    page.on('framenavigated', (frame) => {
+      if (frame === page.mainFrame()) {
+        navigations.push(frame.url())
+      }
+    })
+
+    // throttle cpu to expose the spa-shell remount window where react
+    // navigation's parent-provided initialState has been consumed and the
+    // navigator falls back to initialRouteName.
+    const cdp = await context.newCDPSession(page)
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 6 })
+
+    // ?auth=logged-out tells the test fixture's AuthProvider to resolve to
+    // logged-out on the client. that triggers the (authed) layout's Redirect
+    // if it has mounted — exposing the bug.
+    await page.goto(serverUrl + '/?auth=logged-out')
+    await waitForSpaContent(page, '#home-page')
+    await page.waitForTimeout(1500)
+
+    const layoutMounts = await page.evaluate(
+      () => (window as any).__oneSpaShellLayoutMounts ?? []
+    )
+    const siblingMounts = layoutMounts.filter(
+      (l: string) => l.startsWith('(authed)') || l.startsWith('(chat)')
+    )
+
+    const debug = `\nmounts:\n${JSON.stringify(layoutMounts, null, 2)}\nnavigations:\n${JSON.stringify(navigations, null, 2)}`
+
+    // we should still be on / and never navigate to /login
+    const bouncedToLogin = navigations.some((u) => new URL(u).pathname === '/login')
+    expect(bouncedToLogin, `bounced to /login.${debug}`).toBe(false)
+    expect(new URL(page.url()).pathname, `final URL not /.${debug}`).toBe('/')
+    expect(
+      siblingMounts,
+      `non-(public) sibling group layouts mounted on / load.\nmounts:\n${JSON.stringify(layoutMounts, null, 2)}`
+    ).toEqual([])
+
+    await page.close()
+  })
+
   test('no hydration errors on /my-server/my-channel (dynamic route)', async () => {
     const page = await context.newPage()
     const errors: string[] = []
