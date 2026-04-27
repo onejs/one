@@ -19,6 +19,7 @@ declare module 'one' {
         | `/(public)`
         | `/(public)/`
         | `/(public)/about`
+        | `/(public)/login`
         | `/[serverId]/`
         | `/[serverId]/[channelId]/`
         | `/_sitemap`
@@ -27,6 +28,7 @@ declare module 'one' {
         | `/admin/`
         | `/beta/signup`
         | `/dashboard`
+        | `/login`
       DynamicRoutes: 
         | `/${OneRouter.SingleRoutePart<T>}`
         | `/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`

@@ -1,4 +1,5 @@
 import { Slot, usePathname } from 'one'
+import { AuthProvider } from '../auth-context'
 
 // root layout is SSG - this is the key to reproducing the issue:
 // when defaultRenderMode is 'spa' but root layout is +ssg,
@@ -19,7 +20,9 @@ export default function RootLayout() {
           <span id="root-pathname">{pathname}</span>
         </nav>
         <main>
-          <Slot />
+          <AuthProvider>
+            <Slot />
+          </AuthProvider>
         </main>
       </body>
     </html>

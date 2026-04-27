@@ -13,7 +13,7 @@ import {
   useNotFoundState,
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
-import { matchRoutePattern, stripGroupSegmentsFromPath } from '../router/matchers'
+import { getLinking } from '../router/linkingConfig'
 import { routeNode as globalRouteNode, initialPathname } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
@@ -23,6 +23,46 @@ import { Screen } from './Screen'
 // when route keys change during navigation. Since Slot only renders one screen
 // at a time anyway, we can safely reuse the same component instance.
 const SLOT_STATIC_KEY = 'one-slot-static-key'
+
+// resolve a navigator's initialRouteName by asking the linking config —
+// the same getStateFromPath NavigationContainer uses for initialState —
+// and walking the resulting nested state down to this navigator's depth.
+//
+// the contextKey of a layout (e.g. `/(public)/(auth-flow)`) lines up
+// segment-for-segment with the route names react-navigation uses in its
+// state tree, so this is a lookup at the right depth, not a re-derivation.
+//
+// hoisting wrinkle: when a directory has no `_layout.tsx`, its children
+// are flattened into the nearest parent navigator with a multi-segment
+// route name like `dashboard/[appId]/index`. the walker accepts these by
+// consuming as many contextKey segments as the route's name spans.
+function resolveInitialRouteFromLinking(
+  contextKey: string,
+  browserPath: string
+): string | undefined {
+  const linking = getLinking()
+  if (!linking?.getStateFromPath) return undefined
+
+  let current = linking.getStateFromPath(browserPath, linking.config)
+  const segments = contextKey.split('/').filter(Boolean)
+
+  let i = 0
+  while (i < segments.length) {
+    if (!current?.routes?.length) return undefined
+    const idx = current.index ?? current.routes.length - 1
+    const focused = current.routes[idx]
+    if (!focused?.name || !focused.state) return undefined
+    const nameSegments = focused.name.split('/').filter(Boolean)
+    const expected = segments.slice(i, i + nameSegments.length).join('/')
+    if (focused.name !== expected) return undefined
+    current = focused.state
+    i += nameSegments.length
+  }
+
+  if (!current?.routes?.length) return undefined
+  const idx = current.index ?? current.routes.length - 1
+  return current.routes[idx]?.name
+}
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
@@ -174,22 +214,23 @@ function QualifiedNavigator({
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
   // LATE MOUNT FIX: when a parent layout conditionally renders (auth gate,
   // suspense resolve, provider init, etc.), this navigator may mount after
-  // initialState was consumed. compute the correct initialRouteName from the
-  // original URL so the navigator starts on the right route instead of
-  // defaulting to the first child. uses initialPathname (captured at setup)
-  // instead of window.location.pathname because React Navigation's linking
-  // can push a wrong URL during the delay.
+  // initialState was consumed by NavigationContainer. compute the correct
+  // initialRouteName from the original URL so the navigator starts on the
+  // right route instead of defaulting to the first child. uses
+  // initialPathname (captured at setup) instead of window.location.pathname
+  // because React Navigation's linking can push a wrong URL during the delay.
   //
-  // this is especially important for hoisted deep dynamic routes: when a
-  // directory has no _layout.tsx file, one flattens its children into the
-  // nearest parent navigator. so for e.g. app/(app)/project/[projectId]/index.tsx
-  // with no intermediate _layout.tsx files, the (app) navigator ends up with
-  // children like ["index", "factory", "project/[projectId]/index"] as
-  // flat siblings. if this navigator re-initializes during hydration and we
-  // don't resolve the URL ourselves, React Navigation picks the first sibling
-  // as the default — mounting `index` while the browser is still on
-  // /project/foo. that produces a visible redirect flash (seen in soot,
-  // commit ea96e360).
+  // resolution uses the linking config's getStateFromPath — the same
+  // function NavigationContainer uses to build the initial state — and
+  // walks the resulting nested state down to this navigator's depth. that
+  // covers both:
+  //   - sibling route groups, e.g. `(public)` vs `(authed)` at the root
+  //     (pattern matching alone ties at specificity 0 because group
+  //     segments don't appear in URLs)
+  //   - hoisted deep dynamic routes, e.g. `project/[projectId]/index` as
+  //     a flat sibling under (app) when there's no intermediate _layout
+  //     (seen in soot, commit ea96e360 — picking the first sibling mounts
+  //     `index` while the browser URL is still /project/foo)
   const resolvedInitialRouteName = React.useMemo(() => {
     if (initialRouteName) return initialRouteName
 
@@ -198,38 +239,17 @@ function QualifiedNavigator({
       (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
 
-    // screen names are relative to this navigator's parent layout. rather
-    // than trying to strip the layout prefix from browserPath (which fails
-    // when the layout path contains dynamic segments like
-    // /project/[projectId] — a literal startsWith won't match `/project/foo`),
-    // prepend the layout prefix to each screen name and match the full
-    // pattern against browserPath. matchRoutePattern handles dynamic segments
-    // segment-by-segment, so both the prefix and the screen-relative suffix
-    // resolve correctly.
-    //
-    // contextKey is the layout's path including group segments, e.g.
-    // `/(app)/project/[projectId]` or `/hooks/cases/route-group-pathname/(tabs)`.
-    // stripping groups gives the URL-relevant prefix the screens live under.
-    const layoutUrlPrefix = stripGroupSegmentsFromPath(contextKey).replace(/\/+$/, '')
+    const resolved = resolveInitialRouteFromLinking(contextKey, browserPath)
+    if (!resolved) return undefined
 
-    // score each screen by how specifically its full pattern matches the
-    // URL. screen names may contain dynamic segments `[param]`/`[...param]`.
-    // matchRoutePattern does a prefix match so layout screens (like
-    // `project`) can match deeper URLs; the specificity score then tiebreaks
-    // to pick the best leaf.
-    let best: { name: string; specificity: number } | undefined
-    for (const screen of screens) {
-      const name = (screen as any)?.props?.name
-      if (!name) continue
-      const fullPattern = layoutUrlPrefix ? `${layoutUrlPrefix}/${name}` : name
-      const match = matchRoutePattern(fullPattern, browserPath)
-      if (!match) continue
-      if (!best || match.specificity > best.specificity) {
-        best = { name, specificity: match.specificity }
-      }
-    }
-
-    return best?.name
+    // only return a name that is actually one of this navigator's screens.
+    // if the linking state's depth doesn't line up with screens here (e.g.
+    // a custom navigator that filters screens), fall back to letting react
+    // navigation pick its default.
+    const hasScreen = screens.some(
+      (s) => (s as any)?.props?.name === resolved
+    )
+    return hasScreen ? resolved : undefined
   }, [initialRouteName, screens, contextKey])
 
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
