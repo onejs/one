@@ -58,6 +58,20 @@ const getPartialState = (state: any): any => {
   }
 }
 
+// @modified - sum of routes/history length across the focused route chain.
+// findMatchingState may return at a level where both states have the same
+// routes.length but the focused route's nested navigator gained or lost
+// entries. that nested change is what determines push vs replace.
+function getFocusedRouteDepth(state: NavigationState): number {
+  const length = state.history ? state.history.length : state.routes.length
+  const focusedRoute = state.routes[state.index]
+  const child = focusedRoute?.state as NavigationState | undefined
+  if (child) {
+    return length + getFocusedRouteDepth(child)
+  }
+  return length
+}
+
 /**
  * Find the matching navigation state that changed between 2 navigation states
  * e.g.: a -> b -> c -> d and a -> b -> c -> e -> f, if history in b changed, b is the matching state
@@ -653,13 +667,14 @@ export function useLinking(
         // Otherwise it's likely a change triggered by `popstate`
         path !== pendingPath
       ) {
+        // @modified - use recursive depth across nested navigator states.
+        // when navigation pushes a route whose nested navigator gains a focused
+        // child (e.g. / → /docs/sootsim), comparing only the matching state's
+        // top-level routes.length misses the nested push and yields delta=0,
+        // which would replace history instead of push.
         const historyDelta =
-          (focusedState.history
-            ? focusedState.history.length
-            : focusedState.routes.length) -
-          (previousFocusedState.history
-            ? previousFocusedState.history.length
-            : previousFocusedState.routes.length)
+          getFocusedRouteDepth(focusedState as NavigationState) -
+          getFocusedRouteDepth(previousFocusedState as NavigationState)
 
         if (historyDelta > 0) {
           // If history length is increased, we should pushState

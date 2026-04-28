@@ -4,6 +4,7 @@ import {
   StackRouter,
   useNavigationBuilder,
 } from '@react-navigation/native'
+import { NavigationRouteContext } from '@react-navigation/core'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
@@ -231,8 +232,32 @@ function QualifiedNavigator({
   //     a flat sibling under (app) when there's no intermediate _layout
   //     (seen in soot, commit ea96e360 — picking the first sibling mounts
   //     `index` while the browser URL is still /project/foo)
+  // when this navigator is mounting because the user navigated to a path that
+  // targets a screen inside it (e.g. clicking /docs/sootsim while the docs
+  // navigator hasn't been mounted yet), getNavigateAction encodes the deep
+  // target as the parent route's `params.screen` chain. read that directly
+  // here so we don't have to re-derive it from a URL — useful in prod where
+  // React Navigation's params consumption can race the late mount and leave
+  // the navigator on the first alphabetical screen (e.g. `index`) instead of
+  // the actual target.
+  const parentRoute = React.useContext(NavigationRouteContext)
+  const screenFromParent =
+    parentRoute &&
+    typeof parentRoute.params === 'object' &&
+    parentRoute.params !== null &&
+    typeof (parentRoute.params as any).screen === 'string'
+      ? (parentRoute.params as any).screen
+      : undefined
+
   const resolvedInitialRouteName = React.useMemo(() => {
     if (initialRouteName) return initialRouteName
+
+    if (screenFromParent) {
+      const hasScreen = screens.some(
+        (s) => (s as any)?.props?.name === screenFromParent
+      )
+      if (hasScreen) return screenFromParent
+    }
 
     const browserPath =
       initialPathname ??
@@ -250,7 +275,7 @@ function QualifiedNavigator({
       (s) => (s as any)?.props?.name === resolved
     )
     return hasScreen ? resolved : undefined
-  }, [initialRouteName, screens, contextKey])
+  }, [initialRouteName, screens, contextKey, screenFromParent])
 
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
     router,
