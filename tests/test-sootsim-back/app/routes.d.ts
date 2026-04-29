@@ -8,23 +8,42 @@ declare module 'one' {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: 
         | `/`
+        | `/(auth)`
+        | `/(auth)/(tabs)`
+        | `/(auth)/(tabs)/forum`
+        | `/(auth)/(tabs)/picks`
+        | `/(auth)/forum`
+        | `/(auth)/forum/rankings`
+        | `/(auth)/picks`
         | `/(site)`
         | `/(site)/`
         | `/(site)/docs`
         | `/(site)/docs/`
+        | `/(tabs)`
+        | `/(tabs)/forum`
+        | `/(tabs)/picks`
         | `/_sitemap`
         | `/docs`
         | `/docs/`
+        | `/forum`
+        | `/forum/rankings`
+        | `/picks`
       DynamicRoutes: 
+        | `/(auth)/thread/${OneRouter.SingleRoutePart<T>}`
         | `/(site)/docs/${string}`
         | `/docs/${string}`
+        | `/thread/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: 
+        | `/(auth)/thread/[id]`
         | `/(site)/docs/[...slug]`
         | `/docs/[...slug]`
+        | `/thread/[id]`
       IsTyped: true
       RouteTypes: {
+        '/(auth)/thread/[id]': RouteInfo<{ id: string }>
         '/(site)/docs/[...slug]': RouteInfo<{ slug: string[] }>
         '/docs/[...slug]': RouteInfo<{ slug: string[] }>
+        '/thread/[id]': RouteInfo<{ id: string }>
       }
     }
   }

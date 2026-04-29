@@ -1262,22 +1262,48 @@ export async function linkTo(
       targetName.startsWith('(') &&
       targetName.endsWith(')')
     const hasFreshRootState = freshRootState.type === 'stack'
-    const currentFocusedName = freshRootState.routes[freshRootState.index]?.name
+    const isRootTarget = action.target === freshRootState.key
+    const currentFocusedRoute = freshRootState.routes[freshRootState.index]
+    const currentFocusedName = currentFocusedRoute?.name
 
-    if (isGroupTarget && hasFreshRootState && currentFocusedName !== targetName) {
-      // merge the target state onto the existing root state so we preserve
-      // other groups' state (back navigation etc.)
-      const existingRoutes = freshRootState.routes.filter((r) => r.name !== targetName)
-      const targetRoute = {
-        ...state.routes[state.routes.length - 1],
-        key: `${targetName}-${freshRootState.key}`,
+    if (isRootTarget && isGroupTarget && hasFreshRootState) {
+      const targetRoute = state.routes[state.routes.length - 1]
+      const targetRootName = targetRoute.name
+
+      if (currentFocusedName === targetRootName) {
+        // root-level NAVIGATE to the already focused group can append a
+        // duplicate group route when only the group's nested state changes.
+        const routes = [...freshRootState.routes]
+        routes[freshRootState.index] = {
+          ...targetRoute,
+          key: currentFocusedRoute?.key ?? targetRoute.key,
+        }
+        navigationRef.resetRoot({
+          ...freshRootState,
+          routes,
+        })
+      } else {
+        // merge the target state onto the existing root state so we preserve
+        // other groups' state (back navigation etc.)
+        const existingTargetRoute = freshRootState.routes.find(
+          (route) => route.name === targetRootName
+        )
+        const existingRoutes = freshRootState.routes.filter(
+          (route) => route.name !== targetRootName
+        )
+        const nextRootState: NavigationState = {
+          ...freshRootState,
+          routes: [
+            ...existingRoutes,
+            {
+              ...targetRoute,
+              key: existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
+            },
+          ],
+          index: existingRoutes.length,
+        }
+        navigationRef.resetRoot(nextRootState)
       }
-      const nextRootState: NavigationState = {
-        ...freshRootState,
-        routes: [...existingRoutes, targetRoute],
-        index: existingRoutes.length,
-      }
-      navigationRef.resetRoot(nextRootState)
     } else {
       navigationRef.dispatch(action)
     }
