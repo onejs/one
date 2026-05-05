@@ -4,7 +4,7 @@ import type { ErrorBoundaryProps } from '../views/Try'
 import type { LoaderProps } from '../types'
 import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
-import { getLinking } from './linkingConfig'
+import { getResolvedLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
 import { mergeDynamicParams } from './params'
 import { routeInfo } from './router'
@@ -153,7 +153,7 @@ function getParamsFromCurrentUrl(route?: {
   path?: string
   params?: Record<string, string | undefined>
 }): Record<string, any> | undefined {
-  const linking = getLinking()
+  const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
   const path =
     routeInfo?.unstable_globalHref ||

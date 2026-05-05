@@ -11,6 +11,7 @@ import { setupSkewProtection } from './skewProtection'
 import { handleSkewError } from './utils/dynamicImport'
 import { findRootLayout } from './utils/findRootLayout'
 import type { RenderAppProps } from './types'
+import type { OneLinkingConfig } from './link/getLinking'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
@@ -22,6 +23,7 @@ export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>
   routerRoot: string
   flags?: One.Flags
+  linking?: OneLinkingConfig
   /**
    * Lazy function that returns a promise for the setup file import.
    * Called at runtime (not build time) to ensure setup code only runs when the app starts.
@@ -108,6 +110,7 @@ export function createApp(options: CreateAppProps) {
             }}
             routes={options.routes}
             routerRoot={options.routerRoot}
+            linking={options.linking}
             {...props}
           />
         )
@@ -227,6 +230,7 @@ export function createApp(options: CreateAppProps) {
             flags={options.flags}
             routes={options.routes}
             routerRoot={options.routerRoot}
+            linking={options.linking}
             {...props}
           />
         )
@@ -315,6 +319,7 @@ export function createApp(options: CreateAppProps) {
           flags={options.flags}
           routes={options.routes}
           routerRoot={options.routerRoot}
+          linking={options.linking}
           path={window.location.href}
         />
       )

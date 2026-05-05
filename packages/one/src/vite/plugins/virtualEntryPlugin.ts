@@ -167,6 +167,9 @@ export function createVirtualEntry(options: {
         const setupPromiseArg = setupResult.promiseVarName
           ? `getSetupPromise: ${setupResult.promiseVarName},`
           : ''
+        const linkingArg = options.router?.linking
+          ? `linking: ${JSON.stringify(options.router.linking)},`
+          : ''
         return `
 ${setupResult.promiseDeclaration}
 ${nativewindImport}
@@ -191,6 +194,7 @@ export default createApp({
   routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`)])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
+  ${linkingArg}
 })
         `
       }
@@ -203,6 +207,9 @@ export default createApp({
           isNative,
           viteRoot
         )
+        const linkingArg = options.router?.linking
+          ? `linking: ${JSON.stringify(options.router.linking)},`
+          : ''
         return `
 import { createApp } from 'one'
 ${setupResult.importStatement}
@@ -212,6 +219,7 @@ export default createApp({
   routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`), `!${apiRouteGlobs}`])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
+  ${linkingArg}
 })
         `
       }

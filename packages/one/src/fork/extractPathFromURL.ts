@@ -129,11 +129,39 @@ function fromDeepLink(url: string): string {
 }
 
 export function extractExpoPathFromURL(_prefixes: string[], url = '') {
+  const pathFromPrefix = extractPathFromPrefix(_prefixes, url)
+  if (pathFromPrefix !== undefined) {
+    return pathFromPrefix.replace(/^\//, '')
+  }
+
   return (
     extractExactPathFromURL(url)
       // TODO: We should get rid of this, dropping specificities is not good
       .replace(/^\//, '')
   )
+}
+
+function extractPathFromPrefix(prefixes: string[] = [], url: string) {
+  const prefix = getMatchingPrefix(prefixes, url)
+  if (!prefix) return undefined
+
+  return url.slice(prefix.length)
+}
+
+const PREFIX_BOUNDARY_CHARS = ['/', '?', '#']
+
+function getMatchingPrefix(prefixes: string[], url: string) {
+  return prefixes
+    .filter((prefix) => matchesPrefix(prefix, url))
+    .sort((a, b) => b.length - a.length)[0]
+}
+
+function matchesPrefix(prefix: string, url: string) {
+  if (!url.startsWith(prefix)) return false
+  if (url.length === prefix.length) return true
+  // a prefix already ending in '/' has consumed its boundary
+  if (prefix.endsWith('/')) return true
+  return PREFIX_BOUNDARY_CHARS.includes(url[prefix.length])
 }
 
 export function adjustPathname(url: { hostname?: string | null; pathname: string }) {

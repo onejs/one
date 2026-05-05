@@ -20,6 +20,7 @@ import { Platform } from 'react-native'
 import { devtoolsRegistry } from '../devtools/registry'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
+import type { OneLinkingConfig } from '../link/getLinking'
 import { openExternalURL } from '../link/openExternalURL'
 import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
@@ -45,7 +46,7 @@ import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
-import { getLinking, resetLinking, setupLinking } from './linkingConfig'
+import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -214,7 +215,8 @@ let cachedContext: One.RouteContext | null = null
 export function initialize(
   context: One.RouteContext,
   ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
-  initialLocation?: URL
+  initialLocation?: URL,
+  linking?: OneLinkingConfig
 ) {
   cleanUpState()
 
@@ -281,7 +283,7 @@ export function initialize(
   }
 
   navigationRef = ref as unknown as OneRouter.NavigationRef
-  setupLinkingAndRouteInfo(initialLocation)
+  setupLinkingAndRouteInfo(initialLocation, linking)
   subscribeToNavigationChanges()
 }
 
@@ -297,8 +299,11 @@ function cleanUpState() {
   storeSubscribers.clear()
 }
 
-function setupLinkingAndRouteInfo(initialLocation?: URL) {
-  initialState = setupLinking(routeNode, initialLocation)
+function setupLinkingAndRouteInfo(
+  initialLocation?: URL,
+  linking?: OneLinkingConfig
+) {
+  initialState = setupLinking(routeNode, initialLocation, linking)
 
   // capture the original pathname before React Navigation's linking can modify it
   initialPathname =
@@ -557,7 +562,7 @@ function getSnapshot() {
     linkTo,
     routeNode,
     rootComponent,
-    linking: getLinking(),
+    linking: getResolvedLinking(),
     hasAttemptedToHideSplash,
     initialState,
     rootState,
@@ -1059,7 +1064,7 @@ export async function linkTo(
     )
   }
 
-  const linking = getLinking()
+  const linking = getResolvedLinking()
 
   if (!linking) {
     throw new Error('Attempted to link to route when no routes are present')

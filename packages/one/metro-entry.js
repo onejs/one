@@ -10,6 +10,8 @@ if (!ONE_ROUTER_ROOT_FOLDER_NAME) {
   ONE_ROUTER_ROOT_FOLDER_NAME = 'app'
 }
 
+const linking = process.env.ONE_ROUTER_LINKING_CONFIG
+
 const routes = ctx.keys().reduce((acc, key) => {
   const path = key.replace(/^\.\//, `/${ONE_ROUTER_ROOT_FOLDER_NAME}/`)
   acc[path] = async () => ctx(key)
@@ -19,4 +21,5 @@ const routes = ctx.keys().reduce((acc, key) => {
 createApp({
   routes,
   routerRoot: ONE_ROUTER_ROOT_FOLDER_NAME,
+  linking,
 })

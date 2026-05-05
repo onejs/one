@@ -20,12 +20,14 @@ export function getViteMetroPluginOptions({
   projectRoot,
   relativeRouterRoot,
   ignoredRouteFiles,
+  linking,
   userDefaultConfigOverrides,
   setupFile,
 }: {
   projectRoot: string
   relativeRouterRoot: string
   ignoredRouteFiles?: Array<`**/*${string}`>
+  linking?: unknown
   userDefaultConfigOverrides?: NonNullable<
     Parameters<typeof metroPlugin>[0]
   >['defaultConfigOverrides']
@@ -236,6 +238,7 @@ export function getViteMetroPluginOptions({
             ),
             ONE_ROUTER_ROOT_FOLDER_NAME: relativeRouterRoot,
             ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING: routerRequireContextRegexString,
+            ONE_ROUTER_LINKING_CONFIG: linking,
             ONE_SETUP_FILE_NATIVE: (() => {
               if (!setupFile) return undefined
               // Extract native setup file path

@@ -1,4 +1,5 @@
 import './setup';
+import type { OneLinkingConfig } from './link/getLinking';
 import { Root } from './Root';
 import type { One } from './vite/types';
 export { Root };
@@ -7,6 +8,7 @@ export type CreateHeadlessAppProps = {
     routerRoot: string;
     path?: string;
     flags?: One.Flags;
+    linking?: OneLinkingConfig;
     getSetupPromise?: () => Promise<unknown>;
 };
 export declare function createApp(options: CreateHeadlessAppProps): Promise<void>;

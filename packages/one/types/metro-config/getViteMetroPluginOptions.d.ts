@@ -4,10 +4,11 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro';
  * instead of `\/` and `[^/]`. Normalize them so the startsWith check works.
  */
 export declare function normalizeReSource(source: string): string;
-export declare function getViteMetroPluginOptions({ projectRoot, relativeRouterRoot, ignoredRouteFiles, userDefaultConfigOverrides, setupFile, }: {
+export declare function getViteMetroPluginOptions({ projectRoot, relativeRouterRoot, ignoredRouteFiles, linking, userDefaultConfigOverrides, setupFile, }: {
     projectRoot: string;
     relativeRouterRoot: string;
     ignoredRouteFiles?: Array<`**/*${string}`>;
+    linking?: unknown;
     userDefaultConfigOverrides?: NonNullable<Parameters<typeof metroPlugin>[0]>['defaultConfigOverrides'];
     setupFile?: string | {
         native?: string;

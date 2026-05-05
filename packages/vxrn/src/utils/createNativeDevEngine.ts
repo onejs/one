@@ -564,6 +564,7 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
   const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
   const routerRoot = entryConfig.routerRoot || 'app'
   const flags = entryConfig.flags || {}
+  const linking = entryConfig.linking
 
   // build setupFile import (static import for native)
   const setupFileImport = (() => {
@@ -624,6 +625,7 @@ createApp({
   routes: routes,
   routerRoot: ${JSON.stringify(routerRoot)},
   flags: ${JSON.stringify(flags)},
+  linking: ${JSON.stringify(linking)},
 });
 `
 

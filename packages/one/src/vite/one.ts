@@ -87,6 +87,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         (nativeOptions?.bundlerOptions as any)?.argv?.projectRoot || process.cwd(),
       relativeRouterRoot: routerRoot,
       ignoredRouteFiles: options.router?.ignoredRouteFiles,
+      linking: options.router?.linking,
       userDefaultConfigOverrides: (nativeOptions?.bundlerOptions as any)
         ?.defaultConfigOverrides,
       setupFile: options.setupFile,
@@ -838,6 +839,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     globalThis.__vxrnNativeEntryConfig = {
       routerRoot: routerRoot,
       ignoredRouteFiles: options.router?.ignoredRouteFiles,
+      linking: options.router?.linking,
       setupFile: options.setupFile,
       flags,
     }

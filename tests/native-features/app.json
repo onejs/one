@@ -1,6 +1,7 @@
 {
   "name": "NativeFeatureTests",
   "slug": "native-feature-tests",
+  "scheme": "nativefeatures",
   "plugins": [
     "one/expo-plugin",
     [

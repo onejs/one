@@ -10,6 +10,12 @@ export default defineConfig({
       native: {
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
+      router: {
+        linking: {
+          scheme: 'nativefeatures',
+          prefixes: ['nativefeatures://app'],
+        },
+      },
     }),
   ],
 

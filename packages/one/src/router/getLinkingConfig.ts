@@ -3,10 +3,16 @@ import type { State } from '../fork/getPathFromState'
 import { getReactNavigationConfig, type Screen } from '../getReactNavigationConfig'
 import {
   addEventListener,
+  getDefaultLinkingPrefixes,
   getInitialURL,
   getPathFromState,
   getStateFromPath,
 } from '../link/linking'
+import {
+  normalizeLinkingConfig,
+  type OneLinkingConfig,
+} from '../link/getLinking'
+import { evictOldest } from '../utils/evictOldest'
 import type { RouteNode } from './Route'
 
 export function getNavigationConfig(
@@ -23,10 +29,19 @@ export type OneLinkingOptions = LinkingOptions<object> & {
   getPathFromState?: typeof getPathFromState
 }
 
-export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinkingOptions {
+export function getLinkingConfig(
+  routes: RouteNode,
+  metaOnly = true,
+  linking?: OneLinkingConfig
+): OneLinkingOptions {
   const config = getNavigationConfig(routes, metaOnly)
+  const resolvedLinking = normalizeLinkingConfig(
+    linking,
+    getDefaultLinkingPrefixes()
+  )
   return {
-    prefixes: [],
+    prefixes: resolvedLinking.prefixes,
+    filter: resolvedLinking.filter,
     // @ts-expect-error
     config,
     // A custom getInitialURL is used on native to ensure the app always starts at
@@ -53,7 +68,15 @@ export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinking
 
 export const stateCache = new Map<string, any>()
 
-/** We can reduce work by memoizing the state by the pathname. This only works because the options (linking config) theoretically never change.  */
+const STATE_CACHE_THRESHOLD = 5000
+const STATE_CACHE_EVICTION = 1000
+
+export function clearStateCache() {
+  stateCache.clear()
+}
+
+/** memoize getStateFromPath by pathname. cache is cleared when the route tree
+ * or linking config changes (see ensureBaseLinkingConfig in linkingConfig.ts). */
 function getStateFromPathMemoized(
   path: string,
   options: Parameters<typeof getStateFromPath>[1]
@@ -63,6 +86,7 @@ function getStateFromPathMemoized(
     return cached
   }
   const result = getStateFromPath(path, options)
+  evictOldest(stateCache, STATE_CACHE_THRESHOLD, STATE_CACHE_EVICTION)
   stateCache.set(path, result)
   return result
 }

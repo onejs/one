@@ -111,5 +111,38 @@ describe('one-router-metro babel plugin', () => {
       // should be a regex literal
       expect(code).toMatch(/\/\\\.\/app\/\.\*\//)
     })
+
+    it('replaces process.env.ONE_ROUTER_LINKING_CONFIG', () => {
+      const code = transform(
+        'const linking = process.env.ONE_ROUTER_LINKING_CONFIG;',
+        '/project/node_modules/one/metro-entry.js',
+        {
+          ONE_ROUTER_LINKING_CONFIG: {
+            scheme: 'nativefeatures',
+            prefixes: ['nativefeatures://app'],
+          },
+        }
+      )
+
+      expect(code).toContain('scheme: "nativefeatures"')
+      expect(code).toContain('prefixes: ["nativefeatures://app"]')
+      expect(code).not.toContain('process.env')
+    })
+
+    it('does not replace ONE_ROUTER_LINKING_CONFIG outside metro-entry.js', () => {
+      const code = transform(
+        'const linking = process.env.ONE_ROUTER_LINKING_CONFIG;',
+        '/project/src/app.js',
+        {
+          ONE_ROUTER_LINKING_CONFIG: {
+            scheme: 'nativefeatures',
+          },
+        }
+      )
+
+      // user code should still see process.env, not the inlined object
+      expect(code).toContain('process.env.ONE_ROUTER_LINKING_CONFIG')
+      expect(code).not.toContain('scheme: "nativefeatures"')
+    })
   })
 })

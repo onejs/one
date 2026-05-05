@@ -1,6 +1,7 @@
+import { execFileSync } from 'node:child_process'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { createSession, navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
+import { createSession, navigateTo } from '@vxrn/test/utils/appium'
 import {
   captureScreenshot,
   captureErrorScreenshot,
@@ -9,6 +10,36 @@ import {
 import type { Browser } from 'webdriverio'
 
 const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
+
+function getSimulatorUdid(driver: Browser) {
+  const capabilities = driver.capabilities as Record<string, any>
+  return (
+    capabilities?.udid ||
+    capabilities?.['appium:udid'] ||
+    capabilities?.['appium:options']?.udid ||
+    process.env.SIMULATOR_UDID ||
+    'booted'
+  )
+}
+
+function openSimulatorUrl(driver: Browser, url: string) {
+  execFileSync('xcrun', ['simctl', 'openurl', getSimulatorUdid(driver), url], {
+    stdio: 'inherit',
+  })
+}
+
+async function acceptOpenUrlPrompt(driver: Browser) {
+  try {
+    await driver.acceptAlert()
+    return
+  } catch {}
+
+  const openButton = driver.$('~Open')
+  try {
+    await openButton.waitForDisplayed({ timeout: 3000 })
+    await openButton.click()
+  } catch {}
+}
 
 describe('@vxrn/native integration tests', () => {
   let driver: Browser
@@ -54,6 +85,31 @@ describe('@vxrn/native integration tests', () => {
       }
 
       await captureScreenshot(driver, 'home-screen-nav-links')
+    })
+  })
+
+  // -- deep linking --
+
+  describe('Deep Linking', () => {
+    test('opens a configured custom scheme URL in the iOS simulator', sharedTestOptions, async () => {
+      await navigateTo(driver, '/')
+      await waitForElement(driver, 'home-screen', { timeout: 30_000 })
+
+      openSimulatorUrl(driver, 'nativefeatures://app/deep-link/123')
+      await acceptOpenUrlPrompt(driver)
+
+      await waitForElement(driver, 'deep-link-screen', { timeout: 30_000 })
+
+      const title = await waitForElement(driver, 'deep-link-title')
+      expect(await title.getText()).toBe('Deep Link Test')
+
+      const id = await waitForElement(driver, 'deep-link-id')
+      expect(await id.getText()).toBe('ID: 123')
+
+      const path = await waitForElement(driver, 'deep-link-path')
+      expect(await path.getText()).toBe('Path: /deep-link/123')
+
+      await captureScreenshot(driver, 'deep-link-custom-scheme')
     })
   })
 

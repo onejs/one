@@ -41,7 +41,9 @@ export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type Worker
 export { getURL } from './getURL';
 export { Head } from './head';
 export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';
+export { useSitemap, type SitemapType } from './router/sitemap';
 export { href } from './href';
+export { getLinking, type OneLinkingConfig } from './link/getLinking';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 export { NativeTabs } from './layouts/NativeTabs';

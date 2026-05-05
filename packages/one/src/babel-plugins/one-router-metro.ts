@@ -3,6 +3,7 @@ import * as t from '@babel/types'
 
 type PluginOptions = {
   ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY?: string
+  ONE_ROUTER_LINKING_CONFIG?: unknown
   ONE_ROUTER_ROOT_FOLDER_NAME?: string
   ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING?: string
   ONE_SETUP_FILE_NATIVE?: string
@@ -15,6 +16,7 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
 
   const {
     ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY,
+    ONE_ROUTER_LINKING_CONFIG,
     ONE_ROUTER_ROOT_FOLDER_NAME,
     ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING,
     ONE_SETUP_FILE_NATIVE,
@@ -71,6 +73,13 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
               path.replaceWith(t.stringLiteral(ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY))
             } else if (key.value.startsWith('ONE_ROUTER_ROOT_FOLDER_NAME')) {
               path.replaceWith(t.stringLiteral(ONE_ROUTER_ROOT_FOLDER_NAME))
+            } else if (key.value === 'ONE_ROUTER_LINKING_CONFIG') {
+              // gate to metro-entry.js so a linking object literal can't
+              // accidentally replace `process.env.ONE_ROUTER_LINKING_CONFIG`
+              // in user code
+              if (state.filename?.endsWith('metro-entry.js')) {
+                path.replaceWith(t.valueToNode(ONE_ROUTER_LINKING_CONFIG))
+              }
             } else if (key.value.startsWith('ONE_ROUTER_REQUIRE_CONTEXT_REGEX')) {
               path.replaceWith(t.regExpLiteral(ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING))
             } else if (key.value === 'ONE_SETUP_FILE_NATIVE') {
