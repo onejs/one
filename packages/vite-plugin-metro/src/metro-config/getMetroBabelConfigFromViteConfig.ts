@@ -27,6 +27,27 @@ export function getMetroBabelConfigFromViteConfig(
     }
   }
 
+  // also harvest keys from config.define (populated by env-defining plugins like one's).
+  // we union the user's envPrefix with framework-level defaults so we still pick up
+  // VITE_/ONE_/EXPO_PUBLIC_ even when another plugin replaces envPrefix wholesale
+  // (e.g. some plugins set it to a single project-specific prefix).
+  const definePrefixes = Array.from(
+    new Set([...prefixes, 'VITE_', 'ONE_', 'EXPO_PUBLIC_'])
+  )
+  for (const defineKey of Object.keys(config.define || {})) {
+    const m = defineKey.match(/^process\.env\.([A-Z][A-Z0-9_]*)$/)
+    if (!m) continue
+    const key = m[1]
+    if (key in importMetaEnv) continue
+    if (!definePrefixes.some((p) => key.startsWith(p))) continue
+    const raw = config.define![defineKey]
+    try {
+      importMetaEnv[key] = typeof raw === 'string' ? JSON.parse(raw) : raw
+    } catch {
+      importMetaEnv[key] = raw as string
+    }
+  }
+
   return {
     plugins: [
       [
