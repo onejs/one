@@ -48,3 +48,4 @@ node_modules
 .expo
 .vite-inspect
 .claude/worktrees/
+.claude/scheduled_tasks.lock
