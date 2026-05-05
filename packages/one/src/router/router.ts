@@ -303,7 +303,7 @@ function setupLinkingAndRouteInfo(initialLocation?: URL) {
   // capture the original pathname before React Navigation's linking can modify it
   initialPathname =
     initialLocation?.pathname ??
-    (typeof window !== 'undefined' ? window.location.pathname : undefined)
+    (typeof document !== 'undefined' ? window.location.pathname : undefined)
 
   if (initialState) {
     rootState = initialState
@@ -583,7 +583,7 @@ function normalizePathname(pathname: string) {
 }
 
 function getBrowserPathname() {
-  if (typeof window === 'undefined') return undefined
+  if (typeof document === 'undefined') return undefined
   return normalizePathname(window.location.pathname)
 }
 
