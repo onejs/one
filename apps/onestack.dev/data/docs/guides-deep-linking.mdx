@@ -1,0 +1,139 @@
+---
+title: Deep Linking
+---
+
+Deep linking lets external URLs open a specific screen in your app on web, iOS, and Android. One handles deep links by stripping a configured prefix from the incoming URL and matching the remaining path against your file-system routes.
+
+## Quick Start
+
+Configure `router.linking` in your Vite config and register the same scheme in your native app manifest.
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      router: {
+        linking: {
+          scheme: 'myapp',
+          prefixes: ['https://example.com/app'],
+        },
+      },
+    }),
+  ],
+}
+```
+
+```json fileName=app.json
+{
+  "name": "MyApp",
+  "scheme": "myapp"
+}
+```
+
+With this, opening `myapp://settings/profile` or `https://example.com/app/settings/profile` (after universal-link verification) routes to `app/settings/profile.tsx`.
+
+## How Prefix Matching Works
+
+Each entry in `prefixes` is an exact URL prefix that gets stripped from incoming deep links before route matching. A `scheme` is shorthand: `'myapp'` expands to `'myapp://'` and `'myapp:///'` automatically.
+
+Prefixes match at clean boundaries — the URL must be exactly the prefix, or continue with `/`, `?`, or `#`:
+
+| URL                              | Prefix                | Match | Stripped path |
+| -------------------------------- | --------------------- | ----- | ------------- |
+| `myapp://app/thread/1`           | `myapp://app`         | yes   | `thread/1`    |
+| `myapp://app?ref=share`          | `myapp://app`         | yes   | `?ref=share`  |
+| `myapp://app`                    | `myapp://app`         | yes   | (empty)       |
+| `myapp://application/thread/1`   | `myapp://app`         | no    | (falls back)  |
+
+When multiple prefixes match the same URL, the longest one wins.
+
+### Default Prefixes from the Manifest
+
+On native, schemes registered in your app manifest are picked up automatically and merged with whatever you configure in `router.linking`. You only need to repeat them in `router.linking` if you want host-bearing variants (like `myapp://app`) treated as separate prefixes.
+
+## `OneLinkingConfig` Reference
+
+```ts
+type OneLinkingConfig = {
+  scheme?: string | string[]
+  prefixes?: string[]
+  filter?: (url: string) => boolean
+}
+```
+
+- **`scheme`** — one or more custom app schemes. Each scheme is expanded internally to `${scheme}://` and `${scheme}:///` URL prefixes. Schemes should also be registered in your native app manifest.
+- **`prefixes`** — fully qualified URL prefixes to strip before route matching. Use this for universal links (`'https://example.com/app'`) or host-bearing custom scheme URLs (`'myapp://app'`).
+- **`filter`** — optional predicate that gates which incoming URLs are handled. Functions can't be inlined into the generated entry, so this can only be set programmatically (see below).
+
+## The `getLinking` Helper
+
+`getLinking` is a typed identity helper for defining a linking config in TypeScript. It's useful when you want to share the config across files or pass it programmatically.
+
+```ts
+import { getLinking } from 'one'
+
+export const linking = getLinking({
+  scheme: 'myapp',
+  prefixes: ['https://example.com/app'],
+})
+```
+
+## Programmatic Configuration (with `filter`)
+
+To use a `filter` function, write your own entry that calls `createApp({ linking })` directly. The Vite plugin's `router.linking` only accepts JSON-serializable fields.
+
+```tsx fileName=src/entry.tsx
+import { createApp, getLinking } from 'one'
+
+const linking = getLinking({
+  scheme: 'myapp',
+  prefixes: ['https://example.com/app'],
+  filter: (url) => !url.includes('/admin'),
+})
+
+createApp({
+  routes: import.meta.glob('./app/**/*'),
+  routerRoot: 'app',
+  linking,
+})
+```
+
+## iOS Setup
+
+The scheme in `app.json` lands in `Info.plist` after running `expo prebuild`. To verify:
+
+```bash
+plutil -p ios/MyApp/Info.plist | grep -A 4 CFBundleURLTypes
+```
+
+Test a deep link against a running simulator:
+
+```bash
+xcrun simctl openurl booted myapp://settings/profile
+```
+
+For universal links (`https://example.com/app/...`), follow Apple's [associated domains setup](https://developer.apple.com/documentation/xcode/supporting-associated-domains) and add the entitlement.
+
+## Android Setup
+
+Add the scheme and any universal-link hosts to `AndroidManifest.xml` (Expo will generate this from your `app.json` config). Test with:
+
+```bash
+adb shell am start -W -a android.intent.action.VIEW -d "myapp://settings/profile"
+```
+
+## Web Behavior
+
+On web, deep linking is just URL routing — no prefix-stripping is needed because the browser already provides the path via `window.location`. The configured `prefixes` and `scheme` are still accepted for API parity but are inert on web.
+
+## Inspecting Routes with `useSitemap`
+
+Use [`useSitemap`](/docs/hooks-useSitemap) to render a list of all routes — handy for debug screens or generating link previews while testing deep links.
+
+## Related
+
+- [`useSitemap`](/docs/hooks-useSitemap) — list every route in your app
+- [Configuration](/docs/configuration) — full Vite plugin reference
+- [Routing Overview](/docs/routing) — file-system routing fundamentals

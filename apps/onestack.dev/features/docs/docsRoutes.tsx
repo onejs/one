@@ -77,6 +77,7 @@ export const docsRoutes = [
       { title: 'useNavigation', route: '/docs/hooks-useNavigation' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
       { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
+      { title: 'useSitemap', route: '/docs/hooks-useSitemap' },
     ],
   },
 
@@ -84,6 +85,7 @@ export const docsRoutes = [
     title: 'Guides',
     pages: [
       { title: 'Authentication', route: '/docs/guides-authentication' },
+      { title: 'Deep Linking', route: '/docs/guides-deep-linking' },
       { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
