@@ -37,11 +37,11 @@ describe('sootsim.com back-navigation', () => {
       const origPush = history.pushState.bind(history)
       const origReplace = history.replaceState.bind(history)
       ;(window as any).__hlog = [] as { op: 'push' | 'replace'; url: string }[]
-      history.pushState = function (...args: any[]) {
+      history.pushState = function (...args: Parameters<typeof history.pushState>) {
         ;(window as any).__hlog.push({ op: 'push', url: args[2] })
         return origPush(...args)
       } as any
-      history.replaceState = function (...args: any[]) {
+      history.replaceState = function (...args: Parameters<typeof history.replaceState>) {
         ;(window as any).__hlog.push({ op: 'replace', url: args[2] })
         return origReplace(...args)
       } as any
