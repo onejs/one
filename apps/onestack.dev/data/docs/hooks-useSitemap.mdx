@@ -1,0 +1,65 @@
+---
+title: useSitemap
+---
+
+Returns the full route tree of your app as a structured object. Useful for debug screens, route picker UIs, and generating link previews.
+
+```tsx
+import { useSitemap } from 'one'
+
+export default function Sitemap() {
+  const sitemap = useSitemap()
+  if (!sitemap) return null
+
+  return <SitemapNode node={sitemap} />
+}
+
+function SitemapNode({ node }) {
+  return (
+    <View>
+      <Text>{node.filename} → {node.href}</Text>
+      {node.children.map((child) => (
+        <SitemapNode key={child.contextKey} node={child} />
+      ))}
+    </View>
+  )
+}
+```
+
+## Return Value
+
+`useSitemap()` returns a recursive `SitemapType` rooted at the top-level layout, or `null` if the route tree hasn't been initialized yet (briefly, on first render).
+
+```ts
+type SitemapType = {
+  contextKey: string      // module key for the route file (e.g. './(app)/_layout.tsx')
+  filename: string        // human-readable filename (e.g. '(app)/_layout')
+  href: string            // route pattern (e.g. '/(app)/thread/[id]')
+  isInitial: boolean      // true if this is the initial route of its layout
+  isInternal: boolean     // true for One-internal routes
+  isGenerated: boolean    // true for in-memory routes (not user files)
+  children: SitemapType[] // nested routes
+}
+```
+
+`href` is the **route pattern** with dynamic segments left as `[id]` / `[...slug]`, not a concrete URL. Fill in your own params if you want clickable links:
+
+```tsx
+const docsHref = node.href.replace('[...slug]', 'getting-started/install')
+```
+
+## Filtering Internal/Generated Routes
+
+User-defined routes have `isInternal === false` and `isGenerated === false`. Skip the rest in your UI to avoid showing One's internals:
+
+```tsx
+function visibleChildren(node: SitemapType) {
+  return node.children.filter((child) => !child.isInternal && !child.isGenerated)
+}
+```
+
+## Related
+
+- [Routing Overview](/docs/routing)
+- [Deep Linking](/docs/guides-deep-linking)
+- [Typed Routes](/docs/routing-typed-routes)

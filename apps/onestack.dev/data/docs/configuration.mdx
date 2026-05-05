@@ -56,6 +56,25 @@ export default {
          * This is useful for ignoring test or utility files you wish to colocate.
          */
         ignoredRouteFiles: ['**/*.test.*'],
+
+        /**
+         * Configure deep linking. Custom schemes get expanded to URL prefixes
+         * that are stripped before route matching, and merge with the schemes
+         * registered in your native app manifest.
+         *
+         * The plugin inlines this object into the generated entry as JSON,
+         * so only serializable fields are accepted here. For programmatic
+         * configuration (including `filter`), call `createApp({ linking })`
+         * from a custom entry — see the deep linking guide.
+         */
+        linking: {
+          // one or more custom app schemes — also register these in your
+          // native app manifest (app.json `scheme`)
+          scheme: 'myapp',
+          // fully qualified URL prefixes to strip before route matching
+          // (universal links, host-bearing custom scheme URLs)
+          prefixes: ['https://example.com/app'],
+        },
       },
 
       optimization: {
