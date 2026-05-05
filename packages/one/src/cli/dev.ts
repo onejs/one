@@ -3,7 +3,13 @@ import colors from 'picocolors'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
 import { checkNodeVersion } from './checkNodeVersion'
+import {
+  formatErrorSafely,
+  installPrepareStackTraceGuard,
+} from './install-error-handlers'
 import { labelProcess } from './label-process'
+
+installPrepareStackTraceGuard()
 
 const DAEMON_PORT = 8081
 
@@ -129,15 +135,22 @@ export async function dev(args: {
     }
   })
 
+  // formatErrorSafely + the prepareStackTrace guard prevent a buggy transitive
+  // formatter (source-map-support without recursion guard) from pinning the
+  // dev server's main thread on uncaught/rejection paths. dev intentionally
+  // does NOT exit — keep the server alive through user errors.
   process.on('uncaughtException', (err) => {
-    console.error(err?.message || err)
+    try {
+      process.stderr.write(`[one dev] uncaught exception\n${formatErrorSafely(err)}\n`)
+    } catch {}
   })
 
-  // Prevent syntax errors in user's code from crashing the dev server.
-  // TODO: It seems that Vite CLI isn't doing this and is using another way
-  // to prevent such crashes. May need to investigate further.
   process.on('unhandledRejection', (err) => {
-    console.error(err)
+    try {
+      process.stderr.write(
+        `[one dev] unhandled rejection\n${formatErrorSafely(err)}\n`,
+      )
+    } catch {}
   })
 
   await closePromise

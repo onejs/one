@@ -260,8 +260,32 @@ function shouldUseWorkers(oneOptions?: { build?: { workers?: boolean } }) {
   return oneOptions?.build?.workers !== false
 }
 
+// formatErrorSafely temporarily zeroes Error.prepareStackTrace before reading
+// err.stack — prevents a broken transitive prepareStackTrace formatter (e.g.
+// source-map-support without a recursion guard) from spinning V8 forever on
+// the way out. exit(1) so a fatal build doesn't leave a 100%-cpu zombie when
+// CI cancels the parent. see install-error-handlers.ts for the full story.
+import {
+  formatErrorSafely,
+  installPrepareStackTraceGuard,
+} from './install-error-handlers'
+
+installPrepareStackTraceGuard()
+
 process.on('uncaughtException', (err) => {
-  console.error(err?.message || err)
+  try {
+    process.stderr.write(`[one build] uncaught exception\n${formatErrorSafely(err)}\n`)
+  } catch {}
+  process.exit(1)
+})
+
+process.on('unhandledRejection', (reason) => {
+  try {
+    process.stderr.write(
+      `[one build] unhandled rejection\n${formatErrorSafely(reason)}\n`,
+    )
+  } catch {}
+  process.exit(1)
 })
 
 const HOOK_KEYS = [

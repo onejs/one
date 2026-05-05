@@ -8,8 +8,29 @@ import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
 import type { One } from './vite/types'
 
+// formatErrorSafely + the prepareStackTrace guard prevent a buggy transitive
+// formatter (source-map-support without recursion guard) from pinning the
+// serve process forever. see cli/install-error-handlers.ts for the full
+// story behind the 9-day Onejs:build zombies on the soot CI runner.
+import {
+  formatErrorSafely,
+  installPrepareStackTraceGuard,
+} from './cli/install-error-handlers'
+
+installPrepareStackTraceGuard()
+
 process.on('uncaughtException', (err) => {
-  console.error(`[one] Uncaught exception`, err?.stack || err)
+  try {
+    process.stderr.write(`[one serve] uncaught exception\n${formatErrorSafely(err)}\n`)
+  } catch {}
+})
+
+process.on('unhandledRejection', (reason) => {
+  try {
+    process.stderr.write(
+      `[one serve] unhandled rejection\n${formatErrorSafely(reason)}\n`,
+    )
+  } catch {}
 })
 
 export async function serve(
