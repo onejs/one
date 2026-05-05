@@ -288,12 +288,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     {
       name: 'one-define-client-env',
-      async config(userConfig) {
+      async config(userConfig, env) {
         const clientEnvDefine = options.skipEnv
           ? {}
           : (
               await loadEnv(
-                vxrnOptions?.mode ?? userConfig?.mode ?? 'development',
+                vxrnOptions?.mode ?? userConfig?.mode ?? env?.mode ?? 'development',
                 process.cwd(),
                 userConfig?.envPrefix
               )
