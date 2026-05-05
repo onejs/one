@@ -62,6 +62,13 @@ export function getRootURL(): string {
   return _rootURL
 }
 
+export function getDefaultLinkingPrefixes(): string[] {
+  return Linking.collectManifestSchemes?.().flatMap((scheme) => {
+    const normalized = scheme.replace(/:\/+$/, '')
+    return [`${normalized}://`, `${normalized}:///`]
+  }) ?? []
+}
+
 export function addEventListener(listener: (url: string) => void) {
   let callback: (({ url }: { url: string }) => void) | undefined
 

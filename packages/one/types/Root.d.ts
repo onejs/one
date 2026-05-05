@@ -1,5 +1,6 @@
 import { type NavigationContainerProps } from '@react-navigation/native';
 import { type FunctionComponent, type ReactNode } from 'react';
+import type { OneLinkingConfig } from './link/getLinking';
 import type { GlobbedRouteImports } from './types';
 import type { One } from './vite/types';
 type RootProps = Omit<InnerProps, 'context'> & {
@@ -11,6 +12,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
     routerRoot: string;
     routeOptions?: One.RouteOptions;
     flags?: One.Flags;
+    linking?: OneLinkingConfig;
 };
 type InnerProps = {
     context: One.RouteContext;

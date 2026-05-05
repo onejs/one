@@ -132,5 +132,22 @@ describe('virtualEntryPlugin', () => {
       expect(iosCode).toContain('import "./src/setup.ts"')
       expect(iosCode).not.toContain('__oneGetSetupPromise')
     })
+
+    it('passes router linking config to createApp', () => {
+      const plugin = createVirtualEntry({
+        ...base,
+        router: {
+          linking: {
+            scheme: 'threepunchconvo',
+            prefixes: ['threepunchconvo://app'],
+          },
+        },
+      })
+      const code = loadEntry(plugin, 'ios')
+
+      expect(code).toContain(
+        'linking: {"scheme":"threepunchconvo","prefixes":["threepunchconvo://app"]}'
+      )
+    })
   })
 })

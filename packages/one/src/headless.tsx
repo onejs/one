@@ -1,5 +1,6 @@
 import './setup'
 
+import type { OneLinkingConfig } from './link/getLinking'
 import { Root } from './Root'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
@@ -13,6 +14,7 @@ export type CreateHeadlessAppProps = {
   routerRoot: string
   path?: string
   flags?: One.Flags
+  linking?: OneLinkingConfig
   getSetupPromise?: () => Promise<unknown>
 }
 
@@ -34,6 +36,7 @@ export function createApp(options: CreateHeadlessAppProps) {
           flags={options.flags}
           routes={options.routes}
           routerRoot={options.routerRoot}
+          linking={options.linking}
           path={
             options.path || (typeof window !== 'undefined' ? window.location.href : '/')
           }

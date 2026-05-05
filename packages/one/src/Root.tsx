@@ -20,8 +20,9 @@ import { initScreensFeatureFlags } from './screensFeatureFlags'
 import { SpaShellContext } from './router/SpaShellContext'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
+import type { OneLinkingConfig } from './link/getLinking'
 import { FlagsContext } from './router/FlagsContext'
-import { getLinking } from './router/linkingConfig'
+import { getResolvedLinking } from './router/linkingConfig'
 import { handleNavigationContainerStateChange } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
@@ -55,6 +56,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
   routerRoot: string
   routeOptions?: One.RouteOptions
   flags?: One.Flags
+  linking?: OneLinkingConfig
 }
 
 type InnerProps = {
@@ -88,8 +90,15 @@ export function Root(props: RootProps) {
     initScreensFeatureFlags()
   }
 
-  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
-    props
+  const {
+    path,
+    routes,
+    routeOptions,
+    isClient,
+    navigationContainerProps,
+    onRenderId,
+    linking,
+  } = props
 
   const context = useViteRoutes(
     routes,
@@ -102,7 +111,7 @@ export function Root(props: RootProps) {
       ? new URL(path || window.location.href || '/', window.location.href)
       : getCachedSSRLocation(path || '/')
 
-  const store = useInitializeOneRouter(context, location)
+  const store = useInitializeOneRouter(context, location, linking)
   const userScheme = useUserScheme()
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
@@ -136,7 +145,7 @@ export function Root(props: RootProps) {
         <UpstreamNavigationContainer
           ref={store.navigationRef}
           initialState={store.initialState}
-          linking={getLinking()}
+          linking={getResolvedLinking()}
           onUnhandledAction={onUnhandledAction}
           onStateChange={handleNavigationContainerStateChange}
           theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
@@ -210,7 +219,7 @@ export function Root(props: RootProps) {
             if (window.location.pathname + window.location.search !== initialPath) return
             const nav = store.navigationRef?.current
             if (!nav) return
-            const linking = getLinking()
+            const linking = getResolvedLinking()
             if (linking?.getStateFromPath) {
               const freshState = linking.getStateFromPath(initialPath, linking.config)
               if (freshState) {

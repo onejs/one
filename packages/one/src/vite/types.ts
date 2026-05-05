@@ -187,6 +187,29 @@ export namespace One {
        * Dangerously customize the router root directory. This may lead to unexpected behavior.
        */
       root?: string
+      /**
+       * Configure deep linking behavior. The plugin inlines this object into
+       * the generated entry as JSON, so only serializable fields (`scheme`,
+       * `prefixes`) are accepted here. `filter` and other function-valued
+       * fields on `OneLinkingConfig` must be set programmatically when
+       * calling `createApp({ linking })` from a custom entry instead.
+       */
+      linking?: {
+        /**
+         * One or more custom app schemes (e.g. `'myapp'`). Each scheme is
+         * expanded internally to `${scheme}://` and `${scheme}:///` URL
+         * prefixes that get stripped before route matching. The schemes
+         * should also be registered in your native app manifest.
+         */
+        scheme?: string | string[]
+        /**
+         * Fully qualified URL prefixes to strip before route matching.
+         *
+         * Use this for universal links (`'https://example.com/app'`) or for
+         * host-bearing custom scheme URLs (`'myapp://app'`).
+         */
+        prefixes?: string[]
+      }
       experimental?: {
         /**
          * Auto-generate route type helpers in route files.

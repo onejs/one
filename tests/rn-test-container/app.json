@@ -1,6 +1,7 @@
 {
   "name": "RN Test Container",
   "slug": "rn-test-container",
+  "scheme": "nativefeatures",
   "plugins": [
     "one/expo-plugin",
     [

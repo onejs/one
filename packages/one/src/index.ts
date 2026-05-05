@@ -77,7 +77,9 @@ export {
   useSegments,
   useUnstableGlobalHref,
 } from './hooks'
+export { useSitemap, type SitemapType } from './router/sitemap'
 export { href } from './href'
+export { getLinking, type OneLinkingConfig } from './link/getLinking'
 // components
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'

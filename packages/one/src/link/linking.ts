@@ -12,6 +12,10 @@ export function getRootURL(): string {
   return '/'
 }
 
+export function getDefaultLinkingPrefixes(): string[] {
+  return []
+}
+
 export function addEventListener(listener: (url: string) => void) {
   if (typeof window === 'undefined') {
     return () => {}

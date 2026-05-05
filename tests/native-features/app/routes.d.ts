@@ -15,10 +15,20 @@ declare module 'one' {
         | `/toolbar-test`
         | `/zoom-detail`
         | `/zoom-test`
-      DynamicRoutes: never
-      DynamicRouteTemplate: never
+      DynamicRoutes: `/deep-link/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate: `/deep-link/[id]`
       IsTyped: true
-      
+      RouteTypes: {
+        '/deep-link/[id]': RouteInfo<{ id: string }>
+      }
     }
   }
+}
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
 }

@@ -14,7 +14,7 @@ import {
   useNotFoundState,
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
-import { getLinking } from '../router/linkingConfig'
+import { getResolvedLinking } from '../router/linkingConfig'
 import { routeNode as globalRouteNode, initialPathname } from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
@@ -41,7 +41,7 @@ function resolveInitialRouteFromLinking(
   contextKey: string,
   browserPath: string
 ): string | undefined {
-  const linking = getLinking()
+  const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
 
   let current = linking.getStateFromPath(browserPath, linking.config)

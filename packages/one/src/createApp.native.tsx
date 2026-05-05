@@ -16,6 +16,7 @@ export function createApp(options: CreateAppProps): void {
         flags={options.flags}
         routes={options.routes}
         routerRoot={options.routerRoot}
+        linking={options.linking}
         path="/"
       />
     )

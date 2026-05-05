@@ -1,6 +1,7 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
 import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
+import type { OneLinkingConfig } from '../link/getLinking'
 import * as routerStore from './router'
 import { initialize } from './router'
 import { getSSRInitialState, ensureBaseLinkingConfig } from './linkingConfig'
@@ -15,7 +16,8 @@ let ssrRouteTreeInitialized = false
 
 export function useInitializeOneRouter(
   context: One.RouteContext,
-  initialLocation: URL | undefined
+  initialLocation: URL | undefined,
+  linking?: OneLinkingConfig
 ) {
   const navigationRef = useNavigationContainerRef()
 
@@ -23,15 +25,15 @@ export function useInitializeOneRouter(
   if (typeof window === 'undefined') {
     if (!ssrRouteTreeInitialized) {
       // first SSR request: full initialization to set up route tree, root component, etc.
-      initialize(context, navigationRef, initialLocation)
+      initialize(context, navigationRef, initialLocation, linking)
       ssrRouteTreeInitialized = true
       // also ensure linking config base is cached
-      ensureBaseLinkingConfig(routerStore.routeNode)
+      ensureBaseLinkingConfig(routerStore.routeNode, linking)
     }
 
     // per-request: compute initialState from URL (cached by path)
     const initialState = initialLocation
-      ? getSSRInitialState(routerStore.routeNode, initialLocation)
+      ? getSSRInitialState(routerStore.routeNode, initialLocation, linking)
       : routerStore.initialState
 
     // return per-request snapshot to prevent concurrent request trampling
@@ -48,7 +50,7 @@ export function useInitializeOneRouter(
     const contexts = '__react_navigation__elements_contexts'
     globalThis[contexts] = new Map<string, React.Context<any>>()
 
-    initialize(context, navigationRef, initialLocation)
+    initialize(context, navigationRef, initialLocation, linking)
     lastInitVersion = initVersion
   }
 
