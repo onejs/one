@@ -8,10 +8,7 @@ import {
   getPathFromState,
   getStateFromPath,
 } from '../link/linking'
-import {
-  normalizeLinkingConfig,
-  type OneLinkingConfig,
-} from '../link/getLinking'
+import { normalizeLinkingConfig, type OneLinkingConfig } from '../link/getLinking'
 import { evictOldest } from '../utils/evictOldest'
 import type { RouteNode } from './Route'
 
@@ -35,10 +32,7 @@ export function getLinkingConfig(
   linking?: OneLinkingConfig
 ): OneLinkingOptions {
   const config = getNavigationConfig(routes, metaOnly)
-  const resolvedLinking = normalizeLinkingConfig(
-    linking,
-    getDefaultLinkingPrefixes()
-  )
+  const resolvedLinking = normalizeLinkingConfig(linking, getDefaultLinkingPrefixes())
   return {
     prefixes: resolvedLinking.prefixes,
     filter: resolvedLinking.filter,

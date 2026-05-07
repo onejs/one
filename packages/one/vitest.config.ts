@@ -43,7 +43,10 @@ export default defineConfig({
     alias: [
       {
         find: /^react-native$/,
-        replacement: resolve(__dirname, '../../node_modules/react-native-web/dist/index.js'),
+        replacement: resolve(
+          __dirname,
+          '../../node_modules/react-native-web/dist/index.js'
+        ),
       },
       {
         find: /^react-native-safe-area-context$/,
@@ -58,7 +61,10 @@ export default defineConfig({
       },
       {
         find: '@react-navigation/native-stack',
-        replacement: resolve(__dirname, 'src/__mocks__/@react-navigation/native-stack.ts'),
+        replacement: resolve(
+          __dirname,
+          'src/__mocks__/@react-navigation/native-stack.ts'
+        ),
       },
       {
         find: 'expo-modules-core',

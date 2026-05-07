@@ -28,7 +28,7 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (reason) => {
   try {
     process.stderr.write(
-      `[one serve] unhandled rejection\n${formatErrorSafely(reason)}\n`,
+      `[one serve] unhandled rejection\n${formatErrorSafely(reason)}\n`
     )
   } catch {}
 })

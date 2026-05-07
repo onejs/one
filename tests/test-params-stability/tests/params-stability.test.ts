@@ -96,8 +96,7 @@ async function collectProjectState(page: Page) {
   return page.evaluate(() => {
     return {
       url: location.pathname,
-      pathname:
-        document.querySelector('#project-topbar-pathname')?.textContent ?? null,
+      pathname: document.querySelector('#project-topbar-pathname')?.textContent ?? null,
       page: document.querySelector('#project-page')?.textContent ?? null,
       renders: (
         ((window as any).__projectRenders as Array<{

@@ -36,30 +36,34 @@ describe('three punch grouped route navigation', () => {
     await browser?.close()
   })
 
-  it('navigates from a dynamic thread route to grouped static siblings repeatedly', async () => {
-    const page = await context.newPage()
-    const serverUrl = process.env.ONE_SERVER_URL!
+  it(
+    'navigates from a dynamic thread route to grouped static siblings repeatedly',
+    async () => {
+      const page = await context.newPage()
+      const serverUrl = process.env.ONE_SERVER_URL!
 
-    await page.goto(`${serverUrl}/forum`, { waitUntil: 'networkidle' })
-    await page.locator('#forum-screen').waitFor({ timeout: 10000 })
+      await page.goto(`${serverUrl}/forum`, { waitUntil: 'networkidle' })
+      await page.locator('#forum-screen').waitFor({ timeout: 10000 })
 
-    await clickSeedThread(page)
+      await clickSeedThread(page)
 
-    await page.locator('#nav-rankings').click()
-    await waitForPath(page, '/forum/rankings')
-    await page.locator('#rankings-screen').waitFor({ timeout: 10000 })
+      await page.locator('#nav-rankings').click()
+      await waitForPath(page, '/forum/rankings')
+      await page.locator('#rankings-screen').waitFor({ timeout: 10000 })
 
-    await page.locator('#nav-forum').click()
-    await waitForPath(page, '/forum')
-    await page.locator('#forum-screen').waitFor({ timeout: 10000 })
-    expect(await rootRouteNames(page)).toEqual(['(auth)'])
+      await page.locator('#nav-forum').click()
+      await waitForPath(page, '/forum')
+      await page.locator('#forum-screen').waitFor({ timeout: 10000 })
+      expect(await rootRouteNames(page)).toEqual(['(auth)'])
 
-    await clickSeedThread(page)
+      await clickSeedThread(page)
 
-    await page.locator('#nav-picks').click()
-    await waitForPath(page, '/picks')
-    await page.locator('#picks-screen').waitFor({ timeout: 10000 })
+      await page.locator('#nav-picks').click()
+      await waitForPath(page, '/picks')
+      await page.locator('#picks-screen').waitFor({ timeout: 10000 })
 
-    await page.close()
-  }, START_TIMEOUT)
+      await page.close()
+    },
+    START_TIMEOUT
+  )
 })

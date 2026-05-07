@@ -63,10 +63,12 @@ export function getRootURL(): string {
 }
 
 export function getDefaultLinkingPrefixes(): string[] {
-  return Linking.collectManifestSchemes?.().flatMap((scheme) => {
-    const normalized = scheme.replace(/:\/+$/, '')
-    return [`${normalized}://`, `${normalized}:///`]
-  }) ?? []
+  return (
+    Linking.collectManifestSchemes?.().flatMap((scheme) => {
+      const normalized = scheme.replace(/:\/+$/, '')
+      return [`${normalized}://`, `${normalized}:///`]
+    }) ?? []
+  )
 }
 
 export function addEventListener(listener: (url: string) => void) {

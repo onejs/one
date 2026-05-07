@@ -130,7 +130,11 @@ async function waitForHomeRedirect(page: Page) {
   await page.waitForFunction(
     () => {
       const w = window as any
-      return !!w.__homeRouteMounted && !!w.__redirectFired && location.pathname === '/project/target/main'
+      return (
+        !!w.__homeRouteMounted &&
+        !!w.__redirectFired &&
+        location.pathname === '/project/target/main'
+      )
     },
     { timeout: 10000 }
   )
@@ -140,7 +144,9 @@ async function waitForDeployRouteActivity(page: Page) {
   await page.waitForFunction(
     () => {
       const w = window as any
-      return !!w.__deployRouteMounted || location.pathname === '/project/target/main/deploy'
+      return (
+        !!w.__deployRouteMounted || location.pathname === '/project/target/main/deploy'
+      )
     },
     { timeout: 10000 }
   )
@@ -425,7 +431,9 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       `unexpected URLs during /deploy load:\n${JSON.stringify(wrongFlash, null, 2)}`
     ).toHaveLength(0)
 
-    expect(['/deploy', '/project/target/main/deploy']).toContain(getPathname(results.finalUrl))
+    expect(['/deploy', '/project/target/main/deploy']).toContain(
+      getPathname(results.finalUrl)
+    )
 
     expect(errors).toHaveLength(0)
     await page.close()
@@ -461,7 +469,12 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
         await page.waitForTimeout(600)
 
         await page.locator('#replace-session-project').click()
-        await waitForSessionState(page, '/project/proj_created/main', 'proj_created', 'main')
+        await waitForSessionState(
+          page,
+          '/project/proj_created/main',
+          'proj_created',
+          'main'
+        )
 
         const after = await collectSessionProjectState(page)
         expect(
@@ -469,7 +482,12 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
           `router.replace from a soot-shaped session route did not update window.location.pathname.\n` +
             `actual: ${JSON.stringify(after, null, 2)}`
         ).toBe('/project/proj_created/main')
-        expectSessionStateMatches(after, '/project/proj_created/main', 'proj_created', 'main')
+        expectSessionStateMatches(
+          after,
+          '/project/proj_created/main',
+          'proj_created',
+          'main'
+        )
         expect(errors).toHaveLength(0)
       } finally {
         await page.close()

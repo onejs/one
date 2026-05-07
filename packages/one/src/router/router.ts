@@ -299,10 +299,7 @@ function cleanUpState() {
   storeSubscribers.clear()
 }
 
-function setupLinkingAndRouteInfo(
-  initialLocation?: URL,
-  linking?: OneLinkingConfig
-) {
+function setupLinkingAndRouteInfo(initialLocation?: URL, linking?: OneLinkingConfig) {
   initialState = setupLinking(routeNode, initialLocation, linking)
 
   // capture the original pathname before React Navigation's linking can modify it
