@@ -253,9 +253,7 @@ function QualifiedNavigator({
     if (initialRouteName) return initialRouteName
 
     if (screenFromParent) {
-      const hasScreen = screens.some(
-        (s) => (s as any)?.props?.name === screenFromParent
-      )
+      const hasScreen = screens.some((s) => (s as any)?.props?.name === screenFromParent)
       if (hasScreen) return screenFromParent
     }
 
@@ -271,9 +269,7 @@ function QualifiedNavigator({
     // if the linking state's depth doesn't line up with screens here (e.g.
     // a custom navigator that filters screens), fall back to letting react
     // navigation pick its default.
-    const hasScreen = screens.some(
-      (s) => (s as any)?.props?.name === resolved
-    )
+    const hasScreen = screens.some((s) => (s as any)?.props?.name === resolved)
     return hasScreen ? resolved : undefined
   }, [initialRouteName, screens, contextKey, screenFromParent])
 

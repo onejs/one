@@ -276,7 +276,9 @@ async function getAvailablePort() {
   })
 }
 
-async function withFreshWdaLocalPort(config: WebdriverIOConfig): Promise<WebdriverIOConfig> {
+async function withFreshWdaLocalPort(
+  config: WebdriverIOConfig
+): Promise<WebdriverIOConfig> {
   const capabilities = config.capabilities as any
   const appiumOptions = capabilities?.['appium:options']
 

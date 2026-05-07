@@ -91,26 +91,30 @@ describe('@vxrn/native integration tests', () => {
   // -- deep linking --
 
   describe('Deep Linking', () => {
-    test('opens a configured custom scheme URL in the iOS simulator', sharedTestOptions, async () => {
-      await navigateTo(driver, '/')
-      await waitForElement(driver, 'home-screen', { timeout: 30_000 })
+    test(
+      'opens a configured custom scheme URL in the iOS simulator',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/')
+        await waitForElement(driver, 'home-screen', { timeout: 30_000 })
 
-      openSimulatorUrl(driver, 'nativefeatures://app/deep-link/123')
-      await acceptOpenUrlPrompt(driver)
+        openSimulatorUrl(driver, 'nativefeatures://app/deep-link/123')
+        await acceptOpenUrlPrompt(driver)
 
-      await waitForElement(driver, 'deep-link-screen', { timeout: 30_000 })
+        await waitForElement(driver, 'deep-link-screen', { timeout: 30_000 })
 
-      const title = await waitForElement(driver, 'deep-link-title')
-      expect(await title.getText()).toBe('Deep Link Test')
+        const title = await waitForElement(driver, 'deep-link-title')
+        expect(await title.getText()).toBe('Deep Link Test')
 
-      const id = await waitForElement(driver, 'deep-link-id')
-      expect(await id.getText()).toBe('ID: 123')
+        const id = await waitForElement(driver, 'deep-link-id')
+        expect(await id.getText()).toBe('ID: 123')
 
-      const path = await waitForElement(driver, 'deep-link-path')
-      expect(await path.getText()).toBe('Path: /deep-link/123')
+        const path = await waitForElement(driver, 'deep-link-path')
+        expect(await path.getText()).toBe('Path: /deep-link/123')
 
-      await captureScreenshot(driver, 'deep-link-custom-scheme')
-    })
+        await captureScreenshot(driver, 'deep-link-custom-scheme')
+      }
+    )
   })
 
   // -- color api --

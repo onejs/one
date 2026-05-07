@@ -282,7 +282,7 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (reason) => {
   try {
     process.stderr.write(
-      `[one build] unhandled rejection\n${formatErrorSafely(reason)}\n`,
+      `[one build] unhandled rejection\n${formatErrorSafely(reason)}\n`
     )
   } catch {}
   process.exit(1)

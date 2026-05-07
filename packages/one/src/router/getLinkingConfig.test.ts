@@ -11,10 +11,7 @@ describe('getLinkingConfig', () => {
       scheme: 'threepunchconvo',
     })
 
-    expect(linking.prefixes).toEqual([
-      'threepunchconvo://',
-      'threepunchconvo:///',
-    ])
+    expect(linking.prefixes).toEqual(['threepunchconvo://', 'threepunchconvo:///'])
   })
 
   it('merges explicit prefixes with scheme-derived prefixes', () => {
@@ -54,10 +51,7 @@ describe('normalizeLinkingConfig', () => {
   })
 
   it('dedupes overlapping defaults and configured prefixes', () => {
-    const result = normalizeLinkingConfig(
-      { scheme: 'foo' },
-      ['foo://', 'foo:///']
-    )
+    const result = normalizeLinkingConfig({ scheme: 'foo' }, ['foo://', 'foo:///'])
     expect(result.prefixes).toEqual(['foo://', 'foo:///'])
   })
 })

@@ -5,12 +5,8 @@ import { getMockConfig } from '../testing-utils'
 
 describe('extractPathFromURL prefixes', () => {
   it('keeps existing custom scheme behavior without prefixes', () => {
-    expect(extractPathFromURL([], 'threepunchconvo://thread/123')).toBe(
-      'thread/123'
-    )
-    expect(extractPathFromURL([], 'threepunchconvo:///thread/123')).toBe(
-      'thread/123'
-    )
+    expect(extractPathFromURL([], 'threepunchconvo://thread/123')).toBe('thread/123')
+    expect(extractPathFromURL([], 'threepunchconvo:///thread/123')).toBe('thread/123')
   })
 
   it('strips the longest matching custom scheme prefix', () => {
@@ -45,16 +41,10 @@ describe('extractPathFromURL prefixes', () => {
 
   it('strips a prefix when the boundary is a query or hash', () => {
     expect(
-      extractPathFromURL(
-        ['threepunchconvo://app'],
-        'threepunchconvo://app?utm=share'
-      )
+      extractPathFromURL(['threepunchconvo://app'], 'threepunchconvo://app?utm=share')
     ).toBe('?utm=share')
     expect(
-      extractPathFromURL(
-        ['threepunchconvo://app'],
-        'threepunchconvo://app#section'
-      )
+      extractPathFromURL(['threepunchconvo://app'], 'threepunchconvo://app#section')
     ).toBe('#section')
     expect(
       extractPathFromURL(

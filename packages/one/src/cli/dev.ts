@@ -147,9 +147,7 @@ export async function dev(args: {
 
   process.on('unhandledRejection', (err) => {
     try {
-      process.stderr.write(
-        `[one dev] unhandled rejection\n${formatErrorSafely(err)}\n`,
-      )
+      process.stderr.write(`[one dev] unhandled rejection\n${formatErrorSafely(err)}\n`)
     } catch {}
   })
 
