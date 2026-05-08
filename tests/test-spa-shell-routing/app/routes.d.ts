@@ -33,24 +33,30 @@ declare module 'one' {
         | `/${OneRouter.SingleRoutePart<T>}`
         | `/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(authed)/dashboard/${OneRouter.SingleRoutePart<T>}`
+        | `/(authed)/thread/${OneRouter.SingleRoutePart<T>}`
         | `/(chat)/${OneRouter.SingleRoutePart<T>}`
         | `/(chat)/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/dashboard/${OneRouter.SingleRoutePart<T>}`
+        | `/thread/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: 
         | `/(authed)/dashboard/[appId]`
+        | `/(authed)/thread/[id]`
         | `/(chat)/[serverId]`
         | `/(chat)/[serverId]/[channelId]`
         | `/[serverId]`
         | `/[serverId]/[channelId]`
         | `/dashboard/[appId]`
+        | `/thread/[id]`
       IsTyped: true
       RouteTypes: {
         '/(authed)/dashboard/[appId]': RouteInfo<{ appId: string }>
+        '/(authed)/thread/[id]': RouteInfo<{ id: string }>
         '/(chat)/[serverId]': RouteInfo<{ serverId: string }>
         '/(chat)/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>
         '/[serverId]': RouteInfo<{ serverId: string }>
         '/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>
         '/dashboard/[appId]': RouteInfo<{ appId: string }>
+        '/thread/[id]': RouteInfo<{ id: string }>
       }
     }
   }

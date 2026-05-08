@@ -59,6 +59,7 @@ async function collectNavigations(page: Page, url: string, timeout = 15000) {
         document.querySelector('#beta-signup-page') ||
         document.querySelector('#admin-page') ||
         document.querySelector('#dashboard-app-page') ||
+        document.querySelector('#thread-page') ||
         document.querySelector('#home-page') ||
         document.querySelector('#about-page') ||
         document.querySelector('#channel-page') ||
@@ -167,6 +168,41 @@ describe('Route stability on page reload', () => {
 
     const unexpectedNavs = urls.filter(
       (u) => !u.includes('/dashboard/test-app') && !u.includes('about:blank')
+    )
+    expect(unexpectedNavs).toEqual([])
+    expect(errors).toEqual([])
+
+    await page.close()
+  })
+
+  test('/thread/seed-thread-001 with auth remount keeps its dynamic URL', async () => {
+    const page = await context.newPage()
+    const navigations: string[] = []
+    const errors: string[] = []
+
+    page.on('framenavigated', (frame) => {
+      if (frame === page.mainFrame()) {
+        navigations.push(frame.url())
+      }
+    })
+    page.on('pageerror', (err) => errors.push(err.message))
+
+    await page.goto(serverUrl + '/thread/seed-thread-001?auth=logged-in')
+    await waitForSpaContent(page, '#thread-page')
+    await page.waitForTimeout(1500)
+
+    expect(await page.textContent('#thread-pathname')).toBe('/thread/seed-thread-001')
+    expect(await page.textContent('#thread-id')).toBe('seed-thread-001')
+
+    const currentUrl = new URL(page.url())
+    expect(
+      currentUrl.pathname,
+      `dynamic thread URL changed after auth remount.\n` +
+        `navigations: ${JSON.stringify(navigations, null, 2)}`
+    ).toBe('/thread/seed-thread-001')
+
+    const unexpectedNavs = navigations.filter(
+      (u) => !u.includes('/thread/seed-thread-001') && !u.includes('about:blank')
     )
     expect(unexpectedNavs).toEqual([])
     expect(errors).toEqual([])

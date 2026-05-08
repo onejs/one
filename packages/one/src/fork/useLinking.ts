@@ -32,7 +32,10 @@ import {
   setReturningFromIntercept,
   restoreInterceptFromHistory,
 } from '../router/interceptRoutes'
-import { rootState as routerRootState } from '../router/router'
+import {
+  consumePendingNavigationAction,
+  rootState as routerRootState,
+} from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { clearAllSlotStates } from '../views/Navigator'
 import { createMemoryHistory } from './createMemoryHistory'
@@ -70,6 +73,33 @@ function getFocusedRouteDepth(state: NavigationState): number {
     return length + getFocusedRouteDepth(child)
   }
   return length
+}
+
+function getDynamicParamNames(routeName: string): string[] {
+  return Array.from(routeName.matchAll(/\[(?:\.\.\.)?([^\]]+)\]/g), (match) => match[1])
+}
+
+function hasMissingDynamicParams(
+  route: ReturnType<typeof findFocusedRoute> | undefined
+): boolean {
+  if (!route) return false
+  const dynamicParamNames = getDynamicParamNames(route.name)
+  if (dynamicParamNames.length === 0) return false
+  return dynamicParamNames.some((name) => route.params?.[name] == null)
+}
+
+function currentUrlHasDynamicParams(
+  route: NonNullable<ReturnType<typeof findFocusedRoute>>,
+  getStateFromPath: typeof getStateFromPathDefault,
+  config: Options['config']
+): boolean {
+  const currentPath = window.location.pathname + window.location.search
+  const currentState = getStateFromPath(currentPath, config)
+  const currentRoute = currentState ? findFocusedRoute(currentState) : undefined
+  return (
+    currentRoute?.name === route.name &&
+    !hasMissingDynamicParams(currentRoute)
+  )
 }
 
 /**
@@ -618,6 +648,28 @@ export function useLinking(
         return
       }
 
+      // @modified - during spa-shell/provider remounts, react navigation can
+      // briefly publish a dynamic route by name without its URL params. don't
+      // serialize that incomplete state to history as /route/undefined when
+      // the current URL can still be parsed into the same route with params.
+      if (
+        route &&
+        hasMissingDynamicParams(route) &&
+        currentUrlHasDynamicParams(
+          route,
+          getStateFromPathRef.current,
+          configRef.current
+        )
+      ) {
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(
+            `[one] 📜 onStateChange - skipping: focused dynamic route is missing params`,
+            route.name
+          )
+        }
+        return
+      }
+
       let path = getPathForRoute(route, state)
 
       // when navigators mount late (e.g. during spa-shell hydration), the
@@ -651,8 +703,19 @@ export function useLinking(
       }
       const unmaskOnReload = maskOptions?.unmaskOnReload
 
+      const pendingNavigationAction = consumePendingNavigationAction()
       previousStateRef.current = refState
       pendingPopStatePathRef.current = undefined
+
+      if (pendingNavigationAction === 'PUSH' && path !== pendingPath) {
+        history.push({ path, state, displayPath, unmaskOnReload })
+        return
+      }
+
+      if (pendingNavigationAction === 'REPLACE' && path !== pendingPath) {
+        history.replace({ path, state, displayPath, unmaskOnReload })
+        return
+      }
 
       // To detect the kind of state change, we need to:
       // - Find the common focused navigation state in previous and current state
