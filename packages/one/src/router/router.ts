@@ -141,6 +141,7 @@ let nextState: OneRouter.ResultState | undefined
 export let routeInfo: UrlObject | undefined
 let splashScreenAnimationFrame: number | undefined
 let pendingNavigationPathname: string | undefined
+let pendingNavigationAction: 'NAVIGATE' | 'PUSH' | 'REPLACE' | undefined
 
 // we always set it
 export let navigationRef: OneRouter.NavigationRef = null as any
@@ -294,6 +295,7 @@ function cleanUpState() {
   nextState = undefined
   routeInfo = undefined
   pendingNavigationPathname = undefined
+  pendingNavigationAction = undefined
   resetLinking()
   rootStateSubscribers.clear()
   storeSubscribers.clear()
@@ -504,6 +506,12 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
       window.dispatchEvent(new CustomEvent('one-route-change', { detail: nextRouteInfo }))
     }
   }
+}
+
+export function consumePendingNavigationAction() {
+  const action = pendingNavigationAction
+  pendingNavigationAction = undefined
+  return action
 }
 
 // Subscription functions
@@ -1240,6 +1248,8 @@ export async function linkTo(
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
   pendingNavigationPathname = normalizePathname(extractPathnameFromHref(href))
+  pendingNavigationAction =
+    event === 'PUSH' || event === 'REPLACE' || event === 'NAVIGATE' ? event : undefined
 
   // compute target at dispatch time to avoid stale state during first render/effects
   const freshRootState = navigationRef.getRootState() as NavigationState
