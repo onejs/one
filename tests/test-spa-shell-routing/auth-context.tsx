@@ -43,9 +43,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [Provider, setProvider] = useState<ComponentType<{
     children: ReactNode
   }> | null>(null)
+  // runtime state for the auth-gate transition test (see (gate) routes).
+  // tests can call window.__setAuth('logged-in') to flip the state at runtime,
+  // mimicking takeout's "Login as Demo" button → Redirect → /home/feed flow.
+  const [runtimeAuth, setRuntimeAuth] = useState<AuthState>('loading')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+    const w = window as typeof window & {
+      __setAuth?: (next: AuthState) => void
+    }
+    w.__setAuth = (next: AuthState) => setRuntimeAuth(next)
+
     const url = new URL(window.location.href)
     const target = url.searchParams.get('auth')
     // only swap providers when ?auth= is set -- otherwise this fixture
@@ -62,6 +71,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         <ResolvedAuthProvider state={state}>{props.children}</ResolvedAuthProvider>
       ))
     })
+
+    return () => {
+      delete w.__setAuth
+    }
   }, [])
 
   if (Provider) {
@@ -70,5 +83,5 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // loading shell -- different element type from ResolvedAuthProvider above,
   // so React unmounts/remounts the children when Provider is set.
-  return <AuthContext.Provider value="loading">{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={runtimeAuth}>{children}</AuthContext.Provider>
 }

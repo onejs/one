@@ -136,6 +136,11 @@ export let rootState: OneRouter.ResultState | undefined
 // navigators to determine the correct initial route even after React Navigation's
 // linking has pushed a different URL during unmount/remount cycles
 export let initialPathname: string | undefined
+// the most recent pathname targeted by a linkTo call (router.replace/push/navigate).
+// late-mounting navigators prefer this over initialPathname when the user has
+// actually navigated since page load — otherwise an auth-gate Redirect that
+// remounts the navigator subtree would re-resolve to the original page URL.
+export let lastIntendedPathname: string | undefined
 
 let nextState: OneRouter.ResultState | undefined
 export let routeInfo: UrlObject | undefined
@@ -291,6 +296,7 @@ export function initialize(
 function cleanUpState() {
   initialState = undefined
   initialPathname = undefined
+  lastIntendedPathname = undefined
   rootState = undefined
   nextState = undefined
   routeInfo = undefined
@@ -1250,6 +1256,11 @@ export async function linkTo(
   pendingNavigationPathname = normalizePathname(extractPathnameFromHref(href))
   pendingNavigationAction =
     event === 'PUSH' || event === 'REPLACE' || event === 'NAVIGATE' ? event : undefined
+  // record the user-intended pathname so late-mounting navigators (e.g. an
+  // auth-gate Redirect that swaps Slot ↔ Redirect and remounts the subtree)
+  // resolve their initial route against the navigation target, not the
+  // original page-load URL.
+  lastIntendedPathname = pendingNavigationPathname
 
   // compute target at dispatch time to avoid stale state during first render/effects
   const freshRootState = navigationRef.getRootState() as NavigationState

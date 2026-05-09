@@ -16,6 +16,11 @@ declare module 'one' {
         | `/(chat)`
         | `/(chat)/[serverId]/`
         | `/(chat)/[serverId]/[channelId]/`
+        | `/(gate)`
+        | `/(gate)/gate-auth`
+        | `/(gate)/gate-auth/login`
+        | `/(gate)/gate-home`
+        | `/(gate)/gate-home/feed`
         | `/(public)`
         | `/(public)/`
         | `/(public)/about`
@@ -28,6 +33,10 @@ declare module 'one' {
         | `/admin/`
         | `/beta/signup`
         | `/dashboard`
+        | `/gate-auth`
+        | `/gate-auth/login`
+        | `/gate-home`
+        | `/gate-home/feed`
         | `/login`
       DynamicRoutes: 
         | `/${OneRouter.SingleRoutePart<T>}`
