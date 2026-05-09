@@ -1,6 +1,6 @@
 {
   "name": "test-native-tree-shaking",
-  "version": "1.16.11",
+  "version": "1.16.12",
   "private": true,
   "type": "module",
   "scripts": {
