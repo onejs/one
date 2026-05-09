@@ -15,7 +15,11 @@ import {
 } from '../notFoundState'
 import { useContextKey } from '../router/Route'
 import { getResolvedLinking } from '../router/linkingConfig'
-import { routeNode as globalRouteNode, initialPathname } from '../router/router'
+import {
+  routeNode as globalRouteNode,
+  initialPathname,
+  lastIntendedPathname,
+} from '../router/router'
 import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
 import { Screen } from './Screen'
@@ -216,10 +220,18 @@ function QualifiedNavigator({
   // LATE MOUNT FIX: when a parent layout conditionally renders (auth gate,
   // suspense resolve, provider init, etc.), this navigator may mount after
   // initialState was consumed by NavigationContainer. compute the correct
-  // initialRouteName from the original URL so the navigator starts on the
-  // right route instead of defaulting to the first child. uses
-  // initialPathname (captured at setup) instead of window.location.pathname
-  // because React Navigation's linking can push a wrong URL during the delay.
+  // initialRouteName from the user-intended URL so the navigator starts on
+  // the right route instead of defaulting to the first child.
+  //
+  // resolution order:
+  //   1. lastIntendedPathname — set by linkTo on every router.replace/push/
+  //      navigate. covers "auth-gate Redirect remounts the subtree": after
+  //      the redirect runs, this points at the navigation target so the
+  //      remounted navigator picks the new route, not the page-load URL.
+  //   2. initialPathname — captured at setup. covers initial-hydration
+  //      late mounts where React Navigation's linking can briefly push a
+  //      wrong URL during the delay; the original URL is the truth.
+  //   3. window.location.pathname — last-resort fallback.
   //
   // resolution uses the linking config's getStateFromPath — the same
   // function NavigationContainer uses to build the initial state — and
@@ -258,6 +270,7 @@ function QualifiedNavigator({
     }
 
     const browserPath =
+      lastIntendedPathname ??
       initialPathname ??
       (typeof window !== 'undefined' ? window.location.pathname : undefined)
     if (!browserPath) return undefined
