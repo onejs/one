@@ -35,6 +35,11 @@ export const Badge = styled(Paragraph, {
         bg: '$gray3',
         color: '$yellow11',
       },
+
+      orange: {
+        bg: '$orange7',
+        color: '$orange11',
+      },
     },
   } as const,
 })
