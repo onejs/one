@@ -45,6 +45,7 @@ export async function loadUserOneOptions(command: 'serve' | 'build', silent = fa
     return {
       config,
       oneOptions,
+      metroOptions: globalThis['__vxrnMetroOptions__'],
     }
   } finally {
     if (silent) {
