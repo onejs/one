@@ -1,12 +1,8 @@
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import type { metroPlugin } from '@vxrn/vite-plugin-metro'
-import { buildOneBabelPlugins } from './buildOneBabelPlugins'
+import { buildOneBabelPlugins } from '../babel-preset'
 import { buildOneMetroResolverOverrides } from './buildOneMetroResolverOverrides'
-import { normalizeReSource } from './normalizeReSource'
-
-// re-export for backward compat — older tests import this from here
-export { normalizeReSource }
 
 /**
  * Detect a user-provided babel config in the project root. When present, we
