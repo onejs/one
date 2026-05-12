@@ -15,6 +15,45 @@ export type BuildOneBabelPluginsOptions = {
   ignoredRouteFiles?: Array<`**/*${string}`>
   linking?: unknown
   setupFile?: string | { native?: string; ios?: string; android?: string }
+  /**
+   * Whether to include `@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin`.
+   * Defaults to true. The Vite-driven Metro server injects this separately
+   * via `patchMetroServerWithViteConfigAndMetroPluginOptions` using the
+   * user's Vite `define` config — so the Vite path passes `false` here.
+   * Metro CLI invocations (expo export, eas update) don't go through that
+   * server hook, so they need the plugin baked into babel.config.
+   *
+   * Re-applying is idempotent (already-substituted `import.meta.env.X`
+   * literals have no remaining `import.meta` to match).
+   */
+  includeImportMetaEnv?: boolean
+}
+
+/**
+ * Build the `import.meta.env` substitution map for standalone Metro use.
+ * Mirrors what Vite's default `define` would expose:
+ *   - `MODE`, `BASE_URL`, `PROD`, `DEV`, `SSR`
+ *   - any `EXPO_PUBLIC_*`, `ONE_*`, `VITE_*` env var from `process.env`
+ */
+function buildStandaloneImportMetaEnv(): Record<string, unknown> {
+  const isProduction = process.env.NODE_ENV !== 'development'
+  const env: Record<string, unknown> = {
+    MODE: isProduction ? 'production' : 'development',
+    BASE_URL: '/',
+    PROD: isProduction,
+    DEV: !isProduction,
+    SSR: false,
+  }
+  for (const [key, value] of Object.entries(process.env)) {
+    if (
+      key.startsWith('EXPO_PUBLIC_') ||
+      key.startsWith('ONE_') ||
+      key.startsWith('VITE_')
+    ) {
+      env[key] = value
+    }
+  }
+  return env
 }
 
 export function buildRouterRequireContextRegexString(
@@ -74,6 +113,7 @@ export function buildOneBabelPlugins({
   ignoredRouteFiles,
   linking,
   setupFile,
+  includeImportMetaEnv = true,
 }: BuildOneBabelPluginsOptions): PluginItem[] {
   const tsconfigPathsConfigLoadResult = tsconfigPaths.loadConfig(projectRoot)
 
@@ -90,6 +130,18 @@ export function buildOneBabelPlugins({
     buildRouterRequireContextRegexString(ignoredRouteFiles)
 
   return [
+    // substitute `import.meta.env.*` and `process.env.*`. Standalone Metro
+    // CLI invocations (expo export, eas update) need this baked in; the
+    // Vite-driven path skips it here and adds its own version with the
+    // user's `define` env via patchMetroServerWithViteConfigAndMetroPluginOptions.
+    ...(includeImportMetaEnv
+      ? [
+          [
+            '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
+            { env: buildStandaloneImportMetaEnv() },
+          ] as PluginItem,
+        ]
+      : []),
     // enforce environment guard imports (server-only, client-only, etc.)
     'one/babel-plugin-environment-guard',
     // Remove server-only code (loader, generateStaticParams) from route files
