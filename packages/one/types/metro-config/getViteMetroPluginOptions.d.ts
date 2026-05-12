@@ -1,6 +1,4 @@
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
-import { normalizeReSource } from './normalizeReSource';
-export { normalizeReSource };
 export declare function getViteMetroPluginOptions({ projectRoot, relativeRouterRoot, ignoredRouteFiles, linking, userDefaultConfigOverrides, setupFile, }: {
     projectRoot: string;
     relativeRouterRoot: string;
