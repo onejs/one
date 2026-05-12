@@ -1,19 +1,21 @@
-import module from 'node:module'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import type { metroPlugin } from '@vxrn/vite-plugin-metro'
-import mm from 'micromatch'
-import tsconfigPaths from 'tsconfig-paths'
-import {
-  API_ROUTE_GLOB_PATTERN,
-  ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
-} from '../router/glob-patterns'
+import { buildOneBabelPlugins } from './buildOneBabelPlugins'
+import { buildOneMetroResolverOverrides } from './buildOneMetroResolverOverrides'
+import { normalizeReSource } from './normalizeReSource'
+
+// re-export for backward compat — older tests import this from here
+export { normalizeReSource }
 
 /**
- * On Windows, micromatch.makeRe() produces regex patterns with `[\\/]` or `[^\\/]`
- * instead of `\/` and `[^/]`. Normalize them so the startsWith check works.
+ * Detect a user-provided babel config in the project root. When present, we
+ * assume the user is delegating to `one/babel-preset` from there and skip
+ * injecting plugins on the Vite-driven Metro path to avoid double-application.
  */
-export function normalizeReSource(source: string): string {
-  return source.replace(/\[\\\\\/\]/g, '\\/').replace(/\[\^\\\\\/\]/g, '[^/]')
+function projectHasBabelConfig(projectRoot: string): boolean {
+  return ['babel.config.js', 'babel.config.cjs', 'babel.config.mjs', '.babelrc', '.babelrc.js']
+    .some((name) => existsSync(path.join(projectRoot, name)))
 }
 
 export function getViteMetroPluginOptions({
@@ -33,156 +35,26 @@ export function getViteMetroPluginOptions({
   >['defaultConfigOverrides']
   setupFile?: string | { native?: string; ios?: string; android?: string }
 }): Parameters<typeof metroPlugin>[0] {
-  const tsconfigPathsConfigLoadResult = tsconfigPaths.loadConfig(projectRoot)
+  const applyOneResolverOverrides = buildOneMetroResolverOverrides({ projectRoot })
 
-  if (tsconfigPathsConfigLoadResult.resultType === 'failed') {
-    throw new Error('tsconfigPathsConfigLoadResult.resultType is not success')
-  }
+  // when user supplies their own babel.config, defer to it (via Metro's own
+  // babelrc lookup) and don't inject our plugin list — otherwise we'd apply
+  // every One plugin twice. The user is expected to call `one/babel-preset`.
+  const userOwnsBabelConfig = projectHasBabelConfig(projectRoot)
 
-  const require = module.createRequire(projectRoot)
-  const emptyPath = require.resolve('@vxrn/vite-plugin-metro/empty', {
-    paths: [projectRoot],
-  })
-
-  const metroEntryPath = require.resolve('one/metro-entry', {
-    paths: [projectRoot],
-  })
-
-  const routerRequireContextRegexString = (() => {
-    const excludeRes = [
-      ...(ignoredRouteFiles || []).map((pattern) => mm.makeRe(pattern)),
-      ...ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS.map((pattern) => mm.makeRe(pattern)),
-      mm.makeRe(API_ROUTE_GLOB_PATTERN),
-    ]
-
-    const supportedRegexMustStartWith = String.raw`^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?`
-    // biome-ignore lint/complexity/noUselessStringRaw: keep original code
-    const supportedRegexMustEndWith = String.raw`)$`
-
-    const negativeLookaheadGroups = excludeRes.map((re, i) => {
-      /**
-       * Example:
-       * ```
-       * ^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\+api\.(ts|tsx))$
-       * ```
-       */
-      const reSource = normalizeReSource(re.source)
-
-      if (
-        !(
-          reSource.startsWith(supportedRegexMustStartWith) &&
-          reSource.endsWith(supportedRegexMustEndWith)
-        )
-      ) {
-        const ignoredRouteFile = ignoredRouteFiles?.[i]
-
-        if (ignoredRouteFile) {
-          throw new Error(
-            `[one/metro] ignoredRouteFile pattern "${ignoredRouteFile}" is not supported. We cannot process the corresponding regex "${reSource}" for now.`
-          )
-        }
-
-        throw new Error(`Unsupported regex "${reSource}" in "ignoredRouteFiles".`)
-      }
-
-      const rePart = reSource.slice(
-        supportedRegexMustStartWith.length,
-        reSource.length - supportedRegexMustEndWith.length
-      )
-
-      // biome-ignore lint/complexity/noUselessStringRaw: keep original code
-      return String.raw`(?:.*${rePart})`
-    })
-
-    return String.raw`^(?:\.\/)(?!${negativeLookaheadGroups.join('|')}$).*\.tsx?$`
-  })()
+  const plugins = userOwnsBabelConfig
+    ? []
+    : buildOneBabelPlugins({
+        projectRoot,
+        relativeRouterRoot,
+        ignoredRouteFiles,
+        linking,
+        setupFile,
+      })
 
   return {
     defaultConfigOverrides: (defaultConfig) => {
-      let config: typeof defaultConfig = {
-        ...defaultConfig,
-        resolver: {
-          ...defaultConfig?.resolver,
-          extraNodeModules: {
-            ...defaultConfig?.resolver?.extraNodeModules,
-            // "vite-tsconfig-paths" for Metro
-            // Commenting out since we are using babel-plugin-module-resolver alias instead
-            // ...Object.fromEntries(
-            //   Object.entries(tsconfigPathsConfigLoadResult.paths)
-            //     .map(([k, v]) => {
-            //       if (k.endsWith('/*') && v[0]?.endsWith('/*')) {
-            //         const key = k.replace(/\/\*$/, '')
-            //         let value = v[0].replace(/\/\*$/, '')
-
-            //         value = path.join(tsconfigPathsConfigLoadResult.absoluteBaseUrl, value)
-
-            //         return [key, value]
-            //       }
-            //     })
-            //     .filter((i): i is NonNullable<typeof i> => !!i)
-            // ),
-          },
-          nodeModulesPaths: defaultConfig?.resolver?.nodeModulesPaths,
-          resolveRequest: (context, moduleName, platform) => {
-            if (moduleName.endsWith('.css')) {
-              return {
-                type: 'sourceFile',
-                filePath: emptyPath,
-              }
-            }
-
-            // On Vite side this is done by excludeAPIAndMiddlewareRoutesPlugin
-            if (/_middleware.tsx?$/.test(moduleName)) {
-              return {
-                type: 'sourceFile',
-                filePath: emptyPath,
-              }
-            }
-
-            // server-only files should never be in the native bundle.
-            // metro follows dynamic import chains (e.g. zero models →
-            // server effects → server packages) and tries to resolve
-            // everything, even though the code only runs on the server.
-            if (/\.server(\.[jt]sx?)?$/.test(moduleName)) {
-              return {
-                type: 'sourceFile',
-                filePath: emptyPath,
-              }
-            }
-
-            // react-native-svg's package.json has "react-native": "src/index.ts"
-            // which points to TS source that only type-exports Svg/Circle/Path etc.
-            // force resolution to the compiled JS which has proper named value exports.
-            if (moduleName === 'react-native-svg') {
-              const defaultResolveRequest =
-                defaultConfig?.resolver?.resolveRequest || context.resolveRequest
-              const res = defaultResolveRequest(context, moduleName, platform)
-              const svgSrcSuffix = `${path.sep}src${path.sep}index.ts`
-              if (res && 'filePath' in res && res.filePath.includes(svgSrcSuffix)) {
-                return {
-                  ...res,
-                  filePath: res.filePath.replace(
-                    svgSrcSuffix,
-                    `${path.sep}lib${path.sep}commonjs${path.sep}index.js`
-                  ),
-                }
-              }
-              return res
-            }
-
-            const defaultResolveRequest =
-              defaultConfig?.resolver?.resolveRequest || context.resolveRequest
-            const res = defaultResolveRequest(context, moduleName, platform)
-
-            // catch .server files that were resolved by path
-            if (res && 'filePath' in res && /\.server\.[jt]sx?$/.test(res.filePath)) {
-              return { type: 'sourceFile', filePath: emptyPath }
-            }
-
-            return res
-          },
-        },
-      }
+      let config = applyOneResolverOverrides(defaultConfig)
 
       if (typeof userDefaultConfigOverrides === 'function') {
         config = userDefaultConfigOverrides(config)
@@ -191,73 +63,7 @@ export function getViteMetroPluginOptions({
       return config
     },
     babelConfig: {
-      plugins: [
-        // enforce environment guard imports (server-only, client-only, etc.)
-        'one/babel-plugin-environment-guard',
-        // Remove server-only code (loader, generateStaticParams) from route files
-        // This must run early to prevent server-only imports from being bundled
-        [
-          'one/babel-plugin-remove-server-code',
-          {
-            routerRoot: relativeRouterRoot,
-          },
-        ],
-        [
-          'babel-plugin-module-resolver',
-          {
-            // "vite-tsconfig-paths" for Metro
-            alias: Object.fromEntries(
-              Object.entries(tsconfigPathsConfigLoadResult.paths).map(([k, v]) => {
-                const key = (() => {
-                  if (k.endsWith('/*')) {
-                    return k.replace(/\/\*$/, '')
-                  }
-
-                  // If the key does not end with "/*", only alias exact matches.
-                  // Ref: https://www.npmjs.com/package/babel-plugin-module-resolver/v/3.0.0#regular-expression-alias
-                  return `${k}$`
-                })()
-
-                let value = v[0].replace(/\/\*$/, '')
-
-                if (!value.startsWith('./')) {
-                  value = `./${value}`
-                }
-
-                return [key, value]
-              })
-            ),
-          },
-        ],
-        [
-          'one/babel-plugin-one-router-metro',
-          {
-            ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY: path.relative(
-              path.dirname(metroEntryPath),
-              path.join(projectRoot, relativeRouterRoot)
-            ),
-            ONE_ROUTER_ROOT_FOLDER_NAME: relativeRouterRoot,
-            ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING: routerRequireContextRegexString,
-            ONE_ROUTER_LINKING_CONFIG: linking,
-            ONE_SETUP_FILE_NATIVE: (() => {
-              if (!setupFile) return undefined
-              // Extract native setup file path
-              const nativeSetupFile =
-                typeof setupFile === 'string'
-                  ? setupFile
-                  : setupFile.native || setupFile.ios || setupFile.android
-              if (!nativeSetupFile) return undefined
-              // Return path relative to metro entry
-              return path.relative(
-                path.dirname(metroEntryPath),
-                path.join(projectRoot, nativeSetupFile)
-              )
-            })(),
-          },
-        ],
-        // inline ONE_SERVER_URL so native prod bundles know where to fetch loaders
-        'one/babel-plugin-inline-one-server-url',
-      ],
+      plugins,
     },
   }
 }
