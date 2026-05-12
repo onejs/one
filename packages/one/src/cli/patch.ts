@@ -3,15 +3,16 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import { maybeGenerateBundlerConfigOnInstall } from './generateBundlerConfig'
 
 export async function run(args: { force?: boolean }) {
-  // ensure babel.config.cjs + metro.config.cjs exist when a project uses
-  // expo-updates AND we're on an EAS/CI worker. CI-only so the files
-  // never appear in a developer's local working tree.
-  maybeGenerateBundlerConfigOnInstall(process.cwd())
-
   process.env.IS_VXRN_CLI = 'true'
   const { patch } = await import('vxrn')
 
   const options = await loadUserOneOptions('build')
+
+  // ensure babel.config.cjs + metro.config.cjs exist when a project uses
+  // expo-updates and we're on an eas/ci worker. the generated files capture
+  // the loaded one() router/setup options so standalone metro matches one.
+  maybeGenerateBundlerConfigOnInstall(process.cwd(), options.oneOptions)
+
   const patches = options.oneOptions.patches as SimpleDepPatchObject | undefined
 
   if (process.env.DEBUG) {

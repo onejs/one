@@ -29,6 +29,7 @@ describe('generateBundlerConfig', () => {
     const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
     expect(babel).toContain(ONE_GENERATED_MARKER)
     expect(babel).toContain("require('one/babel-preset')")
+    expect(babel).toContain('oneBundlerOptions')
 
     const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
     expect(metro).toContain(ONE_GENERATED_MARKER)
@@ -151,7 +152,7 @@ describe('generateBundlerConfig', () => {
 
       const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
       expect(babel).not.toContain(ONE_GENERATED_MARKER)
-      expect(babel).toContain('You own this file')
+      expect(babel).toContain('you own this file')
       expect(babel).toContain("require('one/babel-preset')")
 
       const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
@@ -186,6 +187,51 @@ describe('generateBundlerConfig', () => {
     expect(babelResult.action).toBe('skipped-other-format')
     // didn't write the .cjs alongside
     expect(fs.existsSync(path.join(tmpDir, 'babel.config.cjs'))).toBe(false)
+  })
+
+  it('embeds loaded One router/setup options into both config files', () => {
+    generateBundlerConfig({
+      cwd: tmpDir,
+      quiet: true,
+      oneOptions: {
+        router: {
+          root: 'src/routes',
+          ignoredRouteFiles: ['**/*.native-test.*'],
+          linking: { scheme: 'myapp', prefixes: ['https://example.com/app'] },
+        },
+        setupFile: {
+          native: 'src/setup.native.ts',
+        },
+      },
+    })
+
+    const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
+    const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
+
+    for (const file of [babel, metro]) {
+      expect(file).toContain('"routerRoot": "src/routes"')
+      expect(file).toContain('"ignoredRouteFiles"')
+      expect(file).toContain('"**/*.native-test.*"')
+      expect(file).toContain('"scheme": "myapp"')
+      expect(file).toContain('"native": "src/setup.native.ts"')
+    }
+  })
+
+  it('refuses to silently drop non-serializable options', () => {
+    expect(() =>
+      generateBundlerConfig({
+        cwd: tmpDir,
+        quiet: true,
+        oneOptions: {
+          router: {
+            linking: {
+              // the plugin API only accepts serializable router.linking fields
+              filter: () => true,
+            } as any,
+          },
+        },
+      })
+    ).toThrow(/JSON-serializable/)
   })
 })
 
