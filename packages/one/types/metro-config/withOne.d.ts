@@ -13,6 +13,11 @@ export type WithOneOptions = {
         ios?: string;
         android?: string;
     };
+    /**
+     * Load the app's vite.config and use the real One native Metro options.
+     * Defaults to true so generated Expo/EAS configs match One's own native path.
+     */
+    loadViteConfig?: boolean;
 };
 /**
  * Produce a Metro config that invokes the EXACT same `getMetroConfigFromViteConfig`
