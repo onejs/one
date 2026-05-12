@@ -15,4 +15,9 @@ export type ViteCustomTransformOptions = {
    * Vite Metro plugin as the `babelConfig` option.
    */
   babelConfig?: TransformOptions
+  /**
+   * internal marker used by one's babel preset to avoid double-applying its
+   * plugin chain when one already supplied the vite metro babel config.
+   */
+  oneViteMetroBabelConfig?: boolean
 }
