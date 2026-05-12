@@ -89,6 +89,7 @@ export const docsRoutes = [
       { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
+      { title: 'OTA Updates', route: '/docs/guides-ota-updates' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
       { title: 'Tamagui', route: '/docs/guides-tamagui' },
