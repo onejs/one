@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import {
+  injectExpoUpdatesIosResourcesPatchIntoPodfile,
   injectHermesMinificationPatchIntoPodfile,
   injectSwift6WorkaroundIntoPodfile,
+  EXPO_UPDATES_METRO_SKIP_MARKER,
   HERMES_MINIFY_PATCH_MARKER,
 } from './expo-plugin.cjs'
 
@@ -43,5 +45,33 @@ describe('injectHermesMinificationPatchIntoPodfile', () => {
 
     expect(all).toContain('SWIFT_STRICT_CONCURRENCY')
     expect(all).toContain(HERMES_MINIFY_PATCH_MARKER)
+  })
+})
+
+describe('injectExpoUpdatesIosResourcesPatchIntoPodfile', () => {
+  it('injects the marker and patches the EXUpdates resources phase', () => {
+    const out = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile)
+
+    expect(out).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
+    expect(out).toContain("target.name == 'EXUpdates'")
+    expect(out).toContain('Generate updates resources for expo-updates')
+    expect(out).toContain('SKIP_BUNDLING=1')
+    expect(out).toContain('app.manifest')
+  })
+
+  it('is idempotent', () => {
+    const once = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile)
+    const twice = injectExpoUpdatesIosResourcesPatchIntoPodfile(once)
+    expect(twice).toBe(once)
+  })
+
+  it('composes with the Swift 6 workaround and Hermes minification', () => {
+    const withSwift6 = injectSwift6WorkaroundIntoPodfile(samplePodfile)
+    const withHermes = injectHermesMinificationPatchIntoPodfile(withSwift6)
+    const all = injectExpoUpdatesIosResourcesPatchIntoPodfile(withHermes)
+
+    expect(all).toContain('SWIFT_STRICT_CONCURRENCY')
+    expect(all).toContain(HERMES_MINIFY_PATCH_MARKER)
+    expect(all).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
   })
 })
