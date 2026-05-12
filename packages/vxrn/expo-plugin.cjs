@@ -8,6 +8,16 @@ const {
 const fs = require('fs')
 const path = require('path')
 
+function getPodfilePropsOptOut(propsPath, key) {
+  if (!fs.existsSync(propsPath)) return false
+  try {
+    const props = JSON.parse(fs.readFileSync(propsPath, 'utf8'))
+    return props[key] === 'true'
+  } catch {
+    return false
+  }
+}
+
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
     // auto-inject swift 6 workaround for expo-modules-core into Podfile (version-gated, opt-out-able)
@@ -104,7 +114,97 @@ const plugin = (config, options = {}) => {
         return config
       },
     ],
+    // iOS Hermes Release: hermesc can crash on large unminified bundles.
+    // Force Metro to pre-minify so hermesc only does bytecode conversion.
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (config) => {
+          const iosRoot = config.modRequest.platformProjectRoot
+          const podfilePath = path.join(iosRoot, 'Podfile')
+          if (!fs.existsSync(podfilePath)) return config
+
+          const propsPath = path.join(iosRoot, 'Podfile.properties.json')
+          if (getPodfilePropsOptOut(propsPath, 'one.disableHermesMinification')) {
+            return config
+          }
+
+          const podfile = fs.readFileSync(podfilePath, 'utf8')
+          const next = injectHermesMinificationPatchIntoPodfile(podfile)
+          if (next !== podfile) {
+            fs.writeFileSync(podfilePath, next, 'utf8')
+            console.info(
+              '[vxrn] patched Podfile to minify iOS Hermes Release bundle input\n' +
+                '       to disable: set "one.disableHermesMinification": "true" in ios/Podfile.properties.json'
+            )
+          }
+          return config
+        },
+      ],
+    ],
   ])
+}
+
+
+/**
+ * RN disables Metro minification for iOS Hermes Release, expecting
+ * hermesc -O to handle bytecode optimization. For large One/VxRN bundles
+ * hermesc can crash on EAS standard workers. Forcing --minify true makes
+ * Metro emit a minified bundle that hermesc consumes — final bytecode is
+ * identical, just smaller intermediate input.
+ *
+ * Skipped on non-Release configurations to keep debug build times sane.
+ */
+const HERMES_MINIFY_PATCH_MARKER = '# [vxrn/one] minify iOS Hermes Release bundle input'
+
+function injectHermesMinificationPatchIntoPodfile(podfile) {
+  if (podfile.includes(HERMES_MINIFY_PATCH_MARKER)) {
+    return podfile
+  }
+
+  const patch = `
+    ${HERMES_MINIFY_PATCH_MARKER}
+    # hermesc can OOM/crash on large unminified bundles on EAS standard
+    # workers. Pre-minify so hermesc only does bytecode conversion. Only
+    # applies in Release.
+    installer.aggregate_targets.each do |aggregate_target|
+      project = aggregate_target.user_project
+      next unless project
+
+      changed = false
+      project.targets.each do |target|
+        target.shell_script_build_phases.each do |phase|
+          next unless phase.name.to_s.include?('Bundle React Native code and images')
+          next if phase.shell_script.to_s.include?('${HERMES_MINIFY_PATCH_MARKER}')
+
+          original_script = phase.shell_script
+          phase.shell_script = <<~SCRIPT
+            ${HERMES_MINIFY_PATCH_MARKER}
+            if [ "$CONFIGURATION" = "Release" ]; then
+              export EXTRA_PACKAGER_ARGS="\${EXTRA_PACKAGER_ARGS:-} --minify true"
+            fi
+
+            #{original_script}
+          SCRIPT
+          changed = true
+        end
+      end
+
+      project.save if changed
+    end
+`
+
+  const match = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (!match) {
+    console.warn(
+      '[vxrn] could not find post_install block in Podfile to inject Hermes minification patch'
+    )
+    return podfile
+  }
+
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
 }
 
 /**
@@ -517,3 +617,6 @@ function injectSwift6WorkaroundIntoPodfile(podfile) {
 module.exports = plugin
 module.exports.addReactNativeScreensFix = addReactNativeScreensFix
 module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
+module.exports.injectHermesMinificationPatchIntoPodfile =
+  injectHermesMinificationPatchIntoPodfile
+module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
