@@ -27,6 +27,9 @@ export declare function generateBundlerConfig(args?: GenerateBundlerConfigArgs):
  * True when running on a CI/EAS worker. We only auto-generate bundler-config
  * files in CI so they never appear in a developer's local working tree.
  *
+ * Accepts any truthy value for `CI` / `EAS_BUILD` since providers vary:
+ * GitHub Actions sets `CI=true`, others use `CI=1`, EAS sets `EAS_BUILD=true`.
+ *
  * Set `CI=1` (or `EAS_BUILD=true`) ahead of `eas update` if you need to
  * publish from a local machine.
  */

@@ -17,6 +17,8 @@ describe('buildOneBabelPlugins', () => {
       ignoredRouteFiles: [],
       linking: undefined,
       setupFile: undefined,
+      // skip the import-meta-env plugin so the snapshot covers the One-only chain
+      includeImportMetaEnv: false,
     })
 
     // expected shape — five plugins in this exact order so Vite-driven
@@ -51,6 +53,7 @@ describe('buildOneBabelPlugins', () => {
       projectRoot,
       relativeRouterRoot: 'app',
       setupFile: 'src/setup-native.ts',
+      includeImportMetaEnv: false,
     })
 
     const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
@@ -63,9 +66,11 @@ describe('buildOneBabelPlugins', () => {
       projectRoot,
       relativeRouterRoot: 'app',
       linking,
+      includeImportMetaEnv: false,
     })
 
     const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
     expect(oneRouterMetro[1].ONE_ROUTER_LINKING_CONFIG).toBe(linking)
   })
+
 })

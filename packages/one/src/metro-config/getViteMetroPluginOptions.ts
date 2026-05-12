@@ -50,6 +50,9 @@ export function getViteMetroPluginOptions({
         ignoredRouteFiles,
         linking,
         setupFile,
+        // Vite path injects import-meta-env-plugin separately via the
+        // Metro server transformFile hook using the user's Vite `define`.
+        includeImportMetaEnv: false,
       })
 
   return {

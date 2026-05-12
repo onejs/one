@@ -1,69 +1,38 @@
 import path from 'node:path'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { withOne } from './withOne'
 
 const projectRoot = path.resolve(__dirname, '../../')
 
 describe('withOne', () => {
-  it('attaches a resolveRequest that empties .server.* modules', () => {
-    const defaultResolve = vi.fn(() => ({ type: 'sourceFile', filePath: '/orig.js' }))
+  it('returns a config produced by the production native bundle pipeline', async () => {
+    const config = (await withOne(projectRoot)) as any
 
-    const config = withOne(
-      {
-        resolver: {
-          resolveRequest: defaultResolve as any,
-        },
-      },
-      { projectRoot }
-    )
-
-    const resolveRequest = config.resolver?.resolveRequest as Function
-    expect(typeof resolveRequest).toBe('function')
-
-    const ctx = { resolveRequest: defaultResolve }
-    const result = resolveRequest(ctx, './some-file.server.ts', 'ios')
-
-    expect(result.type).toBe('sourceFile')
-    expect(result.filePath).toMatch(/empty\.js$/)
-    expect(defaultResolve).not.toHaveBeenCalled()
-  })
-
-  it('empties .css imports', () => {
-    const config = withOne<{ resolver: Record<string, any> }>(
-      { resolver: {} },
-      { projectRoot }
-    )
-    const resolveRequest = config.resolver?.resolveRequest as Function
-
-    const result = resolveRequest({} as any, './styles.css', 'ios')
-    expect(result.filePath).toMatch(/empty\.js$/)
-  })
-
-  it('empties _middleware files', () => {
-    const config = withOne<{ resolver: Record<string, any> }>(
-      { resolver: {} },
-      { projectRoot }
-    )
-    const resolveRequest = config.resolver?.resolveRequest as Function
-
-    expect(resolveRequest({} as any, './_middleware.tsx', 'ios').filePath).toMatch(
-      /empty\.js$/
-    )
-    expect(resolveRequest({} as any, './_middleware.ts', 'ios').filePath).toMatch(
-      /empty\.js$/
+    // The result is whatever Metro's loadConfig returns. The shape must
+    // include the resolver and transformer fields the production pipeline
+    // installs.
+    expect(config).toBeTruthy()
+    expect(config.resolver).toBeTruthy()
+    expect(typeof config.resolver.resolveRequest).toBe('function')
+    expect(config.transformer).toBeTruthy()
+    expect(config.transformer.babelTransformerPath).toMatch(
+      /vite-plugin-metro.*babel-transformer/
     )
   })
 
-  it('delegates non-special modules to the underlying resolver', () => {
-    const defaultResolve = vi.fn(() => ({ type: 'sourceFile', filePath: '/real.js' }))
-    const config = withOne(
-      { resolver: { resolveRequest: defaultResolve as any } },
-      { projectRoot }
-    )
-    const resolveRequest = config.resolver?.resolveRequest as Function
+  it('orders sourceExts so .js wins over .mjs (the proven One fix)', async () => {
+    const config = (await withOne(projectRoot)) as any
+    const exts: string[] = config.resolver.sourceExts
+    expect(exts).toContain('mjs')
+    expect(exts).toContain('js')
+    // .js must appear before .mjs so platform-aware lookup finds
+    // `.native.js` before `.mjs` for one's dist
+    expect(exts.indexOf('js')).toBeLessThan(exts.indexOf('mjs'))
+  })
 
-    const result = resolveRequest({ resolveRequest: defaultResolve } as any, 'react', 'ios')
-    expect(result.filePath).toBe('/real.js')
-    expect(defaultResolve).toHaveBeenCalledOnce()
+  it('accepts a project root as the first arg', async () => {
+    // Mirrors `withOne(__dirname)` usage from a generated metro.config.cjs
+    const config = (await withOne(projectRoot)) as any
+    expect(config).toBeTruthy()
   })
 })

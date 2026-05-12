@@ -7,9 +7,11 @@ export type MetroConfigLike = {
 /**
  * Build the Metro resolver overrides One needs for native bundles.
  *
- * Shared between the Vite-driven Metro path (getViteMetroPluginOptions) and
- * the standalone `one/metro-config` `withOne()` export used by user-land
- * metro.config files.
+ * Used by getViteMetroPluginOptions, which feeds these into the same
+ * getMetroConfigFromViteConfig pipeline both production native bundles and
+ * standalone Metro invocations (expo export, eas update) go through. The
+ * overrides handle One-specific concerns: server-only stripping, .css → empty,
+ * _middleware → empty, react-native-svg fix.
  *
  * Returns a function that takes Metro's default config and produces an
  * overridden config. Callers compose any additional overrides on top.

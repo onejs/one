@@ -148,18 +148,14 @@ const transform: BabelTransformer['transform'] = ({
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
   const customOptionsFromVite: ViteCustomTransformOptions = (() => {
     const c: any = options.customTransformOptions?.vite
+    // Standalone Metro invocations (expo export, eas update) don't set
+    // customTransformOptions.vite — the plugins flow entirely through the
+    // project's babel.config.cjs in that case. Tolerate the missing field
+    // rather than throwing so a single Metro config can serve both the
+    // Vite-driven and standalone paths.
     if (!c || typeof c !== 'object') {
-      throw new Error(
-        `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an object, but got ${typeof c}.`
-      )
+      return { babelConfig: {} } as ViteCustomTransformOptions
     }
-
-    // if (!c.config) {
-    //   throw new Error(
-    //     `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an ViteCustomTransformOptions type, but the config property is missing.`
-    //   )
-    // }
-
     return c
   })()
 
