@@ -40,6 +40,8 @@ describe('getViteMetroPluginOptions babel-config detection', () => {
     })
 
     expect(opts?.babelConfig?.plugins).toBeDefined()
+    // 5 One plugins (Vite path skips import-meta-env-plugin since it's
+    // injected separately via getMetroBabelConfigFromViteConfig)
     expect(opts?.babelConfig?.plugins?.length).toBe(5)
   })
 
