@@ -1,6 +1,6 @@
 {
   "name": "test-sootsim-back",
-  "version": "1.16.12",
+  "version": "1.17.0",
   "private": true,
   "type": "module",
   "scripts": {
