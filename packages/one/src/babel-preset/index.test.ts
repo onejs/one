@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
-import oneBabelPreset from './index'
+import oneBabelPreset, { buildOneBabelPlugins } from './index'
 
 const projectRoot = path.resolve(__dirname, '../../')
 
@@ -68,5 +68,64 @@ describe('one/babel-preset', () => {
     )
 
     expect(removeServer?.[1].routerRoot).toBe('src/routes')
+  })
+})
+
+describe('buildOneBabelPlugins', () => {
+  it('produces the canonical One plugin chain (no env plugin)', () => {
+    const plugins = buildOneBabelPlugins({
+      projectRoot,
+      relativeRouterRoot: 'app',
+      ignoredRouteFiles: [],
+      linking: undefined,
+      setupFile: undefined,
+      // skip the import-meta-env plugin so the assertion covers the One-only chain
+      includeImportMetaEnv: false,
+    })
+
+    expect(plugins).toHaveLength(5)
+    expect(plugins[0]).toBe('one/babel-plugin-environment-guard')
+    expect(plugins[1]).toEqual([
+      'one/babel-plugin-remove-server-code',
+      { routerRoot: 'app' },
+    ])
+    expect(plugins[2]).toMatchObject(['babel-plugin-module-resolver', { alias: {} }])
+
+    const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
+    expect(oneRouterMetro[0]).toBe('one/babel-plugin-one-router-metro')
+    expect(oneRouterMetro[1]).toMatchObject({
+      ONE_ROUTER_ROOT_FOLDER_NAME: 'app',
+      ONE_ROUTER_LINKING_CONFIG: undefined,
+      ONE_SETUP_FILE_NATIVE: undefined,
+    })
+    expect(typeof oneRouterMetro[1].ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY).toBe('string')
+    expect(typeof oneRouterMetro[1].ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING).toBe('string')
+
+    expect(plugins[4]).toBe('one/babel-plugin-inline-one-server-url')
+  })
+
+  it('threads setupFile through as a path relative to the metro entry', () => {
+    const plugins = buildOneBabelPlugins({
+      projectRoot,
+      relativeRouterRoot: 'app',
+      setupFile: 'src/setup-native.ts',
+      includeImportMetaEnv: false,
+    })
+
+    const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
+    expect(oneRouterMetro[1].ONE_SETUP_FILE_NATIVE).toMatch(/setup-native\.ts$/)
+  })
+
+  it('passes the linking config through', () => {
+    const linking = { prefixes: ['myapp://'] }
+    const plugins = buildOneBabelPlugins({
+      projectRoot,
+      relativeRouterRoot: 'app',
+      linking,
+      includeImportMetaEnv: false,
+    })
+
+    const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
+    expect(oneRouterMetro[1].ONE_ROUTER_LINKING_CONFIG).toBe(linking)
   })
 })
