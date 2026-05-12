@@ -188,6 +188,7 @@
     "@vxrn/vite-plugin-metro": "workspace:*",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
+    "babel-preset-expo": "*",
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
     "create-vxrn": "workspace:*",
