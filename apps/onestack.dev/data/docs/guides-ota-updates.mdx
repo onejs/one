@@ -97,6 +97,34 @@ eas update --channel staging
 
 The first command sets up the bundler-config files Metro needs. They're regenerated on every `CI=1` install — gitignore them or leave them out of source control entirely. Most projects publish from EAS Workflows or CI instead and never need this.
 
+## Owning the config files yourself
+
+If you'd rather commit `babel.config.cjs` / `metro.config.cjs` and customize them (extra babel plugins, custom Metro resolvers, etc.), generate them once:
+
+```bash
+npx one metro-eject
+```
+
+This writes shim files (delegating to `one/babel-preset` and `one/metro-config`) **without** the `@one/generated` marker comment. After ejecting:
+
+- The files are yours — edit freely and commit them.
+- The CI postinstall hook detects the missing marker and won't touch them.
+- You stay in charge of keeping them in sync with future One releases.
+
+A typical ejected `metro.config.cjs` looks like:
+
+```js
+const { withOne } = require('one/metro-config')
+
+module.exports = (async () => {
+  const config = await withOne(__dirname)
+  // your customizations here
+  return config
+})()
+```
+
+Pass `--force` to overwrite existing files.
+
 ## Reference
 
 - [EAS Update documentation](https://docs.expo.dev/eas-update/)

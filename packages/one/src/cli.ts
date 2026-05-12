@@ -33,6 +33,7 @@ const docsLinks = {
   patch: `${DOCS_BASE}/configuration`,
   'generate-routes': `${DOCS_BASE}/routing-typed-routes`,
   typegen: `${DOCS_BASE}/routing-typed-routes`,
+  'metro-eject': `${DOCS_BASE}/guides-ota-updates`,
 } as const
 
 function withDocsLink(description: string, command: keyof typeof docsLinks): string {
@@ -353,6 +354,28 @@ const typegen = defineCommand({
   },
 })
 
+const metroEject = defineCommand({
+  meta: {
+    name: 'metro-eject',
+    version: version,
+    description: withDocsLink(
+      'Write babel.config.cjs + metro.config.cjs so you can own them and customize freely',
+      'metro-eject'
+    ),
+  },
+  args: {
+    force: {
+      type: 'boolean',
+      description: 'Overwrite existing files',
+    },
+  },
+  async run({ args }) {
+    const { generateBundlerConfig } = await import('./cli/generateBundlerConfig')
+    const { ok } = generateBundlerConfig({ force: !!args.force, eject: true })
+    if (!ok) process.exit(1)
+  },
+})
+
 const daemonCommand = defineCommand({
   meta: {
     name: 'daemon',
@@ -412,6 +435,7 @@ const subCommands = {
   'generate-routes': generateRoutes,
   typegen,
   daemon: daemonCommand,
+  'metro-eject': metroEject,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow

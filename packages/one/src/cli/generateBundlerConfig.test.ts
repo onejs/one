@@ -143,6 +143,35 @@ describe('generateBundlerConfig', () => {
     })
   })
 
+  describe('--eject mode', () => {
+    it('writes files WITHOUT the @one/generated marker', () => {
+      const { results } = generateBundlerConfig({ cwd: tmpDir, eject: true, quiet: true })
+
+      expect(results.map((r) => r.action)).toEqual(['wrote', 'wrote'])
+
+      const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
+      expect(babel).not.toContain(ONE_GENERATED_MARKER)
+      expect(babel).toContain('You own this file')
+      expect(babel).toContain("require('one/babel-preset')")
+
+      const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
+      expect(metro).not.toContain(ONE_GENERATED_MARKER)
+      expect(metro).toContain('withOne')
+    })
+
+    it('subsequent auto-gen run (no --eject) treats ejected files as customized', () => {
+      generateBundlerConfig({ cwd: tmpDir, eject: true, quiet: true })
+      const before = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
+
+      // simulate CI postinstall: regular generateBundlerConfig should skip these
+      const { results } = generateBundlerConfig({ cwd: tmpDir, quiet: true })
+      expect(results.every((r) => r.action === 'skipped-customized')).toBe(true)
+
+      const after = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
+      expect(after).toBe(before)
+    })
+  })
+
   it('does not clobber a non-.cjs config in the same family', () => {
     fs.writeFileSync(
       path.join(tmpDir, 'babel.config.js'),

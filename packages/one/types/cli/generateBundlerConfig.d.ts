@@ -13,6 +13,12 @@ export type GenerateBundlerConfigArgs = {
     check?: boolean;
     /** Suppress logging. */
     quiet?: boolean;
+    /**
+     * Write files WITHOUT the `@one/generated` marker. The user owns the file
+     * after this; subsequent CI auto-gen runs will treat it as customized and
+     * skip it. Used by `one bundler-config --eject`.
+     */
+    eject?: boolean;
 };
 export type FileResult = {
     filePath: string;
