@@ -135,13 +135,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       })
     )
   } else {
-    // cli/config-load paths only need the resolved options; returning no
-    // plugins avoids starting vxrn side effects while still refreshing globals
-    // for each project/config loaded in this process.
-    setOneOptions(options)
-    globalThis['__vxrnPluginConfig__'] = options
-    globalThis['__vxrnMetroOptions__'] = metroOptions
-    return []
+    if (!globalThis.__oneOptions) {
+      // first load we are just loading it ourselves to get the user options
+      // so we can just set here and return nothing
+      setOneOptions(options)
+      globalThis['__vxrnPluginConfig__'] = options
+      globalThis['__vxrnMetroOptions__'] = metroOptions
+      return []
+    }
   }
 
   // ensure tsconfig
