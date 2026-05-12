@@ -143,6 +143,44 @@ const plugin = (config, options = {}) => {
         },
       ],
     ],
+    // iOS expo-updates: the EXUpdates pod's "Generate updates resources for
+    // expo-updates" build phase invokes Expo Metro directly to bundle the JS
+    // entry into app.manifest. Under One/VxRN, release bundling goes through
+    // the react-native CLI override (so One's router transforms are wired),
+    // and Expo Metro doesn't see those transforms — it fails to resolve the
+    // entry on monorepos or chokes on `one/metro-entry-ctx.js`. Replace that
+    // phase with one that writes a minimal embedded manifest and sets
+    // SKIP_BUNDLING=1 so the original script's bundle step is short-circuited
+    // while its fingerprint/resource side-effects still run.
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (config) => {
+          const iosRoot = config.modRequest.platformProjectRoot
+          const podfilePath = path.join(iosRoot, 'Podfile')
+          if (!fs.existsSync(podfilePath)) return config
+
+          const propsPath = path.join(iosRoot, 'Podfile.properties.json')
+          if (
+            getPodfilePropsOptOut(propsPath, 'one.disableExpoUpdatesIosShellScriptPatch')
+          ) {
+            return config
+          }
+
+          const podfile = fs.readFileSync(podfilePath, 'utf8')
+          const next = injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile)
+          if (next !== podfile) {
+            fs.writeFileSync(podfilePath, next, 'utf8')
+            console.info(
+              '[vxrn] patched Podfile to skip expo-updates Expo Metro invocation\n' +
+                '       to disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in ios/Podfile.properties.json'
+            )
+          }
+          return config
+        },
+      ],
+    ],
   ])
 }
 
@@ -614,9 +652,84 @@ function injectSwift6WorkaroundIntoPodfile(podfile) {
   return podfile
 }
 
+/**
+ * Replace the EXUpdates pod's "Generate updates resources for expo-updates"
+ * Xcode build phase with one that writes a minimal embedded manifest and sets
+ * SKIP_BUNDLING=1.
+ *
+ * Why: expo-updates' shell script runs Expo Metro on the JS entry to produce
+ * `app.manifest`. Under One/VxRN, release bundling is routed through the
+ * react-native CLI override so One's router transforms are wired; Expo Metro
+ * doesn't see those transforms and (on monorepos) often can't even resolve the
+ * entry. The wrapped script still runs the original so fingerprint/resource
+ * side-effects fire — only the Metro bundle step is skipped.
+ *
+ * Disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in
+ * ios/Podfile.properties.json.
+ */
+const EXPO_UPDATES_METRO_SKIP_MARKER =
+  '# [vxrn/one] skip expo-updates Expo Metro for embedded manifest'
+
+function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
+  if (podfile.includes(EXPO_UPDATES_METRO_SKIP_MARKER)) {
+    return podfile
+  }
+
+  const patch = `
+    ${EXPO_UPDATES_METRO_SKIP_MARKER}
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'EXUpdates'
+
+      target.shell_script_build_phases.each do |phase|
+        next unless phase.name.to_s.include?('Generate updates resources for expo-updates')
+        next if phase.shell_script.to_s.include?('${EXPO_UPDATES_METRO_SKIP_MARKER}')
+
+        original_script = phase.shell_script
+        phase.shell_script = <<~SCRIPT
+          ${EXPO_UPDATES_METRO_SKIP_MARKER}
+          set -eo pipefail
+
+          RESOURCE_BUNDLE_NAME="EXUpdates.bundle"
+          DEST="$CONFIGURATION_BUILD_DIR"
+
+          if [ "$BUNDLE_FORMAT" = "shallow" ]; then
+            RESOURCE_DEST="$DEST/$RESOURCE_BUNDLE_NAME"
+          elif [ "$BUNDLE_FORMAT" = "deep" ]; then
+            RESOURCE_DEST="$DEST/$RESOURCE_BUNDLE_NAME/Contents/Resources"
+          else
+            echo "[vxrn/one] expo-updates patch: unsupported BUNDLE_FORMAT='$BUNDLE_FORMAT'" >&2
+            exit 1
+          fi
+
+          mkdir -p "$RESOURCE_DEST"
+          "\${NODE_BINARY:-node}" -e "const c=require('node:crypto');const f=require('node:fs');f.writeFileSync(process.argv[1],JSON.stringify({id:c.randomUUID(),commitTime:Date.now(),assets:[]}))" "$RESOURCE_DEST/app.manifest"
+
+          export SKIP_BUNDLING=1
+
+          #{original_script}
+        SCRIPT
+      end
+    end
+`
+
+  const match = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (!match) {
+    console.warn(
+      '[vxrn] could not find post_install block in Podfile to inject expo-updates iOS resources patch'
+    )
+    return podfile
+  }
+
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
+}
+
 module.exports = plugin
 module.exports.addReactNativeScreensFix = addReactNativeScreensFix
 module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
 module.exports.injectHermesMinificationPatchIntoPodfile =
   injectHermesMinificationPatchIntoPodfile
+module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
+  injectExpoUpdatesIosResourcesPatchIntoPodfile
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
+module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
