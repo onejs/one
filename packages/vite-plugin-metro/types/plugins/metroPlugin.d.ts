@@ -27,6 +27,11 @@ export type MetroPluginOptions = {
     babelConfig?: TransformOptions;
     babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions;
     /**
+     * internal marker used by one's babel preset to avoid double-applying its
+     * plugin chain when one already supplied the vite metro babel config.
+     */
+    oneViteMetroBabelConfig?: boolean;
+    /**
      * Overrides the main module name which is normally defined as the `main` field in `package.json`.
      *
      * This will affect how `/.expo/.virtual-metro-entry.bundle` behaves.

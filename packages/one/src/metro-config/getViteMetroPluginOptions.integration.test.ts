@@ -4,17 +4,12 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { getViteMetroPluginOptions } from './getViteMetroPluginOptions'
 
 /**
- * The Vite-driven Metro path injects babel plugins through Metro's
- * customTransformOptions. If a user adds their own `babel.config.*` in
- * the project root, those plugins would apply a second time (once via
- * our injection, once via Metro's babelrc lookup), so the chain would
- * fire on every file twice.
- *
- * The fix: detect a user babel config and emit an empty plugin list,
- * deferring to the user's config. They are expected to delegate to
- * `one/babel-preset`.
+ * the vite-driven metro path must always inject one's required babel plugins.
+ * a project babel.config can customize normal babel behavior, but it cannot be
+ * the source of truth for one's router/server-code transforms because ordinary
+ * react native configs do not know about them.
  */
-describe('getViteMetroPluginOptions babel-config detection', () => {
+describe('getViteMetroPluginOptions babel-config coexistence', () => {
   let tmpDir: string
 
   beforeAll(() => {
@@ -40,12 +35,13 @@ describe('getViteMetroPluginOptions babel-config detection', () => {
     })
 
     expect(opts?.babelConfig?.plugins).toBeDefined()
+    expect(opts?.oneViteMetroBabelConfig).toBe(true)
     // 5 One plugins (Vite path skips import-meta-env-plugin since it's
     // injected separately via getMetroBabelConfigFromViteConfig)
     expect(opts?.babelConfig?.plugins?.length).toBe(5)
   })
 
-  it('skips plugin injection when the user has a babel.config.cjs', () => {
+  it('still injects One plugins when the user has a babel.config.cjs', () => {
     const cfgPath = path.join(tmpDir, 'babel.config.cjs')
     fs.writeFileSync(cfgPath, "module.exports = require('one/babel-preset')\n")
 
@@ -55,13 +51,13 @@ describe('getViteMetroPluginOptions babel-config detection', () => {
         relativeRouterRoot: 'app',
       })
 
-      expect(opts?.babelConfig?.plugins).toEqual([])
+      expect(opts?.babelConfig?.plugins?.length).toBe(5)
     } finally {
       fs.unlinkSync(cfgPath)
     }
   })
 
-  it('skips plugin injection when the user has a babel.config.js', () => {
+  it('still injects One plugins when the user has a babel.config.js', () => {
     const cfgPath = path.join(tmpDir, 'babel.config.js')
     fs.writeFileSync(cfgPath, "module.exports = require('one/babel-preset')\n")
 
@@ -71,7 +67,7 @@ describe('getViteMetroPluginOptions babel-config detection', () => {
         relativeRouterRoot: 'app',
       })
 
-      expect(opts?.babelConfig?.plugins).toEqual([])
+      expect(opts?.babelConfig?.plugins?.length).toBe(5)
     } finally {
       fs.unlinkSync(cfgPath)
     }

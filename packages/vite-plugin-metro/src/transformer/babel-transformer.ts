@@ -33,6 +33,7 @@ export type ExpoBabelCaller = TransformOptions['caller'] & {
   platform?: string | null
   routerRoot?: string
   projectRoot: string
+  oneViteMetroBabelConfig?: boolean
 }
 
 const debug = require('debug')(
@@ -63,7 +64,10 @@ const memoizeWarning = memoize((message: string) => {
 function getBabelCaller({
   filename,
   options,
-}: Pick<BabelTransformerArgs, 'filename' | 'options'>): ExpoBabelCaller {
+  oneViteMetroBabelConfig,
+}: Pick<BabelTransformerArgs, 'filename' | 'options'> & {
+  oneViteMetroBabelConfig: boolean
+}): ExpoBabelCaller {
   const isNodeModule = filename.includes('node_modules')
   const isReactServer = options.customTransformOptions?.environment === 'react-server'
   const isGenericServer = options.customTransformOptions?.environment === 'node'
@@ -117,6 +121,7 @@ function getBabelCaller({
 
     // Provide the project root for accurately reading the Expo config.
     projectRoot: options.projectRoot,
+    oneViteMetroBabelConfig,
 
     isNodeModule,
 
@@ -146,8 +151,10 @@ const transform: BabelTransformer['transform'] = ({
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`. Could make sense to move this to `babel-preset-expo` too.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
+  const viteCustomTransformOptions = options.customTransformOptions?.vite
+
   const customOptionsFromVite: ViteCustomTransformOptions = (() => {
-    const c: any = options.customTransformOptions?.vite
+    const c: any = viteCustomTransformOptions
     // Standalone Metro invocations (expo export, eas update) don't set
     // customTransformOptions.vite — the plugins flow entirely through the
     // project's babel.config.cjs in that case. Tolerate the missing field
@@ -158,6 +165,8 @@ const transform: BabelTransformer['transform'] = ({
     }
     return c
   })()
+  const hasOneViteMetroBabelConfig =
+    customOptionsFromVite.oneViteMetroBabelConfig === true
 
   const babelConfigFromVitePlugin: TransformOptions =
     customOptionsFromVite.babelConfig || {}
@@ -203,7 +212,11 @@ const transform: BabelTransformer['transform'] = ({
       // ensure the Babel config caching is more accurate.
       // Additionally, by moving everything Babel-related to the Babel preset, it makes it easier for users to reason
       // about the requirements of an Expo project, making it easier to migrate to other transpilers in the future.
-      caller: getBabelCaller({ filename, options }),
+      caller: getBabelCaller({
+        filename,
+        options,
+        oneViteMetroBabelConfig: hasOneViteMetroBabelConfig,
+      }),
     }
 
     const result = transformSync(src, babelConfig, options)

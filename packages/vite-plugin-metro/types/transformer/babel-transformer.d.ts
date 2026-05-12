@@ -14,5 +14,6 @@ export type ExpoBabelCaller = TransformOptions['caller'] & {
     platform?: string | null;
     routerRoot?: string;
     projectRoot: string;
+    oneViteMetroBabelConfig?: boolean;
 };
 //# sourceMappingURL=babel-transformer.d.ts.map
