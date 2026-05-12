@@ -1,24 +1,39 @@
-import { type MetroConfigLike } from './buildOneMetroResolverOverrides';
 export type WithOneOptions = {
     /** Absolute path to the project root. Defaults to `process.cwd()`. */
     projectRoot?: string;
+    /** Router root folder relative to the project root. Defaults to `'app'`. */
+    routerRoot?: string;
+    /** Patterns to exclude from router file resolution. */
+    ignoredRouteFiles?: Array<`**/*${string}`>;
+    /** Routing linking config — mirrors `one({ router: { linking } })`. */
+    linking?: unknown;
+    /** Native setup file path relative to the project root. */
+    setupFile?: string | {
+        native?: string;
+        ios?: string;
+        android?: string;
+    };
 };
 /**
- * Apply One's Metro resolver overrides to a base Metro config.
+ * Produce a Metro config that invokes the EXACT same `getMetroConfigFromViteConfig`
+ * pipeline that One's native production builds use. This way `expo export`,
+ * `eas update`, and any other Metro-direct workflow produce a bundle that's
+ * byte-equivalent to what `react-native bundle` (the iOS build phase) produces.
  *
- * Use this from a project's `metro.config.cjs` so that `expo export`,
- * `eas update`, and other Metro-direct workflows produce byte-equivalent
- * bundles to what `vxrn`/`one dev`/`one build` produce internally.
+ * The first argument is ignored — kept only for ergonomic compatibility with
+ * the typical `withOne(getDefaultConfig(__dirname))` call shape that Expo
+ * users are used to. We discard it because @expo/metro-config's defaults
+ * differ from what One needs, and the production pipeline applies its own
+ * defaults internally.
  *
  * @example
  * ```js
  * // metro.config.cjs
- * const { getDefaultConfig } = require('expo/metro-config')
  * const { withOne } = require('one/metro-config')
  *
- * module.exports = withOne(getDefaultConfig(__dirname))
+ * module.exports = withOne(__dirname)
  * ```
  */
-export declare function withOne<T extends MetroConfigLike>(defaultConfig: T, options?: WithOneOptions): T;
+export declare function withOne(baseConfigOrProjectRoot: string | object | undefined, options?: WithOneOptions): Promise<unknown>;
 export default withOne;
 //# sourceMappingURL=withOne.d.ts.map

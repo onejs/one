@@ -33,6 +33,12 @@ Add the EAS project URL and runtime policy to `app.json`:
 
 `appVersion` is the supported policy. `fingerprint` isn't fully wired up yet.
 
+Set the `main` field in `package.json` so `expo export` (which `eas update` invokes) finds One's router entry:
+
+```json
+{ "main": "one/metro-entry" }
+```
+
 Publish via the standard EAS flow:
 
 ```bash

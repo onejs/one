@@ -59,6 +59,151 @@ async function isWatchmanResponsive(projectRoot: string) {
   return probe
 }
 
+/**
+ * Build the Metro config input WITHOUT calling Metro's `loadConfig`. Returns
+ * the same shape Metro `loadConfig` expects as its second argument. Use this
+ * from a project's `metro.config.cjs` so the outer `loadConfig` (driven by
+ * Expo CLI / Metro CLI) is the only one that runs — avoids infinite
+ * recursion that would happen if the inner pipeline also called `loadConfig`
+ * and re-read the same metro.config.cjs.
+ */
+export async function buildMetroConfigInputFromViteConfig(
+  config: ResolvedConfig,
+  metroPluginOptions: MetroPluginOptions
+): Promise<{ defaultConfig: any; projectRoot: string; extraConfig: ExtraConfig }> {
+  const extraConfig: ExtraConfig = {}
+  const projectRoot = resolve(metroPluginOptions.argv?.projectRoot ?? config.root)
+  const { mainModuleName, defaultConfigOverrides, watchman, excludeModules } =
+    metroPluginOptions
+  const useWatchman = watchman ?? (await isWatchmanResponsive(projectRoot))
+
+  if (watchman === undefined && !useWatchman && !didWarnAboutWatchmanFallback) {
+    didWarnAboutWatchmanFallback = true
+    console.warn(
+      '[vxrn/metro] Watchman is unavailable or unresponsive; falling back to Node file watching.'
+    )
+  }
+
+  const { getDefaultConfig } = await projectImport<{
+    getDefaultConfig: typeof getDefaultConfigT
+  }>(projectRoot, '@expo/metro-config')
+
+  const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+
+  if (mainModuleName) {
+    const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
+
+    const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
+      await (async () => {
+        const ExpoGoManifestHandlerMiddleware = (
+          await projectImport(
+            projectRoot,
+            '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
+          )
+        ).default.ExpoGoManifestHandlerMiddleware
+
+        const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(
+          projectRoot,
+          {}
+        )
+
+        patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
+          manifestHandlerMiddleware,
+          mainModuleName
+        )
+
+        return (p) => {
+          return manifestHandlerMiddleware.resolveMainModuleName({
+            pkg: { main: mainModuleName },
+            platform: p.platform,
+          })
+        }
+      })()
+
+    extraConfig.getResolveMainModuleName = resolveMainModuleName
+
+    // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
+    _defaultConfig!.server!.rewriteRequestUrl = (url) => {
+      if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
+        const resolvedMainModulePath = resolveMainModuleName({ platform: 'ios' })
+        return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+      }
+      return origRewriteRequestUrl(url)
+    }
+  }
+
+  const existingBlockList = _defaultConfig?.resolver?.blockList
+  const buildOutputExclusions = [
+    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+    /[/\\]\.docker(?:[/\\]|$)/,
+    /[/\\]\.vite(?:[/\\]|$)/,
+  ]
+  const blockList: RegExp[] = [
+    ...(existingBlockList
+      ? Array.isArray(existingBlockList)
+        ? existingBlockList
+        : [existingBlockList]
+      : []),
+    ...buildOutputExclusions,
+  ]
+
+  const defaultConfig: MetroInputConfig = {
+    ..._defaultConfig,
+    resolver: {
+      ..._defaultConfig?.resolver,
+      useWatchman,
+      blockList,
+      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      resolveRequest: (context, moduleName, platform) => {
+        const origResolveRequestFn =
+          _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+
+        if (excludeModules && excludeModules.length > 0) {
+          if (micromatch.isMatch(moduleName, excludeModules)) {
+            return origResolveRequestFn(
+              context,
+              '@vxrn/vite-plugin-metro/empty',
+              platform
+            )
+          }
+        }
+
+        // HACK: Do not assert the "import" condition for `@babel/runtime`.
+        // Resolves the "TypeError: _interopRequireDefault is not a function (it is Object)" error.
+        if (moduleName.startsWith('@babel/runtime')) {
+          const contextOverride = {
+            ...context,
+            unstable_conditionNames: context.unstable_conditionNames.filter(
+              (c) => c !== 'import'
+            ),
+          }
+          return origResolveRequestFn(contextOverride, moduleName, platform)
+        }
+
+        return origResolveRequestFn(context, moduleName, platform)
+      },
+    },
+    transformer: {
+      ..._defaultConfig?.transformer,
+      babelTransformerPath: projectResolve(
+        projectRoot,
+        '@vxrn/vite-plugin-metro/babel-transformer'
+      ),
+    },
+    reporter: await getTerminalReporter(projectRoot),
+  }
+
+  const merged = {
+    ...defaultConfig,
+    ...(typeof defaultConfigOverrides === 'function'
+      ? defaultConfigOverrides(defaultConfig)
+      : defaultConfigOverrides),
+  }
+
+  return { defaultConfig: merged, projectRoot, extraConfig }
+}
+
 export async function getMetroConfigFromViteConfig(
   config: ResolvedConfig,
   metroPluginOptions: MetroPluginOptions

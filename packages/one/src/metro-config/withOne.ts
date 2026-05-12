@@ -1,37 +1,78 @@
 import path from 'node:path'
-import {
-  buildOneMetroResolverOverrides,
-  type MetroConfigLike,
-} from './buildOneMetroResolverOverrides'
+import { buildMetroConfigInputFromViteConfig } from '@vxrn/vite-plugin-metro'
+import { getViteMetroPluginOptions } from './getViteMetroPluginOptions'
 
 export type WithOneOptions = {
   /** Absolute path to the project root. Defaults to `process.cwd()`. */
   projectRoot?: string
+  /** Router root folder relative to the project root. Defaults to `'app'`. */
+  routerRoot?: string
+  /** Patterns to exclude from router file resolution. */
+  ignoredRouteFiles?: Array<`**/*${string}`>
+  /** Routing linking config — mirrors `one({ router: { linking } })`. */
+  linking?: unknown
+  /** Native setup file path relative to the project root. */
+  setupFile?: string | { native?: string; ios?: string; android?: string }
 }
 
 /**
- * Apply One's Metro resolver overrides to a base Metro config.
+ * Produce a Metro config that invokes the EXACT same `getMetroConfigFromViteConfig`
+ * pipeline that One's native production builds use. This way `expo export`,
+ * `eas update`, and any other Metro-direct workflow produce a bundle that's
+ * byte-equivalent to what `react-native bundle` (the iOS build phase) produces.
  *
- * Use this from a project's `metro.config.cjs` so that `expo export`,
- * `eas update`, and other Metro-direct workflows produce byte-equivalent
- * bundles to what `vxrn`/`one dev`/`one build` produce internally.
+ * The first argument is ignored — kept only for ergonomic compatibility with
+ * the typical `withOne(getDefaultConfig(__dirname))` call shape that Expo
+ * users are used to. We discard it because @expo/metro-config's defaults
+ * differ from what One needs, and the production pipeline applies its own
+ * defaults internally.
  *
  * @example
  * ```js
  * // metro.config.cjs
- * const { getDefaultConfig } = require('expo/metro-config')
  * const { withOne } = require('one/metro-config')
  *
- * module.exports = withOne(getDefaultConfig(__dirname))
+ * module.exports = withOne(__dirname)
  * ```
  */
-export function withOne<T extends MetroConfigLike>(
-  defaultConfig: T,
+export async function withOne(
+  baseConfigOrProjectRoot: string | object | undefined,
   options: WithOneOptions = {}
-): T {
-  const projectRoot = path.resolve(options.projectRoot ?? process.cwd())
-  const apply = buildOneMetroResolverOverrides({ projectRoot })
-  return apply(defaultConfig)
+): Promise<unknown> {
+  const projectRoot = path.resolve(
+    typeof baseConfigOrProjectRoot === 'string'
+      ? baseConfigOrProjectRoot
+      : (options.projectRoot ?? process.cwd())
+  )
+
+  // Reuse the proven pipeline rather than re-implementing it: same resolver,
+  // same babel transformer path, same sourceExts ordering, same blockList,
+  // same @babel/runtime workaround.
+  //
+  // Call `buildMetroConfigInputFromViteConfig`, NOT `getMetroConfigFromViteConfig` —
+  // the latter calls Metro's `loadConfig`, which loads the user's metro.config.cjs,
+  // which calls `withOne`, infinite recursion. The outer `loadConfig` (driven by
+  // Expo CLI / Metro CLI) does the final config merge.
+  const metroPluginOptions = getViteMetroPluginOptions({
+    projectRoot,
+    relativeRouterRoot: options.routerRoot ?? 'app',
+    ignoredRouteFiles: options.ignoredRouteFiles,
+    linking: options.linking,
+    setupFile: options.setupFile,
+  })
+
+  // synthetic ResolvedConfig — the pipeline only reads `root` directly
+  const syntheticViteConfig = { root: projectRoot } as any
+
+  const { defaultConfig } = await buildMetroConfigInputFromViteConfig(
+    syntheticViteConfig,
+    {
+      ...metroPluginOptions,
+      mainModuleName: 'one/metro-entry',
+    }
+  )
+
+  return defaultConfig
 }
 
 export default withOne

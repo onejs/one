@@ -33,7 +33,7 @@ describe('generateBundlerConfig', () => {
     const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
     expect(metro).toContain(ONE_GENERATED_MARKER)
     expect(metro).toContain("require('one/metro-config')")
-    expect(metro).toContain('getDefaultConfig')
+    expect(metro).toContain('withOne')
   })
 
   it('is idempotent on second run', () => {
@@ -177,6 +177,12 @@ describe('isCiEnvironment', () => {
     expect(isCiEnvironment()).toBe(true)
   })
 
+  it('is true when CI=1', () => {
+    process.env.CI = '1'
+    delete process.env.EAS_BUILD
+    expect(isCiEnvironment()).toBe(true)
+  })
+
   it('is true when EAS_BUILD=true', () => {
     delete process.env.CI
     process.env.EAS_BUILD = 'true'
@@ -186,6 +192,14 @@ describe('isCiEnvironment', () => {
   it('is false when neither is set', () => {
     delete process.env.CI
     delete process.env.EAS_BUILD
+    expect(isCiEnvironment()).toBe(false)
+  })
+
+  it('is false when CI=false or CI=0', () => {
+    delete process.env.EAS_BUILD
+    process.env.CI = 'false'
+    expect(isCiEnvironment()).toBe(false)
+    process.env.CI = '0'
     expect(isCiEnvironment()).toBe(false)
   })
 })

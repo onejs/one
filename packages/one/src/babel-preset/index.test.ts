@@ -20,7 +20,8 @@ describe('one/babel-preset', () => {
 
     expect(result).toHaveProperty('plugins')
     expect(Array.isArray(result.plugins)).toBe(true)
-    expect(result.plugins).toHaveLength(5)
+    // 5 One plugins + import-meta-env-plugin baked in for standalone Metro
+    expect(result.plugins).toHaveLength(6)
   })
 
   it('orders the plugin chain so server code is removed before router transforms', () => {
@@ -31,6 +32,7 @@ describe('one/babel-preset', () => {
 
     const names = (plugins ?? []).map((p) => (Array.isArray(p) ? p[0] : p))
     expect(names).toEqual([
+      '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
       'one/babel-plugin-environment-guard',
       'one/babel-plugin-remove-server-code',
       'babel-plugin-module-resolver',
