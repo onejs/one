@@ -1,0 +1,99 @@
+---
+title: Over-the-air Updates
+---
+
+Over-the-air (OTA) updates ship JavaScript and asset changes to installed native apps without going through TestFlight or the Play Store. One works with two OTA libraries — pick the one that matches your hosting story. The framework handles the integration automatically; your repo follows the standard install flow.
+
+## Choosing
+
+| | [expo-updates](https://docs.expo.dev/eas-update/) (EAS Update) | [hot-updater](https://hot-updater.dev) |
+| --- | --- | --- |
+| Backend | Managed by Expo (EAS subscription) | Self-hosted (Supabase, Cloudflare R2, S3, custom) |
+| Setup | `npm install expo-updates` + `eas init` | `npx hot-updater init` + pick storage/database |
+| Vendor lock-in | EAS | None |
+
+## expo-updates
+
+Standard install:
+
+```bash
+npm install expo-updates
+```
+
+Add the EAS project URL and runtime policy to `app.json`:
+
+```js
+{
+  "expo": {
+    "updates": { "url": "https://u.expo.dev/<your-eas-project-id>" },
+    "runtimeVersion": { "policy": "appVersion" }
+  }
+}
+```
+
+`appVersion` is the supported policy. `fingerprint` isn't fully wired up yet.
+
+Publish via the standard EAS flow:
+
+```bash
+eas update --channel staging
+eas update --channel production
+```
+
+That's the entire user surface — no custom CLI commands, no babel.config / metro.config in your repo. The framework handles the Metro/babel plumbing transparently on EAS workers.
+
+## hot-updater
+
+Standard install + init:
+
+```bash
+bun add @hot-updater/react-native react-native-mmkv
+bun add -D hot-updater @hot-updater/bare @hot-updater/supabase
+npx hot-updater init
+```
+
+Wrap your app:
+
+```tsx
+import { HotUpdater } from '@hot-updater/react-native'
+
+export default HotUpdater.wrap({
+  source: process.env.EXPO_PUBLIC_HOT_UPDATER_URL,
+})(App)
+```
+
+Publish:
+
+```bash
+npx hot-updater deploy -p ios -c production
+npx hot-updater deploy -p android -c production
+```
+
+See [hot-updater.dev/docs](https://hot-updater.dev/docs/) for full backend setup.
+
+## What's OTA-safe
+
+Only publish OTA updates for changes that don't touch the native binary:
+
+- ✅ JavaScript, TypeScript, JSX, styles, copy, bundled assets
+- ❌ Expo SDK upgrades, native dependencies, config plugins, `app.json` fields that affect native output, any native iOS/Android file
+
+For those, bump your app `version`, build a fresh TestFlight/Play binary, and only then publish OTA updates against the new runtime. The `appVersion` strategy (supported by both libraries) gates delivery so devices on the old version don't receive incompatible updates.
+
+## Publishing locally (expo-updates only)
+
+`eas update` from your own machine works the same way EAS workers run it — but One's auto-setup only fires when `CI=1` or `EAS_BUILD=true` is set, so your local working tree stays clean. If you want to publish from your laptop:
+
+```bash
+CI=1 pnpm install
+eas update --channel staging
+```
+
+The first command sets up the bundler-config files Metro needs. They're regenerated on every `CI=1` install — gitignore them or leave them out of source control entirely. Most projects publish from EAS Workflows or CI instead and never need this.
+
+## Reference
+
+- [EAS Update documentation](https://docs.expo.dev/eas-update/)
+- [Runtime versions](https://docs.expo.dev/eas-update/runtime-versions/)
+- [`expo-updates` API](https://docs.expo.dev/versions/latest/sdk/updates/)
+- [hot-updater documentation](https://hot-updater.dev/docs/)
