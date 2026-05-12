@@ -8,5 +8,6 @@ export declare function loadUserOneOptions(command: 'serve' | 'build', silent?: 
         dependencies: string[];
     };
     oneOptions: One.PluginOptions;
+    metroOptions: any;
 }>;
 //# sourceMappingURL=loadConfig.d.ts.map
