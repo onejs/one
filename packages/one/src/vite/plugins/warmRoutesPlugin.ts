@@ -108,24 +108,40 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
             (d) => !userInclude.has(d) && !excludeSet.has(d)
           )
 
-          // merge with existing cache
+          // merge with existing cache. if the file exists but can't be parsed
+          // (race with another dev server, partial write), bail rather than
+          // clobber it with a thinner set. that's where ping-pong diffs come
+          // from when a persistPath is committed.
           const allDeps = new Set(depsToCache)
-          try {
-            if (existsSync(cacheFile)) {
-              const existing = JSON.parse(readFileSync(cacheFile, 'utf-8'))
+          let existingRaw: string | undefined
+          if (existsSync(cacheFile)) {
+            try {
+              existingRaw = readFileSync(cacheFile, 'utf-8')
+              const existing = JSON.parse(existingRaw)
               if (Array.isArray(existing.deps)) {
                 for (const d of existing.deps) {
                   if (!excludeSet.has(d)) allDeps.add(d)
                 }
               }
+            } catch {
+              return
             }
-          } catch {}
+          }
 
           const sorted = [...allDeps].sort()
+          const nextRaw = JSON.stringify({ deps: sorted }, null, 2)
+
+          // skip the write when the merged result is byte-identical to what's
+          // already on disk. without this, every snapshot where the optimizer's
+          // discovered/optimized count grew rewrites the file even though the
+          // sorted+deduped output didn't actually change, producing cosmetic
+          // git churn on committed cache files.
+          if (existingRaw === nextRaw) return
+
           const dir = dirname(cacheFile)
           if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
 
-          writeFileSync(cacheFile, JSON.stringify({ deps: sorted }, null, 2))
+          writeFileSync(cacheFile, nextRaw)
           console.info(`[one] cached ${sorted.length} deps for next startup`)
         } catch {
           // not ready yet, will retry
