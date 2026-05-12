@@ -371,7 +371,14 @@ const metroEject = defineCommand({
   },
   async run({ args }) {
     const { generateBundlerConfig } = await import('./cli/generateBundlerConfig')
-    const { ok } = generateBundlerConfig({ force: !!args.force, eject: true })
+    const { loadUserOneOptions } = await import('./vite/loadConfig')
+    process.env.IS_VXRN_CLI = 'true'
+    const { oneOptions } = await loadUserOneOptions('build')
+    const { ok } = generateBundlerConfig({
+      force: !!args.force,
+      eject: true,
+      oneOptions,
+    })
     if (!ok) process.exit(1)
   },
 })

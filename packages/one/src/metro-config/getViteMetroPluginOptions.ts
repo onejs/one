@@ -1,18 +1,6 @@
-import { existsSync } from 'node:fs'
-import path from 'node:path'
 import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import { buildOneBabelPlugins } from '../babel-preset'
 import { buildOneMetroResolverOverrides } from './buildOneMetroResolverOverrides'
-
-/**
- * Detect a user-provided babel config in the project root. When present, we
- * assume the user is delegating to `one/babel-preset` from there and skip
- * injecting plugins on the Vite-driven Metro path to avoid double-application.
- */
-function projectHasBabelConfig(projectRoot: string): boolean {
-  return ['babel.config.js', 'babel.config.cjs', 'babel.config.mjs', '.babelrc', '.babelrc.js']
-    .some((name) => existsSync(path.join(projectRoot, name)))
-}
 
 export function getViteMetroPluginOptions({
   projectRoot,
@@ -33,25 +21,8 @@ export function getViteMetroPluginOptions({
 }): Parameters<typeof metroPlugin>[0] {
   const applyOneResolverOverrides = buildOneMetroResolverOverrides({ projectRoot })
 
-  // when user supplies their own babel.config, defer to it (via Metro's own
-  // babelrc lookup) and don't inject our plugin list — otherwise we'd apply
-  // every One plugin twice. The user is expected to call `one/babel-preset`.
-  const userOwnsBabelConfig = projectHasBabelConfig(projectRoot)
-
-  const plugins = userOwnsBabelConfig
-    ? []
-    : buildOneBabelPlugins({
-        projectRoot,
-        relativeRouterRoot,
-        ignoredRouteFiles,
-        linking,
-        setupFile,
-        // Vite path injects import-meta-env-plugin separately via the
-        // Metro server transformFile hook using the user's Vite `define`.
-        includeImportMetaEnv: false,
-      })
-
   return {
+    oneViteMetroBabelConfig: true,
     defaultConfigOverrides: (defaultConfig) => {
       let config = applyOneResolverOverrides(defaultConfig)
 
@@ -62,7 +33,16 @@ export function getViteMetroPluginOptions({
       return config
     },
     babelConfig: {
-      plugins,
+      plugins: buildOneBabelPlugins({
+        projectRoot,
+        relativeRouterRoot,
+        ignoredRouteFiles,
+        linking,
+        setupFile,
+        // vite path injects import-meta-env-plugin separately via the
+        // metro server transformFile hook using the user's vite `define`.
+        includeImportMetaEnv: false,
+      }),
     },
   }
 }

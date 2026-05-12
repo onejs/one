@@ -46,7 +46,7 @@ eas update --channel staging
 eas update --channel production
 ```
 
-That's the entire user surface — no custom CLI commands, no babel.config / metro.config in your repo. The framework handles the Metro/babel plumbing transparently on EAS workers.
+That's the entire user surface — no babel.config / metro.config in your repo. One starters include `"postinstall": "one patch || true"` so EAS workers generate the Metro/Babel shims with your real `one()` router/setup options during install.
 
 ## hot-updater
 
@@ -88,14 +88,14 @@ For those, bump your app `version`, build a fresh TestFlight/Play binary, and on
 
 ## Publishing locally (expo-updates only)
 
-`eas update` from your own machine works the same way EAS workers run it — but One's auto-setup only fires when `CI=1` or `EAS_BUILD=true` is set, so your local working tree stays clean. If you want to publish from your laptop:
+`eas update` from your own machine works the same way EAS workers run it — but One's auto-setup only fires when `CI=1` or `EAS_BUILD=true` is set, so your local working tree stays clean. After dependencies are installed, generate the same shims explicitly before publishing:
 
 ```bash
-CI=1 pnpm install
+CI=1 npx one patch
 eas update --channel staging
 ```
 
-The first command sets up the bundler-config files Metro needs. They're regenerated on every `CI=1` install — gitignore them or leave them out of source control entirely. Most projects publish from EAS Workflows or CI instead and never need this.
+The first command sets up the bundler-config files Metro needs. They're regenerated whenever `one patch` runs in CI/EAS — gitignore them or leave them out of source control entirely. Most projects publish from EAS Workflows or CI instead and never need this.
 
 ## Owning the config files yourself
 
@@ -115,9 +115,12 @@ A typical ejected `metro.config.cjs` looks like:
 
 ```js
 const { withOne } = require('one/metro-config')
+const oneBundlerOptions = {
+  routerRoot: 'app',
+}
 
 module.exports = (async () => {
-  const config = await withOne(__dirname)
+  const config = await withOne(__dirname, oneBundlerOptions)
   // your customizations here
   return config
 })()

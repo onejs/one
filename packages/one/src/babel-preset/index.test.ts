@@ -69,6 +69,23 @@ describe('one/babel-preset', () => {
 
     expect(removeServer?.[1].routerRoot).toBe('src/routes')
   })
+
+  it('skips the One plugin chain when the Vite Metro caller already injected it', () => {
+    const result = oneBabelPreset(
+      {
+        cache: () => {},
+        cwd: () => projectRoot,
+        caller: <T>(cb: (caller: unknown) => T): T =>
+          cb({ oneViteMetroBabelConfig: true }),
+      },
+      {
+        projectRoot,
+        includeExpoPreset: false,
+      }
+    )
+
+    expect(result.plugins).toEqual([])
+  })
 })
 
 describe('buildOneBabelPlugins', () => {

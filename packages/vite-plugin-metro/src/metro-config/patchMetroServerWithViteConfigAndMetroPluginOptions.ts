@@ -39,6 +39,7 @@ export function patchMetroServerWithViteConfigAndMetroPluginOptions(
     const viteCustomTransformOptions: ViteCustomTransformOptions = {
       // config: server.config,
       babelConfig,
+      oneViteMetroBabelConfig: options.oneViteMetroBabelConfig,
     }
     return originalTransformFile(
       filePath,

@@ -58,7 +58,12 @@ export default function oneBabelPreset(
   api: BabelConfigAPI,
   options: OneBabelPresetOptions = {}
 ): TransformOptions {
-  if (typeof api?.cache === 'function') {
+  const hasViteInjectedOnePlugins =
+    typeof api?.caller === 'function'
+      ? api.caller((caller) => !!(caller as any)?.oneViteMetroBabelConfig)
+      : false
+
+  if (!api?.caller && typeof api?.cache === 'function') {
     api.cache(true)
   }
 
@@ -84,14 +89,16 @@ export default function oneBabelPreset(
 
   return {
     presets,
-    plugins: buildOneBabelPlugins({
-      projectRoot,
-      relativeRouterRoot: options.routerRoot ?? 'app',
-      ignoredRouteFiles: options.ignoredRouteFiles,
-      linking: options.linking,
-      setupFile: options.setupFile,
-      includeImportMetaEnv: options.includeImportMetaEnv,
-    }),
+    plugins: hasViteInjectedOnePlugins
+      ? []
+      : buildOneBabelPlugins({
+          projectRoot,
+          relativeRouterRoot: options.routerRoot ?? 'app',
+          ignoredRouteFiles: options.ignoredRouteFiles,
+          linking: options.linking,
+          setupFile: options.setupFile,
+          includeImportMetaEnv: options.includeImportMetaEnv,
+        }),
   }
 }
 
