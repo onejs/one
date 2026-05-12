@@ -86,6 +86,16 @@
       "import": "./dist/esm/babel-plugins/inline-one-server-url.mjs",
       "require": "./dist/cjs/babel-plugins/inline-one-server-url.cjs"
     },
+    "./babel-preset": {
+      "types": "./types/babel-preset/index.d.ts",
+      "import": "./dist/esm/babel-preset/index.mjs",
+      "require": "./dist/cjs/babel-preset/index.cjs"
+    },
+    "./metro-config": {
+      "types": "./types/metro-config/withOne.d.ts",
+      "import": "./dist/esm/metro-config/withOne.mjs",
+      "require": "./dist/cjs/metro-config/withOne.cjs"
+    },
     "./getViteMetroPluginOptions": {
       "types": "./types/metro-config/getViteMetroPluginOptions.d.ts",
       "import": "./dist/esm/metro-config/getViteMetroPluginOptions.mjs",

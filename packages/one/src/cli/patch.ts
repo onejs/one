@@ -1,5 +1,6 @@
 import type { SimpleDepPatchObject, PatchOptions } from 'vxrn'
 import { loadUserOneOptions } from '../vite/loadConfig'
+import { maybeGenerateBundlerConfigOnInstall } from './generateBundlerConfig'
 
 function isMissingViteConfigError(error: unknown) {
   return (
@@ -22,6 +23,11 @@ async function loadUserPatches() {
 }
 
 export async function run(args: { force?: boolean }) {
+  // ensure babel.config.cjs + metro.config.cjs exist when a project uses
+  // expo-updates AND we're on an EAS/CI worker. CI-only so the files
+  // never appear in a developer's local working tree.
+  maybeGenerateBundlerConfigOnInstall(process.cwd())
+
   process.env.IS_VXRN_CLI = 'true'
   const { patch } = await import('vxrn')
 
