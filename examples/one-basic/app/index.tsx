@@ -1,5 +1,7 @@
 import { Link } from 'one'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
+
+const TEST_LOGO = require('../assets/test-logo.png')
 
 export function Index() {
   return (
@@ -15,6 +17,7 @@ export function Index() {
         paddingVertical: 40,
       }}
     >
+      <Image source={TEST_LOGO} style={{ width: 32, height: 32 }} />
       <Text>Hello world, from One</Text>
       <Link href="/test">
         <Text>Go to Test</Text>
