@@ -191,8 +191,30 @@ async function serveWithCluster(args: Parameters<typeof serve>[0], numWorkers: n
 }
 
 async function startWorker(args: Parameters<typeof serve>[0]) {
-  const outDir =
-    args?.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
+  // Resolve outDir with the same precedence chain the `build` command uses
+  // (matching cli/build.ts:370 — `viteLoadedConfig?.config?.build?.outDir ?? 'dist'`):
+  //   1. --outDir CLI flag
+  //   2. cwd has buildInfo.json — preserves the "cd into output dir then run" UX
+  //   3. vite.config's build.outDir
+  //   4. 'dist' fallback
+  // Step (3) only runs when (1)-(2) miss; loading vite.config is non-trivial
+  // and not worth it for the common case where the cwd already has buildInfo.json.
+  let outDir = args?.outDir
+  if (!outDir && FSExtra.existsSync('buildInfo.json')) {
+    outDir = '.'
+  }
+  if (!outDir) {
+    // Read `build.outDir` from vite.config. Lives in `./vite/loadConfig` so the
+    // `vite` import is in a file the build tool compiles cleanly (the same
+    // bare-package rewrite affects this file but not loadConfig).
+    try {
+      const { loadViteBuildOutDir } = await import('./vite/loadConfig')
+      outDir = await loadViteBuildOutDir()
+    } catch {
+      // No vite.config (or it failed to load); fall through to default.
+    }
+  }
+  outDir = outDir || 'dist'
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 

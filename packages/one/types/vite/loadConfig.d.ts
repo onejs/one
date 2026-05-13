@@ -1,5 +1,6 @@
 import '../polyfills-server';
 import type { One } from './types';
+export declare function loadViteBuildOutDir(configRoot?: string): Promise<string | undefined>;
 export declare function setOneOptions(next: One.PluginOptions): void;
 export declare function loadUserOneOptions(command: 'serve' | 'build', silent?: boolean): Promise<{
     config: {
