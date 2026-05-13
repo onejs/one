@@ -191,8 +191,52 @@ async function serveWithCluster(args: Parameters<typeof serve>[0], numWorkers: n
 }
 
 async function startWorker(args: Parameters<typeof serve>[0]) {
-  const outDir =
-    args?.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
+  // Resolve outDir without loading the user's vite.config at serve time.
+  //
+  //   1. --outDir CLI flag (highest precedence)
+  //   2. cwd has buildInfo.json — preserves the "cd into output dir then run" UX
+  //   3. build-pointer marker written by `one build` — locates the build output
+  //      when the user has a non-default `build.outDir` set in vite.config
+  //   4. 'dist' fallback (matches the historical behaviour)
+  //
+  // Why not call `loadConfigFromFile` here directly: loading vite.config inside
+  // `one serve` instantiates the One plugin chain (including `vxrnVitePlugin`
+  // on the non-`IS_VXRN_CLI` branch), which has side effects — `configResolved`
+  // hooks, file watchers, server middleware — that leak into the subsequent
+  // `vxrn/serve` startup and break SPA client-side routing (confirmed via
+  // diagnostic PR #710: removing this call made `test-spa-shell-routing` go
+  // from 4-of-5 fails → 27/27 pass on the same CI infrastructure).
+  let outDir = args?.outDir
+  if (!outDir && FSExtra.existsSync('buildInfo.json')) {
+    outDir = '.'
+  }
+  if (!outDir) {
+    try {
+      const pointer = (await FSExtra.readJSON(
+        'node_modules/.cache/one/build-pointer.json'
+      )) as { outDir?: string }
+      // Verify the pointed-to dir actually has buildInfo.json. Guards against a
+      // stale marker (e.g. user changed `build.outDir` and deleted the old
+      // output dir without rebuilding). If the marker is stale, fall back to
+      // 'dist' so the existing "buildInfo.json not found" error message at
+      // least references the conventional location instead of a phantom dir
+      // the user no longer recognises.
+      if (
+        pointer?.outDir &&
+        (await FSExtra.pathExists(`${pointer.outDir}/buildInfo.json`))
+      ) {
+        outDir = pointer.outDir
+      } else if (pointer?.outDir) {
+        console.warn(
+          `[one serve] build-pointer.json points to '${pointer.outDir}/' but no buildInfo.json there — falling back to 'dist'. Run \`one build\` to refresh the marker.`
+        )
+      }
+    } catch {
+      // No pointer (build hasn't been run yet, or built with an older `one`
+      // that predates the pointer write) — fall through to 'dist'.
+    }
+  }
+  outDir = outDir || 'dist'
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 
