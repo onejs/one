@@ -1,6 +1,6 @@
 {
   "name": "test-native-features",
-  "version": "1.17.1",
+  "version": "1.17.1-1778694255740",
   "type": "module",
   "private": true,
   "scripts": {
