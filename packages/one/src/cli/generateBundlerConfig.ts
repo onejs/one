@@ -83,10 +83,7 @@ module.exports = withOne(__dirname, oneBundlerOptions)
 
 type FileSpec = {
   name: string
-  getContent: (args: {
-    eject: boolean
-    options: OneBundlerConfigOptions
-  }) => string
+  getContent: (args: { eject: boolean; options: OneBundlerConfigOptions }) => string
   conflicting: readonly string[]
 }
 
@@ -180,7 +177,13 @@ export type GenerateBundlerConfigArgs = {
 
 export type FileResult = {
   filePath: string
-  action: 'wrote' | 'kept' | 'skipped-customized' | 'skipped-other-format' | 'would-write' | 'would-overwrite'
+  action:
+    | 'wrote'
+    | 'kept'
+    | 'skipped-customized'
+    | 'skipped-other-format'
+    | 'would-write'
+    | 'would-overwrite'
   reason?: string
 }
 
@@ -288,9 +291,7 @@ export function generateBundlerConfig(args: GenerateBundlerConfigArgs = {}): {
     'skipped-customized',
   ])
   const ok = (check ? acceptableInCheck : acceptableAlways).size
-    ? results.every((r) =>
-        (check ? acceptableInCheck : acceptableAlways).has(r.action)
-      )
+    ? results.every((r) => (check ? acceptableInCheck : acceptableAlways).has(r.action))
     : false
 
   return { results, ok }
@@ -307,8 +308,7 @@ export function generateBundlerConfig(args: GenerateBundlerConfigArgs = {}): {
  * publish from a local machine.
  */
 export function isCiEnvironment(): boolean {
-  const truthy = (v: string | undefined) =>
-    !!v && v !== 'false' && v !== '0'
+  const truthy = (v: string | undefined) => !!v && v !== 'false' && v !== '0'
   return truthy(process.env.EAS_BUILD) || truthy(process.env.CI)
 }
 
@@ -328,9 +328,7 @@ export function maybeGenerateBundlerConfigOnInstall(
   // detect expo-updates via the project's own resolver — same check used
   // by the vxrn expo-plugin and one prebuild
   try {
-    nodeModule
-      .createRequire(cwd + '/')
-      .resolve('expo-updates/package.json')
+    nodeModule.createRequire(cwd + '/').resolve('expo-updates/package.json')
   } catch {
     return
   }

@@ -22,7 +22,9 @@ describe('one patch', () => {
 
   it('applies built-in patches when a native-only app has no vite config', async () => {
     loadUserOneOptionsMock.mockRejectedValueOnce(
-      new Error('No config config in /tmp/native-only-app. Is this the correct directory?')
+      new Error(
+        'No config config in /tmp/native-only-app. Is this the correct directory?'
+      )
     )
 
     await run({})

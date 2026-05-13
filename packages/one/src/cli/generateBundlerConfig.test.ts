@@ -51,7 +51,7 @@ describe('generateBundlerConfig', () => {
   it('refuses to overwrite a customized file without --force', () => {
     fs.writeFileSync(
       path.join(tmpDir, 'babel.config.cjs'),
-      "// hand-written\nmodule.exports = { presets: [] }\n"
+      '// hand-written\nmodule.exports = { presets: [] }\n'
     )
 
     const { ok, results } = generateBundlerConfig({ cwd: tmpDir, quiet: true })
@@ -68,7 +68,7 @@ describe('generateBundlerConfig', () => {
   it('overwrites a customized file when --force is set', () => {
     fs.writeFileSync(
       path.join(tmpDir, 'babel.config.cjs'),
-      "// hand-written\nmodule.exports = { presets: [] }\n"
+      '// hand-written\nmodule.exports = { presets: [] }\n'
     )
 
     const { results } = generateBundlerConfig({
@@ -181,7 +181,8 @@ describe('generateBundlerConfig', () => {
 
     const { results } = generateBundlerConfig({ cwd: tmpDir, quiet: true })
     const babelResult = results.find(
-      (r) => r.filePath.endsWith('babel.config.js') || r.filePath.endsWith('babel.config.cjs')
+      (r) =>
+        r.filePath.endsWith('babel.config.js') || r.filePath.endsWith('babel.config.cjs')
     )!
 
     expect(babelResult.action).toBe('skipped-other-format')

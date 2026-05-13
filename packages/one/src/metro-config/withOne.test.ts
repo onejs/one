@@ -112,9 +112,7 @@ describe('withOne', () => {
     const fixtureRoot = createOneFixtureProject()
     const config = (await withOne(fixtureRoot)) as any
 
-    expect(config.resolver.extraNodeModules['fixture-singleton']).toBe(
-      fixtureRoot
-    )
+    expect(config.resolver.extraNodeModules['fixture-singleton']).toBe(fixtureRoot)
     expect(config.watchFolders).toContain(path.join(fixtureRoot, 'shared'))
   })
 })

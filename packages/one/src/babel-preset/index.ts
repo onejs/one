@@ -203,7 +203,11 @@ function buildStandaloneImportMetaEnv(): Record<string, unknown> {
     SSR: false,
   }
   for (const [key, value] of Object.entries(process.env)) {
-    if (key.startsWith('EXPO_PUBLIC_') || key.startsWith('ONE_') || key.startsWith('VITE_')) {
+    if (
+      key.startsWith('EXPO_PUBLIC_') ||
+      key.startsWith('ONE_') ||
+      key.startsWith('VITE_')
+    ) {
       env[key] = value
     }
   }
@@ -241,7 +245,10 @@ export function buildRouterRequireContextRegexString(
           : `Unsupported regex "${reSource}" in "ignoredRouteFiles".`
       )
     }
-    const inner = reSource.slice(mustStartWith.length, reSource.length - mustEndWith.length)
+    const inner = reSource.slice(
+      mustStartWith.length,
+      reSource.length - mustEndWith.length
+    )
     // biome-ignore lint/complexity/noUselessStringRaw: keep original code
     return String.raw`(?:.*${inner})`
   })
