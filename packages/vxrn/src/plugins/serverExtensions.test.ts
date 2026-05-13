@@ -1,6 +1,13 @@
 import { describe, expect, it, vi } from 'vitest'
 import type { PluginOption } from 'vite'
 
+// vi.spyOn on `node:fs` exports throws in ESM; use vi.mock factory instead
+const existsSyncMock = vi.fn<(path: any) => boolean>(() => false)
+vi.mock('node:fs', async (importOriginal) => {
+  const original = (await importOriginal()) as object
+  return { ...original, existsSync: (path: any) => existsSyncMock(path) }
+})
+
 async function getPlatformResolvePlugin() {
   const { getBaseVitePlugins } = await import('../config/getBaseVitePlugins')
   const plugins = getBaseVitePlugins() as PluginOption[]
@@ -20,6 +27,9 @@ async function getPlatformResolvePlugin() {
   return plugin
 }
 
+// Vite's config hook destructures `command` from arg 2
+const SERVE_HOOK_OPTS = { command: 'serve' as const, mode: 'development' }
+
 function createMockContext(envName: string, resolvedId?: string) {
   return {
     resolve: vi.fn().mockResolvedValue(resolvedId ? { id: resolvedId } : null),
@@ -33,8 +43,7 @@ describe('platform-specific-resolve', () => {
       const plugin = await getPlatformResolvePlugin()
       const resolveId = plugin.resolveId as Function
 
-      const FSExtra = await import('fs-extra')
-      vi.spyOn(FSExtra.default, 'pathExists').mockImplementation(async (path: any) => {
+      existsSyncMock.mockImplementation((path: any) => {
         return String(path).includes('.server.')
       })
 
@@ -50,8 +59,7 @@ describe('platform-specific-resolve', () => {
       const plugin = await getPlatformResolvePlugin()
       const resolveId = plugin.resolveId as Function
 
-      const FSExtra = await import('fs-extra')
-      vi.spyOn(FSExtra.default, 'pathExists').mockImplementation(async (path: any) => {
+      existsSyncMock.mockImplementation((path: any) => {
         return String(path).includes('.web.')
       })
 
@@ -87,8 +95,7 @@ describe('platform-specific-resolve', () => {
       const plugin = await getPlatformResolvePlugin()
       const resolveId = plugin.resolveId as Function
 
-      const FSExtra = await import('fs-extra')
-      vi.spyOn(FSExtra.default, 'pathExists').mockResolvedValue(false as any)
+      existsSyncMock.mockReturnValue(false)
 
       const ctx = createMockContext('ssr', '/src/db.server.ts')
       // should not throw
@@ -102,7 +109,7 @@ describe('platform-specific-resolve', () => {
   describe('config extensions', () => {
     it('ssr includes .server extensions', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const config = (plugin.config as Function)()
+      const config = (plugin.config as Function)({}, SERVE_HOOK_OPTS)
 
       const ssrExts = config.environments.ssr.resolve.extensions
       expect(ssrExts).toContain('.server.ts')
@@ -112,7 +119,7 @@ describe('platform-specific-resolve', () => {
 
     it('client does not include .server extensions', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const config = (plugin.config as Function)()
+      const config = (plugin.config as Function)({}, SERVE_HOOK_OPTS)
 
       const clientExts = config.environments.client.resolve.extensions
       expect(clientExts).not.toContain('.server.ts')

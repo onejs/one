@@ -53,6 +53,7 @@
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
+    "test": "vitest run --dir src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -8,7 +8,9 @@
 
 import { basename, dirname, extname, join, relative, resolve } from 'node:path'
 import { existsSync, readFileSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
+import { normalizePath } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 
@@ -557,8 +559,8 @@ const VIRTUAL_NATIVE_ENTRY = 'virtual:native-entry'
 
 function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugin {
   const isDev = opts?.dev !== false
-  // resolve to an absolute path rooted in the project so import.meta.glob('./app/...') resolves correctly
-  const resolvedId = resolve(root, '__virtual-native-entry.tsx')
+  // absolute for import.meta.glob resolution; forward-slash for module-graph convention
+  const resolvedId = normalizePath(resolve(root, '__virtual-native-entry.tsx'))
 
   // read config passed from One's vite plugin via globalThis
   const entryConfig = (globalThis as any).__vxrnNativeEntryConfig || {}
@@ -573,7 +575,8 @@ function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugi
     // resolve which file to use for ios (covers both formats)
     const file = typeof sf === 'string' ? sf : 'native' in sf ? sf.native : sf.ios
     if (!file) return ''
-    const resolved = resolve(root, file)
+    // file:// URL is the canonical specifier; bare Windows absolute path is not
+    const resolved = pathToFileURL(resolve(root, file)).href
     return `import ${JSON.stringify(resolved)};`
   })()
 
