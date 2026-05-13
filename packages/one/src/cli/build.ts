@@ -958,9 +958,21 @@ export async function build(args: {
         ...(clientManifestEntry
           ? collectImports(clientManifestEntry, { type: 'css' }).map((path) => `/${path}`)
           : []),
-        // root-level css (handles cssCodeSplit: false)
+        // root-level css for cssCodeSplit: false (vite emits a single
+        // top-level `style.css` entry whose `src` equals `style.css`). when
+        // cssCodeSplit is true (default), the manifest also contains a
+        // per-component css entry for every chunk that ships any css — those
+        // are owned by their JS chunk and must NOT be injected globally, or
+        // every SSG page ends up preloading every css chunk in the project
+        // (the prod /download was loading 23 stylesheets with editor/IDE
+        // chunks despite being a marketing route).
         ...Object.entries(vxrnOutput.clientManifest)
-          .filter(([key]) => key.endsWith('.css'))
+          .filter(([key, entry]) => {
+            if (!key.endsWith('.css')) return false
+            const src = (entry as ClientManifestEntry & { src?: string }).src
+            // bundled-merge css from cssCodeSplit: false uses `src: "style.css"`.
+            return src === 'style.css'
+          })
           .map(([, entry]) => `/${(entry as ClientManifestEntry).file}`),
       ]),
     ]
