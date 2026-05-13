@@ -63,7 +63,9 @@ describe('one/babel-preset integration', () => {
 
     expect(result?.code).toBeTruthy()
     // placeholders must be replaced
-    expect(result?.code).not.toContain('process.env.ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY')
+    expect(result?.code).not.toContain(
+      'process.env.ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY'
+    )
     expect(result?.code).not.toContain('process.env.ONE_ROUTER_ROOT_FOLDER_NAME')
     expect(result?.code).not.toContain(
       'process.env.ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING'

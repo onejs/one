@@ -184,7 +184,6 @@ const plugin = (config, options = {}) => {
   ])
 }
 
-
 /**
  * RN disables Metro minification for iOS Hermes Release, expecting
  * hermesc -O to handle bytecode optimization. For large One/VxRN bundles

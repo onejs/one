@@ -116,7 +116,9 @@ describe('buildOneBabelPlugins', () => {
       ONE_SETUP_FILE_NATIVE: undefined,
     })
     expect(typeof oneRouterMetro[1].ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY).toBe('string')
-    expect(typeof oneRouterMetro[1].ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING).toBe('string')
+    expect(typeof oneRouterMetro[1].ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING).toBe(
+      'string'
+    )
 
     expect(plugins[4]).toBe('one/babel-plugin-inline-one-server-url')
   })

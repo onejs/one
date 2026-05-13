@@ -96,10 +96,7 @@ function currentUrlHasDynamicParams(
   const currentPath = window.location.pathname + window.location.search
   const currentState = getStateFromPath(currentPath, config)
   const currentRoute = currentState ? findFocusedRoute(currentState) : undefined
-  return (
-    currentRoute?.name === route.name &&
-    !hasMissingDynamicParams(currentRoute)
-  )
+  return currentRoute?.name === route.name && !hasMissingDynamicParams(currentRoute)
 }
 
 /**
@@ -655,11 +652,7 @@ export function useLinking(
       if (
         route &&
         hasMissingDynamicParams(route) &&
-        currentUrlHasDynamicParams(
-          route,
-          getStateFromPathRef.current,
-          configRef.current
-        )
+        currentUrlHasDynamicParams(route, getStateFromPathRef.current, configRef.current)
       ) {
         if (process.env.ONE_DEBUG_ROUTER) {
           console.info(

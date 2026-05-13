@@ -98,13 +98,10 @@ export async function withOne(
     root: path.resolve(loaded?.config?.config?.root ?? projectRoot),
   } as any
 
-  const { defaultConfig } = await buildMetroConfigInputFromViteConfig(
-    viteConfig,
-    {
-      ...metroPluginOptions,
-      mainModuleName: 'one/metro-entry',
-    }
-  )
+  const { defaultConfig } = await buildMetroConfigInputFromViteConfig(viteConfig, {
+    ...metroPluginOptions,
+    mainModuleName: 'one/metro-entry',
+  })
 
   return defaultConfig
 }
