@@ -173,8 +173,8 @@ const plugin = (config, options = {}) => {
           if (next !== podfile) {
             fs.writeFileSync(podfilePath, next, 'utf8')
             console.info(
-              '[vxrn] patched Podfile to skip expo-updates Expo Metro invocation\n' +
-                '       to disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in ios/Podfile.properties.json'
+              '[vxrn] patched Podfile to generate the EXUpdates embedded manifest with EXPO_NO_METRO_WORKSPACE_ROOT=1\n' +
+                '       to disable patch entirely: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in ios/Podfile.properties.json'
             )
           }
           return config
@@ -653,19 +653,32 @@ function injectSwift6WorkaroundIntoPodfile(podfile) {
 
 /**
  * Replace the EXUpdates pod's "Generate updates resources for expo-updates"
- * Xcode build phase with one that writes a minimal embedded manifest and sets
- * SKIP_BUNDLING=1.
+ * Xcode build phase. The wrapped script exports
+ * `EXPO_NO_METRO_WORKSPACE_ROOT=1` and runs Expo's real
+ * `create-updates-resources-ios.sh`, producing an `app.manifest` whose
+ * `nsBundleDir`/`nsBundleFilename` entries match the asset paths vxrn's
+ * iOS bundler writes into the `.app`. `expo-asset`'s runtime transformer
+ * then resolves project-local `require()`'d assets to real local file
+ * URIs.
  *
- * Why: expo-updates' shell script runs Expo Metro on the JS entry to produce
- * `app.manifest`. Under One/VxRN, release bundling is routed through the
- * react-native CLI override so One's router transforms are wired; Expo Metro
- * doesn't see those transforms and (on monorepos) often can't even resolve the
- * entry. The wrapped script still runs the original so fingerprint/resource
- * side-effects fire — only the Metro bundle step is skipped.
+ * For this to actually produce non-blank URIs the app's Metro config
+ * also needs to pin `server.unstable_serverRoot` to `projectRoot` for
+ * release-shaped native bundles. Without that, vxrn writes assets at
+ * workspace-rooted paths while the manifest points at project-rooted
+ * paths and the mismatch leaves project-local images blank. `node_modules`
+ * assets resolve correctly either way.
  *
- * Disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in
- * ios/Podfile.properties.json.
+ * Disable the patch entirely: set
+ * `"one.disableExpoUpdatesIosShellScriptPatch": "true"` in
+ * `ios/Podfile.properties.json`. The upstream script will then run
+ * untouched, which on most pnpm monorepos fails to resolve the One entry
+ * file and aborts the build.
+ *
+ * See the "Monorepo asset resolution" section of the OTA Updates docs for
+ * the full picture (server-root pinning + this manifest mode together).
  */
+// Preserved verbatim so existing patched Podfiles re-trigger the idempotency
+// check on next pod install instead of getting the patch injected twice.
 const EXPO_UPDATES_METRO_SKIP_MARKER =
   '# [vxrn/one] skip expo-updates Expo Metro for embedded manifest'
 
@@ -701,9 +714,12 @@ function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
           fi
 
           mkdir -p "$RESOURCE_DEST"
-          "\${NODE_BINARY:-node}" -e "const c=require('node:crypto');const f=require('node:fs');f.writeFileSync(process.argv[1],JSON.stringify({id:c.randomUUID(),commitTime:Date.now(),assets:[]}))" "$RESOURCE_DEST/app.manifest"
 
-          export SKIP_BUNDLING=1
+          # generate a real EXUpdates manifest. requires the app's Metro
+          # config to pin server.unstable_serverRoot to the project root
+          # for release-shaped native bundles; otherwise asset paths in
+          # the manifest won't match what vxrn writes into the .app.
+          export EXPO_NO_METRO_WORKSPACE_ROOT=1
 
           #{original_script}
         SCRIPT

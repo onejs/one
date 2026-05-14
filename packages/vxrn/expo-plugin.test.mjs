@@ -49,14 +49,15 @@ describe('injectHermesMinificationPatchIntoPodfile', () => {
 })
 
 describe('injectExpoUpdatesIosResourcesPatchIntoPodfile', () => {
-  it('injects the marker and patches the EXUpdates resources phase', () => {
+  it('patches the EXUpdates resources phase to generate a real manifest', () => {
     const out = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile)
 
     expect(out).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
     expect(out).toContain("target.name == 'EXUpdates'")
     expect(out).toContain('Generate updates resources for expo-updates')
-    expect(out).toContain('SKIP_BUNDLING=1')
-    expect(out).toContain('app.manifest')
+    expect(out).toContain('export EXPO_NO_METRO_WORKSPACE_ROOT=1')
+    expect(out).not.toContain('SKIP_BUNDLING=1')
+    expect(out).not.toMatch(/assets:\[\]/)
   })
 
   it('is idempotent', () => {
