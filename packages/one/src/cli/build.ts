@@ -272,21 +272,30 @@ import {
 
 installPrepareStackTraceGuard()
 
-process.on('uncaughtException', (err) => {
-  try {
-    process.stderr.write(`[one build] uncaught exception\n${formatErrorSafely(err)}\n`)
-  } catch {}
-  process.exit(1)
-})
-
-process.on('unhandledRejection', (reason) => {
-  try {
-    process.stderr.write(
-      `[one build] unhandled rejection\n${formatErrorSafely(reason)}\n`
-    )
-  } catch {}
-  process.exit(1)
-})
+// these handlers must only attach when `build` is actually invoked. attaching
+// them at module load leaks into `one dev`, because `one/vite` re-exports from
+// this file — and dev intentionally does NOT exit on unhandled rejection (see
+// dev.ts). a stray rejection from expo's manifest middleware (client closing
+// the connection mid-stream) was killing the dev server.
+let buildErrorHandlersInstalled = false
+function installBuildErrorHandlers() {
+  if (buildErrorHandlersInstalled) return
+  buildErrorHandlersInstalled = true
+  process.on('uncaughtException', (err) => {
+    try {
+      process.stderr.write(`[one build] uncaught exception\n${formatErrorSafely(err)}\n`)
+    } catch {}
+    process.exit(1)
+  })
+  process.on('unhandledRejection', (reason) => {
+    try {
+      process.stderr.write(
+        `[one build] unhandled rejection\n${formatErrorSafely(reason)}\n`
+      )
+    } catch {}
+    process.exit(1)
+  })
+}
 
 const HOOK_KEYS = [
   'resolveId',
@@ -327,6 +336,7 @@ export async function build(args: {
   platform?: 'ios' | 'web' | 'android'
   skipEnv?: boolean
 }) {
+  installBuildErrorHandlers()
   process.env.IS_VXRN_CLI = 'true'
 
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
