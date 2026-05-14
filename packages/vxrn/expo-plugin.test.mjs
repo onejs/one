@@ -49,19 +49,41 @@ describe('injectHermesMinificationPatchIntoPodfile', () => {
 })
 
 describe('injectExpoUpdatesIosResourcesPatchIntoPodfile', () => {
-  it('injects the marker and patches the EXUpdates resources phase', () => {
+  it('defaults to real-manifest mode', () => {
     const out = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile)
 
     expect(out).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
     expect(out).toContain("target.name == 'EXUpdates'")
     expect(out).toContain('Generate updates resources for expo-updates')
-    expect(out).toContain('SKIP_BUNDLING=1')
-    expect(out).toContain('app.manifest')
+    expect(out).toContain('export EXPO_NO_METRO_WORKSPACE_ROOT=1')
+    expect(out).not.toContain('SKIP_BUNDLING=1')
+    expect(out).not.toMatch(/assets:\[\]/)
   })
 
-  it('is idempotent', () => {
+  it('falls back to empty-placeholder mode when generateRealManifest is false', () => {
+    const out = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile, {
+      generateRealManifest: false,
+    })
+
+    expect(out).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
+    expect(out).toContain('SKIP_BUNDLING=1')
+    expect(out).toContain('assets:[]')
+    expect(out).not.toContain('EXPO_NO_METRO_WORKSPACE_ROOT')
+  })
+
+  it('is idempotent in the default mode', () => {
     const once = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile)
     const twice = injectExpoUpdatesIosResourcesPatchIntoPodfile(once)
+    expect(twice).toBe(once)
+  })
+
+  it('is idempotent in empty-placeholder mode too', () => {
+    const once = injectExpoUpdatesIosResourcesPatchIntoPodfile(samplePodfile, {
+      generateRealManifest: false,
+    })
+    const twice = injectExpoUpdatesIosResourcesPatchIntoPodfile(once, {
+      generateRealManifest: false,
+    })
     expect(twice).toBe(once)
   })
 

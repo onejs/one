@@ -168,13 +168,29 @@ const plugin = (config, options = {}) => {
             return config
           }
 
+          // default: generate a real EXUpdates manifest so project-local
+          // require()'d assets resolve at runtime. opt-out for callers who
+          // need the legacy empty-placeholder behavior (e.g. apps without
+          // expo-updates fully wired or with very large bundles where the
+          // extra Metro invocation in the build phase is unacceptable).
+          const useEmptyManifest = getPodfilePropsOptOut(
+            propsPath,
+            'one.useEmptyExpoUpdatesManifest'
+          )
+
           const podfile = fs.readFileSync(podfilePath, 'utf8')
-          const next = injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile)
+          const next = injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile, {
+            generateRealManifest: !useEmptyManifest,
+          })
           if (next !== podfile) {
             fs.writeFileSync(podfilePath, next, 'utf8')
             console.info(
-              '[vxrn] patched Podfile to skip expo-updates Expo Metro invocation\n' +
-                '       to disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in ios/Podfile.properties.json'
+              useEmptyManifest
+                ? '[vxrn] patched Podfile to write empty EXUpdates manifest (legacy mode)\n' +
+                  '       to switch to real-manifest mode: remove "one.useEmptyExpoUpdatesManifest" from ios/Podfile.properties.json'
+                : '[vxrn] patched Podfile to generate real EXUpdates manifest\n' +
+                  '       to fall back to empty placeholder: set "one.useEmptyExpoUpdatesManifest": "true" in ios/Podfile.properties.json\n' +
+                  '       to disable patch entirely: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in ios/Podfile.properties.json'
             )
           }
           return config
@@ -653,26 +669,72 @@ function injectSwift6WorkaroundIntoPodfile(podfile) {
 
 /**
  * Replace the EXUpdates pod's "Generate updates resources for expo-updates"
- * Xcode build phase with one that writes a minimal embedded manifest and sets
- * SKIP_BUNDLING=1.
+ * Xcode build phase. Two modes:
  *
- * Why: expo-updates' shell script runs Expo Metro on the JS entry to produce
- * `app.manifest`. Under One/VxRN, release bundling is routed through the
- * react-native CLI override so One's router transforms are wired; Expo Metro
- * doesn't see those transforms and (on monorepos) often can't even resolve the
- * entry. The wrapped script still runs the original so fingerprint/resource
- * side-effects fire — only the Metro bundle step is skipped.
+ *  - Default (`generateRealManifest=true`): run Expo's real
+ *    `create-updates-resources-ios.sh` with `EXPO_NO_METRO_WORKSPACE_ROOT=1`
+ *    so the generated `app.manifest`'s `nsBundleDir`/`nsBundleFilename`
+ *    entries match the asset paths vxrn's iOS bundler writes into the
+ *    `.app`. expo-asset's runtime transformer then resolves project-local
+ *    `require()`'d assets to real local file URIs. For this to work end to
+ *    end the app's Metro config also needs to pin `server.unstable_serverRoot`
+ *    to `projectRoot` for release-shaped native bundles, otherwise vxrn
+ *    writes assets at workspace-rooted paths while the manifest points at
+ *    project-rooted paths and the mismatch leaves project-local images
+ *    blank (same outcome as legacy mode below, but with no build-time
+ *    regression). `node_modules` assets resolve correctly either way.
  *
- * Disable: set "one.disableExpoUpdatesIosShellScriptPatch": "true" in
- * ios/Podfile.properties.json.
+ *  - Legacy (`generateRealManifest=false`): write a minimal empty
+ *    `{ assets: [] }` app.manifest and run the original script with
+ *    SKIP_BUNDLING=1 so only its fingerprint/resource side-effects fire.
+ *    Faster (no extra Metro server startup in the build phase), but every
+ *    project-local `require()`'d asset resolves to `uri:""` at runtime.
+ *    Only choose this if you have no project-local assets, or you have a
+ *    JS-side onError fallback for every image, or the extra Metro
+ *    invocation in the build phase is unacceptable.
+ *
+ * Disable the patch entirely: set
+ * `"one.disableExpoUpdatesIosShellScriptPatch": "true"` in
+ * `ios/Podfile.properties.json`. The upstream script will then run
+ * untouched, which on most pnpm monorepos fails to resolve the One entry
+ * file and aborts the build.
+ *
+ * Opt into the legacy empty-placeholder mode: set
+ * `"one.useEmptyExpoUpdatesManifest": "true"` in
+ * `ios/Podfile.properties.json`.
+ *
+ * See the "Monorepo asset resolution" section of the OTA Updates docs for
+ * the full picture (server-root pinning + this manifest mode together).
  */
+// Preserved verbatim so existing patched Podfiles re-trigger the idempotency
+// check on next pod install instead of getting the patch injected twice.
 const EXPO_UPDATES_METRO_SKIP_MARKER =
   '# [vxrn/one] skip expo-updates Expo Metro for embedded manifest'
 
-function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
+function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile, options = {}) {
   if (podfile.includes(EXPO_UPDATES_METRO_SKIP_MARKER)) {
     return podfile
   }
+
+  // default to real-manifest mode. legacy empty-placeholder mode is only
+  // produced when the caller explicitly passes generateRealManifest: false.
+  const generateRealManifest = options.generateRealManifest !== false
+
+  // shell snippet that produces app.manifest before the upstream script runs.
+  // either an empty placeholder + SKIP_BUNDLING=1 (default), or a real manifest
+  // gated on EXPO_NO_METRO_WORKSPACE_ROOT so Expo Metro can resolve the entry.
+  const prelude = generateRealManifest
+    ? `          # [vxrn/one] opt-in: generate real EXUpdates manifest. requires
+          # the app's Metro config to pin server.unstable_serverRoot to the
+          # project root for release-shaped native bundles; otherwise asset
+          # paths in the manifest won't match what vxrn writes into the .app.
+          export EXPO_NO_METRO_WORKSPACE_ROOT=1`
+    : `          # default: write an empty manifest and skip the bundle step.
+          # project-local require()'d assets will resolve to uri:"" at runtime.
+          # set "one.generateExpoUpdatesManifest": "true" in
+          # ios/Podfile.properties.json to switch to real-manifest mode.
+          "\${NODE_BINARY:-node}" -e "const c=require('node:crypto');const f=require('node:fs');f.writeFileSync(process.argv[1],JSON.stringify({id:c.randomUUID(),commitTime:Date.now(),assets:[]}))" "$RESOURCE_DEST/app.manifest"
+          export SKIP_BUNDLING=1`
 
   const patch = `
     ${EXPO_UPDATES_METRO_SKIP_MARKER}
@@ -701,9 +763,8 @@ function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
           fi
 
           mkdir -p "$RESOURCE_DEST"
-          "\${NODE_BINARY:-node}" -e "const c=require('node:crypto');const f=require('node:fs');f.writeFileSync(process.argv[1],JSON.stringify({id:c.randomUUID(),commitTime:Date.now(),assets:[]}))" "$RESOURCE_DEST/app.manifest"
 
-          export SKIP_BUNDLING=1
+${prelude}
 
           #{original_script}
         SCRIPT

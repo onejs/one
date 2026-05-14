@@ -86,6 +86,81 @@ Only publish OTA updates for changes that don't touch the native binary:
 
 For those, bump your app `version`, build a fresh TestFlight/Play binary, and only then publish OTA updates against the new runtime. The `appVersion` strategy (supported by both libraries) gates delivery so devices on the old version don't receive incompatible updates.
 
+## Monorepo asset resolution
+
+In a pnpm/yarn workspace, Metro's `projectRoot`, `watchFolders`, and `server.unstable_serverRoot` need to agree on which directory your app lives in. When they disagree, project-local assets (`apps/<your-app>/assets/logo.png` referenced via `require('./assets/logo.png')`) can silently drop from the production native bundle — the file ships in the binary but its `AssetRegistry.registerAsset(...)` descriptor never makes it into the Hermes bundle, so `<Image source={require(...)} />` renders blank. Assets from `node_modules` keep registering because their paths are stable relative to whichever root Metro picks.
+
+Two settings keep this consistent for production-like builds:
+
+**1. Pin Metro's server root to your app directory** in `vite.config.ts`, scoped to production-shaped builds so dev isn't affected:
+
+```ts
+import { resolve } from 'node:path'
+import { one } from 'one/vite'
+
+const projectRoot = resolve(__dirname)
+const isProdLike =
+  process.env.NODE_ENV === 'production' || process.env.EAS_BUILD === 'true'
+
+export default {
+  root: projectRoot,
+  plugins: [
+    one({
+      native: {
+        bundler: 'metro',
+        bundlerOptions: {
+          argv: { projectRoot, cwd: projectRoot },
+          defaultConfigOverrides: (config) => ({
+            ...config,
+            projectRoot,
+            ...(isProdLike && {
+              server: {
+                ...config?.server,
+                unstable_serverRoot: projectRoot,
+              },
+            }),
+          }),
+        },
+      },
+    }),
+  ],
+}
+```
+
+`unstable_serverRoot` is a Metro internal field — name may change across Metro versions. Pin your Metro version if you depend on it.
+
+**2. Set `EXPO_NO_METRO_WORKSPACE_ROOT=1` in EAS production env** so Expo doesn't elevate `projectRoot` to the workspace root behind your back:
+
+```json
+// eas.json
+{
+  "build": {
+    "production": {
+      "env": {
+        "EXPO_NO_METRO_WORKSPACE_ROOT": "1"
+      }
+    }
+  }
+}
+```
+
+To verify after `expo export --platform ios`, the asset's content hash should appear as a filename in `dist/assets/` and as an entry in `dist/metadata.json` under `fileMetadata.ios.assets`. If a project-local asset is missing from `metadata.json` but the file you `require()` exists on disk, this is the symptom.
+
+**3. The iOS EXUpdates `app.manifest` already gets generated for you.** Without settings 1 and 2 above, vxrn's iOS Podfile patch can still run the upstream `create-updates-resources-ios.sh` to produce a real `EXUpdates.bundle/app.manifest` (with `nsBundleDir`/`nsBundleFilename` entries for every embedded asset). But the asset paths in the manifest only match what vxrn actually writes into the `.app` when the Metro server root is pinned to `projectRoot`. If they don't match, expo-asset's runtime transformer falls back to `uri:""` for project-local `require()`'d images and the logo renders blank in App Store / TestFlight builds. `node_modules` assets work either way.
+
+If you have a reason to skip the real manifest (very large bundles where the extra Metro server startup in the build phase is costly, or a project with no `require()`'d project-local images and a JS-side onError fallback for everything else), opt out:
+
+```json
+// ios/Podfile.properties.json
+{
+  "one.useEmptyExpoUpdatesManifest": "true"
+}
+```
+
+This restores the legacy `{ "assets": [] }` + `SKIP_BUNDLING=1` behavior.
+
+To verify the real manifest is working: locate the installed `.app/EXUpdates.bundle/app.manifest`, confirm `assets` is non-empty, and check that each entry's `nsBundleDir` + `nsBundleFilename` actually exists inside the `.app`. At runtime, a `console.log(Image.resolveAssetSource(require('./assets/logo.png')))` should return a `file://.../.expo-internal/<hash>.png` URI rather than `uri:""`.
+
 ## Publishing locally (expo-updates only)
 
 `eas update` from your own machine works the same way EAS workers run it — but One's auto-setup only fires when `CI=1` or `EAS_BUILD=true` is set, so your local working tree stays clean. After dependencies are installed, generate the same shims explicitly before publishing:
