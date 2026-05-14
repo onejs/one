@@ -266,7 +266,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-native": "0.83.2",
-    "rolldown": "^1.0.0-rc.17",
+    "rolldown": "^1.0.1",
     "sharp": "^0.34.5",
     "typescript": "^5.7.3",
     "vitest": "^4.1.0"
