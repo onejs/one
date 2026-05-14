@@ -1,6 +1,11 @@
 import { useParams, usePathname } from 'one'
 import { StyleSheet, Text, View } from 'react-native'
 
+// deep links resolve at runtime; nothing to pre-render
+export function generateStaticParams() {
+  return []
+}
+
 export default function DeepLinkScreen() {
   const params = useParams<{ id: string }>()
   const pathname = usePathname()
