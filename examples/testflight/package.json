@@ -53,6 +53,6 @@
     "@react-native-community/cli": "^20.1.2",
     "@tamagui/vite-plugin": "2.0.0-rc.40",
     "tsx": "^4.20.6",
-    "vite": "^8.0.0"
+    "vite": "^8.0.13"
   }
 }

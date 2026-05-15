@@ -88,7 +88,7 @@
     "pkg-types": "^1.0.3",
     "rolldown": "^1.0.1",
     "semver": "^7.6.3",
-    "vite": "^8.0.0",
+    "vite": "^8.0.13",
     "ws": "^8.18.0"
   },
   "devDependencies": {
