@@ -44,10 +44,10 @@
     "@tamagui/build": "2.0.0-rc.40",
     "depcheck": "^1.4.7",
     "rolldown": "^1.0.1",
-    "vite": "^8.0.0"
+    "vite": "^8.0.13"
   },
   "peerDependencies": {
-    "vite": "^8.0.0"
+    "vite": "^8.0.13"
   },
   "peerDependenciesMeta": {
     "vite": {
