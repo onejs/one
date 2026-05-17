@@ -3,6 +3,7 @@ import { debounce } from 'perfect-debounce'
 import type { Plugin } from 'vite'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
+import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import type { One } from '../types'
 
 export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): Plugin {
@@ -12,7 +13,7 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
     apply: 'serve',
 
     configureServer(server) {
-      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
+      const appDir = resolve(process.cwd(), getRouterRootFromOneOptions(options))
       // Generate routes.d.ts inside the app directory to keep it organized
       const outFile = join(appDir, 'routes.d.ts')
 
@@ -22,22 +23,20 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
-        if (type === 'add' || type === 'delete' || type === 'change') {
-          // resolve to absolute path since watcher may emit relative paths
-          const absolutePath = resolve(path)
-          // skip routes.d.ts itself to avoid infinite loop
-          if (absolutePath === outFile) {
-            return
-          }
-          if (absolutePath.startsWith(appDir)) {
-            // generate
-            generateRouteTypes(
-              outFile,
-              routerRoot,
-              options.router?.ignoredRouteFiles,
-              typedRoutesGeneration
-            )
-          }
+        if (
+          isRouteFileWatchEvent({
+            event: type,
+            filePath: path,
+            routerRoot: appDir,
+            includeChangeEvents: true,
+          })
+        ) {
+          generateRouteTypes(
+            outFile,
+            routerRoot,
+            options.router?.ignoredRouteFiles,
+            typedRoutesGeneration
+          )
         }
       }, 100)
 

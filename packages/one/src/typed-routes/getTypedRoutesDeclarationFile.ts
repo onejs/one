@@ -36,9 +36,9 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: ${setToUnionType(staticRoutes)}
-      DynamicRoutes: ${setToUnionType(dynamicRoutes)}
-      DynamicRouteTemplate: ${setToUnionType(dynamicRouteContextKeys)}
+      StaticRoutes:${setToUnionType(staticRoutes)}
+      DynamicRoutes:${setToUnionType(dynamicRoutes)}
+      DynamicRouteTemplate:${setToUnionType(dynamicRouteContextKeys)}
       IsTyped: true
       ${hasRoutes ? `RouteTypes: ${generateRouteTypesMap(dynamicRouteContextKeys)}` : ''}
     }
@@ -189,9 +189,9 @@ function addRouteNode(
  * Formats with one route per line for cleaner git diffs
  */
 const setToUnionType = <T>(set: Set<T>) => {
-  if (set.size === 0) return 'never'
+  if (set.size === 0) return ' never'
   const sorted = [...set].sort()
-  if (sorted.length === 1) return `\`${sorted[0]}\``
+  if (sorted.length === 1) return ` \`${sorted[0]}\``
   // format as multi-line union for cleaner diffs
   return '\n        | ' + sorted.map((s) => `\`${s}\``).join('\n        | ')
 }

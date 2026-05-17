@@ -6,7 +6,9 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/_sitemap` | `/specific`
+      StaticRoutes:
+        | `/`
+        | `/_sitemap`
       DynamicRoutes: `/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: `/[slug]`
       IsTyped: true
@@ -22,5 +24,5 @@ declare module 'one' {
  */
 type RouteInfo<Params = Record<string, never>> = {
   Params: Params
-  LoaderProps: { path: string; params: Params; request?: Request }
+  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
 }

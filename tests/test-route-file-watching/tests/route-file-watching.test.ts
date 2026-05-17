@@ -2,7 +2,9 @@ import { afterAll, afterEach, beforeAll, expect, test } from 'vitest'
 import { type Browser, type BrowserContext, chromium } from 'playwright'
 import {
   cleanupCreatedFiles,
+  createAppFile,
   createRouteFile,
+  deleteAppFile,
   renameRouteFile,
   deleteRouteFile,
   specificRouteContent,
@@ -167,6 +169,27 @@ test('deleting static route falls back to dynamic [slug]', { retry: 3 }, async (
     { timeout: 10000 }
   )
   expect(await page.getByTestId('route-type').textContent()).toBe('dynamic')
+
+  await page.close()
+})
+
+test('ignores non-route add and delete events in the app directory', async () => {
+  const page = await context.newPage()
+
+  await page.goto(serverUrl + '/specific')
+  const routeType = await page.getByTestId('route-type')
+  expect(await routeType.textContent()).toBe('dynamic')
+
+  createAppFile('tamagui.generated.css', 'body { color: rgb(1, 2, 3); }\n')
+  await page.waitForTimeout(500)
+  deleteAppFile('tamagui.generated.css')
+  await page.waitForTimeout(500)
+  createAppFile('tamagui.generated.css', 'body { color: rgb(3, 2, 1); }\n')
+  await page.waitForTimeout(500)
+
+  const response = await page.goto(serverUrl + '/specific')
+  expect(response?.ok()).toBe(true)
+  expect(await routeType.textContent()).toBe('dynamic')
 
   await page.close()
 })
