@@ -14,6 +14,7 @@ import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOpt
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
@@ -524,6 +525,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     )
   }
 
+  function recreateRequestHandler(changedPath: string) {
+    try {
+      handleRequest = createRequestHandler()
+    } catch (error) {
+      console.warn(`[one] Failed to rebuild routes after ${changedPath} changed.`, error)
+    }
+  }
+
   return {
     name: `one-router-fs`,
     enforce: 'post',
@@ -585,21 +594,20 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         USE_SERVER_ENV ? server.environments.server : server.environments.ssr
       )
 
-      const appDir = path.join(process.cwd(), getRouterRootFromOneOptions(options))
+      const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
-      const fileWatcherChangeListener = debounce(
-        async (type: string, changedPath: string) => {
-          if (type === 'add' || type === 'delete') {
-            // resolve to absolute path since watcher may emit relative paths
-            const absolutePath = path.resolve(changedPath)
-            if (absolutePath.startsWith(appDir)) {
-              handleRequest = createRequestHandler()
-            }
-          }
-        },
-        100
-      )
+      const fileWatcherChangeListener = debounce((type: string, changedPath: string) => {
+        if (
+          isRouteFileWatchEvent({
+            event: type,
+            filePath: changedPath,
+            routerRoot: appDir,
+          })
+        ) {
+          recreateRequestHandler(changedPath)
+        }
+      }, 100)
 
       server.watcher.addListener('all', fileWatcherChangeListener)
 

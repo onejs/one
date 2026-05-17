@@ -10,6 +10,10 @@ export const appDir = path.join(root, 'app')
 const createdFilesJsonPath = path.join(root, '_created_files.json')
 
 export function createRouteFile(fileName: string, content: string) {
+  createAppFile(fileName, content)
+}
+
+export function createAppFile(fileName: string, content: string) {
   const filePath = path.join(appDir, fileName)
 
   if (FSExtra.existsSync(filePath)) {
@@ -53,6 +57,10 @@ export function renameRouteFile(oldFileName: string, newFileName: string) {
 }
 
 export function deleteRouteFile(fileName: string) {
+  deleteAppFile(fileName)
+}
+
+export function deleteAppFile(fileName: string) {
   const filePath = path.join(appDir, fileName)
 
   if (!FSExtra.existsSync(filePath)) {

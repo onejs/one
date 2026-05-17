@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import FSExtra from 'fs-extra'
 import micromatch from 'micromatch'
@@ -33,8 +33,19 @@ export async function generateRouteTypes(
   const context = globbedRoutesToRouteContext(routes, routerRoot)
   const declarations = getTypedRoutesDeclarationFile(context)
   const outDir = dirname(outFile)
-  await FSExtra.ensureDir(outDir)
-  await writeFile(outFile, declarations)
+  let currentDeclarations: string | undefined
+  try {
+    currentDeclarations = await readFile(outFile, 'utf8')
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+      throw error
+    }
+  }
+
+  if (currentDeclarations !== declarations) {
+    await FSExtra.ensureDir(outDir)
+    await writeFile(outFile, declarations)
+  }
 
   // If experimental.typedRoutesGeneration is enabled, inject helpers into route files
   if (typedRoutesMode) {
