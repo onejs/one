@@ -115,4 +115,18 @@ describe('withOne', () => {
     expect(config.resolver.extraNodeModules['fixture-singleton']).toBe(fixtureRoot)
     expect(config.watchFolders).toContain(path.join(fixtureRoot, 'shared'))
   })
+
+  it('rewrites native default index bundle requests to the One entry', async () => {
+    const config = (await withOne(projectRoot, { loadViteConfig: false })) as any
+    const rewriteRequestUrl = config.server.rewriteRequestUrl
+
+    expect(
+      rewriteRequestUrl('/.expo/.virtual-metro-entry.bundle?platform=ios&dev=true')
+    ).toContain('/packages/one/metro-entry.bundle?platform=ios&dev=true')
+    expect(
+      rewriteRequestUrl('/index.bundle?platform=ios&dev=true&hot=true&minify=false')
+    ).toContain(
+      '/packages/one/metro-entry.bundle?platform=ios&dev=true&hot=true&minify=false'
+    )
+  })
 })

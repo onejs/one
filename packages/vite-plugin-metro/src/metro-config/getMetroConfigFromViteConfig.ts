@@ -20,6 +20,31 @@ type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
+const rootIndexBundleRequestPattern =
+  /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+
+function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
+  const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
+  return platform === 'android' ? 'android' : 'ios'
+}
+
+function rewriteMainModuleBundleUrl(
+  url: string,
+  resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string
+) {
+  const resolvedMainModulePath = resolveMainModuleName({
+    platform: getPlatformFromBundleUrl(url),
+  })
+
+  if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
+    return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+  }
+
+  return url.replace(
+    rootIndexBundleRequestPattern,
+    `$1/${resolvedMainModulePath}.bundle`
+  )
+}
 
 async function isWatchmanResponsive(projectRoot: string) {
   let probe = watchmanResponsivePromises.get(projectRoot)
@@ -124,9 +149,11 @@ export async function buildMetroConfigInputFromViteConfig(
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
-        const resolvedMainModulePath = resolveMainModuleName({ platform: 'ios' })
-        return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+      if (
+        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
+        rootIndexBundleRequestPattern.test(url)
+      ) {
+        return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
       return origRewriteRequestUrl(url)
     }
@@ -273,12 +300,11 @@ export async function getMetroConfigFromViteConfig(
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
-        const resolvedMainModulePath = resolveMainModuleName({
-          platform: 'ios', // we probably need to handle android here, but currently in our use case this won't affect the result
-        })
-
-        return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+      if (
+        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
+        rootIndexBundleRequestPattern.test(url)
+      ) {
+        return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
 
       return origRewriteRequestUrl(url)
