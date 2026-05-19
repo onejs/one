@@ -311,9 +311,7 @@ function setupLinkingAndRouteInfo(initialLocation?: URL, linking?: OneLinkingCon
   initialState = setupLinking(routeNode, initialLocation, linking)
 
   // capture the original pathname before React Navigation's linking can modify it
-  initialPathname =
-    initialLocation?.pathname ??
-    (typeof document !== 'undefined' ? window.location.pathname : undefined)
+  initialPathname = initialLocation?.pathname ?? getSafeWindowPathname()
 
   if (initialState) {
     rootState = initialState
@@ -598,9 +596,23 @@ function normalizePathname(pathname: string) {
   return pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
 }
 
+// RN runtimes (Expo/Hermes) can polyfill `document` while leaving
+// `window.location` undefined, so `typeof document` is not a safe web check.
+// the only reliable signal is an actual string pathname on window.location.
+export function getSafeWindowPathname(): string | undefined {
+  if (
+    typeof window === 'undefined' ||
+    !window.location ||
+    typeof window.location.pathname !== 'string'
+  ) {
+    return undefined
+  }
+  return window.location.pathname
+}
+
 function getBrowserPathname() {
-  if (typeof document === 'undefined') return undefined
-  return normalizePathname(window.location.pathname)
+  const pathname = getSafeWindowPathname()
+  return pathname === undefined ? undefined : normalizePathname(pathname)
 }
 
 function shouldKeepPendingNavigationState(currentState: OneRouter.ResultState) {
