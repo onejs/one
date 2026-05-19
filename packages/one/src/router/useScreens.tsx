@@ -78,7 +78,9 @@ export const { Screen, Group } = createNavigatorFactory({} as any)()
 // so hydration sees identical content without 100KB+ JSON payload.
 // Also captures <link> stylesheet elements for mixed inline/link CSS mode.
 const cachedInlineCSSElements: React.ReactNode[] =
-  typeof document !== 'undefined'
+  // require a real DOM query API, not just a (possibly polyfilled on
+  // Expo/Hermes) `document` global — see getSafeWindowPathname in router.ts
+  typeof document !== 'undefined' && typeof document.querySelectorAll === 'function'
     ? (() => {
         const elements: React.ReactNode[] = []
         // collect all SSR CSS elements in order (both inline <style> and <link>)
