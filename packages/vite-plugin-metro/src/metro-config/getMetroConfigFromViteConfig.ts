@@ -20,8 +20,7 @@ type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
-const rootIndexBundleRequestPattern =
-  /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
   const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
@@ -40,10 +39,7 @@ function rewriteMainModuleBundleUrl(
     return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
   }
 
-  return url.replace(
-    rootIndexBundleRequestPattern,
-    `$1/${resolvedMainModulePath}.bundle`
-  )
+  return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
 }
 
 async function isWatchmanResponsive(projectRoot: string) {

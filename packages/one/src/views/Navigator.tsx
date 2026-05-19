@@ -270,8 +270,7 @@ function QualifiedNavigator({
       if (hasScreen) return screenFromParent
     }
 
-    const browserPath =
-      lastIntendedPathname ?? initialPathname ?? getSafeWindowPathname()
+    const browserPath = lastIntendedPathname ?? initialPathname ?? getSafeWindowPathname()
     if (!browserPath) return undefined
 
     const resolved = resolveInitialRouteFromLinking(contextKey, browserPath)
