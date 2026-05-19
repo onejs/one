@@ -17,6 +17,7 @@ import { useContextKey } from '../router/Route'
 import { getResolvedLinking } from '../router/linkingConfig'
 import {
   routeNode as globalRouteNode,
+  getSafeWindowPathname,
   initialPathname,
   lastIntendedPathname,
 } from '../router/router'
@@ -270,9 +271,7 @@ function QualifiedNavigator({
     }
 
     const browserPath =
-      lastIntendedPathname ??
-      initialPathname ??
-      (typeof window !== 'undefined' ? window.location.pathname : undefined)
+      lastIntendedPathname ?? initialPathname ?? getSafeWindowPathname()
     if (!browserPath) return undefined
 
     const resolved = resolveInitialRouteFromLinking(contextKey, browserPath)

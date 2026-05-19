@@ -85,6 +85,7 @@ export declare function snapshot(): {
 };
 export declare function rootStateSnapshot(): OneRouter.ResultState;
 export declare function routeInfoSnapshot(): UrlObject;
+export declare function getSafeWindowPathname(): string | undefined;
 export declare function useOneRouter(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
