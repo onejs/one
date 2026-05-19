@@ -203,17 +203,9 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
   if (!outDir && FSExtra.existsSync('buildInfo.json')) {
     outDir = '.'
   }
-  if (!outDir) {
-    // Read `build.outDir` from vite.config. Lives in `./vite/loadConfig` so the
-    // `vite` import is in a file the build tool compiles cleanly (the same
-    // bare-package rewrite affects this file but not loadConfig).
-    try {
-      const { loadViteBuildOutDir } = await import('./vite/loadConfig')
-      outDir = await loadViteBuildOutDir()
-    } catch {
-      // No vite.config (or it failed to load); fall through to default.
-    }
-  }
+  // DIAG #703-A: bypass loadViteBuildOutDir entirely to isolate whether this
+  // call (even with IS_VXRN_CLI + globalThis isolation) is what's breaking the
+  // spa-shell-routing CI test.
   outDir = outDir || 'dist'
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
