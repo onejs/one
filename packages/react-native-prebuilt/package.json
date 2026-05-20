@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/react-native-prebuilt",
-  "version": "1.17.6",
+  "version": "1.17.9",
   "license": "MIT",
   "type": "module",
   "exports": {
