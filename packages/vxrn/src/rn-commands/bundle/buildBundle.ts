@@ -57,14 +57,10 @@ export async function buildBundle(
   if (metroBuildBundleFn) {
     console.info('Using @vxrn/vite-plugin-metro to build the bundle.')
     await metroBuildBundleFn(_argv, ctx, args, bundleImpl)
-
-    // Prevent the process not getting exited for some unknown reason.
-    // If the process is not exited, it might hang the native build process.
-    setTimeout(() => {
-      console.info('Exiting process to prevent hanging.')
-      process.exit()
-    }, 30000)
-
+    // metroBuildBundleFn calls ensureProcessExitsAfterDelay internally,
+    // which kills lingering child handles (esbuild --service) and lets
+    // the event loop drain naturally. no extra setTimeout needed —
+    // an unref'd timer here would itself keep the loop alive.
     return
   }
 
