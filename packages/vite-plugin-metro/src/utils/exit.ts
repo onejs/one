@@ -80,6 +80,13 @@ function attachMasterListener() {
  * Monitor if the current process is exiting before the delay is reached.
  * If there are active resources, the process will be forced to exit after the delay is reached.
  *
+ * When invoked under a parent process that waits on stdio pipe EOF (e.g. Gradle's
+ * `createBundleReleaseJsAndAssets` exec'ing this CLI), a plain process.exit() is
+ * not enough — orphaned child processes can keep the inherited stdio file
+ * descriptors open and the parent hangs until its own timeout. To avoid that,
+ * we kill any lingering child handles before exiting so the parent sees a clean
+ * EOF and proceeds immediately.
+ *
  * @see https://nodejs.org/docs/latest-v18.x/api/process.html#processgetactiveresourcesinfo
  */
 export function ensureProcessExitsAfterDelay(
@@ -115,8 +122,26 @@ export function ensureProcessExitsAfterDelay(
     unexpectedActiveResources
   )
 
-  // Check if the process needs to be force-closed
+  // if a lingering child process is keeping the loop alive, terminate it
+  // straight away — under Gradle exec, orphaned children hold inherited
+  // pipe FDs open and the parent (Gradle) never sees EOF. on first pass
+  // we SIGTERM (lets esbuild's service close cleanly); on subsequent
+  // passes we escalate to SIGKILL for anything still attached.
   const elapsedTime = Date.now() - startedAtMs
+  const killedChildren = killActiveChildProcesses(
+    elapsedTime < 200 ? 'SIGTERM' : 'SIGKILL'
+  )
+  if (killedChildren > 0) {
+    // give the OS a tick to reap the killed children, then re-check;
+    // if nothing else is holding the loop, node exits naturally with EOF
+    const recheck = setTimeout(() => {
+      clearTimeout(recheck)
+      ensureProcessExitsAfterDelay(waitUntilExitMs, startedAtMs)
+    }, 50)
+    return
+  }
+
+  // Check if the process needs to be force-closed
   if (elapsedTime > waitUntilExitMs) {
     debug(
       'active handles detected past the exit delay, forcefully exiting:',
@@ -132,6 +157,31 @@ export function ensureProcessExitsAfterDelay(
     // Check if the process can exit
     ensureProcessExitsAfterDelay(waitUntilExitMs, startedAtMs)
   }, 100)
+}
+
+/**
+ * Kill any child processes still attached to the current process. Returns the
+ * number of children that were signalled.
+ */
+function killActiveChildProcesses(signal: NodeJS.Signals): number {
+  try {
+    const children: ChildProcess[] = process
+      // @ts-expect-error internal API, but it's the only way to enumerate live handles
+      ._getActiveHandles()
+      .filter((handle: any) => handle instanceof ChildProcess)
+
+    for (const child of children) {
+      try {
+        child.kill(signal)
+      } catch (err) {
+        debug('failed to kill child process:', err)
+      }
+    }
+    return children.length
+  } catch (err) {
+    debug('failed to enumerate active child processes:', err)
+    return 0
+  }
 }
 
 /**
