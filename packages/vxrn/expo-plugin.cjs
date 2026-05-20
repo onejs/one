@@ -422,10 +422,15 @@ interface InjectedExecOps {
 
 def injected = objects.newInstance(InjectedExecOps)
 
+// capture rootDir as a String at configuration time so the doFirst
+// closure below does not reference a Gradle script object at execution
+// time, which is unsupported with --configuration-cache
+def rootDirString = rootDir.toString()
+
 gradle.taskGraph.whenReady { taskGraph ->
     tasks.named("createBundleReleaseJsAndAssets").configure {
         doFirst {
-            def vxrnCli = new File(["node", "--print", "require.resolve('vxrn/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsolutePath() + "/run.mjs"
+            def vxrnCli = new File(["node", "--print", "require.resolve('vxrn/package.json')"].execute(null, new File(rootDirString)).text.trim()).getParentFile().getAbsolutePath() + "/run.mjs"
             injected.execOps.exec {
                 commandLine "node", vxrnCli, "patch"
             }
