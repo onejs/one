@@ -1290,6 +1290,18 @@ export async function build(args: {
 
   await writeJSON(toAbsolute(`${outDir}/buildInfo.json`), buildInfoForWriting)
 
+  // Write a marker that lets `one serve` locate the build output without
+  // loading vite.config at runtime (see serve.ts for the side-effect story).
+  // Use node_modules/.cache so it's auto-gitignored and follows the standard
+  // tool-cache convention (vite, esbuild, swc all live under .cache). Best-
+  // effort: if node_modules isn't writable (read-only deploy environment, no
+  // node_modules at all), skip — the user can still pass --outDir explicitly.
+  try {
+    const buildPointerDir = toAbsolute('node_modules/.cache/one')
+    await ensureDir(buildPointerDir)
+    await writeJSON(join(buildPointerDir, 'build-pointer.json'), { outDir })
+  } catch {}
+
   // emit version.json for skew protection polling
   await FSExtra.writeFile(
     join(clientDir, 'version.json'),
