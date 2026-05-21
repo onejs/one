@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { TLSSocket } from 'node:tls'
 import type { PluginOption } from 'vite'
 
@@ -27,7 +28,8 @@ export function expoManifestRequestHandlerPlugin(
     //   projectRoot = config.root
     // },
     configureServer(server) {
-      const { root: projectRoot } = server.config
+      // mirrors metroPlugin.ts: Expo middleware expects native-separator projectRoot
+      const projectRoot = resolve(server.config.root)
 
       // Lazy load the ExpoGoManifestHandlerMiddleware to avoid blocking Vite startup
       let ExpoGoManifestHandlerMiddleware: any

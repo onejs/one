@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
 import { debounce } from 'perfect-debounce'
-import type { ViteDevServer } from 'vite'
+import { normalizePath, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
@@ -142,12 +142,14 @@ export default defineConfig({
           return
         }
 
-        // Skip dist files to avoid loops during builds
-        if (path.includes('/dist/') || path.includes('\\dist\\')) {
+        // chokidar emits native paths; viteServer.transformRequest expects POSIX URLs
+        const normalizedPath = normalizePath(path)
+        if (normalizedPath.includes('/dist/')) {
           return
         }
 
-        const id = path.replace(process.cwd(), '')
+        const normalizedCwd = normalizePath(process.cwd())
+        const id = normalizedPath.replace(normalizedCwd, '')
         if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
           return
         }

@@ -8,7 +8,7 @@ import {
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
-import { type Plugin, type PluginOption } from 'vite'
+import { normalizePath, type Plugin, type PluginOption } from 'vite'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
@@ -251,11 +251,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             } catch {}
           }
 
-          // for bare imports, map real path → node_modules path
-          const realPkgDir = realpathSync(nmPkgDir)
+          // resolved.id is POSIX (Vite's getRealPath normalizes); realpathSync returns native — normalize both
+          const realPkgDir = normalizePath(realpathSync(nmPkgDir))
           if (resolved.id.startsWith(realPkgDir)) {
             const relativePart = resolved.id.slice(realPkgDir.length)
-            return { id: nmPkgDir + relativePart, external: resolved.external }
+            return {
+              id: normalizePath(nmPkgDir) + relativePart,
+              external: resolved.external,
+            }
           }
           break
         }

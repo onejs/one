@@ -4,6 +4,8 @@ import { mkdtemp, rm, symlink } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+// 'junction' avoids Windows admin requirement; type ignored on POSIX
+
 // mock heavy deps that aren't needed for patch resolution tests
 vi.mock('@vxrn/compiler', () => ({ transformSWC: vi.fn() }))
 vi.mock('@vxrn/vite-flow', () => ({ transformFlowBabel: vi.fn() }))
@@ -141,12 +143,12 @@ describe('applyDependencyPatches', () => {
 
         // create symlink at top-level node_modules (like pnpm does when hoisted)
         const symlinkTarget = join(nm, 'test-pkg')
-        await symlink(storeDir, symlinkTarget, 'dir')
+        await symlink(storeDir, symlinkTarget, 'junction')
 
         // also create .pnpm/node_modules hoisted symlink
         const pnpmHoisted = join(nm, '.pnpm', 'node_modules', 'test-pkg')
         await FSExtra.ensureDir(join(nm, '.pnpm', 'node_modules'))
-        await symlink(storeDir, pnpmHoisted, 'dir')
+        await symlink(storeDir, pnpmHoisted, 'junction')
       },
     })
 
@@ -258,7 +260,7 @@ describe('applyDependencyPatches', () => {
 
         // hoisted symlink in .pnpm/node_modules
         await FSExtra.ensureDir(join(nm, '.pnpm', 'node_modules'))
-        await symlink(storeDir, join(nm, '.pnpm', 'node_modules', 'test-pkg'), 'dir')
+        await symlink(storeDir, join(nm, '.pnpm', 'node_modules', 'test-pkg'), 'junction')
       },
     })
 

@@ -112,7 +112,8 @@ export function resolveEditorFilePath(
   cwd = process.cwd(),
   fileExists: (path: string) => boolean = existsSync
 ): string {
-  const projectPath = path.join(cwd, filePath)
+  // mirror sibling getSourceInspectorPath which already normalizes
+  const projectPath = normalizePath(path.join(cwd, filePath))
 
   // data-one-source uses "/foo.tsx" for project-relative paths, but files outside
   // cwd are stored as absolute paths and must not be re-joined onto cwd.

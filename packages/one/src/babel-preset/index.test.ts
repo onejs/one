@@ -147,4 +147,24 @@ describe('buildOneBabelPlugins', () => {
     const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
     expect(oneRouterMetro[1].ONE_ROUTER_LINKING_CONFIG).toBe(linking)
   })
+
+  // both values are inlined by babel as JS literals — `ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY`
+  // becomes the first arg of `require.context()`, `ONE_SETUP_FILE_NATIVE` becomes the literal
+  // in `import "..."`. Native separators on Windows produce platform-conditional AST that
+  // breaks source-maps, snapshot tests, and rolldown/Vite POSIX module-graph keys.
+  it('emits forward-slash-only paths for `require.context` + `import` specifiers', () => {
+    const plugins = buildOneBabelPlugins({
+      projectRoot,
+      relativeRouterRoot: 'app',
+      setupFile: 'src/setup-native.ts',
+      includeImportMetaEnv: false,
+    })
+
+    const oneRouterMetro = plugins[3] as [string, Record<string, unknown>]
+    const appRoot = oneRouterMetro[1].ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY as string
+    const setupNative = oneRouterMetro[1].ONE_SETUP_FILE_NATIVE as string
+
+    expect(appRoot).not.toContain('\\')
+    expect(setupNative).not.toContain('\\')
+  })
 })

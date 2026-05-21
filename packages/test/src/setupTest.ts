@@ -1,22 +1,70 @@
-import getPort, { portNumbers } from 'get-port'
 import { exec, spawn, type ChildProcess } from 'node:child_process'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import { promisify } from 'node:util'
+import getPort, { portNumbers } from 'get-port'
 import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
 
 const execAsync = promisify(exec)
 
+// resolve binary entry points cross-platform. the `.bin/` shim path used to
+// be hardcoded as `'../../node_modules/.bin/<pkg>'`, which only worked because
+// on POSIX `.bin/<pkg>` is a symlink to the package's JS entry. On Windows the
+// shim is a `.cmd`/`.ps1`/`.exe` wrapper — none of those load as a script via
+// `node <path>`, so the spawn errors with `Cannot find module`. Resolving via
+// `package.json` gives the real JS file regardless of bun's hoisting layout.
+const requireFromHere = createRequire(import.meta.url)
+const ONE_RUN_ENTRY = join(
+  dirname(requireFromHere.resolve('one/package.json')),
+  'run.mjs'
+)
+const VITE_BIN_ENTRY = join(
+  dirname(requireFromHere.resolve('vite/package.json')),
+  'bin/vite.js'
+)
+
+const isWindows = process.platform === 'win32'
+
 export async function killProcessOnPort(port: number): Promise<void> {
   try {
-    const { stdout } = await execAsync(`lsof -i :${port} -t`)
-    const pids = stdout.trim().split('\n').filter(Boolean)
-
+    const pids = await findPidsOnPort(port)
     if (pids.length > 0) {
       console.info(`Killing processes on port ${port}: ${pids.join(', ')}`)
-      await Promise.all(pids.map((pid) => execAsync(`kill -9 ${pid}`).catch(() => {})))
+      await Promise.all(pids.map((pid) => killByPid(pid).catch(() => {})))
       await new Promise((resolve) => setTimeout(resolve, 500))
     }
   } catch (error) {
     // no process found on port, which is fine
+  }
+}
+
+// on POSIX, `lsof -i :PORT -t` lists owning PIDs (one per line).
+// on Windows, `netstat -ano | findstr :PORT` shows lines whose final column is
+// the owning PID. Both paths produce a deduped list of numeric PIDs.
+async function findPidsOnPort(port: number): Promise<string[]> {
+  if (isWindows) {
+    const { stdout } = await execAsync(`netstat -ano | findstr :${port}`)
+    const pids = stdout
+      .split('\n')
+      .map((line) => line.trim().split(/\s+/).at(-1))
+      .filter(
+        (pid): pid is string =>
+          typeof pid === 'string' && pid !== '0' && /^\d+$/.test(pid)
+      )
+    return Array.from(new Set(pids))
+  }
+  const { stdout } = await execAsync(`lsof -i :${port} -t`)
+  return stdout.trim().split('\n').filter(Boolean)
+}
+
+// `taskkill /F /T /PID` kills the process tree on Windows. `/T` is essential
+// because dev/serve spawn `node` which spawns child workers — sending the
+// signal to only the top-level PID would leave the workers running.
+async function killByPid(pid: string): Promise<void> {
+  if (isWindows) {
+    await execAsync(`taskkill /F /T /PID ${pid}`)
+  } else {
+    await execAsync(`kill -9 ${pid}`)
   }
 }
 
@@ -58,6 +106,9 @@ function spawnServer(
     detached: options.detached ?? true,
     // pipe so we can capture output for crash diagnostics
     stdio: ['ignore', 'pipe', 'pipe'],
+    // suppress the conhost flash that `detached: true` would otherwise produce
+    // for each spawned server on Windows
+    windowsHide: true,
   })
 
   const appendOutput = (data: Buffer) => {
@@ -222,6 +273,8 @@ export async function setupTestServers({
           NODE_ENV: 'production',
           ONE_SERVER_URL: `http://localhost:${prodPort}`,
         },
+        // bun is launched via shell on Windows; suppress the conhost flash
+        windowsHide: true,
       })
       let buildProcessOutput = ''
       buildProcess.stdout?.on('data', (data) => {
@@ -274,8 +327,8 @@ export async function setupTestServers({
       ) as typeof process.env
 
       const devArgs = runWithNonCliMode
-        ? ['../../node_modules/.bin/vite', 'dev', '--host', '--port', devPort.toString()]
-        : ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()]
+        ? [VITE_BIN_ENTRY, 'dev', '--host', '--port', devPort.toString()]
+        : [ONE_RUN_ENTRY, 'dev', '--clean', '--port', devPort.toString()]
 
       const spawned = spawnServer('node', devArgs, {
         cwd: process.cwd(),
@@ -292,7 +345,7 @@ export async function setupTestServers({
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
       const spawned = spawnServer(
         'node',
-        ['../../node_modules/.bin/one', 'serve', '--port', prodPort.toString()],
+        [ONE_RUN_ENTRY, 'serve', '--port', prodPort.toString()],
         {
           cwd: process.cwd(),
           env: {

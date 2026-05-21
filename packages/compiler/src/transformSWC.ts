@@ -1,4 +1,4 @@
-import { extname, sep } from 'node:path'
+import { extname } from 'node:path'
 import {
   type Output,
   type ParserConfig,
@@ -7,11 +7,13 @@ import {
   transform,
 } from '@swc/core'
 import { merge } from 'ts-deepmerge'
+import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
-const ignoreId = new RegExp(`node_modules\\${sep}(\\.vite|vite)\\${sep}`)
+// posix-only — id is normalized below
+const ignoreId = /node_modules\/(\.vite|vite)\//
 
 export async function transformSWC(
   id: string,
@@ -19,14 +21,12 @@ export async function transformSWC(
   options: Options & { es5?: boolean },
   swcOptions?: SWCOptions
 ) {
+  // unify caller contracts (Vite plugin: POSIX id; patches.ts: native id)
+  id = normalizePath(id.split('?')[0]).replace(normalizePath(process.cwd()), '')
+
   if (ignoreId.test(id)) {
     return
   }
-
-  id = id
-    .split('?')[0]
-    // fixes hmr
-    .replace(process.cwd(), '')
 
   if (id === runtimePublicPath) {
     return

@@ -540,6 +540,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
     async config() {
       const setting = options.optimization?.autoEntriesScanning ?? 'flat'
+      const routerRoot = getRouterRootFromOneOptions(options)
 
       if (setting === false) {
         return
@@ -560,11 +561,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 return []
               }
 
+              // optimizeDeps.entries uses tinyglobby — needs forward-slash patterns
               return [
-                path.join('./app', route.file),
+                path.posix.join(`./${routerRoot}`, route.file),
                 ...(route.layouts?.flatMap((layout) => {
                   if (!layout.contextKey) return []
-                  return [path.join('./app', layout.contextKey)]
+                  return [path.posix.join(`./${routerRoot}`, layout.contextKey)]
                 }) || []),
               ]
             })

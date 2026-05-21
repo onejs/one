@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { resolvePath } from './index'
 import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 
 describe('resolvePath', () => {
   describe('basic resolution', () => {
@@ -24,9 +25,8 @@ describe('resolvePath', () => {
 
   describe('respects from parameter', () => {
     it('resolves relative paths from specified directory', () => {
-      // Use process.cwd() which is the repo root when running tests
       const path = resolvePath('./package.json', process.cwd())
-      expect(path).toBe(process.cwd() + '/package.json')
+      expect(path).toBe(join(process.cwd(), 'package.json'))
       expect(existsSync(path)).toBe(true)
     })
 
@@ -47,7 +47,7 @@ describe('resolvePath', () => {
     it('returns ESM entry when exports["."].import.default exists', () => {
       // vitest has nested structure: { import: { types: "...", default: "..." } }
       const path = resolvePath('vitest', process.cwd())
-      expect(path).toContain('dist/index.js')
+      expect(path).toContain(join('dist', 'index.js'))
       expect(path).not.toContain('.cjs')
     })
 
