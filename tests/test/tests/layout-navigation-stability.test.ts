@@ -51,6 +51,7 @@ describe('Layout Navigation Stability', () => {
         connected: marker?.isConnected ?? false,
         mountCount: (window as any).__appRouteGroupLayoutMountCount || 0,
         unmountCount: (window as any).__appRouteGroupLayoutUnmountCount || 0,
+        renderCount: (window as any).__appRouteGroupLayoutRenderCount || 0,
         sessionId: document.querySelector('#session-id')?.textContent,
       }
     })
@@ -74,6 +75,7 @@ describe('Layout Navigation Stability', () => {
         sameNode: marker === originalMarker,
         mountCount: (window as any).__appRouteGroupLayoutMountCount || 0,
         unmountCount: (window as any).__appRouteGroupLayoutUnmountCount || 0,
+        renderCount: (window as any).__appRouteGroupLayoutRenderCount || 0,
         sessionId: document.querySelector('#session-id')?.textContent,
       }
     })
@@ -83,6 +85,29 @@ describe('Layout Navigation Stability', () => {
     expect(after.sameNode).toBe(true)
     expect(after.mountCount).toBe(before.mountCount)
     expect(after.unmountCount).toBe(before.unmountCount)
+    // perf guard: navigating between sibling dynamic routes must not cascade
+    // an avalanche of re-renders into unrelated layouts. a small number of
+    // re-renders is normal (React Navigation re-renders the screen tree
+    // during nav, and that propagates down through Slot once per transition).
+    // a regression would be the route wrapper subscribing to clientMatches —
+    // every match update would then invalidate every wrapper on screen, and
+    // the count here would scale with nav count, not stay bounded.
+    expect(after.renderCount - before.renderCount).toBeLessThanOrEqual(4)
+
+    // do a couple more sibling navs to confirm renders don't scale unboundedly.
+    await page.click('#replace-project-session')
+    await page.waitForURL('**/project/demo/branch') // already on branch, replace re-asserts
+    await page.click('#replace-project-session')
+    await page.waitForFunction(
+      () => document.querySelector('#session-id')?.textContent === 'branch'
+    )
+
+    const afterMore = await page.evaluate(
+      () => (window as any).__appRouteGroupLayoutRenderCount || 0
+    )
+    // 3 navs total — bound proportionally. if this fails with a large delta
+    // we likely re-introduced a subscription.
+    expect(afterMore - before.renderCount).toBeLessThanOrEqual(12)
 
     await page.close()
   })
