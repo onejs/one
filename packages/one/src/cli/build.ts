@@ -22,6 +22,7 @@ import {
 
 import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
+import { writeBuildOutputPointer } from '../utils/buildOutputPointer'
 import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { isRolldown } from '../utils/isRolldown'
@@ -1289,6 +1290,7 @@ export async function build(args: {
   }
 
   await writeJSON(toAbsolute(`${outDir}/buildInfo.json`), buildInfoForWriting)
+  await writeBuildOutputPointer(outDir)
 
   // emit version.json for skew protection polling
   await FSExtra.writeFile(
