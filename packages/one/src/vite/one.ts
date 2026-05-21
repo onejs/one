@@ -245,7 +245,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 if (target) {
                   const fullPath = join(nmPkgDir, target)
                   if (existsSync(fullPath))
-                    return { id: fullPath, external: resolved.external }
+                    // normalize so downstream consumers see POSIX shape on Windows
+                    return { id: normalizePath(fullPath), external: resolved.external }
                 }
               }
             } catch {}
