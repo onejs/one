@@ -119,6 +119,12 @@
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.js"
     },
+    "./native-tabs": {
+      "react-native": "./dist/esm/native-tabs.native.js",
+      "types": "./types/native-tabs.d.ts",
+      "import": "./dist/esm/native-tabs.mjs",
+      "require": "./dist/cjs/native-tabs.js"
+    },
     "./headless": {
       "types": "./types/headless.d.ts",
       "import": "./dist/esm/headless.mjs",
@@ -216,11 +222,13 @@
     "xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
+    "@bottom-tabs/react-navigation": ">=0.9.0",
     "@react-navigation/drawer": "~7.9.8",
     "@react-navigation/native": "~7.2.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-native": "0.83.2",
+    "react-native-bottom-tabs": ">=1.0.0",
     "react-native-gesture-handler": ">=2.0.0",
     "react-native-reanimated": ">=4.0.0",
     "react-native-safe-area-context": ">=5.0.0",
@@ -229,10 +237,16 @@
     "sharp": "^0.34.5"
   },
   "peerDependenciesMeta": {
+    "@bottom-tabs/react-navigation": {
+      "optional": true
+    },
     "@react-navigation/drawer": {
       "optional": true
     },
     "react-native": {
+      "optional": true
+    },
+    "react-native-bottom-tabs": {
       "optional": true
     },
     "react-native-gesture-handler": {
