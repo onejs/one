@@ -2,6 +2,7 @@ import { dirname, join } from 'node:path'
 import FSExtra from 'fs-extra'
 import { toAbsolute } from './toAbsolute'
 
+// stored under the project cwd; one build and one serve should run from the same root.
 export const buildOutputPointerPath = join(
   'node_modules',
   '.cache',
@@ -31,9 +32,7 @@ export async function resolveServeOutDir(outDir?: string) {
   }
 
   try {
-    const pointer = (await FSExtra.readJSON(
-      buildOutputPointerPath
-    )) as BuildOutputPointer
+    const pointer = (await FSExtra.readJSON(buildOutputPointerPath)) as BuildOutputPointer
 
     if (
       pointer.outDir &&

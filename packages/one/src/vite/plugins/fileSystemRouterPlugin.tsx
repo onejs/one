@@ -3,7 +3,7 @@ import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
 import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
-import { createServerModuleRunner } from 'vite'
+import { createServerModuleRunner, normalizePath } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
 import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
@@ -540,7 +540,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
     async config() {
       const setting = options.optimization?.autoEntriesScanning ?? 'flat'
-      const routerRoot = getRouterRootFromOneOptions(options)
+      const routerRoot = normalizePath(getRouterRootFromOneOptions(options))
 
       if (setting === false) {
         return
