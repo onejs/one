@@ -59,10 +59,39 @@ describe('build output pointer', () => {
     await writeBuildOutputPointer('missing-out')
 
     expect(await resolveServeOutDir()).toBe('dist')
-    expect(warn).toHaveBeenCalledOnce()
+    // both the stale-pointer warning and the missing-dist warning fire
+    expect(warn).toHaveBeenCalledTimes(2)
+    expect(warn.mock.calls[0][0]).toMatch(/build-pointer\.json points to/)
+    expect(warn.mock.calls[1][0]).toMatch(/no build-output pointer/)
   })
 
-  it('falls back to dist when no pointer exists', async () => {
+  it('falls back to dist when no pointer exists and warns about missing dist', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
     expect(await resolveServeOutDir()).toBe('dist')
+    expect(warn).toHaveBeenCalledOnce()
+    expect(warn.mock.calls[0][0]).toMatch(/no build-output pointer/)
+  })
+
+  it('does not warn when falling back to an existing dist/ build', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    await FSExtra.ensureDir('dist')
+    await FSExtra.writeJSON(join('dist', 'buildInfo.json'), {})
+
+    expect(await resolveServeOutDir()).toBe('dist')
+    expect(warn).not.toHaveBeenCalled()
+  })
+
+  it('warns when the pointer write fails', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const writeSpy = vi
+      .spyOn(FSExtra, 'writeJSON')
+      .mockRejectedValueOnce(new Error('permission denied'))
+
+    await writeBuildOutputPointer('build-out')
+
+    expect(writeSpy).toHaveBeenCalled()
+    expect(warn).toHaveBeenCalledOnce()
+    expect(warn.mock.calls[0][0]).toMatch(/could not write build-output pointer/)
   })
 })
