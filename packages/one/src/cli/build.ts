@@ -553,18 +553,16 @@ export async function build(args: {
                     return name
                   },
                   chunkFileNames: (chunkInfo) => {
-                    const dir = Path.dirname(chunkInfo.name)
-                    const name = Path.basename(
-                      chunkInfo.name,
-                      Path.extname(chunkInfo.name)
-                    )
+                    const chunkName = normalizePath(chunkInfo.name)
+                    const dir = posix.dirname(chunkName)
+                    const name = posix.basename(chunkName, posix.extname(chunkName))
                     return posix.join(dir, `${name}-[hash].cjs`)
                   },
                   assetFileNames: (assetInfo) => {
-                    const name = assetInfo.name ?? ''
-                    const dir = Path.dirname(name)
-                    const baseName = Path.basename(name, Path.extname(name))
-                    const ext = Path.extname(name)
+                    const assetName = normalizePath(assetInfo.name ?? '')
+                    const dir = posix.dirname(assetName)
+                    const baseName = posix.basename(assetName, posix.extname(assetName))
+                    const ext = posix.extname(assetName)
                     return posix.join(dir, `${baseName}-[hash]${ext}`)
                   },
                 }),
