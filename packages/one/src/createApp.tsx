@@ -259,8 +259,13 @@ export function createApp(options: CreateAppProps) {
   // initialize client matches from server context for useMatches hook
   // restore page loaderData into matches (stripped during SSR to avoid double-serialization)
   if (serverContext.matches) {
-    const restoredMatches = serverContext.matches.map((m: any) => {
-      if (!m.loaderData && serverContext.loaderData) {
+    const lastIndex = serverContext.matches.length - 1
+    const restoredMatches = serverContext.matches.map((m: any, index: number) => {
+      if (
+        index === lastIndex &&
+        m.loaderData === undefined &&
+        serverContext.loaderData !== undefined
+      ) {
         return { ...m, loaderData: serverContext.loaderData }
       }
       return m
