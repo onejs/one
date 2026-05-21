@@ -126,6 +126,22 @@ describe('Pure SSR (layout+ssr, page+ssr)', () => {
     await page.close()
   })
 
+  test('loaderData prop is present in server HTML and after hydration', async () => {
+    const html = await fetch(serverUrl + '/pure-ssr').then((r) => r.text())
+    expect(html).toContain('prop-pure-ssr-page')
+    expect(html).not.toContain('Prop Page Data: <!-- -->loading...')
+
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/pure-ssr')
+    await page.waitForLoadState('networkidle')
+
+    await expect
+      .poll(() => page.textContent('#pure-ssr-page-prop-data'))
+      .toContain('prop-pure-ssr-page')
+
+    await page.close()
+  })
+
   test('client navigation works', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/pure-ssr')

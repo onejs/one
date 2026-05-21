@@ -9,7 +9,13 @@ export async function loader() {
   }
 }
 
-export default function PureSsrPage() {
+type PureSsrLoaderData = Awaited<ReturnType<typeof loader>>
+
+export default function PureSsrPage({
+  loaderData,
+}: {
+  loaderData?: PureSsrLoaderData
+}) {
   const data = useLoader(loader)
   const matches = useMatches()
 
@@ -18,6 +24,9 @@ export default function PureSsrPage() {
       <h1>Pure SSR Page</h1>
       <p id="pure-ssr-page-mode">Page Mode: {data?.pageMode}</p>
       <p id="pure-ssr-page-data">{JSON.stringify(data)}</p>
+      <p id="pure-ssr-page-prop-data">
+        Prop Page Data: {loaderData?.pageData ? `prop-${loaderData.pageData}` : 'loading...'}
+      </p>
       <p id="pure-ssr-page-matches">Page Matches: {matches.length}</p>
       <p id="pure-ssr-page-random">Random: {data.random}</p>
       <Link href="/pure-ssr/other" id="link-to-other">

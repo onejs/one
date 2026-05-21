@@ -28,6 +28,7 @@ import {
 import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
+import { useMatches } from '../useMatches'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -399,6 +400,12 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
     const res = value.loadRoute()
     const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
+    const matches = useMatches()
+    const match =
+      matches.find((match) => match.routeId === value.contextKey) ||
+      (!value.children?.length ? matches[matches.length - 1] : undefined)
+    const loaderDataProps =
+      match && 'loaderData' in match ? { loaderData: match.loaderData } : {}
 
     if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
       console.groupCollapsed(`Render ${props.key} ${props.segment}`)
@@ -424,7 +431,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       return (
         <RootLayoutRenderer
           LayoutComponent={Component}
-          layoutProps={{ ...props, ...slotProps }}
+          layoutProps={{ ...props, ...slotProps, ...loaderDataProps }}
           forwardedRef={ref}
         />
       )
@@ -432,7 +439,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
     return (
       <RouteErrorBoundary routeName={value.route}>
-        <Component {...props} {...slotProps} ref={ref} />
+        <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
       </RouteErrorBoundary>
     )
   })
