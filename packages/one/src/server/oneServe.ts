@@ -2,11 +2,7 @@ import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import {
-  CSS_PRELOAD_JS_POSTFIX,
-  LOADER_JS_POSTFIX_UNCACHED,
-  PRELOAD_JS_POSTFIX,
-} from '../constants'
+import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import {
   compileManifest,
   getSubdomain,
@@ -938,9 +934,22 @@ url: ${url}`)
 
   const { preloads, cssPreloads } = buildInfo
 
+  // detect preload-url shape by regex so server can answer requests
+  // even when its own CACHE_KEY drifted from the deployed bundle's key
+  // (happens when ONE_CACHE_KEY env isn't set in the runtime container:
+  // the server picks a fresh Math.random() per process, then the
+  // exact-suffix `endsWith(PRELOAD_JS_POSTFIX)` check below misses every
+  // preload request the client makes, falling through to the static
+  // handler which 404s). regex matches any `_<digits>_preload.js`
+  // suffix; the manifest lookup will miss for dynamic segments (where
+  // the client substitutes the concrete id) but the graceful empty-200
+  // below covers that path.
+  const PRELOAD_JS_RE = /_\d+_preload\.js$/
+  const CSS_PRELOAD_JS_RE = /_\d+_preload_css\.js$/
+
   // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
   app.get('*', async (c, next) => {
-    if (c.req.path.endsWith(PRELOAD_JS_POSTFIX)) {
+    if (PRELOAD_JS_RE.test(c.req.path)) {
       // TODO handle dynamic segments (i think the below loader has some logic for this)
       if (!preloads[c.req.path]) {
         // no preload exists 200 gracefully
@@ -950,7 +959,7 @@ url: ${url}`)
       }
     }
 
-    if (c.req.path.endsWith(CSS_PRELOAD_JS_POSTFIX)) {
+    if (CSS_PRELOAD_JS_RE.test(c.req.path)) {
       // Return empty resolved promise if no CSS preload exists for this route
       if (!cssPreloads?.[c.req.path]) {
         c.header('Content-Type', 'text/javascript')
