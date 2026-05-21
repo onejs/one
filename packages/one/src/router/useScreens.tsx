@@ -389,6 +389,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     // content after hydration.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isSpaShell = useContext(SpaShellContext)
+    const matches = useMatches()
+
     if (isSpaShell && props.segment !== '') {
       const isServerRenderedLayout =
         value.children?.length &&
@@ -400,7 +402,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
     const res = value.loadRoute()
     const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
-    const matches = useMatches()
     const match =
       matches.find((match) => match.routeId === value.contextKey) ||
       (!value.children?.length ? matches[matches.length - 1] : undefined)
