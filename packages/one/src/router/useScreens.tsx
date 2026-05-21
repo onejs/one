@@ -16,7 +16,7 @@ import { Try } from '../views/Try'
 import { checkSkewAndReload } from '../skewProtection'
 import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { DevHead } from '../vite/DevHead'
-import { useServerContext } from '../vite/one-server-only'
+import { getServerContext, useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
 import {
   type DynamicConvention,
@@ -28,7 +28,7 @@ import {
 import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
-import { useMatches } from '../useMatches'
+import { getClientMatchesSnapshot } from '../useMatches'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -362,6 +362,17 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
 
+function getRouteMatchesForProps() {
+  const serverMatches = getServerContext()?.matches ?? []
+
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    return serverMatches
+  }
+
+  const clientMatches = getClientMatchesSnapshot()
+  return clientMatches.length ? clientMatches : serverMatches
+}
+
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
   if (value && qualifiedStore.has(value)) {
@@ -389,7 +400,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     // content after hydration.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isSpaShell = useContext(SpaShellContext)
-    const matches = useMatches()
+    const matches = getRouteMatchesForProps()
 
     if (isSpaShell && props.segment !== '') {
       const isServerRenderedLayout =
