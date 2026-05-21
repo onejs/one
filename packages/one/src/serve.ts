@@ -6,6 +6,7 @@ import type { VXRNOptions } from 'vxrn'
 import { setServerGlobals } from './server/setServerGlobals'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
+import { resolveServeOutDir } from './utils/buildOutputPointer'
 import type { One } from './vite/types'
 
 // formatErrorSafely + the prepareStackTrace guard prevent a buggy transitive
@@ -191,8 +192,7 @@ async function serveWithCluster(args: Parameters<typeof serve>[0], numWorkers: n
 }
 
 async function startWorker(args: Parameters<typeof serve>[0]) {
-  const outDir =
-    args?.outDir || (FSExtra.existsSync('buildInfo.json') ? '.' : null) || 'dist'
+  const outDir = await resolveServeOutDir(args?.outDir)
   const buildInfo = (await FSExtra.readJSON(`${outDir}/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 
