@@ -1,4 +1,8 @@
-import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import {
+  CSS_PRELOAD_JS_POSTFIX_REGEX,
+  LOADER_JS_POSTFIX_UNCACHED,
+  PRELOAD_JS_POSTFIX_REGEX,
+} from '../constants'
 import {
   compileManifest,
   getSubdomain,
@@ -594,14 +598,11 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     }
 
     // 2. preload endpoints (empty response if no preload exists).
-    // match by regex, not exact `_<CACHE_KEY>_preload.js` suffix: when
-    // ONE_CACHE_KEY isn't pinned in the runtime env the server's
-    // CACHE_KEY drifts from the deployed bundle's, so an exact-suffix
-    // check misses every client preload request and falls through to a
-    // static 404. the manifest lookup still keys on the full path, so a
-    // drifted / dynamic-segment request just takes the graceful-empty
-    // branch below.
-    if (/_\d+_preload\.js$/.test(pathname)) {
+    // regex match (not exact CACHE_KEY suffix) — see constants.ts:
+    // PRELOAD_JS_POSTFIX_REGEX. handles dynamic segments and the rare
+    // CACHE_KEY-drift case by funnelling misses through the graceful
+    // empty-200 below instead of the static-handler 404.
+    if (PRELOAD_JS_POSTFIX_REGEX.test(pathname)) {
       if (!currentPreloads[pathname]) {
         return new Response('', {
           headers: { 'Content-Type': 'text/javascript' },
@@ -611,7 +612,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       return null
     }
 
-    if (/_\d+_preload_css\.js$/.test(pathname)) {
+    if (CSS_PRELOAD_JS_POSTFIX_REGEX.test(pathname)) {
       if (!currentCssPreloads?.[pathname]) {
         return new Response('export default Promise.resolve()', {
           headers: { 'Content-Type': 'text/javascript' },
