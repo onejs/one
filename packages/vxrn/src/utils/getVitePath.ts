@@ -1,6 +1,7 @@
 import { dirname, join } from 'node:path'
 
 import FSExtra from 'fs-extra'
+import { normalizePath } from 'vite'
 
 export async function getVitePath(
   rootPath: string,
@@ -72,7 +73,8 @@ export async function getVitePath(
   //   id = relative(importer, real)
   // }
 
-  if (id.endsWith(`/react/jsx-dev-runtime.js`)) {
+  // realpath returns native on Windows; sentinel is forward-slash
+  if (normalizePath(id).endsWith(`/react/jsx-dev-runtime.js`)) {
     id = 'react/jsx-runtime'
   }
 

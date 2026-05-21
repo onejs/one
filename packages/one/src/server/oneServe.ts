@@ -1,7 +1,7 @@
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, posix } from 'node:path'
 import {
   CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX_UNCACHED,
@@ -17,6 +17,7 @@ import {
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsoluteUrl } from '../utils/toAbsolute'
+import { toServerOutputPath } from '../utils/toServerOutputPath'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { setSSRLoaderData } from './ssrLoaderData'
@@ -164,9 +165,7 @@ export async function oneServe(
     // cold path - async import
     return (async () => {
       const pathToResolve = serverPath || lazyKey || ''
-      const resolvedPath = pathToResolve.includes(`${outDir}/server`)
-        ? pathToResolve
-        : join('./', `${outDir}/server`, pathToResolve)
+      const resolvedPath = toServerOutputPath(pathToResolve, outDir)
 
       let routeExported: any
       if (moduleImportCache.has(cacheKey)) {
@@ -314,7 +313,8 @@ export async function oneServe(
       }
       // both vite and rolldown-vite replace brackets with underscores in output filenames
       const fileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
-      const apiFile = join(outDir, 'api', fileName + (apiCJS ? '.cjs' : '.js'))
+      // posix matches the serverJsPath/builtMiddlewares producer convention
+      const apiFile = posix.join(outDir, 'api', fileName + (apiCJS ? '.cjs' : '.js'))
       return await import(toAbsoluteUrl(apiFile))
     },
 
@@ -328,9 +328,7 @@ export async function oneServe(
 
     async handleLoader({ route, loaderProps }) {
       const routeFile = (route as any).routeFile || route.file
-      const serverPath = route.file.includes(`${outDir}/server`)
-        ? route.file
-        : join('./', `${outDir}/server`, route.file)
+      const serverPath = toServerOutputPath(route.file, outDir)
 
       let loader: Function | null
       try {

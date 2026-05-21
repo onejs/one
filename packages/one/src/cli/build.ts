@@ -1,6 +1,6 @@
 import { createRequire } from 'node:module'
 import { cpus } from 'node:os'
-import Path, { join, relative, resolve } from 'node:path'
+import Path, { join, posix, relative, resolve } from 'node:path'
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
@@ -557,14 +557,14 @@ export async function build(args: {
                       chunkInfo.name,
                       Path.extname(chunkInfo.name)
                     )
-                    return Path.join(dir, `${name}-[hash].cjs`)
+                    return posix.join(dir, `${name}-[hash].cjs`)
                   },
                   assetFileNames: (assetInfo) => {
                     const name = assetInfo.name ?? ''
                     const dir = Path.dirname(name)
                     const baseName = Path.basename(name, Path.extname(name))
                     const ext = Path.extname(name)
-                    return Path.join(dir, `${baseName}-[hash]${ext}`)
+                    return posix.join(dir, `${baseName}-[hash]${ext}`)
                   },
                 }),
           },
@@ -611,7 +611,11 @@ export async function build(args: {
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
-      builtMiddlewares[middleware.file] = join(outDir, 'middlewares', chunk.fileName)
+      builtMiddlewares[middleware.file] = posix.join(
+        outDir,
+        'middlewares',
+        chunk.fileName
+      )
     }
   }
 
@@ -1030,7 +1034,8 @@ export async function build(args: {
       })
     }
 
-    const serverJsPath = join(`${outDir}/server`, serverFileName)
+    // posix so downstream `.includes('${outDir}/server')` substring checks match on Windows
+    const serverJsPath = posix.join(outDir, 'server', serverFileName)
 
     let exported
     try {
@@ -1474,7 +1479,10 @@ export default {
         projectName,
         userWranglerConfig?.config
       )
-      wranglerInputConfig.main = relative(join(options.root, outDir), workerSrcPath)
+      // serialized wrangler config is diffed cross-platform; keep forward-slash
+      wranglerInputConfig.main = normalizePath(
+        relative(join(options.root, outDir), workerSrcPath)
+      )
 
       const wranglerInputPath = join(options.root, outDir, '_wrangler.input.jsonc')
       await FSExtra.writeFile(

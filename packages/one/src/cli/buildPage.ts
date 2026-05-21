@@ -1,5 +1,6 @@
 import { join } from 'node:path'
 import FSExtra from 'fs-extra'
+import { normalizePath } from 'vite'
 import * as constants from '../constants'
 import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import type { LoaderProps } from '../types'
@@ -64,8 +65,9 @@ export async function buildPage(
   recordTiming('getRender', performance.now() - t0)
 
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
+  // forward-slash for cross-platform manifest hygiene (matches serverJsPath)
   const clientJsPath = clientManifestEntry
-    ? join(clientDir, clientManifestEntry.file)
+    ? normalizePath(join(clientDir, clientManifestEntry.file))
     : ''
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)

@@ -8,6 +8,13 @@ import {
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
 } from '../router/glob-patterns'
 
+// Forward-slash a relative path produced by `path.relative` on every platform.
+// `babel-preset` deliberately avoids `vite.normalizePath` so the preset stays
+// usable in standalone Metro contexts where Vite isn't installed.
+function toPosixRelativePath(relativePath: string): string {
+  return path.sep === '\\' ? relativePath.replace(/\\/g, '/') : relativePath
+}
+
 // Babel's `ConfigAPI` shape: cache mutator, env helper, and a cwd accessor.
 // The public @babel/core typing omits `cwd()` so we describe it locally.
 type BabelConfigAPI = {
@@ -138,7 +145,13 @@ export function buildOneBabelPlugins({
         ? setupFile
         : setupFile.native || setupFile.ios || setupFile.android
     if (!file) return undefined
-    return path.relative(path.dirname(metroEntryPath), path.join(projectRoot, file))
+    // POSIX-only — embedded as a JS import specifier in `one-router-metro` (becomes
+    // literal `import "..."`); backslashes on Windows produce platform-conditional AST
+    // and silently break rolldown/Vite POSIX module-graph keys for source-map / snapshot
+    // consumers downstream.
+    return toPosixRelativePath(
+      path.relative(path.dirname(metroEntryPath), path.join(projectRoot, file))
+    )
   })()
 
   return [
@@ -173,9 +186,13 @@ export function buildOneBabelPlugins({
     [
       'one/babel-plugin-one-router-metro',
       {
-        ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY: path.relative(
-          path.dirname(metroEntryPath),
-          path.join(projectRoot, relativeRouterRoot)
+        // POSIX-only — becomes the first arg of `require.context()` in `one-router-metro`;
+        // backslashes on Windows drift the babel-emitted AST per platform.
+        ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY: toPosixRelativePath(
+          path.relative(
+            path.dirname(metroEntryPath),
+            path.join(projectRoot, relativeRouterRoot)
+          )
         ),
         ONE_ROUTER_ROOT_FOLDER_NAME: relativeRouterRoot,
         ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING:

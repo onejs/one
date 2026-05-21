@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { configuration } from '@vxrn/compiler'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
@@ -86,8 +87,10 @@ function getSetupFileImport(
   if (!setupFile)
     return { importStatement: '', promiseDeclaration: '', promiseVarName: '' }
 
-  // resolve to absolute path so rolldown can find it from virtual modules
-  const resolvedSetupFile = root ? resolve(root, setupFile) : setupFile
+  // file:// URL is canonical; bare Windows absolute path has backslashes (mirrors createNativeDevEngine.ts)
+  const resolvedSetupFile = root
+    ? pathToFileURL(resolve(root, setupFile)).href
+    : setupFile
 
   // For native, use static import since dynamic import doesn't work
   if (useStaticImport) {
