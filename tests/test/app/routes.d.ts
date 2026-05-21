@@ -130,10 +130,11 @@ declare module 'one' {
         | `/test-refetch-ssr`
         | `/vite-features/import-meta-env`
         | `/web-extensions`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/dashboard/feed/post/${OneRouter.SingleRoutePart<T>}`
+        | `/(app)/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/dashboard/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/dashboard/feed/post/${OneRouter.SingleRoutePart<T>}`
         | `/dynamic-folder-routes/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
@@ -144,6 +145,7 @@ declare module 'one' {
         | `/layouts/nested-layout/with-slug-layout-folder/${OneRouter.SingleRoutePart<T>}`
         | `/not-found/+not-found`
         | `/not-found/deep/+not-found`
+        | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/${string}`
         | `/segments-stable-ids/${string}`
@@ -154,9 +156,10 @@ declare module 'one' {
         | `/ssr/${OneRouter.SingleRoutePart<T>}`
         | `/ssr/${OneRouter.SingleRoutePart<T>}/request-test`
         | `/ssr/${string}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(app)/dashboard/(tabs)/feed/post/[postId]`
         | `/(app)/dashboard/feed/post/[postId]`
+        | `/(app)/project/[projectId]/[sessionId]`
         | `/[atHandle]`
         | `/dashboard/(tabs)/feed/post/[postId]`
         | `/dashboard/feed/post/[postId]`
@@ -168,6 +171,7 @@ declare module 'one' {
         | `/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]`
         | `/not-found/+not-found`
         | `/not-found/deep/+not-found`
+        | `/project/[projectId]/[sessionId]`
         | `/router/ignoredRouteFiles/+not-found`
         | `/routes/subpath/[...subpath]`
         | `/segments-stable-ids/[...segments]`
@@ -182,6 +186,7 @@ declare module 'one' {
       RouteTypes: {
         '/(app)/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/(app)/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/(app)/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/[atHandle]': RouteInfo<{ atHandle: string }>
         '/dashboard/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
         '/dashboard/feed/post/[postId]': RouteInfo<{ postId: string }>
@@ -193,6 +198,7 @@ declare module 'one' {
         '/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]': RouteInfo<{ layoutSlug: string }>
         '/not-found/+not-found': RouteInfo<{}>
         '/not-found/deep/+not-found': RouteInfo<{}>
+        '/project/[projectId]/[sessionId]': RouteInfo<{ projectId: string; sessionId: string }>
         '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
         '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
         '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>

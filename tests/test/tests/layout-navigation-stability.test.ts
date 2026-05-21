@@ -28,6 +28,65 @@ afterAll(async () => {
 })
 
 describe('Layout Navigation Stability', () => {
+  it('should preserve a route-group layout DOM node across sibling dynamic route changes', async () => {
+    const page = await context.newPage()
+
+    await page.goto(`${serverUrl}/project/demo/main`, {
+      waitUntil: 'domcontentloaded',
+    })
+    await page.waitForSelector('#project-session-page', { timeout: 30_000 })
+    await page.waitForSelector('#app-route-group-layout-marker', {
+      state: 'attached',
+      timeout: 30_000,
+    })
+    await page.waitForFunction(
+      () => ((window as any).__appRouteGroupLayoutMountCount || 0) > 0
+    )
+
+    const before = await page.evaluate(() => {
+      const marker = document.querySelector('#app-route-group-layout-marker')
+      ;(window as any).__appRouteGroupLayoutMarker = marker
+
+      return {
+        connected: marker?.isConnected ?? false,
+        mountCount: (window as any).__appRouteGroupLayoutMountCount || 0,
+        unmountCount: (window as any).__appRouteGroupLayoutUnmountCount || 0,
+        sessionId: document.querySelector('#session-id')?.textContent,
+      }
+    })
+
+    expect(before.connected).toBe(true)
+    expect(before.mountCount).toBeGreaterThan(0)
+    expect(before.sessionId).toBe('main')
+
+    await page.click('#replace-project-session')
+    await page.waitForURL('**/project/demo/branch')
+    await page.waitForFunction(
+      () => document.querySelector('#session-id')?.textContent === 'branch'
+    )
+
+    const after = await page.evaluate(() => {
+      const marker = document.querySelector('#app-route-group-layout-marker')
+      const originalMarker = (window as any).__appRouteGroupLayoutMarker
+
+      return {
+        connected: originalMarker?.isConnected ?? false,
+        sameNode: marker === originalMarker,
+        mountCount: (window as any).__appRouteGroupLayoutMountCount || 0,
+        unmountCount: (window as any).__appRouteGroupLayoutUnmountCount || 0,
+        sessionId: document.querySelector('#session-id')?.textContent,
+      }
+    })
+
+    expect(after.sessionId).toBe('branch')
+    expect(after.connected).toBe(true)
+    expect(after.sameNode).toBe(true)
+    expect(after.mountCount).toBe(before.mountCount)
+    expect(after.unmountCount).toBe(before.unmountCount)
+
+    await page.close()
+  })
+
   it('should not remount layout when navigating between pages in same layout', async () => {
     const page = await context.newPage()
 
