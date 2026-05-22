@@ -159,6 +159,15 @@ export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
 export { removeParams } from './utils/removeParams'
 export { watchFile } from './utils/watchFile'
+// resilient dynamic-import recovery: retry a transient chunk-fetch failure in
+// place (so it never poisons a React.lazy memo), then fall back to one's
+// debounced reload. lazyWithRetry is a drop-in for React.lazy.
+export {
+  loadWithRetry,
+  isChunkLoadError,
+  handleSkewError,
+} from './utils/dynamicImport'
+export { lazyWithRetry } from './lazyWithRetry'
 export { ErrorBoundary } from './views/ErrorBoundary'
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export { LoadProgressBar } from './views/LoadProgressBar'
