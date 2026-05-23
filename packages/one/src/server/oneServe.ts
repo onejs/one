@@ -25,6 +25,22 @@ import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
+// Bounded map helper: prevents unbounded memory growth by evicting the oldest
+// entry when the map exceeds the specified maximum size. Uses insertion order
+// (Map preserves insertion order) — the first-inserted entry is evicted first.
+const MODULE_CACHE_MAX = 500
+function setBounded<K, V>(map: Map<K, V>, key: K, value: V, max: number): void {
+  if (map.has(key)) {
+    map.set(key, value)
+    return
+  }
+  if (map.size >= max) {
+    const firstKey = map.keys().next().value
+    if (firstKey !== undefined) map.delete(firstKey as K)
+  }
+  map.set(key, value)
+}
+
 // forwards response headers to a hono context, preserving individual
 // set-cookie values (Headers.forEach joins them into one unparseable string)
 function forwardHeaders(response: Response, context: { header: Function }) {
@@ -176,14 +192,14 @@ export async function oneServe(
             ? await options.lazyRoutes.pages[lazyKey]()
             : await import(toAbsoluteUrl(resolvedPath))
           : await import(toAbsoluteUrl(serverPath!))
-        moduleImportCache.set(cacheKey, routeExported)
+        setBounded(moduleImportCache, cacheKey, routeExported, MODULE_CACHE_MAX)
       }
 
       const loader = routeExported?.loader || null
-      loaderCache.set(cacheKey, loader)
+      setBounded(loaderCache, cacheKey, loader, MODULE_CACHE_MAX)
       // also cache loaderCache export for coalescing
       const loaderCacheFn = routeExported?.loaderCache ?? null
-      loaderCacheFnMap.set(cacheKey, loaderCacheFn)
+      setBounded(loaderCacheFnMap, cacheKey, loaderCacheFn, MODULE_CACHE_MAX)
       return loader
     })()
   }

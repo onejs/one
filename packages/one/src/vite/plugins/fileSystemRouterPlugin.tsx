@@ -43,7 +43,27 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
   // Track file dependencies from loaders for hot reload
   // Maps file path -> set of route paths that depend on it
+  // Track file dependencies from loaders for hot reload.
+  // Maps file path -> set of route paths that depend on it.
+  // Limited to prevent unbounded growth in long dev sessions.
   const loaderFileDependencies = new Map<string, Set<string>>()
+  const LOADER_DEPS_MAX = 2000
+
+  function setBoundedLoaderDep(filePath: string, routePath: string) {
+    let deps = loaderFileDependencies.get(filePath)
+    if (!deps) {
+      if (loaderFileDependencies.size >= LOADER_DEPS_MAX) {
+        const firstKey = loaderFileDependencies.keys().next().value
+        if (firstKey !== undefined) {
+          loaderFileDependencies.delete(firstKey as string)
+        }
+      }
+      deps = new Set()
+      loaderFileDependencies.set(filePath, deps)
+      server?.watcher.add(filePath)
+    }
+    deps.add(routePath)
+  }
 
   let handleRequest = createRequestHandler()
   // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
@@ -150,14 +170,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 const routePath = loaderProps?.path || '/'
                 for (const dep of tracked.dependencies) {
                   const absoluteDep = path.resolve(dep)
-                  if (!loaderFileDependencies.has(absoluteDep)) {
-                    loaderFileDependencies.set(absoluteDep, new Set())
-                    server?.watcher.add(absoluteDep)
-                    if (debugLoaderDeps) {
-                      console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
-                    }
+                  setBoundedLoaderDep(absoluteDep, routePath)
+                  if (debugLoaderDeps) {
+                    console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
                   }
-                  loaderFileDependencies.get(absoluteDep)!.add(routePath)
                 }
 
                 return { loaderData: tracked.result, routeId }
@@ -459,14 +475,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               for (const dep of tracked.dependencies) {
                 // Resolve to absolute path for consistent lookup when file changes
                 const absoluteDep = path.resolve(dep)
-                if (!loaderFileDependencies.has(absoluteDep)) {
-                  loaderFileDependencies.set(absoluteDep, new Set())
-                  server?.watcher.add(absoluteDep)
-                  if (debugLoaderDeps) {
-                    console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
-                  }
+                setBoundedLoaderDep(absoluteDep, routePath)
+                if (debugLoaderDeps) {
+                  console.info(` ⓵  [loader-dep] watching: ${absoluteDep}`)
                 }
-                loaderFileDependencies.get(absoluteDep)!.add(routePath)
               }
             } catch (err) {
               // re-throw Response errors (redirects)

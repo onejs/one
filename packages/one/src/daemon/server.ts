@@ -13,6 +13,21 @@ function debugLog(msg: string) {
 // cache app names from config files
 const serverAppNames = new Map<string, string>()
 
+// Prune stale server app name entries every 10 minutes
+setInterval(() => {
+  // serverAppNames may accumulate entries for projects that have stopped,
+  // but there's no cleanup signal when a project stops, so we age them out.
+  // With 10-minute cleanup, the impact is negligible for normal usage.
+  if (serverAppNames.size > 100) {
+    const keys = [...serverAppNames.keys()]
+    const toDelete = keys.slice(0, keys.length - 100)
+    for (const key of toDelete) {
+      serverAppNames.delete(key)
+    }
+    debugLog(`Pruned ${toDelete.length} stale app name entries`)
+  }
+}, 600000)
+
 // try to get app name from app.json, app.config.ts, or fallback to dirname
 async function getAppNameForServer(root: string): Promise<string | null> {
   // check cache first
@@ -201,6 +216,21 @@ function extractAppNameFromUA(ua: string): string | null {
 // WebSocket from same port likely belongs to same app
 const recentConnections = new Map<number, { serverId: string; timestamp: number }>()
 const CONNECTION_MEMORY_MS = 5000 // remember connections for 5 seconds
+
+// Clean stale recentConnections every 10 seconds
+setInterval(() => {
+  const now = Date.now()
+  let cleaned = 0
+  for (const [key, entry] of recentConnections) {
+    if (now - entry.timestamp > CONNECTION_MEMORY_MS) {
+      recentConnections.delete(key)
+      cleaned++
+    }
+  }
+  if (cleaned > 0) {
+    debugLog(`Cleaned ${cleaned} stale connection mappings`)
+  }
+}, 10000)
 
 // get the best identifier key for this request
 function getPrimaryIdentifier(headers: http.IncomingHttpHeaders): string | null {

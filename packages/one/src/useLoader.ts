@@ -90,8 +90,26 @@ registerDevtoolsFunction('recordLoaderTiming', recordLoaderTiming)
 const loaderState: Record<string, LoaderStateEntry> = {}
 const subscribers = new Set<() => void>()
 
+// Prevent unbounded growth of loaderState by pruning the oldest entry when
+// we exceed this limit. Most apps navigate a limited set of routes, but
+// dynamic params (e.g. /users/:id) can generate thousands of unique keys.
+const LOADER_STATE_MAX = 200
+const loaderStateKeys: string[] = []
+
+function setBoundedLoaderState(path: string, entry: LoaderStateEntry) {
+  if (!(path in loaderState)) {
+    loaderStateKeys.push(path)
+    if (loaderStateKeys.length > LOADER_STATE_MAX) {
+      const oldest = loaderStateKeys.shift()!
+      delete loaderState[oldest]
+    }
+  }
+  loaderState[path] = entry
+}
+
 function updateState(path: string, updates: Partial<LoaderStateEntry>) {
-  loaderState[path] = { ...loaderState[path], ...updates }
+  const merged = { ...loaderState[path], ...updates }
+  setBoundedLoaderState(path, merged)
   subscribers.forEach((callback) => {
     callback()
   })
@@ -103,14 +121,15 @@ function subscribe(callback: () => void) {
 }
 
 function getLoaderState(path: string, preloadedData?: any): LoaderStateEntry {
-  if (!loaderState[path]) {
-    loaderState[path] = {
+  if (!(path in loaderState)) {
+    const entry: LoaderStateEntry = {
       data: preloadedData,
       error: undefined,
       promise: undefined,
       state: 'idle',
       hasLoadedOnce: !!preloadedData,
     }
+    setBoundedLoaderState(path, entry)
   }
   return loaderState[path]
 }
@@ -759,6 +778,22 @@ export function useLoader<
 const results = new Map()
 const started = new Map()
 
+// Prevent unbounded growth of useAsyncFn caches. Under sustained client-side
+// navigation with many unique param combinations, these can accumulate large
+// API responses. 100 entries is generous for typical route counts.
+const USE_ASYNC_FN_CACHE_MAX = 100
+
+function setBoundedResults(key: string, value: any) {
+  if (results.size >= USE_ASYNC_FN_CACHE_MAX && !results.has(key)) {
+    const firstKey = results.keys().next().value
+    if (firstKey !== undefined) {
+      results.delete(firstKey as string)
+      started.delete(firstKey as string)
+    }
+  }
+  results.set(key, value)
+}
+
 // maps loader function → its route's loaderData for SSR
 // populated before render in oneServe.ts, cleared after
 // re-export for backwards compat
@@ -780,14 +815,14 @@ function useAsyncFn(val: any, props?: any) {
       if (next instanceof Promise) {
         next = next
           .then((final) => {
-            results.set(key, final)
+            setBoundedResults(key, final)
           })
           .catch((err) => {
             console.error(`Error running loader()`, err)
-            results.set(key, undefined)
+            setBoundedResults(key, undefined)
           })
       }
-      results.set(key, next)
+      setBoundedResults(key, next)
     }
   }
 
