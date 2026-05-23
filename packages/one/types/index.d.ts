@@ -74,6 +74,8 @@ export { isResponse } from './utils/isResponse';
 export { redirect } from './utils/redirect';
 export { removeParams } from './utils/removeParams';
 export { watchFile } from './utils/watchFile';
+export { loadWithRetry, isChunkLoadError, handleSkewError, } from './utils/dynamicImport';
+export { lazyWithRetry } from './lazyWithRetry';
 export { ErrorBoundary } from './views/ErrorBoundary';
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try';
 export { LoadProgressBar } from './views/LoadProgressBar';

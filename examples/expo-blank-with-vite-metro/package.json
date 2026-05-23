@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-with-vite-metro",
-  "version": "1.17.9-1779398888939",
+  "version": "1.17.10",
   "private": true,
   "main": "index.js",
   "scripts": {

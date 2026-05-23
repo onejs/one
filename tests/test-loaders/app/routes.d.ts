@@ -38,11 +38,11 @@ declare module 'one' {
         | `/simple-spa-refetch`
         | `/test-refetch`
         | `/test-refetch-ssr`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/not-found/deep/${OneRouter.SingleRoutePart<T>}`
         | `/not-found/fallback/${OneRouter.SingleRoutePart<T>}`
         | `/posts/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/not-found/deep/[slug]`
         | `/not-found/fallback/[slug]`
         | `/posts/[slug]`
