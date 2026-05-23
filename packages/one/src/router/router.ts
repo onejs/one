@@ -707,6 +707,20 @@ export function cleanup() {
 
 export const preloadingLoader: Record<string, Promise<any> | undefined> = {}
 
+// Bounded helper for preload maps: prevents unbounded growth when prefetch links
+// trigger preloads for many dynamic routes that never get visited.
+const PRELOAD_MAP_MAX = 200
+
+function setBoundedPreloadRecord(record: Record<string, any>, key: string, value: any) {
+  if (!(key in record)) {
+    const keys = Object.keys(record)
+    if (keys.length >= PRELOAD_MAP_MAX) {
+      delete record[keys[0]]
+    }
+  }
+  record[key] = value
+}
+
 // inlined to ensure tree shakes away in prod
 // dev mode preload - fetches just the loader directly without production preload bundles
 async function doPreloadDev(href: string): Promise<any> {
@@ -792,7 +806,7 @@ async function doPreload(href: string) {
     // Store the CSS inject function for later use on navigation
     const hasCss = !!cssPreloadModule?.injectCSS
     if (hasCss) {
-      cssInjectFunctions[href] = cssPreloadModule.injectCSS
+      setBoundedCssInject(href, cssPreloadModule.injectCSS)
     }
 
     const hasLoader = !!loader?.loader
@@ -823,6 +837,17 @@ export const preloadedLoaderData: Record<string, any> = {}
 
 // Store CSS inject functions for calling on navigation
 const cssInjectFunctions: Record<string, (() => Promise<void[]>) | undefined> = {}
+
+// Bounded helper for cssInjectFunctions
+function setBoundedCssInject(key: string, value: (() => Promise<void[]>) | undefined) {
+  if (!(key in cssInjectFunctions)) {
+    const keys = Object.keys(cssInjectFunctions)
+    if (keys.length >= PRELOAD_MAP_MAX) {
+      delete cssInjectFunctions[keys[0]]
+    }
+  }
+  cssInjectFunctions[key] = value
+}
 
 // Preload status tracking for devtools
 export type PreloadStatus = 'pending' | 'loading' | 'loaded' | 'error'
@@ -906,20 +931,20 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       // normalize the path to match what useLoader uses for cache keys
       const normalizedHref = normalizeLoaderPath(href)
       if (!preloadingLoader[normalizedHref]) {
-        preloadingLoader[normalizedHref] = doPreloadDev(href).then((data) => {
-          preloadedLoaderData[normalizedHref] = data
+        setBoundedPreloadRecord(preloadingLoader, normalizedHref, doPreloadDev(href).then((data) => {
+          setBoundedPreloadRecord(preloadedLoaderData, normalizedHref, data)
           return data
-        })
+        }))
       }
       return preloadingLoader[normalizedHref]
     }
 
     if (!preloadingLoader[href]) {
-      preloadingLoader[href] = doPreload(href).then((data) => {
+      setBoundedPreloadRecord(preloadingLoader, href, doPreload(href).then((data) => {
         // Store the resolved data for synchronous access
-        preloadedLoaderData[href] = data
+        setBoundedPreloadRecord(preloadedLoaderData, href, data)
         return data
-      })
+      }))
     }
 
     if (injectCSS) {
