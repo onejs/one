@@ -22,9 +22,18 @@ export type NativeStackNavigationOptions = {
     header?: () => any;
     animation?: string;
     gestureEnabled?: boolean;
+    presentation?: 'card' | 'modal' | 'transparentModal' | 'containedModal' | 'containedTransparentModal' | 'fullScreenModal' | 'formSheet' | 'pageSheet';
+    sheetAllowedDetents?: number[] | 'fitToContents';
+    sheetGrabberVisible?: boolean;
+    sheetCornerRadius?: number;
+    sheetInitialDetentIndex?: number | 'last';
+    sheetLargestUndimmedDetentIndex?: number | 'none' | 'last';
+    sheetExpandsWhenScrolledToEdge?: boolean;
 };
+export type NativeStackNavigationEventMap = Record<string, any>;
 export declare const createNativeStackNavigator: () => {
     Navigator: () => null;
     Screen: () => null;
 };
+export declare const NativeStackView: (_props: any) => null;
 //# sourceMappingURL=native-stack.d.ts.map

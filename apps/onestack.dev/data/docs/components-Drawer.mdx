@@ -106,6 +106,63 @@ The `drawerType` option controls how the drawer appears:
 | `drawerPosition` | `'left' \| 'right'` | `'left'` | Which side the drawer appears |
 | `headerShown` | `boolean` | `true` | Show/hide the header |
 
+## Custom sidebar with `render`
+
+<New />
+
+The `render` prop swaps the default drawer sidebar for a component you control. Useful for branded navigation, a sidebar that doubles as a search palette, or a different UI per platform.
+
+```tsx
+import { Drawer, type DrawerRender } from 'one/drawer'
+import { View, Pressable, Text } from 'react-native'
+
+// Hoist outside the layout for stable identity.
+const render: DrawerRender = {
+  web: ({ state, descriptors, navigation }) => (
+    <View style={{ flex: 1, padding: 16 }}>
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key]
+        const focused = state.index === index
+        return (
+          <Pressable
+            key={route.key}
+            onPress={() => navigation.navigate(route.name)}
+            style={{ paddingVertical: 12, opacity: focused ? 1 : 0.6 }}
+          >
+            <Text>{options.drawerLabel ?? options.title ?? route.name}</Text>
+          </Pressable>
+        )
+      })}
+    </View>
+  ),
+}
+
+export default function Layout() {
+  return (
+    <Drawer render={render}>
+      <Drawer.Screen name="index" options={{ drawerLabel: 'Home' }} />
+      <Drawer.Screen name="settings" options={{ drawerLabel: 'Settings' }} />
+    </Drawer>
+  )
+}
+```
+
+`render` is platform-keyed (`{ web?, ios?, android? }`). The current platform's component is picked at render time; if none matches, the default drawer content is used. The render component receives `DrawerContentComponentProps` from `@react-navigation/drawer`: `state`, `navigation`, `descriptors`.
+
+### Global setup via the setup file
+
+```ts
+// app/setup.ts
+import { setupRendering } from 'one'
+import { MyDrawerContent } from './ui/MyDrawerContent'
+
+setupRendering({
+  Drawer: { web: MyDrawerContent },
+})
+```
+
+The global is overridden by `<Drawer render={...}>` or by passing `drawerContent={...}` directly.
+
 ## Dependencies
 
 The Drawer requires these optional peer dependencies to be installed:

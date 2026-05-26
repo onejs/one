@@ -2,6 +2,16 @@ import type { ParamListBase, StackNavigationState } from '@react-navigation/nati
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
 import { StackScreen, StackHeaderComponent, StackHeaderSearchBar } from './stack-utils';
+import { type StackRender } from '../router/web/ScreenRenderContext';
+type StackExtraProps = {
+    /**
+     * Platform-keyed render component for overlay routes (modal / formSheet /
+     * pageSheet / transparentModal / fullScreenModal). v1 consumes `web` only;
+     * `ios` / `android` are reserved for future use. Per-route overrides go on
+     * `<Stack.Screen options={{ render }} />`.
+     */
+    render?: StackRender;
+};
 export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
@@ -96,7 +106,7 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
+})), "children">> & React.RefAttributes<unknown> & StackExtraProps, "ref"> & React.RefAttributes<unknown>> & {
     Screen: typeof StackScreen;
     Header: typeof StackHeaderComponent & {
         Left: typeof import("./stack-utils").StackHeaderLeft;
