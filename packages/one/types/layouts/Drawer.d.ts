@@ -1,6 +1,17 @@
 import { type DrawerNavigationEventMap, type DrawerNavigationOptions } from '@react-navigation/drawer';
 import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
-export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
+import React from 'react';
+import { type DrawerRender } from '../router/renderingRegistry';
+type DrawerExtraProps = {
+    /**
+     * Platform-keyed sidebar component. Replaces the default drawer content.
+     * Dispatches on `Platform.OS` — `render.ios` works on iOS, `render.web`
+     * on web, etc. Falls back to `setupRendering({ Drawer: { ... } })` global
+     * if no prop is set, then to the built-in drawer content.
+     */
+    render?: DrawerRender;
+};
+export declare const Drawer: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: DrawerNavigationState<ParamListBase>;
@@ -102,8 +113,6 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
     id?: undefined;
 } | {
     id: string;
-})), "children">> & import("react").RefAttributes<unknown>> & {
-    Screen: typeof import("../views/Screen").Screen;
-};
+})), "children">> & React.RefAttributes<unknown> & DrawerExtraProps, "ref"> & React.RefAttributes<unknown>>;
 export default Drawer;
 //# sourceMappingURL=Drawer.d.ts.map

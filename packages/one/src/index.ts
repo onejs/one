@@ -94,7 +94,26 @@ export type {
   StackHeaderRightProps,
   StackHeaderSearchBarProps,
   StackScreenProps,
+  StackScreenOptions,
 } from './layouts/stack-utils'
+// Stack render API (for custom web overlay rendering)
+export type {
+  StackRender,
+  StackRenderProps,
+  StackRenderComponent,
+} from './router/web/ScreenRenderContext'
+// Tabs / Drawer render API + global setup
+export {
+  setupRendering,
+  getRenderingConfig,
+  type RenderingConfig,
+  type TabsRender,
+  type TabsRenderProps,
+  type TabsRenderComponent,
+  type DrawerRender,
+  type DrawerRenderProps,
+  type DrawerRenderComponent,
+} from './router/renderingRegistry'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
 export { Link } from './link/Link'
@@ -162,11 +181,7 @@ export { watchFile } from './utils/watchFile'
 // resilient dynamic-import recovery: retry a transient chunk-fetch failure in
 // place (so it never poisons a React.lazy memo), then fall back to one's
 // debounced reload. lazyWithRetry is a drop-in for React.lazy.
-export {
-  loadWithRetry,
-  isChunkLoadError,
-  handleSkewError,
-} from './utils/dynamicImport'
+export { loadWithRetry, isChunkLoadError, handleSkewError } from './utils/dynamicImport'
 export { lazyWithRetry } from './lazyWithRetry'
 export { ErrorBoundary } from './views/ErrorBoundary'
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'

@@ -180,3 +180,156 @@ You can set a default header for all screens by placing `Stack.Header` directly 
   <Stack.Screen name="profile" options={{ title: 'Profile' }} />
 </Stack>
 ```
+
+### Custom web rendering with `render`
+
+<New />
+
+On native, presentations like `formSheet`, `pageSheet`, and `modal` are handled by `react-native-screens` and render as real native sheets. On web there is no built-in equivalent - by default an overlay route shows as a card.
+
+The `render` prop on `<Stack>` lets you plug in any sheet or modal library to render overlay routes on web. Tamagui Sheet, Vaul, Radix Dialog, or a hand-rolled element all work.
+
+```tsx
+import { Stack, type StackRender } from 'one'
+import { Sheet } from 'tamagui'
+
+// Hoist outside the layout to keep identity stable across re-renders.
+const render: StackRender = {
+  web: ({ children, open, dismiss, dismissible, sheetAllowedDetents }) => (
+    <Sheet
+      modal
+      open={open}
+      onOpenChange={(o) => !o && dismiss()}
+      dismissOnSnapToBottom={dismissible}
+      snapPoints={sheetAllowedDetents}
+    >
+      <Sheet.Overlay />
+      <Sheet.Frame>{children}</Sheet.Frame>
+    </Sheet>
+  ),
+}
+
+export default function Layout() {
+  return (
+    <Stack render={render}>
+      <Stack.Screen
+        name="filters"
+        options={{
+          presentation: 'formSheet',
+          sheetAllowedDetents: [0.5, 1],
+          sheetGrabberVisible: true,
+        }}
+      />
+    </Stack>
+  )
+}
+```
+
+#### How the render is invoked
+
+The render component receives the overlay route's content as `children` along with normalized props:
+
+- `open: boolean` - whether the overlay should be visible. Toggles as you navigate.
+- `dismiss(): void` - call after your close animation completes. Triggers `StackActions.pop`.
+- `dismissible: boolean` - matches `options.gestureEnabled`.
+- `presentation` - the route's `presentation` option.
+- `routeKey`, `routeName` - the route identity.
+- All sheet detent options (`sheetAllowedDetents`, `sheetGrabberVisible`, `sheetCornerRadius`, `sheetInitialDetentIndex`, `sheetLargestUndimmedDetentIndex`, `sheetExpandsWhenScrolledToEdge`) pass through unchanged.
+
+#### Per-route override
+
+Pass `render` inside `options` to override for a single route:
+
+```tsx
+<Stack render={defaultRender}>
+  <Stack.Screen
+    name="filters"
+    options={{
+      presentation: 'formSheet',
+      render: { web: SpecialFilterChrome },
+    }}
+  />
+</Stack>
+```
+
+Resolution: per-route `options.render` → `<Stack render>` → `setupRendering` global → default (renders inline).
+
+#### Global setup via the setup file
+
+If every `<Stack>` in your app should use the same overlay render, register it once from your setup file:
+
+```ts
+// app/setup.ts
+import { setupRendering } from 'one'
+import { Sheet } from 'tamagui'
+
+setupRendering({
+  Stack: {
+    web: ({ children, open, dismiss, sheetAllowedDetents }) => (
+      <Sheet modal open={open} onOpenChange={(o) => !o && dismiss()} snapPoints={sheetAllowedDetents}>
+        <Sheet.Overlay />
+        <Sheet.Frame>{children}</Sheet.Frame>
+      </Sheet>
+    ),
+  },
+})
+```
+
+Wire the setup file in `vite.config.ts`:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      setupFile: './app/setup.ts',
+    }),
+  ],
+}
+```
+
+You can split per environment if needed: `setupFile: { client: './client.ts', server: './server.ts', native: './native.ts' }`.
+
+#### Keeping overlay routes mounted across dismissal
+
+By default, dismissing an overlay route pops it from the navigation state and React unmounts the route component. To preserve state (form values, `useId`, `useState`, refs) across close → reopen, set `keepMounted: true` on the screen options:
+
+```tsx
+<Stack.Screen
+  name="settings"
+  options={{
+    presentation: 'formSheet',
+    keepMounted: true,
+  }}
+/>
+```
+
+When `keepMounted` is on:
+
+- The route's React subtree is captured the first time it mounts and held in a persistent slot.
+- On dismissal the route is popped from navigation state (URL stays correct) but the captured subtree keeps rendering - the render component receives `open: false`.
+- On re-navigation the same component instance is reused; `useId` returns the same value, `useState` retains its value, refs are preserved.
+
+**The render component must keep `children` in the React tree when `open: false`** - typically by toggling visibility rather than conditionally rendering. Tamagui Sheet's `modal` mode does this automatically. A render that returns `null` when closed will unmount the children regardless of `keepMounted`.
+
+```tsx
+// ❌ unmounts on close - keepMounted has no effect
+const render: StackRender = {
+  web: ({ children, open }) => (open ? <div>{children}</div> : null),
+}
+
+// ✅ keeps children mounted, just hidden
+const render: StackRender = {
+  web: ({ children, open, dismiss }) => (
+    <Sheet modal open={open} onOpenChange={(o) => !o && dismiss()}>
+      <Sheet.Frame>{children}</Sheet.Frame>
+    </Sheet>
+  ),
+}
+```
+
+**Caveats**:
+
+- The route subtree is captured at first mount, so route params are frozen at the first values. Best for stable, parameter-free overlays (settings, persistent filters, command palettes). Don't use on `[id]`-style dynamic routes.
+- The persistent slot only lives as long as the `<Stack>` itself.

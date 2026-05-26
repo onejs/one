@@ -9,10 +9,34 @@ import {
   type StackHeaderProps,
 } from './StackHeaderComponent'
 import { Screen } from '../../views/Screen'
+import type { StackRender } from '../../router/web/ScreenRenderContext'
+
+export type StackScreenOptions = NativeStackNavigationOptions & {
+  /**
+   * Per-route override of the Stack-level `render` prop. Same platform-keyed
+   * shape (`{ web?, ios?, android? }`); v1 consumes `web` only. When set, it
+   * takes precedence over the Stack-level render for this route.
+   */
+  render?: StackRender
+
+  /**
+   * Web-only. When `true`, the route's React subtree stays mounted across
+   * dismissal and re-navigation - `useState`, `useId`, `useReducer`, refs,
+   * and anything stored in the route component all survive. The render
+   * component receives `open: false` while the route is "closed".
+   *
+   * Caveat: route params are captured at first mount. If the same route is
+   * navigated to with different params later, the captured subtree keeps
+   * the original params. Best for stable, parameter-free overlays
+   * (settings, persistent filters, command palettes). For routes with
+   * dynamic params, leave `keepMounted` off.
+   */
+  keepMounted?: boolean
+}
 
 export interface StackScreenProps extends PropsWithChildren {
   name?: string
-  options?: NativeStackNavigationOptions
+  options?: StackScreenOptions
 }
 
 /**
@@ -36,7 +60,7 @@ export function StackScreen({ children, options, ...rest }: StackScreenProps) {
       }),
     [options, children]
   )
-  return <Screen {...rest} options={updatedOptions} />
+  return <Screen {...rest} options={updatedOptions as NativeStackNavigationOptions} />
 }
 
 const VALID_PRESENTATIONS = [
@@ -85,17 +109,14 @@ export function validateStackPresentation(
 }
 
 export function appendScreenStackPropsToOptions(
-  options: NativeStackNavigationOptions,
+  options: StackScreenOptions,
   props: StackScreenProps
-): NativeStackNavigationOptions {
-  let updatedOptions = { ...options, ...props.options }
+): StackScreenOptions {
+  let updatedOptions: StackScreenOptions = { ...options, ...props.options }
 
   validateStackPresentation(updatedOptions)
 
-  function appendChildOptions(
-    child: React.ReactElement,
-    options: NativeStackNavigationOptions
-  ) {
+  function appendChildOptions(child: React.ReactElement, options: StackScreenOptions) {
     if (child.type === StackHeaderComponent) {
       return appendStackHeaderPropsToOptions(options, child.props as StackHeaderProps)
     } else {

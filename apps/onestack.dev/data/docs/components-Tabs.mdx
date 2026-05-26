@@ -29,3 +29,60 @@ export default function Layout() {
 <Notice>
   Adding a new tab route has a bug currently that can cause it to not show up until you re-run your app with `--clean`.
 </Notice>
+
+### Custom tab bar with `render`
+
+<New />
+
+The `render` prop swaps the default bottom tab bar for a component you control. Useful for rendering a sidebar on web, a top nav on tablets, or any tab UI that doesn't fit a bottom bar.
+
+```tsx
+import { Tabs, type TabsRender } from 'one'
+import { View, Pressable, Text } from 'react-native'
+
+// Hoist outside the layout for stable identity.
+const render: TabsRender = {
+  web: ({ state, descriptors, navigation }) => (
+    <View style={{ flexDirection: 'row', padding: 12, borderTopWidth: 1 }}>
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key]
+        const focused = state.index === index
+        return (
+          <Pressable
+            key={route.key}
+            onPress={() => navigation.navigate(route.name)}
+            style={{ flex: 1, opacity: focused ? 1 : 0.6 }}
+          >
+            <Text>{options.title ?? route.name}</Text>
+          </Pressable>
+        )
+      })}
+    </View>
+  ),
+}
+
+export default function Layout() {
+  return (
+    <Tabs render={render}>
+      <Tabs.Screen name="explore" options={{ title: 'Explore', href: '/explore' }} />
+      <Tabs.Screen name="profile" options={{ title: 'Profile', href: '/profile' }} />
+    </Tabs>
+  )
+}
+```
+
+`render` is platform-keyed (`{ web?, ios?, android? }`). The current platform's component is picked at render time; if none matches, the default `BottomTabBar` is used. The render component receives the standard `BottomTabBarProps` from `@react-navigation/bottom-tabs`: `state`, `descriptors`, `navigation`, `insets`.
+
+#### Global setup via the setup file
+
+```ts
+// app/setup.ts
+import { setupRendering } from 'one'
+import { MyTabBar } from './ui/MyTabBar'
+
+setupRendering({
+  Tabs: { web: MyTabBar },
+})
+```
+
+The global is overridden by `<Tabs render={...}>` or by passing `tabBar={...}` directly.

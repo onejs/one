@@ -1,6 +1,17 @@
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
-export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
+import React from 'react';
+import { type TabsRender } from '../router/renderingRegistry';
+type TabsExtraProps = {
+    /**
+     * Platform-keyed tab bar component. Replaces the default bottom-tabs bar.
+     * v1 consumes `web` only; `ios` / `android` accepted for future use.
+     * Falls back to `setupRendering({ Tabs: { web } })` global registry if
+     * no prop is set, then to the built-in `BottomTabBar`.
+     */
+    render?: TabsRender;
+};
+export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: TabNavigationState<ParamListBase>;
@@ -94,10 +105,8 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
     id?: undefined;
 } | {
     id: string;
-})), "children">> & import("react").RefAttributes<unknown>> & {
-    Screen: typeof import("../views/Screen").Screen;
-} & {
-    Protected: import("react").FunctionComponent<import("..").ProtectedProps>;
+})), "children">> & React.RefAttributes<unknown> & TabsExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+    Protected: React.FunctionComponent<import("..").ProtectedProps>;
 };
 export default Tabs;
 //# sourceMappingURL=Tabs.d.ts.map
