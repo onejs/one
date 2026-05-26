@@ -931,20 +931,28 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       // normalize the path to match what useLoader uses for cache keys
       const normalizedHref = normalizeLoaderPath(href)
       if (!preloadingLoader[normalizedHref]) {
-        setBoundedPreloadRecord(preloadingLoader, normalizedHref, doPreloadDev(href).then((data) => {
-          setBoundedPreloadRecord(preloadedLoaderData, normalizedHref, data)
-          return data
-        }))
+        setBoundedPreloadRecord(
+          preloadingLoader,
+          normalizedHref,
+          doPreloadDev(href).then((data) => {
+            setBoundedPreloadRecord(preloadedLoaderData, normalizedHref, data)
+            return data
+          })
+        )
       }
       return preloadingLoader[normalizedHref]
     }
 
     if (!preloadingLoader[href]) {
-      setBoundedPreloadRecord(preloadingLoader, href, doPreload(href).then((data) => {
-        // Store the resolved data for synchronous access
-        setBoundedPreloadRecord(preloadedLoaderData, href, data)
-        return data
-      }))
+      setBoundedPreloadRecord(
+        preloadingLoader,
+        href,
+        doPreload(href).then((data) => {
+          // Store the resolved data for synchronous access
+          setBoundedPreloadRecord(preloadedLoaderData, href, data)
+          return data
+        })
+      )
     }
 
     if (injectCSS) {

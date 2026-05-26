@@ -7,7 +7,7 @@
  */
 
 import { basename, dirname, extname, join, relative, resolve } from 'node:path'
-import { existsSync, readFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import { normalizePath } from 'vite'
@@ -176,7 +176,8 @@ function getNativePlugins(
   root: string,
   platform: string,
   viteImportGlobPlugin: any,
-  dev: boolean
+  dev: boolean,
+  assetsDest?: string
 ): Plugin[] {
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
@@ -194,7 +195,7 @@ function getNativePlugins(
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
-    assetPlugin({ root, platform }),
+    assetPlugin({ root, platform, assetsDest }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
     // react-native codegen, react compiler — same pipeline as metro
     vxrnCompilerPlugin(platform, dev),
@@ -511,13 +512,21 @@ interface NativeBuildOptions {
   platform: 'ios' | 'android'
   dev?: boolean
   serverUrl?: string
+  assetsDest?: string
   plugins?: Plugin[]
 }
 
 export async function buildNativeBundle(
   options: NativeBuildOptions
 ): Promise<{ code: string; map?: string }> {
-  const { root, platform, dev = false, serverUrl, plugins: userPlugins = [] } = options
+  const {
+    root,
+    platform,
+    dev = false,
+    serverUrl,
+    assetsDest,
+    plugins: userPlugins = [],
+  } = options
 
   const { build } = await import('rolldown')
   const { viteImportGlobPlugin } = await import('rolldown/experimental')
@@ -539,7 +548,7 @@ export async function buildNativeBundle(
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       nativeVirtualEntryPlugin(root, { dev }),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
       ...userPlugins,
     ],
     output: getNativeOutputOptions(prelude),
@@ -871,7 +880,11 @@ function flowStripPlugin(): Plugin {
  * Handle asset imports (.png, .jpg, .ttf, etc.)
  * Returns JS code that registers the asset with RN's AssetRegistry.
  */
-function assetPlugin(opts: { root: string; platform: string }): Plugin {
+function assetPlugin(opts: {
+  root: string
+  platform: string
+  assetsDest?: string
+}): Plugin {
   const assetRegex = new RegExp(`\\.(?:${DEFAULT_ASSET_EXTS.join('|')})$`)
 
   return {
@@ -908,6 +921,13 @@ function assetPlugin(opts: { root: string; platform: string }): Plugin {
             assetData.width = dims.width
             assetData.height = dims.height
           } catch {}
+        }
+
+        if (opts.assetsDest) {
+          const relativeAssetDir = dirname(relativePath).replace(/\\/g, '/')
+          const assetDestDir = join(opts.assetsDest, 'assets', relativeAssetDir)
+          mkdirSync(assetDestDir, { recursive: true })
+          copyFileSync(id, join(assetDestDir, `${name}.${ext}`))
         }
 
         const code = `module.exports = require('react-native/Libraries/Image/AssetRegistry').registerAsset(${JSON.stringify(assetData)});`

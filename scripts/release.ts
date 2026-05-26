@@ -412,11 +412,7 @@ async function run() {
 
       const failedPublishes: string[] = []
 
-      const publishTag = canary
-        ? 'canary'
-        : version.includes('-rc.')
-          ? 'rc'
-          : 'latest'
+      const publishTag = canary ? 'canary' : version.includes('-rc.') ? 'rc' : 'latest'
       const publishOptions = [publishTag && `--tag ${publishTag}`]
         .filter(Boolean)
         .join(' ')

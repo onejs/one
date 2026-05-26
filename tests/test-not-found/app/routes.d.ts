@@ -9,7 +9,7 @@ declare module 'one' {
       StaticRoutes:
         | `/`
         | `/_sitemap`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/case1/${OneRouter.SingleRoutePart<T>}`
         | `/case2/${OneRouter.SingleRoutePart<T>}`
         | `/case2/${OneRouter.SingleRoutePart<T>}/+not-found`
@@ -25,7 +25,7 @@ declare module 'one' {
         | `/case8/${OneRouter.SingleRoutePart<T>}/mid/${OneRouter.SingleRoutePart<T>}`
         | `/case9/${OneRouter.SingleRoutePart<T>}`
         | `/case9/${OneRouter.SingleRoutePart<T>}/+not-found`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/case1/[param1]`
         | `/case2/[param1]`
         | `/case2/[param1]/+not-found`

@@ -34,22 +34,26 @@ describe('CACHE_KEY pinning', () => {
   it('PRELOAD_JS_POSTFIX_REGEX matches the literal postfix shape with any digits', () => {
     constants.setCacheKey('12345')
 
-    expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload.js')).toBe(true)
+    expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload.js')).toBe(
+      true
+    )
     // also matches a drifted key — the whole point of the regex fallback
-    expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_98765_preload.js')).toBe(true)
+    expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_98765_preload.js')).toBe(
+      true
+    )
     // does not match unrelated paths
     expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_preload.js')).toBe(false)
-    expect(constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload_css.js')).toBe(
-      false
-    )
+    expect(
+      constants.PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload_css.js')
+    ).toBe(false)
   })
 
   it('CSS_PRELOAD_JS_POSTFIX_REGEX matches only the css variant', () => {
     expect(
       constants.CSS_PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload_css.js')
     ).toBe(true)
-    expect(constants.CSS_PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload.js')).toBe(
-      false
-    )
+    expect(
+      constants.CSS_PRELOAD_JS_POSTFIX_REGEX.test('/assets/foo_12345_preload.js')
+    ).toBe(false)
   })
 })
