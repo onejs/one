@@ -40,8 +40,25 @@ vi.mock('./vite/getManifest', () => ({
         type: 'ssr',
         middlewares: [],
       },
+      {
+        file: 'app/+not-found.tsx',
+        page: '/+not-found',
+        namedRegex: '^/(?<nxtPnotfound>.+?)(?:/)?$',
+        routeKeys: { nxtPnotfound: 'not-found' },
+        type: 'spa',
+        middlewares: [],
+      },
     ],
-    apiRoutes: [],
+    apiRoutes: [
+      {
+        file: 'app/api/github/agent/run.sh+api.ts',
+        page: '/api/github/agent/run.sh',
+        namedRegex: '^/api/github/agent/run\\.sh(?:/)?$',
+        routeKeys: {},
+        type: 'api',
+        middlewares: [],
+      },
+    ],
   }),
 }))
 
@@ -105,15 +122,42 @@ describe('createHandleRequest', () => {
       expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
 
-    it('should NOT skip extensions longer than 4 chars (routes with dots in names)', async () => {
+    it('should skip common static extensions longer than 4 chars', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
-      await handler(createRequest('/route.normal'))
-      expect(mockHandlers.handlePage).toHaveBeenCalled()
+      const result = await handler(createRequest('/font.woff2'))
+      expect(result).toBeNull()
+      expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
 
-    it('should NOT skip 5+ char extensions like .woff2', async () => {
+    it('should not render a user +not-found page for sourcemap requests', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
-      await handler(createRequest('/font.woff2'))
+      const result = await handler(createRequest('/deps-web/react-BwkDMLyL.js.map'))
+      expect(result).toBeNull()
+      expect(mockHandlers.handlePage).not.toHaveBeenCalled()
+    })
+
+    it('should still route static-looking API paths', async () => {
+      const mockHandlersWithAPI = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleAPI: vi.fn().mockResolvedValue({
+          GET: () => new Response('script'),
+        }),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithAPI, {
+        routerRoot: '/app',
+      })
+      const result = (await handler(
+        createRequest('/api/github/agent/run.sh')
+      )) as Response | null
+      expect(result).not.toBeNull()
+      expect(await result!.text()).toBe('script')
+      expect(mockHandlersWithAPI.handleAPI).toHaveBeenCalled()
+      expect(mockHandlersWithAPI.handlePage).not.toHaveBeenCalled()
+    })
+
+    it('should not skip non-static extensions in route names', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+      await handler(createRequest('/route.normal'))
       expect(mockHandlers.handlePage).toHaveBeenCalled()
     })
 
