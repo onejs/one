@@ -27,6 +27,13 @@ type RequestHandlerProps<RouteExtraProps extends object = {}> = {
 type RequestHandlerResponse = null | string | Response
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
+const staticAssetPathRe = /\.(?:[a-z0-9]{2,4}|webmanifest|wasm|woff2)$/i
+
+function isStaticAssetRequestPath(pathname: string): boolean {
+  return (
+    !pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED) && staticAssetPathRe.test(pathname)
+  )
+}
 
 // ensure handler results are always a proper Response so middleware
 // can safely use response.body / response.headers / new Response(response.body, ...)
@@ -396,11 +403,7 @@ export function createHandleRequest(
         return null
       }
 
-      // check if path looks like a static file (extension 2-4 chars like .js, .png, .jpeg)
-      // excludes loader paths which end with _vxrn_loader.js
-      const looksLikeStaticFile =
-        !pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED) &&
-        /\.[a-zA-Z0-9]{2,4}$/.test(pathname)
+      const looksLikeStaticFile = isStaticAssetRequestPath(pathname)
 
       if (handlers.handleAPI) {
         const apiRoute = compiledManifest.apiRoutes.find((route) => {
@@ -486,36 +489,26 @@ export function createHandleRequest(
             continue
           }
 
-          // for static-looking paths, skip dynamic routes (with route params)
-          // this prevents /favicon.ico from matching [slug] routes
-          // but allows explicit routes and not-found handlers to match
+          // static asset requests belong to vite/static middleware. skip
+          // dynamic routes and +not-found handlers so missing sourcemaps,
+          // favicons, fonts, etc. do not render an app document.
           const isDynamicRoute = Object.keys(route.routeKeys).length > 0
           const isNotFoundRoute = route.page.endsWith('/+not-found')
-          if (looksLikeStaticFile && isDynamicRoute && !isNotFoundRoute) {
+          if (looksLikeStaticFile && isNotFoundRoute) {
             if (debugRouter) {
               console.info(
-                `[one] ⚡ ${pathname} → skipping dynamic route ${route.page} for static-looking path`
+                `[one] ⚡ ${pathname} → skipping not-found route for static asset`
+              )
+            }
+            return null
+          }
+          if (looksLikeStaticFile && isDynamicRoute) {
+            if (debugRouter) {
+              console.info(
+                `[one] ⚡ ${pathname} → skipping dynamic route ${route.page} for static asset`
               )
             }
             continue
-          }
-
-          // static-looking probes (sourcemaps, .well-known, favicons) that
-          // only match the auto-generated placeholder +not-found (route.file
-          // is '' — no user-defined +not-found page exists) should get a bare
-          // 404 rather than a full SSR render. browser devtools & crawlers
-          // want a status code, not an HTML shell, and rendering the layout
-          // tree for every probe is wasteful.
-          if (looksLikeStaticFile && route.file === '') {
-            if (debugRouter) {
-              console.info(
-                `[one] ⚡ ${pathname} → 404 for probe path (no +not-found defined)`
-              )
-            }
-            return new Response(null, {
-              status: 404,
-              headers: { 'Content-Type': 'text/plain' },
-            })
           }
 
           if (debugRouter) {
