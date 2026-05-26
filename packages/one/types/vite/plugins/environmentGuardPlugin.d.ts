@@ -7,10 +7,16 @@
  *
  * | import          | allowed in       | throws in                  |
  * |-----------------|------------------|----------------------------|
- * | server-only     | ssr              | client, ios, android       |
- * | client-only     | client           | ssr, ios, android          |
- * | native-only     | ios, android     | client, ssr                |
+ * | server-only     | any server env   | any client env             |
+ * | client-only     | any client env   | any server env             |
+ * | native-only     | ios, android     | other names                |
  * | web-only        | client, ssr      | ios, android               |
+ *
+ * server-only / client-only key off `env.config.consumer` so they work
+ * uniformly across `ssr`, custom names like `worker` (cloudflare deploy),
+ * or any other consumer-tagged environment a downstream framework defines.
+ * native-only / web-only stay name-based because they discriminate by
+ * platform, not by consumer type.
  */
 import type { Plugin } from 'vite';
 declare const GUARD_SPECIFIERS: readonly ["server-only", "client-only", "native-only", "web-only"];
@@ -34,8 +40,14 @@ export type EnvironmentGuardOptions = {
 /**
  * returns a virtual module id if the specifier is a guard, otherwise null.
  * pure function extracted for testing.
+ *
+ * `consumer` is vite's environment.config.consumer ('server' | 'client').
+ * encoded into the virtual id so loadEnvironmentGuard can decide whether
+ * server-only / client-only fire without re-deriving it. callers that
+ * don't have access to a consumer (legacy callsites, tests) may pass
+ * undefined; load will then fall back to name-based matching.
  */
-export declare function resolveEnvironmentGuard(specifier: string, envName: string, options?: EnvironmentGuardOptions): string | null;
+export declare function resolveEnvironmentGuard(specifier: string, envName: string, consumer?: 'server' | 'client', options?: EnvironmentGuardOptions): string | null;
 /**
  * returns the module source for a virtual guard id.
  * pure function extracted for testing.

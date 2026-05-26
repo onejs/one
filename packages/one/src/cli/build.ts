@@ -22,6 +22,7 @@ import {
 
 import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
+import { environmentGuardPlugin } from '../vite/plugins/environmentGuardPlugin'
 import { writeBuildOutputPointer } from '../utils/buildOutputPointer'
 import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
@@ -1505,6 +1506,15 @@ export default {
           'process.env.ONE_CACHE_KEY': JSON.stringify(constants.CACHE_KEY),
         },
         plugins: [
+          // the cloudflare worker IS a server, but this build runs with
+          // configFile:false so the user vite.config (where the user-level
+          // `one()` plugin registers environmentGuardPlugin via vite.config)
+          // doesn't apply. register the guard plugin directly here so
+          // `import 'server-only'` resolves to an empty module in the
+          // worker bundle instead of inlining the package's throwing
+          // index.js — which would crash the deployed worker on the first
+          // /api request that loads any server-only-importing module.
+          environmentGuardPlugin(oneOptions.environmentGuards),
           cloudflare({
             configPath: wranglerInputPath,
             viteEnvironment: { name: 'worker' },
