@@ -1,6 +1,6 @@
 {
   "name": "one-tray",
-  "version": "1.17.10-1779768363002",
+  "version": "1.17.10-1779773453630",
   "private": true,
   "scripts": {
     "build": "[ \"$(uname)\" = \"Darwin\" ] && make debug || true",
