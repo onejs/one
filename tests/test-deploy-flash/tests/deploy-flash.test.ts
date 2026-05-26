@@ -606,4 +606,117 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       }
     }
   )
+
+  // regression: <Redirect> conditionally rendered after a state flip (e.g.
+  // "Login as Demo User") flips the URL but the page content stays on the
+  // source route until reload. reported in issue #700.
+  test(
+    'conditional <Redirect> across route groups updates both URL and content',
+    { retry: 0 },
+    async () => {
+      const page = await context.newPage()
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
+      try {
+        await page.goto(serverUrl + '/auth/redirect-test', {
+          waitUntil: 'domcontentloaded',
+        })
+
+        await page.waitForSelector('#redirect-test-marker', { timeout: 10000 })
+
+        await page.locator('#flip-redirect').click()
+
+        await page.waitForFunction(
+          () => location.pathname === '/project/redirected/main',
+          undefined,
+          { timeout: 10000 }
+        )
+
+        // CRITICAL: after URL flips, content must follow. the reported bug
+        // leaves #redirect-test-marker mounted while location.pathname has
+        // moved on.
+        const redirectMarkerStillVisible = await page
+          .locator('#redirect-test-marker')
+          .count()
+        expect(
+          redirectMarkerStillVisible,
+          `<Redirect> updated URL but left source route mounted — page content stuck on /auth/redirect-test.`
+        ).toBe(0)
+
+        await waitForSessionState(
+          page,
+          '/project/redirected/main',
+          'redirected',
+          'main'
+        )
+
+        const after = await collectSessionProjectState(page)
+        expectSessionStateMatches(
+          after,
+          '/project/redirected/main',
+          'redirected',
+          'main'
+        )
+        expect(errors).toHaveLength(0)
+      } finally {
+        await page.close()
+      }
+    }
+  )
+
+  // regression: takeout2 / soot "Login as Demo User" pattern. the auth layout
+  // flips an "isAuthed" flag and renders <Redirect /> in place of <Slot />.
+  // bug: URL flips but the previous route's content stays mounted until
+  // reload. reported in issue #700.
+  test(
+    'layout-level <Redirect> swap after state flip updates URL AND content',
+    { retry: 0 },
+    async () => {
+      const page = await context.newPage()
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
+      try {
+        await page.goto(serverUrl + '/auth/login', {
+          waitUntil: 'domcontentloaded',
+        })
+
+        await page.waitForSelector('#login-marker', { timeout: 10000 })
+
+        // flip the layout's auth flag — same shape as a real login click
+        // that toggles a global auth store.
+        await page.evaluate(() => {
+          ;(window as Window & { __flipAuth?: () => void }).__flipAuth?.()
+        })
+
+        await page.waitForFunction(
+          () => location.pathname === '/project/redirected/main',
+          undefined,
+          { timeout: 10000 }
+        )
+
+        // CRITICAL: URL flipped — content must follow. the reported bug keeps
+        // #login-marker mounted while location.pathname moved on.
+        const loginMarkerStillVisible = await page
+          .locator('#login-marker')
+          .count()
+        expect(
+          loginMarkerStillVisible,
+          `<Redirect> in layout updated URL but left previous route mounted — page content stuck on /auth/login.`
+        ).toBe(0)
+
+        await waitForSessionState(
+          page,
+          '/project/redirected/main',
+          'redirected',
+          'main'
+        )
+
+        expect(errors).toHaveLength(0)
+      } finally {
+        await page.close()
+      }
+    }
+  )
 })

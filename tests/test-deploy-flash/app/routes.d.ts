@@ -33,6 +33,7 @@ declare module 'one' {
         | `/(auth)`
         | `/(auth)/auth/login`
         | `/(auth)/auth/login-success`
+        | `/(auth)/auth/redirect-test`
         | `/(panel)`
         | `/(site)`
         | `/(site)/compat`
@@ -45,6 +46,7 @@ declare module 'one' {
         | `/analytics`
         | `/auth/login`
         | `/auth/login-success`
+        | `/auth/redirect-test`
         | `/compat`
         | `/console`
         | `/deploy`
@@ -65,7 +67,7 @@ declare module 'one' {
         | `/project/[projectId]/[sessionId]/prod`
         | `/settings`
         | `/terminal`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/(app)/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/(workspace)/(panel)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/(workspace)/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
@@ -80,7 +82,7 @@ declare module 'one' {
         | `/nested-project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(app)/(panel)/nested-project/[projectId]/[sessionId]`
         | `/(app)/(workspace)/(panel)/nested-project/[projectId]/[sessionId]`
         | `/(app)/(workspace)/nested-project/[projectId]/[sessionId]`
