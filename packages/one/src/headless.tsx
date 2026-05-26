@@ -21,6 +21,12 @@ export type CreateHeadlessAppProps = {
 export function createApp(options: CreateHeadlessAppProps) {
   // always spa mode — render() checks this to use createRoot instead of hydrateRoot
   globalThis['__vxrnIsSPA'] = true
+  // headless mode has no dev server serving /_one/assets/*_vxrn_loader.js;
+  // routes (and their loader exports) are statically bundled and accessed
+  // through `options.routes`. doPreloadDev/doPreload short-circuit on this
+  // flag so they don't round-trip through an iframe-host URL that can return
+  // a spurious __oneError 404 for paths overlapping the host's route tree.
+  globalThis['__vxrnHeadless'] = true
 
   const setupComplete = options.getSetupPromise
     ? options.getSetupPromise()
