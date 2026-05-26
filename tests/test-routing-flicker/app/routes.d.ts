@@ -12,10 +12,10 @@ declare module 'one' {
         | `/default-mode`
         | `/docs`
         | `/no-loader`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/default-mode/${OneRouter.SingleRoutePart<T>}`
         | `/docs/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/default-mode/[slug]`
         | `/docs/[slug]`
       IsTyped: true

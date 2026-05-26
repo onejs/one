@@ -43,7 +43,7 @@ export async function buildBundle(
     // readGlobalCache,
     // entryFile, // Not supported. With VxRN, we are using a static entry file.
     bundleOutput,
-    assetsDest, // TODO
+    assetsDest,
     // minify, // Minification is not supported.
   } = args
 
@@ -80,6 +80,7 @@ export async function buildBundle(
     // process.env. without this, getURL.native falls back to the dummy
     // 'http://one-server.example.com' and runtime loader fetches fail in prod.
     serverUrl: process.env.ONE_SERVER_URL,
+    assetsDest,
   })
   const builtBundle = result.code
 

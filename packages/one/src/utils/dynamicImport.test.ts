@@ -11,12 +11,12 @@ const drain = () => new Promise((r) => setTimeout(r, 0))
 
 describe('isChunkLoadError', () => {
   it('matches the chrome / firefox / safari chunk-load messages, nothing else', () => {
-    expect(isChunkLoadError(new Error('Failed to fetch dynamically imported module: /a'))).toBe(
-      true
-    )
-    expect(isChunkLoadError(new Error('error loading dynamically imported module: /a'))).toBe(
-      true
-    )
+    expect(
+      isChunkLoadError(new Error('Failed to fetch dynamically imported module: /a'))
+    ).toBe(true)
+    expect(
+      isChunkLoadError(new Error('error loading dynamically imported module: /a'))
+    ).toBe(true)
     expect(isChunkLoadError(new Error('Importing a module script failed.'))).toBe(true)
     expect(isChunkLoadError('Failed to fetch dynamically imported module')).toBe(true)
     expect(isChunkLoadError(new Error('TypeError: x is not a function'))).toBe(false)
@@ -28,7 +28,9 @@ describe('loadWithRetry', () => {
     const loader = vi.fn().mockResolvedValue({ default: 'ok' })
     const delay = vi.fn(instantDelay)
     const onChunkErrorExhausted = vi.fn(() => false)
-    await expect(loadWithRetry(loader, { delay, onChunkErrorExhausted })).resolves.toEqual({
+    await expect(
+      loadWithRetry(loader, { delay, onChunkErrorExhausted })
+    ).resolves.toEqual({
       default: 'ok',
     })
     expect(loader).toHaveBeenCalledTimes(1)

@@ -32,6 +32,7 @@ interface NativeBuildOptions {
     platform: 'ios' | 'android';
     dev?: boolean;
     serverUrl?: string;
+    assetsDest?: string;
     plugins?: Plugin[];
 }
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
