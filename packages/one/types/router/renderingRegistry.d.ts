@@ -55,7 +55,7 @@ export type RenderingConfig = {
 };
 /**
  * Register default render components for One's navigators. Call from your
- * setup file before the app renders. Settings are global — every `<Stack>`
+ * setup file before the app renders. Settings are global - every `<Stack>`
  * and `<Tabs>` instance picks them up unless overridden via prop or
  * per-route options.
  *
@@ -82,7 +82,7 @@ export type RenderingConfig = {
 export declare function setupRendering(config: RenderingConfig): void;
 export declare function getRenderingConfig(): RenderingConfig;
 /**
- * For tests — clears the global registry.
+ * For tests - clears the global registry.
  * @internal
  */
 export declare function resetRenderingConfig(): void;

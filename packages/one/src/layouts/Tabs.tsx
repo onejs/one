@@ -119,6 +119,11 @@ const TabsWithRender = React.forwardRef<
   return <RNTabs {...rest} ref={ref} tabBar={effectiveTabBar} />
 })
 
-export const Tabs = Object.assign(TabsWithRender, { Protected })
+export const Tabs = Object.assign(TabsWithRender, {
+  Protected,
+  // Preserve withLayoutContext's static Screen so user code like
+  // `<Tabs.Screen ... />` keeps working through the render wrapper.
+  Screen: RNTabs.Screen,
+})
 
 export default Tabs

@@ -109,6 +109,21 @@ describe('convertStackStateToNonOverlayState', () => {
     expect(out.routes[out.index]!.name).toBe('detail')
   })
 
+  it('does not strip mid-stack overlays (regression: only the trailing overlay suffix is removed)', () => {
+    // User opened a sheet then navigated forward to a card. The sheet is
+    // sandwiched in the middle. It MUST stay in the underlying state so
+    // detail's previous-route / header-back context references the sheet.
+    const state = makeState(['home', 'sheet', 'detail'], 2)
+    const descriptors = makeDescriptors(['home', 'sheet', 'detail'], {
+      home: 'card',
+      sheet: 'formSheet',
+      detail: 'card',
+    })
+    const out = convertStackStateToNonOverlayState(state, descriptors)
+    expect(out.routes.map((r) => r.name)).toEqual(['home', 'sheet', 'detail'])
+    expect(out.index).toBe(2)
+  })
+
   it('handles all-overlay state without crashing', () => {
     const state = makeState(['only-sheet'], 0)
     const descriptors = makeDescriptors(['only-sheet'], { 'only-sheet': 'formSheet' })
