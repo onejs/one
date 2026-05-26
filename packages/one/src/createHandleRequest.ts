@@ -489,18 +489,27 @@ export function createHandleRequest(
             continue
           }
 
-          // static asset requests belong to vite/static middleware. skip
-          // dynamic routes and +not-found handlers so missing sourcemaps,
-          // favicons, fonts, etc. do not render an app document.
+          // static asset requests (sourcemaps, favicons, fonts, …) should not
+          // SSR the user's +not-found page or hijack a dynamic route. for
+          // +not-found we still run middleware so it can intercept, then
+          // short-circuit to a bare 404 instead of rendering the page tree.
           const isDynamicRoute = Object.keys(route.routeKeys).length > 0
           const isNotFoundRoute = route.page.endsWith('/+not-found')
           if (looksLikeStaticFile && isNotFoundRoute) {
             if (debugRouter) {
               console.info(
-                `[one] ⚡ ${pathname} → skipping not-found route for static asset`
+                `[one] ⚡ ${pathname} → bare 404 for static probe on ${route.page}`
               )
             }
-            return null
+            if (!route.middlewares?.length) {
+              return null
+            }
+            return await runMiddlewares(handlers, request, route, async () => {
+              return new Response(null, {
+                status: 404,
+                headers: { 'Content-Type': 'text/plain' },
+              })
+            })
           }
           if (looksLikeStaticFile && isDynamicRoute) {
             if (debugRouter) {
