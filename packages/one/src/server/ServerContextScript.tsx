@@ -25,18 +25,19 @@ export function ServerContextScript() {
     // strip cssContents - read from DOM instead (CSSPrehydrateScript)
     const { cssContents, ...restContext } = context || {}
 
-    // strip page loaderData from matches to avoid double-serialization.
-    // we always strip the leaf (its data lives in restContext.loaderData and
-    // gets restored client-side onto matches[last]). reference equality on
-    // restContext.loaderData was too aggressive — if a layout's loaderData
-    // happened to ref-equal the page's (e.g. both `null`), the layout would
-    // permanently lose its data after hydration.
+    // strip leaf loaderData from matches to avoid double-serialization when
+    // the same data is already in restContext.loaderData (restored client-side
+    // onto matches[last]). only strip when restContext.loaderData exists —
+    // in spa-shell mode the page is not server-rendered so loaderData is
+    // undefined and the leaf in matches is actually a layout whose data
+    // exists nowhere else.
+    const hasLeafLoaderData = restContext.loaderData !== undefined
     const lastMatchIndex = (restContext.matches?.length ?? 0) - 1
     const compactMatches = restContext.matches?.map((m: any, i: number) => ({
       routeId: m.routeId,
       pathname: m.pathname,
       params: m.params,
-      ...(i === lastMatchIndex ? {} : { loaderData: m.loaderData }),
+      ...(hasLeafLoaderData && i === lastMatchIndex ? {} : { loaderData: m.loaderData }),
     }))
 
     const clientContext = {
