@@ -17,7 +17,7 @@ export type StackRenderProps = {
      * Whether this overlay should currently be visible. For non-keepMounted
      * routes, this is always `true` while the render is invoked. For
      * keepMounted routes, this toggles as the user navigates away from /
-     * back to this route — the React subtree stays mounted in both states.
+     * back to this route - the React subtree stays mounted in both states.
      */
     open: boolean;
     dismiss: () => void;

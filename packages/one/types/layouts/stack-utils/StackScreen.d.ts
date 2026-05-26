@@ -10,7 +10,7 @@ export type StackScreenOptions = NativeStackNavigationOptions & {
     render?: StackRender;
     /**
      * Web-only. When `true`, the route's React subtree stays mounted across
-     * dismissal and re-navigation — `useState`, `useId`, `useReducer`, refs,
+     * dismissal and re-navigation - `useState`, `useId`, `useReducer`, refs,
      * and anything stored in the route component all survive. The render
      * component receives `open: false` while the route is "closed".
      *

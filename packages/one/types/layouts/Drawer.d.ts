@@ -5,7 +5,7 @@ import { type DrawerRender } from '../router/renderingRegistry';
 type DrawerExtraProps = {
     /**
      * Platform-keyed sidebar component. Replaces the default drawer content.
-     * Dispatches on `Platform.OS` — `render.ios` works on iOS, `render.web`
+     * Dispatches on `Platform.OS` - `render.ios` works on iOS, `render.web`
      * on web, etc. Falls back to `setupRendering({ Drawer: { ... } })` global
      * if no prop is set, then to the built-in drawer content.
      */
@@ -113,6 +113,8 @@ export declare const Drawer: React.ForwardRefExoticComponent<Omit<Omit<Omit<impo
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown> & DrawerExtraProps, "ref"> & React.RefAttributes<unknown>>;
+})), "children">> & React.RefAttributes<unknown> & DrawerExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+    Screen: typeof import("../views/Screen").Screen;
+};
 export default Drawer;
 //# sourceMappingURL=Drawer.d.ts.map

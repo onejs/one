@@ -8,15 +8,18 @@ type DescriptorMap = Record<string, {
 export declare function isOverlayPresentation(options: NativeStackNavigationOptions | undefined | null): boolean;
 export declare function isTransparentOverlay(options: NativeStackNavigationOptions | undefined | null): boolean;
 /**
- * Returns a copy of the navigation state with overlay routes stripped so the
- * underlying NativeStackView never tries to render a screen that is being
- * shown in an overlay slot. The index is recalculated to still point at the
- * currently-active non-overlay route (or the last remaining route if the
- * active one was an overlay).
+ * Returns the underlying navigation state for NativeStackView with the
+ * trailing overlay suffix removed.
  *
- * The `isOverlay` predicate decides which routes to peel off. Defaults to
- * `isOverlayPresentation`; callers can narrow it (e.g. only routes that
- * actually have a render component configured).
+ * Important: we only strip the suffix of overlay routes at the top of the
+ * stack. Overlay routes that are SANDWICHED between cards (e.g. user
+ * navigated forward from a sheet to a card) stay in the underlying state
+ * so NativeStackView still has a complete history and downstream routes
+ * keep their correct previous-route / header-back context.
+ *
+ * The `isOverlay` predicate defaults to `isOverlayPresentation`; callers
+ * can narrow it (e.g. only routes that actually have a render component
+ * configured).
  */
 export declare function convertStackStateToNonOverlayState(state: StackNavigationState<ParamListBase>, descriptors: DescriptorMap, isOverlay?: (options: NativeStackNavigationOptions | undefined | null) => boolean): {
     routes: typeof state.routes;

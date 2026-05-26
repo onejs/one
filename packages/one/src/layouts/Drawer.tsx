@@ -52,6 +52,10 @@ const DrawerWithRender = React.forwardRef<
   return <RNDrawer {...rest} ref={ref} />
 })
 
-export const Drawer = DrawerWithRender
+// Preserve withLayoutContext's static Screen so user code like
+// `<Drawer.Screen ... />` keeps working through the render wrapper.
+export const Drawer = Object.assign(DrawerWithRender, {
+  Screen: RNDrawer.Screen,
+})
 
 export default Drawer
