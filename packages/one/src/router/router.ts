@@ -728,6 +728,17 @@ async function doPreloadDev(href: string): Promise<any> {
     const startTime = performance.now()
     const normalizedPath = normalizeLoaderPath(href)
 
+    // one/headless ships with routes statically bundled (createApp's `routes`
+    // option). there's no dev server to fetch /_one/assets/*_vxrn_loader.js
+    // from — when the iframe is same-origin with a real one app, that fetch
+    // resolves against the host's routes and can spuriously return an
+    // __oneError 404 marker for paths the host considers a 404 (e.g. /docs/*
+    // when the host has its own /docs route without that slug). bail before
+    // the fetch so linkTo doesn't misread the host's response as our 404.
+    if (globalThis['__vxrnHeadless']) {
+      return null
+    }
+
     try {
       const loaderJSUrl = getLoaderPath(href, true)
 
@@ -786,6 +797,11 @@ async function doPreloadDev(href: string): Promise<any> {
 }
 
 async function doPreload(href: string) {
+  // see doPreloadDev — same rationale.
+  if (globalThis['__vxrnHeadless']) {
+    return null
+  }
+
   const preloadPath = getPreloadPath(href)
   const loaderPath = getLoaderPath(href)
   const cssPreloadPath = getPreloadCSSPath(href)
