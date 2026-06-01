@@ -21,6 +21,6 @@
     "kill-my-port": "1.1.2",
     "typescript": "^5.7.3",
     "vitest": "^4.1.0",
-    "wrangler": "4.60.0"
+    "wrangler": "4.95.0"
   }
 }
