@@ -251,7 +251,7 @@ export default {
 npx one build
 
 # Deploy using Wrangler
-cd dist/worker && wrangler deploy
+wrangler deploy
 ```
 
 #### What Gets Built
@@ -275,6 +275,7 @@ The generated worker config lives at `dist/worker/wrangler.json` and is ready to
 {
   "main": "index.js",
   "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["assets/**/*.js", "assets/**/*.mjs"] }],
   "assets": {
     "directory": "../client",
     "binding": "ASSETS",
@@ -313,7 +314,7 @@ export const POST = createAPIRoute(async (request, { worker }) => {
 
 The generated worker config is ready to use. To customize it, create your own `wrangler.jsonc` in your project root and One will merge it into the generated `dist/worker/wrangler.json`.
 
-One preserves build-required settings like `main`, `assets.directory`, `assets.binding`, `assets.run_worker_first`, the module-loading `rules`, and it always includes `nodejs_compat` in `compatibility_flags`.
+One preserves build-required settings like `main`, `assets.directory`, `assets.binding`, `assets.run_worker_first`, the generated worker chunk `rules`, and it always includes `nodejs_compat` in `compatibility_flags`.
 
 Key settings:
 

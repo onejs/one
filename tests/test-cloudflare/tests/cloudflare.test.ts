@@ -45,6 +45,9 @@ describe('Cloudflare Wrangler config', () => {
     )
     expect(config.no_bundle).toBe(true)
     expect(config.find_additional_modules).toBeUndefined()
+    expect(config.artifacts).toBeUndefined()
+    expect(config.flagship).toBeUndefined()
+    expect(config.vpc_networks).toBeUndefined()
     expect(config.vars.CUSTOM_VALUE).toBe('from-root-config')
     expect(config.assets).toMatchObject({
       directory: '../client',
@@ -52,7 +55,9 @@ describe('Cloudflare Wrangler config', () => {
       run_worker_first: true,
       html_handling: 'auto-trailing-slash',
     })
-    expect(config.rules).toEqual([{ type: 'ESModule', globs: ['**/*.js', '**/*.mjs'] }])
+    expect(config.rules).toEqual([
+      { type: 'ESModule', globs: ['assets/**/*.js', 'assets/**/*.mjs'] },
+    ])
   })
 })
 
