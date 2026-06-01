@@ -61,6 +61,10 @@ const GENERATED_CLOUDFLARE_WRANGLER_RULES = [
   { type: 'ESModule', globs: ['./assets/**/*.js'], fallthrough: true },
 ]
 
+const CLOUDFLARE_DEPLOY_WRANGLER_RULES = [
+  { type: 'ESModule', globs: ['assets/**/*.js', 'assets/**/*.mjs'] },
+]
+
 function isPlainObject(value: unknown): value is Record<string, JsonValue> {
   return !!value && typeof value === 'object' && !Array.isArray(value)
 }
@@ -230,6 +234,46 @@ function createCloudflareWranglerConfig(
   }
 
   return mergedConfig
+}
+
+function omitEmptyJsonValues(value: JsonValue): JsonValue | undefined {
+  if (Array.isArray(value)) {
+    const items = value
+      .map((item) => omitEmptyJsonValues(item))
+      .filter((item): item is JsonValue => item !== undefined)
+
+    return items.length > 0 ? items : undefined
+  }
+
+  if (isPlainObject(value)) {
+    const entries = Object.entries(value)
+      .map(([key, item]) => [key, omitEmptyJsonValues(item)] as const)
+      .filter((entry): entry is readonly [string, JsonValue] => entry[1] !== undefined)
+
+    return entries.length > 0 ? Object.fromEntries(entries) : undefined
+  }
+
+  return value
+}
+
+async function finalizeCloudflareWranglerDeployConfig(configPath: string) {
+  const parsed = JSON.parse(await FSExtra.readFile(configPath, 'utf-8')) as unknown
+  if (!isPlainObject(parsed)) {
+    throw new Error(
+      `Expected ${relative(process.cwd(), configPath)} to contain a JSON object`
+    )
+  }
+
+  parsed.rules = CLOUDFLARE_DEPLOY_WRANGLER_RULES
+
+  const config = omitEmptyJsonValues(parsed)
+  if (!isPlainObject(config)) {
+    throw new Error(
+      `Expected ${relative(process.cwd(), configPath)} to contain deploy config`
+    )
+  }
+
+  await FSExtra.writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`)
 }
 
 // reads package.json name, strips npm scope prefix for use as cloudflare worker name
@@ -1561,6 +1605,9 @@ export default {
       // Clean up temp file
       await FSExtra.remove(workerSrcPath)
       await FSExtra.remove(wranglerInputPath)
+      await finalizeCloudflareWranglerDeployConfig(
+        join(options.root, outDir, 'worker', 'wrangler.json')
+      )
 
       if (userWranglerConfig) {
         console.info(
@@ -1569,7 +1616,7 @@ export default {
       }
 
       postBuildLogs.push(`Cloudflare worker bundled at ${outDir}/worker/index.js`)
-      postBuildLogs.push(`To deploy: cd ${outDir}/worker && wrangler deploy`)
+      postBuildLogs.push(`To deploy: wrangler deploy`)
 
       break
     }

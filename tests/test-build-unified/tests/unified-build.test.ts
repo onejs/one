@@ -59,12 +59,17 @@ describe('unified build — dist layout', () => {
     expect(config.main).toBe('index.js')
     expect(config.no_bundle).toBe(true)
     expect(config.find_additional_modules).toBeUndefined()
+    expect(config.artifacts).toBeUndefined()
+    expect(config.flagship).toBeUndefined()
+    expect(config.vpc_networks).toBeUndefined()
     expect(config.assets).toMatchObject({
       directory: '../client',
       binding: 'ASSETS',
       run_worker_first: true,
     })
-    expect(config.rules).toEqual([{ type: 'ESModule', globs: ['**/*.js', '**/*.mjs'] }])
+    expect(config.rules).toEqual([
+      { type: 'ESModule', globs: ['assets/**/*.js', 'assets/**/*.mjs'] },
+    ])
   })
 })
 
