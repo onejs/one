@@ -5,15 +5,17 @@ let hasWarnedOnce = false
 export function getURL() {
   let url = process.env.ONE_SERVER_URL
 
+  if (url) {
+    return url.replace(/\/+$/, '') // remove trailing slash for consistency with web
+  }
+
   if (__DEV__) {
     // We'll be using the development server in development mode, but we still need to warn the user to set SERVER_URL for things to work in production.
-    if (!url) {
-      if (hasWarnedOnce) {
-        hasWarnedOnce = true
-        console.warn(
-          `The ONE_SERVER_URL environment variable is not set. While things will work in development mode as we'll be using your development server, you should still set ONE_SERVER_URL in your .env file for your production builds to work.`
-        )
-      }
+    if (!hasWarnedOnce) {
+      hasWarnedOnce = true
+      console.warn(
+        `The ONE_SERVER_URL environment variable is not set. While things will work in development mode as we'll be using your development server, you should still set ONE_SERVER_URL in your .env file for your production builds to work.`
+      )
     }
 
     const { url: devServerUrl } = getDevServer()
