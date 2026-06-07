@@ -622,6 +622,7 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
   const entryCode = `
 ${refreshSetup}
+import 'react-native/Libraries/Core/InitializeCore';
 ${setupFileImport}
 import { createApp } from 'one';
 

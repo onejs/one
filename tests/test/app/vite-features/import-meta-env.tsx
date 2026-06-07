@@ -33,6 +33,11 @@ export default function ImportMetaEnv() {
 
       <Text>import.meta.env.EXPO_OS:</Text>
       <Text testID="import-meta-env-EXPO_OS">{import.meta.env.EXPO_OS}</Text>
+
+      <Text>import.meta.env.TAMAGUI_TARGET:</Text>
+      <Text testID="import-meta-env-TAMAGUI_TARGET">
+        {import.meta.env.TAMAGUI_TARGET}
+      </Text>
     </View>
   )
 }

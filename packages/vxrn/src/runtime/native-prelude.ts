@@ -47,6 +47,7 @@ if (typeof process === 'undefined') {
 }
 process.env.NODE_ENV = ${JSON.stringify(options.dev ? 'development' : 'production')};
 process.env.EXPO_OS = ${JSON.stringify(options.platform)};
+process.env.TAMAGUI_TARGET = 'native';
 ${options.serverUrl ? `process.env.ONE_SERVER_URL = ${JSON.stringify(options.serverUrl)};` : ''}
 
 // polyfill setImmediate (used by react-native internals)

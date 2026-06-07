@@ -26,6 +26,8 @@ interface OneEnvVariables {
   VITE_NATIVE: '' | '1'
   /** "web" for web builds, "ios" or "android" for native. Matches Expo convention. */
   EXPO_OS: 'web' | 'ios' | 'android'
+  /** "web" for web builds, "native" for native builds. Used by Tamagui and One native route branches. */
+  TAMAGUI_TARGET: 'web' | 'native'
 
   // React Native (available in native builds)
   /** The React Native version string */

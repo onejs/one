@@ -46,4 +46,7 @@ test('import.meta.env', sharedTestOptions, async () => {
 
   const expoOs = await driver.$('~import-meta-env-EXPO_OS').getText()
   expect(expoOs).toBe('ios')
+
+  const tamaguiTarget = await driver.$('~import-meta-env-TAMAGUI_TARGET').getText()
+  expect(tamaguiTarget).toBe('native')
 })
