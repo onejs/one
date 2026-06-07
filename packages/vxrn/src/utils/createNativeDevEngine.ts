@@ -622,9 +622,13 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
   const entryCode = `
 ${refreshSetup}
-import 'react-native/Libraries/Core/InitializeCore';
+import * as ReactNativeInitializeCore from 'react-native/Libraries/Core/InitializeCore';
+import NativeWebSocket from 'react-native/Libraries/WebSocket/WebSocket';
 ${setupFileImport}
 import { createApp } from 'one';
+
+void ReactNativeInitializeCore;
+globalThis.WebSocket = NativeWebSocket;
 
 var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true });
 // fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
