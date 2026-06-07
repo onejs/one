@@ -539,7 +539,9 @@ export async function buildNativeBundle(
     platform,
     serverUrl,
   })
-  const buildEntry = entryFile ? normalizePath(resolve(root, entryFile)) : VIRTUAL_NATIVE_ENTRY
+  const buildEntry = entryFile
+    ? normalizePath(resolve(root, entryFile))
+    : VIRTUAL_NATIVE_ENTRY
 
   const result = await build({
     input: buildEntry,
