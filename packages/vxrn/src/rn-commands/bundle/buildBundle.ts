@@ -72,10 +72,13 @@ export async function buildBundle(
   }
 
   console.info(`[vxrn] building native bundle for ${platform}...`)
+  const nativeEntryFile = (globalThis as { __vxrnNativeEntryFile?: unknown })
+    .__vxrnNativeEntryFile
   const result = await buildNativeBundle({
     root,
     platform,
     dev,
+    entryFile: typeof nativeEntryFile === 'string' ? nativeEntryFile : undefined,
     // pass through ONE_SERVER_URL so the native prelude can inject it into
     // process.env. without this, getURL.native falls back to the dummy
     // 'http://one-server.example.com' and runtime loader fetches fail in prod.
