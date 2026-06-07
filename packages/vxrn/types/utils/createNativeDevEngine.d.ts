@@ -32,6 +32,7 @@ interface NativeBuildOptions {
     platform: 'ios' | 'android';
     dev?: boolean;
     serverUrl?: string;
+    entryFile?: string;
     assetsDest?: string;
     plugins?: Plugin[];
 }

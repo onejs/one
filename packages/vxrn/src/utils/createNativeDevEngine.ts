@@ -225,6 +225,7 @@ function postProcessNativeBundle(code: string): string {
   // rolldown devMode still emits ESM export statements that hermes can't parse.
   // this is a rolldown behavior we can't configure away yet.
   code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
+  code = code.replace(/^\s*export\s+default\s+([^;\n]+);?\s*$/gm, '$1;')
   // rolldown devMode runtime leaves some raw import.meta.hot references
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
@@ -512,6 +513,7 @@ interface NativeBuildOptions {
   platform: 'ios' | 'android'
   dev?: boolean
   serverUrl?: string
+  entryFile?: string
   assetsDest?: string
   plugins?: Plugin[]
 }
@@ -524,6 +526,7 @@ export async function buildNativeBundle(
     platform,
     dev = false,
     serverUrl,
+    entryFile,
     assetsDest,
     plugins: userPlugins = [],
   } = options
@@ -536,9 +539,10 @@ export async function buildNativeBundle(
     platform,
     serverUrl,
   })
+  const buildEntry = entryFile ? normalizePath(resolve(root, entryFile)) : VIRTUAL_NATIVE_ENTRY
 
   const result = await build({
-    input: VIRTUAL_NATIVE_ENTRY,
+    input: buildEntry,
     cwd: root,
     platform: 'neutral',
     resolve: getNativeResolveConfig(platform),
@@ -547,7 +551,7 @@ export async function buildNativeBundle(
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
-      nativeVirtualEntryPlugin(root, { dev }),
+      ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev })]),
       ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
       ...userPlugins,
     ],
