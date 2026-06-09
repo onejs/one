@@ -7,7 +7,7 @@
       "devDependencies": {
         "@hono/node-server": "^1.19.10",
         "@manypkg/cli": "^0.25.1",
-        "@take-out/cli": "0.1.12",
+        "@take-out/cli": "0.4.16",
         "@types/react": "^19.2.2",
         "check-dependency-version-consistency": "^3.0.3",
         "fast-flow-transform": "^0.0.3",
@@ -1930,6 +1930,20 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
+    "@lydell/node-pty": ["@lydell/node-pty@1.2.0-beta.12", "", { "optionalDependencies": { "@lydell/node-pty-darwin-arm64": "1.2.0-beta.12", "@lydell/node-pty-darwin-x64": "1.2.0-beta.12", "@lydell/node-pty-linux-arm64": "1.2.0-beta.12", "@lydell/node-pty-linux-x64": "1.2.0-beta.12", "@lydell/node-pty-win32-arm64": "1.2.0-beta.12", "@lydell/node-pty-win32-x64": "1.2.0-beta.12" } }, "sha512-qIK890UwPupoj07osVvgOIa++1mxeHbcGry4PKRHhNVNs81V2SCG34eJr46GybiOmBtc8Sj5PB1/GGM5PL549g=="],
+
+    "@lydell/node-pty-darwin-arm64": ["@lydell/node-pty-darwin-arm64@1.2.0-beta.12", "", { "os": "darwin", "cpu": "arm64" }, "sha512-tqaifcY9Cr41SblO1+FLzh8oxxtkNhuW9Dhl22lKme9BreYvKvxEZcdPIXTuqkJc5tagOEC4QHShKmJjLyLXLQ=="],
+
+    "@lydell/node-pty-darwin-x64": ["@lydell/node-pty-darwin-x64@1.2.0-beta.12", "", { "os": "darwin", "cpu": "x64" }, "sha512-4LrS5pCJwqHKDVf1zS2gyNV0m4hKAXch+XZNhbZ6LY8uwVL8BhchzQBO40Os5anuRxRCWzHpw4Sp64Ie8q7E4Q=="],
+
+    "@lydell/node-pty-linux-arm64": ["@lydell/node-pty-linux-arm64@1.2.0-beta.12", "", { "os": "linux", "cpu": "arm64" }, "sha512-Sx+A71x5BDGHt9ansfrtGxwq2VFVDWvJUAdlUL0Hv0qeiJUfts+hgopx+CgT4PSwahKjdEgtu0+FAfY9rICKRw=="],
+
+    "@lydell/node-pty-linux-x64": ["@lydell/node-pty-linux-x64@1.2.0-beta.12", "", { "os": "linux", "cpu": "x64" }, "sha512-bJzs94njofYhGg/UDqW1nj0dtvvu+2OvxMY+RlLS1T17VgcktKoIR6PuenTwE5HJ/D6StCPADmXcT0nNsCKmIQ=="],
+
+    "@lydell/node-pty-win32-arm64": ["@lydell/node-pty-win32-arm64@1.2.0-beta.12", "", { "os": "win32", "cpu": "arm64" }, "sha512-p7POgjVEiFaBC3/y+AKuV1FzePCsJ6HmZDv2XK+jBZSfwP8+uBAw181ZiKYN1YuRa/XpmBGaWezcI8hZkbW++g=="],
+
+    "@lydell/node-pty-win32-x64": ["@lydell/node-pty-win32-x64@1.2.0-beta.12", "", { "os": "win32", "cpu": "x64" }, "sha512-IDFa00g7qUDGUYgByrUBJtC+mOjYVt/8KYyWivCg5JjGOHbBUACUQZLl0jTWmnr+tld/UyTpX90a2PY6oTVtRw=="],
+
     "@manypkg/cli": ["@manypkg/cli@0.25.1", "", { "dependencies": { "@manypkg/get-packages": "^3.1.0", "detect-indent": "^7.0.1", "normalize-path": "^3.0.0", "p-limit": "^6.2.0", "package-json": "^10.0.1", "parse-github-url": "^1.0.3", "picocolors": "^1.1.1", "sembear": "^0.7.0", "semver": "^7.7.1", "tinyexec": "^1.0.1", "validate-npm-package-name": "^6.0.0" }, "bin": { "manypkg": "bin.js" } }, "sha512-lag906FyiNxzZjsRErkUD5/to174I2JzPk5bZubuJp6loMKKJn73zrtqeU7nHlVkHBg3tgXDTJj22HxUDxLRXw=="],
 
     "@manypkg/find-root": ["@manypkg/find-root@3.1.0", "", { "dependencies": { "@manypkg/tools": "^2.1.0" } }, "sha512-BcSqCyKhBVZ5YkSzOiheMCV41kqAFptW6xGqYSTjkVTl9XQpr+pqHhwgGCOHQtjDCv7Is6EFyA14Sm5GVbVABA=="],
@@ -2302,13 +2316,15 @@
 
     "@swc/types": ["@swc/types@0.1.25", "", { "dependencies": { "@swc/counter": "^0.1.3" } }, "sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g=="],
 
-    "@take-out/cli": ["@take-out/cli@0.1.12", "", { "dependencies": { "@clack/prompts": "^0.8.2", "@take-out/docs": "0.1.12", "@take-out/scripts": "0.1.12", "citty": "^0.1.6", "picocolors": "^1.1.1" }, "peerDependencies": { "@expo/config-plugins": "*" }, "optionalPeers": ["@expo/config-plugins"], "bin": { "takeout": "src/cli.ts", "tko": "src/cli.ts" } }, "sha512-W6RarR83jO0Pmj1GrcN8jmeSTbQJ1Fcwx1jy3+EdsiWYPTz3dufNn0JZRLMA88y9aaqpym27YH6P22+k5Sj6Gw=="],
+    "@take-out/cli": ["@take-out/cli@0.4.16", "", { "dependencies": { "@clack/prompts": "^0.8.2", "@take-out/docs": "0.4.16", "@take-out/run": "0.4.16", "@take-out/scripts": "0.4.16", "citty": "^0.1.6", "picocolors": "^1.1.1" }, "peerDependencies": { "@expo/config-plugins": "*" }, "optionalPeers": ["@expo/config-plugins"], "bin": { "takeout": "src/cli.ts", "tko": "src/cli.ts" } }, "sha512-/l8+fqkpTuHT37DjkX5i4o1phLBaHN+kf7HmJSpO9ceNxvEpeyct5LbsgPZe7flb3u/Ltxyi6GNOMDLky8XYdg=="],
 
-    "@take-out/docs": ["@take-out/docs@0.1.12", "", {}, "sha512-vr7edIqB4RwuR0nQXLsLlIHlU/jg82B8E9wB5jd0n86fqDbXD5eU9Botf/Jd26+FktUrgx4ZTRnuNF5RHHbZvQ=="],
+    "@take-out/docs": ["@take-out/docs@0.4.16", "", {}, "sha512-56Q0jIVyjTJ+2MaCKA/DdvUUGstZc0cyF47/Zcza27/1I+BwwqxU8vHqGPhKT6aZCCwutwezbHQm0MVCihTQew=="],
 
-    "@take-out/helpers": ["@take-out/helpers@0.1.12", "", { "dependencies": { "@tamagui/constants": "2.0.0-rc.6-1770450745210", "dequal": "^2.0.3" }, "peerDependencies": { "expo-clipboard": "*", "react": "*", "react-native": "*" }, "optionalPeers": ["expo-clipboard", "react", "react-native"] }, "sha512-QTCNGZjq/mPExpGO+R/KCCSadJPkOGNrNdRYSGB0hRoY3Bm4/20wT8Y58+FM65YIukrvDk4rC47rcLKqOf0sRg=="],
+    "@take-out/helpers": ["@take-out/helpers@0.4.16", "", { "dependencies": { "dequal": "^2.0.3" }, "peerDependencies": { "@rocicorp/zero": "*", "expo-clipboard": "*", "react": "*", "react-native": "*" }, "optionalPeers": ["@rocicorp/zero", "expo-clipboard", "react", "react-native"] }, "sha512-jguk0uRyRnfpPgEuqLybD5QOkiWZLOPvnjtnTi3hQxkGLI864z3CmkEuGDOMyOj39yi8vraNU96TYTZ5qdsp5Q=="],
 
-    "@take-out/scripts": ["@take-out/scripts@0.1.12", "", { "dependencies": { "@clack/prompts": "^0.8.2", "@take-out/helpers": "0.1.12", "picocolors": "^1.1.1" }, "peerDependencies": { "vxrn": "^1.6.9" }, "optionalPeers": ["vxrn"] }, "sha512-KNRo1FsV1Vl5AJ6X8WoGbs7JZWJjrIYwKejOPfLj34ergvAxnew61E5RuHGjV08WAKOxB/DG7PIJlAi+9S0Rpw=="],
+    "@take-out/run": ["@take-out/run@0.4.16", "", { "dependencies": { "@lydell/node-pty": "^1.2.0-beta.3", "semver": "^7.7.3" } }, "sha512-jqFDxR91HXKrN7OHwwzlzVclYqakgJlfsWRd9bvgCckp1YxlNYi5C8j49+oEM9DUcIYW5WiTPdjWWUMcExUFbw=="],
+
+    "@take-out/scripts": ["@take-out/scripts@0.4.16", "", { "dependencies": { "@clack/prompts": "^0.8.2", "@take-out/helpers": "0.4.16", "@take-out/run": "0.4.16", "picocolors": "^1.1.1" } }, "sha512-CYiQuFAchdC8ex98Nh8PnehKRhdDdm/NnFMDEzqHxEcPZMK4fT/c9FPlWBIKiLvoOGTkPHFQ3T33AHW7kZmjXQ=="],
 
     "@tamagui/accordion": ["@tamagui/accordion@2.1.0", "", { "dependencies": { "@tamagui/collapsible": "2.1.0", "@tamagui/collection": "2.1.0", "@tamagui/compose-refs": "2.1.0", "@tamagui/constants": "2.1.0", "@tamagui/core": "2.1.0", "@tamagui/create-context": "2.1.0", "@tamagui/helpers": "2.1.0", "@tamagui/polyfill-dev": "2.1.0", "@tamagui/stacks": "2.1.0", "@tamagui/text": "2.1.0", "@tamagui/use-controllable-state": "2.1.0", "@tamagui/use-direction": "2.1.0" }, "peerDependencies": { "react": ">=19" } }, "sha512-PbJFQIfkx6hjtABPPhPUvAL40vXdc06Up820SlpuJ9dPAAnCpA3LAq2A+aqYdScvqlLXAmaPQmHJzqkv7iJbCw=="],
 
@@ -5293,8 +5309,6 @@
     "@supabase/storage-js/tslib": ["tslib@2.8.1", "", {}, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
 
     "@swc/helpers/tslib": ["tslib@2.8.1", "", {}, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
-
-    "@take-out/helpers/@tamagui/constants": ["@tamagui/constants@2.0.0-rc.6-1770450745210", "", { "peerDependencies": { "react": ">=19", "react-native": "*" } }, "sha512-2434HH/oysANUkPI0oJubzgNkGVV8TIXIIM4YPPCmHtRZPAAvcl9DiWOG1pF3caNGgnEQGTM+CTYz64jgbBNVw=="],
 
     "@tamagui/react-native-web-lite/memoize-one": ["memoize-one@6.0.0", "", {}, "sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw=="],
 
