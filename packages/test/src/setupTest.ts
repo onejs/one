@@ -142,6 +142,29 @@ function spawnServer(
   }
 }
 
+/**
+ * vxrn/vite rebind to a different port when the requested one is already taken
+ * (a check-then-bind race when many test packages start concurrently under turbo).
+ * Parse the actual bound port from the server's output so the readiness check —
+ * and ONE_SERVER_URL, which is built from the returned port — target the live
+ * server instead of the requested-but-vacated port.
+ */
+export function resolveBoundServerUrl(requestedUrl: string, output: string): string {
+  const requested = requestedUrl.replace(/\/+$/, '')
+  const requestedPort = requested.match(/:(\d+)(?:\/|$)/)?.[1]
+  // only deviate when the server actually reported the requested port was taken,
+  // so the common case (no move) is byte-for-byte unchanged
+  if (!requestedPort || !output.includes(`Port ${requestedPort} is in use`)) {
+    return requested
+  }
+  const seen = [...output.matchAll(/https?:\/\/localhost:(\d+)/g)].map((m) => m[1])
+  const boundPort = seen[seen.length - 1]
+  if (boundPort && boundPort !== requestedPort) {
+    return requested.replace(`:${requestedPort}`, `:${boundPort}`)
+  }
+  return requested
+}
+
 const waitForServer = (
   url: string,
   {
@@ -156,7 +179,7 @@ const waitForServer = (
     // if provided, reject immediately when the server process exits
     serverExited?: Promise<number | null>
   }
-): Promise<void> => {
+): Promise<string> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
     let done = false
@@ -179,16 +202,19 @@ const waitForServer = (
     let retries = 0
     const checkServer = async () => {
       if (done) return
+      // the server may have rebound to a different port than requested; poll the
+      // actual bound port parsed from its output
+      const target = resolveBoundServerUrl(url, getServerOutput())
       try {
-        const response = await fetch(url)
+        const response = await fetch(target)
         if (response.ok) {
           done = true
           console.info(
-            `Server at ${url} is ready after ${Math.round(performance.now() - startedAt)}ms`
+            `Server at ${target} is ready after ${Math.round(performance.now() - startedAt)}ms`
           )
           // warmup: make a few more requests to ensure server is stable
-          await warmupServer(url)
-          resolve()
+          await warmupServer(target)
+          resolve(target)
         } else {
           throw new Error('Server not ready')
         }
@@ -361,7 +387,7 @@ export async function setupTestServers({
     }
 
     // wait for both servers to be ready
-    await Promise.all([
+    const [prodServerUrl, devServerUrl] = await Promise.all([
       shouldStartProdServer
         ? waitForServer(`http://localhost:${prodPort}`, {
             getServerOutput: prodServerGetOutput,
@@ -376,11 +402,20 @@ export async function setupTestServers({
         : null,
     ])
 
+    // a server may have rebound to a different port than requested; use the
+    // actual bound port so ONE_SERVER_URL (built from these) targets the live server
+    const actualProdPort = prodServerUrl
+      ? Number(new URL(prodServerUrl).port) || prodPort
+      : prodPort
+    const actualDevPort = devServerUrl
+      ? Number(new URL(devServerUrl).port) || devPort
+      : devPort
+
     console.info('Servers are running.\n')
 
     return {
-      testProdPort: prodPort,
-      testDevPort: devPort,
+      testProdPort: actualProdPort,
+      testDevPort: actualDevPort,
       devServerPid: devServer?.pid,
       prodServerPid: prodServer?.pid,
       buildPid: null,
