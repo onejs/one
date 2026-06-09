@@ -54,7 +54,7 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
 }
 
 // shared rolldown transform config for native builds
-function getNativeTransformConfig(
+export function getNativeTransformConfig(
   platform: 'ios' | 'android',
   dev: boolean,
   root: string
@@ -124,6 +124,8 @@ function getNativeTransformConfig(
     VITE_ENVIRONMENT: platform,
     VITE_NATIVE: '1',
     EXPO_OS: platform,
+    TAMAGUI_TARGET: 'native',
+    TAMAGUI_ENVIRONMENT: platform,
   }
   // add VITE_* from .env files
   for (const [key, val] of Object.entries(envDefines)) {
@@ -149,6 +151,7 @@ function getNativeTransformConfig(
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
       'process.env.EXPO_OS': JSON.stringify(platform),
+      'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',
       // import.meta.env as a whole object (for JSON.stringify(import.meta.env) etc.)
@@ -161,6 +164,8 @@ function getNativeTransformConfig(
       'import.meta.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'import.meta.env.VITE_NATIVE': '"1"',
       'import.meta.env.EXPO_OS': JSON.stringify(platform),
+      'import.meta.env.TAMAGUI_TARGET': '"native"',
+      'import.meta.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       ...envDefines,
       ...setupFileDefines,
     },
