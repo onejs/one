@@ -262,6 +262,48 @@ function postProcessNativeBundle(code: string): string {
 }
 
 /**
+ * Wrap the dev bundle body in a function scope so module top-level
+ * `var`/`function` declarations don't leak onto the global object.
+ *
+ * rolldown's dev() emits the bundle as a *script*. A top-level `var` in a
+ * script creates a NON-configurable property on the global object. RN's
+ * `Libraries/Network/fetch.js` declares `var ... Headers, Request, ...`, so
+ * `global.Headers`/`global.Request` become non-configurable. RN's `setUpXHR`
+ * then calls `polyfillGlobal('Headers', ...)`, whose `polyfillObjectProperty`
+ * does `Object.defineProperty(global, 'Headers', { configurable: true, ... })`
+ * — which throws "Cannot redefine property" and RN converts to
+ * `console.error('Failed to set polyfill. Headers is not configurable.')`.
+ * In dev that console.error becomes a blocking LogBox redbox, so the app never
+ * mounts (every appium navigation then times out). The prod build is immune:
+ * its modules are wrapped in closures (no global leak) and it has no LogBox.
+ *
+ * Wrapping everything after the prelude in an IIFE makes those module vars
+ * function-scoped, matching prod, so `polyfillGlobal` succeeds. The prelude
+ * stays at script scope because it intentionally installs globals
+ * (`globalThis.global`/`__DEV__`/`process`/...). Intentional globals survive:
+ * the runtime is assigned via `globalThis.__rolldown_runtime__ = ...`, and HMR
+ * updates run through a *direct* `eval` inside this scope, so they still see
+ * the closure's `__esmMin`/`__toCommonJS`/module bindings.
+ */
+export function wrapNativeBundleModuleScope(code: string): string {
+  // the prelude (intro) ends right before the rolldown runtime region
+  const marker = '//#region \\0rolldown/runtime.js'
+  const idx = code.indexOf(marker)
+  if (idx === -1) return code
+
+  const open = ';(function() {\n'
+  const close = '\n})();\n'
+
+  // keep the sourceMappingURL comment as the final line if present
+  const sm = code.match(/\n\/\/# sourceMappingURL=[^\n]*\s*$/)
+  if (sm) {
+    const smIdx = code.lastIndexOf(sm[0])
+    return code.slice(0, idx) + open + code.slice(idx, smIdx) + close + code.slice(smIdx)
+  }
+  return code.slice(0, idx) + open + code.slice(idx) + close
+}
+
+/**
  * Downlevel class fields in the rolldown runtime for Hermes compatibility.
  * The runtime (\0rolldown/runtime.js) is injected directly into the output,
  * bypassing hermesCompatSWCPlugin. We extract just that section (~5KB) and
@@ -435,6 +477,11 @@ try {
           /registerCallableModule\s*\(\s*["']AppRegistry["']/,
           (match) => hmrClientStub + ',' + match
         )
+
+        // wrap module code in a function scope so top-level `var`s (e.g. RN
+        // fetch.js's `Headers`/`Request`) don't leak as non-configurable
+        // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
+        code = wrapNativeBundleModuleScope(code)
 
         currentBundle = {
           code,
