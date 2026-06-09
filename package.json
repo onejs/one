@@ -103,7 +103,8 @@
     "cross-spawn": "7.0.6",
     "got": "11.8.5",
     "hono": "4.12.5",
-    "fastify": "5.7.2"
+    "fastify": "5.7.2",
+    "tmp": "0.2.7"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.10",
