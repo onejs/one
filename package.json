@@ -108,7 +108,7 @@
   "devDependencies": {
     "@hono/node-server": "^1.19.10",
     "@manypkg/cli": "^0.25.1",
-    "@take-out/cli": "0.4.16",
+    "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",
     "fast-flow-transform": "^0.0.3",
