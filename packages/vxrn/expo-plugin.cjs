@@ -88,6 +88,7 @@ const plugin = (config, options = {}) => {
         let patchedScript = originalScript
         patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
         patchedScript = addSetCliPathToBundleReactNativeShellScript(patchedScript)
+        patchedScript = addPodHermescToBundleReactNativeShellScript(patchedScript)
         patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
         bundleReactNativeCodeAndImagesBuildPhase.shellScript =
           JSON.stringify(patchedScript)
@@ -372,6 +373,35 @@ function addSetCliPathToBundleReactNativeShellScript(input) {
   const codeToAdd = `
 # [vxrn/one] React Native now defaults CLI_PATH to scripts/bundle.js, which loads the bundle command directly from @react-native/community-cli-plugin, we need to set it back to the main CLI endpoint so the override of the bundle command in react-native.config.cjs can take effect
 export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+`.trim()
+
+  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
+}
+
+/**
+ * Compile the iOS Release bundle with the hermes-engine pod's OWN hermesc.
+ *
+ * RN's hermes-engine.podspec sets HERMES_CLI_PATH to the npm `hermes-compiler`
+ * package for downloaded-prebuilt Hermes, but a build-time script
+ * (replace_hermes_version.js) swaps in a prebuilt Hermes VM that can be a
+ * different (newer) version than the pinned hermes-compiler. The hermesc then
+ * emits bytecode the VM rejects, and the app dies on launch with
+ * "Compiling JS failed: Wrong bytecode version. Expected N but got M".
+ *
+ * The prebuilt tarball ships a hermesc that matches its own VM at
+ * destroot/bin/hermesc, so prefer it. Guarded on the file existing, so builds
+ * that compile Hermes from source (no destroot hermesc) are unaffected.
+ */
+function addPodHermescToBundleReactNativeShellScript(input) {
+  if (input.includes('[vxrn/one] use the hermes-engine pod')) {
+    return input
+  }
+
+  const codeToAdd = `
+# [vxrn/one] use the hermes-engine pod's own hermesc so the compiled bytecode matches the prebuilt Hermes VM that RN swaps in at build time (RN points HERMES_CLI_PATH at the npm hermes-compiler, which can be version-skewed -> "Wrong bytecode version" crash on launch). No-op for source builds, which have no destroot hermesc.
+if [ -f "\${PODS_ROOT}/hermes-engine/destroot/bin/hermesc" ]; then
+  export HERMES_CLI_PATH="\${PODS_ROOT}/hermes-engine/destroot/bin/hermesc"
+fi
 `.trim()
 
   return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
@@ -746,6 +776,10 @@ function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
 
 module.exports = plugin
 module.exports.addReactNativeScreensFix = addReactNativeScreensFix
+module.exports.addSetCliPathToBundleReactNativeShellScript =
+  addSetCliPathToBundleReactNativeShellScript
+module.exports.addPodHermescToBundleReactNativeShellScript =
+  addPodHermescToBundleReactNativeShellScript
 module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
 module.exports.injectHermesMinificationPatchIntoPodfile =
   injectHermesMinificationPatchIntoPodfile
