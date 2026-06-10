@@ -26,6 +26,15 @@ interface NativeDevEngineResult {
     }>;
     close: () => Promise<void>;
 }
+export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
+    jsx: {
+        runtime: "classic";
+    };
+    define: any;
+    inject: {
+        React: string;
+    };
+};
 export declare function createNativeDevEngine(options: NativeDevEngineOptions): Promise<NativeDevEngineResult>;
 interface NativeBuildOptions {
     root: string;
