@@ -8,6 +8,7 @@ import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
+import { getBoundPort } from '../utils/getBoundPort'
 
 type ClientMessage = {
   type: 'client-log'
@@ -24,13 +25,13 @@ export function createReactNativeDevServerPlugin(
     name: 'vite-plugin-react-native-server',
 
     configureServer(server: ViteDevServer) {
-      const { host, port } = server.config.server
+      const { host } = server.config.server
       const { root } = server.config
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
-      const reactNativeDevToolsUrl = `http://${host}:${port}`
+      const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
       const { middleware, websocketEndpoints } = createDevMiddleware({
         serverBaseUrl: reactNativeDevToolsUrl,
         logger: console,
@@ -164,10 +165,10 @@ export function createReactNativeDevServerPlugin(
                     console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
                     devEngines[platform] = await createNativeDevEngine({
                       root,
-                      port: port || 8081,
+                      port: getBoundPort(server),
                       host: typeof host === 'string' ? host : 'localhost',
                       platform,
-                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${port || 8081}`,
+                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
                       onHmrUpdate: (update) => {
                         const msg = JSON.stringify(update)
                         hmrWSS.clients.forEach((client: any) => {

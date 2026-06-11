@@ -3,6 +3,7 @@ import module from 'node:module'
 import { pathToFileURL } from 'node:url'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
+import { getBoundPort } from '../utils/getBoundPort'
 
 type Context = {
   server: ViteDevServer
@@ -312,7 +313,7 @@ function nativeOpen(url: string) {
 
 async function openIos(ctx: Context) {
   const projectRoot = ctx.server.config.root
-  const port = ctx.server.config.server.port || 8081
+  const port = getBoundPort(ctx.server)
 
   try {
     const require = module.createRequire(projectRoot)
@@ -347,7 +348,7 @@ async function openIos(ctx: Context) {
 
 async function openAndroid(ctx: Context) {
   const projectRoot = ctx.server.config.root
-  const port = ctx.server.config.server.port || 8081
+  const port = getBoundPort(ctx.server)
 
   try {
     const require = module.createRequire(projectRoot)
