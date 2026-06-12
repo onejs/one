@@ -1,3 +1,5 @@
+export declare function encodeReservedFilenameChars(path: string): string;
+export declare function decodeReservedFilenameChars(path: string): string;
 export declare function getPreloadPath(currentPath: string): string;
 export declare function getPreloadCSSPath(currentPath: string): string;
 export declare function getLoaderPath(currentPath: string, includeUrl?: boolean, cacheBust?: string): string;
