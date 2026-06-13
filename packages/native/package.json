@@ -59,6 +59,6 @@
     }
   },
   "devDependencies": {
-    "@tamagui/build": "2.1.0"
+    "@tamagui/build": "2.3.0"
   }
 }
