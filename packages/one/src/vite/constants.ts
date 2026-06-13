@@ -4,6 +4,4 @@ export function makeLoaderRouteIdStub(routeId: string): string {
   return `export function loader() {return ${JSON.stringify(routeId)}};`
 }
 
-export const LoaderDataCache = {}
-
 export const SERVER_CONTEXT_POST_RENDER_STRING = `_one_post_render_data_`
