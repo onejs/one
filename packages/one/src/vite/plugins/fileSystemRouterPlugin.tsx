@@ -16,7 +16,6 @@ import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
-import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
@@ -279,8 +278,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               loaderProps,
               matches,
             })
-
-            LoaderDataCache[route.file] = loaderData
 
             // detect 404: not-found routes, missing page exports, or ssg dynamic routes with invalid slugs
             const isDynamicRoute = Object.keys(route.routeKeys || {}).length > 0
