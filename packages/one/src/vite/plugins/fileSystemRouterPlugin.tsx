@@ -41,6 +41,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let runner: ModuleRunner
   let server: ViteDevServer
 
+  // Only clear the SSR module runner cache when a file actually changed, not on
+  // every request. Clearing per-request forces a full re-evaluation of the whole
+  // server module tree (new AsyncFunction per module) on each page render, which
+  // leaks heap unboundedly under sustained navigation (→ 5-8GB RSS / OOM) and also
+  // re-transforms every module. The file watcher below flips this back to true.
+  let needsCacheClear = true
+
   // Track file dependencies from loaders for hot reload
   // Maps file path -> set of route paths that depend on it
   // Track file dependencies from loaders for hot reload.
@@ -147,7 +154,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // so we must branch on route.file, not the joined path.
             const isGeneratedNotFound = route.file === ''
             const routeFile = isGeneratedNotFound ? '' : path.join(routerRoot, route.file)
-            runner.clearCache()
+            if (needsCacheClear) {
+              runner.clearCache()
+              needsCacheClear = false
+            }
 
             globalThis['__vxrnresetState']?.()
 
@@ -609,6 +619,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       )
 
       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
+
+      // any watched file change means the SSR runner may be serving stale module
+      // code — mark the cache dirty so the next render re-evaluates once (set
+      // immediately/undebounced so it can't race ahead of a render)
+      server.watcher.on('all', () => {
+        needsCacheClear = true
+      })
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce((type: string, changedPath: string) => {
