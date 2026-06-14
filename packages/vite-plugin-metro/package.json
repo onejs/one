@@ -62,7 +62,7 @@
     "@babel/helper-plugin-utils": "^7.27.1",
     "@babel/types": "^7.28.5",
     "@vxrn/debug": "workspace:*",
-    "babel-preset-expo": "*",
+    "babel-preset-expo": "~55.0.0",
     "launch-editor": "^2.10.0",
     "micromatch": "^4.0.8",
     "picocolors": "^1.0.0"
