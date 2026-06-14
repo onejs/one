@@ -320,7 +320,8 @@ async function run() {
     console.info('install and build')
 
     if (!rePublish && !finish) {
-      await spawnify(`bun install`)
+      // frozen so we publish exactly what's locked, never a silently-resolved drift
+      await spawnify(`bun install --frozen-lockfile`)
     }
 
     // run quick checks first to fail fast
@@ -521,7 +522,8 @@ async function run() {
 
         const filename = `${name.replace('/', '_')}-package.tmp.tgz`
         const absolutePath = `${tmpDir}/${filename}`
-        await spawnify(`npm pack --pack-destination ${tmpDir}`, {
+        // --ignore-scripts: build already ran above; don't let any prepack/prepare hook execute at publish time
+        await spawnify(`npm pack --ignore-scripts --pack-destination ${tmpDir}`, {
           cwd: tmpPackageDir,
           avoidLog: true,
         })
@@ -688,7 +690,7 @@ if (intoIdx !== -1) {
         const cwd = path.resolve(location)
 
         try {
-          await spawnify(`npm pack --pack-destination ${tmpDir}`, {
+          await spawnify(`npm pack --ignore-scripts --pack-destination ${tmpDir}`, {
             cwd,
             avoidLog: true,
           })
