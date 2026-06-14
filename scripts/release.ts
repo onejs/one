@@ -324,6 +324,13 @@ async function run() {
       await spawnify(`bun install --frozen-lockfile`)
     }
 
+    // security gate: never publish with a known high-severity advisory in the tree.
+    // mirrors the flags used in .github/workflows/checks.yml
+    if (!finish) {
+      console.info('run security audit')
+      await spawnify(`bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26`)
+    }
+
     // run quick checks first to fail fast
     if (!finish && !skipTest) {
       console.info('run checks')
