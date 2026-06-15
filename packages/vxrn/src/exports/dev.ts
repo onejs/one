@@ -180,16 +180,17 @@ export default defineConfig({
         isClosing = true
       })
 
-      if (process.env.VXRN_EARLY_BIND === '1' && viteServer.httpServer) {
-        // EARLY BIND (opt-in): vite wraps httpServer.listen() to `await
-        // initServer()` — which runs the dep optimizer crawl + the rolldown
-        // dev-bundle setup (multiple seconds for a large app) — BEFORE the port
-        // is bound. for fast `dev` startup we instead bind the port immediately
-        // via the prototype listen (bypassing that wrap), then run vite's init
-        // in the background. vite's request pipeline already holds requests
-        // until the optimizer is ready, so the port opens fast and the FIRST
-        // request waits for warmup rather than the whole process blocking on it.
-        // gated behind VXRN_EARLY_BIND while it bakes; safe to default later.
+      if (process.env.VXRN_EARLY_BIND !== '0' && viteServer.httpServer) {
+        // EARLY BIND (default; set VXRN_EARLY_BIND=0 to opt out): vite wraps
+        // httpServer.listen() to `await initServer()` — which runs the dep
+        // optimizer crawl + the rolldown dev-bundle setup (multiple seconds for
+        // a large app) — BEFORE the port is bound. for fast `dev` startup we
+        // instead bind the port immediately via the prototype listen (bypassing
+        // that wrap), then run vite's init in the background. vite's request
+        // pipeline already holds requests until the optimizer is ready, so the
+        // port opens fast and the FIRST request waits for warmup rather than the
+        // whole process blocking on it. on init failure we exit so a broken
+        // config still fails fast (matching the await-listen behavior).
         const net = await import('node:net')
         const httpServer = viteServer.httpServer
         const cfgServer = viteServer.config.server || ({} as any)
@@ -220,7 +221,11 @@ export default defineConfig({
               Object.values(viteServer.environments).map((e) => e.listen(viteServer!))
             )
           } catch (e) {
-            console.error('[vxrn] early-bind background init failed:', e)
+            console.error(
+              '\n⛔️ [vxrn] dev server init failed after early port bind — exiting:\n',
+              e
+            )
+            process.exit(1)
           }
         })()
       } else {
