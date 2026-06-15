@@ -91,7 +91,7 @@ describe('Metro startup order', () => {
     })
 
     // Kill the server (tree-kill: taskkill /T on Windows, process-group on POSIX)
-    killProcessTree(devServer.pid)
+    await killProcessTree(devServer.pid)
     await new Promise((r) => setTimeout(r, 500))
 
     // Verify the order - Vite should be ready BEFORE Metro

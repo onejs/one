@@ -39,13 +39,13 @@ describe('process cleanup', () => {
   let devServer: ChildProcess | null = null
   let wrapper: ChildProcess | null = null
 
-  afterEach(() => {
+  afterEach(async () => {
     // Clean up any leftover processes (tree-kill so dev-server workers don't orphan)
     if (devServer?.pid && isRunning(devServer.pid)) {
-      killProcessTree(devServer.pid)
+      await killProcessTree(devServer.pid)
     }
     if (wrapper?.pid && isRunning(wrapper.pid)) {
-      killProcessTree(wrapper.pid)
+      await killProcessTree(wrapper.pid)
     }
   })
 
@@ -132,7 +132,7 @@ describe('process cleanup', () => {
     expect(isRunning(devServer.pid!)).toBe(true)
 
     // Clean up (tree-kill so dev-server workers don't orphan)
-    killProcessTree(devServer.pid)
+    await killProcessTree(devServer.pid)
   }, 15000)
 })
 
@@ -221,7 +221,7 @@ describe('process tree termination', () => {
       expect(isRunning(server.pid!)).toBe(true)
       expect(isRunning(workerPid)).toBe(true)
 
-      killProcessTree(server.pid)
+      await killProcessTree(server.pid)
       await new Promise((r) => setTimeout(r, 2000))
 
       expect(isRunning(server.pid!)).toBe(false)
@@ -256,7 +256,7 @@ describe('process tree termination', () => {
       expect(isRunning(server.pid!)).toBe(true)
       expect(isRunning(workerPid)).toBe(true)
 
-      killProcessTree(server.pid)
+      await killProcessTree(server.pid)
       await new Promise((r) => setTimeout(r, 2000))
 
       expect(isRunning(server.pid!)).toBe(false)

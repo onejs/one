@@ -1,10 +1,11 @@
-import { spawn } from 'node:child_process'
+import { execSync } from 'node:child_process'
 
 /**
  * Tree-kill a spawned dev server together with the worker processes it forked,
  * cross-platform. Shared by the spawn-based tests in this directory so they all
- * clean up the same (correct) way — mirrors `killProcessTree` in
- * packages/test/src/setup.ts.
+ * clean up the same way, using the same tree-kill strategy as `killProcessTree`
+ * in packages/test/src/setup.ts: on POSIX a graceful group SIGTERM, a brief
+ * grace period, then a group SIGKILL; on Windows `taskkill /F /T`.
  *
  * POSIX: signal the whole process group via the negative PID. This requires the
  * server to have been spawned with `detached: true` so it leads its own group;
@@ -18,20 +19,21 @@ import { spawn } from 'node:child_process'
  * `taskkill /F /T` walks the PID tree and ends those workers too. (Node has no
  * built-in tree-kill, so this one shell-out is unavoidable for a robust result.)
  */
-export function killProcessTree(pid: number | undefined): void {
+export async function killProcessTree(pid: number | undefined): Promise<void> {
   if (!pid) return
 
   if (process.platform === 'win32') {
     try {
-      spawn('taskkill', ['/F', '/T', '/PID', String(pid)], { stdio: 'ignore' })
+      execSync(`taskkill /F /T /PID ${pid}`, { stdio: 'ignore' })
     } catch {
       // process already gone — fine
     }
     return
   }
 
-  // POSIX: graceful group SIGTERM, then a group SIGKILL fallback. The inner
-  // fallbacks signal the single process when the pid is not a group leader.
+  // POSIX: graceful group SIGTERM, a brief grace period, then a group SIGKILL
+  // fallback. The inner fallbacks signal the single process when the pid is not
+  // a group leader.
   try {
     process.kill(-pid, 'SIGTERM')
   } catch {
@@ -41,15 +43,16 @@ export function killProcessTree(pid: number | undefined): void {
       // already gone
     }
   }
-  setTimeout(() => {
+
+  await new Promise((resolve) => setTimeout(resolve, 200))
+
+  try {
+    process.kill(-pid, 'SIGKILL')
+  } catch {
     try {
-      process.kill(-pid, 'SIGKILL')
+      process.kill(pid, 'SIGKILL')
     } catch {
-      try {
-        process.kill(pid, 'SIGKILL')
-      } catch {
-        // already gone
-      }
+      // already gone
     }
-  }, 1000)
+  }
 }

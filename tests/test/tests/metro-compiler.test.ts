@@ -32,9 +32,9 @@ const oneRunEntry = join(
 describe('Metro React compiler', { retry: 1 }, () => {
   let devServer: ChildProcess | null = null
 
-  afterEach(() => {
+  afterEach(async () => {
     if (devServer) {
-      killProcessTree(devServer.pid)
+      await killProcessTree(devServer.pid)
       devServer = null
     }
   })
