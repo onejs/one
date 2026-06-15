@@ -117,9 +117,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
     }>>) => Readonly<{
         type: string;
         payload?: object;
-        source? /**
-         * Event which fires on long press on the tab in the tab bar.
-         */: string;
+        source?: string;
         target?: string;
     }>)): void;
     navigate<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined, options?: {
@@ -133,13 +131,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
         merge?: boolean;
         pop?: boolean;
     } : never): void;
-    navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params
-    /**
-     * @hidden
-     */
-    ? /**
-     * @hidden
-     */: object | undefined] : never): void;
+    navigateDeprecated<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
     navigateDeprecated<RouteName extends string>(options: RouteName extends unknown ? {
         name: RouteName;
         params: object | undefined;
