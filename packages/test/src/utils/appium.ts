@@ -418,11 +418,11 @@ function dumpSimulatorCrashLog(config: WebdriverIOConfig): string | null {
     execSync(`xcrun simctl terminate ${udid} ${bundleId} 2>/dev/null || true`, {
       timeout: 10_000,
     })
-    const console = execSync(
+    const consoleOut = execSync(
       `xcrun simctl launch --console-pty ${udid} ${bundleId} 2>&1 | head -200`,
       { timeout: 30_000, encoding: 'utf8' }
     )
-    const trimmed = console.trim()
+    const trimmed = consoleOut.trim()
     if (trimmed) parts.push('app console on relaunch:\n' + trimmed)
   } catch (e) {
     // execSync throws if the launch is killed by the timeout (app didn't crash
