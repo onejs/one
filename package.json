@@ -83,7 +83,7 @@
     "tar": "7.5.11",
     "undici": "7.24.3",
     "esbuild": "0.28.1",
-    "vite": "8.0.13",
+    "vite": "8.0.16",
     "rolldown": "1.0.1",
     "basic-ftp": "5.3.1",
     "fast-xml-builder": "1.1.7",
@@ -105,7 +105,9 @@
     "got": "11.8.5",
     "hono": "4.12.5",
     "fastify": "5.7.2",
-    "tmp": "0.2.7"
+    "tmp": "0.2.7",
+    "ws": "8.21.0",
+    "form-data": "4.0.6"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.10",
