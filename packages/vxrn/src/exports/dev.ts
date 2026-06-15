@@ -180,7 +180,52 @@ export default defineConfig({
         isClosing = true
       })
 
-      await viteServer.listen()
+      if (process.env.VXRN_EARLY_BIND === '1' && viteServer.httpServer) {
+        // EARLY BIND (opt-in): vite wraps httpServer.listen() to `await
+        // initServer()` — which runs the dep optimizer crawl + the rolldown
+        // dev-bundle setup (multiple seconds for a large app) — BEFORE the port
+        // is bound. for fast `dev` startup we instead bind the port immediately
+        // via the prototype listen (bypassing that wrap), then run vite's init
+        // in the background. vite's request pipeline already holds requests
+        // until the optimizer is ready, so the port opens fast and the FIRST
+        // request waits for warmup rather than the whole process blocking on it.
+        // gated behind VXRN_EARLY_BIND while it bakes; safe to default later.
+        const net = await import('node:net')
+        const httpServer = viteServer.httpServer
+        const cfgServer = viteServer.config.server || ({} as any)
+        const ebPort = cfgServer.port
+        const ebHost = cfgServer.host === true ? undefined : cfgServer.host || 'localhost'
+        await new Promise<void>((resolve, reject) => {
+          const onErr = (e: unknown) => {
+            httpServer.removeListener('listening', onOk)
+            reject(e)
+          }
+          const onOk = () => {
+            httpServer.removeListener('error', onErr)
+            resolve()
+          }
+          httpServer.once('error', onErr)
+          httpServer.once('listening', onOk)
+          ;(net.Server.prototype.listen as any).call(httpServer, ebPort, ebHost)
+        })
+        // vite normally sets resolvedUrls inside its own listen(); replicate the
+        // minimal shape the dev-server log + consumers read.
+        viteServer.resolvedUrls = { local: [`http://localhost:${ebPort}/`], network: [] }
+        void (async () => {
+          try {
+            if (!viteServer.config.experimental?.bundledDev) {
+              await viteServer.environments.client.pluginContainer.buildStart()
+            }
+            await Promise.all(
+              Object.values(viteServer.environments).map((e) => e.listen(viteServer!))
+            )
+          } catch (e) {
+            console.error('[vxrn] early-bind background init failed:', e)
+          }
+        })()
+      } else {
+        await viteServer.listen()
+      }
 
       const totalStartupTime = Date.now() - devStartTime
 
