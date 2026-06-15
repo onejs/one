@@ -17,7 +17,9 @@ describe('getNativeTransformConfig platform env defines', () => {
         // so import.meta.env.TAMAGUI_TARGET resolved to '' in prod (metro had it, rolldown didn't)
         expect(define['import.meta.env.TAMAGUI_TARGET']).toBe('"native"')
         expect(define['process.env.TAMAGUI_TARGET']).toBe('"native"')
-        expect(define['import.meta.env.TAMAGUI_ENVIRONMENT']).toBe(JSON.stringify(platform))
+        expect(define['import.meta.env.TAMAGUI_ENVIRONMENT']).toBe(
+          JSON.stringify(platform)
+        )
 
         // sibling platform vars that already worked — guard against accidental removal
         expect(define['import.meta.env.VITE_ENVIRONMENT']).toBe(JSON.stringify(platform))

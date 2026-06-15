@@ -18,13 +18,15 @@ function fakeServer(opts: {
 describe('getBoundPort', () => {
   it('returns the actually-bound port from httpServer.address(), ignoring a stale/undefined config port (the 8081 trap)', () => {
     // dev server resolved to 8082 (8081 was taken) but config.server.port is undefined
-    expect(getBoundPort(fakeServer({ address: { port: 8082 }, configPort: undefined }))).toBe(
-      8082
-    )
+    expect(
+      getBoundPort(fakeServer({ address: { port: 8082 }, configPort: undefined }))
+    ).toBe(8082)
   })
 
   it('prefers the bound port even when config.server.port disagrees', () => {
-    expect(getBoundPort(fakeServer({ address: { port: 8082 }, configPort: 8081 }))).toBe(8082)
+    expect(getBoundPort(fakeServer({ address: { port: 8082 }, configPort: 8081 }))).toBe(
+      8082
+    )
   })
 
   it('falls back to config.server.port when the server is not yet listening', () => {
@@ -36,7 +38,9 @@ describe('getBoundPort', () => {
   })
 
   it('ignores a unix-socket/pipe address (string) and falls back to config', () => {
-    expect(getBoundPort(fakeServer({ address: '/tmp/some.sock', configPort: 8090 }))).toBe(8090)
+    expect(
+      getBoundPort(fakeServer({ address: '/tmp/some.sock', configPort: 8090 }))
+    ).toBe(8090)
   })
 
   // real listening server: proves we read the true bound port, not the stale config value

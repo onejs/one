@@ -72,7 +72,11 @@ export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
   // native has no current location and the gesture/back button are always a pop
   const block =
     typeof shouldBlock === 'function'
-      ? shouldBlock({ currentLocation: '', nextLocation: 'previous screen', historyAction: 'pop' })
+      ? shouldBlock({
+          currentLocation: '',
+          nextLocation: 'previous screen',
+          historyAction: 'pop',
+        })
       : shouldBlock
 
   usePreventRemove(block, ({ data }) => {

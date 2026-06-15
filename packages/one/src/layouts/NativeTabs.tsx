@@ -22,9 +22,11 @@ const missingNativeTabsMessage =
   'NativeTabs requires @bottom-tabs/react-navigation and react-native-bottom-tabs.\n' +
   'Install: npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs'
 
-const MissingNativeTabs = React.forwardRef<unknown, any>(function MissingNativeTabs(): never {
-  throw new Error(missingNativeTabsMessage)
-})
+const MissingNativeTabs = React.forwardRef<unknown, any>(
+  function MissingNativeTabs(): never {
+    throw new Error(missingNativeTabsMessage)
+  }
+)
 
 function createNativeTabs(): NativeTabsType {
   if (!NativeBottomTabNavigator) {
