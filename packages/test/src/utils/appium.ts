@@ -350,10 +350,11 @@ export async function createSession(
   // circuit breaker: if the app already crashed on launch earlier in this run,
   // it is not going to launch now either. fail instantly instead of relaunching
   // a known-broken bundle across every remaining test.
-  const recordedCrash = getRecordedCrash()
-  if (recordedCrash) {
+  if (getRecordedCrash()) {
+    // keep this short — the full crash diagnostics were already logged by the
+    // first failure. repeating them for every skipped test floods the log.
     throw new AppCrashedError(
-      `app already crashed on launch earlier in this run — skipping session to avoid burning the CI budget.\nfirst crash:\n${recordedCrash}`
+      `app already crashed on launch earlier in this run (see first failure for the crash log) — skipping to save CI time`
     )
   }
 
@@ -410,16 +411,15 @@ function dumpSimulatorCrashLog(config: WebdriverIOConfig): string | null {
 
   const parts: string[] = []
 
-  // relaunch the app attached to a console — the real JS/Hermes fatal (e.g.
-  // "Wrong bytecode version. Expected 96 but got 98") prints to the app's
-  // stdout/stderr, which `log show` does not capture. the app crashes
-  // immediately on launch, so this returns right away.
+  // relaunch the app attached to a console — a JS/Hermes fatal (e.g. "Wrong
+  // bytecode version") prints to the app's stdout/stderr, which `log show` does
+  // not capture. the app crashes on launch, so this returns right away.
   try {
     execSync(`xcrun simctl terminate ${udid} ${bundleId} 2>/dev/null || true`, {
       timeout: 10_000,
     })
     const console = execSync(
-      `xcrun simctl launch --console-pty ${udid} ${bundleId} 2>&1 | head -40`,
+      `xcrun simctl launch --console-pty ${udid} ${bundleId} 2>&1 | head -200`,
       { timeout: 30_000, encoding: 'utf8' }
     )
     const trimmed = console.trim()
@@ -431,18 +431,44 @@ function dumpSimulatorCrashLog(config: WebdriverIOConfig): string | null {
     if (out) parts.push('app console on relaunch:\n' + String(out).trim())
   }
 
-  // system-level fallback (crash reporter / signals)
+  // the real reason for a *native* crash (segfault/abort, no JS exception
+  // printed) lives in the crash report, not the console. grab the newest one.
+  const ips = readLatestCrashReport()
+  if (ips) parts.push('crash report:\n' + ips)
+
+  // system-level fallback (signals / runningboard kills)
   try {
     const log = execSync(
       `xcrun simctl spawn ${udid} log show --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CrashReporter"' --last 60s --style compact 2>/dev/null || true`,
       { timeout: 15_000, encoding: 'utf8' }
     )
     const trimmed = log.trim()
-    if (trimmed) parts.push('simulator log:\n' + trimmed)
+    if (trimmed) parts.push('simulator log:\n' + trimmed.slice(0, 2000))
   } catch {}
 
   const out = parts.join('\n\n')
-  return out ? out.slice(0, 6000) : null
+  return out ? out.slice(0, 9000) : null
+}
+
+/** read the newest RNTestContainer crash report (.ips) written by the OS. */
+function readLatestCrashReport(): string | null {
+  const dir = path.join(os.homedir(), 'Library', 'Logs', 'DiagnosticReports')
+  try {
+    const reports = fs
+      .readdirSync(dir)
+      .filter((f) => f.startsWith('RNTestContainer') && f.endsWith('.ips'))
+      .map((f) => {
+        const full = path.join(dir, f)
+        return { full, mtime: fs.statSync(full).mtimeMs }
+      })
+      .sort((a, b) => b.mtime - a.mtime)
+    if (!reports.length) return null
+    // .ips files are large json — the crash reason + faulting thread is at the
+    // top, so the first chunk is what matters.
+    return fs.readFileSync(reports[0].full, 'utf8').slice(0, 4000)
+  } catch {
+    return null
+  }
 }
 
 async function recoverSimulator(config: WebdriverIOConfig) {
