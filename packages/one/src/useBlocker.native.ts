@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, usePreventRemove } from '@react-navigation/native'
 import * as React from 'react'
 
 export type BlockerState = 'unblocked' | 'blocked' | 'proceeding'
@@ -32,9 +32,12 @@ export type Blocker =
 /**
  * Block navigation when a condition is met.
  *
- * On native, this uses React Navigation's `beforeRemove` event to prevent navigation.
- * Note that this only works for navigation within the app - it cannot prevent
- * the app from being closed or backgrounded.
+ * On native, this uses React Navigation's `usePreventRemove`, which registers the
+ * route with the native stack so the iOS interactive swipe-back gesture is blocked
+ * too (via `preventNativeDismiss`), not just JS-driven pops. A raw `beforeRemove`
+ * listener only stops JS-driven pops, so swiping would bypass the guard and desync
+ * JS<->native state. Note that this only works for navigation within the app - it
+ * cannot prevent the app from being closed or backgrounded.
  *
  * @param shouldBlock - Either a boolean or a function that returns whether to block.
  *
@@ -63,67 +66,43 @@ export type Blocker =
 export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
   const navigation = useNavigation()
   const [state, setState] = React.useState<BlockerState>('unblocked')
-  const [pendingEvent, setPendingEvent] = React.useState<any>(null)
+  const [pendingAction, setPendingAction] = React.useState<any>(null)
   const [blockedLocation, setBlockedLocation] = React.useState<string | null>(null)
 
-  const shouldBlockRef = React.useRef(shouldBlock)
-  shouldBlockRef.current = shouldBlock
+  // native has no current location and the gesture/back button are always a pop
+  const block =
+    typeof shouldBlock === 'function'
+      ? shouldBlock({ currentLocation: '', nextLocation: 'previous screen', historyAction: 'pop' })
+      : shouldBlock
 
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
-      const currentShouldBlock = shouldBlockRef.current
-
-      // Get the next location from the action payload
-      const payload = e.data?.action?.payload as { name?: string } | undefined
-      const nextLocation = payload?.name || 'previous screen'
-
-      // Determine if we should block
-      const block =
-        typeof currentShouldBlock === 'function'
-          ? currentShouldBlock({
-              currentLocation: '', // Not easily available on native
-              nextLocation,
-              historyAction: 'pop',
-            })
-          : currentShouldBlock
-
-      if (!block) {
-        return
-      }
-
-      // Prevent default behavior (leaving the screen)
-      e.preventDefault()
-
-      // Store the event to dispatch later if user confirms
-      setPendingEvent(e)
-      setBlockedLocation(nextLocation)
-      setState('blocked')
-    })
-
-    return unsubscribe
-  }, [navigation])
+  usePreventRemove(block, ({ data }) => {
+    const payload = data?.action?.payload as { name?: string } | undefined
+    setPendingAction(data.action)
+    setBlockedLocation(payload?.name || 'previous screen')
+    setState('blocked')
+  })
 
   const reset = React.useCallback(() => {
-    setPendingEvent(null)
+    setPendingAction(null)
     setBlockedLocation(null)
     setState('unblocked')
   }, [])
 
   const proceed = React.useCallback(() => {
-    if (!pendingEvent) return
+    if (!pendingAction) return
 
     setState('proceeding')
 
-    // Dispatch the original action to complete navigation
-    navigation.dispatch(pendingEvent.data.action)
+    // the captured action carries a VISITED_ROUTE_KEYS marker, so re-dispatching
+    // it skips the beforeRemove guard and navigation completes without re-blocking
+    navigation.dispatch(pendingAction)
 
-    // Reset after navigation
     setTimeout(() => {
-      setPendingEvent(null)
+      setPendingAction(null)
       setBlockedLocation(null)
       setState('unblocked')
     }, 100)
-  }, [navigation, pendingEvent])
+  }, [navigation, pendingAction])
 
   if (state === 'unblocked') {
     return { state: 'unblocked' }
@@ -142,7 +121,7 @@ export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
 }
 
 /**
- * No-op on native - native uses React Navigation's beforeRemove event instead.
+ * No-op on native - native uses React Navigation's usePreventRemove instead.
  * This is only used by the router on web.
  */
 export function checkBlocker(
