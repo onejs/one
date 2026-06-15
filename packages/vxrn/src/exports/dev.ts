@@ -185,17 +185,31 @@ export default defineConfig({
         // httpServer.listen() to `await initServer()` — which runs the dep
         // optimizer crawl + the rolldown dev-bundle setup (multiple seconds for
         // a large app) — BEFORE the port is bound. for fast `dev` startup we
-        // instead bind the port immediately via the prototype listen (bypassing
-        // that wrap), then run vite's init in the background. vite's request
-        // pipeline already holds requests until the optimizer is ready, so the
-        // port opens fast and the FIRST request waits for warmup rather than the
-        // whole process blocking on it. on init failure we exit so a broken
-        // config still fails fast (matching the await-listen behavior).
+        // bind the port via the prototype listen (bypassing that wrap) as soon
+        // as the SSR side is ready, and defer only the heavy client (rolldown)
+        // dev bundle to the background. that keeps server render correct (the
+        // SSG/SSR path needs the SSR env) while the browser's first JS request
+        // is the only thing that waits on the client bundle. on init failure we
+        // exit so a broken config still fails fast (matching await-listen).
         const net = await import('node:net')
         const httpServer = viteServer.httpServer
         const cfgServer = viteServer.config.server || ({} as any)
         const ebPort = cfgServer.port
         const ebHost = cfgServer.host === true ? undefined : cfgServer.host || 'localhost'
+        // ready the SSR env + plugin buildStart BEFORE binding so an eager SSG
+        // prerender (or any SSR request) renders correctly the moment the port
+        // is up — binding before the SSR optimizer is initialized makes those
+        // renders fail. only the heavy client (rolldown) dev bundle is deferred
+        // to the background: the browser's first JS request waits for it, the
+        // server render does not.
+        if (!viteServer.config.experimental?.bundledDev) {
+          await viteServer.environments.client.pluginContainer.buildStart()
+        }
+        await Promise.all(
+          Object.entries(viteServer.environments)
+            .filter(([name]) => name !== 'client')
+            .map(([, e]) => e.listen(viteServer!))
+        )
         await new Promise<void>((resolve, reject) => {
           const onErr = (e: unknown) => {
             httpServer.removeListener('listening', onOk)
@@ -214,15 +228,10 @@ export default defineConfig({
         viteServer.resolvedUrls = { local: [`http://localhost:${ebPort}/`], network: [] }
         void (async () => {
           try {
-            if (!viteServer.config.experimental?.bundledDev) {
-              await viteServer.environments.client.pluginContainer.buildStart()
-            }
-            await Promise.all(
-              Object.values(viteServer.environments).map((e) => e.listen(viteServer!))
-            )
+            await viteServer.environments.client.listen(viteServer!)
           } catch (e) {
             console.error(
-              '\n⛔️ [vxrn] dev server init failed after early port bind — exiting:\n',
+              '\n⛔️ [vxrn] dev server client init failed after early port bind — exiting:\n',
               e
             )
             process.exit(1)
