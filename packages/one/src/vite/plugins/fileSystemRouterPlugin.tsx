@@ -619,8 +619,31 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
       // any watched file change means the SSR runner may be serving stale module
       // code — mark the cache dirty so the next render re-evaluates once (set
-      // immediately/undebounced so it can't race ahead of a render)
-      server.watcher.on('all', () => {
+      // immediately/undebounced so it can't race ahead of a render).
+      //
+      // but only for files the SSR runner has ACTUALLY evaluated. the watcher
+      // fires for EVERY file event under the project root — including build-tool
+      // scratch files (e.g. *.bun-build temp artifacts), freshly created
+      // unrelated files, and other tooling's churn. in a busy monorepo that
+      // churn is near-constant, and marking the cache dirty on it forces a full
+      // re-evaluation of the SSR module tree on the very next render (a new
+      // AsyncFunction per module) — exactly the unbounded heap leak the
+      // needsCacheClear comment above exists to prevent (→ 5-8GB RSS / OOM).
+      //
+      // `runner.evaluatedModules` is the precise set clearCache() would re-evaluate,
+      // so a change outside it can never make the cache stale. it correctly
+      // includes both route files (loaded via runner.import) and shared source
+      // modules — unlike server.environments.ssr.moduleGraph, which misses
+      // runner-imported route files. (route-file adds/removes are still handled
+      // separately below via recreateRequestHandler, so a brand-new route is
+      // never missed.)
+      server.watcher.on('all', (_event, file) => {
+        if (file && runner?.evaluatedModules) {
+          const mods =
+            runner.evaluatedModules.getModulesByFile(file) ||
+            runner.evaluatedModules.getModulesByFile(normalizePath(file))
+          if (!mods || mods.size === 0) return
+        }
         needsCacheClear = true
       })
 
