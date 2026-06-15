@@ -106,7 +106,9 @@ describe('addPodHermescToBundleReactNativeShellScript', () => {
 
   it('inserts the export before the bundle command, not after', () => {
     const out = addPodHermescToBundleReactNativeShellScript(sampleBundleScript)
-    expect(out.indexOf('HERMES_CLI_PATH')).toBeLessThan(out.indexOf('react-native-xcode.sh'))
+    expect(out.indexOf('HERMES_CLI_PATH')).toBeLessThan(
+      out.indexOf('react-native-xcode.sh')
+    )
   })
 
   it('is idempotent', () => {
@@ -125,6 +127,8 @@ describe('addPodHermescToBundleReactNativeShellScript', () => {
     )
     // both exports land before the node bundle command
     expect(all.indexOf('CLI_PATH')).toBeLessThan(all.indexOf('react-native-xcode.sh'))
-    expect(all.indexOf('HERMES_CLI_PATH')).toBeLessThan(all.indexOf('react-native-xcode.sh'))
+    expect(all.indexOf('HERMES_CLI_PATH')).toBeLessThan(
+      all.indexOf('react-native-xcode.sh')
+    )
   })
 })

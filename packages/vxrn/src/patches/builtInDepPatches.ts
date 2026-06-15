@@ -645,16 +645,17 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
     patchFiles: {
       version: '>=0.81.0',
 
-      'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm':
-        (contents) => {
-          if (!contents) return
-          return contents.replace(
-            `    @try {
+      'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm': (
+        contents
+      ) => {
+        if (!contents) return
+        return contents.replace(
+          `    @try {
       [inv invokeWithTarget:strongModule];
     } @catch (NSException *exception) {
       throw convertNSExceptionToJSError(runtime, exception, std::string{moduleName}, methodNameStr);
     } @finally {`,
-            `    @try {
+          `    @try {
       [inv invokeWithTarget:strongModule];
     } @catch (NSException *exception) {
       if (shouldVoidMethodsExecuteSync_) {
@@ -667,8 +668,8 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
         RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);
       }
     } @finally {`
-          )
-        },
+        )
+      },
     },
   },
 ]
