@@ -1,7 +1,9 @@
-# iOS prod (Release/Hermes) launch crash — root cause
+# iOS prod (Release/Hermes) launch crash — root cause & fix
 
-Status: **open, quarantined** in `.github/workflows/test-native-ios.yml`
-(prod matrix entries are `continue-on-error`). dev tests pass and stay gating.
+Status: **fixed** via a `react-native` patch in
+`packages/vxrn/src/patches/builtInDepPatches.ts` (applied by `one prebuild`).
+prod (metro) is gating again; only the experimental `rolldown:prod` stays
+`continue-on-error`.
 
 ## Symptom
 
@@ -68,12 +70,33 @@ newest `~/Library/Logs/DiagnosticReports/RNTestContainer-*.ips` so the failure
 is self-explaining. (Debugger attach to the sim app is blocked in the sandboxed
 CI/dev environment, so the `.ips` crash report is the primary signal.)
 
-## Fix direction (unresolved)
+## Fix (applied)
 
-1. Stop the native module from throwing during init (treats the trigger), or
-2. Patch RN's `ObjCTurboModule` exception path to marshal
-   `convertNSExceptionToJSError` onto the JS thread (fixes the real bug;
-   upstream or via patch-package).
+Patched `ObjCTurboModule::performVoidMethodInvocation` in
+`react-native/ReactCommon/.../RCTTurboModule.mm` via
+`packages/vxrn/src/patches/builtInDepPatches.ts`: only call
+`convertNSExceptionToJSError` (which touches the jsi/Hermes runtime) when the
+void method runs **sync** on the JS thread (`shouldVoidMethodsExecuteSync_`);
+otherwise log the exception and continue. An async void method has no JS caller
+to receive the error, so there is nothing to convert — building the JS Error on
+the method queue was pure corruption. This mirrors the `isSync` guard upstream
+RN added for value-returning methods in
+[facebook/react-native#50193](https://github.com/facebook/react-native/pull/50193),
+which never covered the void path (still unfixed through ≥0.83.2; see RN issues
+#55337, #54859, #53960).
+
+This also protects real shipping One apps (Hermes-V1 Release) from the same
+launch crash whenever any native module's void method throws during startup.
+
+`one prebuild` applies `builtInDepPatches` before pod install, so the patch
+compiles into the app. The app build cache key
+(`build-ios-test-container-app.yml`) includes `builtInDepPatches.ts` so patch
+changes correctly rebuild the app.
+
+Follow-up (optional): identify which native module's void method throws at
+startup (the NSException reason isn't in the crash report). A one-line probe in
+the patched `else` branch logging `exception.name`/`reason` would name it, so it
+can also be fixed/​upstreamed at the source.
 
 ## Harness change (done)
 
