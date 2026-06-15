@@ -1,6 +1,6 @@
 # for onstack.dev railway
 
-FROM oven/bun:1.2.22
+FROM oven/bun:1.3.9
 
 ARG ONE_SERVER_URL
 
