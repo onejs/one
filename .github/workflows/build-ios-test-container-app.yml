@@ -86,7 +86,7 @@ jobs:
           #
           # This hash can be different if the build_hash remains the same. For example, if `bun.lock` changes, `Podfile.lock` may not change if the updated package contains no native code.
           # include workflow file itself so env var changes (like RCT_HERMES_V1_ENABLED) bust the cache
-          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', '.github/workflows/build-ios-test-container-app.yml') }}
+          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', 'packages/vxrn/src/patches/builtInDepPatches.ts', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$PRE_BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate pre-build hash.'
@@ -158,7 +158,7 @@ jobs:
         id: calculate-build-hash
         env:
           # include all files that affect native code + the workflow itself (for env var changes)
-          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', '.github/workflows/build-ios-test-container-app.yml') }}
+          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', 'packages/vxrn/src/patches/builtInDepPatches.ts', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate build hash.'
