@@ -1,5 +1,7 @@
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import type { ChainablePromiseElement, Browser } from 'webdriverio'
 import { remote } from 'webdriverio'
 import type { WebdriverIOConfig } from '../internal-utils/ios'
@@ -9,6 +11,44 @@ export class AppCrashedError extends Error {
     super(message)
     this.name = 'AppCrashedError'
   }
+}
+
+/**
+ * circuit breaker for a deterministic crash-on-launch.
+ *
+ * the app either launches or it doesn't — if it crashes immediately the first
+ * time, it will crash every time. without this, a crashing prod bundle gets
+ * relaunched across every test file (each with its own retries), burning the
+ * entire 45-min job budget until GitHub force-cancels the run. that shows up as
+ * a "cancelled" run, which looks like infra flake and hides a real failure.
+ *
+ * the marker is keyed by TEST_ENV (dev/prod run as separate vitest processes)
+ * and written to a shared tmp file so it survives across vitest worker threads.
+ */
+const crashMarkerPath = path.join(
+  os.tmpdir(),
+  `one-ios-app-crash-${process.env.TEST_ENV || 'unknown'}.marker`
+)
+
+function getRecordedCrash(): string | null {
+  try {
+    return fs.readFileSync(crashMarkerPath, 'utf8')
+  } catch {
+    return null
+  }
+}
+
+function recordCrash(reason: string) {
+  try {
+    fs.writeFileSync(crashMarkerPath, reason)
+  } catch {}
+}
+
+/** clear the crash circuit breaker — call once at suite start. */
+export function clearAppCrashMarker() {
+  try {
+    fs.rmSync(crashMarkerPath, { force: true })
+  } catch {}
 }
 
 /**
@@ -307,6 +347,16 @@ export async function createSession(
   config: WebdriverIOConfig | Promise<WebdriverIOConfig>,
   { maxRetries = 3 }: { maxRetries?: number } = {}
 ): Promise<Browser> {
+  // circuit breaker: if the app already crashed on launch earlier in this run,
+  // it is not going to launch now either. fail instantly instead of relaunching
+  // a known-broken bundle across every remaining test.
+  const recordedCrash = getRecordedCrash()
+  if (recordedCrash) {
+    throw new AppCrashedError(
+      `app already crashed on launch earlier in this run — skipping session to avoid burning the CI budget.\nfirst crash:\n${recordedCrash}`
+    )
+  }
+
   const resolvedConfig = await config
   let lastError: unknown
 
@@ -321,43 +371,78 @@ export async function createSession(
       const driver = await remote(sessionConfig)
 
       // verify the app actually launched successfully
-      try {
-        await assertAppRunning(driver)
-      } catch (e) {
-        if (e instanceof AppCrashedError) {
-          console.error(
-            `[createSession] app crashed immediately after launch on attempt ${attempt}`
-          )
-          // dump simulator system log for crash diagnostics
-          const udid =
-            (sessionConfig.capabilities as any)?.['appium:options']?.udid ||
-            process.env.SIMULATOR_UDID
-          if (udid) {
-            try {
-              const log = execSync(
-                `xcrun simctl spawn ${udid} log show --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CrashReporter"' --last 30s --style compact 2>/dev/null || true`,
-                { timeout: 10_000, encoding: 'utf8' }
-              )
-              if (log.trim()) {
-                console.error(
-                  '[createSession] simulator crash log:\n' + log.slice(0, 3000)
-                )
-              }
-            } catch {}
-          }
-          throw e
-        }
-      }
+      await assertAppRunning(driver)
 
       return driver
     } catch (err) {
       lastError = err
+
+      // a crash-on-launch is deterministic — retrying just wastes time.
+      // record it so every subsequent session in the run fails instantly, dump
+      // diagnostics, and bail out of the retry loop immediately.
+      if (err instanceof AppCrashedError) {
+        const crashLog = dumpSimulatorCrashLog(resolvedConfig)
+        const reason = crashLog ? `${err.message}\n\n${crashLog}` : err.message
+        recordCrash(reason)
+        console.error(
+          `[createSession] app crashed immediately after launch — not retrying (deterministic)`
+        )
+        if (crashLog) {
+          console.error('[createSession] simulator crash log:\n' + crashLog)
+        }
+        throw err
+      }
+
       const msg = err instanceof Error ? err.message : String(err)
       console.warn(`[createSession] attempt ${attempt}/${maxRetries} failed: ${msg}`)
     }
   }
 
   throw lastError
+}
+
+/** dump diagnostics around an app crash so the failure is self-explaining. */
+function dumpSimulatorCrashLog(config: WebdriverIOConfig): string | null {
+  const opts = (config.capabilities as any)?.['appium:options'] || {}
+  const udid = opts.udid || process.env.SIMULATOR_UDID
+  const bundleId = opts.bundleId || 'dev.onestack.rntestcontainer'
+  if (!udid) return null
+
+  const parts: string[] = []
+
+  // relaunch the app attached to a console — the real JS/Hermes fatal (e.g.
+  // "Wrong bytecode version. Expected 96 but got 98") prints to the app's
+  // stdout/stderr, which `log show` does not capture. the app crashes
+  // immediately on launch, so this returns right away.
+  try {
+    execSync(`xcrun simctl terminate ${udid} ${bundleId} 2>/dev/null || true`, {
+      timeout: 10_000,
+    })
+    const console = execSync(
+      `xcrun simctl launch --console-pty ${udid} ${bundleId} 2>&1 | head -40`,
+      { timeout: 30_000, encoding: 'utf8' }
+    )
+    const trimmed = console.trim()
+    if (trimmed) parts.push('app console on relaunch:\n' + trimmed)
+  } catch (e) {
+    // execSync throws if the launch is killed by the timeout (app didn't crash
+    // this time) — keep any stdout it captured before dying.
+    const out = (e as any)?.stdout
+    if (out) parts.push('app console on relaunch:\n' + String(out).trim())
+  }
+
+  // system-level fallback (crash reporter / signals)
+  try {
+    const log = execSync(
+      `xcrun simctl spawn ${udid} log show --predicate 'process == "RNTestContainer" OR subsystem == "com.apple.CrashReporter"' --last 60s --style compact 2>/dev/null || true`,
+      { timeout: 15_000, encoding: 'utf8' }
+    )
+    const trimmed = log.trim()
+    if (trimmed) parts.push('simulator log:\n' + trimmed)
+  } catch {}
+
+  const out = parts.join('\n\n')
+  return out ? out.slice(0, 6000) : null
 }
 
 async function recoverSimulator(config: WebdriverIOConfig) {
