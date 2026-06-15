@@ -1,9 +1,14 @@
-# iOS prod (Release/Hermes) launch crash — root cause & fix
+# iOS prod (Release/Hermes) — launch crash & blank loader routes
 
-Status: **fixed** via a `react-native` patch in
-`packages/vxrn/src/patches/builtInDepPatches.ts` (applied by `one prebuild`).
-prod (metro) is gating again; only the experimental `rolldown:prod` stays
+Two independent prod-native bugs, both **fixed**. prod (metro) is gating again
+and passes 10/10 locally; only the experimental `rolldown:prod` stays
 `continue-on-error`.
+
+1. **Launch crash (SIGSEGV)** — fixed via a `react-native` patch in
+   `packages/vxrn/src/patches/builtInDepPatches.ts` (applied by `one prebuild`).
+2. **Blank loader routes ("prod white screen")** — fixed in
+   `packages/one/src/useLoader.ts` (static `getURL` import). Was hidden behind
+   the crash; only visible once the app could launch.
 
 ## Symptom
 
@@ -97,6 +102,26 @@ Follow-up (optional): identify which native module's void method throws at
 startup (the NSException reason isn't in the crash report). A one-line probe in
 the patched `else` branch logging `exception.name`/`reason` would name it, so it
 can also be fixed/​upstreamed at the source.
+
+## Bug 2: blank loader routes ("prod white screen")
+
+Once the crash was fixed and the app could launch, every route with a loader
+rendered One's error boundary instead of content:
+
+```
+Error on route "index": TypeError: Cannot read property 'getURL' of undefined
+```
+
+Root cause: `useLoader.ts`'s prod-native loader path used a **dynamic**
+`require('./getURL')`. Metro only rewrites `require()` to a numeric module id
+when it can resolve it statically; here it was left as a literal runtime
+`require("./getURL")`, and metro's runtime `require` only accepts numeric ids —
+so it returned `undefined`, and `.getURL` on undefined threw, crashing the
+route (caught by the error boundary → blank). Static `getURL` imports elsewhere
+in One compile to proper module refs and work fine.
+
+Fix: use the static `import { getURL } from './getURL'` like the rest of One.
+This was a pre-existing bug, hidden because the app always crashed first.
 
 ## Harness change (done)
 
