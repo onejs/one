@@ -1,7 +1,8 @@
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
-import type React from 'react'
+import React from 'react'
 
 import { Protected } from '../views/Protected'
+import { Screen } from '../views/Screen'
 import { withLayoutContext } from './withLayoutContext'
 
 let NativeBottomTabNavigator: React.ComponentType<any> | null = null
@@ -17,12 +18,20 @@ type NativeTabsType = ReturnType<typeof withLayoutContext> & {
   Protected: typeof Protected
 }
 
+const missingNativeTabsMessage =
+  'NativeTabs requires @bottom-tabs/react-navigation and react-native-bottom-tabs.\n' +
+  'Install: npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs'
+
+const MissingNativeTabs = React.forwardRef<unknown, any>(function MissingNativeTabs(): never {
+  throw new Error(missingNativeTabsMessage)
+})
+
 function createNativeTabs(): NativeTabsType {
   if (!NativeBottomTabNavigator) {
-    throw new Error(
-      'NativeTabs requires @bottom-tabs/react-navigation and react-native-bottom-tabs.\n' +
-        'Install: npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs'
-    )
+    return Object.assign(MissingNativeTabs, {
+      Protected,
+      Screen,
+    }) as NativeTabsType
   }
 
   return Object.assign(withLayoutContext(NativeBottomTabNavigator), {
@@ -30,17 +39,6 @@ function createNativeTabs(): NativeTabsType {
   }) as NativeTabsType
 }
 
-let _nativeTabs: NativeTabsType | null = null
-
-export const NativeTabs = new Proxy({} as NativeTabsType, {
-  get(_, prop) {
-    if (!_nativeTabs) _nativeTabs = createNativeTabs()
-    return (_nativeTabs as any)[prop]
-  },
-  apply(_, thisArg, args) {
-    if (!_nativeTabs) _nativeTabs = createNativeTabs()
-    return (_nativeTabs as any).apply(thisArg, args)
-  },
-})
+export const NativeTabs = createNativeTabs()
 
 export default NativeTabs
