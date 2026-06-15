@@ -72,15 +72,12 @@ jobs:
       - build-ios-test-container-prod
     runs-on: macos-15
     timeout-minutes: 45
-    # prod (Release/Hermes-bytecode) currently crashes on launch with a SIGSEGV
-    # *before* any test can run — an upstream React Native bug, not a regression
-    # in our tests. a TurboModule void method throws an NSException during
-    # startup and RN's convertNSExceptionToJSError builds the JS error on the
-    # turbomodule queue concurrently with the JS thread, corrupting Hermes.
-    # see tests/test/IOS_PROD_CRASH.md. quarantined (non-blocking) until fixed;
-    # the harness now fails these jobs fast (~10m) instead of timing out (~48m).
-    # dev (metro + rolldown) stays gating.
-    continue-on-error: ${{ matrix.env == 'prod' }}
+    # rolldown:prod is experimental — don't fail the workflow on it.
+    # (prod used to crash on launch with a SIGSEGV from an upstream RN
+    # TurboModule/Hermes concurrency bug — now fixed via a builtInDepPatches
+    # patch to react-native; see tests/test/IOS_PROD_CRASH.md. the harness also
+    # fails a crash-on-launch fast (~10m) instead of timing out (~48m).)
+    continue-on-error: ${{ matrix.env == 'prod' && matrix.bundler == 'rolldown' }}
     strategy:
       # one matrix entry's failure shouldn't kill the others — they're independent runs
       fail-fast: false

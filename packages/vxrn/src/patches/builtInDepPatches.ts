@@ -631,6 +631,46 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
       },
     },
   },
+
+  // a void TurboModule method that throws an Obj-C NSException crashes the app
+  // with a SIGSEGV: ObjCTurboModule::performVoidMethodInvocation converts it to
+  // a JS error (convertNSExceptionToJSError) on the TurboModule method queue,
+  // which touches the Hermes runtime off the JS thread and corrupts the
+  // single-threaded VM. only safe to build the JS error when the method runs
+  // sync (on the JS thread); otherwise log. mirrors the isSync guard added for
+  // value-returning methods in facebook/react-native#50193 (which never covered
+  // the void path). see tests/test/IOS_PROD_CRASH.md
+  {
+    module: 'react-native',
+    patchFiles: {
+      version: '>=0.81.0',
+
+      'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm':
+        (contents) => {
+          if (!contents) return
+          return contents.replace(
+            `    @try {
+      [inv invokeWithTarget:strongModule];
+    } @catch (NSException *exception) {
+      throw convertNSExceptionToJSError(runtime, exception, std::string{moduleName}, methodNameStr);
+    } @finally {`,
+            `    @try {
+      [inv invokeWithTarget:strongModule];
+    } @catch (NSException *exception) {
+      if (shouldVoidMethodsExecuteSync_) {
+        // sync void methods run on the JS thread — safe to build the JS error.
+        throw convertNSExceptionToJSError(runtime, exception, std::string{moduleName}, methodNameStr);
+      } else {
+        // async void methods run on the TurboModule method queue; building a JS
+        // error here touches the Hermes runtime off the JS thread and corrupts
+        // the VM (SIGSEGV). there is no JS caller to receive it, so log instead.
+        RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);
+      }
+    } @finally {`
+          )
+        },
+    },
+  },
 ]
 
 function addNoCheck(contents?: string) {
