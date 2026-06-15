@@ -1,8 +1,9 @@
-import { spawn, type ChildProcess } from 'node:child_process'
+import { spawn } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import getPort from 'get-port'
 import { describe, expect, it } from 'vitest'
+import { killProcessTree } from './process-tree'
 
 // Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
 // the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
@@ -12,23 +13,6 @@ const oneRunEntry = join(
   dirname(createRequire(import.meta.url).resolve('one/package.json')),
   'run.mjs'
 )
-
-// node cannot signal a process tree on Windows; taskkill /T kills spawned workers too
-function killTree(proc: ChildProcess) {
-  if (!proc.pid) return
-  if (process.platform === 'win32') {
-    try {
-      spawn('taskkill', ['/F', '/T', '/PID', String(proc.pid)], { stdio: 'ignore' })
-    } catch {}
-  } else {
-    proc.kill('SIGTERM')
-    setTimeout(() => {
-      try {
-        proc.kill('SIGKILL')
-      } catch {}
-    }, 1000)
-  }
-}
 
 /**
  * Test that Metro initialization happens AFTER Vite server is fully started.
@@ -61,6 +45,8 @@ describe('Metro startup order', () => {
         DEBUG: 'vxrn:*',
       },
       stdio: ['ignore', 'pipe', 'pipe'],
+      // group leader on POSIX so killProcessTree can signal the whole group
+      detached: process.platform !== 'win32',
     })
 
     const collectLogs = (data: Buffer) => {
@@ -104,8 +90,8 @@ describe('Metro startup order', () => {
       }, 100)
     })
 
-    // Kill the server (tree-kill on Windows; SIGTERM→SIGKILL on POSIX)
-    killTree(devServer)
+    // Kill the server (tree-kill: taskkill /T on Windows, process-group on POSIX)
+    killProcessTree(devServer.pid)
     await new Promise((r) => setTimeout(r, 500))
 
     // Verify the order - Vite should be ready BEFORE Metro

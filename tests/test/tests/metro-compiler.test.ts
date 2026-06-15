@@ -3,6 +3,7 @@ import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import getPort from 'get-port'
 import { describe, expect, it, afterEach } from 'vitest'
+import { killProcessTree } from './process-tree'
 
 // Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
 // the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
@@ -12,23 +13,6 @@ const oneRunEntry = join(
   dirname(createRequire(import.meta.url).resolve('one/package.json')),
   'run.mjs'
 )
-
-// node cannot signal a process tree on Windows; taskkill /T kills spawned workers too
-function killTree(proc: ChildProcess) {
-  if (!proc.pid) return
-  if (process.platform === 'win32') {
-    try {
-      spawn('taskkill', ['/F', '/T', '/PID', String(proc.pid)], { stdio: 'ignore' })
-    } catch {}
-  } else {
-    proc.kill('SIGTERM')
-    setTimeout(() => {
-      try {
-        proc.kill('SIGKILL')
-      } catch {}
-    }, 1000)
-  }
-}
 
 /**
  * Test that the React compiler works through the Metro bundling path.
@@ -50,7 +34,7 @@ describe('Metro React compiler', { retry: 1 }, () => {
 
   afterEach(() => {
     if (devServer) {
-      killTree(devServer)
+      killProcessTree(devServer.pid)
       devServer = null
     }
   })
@@ -69,6 +53,8 @@ describe('Metro React compiler', { retry: 1 }, () => {
         DEBUG: 'vxrn:*,vite-plugin-metro:*',
       },
       stdio: ['ignore', 'pipe', 'pipe'],
+      // group leader on POSIX so killProcessTree can signal the whole group
+      detached: process.platform !== 'win32',
     })
 
     devServer.on('exit', (code) => {
