@@ -23,9 +23,12 @@ export type Blocker = {
 /**
  * Block navigation when a condition is met.
  *
- * On native, this uses React Navigation's `beforeRemove` event to prevent navigation.
- * Note that this only works for navigation within the app - it cannot prevent
- * the app from being closed or backgrounded.
+ * On native, this uses React Navigation's `usePreventRemove`, which registers the
+ * route with the native stack so the iOS interactive swipe-back gesture is blocked
+ * too (via `preventNativeDismiss`), not just JS-driven pops. A raw `beforeRemove`
+ * listener only stops JS-driven pops, so swiping would bypass the guard and desync
+ * JS<->native state. Note that this only works for navigation within the app - it
+ * cannot prevent the app from being closed or backgrounded.
  *
  * @param shouldBlock - Either a boolean or a function that returns whether to block.
  *
@@ -53,7 +56,7 @@ export type Blocker = {
  */
 export declare function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker;
 /**
- * No-op on native - native uses React Navigation's beforeRemove event instead.
+ * No-op on native - native uses React Navigation's usePreventRemove instead.
  * This is only used by the router on web.
  */
 export declare function checkBlocker(_nextLocation: string, _historyAction?: 'push' | 'pop' | 'replace'): boolean;
