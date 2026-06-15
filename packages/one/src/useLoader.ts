@@ -13,6 +13,7 @@ import {
   updateMatchLoaderData,
 } from './useMatches'
 import { getLoaderPath } from './utils/cleanUrl'
+import { getURL } from './getURL'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -509,8 +510,10 @@ export function useLoaderState<
               nativeLoaderJSUrl = `${getLoaderPath(currentPath, true)}?platform=native`
             } else {
               // prod: request the .native.js static file directly
-              // use uncached postfix since metro can't inline ONE_CACHE_KEY
-              const { getURL } = require('./getURL')
+              // use uncached postfix since metro can't inline ONE_CACHE_KEY.
+              // must use the static import — a dynamic require('./getURL') is
+              // left as a runtime string require by metro and resolves to
+              // undefined in the prod native bundle (crashes the route).
               const base = getURL()
               const cleanedPath = currentPath
                 .slice(1)
