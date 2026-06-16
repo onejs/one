@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@expo/config-plugins": "~55.0.6",
-    "@hono/node-server": "^1.19.10",
+    "@hono/node-server": "^1.19.14",
     "@react-native/dev-middleware": "^0.83.4",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
