@@ -11,7 +11,9 @@ type EffectCallback = () => undefined | void | (() => void)
  * gains focus and cleans up when it loses focus.
  *
  * @param effect - Memoized callback containing the effect, optionally returns cleanup function
- * @param deps - Dependency array, effect re-runs when dependencies change (if focused)
+ * @param deps - Optional dependency array, effect re-runs when dependencies change (if
+ *   focused). Defaults to `[]` so a React-Navigation-style one-arg call
+ *   (`useFocusEffect(useCallback(fn, []))`) works without crashing.
  * @link https://onestack.dev/docs/api/hooks/useFocusEffect
  *
  * @example
@@ -25,7 +27,7 @@ type EffectCallback = () => undefined | void | (() => void)
  * )
  * ```
  */
-export function useFocusEffect(effect: EffectCallback, deps: any[]) {
+export function useFocusEffect(effect: EffectCallback, deps: any[] = []) {
   const navigation = useOptionalNavigation()
 
   useEffect(() => {
@@ -100,5 +102,7 @@ export function useFocusEffect(effect: EffectCallback, deps: any[]) {
       unsubscribeFocus()
       unsubscribeBlur()
     }
-  }, [navigation, ...deps])
+    // guard the spread: a caller passing `undefined` (or a non-array) for `deps`
+    // would otherwise throw "deps is not iterable" and crash the screen.
+  }, [navigation, ...(Array.isArray(deps) ? deps : [])])
 }
