@@ -4,6 +4,7 @@ import * as net from 'node:net'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import * as os from 'node:os'
+import { createHash } from 'node:crypto'
 import type { IPCMessage, IPCResponse, DaemonState } from './types'
 import {
   registerServer,
@@ -18,8 +19,31 @@ import {
 } from './registry'
 
 const SOCKET_DIR = path.join(os.homedir(), '.one')
-const SOCKET_PATH = path.join(SOCKET_DIR, 'daemon.sock')
 const SERVERS_FILE = path.join(SOCKET_DIR, 'servers.json')
+
+/**
+ * Resolve the daemon IPC endpoint for the current platform.
+ *
+ * Node's `net` implements local IPC as a Unix domain socket on POSIX and a named
+ * pipe on Windows — the same `listen(path)`/`connect(path)` API, but on Windows
+ * the name must live under `\\.\pipe\` (a flat, machine-global namespace) rather
+ * than the filesystem. So we select each platform's native primitive: an AF_UNIX
+ * socket file inside the owner-only `~/.one` dir on POSIX, a named pipe on
+ * Windows. The Windows name is a deterministic per-user hash so the daemon and
+ * the CLI derive the same pipe independently, and so distinct users on one
+ * machine don't collide in the shared pipe namespace.
+ *
+ * @see https://nodejs.org/api/net.html#identifying-paths-for-ipc-connections
+ */
+function resolveSocketPath(): string {
+  if (process.platform === 'win32') {
+    const scope = createHash('sha256').update(SOCKET_DIR).digest('hex').slice(0, 8)
+    return path.win32.join(String.raw`\\.\pipe`, `one-daemon-${scope}`)
+  }
+  return path.join(SOCKET_DIR, 'daemon.sock')
+}
+
+const SOCKET_PATH = resolveSocketPath()
 
 export function getSocketPath(): string {
   return SOCKET_PATH
@@ -124,9 +148,24 @@ export function createIPCServer(
     })
   })
 
+  // surface a bind failure as an actionable message rather than an uncaught
+  // 'error' event that crashes the process (e.g. another daemon already owns the
+  // socket/pipe).
+  server.on('error', (err: NodeJS.ErrnoException) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`[daemon] Another daemon is already listening at ${SOCKET_PATH}`)
+    } else {
+      console.error('[daemon] IPC server error:', err.message)
+    }
+    process.exit(1)
+  })
+
   server.listen(SOCKET_PATH, () => {
-    // owner-only permissions for security
-    fs.chmodSync(SOCKET_PATH, 0o600)
+    // owner-only permissions on POSIX; the Windows named pipe is not a filesystem
+    // entry, so chmod does not apply there (and would throw).
+    if (process.platform !== 'win32') {
+      fs.chmodSync(SOCKET_PATH, 0o600)
+    }
   })
 
   return server
@@ -205,7 +244,10 @@ function handleMessage(
 
 export async function isDaemonRunning(): Promise<boolean> {
   return new Promise((resolve) => {
-    if (!fs.existsSync(SOCKET_PATH)) {
+    // On POSIX a stale socket file may linger, so a cheap existence check avoids a
+    // needless connect. On Windows the endpoint is a named pipe — not a filesystem
+    // entry — so existsSync is always false there; probe by connecting instead.
+    if (process.platform !== 'win32' && !fs.existsSync(SOCKET_PATH)) {
       resolve(false)
       return
     }
