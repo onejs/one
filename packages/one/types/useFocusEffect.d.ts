@@ -4,7 +4,9 @@ type EffectCallback = () => undefined | void | (() => void);
  * gains focus and cleans up when it loses focus.
  *
  * @param effect - Memoized callback containing the effect, optionally returns cleanup function
- * @param deps - Dependency array, effect re-runs when dependencies change (if focused)
+ * @param deps - Optional dependency array, effect re-runs when dependencies change (if
+ *   focused). Defaults to `[]` so a React-Navigation-style one-arg call
+ *   (`useFocusEffect(useCallback(fn, []))`) works without crashing.
  * @link https://onestack.dev/docs/api/hooks/useFocusEffect
  *
  * @example
@@ -18,6 +20,6 @@ type EffectCallback = () => undefined | void | (() => void);
  * )
  * ```
  */
-export declare function useFocusEffect(effect: EffectCallback, deps: any[]): void;
+export declare function useFocusEffect(effect: EffectCallback, deps?: any[]): void;
 export {};
 //# sourceMappingURL=useFocusEffect.d.ts.map
