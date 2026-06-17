@@ -108,6 +108,7 @@
     "hono": "4.12.25",
     "fastify": "5.7.2",
     "tmp": "0.2.7",
+    "@cloudflare/vite-plugin": "1.41.0",
     "ws": "8.21.0",
     "form-data": "4.0.6",
     "qs": "6.15.2",
@@ -116,7 +117,8 @@
     "postcss": "8.5.15",
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
-    "uuid": "11.1.1"
+    "uuid": "11.1.1",
+    "js-yaml": "4.2.0"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.14",
@@ -169,6 +171,8 @@
   "patchedDependencies": {
     "@expo/plist@0.5.2": "patches/@expo%2Fplist@0.5.2.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
-    "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch"
+    "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
+    "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
+    "depcheck@1.4.7": "patches/depcheck@1.4.7.patch"
   }
 }
