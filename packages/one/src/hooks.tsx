@@ -132,7 +132,33 @@ export function usePathname(): string {
       // no ALS context available, fall through
     }
   }
+  // The URL is the source of truth for path params. React Navigation can
+  // reconcile a route's dynamic params away during cross-navigator transitions
+  // (e.g. navigating from a nested layout group into a root-level dynamic
+  // route), after which getRouteInfo() serializes the path with a literal
+  // "undefined" segment (e.g. /p/[handle] -> /p/undefined). The browser URL is
+  // set by the original navigation and never loses the param, so when we detect
+  // that signature we fall back to window.location — the same reasoning
+  // Route.tsx uses to recover useParams(). This keeps usePathname() (and the
+  // useLoader() fetch that keys off it) aligned with the URL and useParams().
+  if (
+    typeof window !== 'undefined' &&
+    hasLostDynamicSegment(routeInfoPathname)
+  ) {
+    return stripTrailingSlash(window.location.pathname)
+  }
   return stripTrailingSlash(routeInfoPathname)
+}
+
+/**
+ * True when `pathname` contains a full segment that is the literal string
+ * "undefined" — the hallmark of a dynamic route segment whose param was dropped
+ * during React Navigation state reconciliation. A real handle named "undefined"
+ * would also appear in window.location, so the caller's fallback stays correct.
+ */
+export function hasLostDynamicSegment(pathname: string): boolean {
+  const withoutSearch = pathname.split('?')[0]
+  return withoutSearch.split('/').includes('undefined')
 }
 
 function stripTrailingSlash(path: string): string {

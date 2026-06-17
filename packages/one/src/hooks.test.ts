@@ -155,3 +155,39 @@ describe('useSearchParams param conversion', () => {
     expect(entries).toEqual([])
   })
 })
+
+describe('hasLostDynamicSegment', () => {
+  // mirrors the pure helper exported from hooks.tsx (kept in sync here because
+  // importing hooks.tsx in this test pulls a transitive dep that doesn't resolve
+  // in this workspace — see ReadOnlyURLSearchParams note above).
+  function hasLostDynamicSegment(pathname: string): boolean {
+    return pathname.split('?')[0].split('/').includes('undefined')
+  }
+
+  // react-navigation can drop a dynamic route's param during cross-navigator
+  // transitions; getRouteInfo() then serializes the path with a literal
+  // "undefined" segment (e.g. /p/[handle] -> /p/undefined). usePathname() uses
+  // this to detect that signature and fall back to window.location.
+
+  it('detects a literal "undefined" segment', () => {
+    expect(hasLostDynamicSegment('/p/undefined')).toBe(true)
+    expect(hasLostDynamicSegment('/users/undefined/posts')).toBe(true)
+    expect(hasLostDynamicSegment('/undefined')).toBe(true)
+  })
+
+  it('ignores real handles', () => {
+    expect(hasLostDynamicSegment('/p/mai1015')).toBe(false)
+    expect(hasLostDynamicSegment('/users/42')).toBe(false)
+  })
+
+  it('does not match "undefined" as a substring of another segment', () => {
+    expect(hasLostDynamicSegment('/p/undefined-things')).toBe(false)
+    expect(hasLostDynamicSegment('/p/notundefined')).toBe(false)
+    expect(hasLostDynamicSegment('/p/foo-undefined-bar')).toBe(false)
+  })
+
+  it('ignores the query string', () => {
+    expect(hasLostDynamicSegment('/p/undefined?tab=profile')).toBe(true)
+    expect(hasLostDynamicSegment('/p/mai1015?x=undefined')).toBe(false)
+  })
+})
