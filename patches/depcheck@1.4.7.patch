@@ -1,0 +1,39 @@
+diff --git a/dist/special/serverless.js b/dist/special/serverless.js
+index 744c10b474a48133d29cf0fb4b3e8c2e0eee1f97..c6fae248612b090b63819fe09d7aa7253589384d 100644
+--- a/dist/special/serverless.js
++++ b/dist/special/serverless.js
+@@ -29,7 +29,7 @@ async function parseServerless(filename) {
+   const basename = path.basename(filename);
+   if (basename === 'serverless.yml') {
+     const content = await (0, _file.getContent)(filename);
+-    const config = _jsYaml.default.safeLoad(content);
++    const config = _jsYaml.default.load(content);
+     // TODO This detects plugins from the main serverless.yml, but you could have plugins in included files like this: "plugins: ${file(./serverless.plugins.yml)}"
+     return ['serverless', ...getDependencies(getPlugins(config))];
+   }
+diff --git a/dist/utils/cli-tools.js b/dist/utils/cli-tools.js
+index fcc412e1a510c729c21548315beb749dc9d8ae75..57ad7a9071f76269bc88ec46a6225f38507ee16e 100644
+--- a/dist/utils/cli-tools.js
++++ b/dist/utils/cli-tools.js
+@@ -33,7 +33,7 @@ function parse(content) {
+     // not JSON5 format
+   }
+   try {
+-    return _jsYaml.default.safeLoad(content);
++    return _jsYaml.default.load(content);
+   } catch (error) {
+     // not YAML format
+   }
+diff --git a/dist/utils/get-scripts.js b/dist/utils/get-scripts.js
+index f1459c687d93feb96994a9d009186f0e7c45f2dc..4263066e96cf1f9f6557e79deb32346ea3236f94 100644
+--- a/dist/utils/get-scripts.js
++++ b/dist/utils/get-scripts.js
+@@ -38,7 +38,7 @@ async function getScripts(filename) {
+     }
+     if (basename === '.travis.yml') {
+       const content = await (0, _file.getContent)(filename);
+-      const metadata = _jsYaml.default.safeLoad(content) || {};
++      const metadata = _jsYaml.default.load(content) || {};
+       return (0, _lodash.default)(travisCommands).map(cmd => metadata[cmd] || []).flatten().value();
+     }
+     return [];
