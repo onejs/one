@@ -17,7 +17,7 @@ import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import { replaceLoader } from '../../vite/replaceLoader'
-import type { One } from '../../vite/types'
+import type { One, RouteInfo } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
@@ -74,6 +74,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let handleRequest = createRequestHandler()
   // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
   let renderPromise: Promise<void> | null = null
+  const ssgHtmlCache = new Map<string, string>()
+
+  function getSsgHtmlCacheKey(route: RouteInfo<string>, url: URL) {
+    return `${route.file}\n${url.pathname}\n${url.search}`
+  }
 
   function createRequestHandler() {
     const routerRoot = getRouterRootFromOneOptions(options)
@@ -108,6 +113,15 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest(
       {
         async handlePage({ route, url, loaderProps }) {
+          const ssgCacheKey =
+            route.type === 'ssg' ? getSsgHtmlCacheKey(route, url) : null
+          if (ssgCacheKey && !needsCacheClear) {
+            const cachedHtml = ssgHtmlCache.get(ssgCacheKey)
+            if (cachedHtml) {
+              return cachedHtml
+            }
+          }
+
           if (options.server?.loggingEnabled !== false) {
             const colorType = routeTypeColors[route.type] || colors.white
             const pathname =
@@ -143,6 +157,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             await renderPromise
           }
 
+          if (ssgCacheKey && !needsCacheClear) {
+            const cachedHtml = ssgHtmlCache.get(ssgCacheKey)
+            if (cachedHtml) {
+              return cachedHtml
+            }
+          }
+
           const { promise, resolve: resolveRender } = promiseWithResolvers<void>()
           renderPromise = promise
 
@@ -155,6 +176,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             const routeFile = isGeneratedNotFound ? '' : path.join(routerRoot, route.file)
             if (needsCacheClear) {
               runner.clearCache()
+              ssgHtmlCache.clear()
               needsCacheClear = false
             }
 
@@ -377,6 +399,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               })
             }
 
+            if (ssgCacheKey) {
+              ssgHtmlCache.set(ssgCacheKey, html)
+            }
+
             return html
           } catch (err) {
             // allow throwing a response in a loader (e.g. redirect)
@@ -547,6 +573,8 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   function recreateRequestHandler(changedPath: string) {
     try {
       handleRequest = createRequestHandler()
+      ssgHtmlCache.clear()
+      needsCacheClear = true
     } catch (error) {
       console.warn(`[one] Failed to rebuild routes after ${changedPath} changed.`, error)
     }
@@ -679,6 +707,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             event: 'one:loader-data-update',
             data: { routePaths: [...routePaths] },
           })
+          ssgHtmlCache.clear()
         }
       }, 100)
 
