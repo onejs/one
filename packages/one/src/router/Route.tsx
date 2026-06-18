@@ -7,6 +7,7 @@ import type { ParamValidator, RouteValidationFn } from '../validateParams'
 import { getResolvedLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
 import { mergeDynamicParams } from './params'
+import { getPathWithRecoveredDynamicSegment } from './path'
 import { routeInfo } from './router'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
@@ -155,12 +156,10 @@ function getParamsFromCurrentUrl(route?: {
 }): Record<string, any> | undefined {
   const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
-  const path =
-    routeInfo?.unstable_globalHref ||
-    route?.path ||
-    (typeof window !== 'undefined' && window.location
-      ? window.location.pathname + window.location.search
-      : undefined)
+  const path = getPathWithRecoveredDynamicSegment([
+    routeInfo?.unstable_globalHref,
+    route?.path,
+  ])
   if (!path) return undefined
   const state = linking.getStateFromPath(path, linking.config)
   if (!state) return undefined
