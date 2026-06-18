@@ -3,6 +3,10 @@ import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
 import { mergeDynamicParams } from './router/params'
+import {
+  getPathnameWithRecoveredDynamicSegment,
+  normalizeRoutePathname,
+} from './router/path'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { getServerContext } from './vite/one-server-only'
@@ -121,22 +125,18 @@ export function useSegments<TSegments extends string[] = string[]>(): TSegments 
 export function usePathname(): string {
   const routeInfoPathname = useRouteInfo().pathname
   if (import.meta.env.SSR) {
-    // on server, prefer path from per-request async local storage
-    // to avoid stale module-level routeInfo between SSR renders
+    // on server, prefer path from per-request async local storage to avoid
+    // stale module-level routeInfo between SSR renders
     try {
       const ctx = getServerContext()
       if (ctx?.loaderProps?.path) {
-        return stripTrailingSlash(ctx.loaderProps.path)
+        return normalizeRoutePathname(ctx.loaderProps.path)
       }
     } catch {
-      // no ALS context available, fall through
+      // no als context available, fall through
     }
   }
-  return stripTrailingSlash(routeInfoPathname)
-}
-
-function stripTrailingSlash(path: string): string {
-  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
+  return getPathnameWithRecoveredDynamicSegment(routeInfoPathname)
 }
 
 /**
