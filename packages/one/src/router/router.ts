@@ -47,6 +47,7 @@ import { getRouteInfo } from './getRouteInfo'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
+import { getSafeWindowPathname, normalizeRoutePathname, stripTrailingSlash } from './path'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -66,6 +67,8 @@ import {
   findNearestNotFoundRoute,
   setNotFoundState,
 } from '../notFoundState'
+
+export { getSafeWindowPathname } from './path'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -592,27 +595,9 @@ export function routeInfoSnapshot() {
   return routeInfo!
 }
 
-function normalizePathname(pathname: string) {
-  return pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
-}
-
-// RN runtimes (Expo/Hermes) can polyfill `document` while leaving
-// `window.location` undefined, so `typeof document` is not a safe web check.
-// the only reliable signal is an actual string pathname on window.location.
-export function getSafeWindowPathname(): string | undefined {
-  if (
-    typeof window === 'undefined' ||
-    !window.location ||
-    typeof window.location.pathname !== 'string'
-  ) {
-    return undefined
-  }
-  return window.location.pathname
-}
-
 function getBrowserPathname() {
   const pathname = getSafeWindowPathname()
-  return pathname === undefined ? undefined : normalizePathname(pathname)
+  return pathname === undefined ? undefined : normalizeRoutePathname(pathname)
 }
 
 function shouldKeepPendingNavigationState(currentState: OneRouter.ResultState) {
@@ -1314,7 +1299,7 @@ export async function linkTo(
 
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
-  pendingNavigationPathname = normalizePathname(extractPathnameFromHref(href))
+  pendingNavigationPathname = stripTrailingSlash(extractPathnameFromHref(href))
   pendingNavigationAction =
     event === 'PUSH' || event === 'REPLACE' || event === 'NAVIGATE' ? event : undefined
   // record the user-intended pathname so late-mounting navigators (e.g. an

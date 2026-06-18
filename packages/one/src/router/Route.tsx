@@ -6,7 +6,8 @@ import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
 import { getResolvedLinking } from './linkingConfig'
 import { getContextKey } from './matchers'
-import { hasLostDynamicSegment, mergeDynamicParams } from './params'
+import { mergeDynamicParams } from './params'
+import { getPathWithRecoveredDynamicSegment } from './path'
 import { routeInfo } from './router'
 import { RouteInfoContextProvider } from './RouteInfoContext'
 
@@ -148,11 +149,6 @@ export function useContextKey(): string {
  *
  * Reuses the router's existing URL-parsing rather than re-implementing
  * segment matching, so group/catch-all/index semantics stay consistent.
- *
- * When the navigator state is corrupted (a dynamic segment's value is
- * lost and serialized as a literal "undefined"), the routeInfo-derived
- * href and route path will contain that bogus segment. Skip them in
- * favor of window.location so the real URL is parsed.
  */
 function getParamsFromCurrentUrl(route?: {
   path?: string
@@ -160,16 +156,10 @@ function getParamsFromCurrentUrl(route?: {
 }): Record<string, any> | undefined {
   const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
-  const riHref = routeInfo?.unstable_globalHref
-  const riPath = route?.path
-  const winPath =
-    typeof window !== 'undefined' && window.location
-      ? window.location.pathname + window.location.search
-      : undefined
-  const path =
-    (riHref && !hasLostDynamicSegment(riHref) ? riHref : undefined) ||
-    (riPath && !hasLostDynamicSegment(riPath) ? riPath : undefined) ||
-    winPath
+  const path = getPathWithRecoveredDynamicSegment([
+    routeInfo?.unstable_globalHref,
+    route?.path,
+  ])
   if (!path) return undefined
   const state = linking.getStateFromPath(path, linking.config)
   if (!state) return undefined

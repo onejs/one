@@ -2,7 +2,11 @@ import React, { createContext, useContext } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
-import { hasLostDynamicSegment, mergeDynamicParams } from './router/params'
+import { mergeDynamicParams } from './router/params'
+import {
+  getPathnameWithRecoveredDynamicSegment,
+  normalizeRoutePathname,
+} from './router/path'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { getServerContext } from './vite/one-server-only'
@@ -121,37 +125,18 @@ export function useSegments<TSegments extends string[] = string[]>(): TSegments 
 export function usePathname(): string {
   const routeInfoPathname = useRouteInfo().pathname
   if (import.meta.env.SSR) {
-    // on server, prefer path from per-request async local storage
-    // to avoid stale module-level routeInfo between SSR renders
+    // on server, prefer path from per-request async local storage to avoid
+    // stale module-level routeInfo between SSR renders
     try {
       const ctx = getServerContext()
       if (ctx?.loaderProps?.path) {
-        return stripTrailingSlash(ctx.loaderProps.path)
+        return normalizeRoutePathname(ctx.loaderProps.path)
       }
     } catch {
-      // no ALS context available, fall through
+      // no als context available, fall through
     }
   }
-  // The URL is the source of truth for path params. React Navigation can
-  // reconcile a route's dynamic params away during cross-navigator transitions
-  // (e.g. navigating from a nested layout group into a root-level dynamic
-  // route), after which getRouteInfo() serializes the path with a literal
-  // "undefined" segment (e.g. /p/[handle] -> /p/undefined). The browser URL is
-  // set by the original navigation and never loses the param, so when we detect
-  // that signature we fall back to window.location — the same reasoning
-  // Route.tsx uses to recover useParams(). This keeps usePathname() (and the
-  // useLoader() fetch that keys off it) aligned with the URL and useParams().
-  if (
-    typeof window !== 'undefined' &&
-    hasLostDynamicSegment(routeInfoPathname)
-  ) {
-    return stripTrailingSlash(window.location.pathname)
-  }
-  return stripTrailingSlash(routeInfoPathname)
-}
-
-function stripTrailingSlash(path: string): string {
-  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
+  return getPathnameWithRecoveredDynamicSegment(routeInfoPathname)
 }
 
 /**
