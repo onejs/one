@@ -1,5 +1,15 @@
 import type { DynamicConvention } from './Route'
 
+/**
+ * Detect whether a path contains a literal `"undefined"` segment — the
+ * signature of a navigator state that lost a dynamic param during
+ * reconciliation. Only matches full segments so values like
+ * `"undefined-things"` or `"notundefined"` are left alone.
+ */
+export function hasLostDynamicSegment(pathname: string): boolean {
+  return pathname.split('?')[0].split('/').includes('undefined')
+}
+
 function paramValueEqual(a: unknown, b: unknown) {
   if (Array.isArray(a) || Array.isArray(b)) {
     return (

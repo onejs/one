@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
-import { mergeDynamicParams } from './router/params'
+import { hasLostDynamicSegment, mergeDynamicParams } from './router/params'
 import { RouteInfoContext } from './router/RouteInfoContext'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { getServerContext } from './vite/one-server-only'
@@ -148,17 +148,6 @@ export function usePathname(): string {
     return stripTrailingSlash(window.location.pathname)
   }
   return stripTrailingSlash(routeInfoPathname)
-}
-
-/**
- * True when `pathname` contains a full segment that is the literal string
- * "undefined" — the hallmark of a dynamic route segment whose param was dropped
- * during React Navigation state reconciliation. A real handle named "undefined"
- * would also appear in window.location, so the caller's fallback stays correct.
- */
-export function hasLostDynamicSegment(pathname: string): boolean {
-  const withoutSearch = pathname.split('?')[0]
-  return withoutSearch.split('/').includes('undefined')
 }
 
 function stripTrailingSlash(path: string): string {
