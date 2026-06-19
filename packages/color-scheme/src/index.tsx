@@ -1,4 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
+import { getStorageItem } from './safeStorage'
 import type { Scheme } from './systemScheme'
 import {
   getForceScheme,
@@ -44,8 +45,8 @@ export function SchemeProvider({
   if (process.env.TAMAGUI_TARGET !== 'native') {
     // when defaultScheme is set and no stored preference, apply it on mount
     useIsomorphicLayoutEffect(() => {
-      if (!forceScheme && defaultScheme && typeof localStorage !== 'undefined') {
-        if (!localStorage.getItem(storageKey)) {
+      if (!forceScheme && defaultScheme) {
+        if (!getStorageItem(storageKey)) {
           setUserScheme(defaultScheme)
         }
       }
@@ -76,14 +77,16 @@ d.add('${getClassName(forceScheme)}')`
       : `window.matchMedia('(prefers-color-scheme: dark)').matches`
 
     const seedStorage = defaultScheme
-      ? `if(!e){localStorage.setItem('${storageKey}','${defaultScheme}')}`
+      ? `;if(!e){localStorage.setItem('${storageKey}','${defaultScheme}')}`
       : ''
 
+    // localStorage access throws when storage is blocked - guard so the theme
+    // still applies (falling back to system/default) instead of erroring
     scriptContent = `let d = document.documentElement.classList
 d.remove('${getClassName('light')}')
 d.remove('${getClassName('dark')}')
-let e = localStorage.getItem('${storageKey}')
-${seedStorage}
+let e = null
+try { e = localStorage.getItem('${storageKey}')${seedStorage} } catch (_e) {}
 let t = 'system' === e || !e
   ? ${fallback}
   : e === 'dark'
@@ -118,7 +121,8 @@ export function MetaTheme({
   const scriptContent = forced
     ? `document.getElementById('vxrn-theme-color').setAttribute('content','${forced === 'dark' ? darkColor : lightColor}')`
     : `let dc = document.getElementById('vxrn-theme-color')
-let e1 = localStorage.getItem('${storageKey}')
+let e1 = null
+try { e1 = localStorage.getItem('${storageKey}') } catch (_e) {}
 let isD = 'system' === e1 || !e1 ? window.matchMedia('(prefers-color-scheme: dark)').matches : e1 === 'dark'
 dc.setAttribute('content', isD ? '${darkColor}' : '${lightColor}')`
 
