@@ -11,6 +11,7 @@ import type { One } from '../vite/types';
 import type { UrlObject } from './getNormalizedStatePath';
 import type { RouteNode } from './Route';
 import type { RouteMatch } from '../useMatches';
+export { getSafeWindowPathname } from './path';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
 /**
@@ -85,7 +86,6 @@ export declare function snapshot(): {
 };
 export declare function rootStateSnapshot(): OneRouter.ResultState;
 export declare function routeInfoSnapshot(): UrlObject;
-export declare function getSafeWindowPathname(): string | undefined;
 export declare function useOneRouter(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
