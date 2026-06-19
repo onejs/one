@@ -1,6 +1,7 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 import { useState, useMemo } from 'react'
 import { Appearance } from 'react-native'
+import { getStorageItem, setStorageItem } from './safeStorage'
 import { getSystemScheme, type Scheme } from './systemScheme'
 
 export type SchemeSetting = 'system' | 'light' | 'dark'
@@ -29,13 +30,11 @@ function notifyListeners() {
 }
 
 function restoreUnforcedScheme() {
-  if (typeof localStorage !== 'undefined') {
-    const stored = localStorage.getItem(storageKey) as SchemeSetting | null
-    if (stored) {
-      currentSetting = stored
-      currentValue = stored === 'system' ? resolveValue('system') : stored
-      return
-    }
+  const stored = getStorageItem(storageKey) as SchemeSetting | null
+  if (stored) {
+    currentSetting = stored
+    currentValue = stored === 'system' ? resolveValue('system') : stored
+    return
   }
 
   currentSetting = 'system'
@@ -70,11 +69,9 @@ export function getForceScheme(): Scheme | null {
 // eagerly init from localStorage on module load (native only - web uses effect for SSR)
 function getInitialSetting(): SchemeSetting {
   if (process.env.TAMAGUI_TARGET === 'native') {
-    if (typeof localStorage !== 'undefined') {
-      const stored = localStorage.getItem(storageKey)
-      if (stored === 'light' || stored === 'dark' || stored === 'system') {
-        return stored
-      }
+    const stored = getStorageItem(storageKey)
+    if (stored === 'light' || stored === 'dark' || stored === 'system') {
+      return stored
     }
   }
   // web: always return system for SSR compat
@@ -177,9 +174,7 @@ function updateScheme(setting: SchemeSetting) {
  */
 export function setUserScheme(setting: SchemeSetting) {
   if (_forceScheme) return
-  if (typeof localStorage !== 'undefined') {
-    localStorage.setItem(storageKey, setting)
-  }
+  setStorageItem(storageKey, setting)
   updateScheme(setting)
 }
 
@@ -231,11 +226,9 @@ export function useUserScheme(): UserScheme {
   useIsomorphicLayoutEffect(() => {
     if (!_forceScheme) {
       // restore from localStorage on mount
-      if (typeof localStorage !== 'undefined') {
-        const stored = localStorage.getItem(storageKey) as SchemeSetting | null
-        if (stored) {
-          updateScheme(stored)
-        }
+      const stored = getStorageItem(storageKey) as SchemeSetting | null
+      if (stored) {
+        updateScheme(stored)
       }
       startWebListener()
     }
