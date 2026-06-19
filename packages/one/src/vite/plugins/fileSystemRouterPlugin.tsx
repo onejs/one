@@ -113,8 +113,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest(
       {
         async handlePage({ route, url, loaderProps }) {
-          const ssgCacheKey =
-            route.type === 'ssg' ? getSsgHtmlCacheKey(route, url) : null
+          const ssgCacheKey = route.type === 'ssg' ? getSsgHtmlCacheKey(route, url) : null
           if (ssgCacheKey && !needsCacheClear) {
             const cachedHtml = ssgHtmlCache.get(ssgCacheKey)
             if (cachedHtml) {
