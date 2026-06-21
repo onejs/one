@@ -3,9 +3,12 @@ import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
   // expose internal contexts for SSR-optimized NavigationContainer
+  // validated against 7.x. when bumping past 7.x, add a new entry pinned to the
+  // new major and re-verify the lib/module/* paths still exist.
   {
     module: '@react-navigation/core',
     patchFiles: {
+      version: '7.x',
       'package.json': (contents) => {
         assertString(contents)
         const pkg = JSON.parse(contents)
@@ -34,6 +37,7 @@ export const builtInDepPatches: DepPatch[] = [
   {
     module: '@react-navigation/core',
     patchFiles: {
+      version: '>=7.17.0 <8.0.0',
       'lib/module/index.js': (contents) => {
         assertString(contents)
         // only patch if the old export is missing and the new one exists
