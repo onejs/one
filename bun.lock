@@ -30,11 +30,11 @@
     },
     "apps/one-tray": {
       "name": "one-tray",
-      "version": "1.19.6",
+      "version": "1.19.7",
     },
     "apps/onestack.dev": {
       "name": "site",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@docsearch/react": "^3.9.0",
         "@react-navigation/native": "~7.2.2",
@@ -71,7 +71,7 @@
     },
     "examples/bare": {
       "name": "example-bare",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "expo-constants": "~55.0.0",
         "react": "19.2.0",
@@ -97,7 +97,7 @@
     },
     "examples/expo-blank": {
       "name": "expo-blank-app",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "expo": "~55.0.7",
         "expo-status-bar": "~55.0.4",
@@ -109,7 +109,7 @@
     },
     "examples/expo-blank-with-vite-metro": {
       "name": "expo-blank-with-vite-metro",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "expo": "~55.0.7",
         "one": "workspace:*",
@@ -126,7 +126,7 @@
     },
     "examples/one-basic": {
       "name": "example-basic",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -148,7 +148,7 @@
     },
     "examples/testflight": {
       "name": "example-testflight",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@bottom-tabs/react-navigation": "^0.9.1",
         "@dotenvx/dotenvx": "^1.12.1",
@@ -187,7 +187,7 @@
     },
     "packages/color-scheme": {
       "name": "@vxrn/color-scheme",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
       },
@@ -204,7 +204,7 @@
     },
     "packages/compiler": {
       "name": "@vxrn/compiler",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/plugin-transform-destructuring": "^7.28.5",
@@ -232,7 +232,7 @@
     },
     "packages/create-vxrn": {
       "name": "create-vxrn",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "bin": "run.js",
       "dependencies": {
         "@types/validate-npm-package-name": "^4.0.2",
@@ -255,7 +255,7 @@
     },
     "packages/debug": {
       "name": "@vxrn/debug",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "debug": "^4.3.7",
       },
@@ -266,7 +266,7 @@
     },
     "packages/emitter": {
       "name": "@vxrn/emitter",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@tamagui/build": "2.3.0",
         "react": "19.2.0",
@@ -277,7 +277,7 @@
     },
     "packages/lllink": {
       "name": "lllink",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "bin": "./dist/index.mjs",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
@@ -286,7 +286,7 @@
     },
     "packages/mdx": {
       "name": "@vxrn/mdx",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "compare-versions": "^4.1.3",
         "esbuild-wasm": "^0.25.11",
@@ -318,7 +318,7 @@
     },
     "packages/native": {
       "name": "@vxrn/native",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@tamagui/build": "2.3.0",
       },
@@ -334,7 +334,7 @@
     },
     "packages/one": {
       "name": "one",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "bin": "run.mjs",
       "dependencies": {
         "@azure/core-asynciterator-polyfill": "^1.0.2",
@@ -440,7 +440,7 @@
     },
     "packages/one-vscode": {
       "name": "one-vscode",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "ws": "^8.21.0",
       },
@@ -453,7 +453,7 @@
     },
     "packages/query-string": {
       "name": "@vxrn/query-string",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "query-string": "^9.1.0",
       },
@@ -463,7 +463,7 @@
     },
     "packages/react-native-prebuilt": {
       "name": "@vxrn/react-native-prebuilt",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-flow": "workspace:*",
@@ -487,7 +487,7 @@
     },
     "packages/resolve": {
       "name": "@vxrn/resolve",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@tamagui/build": "2.3.0",
         "vitest": "^4.1.0",
@@ -495,11 +495,11 @@
     },
     "packages/rn-proxy": {
       "name": "@vxrn/rn-proxy",
-      "version": "1.19.6",
+      "version": "1.19.7",
     },
     "packages/safe-area": {
       "name": "@vxrn/safe-area",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "2.3.0",
@@ -507,7 +507,7 @@
     },
     "packages/test": {
       "name": "@vxrn/test",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "react": "19.2.0",
         "zx": "^8.5.5",
@@ -521,15 +521,15 @@
     },
     "packages/test-package": {
       "name": "@vxrn/test-package",
-      "version": "1.19.6",
+      "version": "1.19.7",
     },
     "packages/tslib-lite": {
       "name": "@vxrn/tslib-lite",
-      "version": "1.19.6",
+      "version": "1.19.7",
     },
     "packages/url-parse": {
       "name": "@vxrn/url-parse",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "url-parse": "^1.5.10",
       },
@@ -539,7 +539,7 @@
     },
     "packages/use-isomorphic-layout-effect": {
       "name": "@vxrn/use-isomorphic-layout-effect",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@tamagui/build": "2.3.0",
         "react": "19.2.0",
@@ -550,7 +550,7 @@
     },
     "packages/utils": {
       "name": "@vxrn/utils",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@vxrn/debug": "workspace:*",
         "@vxrn/resolve": "workspace:*",
@@ -561,11 +561,11 @@
     },
     "packages/vendor": {
       "name": "@vxrn/vendor",
-      "version": "1.19.6",
+      "version": "1.19.7",
     },
     "packages/vite-flow": {
       "name": "@vxrn/vite-flow",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
@@ -580,7 +580,7 @@
     },
     "packages/vite-native-client": {
       "name": "@vxrn/vite-native-client",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "2.3.0",
@@ -592,7 +592,7 @@
     },
     "packages/vite-native-hmr": {
       "name": "@vxrn/vite-native-hmr",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@types/webpack-env": "^1.18.8",
         "pretty-format": "^28.1.0",
@@ -607,7 +607,7 @@
     },
     "packages/vite-plugin-metro": {
       "name": "@vxrn/vite-plugin-metro",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
@@ -643,7 +643,7 @@
     },
     "packages/vxrn": {
       "name": "vxrn",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "bin": "run.mjs",
       "dependencies": {
         "@expo/config-plugins": "~55.0.6",
@@ -695,7 +695,7 @@
     },
     "tests/hmr": {
       "name": "test-hmr",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -715,7 +715,7 @@
     },
     "tests/native-features": {
       "name": "test-native-features",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@vxrn/native": "workspace:*",
@@ -763,7 +763,7 @@
     },
     "tests/sandbox": {
       "name": "test-sandbox",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@tamagui/config": "2.3.0",
@@ -789,7 +789,7 @@
     },
     "tests/test": {
       "name": "test-test",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@tamagui/config": "2.3.0",
@@ -831,7 +831,7 @@
     },
     "tests/test-app-cases": {
       "name": "test-app-cases",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@tamagui/config": "2.3.0",
@@ -854,7 +854,7 @@
     },
     "tests/test-build-unified": {
       "name": "test-build-unified",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "axios": "^1.17.0",
         "date-fns": "^3.6.0",
@@ -872,7 +872,7 @@
     },
     "tests/test-cache-headers": {
       "name": "test-cache-headers",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -887,7 +887,7 @@
     },
     "tests/test-cloudflare": {
       "name": "test-cloudflare",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
       },
@@ -902,7 +902,7 @@
     },
     "tests/test-css-merged": {
       "name": "test-css-merged",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -917,7 +917,7 @@
     },
     "tests/test-css-preload": {
       "name": "test-css-preload",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -932,7 +932,7 @@
     },
     "tests/test-deploy-flash": {
       "name": "test-deploy-flash",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -952,7 +952,7 @@
     },
     "tests/test-env": {
       "name": "test-env",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -968,7 +968,7 @@
     },
     "tests/test-hydration-id": {
       "name": "test-hydration-id",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "one": "workspace:*",
@@ -987,7 +987,7 @@
     },
     "tests/test-id-remount": {
       "name": "test-id-remount",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "one": "workspace:*",
@@ -1005,7 +1005,7 @@
     },
     "tests/test-layout-flicker": {
       "name": "test-layout-flicker",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1025,7 +1025,7 @@
     },
     "tests/test-layout-render-modes": {
       "name": "test-layout-render-modes",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1041,7 +1041,7 @@
     },
     "tests/test-loaders": {
       "name": "test-loaders",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@tamagui/config": "2.3.0",
@@ -1068,7 +1068,7 @@
     },
     "tests/test-native-tree-shaking": {
       "name": "test-native-tree-shaking",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@vxrn/mdx": "workspace:*",
@@ -1090,7 +1090,7 @@
     },
     "tests/test-not-found": {
       "name": "test-not-found",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "one": "workspace:*",
@@ -1110,7 +1110,7 @@
     },
     "tests/test-params-stability": {
       "name": "test-params-stability",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1130,7 +1130,7 @@
     },
     "tests/test-redirect-flash": {
       "name": "test-redirect-flash",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1150,7 +1150,7 @@
     },
     "tests/test-route-file-watching": {
       "name": "test-route-file-watching",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1170,7 +1170,7 @@
     },
     "tests/test-routing-flicker": {
       "name": "test-routing-flicker",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "@tamagui/config": "2.3.0",
@@ -1196,7 +1196,7 @@
     },
     "tests/test-script-loading": {
       "name": "test-script-loading",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1211,7 +1211,7 @@
     },
     "tests/test-skew-protection": {
       "name": "test-skew-protection",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "one": "workspace:*",
@@ -1231,7 +1231,7 @@
     },
     "tests/test-sootsim-back": {
       "name": "test-sootsim-back",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1251,7 +1251,7 @@
     },
     "tests/test-spa-shell-routing": {
       "name": "test-spa-shell-routing",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1267,7 +1267,7 @@
     },
     "tests/test-use-dom": {
       "name": "test-use-dom",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
         "expo": "~55.0.7",
@@ -1286,7 +1286,7 @@
     },
     "tests/test-vercel": {
       "name": "test-vercel",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1302,7 +1302,7 @@
     },
     "tests/test-warm-routes": {
       "name": "test-warm-routes",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.0",
@@ -1318,7 +1318,7 @@
     },
     "tests/test-weird-deps": {
       "name": "test-weird-deps",
-      "version": "1.19.6",
+      "version": "1.19.7",
       "devDependencies": {
         "vite": "^8.0.13",
       },
