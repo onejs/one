@@ -5,8 +5,6 @@ import { webExtensions } from '../constants'
 
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
-    'nativewind/jsx-dev-runtime',
-    'nativewind/jsx-runtime',
     'nativewind',
 
     'react-native-css-interop/jsx-runtime',
