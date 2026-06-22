@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { isAbsolute, relative, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
 import { createDebugger } from '@vxrn/debug'
@@ -91,6 +91,34 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
     configureServer(server) {
       const projectRoot = resolve(server.config.root)
+
+      const shouldLetViteServe = (url: string | undefined) => {
+        if (!url) return false
+
+        let pathname = ''
+        try {
+          pathname = new URL(url, 'http://localhost').pathname
+        } catch {
+          pathname = url.split('?')[0] ?? ''
+        }
+
+        if (!pathname.startsWith('/assets/')) return false
+        if (pathname.endsWith('_vxrn_loader.js')) return true
+
+        let decodedPathname = pathname
+        try {
+          decodedPathname = decodeURIComponent(pathname)
+        } catch {}
+
+        const filePath = resolve(projectRoot, decodedPathname.slice(1))
+        const relativePath = relative(projectRoot, filePath)
+        const isInsideRoot =
+          relativePath !== '' &&
+          !relativePath.startsWith('..') &&
+          !isAbsolute(relativePath)
+
+        return isInsideRoot && existsSync(filePath)
+      }
 
       let metroReady = false
 
@@ -288,6 +316,10 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
         // If Metro middleware is ready, use it
         if (middleware) {
+          if (shouldLetViteServe(req.url)) {
+            return next()
+          }
+
           try {
             // Just for debugging purposes.
             if (req.url?.includes('.bundle')) {
