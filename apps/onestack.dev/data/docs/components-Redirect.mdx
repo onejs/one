@@ -28,4 +28,9 @@ export default function ProtectedPage() {
 
 ### Behavior
 
-The redirect only fires once per mount, even if the screen is focused multiple times (e.g., navigating away and back). This prevents redirect loops in scenarios like authentication guards.
+`<Redirect>` navigates with `router.replace` as soon as it mounts. It's designed to be rendered conditionally from a layout guard, so it guards against the two ways that can otherwise turn into a redirect loop:
+
+- **Fires once per mount.** Re-renders, and re-focusing the screen (navigating away and back), won't re-issue the navigation.
+- **De-duplicates across remounts.** An auth gate that flips between `<Redirect>` and `<Slot>`/`null` while auth state settles remounts `<Redirect>` repeatedly, and each remount is a fresh instance. Because `router.replace` is async (it preloads the target route before dispatching), every remount would otherwise fire another concurrent navigation and throw `Maximum update depth exceeded`. `<Redirect>` shares an in-flight guard across instances so only one navigation is dispatched until it lands; the guard clears once it settles, so a later redirect to the same href still fires.
+
+Because of this you don't need a hand-rolled `useEffect` + `useRef` redirect in layout guards. Prefer the declarative `<Redirect>`.
