@@ -219,6 +219,10 @@ export default function LoginPage() {
 }
 ```
 
+<Notice>
+  Render `<Redirect>` declaratively from your guard. Don't replace it with a manual `useEffect` + `useRef` + `router.replace`. While auth state settles during a sign-in, the guard re-renders rapidly and may remount `<Redirect>`, but `<Redirect>` de-duplicates the navigation across those remounts. A hand-rolled effect that fires `router.replace` on every render can thrash the navigator into `Maximum update depth exceeded`.
+</Notice>
+
 ## Middleware Authentication
 
 One's middleware runs on the server before your route, making it ideal for auth checks.
