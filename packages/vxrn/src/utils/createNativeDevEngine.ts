@@ -602,6 +602,14 @@ export async function buildNativeBundle(
     resolve: getNativeResolveConfig(platform),
     transform: getNativeTransformConfig(platform, dev, root),
     treeshake: !dev,
+    experimental: {
+      // rolldown 1.1.0 flipped lazyBarrel to default-on. pin it off so the prod
+      // bundle keeps the pre-1.1 semantics it shipped with (prod historically ran
+      // with lazyBarrel off — see dev-mode note above). turning it on in prod is a
+      // separate, runtime-validated change, not something to adopt implicitly via
+      // a default flip during a version bump.
+      lazyBarrel: false,
+    },
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
