@@ -46,12 +46,12 @@
   "devDependencies": {
     "@tamagui/build": "2.6.2",
     "depcheck": "^1.4.7",
-    "rolldown": "^1.0.1",
-    "vite": "^8.0.13",
+    "rolldown": "^1.1.2",
+    "vite": "^8.1.0",
     "vitest": "^4.1.0"
   },
   "peerDependencies": {
-    "vite": "^8.0.13"
+    "vite": "^8.1.0"
   },
   "peerDependenciesMeta": {
     "vite": {
