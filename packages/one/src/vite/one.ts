@@ -18,6 +18,7 @@ import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
+import { bundledDevPlugin } from './plugins/bundledDevPlugin'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
@@ -284,6 +285,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
+
+    bundledDevPlugin(!!options.web?.experimentalBundledDev),
 
     environmentGuardPlugin(options.environmentGuards),
 

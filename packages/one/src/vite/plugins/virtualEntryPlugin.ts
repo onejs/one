@@ -173,12 +173,34 @@ export function createVirtualEntry(options: {
         const linkingArg = options.router?.linking
           ? `linking: ${JSON.stringify(options.router.linking)},`
           : ''
+
+        // vite 8.1 bundledDev: the client is a single bundle, so the react-refresh
+        // preamble normally provided by /@one/dev.js (which imports /@vite/client —
+        // a module that doesn't exist in bundled mode) never installs $RefreshReg$,
+        // and every compiler-wrapped route module then throws "preamble was not
+        // loaded". install it here instead — this runs at entry-body time, before
+        // the lazily-globbed route modules evaluate. ('one' and /@react-refresh are
+        // node_modules / the runtime, so neither is refresh-wrapped.)
+        const isBundledClient =
+          this.environment.name === 'client' && !!(this.environment.config as any)?.isBundled
+        const refreshPreambleImport = isBundledClient
+          ? `import { injectIntoGlobalHook as __oneInjectRefresh } from '/@react-refresh'`
+          : ''
+        const refreshPreambleSetup = isBundledClient
+          ? `if (typeof window !== 'undefined' && !window.$RefreshReg$) {
+  __oneInjectRefresh(window)
+  window.$RefreshReg$ = () => {}
+  window.$RefreshSig$ = () => (type) => type
+}`
+          : ''
         return `
 ${setupResult.promiseDeclaration}
 ${nativewindImport}
+${refreshPreambleImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
 ${setupResult.importStatement}
+${refreshPreambleSetup}
 
 // Export registerPreloadedRoute so preload files can import it from this bundle
 // Named export that wraps the original function
