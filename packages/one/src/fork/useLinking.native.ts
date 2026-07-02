@@ -24,6 +24,27 @@ type Options = LinkingOptions<ParamListBase>
 
 const linkingHandlers: symbol[] = []
 
+// @modified: our fork of getStateFromPath assigns deterministic route keys
+// (SSR/hydration stability), but upstream getActionFromState only produces a
+// nested NAVIGATE for keyless routes — keyed routes degrade to a whole-tree
+// RESET that the One router store immediately reverts, so incoming Linking
+// 'url' events never navigated on native. Strip the keys before deriving the
+// action; hydration keys only matter for web SSR, never for a live native
+// deep link.
+type LinkingResultState = NonNullable<ResultState>
+
+function stripRouteKeys(state: LinkingResultState): LinkingResultState {
+  return {
+    ...state,
+    routes: state.routes.map((route) => {
+      const { key, ...rest } = route as typeof route & { key?: string }
+      return rest.state
+        ? { ...rest, state: stripRouteKeys(rest.state as LinkingResultState) }
+        : rest
+    }),
+  }
+}
+
 export function useLinking(
   ref: React.RefObject<NavigationContainerRef<ParamListBase>>,
   {
@@ -197,7 +218,8 @@ export function useLinking(
           return
         }
 
-        const action = getActionFromStateRef.current(state, configRef.current)
+        // @modified: keys stripped so getActionFromState can produce NAVIGATE
+        const action = getActionFromStateRef.current(stripRouteKeys(state), configRef.current)
 
         if (action !== undefined) {
           try {
