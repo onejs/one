@@ -3,9 +3,11 @@ import {
   addPodHermescToBundleReactNativeShellScript,
   addSetCliPathToBundleReactNativeShellScript,
   injectExpoUpdatesIosResourcesPatchIntoPodfile,
+  injectFmtCxx17FixIntoPodfile,
   injectHermesMinificationPatchIntoPodfile,
   injectSwift6WorkaroundIntoPodfile,
   EXPO_UPDATES_METRO_SKIP_MARKER,
+  FMT_CXX17_MARKER,
   HERMES_MINIFY_PATCH_MARKER,
 } from './expo-plugin.cjs'
 
@@ -88,6 +90,33 @@ describe('injectExpoUpdatesIosResourcesPatchIntoPodfile', () => {
     expect(all).toContain('SWIFT_STRICT_CONCURRENCY')
     expect(all).toContain(HERMES_MINIFY_PATCH_MARKER)
     expect(all).toContain(EXPO_UPDATES_METRO_SKIP_MARKER)
+  })
+})
+
+describe('injectFmtCxx17FixIntoPodfile', () => {
+  it('targets only the fmt pod with c++17 + runtime format strings', () => {
+    const out = injectFmtCxx17FixIntoPodfile(samplePodfile)
+
+    expect(out).toContain(FMT_CXX17_MARKER)
+    expect(out).toContain("next unless target.name == 'fmt'")
+    expect(out).toContain('FMT_USE_NONTYPE_TEMPLATE_ARGS=0')
+    expect(out).toContain("'CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'")
+  })
+
+  it('is idempotent', () => {
+    const once = injectFmtCxx17FixIntoPodfile(samplePodfile)
+    const twice = injectFmtCxx17FixIntoPodfile(once)
+    expect(twice).toBe(once)
+  })
+
+  it('composes with the Swift 6 workaround and Hermes minification', () => {
+    const withSwift6 = injectSwift6WorkaroundIntoPodfile(samplePodfile)
+    const withHermes = injectHermesMinificationPatchIntoPodfile(withSwift6)
+    const all = injectFmtCxx17FixIntoPodfile(withHermes)
+
+    expect(all).toContain('SWIFT_STRICT_CONCURRENCY')
+    expect(all).toContain(HERMES_MINIFY_PATCH_MARKER)
+    expect(all).toContain(FMT_CXX17_MARKER)
   })
 })
 
