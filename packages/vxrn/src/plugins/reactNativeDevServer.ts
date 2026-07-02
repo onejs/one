@@ -1,5 +1,6 @@
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { WebSocketServer } from 'ws'
+import { createMessageSocket } from '@vxrn/utils'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
@@ -29,6 +30,7 @@ export function createReactNativeDevServerPlugin(
       const { root } = server.config
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
+      const messageWSS = createMessageSocket()
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -73,6 +75,14 @@ export function createReactNativeDevServerPlugin(
               } catch {}
             })
             hmrWSS.emit('connection', ws, req)
+          })
+          return
+        }
+
+        // metro packager message socket
+        if (url === '/message' || url.startsWith('/message?')) {
+          messageWSS.handleUpgrade(req, socket, head, (ws) => {
+            messageWSS.emit('connection', ws, req)
           })
           return
         }

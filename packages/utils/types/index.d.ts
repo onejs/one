@@ -1,5 +1,6 @@
 export * from '@vxrn/debug';
 export * from '@vxrn/resolve';
+export * from './createMessageSocket';
 export * from './detectPackageManager';
 export * from './exec';
 export * from './mustReplace';
