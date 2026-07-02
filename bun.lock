@@ -554,9 +554,11 @@
       "dependencies": {
         "@vxrn/debug": "workspace:*",
         "@vxrn/resolve": "workspace:*",
+        "ws": "^8.21.0",
       },
       "devDependencies": {
         "@tamagui/build": "2.3.0",
+        "@types/ws": "^8.18.1",
       },
     },
     "packages/vendor": {
@@ -613,6 +615,7 @@
         "@babel/helper-plugin-utils": "^7.27.1",
         "@babel/types": "^7.28.5",
         "@vxrn/debug": "workspace:*",
+        "@vxrn/utils": "workspace:*",
         "babel-preset-expo": "~55.0.0",
         "launch-editor": "^2.10.0",
         "micromatch": "^4.0.8",

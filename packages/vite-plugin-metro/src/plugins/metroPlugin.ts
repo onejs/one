@@ -4,6 +4,7 @@ import { isAbsolute, relative, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
 import { createDebugger } from '@vxrn/debug'
+import { createMessageSocket } from '@vxrn/utils'
 import { checkAndClearMetroCacheFromVite } from '../utils/metroCacheManager'
 
 const { debug } = createDebugger('vite-plugin-metro')
@@ -197,6 +198,11 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
             '/hot': createWebsocketServer({
               websocketServer: hmrServer,
             }),
+            // metro parity: the packager message socket (metro serves /message via
+            // @react-native-community/cli-server-api). leaving the upgrade unanswered
+            // dangles the socket and chromium queues every later websocket handshake
+            // to the same host:port behind it (blocking e.g. zero /sync in sootsim).
+            '/message': createMessageSocket(),
             ...devMiddleware.websocketEndpoints,
           }
 
