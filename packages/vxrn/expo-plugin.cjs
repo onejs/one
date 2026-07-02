@@ -115,6 +115,35 @@ const plugin = (config, options = {}) => {
         return config
       },
     ],
+    // iOS: RN's fmt pod fails to compile under Xcode 26 clang in C++20 mode.
+    // Compile fmt as c++17 with runtime format strings.
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (config) => {
+          const iosRoot = config.modRequest.platformProjectRoot
+          const podfilePath = path.join(iosRoot, 'Podfile')
+          if (!fs.existsSync(podfilePath)) return config
+
+          const propsPath = path.join(iosRoot, 'Podfile.properties.json')
+          if (getPodfilePropsOptOut(propsPath, 'one.disableFmtCxx17Fix')) {
+            return config
+          }
+
+          const podfile = fs.readFileSync(podfilePath, 'utf8')
+          const next = injectFmtCxx17FixIntoPodfile(podfile)
+          if (next !== podfile) {
+            fs.writeFileSync(podfilePath, next, 'utf8')
+            console.info(
+              '[vxrn] patched Podfile to compile the fmt pod as c++17 (Xcode 26 consteval failure)\n' +
+                '       to disable: set "one.disableFmtCxx17Fix": "true" in ios/Podfile.properties.json'
+            )
+          }
+          return config
+        },
+      ],
+    ],
     // iOS Hermes Release: hermesc can crash on large unminified bundles.
     // Force Metro to pre-minify so hermesc only does bytecode conversion.
     [
@@ -183,6 +212,53 @@ const plugin = (config, options = {}) => {
       ],
     ],
   ])
+}
+
+/**
+ * RN's fmt pod (11.x) fails to compile under Xcode 26 clang in C++20 mode:
+ * "call to consteval function 'fmt::basic_format_string<...>' is not a
+ * constant expression" in format-inl.h. Compiling fmt as c++17 with
+ * FMT_USE_NONTYPE_TEMPLATE_ARGS=0 sidesteps the consteval path entirely;
+ * fmt is an internal folly/react-native dependency so the flags are local
+ * to that pod.
+ */
+const FMT_CXX17_MARKER = '# [vxrn/one] fmt c++17 fix'
+
+function injectFmtCxx17FixIntoPodfile(podfile) {
+  if (podfile.includes(FMT_CXX17_MARKER)) {
+    return podfile
+  }
+
+  const patch = `
+    ${FMT_CXX17_MARKER}
+    # Xcode 26 clang rejects fmt 11.x FMT_STRING consteval in C++20 mode.
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'fmt'
+
+      target.build_configurations.each do |build_config|
+        defs = build_config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+        defs = [defs] unless defs.is_a?(Array)
+        defs |= ['FMT_USE_NONTYPE_TEMPLATE_ARGS=0']
+        build_config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = defs
+        build_config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        flags = build_config.build_settings['OTHER_CPLUSPLUSFLAGS'] || ['$(inherited)']
+        flags = [flags] unless flags.is_a?(Array)
+        flags |= ['-std=c++17']
+        build_config.build_settings['OTHER_CPLUSPLUSFLAGS'] = flags
+      end
+    end
+`
+
+  const match = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (!match) {
+    console.warn(
+      '[vxrn] could not find post_install block in Podfile to inject fmt c++17 fix'
+    )
+    return podfile
+  }
+
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
 }
 
 /**
@@ -783,6 +859,8 @@ module.exports.addPodHermescToBundleReactNativeShellScript =
 module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
 module.exports.injectHermesMinificationPatchIntoPodfile =
   injectHermesMinificationPatchIntoPodfile
+module.exports.injectFmtCxx17FixIntoPodfile = injectFmtCxx17FixIntoPodfile
+module.exports.FMT_CXX17_MARKER = FMT_CXX17_MARKER
 module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
   injectExpoUpdatesIosResourcesPatchIntoPodfile
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
