@@ -21,6 +21,16 @@ import type { One, RouteInfo } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
+// a catch-all route's generateStaticParams value is a segment array while the
+// dev url param is the slash-joined string captured by the route regex —
+// normalize both sides before comparing, else every [...param]+ssg url 404s
+// in dev (prod prerender iterates the params directly and never compares)
+function staticParamMatches(staticValue: unknown, urlValue: unknown): boolean {
+  const norm = (v: unknown) => (Array.isArray(v) ? v.join('/') : String(v ?? ''))
+  return norm(staticValue) === norm(urlValue)
+}
+
+
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 const debugLoaderDeps = process.env.ONE_DEBUG_LOADER_DEPS
 
@@ -311,7 +321,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               })
               const currentParams = loaderProps?.params || {}
               isMissingSsgSlug = !staticParams.some((sp: Record<string, string>) =>
-                Object.keys(sp).every((key) => sp[key] === currentParams[key])
+                Object.keys(sp).every((key) => staticParamMatches(sp[key], currentParams[key]))
               )
             }
 
@@ -478,7 +488,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             })
             const currentParams = loaderProps?.params || {}
             const isValidSlug = staticParams.some((sp: Record<string, string>) =>
-              Object.keys(sp).every((key) => sp[key] === currentParams[key])
+              Object.keys(sp).every((key) => staticParamMatches(sp[key], currentParams[key]))
             )
             if (!isValidSlug) {
               const nfPath = await findNearestNotFoundPath(route.file)
