@@ -29,7 +29,7 @@ export default {
 
   ssr: {
     noExternal: true,
-    external: ['@vxrn/mdx'],
+    external: ['@vxrn/mdx-rust', 'satteri', 'satteri-expressive-code'],
   },
 
   define: {
