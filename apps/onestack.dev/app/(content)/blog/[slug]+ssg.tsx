@@ -1,18 +1,19 @@
 import { ChevronLeft } from '@tamagui/lucide-icons-2'
-import { getMDXComponent } from 'mdx-bundler/client'
+import { getMDXComponent } from '@vxrn/mdx-rust/client'
 import { createRoute, Link, useLoader } from 'one'
 import { useMemo } from 'react'
 import { H1, Paragraph, Separator, SizableText, XStack, YStack } from 'tamagui'
 import { TopNav } from '~/components/TopNav'
 import { authors } from '~/data/authors'
 import { components } from '~/features/docs/MDXComponents'
+import { expressiveCodeConfig, fileNameToTitle } from '~/features/docs/mdxPlugins'
 import { Container } from '~/features/site/Containers'
 import { HeadInfo } from '~/features/site/HeadInfo'
 
 const route = createRoute<'/blog/[slug]'>()
 
 export async function generateStaticParams() {
-  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const { getAllFrontmatter } = await import('@vxrn/mdx-rust')
   const frontmatters = getAllFrontmatter('data/blog')
   return frontmatters.map(({ slug }) => ({
     slug: slug.replace('blog/', ''),
@@ -20,8 +21,11 @@ export async function generateStaticParams() {
 }
 
 export const loader = route.createLoader(async ({ params }) => {
-  const { getMDXBySlug } = await import('@vxrn/mdx')
-  const { frontmatter, code } = await getMDXBySlug('data/blog', params.slug)
+  const { getMDXBySlug } = await import('@vxrn/mdx-rust')
+  const { frontmatter, code } = await getMDXBySlug('data/blog', params.slug, {
+    mdastPlugins: [fileNameToTitle],
+    expressiveCode: expressiveCodeConfig,
+  })
   return {
     frontmatter,
     code,

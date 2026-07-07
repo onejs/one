@@ -1,16 +1,17 @@
-import { getMDXComponent } from 'mdx-bundler/client'
+import { getMDXComponent } from '@vxrn/mdx-rust/client'
 import { useLoader, createRoute } from 'one'
 import { useMemo } from 'react'
 import { H1 } from 'tamagui'
 import { DocsRightSidebar } from '~/features/docs/DocsRightSidebar'
 import { components } from '~/features/docs/MDXComponents'
+import { expressiveCodeConfig, fileNameToTitle } from '~/features/docs/mdxPlugins'
 import { HeadInfo } from '~/features/site/HeadInfo'
 import { nbspLastWord, SubTitle } from '~/features/site/SubTitle'
 
 const route = createRoute<'/docs/[slug]'>()
 
 export async function generateStaticParams() {
-  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const { getAllFrontmatter } = await import('@vxrn/mdx-rust')
   const frontmatters = getAllFrontmatter('data/docs')
   const paths = frontmatters.map(({ slug }) => ({
     slug: slug.replace(/.*docs\//, ''),
@@ -19,8 +20,11 @@ export async function generateStaticParams() {
 }
 
 export const loader = route.createLoader(async ({ params }) => {
-  const { getMDXBySlug } = await import('@vxrn/mdx')
-  const { frontmatter, code } = await getMDXBySlug('data/docs', params.slug)
+  const { getMDXBySlug } = await import('@vxrn/mdx-rust')
+  const { frontmatter, code } = await getMDXBySlug('data/docs', params.slug, {
+    mdastPlugins: [fileNameToTitle],
+    expressiveCode: expressiveCodeConfig,
+  })
   return {
     frontmatter,
     code,

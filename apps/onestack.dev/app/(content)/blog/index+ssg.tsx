@@ -6,7 +6,7 @@ import { Container } from '~/features/site/Containers'
 import { HeadInfo } from '~/features/site/HeadInfo'
 
 export async function loader() {
-  const { getAllFrontmatter } = await import('@vxrn/mdx')
+  const { getAllFrontmatter } = await import('@vxrn/mdx-rust')
   const frontmatters = getAllFrontmatter('data/blog')
   const sortedFrontmatters = frontmatters
     .filter((x) => !x.draft)

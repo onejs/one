@@ -22,7 +22,6 @@ import { Status } from '../../components/Status'
 import { SubTitle } from '../site/SubTitle'
 import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
-import { DocCodeBlock } from './DocsCodeBlock'
 import { LinkHeading } from './LinkHeading'
 import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
@@ -67,9 +66,9 @@ const TableBase = styled(View, {
   render: 'table',
   display: 'table' as any,
   width: '100%',
-  borderBottomWidth: 1,
-  borderColor: '$color5',
   my: '$4',
+  // @ts-ignore
+  borderCollapse: 'collapse' as any,
 })
 
 const TableWrapper = styled(View, {
@@ -102,26 +101,28 @@ const Tr = styled(View, {
 const Th = styled(Text, {
   render: 'th',
   display: 'table-cell' as any,
-  padding: '$3',
+  py: '$2.5',
+  px: '$3',
   fontWeight: '600',
-  fontSize: '$5',
-  backgroundColor: '$color3',
-  textAlign: 'center' as any,
-  borderWidth: 1,
-  borderBottomWidth: 0,
-  borderColor: '$color5',
+  fontSize: '$4',
+  color: '$color11',
+  textAlign: 'left' as any,
+  verticalAlign: 'bottom' as any,
+  borderBottomWidth: 1,
+  borderColor: '$color7',
 })
 
 const Td = styled(Text, {
   render: 'td',
   display: 'table-cell' as any,
-  padding: '$3',
-  fontSize: '$5',
-  textAlign: 'center' as any,
-  borderTopWidth: 1,
-  borderLeftWidth: 1,
-  borderRightWidth: 1,
-  borderColor: '$color5',
+  py: '$2.5',
+  px: '$3',
+  fontSize: '$4',
+  color: '$color12',
+  textAlign: 'left' as any,
+  verticalAlign: 'top' as any,
+  borderBottomWidth: 1,
+  borderColor: '$color4',
 })
 
 const HR = () => (
@@ -131,36 +132,21 @@ const HR = () => (
   </YStack>
 )
 
+// code blocks are fully rendered by Expressive Code (a self-contained
+// <figure class="expressive-code">…</figure> tree), so here we only style
+// inline code. inline code has a plain string child and no language class;
+// Expressive Code's inner <code> has element children and is passed through.
 const code = (props) => {
-  const {
-    showMore,
-    hero,
-    line,
-    scrollable,
-    className,
-    children,
-    id,
-    showLineNumbers,
-    collapsible,
-    ...rest
-  } = props
-  if (!className) {
-    const childText = unwrapText(children)
-    if (!childText[0]?.includes('\n')) {
-      return <CodeInline>{childText}</CodeInline>
-    }
+  const { className, children, ...rest } = props
+  const isInline =
+    !className && React.Children.toArray(children).every((c) => typeof c === 'string')
+  if (isInline) {
+    return <CodeInline>{unwrapText(children)}</CodeInline>
   }
   return (
-    <DocCodeBlock
-      isHighlightingLines={line !== undefined}
-      className={className}
-      isHero={hero !== undefined}
-      showMore={showMore !== undefined}
-      showLineNumbers={showLineNumbers !== undefined}
-      {...rest}
-    >
+    <code className={className} {...rest}>
       {children}
-    </DocCodeBlock>
+    </code>
   )
 }
 
@@ -391,7 +377,8 @@ const componentsIn = {
     </View>
   ),
 
-  pre: ({ children }) => <>{children}</>,
+  // Expressive Code owns the <pre>; render it natively so its styles apply
+  pre: (props) => <pre {...props} />,
 
   code,
 

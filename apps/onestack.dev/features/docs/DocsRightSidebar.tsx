@@ -1,6 +1,6 @@
 // `@tamagui/remove-scroll` is not using `react-remove-scroll` and exporting `classNames` anymore
 // import { classNames } from '@tamagui/remove-scroll'
-import { type Frontmatter } from '@vxrn/mdx'
+import { type Frontmatter } from '@vxrn/mdx-rust'
 import type { LinkProps } from 'one'
 import { Circle, H4, Paragraph, Separator, XStack, YStack } from 'tamagui'
 import { ScrollView } from '../site/ScrollView'
