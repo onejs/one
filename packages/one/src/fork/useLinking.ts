@@ -735,7 +735,22 @@ export function useLinking(
         if (historyDelta > 0) {
           // If history length is increased, we should pushState
           // Note that path might not actually change here, for example, drawer open should pushState
-          history.push({ path, state, displayPath, unmaskOnReload })
+          // @modified - unless the path is identical to the current history
+          // record: during spa-shell hydration nested navigators mount one by
+          // one, growing focused-route depth with NO navigation. pushing here
+          // minted a duplicate history entry for the same URL on every
+          // document load, so Back had to be pressed twice per page and
+          // back-from-a-detail-page overshot the list page it came from.
+          // real navigations (including linkTo pushes to the same URL) carry
+          // pendingNavigationAction === 'PUSH' and never reach this branch.
+          const currentRecord = history.get(history.index)
+          const samePath =
+            currentRecord?.path === path || currentRecord?.displayPath === path
+          if (samePath) {
+            history.replace({ path, state, displayPath, unmaskOnReload })
+          } else {
+            history.push({ path, state, displayPath, unmaskOnReload })
+          }
         } else if (historyDelta < 0) {
           // If history length is decreased, i.e. entries were removed, we want to go back
 
