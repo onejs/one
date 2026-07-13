@@ -30,7 +30,6 @@ function staticParamMatches(staticValue: unknown, urlValue: unknown): boolean {
   return norm(staticValue) === norm(urlValue)
 }
 
-
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 const debugLoaderDeps = process.env.ONE_DEBUG_LOADER_DEPS
 
@@ -321,7 +320,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               })
               const currentParams = loaderProps?.params || {}
               isMissingSsgSlug = !staticParams.some((sp: Record<string, string>) =>
-                Object.keys(sp).every((key) => staticParamMatches(sp[key], currentParams[key]))
+                Object.keys(sp).every((key) =>
+                  staticParamMatches(sp[key], currentParams[key])
+                )
               )
             }
 
@@ -488,7 +489,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             })
             const currentParams = loaderProps?.params || {}
             const isValidSlug = staticParams.some((sp: Record<string, string>) =>
-              Object.keys(sp).every((key) => staticParamMatches(sp[key], currentParams[key]))
+              Object.keys(sp).every((key) =>
+                staticParamMatches(sp[key], currentParams[key])
+              )
             )
             if (!isValidSlug) {
               const nfPath = await findNearestNotFoundPath(route.file)

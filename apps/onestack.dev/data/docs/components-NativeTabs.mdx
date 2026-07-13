@@ -19,7 +19,7 @@ npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs
 Use `NativeTabs` in a `_layout.tsx` file just like `Tabs`:
 
 ```tsx
-import { NativeTabs } from 'one'
+import { NativeTabs } from 'one/native-tabs'
 
 export default function Layout() {
   return (
@@ -55,7 +55,7 @@ export default function Layout() {
 Guard tabs behind authentication with `NativeTabs.Protected`:
 
 ```tsx
-import { NativeTabs } from 'one'
+import { NativeTabs } from 'one/native-tabs'
 
 export default function Layout() {
   const { isAuthed } = useAuth()
