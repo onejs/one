@@ -77,42 +77,41 @@ export {
   useSegments,
   useUnstableGlobalHref,
 } from './hooks'
-export { useSitemap, type SitemapType } from './router/sitemap'
 export { href } from './href'
 export { getLinking, type OneLinkingConfig } from './link/getLinking'
+export { useSitemap, type SitemapType } from './router/sitemap'
 // components
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
-export { NativeTabs } from './layouts/NativeTabs'
 export { Protected, type ProtectedProps } from './views/Protected'
 // Stack header compositional API types
 export type {
-  StackHeaderProps,
   StackHeaderBackButtonProps,
-  StackHeaderTitleProps,
   StackHeaderLeftProps,
+  StackHeaderProps,
   StackHeaderRightProps,
   StackHeaderSearchBarProps,
-  StackScreenProps,
+  StackHeaderTitleProps,
   StackScreenOptions,
+  StackScreenProps,
 } from './layouts/stack-utils'
 // Stack render API (for custom web overlay rendering)
 export type {
   StackRender,
-  StackRenderProps,
   StackRenderComponent,
+  StackRenderProps,
 } from './router/web/ScreenRenderContext'
 // Tabs / Drawer render API + global setup
 export {
-  setupRendering,
   getRenderingConfig,
+  setupRendering,
+  type DrawerRender,
+  type DrawerRenderComponent,
+  type DrawerRenderProps,
   type RenderingConfig,
   type TabsRender,
-  type TabsRenderProps,
   type TabsRenderComponent,
-  type DrawerRender,
-  type DrawerRenderProps,
-  type DrawerRenderComponent,
+  type TabsRenderProps,
 } from './router/renderingRegistry'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
@@ -124,8 +123,8 @@ export { Root } from './Root'
 export { render } from './render'
 export { createRoute, route } from './router/createRoute'
 // intercepting routes
-export { NamedSlot } from './views/Navigator'
 export { closeIntercept, isInterceptedNavigation } from './router/interceptRoutes'
+export { NamedSlot } from './views/Navigator'
 // base
 export { router } from './router/imperative-api'
 export * as routerStore from './router/router'
@@ -141,16 +140,16 @@ export {
 } from './useBlocker'
 // route param validation
 export {
-  validateParams,
-  zodParamValidator,
   ParamValidationError,
   RouteValidationError,
-  type ParamValidator,
+  validateParams,
+  zodParamValidator,
   type InferParamInput,
   type InferParamOutput,
+  type ParamValidator,
+  type RouteValidationFn,
   type ValidateRouteProps,
   type ValidationResult,
-  type RouteValidationFn,
 } from './validateParams'
 // validation state hook
 export { useValidationState, type ValidationState } from './router/router'
@@ -164,15 +163,15 @@ export {
   type LoaderTimingEntry,
 } from './useLoader'
 export {
-  useMatches,
-  useMatch,
-  usePageMatch,
   setClientMatches,
+  useMatch,
+  useMatches,
+  usePageMatch,
   type RouteMatch,
 } from './useMatches'
 export {
-  type ServerHeadInsertionCallback,
   useServerHeadInsertion,
+  type ServerHeadInsertionCallback,
 } from './useServerHeadInsertion'
 export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
@@ -181,14 +180,14 @@ export { watchFile } from './utils/watchFile'
 // resilient dynamic-import recovery: retry a transient chunk-fetch failure in
 // place (so it never poisons a React.lazy memo), then fall back to one's
 // debounced reload. lazyWithRetry is a drop-in for React.lazy.
-export { loadWithRetry, isChunkLoadError, handleSkewError } from './utils/dynamicImport'
 export { lazyWithRetry } from './lazyWithRetry'
+export { handleSkewError, isChunkLoadError, loadWithRetry } from './utils/dynamicImport'
 export { ErrorBoundary } from './views/ErrorBoundary'
-export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export { LoadProgressBar } from './views/LoadProgressBar'
 export { Navigator, Slot } from './views/Navigator'
 export { ScrollBehavior } from './views/ScrollBehavior'
 export { SourceInspector, type SourceInspectorProps } from './views/SourceInspector'
+export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 // scroll position groups
 export { useScrollGroup } from './useScrollGroup'
 // server

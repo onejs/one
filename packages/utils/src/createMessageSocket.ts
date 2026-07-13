@@ -9,10 +9,16 @@ import { WebSocketServer } from 'ws'
 export function createMessageSocket() {
   const PROTOCOL_VERSION = 2
   const wss = new WebSocketServer({ noServer: true })
-  const clients = new Map<string, { ws: import('ws').WebSocket; query: Record<string, string> }>()
+  const clients = new Map<
+    string,
+    { ws: import('ws').WebSocket; query: Record<string, string> }
+  >()
   let nextClientId = 0
 
-  function broadcast(broadcasterId: string | null, message: { method: string; params?: unknown }) {
+  function broadcast(
+    broadcasterId: string | null,
+    message: { method: string; params?: unknown }
+  ) {
     const forwarded = JSON.stringify({
       version: PROTOCOL_VERSION,
       method: message.method,
@@ -29,7 +35,9 @@ export function createMessageSocket() {
 
   wss.on('connection', (clientWs, req) => {
     const clientId = `client#${nextClientId++}`
-    const query = Object.fromEntries(new URL(req?.url || '/', 'http://localhost').searchParams)
+    const query = Object.fromEntries(
+      new URL(req?.url || '/', 'http://localhost').searchParams
+    )
     clients.set(clientId, { ws: clientWs, query })
     const remove = () => clients.delete(clientId)
     clientWs.on('close', remove)
@@ -48,7 +56,8 @@ export function createMessageSocket() {
           typeof message.method === 'string' &&
           message.id === undefined &&
           message.target === undefined
-        const isRequest = typeof message.method === 'string' && typeof message.target === 'string'
+        const isRequest =
+          typeof message.method === 'string' && typeof message.target === 'string'
         const isResponse =
           typeof message.id === 'object' &&
           message.id?.requestId !== undefined &&
@@ -71,18 +80,25 @@ export function createMessageSocket() {
             } else {
               throw new Error(`unknown method: ${message.method}`)
             }
-            clientWs.send(JSON.stringify({ version: PROTOCOL_VERSION, result, id: message.id }))
+            clientWs.send(
+              JSON.stringify({ version: PROTOCOL_VERSION, result, id: message.id })
+            )
           } else {
             const target = clients.get(message.target)
             if (!target) {
-              throw new Error(`could not find id "${message.target}" while forwarding request`)
+              throw new Error(
+                `could not find id "${message.target}" while forwarding request`
+              )
             }
             target.ws.send(
               JSON.stringify({
                 version: PROTOCOL_VERSION,
                 method: message.method,
                 params: message.params,
-                id: message.id === undefined ? undefined : { requestId: message.id, clientId },
+                id:
+                  message.id === undefined
+                    ? undefined
+                    : { requestId: message.id, clientId },
               })
             )
           }
@@ -102,7 +118,11 @@ export function createMessageSocket() {
         if (message.id !== undefined) {
           try {
             clientWs.send(
-              JSON.stringify({ version: PROTOCOL_VERSION, error: String(err), id: message.id })
+              JSON.stringify({
+                version: PROTOCOL_VERSION,
+                error: String(err),
+                id: message.id,
+              })
             )
           } catch {}
         }

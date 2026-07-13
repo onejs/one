@@ -219,7 +219,10 @@ export function useLinking(
         }
 
         // @modified: keys stripped so getActionFromState can produce NAVIGATE
-        const action = getActionFromStateRef.current(stripRouteKeys(state), configRef.current)
+        const action = getActionFromStateRef.current(
+          stripRouteKeys(state),
+          configRef.current
+        )
 
         if (action !== undefined) {
           try {

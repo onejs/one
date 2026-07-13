@@ -69,7 +69,12 @@ export async function getMDX(
     jsxImportSource: 'react',
     features: { gfm: true, smartPunctuation: true, frontmatter: true },
     mdastPlugins: [...(options.mdastPlugins ?? [])],
-    hastPlugins: [slugPlugin, tableWhitespacePlugin, ...ec, ...(options.hastPlugins ?? [])],
+    hastPlugins: [
+      slugPlugin,
+      tableWhitespacePlugin,
+      ...ec,
+      ...(options.hastPlugins ?? []),
+    ],
   })
 
   let imageMeta: ImageMeta | undefined
