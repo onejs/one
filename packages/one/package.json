@@ -24,37 +24,32 @@
     "./vite": {
       "types": "./types/vite.d.ts",
       "import": "./dist/esm/vite.mjs",
-      "require": "./dist/cjs/vite.js"
+      "require": "./dist/cjs/vite.cjs"
     },
     "./vite-auto-warm": {
       "types": "./types/vite-auto-warm.d.ts",
       "import": "./dist/esm/vite-auto-warm.mjs",
-      "require": "./dist/cjs/vite-auto-warm.js"
+      "require": "./dist/cjs/vite-auto-warm.cjs"
     },
     "./serve": {
       "types": "./types/serve.d.ts",
       "import": "./dist/esm/serve.mjs",
-      "require": "./dist/cjs/serve.js"
+      "require": "./dist/cjs/serve.cjs"
     },
     "./serve-worker": {
       "types": "./types/serve-worker.d.ts",
       "import": "./dist/esm/serve-worker.mjs",
-      "require": "./dist/cjs/serve-worker.js"
+      "require": "./dist/cjs/serve-worker.cjs"
     },
     "./setup": {
       "types": "./types/setup.d.ts",
       "import": "./dist/esm/setup.mjs",
-      "require": "./dist/cjs/setup.js"
+      "require": "./dist/cjs/setup.cjs"
     },
     "./zero": {
       "types": "./types/zero.d.ts",
       "import": "./dist/esm/zero.mjs",
-      "require": "./dist/cjs/zero.js"
-    },
-    "./routes-manifest": {
-      "types": "./types/routes-manifest.d.ts",
-      "import": "./dist/esm/routes-manifest.mjs",
-      "require": "./dist/cjs/routes-manifest.js"
+      "require": "./dist/cjs/zero.cjs"
     },
     "./react-18": {
       "require": "./vendor/react/cjs/react.development.js",
@@ -111,29 +106,29 @@
     "./image": {
       "types": "./types/image.d.ts",
       "import": "./dist/esm/image.mjs",
-      "require": "./dist/cjs/image.js"
+      "require": "./dist/cjs/image.cjs"
     },
     "./drawer": {
       "react-native": "./dist/esm/drawer.native.js",
       "types": "./types/drawer.d.ts",
       "import": "./dist/esm/drawer.mjs",
-      "require": "./dist/cjs/drawer.js"
+      "require": "./dist/cjs/drawer.cjs"
     },
     "./native-tabs": {
       "react-native": "./dist/esm/native-tabs.native.js",
       "types": "./types/native-tabs.d.ts",
       "import": "./dist/esm/native-tabs.mjs",
-      "require": "./dist/cjs/native-tabs.js"
+      "require": "./dist/cjs/native-tabs.cjs"
     },
     "./headless": {
       "types": "./types/headless.d.ts",
       "import": "./dist/esm/headless.mjs",
-      "require": "./dist/cjs/headless.js"
+      "require": "./dist/cjs/headless.cjs"
     },
     "./headless-server": {
       "types": "./types/headless-server.d.ts",
       "import": "./dist/esm/headless-server.mjs",
-      "require": "./dist/cjs/headless-server.js"
+      "require": "./dist/cjs/headless-server.cjs"
     },
     "./devtools/*": "./devtools/*"
   },
