@@ -1,10 +1,18 @@
 import { spawn, type ChildProcess } from 'node:child_process'
 import { existsSync, readFileSync, rmSync } from 'node:fs'
-import { join } from 'node:path'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 
 const testDir = join(import.meta.dirname, '..')
 const cacheFile = join(testDir, 'node_modules', '.vite', 'one-warm-deps.json')
-const oneBin = join(testDir, '..', '..', 'node_modules', '.bin', 'one')
+// Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
+// the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
+// (MODULE_NOT_FOUND), so the dev server never starts. Resolving via package.json
+// gives the real JS file on every platform (mirrors packages/test/src/setupTest.ts).
+const oneRunEntry = join(
+  dirname(createRequire(import.meta.url).resolve('one/package.json')),
+  'run.mjs'
+)
 
 function cleanup() {
   // clear .vite cache so we start fresh
@@ -22,10 +30,13 @@ function startDevServer(port: number): {
 } {
   const output: string[] = []
 
-  const proc = spawn('node', [oneBin, 'dev', '--port', port.toString()], {
+  const proc = spawn('node', [oneRunEntry, 'dev', '--port', port.toString()], {
     cwd: testDir,
     env: { ...process.env },
     stdio: ['ignore', 'pipe', 'pipe'],
+    // detached so the whole process group can be killed on POSIX (one dev spawns
+    // child workers); on Windows the tree is killed via taskkill /T in kill().
+    detached: process.platform !== 'win32',
   })
 
   proc.stdout?.on('data', (data) => {
@@ -76,12 +87,20 @@ function startDevServer(port: number): {
   }
 
   function kill() {
-    try {
-      process.kill(-proc.pid!, 'SIGKILL')
-    } catch {
+    if (!proc.pid) return
+    if (process.platform === 'win32') {
+      // node cannot signal a process group on Windows; taskkill /T kills the tree.
       try {
-        proc.kill('SIGKILL')
+        spawn('taskkill', ['/F', '/T', '/PID', String(proc.pid)], { stdio: 'ignore' })
       } catch {}
+    } else {
+      try {
+        process.kill(-proc.pid, 'SIGKILL')
+      } catch {
+        try {
+          proc.kill('SIGKILL')
+        } catch {}
+      }
     }
   }
 
