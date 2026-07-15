@@ -1131,13 +1131,13 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
           ctx.acceptCallbacks[j].fn(this.modules[moduleId].exports);
         }
       }
-      // surface the updated module id to One's route-hot hook so it can evict its
-      // route cache and re-render. RN's React Refresh can't repaint One's route
-      // components (they're re-wrapped away from the edited module's Refresh
-      // family), and the web 'one:route-update' event has no equivalent on the
-      // native /hot transport, so this generic global hook is the bridge.
+      // surface each committed module id to the framework hot-update hook (if one
+      // is registered). RN's React Refresh can't repaint frameworks that re-wrap
+      // route components away from the edited module's Refresh family (e.g. One),
+      // and the web route-update event has no equivalent on the native /hot
+      // socket, so this generic vxrn global is the bridge.
       try {
-        if (globalThis.__oneRouteHotUpdate && moduleId) globalThis.__oneRouteHotUpdate(moduleId);
+        if (globalThis.__VXRN_ON_MODULE_UPDATED__ && moduleId) globalThis.__VXRN_ON_MODULE_UPDATED__(moduleId);
       } catch (e) {}
     }
   }
