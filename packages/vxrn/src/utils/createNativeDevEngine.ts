@@ -17,6 +17,29 @@ import { getNativePrelude } from '../runtime/native-prelude'
 // files that contain Flow syntax and need stripping
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
+// Hermes needs the whole class shape lowered *together*. Downleveling only the
+// class fields while leaving `class ... extends` as modern ES6 produces a
+// half-transpiled hierarchy Hermes crashes on at `new Subclass()` (TypeError:
+// Cannot read property 'prototype' of undefined). These must stay atomic across
+// both SWC call sites and dev/prod — defining them once makes that a fact, not a
+// convention (the original bug was `transform-classes` missing from one of two
+// hand-copied include lists).
+const HERMES_CLASS_TRANSFORMS = [
+  'transform-classes',
+  'transform-class-properties',
+  'transform-class-static-block',
+  'transform-private-methods',
+  'transform-private-property-in-object',
+] as const
+
+// prod-only: needed for hermesc bytecode AOT compilation, not the dev interpreter
+const HERMES_PROD_TRANSFORMS = ['transform-async-to-generator'] as const
+
+/** SWC `env.include` for Hermes-compatible downleveling — see HERMES_CLASS_TRANSFORMS. */
+export function getHermesSWCIncludes(dev: boolean): string[] {
+  return [...HERMES_CLASS_TRANSFORMS, ...(dev ? [] : HERMES_PROD_TRANSFORMS)]
+}
+
 interface NativeDevEngineOptions {
   root: string
   port: number
@@ -333,12 +356,8 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
       isModule: false,
       env: {
         targets: { node: 9999 },
-        include: [
-          'transform-class-properties',
-          'transform-class-static-block',
-          'transform-private-methods',
-          'transform-private-property-in-object',
-        ],
+        // dev-only runtime prelude: the class set only, no prod bytecode transforms
+        include: [...HERMES_CLASS_TRANSFORMS],
       },
       jsc: {
         parser: { syntax: 'ecmascript' },
@@ -1024,15 +1043,9 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // hermes needs class properties downleveled; prod also needs
-        // classes and async-to-generator for bytecode compilation
-        const envIncludes = [
-          'transform-class-properties',
-          'transform-class-static-block',
-          'transform-private-methods',
-          'transform-private-property-in-object',
-          ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
-        ]
+        // app modules: the Hermes class set (unconditional), plus async-to-generator
+        // in prod only (see HERMES_CLASS_TRANSFORMS / HERMES_PROD_TRANSFORMS)
+        const envIncludes = getHermesSWCIncludes(dev)
 
         const result = await swc.transform(code, {
           filename: id,
