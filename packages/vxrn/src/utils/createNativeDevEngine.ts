@@ -806,7 +806,7 @@ function environmentGuardPlugin(): Plugin {
  * (`setup`/`enable`/`disable`/`registerBundle`/`log`/`isEnabled`) mirrors the
  * methods RN calls on it.
  */
-function hmrClientNoopPlugin(): Plugin {
+export function hmrClientNoopPlugin(): Plugin {
   // Match RN's HMRClient by module path, tolerating either separator (native
   // Windows ids use `\`) and an optional js/ts extension.
   const RN_HMR_CLIENT_RE = /(^|[\\/])Utilities[\\/]HMRClient(\.[cm]?[jt]sx?)?$/

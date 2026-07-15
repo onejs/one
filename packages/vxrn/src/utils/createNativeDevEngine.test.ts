@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   getNativeTransformConfig,
+  hmrClientNoopPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
 
@@ -64,5 +65,57 @@ describe('wrapNativeBundleModuleScope', () => {
   it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
     const input = 'var x = 1;\nconsole.log(x);\n'
     expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  })
+})
+
+describe('hmrClientNoopPlugin', () => {
+  const plugin = hmrClientNoopPlugin()
+  const resolveId = plugin.resolveId as unknown as (source: string) => any
+  const load = plugin.load as unknown as (id: string) => any
+  const VIRTUAL_ID = '\0vxrn-hmr-client-noop'
+
+  it.each([
+    'react-native/Libraries/Utilities/HMRClient',
+    '../Utilities/HMRClient',
+    '../../Utilities/HMRClient.js',
+    // native Windows ids use backslashes
+    '..\\Utilities\\HMRClient.js',
+    '../Utilities/HMRClient.ts',
+    '../Utilities/HMRClient.tsx',
+    '../Utilities/HMRClient.cjs',
+  ])('aliases RN HMRClient specifier %j to the no-op virtual module', (source) => {
+    expect(resolveId(source)).toEqual({ id: VIRTUAL_ID, external: false })
+  })
+
+  it.each([
+    // trailing letters (no boundary) must not match
+    'react-native/Libraries/Utilities/HMRClientRegistry',
+    // Utilities must sit at a path boundary
+    'some/MyUtilities/HMRClient',
+    // unrelated RN modules
+    'react-native/Libraries/Core/setUpDeveloperTools',
+    'react',
+  ])('does not touch unrelated specifier %j', (source) => {
+    expect(resolveId(source)).toBeUndefined()
+  })
+
+  it('loads a no-op module exposing every HMRClient method RN calls', () => {
+    const result = load(VIRTUAL_ID)
+    expect(result?.moduleType).toBe('js')
+    for (const method of [
+      'setup',
+      'enable',
+      'disable',
+      'registerBundle',
+      'log',
+      'isEnabled',
+    ]) {
+      expect(result!.code).toContain(method)
+    }
+    expect(result!.code).toContain('export default HMRClient')
+  })
+
+  it('does not load unrelated ids', () => {
+    expect(load('\0some-other-virtual')).toBeUndefined()
   })
 })
