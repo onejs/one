@@ -13,14 +13,14 @@ declare module 'one' {
         | `/(site)/thing/[id]/main`
         | `/_sitemap`
         | `/thing/[id]/main`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/(site)/preview/${OneRouter.SingleRoutePart<T>}`
         | `/(site)/project/${OneRouter.SingleRoutePart<T>}/main`
         | `/(site)/thing/${OneRouter.SingleRoutePart<T>}`
         | `/preview/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}/main`
         | `/thing/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(site)/preview/[id]`
         | `/(site)/project/[id]/main`
         | `/(site)/thing/[id]`
