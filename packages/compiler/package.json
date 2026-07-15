@@ -31,6 +31,7 @@
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/plugin-transform-destructuring": "^7.28.5",
+    "@babel/plugin-transform-flow-strip-types": "^7.27.1",
     "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@babel/plugin-transform-regenerator": "^7.28.4",
     "@react-native/babel-plugin-codegen": "^0.83.0",

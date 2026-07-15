@@ -207,6 +207,7 @@
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/plugin-transform-destructuring": "^7.28.5",
+        "@babel/plugin-transform-flow-strip-types": "^7.27.1",
         "@babel/plugin-transform-react-jsx": "^7.27.1",
         "@babel/plugin-transform-regenerator": "^7.28.4",
         "@react-native/babel-plugin-codegen": "^0.83.0",
@@ -673,6 +674,7 @@
       "dependencies": {
         "@expo/config-plugins": "~55.0.6",
         "@hono/node-server": "^1.19.14",
+        "@react-native/babel-plugin-codegen": "^0.83.0",
         "@react-native/dev-middleware": "^0.83.4",
         "@swc/core": "^1.14.0",
         "@vxrn/compiler": "workspace:*",
