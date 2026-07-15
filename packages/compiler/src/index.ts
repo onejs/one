@@ -301,7 +301,9 @@ ${rootJS.code}
       enforce: 'pre',
 
       config: () => {
-        const nodeModulesFilter = /node_modules\/.*\.(tsx?|jsx?|mjs|cjs)$/
+        // accept either separator: optimizeDeps hands OS-native ids, so a
+        // forward-slash-only match dropped every node_modules file on Windows
+        const nodeModulesFilter = /node_modules[/\\].*\.(tsx?|jsx?|mjs|cjs)$/
 
         const createEnvironmentConfig = (environment: Environment) => {
           // init stats for this environment
