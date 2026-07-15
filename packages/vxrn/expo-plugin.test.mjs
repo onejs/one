@@ -1,7 +1,11 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
   addPodHermescToBundleReactNativeShellScript,
   addSetCliPathToBundleReactNativeShellScript,
+  assertExpoModulesCoreMatchesExpoLinking,
   injectExpoUpdatesIosResourcesPatchIntoPodfile,
   injectFmtCxx17FixIntoPodfile,
   injectHermesMinificationPatchIntoPodfile,
@@ -34,6 +38,73 @@ target 'MyApp' do
   end
 end
 `
+
+describe('assertExpoModulesCoreMatchesExpoLinking', () => {
+  function makeProjectRoot(expoModulesCoreVersion, expoLinkingVersion) {
+    const projectRoot = mkdtempSync(join(tmpdir(), 'one-sdk-check-'))
+    const packages = [
+      ['expo-modules-core', expoModulesCoreVersion],
+      ['expo-linking', expoLinkingVersion],
+    ]
+    for (const [packageName, version] of packages) {
+      if (!version) continue
+      const packageDir = join(projectRoot, 'node_modules', packageName)
+      mkdirSync(packageDir, { recursive: true })
+      writeFileSync(
+        join(packageDir, 'package.json'),
+        JSON.stringify({ name: packageName, version })
+      )
+    }
+    return projectRoot
+  }
+
+  it('passes when expo-modules-core and expo-linking majors match', () => {
+    const projectRoot = makeProjectRoot('55.0.16', '55.0.7')
+    expect(() => assertExpoModulesCoreMatchesExpoLinking(projectRoot)).not.toThrow()
+  })
+
+  it('throws an actionable error on a major mismatch', () => {
+    const projectRoot = makeProjectRoot('56.0.16', '55.0.14')
+    expect(() => assertExpoModulesCoreMatchesExpoLinking(projectRoot)).toThrow(
+      /Expo SDK mismatch/
+    )
+    try {
+      assertExpoModulesCoreMatchesExpoLinking(projectRoot)
+    } catch (error) {
+      expect(error.message).toContain('expo-modules-core@56.0.16')
+      expect(error.message).toContain('expo-linking@55.0.14')
+      expect(error.message).toContain('NoSuchMethodError')
+      expect(error.message).toContain('ONE_SKIP_EXPO_SDK_CHECK')
+    }
+  })
+
+  it('passes silently when either package is not resolvable', () => {
+    expect(() =>
+      assertExpoModulesCoreMatchesExpoLinking(makeProjectRoot('56.0.16', null))
+    ).not.toThrow()
+    expect(() =>
+      assertExpoModulesCoreMatchesExpoLinking(makeProjectRoot(null, '55.0.14'))
+    ).not.toThrow()
+    expect(() =>
+      assertExpoModulesCoreMatchesExpoLinking(makeProjectRoot(null, null))
+    ).not.toThrow()
+  })
+
+  it('honors the ONE_SKIP_EXPO_SDK_CHECK escape hatch', () => {
+    const projectRoot = makeProjectRoot('56.0.16', '55.0.14')
+    const original = process.env.ONE_SKIP_EXPO_SDK_CHECK
+    process.env.ONE_SKIP_EXPO_SDK_CHECK = '1'
+    try {
+      expect(() => assertExpoModulesCoreMatchesExpoLinking(projectRoot)).not.toThrow()
+    } finally {
+      if (original === undefined) {
+        delete process.env.ONE_SKIP_EXPO_SDK_CHECK
+      } else {
+        process.env.ONE_SKIP_EXPO_SDK_CHECK = original
+      }
+    }
+  })
+})
 
 describe('injectHermesMinificationPatchIntoPodfile', () => {
   it('injects the marker and patches the bundle phase', () => {

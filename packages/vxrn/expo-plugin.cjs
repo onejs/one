@@ -19,6 +19,13 @@ function getPodfilePropsOptOut(propsPath, key) {
 }
 
 const plugin = (config, options = {}) => {
+  // fail fast on an Expo SDK mismatch before any native project is generated:
+  // one/vxrn pin expo-linking to a single SDK, and its native module is
+  // compiled against that SDK's expo-modules-core ABI. When the app's expo
+  // brings a newer expo-modules-core, the build/install/launch pipeline all
+  // succeed and the app then dies at ReactInstance creation with
+  // NoSuchMethodError in ExpoLinkingModule — invisible until runtime.
+  assertExpoModulesCoreMatchesExpoLinking(process.cwd())
   return withPlugins(config, [
     // auto-inject swift 6 workaround for expo-modules-core into Podfile (version-gated, opt-out-able)
     [
@@ -693,14 +700,56 @@ function addReactNativeScreensFix(input) {
 }
 
 function getExpoModulesCoreVersion(projectRoot) {
+  return getInstalledPackageVersion('expo-modules-core', projectRoot)
+}
+
+function getInstalledPackageVersion(packageName, projectRoot) {
   try {
-    const pkgPath = require.resolve('expo-modules-core/package.json', {
+    const pkgPath = require.resolve(`${packageName}/package.json`, {
       paths: [projectRoot],
     })
     return JSON.parse(fs.readFileSync(pkgPath, 'utf8')).version
   } catch {
     return null
   }
+}
+
+/**
+ * expo-linking (pinned by one/vxrn to a single Expo SDK) calls into
+ * expo-modules-core's Kotlin/Swift ABI; mixing majors compiles and installs
+ * fine but crashes at ReactInstance creation (NoSuchMethodError in
+ * ExpoLinkingModule). The project-root resolution sees the copy native
+ * autolinking will actually compile, so comparing the two majors here turns
+ * an opaque runtime crash into an actionable prebuild error.
+ *
+ * Escape hatch: ONE_SKIP_EXPO_SDK_CHECK=1 (e.g. for intentionally patched
+ * setups). Silently passes when either package isn't resolvable (web-only
+ * projects never reach this plugin anyway).
+ */
+function assertExpoModulesCoreMatchesExpoLinking(projectRoot) {
+  if (process.env.ONE_SKIP_EXPO_SDK_CHECK === '1') return
+
+  const expoModulesCoreVersion = getInstalledPackageVersion(
+    'expo-modules-core',
+    projectRoot
+  )
+  const expoLinkingVersion = getInstalledPackageVersion('expo-linking', projectRoot)
+  if (!expoModulesCoreVersion || !expoLinkingVersion) return
+
+  const coreMajor = semverMajor(expoModulesCoreVersion)
+  const linkingMajor = semverMajor(expoLinkingVersion)
+  if (coreMajor === linkingMajor) return
+
+  throw new Error(
+    `[vxrn/one] Expo SDK mismatch: expo-modules-core@${expoModulesCoreVersion} is installed, ` +
+      `but the bundled native modules (expo-linking@${expoLinkingVersion}) are built against ` +
+      `expo-modules-core ${linkingMajor}.\n` +
+      `The app would build and launch, then crash at startup ` +
+      `(NoSuchMethodError in ExpoLinkingModule).\n` +
+      `Fix: align your expo SDK with the one this version of one targets (expo-modules-core ${linkingMajor}), ` +
+      `or upgrade one to a release targeting your SDK.\n` +
+      `To bypass intentionally: set ONE_SKIP_EXPO_SDK_CHECK=1`
+  )
 }
 
 function semverMajor(version) {
@@ -851,6 +900,8 @@ function injectExpoUpdatesIosResourcesPatchIntoPodfile(podfile) {
 }
 
 module.exports = plugin
+module.exports.assertExpoModulesCoreMatchesExpoLinking =
+  assertExpoModulesCoreMatchesExpoLinking
 module.exports.addReactNativeScreensFix = addReactNativeScreensFix
 module.exports.addSetCliPathToBundleReactNativeShellScript =
   addSetCliPathToBundleReactNativeShellScript
