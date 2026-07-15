@@ -1,6 +1,18 @@
 import { spawn } from 'node:child_process'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import getPort from 'get-port'
 import { describe, expect, it } from 'vitest'
+import { killProcessTree } from './process-tree'
+
+// Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
+// the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
+// (MODULE_NOT_FOUND), so the dev server never starts. Resolving via package.json
+// gives the real JS file on every platform (mirrors packages/test/src/setupTest.ts).
+const oneRunEntry = join(
+  dirname(createRequire(import.meta.url).resolve('one/package.json')),
+  'run.mjs'
+)
 
 /**
  * Test that Metro initialization happens AFTER Vite server is fully started.
@@ -23,21 +35,19 @@ describe('Metro startup order', () => {
     let viteReadyPos = -1
     let metroReadyPos = -1
 
-    const devServer = spawn(
-      'node',
-      ['../../node_modules/.bin/one', 'dev', '--port', port.toString()],
-      {
-        cwd: process.cwd(),
-        env: {
-          ...process.env,
-          // Enable Metro mode
-          ONE_METRO_MODE: '1',
-          // Enable debug logging to see Metro ready message
-          DEBUG: 'vxrn:*',
-        },
-        stdio: ['ignore', 'pipe', 'pipe'],
-      }
-    )
+    const devServer = spawn('node', [oneRunEntry, 'dev', '--port', port.toString()], {
+      cwd: process.cwd(),
+      env: {
+        ...process.env,
+        // Enable Metro mode
+        ONE_METRO_MODE: '1',
+        // Enable debug logging to see Metro ready message
+        DEBUG: 'vxrn:*',
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // group leader on POSIX so killProcessTree can signal the whole group
+      detached: process.platform !== 'win32',
+    })
 
     const collectLogs = (data: Buffer) => {
       const text = data.toString()
@@ -80,10 +90,9 @@ describe('Metro startup order', () => {
       }, 100)
     })
 
-    // Kill the server
-    devServer.kill('SIGTERM')
+    // Kill the server (tree-kill: taskkill /T on Windows, process-group on POSIX)
+    await killProcessTree(devServer.pid)
     await new Promise((r) => setTimeout(r, 500))
-    devServer.kill('SIGKILL')
 
     // Verify the order - Vite should be ready BEFORE Metro
     console.info('Output captured:\n', allOutput)

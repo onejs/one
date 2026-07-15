@@ -1,6 +1,18 @@
 import { spawn, type ChildProcess } from 'node:child_process'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import getPort from 'get-port'
 import { describe, expect, it, afterEach } from 'vitest'
+import { killProcessTree } from './process-tree'
+
+// Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
+// the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
+// (MODULE_NOT_FOUND), so the dev server never starts. Resolving via package.json
+// gives the real JS file on every platform (mirrors packages/test/src/setupTest.ts).
+const oneRunEntry = join(
+  dirname(createRequire(import.meta.url).resolve('one/package.json')),
+  'run.mjs'
+)
 
 /**
  * Test that the React compiler works through the Metro bundling path.
@@ -20,10 +32,9 @@ import { describe, expect, it, afterEach } from 'vitest'
 describe('Metro React compiler', { retry: 1 }, () => {
   let devServer: ChildProcess | null = null
 
-  afterEach(() => {
+  afterEach(async () => {
     if (devServer) {
-      devServer.kill('SIGTERM')
-      setTimeout(() => devServer?.kill('SIGKILL'), 1000)
+      await killProcessTree(devServer.pid)
       devServer = null
     }
   })
@@ -35,18 +46,16 @@ describe('Metro React compiler', { retry: 1 }, () => {
     let metroReady = false
     let processExited = false
 
-    devServer = spawn(
-      'node',
-      ['../../node_modules/.bin/one', 'dev', '--port', port.toString()],
-      {
-        cwd: process.cwd(),
-        env: {
-          ...process.env,
-          DEBUG: 'vxrn:*,vite-plugin-metro:*',
-        },
-        stdio: ['ignore', 'pipe', 'pipe'],
-      }
-    )
+    devServer = spawn('node', [oneRunEntry, 'dev', '--port', port.toString()], {
+      cwd: process.cwd(),
+      env: {
+        ...process.env,
+        DEBUG: 'vxrn:*,vite-plugin-metro:*',
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // group leader on POSIX so killProcessTree can signal the whole group
+      detached: process.platform !== 'win32',
+    })
 
     devServer.on('exit', (code) => {
       processExited = true
