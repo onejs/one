@@ -26,10 +26,6 @@ declare global {
   var __VXRN_CUSTOM_HMR_HANDLER__:
     | ((socket: WebSocket, message: HMRCustomMessage) => void)
     | undefined
-  // called (when a framework defines it) with each committed module id from
-  // applyUpdates, so a framework can react to a native hot update — e.g. One's
-  // routeHmr.native.ts evicts its route cache and re-renders the route
-  var __VXRN_ON_MODULE_UPDATED__: ((moduleId: string) => void) | undefined
 }
 
 // DO NOT EDIT THIS CLASS NAME - rolldown references it
