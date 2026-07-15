@@ -55,7 +55,7 @@
     "metro": "^0.83",
     "metro-config": "*",
     "react-native": "0.83.2",
-    "vite": "^8.0.13"
+    "vite": "^8.1.0"
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
@@ -80,7 +80,7 @@
     "metro": "^0.83",
     "metro-config": "*",
     "react-native": "0.83.2",
-    "vite": "^8.0.13"
+    "vite": "^8.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -44,7 +44,10 @@ const routeTypeColors: Record<string, (s: string) => string> = {
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
-  const preloads = ['/@vite/client', virtalEntryIdClient]
+  // under vite 8.1 bundledDev the client entry is bundled and served at a fixed
+  // /assets url instead of the unbundled /@id/__x00__virtual url. swapped in
+  // configureServer once we can see whether the client env is bundled.
+  let preloads = ['/@vite/client', virtalEntryIdClient]
 
   let runner: ModuleRunner
   let server: ViteDevServer
@@ -649,6 +652,16 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
     configureServer(serverIn) {
       server = serverIn
+
+      // vite 8.1 bundledDev: the client env bundles the virtual entry and serves
+      // it at /assets/_virtual_one-entry.js. the unbundled /@id/__x00__virtual url
+      // 404s in this mode, so point preloads (and bootstrap) at the bundled url.
+      const clientEnv = server.environments?.client as any
+      if (clientEnv?.config?.isBundled || clientEnv?.bundledDev) {
+        // bundled mode: the HMR client + refresh runtime are bundled into the
+        // entry; /@vite/client doesn't exist as a standalone module (404s).
+        preloads = ['/assets/_virtual_one-entry.js']
+      }
 
       // change this to .server to test using the indepedently scoped env
       runner = createServerModuleRunner(

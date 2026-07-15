@@ -29,6 +29,6 @@
   "devDependencies": {
     "@react-native-community/cli": "^20.1.2",
     "@types/react": "^18.3.11",
-    "vite": "^8.0.13"
+    "vite": "^8.1.0"
   }
 }
