@@ -1184,6 +1184,14 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
           ctx.acceptCallbacks[j].fn(this.modules[moduleId].exports);
         }
       }
+      // surface each committed module id to the framework hot-update hook (if one
+      // is registered). RN's React Refresh can't repaint frameworks that re-wrap
+      // route components away from the edited module's Refresh family (e.g. One),
+      // and the web route-update event has no equivalent on the native /hot
+      // socket, so this generic vxrn global is the bridge.
+      try {
+        if (globalThis.__VXRN_ON_MODULE_UPDATED__ && moduleId) globalThis.__VXRN_ON_MODULE_UPDATED__(moduleId);
+      } catch (e) {}
     }
   }
 
