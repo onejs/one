@@ -373,6 +373,40 @@ function getRouteMatchesForProps() {
   return clientMatches.length ? clientMatches : serverMatches
 }
 
+// Native Fast Refresh for One routes. On native, RN's React Refresh can't repaint
+// route components: `ScreenComponent` obtains them via `value.loadRoute()` and
+// re-wraps them (`fromImport` → `forwardRef` → `getPageExport`), so the mounted
+// fiber isn't in the edited module's Refresh family. vxrn's native HMR runtime
+// surfaces each updated module id to `globalThis.__oneRouteHotUpdate`; we evict the
+// route cache (bumping `useViteRoutes`' `hmrVersion` so `resolve()` re-imports the
+// edited module) and bump a subscribable epoch so subscribed `ScreenComponent`s
+// re-render and re-run `loadRoute()`. Web uses the `one-hmr-update` event instead.
+let routeHmrEpoch = 0
+const routeHmrListeners = new Set<() => void>()
+const subscribeRouteHmr = (onStoreChange: () => void) => {
+  routeHmrListeners.add(onStoreChange)
+  return () => {
+    routeHmrListeners.delete(onStoreChange)
+  }
+}
+const getRouteHmrEpoch = () => routeHmrEpoch
+
+if (
+  process.env.NODE_ENV === 'development' &&
+  process.env.TAMAGUI_TARGET === 'native' &&
+  typeof globalThis !== 'undefined'
+) {
+  ;(globalThis as any).__oneRouteHotUpdate = (id: string) => {
+    try {
+      if (typeof window !== 'undefined' && (window as any).__oneRouteCache) {
+        ;(window as any).__oneRouteCache.clearFile(id)
+      }
+    } catch {}
+    routeHmrEpoch++
+    routeHmrListeners.forEach((listener) => listener())
+  }
+}
+
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
   if (value && qualifiedStore.has(value)) {
@@ -393,6 +427,17 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         window.addEventListener('one-hmr-update', handler)
         return () => window.removeEventListener('one-hmr-update', handler)
       }, [])
+    }
+
+    // native Fast Refresh: subscribe to the route-hot epoch (bumped by
+    // __oneRouteHotUpdate above) so this component re-renders and re-runs
+    // loadRoute() to pick up the edited module's fresh exports
+    if (
+      process.env.NODE_ENV === 'development' &&
+      process.env.TAMAGUI_TARGET === 'native'
+    ) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useSyncExternalStore(subscribeRouteHmr, getRouteHmrEpoch, getRouteHmrEpoch)
     }
 
     // in spa-shell mode, only SSG/SSR layouts render on the server.
