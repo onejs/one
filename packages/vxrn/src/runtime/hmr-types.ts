@@ -54,7 +54,11 @@ export interface DevRuntimeInterface {
   createModuleHotContext(moduleId: string): void
   applyUpdates(boundaries: [string, string][]): void
   registerModule(id: string, exportsHolder: DevRuntimeModule['exportsHolder']): void
-  loadExports(id: string): void
+  loadExports(id: string): DevRuntimeModule['exports']
+}
+
+declare global {
+  var __VXRN_ON_MODULE_UPDATED__: ((moduleId: string) => void) | undefined
 }
 
 // the base class is provided by rolldown's devMode runtime
@@ -72,7 +76,7 @@ class DevRuntime implements DevRuntimeInterface {
   registerModule(id: string, exportsHolder: DevRuntimeModule['exportsHolder']): void {
     throw new Error('registerModule should be implemented')
   }
-  loadExports(id: string): void {
+  loadExports(id: string): DevRuntimeModule['exports'] {
     throw new Error('loadExports should be implemented')
   }
 }

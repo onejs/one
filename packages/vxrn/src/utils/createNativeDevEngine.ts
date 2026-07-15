@@ -17,11 +17,11 @@ import { getNativePrelude } from '../runtime/native-prelude'
 // files that contain Flow syntax and need stripping
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
-// Hermes needs the whole class shape lowered *together*. Downleveling only the
+// Hermes needs the whole class shape lowered *together*. downleveling only the
 // class fields while leaving `class ... extends` as modern ES6 produces a
 // half-transpiled hierarchy Hermes crashes on at `new Subclass()` (TypeError:
 // Cannot read property 'prototype' of undefined). These must stay atomic across
-// both SWC call sites and dev/prod — defining them once makes that a fact, not a
+// both SWC call sites and dev/prod. defining them once makes that a fact, not a
 // convention (the original bug was `transform-classes` missing from one of two
 // hand-copied include lists).
 const HERMES_CLASS_TRANSFORMS = [
@@ -35,7 +35,7 @@ const HERMES_CLASS_TRANSFORMS = [
 // prod-only: needed for hermesc bytecode AOT compilation, not the dev interpreter
 const HERMES_PROD_TRANSFORMS = ['transform-async-to-generator'] as const
 
-/** SWC `env.include` for Hermes-compatible downleveling — see HERMES_CLASS_TRANSFORMS. */
+/** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
 export function getHermesSWCIncludes(dev: boolean): string[] {
   return [...HERMES_CLASS_TRANSFORMS, ...(dev ? [] : HERMES_PROD_TRANSFORMS)]
 }
@@ -214,7 +214,7 @@ function getNativePlugins(
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
     environmentGuardPlugin(),
-    // alias RN's Metro HMR client to a no-op — vxrn drives HMR itself (the
+    // alias RN's Metro HMR client to a no-op; vxrn drives HMR itself (the
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
@@ -223,14 +223,14 @@ function getNativePlugins(
     // handle import.meta.glob (used by One's route system)
     viteImportGlobPlugin({ root }),
     // @vxrn/compiler babel transforms: reanimated worklets, async generators,
-    // react-native codegen, react compiler — same pipeline as metro. Runs BEFORE
+    // react-native codegen, react compiler, same pipeline as metro. runs before
     // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
-    // type argument intact — stripping Flow first would erase it (which is why the
+    // type argument intact. stripping Flow first would erase it (which is why the
     // codegen "didn't run for <Component>" warning fired).
     vxrnCompilerPlugin(platform, dev),
     // strip Flow from any react-native / @react-native `.js` the compiler didn't
-    // handle — the guaranteed safety net before rolldown's oxc core parse (which
-    // can't parse Flow). Now downstream of the compiler, so codegen sees the types.
+    // handle, the guaranteed safety net before rolldown's oxc core parse (which
+    // can't parse Flow). now downstream of the compiler, so codegen sees the types.
     flowStripPlugin(),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
@@ -813,38 +813,42 @@ function environmentGuardPlugin(): Plugin {
 }
 
 /**
- * Alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
+ * alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
  * no-op module.
  *
  * vxrn drives Fast Refresh itself over the rolldown-runtime WebSocket and never
  * speaks Metro's `/hot` protocol. On the new architecture, react-native
  * `registerCallableModule('HMRClient', require('./HMRClient'))`s its real client
- * eagerly at startup — before vxrn's late override runs — and `emplace` keeps
+ * eagerly at startup before vxrn's late override runs, and `emplace` keeps
  * that first registration. RN's client then opens a `MetroHMRClient` socket that
  * receives vxrn's `hmr:*` frames it can't parse and red-boxes
  * `unknown-message [object Object]` on every edit.
  *
- * Neutralizing the module at its source means RN registers *this* no-op as the
- * one-and-only `HMRClient` (working WITH `emplace`, so it's arch-agnostic) and
+ * neutralizing the module at its source means RN registers *this* no-op as the
+ * one-and-only `HMRClient` (working with `emplace`, so it's arch-agnostic) and
  * the stray socket is never opened. The class-shaped surface
  * (`setup`/`enable`/`disable`/`registerBundle`/`log`/`isEnabled`) mirrors the
  * methods RN calls on it.
  */
 export function hmrClientNoopPlugin(): Plugin {
-  // Match RN's HMRClient by module path, tolerating either separator (native
-  // Windows ids use `\`) and an optional js/ts extension.
+  // match RN's HMRClient by module path, tolerating either separator (native
+  // Windows ids use `\`) and an optional js/ts extension
   const RN_HMR_CLIENT_RE = /(^|[\\/])Utilities[\\/]HMRClient(\.[cm]?[jt]sx?)?$/
   return {
     name: 'vxrn:hmr-client-noop',
-    resolveId(source) {
-      if (RN_HMR_CLIENT_RE.test(source))
+    resolveId(source, importer) {
+      const fromReactNative =
+        source.startsWith('react-native/') ||
+        (importer != null && /(^|[\\/])react-native[\\/]/.test(importer))
+      if (fromReactNative && RN_HMR_CLIENT_RE.test(source)) {
         return { id: '\0vxrn-hmr-client-noop', external: false }
+      }
     },
     load(id) {
       if (id === '\0vxrn-hmr-client-noop') {
         return {
           code: `const HMRClient = { setup() {}, enable() {}, disable() {}, registerBundle() {}, log() {}, isEnabled() { return false } }\nexport default HMRClient`,
-          moduleType: 'js' as any,
+          moduleType: 'js',
         }
       }
     },
@@ -1191,7 +1195,9 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
       // socket, so this generic vxrn global is the bridge.
       try {
         if (globalThis.__VXRN_ON_MODULE_UPDATED__ && moduleId) globalThis.__VXRN_ON_MODULE_UPDATED__(moduleId);
-      } catch (e) {}
+      } catch (error) {
+        console.error('[vxrn HMR]: module update hook failed', error);
+      }
     }
   }
 

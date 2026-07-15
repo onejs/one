@@ -11,10 +11,10 @@ type Props = GetTransformProps & {
 }
 
 export function getBabelOptions(props: Props): babel.TransformOptions | null {
-  // Unify caller contracts (the Vite plugin hands POSIX ids; the native/patches
+  // unify caller contracts (the Vite plugin hands POSIX ids; the native/patches
   // path hands OS-native ids) so every path matcher below can assume forward
   // slashes. Mirrors transformSWC.ts, which normalizes at its entry for the same
-  // reason — without it, RN's own files aren't matched on Windows.
+  // reason. without it, RN's own files aren't matched on Windows.
   props = { ...props, id: normalizePath(props.id.split('?')[0]) }
 
   if (props.userSetting === 'babel') {
@@ -111,9 +111,9 @@ export async function transformBabel(
         : '',
       ...(options.presets || []),
     ].filter(Boolean),
-    // Non-TS files use React Native's Flow dialect — RN's own component specs are
+    // non-TS files use React Native's Flow dialect. RN's own component specs are
     // Flow `.js` (`import type`, `codegenNativeComponent<T>(…)`, `(expr: Type)` casts).
-    // Enable Flow syntax parsing + stripping, mirroring the TypeScript preset above
+    // enable Flow syntax parsing + stripping, mirroring the TypeScript preset above
     // (`@react-native/babel-preset` does the same: TS → preset-typescript, JS → this
     // plugin). Without it babel can't parse Flow, so plugins like
     // @react-native/babel-plugin-codegen silently fail on RN specs and the runtime
@@ -328,9 +328,9 @@ const REANIMATED_IGNORED_PATHS = [
 ]
 
 // `id`s are normalized to forward slashes at getBabelOptions' entry, so these
-// plain forward-slash paths match on every OS. (Before that normalization the
+// plain forward-slash paths match on every OS. before that normalization the
 // backslash `id`s Windows hands us slipped past this list, pushing react-native's
-// own files through the reanimated babel pass — which has no JSX/TS parser.)
+// own files through the reanimated babel pass, which has no JSX/TS parser.
 const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(REANIMATED_IGNORED_PATHS.join('|'))
 
 function shouldBabelReanimated({ code, id }: Props) {

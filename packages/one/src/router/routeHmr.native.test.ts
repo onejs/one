@@ -5,6 +5,7 @@ type RouteHmrModule = typeof import('./routeHmr.native')
 describe('routeHmr.native', () => {
   let routeHmr: RouteHmrModule
   const realWindow = (globalThis as any).window
+  const realModuleUpdatedHook = globalThis.__VXRN_ON_MODULE_UPDATED__
 
   beforeEach(async () => {
     // the __VXRN_ON_MODULE_UPDATED__ registration is dev-gated and runs at module
@@ -16,7 +17,7 @@ describe('routeHmr.native', () => {
 
   afterEach(() => {
     vi.unstubAllEnvs()
-    globalThis.__VXRN_ON_MODULE_UPDATED__ = undefined
+    globalThis.__VXRN_ON_MODULE_UPDATED__ = realModuleUpdatedHook
     ;(globalThis as any).window = realWindow
   })
 
@@ -48,5 +49,23 @@ describe('routeHmr.native', () => {
   it('does not throw when window / route cache is absent', () => {
     ;(globalThis as any).window = undefined
     expect(() => globalThis.__VXRN_ON_MODULE_UPDATED__!('x.tsx')).not.toThrow()
+  })
+
+  it('still notifies subscribers when route-cache eviction throws', () => {
+    const listener = vi.fn()
+    const unsubscribe = routeHmr.subscribeRouteHmr(listener)
+    ;(globalThis as any).window = {
+      __oneRouteCache: {
+        clearFile() {
+          throw new Error('cache eviction failed')
+        },
+      },
+    }
+
+    expect(() => globalThis.__VXRN_ON_MODULE_UPDATED__!('app/index.tsx')).toThrow(
+      'cache eviction failed'
+    )
+    expect(listener).toHaveBeenCalledOnce()
+    unsubscribe()
   })
 })

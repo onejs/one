@@ -93,33 +93,43 @@ describe('getHermesSWCIncludes', () => {
 
 describe('hmrClientNoopPlugin', () => {
   const plugin = hmrClientNoopPlugin()
-  const resolveId = plugin.resolveId as unknown as (source: string) => any
+  const resolveId = plugin.resolveId as unknown as (
+    source: string,
+    importer?: string
+  ) => any
   const load = plugin.load as unknown as (id: string) => any
   const VIRTUAL_ID = '\0vxrn-hmr-client-noop'
 
   it.each([
-    'react-native/Libraries/Utilities/HMRClient',
-    '../Utilities/HMRClient',
-    '../../Utilities/HMRClient.js',
+    ['react-native/Libraries/Utilities/HMRClient', undefined],
+    ['../Utilities/HMRClient', '/project/node_modules/react-native/Libraries/Core.js'],
+    ['../../Utilities/HMRClient.js', '/project/react-native/Libraries/Core.js'],
     // native Windows ids use backslashes
-    '..\\Utilities\\HMRClient.js',
-    '../Utilities/HMRClient.ts',
-    '../Utilities/HMRClient.tsx',
-    '../Utilities/HMRClient.cjs',
-  ])('aliases RN HMRClient specifier %j to the no-op virtual module', (source) => {
-    expect(resolveId(source)).toEqual({ id: VIRTUAL_ID, external: false })
-  })
+    ['..\\Utilities\\HMRClient.js', 'C:\\project\\react-native\\Libraries\\Core.js'],
+    ['../Utilities/HMRClient.ts', '/project/node_modules/react-native/Core.js'],
+    ['../Utilities/HMRClient.tsx', '/project/node_modules/react-native/Core.js'],
+    ['../Utilities/HMRClient.cjs', '/project/node_modules/react-native/Core.js'],
+  ])(
+    'aliases RN HMRClient specifier %j to the no-op virtual module',
+    (source, importer) => {
+      expect(resolveId(source, importer)).toEqual({ id: VIRTUAL_ID, external: false })
+    }
+  )
 
   it.each([
     // trailing letters (no boundary) must not match
     'react-native/Libraries/Utilities/HMRClientRegistry',
-    // Utilities must sit at a path boundary
+    // the Utilities segment must start at a path boundary
     'some/MyUtilities/HMRClient',
     // unrelated RN modules
     'react-native/Libraries/Core/setUpDeveloperTools',
     'react',
   ])('does not touch unrelated specifier %j', (source) => {
     expect(resolveId(source)).toBeUndefined()
+  })
+
+  it('does not alias an app-authored Utilities/HMRClient module', () => {
+    expect(resolveId('../Utilities/HMRClient', '/project/src/App.tsx')).toBeUndefined()
   })
 
   it('loads a no-op module exposing every HMRClient method RN calls', () => {

@@ -1,6 +1,6 @@
-// Web counterpart of routeHmr.native.ts. Web route Fast Refresh happens through
+// web counterpart of routeHmr.native.ts. Web route Fast Refresh happens through
 // the `one-hmr-update` event (see useScreens' web block), so this is a no-op store
-// — its exports exist only so useScreens can import `./routeHmr` platform-agnostically.
+// whose exports let useScreens import `./routeHmr` on either platform.
 export const subscribeRouteHmr = (_onStoreChange: () => void): (() => void) => {
   return () => {}
 }

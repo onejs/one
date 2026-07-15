@@ -1,18 +1,7 @@
-// Native Fast Refresh for One routes.
+// native Fast Refresh for One routes
 //
-// On native, RN's React Refresh can't repaint One's route components: useScreens'
-// `ScreenComponent` obtains them via `value.loadRoute()` and re-wraps them
-// (`fromImport` -> `forwardRef` -> `getPageExport`), so the mounted fiber isn't in
-// the edited module's Refresh family. vxrn's native HMR runtime surfaces each
-// committed module id to `globalThis.__VXRN_ON_MODULE_UPDATED__`; we evict One's
-// route cache (bumping `useViteRoutes`' `hmrVersion` so `resolve()` re-imports the
-// edited module) and bump a subscribable epoch so subscribed `ScreenComponent`s
-// re-render and re-run `loadRoute()`. Web uses `routeHmr.ts` (a no-op store; the
-// web path repaints via the `one-hmr-update` event, see useScreens' web block).
-//
-// (The web path shows RN's re-wrapping isn't the whole story — web leaf routes
-// Fast-Refresh fine through the same wrapper — so the native-specific failure most
-// likely lives in vxrn's own React Refresh wiring; this bypasses it for routes.)
+// vxrn calls the global hook after committing an updated module. One evicts that
+// route and bumps this external-store epoch so mounted screens load fresh exports.
 
 declare global {
   // vxrn's native HMR runtime invokes this (when defined) with each committed
@@ -32,14 +21,17 @@ export const subscribeRouteHmr = (onStoreChange: () => void) => {
 
 export const getRouteHmrEpoch = () => routeHmrEpoch
 
-if (process.env.NODE_ENV === 'development' && typeof globalThis !== 'undefined') {
+if (process.env.NODE_ENV === 'development') {
   globalThis.__VXRN_ON_MODULE_UPDATED__ = (id: string) => {
     try {
-      if (typeof window !== 'undefined' && (window as any).__oneRouteCache) {
-        ;(window as any).__oneRouteCache.clearFile(id)
+      const routeCache =
+        typeof window === 'undefined' ? undefined : (window as any).__oneRouteCache
+      if (typeof routeCache?.clearFile === 'function') {
+        routeCache.clearFile(id)
       }
-    } catch {}
-    routeHmrEpoch++
-    routeHmrListeners.forEach((listener) => listener())
+    } finally {
+      routeHmrEpoch++
+      routeHmrListeners.forEach((listener) => listener())
+    }
   }
 }

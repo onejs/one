@@ -6,6 +6,8 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 import type { Plugin } from 'rolldown';
+/** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
+export declare function getHermesSWCIncludes(dev: boolean): string[];
 interface NativeDevEngineOptions {
     root: string;
     port: number;
@@ -74,5 +76,24 @@ export declare function buildNativeBundle(options: NativeBuildOptions): Promise<
     code: string;
     map?: string;
 }>;
+/**
+ * alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
+ * no-op module.
+ *
+ * vxrn drives Fast Refresh itself over the rolldown-runtime WebSocket and never
+ * speaks Metro's `/hot` protocol. On the new architecture, react-native
+ * `registerCallableModule('HMRClient', require('./HMRClient'))`s its real client
+ * eagerly at startup before vxrn's late override runs, and `emplace` keeps
+ * that first registration. RN's client then opens a `MetroHMRClient` socket that
+ * receives vxrn's `hmr:*` frames it can't parse and red-boxes
+ * `unknown-message [object Object]` on every edit.
+ *
+ * neutralizing the module at its source means RN registers *this* no-op as the
+ * one-and-only `HMRClient` (working with `emplace`, so it's arch-agnostic) and
+ * the stray socket is never opened. The class-shaped surface
+ * (`setup`/`enable`/`disable`/`registerBundle`/`log`/`isEnabled`) mirrors the
+ * methods RN calls on it.
+ */
+export declare function hmrClientNoopPlugin(): Plugin;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

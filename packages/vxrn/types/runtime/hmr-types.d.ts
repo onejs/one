@@ -58,7 +58,10 @@ export interface DevRuntimeInterface {
     createModuleHotContext(moduleId: string): void;
     applyUpdates(boundaries: [string, string][]): void;
     registerModule(id: string, exportsHolder: DevRuntimeModule['exportsHolder']): void;
-    loadExports(id: string): void;
+    loadExports(id: string): DevRuntimeModule['exports'];
+}
+declare global {
+    var __VXRN_ON_MODULE_UPDATED__: ((moduleId: string) => void) | undefined;
 }
 declare class DevRuntime implements DevRuntimeInterface {
     clientId: string;
@@ -67,7 +70,7 @@ declare class DevRuntime implements DevRuntimeInterface {
     createModuleHotContext(moduleId: string): void;
     applyUpdates(boundaries: [string, string][]): void;
     registerModule(id: string, exportsHolder: DevRuntimeModule['exportsHolder']): void;
-    loadExports(id: string): void;
+    loadExports(id: string): DevRuntimeModule['exports'];
 }
 export type { DevRuntime };
 export interface DevRuntimeMessenger {
