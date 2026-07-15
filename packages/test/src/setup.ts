@@ -32,6 +32,20 @@ export async function setup(project: TestProject) {
 
 // Kill a process group (for detached processes) or process tree
 async function killProcessTree(pid: number, name: string): Promise<void> {
+  if (process.platform === 'win32') {
+    // negative-pid process groups don't exist on Windows — the POSIX path below
+    // would degrade to killing only the direct child and orphan its workers.
+    // taskkill /T terminates the whole tree (mirrors setupTest.ts).
+    try {
+      const { execSync } = await import('node:child_process')
+      execSync(`taskkill /F /T /PID ${pid}`, { stdio: 'ignore' })
+      console.info(`${name} process (PID: ${pid}) killed successfully.`)
+    } catch {
+      // process may already be gone, which is fine
+    }
+    return
+  }
+
   try {
     // for detached processes, kill the entire process group using negative pid
     try {
