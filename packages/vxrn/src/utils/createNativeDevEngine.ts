@@ -920,11 +920,37 @@ function flowStripPlugin(): Plugin {
       async handler(code, id) {
         if (!FLOW_FILE_PATTERN.test(id)) return
 
+        // RN's own component specs are Flow `.js`, and @react-native/babel-plugin-codegen
+        // must rewrite `codegenNativeComponent<Props>(…)` into a static view-config WHILE
+        // the Flow type argument is still present. This plugin runs before the compiler and
+        // strips Flow, which would erase that type — so run codegen here first (with a Flow
+        // parser), then strip Flow from the result. Without it the raw
+        // `codegenNativeComponent(…)` call survives into the bundle and RN logs
+        // "Codegen didn't run for <Component>" (slated to become a hard error upstream).
+        let working = code
+        if (code.includes('codegenNativeComponent')) {
+          try {
+            const babel = await import('@babel/core')
+            const codegenResult = await babel.transformAsync(code, {
+              filename: id,
+              babelrc: false,
+              configFile: false,
+              sourceMaps: false,
+              parserOpts: { plugins: ['flow', 'jsx'] },
+              plugins: ['@react-native/babel-plugin-codegen'],
+            })
+            if (codegenResult?.code) working = codegenResult.code
+          } catch {
+            // fall through to the plain Flow strip — worst case is the original
+            // warning, never a broken build
+          }
+        }
+
         try {
           const fft = await import('fast-flow-transform')
           const result = await fft.default({
             filename: id,
-            source: code,
+            source: working,
             sourcemap: true,
             dialect: 'flow',
             format: 'pretty',
