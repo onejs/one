@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { getLoaderPath, getPathFromLoaderPath } from './cleanUrl'
+import {
+  encodeReservedFilenameChars,
+  getLoaderPath,
+  getPathFromLoaderPath,
+  getPreloadPath,
+} from './cleanUrl'
 
 /**
  * tests the cleanUrl encode/decode roundtrip used for loader URLs.
@@ -88,6 +93,63 @@ describe('getLoaderPath format', () => {
   it('includes cache bust segment', () => {
     const result = getLoaderPath('/docs/intro', false, '12345')
     expect(result).toContain('_refetch_12345_')
+  })
+})
+
+describe('NTFS-reserved characters in route-derived names', () => {
+  // route patterns reach these functions verbatim when a dynamic route has no
+  // generateStaticParams (every dynamic +ssr/+spa route at build time)
+  it('roundtrips a root dynamic route pattern', () => {
+    expect(roundtrip('/:param')).toBe('/:param')
+  })
+
+  it('roundtrips a nested dynamic route pattern', () => {
+    expect(roundtrip('/dashboard/:appId')).toBe('/dashboard/:appId')
+  })
+
+  it('roundtrips a catch-all pattern', () => {
+    expect(roundtrip('/*')).toBe('/*')
+  })
+
+  it('roundtrips hostile concrete param values (chars that survive URL parsing raw)', () => {
+    // getLoaderPath URL-parses its input; WHATWG URL percent-encodes " < > |
+    // in pathnames but passes : and * through raw — those two are the ones
+    // that reach generated filenames verbatim (and are the NTFS killers)
+    expect(roundtrip('/blog/a:b*c')).toBe('/blog/a:b*c')
+  })
+
+  it('emits filesystem-legal names for the full reserved set via preload paths', () => {
+    // getPreloadPath does not URL-parse, so every reserved char reaches the
+    // encoder raw — assert none survive into the filename
+    expect(getPreloadPath('/blog/a:b*c"d<e>f|g?h')).not.toMatch(/[<>:"|?*]/)
+  })
+
+  it('roundtrips literal equals signs (self-escape)', () => {
+    expect(roundtrip('/foo=bar')).toBe('/foo=bar')
+  })
+
+  it('roundtrips equals followed by hex-looking characters', () => {
+    expect(roundtrip('/x=3ay')).toBe('/x=3ay')
+  })
+
+  it('emits no NTFS-reserved characters in loader filenames', () => {
+    expect(getLoaderPath('/dashboard/:appId', false)).not.toMatch(/[<>:"|?*]/)
+  })
+
+  it('emits no NTFS-reserved characters in preload filenames', () => {
+    expect(getPreloadPath('/:param')).not.toMatch(/[<>:"|?*]/)
+    expect(getPreloadPath('/*')).not.toMatch(/[<>:"|?*]/)
+  })
+
+  it('encodeReservedFilenameChars is identity for clean paths', () => {
+    expect(encodeReservedFilenameChars('/blog/my-slug.html')).toBe('/blog/my-slug.html')
+  })
+
+  it('encodes the html artifact path for non-prerendered dynamic routes', () => {
+    expect(encodeReservedFilenameChars('/dashboard/:appId.html')).toBe(
+      '/dashboard/=3aappId.html'
+    )
+    expect(encodeReservedFilenameChars('/*.html')).toBe('/=2a.html')
   })
 })
 

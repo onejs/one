@@ -4,7 +4,12 @@ import { normalizePath } from 'vite'
 import * as constants from '../constants'
 import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import type { LoaderProps } from '../types'
-import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
+import {
+  encodeReservedFilenameChars,
+  getLoaderPath,
+  getPreloadCSSPath,
+  getPreloadPath,
+} from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
 import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
@@ -64,7 +69,12 @@ export async function buildPage(
   const render = await getRender(serverEntry)
   recordTiming('getRender', performance.now() - t0)
 
-  const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
+  // encode NTFS-reserved characters (`:` from `/:param` patterns, `*` from
+  // catch-alls, hostile param values) so the artifact is writable on Windows;
+  // routeMap stores this same string, so serve-side lookups stay consistent
+  const htmlPath = encodeReservedFilenameChars(
+    `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
+  )
   // forward-slash for cross-platform manifest hygiene (matches serverJsPath)
   const clientJsPath = clientManifestEntry
     ? normalizePath(join(clientDir, clientManifestEntry.file))

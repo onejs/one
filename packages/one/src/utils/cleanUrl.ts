@@ -8,9 +8,31 @@ import {
 import { getURL } from '../getURL'
 import { removeSearch } from './removeSearch'
 
+// Route patterns (`/:param`, `/*`) and concrete param values flow into
+// generated artifact filenames. `< > : " | ? *` are reserved on Windows
+// filesystems — a leading `:` segment fails outright and a mid-name `:`
+// silently writes an NTFS alternate data stream — so encode them as `=hh`
+// (hex char code), with literal `=` self-escaped first so decoding is
+// unambiguous. Identity for paths without reserved characters.
+export function encodeReservedFilenameChars(path: string) {
+  return path
+    .replaceAll('=', '=3d')
+    .replace(
+      /[<>:"|?*]/g,
+      (char) => `=${char.charCodeAt(0).toString(16).padStart(2, '0')}`
+    )
+}
+
+export function decodeReservedFilenameChars(path: string) {
+  return path.replace(/=([0-9a-f]{2})/g, (_match, hexCode) =>
+    String.fromCharCode(Number.parseInt(hexCode, 16))
+  )
+}
+
 function cleanUrl(path: string) {
-  return removeSearch(path)
-    .replace(/\/$/, '') // remove trailing slash before encoding
+  return encodeReservedFilenameChars(
+    removeSearch(path).replace(/\/$/, '') // remove trailing slash before encoding
+  )
     .replaceAll('_', '__') // escape existing underscores
     .replaceAll('/', '_') // use underscore as path separator
 }
@@ -43,7 +65,7 @@ export function getLoaderPath(
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {
-  return (
+  return decodeReservedFilenameChars(
     loaderPath
       .replace(LOADER_JS_POSTFIX_REGEX, '')
       .replace(/^(\/_one)?\/assets/, '')
