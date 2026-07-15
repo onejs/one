@@ -10,9 +10,6 @@ ignores:
   - "@react-native-community/template"
   # dynamically imported for hermes transforms in rn bundle command
   - "@babel/core"
-  # referenced as a bare babel-plugin string in flowStripPlugin (RN codegen),
-  # resolved at runtime — depcheck can't see the string usage
-  - "@react-native/babel-plugin-codegen"
   # used dynamically via resolvePath() for vite aliases
   - "@vxrn/safe-area"
   - "@vxrn/query-string"
