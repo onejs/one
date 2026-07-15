@@ -111,6 +111,17 @@ export async function transformBabel(
         : '',
       ...(options.presets || []),
     ].filter(Boolean),
+    // Non-TS files use React Native's Flow dialect — RN's own component specs are
+    // Flow `.js` (`import type`, `codegenNativeComponent<T>(…)`, `(expr: Type)` casts).
+    // Enable Flow syntax parsing + stripping, mirroring the TypeScript preset above
+    // (`@react-native/babel-preset` does the same: TS → preset-typescript, JS → this
+    // plugin). Without it babel can't parse Flow, so plugins like
+    // @react-native/babel-plugin-codegen silently fail on RN specs and the runtime
+    // "Codegen didn't run" warning fires. TS path is byte-identical (empty slice).
+    plugins: [
+      ...(options.plugins || []),
+      ...(isTS ? [] : ['@babel/plugin-transform-flow-strip-types']),
+    ],
   }
 
   try {
