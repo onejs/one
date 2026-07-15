@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  getHermesSWCIncludes,
   getNativeTransformConfig,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
@@ -64,5 +65,27 @@ describe('wrapNativeBundleModuleScope', () => {
   it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
     const input = 'var x = 1;\nconsole.log(x);\n'
     expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  })
+})
+
+describe('getHermesSWCIncludes', () => {
+  const CLASS_SET = [
+    'transform-classes',
+    'transform-class-properties',
+    'transform-class-static-block',
+    'transform-private-methods',
+    'transform-private-property-in-object',
+  ]
+
+  it('always includes the full Hermes class-transform set (dev and prod)', () => {
+    // regression: transform-classes was missing in dev, leaving a half-transpiled
+    // class hierarchy Hermes crashes on at `new Subclass()`
+    expect(getHermesSWCIncludes(true)).toEqual(expect.arrayContaining(CLASS_SET))
+    expect(getHermesSWCIncludes(false)).toEqual(expect.arrayContaining(CLASS_SET))
+  })
+
+  it('adds transform-async-to-generator only in production', () => {
+    expect(getHermesSWCIncludes(true)).not.toContain('transform-async-to-generator')
+    expect(getHermesSWCIncludes(false)).toContain('transform-async-to-generator')
   })
 })
