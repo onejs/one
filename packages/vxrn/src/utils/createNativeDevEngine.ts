@@ -214,6 +214,10 @@ function getNativePlugins(
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
     environmentGuardPlugin(),
+    // alias RN's Metro HMR client to a no-op — vxrn drives HMR itself (the
+    // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
+    // red-boxes "unknown-message [object Object]" on every edit (new arch)
+    hmrClientNoopPlugin(),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -488,14 +492,6 @@ try {
         // downlevel class fields from the rolldown runtime (virtual module
         // skipped by the per-file SWC plugin) so old Hermes can parse them
         code = await downlevelClassFieldsInBundle(code)
-
-        // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
-        // our actual HMR is handled via the outro WebSocket connection
-        const hmrClientStub = `registerCallableModule("HMRClient",{setup:function(){},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}})`
-        code = code.replace(
-          /registerCallableModule\s*\(\s*["']AppRegistry["']/,
-          (match) => hmrClientStub + ',' + match
-        )
 
         // wrap module code in a function scope so top-level `var`s (e.g. RN
         // fetch.js's `Headers`/`Request`) don't leak as non-configurable
@@ -807,6 +803,45 @@ function environmentGuardPlugin(): Plugin {
         }
       }
       if (id.startsWith('\0env-guard-noop:')) return { code: '', moduleType: 'js' as any }
+    },
+  }
+}
+
+/**
+ * Alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
+ * no-op module.
+ *
+ * vxrn drives Fast Refresh itself over the rolldown-runtime WebSocket and never
+ * speaks Metro's `/hot` protocol. On the new architecture, react-native
+ * `registerCallableModule('HMRClient', require('./HMRClient'))`s its real client
+ * eagerly at startup — before vxrn's late override runs — and `emplace` keeps
+ * that first registration. RN's client then opens a `MetroHMRClient` socket that
+ * receives vxrn's `hmr:*` frames it can't parse and red-boxes
+ * `unknown-message [object Object]` on every edit.
+ *
+ * Neutralizing the module at its source means RN registers *this* no-op as the
+ * one-and-only `HMRClient` (working WITH `emplace`, so it's arch-agnostic) and
+ * the stray socket is never opened. The class-shaped surface
+ * (`setup`/`enable`/`disable`/`registerBundle`/`log`/`isEnabled`) mirrors the
+ * methods RN calls on it.
+ */
+export function hmrClientNoopPlugin(): Plugin {
+  // Match RN's HMRClient by module path, tolerating either separator (native
+  // Windows ids use `\`) and an optional js/ts extension.
+  const RN_HMR_CLIENT_RE = /(^|[\\/])Utilities[\\/]HMRClient(\.[cm]?[jt]sx?)?$/
+  return {
+    name: 'vxrn:hmr-client-noop',
+    resolveId(source) {
+      if (RN_HMR_CLIENT_RE.test(source))
+        return { id: '\0vxrn-hmr-client-noop', external: false }
+    },
+    load(id) {
+      if (id === '\0vxrn-hmr-client-noop') {
+        return {
+          code: `const HMRClient = { setup() {}, enable() {}, disable() {}, registerBundle() {}, log() {}, isEnabled() { return false } }\nexport default HMRClient`,
+          moduleType: 'js' as any,
+        }
+      }
     },
   }
 }
