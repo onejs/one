@@ -1251,7 +1251,7 @@ export async function build(args: {
 
   // once done building static we can move it to client dir:
   await moveAllFiles(staticDir, clientDir)
-  await FSExtra.rm(staticDir, { force: true, recursive: true })
+  await FSExtra.remove(staticDir)
 
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
