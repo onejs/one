@@ -17,14 +17,14 @@ declare module 'one' {
         | `/docs`
         | `/plans`
         | `/test`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/(content)/blog/${OneRouter.SingleRoutePart<T>}`
         | `/(content)/docs/${OneRouter.SingleRoutePart<T>}`
         | `/(content)/plans/${OneRouter.SingleRoutePart<T>}`
         | `/blog/${OneRouter.SingleRoutePart<T>}`
         | `/docs/${OneRouter.SingleRoutePart<T>}`
         | `/plans/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(content)/blog/[slug]`
         | `/(content)/docs/[slug]`
         | `/(content)/plans/[slug]`

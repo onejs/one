@@ -38,7 +38,7 @@ declare module 'one' {
         | `/gate-home`
         | `/gate-home/feed`
         | `/login`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/${OneRouter.SingleRoutePart<T>}`
         | `/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(authed)/dashboard/${OneRouter.SingleRoutePart<T>}`
@@ -47,7 +47,7 @@ declare module 'one' {
         | `/(chat)/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/dashboard/${OneRouter.SingleRoutePart<T>}`
         | `/thread/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(authed)/dashboard/[appId]`
         | `/(authed)/thread/[id]`
         | `/(chat)/[serverId]`
