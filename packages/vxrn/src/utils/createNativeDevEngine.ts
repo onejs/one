@@ -334,6 +334,7 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
       env: {
         targets: { node: 9999 },
         include: [
+          'transform-classes',
           'transform-class-properties',
           'transform-class-static-block',
           'transform-private-methods',
@@ -1024,14 +1025,20 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // hermes needs class properties downleveled; prod also needs
-        // classes and async-to-generator for bytecode compilation
+        // hermes needs classes fully downleveled. Downleveling only the class
+        // *fields* while leaving `class ... extends` as modern ES6 (the previous
+        // dev-only behavior) produces a half-transpiled class hierarchy Hermes
+        // chokes on at `new Subclass()` (TypeError: Cannot read property
+        // 'prototype' of undefined) — so `transform-classes` must be
+        // unconditional, matching the fully-classed production bundle. Only
+        // async-to-generator stays prod-only (bytecode compilation).
         const envIncludes = [
+          'transform-classes',
           'transform-class-properties',
           'transform-class-static-block',
           'transform-private-methods',
           'transform-private-property-in-object',
-          ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
+          ...(!dev ? ['transform-async-to-generator'] : []),
         ]
 
         const result = await swc.transform(code, {
