@@ -1,6 +1,7 @@
 import { extname, relative } from 'node:path'
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
+import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
@@ -10,6 +11,12 @@ type Props = GetTransformProps & {
 }
 
 export function getBabelOptions(props: Props): babel.TransformOptions | null {
+  // Unify caller contracts (the Vite plugin hands POSIX ids; the native/patches
+  // path hands OS-native ids) so every path matcher below can assume forward
+  // slashes. Mirrors transformSWC.ts, which normalizes at its entry for the same
+  // reason — without it, RN's own files aren't matched on Windows.
+  props = { ...props, id: normalizePath(props.id.split('?')[0]) }
+
   if (props.userSetting === 'babel') {
     return getOptions(props, true)
   }
@@ -309,14 +316,11 @@ const REANIMATED_IGNORED_PATHS = [
   'node_modules/react-native-web/',
 ]
 
-// Accept either path separator: module `id`s are forward-slash from Vite but
-// backslash on native Windows. `replace(/\//g, '/')` was a no-op, so on Windows
-// the ignore list never matched react-native's own files and they were pushed
-// through the reanimated babel pass (which has no JSX/TS syntax) -> transform
-// errors. Mirrors SPEC_FILE_RE below, which already handles both separators.
-const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(
-  REANIMATED_IGNORED_PATHS.map((s) => s.replace(/\//g, '[/\\\\]')).join('|')
-)
+// `id`s are normalized to forward slashes at getBabelOptions' entry, so these
+// plain forward-slash paths match on every OS. (Before that normalization the
+// backslash `id`s Windows hands us slipped past this list, pushing react-native's
+// own files through the reanimated babel pass — which has no JSX/TS parser.)
+const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(REANIMATED_IGNORED_PATHS.join('|'))
 
 function shouldBabelReanimated({ code, id }: Props) {
   if (!configuration.enableReanimated) {
