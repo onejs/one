@@ -1,7 +1,9 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
 import { bundle as metroBundle } from '@vxrn/vite-plugin-metro/rn-commands'
+import { loadConfigFromFile } from 'vite'
 import { loadEnv } from '../../exports/loadEnv'
+import { getNativePluginsFromOptions } from '../../nativePlugin'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
 export type BundleCommandArgs = {
@@ -71,6 +73,20 @@ export async function buildBundle(
     process.env.NODE_ENV = 'production'
   }
 
+  const nativePlugins =
+    ctx.nativePlugins ??
+    (await loadConfigFromFile(
+      { command: 'build', mode: dev ? 'dev' : 'prod' },
+      undefined,
+      root
+    ).then((loaded) =>
+      getNativePluginsFromOptions(loaded?.config.plugins ?? [], {
+        root,
+        platform,
+        dev,
+      })
+    ))
+
   console.info(`[vxrn] building native bundle for ${platform}...`)
   const nativeEntryFile = (globalThis as { __vxrnNativeEntryFile?: unknown })
     .__vxrnNativeEntryFile
@@ -84,6 +100,7 @@ export async function buildBundle(
     // 'http://one-server.example.com' and runtime loader fetches fail in prod.
     serverUrl: process.env.ONE_SERVER_URL,
     assetsDest,
+    plugins: nativePlugins,
   })
   const builtBundle = result.code
 
