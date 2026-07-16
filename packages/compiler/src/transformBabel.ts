@@ -1,6 +1,7 @@
 import { extname, relative } from 'node:path'
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
+import hermesParserPlugin from 'babel-plugin-syntax-hermes-parser'
 import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
@@ -113,12 +114,16 @@ export async function transformBabel(
     ].filter(Boolean),
     // non-TS files use React Native's Flow dialect. RN's own component specs are
     // Flow `.js` (`import type`, `codegenNativeComponent<T>(…)`, `(expr: Type)` casts).
-    // enable Flow syntax parsing + stripping, mirroring the TypeScript preset above
-    // (`@react-native/babel-preset` does the same: TS → preset-typescript, JS → this
-    // plugin). Without it babel can't parse Flow, so plugins like
+    // enable Hermes Flow parsing + stripping, mirroring the TypeScript preset above
+    // (`@react-native/babel-preset` uses the same parser for JS). without it babel
+    // can't parse current RN Flow syntax such as `call<T>(...) as HostComponent<T>`, so
+    // plugins like
     // @react-native/babel-plugin-codegen silently fail on RN specs and the runtime
     // "Codegen didn't run" warning fires. TS path is byte-identical (empty slice).
     plugins: [
+      ...(isTS
+        ? []
+        : [[hermesParserPlugin, { parseLangTypes: 'flow', reactRuntimeTarget: '19' }]]),
       ...(options.plugins || []),
       ...(isTS ? [] : ['@babel/plugin-transform-flow-strip-types']),
     ],

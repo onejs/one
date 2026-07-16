@@ -525,7 +525,6 @@ try {
         return
       }
       const updates = (result as any).updates || []
-
       for (const item of updates) {
         const update = item.update || item
         if (update.type === 'Patch' && update.code) {
@@ -879,7 +878,7 @@ function cssStubPlugin(): Plugin {
  * react-native codegen, react compiler, and react-refresh (dev only) —
  * same pipeline as metro, single babel pass per file.
  */
-function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
+export function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
 
   // whether a file is a user file that should get react-refresh wiring
@@ -915,7 +914,17 @@ function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
           const existingPlugins = babelOptions?.plugins || []
           babelOptions = {
             ...babelOptions,
-            plugins: [...existingPlugins, 'react-refresh/babel'],
+            plugins: [
+              ...existingPlugins,
+              [
+                'react-refresh/babel',
+                {
+                  skipEnvCheck: true,
+                  refreshReg: '__vxrnRefreshReg',
+                  refreshSig: '__vxrnRefreshSig',
+                },
+              ],
+            ],
           }
         }
 
@@ -939,6 +948,9 @@ if (globalThis.__ReactRefresh) {
   };
   globalThis.$RefreshSig$ = globalThis.__ReactRefresh.createSignatureFunctionForTransform;
 }
+// keep registration calls local so rolldown retains them in the initial bundle.
+var __vxrnRefreshReg = globalThis.$RefreshReg$;
+var __vxrnRefreshSig = globalThis.$RefreshSig$;
 
 ${out}
 
