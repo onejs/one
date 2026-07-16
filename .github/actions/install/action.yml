@@ -11,7 +11,7 @@ inputs:
     default: 'true'
   npm-upgrade:
     required: false
-    description: 'Upgrade npm to latest (needed for expo prebuild)'
+    description: 'Upgrade npm to the latest supported major (needed for expo prebuild)'
     default: 'false'
 runs:
   using: composite
@@ -33,7 +33,7 @@ runs:
       if: ${{ inputs.npm-upgrade == 'true' }}
       shell: bash
       run: |
-        npm install -g npm@latest
+        npm install -g npm@11
         npm --version
 
     - name: Cache Bun
