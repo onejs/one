@@ -214,6 +214,7 @@
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-native-client": "workspace:*",
         "babel-plugin-react-compiler": "^1.0.0",
+        "babel-plugin-syntax-hermes-parser": "^0.32.0",
         "react-native-css-interop": "^0.2.1",
         "ts-deepmerge": "^7.0.2",
       },
@@ -222,6 +223,7 @@
         "depcheck": "^1.4.7",
         "rolldown": "^1.0.1",
         "vite": "^8.0.13",
+        "vitest": "^4.1.0",
       },
       "peerDependencies": {
         "vite": "^8.0.13",

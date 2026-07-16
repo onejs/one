@@ -3,6 +3,7 @@ import {
   getHermesSWCIncludes,
   getNativeTransformConfig,
   hmrClientNoopPlugin,
+  vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
 
@@ -150,5 +151,27 @@ describe('hmrClientNoopPlugin', () => {
 
   it('does not load unrelated ids', () => {
     expect(load('\0some-other-virtual')).toBeUndefined()
+  })
+})
+
+describe('vxrnCompilerPlugin React Refresh registration', () => {
+  it('keeps initial-bundle registrations visible to rolldown', async () => {
+    const previousNodeEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = 'test'
+    try {
+      const plugin = vxrnCompilerPlugin('ios', true)
+      const transform = plugin.transform as (code: string, id: string) => Promise<any>
+      const result = await transform(
+        'export const marker = "$RefreshReg$("; export function Probe() { return <div>probe</div> }',
+        '/project/src/Probe.tsx'
+      )
+      const code = result.code as string
+
+      expect(code).toContain('var __vxrnRefreshReg = globalThis.$RefreshReg$')
+      expect(code).toContain('__vxrnRefreshReg(')
+      expect(code).toContain('"$RefreshReg$("')
+    } finally {
+      process.env.NODE_ENV = previousNodeEnv
+    }
   })
 })
