@@ -26,17 +26,20 @@
     "clean:build": "tamagui-build clean:build",
     "lint": "../../node_modules/.bin/biome check src",
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "test": "vitest run --dir src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/plugin-transform-destructuring": "^7.28.5",
+    "@babel/plugin-transform-flow-strip-types": "^7.27.1",
     "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@babel/plugin-transform-regenerator": "^7.28.4",
     "@react-native/babel-plugin-codegen": "^0.83.0",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
+    "babel-plugin-syntax-hermes-parser": "^0.32.0",
     "react-native-css-interop": "^0.2.1",
     "ts-deepmerge": "^7.0.2"
   },
@@ -44,7 +47,8 @@
     "@tamagui/build": "2.3.0",
     "depcheck": "^1.4.7",
     "rolldown": "^1.0.1",
-    "vite": "^8.0.13"
+    "vite": "^8.0.13",
+    "vitest": "^4.1.0"
   },
   "peerDependencies": {
     "vite": "^8.0.13"

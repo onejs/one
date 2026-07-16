@@ -75,20 +75,6 @@ if (typeof globalThis.URLSearchParams === 'undefined') {
   };
 }
 
-// suppress HMRClient.setup() error from native side
-// native calls HMRClient.setup() during bundle load but we don't use Metro HMR
-// this intercept catches the error and prevents the red screen
-var __origErrorHandler = globalThis.ErrorUtils && globalThis.ErrorUtils.getGlobalHandler && globalThis.ErrorUtils.getGlobalHandler();
-if (globalThis.ErrorUtils && globalThis.ErrorUtils.setGlobalHandler) {
-  globalThis.ErrorUtils.setGlobalHandler(function(error, isFatal) {
-    if (error && error.message && error.message.indexOf('HMRClient') !== -1) {
-      // suppress HMRClient errors silently
-      return;
-    }
-    if (__origErrorHandler) __origErrorHandler(error, isFatal);
-  });
-}
-
 // ensure console exists before any library prelude touches it in release bundles
 globalThis.console = globalThis.console || {};
 var console = globalThis.console;
