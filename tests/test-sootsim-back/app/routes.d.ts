@@ -28,12 +28,12 @@ declare module 'one' {
         | `/forum`
         | `/forum/rankings`
         | `/picks`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/(auth)/thread/${OneRouter.SingleRoutePart<T>}`
         | `/(site)/docs/${string}`
         | `/docs/${string}`
         | `/thread/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(auth)/thread/[id]`
         | `/(site)/docs/[...slug]`
         | `/docs/[...slug]`

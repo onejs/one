@@ -17,6 +17,29 @@ import { getNativePrelude } from '../runtime/native-prelude'
 // files that contain Flow syntax and need stripping
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
+// Hermes needs the whole class shape lowered *together*. downleveling only the
+// class fields while leaving `class ... extends` as modern ES6 produces a
+// half-transpiled hierarchy Hermes crashes on at `new Subclass()` (TypeError:
+// Cannot read property 'prototype' of undefined). These must stay atomic across
+// both SWC call sites and dev/prod. defining them once makes that a fact, not a
+// convention (the original bug was `transform-classes` missing from one of two
+// hand-copied include lists).
+const HERMES_CLASS_TRANSFORMS = [
+  'transform-classes',
+  'transform-class-properties',
+  'transform-class-static-block',
+  'transform-private-methods',
+  'transform-private-property-in-object',
+] as const
+
+// prod-only: needed for hermesc bytecode AOT compilation, not the dev interpreter
+const HERMES_PROD_TRANSFORMS = ['transform-async-to-generator'] as const
+
+/** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
+export function getHermesSWCIncludes(dev: boolean): string[] {
+  return [...HERMES_CLASS_TRANSFORMS, ...(dev ? [] : HERMES_PROD_TRANSFORMS)]
+}
+
 interface NativeDevEngineOptions {
   root: string
   port: number
@@ -191,19 +214,28 @@ function getNativePlugins(
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
     environmentGuardPlugin(),
+    // alias RN's Metro HMR client to a no-op; vxrn drives HMR itself (the
+    // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
+    // red-boxes "unknown-message [object Object]" on every edit (new arch)
+    hmrClientNoopPlugin(),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
     viteImportGlobPlugin({ root }),
-    // strip Flow types from react-native and @react-native packages
+    // @vxrn/compiler babel transforms: reanimated worklets, async generators,
+    // react-native codegen, react compiler, same pipeline as metro. runs before
+    // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
+    // type argument intact. stripping Flow first would erase it (which is why the
+    // codegen "didn't run for <Component>" warning fired).
+    vxrnCompilerPlugin(platform, dev),
+    // strip Flow from any react-native / @react-native `.js` the compiler didn't
+    // handle, the guaranteed safety net before rolldown's oxc core parse (which
+    // can't parse Flow). now downstream of the compiler, so codegen sees the types.
     flowStripPlugin(),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform, assetsDest }),
-    // @vxrn/compiler babel transforms: reanimated worklets, async generators,
-    // react-native codegen, react compiler — same pipeline as metro
-    vxrnCompilerPlugin(platform, dev),
     // hermes compat: transform class properties and private fields
     hermesCompatSWCPlugin(dev),
   ]
@@ -333,12 +365,8 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
       isModule: false,
       env: {
         targets: { node: 9999 },
-        include: [
-          'transform-class-properties',
-          'transform-class-static-block',
-          'transform-private-methods',
-          'transform-private-property-in-object',
-        ],
+        // dev-only runtime prelude: the class set only, no prod bytecode transforms
+        include: [...HERMES_CLASS_TRANSFORMS],
       },
       jsc: {
         parser: { syntax: 'ecmascript' },
@@ -470,14 +498,6 @@ try {
         // skipped by the per-file SWC plugin) so old Hermes can parse them
         code = await downlevelClassFieldsInBundle(code)
 
-        // register a no-op HMRClient so RN's native side doesn't error when calling HMRClient.setup()
-        // our actual HMR is handled via the outro WebSocket connection
-        const hmrClientStub = `registerCallableModule("HMRClient",{setup:function(){},enable:function(){},disable:function(){},registerBundle:function(){},log:function(){}})`
-        code = code.replace(
-          /registerCallableModule\s*\(\s*["']AppRegistry["']/,
-          (match) => hmrClientStub + ',' + match
-        )
-
         // wrap module code in a function scope so top-level `var`s (e.g. RN
         // fetch.js's `Headers`/`Request`) don't leak as non-configurable
         // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
@@ -505,7 +525,6 @@ try {
         return
       }
       const updates = (result as any).updates || []
-
       for (const item of updates) {
         const update = item.update || item
         if (update.type === 'Patch' && update.code) {
@@ -793,6 +812,49 @@ function environmentGuardPlugin(): Plugin {
 }
 
 /**
+ * alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
+ * no-op module.
+ *
+ * vxrn drives Fast Refresh itself over the rolldown-runtime WebSocket and never
+ * speaks Metro's `/hot` protocol. On the new architecture, react-native
+ * `registerCallableModule('HMRClient', require('./HMRClient'))`s its real client
+ * eagerly at startup before vxrn's late override runs, and `emplace` keeps
+ * that first registration. RN's client then opens a `MetroHMRClient` socket that
+ * receives vxrn's `hmr:*` frames it can't parse and red-boxes
+ * `unknown-message [object Object]` on every edit.
+ *
+ * neutralizing the module at its source means RN registers *this* no-op as the
+ * one-and-only `HMRClient` (working with `emplace`, so it's arch-agnostic) and
+ * the stray socket is never opened. The class-shaped surface
+ * (`setup`/`enable`/`disable`/`registerBundle`/`log`/`isEnabled`) mirrors the
+ * methods RN calls on it.
+ */
+export function hmrClientNoopPlugin(): Plugin {
+  // match RN's HMRClient by module path, tolerating either separator (native
+  // Windows ids use `\`) and an optional js/ts extension
+  const RN_HMR_CLIENT_RE = /(^|[\\/])Utilities[\\/]HMRClient(\.[cm]?[jt]sx?)?$/
+  return {
+    name: 'vxrn:hmr-client-noop',
+    resolveId(source, importer) {
+      const fromReactNative =
+        source.startsWith('react-native/') ||
+        (importer != null && /(^|[\\/])react-native[\\/]/.test(importer))
+      if (fromReactNative && RN_HMR_CLIENT_RE.test(source)) {
+        return { id: '\0vxrn-hmr-client-noop', external: false }
+      }
+    },
+    load(id) {
+      if (id === '\0vxrn-hmr-client-noop') {
+        return {
+          code: `const HMRClient = { setup() {}, enable() {}, disable() {}, registerBundle() {}, log() {}, isEnabled() { return false } }\nexport default HMRClient`,
+          moduleType: 'js',
+        }
+      }
+    },
+  }
+}
+
+/**
  * Stub CSS imports for native builds.
  * Native doesn't support CSS and rolldown removed CSS bundling support.
  * Without this, any `import './foo.css'` will cause a build error.
@@ -816,7 +878,7 @@ function cssStubPlugin(): Plugin {
  * react-native codegen, react compiler, and react-refresh (dev only) —
  * same pipeline as metro, single babel pass per file.
  */
-function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
+export function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
 
   // whether a file is a user file that should get react-refresh wiring
@@ -852,7 +914,17 @@ function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
           const existingPlugins = babelOptions?.plugins || []
           babelOptions = {
             ...babelOptions,
-            plugins: [...existingPlugins, 'react-refresh/babel'],
+            plugins: [
+              ...existingPlugins,
+              [
+                'react-refresh/babel',
+                {
+                  skipEnvCheck: true,
+                  refreshReg: '__vxrnRefreshReg',
+                  refreshSig: '__vxrnRefreshSig',
+                },
+              ],
+            ],
           }
         }
 
@@ -876,6 +948,9 @@ if (globalThis.__ReactRefresh) {
   };
   globalThis.$RefreshSig$ = globalThis.__ReactRefresh.createSignatureFunctionForTransform;
 }
+// keep registration calls local so rolldown retains them in the initial bundle.
+var __vxrnRefreshReg = globalThis.$RefreshReg$;
+var __vxrnRefreshSig = globalThis.$RefreshSig$;
 
 ${out}
 
@@ -1024,15 +1099,9 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // hermes needs class properties downleveled; prod also needs
-        // classes and async-to-generator for bytecode compilation
-        const envIncludes = [
-          'transform-class-properties',
-          'transform-class-static-block',
-          'transform-private-methods',
-          'transform-private-property-in-object',
-          ...(!dev ? ['transform-classes', 'transform-async-to-generator'] : []),
-        ]
+        // app modules: the Hermes class set (unconditional), plus async-to-generator
+        // in prod only (see HERMES_CLASS_TRANSFORMS / HERMES_PROD_TRANSFORMS)
+        const envIncludes = getHermesSWCIncludes(dev)
 
         const result = await swc.transform(code, {
           filename: id,
@@ -1130,6 +1199,16 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
         for (var j = 0; j < ctx.acceptCallbacks.length; j++) {
           ctx.acceptCallbacks[j].fn(this.modules[moduleId].exports);
         }
+      }
+      // surface each committed module id to the framework hot-update hook (if one
+      // is registered). RN's React Refresh can't repaint frameworks that re-wrap
+      // route components away from the edited module's Refresh family (e.g. One),
+      // and the web route-update event has no equivalent on the native /hot
+      // socket, so this generic vxrn global is the bridge.
+      try {
+        if (globalThis.__VXRN_ON_MODULE_UPDATED__ && moduleId) globalThis.__VXRN_ON_MODULE_UPDATED__(moduleId);
+      } catch (error) {
+        console.error('[vxrn HMR]: module update hook failed', error);
       }
     }
   }

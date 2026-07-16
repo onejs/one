@@ -62,6 +62,7 @@ declare module 'one' {
         | `/folder-modes/analytics`
         | `/folder-modes/nested/report`
         | `/folder-modes/override`
+        | `/hmr-probe`
         | `/home`
         | `/hooks`
         | `/hooks/cases/navigating-into-nested-navigator`

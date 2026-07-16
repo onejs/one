@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import {
+  getHermesSWCIncludes,
   getNativeTransformConfig,
+  hmrClientNoopPlugin,
+  vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
 
@@ -64,5 +67,111 @@ describe('wrapNativeBundleModuleScope', () => {
   it('is a no-op when the runtime marker is absent (e.g. prod bundle)', () => {
     const input = 'var x = 1;\nconsole.log(x);\n'
     expect(wrapNativeBundleModuleScope(input)).toBe(input)
+  })
+})
+
+describe('getHermesSWCIncludes', () => {
+  const CLASS_SET = [
+    'transform-classes',
+    'transform-class-properties',
+    'transform-class-static-block',
+    'transform-private-methods',
+    'transform-private-property-in-object',
+  ]
+
+  it('always includes the full Hermes class-transform set (dev and prod)', () => {
+    // regression: transform-classes was missing in dev, leaving a half-transpiled
+    // class hierarchy Hermes crashes on at `new Subclass()`
+    expect(getHermesSWCIncludes(true)).toEqual(expect.arrayContaining(CLASS_SET))
+    expect(getHermesSWCIncludes(false)).toEqual(expect.arrayContaining(CLASS_SET))
+  })
+
+  it('adds transform-async-to-generator only in production', () => {
+    expect(getHermesSWCIncludes(true)).not.toContain('transform-async-to-generator')
+    expect(getHermesSWCIncludes(false)).toContain('transform-async-to-generator')
+  })
+})
+
+describe('hmrClientNoopPlugin', () => {
+  const plugin = hmrClientNoopPlugin()
+  const resolveId = plugin.resolveId as unknown as (
+    source: string,
+    importer?: string
+  ) => any
+  const load = plugin.load as unknown as (id: string) => any
+  const VIRTUAL_ID = '\0vxrn-hmr-client-noop'
+
+  it.each([
+    ['react-native/Libraries/Utilities/HMRClient', undefined],
+    ['../Utilities/HMRClient', '/project/node_modules/react-native/Libraries/Core.js'],
+    ['../../Utilities/HMRClient.js', '/project/react-native/Libraries/Core.js'],
+    // native Windows ids use backslashes
+    ['..\\Utilities\\HMRClient.js', 'C:\\project\\react-native\\Libraries\\Core.js'],
+    ['../Utilities/HMRClient.ts', '/project/node_modules/react-native/Core.js'],
+    ['../Utilities/HMRClient.tsx', '/project/node_modules/react-native/Core.js'],
+    ['../Utilities/HMRClient.cjs', '/project/node_modules/react-native/Core.js'],
+  ])(
+    'aliases RN HMRClient specifier %j to the no-op virtual module',
+    (source, importer) => {
+      expect(resolveId(source, importer)).toEqual({ id: VIRTUAL_ID, external: false })
+    }
+  )
+
+  it.each([
+    // trailing letters (no boundary) must not match
+    'react-native/Libraries/Utilities/HMRClientRegistry',
+    // the Utilities segment must start at a path boundary
+    'some/MyUtilities/HMRClient',
+    // unrelated RN modules
+    'react-native/Libraries/Core/setUpDeveloperTools',
+    'react',
+  ])('does not touch unrelated specifier %j', (source) => {
+    expect(resolveId(source)).toBeUndefined()
+  })
+
+  it('does not alias an app-authored Utilities/HMRClient module', () => {
+    expect(resolveId('../Utilities/HMRClient', '/project/src/App.tsx')).toBeUndefined()
+  })
+
+  it('loads a no-op module exposing every HMRClient method RN calls', () => {
+    const result = load(VIRTUAL_ID)
+    expect(result?.moduleType).toBe('js')
+    for (const method of [
+      'setup',
+      'enable',
+      'disable',
+      'registerBundle',
+      'log',
+      'isEnabled',
+    ]) {
+      expect(result!.code).toContain(method)
+    }
+    expect(result!.code).toContain('export default HMRClient')
+  })
+
+  it('does not load unrelated ids', () => {
+    expect(load('\0some-other-virtual')).toBeUndefined()
+  })
+})
+
+describe('vxrnCompilerPlugin React Refresh registration', () => {
+  it('keeps initial-bundle registrations visible to rolldown', async () => {
+    const previousNodeEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = 'test'
+    try {
+      const plugin = vxrnCompilerPlugin('ios', true)
+      const transform = plugin.transform as (code: string, id: string) => Promise<any>
+      const result = await transform(
+        'export const marker = "$RefreshReg$("; export function Probe() { return <div>probe</div> }',
+        '/project/src/Probe.tsx'
+      )
+      const code = result.code as string
+
+      expect(code).toContain('var __vxrnRefreshReg = globalThis.$RefreshReg$')
+      expect(code).toContain('__vxrnRefreshReg(')
+      expect(code).toContain('"$RefreshReg$("')
+    } finally {
+      process.env.NODE_ENV = previousNodeEnv
+    }
   })
 })

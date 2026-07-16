@@ -28,6 +28,7 @@ import {
 import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
 import { sortRoutesWithInitial } from './sortRoutes'
+import { getRouteHmrEpoch, subscribeRouteHmr } from './routeHmr'
 import { getClientMatchesSnapshot } from '../useMatches'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
@@ -393,6 +394,17 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         window.addEventListener('one-hmr-update', handler)
         return () => window.removeEventListener('one-hmr-update', handler)
       }, [])
+    }
+
+    // native Fast Refresh: subscribe to the route-hot epoch (the routeHmr.native
+    // store bumps it when vxrn reports a route module update) so this component
+    // re-renders and re-runs loadRoute() to pick up the edited module's exports
+    if (
+      process.env.NODE_ENV === 'development' &&
+      process.env.TAMAGUI_TARGET === 'native'
+    ) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useSyncExternalStore(subscribeRouteHmr, getRouteHmrEpoch, getRouteHmrEpoch)
     }
 
     // in spa-shell mode, only SSG/SSR layouts render on the server.

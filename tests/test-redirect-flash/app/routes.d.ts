@@ -19,7 +19,7 @@ declare module 'one' {
         | `/factory`
         | `/nested`
         | `/nested/[id]/`
-      DynamicRoutes: 
+      DynamicRoutes:
         | `/(app)/nested/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/nested/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/(app)/project/${OneRouter.SingleRoutePart<T>}`
@@ -28,7 +28,7 @@ declare module 'one' {
         | `/nested/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}`
         | `/project/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
+      DynamicRouteTemplate:
         | `/(app)/nested/[id]`
         | `/(app)/nested/[id]/[sub]`
         | `/(app)/project/[projectId]`

@@ -221,24 +221,16 @@ export function globbedRoutesToRouteContext(
       },
       clearFile: (file: string) => {
         hmrVersion++
-        // Clear only the specific file's cache
-        // file is like "app/_layout.tsx", need to match against keys like "./_layout.tsx"
-        const normalizedFile = file.replace(/^app\//, './')
-        Object.keys(loadedRoutes).forEach((key) => {
-          if (key === normalizedFile || key.endsWith(normalizedFile.replace('./', '/'))) {
-            delete loadedRoutes[key]
-          }
-        })
-        Object.keys(promises).forEach((key) => {
-          if (key === normalizedFile || key.endsWith(normalizedFile.replace('./', '/'))) {
-            delete promises[key]
-          }
-        })
-        Object.keys(preloadedModules).forEach((key) => {
-          if (key.includes(file)) {
-            delete preloadedModules[key]
-          }
-        })
+        const normalizedFile = file.replace(/\\/g, '/').replace(/^\//, '')
+        const routeId = moduleKeys.find(
+          (key) =>
+            routePaths[key].replace(/\\/g, '/').replace(/^\//, '') === normalizedFile
+        )
+        if (!routeId) return
+
+        delete loadedRoutes[routeId]
+        delete promises[routeId]
+        delete preloadedModules[routePaths[routeId]]
       },
       getVersion: () => hmrVersion,
     }
@@ -264,11 +256,10 @@ export function globbedRoutesToRouteContext(
     }
 
     if (!promises[id]) {
-      // In dev mode after HMR, use cache-busting import to get fresh module
-      // hmrImport is platform-specific: .native.ts returns rejected promise, base uses dynamic import()
+      // in dev mode after HMR, load the fresh module through the platform runtime
       let importPromise: Promise<any>
       if (process.env.NODE_ENV === 'development' && hmrVersion > 0 && routePaths[id]) {
-        importPromise = hmrImport(routePaths[id]).catch(() => routesSync[id]())
+        importPromise = hmrImport(routePaths[id])
       } else {
         importPromise = routesSync[id]()
       }
