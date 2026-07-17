@@ -287,15 +287,8 @@ async function getCloudflareProjectName(root: string): Promise<string> {
   return 'one-app'
 }
 
-// concurrency limit for parallel page builds
-// can be overridden with ONE_BUILD_CONCURRENCY env var
-// default based on CPU count for I/O parallelism benefits
 // ensure worker threads inherit the same CACHE_KEY as the main process
 process.env.ONE_CACHE_KEY = constants.CACHE_KEY
-
-const BUILD_CONCURRENCY = process.env.ONE_BUILD_CONCURRENCY
-  ? Math.max(1, parseInt(process.env.ONE_BUILD_CONCURRENCY, 10))
-  : Math.max(1, Math.min(cpus().length, 8))
 
 // worker threads enabled by default, can be disabled via config or env var
 function shouldUseWorkers(oneOptions?: { build?: { workers?: boolean } }) {
@@ -400,6 +393,20 @@ export async function build(args: {
 
   const { oneOptions, config: viteLoadedConfig } = await loadUserOneOptions('build')
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
+
+  const configuredBuildConcurrency =
+    process.env.ONE_BUILD_CONCURRENCY ?? oneOptions.build?.concurrency
+  const buildConcurrency =
+    configuredBuildConcurrency === undefined
+      ? Math.max(1, Math.min(cpus().length, 8))
+      : Number(configuredBuildConcurrency)
+  if (!Number.isInteger(buildConcurrency) || buildConcurrency < 1) {
+    throw new Error(
+      `build.concurrency must be a positive integer, received ${JSON.stringify(
+        configuredBuildConcurrency
+      )}`
+    )
+  }
 
   // Set defaultRenderMode env var so getManifest knows the correct route types
   if (oneOptions.web?.defaultRenderMode) {
@@ -679,11 +686,11 @@ export async function build(args: {
   const criticalCSSOutputPaths = getCriticalCSSOutputPaths(vxrnOutput.clientManifest)
 
   // concurrency limiter for parallel page builds
-  const limit = pLimit(BUILD_CONCURRENCY)
+  const limit = pLimit(buildConcurrency)
 
   // initialize worker pool if enabled (default: true)
   const useWorkers = shouldUseWorkers(oneOptions)
-  const workerPool = useWorkers ? getWorkerPool(BUILD_CONCURRENCY) : null
+  const workerPool = useWorkers ? getWorkerPool(buildConcurrency) : null
   if (workerPool) {
     // strip non-cloneable values so workers skip re-loading vite config
     const serializableOptions = JSON.parse(
@@ -697,7 +704,7 @@ export async function build(args: {
   const staticStartTime = performance.now()
   const modeLabel = useWorkers
     ? `workers: ${workerPool?.size}`
-    : `concurrency: ${BUILD_CONCURRENCY}`
+    : `concurrency: ${buildConcurrency}`
   console.info(`\n 🔨 build static routes (${modeLabel})\n`)
 
   const staticDir = join(`${outDir}/static`)
