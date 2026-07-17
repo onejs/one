@@ -53,7 +53,7 @@ declare global {
 
 globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
 
-// @modified - SSR-optimized container (bypasses BaseNavigationContainer's 32+ hooks)
+// @modified - server container skips browser-only linking hooks
 import { SSRNavigationContainer } from './SSRNavigationContainer'
 
 type Props<ParamList extends {}> = NavigationContainerProps & {
@@ -83,12 +83,7 @@ function NavigationContainerInner(
   props: Props<ParamListBase>,
   ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
 ) {
-  // @modified - SSR fast path: bypass BaseNavigationContainer entirely
-  // BaseNavigationContainer has 32+ hooks and 7 providers that are all
-  // unnecessary on SSR (event emitters, child listeners, state sync, etc.)
-  // we provide only the minimal contexts that child navigators read
-  // @modified - SSR fast path: bypass BaseNavigationContainer entirely
-  // eliminates 32+ hooks and reduces 8 providers to 4
+  // @modified - server path skips browser-only linking and document hooks
   if (typeof window === 'undefined') {
     const { theme = DefaultTheme, initialState, linking, children } = props
     return (
