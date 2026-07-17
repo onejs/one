@@ -600,6 +600,15 @@ export namespace One {
       api?: VXRNBuildOptions
 
       /**
+       * maximum number of static pages to build concurrently.
+       * lower this when builds share a machine with other CPU-heavy work.
+       * `ONE_BUILD_CONCURRENCY` overrides this value.
+       *
+       * @default Math.min(available CPU cores, 8)
+       */
+      concurrency?: number
+
+      /**
        * Use worker threads for parallel static page generation during build.
        * This utilizes multiple CPU cores for faster builds.
        *
