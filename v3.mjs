@@ -1,0 +1,10 @@
+import { chromium } from 'playwright'
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 900, height: 400 }, deviceScaleFactor: 2 })
+const page = await ctx.newPage()
+await page.goto('http://localhost:8081/forum', { waitUntil: 'networkidle', timeout: 30000 })
+await page.waitForTimeout(1500)
+const card = page.locator('[data-testid="thread-card"]').first()
+await card.screenshot({ path: '/tmp/pinned-thread-verify.png' })
+await browser.close()
+console.log('done')
