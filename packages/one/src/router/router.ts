@@ -44,6 +44,7 @@ import {
 } from './findRouteNode'
 import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
+import { getRouteArtifactPaths } from './getRouteArtifactPath'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
@@ -787,9 +788,10 @@ async function doPreload(href: string) {
     return null
   }
 
-  const preloadPath = getPreloadPath(href)
-  const loaderPath = getLoaderPath(href)
-  const cssPreloadPath = getPreloadCSSPath(href)
+  const artifactPaths = getRouteArtifactPaths(href, getResolvedLinking(), routeNode)
+  const preloadPath = getPreloadPath(artifactPaths.preload)
+  const loaderPath = getLoaderPath(artifactPaths.loader)
+  const cssPreloadPath = getPreloadCSSPath(artifactPaths.preload)
 
   recordPreloadStart(href)
 
