@@ -4,6 +4,10 @@
   "workspaces": {
     "": {
       "name": "vxrn-monorepo",
+      "dependencies": {
+        "one": "^1.21.3",
+        "vxrn": "^1.21.3",
+      },
       "devDependencies": {
         "@hono/node-server": "^1.19.14",
         "@manypkg/cli": "^0.25.1",
