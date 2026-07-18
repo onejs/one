@@ -311,6 +311,12 @@ if (typeof document === 'undefined') globalThis.document = {}
         }
       }
     }
+
+    if (!exported.loader && foundRoute.type === 'spa') {
+      const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
+      await outputFile(loaderPartialPath, 'export function loader() { return undefined }')
+      loaderPath = getLoaderPath(path)
+    }
     recordTiming('pageLoader', performance.now() - t0)
 
     // Add page match

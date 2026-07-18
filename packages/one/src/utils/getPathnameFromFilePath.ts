@@ -1,5 +1,3 @@
-import Path from 'node:path'
-
 export function getPathnameFromFilePath(
   inputPath: string,
   params = {},
@@ -7,7 +5,8 @@ export function getPathnameFromFilePath(
   options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
 ) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
-  const file = Path.basename(path)
+  const lastSlash = path.lastIndexOf('/')
+  const file = path.slice(lastSlash + 1)
   const fileName = options.preserveExtensions ? file : file.replace(/\.[a-z]+$/, '')
 
   function paramsError(part: string) {
@@ -24,7 +23,7 @@ ${JSON.stringify(params, null, 2)}`
   }
 
   // remove groups, folder render mode suffixes, and substitute [param] in dirname
-  const dirname = Path.dirname(path)
+  const dirname = (lastSlash === -1 ? '.' : path.slice(0, lastSlash) || '/')
     .split('/')
     .map((segment) => segment.replace(/\+(api|ssg|ssr|spa)$/, ''))
     .join('/')
