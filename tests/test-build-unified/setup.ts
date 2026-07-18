@@ -62,7 +62,7 @@ export async function setup({ provide }: GlobalSetupContext) {
     execSync(`bun kill-my-port ${PORT}`)
   } catch {}
 
-  const workerFile = join(testDir, 'dist', 'worker.js')
+  const workerFile = join(testDir, 'dist', 'worker', 'index.js')
   if (!existsSync(workerFile)) {
     throw new Error(`worker not found at ${workerFile}`)
   }
@@ -73,11 +73,10 @@ export async function setup({ provide }: GlobalSetupContext) {
     [
       'wrangler',
       'dev',
-      'dist/worker.js',
       '--port',
       String(PORT),
       '--config',
-      join(testDir, 'dist', 'wrangler.jsonc'),
+      join(testDir, 'dist', 'worker', 'wrangler.json'),
     ],
     {
       cwd: testDir,

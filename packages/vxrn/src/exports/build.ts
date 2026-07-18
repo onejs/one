@@ -243,6 +243,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   const serverOptions = options.build?.server
+  const webConfig = (optionsIn as VXRNOptions & { web?: { deploy?: unknown } }).web
+  const deployTarget =
+    typeof webConfig?.deploy === 'string'
+      ? webConfig.deploy
+      : (webConfig?.deploy as { target?: string } | undefined)?.target
+  const isCloudflareDeploy = deployTarget === 'cloudflare'
 
   // default to cjs
   const shouldOutputCJS = getServerCJSSetting(options)
@@ -265,6 +271,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     },
 
     ssr: {
+      ...(isCloudflareDeploy && {
+        target: 'webworker',
+      }),
       noExternal: isUnified ? ['react', 'react-dom'] : true,
       optimizeDeps: optimizeDepsWithoutRolldown,
     },
@@ -295,6 +304,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         input: ['virtual:one-entry'],
 
         output: {
+          ...(isCloudflareDeploy && {
+            codeSplitting: true,
+          }),
           ...(shouldOutputCJS && {
             format: 'cjs',
             entryFileNames: '[name].cjs',
