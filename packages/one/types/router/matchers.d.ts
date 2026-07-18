@@ -58,6 +58,8 @@ export interface DirectoryRenderModeMatch {
     /** The render mode for this directory */
     renderMode: One.RouteRenderMode | 'api';
 }
+/** match file render mode suffixes: index+ssr.tsx, feed+spa.web.tsx, etc. */
+export declare function matchFileRenderMode(name: string): One.RouteRenderMode | 'api' | undefined;
 /**
  * Match directory render mode suffixes
  *

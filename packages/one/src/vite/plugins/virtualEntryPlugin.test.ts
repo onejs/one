@@ -1,4 +1,9 @@
+import { Buffer } from 'node:buffer'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
+import { build } from 'vite'
 import { createVirtualEntry } from './virtualEntryPlugin'
 
 // mock isNativeEnvironment
@@ -22,6 +27,71 @@ function loadEntry(plugin: any, envName: string, command: 'serve' | 'build' = 'b
 }
 
 describe('virtualEntryPlugin', () => {
+  it('keeps spa route matching without bundling the client module on the server', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'one-spa-server-'))
+    const appDir = join(root, 'app')
+    mkdirSync(appDir)
+    const spaRoute = join(appDir, 'client-only+spa.tsx')
+    writeFileSync(
+      spaRoute,
+      `export const browserPayload = 'must-not-enter-server-graph'
+export default function ClientOnlyPage() { return null }
+`
+    )
+
+    try {
+      const result = await build({
+        root,
+        configFile: false,
+        logLevel: 'silent',
+        plugins: [
+          {
+            name: 'test-one-entry',
+            enforce: 'pre',
+            resolveId(id) {
+              if (id === 'one') return '\0test-one-entry'
+            },
+            load(id) {
+              if (id === '\0test-one-entry') {
+                return `export const createApp = (options) => options
+export const registerPreloadedRoute = () => {}`
+              }
+            },
+          },
+          createVirtualEntry({ root: 'app', flags: {} }),
+        ],
+        build: {
+          ssr: true,
+          write: false,
+          rolldownOptions: {
+            input: 'virtual:one-entry',
+          },
+        },
+      })
+      if (Array.isArray(result)) throw new Error('expected one server build output')
+      if (!('output' in result)) throw new Error('expected completed server build')
+
+      const moduleIds = result.output.flatMap((output) =>
+        output.type === 'chunk' ? output.moduleIds : []
+      )
+      expect(moduleIds).not.toContain(resolve(spaRoute))
+
+      const entry = result.output.find(
+        (output) => output.type === 'chunk' && output.isEntry
+      )
+      if (!entry || entry.type !== 'chunk') throw new Error('missing server entry chunk')
+      const built = await import(
+        `data:text/javascript;base64,${Buffer.from(entry.code).toString('base64')}`
+      )
+      expect(Object.keys(built.default.routes)).toContain('/app/client-only+spa.tsx')
+      await expect(built.default.routes['/app/client-only+spa.tsx']()).resolves.toEqual(
+        {}
+      )
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
+  })
+
   describe('setupFile', () => {
     const base = {
       root: 'app',
