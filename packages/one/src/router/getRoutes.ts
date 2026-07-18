@@ -5,6 +5,7 @@ import {
   matchArrayGroupName,
   matchDirectoryRenderMode,
   matchDynamicName,
+  matchFileRenderMode,
   matchGroupName,
   matchInterceptPrefix,
   matchSlotName,
@@ -536,9 +537,7 @@ function getFileMeta(
   const isLayout = filenameWithoutExtensions.startsWith('_layout')
   const isMiddleware = filenameWithoutExtensions.startsWith('_middleware')
 
-  const [, renderModeFound] =
-    filename.match(/\+(api|ssg|ssr|spa)\.(\w+\.)?[jt]sx?$/) || []
-  const fileRenderMode = renderModeFound as 'api' | One.RouteRenderMode | undefined
+  const fileRenderMode = matchFileRenderMode(filename)
 
   // Hierarchical render mode resolution:
   // 1. File suffix (highest priority)

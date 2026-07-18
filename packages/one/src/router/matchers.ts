@@ -169,6 +169,16 @@ export interface DirectoryRenderModeMatch {
   renderMode: One.RouteRenderMode | 'api'
 }
 
+/** match file render mode suffixes: index+ssr.tsx, feed+spa.web.tsx, etc. */
+export function matchFileRenderMode(
+  name: string
+): One.RouteRenderMode | 'api' | undefined {
+  const mode = name.match(/\+(api|ssg|ssr|spa)\.(?:\w+\.)?[jt]sx?$/)?.[1]
+  if (mode === 'api' || mode === 'ssg' || mode === 'ssr' || mode === 'spa') {
+    return mode
+  }
+}
+
 /**
  * Match directory render mode suffixes
  *

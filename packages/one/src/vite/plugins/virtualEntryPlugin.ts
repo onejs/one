@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { configuration } from '@vxrn/compiler'
+import Glob from 'fast-glob'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
 import {
@@ -9,6 +10,7 @@ import {
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
   ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
 } from '../../router/glob-patterns'
+import { matchDirectoryRenderMode, matchFileRenderMode } from '../../router/matchers'
 import type { One } from '../types'
 import {
   resolvedVirtualEntryId,
@@ -151,6 +153,47 @@ export function createVirtualEntry(options: {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
         const isSSR = this.environment.name === 'ssr'
+        const serverSpaRouteFiles = isSSR
+          ? Glob.sync('**/*.{ts,tsx}', {
+              cwd: resolve(viteRoot, options.root),
+              ignore: [
+                ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
+                ...(options.router?.ignoredRouteFiles || []),
+              ],
+            })
+              .map((file) => file.replaceAll('\\', '/'))
+              .filter((file) => {
+                const parts = file.split('/')
+                const filename = parts.at(-1) || ''
+                if (
+                  filename.startsWith('_layout') ||
+                  filename.startsWith('_middleware')
+                ) {
+                  return false
+                }
+
+                const fileMode = matchFileRenderMode(filename)
+                if (fileMode) return fileMode === 'spa'
+
+                let parentMode: One.RouteRenderMode | 'api' | undefined
+                for (const directory of parts.slice(0, -1)) {
+                  parentMode =
+                    matchDirectoryRenderMode(directory)?.renderMode ?? parentMode
+                }
+                return parentMode === 'spa'
+              })
+          : []
+        const serverSpaRouteStubs = serverSpaRouteFiles
+          .map(
+            (file) =>
+              `${JSON.stringify(`/${options.root}/${file}`)}: () => Promise.resolve({})`
+          )
+          .join(',\n    ')
+        const webRouteGlobs = [
+          ...routeGlobs,
+          ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((pattern) => `!${pattern}`),
+          ...serverSpaRouteFiles.map((file) => `!/${options.root}/${file}`),
+        ]
         // native always needs static import. SSR in dev mode uses static import
         // so Vite crawls the setupFile's dep tree (including react) and pre-bundles
         // them before the first request. SSR in build mode uses lazy import so the
@@ -191,10 +234,13 @@ if (typeof window !== 'undefined') {
   window.__oneRegisterPreloadedRoute = registerPreloadedRoute
 }
 
-// globbing ${JSON.stringify(routeGlobs)}
+// globbing ${JSON.stringify(webRouteGlobs)}
 export default createApp({
   ${setupPromiseArg}
-  routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`)])}, { exhaustive: true }),
+  routes: {
+    ...import.meta.glob(${JSON.stringify(webRouteGlobs)}, { exhaustive: true }),
+    ${serverSpaRouteStubs}
+  },
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
   ${linkingArg}
