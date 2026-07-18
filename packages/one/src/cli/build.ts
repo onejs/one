@@ -1600,6 +1600,13 @@ export default {
             // native-only symbols from react-native can still bundle against
             // the react-native-web alias in the worker graph.
             shimMissingExports: true,
+            // cloudflare's module worker can contain circular shared chunks
+            // when one package is used by both browser-facing SSR code and API
+            // routes. preserve source import order so a dependent chunk cannot
+            // evaluate against partially initialized exports.
+            output: {
+              strictExecutionOrder: true,
+            },
           },
         },
       })
