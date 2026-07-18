@@ -175,5 +175,9 @@
     "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch"
+  },
+  "dependencies": {
+    "one": "^1.21.3",
+    "vxrn": "^1.21.3"
   }
 }
