@@ -27,7 +27,7 @@ describe('publishPackagesWithAuthProbe', () => {
     })
   })
 
-  test('retries the probe after a one-time 2FA challenge before fan-out', async () => {
+  test('retries an interactive probe failure before fan-out', async () => {
     const calls: string[] = []
     let probeAttempts = 0
 
@@ -37,7 +37,7 @@ describe('publishPackagesWithAuthProbe', () => {
       publish: async (pkg) => {
         calls.push(pkg.name)
         if (pkg.name === 'second' && probeAttempts++ === 0) {
-          throw new Error('npm error code EOTP')
+          throw ''
         }
       },
       concurrency: 1,
@@ -45,6 +45,27 @@ describe('publishPackagesWithAuthProbe', () => {
 
     expect(calls).toEqual(['first', 'second', 'second', 'third', 'fourth'])
     expect(result.failed).toEqual([])
+  })
+
+  test('does not retry when npm reports the failed probe as published', async () => {
+    const calls: string[] = []
+    let probeAttempted = false
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isPublished: async (pkg) => pkg.name === 'second' && probeAttempted,
+      publish: async (pkg) => {
+        calls.push(pkg.name)
+        if (pkg.name === 'second') {
+          probeAttempted = true
+          throw ''
+        }
+      },
+      concurrency: 1,
+    })
+
+    expect(calls).toEqual(['first', 'second', 'third', 'fourth'])
+    expect(result.published).toEqual(['first', 'second', 'third', 'fourth'])
   })
 
   test('stops before fan-out when the probe fails for another reason', async () => {

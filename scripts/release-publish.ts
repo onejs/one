@@ -41,9 +41,11 @@ export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
     return { skipped, published: [], failed: [] }
   }
 
-  console.info(
-    'npm will open the browser for 2FA. Select “do not challenge for the next 5 minutes” before approving so the remaining packages can publish.'
-  )
+  if (process.stdin.isTTY && process.stdout.isTTY) {
+    console.info(
+      'npm will open the browser for 2FA. Select “do not challenge for the next 5 minutes” before approving so the remaining packages can publish.'
+    )
+  }
 
   const published: string[] = []
   const failed: string[] = []
@@ -56,16 +58,21 @@ export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
     try {
       await publish(probePackage)
     } catch (error) {
-      if (!isNpmAuthError(error)) {
+      if (await isPublished(probePackage)) {
+        published.push(probePackage.name)
+      } else if (!isNpmAuthError(error) && String(error).trim() !== '') {
         throw error
+      } else {
+        console.error(
+          'The second publish was challenged again. Approve 2FA once more and select “do not challenge for the next 5 minutes” before continuing.'
+        )
+        await publish(probePackage)
+        published.push(probePackage.name)
       }
-
-      console.error(
-        'The second publish was challenged again. Approve 2FA once more and select “do not challenge for the next 5 minutes” before continuing.'
-      )
-      await publish(probePackage)
     }
-    published.push(probePackage.name)
+    if (!published.includes(probePackage.name)) {
+      published.push(probePackage.name)
+    }
   }
 
   await pMap(
