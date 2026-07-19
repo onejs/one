@@ -414,7 +414,7 @@ async function run() {
       }
     }
 
-    if (!finish) {
+    if (!finish && !skipPublish) {
       const tmpDir = `/tmp/one-publish`
       await fs.remove(tmpDir)
       await ensureDir(tmpDir)
