@@ -7,6 +7,7 @@ import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
+import { publishPackagesWithAuthProbe } from './release-publish'
 
 // avoid emitter error
 process.setMaxListeners(50)
@@ -37,6 +38,7 @@ function skipBlockedVersions(
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
 const exec = promisify(proc.exec)
+const execFile = promisify(proc.execFile)
 export const spawn = proc.spawn
 
 // for failed publishes that need to re-run
@@ -419,8 +421,6 @@ async function run() {
       await fs.remove(tmpDir)
       await ensureDir(tmpDir)
 
-      const failedPublishes: string[] = []
-
       const publishTag = canary ? 'canary' : version.includes('-rc.') ? 'rc' : 'latest'
       const publishOptions = [publishTag && `--tag ${publishTag}`]
         .filter(Boolean)
@@ -489,33 +489,38 @@ async function run() {
 
         console.info(`Publishing ${name}: ${buildPublishCommand()}`)
 
+        await spawnify(buildPublishCommand(), {
+          cwd: tmpDir,
+          interactive: true,
+        })
+      }
+
+      const isPublished = async ({ name }: { name: string }) => {
         try {
-          await spawnify(buildPublishCommand(), {
-            cwd: tmpDir,
-            interactive: true,
-          })
-        } catch (err) {
-          console.error(`Failed to publish ${name}:`, err)
-          failedPublishes.push(name)
+          const { stdout } = await execFile(
+            'npm',
+            ['view', `${name}@${version}`, 'version', '--json'],
+            { cwd: tmpDir }
+          )
+          return JSON.parse(stdout.trim()) === version
+        } catch (error) {
+          const message = String(error)
+          if (/E404|404 Not Found|is not in this registry/i.test(message)) {
+            return false
+          }
+          throw new Error(`Could not verify ${name}@${version} on npm:\n${message}`)
         }
       }
 
-      if (process.stdin.isTTY && process.stdout.isTTY) {
-        console.info(
-          'npm will open the browser for 2FA. Select “do not challenge for the next 5 minutes” so the remaining packages can publish without more prompts.'
-        )
-      }
+      const publishResult = await publishPackagesWithAuthProbe({
+        packages: packageJsons,
+        isPublished,
+        publish: publishOne,
+      })
 
-      // publish the first package serially so browser 2FA can authorize the batch
-      const [firstPkg, ...restPkgs] = packageJsons
-      if (firstPkg) {
-        await publishOne(firstPkg)
-      }
-      await pMap(restPkgs, publishOne, { concurrency: 15 })
-
-      if (failedPublishes.length > 0) {
+      if (publishResult.failed.length > 0) {
         throw new Error(
-          `Failed to publish ${failedPublishes.length} packages:\n${failedPublishes.join('\n')}\n\nRe-run with --republish to retry.`
+          `Failed to publish ${publishResult.failed.length} packages:\n${publishResult.failed.join('\n')}\n\nRe-run with --republish to retry.`
         )
       }
 
