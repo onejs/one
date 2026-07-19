@@ -23,7 +23,7 @@ describe('getRouteArtifactPath', () => {
   test('uses the emitted route pattern for a concrete dynamic href', () => {
     const page = routeNode(
       '[serverId]/[channelId]/index',
-      './(chat)/[serverId]/[channelId]/index.tsx'
+      './(chat)/[serverId]/[channelId]/index+spa.tsx'
     )
     const chat = routeNode('(chat)', './(chat)/_layout.tsx', [page])
     const root = routeNode('', './_layout.tsx', [chat])
@@ -65,6 +65,32 @@ describe('getRouteArtifactPath', () => {
         root
       )
     ).toEqual({ loader: href, preload: href })
+  })
+
+  test('uses concrete artifacts for a route that inherits spa mode', () => {
+    const page = routeNode(
+      'default-mode/[slug]',
+      './default-mode/[slug].tsx',
+      [],
+      'spa'
+    )
+    const root = routeNode('', './_layout.tsx', [page])
+
+    expect(
+      getRouteArtifactPaths(
+        '/default-mode/page-one',
+        {
+          config: { screens: {} },
+          getStateFromPath: () => ({
+            routes: [{ name: 'default-mode/[slug]' }],
+          }),
+        },
+        root
+      )
+    ).toEqual({
+      loader: '/default-mode/page-one',
+      preload: '/default-mode/page-one',
+    })
   })
 
   test.each([
