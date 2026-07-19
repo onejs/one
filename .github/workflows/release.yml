@@ -183,4 +183,5 @@ jobs:
           trap 'git config --local --unset-all http.https://github.com/.extraheader || true' EXIT
           git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
           git push origin "v$version"
-          gh release create "v$version" --verify-tag --generate-notes --title "v$version"
+          bash scripts/gen-release-notes.sh "v$version" release-notes.md
+          gh release create "v$version" --verify-tag --notes-file release-notes.md --title "v$version"

@@ -9,12 +9,18 @@ jobs:
   tagged-release:
     name: Changelog
     runs-on: ubuntu-latest
-    # needs: release
 
     permissions:
       contents: write
 
     steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        run: bash scripts/gen-release-notes.sh "${GITHUB_REF_NAME}" CHANGELOG_BODY.md
+
       - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
-          generate_release_notes: true
+          body_path: CHANGELOG_BODY.md
