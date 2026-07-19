@@ -776,6 +776,12 @@ export async function build(args: {
       output.moduleIds || (output.facadeModuleId ? [output.facadeModuleId] : [])
     for (const moduleId of moduleIds) {
       moduleIdToServerChunk.set(moduleId, output.fileName)
+      if (moduleId.includes('?one-spa-build')) {
+        moduleIdToServerChunk.set(
+          moduleId.slice(0, moduleId.indexOf('?')),
+          output.fileName
+        )
+      }
     }
   }
 
@@ -795,7 +801,9 @@ export async function build(args: {
     const serverFileName = moduleIdToServerChunk.get(routeModulePath)
     if (!serverFileName) {
       if (foundRoute.type === 'spa') {
-        throw new Error(`[one] No build-only server chunk for SPA route: ${foundRoute.file}`)
+        throw new Error(
+          `[one] No build-only server chunk for SPA route: ${foundRoute.file}`
+        )
       }
       console.warn(`[one] No server chunk found for route: ${foundRoute.file}`)
       continue

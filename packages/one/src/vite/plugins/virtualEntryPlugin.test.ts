@@ -75,6 +75,11 @@ export const registerPreloadedRoute = () => {}`
         output.type === 'chunk' ? output.moduleIds : []
       )
       expect(moduleIds).not.toContain(resolve(spaRoute))
+      expect(
+        result.output
+          .flatMap((output) => (output.type === 'chunk' ? output.code : ''))
+          .join('\n')
+      ).not.toContain('must-not-enter-server-graph')
 
       const entry = result.output.find(
         (output) => output.type === 'chunk' && output.isEntry

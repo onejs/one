@@ -193,7 +193,11 @@ export function createVirtualEntry(options: {
           (file) => `/${options.root}/${file}`
         )
         const serverSpaBuildRoutes = serverSpaBuildGlobs.length
-          ? `import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true })`
+          ? `{
+  loader: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'loader', query: '?one-spa-build' }),
+  generateStaticParams: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'generateStaticParams', query: '?one-spa-build' }),
+  sitemap: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'sitemap', query: '?one-spa-build' })
+}`
           : '{}'
         const webRouteGlobs = [
           ...routeGlobs,
@@ -240,8 +244,8 @@ if (typeof window !== 'undefined') {
   window.__oneRegisterPreloadedRoute = registerPreloadedRoute
 }
 
-// build-only spa modules stay out of the runtime route map, but their chunks
-// are used to generate route-specific html and loader artifacts.
+// build-only spa exports generate route artifacts without exposing the page
+// component to the runtime server route map.
 export const oneBuildOnlySpaRoutes = ${serverSpaBuildRoutes}
 
 // globbing ${JSON.stringify(webRouteGlobs)}
