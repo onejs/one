@@ -18,9 +18,9 @@ else
   range="$tag"
 fi
 
-# non-merge commits in range, dropping the version-bump commits (subject "vX.Y.Z")
+# non-merge commits in range, dropping version-bump commits (stable "vX.Y.Z" and canary)
 commits="$(git log --no-merges --reverse --pretty=format:'* %s (%h)' "$range" \
-  | grep -vE '^\* v[0-9]+\.[0-9]+\.[0-9]+' || true)"
+  | grep -vE '^\* (v[0-9]+\.[0-9]+\.[0-9]+|canary[0-9])' || true)"
 
 body="## What's Changed"$'\n\n'
 if [ -n "$commits" ]; then
