@@ -493,11 +493,13 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           ? route.page.replace(/\[([^\]]+)\]/g, ':$1')
           : null
 
-        const htmlPath = notFoundKey
-          ? routeMap[notFoundKey]
-          : isDynamicRoute
-            ? routeMap[routeCleanPath] || routeMap[url.pathname]
-            : routeMap[url.pathname] || routeMap[routeBuildInfo?.cleanPath]
+        const htmlPath =
+          (notFoundKey
+            ? routeMap[notFoundKey]
+            : isDynamicRoute
+              ? routeMap[routeCleanPath] || routeMap[url.pathname]
+              : routeMap[url.pathname] || routeMap[routeBuildInfo?.cleanPath]) ||
+          (route.type === 'spa' ? routeMap['/'] : undefined)
 
         if (htmlPath) {
           const html = await readStaticHtml(htmlPath)

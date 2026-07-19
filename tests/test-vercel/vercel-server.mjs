@@ -487,10 +487,10 @@ const server = createServer((req, res) => {
     // For loader rewrites, we explicitly DON'T serve static files (we want dynamic data)
     // For other rewrites (like the catch-all), still try static files
     if (!isLoaderRewrite) {
-      // For SSG pages, use the original pathname (before rewrite) to find static files
-      // Rewrites with :param placeholders are meant for serverless functions, not static files
-      // e.g., /posts/hello-world should serve posts/hello-world.html, not posts/:slug.html
-      const staticPath = originalPathname
+      // static rewrites use their destination, while parameterized function
+      // rewrites keep the original path for ssg file lookup
+      const staticPath =
+        rewrittenDest && !rewrittenDest.includes('?') ? pathname : originalPathname
       const served = await serveStatic(res, staticPath)
       if (served) return
     }

@@ -259,6 +259,13 @@ export { wrappedMiddlewareFunction as default }
       return { src, dest }
     })
 
+  const spaRoutes = buildInfoForWriting.manifest.pageRoutes
+    .filter((route) => route.type === 'spa' && !route.isNotFound)
+    .map((route) => ({
+      src: route.namedRegex,
+      dest: '/',
+    }))
+
   const vercelConfigFilePath = resolve(
     join(oneOptionsRoot, '.vercel/output', 'config.json')
   )
@@ -280,6 +287,7 @@ export { wrappedMiddlewareFunction as default }
       },
       // SSR loader routes must come before dynamic page routes
       ...ssrLoaderRoutes,
+      ...spaRoutes,
       ...buildInfoForWriting.manifest.allRoutes
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
