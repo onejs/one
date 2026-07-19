@@ -436,7 +436,7 @@ async function run() {
         }
       }
 
-      const publishOne = async ({ name, cwd }: { name: string; cwd: string }) => {
+      const prepareOne = async ({ name, cwd }: { name: string; cwd: string }) => {
         // Copy to temp directory and replace workspace:* with versions
         const tmpPackageDir = join(tmpDir, name.replace('/', '_'))
         await fs.copy(cwd, tmpPackageDir, {
@@ -469,30 +469,7 @@ async function run() {
         }
         await writeJSON(pkgJsonPath, pkgJson, { spaces: 2 })
 
-        const filename = `${name.replace('/', '_')}-package.tmp.tgz`
-        const absolutePath = `${tmpDir}/${filename}`
-        // --ignore-scripts: build already ran above; don't let any prepack/prepare hook execute at publish time
-        await spawnify(`npm pack --ignore-scripts --pack-destination ${tmpDir}`, {
-          cwd: tmpPackageDir,
-          avoidLog: true,
-        })
-
-        // npm pack creates a file with the package name, rename it to our expected name
-        const npmFilename = `${name.replace('@', '').replace('/', '-')}-${version}.tgz`
-        await fs.rename(join(tmpDir, npmFilename), absolutePath)
-
-        const accessOption = name.startsWith('@') ? '--access public' : ''
-        const buildPublishCommand = () =>
-          ['npm publish', absolutePath, publishOptions, accessOption, '--quiet']
-            .filter(Boolean)
-            .join(' ')
-
-        console.info(`Publishing ${name}: ${buildPublishCommand()}`)
-
-        await spawnify(buildPublishCommand(), {
-          cwd: tmpDir,
-          interactive: true,
-        })
+        return path.relative(tmpDir, tmpPackageDir)
       }
 
       const isPublished = async ({ name }: { name: string }) => {
@@ -515,7 +492,37 @@ async function run() {
       const publishResult = await publishPackagesWithAuthProbe({
         packages: packageJsons,
         isPublished,
-        publish: publishOne,
+        publish: async (pending) => {
+          const workspaces = await pMap(pending, prepareOne, { concurrency: 8 })
+          await writeJSON(
+            join(tmpDir, 'package.json'),
+            {
+              name: 'one-release',
+              private: true,
+              workspaces,
+            },
+            { spaces: 2 }
+          )
+
+          const webAuthCache = join(process.cwd(), 'scripts/cache-npm-webauth.cjs')
+          const nodeOptions = [process.env.NODE_OPTIONS, `--require=${webAuthCache}`]
+            .filter(Boolean)
+            .join(' ')
+          const publishCommand = [
+            'npm publish --workspaces --ignore-scripts --access public',
+            publishOptions,
+            '--quiet',
+          ]
+            .filter(Boolean)
+            .join(' ')
+
+          console.info(`Publishing ${pending.map((pkg) => pkg.name).join(', ')}`)
+          await spawnify(publishCommand, {
+            cwd: tmpDir,
+            env: { ...process.env, NODE_OPTIONS: nodeOptions },
+            interactive: true,
+          })
+        },
       })
 
       if (publishResult.failed.length > 0) {
