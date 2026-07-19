@@ -192,6 +192,9 @@ export function createVirtualEntry(options: {
         const serverSpaBuildGlobs = serverSpaRouteFiles.map(
           (file) => `/${options.root}/${file}`
         )
+        const serverSpaBuildRoutes = serverSpaBuildGlobs.length
+          ? `import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true })`
+          : '{}'
         const webRouteGlobs = [
           ...routeGlobs,
           ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((pattern) => `!${pattern}`),
@@ -239,7 +242,7 @@ if (typeof window !== 'undefined') {
 
 // build-only spa modules stay out of the runtime route map, but their chunks
 // are used to generate route-specific html and loader artifacts.
-export const oneBuildOnlySpaRoutes = import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true })
+export const oneBuildOnlySpaRoutes = ${serverSpaBuildRoutes}
 
 // globbing ${JSON.stringify(webRouteGlobs)}
 export default createApp({
