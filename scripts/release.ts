@@ -70,6 +70,7 @@ const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
 const isCI = finish || rePublish || undocumented || process.argv.includes('--ci')
 const skipFinish =
   rePublish || skipAll || undocumented || process.argv.includes('--skip-finish')
+const skipPush = process.argv.includes('--skip-push')
 
 const curVersion = fs.readJSONSync('./packages/one/package.json').version
 
@@ -172,7 +173,7 @@ async function run() {
 
     // ensure we are up to date
     // ensure we are on main (skip for canary and rc releases)
-    if (!canary && !isRC) {
+    if (!canary && !isRC && !process.env.CI) {
       if ((await exec(`git rev-parse --abbrev-ref HEAD`)).stdout.trim() !== 'main') {
         throw new Error(`Not on main`)
       }
@@ -425,12 +426,14 @@ async function run() {
         .filter(Boolean)
         .join(' ')
 
-      try {
-        await spawnify(`npm whoami`, { cwd: tmpDir })
-      } catch (err) {
-        throw new Error(
-          `npm is not authenticated for publishing. Run \`npm login\` and then re-run the release.\n\n${err}`
-        )
+      if (!process.env.CI) {
+        try {
+          await spawnify(`npm whoami`, { cwd: tmpDir })
+        } catch (err) {
+          throw new Error(
+            `npm is not authenticated for publishing. Run \`npm login\` and then re-run the release.\n\n${err}`
+          )
+        }
       }
 
       const publishOne = async ({ name, cwd }: { name: string; cwd: string }) => {
@@ -446,6 +449,11 @@ async function run() {
         // replace workspace:* with version in temp copy
         const pkgJsonPath = join(tmpPackageDir, 'package.json')
         const pkgJson = await fs.readJSON(pkgJsonPath)
+        pkgJson.repository = {
+          type: 'git',
+          url: 'https://github.com/onejs/one.git',
+          directory: path.relative(process.cwd(), cwd),
+        }
         for (const field of [
           'dependencies',
           'devDependencies',
@@ -538,19 +546,23 @@ async function run() {
 
           await spawnify(`git commit -m ${gitTag}`, { cwd, allowFail: finish })
 
-          await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
-
           if (!canary) {
             if (!dirty) {
               // pull once more before pushing so if there was a push in interim we get it
               await spawnify(`git pull --rebase origin HEAD`, { cwd })
             }
+          }
 
+          await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
+
+          if (!canary && !skipPush) {
             await spawnify(`git push origin head`, { cwd, allowFail: finish })
             await spawnify(`git push origin ${gitTag}`, { cwd })
           }
 
-          console.info(`✅ ${canary ? 'Tagged locally' : 'Pushed and versioned'}\n`)
+          console.info(
+            `✅ ${canary || skipPush ? 'Versioned locally' : 'Pushed and versioned'}\n`
+          )
         }
       }
 
