@@ -483,7 +483,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
     cssPreloadPath,
     loaderPath,
     clientJsPath,
-    serverJsPath,
+    serverJsPath: foundRoute.type === 'spa' ? '' : serverJsPath,
     htmlPath,
     loaderData,
     params,

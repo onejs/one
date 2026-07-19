@@ -794,9 +794,8 @@ export async function build(args: {
     // find the server chunk containing this route
     const serverFileName = moduleIdToServerChunk.get(routeModulePath)
     if (!serverFileName) {
-      // SPA routes may not have server chunks - that's expected
       if (foundRoute.type === 'spa') {
-        continue
+        throw new Error(`[one] No build-only server chunk for SPA route: ${foundRoute.file}`)
       }
       console.warn(`[one] No server chunk found for route: ${foundRoute.file}`)
       continue
