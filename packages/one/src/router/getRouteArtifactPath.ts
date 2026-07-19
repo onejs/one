@@ -18,8 +18,16 @@ export function getRouteArtifactPaths(
   if (!route) return fallback
 
   const pattern = getPathnameFromFilePath(route.contextKey.replace(/^\.\//, '/'))
+  if (route.type === 'spa') {
+    const hasExplicitSpaMode = route.contextKey
+      .split('/')
+      .some((segment) => /\+spa(?:\.|$)/.test(segment))
+    const path = hasExplicitSpaMode ? pattern : href
+    return { loader: path, preload: path }
+  }
+
   return {
-    loader: route.type === 'spa' ? pattern : href,
+    loader: href,
     preload: route.type === 'ssg' ? href : pattern,
   }
 }
