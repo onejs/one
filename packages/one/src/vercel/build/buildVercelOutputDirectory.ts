@@ -261,10 +261,10 @@ export { wrappedMiddlewareFunction as default }
 
   const spaRoutes = buildInfoForWriting.manifest.pageRoutes
     .filter((route) => route.type === 'spa' && !route.isNotFound)
-    .map((route) => ({
-      src: route.namedRegex,
-      dest: '/',
-    }))
+    .flatMap((route) => {
+      const htmlPath = routeToBuildInfo[route.file]?.htmlPath
+      return htmlPath ? [{ src: route.namedRegex, dest: htmlPath }] : []
+    })
 
   const vercelConfigFilePath = resolve(
     join(oneOptionsRoot, '.vercel/output', 'config.json')

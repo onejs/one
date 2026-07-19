@@ -650,13 +650,11 @@ url: ${url}`)
           ? route.page.replace(/\[([^\]]+)\]/g, ':$1')
           : null
 
-        const htmlPath =
-          (notFoundKey
-            ? routeMap[notFoundKey]
-            : isDynamicRoute
-              ? routeMap[routeCleanPath] || routeMap[url.pathname]
-              : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]) ||
-          (route.type === 'spa' ? routeMap['/'] : undefined)
+        const htmlPath = notFoundKey
+          ? routeMap[notFoundKey]
+          : isDynamicRoute
+            ? routeMap[routeCleanPath] || routeMap[url.pathname]
+            : routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
           const html = await readStaticHtml(htmlPath, outDir)

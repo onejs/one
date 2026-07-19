@@ -189,6 +189,9 @@ export function createVirtualEntry(options: {
               `${JSON.stringify(`/${options.root}/${file}`)}: () => Promise.resolve({})`
           )
           .join(',\n    ')
+        const serverSpaBuildGlobs = serverSpaRouteFiles.map(
+          (file) => `/${options.root}/${file}`
+        )
         const webRouteGlobs = [
           ...routeGlobs,
           ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((pattern) => `!${pattern}`),
@@ -233,6 +236,10 @@ export function registerPreloadedRoute(key, module) {
 if (typeof window !== 'undefined') {
   window.__oneRegisterPreloadedRoute = registerPreloadedRoute
 }
+
+// build-only spa modules stay out of the runtime route map, but their chunks
+// are used to generate route-specific html and loader artifacts.
+export const oneBuildOnlySpaRoutes = import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true })
 
 // globbing ${JSON.stringify(webRouteGlobs)}
 export default createApp({
