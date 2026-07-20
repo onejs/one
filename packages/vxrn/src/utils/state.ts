@@ -1,4 +1,6 @@
 import FSExtra from 'fs-extra'
+import { randomUUID } from 'node:crypto'
+import { rename, rm } from 'node:fs/promises'
 import { join } from 'node:path'
 
 type State = {
@@ -20,6 +22,12 @@ export async function readState(cacheDir: string) {
 
 export async function writeState(cacheDir: string, state: State) {
   const statePath = join(cacheDir, 'state.json')
+  const pendingStatePath = `${statePath}.${process.pid}.${randomUUID()}.tmp`
   await FSExtra.ensureDir(cacheDir)
-  await FSExtra.writeJSON(statePath, state)
+  try {
+    await FSExtra.writeJSON(pendingStatePath, state)
+    await rename(pendingStatePath, statePath)
+  } finally {
+    await rm(pendingStatePath, { force: true })
+  }
 }

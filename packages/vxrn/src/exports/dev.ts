@@ -44,7 +44,7 @@ export const dev = async (optionsIn: DevOptions) => {
   const { fillOptions } = await import('../config/getOptionsFilled')
   const { getViteServerConfig } = await import('../config/getViteServerConfig')
   const { printServerUrls } = await import('../utils/printServerUrls')
-  const { clean } = await import('./clean')
+  const { prepareCacheForVersion } = await import('./clean')
   const { filterViteServerResolvedUrls } =
     await import('../utils/filterViteServerResolvedUrls')
   const { removeUndefined } = await import('../utils/removeUndefined')
@@ -107,8 +107,13 @@ export default defineConfig({
 
   bindKeypressInput()
 
-  if (options.clean) {
-    await clean(optionsIn, options.clean)
+  const cacheWasCleaned = await prepareCacheForVersion({
+    root: options.root,
+    cacheDir,
+    versionHash: options.versionHash,
+    forceClean: optionsIn.clean === true,
+  })
+  if (options.clean || cacheWasCleaned) {
     // signal metro to reset its cache as well
     process.env.METRO_RESET_CACHE = '1'
   }

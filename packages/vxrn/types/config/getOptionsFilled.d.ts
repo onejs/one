@@ -54,6 +54,7 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     };
     readonly packageRootDir: string;
     readonly cacheDir: string;
+    readonly versionHash: string;
     readonly skipEnv?: boolean;
     readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
@@ -86,6 +87,7 @@ export declare function getOptionsFilled(): {
     };
     readonly packageRootDir: string;
     readonly cacheDir: string;
+    readonly versionHash: string;
     readonly skipEnv?: boolean;
     readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
