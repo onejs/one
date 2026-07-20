@@ -80,7 +80,8 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
   process.on('SIGINT', shutdown)
   process.on('SIGTERM', shutdown)
 
-  await new Promise<void>((res) => {
+  await new Promise<void>((res, rej) => {
+    server.once('error', rej)
     server.on('close', () => {
       res()
     })
