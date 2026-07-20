@@ -1,8 +1,6 @@
-import { createServer, type Server } from 'node:http'
+import { createServer } from 'node:http'
 import { networkInterfaces, platform } from 'node:os'
 import { getRequestListener } from '@hono/node-server'
-import { serve as honoServe } from '@hono/node-server'
-import type { ServerType } from '@hono/node-server'
 import type { Hono } from 'hono'
 import colors from 'picocolors'
 import type { VXRNServeOptions } from '../types'
@@ -35,21 +33,20 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
   const port = options.port ?? 3000
   const host = options.host ?? '0.0.0.0'
 
-  let server: Server | ServerType
-
-  if (canReusePort) {
-    // bypass @hono/node-server's serve() to use reusePort directly
-    // kernel distributes connections across workers - no IPC bottleneck
-    const listener = getRequestListener(app.fetch)
-    server = createServer(listener)
-    server.listen({ port, host, reusePort: true })
-  } else {
-    server = honoServe({
-      fetch: app.fetch,
-      port,
-      hostname: host,
-    })
-  }
+  const listener = getRequestListener((request, env) => {
+    request.headers.delete('x-vxrn-peer-address')
+    const address = env.incoming.socket.remoteAddress
+    if (address) request.headers.set('x-vxrn-peer-address', address)
+    return app.fetch(request, env)
+  })
+  const server = createServer(listener)
+  server.listen({
+    port,
+    host,
+    ...(canReusePort && process.env.ONE_CLUSTER_WORKER === '1'
+      ? { reusePort: true }
+      : {}),
+  })
 
   const colorUrl = (url: string) =>
     colors.cyan(url.replace(/:(\d+)\//, (_, port) => `:${colors.bold(port)}/`))
@@ -71,18 +68,16 @@ export async function honoServeNode(app: Hono, options: VXRNServeOptions) {
   }
   console.info()
 
-  const shutdown = () => {
-    server.close(() => {
-      process.exit(0)
-    })
-  }
+  const shutdown = () => server.close()
 
-  process.on('SIGINT', shutdown)
-  process.on('SIGTERM', shutdown)
+  process.once('SIGINT', shutdown)
+  process.once('SIGTERM', shutdown)
 
   await new Promise<void>((res, rej) => {
     server.once('error', rej)
     server.on('close', () => {
+      process.off('SIGINT', shutdown)
+      process.off('SIGTERM', shutdown)
       res()
     })
   })
