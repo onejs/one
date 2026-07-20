@@ -7,7 +7,7 @@ import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
-import { publishPackagesWithAuthProbe } from './release-publish'
+import { ensureNpmAuthentication, publishPackagesWithAuthProbe } from './release-publish'
 
 // avoid emitter error
 process.setMaxListeners(50)
@@ -234,6 +234,19 @@ async function run() {
         return -1
       })
 
+    if (!finish && !skipPublish && !dryRun) {
+      await ensureNpmAuthentication({
+        env: process.env,
+        whoami: async () => {
+          await spawnify(`npm whoami`)
+        },
+        login: async () => {
+          console.info('npm is not authenticated. Opening npm login in the browser...')
+          await spawnify(`npm login`, { interactive: true })
+        },
+      })
+    }
+
     if (!finish) {
       console.info(
         `Publishing in order:\n\n${packageJsons.map((x) => x.name).join('\n')}`
@@ -425,16 +438,6 @@ async function run() {
       const publishOptions = [publishTag && `--tag ${publishTag}`]
         .filter(Boolean)
         .join(' ')
-
-      if (!process.env.CI) {
-        try {
-          await spawnify(`npm whoami`, { cwd: tmpDir })
-        } catch (err) {
-          throw new Error(
-            `npm is not authenticated for publishing. Run \`npm login\` and then re-run the release.\n\n${err}`
-          )
-        }
-      }
 
       const prepareOne = async ({ name, cwd }: { name: string; cwd: string }) => {
         // Copy to temp directory and replace workspace:* with versions

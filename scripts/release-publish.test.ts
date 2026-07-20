@@ -2,12 +2,95 @@ import { describe, expect, test } from 'bun:test'
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { publishPackagesWithAuthProbe } from './release-publish'
+import {
+  ensureNpmAuthentication,
+  isGitHubTrustedPublishingEnvironment,
+  publishPackagesWithAuthProbe,
+} from './release-publish'
 
 const packages = ['first', 'second', 'third', 'fourth'].map((name) => ({
   name,
   cwd: `/packages/${name}`,
 }))
+
+describe('ensureNpmAuthentication', () => {
+  test('checks npm authentication even when CI is set locally', async () => {
+    let whoamiCalls = 0
+
+    await ensureNpmAuthentication({
+      env: { CI: 'true' },
+      whoami: async () => {
+        whoamiCalls++
+      },
+      login: async () => {
+        throw new Error('should not prompt')
+      },
+    })
+
+    expect(whoamiCalls).toBe(1)
+  })
+
+  test('waits for login and checks npm authentication again', async () => {
+    let whoamiCalls = 0
+    let loginPrompts = 0
+
+    await ensureNpmAuthentication({
+      env: {},
+      whoami: async () => {
+        whoamiCalls++
+        if (whoamiCalls === 1) {
+          throw new Error('not authenticated')
+        }
+      },
+      login: async () => {
+        loginPrompts++
+      },
+    })
+
+    expect(whoamiCalls).toBe(2)
+    expect(loginPrompts).toBe(1)
+  })
+
+  test('fails clearly when npm is still unauthenticated after login', async () => {
+    let whoamiCalls = 0
+
+    await expect(
+      ensureNpmAuthentication({
+        env: {},
+        whoami: async () => {
+          whoamiCalls++
+          throw new Error('401 Unauthorized')
+        },
+        login: async () => {
+          throw new Error('login canceled')
+        },
+      })
+    ).rejects.toThrow('npm is still not authenticated')
+
+    expect(whoamiCalls).toBe(2)
+  })
+
+  test('skips npm authentication only for GitHub trusted publishing', async () => {
+    const env = {
+      CI: 'true',
+      GITHUB_ACTIONS: 'true',
+      ACTIONS_ID_TOKEN_REQUEST_URL: 'https://example.test/token',
+      ACTIONS_ID_TOKEN_REQUEST_TOKEN: 'token',
+    }
+    let whoamiCalls = 0
+
+    await ensureNpmAuthentication({
+      env,
+      whoami: async () => {
+        whoamiCalls++
+      },
+      login: async () => {},
+    })
+
+    expect(isGitHubTrustedPublishingEnvironment(env)).toBe(true)
+    expect(whoamiCalls).toBe(0)
+  })
+})
 
 describe('publishPackagesWithAuthProbe', () => {
   test('skips published versions and publishes every pending package in one batch', async () => {
