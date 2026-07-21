@@ -3,8 +3,6 @@ import type { AutoDepOptimizationOptions } from '../types';
 import { type ScanDepsResult } from '../utils/scanDepsToOptimize';
 type FindDepsOptions = AutoDepOptimizationOptions & {
     root: string;
-    noExternal?: boolean;
-    external?: (string | RegExp)[];
     onScannedDeps?: (result: ScanDepsResult) => void;
 };
 export declare function autoDepOptimizePlugin(props: FindDepsOptions): Plugin;
@@ -21,6 +19,6 @@ export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMod
         noExternal: string[];
     };
 }>;
-export declare function findDepsToOptimize({ root, mode, noExternal, external, exclude, include, }: FindDepsOptionsByMode): Promise<ScanDepsResult>;
+export declare function findDepsToOptimize({ root, mode, exclude, include, }: FindDepsOptionsByMode): Promise<ScanDepsResult>;
 export {};
 //# sourceMappingURL=autoDepOptimizePlugin.d.ts.map

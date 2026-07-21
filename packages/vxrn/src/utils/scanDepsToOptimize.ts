@@ -140,9 +140,6 @@ export async function scanDepsToOptimize(
     filter?: (id: string | unknown) => boolean
     parentDepNames?: string[]
     proceededDeps?: Map<string, string[]>
-    noExternal?: boolean
-    external?: (string | RegExp)[]
-    excludedDependencies?: string[]
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
   } = rootOptions
@@ -185,6 +182,7 @@ export async function scanDepsToOptimize(
         }
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
+
         if (depPkgJson.dependencies?.['react-native-reanimated']) {
           hasReanimated = true
         }
@@ -314,140 +312,11 @@ export async function scanDepsToOptimize(
       )
   }
 
-  const nestedCommonJSDeps =
-    parentDepNames.length || !options.noExternal
-      ? []
-      : await scanInlinedCommonJSDeps(
-          packageJsonPath,
-          deps,
-          options.external,
-          options.excludedDependencies,
-          options.filter
-        )
-
   return {
-    prebundleDeps: [...prebundleDeps, ...nestedCommonJSDeps].filter(
-      (dep, index, all) => all.indexOf(dep) === index
-    ),
+    prebundleDeps,
     hasReanimated,
     // only check if set in root, dont want to enable css mode too easily
     hasNativewind,
-  }
-}
-
-function getCommonJSExportIds(pkgJson: Record<string, any>): Array<string | undefined> {
-  const exportsField = pkgJson.exports
-  if (exportsField) {
-    const exportsBySubpath =
-      typeof exportsField === 'object' &&
-      !Array.isArray(exportsField) &&
-      Object.keys(exportsField).some((key) => key.startsWith('.'))
-        ? exportsField
-        : { '.': exportsField }
-
-    return Object.entries(exportsBySubpath)
-      .filter(([subpath]) => subpath === '.' || /^\.\/[a-zA-Z0-9-_]+$/.test(subpath))
-      .filter(([, value]) =>
-        importTargets(value).some((target) => isCommonJSTarget(target, pkgJson.type))
-      )
-      .map(([subpath]) => (subpath === '.' ? undefined : subpath.slice(2)))
-  }
-
-  const entry = typeof pkgJson.module === 'string' ? pkgJson.module : pkgJson.main
-  return typeof entry === 'string' && isCommonJSTarget(entry, pkgJson.type)
-    ? [undefined]
-    : []
-}
-
-function importTargets(value: unknown): string[] {
-  if (typeof value === 'string') return [value]
-  if (Array.isArray(value)) return value.flatMap(importTargets)
-  if (!value || typeof value !== 'object') return []
-
-  return Object.entries(value as Record<string, unknown>).flatMap(([condition, target]) =>
-    condition === 'types' || condition === 'require' || condition === 'browser'
-      ? []
-      : importTargets(target)
-  )
-}
-
-function isCommonJSTarget(target: string, packageType: unknown) {
-  const extension = extname(target.split(/[?#]/, 1)[0])
-  if (extension === '.cjs') return true
-  if (extension === '.mjs' || extension === '.mts') return false
-  return (extension === '.js' || extension === '') && packageType !== 'module'
-}
-
-async function scanInlinedCommonJSDeps(
-  packageJsonPath: string,
-  inlinedDeps: string[],
-  external: (string | RegExp)[] = [],
-  excludedDependencies: string[] = [],
-  filter?: (id: string | unknown) => boolean
-) {
-  const visited = new Set<string>()
-  const result: string[] = []
-  const rootPackageVersions = new Map<string, string | undefined>()
-  const excluded = new Set([...EXCLUDE_LIST, ...excludedDependencies])
-  const isExternal = (dep: string) =>
-    external.some((entry) =>
-      typeof entry === 'string' ? entry === dep : entry.test(dep)
-    )
-
-  for (const dep of inlinedDeps) {
-    if (excluded.has(dep) || isExternal(dep)) continue
-
-    const depPackageJsonPath = await findDepPkgJsonPath(dep, dirname(packageJsonPath))
-    if (!depPackageJsonPath) continue
-
-    await visitDependencies(await FSExtra.realpath(depPackageJsonPath), dep)
-  }
-
-  return result
-
-  async function visitDependencies(parentPackageJsonPath: string, parentId: string) {
-    const parentPackageJson = await readPackageJsonSafe(parentPackageJsonPath)
-
-    for (const dep of Object.keys(parentPackageJson.dependencies || {})) {
-      if (excluded.has(dep) || isExternal(dep)) continue
-
-      const depPackageJsonPath = await findDepPkgJsonPath(
-        dep,
-        dirname(parentPackageJsonPath)
-      )
-      if (!depPackageJsonPath) continue
-
-      const realPath = await FSExtra.realpath(depPackageJsonPath)
-      if (filter && !filter(realPath)) continue
-
-      const depPackageJson = await readPackageJsonSafe(realPath)
-      const packageKey = `${dep}@${depPackageJson.version || realPath}`
-      if (visited.has(packageKey)) continue
-      visited.add(packageKey)
-
-      const depId = `${parentId} > ${dep}`
-      if (getCommonJSExportIds(depPackageJson).includes(undefined)) {
-        const nestedId = await nestedDependencyId(dep, depPackageJson.version, depId)
-        if (nestedId) result.push(nestedId)
-      }
-
-      await visitDependencies(realPath, depId)
-    }
-  }
-
-  async function nestedDependencyId(
-    dep: string,
-    version: string | undefined,
-    dependencyChainId: string
-  ) {
-    if (!rootPackageVersions.has(dep)) {
-      const rootPath = await findDepPkgJsonPath(dep, dirname(packageJsonPath))
-      const rootPackageJson = rootPath ? await readPackageJsonSafe(rootPath) : undefined
-      rootPackageVersions.set(dep, rootPackageJson?.version)
-    }
-
-    const rootVersion = rootPackageVersions.get(dep)
-    return rootVersion && rootVersion !== version ? dependencyChainId : undefined
   }
 }
 
