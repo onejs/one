@@ -9,6 +9,30 @@ This page catalogs all the special exports One supports from route files.
   specified.
 </Notice>
 
+### SuspenseFallback
+
+A `_layout` route can export a `SuspenseFallback` component to show loading UI while one of its child routes is suspended. Nested layouts inherit the fallback, and the nearest layout export takes precedence.
+
+```tsx fileName=app/(app)/_layout.tsx
+import { ActivityIndicator, Text, View } from 'react-native'
+import { Stack, type SuspenseFallbackProps } from 'one'
+
+export function SuspenseFallback({ params }: SuspenseFallbackProps) {
+  return (
+    <View>
+      <Text>Loading profile {params.id}...</Text>
+      <ActivityIndicator />
+    </View>
+  )
+}
+
+export default function AppLayout() {
+  return <Stack />
+}
+```
+
+The component receives the suspended route module's `contextKey` as `route` and its URL parameters as `params`. Route fallbacks are enabled by default on native. On web, set `web.suspendRoutes` to `true` in the One config to enable route Suspense boundaries.
+
 ### generateStaticParams
 
 This export is needed for "ssg" type pages that use dynamic path segments (for example, `[id].tsx`). At build-time, One will expand the id segment into multiple pages, using the values you return from `generateStaticParams`.

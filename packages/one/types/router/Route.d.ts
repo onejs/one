@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import type { ErrorBoundaryProps } from '../views/Try';
+import type { SuspenseFallbackProps } from '../views/SuspenseFallback';
 import type { LoaderProps } from '../types';
 import type { One } from '../vite/types';
 import type { ParamValidator, RouteValidationFn } from '../validateParams';
@@ -26,6 +27,7 @@ export type SlotConfig = {
 };
 export type LoadedRoute = {
     ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>;
+    SuspenseFallback?: React.ComponentType<SuspenseFallbackProps>;
     default?: React.ComponentType<any>;
     unstable_settings?: Record<string, any>;
     getNavOptions?: (args: any) => any;
@@ -100,6 +102,8 @@ export type RouteNode = {
     slots?: Map<string, SlotConfig>;
 };
 export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
+/** Allows a layout to provide a Suspense fallback for its child routes. */
+export declare const SuspenseFallbackContext: React.Context<React.ComponentType<SuspenseFallbackProps> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;
 export declare function useContextKey(): string;

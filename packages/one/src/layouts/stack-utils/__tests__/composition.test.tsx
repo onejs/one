@@ -25,6 +25,7 @@ import {
 } from '../StackHeaderComponent'
 import { appendScreenStackPropsToOptions } from '../StackScreen'
 import { StackHeader } from '../index'
+import { StackToolbar, appendStackToolbarPropsToOptions } from '../StackToolbar'
 
 describe('Stack Header Composition', () => {
   describe('StackHeaderTitle', () => {
@@ -638,6 +639,181 @@ describe('Stack Header Composition', () => {
         placeholder: 'Search...',
         placement: 'stacked',
       })
+    })
+  })
+
+  describe('StackToolbar', () => {
+    const withIOS = <T,>(run: () => T): T => {
+      const originalOS = Platform.OS
+      ;(Platform as any).OS = 'ios'
+      try {
+        return run()
+      } finally {
+        ;(Platform as any).OS = originalOS
+      }
+    }
+
+    it('converts buttons, SF Symbols, badges, and iOS 26 background props to native header items', () =>
+      withIOS(() => {
+        const onPress = () => {}
+        const result = appendStackToolbarPropsToOptions(
+          { title: 'Inbox' },
+          {
+            placement: 'right',
+            children: (
+              <StackToolbar.Button
+                onPress={onPress}
+                selected
+                separateBackground
+                hidesSharedBackground
+              >
+                <StackToolbar.Icon sf="bell" />
+                <StackToolbar.Label>Notifications</StackToolbar.Label>
+                <StackToolbar.Badge style={{ color: 'white', backgroundColor: 'red' }}>
+                  5
+                </StackToolbar.Badge>
+              </StackToolbar.Button>
+            ),
+          }
+        )
+
+        expect(result.title).toBe('Inbox')
+        expect(result.headerShown).toBe(true)
+        const items = result.unstable_headerRightItems?.({} as any)
+        expect(items).toEqual([
+          expect.objectContaining({
+            type: 'button',
+            label: 'Notifications',
+            icon: { type: 'sfSymbol', name: 'bell' },
+            badge: {
+              value: '5',
+              style: expect.objectContaining({ color: 'white', backgroundColor: 'red' }),
+            },
+            selected: true,
+            sharesBackground: false,
+            hidesSharedBackground: true,
+            onPress,
+          }),
+        ])
+      }))
+
+    it('uses original image colors unless a tint or rendering mode requests a template', () =>
+      withIOS(() => {
+        const source = { uri: 'https://example.com/icon.png' }
+        const result = appendStackToolbarPropsToOptions(
+          {},
+          {
+            placement: 'right',
+            children: [
+              <StackToolbar.Button key="original" icon={source} />,
+              <StackToolbar.Button key="tinted" icon={source} tintColor="blue" />,
+              <StackToolbar.Button key="explicit" tintColor="blue">
+                <StackToolbar.Icon src={source} renderingMode="original" />
+              </StackToolbar.Button>,
+            ],
+          }
+        )
+
+        expect(result.unstable_headerRightItems?.({} as any)).toMatchObject([
+          { icon: { type: 'image', source, tinted: false } },
+          { icon: { type: 'image', source, tinted: true } },
+          { icon: { type: 'image', source, tinted: false } },
+        ])
+      }))
+
+    it('converts nested native menus and action state', () =>
+      withIOS(() => {
+        const archive = () => {}
+        const result = appendStackToolbarPropsToOptions(
+          {},
+          {
+            placement: 'left',
+            children: (
+              <StackToolbar.Menu title="Actions" icon="ellipsis.circle">
+                <StackToolbar.MenuAction icon="archivebox" isOn onPress={archive}>
+                  Archive
+                </StackToolbar.MenuAction>
+                <StackToolbar.Menu destructive inline title="Move to">
+                  <StackToolbar.MenuAction destructive>Trash</StackToolbar.MenuAction>
+                </StackToolbar.Menu>
+              </StackToolbar.Menu>
+            ),
+          }
+        )
+
+        const items = result.unstable_headerLeftItems?.({} as any)
+        expect(items).toHaveLength(1)
+        expect(items?.[0]).toMatchObject({
+          type: 'menu',
+          icon: { type: 'sfSymbol', name: 'ellipsis.circle' },
+          menu: {
+            title: 'Actions',
+            items: [
+              {
+                type: 'action',
+                label: 'Archive',
+                icon: { type: 'sfSymbol', name: 'archivebox' },
+                state: 'on',
+                onPress: archive,
+              },
+              {
+                type: 'submenu',
+                label: 'Move to',
+                inline: true,
+                destructive: true,
+                items: [{ type: 'action', label: 'Trash', destructive: true }],
+              },
+            ],
+          },
+        })
+      }))
+
+    it('merges left and right toolbars declared on Stack.Screen', () =>
+      withIOS(() => {
+        const result = appendScreenStackPropsToOptions(
+          { title: 'Document' },
+          {
+            children: [
+              <StackToolbar key="left" placement="left">
+                <StackToolbar.Button icon="sidebar.left" />
+              </StackToolbar>,
+              <StackToolbar key="right" placement="right">
+                <StackToolbar.Button icon="square.and.arrow.up" />
+              </StackToolbar>,
+            ],
+          }
+        )
+
+        expect(result.title).toBe('Document')
+        expect(result.unstable_headerLeftItems?.({} as any)).toHaveLength(1)
+        expect(result.unstable_headerRightItems?.({} as any)).toHaveLength(1)
+      }))
+
+    it('uses custom header content with asChild', () =>
+      withIOS(() => {
+        const custom = <button>Custom</button>
+        const result = appendStackToolbarPropsToOptions(
+          {},
+          { placement: 'right', asChild: true, children: custom }
+        )
+        expect(result.headerRight?.({} as any)).toBe(custom)
+        expect(result.unstable_headerRightItems).toBeUndefined()
+      }))
+
+    it('does not install native toolbar options on web', () => {
+      const originalOS = Platform.OS
+      ;(Platform as any).OS = 'web'
+      try {
+        const original = { title: 'Web' }
+        expect(
+          appendStackToolbarPropsToOptions(original, {
+            placement: 'right',
+            children: <StackToolbar.Button icon="star" />,
+          })
+        ).toBe(original)
+      } finally {
+        ;(Platform as any).OS = originalOS
+      }
     })
   })
 })

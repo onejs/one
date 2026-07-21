@@ -59,8 +59,11 @@ export default function ProtectedTestLayout() {
         <Stack.Screen name="index" options={{ title: 'Public' }} />
         <Protected guard={isAuthed}>
           <Stack.Screen name="dashboard" options={{ title: 'Dashboard' }} />
+        </Protected>
+        <Protected guard={isAuthed} redirectTo="/protected-test/login">
           <Stack.Screen name="settings" options={{ title: 'Settings' }} />
         </Protected>
+        <Stack.Screen name="login" options={{ title: 'Login' }} />
       </Stack>
     </View>
   )

@@ -2,7 +2,7 @@ module.exports = {
   dependency: {
     platforms: {
       ios: {
-        podspecPath: './ios/VxrnNative.podspec',
+        podspecPath: './VxrnNative.podspec',
       },
       android: {
         sourceDir: './android',

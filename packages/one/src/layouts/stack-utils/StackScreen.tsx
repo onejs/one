@@ -8,6 +8,11 @@ import {
   appendStackHeaderPropsToOptions,
   type StackHeaderProps,
 } from './StackHeaderComponent'
+import {
+  StackToolbar,
+  appendStackToolbarPropsToOptions,
+  type StackToolbarProps,
+} from './StackToolbar'
 import { Screen } from '../../views/Screen'
 import type { StackRender } from '../../router/web/ScreenRenderContext'
 
@@ -119,6 +124,8 @@ export function appendScreenStackPropsToOptions(
   function appendChildOptions(child: React.ReactElement, options: StackScreenOptions) {
     if (child.type === StackHeaderComponent) {
       return appendStackHeaderPropsToOptions(options, child.props as StackHeaderProps)
+    } else if (child.type === StackToolbar) {
+      return appendStackToolbarPropsToOptions(options, child.props as StackToolbarProps)
     } else {
       console.warn(
         `Warning: Unknown child element passed to Stack.Screen: ${(child.type as { name: string }).name ?? child.type}`
