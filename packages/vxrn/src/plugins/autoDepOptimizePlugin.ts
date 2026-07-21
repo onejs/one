@@ -17,12 +17,8 @@ const { debug, debugDetails } = createDebugger(name)
 
 type FindDepsOptions = AutoDepOptimizationOptions & {
   root: string
-  noExternal?: boolean
-  external?: (string | RegExp)[]
   onScannedDeps?: (result: ScanDepsResult) => void
 }
-
-const scanVersion = 2
 
 export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
   return {
@@ -51,8 +47,6 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
       const finalConfig = await getScannedOptimizeDepsConfig({
         ...props,
         mode: env.mode,
-        noExternal: cfg.ssr?.noExternal === true,
-        external: Array.isArray(cfg.ssr?.external) ? cfg.ssr.external : [],
         exclude: [
           ...exclude,
           ...userExcludes,
@@ -105,8 +99,6 @@ let sessionCacheVal: ScanDepsResult | null = null
 export async function findDepsToOptimize({
   root,
   mode,
-  noExternal,
-  external,
   exclude,
   include,
 }: FindDepsOptionsByMode) {
@@ -137,15 +129,11 @@ export async function findDepsToOptimize({
   if (lockFileHash && !noCache) {
     try {
       const {
-        scanVersion: cachedScanVersion,
-        noExternal: cachedNoExternal,
         lockFileHash: cachedLockFileHash,
         depsToPreBundleForSsr: cachedDepsToPreBundle,
       } = await FSExtra.readJSON(cacheFilePath)
 
       if (
-        cachedScanVersion === scanVersion &&
-        cachedNoExternal === noExternal &&
         lockFileHash === cachedLockFileHash &&
         !!cachedDepsToPreBundle &&
         'prebundleDeps' in cachedDepsToPreBundle
@@ -161,15 +149,7 @@ export async function findDepsToOptimize({
   const filter = createFilter(include, exclude)
 
   if (!value) {
-    const excludedDependencies = (Array.isArray(exclude) ? exclude : [exclude]).filter(
-      (dep): dep is string => typeof dep === 'string'
-    )
-    value = await scanDepsToOptimize(`${root}/package.json`, {
-      filter,
-      noExternal,
-      external,
-      excludedDependencies,
-    })
+    value = await scanDepsToOptimize(`${root}/package.json`, { filter })
 
     if (sessionCache) {
       sessionCacheVal = value
@@ -177,8 +157,6 @@ export async function findDepsToOptimize({
 
     if (!noCache) {
       void FSExtra.outputJSON(cacheFilePath, {
-        scanVersion,
-        noExternal,
         lockFileHash,
         depsToPreBundleForSsr: value,
       })
