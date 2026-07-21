@@ -15,13 +15,7 @@ One ships `@vxrn/native` — a package of native navigation primitives that brin
 npm install @vxrn/native
 ```
 
-No Expo Modules dependency — `@vxrn/native` uses standard React Native native modules (RCTViewManager + TurboModules).
-
-For iOS, add to your Podfile:
-
-```ruby
-pod 'VxrnNative', :path => '../node_modules/@vxrn/native/ios'
-```
+`@vxrn/native` uses standard React Native native modules (RCTViewManager + TurboModules) and links automatically during the native build.
 
 ---
 
@@ -100,6 +94,8 @@ function DetailScreen() {
 ## Toolbar
 
 Native iOS `UIToolbar` rendered at the bottom of the screen. Supports SF Symbols, badges, and Liquid Glass on iOS 26.
+
+For routed screens, prefer [`Stack.Toolbar`](/docs/components-Stack#stacktoolbar). It adds header and bottom toolbars with buttons, menus, spacers, custom views, and search-bar placement. The primitives below are the lower-level API used by `Stack.Toolbar`.
 
 ```tsx
 import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'

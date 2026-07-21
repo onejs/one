@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "~7.2.2",
+    "@vxrn/native": "workspace:*",
     "expo": "~55.0.7",
     "expo-build-properties": "~55.0.9",
     "expo-clipboard": "~55.0.8",

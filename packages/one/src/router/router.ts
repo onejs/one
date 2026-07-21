@@ -75,9 +75,8 @@ export { getSafeWindowPathname } from './path'
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
 
-// Global registry for protected routes
-// Key: contextKey (e.g., '/protected-test'), Value: Set of protected route names
-const protectedRouteRegistry = new Map<string, Set<string>>()
+// key: navigator context, value: guarded route names and their optional redirect targets.
+const protectedRouteRegistry = new Map<string, Map<string, OneRouter.Href | undefined>>()
 
 /**
  * Register protected routes for a navigator context.
@@ -85,12 +84,12 @@ const protectedRouteRegistry = new Map<string, Set<string>>()
  */
 export function registerProtectedRoutes(
   contextKey: string,
-  protectedScreens: Set<string>
+  guardedRedirects: Map<string, OneRouter.Href | undefined>
 ) {
-  if (protectedScreens.size === 0) {
+  if (guardedRedirects.size === 0) {
     protectedRouteRegistry.delete(contextKey)
   } else {
-    protectedRouteRegistry.set(contextKey, protectedScreens)
+    protectedRouteRegistry.set(contextKey, guardedRedirects)
   }
 }
 
@@ -106,31 +105,57 @@ export function unregisterProtectedRoutes(contextKey: string) {
  * Check if a route path is protected and should be blocked.
  * Returns true if the route is protected.
  */
-export function isRouteProtected(href: string): boolean {
-  // Normalize the href (remove leading/trailing slashes)
-  const normalizedHref = href.replace(/^\/+|\/+$/g, '')
+function getProtectedRedirect(href: string): OneRouter.Href | undefined | false {
+  const normalizedHref = extractPathnameFromHref(href).replace(/^\/+|\/+$/g, '')
 
-  // Check each navigator context to see if this route is protected
-  for (const [contextKey, protectedScreens] of protectedRouteRegistry) {
+  for (const [contextKey, guardedRedirects] of protectedRouteRegistry) {
     const normalizedContextKey = contextKey.replace(/^\/+|\/+$/g, '')
 
-    // Check if this href is under this context
-    if (normalizedHref.startsWith(normalizedContextKey)) {
-      // Get the route name relative to this context
+    if (
+      !normalizedContextKey ||
+      normalizedHref === normalizedContextKey ||
+      normalizedHref.startsWith(`${normalizedContextKey}/`)
+    ) {
       const relativePath = normalizedHref
         .slice(normalizedContextKey.length)
         .replace(/^\//, '')
       const routeName = relativePath.split('/')[0] || 'index'
-
-      // normalize /index suffix so e.g. "otp/[flow]" matches "otp/[flow]/index"
       const normalizedRouteName = routeName.replace(/\/index$/, '')
-      if (protectedScreens.has(routeName) || protectedScreens.has(normalizedRouteName)) {
-        return true
+
+      if (guardedRedirects.has(routeName)) {
+        return guardedRedirects.get(routeName)
+      }
+      if (guardedRedirects.has(normalizedRouteName)) {
+        return guardedRedirects.get(normalizedRouteName)
       }
     }
   }
 
   return false
+}
+
+/** resolve a protected href to its allowed redirect target. */
+export function resolveProtectedHref(href: string): string | undefined {
+  let target = href
+  const visited = new Set<string>()
+
+  while (!visited.has(target)) {
+    visited.add(target)
+    const redirectTo = getProtectedRedirect(target)
+    if (redirectTo === false) {
+      return target
+    }
+    if (redirectTo === undefined) {
+      return undefined
+    }
+    target = resolveHref(redirectTo)
+  }
+
+  return undefined
+}
+
+export function isRouteProtected(href: string): boolean {
+  return getProtectedRedirect(href) !== false
 }
 
 export let hasAttemptedToHideSplash = false
@@ -1077,9 +1102,12 @@ export async function linkTo(
     return
   }
 
-  // Check if the route is protected and should be blocked
-  if (isRouteProtected(href)) {
+  const protectedHref = resolveProtectedHref(href)
+  if (!protectedHref) {
     return
+  }
+  if (protectedHref !== href) {
+    return linkTo(protectedHref, 'REPLACE', options)
   }
 
   // Check for intercepting routes (parallel routes with @slot)

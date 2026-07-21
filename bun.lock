@@ -386,6 +386,7 @@
         "@ungap/structured-clone": "^1.2.0",
         "@vxrn/color-scheme": "workspace:*",
         "@vxrn/compiler": "workspace:*",
+        "@vxrn/native": "workspace:*",
         "@vxrn/resolve": "workspace:*",
         "@vxrn/tslib-lite": "workspace:*",
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
@@ -774,6 +775,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@react-navigation/native": "~7.2.2",
+        "@vxrn/native": "workspace:*",
         "expo": "~55.0.7",
         "expo-build-properties": "~55.0.9",
         "expo-clipboard": "~55.0.8",

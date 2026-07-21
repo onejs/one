@@ -309,15 +309,15 @@ describe('@vxrn/native integration tests', () => {
 
   // -- toolbar --
 
-  describe.skip('Toolbar', () => {
+  describe('Toolbar', () => {
     test(
       'toolbar screen renders with all items described',
       sharedTestOptions,
       async () => {
         await navigateTo(driver, '/toolbar-test')
-        await waitForElement(driver, 'toolbar-test-screen', { timeout: 30_000 })
-
-        const title = await waitForElement(driver, 'toolbar-test-title')
+        const title = await waitForElement(driver, 'toolbar-test-title', {
+          timeout: 30_000,
+        })
         expect(await title.getText()).toBe('Toolbar Test')
 
         // verify the status card shows initial state
@@ -356,6 +356,17 @@ describe('@vxrn/native integration tests', () => {
       expect(await status.getText()).toBe('Toolbar test rendered')
 
       await captureScreenshot(driver, 'toolbar-with-items')
+    })
+
+    test('bottom toolbar button invokes its page action', sharedTestOptions, async () => {
+      const addButton = await waitForElement(driver, 'Add')
+      await addButton.click()
+
+      const lastAction = await waitForElement(driver, 'toolbar-last-action')
+      expect(await lastAction.getText()).toBe('add')
+
+      const actionCount = await waitForElement(driver, 'toolbar-action-count')
+      expect(await actionCount.getText()).toBe('1')
     })
   })
 

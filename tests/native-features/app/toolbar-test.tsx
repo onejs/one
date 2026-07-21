@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'
+import { Stack } from 'one'
+import { Color } from '@vxrn/native'
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native'
 
 export default function ToolbarTestScreen() {
@@ -14,6 +15,28 @@ export default function ToolbarTestScreen() {
 
   return (
     <View style={styles.container} testID="toolbar-test-screen">
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button icon="bell" onPress={() => handleAction('notifications')}>
+          <Stack.Toolbar.Label>Notifications</Stack.Toolbar.Label>
+          <Stack.Toolbar.Badge>3</Stack.Toolbar.Badge>
+        </Stack.Toolbar.Button>
+        <Stack.Toolbar.Menu icon="ellipsis.circle" title="Actions">
+          <Stack.Toolbar.MenuAction
+            icon="square.and.arrow.up"
+            onPress={() => handleAction('share')}
+          >
+            Share
+          </Stack.Toolbar.MenuAction>
+          <Stack.Toolbar.MenuAction
+            icon="trash"
+            destructive
+            onPress={() => handleAction('delete')}
+          >
+            Delete
+          </Stack.Toolbar.MenuAction>
+        </Stack.Toolbar.Menu>
+      </Stack.Toolbar>
+
       <ScrollView contentContainerStyle={styles.content}>
         <Text testID="toolbar-test-title" style={styles.title}>
           Toolbar Test
@@ -75,48 +98,46 @@ export default function ToolbarTestScreen() {
       </ScrollView>
 
       {/* native toolbar host with items */}
-      <ToolbarHost>
-        <ToolbarItem
-          identifier="add-button"
-          title="Add"
-          systemImageName="plus"
+      <Stack.Toolbar>
+        <Stack.Toolbar.Button
+          icon="plus"
           tintColor={isIOS ? Color.ios.systemBlue : undefined}
-          onSelected={() => handleAction('add')}
-        />
+          onPress={() => handleAction('add')}
+        >
+          Add
+        </Stack.Toolbar.Button>
 
-        <ToolbarItem identifier="search-bar" type="searchBar" title="Search" />
+        <Stack.Toolbar.SearchBarSlot />
 
-        <ToolbarItem identifier="spacer-1" type="fluidSpacer" />
+        <Stack.Toolbar.Spacer />
 
-        <ToolbarItem
-          identifier="share-button"
-          title="Share"
-          systemImageName="square.and.arrow.up"
-          barButtonItemStyle="prominent"
-          onSelected={() => handleAction('share')}
-        />
+        <Stack.Toolbar.Button
+          icon="square.and.arrow.up"
+          variant="prominent"
+          onPress={() => handleAction('share')}
+        >
+          Share
+        </Stack.Toolbar.Button>
 
-        <ToolbarItem
-          identifier="settings-button"
-          title="Settings"
-          systemImageName="gearshape"
-          badgeConfiguration={{
-            value: '3',
-            backgroundColor: isIOS ? (Color.ios.systemRed as any) : 'red',
-          }}
-          onSelected={() => handleAction('settings')}
-        />
+        <Stack.Toolbar.Button icon="gearshape" onPress={() => handleAction('settings')}>
+          <Stack.Toolbar.Label>Settings</Stack.Toolbar.Label>
+          <Stack.Toolbar.Badge
+            style={{ backgroundColor: isIOS ? Color.ios.systemRed : 'red' }}
+          >
+            3
+          </Stack.Toolbar.Badge>
+        </Stack.Toolbar.Button>
 
-        <ToolbarItem identifier="fixed-spacer" type="fixedSpacer" width={20} />
+        <Stack.Toolbar.Spacer width={20} />
 
-        <ToolbarItem
-          identifier="disabled-button"
-          title="Disabled"
-          systemImageName="xmark"
+        <Stack.Toolbar.Button
+          icon="xmark"
           disabled
-          onSelected={() => handleAction('disabled')}
-        />
-      </ToolbarHost>
+          onPress={() => handleAction('disabled')}
+        >
+          Disabled
+        </Stack.Toolbar.Button>
+      </Stack.Toolbar>
     </View>
   )
 }

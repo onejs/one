@@ -1,6 +1,7 @@
 import React, { createContext, type ReactNode, useContext } from 'react'
 import { findFocusedRoute } from '../fork/findFocusedRoute'
 import type { ErrorBoundaryProps } from '../views/Try'
+import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import type { LoaderProps } from '../types'
 import type { One } from '../vite/types'
 import type { ParamValidator, RouteValidationFn } from '../validateParams'
@@ -37,6 +38,7 @@ export type SlotConfig = {
 
 export type LoadedRoute = {
   ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>
+  SuspenseFallback?: React.ComponentType<SuspenseFallbackProps>
   default?: React.ComponentType<any>
   unstable_settings?: Record<string, any>
   getNavOptions?: (args: any) => any
@@ -124,8 +126,14 @@ export const RouteParamsContext = createContext<
 
 const CurrentRouteContext = React.createContext<RouteNode | null>(null)
 
+/** Allows a layout to provide a Suspense fallback for its child routes. */
+export const SuspenseFallbackContext = createContext<
+  React.ComponentType<SuspenseFallbackProps> | undefined
+>(undefined)
+
 if (process.env.NODE_ENV !== 'production') {
   CurrentRouteContext.displayName = 'RouteNode'
+  SuspenseFallbackContext.displayName = 'SuspenseFallback'
 }
 
 /** Return the RouteNode at the current contextual boundary. */

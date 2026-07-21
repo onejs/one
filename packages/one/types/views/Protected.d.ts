@@ -1,7 +1,10 @@
 import { type FunctionComponent, type ReactElement, type ReactNode } from 'react';
+import type { OneRouter } from '../interfaces/router';
 declare const Group: any;
 export type ProtectedProps = {
     guard: boolean;
+    /** where to redirect when `guard` is false. defaults to the navigator's first available route. */
+    redirectTo?: OneRouter.Href;
     children?: ReactNode;
 };
 /**

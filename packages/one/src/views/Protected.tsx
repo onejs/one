@@ -5,6 +5,7 @@ import {
   type ReactNode,
   isValidElement,
 } from 'react'
+import type { OneRouter } from '../interfaces/router'
 
 // Get Group component directly from react-navigation core
 // (avoids pulling in @react-navigation/elements which has asset imports)
@@ -12,6 +13,8 @@ const { Group } = createNavigatorFactory({} as any)()
 
 export type ProtectedProps = {
   guard: boolean
+  /** where to redirect when `guard` is false. defaults to the navigator's first available route. */
+  redirectTo?: OneRouter.Href
   children?: ReactNode
 }
 
