@@ -177,7 +177,9 @@
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch"
   },
   "dependencies": {
+    "axios": "1.18.1",
     "one": "^1.21.3",
+    "shell-quote": "1.8.4",
     "vxrn": "^1.21.3"
   }
 }
