@@ -1,7 +1,5 @@
 import React from 'react'
-import { Platform, Text, View } from 'react-native'
-import { checkSkewAndReload } from '../skewProtection'
-import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
+import { Text, View } from 'react-native'
 
 type RootErrorBoundaryState = {
   hasError: boolean
@@ -29,40 +27,6 @@ export class RootErrorBoundary extends React.Component<
     console.error(
       `[One] Root error boundary caught error:\n${printError(error)}\n${info.componentStack}`
     )
-
-    // skew protection: chunk-load errors are unambiguous → reload immediately.
-    // for any other render error, do a one-shot version check and only reload
-    // if the deployed build actually changed. genuine bugs fall through to the
-    // fallback UI below.
-    if (
-      process.env.TAMAGUI_TARGET !== 'native' &&
-      process.env.NODE_ENV === 'production' &&
-      process.env.ONE_SKEW_PROTECTION !== 'false'
-    ) {
-      if (isChunkLoadError(error)) {
-        handleSkewError()
-      } else {
-        checkSkewAndReload()
-      }
-    }
-
-    // Dispatch error event for devtools (web only - CustomEvent doesn't exist on native)
-    if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
-      window.dispatchEvent(
-        new CustomEvent('one-error', {
-          detail: {
-            error: {
-              message: error.message,
-              stack: error.stack,
-              name: error.name,
-            },
-            componentStack: info.componentStack,
-            timestamp: Date.now(),
-            type: 'render',
-          },
-        })
-      )
-    }
   }
 
   handleRetry = () => {
@@ -71,128 +35,8 @@ export class RootErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      const { error, componentStack } = this.state
-      const isDev = process.env.NODE_ENV === 'development'
+      const { error } = this.state
 
-      // Web fallback UI
-      if (Platform.OS === 'web') {
-        return (
-          <div
-            style={{
-              minHeight: '100vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#0a0a0f',
-              fontFamily:
-                '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-              color: '#e8e8e8',
-              padding: 24,
-            }}
-          >
-            <div
-              style={{
-                maxWidth: 500,
-                width: '100%',
-                textAlign: 'center',
-              }}
-            >
-              <div
-                style={{
-                  width: 64,
-                  height: 64,
-                  backgroundColor: '#ef4444',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 24px',
-                }}
-              >
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-              </div>
-              <h1
-                style={{
-                  fontSize: 24,
-                  fontWeight: 600,
-                  marginBottom: 8,
-                }}
-              >
-                Something went wrong
-              </h1>
-              <p
-                style={{
-                  fontSize: 14,
-                  color: '#888',
-                  marginBottom: 24,
-                }}
-              >
-                {error?.message || 'An unexpected error occurred'}
-              </p>
-              <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-                <button
-                  onClick={this.handleRetry}
-                  style={{
-                    padding: '12px 24px',
-                    backgroundColor: '#3b82f6',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: 8,
-                    fontSize: 14,
-                    fontWeight: 500,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Try Again
-                </button>
-                <button
-                  onClick={() => {
-                    if (typeof window !== 'undefined') {
-                      window.location.href = '/'
-                    }
-                  }}
-                  style={{
-                    padding: '12px 24px',
-                    backgroundColor: 'transparent',
-                    color: '#888',
-                    border: '1px solid #3a3a5a',
-                    borderRadius: 8,
-                    fontSize: 14,
-                    fontWeight: 500,
-                    cursor: 'pointer',
-                  }}
-                >
-                  Go Home
-                </button>
-              </div>
-              {isDev && (
-                <p
-                  style={{
-                    fontSize: 11,
-                    color: '#666',
-                    marginTop: 24,
-                  }}
-                >
-                  Press Alt+E to view error details
-                </p>
-              )}
-            </div>
-          </div>
-        )
-      }
-
-      // Native fallback UI
       return (
         <View
           style={{

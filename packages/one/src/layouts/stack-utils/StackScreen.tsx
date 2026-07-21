@@ -3,6 +3,7 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Children, isValidElement, useMemo, type PropsWithChildren } from 'react'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 import {
   StackHeaderComponent,
   appendStackHeaderPropsToOptions,
@@ -14,21 +15,14 @@ import {
   type StackToolbarProps,
 } from './StackToolbar'
 import { Screen } from '../../views/Screen'
-import type { StackRender } from '../../router/web/ScreenRenderContext'
 
-export type StackScreenOptions = NativeStackNavigationOptions & {
-  /**
-   * Per-route override of the Stack-level `render` prop. Same platform-keyed
-   * shape (`{ web?, ios?, android? }`); v1 consumes `web` only. When set, it
-   * takes precedence over the Stack-level render for this route.
-   */
-  render?: StackRender
+export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
+  presentation?: NativeStackNavigationOptions['presentation'] | 'sheet' | (string & {})
 
   /**
    * Web-only. When `true`, the route's React subtree stays mounted across
    * dismissal and re-navigation - `useState`, `useId`, `useReducer`, refs,
-   * and anything stored in the route component all survive. The render
-   * component receives `open: false` while the route is "closed".
+   * and anything stored in the route component all survive.
    *
    * Caveat: route params are captured at first mount. If the same route is
    * navigated to with different params later, the captured subtree keeps
@@ -68,7 +62,9 @@ export function StackScreen({ children, options, ...rest }: StackScreenProps) {
   return <Screen {...rest} options={updatedOptions as NativeStackNavigationOptions} />
 }
 
-const VALID_PRESENTATIONS = [
+Object.assign(StackScreen, { [NAVIGATOR_CONFIG]: true })
+
+const NATIVE_PRESENTATIONS = [
   'card',
   'modal',
   'transparentModal',
@@ -79,38 +75,33 @@ const VALID_PRESENTATIONS = [
   'pageSheet',
 ] as const
 
-// validates presentation value in dev to prevent native crashes from invalid values
-export function validateStackPresentation(
-  options: NativeStackNavigationOptions
-): NativeStackNavigationOptions
+// maps semantic and custom presentations to native-stack values on native
+export function validateStackPresentation(options: StackScreenOptions): StackScreenOptions
 export function validateStackPresentation<
-  F extends (...args: never[]) => NativeStackNavigationOptions,
+  F extends (...args: never[]) => StackScreenOptions,
 >(options: F): F
 export function validateStackPresentation(
-  options:
-    | NativeStackNavigationOptions
-    | ((...args: never[]) => NativeStackNavigationOptions)
-): ((...args: never[]) => NativeStackNavigationOptions) | NativeStackNavigationOptions {
+  options: StackScreenOptions | ((...args: never[]) => StackScreenOptions)
+): ((...args: never[]) => StackScreenOptions) | StackScreenOptions {
   if (typeof options === 'function') {
     return (...args: never[]) => {
-      const resolved = options(...args)
-      validateStackPresentation(resolved)
-      return resolved
+      return validateStackPresentation(options(...args))
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    const presentation = options.presentation
-    if (
-      presentation &&
-      !VALID_PRESENTATIONS.includes(presentation as (typeof VALID_PRESENTATIONS)[number])
-    ) {
-      console.warn(
-        `Invalid presentation value "${presentation}" passed to Stack.Screen. Valid values are: ${VALID_PRESENTATIONS.map((v) => `"${v}"`).join(', ')}.`
-      )
-    }
+  if (process.env.TAMAGUI_TARGET === 'web' || !options.presentation) {
+    return options
   }
-  return options
+
+  if (options.presentation === 'sheet') {
+    return { ...options, presentation: 'formSheet' }
+  }
+
+  return NATIVE_PRESENTATIONS.includes(
+    options.presentation as (typeof NATIVE_PRESENTATIONS)[number]
+  )
+    ? options
+    : { ...options, presentation: 'modal' }
 }
 
 export function appendScreenStackPropsToOptions(
@@ -119,13 +110,20 @@ export function appendScreenStackPropsToOptions(
 ): StackScreenOptions {
   let updatedOptions: StackScreenOptions = { ...options, ...props.options }
 
-  validateStackPresentation(updatedOptions)
+  updatedOptions = validateStackPresentation(updatedOptions)
 
   function appendChildOptions(child: React.ReactElement, options: StackScreenOptions) {
     if (child.type === StackHeaderComponent) {
-      return appendStackHeaderPropsToOptions(options, child.props as StackHeaderProps)
+      // widened presentation strings are erased before native-stack consumes options
+      return appendStackHeaderPropsToOptions(
+        options as NativeStackNavigationOptions,
+        child.props as StackHeaderProps
+      ) as StackScreenOptions
     } else if (child.type === StackToolbar) {
-      return appendStackToolbarPropsToOptions(options, child.props as StackToolbarProps)
+      return appendStackToolbarPropsToOptions(
+        options as NativeStackNavigationOptions,
+        child.props as StackToolbarProps
+      ) as StackScreenOptions
     } else {
       console.warn(
         `Warning: Unknown child element passed to Stack.Screen: ${(child.type as { name: string }).name ?? child.type}`

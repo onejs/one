@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Platform } from 'react-native'
 
 export type BlockerState = 'unblocked' | 'blocked' | 'proceeding'
 
@@ -214,7 +213,7 @@ export function useBlocker(shouldBlock: BlockerFunction | boolean): Blocker {
 
   React.useEffect(() => {
     // Only run on web
-    if (Platform.OS !== 'web' || typeof window === 'undefined') return
+    if (process.env.TAMAGUI_TARGET !== 'web' || typeof window === 'undefined') return
 
     setupListeners()
 
@@ -315,7 +314,7 @@ export function checkBlocker(
   nextLocation: string,
   historyAction: 'push' | 'pop' | 'replace' = 'push'
 ): boolean {
-  if (Platform.OS !== 'web' || typeof window === 'undefined') {
+  if (process.env.TAMAGUI_TARGET !== 'web' || typeof window === 'undefined') {
     return false
   }
 

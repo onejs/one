@@ -1,47 +1,45 @@
 'use client'
 
+import type { ParamListBase } from '@react-navigation/core'
 import {
   StackActions,
-  type ParamListBase,
   type StackActionHelpers,
   type StackNavigationState,
-} from '@react-navigation/native'
+} from '@react-navigation/routers'
 import type {
   NativeStackNavigationEventMap,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack'
-import { NativeStackView } from '@react-navigation/native-stack'
 import {
+  Activity,
   Fragment,
   useCallback,
   useRef,
-  useState,
   type ReactElement,
   type ReactNode,
 } from 'react'
+import useLatestCallback from 'use-latest-callback'
 
+import { devHeadlessNote } from '../../headless/devHeadlessNote'
+import { useNavigationRenderWeb } from '../../headless/NavigationRender'
+import type { NavigationRenderOpts, ScreenEntry } from '../../headless/types'
 import {
-  convertStackStateToNonOverlayState,
-  findLastNonOverlayIndex,
-  isOverlayPresentation,
-} from './stackStateUtils'
-import {
-  type StackRender,
-  type StackRenderComponent,
-  type StackRenderProps,
-  useStackRender,
-} from './ScreenRenderContext'
+  StackStateProvider,
+  useStack,
+  type HeadlessStackDescriptors,
+} from '../../headless/useStack'
+import { findLastNonOverlayIndex } from './stackStateUtils'
 
-type RouteOptions = NativeStackNavigationOptions & {
-  render?: StackRender
+type RouteOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
   keepMounted?: boolean
+  presentation?: NativeStackNavigationOptions['presentation'] | 'sheet' | string
 }
 
 type Descriptors = Record<
   string,
   {
     options: RouteOptions
-    render: () => ReactNode
+    render: () => ReactElement
     navigation: any
   }
 >
@@ -49,216 +47,228 @@ type Descriptors = Record<
 type WebStackViewProps = {
   state: StackNavigationState<ParamListBase>
   navigation: StackActionHelpers<ParamListBase> & {
+    goBack: () => void
     dispatch: (action: any) => void
   }
   descriptors: Descriptors
-  describe?: (route: any, placeholder?: boolean) => any
+  customChildren?: ReactNode[]
   eventMap?: NativeStackNavigationEventMap
 }
 
-/**
- * Resolve which render component to use for an overlay route, in order:
- *   1. options.render?.web        (per-route override)
- *   2. context.web                (Stack-level default; also fed by setupRendering)
- * Returns undefined when neither is set.
- */
-export function resolveOverlayRender(
-  options: RouteOptions | undefined,
-  contextRender: StackRender | undefined
-): StackRenderComponent | undefined {
-  return options?.render?.web ?? contextRender?.web
-}
-
-type PersistentSlot = {
+type PersistentScreen = {
   routeName: string
-  Render: StackRenderComponent
-  options: RouteOptions
-  content: ReactElement
+  screen: ScreenEntry
 }
 
 export function WebStackView({
   state,
   navigation,
   descriptors,
-  describe,
+  customChildren,
 }: WebStackViewProps) {
-  const contextRender = useStackRender()
+  return (
+    <StackStateProvider
+      state={state}
+      navigation={navigation}
+      descriptors={descriptors as HeadlessStackDescriptors}
+    >
+      <HeadlessStackView
+        state={state}
+        navigation={navigation}
+        descriptors={descriptors}
+        customChildren={customChildren}
+      />
+    </StackStateProvider>
+  )
+}
 
-  // Persistent slots survive route pops for routes with `keepMounted: true`.
-  // Keyed by route NAME (not key) so re-navigation reuses the same mount.
-  const persistentSlotsRef = useRef<Map<string, PersistentSlot>>(new Map())
+function HeadlessStackView({
+  state,
+  navigation,
+  descriptors,
+  customChildren,
+}: WebStackViewProps) {
+  const stack = useStack()
+  const renderWeb = useNavigationRenderWeb()
+  const persistentScreens = useRef<Map<string, PersistentScreen>>(new Map())
 
-  // Capture / refresh persistent slots from current descriptors.
-  for (const route of state.routes) {
-    const desc = descriptors[route.key]
-    if (!desc) continue
-    const { options } = desc
-    if (!options.keepMounted) continue
-    if (!isOverlayPresentation(options)) continue
-    const Render = resolveOverlayRender(options, contextRender)
-    if (!Render) continue
-    if (persistentSlotsRef.current.has(route.name)) continue
-    persistentSlotsRef.current.set(route.name, {
-      routeName: route.name,
-      Render,
-      options,
-      content: desc.render() as ReactElement,
-    })
+  if (customChildren?.length) {
+    return <Fragment>{customChildren}</Fragment>
   }
 
-  // Compute which routes are currently focused as overlays (trailing).
-  const isOverlayCandidate = (options: NativeStackNavigationOptions | undefined | null) =>
-    isOverlayPresentation(options) &&
-    resolveOverlayRender(options ?? undefined, contextRender) !== undefined
+  devHeadlessNote('Stack')
 
-  const nonOverlay = convertStackStateToNonOverlayState(
+  const lastBaseIndex = findLastNonOverlayIndex(
     state,
     descriptors,
-    isOverlayCandidate
+    (options) => getPresentationType(options) !== undefined
   )
-  const underlyingState = {
-    ...state,
-    routes: nonOverlay.routes,
-    index: nonOverlay.index,
-  } as StackNavigationState<ParamListBase>
-
-  const lastNonOverlay = findLastNonOverlayIndex(state, descriptors, isOverlayCandidate)
-  const trailingOverlays = state.routes.slice(lastNonOverlay + 1)
-
-  // Track which route NAMES are currently focused as a trailing overlay, so
-  // persistent slots know whether to be open or just kept-mounted-hidden.
-  const focusedOverlayNames = new Set(trailingOverlays.map((r) => r.name))
-
-  // Trailing overlays that AREN'T keepMounted render in the regular slot.
-  const regularOverlays = trailingOverlays.filter(
-    (r) => !descriptors[r.key]?.options.keepMounted
+  const baseRouteKeys = new Set(
+    state.routes.slice(0, lastBaseIndex + 1).map((route) => route.key)
   )
+  const baseFocusedKey = state.routes[lastBaseIndex]?.key
+  const overlayRoutes = state.routes.slice(lastBaseIndex + 1)
+  const overlayRouteNames = new Set(overlayRoutes.map((route) => route.name))
+
+  for (const screen of stack.screens) {
+    if (
+      screen.keepMounted &&
+      getPresentationType(screen.options) &&
+      !persistentScreens.current.has(screen.name)
+    ) {
+      persistentScreens.current.set(screen.name, {
+        routeName: screen.name,
+        screen,
+      })
+    }
+  }
 
   return (
     <Fragment>
-      <NativeStackView
-        state={underlyingState}
-        descriptors={descriptors as any}
-        navigation={navigation as any}
-        describe={describe as any}
-      />
+      {stack.screens.map((screen) => {
+        if (!baseRouteKeys.has(screen.key)) return null
 
-      {regularOverlays.map((route) => (
-        <OverlayHost
-          key={route.key}
-          route={route}
-          descriptor={descriptors[route.key]!}
-          contextRender={contextRender}
-          open
-          onDismiss={() =>
-            navigation.dispatch({
-              ...StackActions.pop(),
-              source: route.key,
-              target: state.key,
-            })
-          }
-        />
-      ))}
+        if (screen.key === baseFocusedKey) {
+          return screen.keepMounted ? (
+            <Activity key={screen.key} mode="visible">
+              {screen.element}
+            </Activity>
+          ) : (
+            <Fragment key={screen.key}>{screen.element}</Fragment>
+          )
+        }
 
-      {/* Persistent slots - render once each, never unmount. `open` toggles
-          based on whether the route is the current trailing overlay. */}
-      {Array.from(persistentSlotsRef.current.values()).map((slot) => (
-        <PersistentOverlayHost
-          key={slot.routeName}
-          slot={slot}
-          open={focusedOverlayNames.has(slot.routeName)}
-          onDismiss={() => {
-            // Find the live route key for this name (if any) and pop it.
-            const live = state.routes.find((r) => r.name === slot.routeName)
-            if (live) {
-              navigation.dispatch({
-                ...StackActions.pop(),
-                source: live.key,
-                target: state.key,
-              })
-            }
-          }}
-        />
-      ))}
+        if (!screen.keepMounted) return null
+
+        return (
+          <Activity key={screen.key} mode="hidden">
+            {screen.element}
+          </Activity>
+        )
+      })}
+
+      {overlayRoutes
+        .filter((route) => !descriptors[route.key]?.options.keepMounted)
+        .map((route) => {
+          const screen = stack.screens.find((entry) => entry.key === route.key)
+          const type = getPresentationType(descriptors[route.key]?.options)
+          if (!screen || !type) return null
+
+          return (
+            <PresentationScreen
+              key={route.key}
+              screen={screen}
+              type={type}
+              open
+              renderWeb={renderWeb}
+              onDismiss={() =>
+                navigation.dispatch({
+                  ...StackActions.pop(),
+                  source: route.key,
+                  target: state.key,
+                })
+              }
+            />
+          )
+        })}
+
+      {Array.from(persistentScreens.current.values()).map((slot) => {
+        const open = overlayRouteNames.has(slot.routeName)
+        return (
+          <PresentationScreen
+            key={slot.routeName}
+            screen={slot.screen}
+            type={getPresentationType(slot.screen.options)!}
+            open={open}
+            renderWeb={renderWeb}
+            onDismiss={() => {
+              const route = state.routes.find((route) => route.name === slot.routeName)
+              if (route) {
+                navigation.dispatch({
+                  ...StackActions.pop(),
+                  source: route.key,
+                  target: state.key,
+                })
+              }
+            }}
+          />
+        )
+      })}
     </Fragment>
   )
 }
 
-export function OverlayHost({
-  route,
-  descriptor,
-  contextRender,
+function PresentationScreen({
+  screen,
+  type,
   open,
+  renderWeb,
   onDismiss,
 }: {
-  route: { key: string; name: string }
-  descriptor: Descriptors[string]
-  contextRender: StackRender | undefined
+  screen: ScreenEntry
+  type: 'sheet' | 'modal'
   open: boolean
+  renderWeb: ReturnType<typeof useNavigationRenderWeb>
   onDismiss: () => void
 }) {
-  const dismiss = useStableCallback(onDismiss)
+  const dismiss = useLatestCallback(onDismiss)
+  const onOpenChange = useCallback(
+    (nextOpen: boolean) => {
+      if (!nextOpen) dismiss()
+    },
+    [dismiss]
+  )
+  const opts: NavigationRenderOpts =
+    type === 'sheet'
+      ? {
+          type,
+          open,
+          onOpenChange,
+          options: {
+            sheetAllowedDetents: screen.options.sheetAllowedDetents,
+            sheetGrabberVisible: screen.options.sheetGrabberVisible,
+            sheetCornerRadius: screen.options.sheetCornerRadius,
+            sheetExpandsWhenScrolledToEdge: screen.options.sheetExpandsWhenScrolledToEdge,
+            gestureEnabled: screen.options.gestureEnabled,
+            title: screen.options.title,
+          },
+          screen,
+          children: screen.element,
+        }
+      : {
+          type,
+          open,
+          onOpenChange,
+          options: {
+            gestureEnabled: screen.options.gestureEnabled,
+            title: screen.options.title,
+          },
+          screen,
+          children: screen.element,
+        }
+  const rendered = renderWeb?.(opts)
+  const content = rendered ?? screen.element
 
-  const options = descriptor.options
-  const Render = resolveOverlayRender(options, contextRender)
-  const content = descriptor.render()
-
-  if (!Render || !isOverlayPresentation(options)) {
-    return <Fragment>{content}</Fragment>
+  if (screen.keepMounted) {
+    return <Activity mode={open ? 'visible' : 'hidden'}>{content}</Activity>
   }
 
-  const renderProps: StackRenderProps = {
-    routeKey: route.key,
-    routeName: route.name,
-    presentation: options.presentation!,
-    open,
-    dismiss,
-    dismissible: options.gestureEnabled ?? true,
-    sheetAllowedDetents: options.sheetAllowedDetents,
-    sheetGrabberVisible: options.sheetGrabberVisible,
-    sheetCornerRadius: options.sheetCornerRadius,
-    sheetInitialDetentIndex: options.sheetInitialDetentIndex,
-    sheetLargestUndimmedDetentIndex: options.sheetLargestUndimmedDetentIndex,
-    sheetExpandsWhenScrolledToEdge: options.sheetExpandsWhenScrolledToEdge,
-    children: content,
-  }
-
-  return <Render {...renderProps} />
+  return content
 }
 
-function PersistentOverlayHost({
-  slot,
-  open,
-  onDismiss,
-}: {
-  slot: PersistentSlot
-  open: boolean
-  onDismiss: () => void
-}) {
-  const dismiss = useStableCallback(onDismiss)
-  const { Render, options, content, routeName } = slot
-
-  const renderProps: StackRenderProps = {
-    routeKey: `__keepMounted:${routeName}`,
-    routeName,
-    presentation: options.presentation!,
-    open,
-    dismiss,
-    dismissible: options.gestureEnabled ?? true,
-    sheetAllowedDetents: options.sheetAllowedDetents,
-    sheetGrabberVisible: options.sheetGrabberVisible,
-    sheetCornerRadius: options.sheetCornerRadius,
-    sheetInitialDetentIndex: options.sheetInitialDetentIndex,
-    sheetLargestUndimmedDetentIndex: options.sheetLargestUndimmedDetentIndex,
-    sheetExpandsWhenScrolledToEdge: options.sheetExpandsWhenScrolledToEdge,
-    children: content,
+function getPresentationType(
+  options: { presentation?: string } | undefined | null
+): 'sheet' | 'modal' | undefined {
+  const presentation = options?.presentation
+  if (!presentation || presentation === 'card' || presentation === 'push') {
+    return undefined
   }
-
-  return <Render {...renderProps} />
-}
-
-function useStableCallback<T extends (...args: any[]) => any>(fn: T): T {
-  const [ref] = useState(() => ({ current: fn }))
-  ref.current = fn
-  return useCallback(((...args: any[]) => ref.current(...args)) as T, [ref])
+  if (
+    presentation === 'sheet' ||
+    presentation === 'formSheet' ||
+    presentation === 'pageSheet'
+  ) {
+    return 'sheet'
+  }
+  return 'modal'
 }

@@ -3,7 +3,7 @@ import type { NativeStackNavigationOptions } from '@react-navigation/native-stac
 declare const OVERLAY_PRESENTATIONS: readonly ["modal", "transparentModal", "fullScreenModal", "formSheet", "pageSheet", "containedModal", "containedTransparentModal"];
 type OverlayPresentation = (typeof OVERLAY_PRESENTATIONS)[number];
 type DescriptorMap = Record<string, {
-    options: NativeStackNavigationOptions;
+    options: Record<string, any>;
 }>;
 export declare function isOverlayPresentation(options: NativeStackNavigationOptions | undefined | null): boolean;
 export declare function isTransparentOverlay(options: NativeStackNavigationOptions | undefined | null): boolean;

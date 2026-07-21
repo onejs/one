@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { type GestureResponderEvent } from 'react-native';
+import type { GestureResponderEvent } from 'react-native';
 export declare function useLinkTo(props: {
     href: string;
     replace?: boolean;
