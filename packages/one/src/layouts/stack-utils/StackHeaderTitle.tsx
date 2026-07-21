@@ -1,6 +1,7 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Platform, StyleSheet, type StyleProp, type TextStyle } from 'react-native'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 import { convertFontWeightToStringFontWeight } from '../../utils/style'
 
 export type StackHeaderTitleProps = {
@@ -28,6 +29,8 @@ export type StackHeaderTitleProps = {
 export function StackHeaderTitle(_props: StackHeaderTitleProps) {
   return null
 }
+
+Object.assign(StackHeaderTitle, { [NAVIGATOR_CONFIG]: true })
 
 export function appendStackHeaderTitlePropsToOptions(
   options: NativeStackNavigationOptions,

@@ -1,17 +1,7 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
-import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import type { NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
-import { StackScreen, StackHeaderComponent, StackHeaderSearchBar } from './stack-utils';
-import { type StackRender } from '../router/web/ScreenRenderContext';
-type StackExtraProps = {
-    /**
-     * Platform-keyed render component for overlay routes (modal / formSheet /
-     * pageSheet / transparentModal / fullScreenModal). v1 consumes `web` only;
-     * `ios` / `android` are reserved for future use. Per-route overrides go on
-     * `<Stack.Screen options={{ render }} />`.
-     */
-    render?: StackRender;
-};
+import { StackHeaderComponent, StackHeaderSearchBar, StackScreen } from './stack-utils';
 export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
@@ -106,9 +96,10 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown> & StackExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+})), "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
     Screen: typeof StackScreen;
     Header: typeof StackHeaderComponent & {
+        __oneNavigatorConfig: boolean;
         Left: typeof import("./stack-utils").StackHeaderLeft;
         Right: typeof import("./stack-utils").StackHeaderRight;
         BackButton: typeof import("./stack-utils").StackHeaderBackButton;
@@ -118,6 +109,7 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
     Protected: React.FunctionComponent<import("..").ProtectedProps>;
     SearchBar: typeof StackHeaderSearchBar;
     Toolbar: ((props: import("./stack-utils").StackToolbarProps) => import("react/jsx-runtime").JSX.Element | null) & {
+        __oneNavigatorConfig: boolean;
         Button: typeof import("./stack-utils/StackToolbar").StackToolbarButton;
         Menu: typeof import("./stack-utils/StackToolbar").StackToolbarMenu;
         MenuAction: typeof import("./stack-utils/StackToolbar").StackToolbarMenuAction;

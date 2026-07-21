@@ -1,16 +1,6 @@
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
 import React from 'react';
-import { type TabsRender } from '../router/renderingRegistry';
-type TabsExtraProps = {
-    /**
-     * Platform-keyed tab bar component. Replaces the default bottom-tabs bar.
-     * v1 consumes `web` only; `ios` / `android` accepted for future use.
-     * Falls back to `setupRendering({ Tabs: { web } })` global registry if
-     * no prop is set, then to the built-in `BottomTabBar`.
-     */
-    render?: TabsRender;
-};
 export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
@@ -105,7 +95,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown> & TabsExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+})), "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
     Protected: React.FunctionComponent<import("..").ProtectedProps>;
     Screen: typeof import("../views/Screen").Screen;
 };

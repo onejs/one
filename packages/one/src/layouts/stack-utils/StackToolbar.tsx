@@ -20,6 +20,7 @@ import {
 } from 'react'
 import { Platform, StyleSheet, type ImageSourcePropType } from 'react-native'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 import type {
   StackToolbarBadgeProps,
   StackToolbarButtonProps,
@@ -523,7 +524,19 @@ export function StackToolbarView(props: StackToolbarViewProps) {
   )
 }
 
+Object.assign(StackToolbarComponent, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarButton, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarMenu, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarMenuAction, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarSpacer, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarSearchBarSlot, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarView, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarLabel, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarIcon, { [NAVIGATOR_CONFIG]: true })
+Object.assign(StackToolbarBadge, { [NAVIGATOR_CONFIG]: true })
+
 export const StackToolbar = Object.assign(StackToolbarComponent, {
+  [NAVIGATOR_CONFIG]: true,
   Button: StackToolbarButton,
   Menu: StackToolbarMenu,
   MenuAction: StackToolbarMenuAction,

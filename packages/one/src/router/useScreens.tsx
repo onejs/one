@@ -1,5 +1,4 @@
 import { createNavigatorFactory } from '@react-navigation/core'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import type {
   EventMapBase,
   NavigationState,
@@ -8,13 +7,17 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useContext, useEffect, useState } from 'react'
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ServerContextScript } from '../server/ServerContextScript'
+import { checkSkewAndReload } from '../skewProtection'
+import { getClientMatchesSnapshot } from '../useMatches'
+import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
+import { NamedSlot } from '../views/Navigator'
+import { RouteErrorView } from '../views/RouteErrorView'
+import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import { Try } from '../views/Try'
-import { checkSkewAndReload } from '../skewProtection'
-import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { DevHead } from '../vite/DevHead'
 import { getServerContext, useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
@@ -22,17 +25,14 @@ import {
   type DynamicConvention,
   type LoadedRoute,
   Route,
-  RouteParamsContext,
   type RouteNode,
+  RouteParamsContext,
   SuspenseFallbackContext,
   useRouteNode,
 } from './Route'
-import { SpaShellContext } from './SpaShellContext'
-import { NamedSlot } from '../views/Navigator'
-import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
-import { sortRoutesWithInitial } from './sortRoutes'
 import { getRouteHmrEpoch, subscribeRouteHmr } from './routeHmr'
-import { getClientMatchesSnapshot } from '../useMatches'
+import { SpaShellContext } from './SpaShellContext'
+import { sortRoutesWithInitial } from './sortRoutes'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -111,6 +111,13 @@ const cachedInlineCSSElements: React.ReactNode[] =
         return elements
       })()
     : []
+
+// zeroed so ssr and the first client render match; the provider measures the
+// real insets and frame from css env() on mount
+const SSR_SAFE_METRICS = {
+  frame: { x: 0, y: 0, width: 0, height: 0 },
+  insets: { top: 0, left: 0, right: 0, bottom: 0 },
+}
 
 /**
  * Separate component for rendering root layouts with HTML.
@@ -204,7 +211,9 @@ function RootLayoutRenderer({
         {headChildren}
       </head>
       <body key="body" suppressHydrationWarning {...bodyProps}>
-        <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
+        <SafeAreaProvider initialMetrics={SSR_SAFE_METRICS}>
+          {finalChildren}
+        </SafeAreaProvider>
       </body>
     </>
   )
@@ -733,65 +742,12 @@ class RouteErrorBoundary extends React.Component<
     if (this.state.hasError) {
       const { error, errorInfo } = this.state
       return (
-        <SafeAreaView style={{ backgroundColor: '#000' }}>
-          <View style={{ margin: 16, gap: 16 }}>
-            <Text
-              style={{
-                alignSelf: 'flex-start',
-                padding: 5,
-                margin: -5,
-                backgroundColor: 'red',
-                color: 'white',
-                fontSize: 20,
-                fontFamily: 'monospace',
-              }}
-            >
-              Error on route "{this.props.routeName}"
-            </Text>
-            <Text style={{ color: 'white', fontSize: 16, fontFamily: 'monospace' }}>
-              {error instanceof Error ? error.message : error}
-            </Text>
-            <TouchableOpacity onPress={this.clearError.bind(this)}>
-              <Text
-                style={{
-                  alignSelf: 'flex-start',
-                  margin: -6,
-                  padding: 6,
-                  backgroundColor: 'white',
-                  color: 'black',
-                  fontSize: 14,
-                  fontFamily: 'monospace',
-                }}
-              >
-                Retry
-              </Text>
-            </TouchableOpacity>
-            <ScrollView contentContainerStyle={{ gap: 12 }}>
-              {error instanceof Error ? (
-                <Text
-                  style={{
-                    color: 'white',
-                    fontSize: 12,
-                    fontFamily: 'monospace',
-                  }}
-                >
-                  {error.stack}
-                </Text>
-              ) : null}
-              {errorInfo?.componentStack ? (
-                <Text
-                  style={{
-                    color: 'white',
-                    fontSize: 12,
-                    fontFamily: 'monospace',
-                  }}
-                >
-                  Component Stack: {errorInfo.componentStack}
-                </Text>
-              ) : null}
-            </ScrollView>
-          </View>
-        </SafeAreaView>
+        <RouteErrorView
+          routeName={this.props.routeName}
+          error={error}
+          errorInfo={errorInfo}
+          onRetry={this.clearError.bind(this)}
+        />
       )
     }
 

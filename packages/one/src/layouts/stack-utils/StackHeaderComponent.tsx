@@ -3,6 +3,7 @@ import { Children, isValidElement, type ReactNode } from 'react'
 import { StyleSheet, type ColorValue, type StyleProp } from 'react-native'
 import type { ScreenStackHeaderConfigProps } from 'react-native-screens'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 import {
   appendStackHeaderBackButtonPropsToOptions,
   StackHeaderBackButton,
@@ -55,6 +56,8 @@ export interface StackHeaderProps {
 export function StackHeaderComponent(_props: StackHeaderProps) {
   return null
 }
+
+Object.assign(StackHeaderComponent, { [NAVIGATOR_CONFIG]: true })
 
 export function appendStackHeaderPropsToOptions(
   options: NativeStackNavigationOptions,
