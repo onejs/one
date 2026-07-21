@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Dimensions } from 'react-native'
 import { NativeSafeAreaProvider } from './NativeSafeAreaProvider'
+import { getWindowFrame } from './getWindowFrame'
 import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea-types'
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -43,13 +43,9 @@ export function SafeAreaProvider({
   )
   const [frame, setFrame] = React.useState<Rect>(
     initialMetrics?.frame ??
-      parentFrame ?? {
-        // Backwards compat so we render anyway if we don't have frame.
-        x: 0,
-        y: 0,
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-      }
+      parentFrame ??
+      // backwards compat so we render anyway if we don't have frame.
+      getWindowFrame()
   )
   const onInsetsChange = React.useCallback((event: InsetChangedEvent) => {
     const {
