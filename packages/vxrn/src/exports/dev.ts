@@ -94,11 +94,22 @@ export default defineConfig({
   const oneServerConfig = config?.plugins?.find(
     (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
   )?.[0]?.['__get']?.server
+  const viteServerConfig = config.server
 
   const options = await fillOptions({
     ...optionsIn,
     server: {
       ...oneServerConfig,
+      ...removeUndefined({
+        host:
+          viteServerConfig?.host === true
+            ? '0.0.0.0'
+            : typeof viteServerConfig?.host === 'string'
+              ? viteServerConfig.host
+              : undefined,
+        https: viteServerConfig?.https,
+        port: viteServerConfig?.port,
+      }),
       ...removeUndefined(optionsIn.server || {}),
     },
   })

@@ -1,4 +1,5 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { EventEmitter } from 'node:events'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -192,23 +193,31 @@ describe('createFileSystemRouterPlugin', () => {
 
     async function request(pathname: string) {
       const chunks: string[] = []
-      const req = {
+      const req = Object.assign(new EventEmitter(), {
+        aborted: false,
+        complete: true,
         originalUrl: pathname,
         url: pathname,
         headers: {
-          host: 'localhost',
+          ':authority': 'localhost',
+          ':method': 'GET',
         },
         method: 'GET',
-      }
-      const res = {
+      })
+      const res = Object.assign(new EventEmitter(), {
+        destroyed: false,
+        writableFinished: false,
         setHeader: vi.fn(),
         appendHeader: vi.fn(),
         writeHead: vi.fn(),
         write: vi.fn((chunk: string) => {
           chunks.push(chunk)
         }),
-        end: vi.fn(),
-      }
+        end: vi.fn(() => {
+          res.writableFinished = true
+          res.emit('finish')
+        }),
+      })
       const next = vi.fn((error?: unknown) => {
         if (error) {
           throw error

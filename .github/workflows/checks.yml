@@ -40,7 +40,7 @@ jobs:
         # GHSA-395f-4hp3-45gv shell-quote (npm-run-all/launch-editor)
         # GHSA-3jxr-9vmj-r5cp brace-expansion (ultra-runner/babel-jest)
         # GHSA-52cp-r559-cp3m js-yaml (vite plugins/rn cli)
-        run: bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m
+        run: bun run audit
 
       - name: Check
         run: bun run check
