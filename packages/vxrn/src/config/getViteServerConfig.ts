@@ -30,6 +30,7 @@ export async function getViteServerConfig(
           path: '/__vxrnhmr',
         },
         host: server.host,
+        https: server.https,
         port: server.port,
       },
       root,

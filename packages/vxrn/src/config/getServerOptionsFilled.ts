@@ -8,6 +8,7 @@ export async function getServerOptionsFilled(
   const {
     host = '0.0.0.0' /* TODO: Better default to 127.0.0.1 due to security reasons, and only dynamically change to 0.0.0.0 if the user is requesting an Expo QR code */,
     port: requestedPort,
+    https,
   } = serverOptions || {}
 
   const envPort = process.env.ONE_PORT ? Number(process.env.ONE_PORT) : undefined
@@ -16,7 +17,7 @@ export async function getServerOptionsFilled(
     : undefined
   const defaultPort = mode === 'dev' ? 8081 : 3000
   const portToUse = forcePort ?? requestedPort ?? envPort ?? defaultPort
-  const protocol = 'http:' as const
+  const protocol = https ? ('https:' as const) : ('http:' as const)
 
   // in cluster worker mode with SO_REUSEPORT, skip the port check —
   // multiple processes intentionally bind the same port

@@ -1,5 +1,6 @@
 import path from 'node:path'
 import { Readable } from 'node:stream'
+import { TLSSocket } from 'node:tls'
 import { debounce } from 'perfect-debounce'
 import colors from 'picocolors'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -746,10 +747,36 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           // prevent browsers (safari) from caching stale html/js in dev
           res.setHeader('Cache-Control', 'no-store')
 
+          const abortController = new AbortController()
+          const cleanupAbortListeners = () => {
+            req.removeListener('aborted', abortRequest)
+            req.removeListener('close', abortIncompleteRequest)
+            res.removeListener('close', abortIncompleteResponse)
+            res.removeListener('finish', cleanupAbortListeners)
+          }
+          const abortRequest = () => {
+            cleanupAbortListeners()
+            abortController.abort()
+          }
+          const abortIncompleteRequest = () => {
+            if (req.aborted || !req.complete) abortRequest()
+          }
+          const abortIncompleteResponse = () => {
+            if (!res.writableFinished) {
+              abortRequest()
+              return
+            }
+            cleanupAbortListeners()
+          }
+          req.on('aborted', abortRequest)
+          req.on('close', abortIncompleteRequest)
+          res.on('close', abortIncompleteResponse)
+          res.on('finish', cleanupAbortListeners)
+
           try {
             const redirects = options.web?.redirects
             if (redirects) {
-              const url = new URL(req.url || '', `http://${req.headers.host}`)
+              const url = new URL(req.url || '', 'http://127.0.0.1')
               for (const redirect of redirects) {
                 const regexStr = `^${redirect.source.replace(/:\w+/g, '([^/]+)')}$`
                 const match = url.pathname.match(new RegExp(regexStr))
@@ -778,10 +805,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             }
 
             const reply = await handleRequest.handler(
-              convertIncomingMessageToRequest(req)
+              convertIncomingMessageToRequest(req, abortController.signal)
             )
 
             if (!reply) {
+              cleanupAbortListeners()
               return next()
             }
 
@@ -831,7 +859,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                   return
                 }
                 try {
-                  Readable.fromWeb(reply.body as any).pipe(res)
+                  const body = Readable.fromWeb(reply.body as any)
+                  body.on('error', (error) => {
+                    if (!abortController.signal.aborted) {
+                      console.warn('Error streaming reply body to response:', error)
+                    }
+                    if (!res.destroyed) res.destroy()
+                  })
+                  body.pipe(res)
                 } catch (err) {
                   console.warn('Error piping reply body to response:', err)
                   res.end()
@@ -854,6 +889,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             res.end()
             return
           } catch (error) {
+            cleanupAbortListeners()
             console.error(`[one] routing error ${req.url}: ${error}`)
             // Forward the error to Vite
             next(error)
@@ -870,20 +906,29 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   } satisfies Plugin
 }
 
-const convertIncomingMessageToRequest = (req: Connect.IncomingMessage): Request => {
+const convertIncomingMessageToRequest = (
+  req: Connect.IncomingMessage,
+  signal: AbortSignal
+): Request => {
   if (!req.originalUrl) {
     throw new Error(`Can't convert: originalUrl is missing`)
   }
 
-  const urlBase = `http://${req.headers.host}`
+  const protocol =
+    req.socket instanceof TLSSocket && req.socket.encrypted ? 'https' : 'http'
+  const host = `${req.headers['x-forwarded-host'] || req.headers.host || req.headers[':authority'] || '127.0.0.1'}`
+  const urlBase = `${protocol}://${host}`
   const urlString = req.originalUrl
   const url = new URL(urlString, urlBase)
 
   const headers = new Headers()
   for (const key in req.headers) {
-    if (req.headers[key]) {
+    if (!key.startsWith(':') && req.headers[key]) {
       headers.append(key, req.headers[key] as string)
     }
+  }
+  if (!headers.has('host')) {
+    headers.set('host', host)
   }
 
   const hasBody = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
@@ -893,6 +938,7 @@ const convertIncomingMessageToRequest = (req: Connect.IncomingMessage): Request 
     method: req.method,
     headers,
     body,
+    signal,
     // Required for streaming bodies in Node's experimental fetch:
     duplex: 'half',
   } as RequestInit & { duplex: 'half' })
