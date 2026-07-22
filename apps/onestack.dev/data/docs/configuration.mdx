@@ -969,6 +969,38 @@ One assumes the following environments:
 - `ios`: iOS
 - `android`: Android
 
+The default native bundler uses Rolldown directly. A normal Vite plugin is not
+automatically forwarded into that pipeline because many Vite hooks require a
+Vite dev server or browser build. Plugins that support native can provide an
+explicit Rolldown implementation with `withNativePlugin`:
+
+```tsx fileName=vite.config.ts
+import { one, withNativePlugin } from 'one/vite'
+
+const sourceCompiler = withNativePlugin(
+  {
+    name: 'source-compiler',
+    transform(code, id) {
+      // web transform
+    },
+  },
+  ({ platform, dev }) => ({
+    name: `source-compiler-${platform}`,
+    transform(code, id) {
+      // native Rolldown transform
+    },
+  })
+)
+
+export default {
+  plugins: [one(), sourceCompiler],
+}
+```
+
+The factory receives `root`, `platform`, and `dev`, and creates a separate plugin
+instance for each native engine. This keeps iOS and Android compiler caches and
+watch state isolated. Metro mode continues to use Metro's transformer pipeline.
+
 We set up platform-specific extensions based on the environment:
 
 - client: `.web.(js|ts|tsx|mjs)`

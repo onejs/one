@@ -10,6 +10,7 @@ import { URL } from 'node:url'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 import { getBoundPort } from '../utils/getBoundPort'
+import { getNativePlugins } from '../nativePlugin'
 
 type ClientMessage = {
   type: 'client-log'
@@ -22,8 +23,14 @@ export function createReactNativeDevServerPlugin(
     Pick<VXRNOptionsFilled, 'cacheDir' | 'debugBundle' | 'debugBundlePaths' | 'entries'>
   >
 ): Plugin {
+  let vitePlugins: readonly Plugin[] = []
+
   return {
     name: 'vite-plugin-react-native-server',
+
+    configResolved(config) {
+      vitePlugins = config.plugins
+    },
 
     configureServer(server: ViteDevServer) {
       const { host } = server.config.server
@@ -178,6 +185,11 @@ export function createReactNativeDevServerPlugin(
                       port: getBoundPort(server),
                       host: typeof host === 'string' ? host : 'localhost',
                       platform,
+                      plugins: getNativePlugins(vitePlugins, {
+                        root,
+                        platform,
+                        dev: true,
+                      }),
                       serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
                       onHmrUpdate: (update) => {
                         const msg = JSON.stringify(update)

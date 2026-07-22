@@ -10,7 +10,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { normalizePath, type Plugin, type PluginOption } from 'vite'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
-import vxrnVitePlugin from 'vxrn/vite-plugin'
+import vxrnVitePlugin, { withNativePlugin } from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
 import '../polyfills-server'
@@ -61,10 +61,24 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // and all native-only globals — One runs as a pure web framework.
   const nativeDisabled = options.native === false
   const nativeOptions = options.native === false ? undefined : options.native
+  const flags: One.Flags = {}
+  const nativeClientTreeShakePlugin = withNativePlugin(clientTreeShakePlugin(), () =>
+    clientTreeShakePlugin({ runtime: 'rolldown' })
+  )
 
   if (nativeDisabled) {
     // tamagui compiler reads this to decide whether to process the native env
     globalThis.__vxrnEnableNativeEnv = false
+    delete globalThis.__vxrnNativeEntryConfig
+  } else {
+    globalThis.__vxrnEnableNativeEnv = true
+    globalThis.__vxrnNativeEntryConfig = {
+      routerRoot,
+      ignoredRouteFiles: options.router?.ignoredRouteFiles,
+      linking: options.router?.linking,
+      setupFile: options.setupFile,
+      flags,
+    }
   }
 
   /**
@@ -141,7 +155,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       setOneOptions(options)
       globalThis['__vxrnPluginConfig__'] = options
       globalThis['__vxrnMetroOptions__'] = metroOptions
-      return []
+      return nativeDisabled ? [] : [nativeClientTreeShakePlugin]
     }
   }
 
@@ -828,26 +842,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
-
-  // TODO make this passed into vxrn through real API
-  if (!nativeDisabled) {
-    globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
-  }
+  const nativeWebDevAndProdPlugsin: Plugin[] = [nativeClientTreeShakePlugin]
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
-
-  const flags: One.Flags = {}
-
-  // pass config to the rolldown native entry (createNativeDevEngine reads this)
-  if (!nativeDisabled) {
-    globalThis.__vxrnNativeEntryConfig = {
-      routerRoot: routerRoot,
-      ignoredRouteFiles: options.router?.ignoredRouteFiles,
-      linking: options.router?.linking,
-      setupFile: options.setupFile,
-      flags,
-    }
-  }
 
   // source inspector must come before clientTreeShakePlugin so line numbers
   // are computed from original source (tree-shaking removes loader code, shifting lines)
