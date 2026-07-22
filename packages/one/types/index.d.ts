@@ -47,7 +47,7 @@ export { useSitemap, type SitemapType } from './router/sitemap';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 export { Protected, type ProtectedProps } from './views/Protected';
-export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarViewProps, } from './layouts/stack-utils';
+export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, } from './layouts/stack-utils';
 export type { StackRender, StackRenderComponent, StackRenderProps, } from './router/web/ScreenRenderContext';
 export { getRenderingConfig, setupRendering, type DrawerRender, type DrawerRenderComponent, type DrawerRenderProps, type RenderingConfig, type TabsRender, type TabsRenderComponent, type TabsRenderProps, } from './router/renderingRegistry';
 export { withLayoutContext } from './layouts/withLayoutContext';

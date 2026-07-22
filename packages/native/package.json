@@ -8,9 +8,22 @@
   "module": "dist/esm/index.mjs",
   "types": "types/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "ios",
+    "android",
+    "VxrnNative.podspec",
+    "react-native.config.cjs"
+  ],
   "scripts": {
     "build": "tamagui-build",
-    "clean": "tamagui-build clean"
+    "clean": "tamagui-build clean",
+    "test": "vitest run --dir tests"
+  },
+  "dependencies": {
+    "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "exports": {
     ".": {
@@ -48,6 +61,8 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native-stack": ">=7.14.0",
     "react": "*",
     "react-native": "*",
     "react-native-screens": ">=4.0.0",
@@ -59,6 +74,10 @@
     }
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0"
+    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native-stack": "~7.14.10",
+    "@tamagui/build": "2.3.0",
+    "react-native-web": "^0.21.2",
+    "vitest": "^4.1.0"
   }
 }
