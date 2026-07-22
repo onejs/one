@@ -1,15 +1,20 @@
 import { beforeEach, expect, test, vi } from 'vitest'
+import type { One } from '../vite/types'
 
-const probe = vi.hoisted(() => ({
-  navigationRef: { current: null } as { current: unknown },
-  routerNavigationRef: null as { current: unknown } | null,
-  initialize: vi.fn((_context, navigationRef) => {
+const probe = vi.hoisted<{
+  navigationRef: { current: null }
+  routerNavigationRef: { current: null } | null
+  initialize: ReturnType<typeof vi.fn>
+}>(() => ({
+  navigationRef: { current: null },
+  routerNavigationRef: null,
+  initialize: vi.fn((_context: unknown, navigationRef: { current: null }) => {
     probe.routerNavigationRef = navigationRef
   }),
 }))
 
 vi.hoisted(() => {
-  globalThis.window = {} as Window & typeof globalThis
+  Object.defineProperty(globalThis, 'window', { configurable: true, value: {} })
 })
 
 vi.mock('@react-navigation/native', () => ({
@@ -40,7 +45,16 @@ beforeEach(() => {
 })
 
 test('initializes a fresh navigation root with its current location', () => {
-  const context = {}
+  const context: One.RouteContext = Object.assign(
+    function routeContext<T>(_id: string): T {
+      throw new Error('route context is not evaluated by this probe')
+    },
+    {
+      keys: () => [],
+      resolve: (id: string) => id,
+      id: 'preview-lifecycle-probe',
+    }
+  )
   const firstRef = { current: null }
   probe.navigationRef = firstRef
   useInitializeOneRouter(context, new URL('https://preview.test/'))
