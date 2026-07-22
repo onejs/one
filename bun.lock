@@ -378,7 +378,6 @@
         "@radix-ui/react-slot": "^1.0.2",
         "@react-native-masked-view/masked-view": "^0.3.2",
         "@react-navigation/bottom-tabs": "~7.15.9",
-        "@react-navigation/elements": "~2.9.14",
         "@react-navigation/native-stack": "~7.14.10",
         "@react-navigation/routers": "~7.5.3",
         "@swc/core": "^1.14.0",
@@ -995,6 +994,21 @@
       },
       "devDependencies": {
         "@vxrn/test": "workspace:*",
+        "playwright": "^1.58.2",
+        "typescript": "^5.7.3",
+        "vite": "^8.0.13",
+        "vitest": "^4.1.0",
+      },
+    },
+    "tests/test-headless-web": {
+      "name": "test-headless-web",
+      "version": "1.21.7",
+      "dependencies": {
+        "one": "workspace:*",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+      },
+      "devDependencies": {
         "playwright": "^1.58.2",
         "typescript": "^5.7.3",
         "vite": "^8.0.13",
@@ -4884,6 +4898,8 @@
     "test-env": ["test-env@workspace:tests/test-env"],
 
     "test-exclude": ["test-exclude@6.0.0", "", { "dependencies": { "@istanbuljs/schema": "^0.1.2", "glob": "^7.1.4", "minimatch": "^3.0.4" } }, "sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w=="],
+
+    "test-headless-web": ["test-headless-web@workspace:tests/test-headless-web"],
 
     "test-hmr": ["test-hmr@workspace:tests/hmr"],
 
