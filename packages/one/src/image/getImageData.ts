@@ -16,10 +16,10 @@ export type ImageMeta = {
 
 let sharpWarned = false
 
-export async function getSharp(): Promise<typeof import('sharp') | null> {
+export async function getSharp(): Promise<(typeof import('sharp'))['default'] | null> {
   try {
     const sharpModule = await import('sharp')
-    return (sharpModule as any).default || sharpModule
+    return sharpModule.default
   } catch (e) {
     if (!sharpWarned) {
       sharpWarned = true

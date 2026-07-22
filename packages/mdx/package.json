@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx",
-  "version": "1.21.7",
+  "version": "1.21.8",
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
@@ -36,7 +36,7 @@
     ]
   },
   "optionalDependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.3"
   },
   "dependencies": {
     "compare-versions": "^4.1.3",

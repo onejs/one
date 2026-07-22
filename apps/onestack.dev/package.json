@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.21.7",
+  "version": "1.21.8",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -39,13 +39,12 @@
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
     "@tamagui/vite-plugin": "2.3.0",
-    "@types/sharp": "^0.32.0",
     "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
     "playwright": "^1.58.2",
     "satori": "^0.19.1",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.3",
     "subset-font": "^2.4.0",
     "tsx": "^4.20.6",
     "vitest": "^4.1.0"

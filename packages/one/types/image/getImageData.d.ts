@@ -9,7 +9,7 @@ export type ImageMeta = {
     height: number;
     blurDataURL: string;
 };
-export declare function getSharp(): Promise<typeof import('sharp') | null>;
+export declare function getSharp(): Promise<typeof import('sharp')['default'] | null>;
 /**
  * Process an image file and return its metadata.
  * Internal helper used by both getImageData and imageDataPlugin.
