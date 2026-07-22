@@ -1,0 +1,86 @@
+---
+title: useTabs
+---
+
+`useTabs` returns the full state of the nearest `<Tabs>` navigator, for building a completely custom tab bar.
+
+`<Tabs>` already renders headless on web by default (just the focused tab, no bar); reach for `useTabs` when you want to render the tab bar yourself. See the [headless web navigators guide](/docs/guides-headless-web) for the full picture.
+
+## Usage
+
+Place your component as a child of `<Tabs>`. It replaces the headless default on web and is ignored on native, so the same layout file works everywhere:
+
+```tsx
+// app/(tabs)/_layout.tsx, works on both platforms
+import { Link, Tabs, useTabs } from 'one'
+
+function WebTabBar() {
+  const { tabs, focused } = useTabs()
+
+  return (
+    <>
+      <nav>
+        {tabs.map((tab) => (
+          <Link
+            key={tab.name}
+            href={tab.href}
+            className={tab.isFocused ? 'active' : undefined}
+          >
+            {tab.options.title}
+          </Link>
+        ))}
+      </nav>
+      {focused.element}
+    </>
+  )
+}
+
+export default function Layout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+      <Tabs.Screen name="feed" options={{ title: 'Feed' }} />
+      <WebTabBar />
+    </Tabs>
+  )
+}
+```
+
+## Return value
+
+| Property | Type | Description |
+|----------|------|--------------|
+| `tabs` | `ScreenEntry[]` | Every tab, in the order they were declared. |
+| `focused` | `ScreenEntry` | The currently focused tab. |
+| `navigation` | `{ switchTab }` | `switchTab(name)` switches to the tab by name. |
+
+`ScreenEntry` is the same shape [`useStack`](/docs/hooks-useStack#return-value) returns: `key`, `name`, `params`, `href`, `isFocused`, `keepMounted`, `options`, `element`.
+
+## Keeping inactive tabs mounted
+
+The default headless view only ever renders the focused tab - switching tabs unmounts the previous one, `keepMounted` or not. To keep inactive tabs alive (preserve scroll position, form state, etc.), build your own layout with `useTabs` and wrap inactive tabs in React 19.2's `Activity`:
+
+```tsx
+import { Activity } from 'react'
+import { useTabs } from 'one'
+
+function EagerTabs() {
+  const { tabs } = useTabs()
+
+  return (
+    <>
+      {tabs.map((tab) => (
+        <Activity key={tab.key} mode={tab.isFocused ? 'visible' : 'hidden'}>
+          {tab.element}
+        </Activity>
+      ))}
+    </>
+  )
+}
+```
+
+## Related
+
+- [Tabs](/docs/components-Tabs)
+- [useDrawer](/docs/hooks-useDrawer)
+- [Headless web navigators](/docs/guides-headless-web)

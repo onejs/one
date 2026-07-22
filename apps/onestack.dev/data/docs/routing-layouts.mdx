@@ -37,6 +37,8 @@ Layouts must render one of the following to show the matched pages that exist in
 - [Tabs](/docs/components-Tabs): Creates a [React Navigation BottomTabs](https://reactnavigation.org/docs/bottom-tab-navigator) with sub-routes.
 - [Drawer](/docs/components-Drawer): Creates a [React Navigation Drawer](https://reactnavigation.org/docs/drawer-navigator) with sub-routes.
 
+On web, Stack, Tabs, and Drawer render headless by default: just the matched route, no header, no tab bar, no sidebar. See the [headless web navigators guide](/docs/guides-headless-web) for how to build your own web chrome.
+
 This looks something like this at the simplest:
 
 ```tsx fileName=app/_layout.tsx
