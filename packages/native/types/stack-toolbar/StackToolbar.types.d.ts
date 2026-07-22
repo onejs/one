@@ -5,11 +5,11 @@ export interface StackToolbarProps {
     children?: ReactNode;
     placement?: StackToolbarPlacement;
     asChild?: boolean;
-    /** Android-only. One's Android toolbar host is not implemented yet. */
+    /** Android-only. The Android toolbar host is not implemented yet. */
     disableImePadding?: boolean;
-    /** Android-only. One's Android toolbar host is not implemented yet. */
+    /** Android-only. The Android toolbar host is not implemented yet. */
     tintColor?: ColorValue;
-    /** Android-only. One's Android toolbar host is not implemented yet. */
+    /** Android-only. The Android toolbar host is not implemented yet. */
     backgroundColor?: ColorValue;
 }
 export interface StackToolbarIconProps {

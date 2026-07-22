@@ -117,17 +117,6 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
     };
     Protected: React.FunctionComponent<import("..").ProtectedProps>;
     SearchBar: typeof StackHeaderSearchBar;
-    Toolbar: ((props: import("./stack-utils").StackToolbarProps) => import("react/jsx-runtime").JSX.Element | null) & {
-        Button: typeof import("./stack-utils/StackToolbar").StackToolbarButton;
-        Menu: typeof import("./stack-utils/StackToolbar").StackToolbarMenu;
-        MenuAction: typeof import("./stack-utils/StackToolbar").StackToolbarMenuAction;
-        Spacer: typeof import("./stack-utils/StackToolbar").StackToolbarSpacer;
-        SearchBarSlot: typeof import("./stack-utils/StackToolbar").StackToolbarSearchBarSlot;
-        View: typeof import("./stack-utils/StackToolbar").StackToolbarView;
-        Label: typeof import("./stack-utils/StackToolbar").StackToolbarLabel;
-        Icon: typeof import("./stack-utils/StackToolbar").StackToolbarIcon;
-        Badge: typeof import("./stack-utils/StackToolbar").StackToolbarBadge;
-    };
 };
 export default Stack;
 //# sourceMappingURL=Stack.d.ts.map

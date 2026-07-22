@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Stack } from 'one'
-import { Color } from '@vxrn/native'
+import { Color, StackToolbar } from '@vxrn/native'
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native'
 
 export default function ToolbarTestScreen() {
@@ -15,27 +14,27 @@ export default function ToolbarTestScreen() {
 
   return (
     <View style={styles.container} testID="toolbar-test-screen">
-      <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Button icon="bell" onPress={() => handleAction('notifications')}>
-          <Stack.Toolbar.Label>Notifications</Stack.Toolbar.Label>
-          <Stack.Toolbar.Badge>3</Stack.Toolbar.Badge>
-        </Stack.Toolbar.Button>
-        <Stack.Toolbar.Menu icon="ellipsis.circle" title="Actions">
-          <Stack.Toolbar.MenuAction
+      <StackToolbar placement="right">
+        <StackToolbar.Button icon="bell" onPress={() => handleAction('notifications')}>
+          <StackToolbar.Label>Notifications</StackToolbar.Label>
+          <StackToolbar.Badge>3</StackToolbar.Badge>
+        </StackToolbar.Button>
+        <StackToolbar.Menu icon="ellipsis.circle" title="Actions">
+          <StackToolbar.MenuAction
             icon="square.and.arrow.up"
             onPress={() => handleAction('share')}
           >
             Share
-          </Stack.Toolbar.MenuAction>
-          <Stack.Toolbar.MenuAction
+          </StackToolbar.MenuAction>
+          <StackToolbar.MenuAction
             icon="trash"
             destructive
             onPress={() => handleAction('delete')}
           >
             Delete
-          </Stack.Toolbar.MenuAction>
-        </Stack.Toolbar.Menu>
-      </Stack.Toolbar>
+          </StackToolbar.MenuAction>
+        </StackToolbar.Menu>
+      </StackToolbar>
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text testID="toolbar-test-title" style={styles.title}>
@@ -98,46 +97,46 @@ export default function ToolbarTestScreen() {
       </ScrollView>
 
       {/* native toolbar host with items */}
-      <Stack.Toolbar>
-        <Stack.Toolbar.Button
+      <StackToolbar>
+        <StackToolbar.Button
           icon="plus"
           tintColor={isIOS ? Color.ios.systemBlue : undefined}
           onPress={() => handleAction('add')}
         >
           Add
-        </Stack.Toolbar.Button>
+        </StackToolbar.Button>
 
-        <Stack.Toolbar.SearchBarSlot />
+        <StackToolbar.SearchBarSlot />
 
-        <Stack.Toolbar.Spacer />
+        <StackToolbar.Spacer />
 
-        <Stack.Toolbar.Button
+        <StackToolbar.Button
           icon="square.and.arrow.up"
           variant="prominent"
           onPress={() => handleAction('share')}
         >
           Share
-        </Stack.Toolbar.Button>
+        </StackToolbar.Button>
 
-        <Stack.Toolbar.Button icon="gearshape" onPress={() => handleAction('settings')}>
-          <Stack.Toolbar.Label>Settings</Stack.Toolbar.Label>
-          <Stack.Toolbar.Badge
+        <StackToolbar.Button icon="gearshape" onPress={() => handleAction('settings')}>
+          <StackToolbar.Label>Settings</StackToolbar.Label>
+          <StackToolbar.Badge
             style={{ backgroundColor: isIOS ? Color.ios.systemRed : 'red' }}
           >
             3
-          </Stack.Toolbar.Badge>
-        </Stack.Toolbar.Button>
+          </StackToolbar.Badge>
+        </StackToolbar.Button>
 
-        <Stack.Toolbar.Spacer width={20} />
+        <StackToolbar.Spacer width={20} />
 
-        <Stack.Toolbar.Button
+        <StackToolbar.Button
           icon="xmark"
           disabled
           onPress={() => handleAction('disabled')}
         >
           Disabled
-        </Stack.Toolbar.Button>
-      </Stack.Toolbar>
+        </StackToolbar.Button>
+      </StackToolbar>
     </View>
   )
 }
