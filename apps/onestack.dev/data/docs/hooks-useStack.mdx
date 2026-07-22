@@ -1,0 +1,77 @@
+---
+title: useStack
+---
+
+`useStack` returns the full state of the nearest `<Stack>` navigator on web, for building a completely custom stack layout - your own header, transitions, back button, anything.
+
+`<Stack>` already renders headless on web by default (just the focused screen); reach for `useStack` when you want to render something yourself instead. See the [headless web navigators guide](/docs/guides-headless-web) for the full picture.
+
+## Usage
+
+Place your component as a child of `<Stack>`. It replaces the headless default on web and is ignored on native, so the same layout file works everywhere:
+
+```tsx
+// app/_layout.tsx, works on both platforms
+import { Stack, useStack } from 'one'
+
+function WebStackLayout() {
+  const { screens, focused, navigation } = useStack()
+
+  return (
+    <>
+      {screens.length > 1 && <button onClick={navigation.back}>← Back</button>}
+      <h1>{focused.options.title}</h1>
+      {focused.element}
+    </>
+  )
+}
+
+export default function Layout() {
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ title: 'Feed' }} />
+      <Stack.Screen name="[id]" options={{ title: 'Post' }} />
+      <WebStackLayout />
+    </Stack>
+  )
+}
+```
+
+## Return value
+
+| Property | Type | Description |
+|----------|------|--------------|
+| `screens` | `ScreenEntry[]` | Every screen currently in the stack, in stack order. |
+| `focused` | `ScreenEntry` | The currently focused screen. |
+| `navigation` | `{ back, push, replace }` | Navigate the stack. |
+
+### `ScreenEntry`
+
+| Property | Type | Description |
+|----------|------|--------------|
+| `key` | `string` | Unique per-instance key. |
+| `name` | `string` | The route name, matching the file name in `app/`. |
+| `params` | `object` | The route's params. |
+| `href` | `string` | The resolved path for this screen. |
+| `isFocused` | `boolean` | Whether this is the focused screen. |
+| `keepMounted` | `boolean` | Whether `options.keepMounted` was set. |
+| `options` | `object` | The compiled options for this screen (`title`, `presentation`, and anything else set via `Stack.Screen`). |
+| `element` | `ReactElement` | The screen's rendered content. Rendering it mounts the route. |
+
+### `navigation`
+
+| Method | Description |
+|--------|--------------|
+| `back()` | Go back one screen. |
+| `push(href)` | Push a new screen. |
+| `replace(href)` | Replace the focused screen. |
+
+## Presentation screens
+
+Screens with a `presentation` option (`sheet`, `modal`, `formSheet`, ...) still show up in `screens` alongside regular pushed screens - `useStack` doesn't separate them out. If your custom layout needs to treat them differently, check `focused.options.presentation`. Most apps handle presentation screens with [NavigationRender](/docs/components-NavigationRender) instead, which is scoped specifically to them.
+
+## Related
+
+- [Stack](/docs/components-Stack)
+- [NavigationRender](/docs/components-NavigationRender)
+- [Headless web navigators](/docs/guides-headless-web)

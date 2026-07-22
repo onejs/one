@@ -57,6 +57,7 @@ export const docsRoutes = [
       { title: 'LoadProgressBar', route: '/docs/components-LoadProgressBar' },
       { title: 'ScrollBehavior', route: '/docs/components-ScrollBehavior' },
       { title: 'SafeAreaView', route: '/docs/components-SafeAreaView' },
+      { title: 'NavigationRender', route: '/docs/components-NavigationRender' },
     ],
   },
 
@@ -75,6 +76,9 @@ export const docsRoutes = [
       { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
       { title: 'useScrollGroup', route: '/docs/hooks-useScrollGroup' },
       { title: 'useNavigation', route: '/docs/hooks-useNavigation' },
+      { title: 'useStack', route: '/docs/hooks-useStack' },
+      { title: 'useTabs', route: '/docs/hooks-useTabs' },
+      { title: 'useDrawer', route: '/docs/hooks-useDrawer' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
       { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
       { title: 'useSitemap', route: '/docs/hooks-useSitemap' },
@@ -85,6 +89,7 @@ export const docsRoutes = [
     title: 'Guides',
     pages: [
       { title: 'Authentication', route: '/docs/guides-authentication' },
+      { title: 'Headless Web Navigators', route: '/docs/guides-headless-web' },
       { title: 'Deep Linking', route: '/docs/guides-deep-linking' },
       { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },

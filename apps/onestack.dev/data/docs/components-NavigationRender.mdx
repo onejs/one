@@ -1,0 +1,133 @@
+---
+title: "<NavigationRender />"
+---
+
+`NavigationRender` registers how `<Stack>` renders sheet and modal presentations on web, app-wide. Register it once near the root of your app.
+
+By default, sheet/modal screens render on web with no chrome at all - just the screen's content, inline, with no backdrop or floating position. `NavigationRender` is how you plug in a real sheet or modal component (Tamagui Sheet, Vaul, Radix Dialog, or your own).
+
+## Usage
+
+```tsx
+// app/_layout.tsx
+import { NavigationRender, Slot } from 'one'
+import { Modal } from '~/interface/Modal'
+import { Sheet } from '~/interface/Sheet'
+
+export default function Layout() {
+  return (
+    <NavigationRender
+      web={(opts) => {
+        if (opts.type === 'sheet') {
+          return (
+            <Sheet
+              open={opts.open}
+              onOpenChange={opts.onOpenChange}
+              snapPoints={opts.options.sheetAllowedDetents}
+            >
+              {opts.children}
+            </Sheet>
+          )
+        }
+        if (opts.type === 'modal') {
+          return (
+            <Modal open={opts.open} onOpenChange={opts.onOpenChange}>
+              {opts.children}
+            </Modal>
+          )
+        }
+      }}
+    >
+      <Slot />
+    </NavigationRender>
+  )
+}
+```
+
+Any `<Stack.Screen>` with a `presentation` option picks this up automatically, using the same vocabulary you'd write for native:
+
+```tsx
+<Stack>
+  <Stack.Screen
+    name="compose"
+    options={{ presentation: 'sheet', sheetAllowedDetents: [0.6, 1] }}
+  />
+</Stack>
+```
+
+## The `web` callback
+
+`web` is called once per presentation screen, with a discriminated union on `opts.type`:
+
+| `opts.type` | When |
+|-------------|------|
+| `'sheet'` | `presentation` is `'sheet'`, `'formSheet'`, or `'pageSheet'` |
+| `'modal'` | Any other non-`'card'`/`'push'` presentation (`'modal'`, `'containedModal'`, `'fullScreenModal'`, `'transparentModal'`, ...) |
+
+Both shapes carry the same core fields:
+
+| Field | Type | Description |
+|-------|------|--------------|
+| `open` | `boolean` | Whether the screen should be visible. Toggles as you navigate. |
+| `onOpenChange` | `(open: boolean) => void` | Call with `false` when your UI dismisses - pops the screen. |
+| `screen` | `ScreenEntry` | The full screen entry: `name`, `params`, complete `options`, and more. |
+| `children` | `ReactNode` | The screen's content, already resolved. |
+
+`options` is narrowed to the semantic keys relevant to that presentation, taken straight from `Stack.Screen`'s `options` - the same values you'd set for native:
+
+- Sheet: `sheetAllowedDetents`, `sheetGrabberVisible`, `sheetCornerRadius`, `sheetExpandsWhenScrolledToEdge`, `gestureEnabled`, `title`
+- Modal: `gestureEnabled`, `title`
+
+Return `undefined` (or nothing) for a kind you don't handle - that presentation keeps rendering the headless default instead.
+
+## Scoping
+
+`NavigationRender` is just context, so nesting one further down the tree overrides it for that subtree only:
+
+```tsx
+<NavigationRender web={appDefaultRenderer}>
+  <Slot />
+  <NavigationRender web={specialRenderer}>
+    {/* screens rendered under here use specialRenderer instead */}
+  </NavigationRender>
+</NavigationRender>
+```
+
+## Keeping screens mounted across dismissal
+
+By default, dismissing a presentation screen pops it from navigation state and unmounts it. To preserve state (form values, scroll position, `useState`) across close → reopen, set `keepMounted: true` on the screen:
+
+```tsx
+<Stack.Screen
+  name="filters"
+  options={{ presentation: 'formSheet', keepMounted: true }}
+/>
+```
+
+With `keepMounted`, the screen is captured into a persistent slot the first time it mounts, and whatever your `web` callback returns is automatically wrapped in React 19.2's `<Activity mode={open ? 'visible' : 'hidden'}>` - you don't need to do that yourself. `open` still toggles normally as the route is pushed/popped.
+
+**Your `web` callback must keep rendering `children` even when `open` is `false`** - a callback that returns `null` (or otherwise omits `children`) while closed unmounts the route regardless of `keepMounted`, since `Activity` only preserves what's actually in its subtree:
+
+```tsx
+// ❌ unmounts on close - keepMounted has no effect, nothing to wrap
+web: (opts) => (opts.open ? <Sheet>{opts.children}</Sheet> : null)
+
+// ✅ keeps children mounted, just visually hidden
+web: (opts) => (
+  <Sheet open={opts.open} onOpenChange={opts.onOpenChange}>
+    {opts.children}
+  </Sheet>
+)
+```
+
+**Caveat:** the screen is captured at first mount, so its route params are frozen at their first values. Best for stable, parameter-free overlays (settings, filters, command palettes) - not `[id]`-style dynamic routes.
+
+## Native
+
+On native, `NavigationRender` is a no-op passthrough - it renders `children` directly. Presentations are handled by react-navigation exactly as before; the `web` callback never runs there.
+
+## Related
+
+- [Stack](/docs/components-Stack)
+- [useStack](/docs/hooks-useStack)
+- [Headless web navigators](/docs/guides-headless-web)
