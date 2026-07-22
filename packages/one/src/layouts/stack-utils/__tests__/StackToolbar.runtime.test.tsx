@@ -1,7 +1,13 @@
 import React from 'react'
 import TestRenderer, { act } from 'react-test-renderer'
-import { Platform } from 'react-native'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+
+const platform = vi.hoisted(() => ({ current: 'web' }))
+vi.mock('../../../utils/platform', () => ({
+  get PLATFORM() {
+    return platform.current
+  },
+}))
 
 const setOptions = vi.fn()
 
@@ -12,15 +18,13 @@ vi.mock('../../../router/useNavigation', () => ({
 import { StackToolbar } from '../StackToolbar'
 
 describe('StackToolbar runtime options', () => {
-  const originalOS = Platform.OS
-
   afterEach(() => {
-    ;(Platform as any).OS = originalOS
+    platform.current = 'web'
     setOptions.mockClear()
   })
 
   it('does not write undefined header overrides when the toolbar unmounts', () => {
-    ;(Platform as any).OS = 'ios'
+    platform.current = 'ios'
     let renderer: TestRenderer.ReactTestRenderer
 
     act(() => {

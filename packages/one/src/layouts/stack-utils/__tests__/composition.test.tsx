@@ -1,6 +1,13 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import React from 'react'
-import { Platform } from 'react-native'
+
+// the header/toolbar helpers read the platform constant, not react-native
+const platform = vi.hoisted(() => ({ current: 'web' }))
+vi.mock('../../../utils/platform', () => ({
+  get PLATFORM() {
+    return platform.current
+  },
+}))
 
 import {
   StackHeaderTitle,
@@ -69,26 +76,20 @@ describe('Stack Header Composition', () => {
     })
 
     it('sets headerTransparent only on iOS when large is true', () => {
-      // Store original Platform.OS
-      const originalOS = Platform.OS
-
       // Test on iOS - should set headerTransparent
-      ;(Platform as any).OS = 'ios'
+      platform.current = 'ios'
       const iosResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(iosResult.headerTransparent).toBe(true)
 
       // Test on Android - should NOT set headerTransparent
-      ;(Platform as any).OS = 'android'
+      platform.current = 'android'
       const androidResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(androidResult.headerTransparent).toBeUndefined()
 
       // Test on web - should NOT set headerTransparent
-      ;(Platform as any).OS = 'web'
+      platform.current = 'web'
       const webResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(webResult.headerTransparent).toBeUndefined()
-
-      // Restore original
-      ;(Platform as any).OS = originalOS
     })
   })
 
@@ -644,12 +645,11 @@ describe('Stack Header Composition', () => {
 
   describe('StackToolbar', () => {
     const withIOS = <T,>(run: () => T): T => {
-      const originalOS = Platform.OS
-      ;(Platform as any).OS = 'ios'
+      platform.current = 'ios'
       try {
         return run()
       } finally {
-        ;(Platform as any).OS = originalOS
+        platform.current = 'web'
       }
     }
 
@@ -801,8 +801,7 @@ describe('Stack Header Composition', () => {
       }))
 
     it('does not install native toolbar options on web', () => {
-      const originalOS = Platform.OS
-      ;(Platform as any).OS = 'web'
+      platform.current = 'web'
       try {
         const original = { title: 'Web' }
         expect(
@@ -812,7 +811,7 @@ describe('Stack Header Composition', () => {
           })
         ).toBe(original)
       } finally {
-        ;(Platform as any).OS = originalOS
+        platform.current = 'web'
       }
     })
   })
