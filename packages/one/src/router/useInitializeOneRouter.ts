@@ -45,7 +45,7 @@ export function useInitializeOneRouter(
   }
 
   // client: use version tracking (no concurrency issue)
-  if (lastInitVersion !== initVersion) {
+  if (lastInitVersion !== initVersion || routerStore.navigationRef !== navigationRef) {
     // reset react navigation contexts to avoid stale provider warnings
     const contexts = '__react_navigation__elements_contexts'
     globalThis[contexts] = new Map<string, React.Context<any>>()
