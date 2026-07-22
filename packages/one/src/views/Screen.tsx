@@ -1,4 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
+import { NAVIGATOR_CONFIG } from '../headless/children'
 import { useNavigation } from '../router/useNavigation'
 
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
@@ -34,3 +35,5 @@ export function Screen<TOptions extends object = object>({
 
   return null
 }
+
+Object.assign(Screen, { [NAVIGATOR_CONFIG]: true })

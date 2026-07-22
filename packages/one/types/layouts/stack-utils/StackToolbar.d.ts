@@ -12,6 +12,7 @@ export declare function StackToolbarSpacer(props: StackToolbarSpacerProps): impo
 export declare function StackToolbarSearchBarSlot(props: StackToolbarSearchBarSlotProps): import("react/jsx-runtime").JSX.Element | null;
 export declare function StackToolbarView(props: StackToolbarViewProps): import("react/jsx-runtime").JSX.Element | null;
 export declare const StackToolbar: typeof StackToolbarComponent & {
+    __oneNavigatorConfig: boolean;
     Button: typeof StackToolbarButton;
     Menu: typeof StackToolbarMenu;
     MenuAction: typeof StackToolbarMenuAction;

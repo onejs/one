@@ -1,8 +1,12 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
-import { useState, useMemo } from 'react'
-import { Appearance } from 'react-native'
+import { useMemo, useState } from 'react'
 import { getStorageItem, setStorageItem } from './safeStorage'
 import { getSystemScheme, type Scheme } from './systemScheme'
+import {
+  addAppearanceChangeListener,
+  getAppearanceScheme,
+  setAppearanceScheme,
+} from './userSchemeAppearance'
 
 export type SchemeSetting = 'system' | 'light' | 'dark'
 
@@ -81,7 +85,7 @@ function getInitialSetting(): SchemeSetting {
 function getInitialValue(setting: SchemeSetting): Scheme {
   if (process.env.TAMAGUI_TARGET === 'native') {
     if (setting === 'system') {
-      return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'
+      return getAppearanceScheme()
     }
     return setting
   }
@@ -94,8 +98,8 @@ let currentValue: Scheme = getInitialValue(initialSetting)
 
 // native: set up listener at module level
 if (process.env.TAMAGUI_TARGET === 'native') {
-  Appearance.addChangeListener((next) => {
-    if (currentSetting === 'system' && next.colorScheme) {
+  addAppearanceChangeListener(() => {
+    if (currentSetting === 'system') {
       updateValueFromSystem()
     }
   })
@@ -125,7 +129,7 @@ function startWebListener() {
 function resolveValue(setting: SchemeSetting): Scheme {
   if (setting === 'system') {
     if (process.env.TAMAGUI_TARGET === 'native') {
-      return Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'
+      return getAppearanceScheme()
     }
     return getSystemScheme()
   }
@@ -155,10 +159,10 @@ function updateScheme(setting: SchemeSetting) {
       // only call setColorScheme for explicit light/dark
       // calling it breaks the Appearance.addChangeListener for system changes
       if (setting !== 'system') {
-        Appearance.setColorScheme(value)
+        setAppearanceScheme(value)
       } else {
         // reset to null to re-enable system tracking
-        Appearance.setColorScheme('unspecified')
+        setAppearanceScheme('unspecified')
       }
     }
 

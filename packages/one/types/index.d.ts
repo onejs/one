@@ -44,12 +44,16 @@ export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNaviga
 export { href } from './href';
 export { getLinking, type OneLinkingConfig } from './link/getLinking';
 export { useSitemap, type SitemapType } from './router/sitemap';
+export { NavigationRender, type NavigationRenderProps } from './headless/NavigationRender';
+export { useStack } from './headless/useStack';
+export type { NavigationRenderOpts, ScreenEntry, UseStackResult } from './headless/types';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 export { Protected, type ProtectedProps } from './views/Protected';
 export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarViewProps, } from './layouts/stack-utils';
-export type { StackRender, StackRenderComponent, StackRenderProps, } from './router/web/ScreenRenderContext';
-export { getRenderingConfig, setupRendering, type DrawerRender, type DrawerRenderComponent, type DrawerRenderProps, type RenderingConfig, type TabsRender, type TabsRenderComponent, type TabsRenderProps, } from './router/renderingRegistry';
+export { useTabs } from './headless/useTabs';
+export { useDrawer } from './headless/useDrawer';
+export type { UseTabsResult, UseDrawerResult } from './headless/types';
 export { withLayoutContext } from './layouts/withLayoutContext';
 export { Link } from './link/Link';
 export { Redirect } from './link/Redirect';

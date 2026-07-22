@@ -1,9 +1,8 @@
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
-import { Platform, type ColorValue } from 'react-native'
+import type { ColorValue } from 'react-native'
 import type { AndroidDynamicMaterialColorType } from './android.dynamic.types'
 import type { AndroidStaticMaterialColorType } from './android.material.types'
 import type { IOSBaseColor } from './ios.types'
-import { Material3Color, Material3DynamicColor } from './materialColor'
 
 export * from './android.dynamic.types'
 export * from './android.material.types'
@@ -35,15 +34,13 @@ const iosColor = new Proxy({} as ColorType['ios'], {
 })
 
 const androidMaterialColor = new Proxy({} as ColorType['android']['material'], {
-  get(_, prop: string) {
-    if (Platform.OS === 'android') return Material3Color(prop)
+  get() {
     return null
   },
 })
 
 const androidDynamicColor = new Proxy({} as ColorType['android']['dynamic'], {
-  get(_, prop: string) {
-    if (Platform.OS === 'android') return Material3DynamicColor(prop)
+  get() {
     return null
   },
 })

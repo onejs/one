@@ -11,12 +11,14 @@ import {
 } from './StackHeaderSearchBar'
 import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle'
 import { StackToolbar } from './StackToolbar'
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 
 /**
  * Compound component for configuring stack headers.
  * Attach to Stack as `Stack.Header`.
  */
 export const StackHeader = Object.assign(StackHeaderComponent, {
+  [NAVIGATOR_CONFIG]: true,
   Left: StackHeaderLeft,
   Right: StackHeaderRight,
   BackButton: StackHeaderBackButton,

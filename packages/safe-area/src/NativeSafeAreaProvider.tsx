@@ -1,7 +1,6 @@
 /* eslint-env browser */
 
 import * as React from 'react'
-import { View } from 'react-native'
 import type { NativeSafeAreaProviderProps } from './SafeArea-types'
 
 /**
@@ -64,7 +63,18 @@ export function NativeSafeAreaProvider({
   // the old constraining styles (height: 100%, max-height: 100%) created a
   // containing block that broke position: sticky
   if (style) {
-    return <View style={style}>{children}</View>
+    const styleValue: unknown = style
+    const styleValues: unknown[] = Array.isArray(styleValue)
+      ? styleValue.flat(Number.POSITIVE_INFINITY)
+      : [styleValue]
+    const flattenedStyle = styleValues.reduce<React.CSSProperties>(
+      (result, value) =>
+        value && typeof value === 'object'
+          ? Object.assign(result, value as React.CSSProperties)
+          : result,
+      {}
+    )
+    return <div style={flattenedStyle}>{children}</div>
   }
 
   return <div style={{ display: 'contents' }}>{children}</div>

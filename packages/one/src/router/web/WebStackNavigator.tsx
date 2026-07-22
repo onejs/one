@@ -2,15 +2,17 @@
 
 import {
   createNavigatorFactory,
-  StackActions,
-  StackRouter,
   useNavigationBuilder,
   type EventArg,
   type ParamListBase,
+} from '@react-navigation/core'
+import {
+  StackActions,
+  StackRouter,
   type StackActionHelpers,
   type StackNavigationState,
   type StackRouterOptions,
-} from '@react-navigation/native'
+} from '@react-navigation/routers'
 import type {
   NativeStackNavigationEventMap,
   NativeStackNavigationOptions,
@@ -23,6 +25,7 @@ type WebStackNavigatorProps = {
   initialRouteName?: string
   screenOptions?: NativeStackNavigationOptions
   children: ReactNode
+  headlessChildren?: ReactNode[]
   id?: string
   // accept anything else NativeStackNavigator does so withLayoutContext can pass through
   [k: string]: any
@@ -32,29 +35,28 @@ type WebStackNavigatorProps = {
  * Drop-in replacement for NativeStackNavigator on web.
  *
  * Uses the same router (StackRouter) and option shape as native-stack so
- * navigation behavior is identical; the difference is that overlay-type
- * presentations (modal, formSheet, ...) get peeled off the underlying view
- * and rendered via the configured Stack render component in WebStackView.
+ * navigation behavior is identical; the view renders the focused screen and
+ * delegates presentation chrome to NavigationRender.
  */
 function WebStackNavigator({
   initialRouteName,
   children,
   screenOptions,
+  headlessChildren,
   ...rest
 }: WebStackNavigatorProps) {
-  const { state, navigation, descriptors, NavigationContent, describe } =
-    useNavigationBuilder<
-      StackNavigationState<ParamListBase>,
-      StackRouterOptions,
-      StackActionHelpers<ParamListBase>,
-      NativeStackNavigationOptions,
-      NativeStackNavigationEventMap
-    >(StackRouter, {
-      ...(rest as any),
-      children,
-      screenOptions,
-      initialRouteName,
-    })
+  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder<
+    StackNavigationState<ParamListBase>,
+    StackRouterOptions,
+    StackActionHelpers<ParamListBase>,
+    NativeStackNavigationOptions,
+    NativeStackNavigationEventMap
+  >(StackRouter, {
+    ...(rest as any),
+    children,
+    screenOptions,
+    initialRouteName,
+  })
 
   // Mirror native-stack tabPress popToTop behavior
   useEffect(() => {
@@ -78,7 +80,7 @@ function WebStackNavigator({
         state={state}
         navigation={navigation as any}
         descriptors={descriptors as any}
-        describe={describe as any}
+        customChildren={headlessChildren}
       />
     </NavigationContent>
   )
