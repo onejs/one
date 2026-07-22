@@ -29,6 +29,7 @@
     ]
   },
   "scripts": {
+    "audit": "bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -87,7 +88,7 @@
     "rolldown": "1.0.1",
     "basic-ftp": "5.3.1",
     "fast-xml-builder": "1.1.7",
-    "fast-uri": "3.1.2",
+    "fast-uri": "3.1.4",
     "@babel/plugin-transform-modules-systemjs": "7.29.4",
     "@babel/core": "7.29.7",
     "drizzle-orm": "0.45.2",
@@ -98,6 +99,7 @@
     "react-native": "0.83.2",
     "@react-navigation/native": "7.2.2",
     "react-native-reanimated": "4.2.1",
+    "sharp": "0.35.3",
     "minimatch": "3.1.5",
     "brace-expansion": "1.1.15",
     "node-forge": "1.4.0",
