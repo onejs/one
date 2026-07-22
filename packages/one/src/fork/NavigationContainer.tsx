@@ -25,7 +25,6 @@ import {
 // import type { DocumentTitleOptions, LinkingOptions, LocaleDirection } from './types'
 // import { UnhandledLinkingContext } from './UnhandledLinkingContext'
 import {
-  DefaultTheme,
   type DocumentTitleOptions,
   LinkingContext,
   type LinkingOptions,
@@ -34,9 +33,10 @@ import {
   UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
 } from '@react-navigation/native'
 import * as React from 'react'
-import { I18nManager } from 'react-native'
 import useLatestCallback from 'use-latest-callback'
 // @modified - end
+import { getLocaleDirection } from './localeDirection'
+import { DefaultTheme } from './theme'
 import { useBackButton } from './useBackButton'
 import { useDocumentTitle } from './useDocumentTitle'
 import { useLinking } from './useLinking'
@@ -104,7 +104,7 @@ function NavigationContainerInner(
 // @modified - full client NavigationContainer with all hooks and providers
 function NavigationContainerClientInner({
   forwardedRef,
-  direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
+  direction = getLocaleDirection(),
   theme = DefaultTheme,
   linking,
   fallback = null,

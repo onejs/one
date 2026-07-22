@@ -1,17 +1,16 @@
-import React, { type ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 export interface SplitViewColumnProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
-declare function SplitViewColumnComponent(props: SplitViewColumnProps): import("react/jsx-runtime").JSX.Element;
-declare function SplitViewInspectorComponent(props: SplitViewColumnProps): import("react/jsx-runtime").JSX.Element;
 export interface SplitViewProps {
     children?: ReactNode;
-    slot?: React.ComponentType;
+    slot?: ComponentType;
 }
-declare function SplitViewNavigator({ children, slot: Slot, ...rest }: SplitViewProps): import("react/jsx-runtime").JSX.Element | null;
+declare function SplitViewNavigator({ slot: Slot }: SplitViewProps): import("react/jsx-runtime").JSX.Element | null;
+declare function SplitViewColumnComponent(props: SplitViewColumnProps): import("react/jsx-runtime").JSX.Element;
 export declare const SplitView: typeof SplitViewNavigator & {
     Column: typeof SplitViewColumnComponent;
-    Inspector: typeof SplitViewInspectorComponent;
+    Inspector: typeof SplitViewColumnComponent;
 };
 export {};
 //# sourceMappingURL=split-view.d.ts.map

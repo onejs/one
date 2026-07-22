@@ -1,7 +1,6 @@
 import './setup'
 
 import { cloneElement } from 'react'
-import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { Root } from './Root'
 import { render } from './render'
@@ -101,7 +100,7 @@ export function createApp(options: CreateAppProps) {
 
         let renderId: string | undefined
 
-        // render Root directly, skip AppRegistry overhead on server
+        // render Root directly
         const rootElement = (
           <Root
             flags={options.flags}
@@ -119,48 +118,22 @@ export function createApp(options: CreateAppProps) {
           preloads: props.preloads,
         })
 
-        // post-render: inject any extra head elements (RNW styles + head insertions)
-        try {
-          const extraHeadElements: React.ReactElement[] = []
+        // post-render: inject any extra head elements collected during render
+        if (renderId) {
+          const insertions = getServerHeadInsertions(renderId)
+          if (insertions?.length) {
+            const extraHeadElements = insertions
+              .map((insertion) => insertion())
+              .filter(Boolean) as React.ReactElement[]
 
-          // get style elements from AppRegistry (for react-native-web styles)
-          try {
-            AppRegistry.registerComponent('__oneStyles', () => () => null)
-            // @ts-expect-error
-            const app = AppRegistry.getApplication('__oneStyles', {})
-            const styleTag = app.getStyleElement({
-              nonce: process.env.ONE_NONCE,
-            })
-            if (styleTag) {
-              extraHeadElements.push(styleTag)
-            }
-          } catch {
-            // ok if no styles
-          }
-
-          if (renderId) {
-            const insertions = getServerHeadInsertions(renderId)
-            if (insertions) {
-              for (const insertion of insertions) {
-                const out = insertion()
-                if (out) {
-                  extraHeadElements.push(out)
-                }
+            if (extraHeadElements.length) {
+              const extraHeadHTML = renderToStaticMarkup(
+                <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
+              )
+              if (extraHeadHTML) {
+                html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
               }
             }
-          }
-
-          if (extraHeadElements.length) {
-            const extraHeadHTML = renderToStaticMarkup(
-              <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
-            )
-            if (extraHeadHTML) {
-              html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
-            }
-          }
-        } catch (err) {
-          if (!`${err}`.includes(`sheet is not defined`)) {
-            throw err
           }
         }
 

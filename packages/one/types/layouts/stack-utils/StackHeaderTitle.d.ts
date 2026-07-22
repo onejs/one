@@ -1,5 +1,5 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { type StyleProp, type TextStyle } from 'react-native';
+import type { StyleProp, TextStyle } from 'react-native';
 export type StackHeaderTitleProps = {
     children?: string;
     style?: StyleProp<{

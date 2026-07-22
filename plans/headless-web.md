@@ -160,18 +160,30 @@ layer up (framework-owned markup and a props-unification problem).
 - Drop `SafeAreaProviderCompat` from `useScreens` on web.
 - Drawer: native-only. A web drawer is app UI, not router responsibility.
 
-### Phase 4: bootstrap + build
+### Phase 4: bootstrap + build (done 2026-07-21)
 
 - `createApp.tsx` web/SSR path renders Root directly via react-dom, no
-  `AppRegistry` (with no RNW there is no RNW style sheet to extract; the
-  `__oneStyles` extraction dies with it).
-- vxrn: the `react-native` → RNW alias and the RNW/screens/reanimated
-  optimizeDeps entries activate only when the app opts into RNW-on-web
-  (`import 'one/react-navigation-web'`, see `headless-navigators.md`; the
-  build detects that import or a matching config key). Off by default for
-  web-only apps. One's own packages never rely on the alias after phases
-  1-3, so universal apps keep it purely for their own userland RN imports
-  during migration.
+  `AppRegistry`; the `__oneStyles` extraction died with it. Apps that still
+  render RN components on web do that extraction themselves through
+  `useServerHeadInsertion` (documented in guides-headless-web).
+- Remaining react-native value imports in the web graph are gone:
+  `router/router.ts` and the iOS-only branches in `stack-utils/` read
+  `utils/platform` (a `.web` constant), `fork/NavigationContainer` reads
+  `fork/localeDirection`, react-navigation's `DefaultTheme`/`DarkTheme` are
+  copied in `fork/theme` because the package's `theming/fonts` imports
+  `Platform`, `StyleSheet.flatten` became `utils/style#flattenStyle`, and
+  `screensFeatureFlags` is native-only. In `@vxrn/native`, split-view is
+  native-only and the web color proxies dropped their `Platform` check.
+- The `react-native` → RNW alias STAYS on by default, contrary to the
+  original plan. It costs nothing once nothing in One's graph imports
+  react-native (an alias only resolves what someone imports), and gating it
+  would break every existing universal app's userland imports for no
+  bundle-size gain. RNW is now purely app-level compat config.
+
+Verified with `tests/test-headless-web`: an app with no react-native
+dependency at all, whose vite config fails the build if any chunk contains a
+module from `react-native-web` or `react-native-screens`. Control: adding
+`import { View } from 'react-native'` to one route fails that build.
 
 ### Phase 5: ecosystem posture
 
@@ -192,5 +204,10 @@ untouched throughout; every phase is web-only file splits or web-only view
 swaps, so risk to native is near zero.
 
 Verification gate for "done": build a One app for web and assert the client
-bundle and SSR graph contain no module resolving from react-native-web
-(easy to enforce as a build-time check in tests once phase 4 lands).
+bundle and SSR graph contain no module resolving from react-native-web. This
+now runs in CI as `tests/test-headless-web`.
+
+Still open after phase 4: `one/react-navigation-web`, the opt-in preset that
+would render the old react-navigation web chrome for apps migrating off it.
+Nothing depends on it, so apps that want their old web tab bar build it with
+`useTabs()` for now.
