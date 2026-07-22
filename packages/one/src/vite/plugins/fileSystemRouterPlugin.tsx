@@ -850,7 +850,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               }
 
               res.statusCode = reply.status
-              res.statusMessage = reply.statusText
 
               if (reply.body) {
                 if (reply.body.locked) {
