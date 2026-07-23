@@ -36,7 +36,9 @@
   "module": "dist",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
-  "bin": "run.mjs",
+  "bin": {
+    "vxrn": "run.mjs"
+  },
   "files": [
     "src",
     "types",

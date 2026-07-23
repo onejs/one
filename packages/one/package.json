@@ -136,7 +136,9 @@
   "module": "dist/esm",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
-  "bin": "run.mjs",
+  "bin": {
+    "one": "run.mjs"
+  },
   "files": [
     "src",
     "types",
