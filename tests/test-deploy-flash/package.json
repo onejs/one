@@ -1,6 +1,6 @@
 {
   "name": "test-deploy-flash",
-  "version": "1.21.11",
+  "version": "1.21.12",
   "private": true,
   "type": "module",
   "scripts": {
