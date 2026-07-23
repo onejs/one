@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/native",
-  "version": "1.21.9",
+  "version": "1.21.11",
   "type": "module",
   "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
   "license": "MIT",
@@ -8,37 +8,56 @@
   "module": "dist/esm/index.mjs",
   "types": "types/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "ios",
+    "android",
+    "VxrnNative.podspec",
+    "react-native.config.cjs"
+  ],
   "scripts": {
     "build": "tamagui-build",
-    "clean": "tamagui-build clean"
+    "clean": "tamagui-build clean",
+    "test": "vitest run --dir tests"
+  },
+  "dependencies": {
+    "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "exports": {
     ".": {
+      "types": "./types/index.d.ts",
       "react-native": "./dist/esm/index.native.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
     "./color": {
+      "types": "./types/color/index.d.ts",
       "react-native": "./dist/esm/color/index.native.js",
       "import": "./dist/esm/color/index.mjs",
       "require": "./dist/cjs/color/index.cjs"
     },
     "./zoom": {
+      "types": "./types/zoom/index.d.ts",
       "react-native": "./dist/esm/zoom/index.native.js",
       "import": "./dist/esm/zoom/index.mjs",
       "require": "./dist/cjs/zoom/index.cjs"
     },
     "./toolbar": {
+      "types": "./types/toolbar/index.d.ts",
       "react-native": "./dist/esm/toolbar/index.native.js",
       "import": "./dist/esm/toolbar/index.mjs",
       "require": "./dist/cjs/toolbar/index.cjs"
     },
     "./menu": {
+      "types": "./types/menu/index.d.ts",
       "react-native": "./dist/esm/menu/index.native.js",
       "import": "./dist/esm/menu/index.mjs",
       "require": "./dist/cjs/menu/index.cjs"
     },
     "./split-view": {
+      "types": "./types/split-view/index.d.ts",
       "react-native": "./dist/esm/split-view/index.native.js",
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
@@ -48,6 +67,8 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native-stack": ">=7.14.0",
     "react": "*",
     "react-native": "*",
     "react-native-screens": ">=4.0.0",
@@ -59,6 +80,10 @@
     }
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0"
+    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native-stack": "~7.14.10",
+    "@tamagui/build": "2.3.0",
+    "react-native-web": "^0.21.2",
+    "vitest": "^4.1.0"
   }
 }

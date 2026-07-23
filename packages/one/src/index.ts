@@ -94,17 +94,6 @@ export type {
   StackHeaderTitleProps,
   StackScreenOptions,
   StackScreenProps,
-  StackToolbarBadgeProps,
-  StackToolbarButtonProps,
-  StackToolbarIconProps,
-  StackToolbarLabelProps,
-  StackToolbarMenuActionProps,
-  StackToolbarMenuProps,
-  StackToolbarPlacement,
-  StackToolbarProps,
-  StackToolbarSearchBarSlotProps,
-  StackToolbarSpacerProps,
-  StackToolbarViewProps,
 } from './layouts/stack-utils'
 // Stack render API (for custom web overlay rendering)
 export type {

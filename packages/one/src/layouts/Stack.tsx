@@ -10,7 +10,6 @@ import {
   StackHeader,
   StackHeaderComponent,
   StackHeaderSearchBar,
-  StackToolbar,
   appendScreenStackPropsToOptions,
   type StackScreenProps,
 } from './stack-utils'
@@ -128,7 +127,6 @@ export const Stack = Object.assign(StackWithComposition, {
   Header: StackHeader,
   Protected,
   SearchBar: StackHeaderSearchBar,
-  Toolbar: StackToolbar,
 })
 
 export default Stack
