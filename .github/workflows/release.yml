@@ -28,18 +28,22 @@ jobs:
       actions: write
       contents: read
     steps:
-      - name: Require current main and successful full CI
+      - name: Require current release source and successful full CI
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_KIND: ${{ inputs.release }}
+          TARGET_REF: ${{ github.ref_name }}
           TARGET_SHA: ${{ github.sha }}
           WORKFLOW_FILE: checks.yml
         shell: bash
         run: |
           set -euo pipefail
-          [[ "$GITHUB_REF" == "refs/heads/main" ]]
+          if [[ "$RELEASE_KIND" != "canary" ]]; then
+            [[ "$GITHUB_REF" == "refs/heads/main" ]]
+          fi
 
-          main_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
-          [[ "$TARGET_SHA" == "$main_sha" ]]
+          source_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$TARGET_REF" --jq .object.sha)
+          [[ "$TARGET_SHA" == "$source_sha" ]]
 
           get_runs() {
             gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/$WORKFLOW_FILE/runs" \
@@ -81,7 +85,7 @@ jobs:
           started=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           gh api --method POST \
             "repos/$GITHUB_REPOSITORY/actions/workflows/$WORKFLOW_FILE/dispatches" \
-            -f ref=main
+            -f ref="$TARGET_REF"
 
           run_id=''
           for ((attempt = 1; attempt <= 12; attempt++)); do
@@ -110,12 +114,19 @@ jobs:
           persist-credentials: false
 
       - name: Validate release source
+        env:
+          RELEASE_KIND: ${{ inputs.release }}
+          TARGET_REF: ${{ github.ref_name }}
+          TARGET_SHA: ${{ github.sha }}
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags origin main
-          [[ "$GITHUB_REF" == "refs/heads/main" ]]
-          [[ "$(git rev-parse HEAD)" == "$(git rev-parse origin/main)" ]]
+          git fetch --no-tags origin "$TARGET_REF"
+          [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
+          [[ "$(git rev-parse FETCH_HEAD)" == "$TARGET_SHA" ]]
+          if [[ "$RELEASE_KIND" != "canary" ]]; then
+            [[ "$TARGET_REF" == "main" ]]
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
@@ -146,6 +157,7 @@ jobs:
           bun scripts/release.ts "--$RELEASE_KIND" --ci --dirty --skip-publish --skip-push --skip-tests --skip-native-tests
 
       - name: Push release commit
+        if: inputs.release != 'canary'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
