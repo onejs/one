@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "repository": {
-    "url": "https://github.com/onejs/one"
+    "url": "git+https://github.com/onejs/one.git"
   },
   "workspaces": [
     "./apps/*",

@@ -454,7 +454,7 @@ async function run() {
         const pkgJson = await fs.readJSON(pkgJsonPath)
         pkgJson.repository = {
           type: 'git',
-          url: 'https://github.com/onejs/one.git',
+          url: 'git+https://github.com/onejs/one.git',
           directory: path.relative(process.cwd(), cwd),
         }
         for (const field of [
