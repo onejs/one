@@ -1,7 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
+  "exclude": ["vitest.config.ts", "tests", "dist", "types"],
   "compilerOptions": {
     "composite": true
   },
-  "references": []
+  "references": [
+    {
+      "path": "../use-isomorphic-layout-effect"
+    }
+  ]
 }

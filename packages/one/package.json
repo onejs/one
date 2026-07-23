@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "1.21.9",
+  "version": "1.21.11",
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
@@ -183,7 +183,6 @@
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/compiler": "workspace:*",
-    "@vxrn/native": "workspace:*",
     "@vxrn/resolve": "workspace:*",
     "@vxrn/tslib-lite": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*",
