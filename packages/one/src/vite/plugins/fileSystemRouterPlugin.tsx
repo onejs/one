@@ -50,12 +50,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let runner: ModuleRunner
   let server: ViteDevServer
 
-  // Only clear the SSR module runner cache when a file actually changed, not on
-  // every request. Clearing per-request forces a full re-evaluation of the whole
-  // server module tree (new AsyncFunction per module) on each page render, which
-  // leaks heap unboundedly under sustained navigation (→ 5-8GB RSS / OOM) and also
-  // re-transforms every module. The file watcher below flips this back to true.
-  let needsCacheClear = true
+  // set by the file watcher below when a file the SSR runner evaluated changes,
+  // consumed by the next page render. only refresh on an actual change, never
+  // per request: a per-request refresh rebuilds the route tree and re-renders
+  // every ssg page for nothing.
+  let needsRouteRefresh = false
 
   // Track file dependencies from loaders for hot reload
   // Maps file path -> set of route paths that depend on it
@@ -124,7 +123,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       {
         async handlePage({ route, url, loaderProps }) {
           const ssgCacheKey = route.type === 'ssg' ? getSsgHtmlCacheKey(route, url) : null
-          if (ssgCacheKey && !needsCacheClear) {
+          if (ssgCacheKey && !needsRouteRefresh) {
             const cachedHtml = ssgHtmlCache.get(ssgCacheKey)
             if (cachedHtml) {
               return cachedHtml
@@ -166,7 +165,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             await renderPromise
           }
 
-          if (ssgCacheKey && !needsCacheClear) {
+          if (ssgCacheKey && !needsRouteRefresh) {
             const cachedHtml = ssgHtmlCache.get(ssgCacheKey)
             if (cachedHtml) {
               return cachedHtml
@@ -183,10 +182,17 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             // so we must branch on route.file, not the joined path.
             const isGeneratedNotFound = route.file === ''
             const routeFile = isGeneratedNotFound ? '' : path.join(routerRoot, route.file)
-            if (needsCacheClear) {
-              runner.clearCache()
+            if (needsRouteRefresh) {
+              // the module runner keeps itself fresh: every import re-checks the
+              // server, which has already invalidated the changed file and its
+              // importers, so only that chain re-evaluates. what it can't know
+              // about is our own route cache — the route context in
+              // useViteRoutes holds resolved route modules, and the SSR route
+              // tree is built from that context. bumping the version both watch
+              // rebuilds them from the fresh modules on this render.
+              globalThis['__vxrnVersion'] = (globalThis['__vxrnVersion'] || 0) + 1
               ssgHtmlCache.clear()
-              needsCacheClear = false
+              needsRouteRefresh = false
             }
 
             globalThis['__vxrnresetState']?.()
@@ -587,7 +593,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     try {
       handleRequest = createRequestHandler()
       ssgHtmlCache.clear()
-      needsCacheClear = true
+      needsRouteRefresh = true
     } catch (error) {
       console.warn(`[one] Failed to rebuild routes after ${changedPath} changed.`, error)
     }
@@ -658,26 +664,22 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
 
-      // any watched file change means the SSR runner may be serving stale module
-      // code — mark the cache dirty so the next render re-evaluates once (set
-      // immediately/undebounced so it can't race ahead of a render).
+      // a change to a file the SSR runner evaluated means the route tree we
+      // rendered from is built out of pre-edit modules — flag it so the next
+      // render rebuilds it (set immediately/undebounced so it can't race ahead
+      // of a render).
       //
-      // but only for files the SSR runner has ACTUALLY evaluated. the watcher
-      // fires for EVERY file event under the project root — including build-tool
-      // scratch files (e.g. *.bun-build temp artifacts), freshly created
-      // unrelated files, and other tooling's churn. in a busy monorepo that
-      // churn is near-constant, and marking the cache dirty on it forces a full
-      // re-evaluation of the SSR module tree on the very next render (a new
-      // AsyncFunction per module) — exactly the unbounded heap leak the
-      // needsCacheClear comment above exists to prevent (→ 5-8GB RSS / OOM).
+      // only for files the runner has ACTUALLY evaluated. the watcher fires for
+      // EVERY file event under the project root — build-tool scratch files (e.g.
+      // *.bun-build temp artifacts), freshly created unrelated files, other
+      // tooling's churn — and in a busy monorepo that churn is near-constant.
+      // none of it can affect what we rendered.
       //
-      // `runner.evaluatedModules` is the precise set clearCache() would re-evaluate,
-      // so a change outside it can never make the cache stale. it correctly
-      // includes both route files (loaded via runner.import) and shared source
-      // modules — unlike server.environments.ssr.moduleGraph, which misses
-      // runner-imported route files. (route-file adds/removes are still handled
-      // separately below via recreateRequestHandler, so a brand-new route is
-      // never missed.)
+      // `runner.evaluatedModules` is the right set to check: it includes both
+      // route files (loaded via runner.import) and shared source modules, unlike
+      // server.environments.ssr.moduleGraph, which misses runner-imported route
+      // files. (route-file adds/removes are handled separately below via
+      // recreateRequestHandler, so a brand-new route is never missed.)
       server.watcher.on('all', (_event, file) => {
         if (file && runner?.evaluatedModules) {
           const mods =
@@ -685,7 +687,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             runner.evaluatedModules.getModulesByFile(normalizePath(file))
           if (!mods || mods.size === 0) return
         }
-        needsCacheClear = true
+        needsRouteRefresh = true
       })
 
       // on change ./app stuff lets reload this to pick up any route changes
