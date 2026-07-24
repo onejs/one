@@ -78,6 +78,47 @@ async function testHMR(
   await page.close()
 }
 
+// these hit the dev server directly instead of driving HMR in a live browser.
+// server rendering is a separate code path that keeps passing the browser tests
+// even when it renders pre-edit route modules, and they assert the FIRST render
+// after an edit, which is what a hard refresh gets you.
+//
+// keep them first in this file: they need a dev server that has not served a
+// browser HMR session yet, which is the state that exposes a stale route tree.
+const WATCHER_SETTLE_MS = 2000
+
+async function ssrText(testId: string) {
+  const html = await (await fetch(serverUrl + '/')).text()
+  return html.match(new RegExp(`data-testid="${testId}"[^>]*>([^<]*)<`))?.[1]
+}
+
+async function ssrTextAfterEdit(testId: string, edit: () => void) {
+  edit()
+  await new Promise((r) => setTimeout(r, WATCHER_SETTLE_MS))
+  return await ssrText(testId)
+}
+
+test('server render reflects route file edits', async () => {
+  expect(await ssrText('route-text-content')).toBe('Some text')
+  expect(await ssrTextAfterEdit('route-text-content', editRouteFile)).toBe(
+    'Some edited text in route file'
+  )
+})
+
+test('server render reflects component file edits', async () => {
+  expect(await ssrText('component-text-content')).toBe('Some text')
+  expect(await ssrTextAfterEdit('component-text-content', editComponentFile)).toBe(
+    'Some edited text in component file'
+  )
+})
+
+test('server render reflects layout file edits', async () => {
+  expect(await ssrText('layout-text-content')).toBe('Some text')
+  expect(await ssrTextAfterEdit('layout-text-content', editLayoutFile)).toBe(
+    'Some edited text in layout file'
+  )
+})
+
 test('component HMR', { retry: 3 }, async () => {
   await testHMR(
     'component-text-content',
