@@ -234,13 +234,19 @@ describe('createFileSystemRouterPlugin', () => {
     await expect(request('/')).resolves.toContain('<body>1</body>')
     expect(render).toHaveBeenCalledTimes(1)
 
-    const allListeners = watcherListeners.get('all') || []
-    const invalidateRunner = allListeners[0]
-    if (!invalidateRunner) {
-      throw new Error('Expected runner invalidation listener to be registered')
-    }
     const versionBeforeChange = globalThis['__vxrnVersion']
-    invalidateRunner('change', routeFile)
+    // vite calls hotUpdate on the ssr environment after invalidating the graph;
+    // that is what tells the next render its route tree is built out of pre-edit
+    // modules
+    ;(plugin as any).hotUpdate.call(
+      {
+        environment: {
+          name: 'ssr',
+          moduleGraph: { getModulesByFile: () => new Set([{ id: routeFile }]) },
+        },
+      },
+      { file: routeFile }
+    )
 
     await expect(request('/')).resolves.toContain('<body>2</body>')
     expect(render).toHaveBeenCalledTimes(2)

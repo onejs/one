@@ -50,10 +50,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let runner: ModuleRunner
   let server: ViteDevServer
 
-  // set by the file watcher below when a file the SSR runner evaluated changes,
-  // consumed by the next page render. only refresh on an actual change, never
-  // per request: a per-request refresh rebuilds the route tree and re-renders
-  // every ssg page for nothing.
+  // set by hotUpdate below when the ssr environment sees a file change, consumed
+  // by the next page render. only refresh on an actual change, never per
+  // request: a per-request refresh rebuilds the route tree and re-renders every
+  // ssg page for nothing.
   let needsRouteRefresh = false
 
   // Track file dependencies from loaders for hot reload
@@ -604,6 +604,22 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     enforce: 'post',
     apply: 'serve',
 
+    // the route tree we rendered from is built out of whatever route modules
+    // were resolved at the time, so any ssr-side change makes it stale. this
+    // runs inside vite's update sequence, after the graph has been invalidated,
+    // so by the time the next render reads the flag the fresh modules are
+    // already there to rebuild from.
+    //
+    // ask the graph rather than reading the `modules` argument: vite calls
+    // hotUpdate for every watcher event including files it knows nothing about,
+    // and an earlier plugin may have replaced `modules` (route-module-hmr-fix
+    // returns [] for ssr app files to suppress the full reload).
+    hotUpdate({ file }) {
+      if (this.environment.name !== 'ssr') return
+      if (!this.environment.moduleGraph.getModulesByFile(file)?.size) return
+      needsRouteRefresh = true
+    },
+
     async config() {
       const setting = options.optimization?.autoEntriesScanning ?? 'flat'
       const routerRoot = normalizePath(getRouterRootFromOneOptions(options))
@@ -663,32 +679,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       )
 
       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
-
-      // a change to a file the SSR runner evaluated means the route tree we
-      // rendered from is built out of pre-edit modules — flag it so the next
-      // render rebuilds it (set immediately/undebounced so it can't race ahead
-      // of a render).
-      //
-      // only for files the runner has ACTUALLY evaluated. the watcher fires for
-      // EVERY file event under the project root — build-tool scratch files (e.g.
-      // *.bun-build temp artifacts), freshly created unrelated files, other
-      // tooling's churn — and in a busy monorepo that churn is near-constant.
-      // none of it can affect what we rendered.
-      //
-      // `runner.evaluatedModules` is the right set to check: it includes both
-      // route files (loaded via runner.import) and shared source modules, unlike
-      // server.environments.ssr.moduleGraph, which misses runner-imported route
-      // files. (route-file adds/removes are handled separately below via
-      // recreateRequestHandler, so a brand-new route is never missed.)
-      server.watcher.on('all', (_event, file) => {
-        if (file && runner?.evaluatedModules) {
-          const mods =
-            runner.evaluatedModules.getModulesByFile(file) ||
-            runner.evaluatedModules.getModulesByFile(normalizePath(file))
-          if (!mods || mods.size === 0) return
-        }
-        needsRouteRefresh = true
-      })
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce((type: string, changedPath: string) => {
