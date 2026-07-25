@@ -101,7 +101,7 @@
     "react-native-reanimated": "4.2.1",
     "sharp": "0.35.3",
     "minimatch": "3.1.5",
-    "brace-expansion": "1.1.15",
+    "brace-expansion": "5.0.8",
     "node-forge": "1.4.0",
     "picomatch": "^4.0.4",
     "piscina": "4.9.3",
@@ -117,7 +117,7 @@
     "qs": "6.15.2",
     "ajv": "8.20.0",
     "ip-address": "10.2.0",
-    "postcss": "8.5.15",
+    "postcss": "8.5.18",
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
     "uuid": "11.1.1",
@@ -176,7 +176,8 @@
     "plist@3.1.0": "patches/plist@3.1.0.patch",
     "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
-    "depcheck@1.4.7": "patches/depcheck@1.4.7.patch"
+    "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
+    "minimatch@3.1.5": "patches/minimatch@3.1.5.patch"
   },
   "dependencies": {
     "axios": "1.18.1",
