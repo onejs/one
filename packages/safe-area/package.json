@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "@tamagui/build": "2.3.0"
+    "@tamagui/build": "2.3.0",
+    "react-native": "0.83.2"
   }
 }
