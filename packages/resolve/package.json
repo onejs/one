@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/resolve",
-  "version": "1.21.12",
+  "version": "1.21.12-1785026012654",
   "sideEffects": false,
   "source": "src/index.tsx",
   "type": "module",
