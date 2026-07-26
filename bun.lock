@@ -226,6 +226,7 @@
         "ts-deepmerge": "^7.0.2",
       },
       "devDependencies": {
+        "@swc/core": "1.15.46",
         "@tamagui/build": "2.3.0",
         "depcheck": "^1.4.7",
         "rolldown": "^1.0.1",
@@ -527,6 +528,7 @@
         "react-dom": "19.2.0",
         "react-native": "0.83.2",
         "tsx": "^4.20.6",
+        "vitest": "4.1.10",
       },
       "peerDependencies": {
         "react": "19.2.0",
@@ -552,6 +554,7 @@
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "2.3.0",
+        "react-native": "0.83.2",
       },
     },
     "packages/test": {
@@ -680,6 +683,7 @@
         "depcheck": "^1.4.7",
         "expo": "~55.0.7",
         "metro": "^0.83",
+        "metro-babel-transformer": "0.83.7",
         "metro-config": "*",
         "react-native": "0.83.2",
         "vite": "^8.0.13",
