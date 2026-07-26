@@ -680,6 +680,12 @@ export async function build(args: {
 
   // caches for expensive operations
   const collectImportsCache = new Map<string, string[]>()
+  // chunk graphs are routinely cyclic, and the cache above is only populated on
+  // the way out, so a cycle would recurse until the stack blew. tracking the
+  // keys still being expanded lets a re-entrant edge return nothing: the frame
+  // that is already expanding that key adds its own direct imports before it
+  // recurses, so the union it returns is still complete.
+  const collectImportsInFlight = new Set<string>()
   const cssFileContentsCache = new Map<string, string>()
 
   // css files with .inline.css extension — should be inlined as <style>
@@ -855,6 +861,8 @@ export async function build(args: {
       const cacheKey = `${entry.file || imports.join(',')}:${type}`
       const cached = collectImportsCache.get(cacheKey)
       if (cached) return cached
+      if (collectImportsInFlight.has(cacheKey)) return []
+      collectImportsInFlight.add(cacheKey)
 
       const result = [
         ...new Set(
@@ -875,6 +883,7 @@ export async function build(args: {
             )
         ),
       ]
+      collectImportsInFlight.delete(cacheKey)
       collectImportsCache.set(cacheKey, result)
       return result
     }
