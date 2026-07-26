@@ -130,6 +130,7 @@ jobs:
           persist-credentials: false
 
       - name: Validate release source
+        if: inputs.release != 'canary'
         shell: bash
         run: |
           set -euo pipefail
