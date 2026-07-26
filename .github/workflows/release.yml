@@ -28,11 +28,15 @@ jobs:
       actions: write
       contents: read
     steps:
-      - name: Require current main and successful full CI
+      # a canary is cuttable from ANY branch on purpose. requiring it to be
+      # current main meant merging a change just to test it, which is backwards
+      # for a throwaway build on its own dist-tag. a stable release still has to
+      # be exactly current main.
+      - name: Require current main
+        if: inputs.release != 'canary'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
-          WORKFLOW_FILE: checks.yml
         shell: bash
         run: |
           set -euo pipefail
@@ -40,6 +44,22 @@ jobs:
 
           main_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
           [[ "$TARGET_SHA" == "$main_sha" ]]
+
+      # a canary is a throwaway version on its own dist-tag: nothing installs it
+      # unless someone asks for it by name, and it never moves latest. gating it
+      # on a full CI run cost 20+ minutes per cut, and when no run existed for
+      # the sha this job DISPATCHED checks.yml and waited up to 90 minutes for
+      # it, which is most of the wall clock of publishing a one-line fix. a
+      # stable release still cannot publish without green CI below.
+      - name: Require successful full CI
+        if: inputs.release != 'canary'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ github.sha }}
+          WORKFLOW_FILE: checks.yml
+        shell: bash
+        run: |
+          set -euo pipefail
 
           get_runs() {
             gh api --method GET "repos/$GITHUB_REPOSITORY/actions/workflows/$WORKFLOW_FILE/runs" \
@@ -145,7 +165,14 @@ jobs:
           git config user.email 'one@users.noreply.github.com'
           bun scripts/release.ts "--$RELEASE_KIND" --ci --dirty --skip-publish --skip-push --skip-tests --skip-native-tests
 
+      # a canary publishes the prepared working tree and mutates no git at all,
+      # matching what orez and takeout canaries already do. pushing a throwaway
+      # version commit to main is what actually broke this: main now requires a
+      # pull request and a merge queue, so the push is rejected with GH006 and
+      # the publish step below never runs. the version bump only has to exist in
+      # the tree for npm, never on main.
       - name: Push release commit
+        if: inputs.release != 'canary'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
