@@ -235,7 +235,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
     } & import("@react-navigation/core").EventConsumer<TabNavigationEventMap & import("@react-navigation/core").EventMapCore<TabNavigationState<any>>> & import("@react-navigation/core").PrivateValueStore<[ParamListBase, string, TabNavigationEventMap]> & TabActionHelpers<ParamListBase>, import("@react-navigation/core").RouteProp<ParamListBase, string>>>;
     NavigationContent: ({ children }: {
         children: React.ReactNode;
-    }) => import("react/jsx-runtime").JSX.Element;
+    }) => React.JSX.Element;
 };
 /**
  * Alternative hook version of `Tabs` that uses explicit triggers
