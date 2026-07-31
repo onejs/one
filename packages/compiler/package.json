@@ -44,7 +44,7 @@
     "ts-deepmerge": "^7.0.2"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
+    "@tamagui/build": "2.6.2",
     "depcheck": "^1.4.7",
     "rolldown": "^1.0.1",
     "vite": "^8.0.13",
