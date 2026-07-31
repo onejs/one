@@ -138,7 +138,7 @@
     "patch-package": "^8.0.0",
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
-    "tamagui": "2.3.0",
+    "tamagui": "2.6.2",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "^5.7.3",
