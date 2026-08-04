@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/helper-plugin-utils": "^7.27.1",
-    "@react-native/babel-preset": "^0.83.0",
+    "@react-native/babel-preset": "^0.86.2",
     "@vxrn/resolve": "workspace:*",
     "vite": "^8.0.13"
   },
