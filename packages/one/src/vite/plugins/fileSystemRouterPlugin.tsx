@@ -15,6 +15,7 @@ import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOpt
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import type { RouteIndex } from '../../utils/routeIndex'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
 import { replaceLoader } from '../../vite/replaceLoader'
@@ -44,7 +45,10 @@ const routeTypeColors: Record<string, (s: string) => string> = {
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
-export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
+export function createFileSystemRouterPlugin(
+  options: One.PluginOptions,
+  routeIndex: RouteIndex
+): Plugin {
   // under vite 8.1 bundledDev the client entry is bundled and served at a fixed
   // /assets url instead of the unbundled /@id/__x00__virtual url. swapped in
   // configureServer once we can see whether the client env is bundled.
@@ -588,7 +592,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           return await runner.import(path.join(routerRoot, route.contextKey))
         },
       },
-      { routerRoot, ignoredRouteFiles: options.router?.ignoredRouteFiles }
+      {
+        routerRoot,
+        ignoredRouteFiles: options.router?.ignoredRouteFiles,
+        routePaths: routeIndex.getPaths(),
+      }
     )
   }
 
@@ -694,7 +702,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
-      const fileWatcherChangeListener = debounce((type: string, changedPath: string) => {
+      const recreateRequestHandlerDebounced = debounce((changedPath: string) => {
+        recreateRequestHandler(changedPath)
+      }, 100)
+      const fileWatcherChangeListener = (type: string, changedPath: string) => {
         if (
           isRouteFileWatchEvent({
             event: type,
@@ -702,9 +713,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             routerRoot: appDir,
           })
         ) {
-          recreateRequestHandler(changedPath)
+          routeIndex.update(type, changedPath)
+          return recreateRequestHandlerDebounced(changedPath)
         }
-      }, 100)
+      }
 
       server.watcher.addListener('all', fileWatcherChangeListener)
 

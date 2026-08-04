@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
 import { build } from 'vite'
+import { createRouteIndex } from '../../utils/routeIndex'
 import { createVirtualEntry } from './virtualEntryPlugin'
 
 // mock isNativeEnvironment
@@ -58,7 +59,11 @@ export const registerPreloadedRoute = () => {}`
               }
             },
           },
-          createVirtualEntry({ root: 'app', flags: {} }),
+          createVirtualEntry({
+            root: 'app',
+            flags: {},
+            routeIndex: createRouteIndex({ routerRoot: appDir }),
+          }),
         ],
         build: {
           ssr: true,
@@ -101,6 +106,10 @@ export const registerPreloadedRoute = () => {}`
     const base = {
       root: 'app',
       flags: {},
+      routeIndex: {
+        getPaths: () => [],
+        update: () => false,
+      },
     }
 
     it('server (ssr) uses lazy dynamic import, not static import', () => {

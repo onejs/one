@@ -3,10 +3,16 @@ import { debounce } from 'perfect-debounce'
 import type { Plugin } from 'vite'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
+import type { RouteIndex } from '../../utils/routeIndex'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import type { One } from '../types'
 
-export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): Plugin {
+export function generateFileSystemRouteTypesPlugin(
+  options: One.PluginOptions,
+  routeIndex: RouteIndex
+): Plugin {
+  const routerRoot = getRouterRootFromOneOptions(options)
+
   return {
     name: `one-generate-fs-route-types`,
     enforce: 'post',
@@ -17,12 +23,20 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       // Generate routes.d.ts inside the app directory to keep it organized
       const outFile = join(appDir, 'routes.d.ts')
 
-      const routerRoot = getRouterRootFromOneOptions(options)
       const typedRoutesGeneration =
         options.router?.experimental?.typedRoutesGeneration || undefined
 
       // on change ./app stuff lets reload this to pick up any route changes
-      const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
+      const generateRouteTypesDebounced = debounce(async () => {
+        await generateRouteTypes(
+          outFile,
+          routerRoot,
+          options.router?.ignoredRouteFiles,
+          typedRoutesGeneration,
+          routeIndex.getPaths()
+        )
+      }, 100)
+      const fileWatcherChangeListener = (type: string, path: string) => {
         if (
           isRouteFileWatchEvent({
             event: type,
@@ -31,14 +45,10 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
             includeChangeEvents: true,
           })
         ) {
-          generateRouteTypes(
-            outFile,
-            routerRoot,
-            options.router?.ignoredRouteFiles,
-            typedRoutesGeneration
-          )
+          routeIndex.update(type, path)
+          return generateRouteTypesDebounced()
         }
-      }, 100)
+      }
 
       server.watcher.addListener('all', fileWatcherChangeListener)
 
@@ -49,7 +59,8 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
           outFile,
           routerRoot,
           options.router?.ignoredRouteFiles,
-          typedRoutesGeneration
+          typedRoutesGeneration,
+          routeIndex.getPaths()
         )
       }
     },

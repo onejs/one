@@ -374,9 +374,13 @@ export function compileManifest(manifest: {
 // in dev mode we do it more simply:
 export function createHandleRequest(
   handlers: RequestHandlers,
-  { routerRoot, ignoredRouteFiles }: { routerRoot: string; ignoredRouteFiles?: string[] }
+  {
+    routerRoot,
+    ignoredRouteFiles,
+    routePaths,
+  }: { routerRoot: string; ignoredRouteFiles?: string[]; routePaths?: string[] }
 ) {
-  const manifest = getManifest({ routerRoot, ignoredRouteFiles })
+  const manifest = getManifest({ routerRoot, ignoredRouteFiles, routePaths })
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }
