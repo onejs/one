@@ -76,12 +76,16 @@ describe('createFileSystemRouterPlugin', () => {
       },
     }
 
+    const { createRouteIndex } = await import('../../utils/routeIndex')
     const { createFileSystemRouterPlugin } = await import('./fileSystemRouterPlugin')
-    const plugin = createFileSystemRouterPlugin({
-      router: {
-        root: appDir,
+    const plugin = createFileSystemRouterPlugin(
+      {
+        router: {
+          root: appDir,
+        },
       },
-    })
+      createRouteIndex({ routerRoot: appDir })
+    )
 
     let watcherListener:
       | ((event: string, changedPath: string) => void | Promise<void>)
@@ -130,6 +134,7 @@ describe('createFileSystemRouterPlugin', () => {
     writeFileSync(routeFile, 'export default function Index() { return null }\n')
 
     const { createServerModuleRunner } = await import('vite')
+    const { createRouteIndex } = await import('../../utils/routeIndex')
     const { createFileSystemRouterPlugin } = await import('./fileSystemRouterPlugin')
     const { virtualEntryId } = await import('./virtualEntryConstants')
 
@@ -173,14 +178,17 @@ describe('createFileSystemRouterPlugin', () => {
       },
     }
 
-    const plugin = createFileSystemRouterPlugin({
-      router: {
-        root: appDir,
+    const plugin = createFileSystemRouterPlugin(
+      {
+        router: {
+          root: appDir,
+        },
+        server: {
+          loggingEnabled: false,
+        },
       },
-      server: {
-        loggingEnabled: false,
-      },
-    })
+      createRouteIndex({ routerRoot: appDir })
+    )
 
     const installMiddlewares = (plugin as any).configureServer(server)
     installMiddlewares()

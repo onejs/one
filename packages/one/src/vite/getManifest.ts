@@ -1,18 +1,16 @@
-import micromatch from 'micromatch'
 import { createRoutesManifest } from '../server/createRoutesManifest'
-import { globDir } from '../utils/globDir'
+import { getRoutePaths } from '../utils/routeIndex'
 
 export function getManifest({
   routerRoot,
   ignoredRouteFiles,
+  routePaths: routePathsIn,
 }: {
   routerRoot: string
   ignoredRouteFiles?: string[]
+  routePaths?: string[]
 }) {
-  let routePaths = globDir(routerRoot)
-  if (ignoredRouteFiles?.length) {
-    routePaths = micromatch.not(routePaths, ignoredRouteFiles, { matchBase: true })
-  }
+  const routePaths = routePathsIn ?? getRoutePaths(routerRoot, ignoredRouteFiles)
   return createRoutesManifest(routePaths, {
     platform: 'web',
   })

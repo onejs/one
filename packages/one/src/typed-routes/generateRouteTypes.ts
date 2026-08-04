@@ -1,10 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import FSExtra from 'fs-extra'
-import micromatch from 'micromatch'
 import { removeSupportedExtensions } from '../router/matchers'
 import { globbedRoutesToRouteContext } from '../router/useViteRoutes'
-import { globDir } from '../utils/globDir'
+import { getRoutePaths } from '../utils/routeIndex'
 import type { One } from '../vite/types'
 import { getTypedRoutesDeclarationFile } from './getTypedRoutesDeclarationFile'
 import { type InjectMode, injectRouteHelpers } from './injectRouteHelpers'
@@ -13,15 +12,10 @@ export async function generateRouteTypes(
   outFile: string,
   routerRoot: string,
   ignoredRouteFiles?: string[],
-  typedRoutesMode?: 'type' | 'runtime'
+  typedRoutesMode?: 'type' | 'runtime',
+  routePathsIn?: string[]
 ) {
-  let routePaths = globDir(routerRoot)
-  if (ignoredRouteFiles && ignoredRouteFiles.length > 0) {
-    routePaths = micromatch.not(routePaths, ignoredRouteFiles, {
-      // The path starts with './', such as './foo/bar/baz.test.tsx', and ignoredRouteFiles is like ['**/*.test.*'], so we need matchBase here.
-      matchBase: true,
-    })
-  }
+  const routePaths = routePathsIn ?? getRoutePaths(routerRoot, ignoredRouteFiles)
   // globDir returns paths relative to routerRoot (e.g. "./app/data.tsx" for a file at <routerRoot>/app/data.tsx).
   // globbedRoutesToRouteContext expects Vite-style paths with the routerRoot as a prefix
   // (e.g. "/app/app/data.tsx"), so it can strip it via `path.replace(`/${routerRoot}/`, './')`.

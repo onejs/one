@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { configuration } from '@vxrn/compiler'
-import Glob from 'fast-glob'
+import micromatch from 'micromatch'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
 import {
@@ -11,6 +11,7 @@ import {
   ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
 } from '../../router/glob-patterns'
 import { matchDirectoryRenderMode, matchFileRenderMode } from '../../router/matchers'
+import type { RouteIndex } from '../../utils/routeIndex'
 import type { One } from '../types'
 import {
   resolvedVirtualEntryId,
@@ -118,6 +119,7 @@ export function createVirtualEntry(options: {
   router?: One.PluginOptions['router']
   flags: One.Flags
   setupFile?: One.PluginOptions['setupFile']
+  routeIndex: RouteIndex
 }): Plugin {
   const routeGlobs = [
     `/${options.root}/${ROUTE_GLOB_PATTERN}`,
@@ -154,14 +156,13 @@ export function createVirtualEntry(options: {
         const isNative = isNativeEnvironment(this.environment)
         const isSSR = this.environment.name === 'ssr'
         const serverSpaRouteFiles = isSSR
-          ? Glob.sync('**/*.{ts,tsx}', {
-              cwd: resolve(viteRoot, options.root),
-              ignore: [
-                ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
-                ...(options.router?.ignoredRouteFiles || []),
-              ],
-            })
-              .map((file) => file.replaceAll('\\', '/'))
+          ? options.routeIndex
+              .getPaths()
+              .map((file) => file.replace(/^\.\//, ''))
+              .filter((file) => /\.tsx?$/.test(file))
+              .filter(
+                (file) => !micromatch.isMatch(file, ROUTE_WEB_EXCLUSION_GLOB_PATTERNS)
+              )
               .filter((file) => {
                 const parts = file.split('/')
                 const filename = parts.at(-1) || ''

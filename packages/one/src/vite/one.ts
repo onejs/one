@@ -16,6 +16,7 @@ import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOpt
 import '../polyfills-server'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
+import { createRouteIndex } from '../utils/routeIndex'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { bundledDevPlugin } from './plugins/bundledDevPlugin'
@@ -26,6 +27,7 @@ import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
+import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
@@ -710,63 +712,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
-    {
-      name: 'route-module-hmr-fix',
-      hotUpdate({ server, modules, file }) {
-        const envName = this.environment?.name
-
-        // Check if this is an app file
-        const fileRelativePath = path.relative(server.config.root, file)
-        const fileRootDir = fileRelativePath.split(path.sep)[0]
-        const isAppFile = fileRootDir === 'app'
-
-        // For SSR environment, prevent full page reload for app files by returning empty array
-        // The SSR module runner will still pick up changes on next request
-        if (envName === 'ssr' && isAppFile) {
-          return []
-        }
-
-        let hasRouteUpdate = false
-
-        const result = modules.map((m) => {
-          const { id } = m
-          if (!id) return m
-
-          const relativePath = path.relative(server.config.root, id)
-          // Get the root dir from relativePath
-          const rootDir = relativePath.split(path.sep)[0]
-          if (rootDir === 'app') {
-            // If the file is a route, Vite might force a full-reload due to that file not being imported by any other modules (`!node.importers.size`) (see https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L440-L443, https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L427 and https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L557-L566)
-            // Here we trick Vite to skip that check.
-            m.acceptedHmrExports = new Set()
-
-            // Check if this is a ROOT layout file - only root layouts need special handling
-            // because they're called as functions (not rendered as JSX) to support HTML elements
-            // Root layout patterns: app/_layout.tsx or app/(group)/_layout.tsx
-            const isRootLayout =
-              relativePath === path.join('app', '_layout.tsx') ||
-              /^app[\\/]\([^)]+\)[\\/]_layout\.tsx$/.test(relativePath)
-            if (isRootLayout) {
-              hasRouteUpdate = true
-            }
-          }
-
-          return m
-        })
-
-        // For root layout files, send a custom event to trigger re-render
-        // Root layouts are called as functions (not JSX) to support HTML elements, bypassing React's HMR
-        if (hasRouteUpdate) {
-          server.hot.send({
-            type: 'custom',
-            event: 'one:route-update',
-            data: { file: fileRelativePath },
-          })
-        }
-
-        return result
-      },
-    } satisfies Plugin,
+    createRouteModuleHmrPlugin(routerRoot),
 
     // Plugins may transform the source code and add imports of `react/jsx-dev-runtime`, which won't be discovered by Vite's initial `scanImports` since the implementation is using ESbuild where such plugins are not executed.
     // Thus, if the project has a valid `react/jsx-dev-runtime` import, we tell Vite to optimize it, so Vite won't only discover it on the next page load and trigger a full reload.
@@ -840,6 +786,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
   const flags: One.Flags = {}
+  const routeIndex = createRouteIndex({
+    routerRoot: path.resolve(root, routerRoot),
+    ignoredRouteFiles: options.router?.ignoredRouteFiles,
+  })
 
   // pass config to the rolldown native entry (createNativeDevEngine reads this)
   if (!nativeDisabled) {
@@ -871,9 +821,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     /**
      * This is really the meat of one, where it handles requests:
      */
-    createFileSystemRouterPlugin(options),
+    createFileSystemRouterPlugin(options, routeIndex),
 
-    generateFileSystemRouteTypesPlugin(options),
+    generateFileSystemRouteTypesPlugin(options, routeIndex),
 
     fixDependenciesPlugin(options.patches),
 
@@ -881,6 +831,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       ...options,
       flags,
       root: routerRoot,
+      routeIndex,
     }),
 
     {
