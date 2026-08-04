@@ -234,8 +234,13 @@ export function createVirtualEntry(options: {
         // loaded". install it here instead — this runs at entry-body time, before
         // the lazily-globbed route modules evaluate. ('one' and /@react-refresh are
         // node_modules / the runtime, so neither is refresh-wrapped.)
+        // `isBundled` is true for EVERY environment during build, so it alone can't
+        // gate this — a prod build would emit an import of /@react-refresh, which
+        // only exists while serving. dev mode is what makes the preamble necessary.
         const isBundledClient =
-          this.environment.name === 'client' && !!(this.environment.config as any)?.isBundled
+          this.environment.mode === 'dev' &&
+          this.environment.name === 'client' &&
+          !!(this.environment.config as any)?.isBundled
         const refreshPreambleImport = isBundledClient
           ? `import { injectIntoGlobalHook as __oneInjectRefresh } from '/@react-refresh'`
           : ''
