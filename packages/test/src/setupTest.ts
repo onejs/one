@@ -23,8 +23,9 @@ const VITE_BIN_ENTRY = join(
   dirname(requireFromHere.resolve('vite/package.json')),
   'bin/vite.js'
 )
-const SERVER_WATCHDOG_ENTRY = fileURLToPath(
-  new URL('./serverWatchdog.mjs', import.meta.url)
+const SERVER_WATCHDOG_ENTRY = join(
+  dirname(fileURLToPath(import.meta.url)),
+  'serverWatchdog.mjs'
 )
 
 const isWindows = process.platform === 'win32'
