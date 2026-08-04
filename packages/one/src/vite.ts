@@ -5,6 +5,11 @@ import './server/setupServerGlobals'
 
 // plugins
 export { resolvePath } from '@vxrn/resolve'
+export {
+  withNativePlugin,
+  type NativePluginContext,
+  type NativePluginFactory,
+} from 'vxrn/vite-plugin'
 export { build } from './cli/build'
 export { makePluginWebOnly } from './vite/makePluginWebOnly'
 export { one } from './vite/one'

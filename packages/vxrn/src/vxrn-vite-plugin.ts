@@ -9,6 +9,12 @@ import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
 } from '@vxrn/vite-plugin-metro'
 
+export {
+  withNativePlugin,
+  type NativePluginContext,
+  type NativePluginFactory,
+} from './nativePlugin'
+
 /**
  * This is considered private API for now, and may change anytime.
  */

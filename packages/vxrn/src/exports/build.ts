@@ -18,6 +18,7 @@ import type { BuildArgs, VXRNOptions } from '../types'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { applyBuiltInPatches } from '../utils/patches'
 import { loadEnv } from './loadEnv'
+import { getNativePluginsFromOptions } from '../nativePlugin'
 
 const { existsSync } = FSExtra
 
@@ -96,7 +97,14 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     return buildBundle(
       [],
-      { root: options.root },
+      {
+        root: options.root,
+        nativePlugins: await getNativePluginsFromOptions(userViteConfig?.plugins ?? [], {
+          root: options.root,
+          platform: buildArgs.platform,
+          dev: false,
+        }),
+      },
       {
         platform: buildArgs.platform,
         bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,

@@ -205,11 +205,10 @@ function getNativePlugins(
   platform: string,
   viteImportGlobPlugin: any,
   dev: boolean,
-  assetsDest?: string
+  assetsDest?: string,
+  userPlugins: Plugin[] = []
 ): Plugin[] {
   return [
-    // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
-    ...(globalThis.__vxrnAddNativePlugins || []),
     // block .server.* and _middleware.* files from entering the native bundle
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
@@ -228,6 +227,9 @@ function getNativePlugins(
     // type argument intact. stripping Flow first would erase it (which is why the
     // codegen "didn't run for <Component>" warning fired).
     vxrnCompilerPlugin(platform, dev),
+    // Native implementations explicitly provided by Vite plugins. These run
+    // after RN syntax transforms and before the Flow/Hermes lowering passes.
+    ...userPlugins,
     // strip Flow from any react-native / @react-native `.js` the compiler didn't
     // handle, the guaranteed safety net before rolldown's oxc core parse (which
     // can't parse Flow). now downstream of the compiler, so codegen sees the types.
@@ -443,8 +445,7 @@ export async function createNativeDevEngine(
 
     plugins: [
       nativeVirtualEntryPlugin(root, { dev: true }),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
-      ...userPlugins,
+      ...getNativePlugins(root, platform, viteImportGlobPlugin, true, undefined, userPlugins),
     ],
   }
 
@@ -625,8 +626,14 @@ export async function buildNativeBundle(
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev })]),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
-      ...userPlugins,
+      ...getNativePlugins(
+        root,
+        platform,
+        viteImportGlobPlugin,
+        dev,
+        assetsDest,
+        userPlugins
+      ),
     ],
     output: getNativeOutputOptions(prelude),
   })
