@@ -1191,53 +1191,41 @@ export async function build(args: {
             useAfterLCPAggressive,
           })
           .then((built) => ({ built, path }))
-          .catch((err) => {
-            console.warn(`  ⚠ skipping page ${path}: ${err.message}`)
-            return null
-          })
       }
 
       // fallback to pLimit for async parallelism
       return limit(async () => {
         console.info(`  ↦ route ${path}`)
 
-        try {
-          const built = await runWithAsyncLocalContext(async () => {
-            return await buildPage(
-              vxrnOutput.serverEntry,
-              path,
-              relativeId,
-              params,
-              foundRoute,
-              clientManifestEntry,
-              staticDir,
-              clientDir,
-              builtMiddlewares,
-              serverJsPath,
-              preloads,
-              allCSS,
-              layoutCSS,
-              routePreloads,
-              allCSSContents,
-              criticalPreloads,
-              deferredPreloads,
-              useAfterLCP,
-              useAfterLCPAggressive
-            )
-          })
+        const built = await runWithAsyncLocalContext(async () => {
+          return await buildPage(
+            vxrnOutput.serverEntry,
+            path,
+            relativeId,
+            params,
+            foundRoute,
+            clientManifestEntry,
+            staticDir,
+            clientDir,
+            builtMiddlewares,
+            serverJsPath,
+            preloads,
+            allCSS,
+            layoutCSS,
+            routePreloads,
+            allCSSContents,
+            criticalPreloads,
+            deferredPreloads,
+            useAfterLCP,
+            useAfterLCPAggressive
+          )
+        })
 
-          return { built, path }
-        } catch (err: any) {
-          console.warn(`  ⚠ skipping page ${path}: ${err.message}`)
-          return null
-        }
+        return { built, path }
       })
     })
 
-    const results = (await Promise.all(pageBuilds)).filter(Boolean) as {
-      built: any
-      path: string
-    }[]
+    const results = await Promise.all(pageBuilds)
 
     for (const { built, path } of results) {
       builtRoutes.push(built)
