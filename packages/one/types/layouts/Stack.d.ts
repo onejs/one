@@ -12,7 +12,7 @@ type StackExtraProps = {
      */
     render?: StackRender;
 };
-export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: StackNavigationState<ParamListBase>;
@@ -53,13 +53,13 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
 } | {
     id: string;
-})), "children"> & Partial<Pick<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+})), "children"> & Partial<Pick<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: StackNavigationState<ParamListBase>;
@@ -100,7 +100,7 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
