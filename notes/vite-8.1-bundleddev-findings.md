@@ -11,11 +11,16 @@ one({ web: { experimentalBundledDev: true } })
 Dev-only (serve); ignored for builds and non-web environments. Validated on
 `examples/one-basic`: homepage renders + hydrates, client `<Link>` navigation and
 browser back/forward work, **zero console errors**. Existing plugin tests pass
-(virtualEntryPlugin, fileSystemRouterPlugin) and normal (unbundled) dev is unaffected
-(the new code paths are all gated on `isBundled` / the option).
+(virtualEntryPlugin, fileSystemRouterPlugin) and normal (unbundled) dev is unaffected.
 
-The separate Vite 8.1 + Rolldown 1.1.2 **upgrade** is on branch `vite-8.1-upgrade`
-(CI green); this bundled-dev support sits on top of it.
+Gating on `isBundled` alone was NOT enough, contrary to what this note first claimed:
+vite sets `isBundled` on every environment during `build`, so the react-refresh
+preamble below leaked into production builds and made them fail with
+`Could not resolve '/@react-refresh'`. The guard now also requires
+`environment.mode === 'dev'`.
+
+This bundled-dev support originally sat on branch `vite-8.1-upgrade`; it now lives
+alongside the React Native 0.86 / Expo 57 upgrade on the combined branch.
 
 ## What it does / why it's a win
 Single rolldown-powered bundle for the web client instead of unbundled ESM dev:
