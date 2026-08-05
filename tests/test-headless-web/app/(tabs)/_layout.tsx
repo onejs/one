@@ -3,12 +3,12 @@ import { Link, Tabs, useTabs } from 'one'
 // a non-config child replaces the headless default on web, and is ignored on
 // native where react-navigation renders its own tab bar
 function WebTabs() {
-  const { tabs, focused } = useTabs()
+  const { screens, focused } = useTabs()
 
   return (
     <>
       <nav data-testid="tab-bar">
-        {tabs.map((tab) => (
+        {screens.map((tab) => (
           <Link
             key={tab.name}
             href={tab.href}
