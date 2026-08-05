@@ -81,6 +81,17 @@ export { href } from './href'
 export { getLinking, type OneLinkingConfig } from './link/getLinking'
 export { useSitemap, type SitemapType } from './router/sitemap'
 // components
+export { Presentations, type PresentationsProps } from './headless/Presentations'
+export { useStack } from './headless/useStack'
+export type {
+  ModalPresentationOptions,
+  ModalPresentationProps,
+  ScreenEntry,
+  SheetPresentationOptions,
+  SheetPresentationProps,
+  UseStackResult,
+  WebPresentations,
+} from './headless/types'
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
 export { Protected, type ProtectedProps } from './views/Protected'
@@ -95,24 +106,9 @@ export type {
   StackScreenOptions,
   StackScreenProps,
 } from './layouts/stack-utils'
-// Stack render API (for custom web overlay rendering)
-export type {
-  StackRender,
-  StackRenderComponent,
-  StackRenderProps,
-} from './router/web/ScreenRenderContext'
-// Tabs / Drawer render API + global setup
-export {
-  getRenderingConfig,
-  setupRendering,
-  type DrawerRender,
-  type DrawerRenderComponent,
-  type DrawerRenderProps,
-  type RenderingConfig,
-  type TabsRender,
-  type TabsRenderComponent,
-  type TabsRenderProps,
-} from './router/renderingRegistry'
+export { useTabs } from './headless/useTabs'
+export { useDrawer } from './headless/useDrawer'
+export type { UseTabsResult, UseDrawerResult } from './headless/types'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
 export { Link } from './link/Link'

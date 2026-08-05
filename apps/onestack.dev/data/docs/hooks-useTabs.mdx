@@ -1,0 +1,74 @@
+---
+title: useTabs
+---
+
+`useTabs` returns the full state of the nearest `<Tabs>` navigator, for building a completely custom tab bar.
+
+`<Tabs>` already renders headless on web by default (just the focused tab, no bar); reach for `useTabs` when you want to render the tab bar yourself. See the [headless web navigators guide](/docs/guides-headless-web) for the full picture.
+
+## Usage
+
+Place your component as a child of `<Tabs>`. It replaces the headless default on web and is ignored on native, so the same layout file works everywhere:
+
+```tsx
+// app/(tabs)/_layout.tsx, works on both platforms
+import { Link, Tabs, useTabs } from 'one'
+
+function WebTabBar() {
+  const { screens, focused } = useTabs()
+
+  return (
+    <>
+      <nav>
+        {screens.map((tab) => (
+          <Link
+            key={tab.name}
+            href={tab.href}
+            className={tab.isFocused ? 'active' : undefined}
+          >
+            {tab.options.title}
+          </Link>
+        ))}
+      </nav>
+      {focused.element}
+    </>
+  )
+}
+
+export default function Layout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+      <Tabs.Screen name="feed" options={{ title: 'Feed' }} />
+      <WebTabBar />
+    </Tabs>
+  )
+}
+```
+
+## Return value
+
+| Property | Type | Description |
+|----------|------|--------------|
+| `screens` | `ScreenEntry[]` | Every tab, in the order they were declared. |
+| `focused` | `ScreenEntry` | The currently focused tab. |
+
+`useTabs` is a state reader. To switch tabs, link to the tab's `href` with [`Link`](/docs/components-Link) or `router.navigate(href)`.
+
+`ScreenEntry` is the same shape [`useStack`](/docs/hooks-useStack#return-value) returns: `key`, `name`, `params`, `href`, `isFocused`, `keepMounted`, `options`, `element`.
+
+## Keeping inactive tabs mounted
+
+Set `keepMounted` on a screen and the default headless view keeps it alive after you switch away, hidden via React 19.2's `<Activity>`, so scroll position and form state survive. A tab is only kept once it has actually been focused, matching react-navigation's lazy behavior on native.
+
+```tsx
+<Tabs.Screen name="feed" options={{ title: 'Feed', keepMounted: true }} />
+```
+
+A custom layout renders whatever it wants, so it owns this itself. `keepMounted` is on every entry if you want to honor it the same way.
+
+## Related
+
+- [Tabs](/docs/components-Tabs)
+- [useDrawer](/docs/hooks-useDrawer)
+- [Headless web navigators](/docs/guides-headless-web)

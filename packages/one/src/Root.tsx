@@ -1,9 +1,5 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  type NavigationAction,
-  type NavigationContainerProps,
-} from '@react-navigation/native'
+import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
+import { DarkTheme, DefaultTheme } from './fork/theme'
 import { useUserScheme } from '@vxrn/color-scheme'
 import {
   createContext,

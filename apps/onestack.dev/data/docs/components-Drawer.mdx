@@ -106,62 +106,50 @@ The `drawerType` option controls how the drawer appears:
 | `drawerPosition` | `'left' \| 'right'` | `'left'` | Which side the drawer appears |
 | `headerShown` | `boolean` | `true` | Show/hide the header |
 
-## Custom sidebar with `render`
+## On web
 
 <New />
 
-The `render` prop swaps the default drawer sidebar for a component you control. Useful for branded navigation, a sidebar that doubles as a search palette, or a different UI per platform.
+On web, `<Drawer>` renders headless: only the focused screen, no sidebar. Open state lives in navigation state - drive your own sidebar with [useDrawer](/docs/hooks-useDrawer), which gives you the screen list, the focused screen, `isOpen`, and `open`/`close`/`toggle` actions:
 
 ```tsx
-import { Drawer, type DrawerRender } from 'one/drawer'
-import { View, Pressable, Text } from 'react-native'
+import { Drawer } from 'one/drawer'
+import { Link, useDrawer } from 'one'
 
-// Hoist outside the layout for stable identity.
-const render: DrawerRender = {
-  web: ({ state, descriptors, navigation }) => (
-    <View style={{ flex: 1, padding: 16 }}>
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key]
-        const focused = state.index === index
-        return (
-          <Pressable
-            key={route.key}
-            onPress={() => navigation.navigate(route.name)}
-            style={{ paddingVertical: 12, opacity: focused ? 1 : 0.6 }}
-          >
-            <Text>{options.drawerLabel ?? options.title ?? route.name}</Text>
-          </Pressable>
-        )
-      })}
-    </View>
-  ),
+function WebDrawerLayout() {
+  const { screens, focused, isOpen, close, toggle } = useDrawer()
+
+  return (
+    <>
+      <button onClick={toggle}>Menu</button>
+
+      {isOpen && (
+        <nav>
+          {screens.map((screen) => (
+            <Link key={screen.key} href={screen.href} onPress={close}>
+              {screen.options.drawerLabel ?? screen.options.title ?? screen.name}
+            </Link>
+          ))}
+        </nav>
+      )}
+
+      {focused.element}
+    </>
+  )
 }
 
 export default function Layout() {
   return (
-    <Drawer render={render}>
+    <Drawer>
       <Drawer.Screen name="index" options={{ drawerLabel: 'Home' }} />
       <Drawer.Screen name="settings" options={{ drawerLabel: 'Settings' }} />
+      <WebDrawerLayout />
     </Drawer>
   )
 }
 ```
 
-`render` is platform-keyed (`{ web?, ios?, android? }`). The current platform's component is picked at render time; if none matches, the default drawer content is used. The render component receives `DrawerContentComponentProps` from `@react-navigation/drawer`: `state`, `navigation`, `descriptors`.
-
-### Global setup via the setup file
-
-```ts
-// app/setup.ts
-import { setupRendering } from 'one'
-import { MyDrawerContent } from './ui/MyDrawerContent'
-
-setupRendering({
-  Drawer: { web: MyDrawerContent },
-})
-```
-
-The global is overridden by `<Drawer render={...}>` or by passing `drawerContent={...}` directly.
+A component placed as a child of `<Drawer>` replaces the headless default on web and is ignored on native. See the [headless web navigators guide](/docs/guides-headless-web) for more.
 
 ## Dependencies
 

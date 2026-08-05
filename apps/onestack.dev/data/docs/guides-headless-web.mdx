@@ -1,0 +1,164 @@
+---
+title: Headless Web Navigators
+---
+
+On web, `<Stack>`, `<Tabs>`, and `<Drawer>` render headless: just the matched route's element. No tab bar, no header, no wrapper elements, no styles. Native is unchanged - react-navigation still renders full chrome exactly as before.
+
+```tsx
+import { Tabs } from 'one'
+
+export default function Layout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+      <Tabs.Screen name="feed" options={{ title: 'Feed' }} />
+    </Tabs>
+  )
+}
+```
+
+On native this renders a bottom tab bar as usual. On web it renders only the focused tab's screen - no bar. Your site's own nav is your tab bar.
+
+The first time a navigator renders headless on web, it logs a one-line note in development so the missing chrome doesn't read as breakage:
+
+```
+[one] <Tabs> renders headless on web (just the matched route). Pass your own layout as a child, or build one with useTabs().
+```
+
+## Why
+
+One's web build doesn't ship react-native-web. Rendering full react-navigation chrome (tab bars, headers, drawers) on web meant carrying RNW just to draw them, so on web the navigators stopped rendering any of that and instead expose the underlying navigation state as data. Bring your own DOM, Tamagui, or whatever you already use to build your site's chrome.
+
+## What each navigator renders by default
+
+- **Stack**: the focused screen. Screens with a `presentation` (`sheet`, `modal`, `formSheet`, ...) render as overlays above the base screen - inline with no floating chrome by default, or with real chrome once you mount [Presentations](/docs/components-Presentations).
+- **Tabs**: the focused tab's screen, no bar.
+- **Drawer**: the focused screen. Open state lives in navigation state - build your own sidebar with [useDrawer](/docs/hooks-useDrawer).
+- **Slot**: unchanged, it was always the identity.
+
+## Keeping screens mounted
+
+Set `keepMounted` on a screen and the navigator's default web view keeps it alive once you navigate away, hidden via React 19.2's `<Activity mode="hidden">` instead of unmounting, so scroll position and form state survive.
+
+```tsx
+<Stack.Screen name="settings" options={{ keepMounted: true }} />
+```
+
+It works the same in all three navigators. In Tabs and Drawer a screen is only kept once it has actually been focused, matching react-navigation's lazy behavior on native. Custom layouts render whatever they want, so they own this themselves - `keepMounted` is on every entry from [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs), and [useDrawer](/docs/hooks-useDrawer).
+
+## Building your own layout
+
+Add a component as a child of the navigator. It replaces the headless default on web.
+
+```tsx
+// app/(tabs)/_layout.tsx, works on both platforms
+import { Link, Tabs, useTabs } from 'one'
+
+function WebTabBar() {
+  const { screens, focused } = useTabs()
+
+  return (
+    <>
+      <nav>
+        {screens.map((tab) => (
+          <Link
+            key={tab.name}
+            href={tab.href}
+            className={tab.isFocused ? 'active' : undefined}
+          >
+            {tab.options.title}
+          </Link>
+        ))}
+      </nav>
+      {focused.element}
+    </>
+  )
+}
+
+export default function Layout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="home" options={{ title: 'Home' }} />
+      <Tabs.Screen name="feed" options={{ title: 'Feed' }} />
+      <WebTabBar />
+    </Tabs>
+  )
+}
+```
+
+The mechanical rule: **a navigator child that is not config (`Screen`, `Protected`, `Stack.Header`, `Stack.Toolbar`) replaces the headless default on web, and is ignored on native.** The same layout file works on both platforms - native keeps rendering its usual chrome from the `Screen` config, web renders `WebTabBar` instead. If a custom layout ever needs a different native version too, split it into a `.web.tsx` file the same way you would any other platform-specific component.
+
+Each navigator has its own hook returning its full state: [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs), [useDrawer](/docs/hooks-useDrawer).
+
+## Sheets and modals
+
+Stack screens with `presentation: 'sheet'` or `presentation: 'modal'` work on web with no setup - they render inline, in place, with no floating position or backdrop (headless doesn't add styling for you).
+
+To give them real sheet/modal chrome, mount [Presentations](/docs/components-Presentations) once in your root layout:
+
+```tsx
+// app/_layout.tsx
+import { Presentations, Slot } from 'one'
+import { Modal } from '~/interface/Modal'
+import { Sheet } from '~/interface/Sheet'
+
+export default function Layout() {
+  return (
+    <Presentations web={{ sheet: Sheet, modal: Modal }}>
+      <Slot />
+    </Presentations>
+  )
+}
+```
+
+`Sheet` and `Modal` are ordinary components receiving `open`, `onOpenChange`, `options`, `screen`, and `children`.
+
+Any layout that declares a sheet or modal screen picks this up automatically, using the same `presentation`/`sheetAllowedDetents` vocabulary you'd write for native:
+
+```tsx
+<Stack>
+  <Stack.Screen
+    name="compose"
+    options={{ presentation: 'sheet', sheetAllowedDetents: [0.6, 1] }}
+  />
+</Stack>
+```
+
+Omit `sheet` or `modal` and that kind keeps its headless default, so you only need to write the presentations you actually use.
+
+## If your app renders react-native components on web
+
+The `react-native` to `react-native-web` alias is still there for your own code, so `import { View } from 'react-native'` keeps working on web. What changed is that One's own web output no longer contains any of it, so an app that doesn't import react-native itself never loads it.
+
+One also stopped extracting react-native-web's generated stylesheet during SSR, since that only mattered when the framework rendered react-native components for you. If your app renders them on web and you want their styles in the server HTML instead of after hydration, do the extraction in your root layout:
+
+```tsx
+import { Slot, useServerHeadInsertion } from 'one'
+import { AppRegistry } from 'react-native'
+
+export default function Layout() {
+  useServerHeadInsertion(() => {
+    AppRegistry.registerComponent('styles', () => () => null)
+    // @ts-expect-error web-only api
+    return AppRegistry.getApplication('styles', {}).getStyleElement()
+  })
+
+  return <Slot />
+}
+```
+
+Longer term the recommendation is to drop react-native-web on web. It's in maintenance mode, and One gives you the DOM directly. Use Tamagui, React Strict DOM, or plain elements with CSS for shared primitives.
+
+## Native
+
+Native is unaffected by any of this. `<Stack>`, `<Tabs>`, and `<Drawer>` still render through react-navigation exactly as before - real headers, a real bottom tab bar, a real drawer. Nothing about your `Screen` config, `screenOptions`, or `Stack.Header`/`Stack.Toolbar` composition changes.
+
+## Related
+
+- [Presentations](/docs/components-Presentations)
+- [useStack](/docs/hooks-useStack)
+- [useTabs](/docs/hooks-useTabs)
+- [useDrawer](/docs/hooks-useDrawer)
+- [Stack](/docs/components-Stack)
+- [Tabs](/docs/components-Tabs)
+- [Drawer](/docs/components-Drawer)

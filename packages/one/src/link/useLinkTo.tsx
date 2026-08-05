@@ -1,5 +1,5 @@
 import type * as React from 'react'
-import { type GestureResponderEvent, Platform } from 'react-native'
+import type { GestureResponderEvent } from 'react-native'
 
 import { appendBaseUrl } from '../fork/getPathFromState-mods'
 import { stripGroupSegmentsFromPath } from '../router/matchers'
@@ -38,7 +38,7 @@ export function useLinkTo(props: { href: string; replace?: boolean; mask?: strin
     const event = props.replace ? 'REPLACE' : 'PUSH'
     let shouldHandle = false
 
-    if (Platform.OS !== 'web' || !e) {
+    if (process.env.TAMAGUI_TARGET !== 'web' || !e) {
       shouldHandle = e ? !e.defaultPrevented : true
     } else if (eventShouldPreventDefault(e)) {
       e.preventDefault()

@@ -1,6 +1,8 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import type { ReactNode } from 'react'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
+
 export interface StackHeaderRightProps {
   children?: ReactNode
   asChild?: boolean
@@ -13,6 +15,8 @@ export interface StackHeaderRightProps {
 export function StackHeaderRight(_props: StackHeaderRightProps) {
   return null
 }
+
+Object.assign(StackHeaderRight, { [NAVIGATOR_CONFIG]: true })
 
 export function appendStackHeaderRightPropsToOptions(
   options: NativeStackNavigationOptions,

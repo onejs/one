@@ -16,7 +16,6 @@ import {
   useDeferredValue,
   useSyncExternalStore,
 } from 'react'
-import { Platform } from 'react-native'
 import { devtoolsRegistry } from '../devtools/registry'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
@@ -27,6 +26,7 @@ import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
+import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
 import { shouldLinkExternally } from '../utils/url'
 import {
@@ -259,7 +259,7 @@ export function initialize(
   if (context !== cachedContext || !cachedRouteNode) {
     cachedRouteNode = getRoutes(context, {
       ignoreEntryPoints: true,
-      platform: Platform.OS,
+      platform: PLATFORM,
     })
     cachedRootComponent = cachedRouteNode
       ? getQualifiedRouteComponent(cachedRouteNode)

@@ -1,10 +1,11 @@
 import { createNavigatorFactory } from '@react-navigation/core'
 import {
   type FunctionComponent,
+  isValidElement,
   type ReactElement,
   type ReactNode,
-  isValidElement,
 } from 'react'
+import { NAVIGATOR_CONFIG } from '../headless/children'
 import type { OneRouter } from '../interfaces/router'
 
 // Get Group component directly from react-navigation core
@@ -45,6 +46,8 @@ export type ProtectedProps = {
  * ```
  */
 export const Protected = Group as FunctionComponent<ProtectedProps>
+
+Object.assign(Protected, { [NAVIGATOR_CONFIG]: true })
 
 // Export Group for use in isProtectedElement check
 export { Group }

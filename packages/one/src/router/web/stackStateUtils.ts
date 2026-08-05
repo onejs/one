@@ -13,7 +13,8 @@ const OVERLAY_PRESENTATIONS = [
 
 type OverlayPresentation = (typeof OVERLAY_PRESENTATIONS)[number]
 
-type DescriptorMap = Record<string, { options: NativeStackNavigationOptions }>
+// structural minimum: callers pass descriptor maps with widened option types
+type DescriptorMap = Record<string, { options: Record<string, any> }>
 
 export function isOverlayPresentation(
   options: NativeStackNavigationOptions | undefined | null

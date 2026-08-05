@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { View, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from './SafeAreaContext'
 import type {
   Edge,
@@ -42,7 +41,13 @@ export const SafeAreaView = React.forwardRef<
     const insetBottom = edgeBitmask & BOTTOM ? insets.bottom : 0
     const insetLeft = edgeBitmask & LEFT ? insets.left : 0
 
-    const flatStyle = StyleSheet.flatten(style) as Record<string, number>
+    // cast to unknown[] so ts doesn't recurse the StyleProp union (TS2589)
+    const flatStyle = (
+      Array.isArray(style) ? (style as unknown[]).flat(Number.POSITIVE_INFINITY) : [style]
+    ).reduce<Record<string, any>>(
+      (result, value) => (value ? Object.assign(result, value as object) : result),
+      {}
+    )
 
     if (mode === 'margin') {
       const {
@@ -62,7 +67,12 @@ export const SafeAreaView = React.forwardRef<
         marginLeft: marginLeft + insetLeft,
       }
 
-      return [style, marginStyle]
+      const {
+        marginVertical: _marginVertical,
+        marginHorizontal: _marginHorizontal,
+        ...domStyle
+      } = flatStyle
+      return { ...domStyle, ...marginStyle }
     }
 
     const {
@@ -82,8 +92,19 @@ export const SafeAreaView = React.forwardRef<
       paddingLeft: paddingLeft + insetLeft,
     }
 
-    return [style, paddingStyle]
+    const {
+      paddingVertical: _paddingVertical,
+      paddingHorizontal: _paddingHorizontal,
+      ...domStyle
+    } = flatStyle
+    return { ...domStyle, ...paddingStyle }
   }, [style, insets, mode, edgeBitmask])
 
-  return <View style={appliedStyle} {...rest} ref={ref} />
+  return (
+    <div
+      {...(rest as React.HTMLAttributes<HTMLDivElement>)}
+      style={appliedStyle as React.CSSProperties}
+      ref={ref}
+    />
+  )
 })

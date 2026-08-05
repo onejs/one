@@ -12,7 +12,6 @@ import { Platform, Pressable } from 'react-native'
 import type { OneRouter } from '../interfaces/router'
 import { Link } from '../link/Link'
 import { Protected } from '../views/Protected'
-import { getRenderingConfig, type TabsRender } from '../router/renderingRegistry'
 import { withLayoutContext } from './withLayoutContext'
 
 const DefaultTabBar = ({ state, ...restProps }: BottomTabBarProps) => {
@@ -87,37 +86,12 @@ const RNTabs = withLayoutContext<
   })
 })
 
-type TabsExtraProps = {
-  /**
-   * Platform-keyed tab bar component. Replaces the default bottom-tabs bar.
-   * v1 consumes `web` only; `ios` / `android` accepted for future use.
-   * Falls back to `setupRendering({ Tabs: { web } })` global registry if
-   * no prop is set, then to the built-in `BottomTabBar`.
-   */
-  render?: TabsRender
-}
-
-const TabsWithRender = React.forwardRef<
-  unknown,
-  ComponentProps<typeof RNTabs> & TabsExtraProps
->((props, ref) => {
-  const { render, tabBar, ...rest } = props as any
-
-  // Resolution: prop tabBar > prop render[platform] > setupRendering[platform] > default.
-  // Tabs runs on web AND native so we dispatch on Platform.OS - unlike Stack,
-  // where the web navigator only consumes the `web` slot.
-  const effectiveTabBar = useMemo(() => {
-    if (tabBar) return tabBar
-    const platform = Platform.OS as 'web' | 'ios' | 'android'
-    const fromProp = render?.[platform]
-    if (fromProp) return fromProp
-    const fromGlobal = getRenderingConfig().Tabs?.[platform]
-    if (fromGlobal) return fromGlobal
-    return DefaultTabBar
-  }, [tabBar, render])
-
-  return <RNTabs {...rest} ref={ref} tabBar={effectiveTabBar} />
-})
+const TabsWithRender = React.forwardRef<unknown, ComponentProps<typeof RNTabs>>(
+  (props, ref) => {
+    const { tabBar, ...rest } = props as any
+    return <RNTabs {...rest} ref={ref} tabBar={tabBar ?? DefaultTabBar} />
+  }
+)
 
 export const Tabs = Object.assign(TabsWithRender, {
   Protected,

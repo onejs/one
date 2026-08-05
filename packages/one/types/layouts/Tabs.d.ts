@@ -1,17 +1,7 @@
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
 import React from 'react';
-import { type TabsRender } from '../router/renderingRegistry';
-type TabsExtraProps = {
-    /**
-     * Platform-keyed tab bar component. Replaces the default bottom-tabs bar.
-     * v1 consumes `web` only; `ios` / `android` accepted for future use.
-     * Falls back to `setupRendering({ Tabs: { web } })` global registry if
-     * no prop is set, then to the built-in `BottomTabBar`.
-     */
-    render?: TabsRender;
-};
-export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: TabNavigationState<ParamListBase>;
@@ -52,13 +42,13 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<TabNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<TabNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<TabNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<TabNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
 } | {
     id: string;
-})), "children"> & Partial<Pick<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+})), "children"> & Partial<Pick<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: TabNavigationState<ParamListBase>;
@@ -99,13 +89,13 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<Omit<import
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<TabNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<TabNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<TabNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<TabNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown> & TabsExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+})), "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
     Protected: React.FunctionComponent<import("..").ProtectedProps>;
     Screen: typeof import("../views/Screen").Screen;
 };

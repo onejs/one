@@ -9,6 +9,7 @@ import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle
  * Attach to Stack as `Stack.Header`.
  */
 export declare const StackHeader: typeof StackHeaderComponent & {
+    __oneNavigatorConfig: boolean;
     Left: typeof StackHeaderLeft;
     Right: typeof StackHeaderRight;
     BackButton: typeof StackHeaderBackButton;

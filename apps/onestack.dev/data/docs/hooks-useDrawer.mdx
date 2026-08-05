@@ -1,0 +1,70 @@
+---
+title: useDrawer
+---
+
+`useDrawer` returns the full state of the nearest `<Drawer>` navigator, for building a completely custom sidebar.
+
+`<Drawer>` already renders headless on web by default (just the focused screen, no sidebar); reach for `useDrawer` when you want to render the sidebar yourself. See the [headless web navigators guide](/docs/guides-headless-web) for the full picture.
+
+`Drawer` ships from `one/drawer` to keep bundle size down for apps that don't use it. `useDrawer` ships from `one` directly.
+
+## Usage
+
+Place your component as a child of `<Drawer>`. It replaces the headless default on web and is ignored on native, so the same layout file works everywhere:
+
+```tsx
+// app/_layout.tsx, works on both platforms
+import { Drawer } from 'one/drawer'
+import { Link, useDrawer } from 'one'
+
+function WebDrawerLayout() {
+  const { screens, focused, isOpen, close, toggle } = useDrawer()
+
+  return (
+    <>
+      <button onClick={toggle}>Menu</button>
+
+      {isOpen && (
+        <nav>
+          {screens.map((screen) => (
+            <Link key={screen.key} href={screen.href} onPress={close}>
+              {screen.options.drawerLabel ?? screen.options.title ?? screen.name}
+            </Link>
+          ))}
+        </nav>
+      )}
+
+      {focused.element}
+    </>
+  )
+}
+
+export default function Layout() {
+  return (
+    <Drawer>
+      <Drawer.Screen name="index" options={{ drawerLabel: 'Home' }} />
+      <Drawer.Screen name="settings" options={{ drawerLabel: 'Settings' }} />
+      <WebDrawerLayout />
+    </Drawer>
+  )
+}
+```
+
+## Return value
+
+| Property | Type | Description |
+|----------|------|--------------|
+| `screens` | `ScreenEntry[]` | Every screen in the drawer. |
+| `focused` | `ScreenEntry` | The currently focused screen. |
+| `isOpen` | `boolean` | Whether the drawer is currently open. |
+| `open()` | `() => void` | Open the drawer. |
+| `close()` | `() => void` | Close the drawer. |
+| `toggle()` | `() => void` | Toggle the drawer. |
+
+`ScreenEntry` is the same shape [`useStack`](/docs/hooks-useStack#return-value) returns: `key`, `name`, `params`, `href`, `isFocused`, `keepMounted`, `options`, `element`.
+
+## Related
+
+- [Drawer](/docs/components-Drawer)
+- [useTabs](/docs/hooks-useTabs)
+- [Headless web navigators](/docs/guides-headless-web)

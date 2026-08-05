@@ -1,8 +1,9 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Children, isValidElement, type ReactNode } from 'react'
-import { StyleSheet, type ColorValue, type StyleProp } from 'react-native'
+import type { ColorValue, StyleProp } from 'react-native'
 import type { ScreenStackHeaderConfigProps } from 'react-native-screens'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
 import {
   appendStackHeaderBackButtonPropsToOptions,
   StackHeaderBackButton,
@@ -21,6 +22,7 @@ import {
   StackHeaderTitle,
 } from './StackHeaderTitle'
 import { isChildOfType } from '../../utils/children'
+import { flattenStyle } from '../../utils/style'
 
 export interface StackHeaderProps {
   children?: ReactNode
@@ -56,12 +58,14 @@ export function StackHeaderComponent(_props: StackHeaderProps) {
   return null
 }
 
+Object.assign(StackHeaderComponent, { [NAVIGATOR_CONFIG]: true })
+
 export function appendStackHeaderPropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackHeaderProps
 ): NativeStackNavigationOptions {
-  const flattenedStyle = StyleSheet.flatten(props.style)
-  const flattenedLargeStyle = StyleSheet.flatten(props.largeStyle)
+  const flattenedStyle = flattenStyle(props.style)
+  const flattenedLargeStyle = flattenStyle(props.largeStyle)
 
   if (props.hidden) {
     return { ...options, headerShown: false }

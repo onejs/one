@@ -1,7 +1,9 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-import { Platform, StyleSheet, type StyleProp, type TextStyle } from 'react-native'
+import type { StyleProp, TextStyle } from 'react-native'
 
-import { convertFontWeightToStringFontWeight } from '../../utils/style'
+import { NAVIGATOR_CONFIG } from '../../headless/children'
+import { PLATFORM } from '../../utils/platform'
+import { convertFontWeightToStringFontWeight, flattenStyle } from '../../utils/style'
 
 export type StackHeaderTitleProps = {
   children?: string
@@ -29,12 +31,14 @@ export function StackHeaderTitle(_props: StackHeaderTitleProps) {
   return null
 }
 
+Object.assign(StackHeaderTitle, { [NAVIGATOR_CONFIG]: true })
+
 export function appendStackHeaderTitlePropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackHeaderTitleProps
 ): NativeStackNavigationOptions {
-  const flattenedStyle = StyleSheet.flatten(props.style)
-  const flattenedLargeStyle = StyleSheet.flatten(props.largeStyle)
+  const flattenedStyle = flattenStyle(props.style)
+  const flattenedLargeStyle = flattenStyle(props.largeStyle)
 
   // Build title style only if there are actual style properties
   const titleStyle = flattenedStyle
@@ -66,7 +70,7 @@ export function appendStackHeaderTitlePropsToOptions(
     headerLargeTitle: props.large,
     // Large titles on iOS require headerTransparent for proper scroll behavior
     // Only set on iOS since headerLargeTitle is iOS-only
-    ...(props.large && Platform.OS === 'ios' && { headerTransparent: true }),
+    ...(props.large && PLATFORM === 'ios' && { headerTransparent: true }),
     headerTitleAlign: flattenedStyle?.textAlign,
     // Only set styles when explicitly configured to avoid interfering with native defaults
     ...(titleStyle &&
