@@ -283,13 +283,3 @@ nothing changes; remove the line when ready to go headless.
 4. A `native` key on `Presentations`, letting an app swap the OS sheet for a
    JS one. Needs the native stack's `presentation` mapped down to
    `transparentModal` so the JS component owns the visuals.
-5. Not headless work, found while testing it: in a PROD build the first client
-   navigation after hydration unmounts and remounts the layout, throwing away
-   all layout and screen state exactly once. Verified with an ordinary group
-   layout holding `useState` and no navigator of its own, so it is not specific
-   to `keepMounted`, which works correctly on every navigation after the first.
-   Ruled out by measurement: the route's stack key is stable across it
-   (`(plain)-0` before and after), `getQualifiedRouteComponent` never misses its
-   cache on the client, and the page component keeps its identity. Something
-   else in the prod client tears the subtree down. `tests/test-headless-web`
-   navigates once before measuring state because of this.
