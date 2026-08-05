@@ -27,7 +27,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>>) => Readonly<{
@@ -59,15 +59,15 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
-        }> | import("@react-navigation/core").PartialState<Readonly<{
+        }> | import("@react-navigation/routers").PartialState<Readonly<{
             key: string;
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>>): void;
@@ -81,7 +81,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>;
@@ -119,7 +119,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             merge?: boolean;
         } : never): void;
         preload<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
-        reset(state: TabNavigationState<any> | import("@react-navigation/core").PartialState<TabNavigationState<any>>): void;
+        reset(state: TabNavigationState<any> | import("@react-navigation/routers").PartialState<TabNavigationState<any>>): void;
         goBack(): void;
         isFocused(): boolean;
         canGoBack(): boolean;
@@ -132,7 +132,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>, {}, {}> | undefined>(id?: string | undefined): T;
@@ -171,7 +171,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             merge?: boolean;
         } : never): void;
         preload<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined] : never): void;
-        reset(state: TabNavigationState<any> | import("@react-navigation/core").PartialState<TabNavigationState<any>>): void;
+        reset(state: TabNavigationState<any> | import("@react-navigation/routers").PartialState<TabNavigationState<any>>): void;
         goBack(): void;
         isFocused(): boolean;
         canGoBack(): boolean;
@@ -184,7 +184,7 @@ export declare function useTabsWithChildren(options: UseTabsWithChildrenOptions)
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>, {}, {}> | undefined>(id?: string | undefined): T;
