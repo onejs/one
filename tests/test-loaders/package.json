@@ -1,6 +1,6 @@
 {
   "name": "test-loaders",
-  "version": "1.21.13",
+  "version": "1.22.0",
   "private": true,
   "type": "module",
   "scripts": {
