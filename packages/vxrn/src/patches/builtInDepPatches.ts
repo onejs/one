@@ -2,35 +2,6 @@ import { assertString } from '../utils/assert'
 import { type DepPatch, bailIfExists, bailIfUnchanged } from '../utils/patches'
 
 export const builtInDepPatches: DepPatch[] = [
-  // expose internal contexts for SSR-optimized NavigationContainer
-  // validated against 7.x. when bumping past 7.x, add a new entry pinned to the
-  // new major and re-verify the lib/module/* paths still exist.
-  {
-    module: '@react-navigation/core',
-    patchFiles: {
-      version: '7.x',
-      'package.json': (contents) => {
-        assertString(contents)
-        const pkg = JSON.parse(contents)
-        const exports = pkg.exports || {}
-        let changed = false
-        for (const path of [
-          './lib/module/NavigationBuilderContext',
-          './lib/module/NavigationStateContext',
-          './lib/module/EnsureSingleNavigator',
-        ]) {
-          if (!exports[path]) {
-            exports[path] = path + '.js'
-            changed = true
-          }
-        }
-        if (!changed) return
-        pkg.exports = exports
-        return JSON.stringify(pkg, null, 2)
-      },
-    },
-  },
-
   // @react-navigation/core 7.17 renamed createComponentForStaticNavigation to
   // createComponentForStaticConfigDeprecated, breaking @react-navigation/native
   // which still imports the old name. re-export the old name as an alias.

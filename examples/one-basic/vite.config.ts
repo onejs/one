@@ -6,6 +6,8 @@ export default defineConfig({
     one({
       web: {
         defaultRenderMode: 'ssg',
+        // vite 8.1 experimental bundled dev (rolldown FullBundleDevEnvironment)
+        experimentalBundledDev: !!process.env.BUNDLED_DEV,
       },
 
       // unified build mode — pages, api routes, and middlewares all build
