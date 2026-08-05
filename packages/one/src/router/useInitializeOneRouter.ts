@@ -11,8 +11,11 @@ import { getSSRInitialState, ensureBaseLinkingConfig } from './linkingConfig'
 let initVersion = 0
 let lastInitVersion = -1
 
-// track whether the route tree has been initialized for SSR
-let ssrRouteTreeInitialized = false
+// the context the SSR route tree was built from. tracking the context itself
+// rather than a "did we initialize" flag means a new context (dev, after a route
+// module changes) rebuilds the tree, while a stable context (production) still
+// initializes exactly once.
+let ssrRouteTreeContext: One.RouteContext | null = null
 
 export function useInitializeOneRouter(
   context: One.RouteContext,
@@ -23,10 +26,10 @@ export function useInitializeOneRouter(
 
   // SSR: initialize route tree once, then compute per-request state via cache
   if (typeof window === 'undefined') {
-    if (!ssrRouteTreeInitialized) {
-      // first SSR request: full initialization to set up route tree, root component, etc.
+    if (ssrRouteTreeContext !== context) {
+      // full initialization to set up route tree, root component, etc.
       initialize(context, navigationRef, initialLocation, linking)
-      ssrRouteTreeInitialized = true
+      ssrRouteTreeContext = context
       // also ensure linking config base is cached
       ensureBaseLinkingConfig(routerStore.routeNode, linking)
     }
@@ -45,7 +48,7 @@ export function useInitializeOneRouter(
   }
 
   // client: use version tracking (no concurrency issue)
-  if (lastInitVersion !== initVersion) {
+  if (lastInitVersion !== initVersion || routerStore.navigationRef !== navigationRef) {
     // reset react navigation contexts to avoid stale provider warnings
     const contexts = '__react_navigation__elements_contexts'
     globalThis[contexts] = new Map<string, React.Context<any>>()

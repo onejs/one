@@ -1,5 +1,7 @@
 import ReactDOMServer from 'react-dom/server.browser'
 
+export const renderToStaticMarkup = ReactDOMServer.renderToStaticMarkup
+
 export type RenderToStringOptions = {
   /**
    * Critical scripts that need to execute immediately (will use async).

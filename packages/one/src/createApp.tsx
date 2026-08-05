@@ -34,7 +34,6 @@ export type CreateAppProps = {
 export function createApp(options: CreateAppProps) {
   if (import.meta.env.SSR) {
     // cache server module imports across requests
-    let cachedReactDOMServer: any
     let cachedServerRender: any
     let cachedRenderToStaticMarkup: any
     let cachedRenderToString: any
@@ -62,15 +61,10 @@ export function createApp(options: CreateAppProps) {
         }
 
         // cache dynamic imports - only resolve once
-        if (!cachedReactDOMServer) {
-          const [rds, sr] = await Promise.all([
-            import('react-dom/server.browser'),
-            import('./server-render'),
-          ])
-          cachedReactDOMServer = rds
+        if (!cachedServerRender) {
+          const sr = await import('./server-render')
           cachedServerRender = sr
-          cachedRenderToStaticMarkup =
-            rds.renderToStaticMarkup || rds.default?.renderToStaticMarkup
+          cachedRenderToStaticMarkup = sr.renderToStaticMarkup
           cachedRenderToString = sr.renderToString
         }
 
@@ -192,14 +186,9 @@ export function createApp(options: CreateAppProps) {
         }
 
         if (!cachedServerRender) {
-          const [rds, sr] = await Promise.all([
-            import('react-dom/server.browser'),
-            import('./server-render'),
-          ])
-          cachedReactDOMServer = rds
+          const sr = await import('./server-render')
           cachedServerRender = sr
-          cachedRenderToStaticMarkup =
-            rds.renderToStaticMarkup || rds.default?.renderToStaticMarkup
+          cachedRenderToStaticMarkup = sr.renderToStaticMarkup
           cachedRenderToString = sr.renderToString
         }
 
