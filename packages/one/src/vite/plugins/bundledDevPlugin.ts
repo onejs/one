@@ -38,7 +38,10 @@ const MIME: Record<string, string> = {
 // FullBundleDev and diverges from the client's inlined data-uri → React hydration
 // mismatch. So the inliner runs on client (rolldown plugin) and ssr (top-level
 // transform) alike — see bundledDevPlugin().
-function inlineAssetImports(code: string, id: string): { code: string; map: null } | null {
+function inlineAssetImports(
+  code: string,
+  id: string
+): { code: string; map: null } | null {
   if (!/\.(png|jpe?g|gif|webp|avif|bmp|ico)/.test(code)) return null
   const importRe =
     /import\s+(\w+)\s+from\s*['"]([^'"?]+\.(?:png|jpe?g|gif|webp|avif|bmp|ico))['"]\s*;?/g

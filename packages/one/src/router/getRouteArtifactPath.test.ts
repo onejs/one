@@ -68,12 +68,7 @@ describe('getRouteArtifactPath', () => {
   })
 
   test('uses concrete artifacts for a route that inherits spa mode', () => {
-    const page = routeNode(
-      'default-mode/[slug]',
-      './default-mode/[slug].tsx',
-      [],
-      'spa'
-    )
+    const page = routeNode('default-mode/[slug]', './default-mode/[slug].tsx', [], 'spa')
     const root = routeNode('', './_layout.tsx', [page])
 
     expect(
