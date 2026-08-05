@@ -128,8 +128,6 @@ describe('withOne', () => {
     ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true$/)
     expect(
       rewriteRequestUrl('/index.bundle?platform=ios&dev=true&hot=true&minify=false')
-    ).toMatch(
-      /\/one\/metro-entry\.bundle\?platform=ios&dev=true&hot=true&minify=false$/
-    )
+    ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true&hot=true&minify=false$/)
   })
 })
