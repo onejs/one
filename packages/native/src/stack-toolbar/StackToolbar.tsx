@@ -8,19 +8,24 @@ import type {
   NativeStackHeaderItemMenuSubmenu,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack'
-import { MenuAction, ToolbarHost, ToolbarItem } from '@vxrn/native'
+import { useNavigation } from '@react-navigation/native'
 import {
   Children,
   createContext,
   Fragment,
+  isValidElement,
   useContext,
   useId,
   useMemo,
+  type ElementType,
+  type ReactElement,
   type ReactNode,
 } from 'react'
-import type { ImageSourcePropType } from 'react-native'
+import { Platform, StyleSheet, type ImageSourcePropType } from 'react-native'
 
-import { NAVIGATOR_CONFIG } from '../../headless/children'
+import { MenuAction } from '../menu'
+import { ToolbarHost, ToolbarItem } from '../toolbar'
+
 import type {
   StackToolbarBadgeProps,
   StackToolbarButtonProps,
@@ -36,10 +41,13 @@ import type {
   StackToolbarViewProps,
 } from './StackToolbar.types'
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
-import { useNavigation } from '../../router/useNavigation'
-import { isChildOfType } from '../../utils/children'
-import { PLATFORM } from '../../utils/platform'
-import { flattenStyle } from '../../utils/style'
+
+function isChildOfType(
+  element: ReactNode,
+  type: ElementType
+): element is ReactElement<Record<string, any>> {
+  return isValidElement(element) && element.type === type
+}
 
 const StackToolbarPlacementContext = createContext<StackToolbarPlacement | null>(null)
 
@@ -122,8 +130,8 @@ function getHeaderItemSharedProps(
   props: StackToolbarButtonProps | StackToolbarMenuProps,
   content: ToolbarContent
 ) {
-  const labelStyle = flattenStyle(props.style)
-  const badgeStyle = flattenStyle(content.badge?.style)
+  const labelStyle = StyleSheet.flatten(props.style)
+  const badgeStyle = StyleSheet.flatten(content.badge?.style)
 
   return {
     label: content.label,
@@ -244,7 +252,7 @@ function convertToolbarChildToHeaderItem(child: ReactNode): NativeStackHeaderIte
     if (child.props.hidden) return null
     if (child.props.width === undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        console.warn('Stack.Toolbar.Spacer requires a width in header placements.')
+        console.warn('StackToolbar.Spacer requires a width in header placements.')
       }
       return null
     }
@@ -267,13 +275,13 @@ export function appendStackToolbarPropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackToolbarProps
 ): NativeStackNavigationOptions {
-  if (PLATFORM !== 'ios') return options
+  if (Platform.OS !== 'ios') return options
 
   const placement = props.placement ?? 'bottom'
   if (placement === 'bottom') {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
-        'Stack.Toolbar with bottom placement must be rendered in a page component, not inside Stack.Screen.'
+        'StackToolbar with bottom placement must be rendered in a page component.'
       )
     }
     return options
@@ -281,7 +289,7 @@ export function appendStackToolbarPropsToOptions(
 
   if (placement !== 'left' && placement !== 'right') {
     throw new Error(
-      `Invalid placement "${placement}" for Stack.Toolbar. Expected "left", "right", or "bottom".`
+      `Invalid placement "${placement}" for StackToolbar. Expected "left", "right", or "bottom".`
     )
   }
 
@@ -306,7 +314,7 @@ export function appendStackToolbarPropsToOptions(
     )
     if (invalidChildren.length) {
       console.warn(
-        `Stack.Toolbar with placement="${placement}" only accepts Stack.Toolbar.Button, Menu, Spacer, and View children.`
+        `StackToolbar with placement="${placement}" only accepts StackToolbar.Button, Menu, Spacer, and View children.`
       )
     }
   }
@@ -327,16 +335,16 @@ function StackToolbarComponent(props: StackToolbarProps) {
   )
 
   if (parentPlacement) {
-    throw new Error('Stack.Toolbar cannot be nested inside another Stack.Toolbar.')
+    throw new Error('StackToolbar cannot be nested inside another StackToolbar.')
   }
 
   useIsomorphicLayoutEffect(() => {
-    if (PLATFORM !== 'ios' || placement === 'bottom') return
+    if (Platform.OS !== 'ios' || placement === 'bottom') return
 
     navigation.setOptions(options)
   }, [navigation, options, placement])
 
-  if (PLATFORM !== 'ios' || placement !== 'bottom') return null
+  if (Platform.OS !== 'ios' || placement !== 'bottom') return null
 
   return (
     <StackToolbarPlacementContext.Provider value="bottom">
@@ -348,12 +356,11 @@ function StackToolbarComponent(props: StackToolbarProps) {
 export function StackToolbarButton(props: StackToolbarButtonProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
-  if (!placement)
-    throw new Error('Stack.Toolbar.Button must be used inside Stack.Toolbar.')
+  if (Platform.OS !== 'ios') return null
+  if (!placement) throw new Error('StackToolbar.Button must be used inside StackToolbar.')
 
   const content = getToolbarContent(props.children, props.icon, props.iconRenderingMode)
-  const badgeStyle = flattenStyle(content.badge?.style)
+  const badgeStyle = StyleSheet.flatten(content.badge?.style)
   return (
     <ToolbarItem
       identifier={identifier}
@@ -384,7 +391,7 @@ export function StackToolbarButton(props: StackToolbarButtonProps) {
             }
           : undefined
       }
-      titleStyle={flattenStyle(props.style)}
+      titleStyle={StyleSheet.flatten(props.style)}
       accessibilityLabel={props.accessibilityLabel ?? content.label}
       accessibilityHint={props.accessibilityHint}
       disabled={props.disabled}
@@ -396,8 +403,8 @@ export function StackToolbarButton(props: StackToolbarButtonProps) {
 export function StackToolbarMenu(props: StackToolbarMenuProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
-  if (!placement) throw new Error('Stack.Toolbar.Menu must be used inside Stack.Toolbar.')
+  if (Platform.OS !== 'ios') return null
+  if (!placement) throw new Error('StackToolbar.Menu must be used inside StackToolbar.')
 
   const content = getToolbarContent(props.children, props.icon, props.iconRenderingMode)
   const actions = Children.toArray(props.children).filter(
@@ -431,7 +438,7 @@ export function StackToolbarMenu(props: StackToolbarMenuProps) {
       barButtonItemStyle={props.variant === 'done' ? 'prominent' : props.variant}
       sharesBackground={!props.separateBackground}
       hidesSharedBackground={props.hidesSharedBackground}
-      titleStyle={flattenStyle(props.style)}
+      titleStyle={StyleSheet.flatten(props.style)}
     >
       {actions}
     </MenuAction>
@@ -441,9 +448,9 @@ export function StackToolbarMenu(props: StackToolbarMenuProps) {
 export function StackToolbarMenuAction(props: StackToolbarMenuActionProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
+  if (Platform.OS !== 'ios') return null
   if (!placement)
-    throw new Error('Stack.Toolbar.MenuAction must be used inside Stack.Toolbar.Menu.')
+    throw new Error('StackToolbar.MenuAction must be used inside StackToolbar.Menu.')
 
   const content = getToolbarContent(props.children, props.icon, props.iconRenderingMode)
   return (
@@ -475,9 +482,8 @@ export function StackToolbarMenuAction(props: StackToolbarMenuActionProps) {
 export function StackToolbarSpacer(props: StackToolbarSpacerProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
-  if (!placement)
-    throw new Error('Stack.Toolbar.Spacer must be used inside Stack.Toolbar.')
+  if (Platform.OS !== 'ios') return null
+  if (!placement) throw new Error('StackToolbar.Spacer must be used inside StackToolbar.')
 
   return (
     <ToolbarItem
@@ -493,9 +499,9 @@ export function StackToolbarSpacer(props: StackToolbarSpacerProps) {
 export function StackToolbarSearchBarSlot(props: StackToolbarSearchBarSlotProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
+  if (Platform.OS !== 'ios') return null
   if (!placement)
-    throw new Error('Stack.Toolbar.SearchBarSlot must be used inside Stack.Toolbar.')
+    throw new Error('StackToolbar.SearchBarSlot must be used inside StackToolbar.')
 
   return (
     <ToolbarItem
@@ -511,8 +517,8 @@ export function StackToolbarSearchBarSlot(props: StackToolbarSearchBarSlotProps)
 export function StackToolbarView(props: StackToolbarViewProps) {
   const placement = useContext(StackToolbarPlacementContext)
   const identifier = useId()
-  if (PLATFORM !== 'ios') return null
-  if (!placement) throw new Error('Stack.Toolbar.View must be used inside Stack.Toolbar.')
+  if (Platform.OS !== 'ios') return null
+  if (!placement) throw new Error('StackToolbar.View must be used inside StackToolbar.')
   if (props.hidden) return null
 
   return (
@@ -526,19 +532,7 @@ export function StackToolbarView(props: StackToolbarViewProps) {
   )
 }
 
-Object.assign(StackToolbarComponent, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarButton, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarMenu, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarMenuAction, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarSpacer, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarSearchBarSlot, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarView, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarLabel, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarIcon, { [NAVIGATOR_CONFIG]: true })
-Object.assign(StackToolbarBadge, { [NAVIGATOR_CONFIG]: true })
-
 export const StackToolbar = Object.assign(StackToolbarComponent, {
-  [NAVIGATOR_CONFIG]: true,
   Button: StackToolbarButton,
   Menu: StackToolbarMenu,
   MenuAction: StackToolbarMenuAction,

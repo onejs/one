@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/react.git",
+    "url": "git+https://github.com/facebook/react.git",
     "directory": "packages/react-dom"
   },
   "keywords": [
@@ -21,7 +21,7 @@
     "scheduler": "^0.23.2"
   },
   "peerDependencies": {
-    "react": "19.2.0"
+    "react": "19.2.3"
   },
   "files": [
     "LICENSE",

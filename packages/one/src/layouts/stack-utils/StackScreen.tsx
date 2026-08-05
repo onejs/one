@@ -9,11 +9,6 @@ import {
   appendStackHeaderPropsToOptions,
   type StackHeaderProps,
 } from './StackHeaderComponent'
-import {
-  StackToolbar,
-  appendStackToolbarPropsToOptions,
-  type StackToolbarProps,
-} from './StackToolbar'
 import { Screen } from '../../views/Screen'
 
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
@@ -118,11 +113,6 @@ export function appendScreenStackPropsToOptions(
       return appendStackHeaderPropsToOptions(
         options as NativeStackNavigationOptions,
         child.props as StackHeaderProps
-      ) as StackScreenOptions
-    } else if (child.type === StackToolbar) {
-      return appendStackToolbarPropsToOptions(
-        options as NativeStackNavigationOptions,
-        child.props as StackToolbarProps
       ) as StackScreenOptions
     } else {
       console.warn(

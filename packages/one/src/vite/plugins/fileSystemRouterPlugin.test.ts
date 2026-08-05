@@ -9,7 +9,6 @@ vi.mock('vite', async () => {
   return {
     ...actual,
     createServerModuleRunner: vi.fn(() => ({
-      clearCache: vi.fn(),
       import: vi.fn(),
     })),
   }
@@ -24,6 +23,7 @@ type MiddlewareHandler = (
 type WatcherListener = (...args: string[]) => void | Promise<void>
 
 describe('createFileSystemRouterPlugin', () => {
+  const previousVxrnVersion = globalThis['__vxrnVersion']
   const previousIsVxrnCli = process.env.IS_VXRN_CLI
   const previousViteEnvironment = process.env.VITE_ENVIRONMENT
   let previousVxrnPluginConfig: unknown
@@ -55,6 +55,7 @@ describe('createFileSystemRouterPlugin', () => {
     } else {
       ;(globalThis as any).__vxrnPluginConfig__ = previousVxrnPluginConfig
     }
+    globalThis['__vxrnVersion'] = previousVxrnVersion
     vi.restoreAllMocks()
   })
 
@@ -135,7 +136,6 @@ describe('createFileSystemRouterPlugin', () => {
     let renderCount = 0
     const render = vi.fn(async () => `<html><body>${++renderCount}</body></html>`)
     const runner = {
-      clearCache: vi.fn(),
       import: vi.fn(async (id: string) => {
         if (id === virtualEntryId) {
           return { default: { render } }
@@ -234,15 +234,25 @@ describe('createFileSystemRouterPlugin', () => {
     await expect(request('/')).resolves.toContain('<body>1</body>')
     expect(render).toHaveBeenCalledTimes(1)
 
-    const allListeners = watcherListeners.get('all') || []
-    const invalidateRunner = allListeners[0]
-    if (!invalidateRunner) {
-      throw new Error('Expected runner invalidation listener to be registered')
-    }
-    invalidateRunner('change', routeFile)
+    const versionBeforeChange = globalThis['__vxrnVersion']
+    // vite calls hotUpdate on the ssr environment after invalidating the graph;
+    // that is what tells the next render its route tree is built out of pre-edit
+    // modules
+    ;(plugin as any).hotUpdate.call(
+      {
+        environment: {
+          name: 'ssr',
+          moduleGraph: { getModulesByFile: () => new Set([{ id: routeFile }]) },
+        },
+      },
+      { file: routeFile }
+    )
 
     await expect(request('/')).resolves.toContain('<body>2</body>')
     expect(render).toHaveBeenCalledTimes(2)
-    expect(runner.clearCache).toHaveBeenCalledTimes(2)
+
+    // the render also has to invalidate the route context the tree is built
+    // from, otherwise it renders fresh html out of pre-edit route modules
+    expect(globalThis['__vxrnVersion']).toBe((versionBeforeChange || 0) + 1)
   })
 })

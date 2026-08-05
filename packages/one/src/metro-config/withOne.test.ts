@@ -120,13 +120,16 @@ describe('withOne', () => {
     const config = (await withOne(projectRoot, { loadViteConfig: false })) as any
     const rewriteRequestUrl = config.server.rewriteRequestUrl
 
+    // the entry is resolved relative to metro's server root, so the prefix depends on
+    // how `one` is linked (`node_modules/one` when installed, a workspace path in a
+    // monorepo). only the entry itself and the preserved query are meaningful here.
     expect(
       rewriteRequestUrl('/.expo/.virtual-metro-entry.bundle?platform=ios&dev=true')
-    ).toContain('/packages/one/metro-entry.bundle?platform=ios&dev=true')
+    ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true$/)
     expect(
       rewriteRequestUrl('/index.bundle?platform=ios&dev=true&hot=true&minify=false')
-    ).toContain(
-      '/packages/one/metro-entry.bundle?platform=ios&dev=true&hot=true&minify=false'
+    ).toMatch(
+      /\/one\/metro-entry\.bundle\?platform=ios&dev=true&hot=true&minify=false$/
     )
   })
 })

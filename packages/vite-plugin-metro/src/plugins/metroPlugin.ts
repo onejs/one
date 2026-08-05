@@ -15,6 +15,7 @@ const { debug } = createDebugger('vite-plugin-metro')
 import type MetroT from 'metro'
 import type { loadConfig as loadConfigT } from 'metro'
 import type MetroHmrServerT from 'metro/private/HmrServer'
+import type { Client as MetroHmrClientT } from 'metro/private/HmrServer'
 import type createWebsocketServerT from 'metro/private/lib/createWebsocketServer'
 import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/dev-middleware'
 
@@ -130,7 +131,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
       let metroServer: Awaited<
         ReturnType<typeof MetroT.createConnectMiddleware>
       >['metroServer']
-      let hmrServer: MetroHmrServerT
+      let hmrServer: MetroHmrServerT<MetroHmrClientT>
       let websocketEndpoints: Record<string, ReturnType<typeof createWebsocketServerT>>
       let rnDevtoolsMiddleware: ReturnType<typeof createDevMiddlewareT>['middleware']
 
@@ -191,6 +192,13 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
           const devMiddleware = createDevMiddleware({
             serverBaseUrl: reactNativeDevToolsUrl,
             logger: console,
+            unstable_experiments: {
+              // rn 0.86 turns this on by default and prepares the standalone debugger
+              // shell eagerly while building the middleware. its tool launcher throws
+              // outright under NODE_ENV=test rather than spawn a gui, which would take
+              // the whole dev server down on boot for anyone running tests against it.
+              enableStandaloneFuseboxShell: process.env.NODE_ENV !== 'test',
+            },
           })
 
           rnDevtoolsMiddleware = devMiddleware.middleware

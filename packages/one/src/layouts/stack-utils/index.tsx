@@ -10,7 +10,6 @@ import {
   type StackHeaderSearchBarProps,
 } from './StackHeaderSearchBar'
 import { StackHeaderTitle, type StackHeaderTitleProps } from './StackHeaderTitle'
-import { StackToolbar } from './StackToolbar'
 import { NAVIGATOR_CONFIG } from '../../headless/children'
 
 /**
@@ -39,22 +38,7 @@ export {
   type StackHeaderSearchBarProps,
   StackHeaderTitle,
   type StackHeaderTitleProps,
-  StackToolbar,
 }
-
-export type {
-  StackToolbarBadgeProps,
-  StackToolbarButtonProps,
-  StackToolbarIconProps,
-  StackToolbarLabelProps,
-  StackToolbarMenuActionProps,
-  StackToolbarMenuProps,
-  StackToolbarPlacement,
-  StackToolbarProps,
-  StackToolbarSearchBarSlotProps,
-  StackToolbarSpacerProps,
-  StackToolbarViewProps,
-} from './StackToolbar'
 
 export {
   StackScreen,

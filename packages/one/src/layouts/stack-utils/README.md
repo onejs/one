@@ -25,7 +25,6 @@ import { Stack } from 'one'
 | `Stack.Header.Right` | Custom right header content |
 | `Stack.Header.BackButton` | Back button configuration |
 | `Stack.Header.SearchBar` | Search bar configuration |
-| `Stack.Toolbar` | Native iOS header and bottom toolbar items |
 
 ## Basic Usage
 

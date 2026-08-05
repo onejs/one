@@ -15,7 +15,6 @@ import {
   StackHeaderSearchBar,
   StackScreen,
   type StackScreenProps,
-  StackToolbar,
 } from './stack-utils'
 import { withLayoutContext } from './withLayoutContext'
 
@@ -120,7 +119,6 @@ export const Stack = Object.assign(StackWithComposition, {
   Header: StackHeader,
   Protected,
   SearchBar: StackHeaderSearchBar,
-  Toolbar: StackToolbar,
 })
 
 export default Stack
