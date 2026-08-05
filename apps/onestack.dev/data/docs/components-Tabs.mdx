@@ -36,18 +36,18 @@ export default function Layout() {
 
 On web, `<Tabs>` renders headless: only the focused tab's screen, no tab bar. Your site's own navigation is your tab bar.
 
-To build one, place a component as a child of `<Tabs>` - it replaces the headless default on web and is ignored on native. Use [useTabs](/docs/hooks-useTabs) to get the tab list, the focused tab, and a `switchTab` action:
+To build one, place a component as a child of `<Tabs>` - it replaces the headless default on web and is ignored on native. Use [useTabs](/docs/hooks-useTabs) to get the tab list and the focused tab:
 
 ```tsx
 import { Link, Tabs, useTabs } from 'one'
 
 function WebTabBar() {
-  const { tabs, focused } = useTabs()
+  const { screens, focused } = useTabs()
 
   return (
     <>
       <nav>
-        {tabs.map((tab) => (
+        {screens.map((tab) => (
           <Link
             key={tab.name}
             href={tab.href}

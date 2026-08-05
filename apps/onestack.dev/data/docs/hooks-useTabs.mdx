@@ -15,12 +15,12 @@ Place your component as a child of `<Tabs>`. It replaces the headless default on
 import { Link, Tabs, useTabs } from 'one'
 
 function WebTabBar() {
-  const { tabs, focused } = useTabs()
+  const { screens, focused } = useTabs()
 
   return (
     <>
       <nav>
-        {tabs.map((tab) => (
+        {screens.map((tab) => (
           <Link
             key={tab.name}
             href={tab.href}
@@ -50,34 +50,22 @@ export default function Layout() {
 
 | Property | Type | Description |
 |----------|------|--------------|
-| `tabs` | `ScreenEntry[]` | Every tab, in the order they were declared. |
+| `screens` | `ScreenEntry[]` | Every tab, in the order they were declared. |
 | `focused` | `ScreenEntry` | The currently focused tab. |
-| `navigation` | `{ switchTab }` | `switchTab(name)` switches to the tab by name. |
+
+`useTabs` is a state reader. To switch tabs, link to the tab's `href` with [`Link`](/docs/components-Link) or `router.navigate(href)`.
 
 `ScreenEntry` is the same shape [`useStack`](/docs/hooks-useStack#return-value) returns: `key`, `name`, `params`, `href`, `isFocused`, `keepMounted`, `options`, `element`.
 
 ## Keeping inactive tabs mounted
 
-The default headless view only ever renders the focused tab - switching tabs unmounts the previous one, `keepMounted` or not. To keep inactive tabs alive (preserve scroll position, form state, etc.), build your own layout with `useTabs` and wrap inactive tabs in React 19.2's `Activity`:
+Set `keepMounted` on a screen and the default headless view keeps it alive after you switch away, hidden via React 19.2's `<Activity>`, so scroll position and form state survive. A tab is only kept once it has actually been focused, matching react-navigation's lazy behavior on native.
 
 ```tsx
-import { Activity } from 'react'
-import { useTabs } from 'one'
-
-function EagerTabs() {
-  const { tabs } = useTabs()
-
-  return (
-    <>
-      {tabs.map((tab) => (
-        <Activity key={tab.key} mode={tab.isFocused ? 'visible' : 'hidden'}>
-          {tab.element}
-        </Activity>
-      ))}
-    </>
-  )
-}
+<Tabs.Screen name="feed" options={{ title: 'Feed', keepMounted: true }} />
 ```
+
+A custom layout renders whatever it wants, so it owns this itself. `keepMounted` is on every entry if you want to honor it the same way.
 
 ## Related
 

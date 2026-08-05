@@ -254,17 +254,14 @@ You can set a default header for all screens by placing `Stack.Header` directly 
 
 <New />
 
-On web, `<Stack>` renders headless: only the focused screen's element, no header, no chrome. Screens with a `presentation` (`sheet`, `modal`, `formSheet`, etc.) render as overlays above the base screen - by default inline with no floating chrome, or with real chrome once you register [NavigationRender](/docs/components-NavigationRender).
+On web, `<Stack>` renders headless: only the focused screen's element, no header, no chrome. Screens with a `presentation` (`sheet`, `modal`, `formSheet`, etc.) render as overlays above the base screen - by default inline with no floating chrome, or with real chrome once you mount [Presentations](/docs/components-Presentations).
 
-Set `keepMounted: true` on a screen's options to keep it mounted (hidden via React 19.2's `<Activity>`) instead of unmounting it when it loses focus or is dismissed:
+Set `keepMounted: true` on a screen's options to keep it mounted (hidden via React 19.2's `<Activity>`) instead of unmounting it when it loses focus:
 
 ```tsx
-<Stack.Screen
-  name="settings"
-  options={{ presentation: 'formSheet', keepMounted: true }}
-/>
+<Stack.Screen name="settings" options={{ keepMounted: true }} />
 ```
 
 To build your own web layout entirely (a custom header, transitions, anything), place a component as a child of `<Stack>` - it replaces the headless default on web and is ignored on native. Use [useStack](/docs/hooks-useStack) to get the full stack state.
 
-See the [headless web navigators guide](/docs/guides-headless-web) for the full story, including how `NavigationRender` maps sheets and modals to real chrome.
+See the [headless web navigators guide](/docs/guides-headless-web) for the full story, including how `Presentations` maps sheets and modals to real chrome.

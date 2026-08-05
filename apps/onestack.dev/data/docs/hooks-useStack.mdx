@@ -12,14 +12,15 @@ Place your component as a child of `<Stack>`. It replaces the headless default o
 
 ```tsx
 // app/_layout.tsx, works on both platforms
-import { Stack, useStack } from 'one'
+import { Stack, useRouter, useStack } from 'one'
 
 function WebStackLayout() {
-  const { screens, focused, navigation } = useStack()
+  const { screens, focused } = useStack()
+  const router = useRouter()
 
   return (
     <>
-      {screens.length > 1 && <button onClick={navigation.back}>← Back</button>}
+      {screens.length > 1 && <button onClick={router.back}>← Back</button>}
       <h1>{focused.options.title}</h1>
       {focused.element}
     </>
@@ -43,7 +44,8 @@ export default function Layout() {
 |----------|------|--------------|
 | `screens` | `ScreenEntry[]` | Every screen currently in the stack, in stack order. |
 | `focused` | `ScreenEntry` | The currently focused screen. |
-| `navigation` | `{ back, push, replace }` | Navigate the stack. |
+
+`useStack` is a state reader. To navigate, use [`useRouter`](/docs/hooks-useRouter) / `router` and [`Link`](/docs/components-Link) as you would anywhere else in the app - every entry carries an `href`.
 
 ### `ScreenEntry`
 
@@ -58,20 +60,12 @@ export default function Layout() {
 | `options` | `object` | The compiled options for this screen (`title`, `presentation`, and anything else set via `Stack.Screen`). |
 | `element` | `ReactElement` | The screen's rendered content. Rendering it mounts the route. |
 
-### `navigation`
-
-| Method | Description |
-|--------|--------------|
-| `back()` | Go back one screen. |
-| `push(href)` | Push a new screen. |
-| `replace(href)` | Replace the focused screen. |
-
 ## Presentation screens
 
-Screens with a `presentation` option (`sheet`, `modal`, `formSheet`, ...) still show up in `screens` alongside regular pushed screens - `useStack` doesn't separate them out. If your custom layout needs to treat them differently, check `focused.options.presentation`. Most apps handle presentation screens with [NavigationRender](/docs/components-NavigationRender) instead, which is scoped specifically to them.
+Screens with a `presentation` option (`sheet`, `modal`, `formSheet`, ...) still show up in `screens` alongside regular pushed screens - `useStack` doesn't separate them out. If your custom layout needs to treat them differently, check `focused.options.presentation`. Most apps handle presentation screens with [Presentations](/docs/components-Presentations) instead, which is scoped specifically to them.
 
 ## Related
 
 - [Stack](/docs/components-Stack)
-- [NavigationRender](/docs/components-NavigationRender)
+- [Presentations](/docs/components-Presentations)
 - [Headless web navigators](/docs/guides-headless-web)

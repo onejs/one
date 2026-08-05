@@ -31,23 +31,20 @@ One's web build doesn't ship react-native-web. Rendering full react-navigation c
 
 ## What each navigator renders by default
 
-- **Stack**: the focused screen. Screens with a `presentation` (`sheet`, `modal`, `formSheet`, ...) render as overlays above the base screen - inline with no floating chrome by default, or with real chrome once you register [NavigationRender](/docs/components-NavigationRender).
+- **Stack**: the focused screen. Screens with a `presentation` (`sheet`, `modal`, `formSheet`, ...) render as overlays above the base screen - inline with no floating chrome by default, or with real chrome once you mount [Presentations](/docs/components-Presentations).
 - **Tabs**: the focused tab's screen, no bar.
 - **Drawer**: the focused screen. Open state lives in navigation state - build your own sidebar with [useDrawer](/docs/hooks-useDrawer).
 - **Slot**: unchanged, it was always the identity.
 
 ## Keeping screens mounted
 
-Stack's default web view already keeps `keepMounted` screens alive for you: a screen further back in the stack, or a dismissed presentation screen, stays mounted (hidden via React 19.2's `<Activity mode="hidden">`) instead of unmounting.
+Set `keepMounted` on a screen and the navigator's default web view keeps it alive once you navigate away, hidden via React 19.2's `<Activity mode="hidden">` instead of unmounting, so scroll position and form state survive.
 
 ```tsx
-<Stack.Screen
-  name="settings"
-  options={{ presentation: 'formSheet', keepMounted: true }}
-/>
+<Stack.Screen name="settings" options={{ keepMounted: true }} />
 ```
 
-Tabs and Drawer's default view always unmounts the inactive screen regardless of `keepMounted` - it only ever renders the focused one. Every screen still carries `keepMounted` in its `options`, so a custom layout built with [useTabs](/docs/hooks-useTabs) or [useDrawer](/docs/hooks-useDrawer) can honor it itself by wrapping inactive screens in `Activity`.
+It works the same in all three navigators. In Tabs and Drawer a screen is only kept once it has actually been focused, matching react-navigation's lazy behavior on native. Custom layouts render whatever they want, so they own this themselves - `keepMounted` is on every entry from [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs), and [useDrawer](/docs/hooks-useDrawer).
 
 ## Building your own layout
 
@@ -58,12 +55,12 @@ Add a component as a child of the navigator. It replaces the headless default on
 import { Link, Tabs, useTabs } from 'one'
 
 function WebTabBar() {
-  const { tabs, focused } = useTabs()
+  const { screens, focused } = useTabs()
 
   return (
     <>
       <nav>
-        {tabs.map((tab) => (
+        {screens.map((tab) => (
           <Link
             key={tab.name}
             href={tab.href}
@@ -97,43 +94,24 @@ Each navigator has its own hook returning its full state: [useStack](/docs/hooks
 
 Stack screens with `presentation: 'sheet'` or `presentation: 'modal'` work on web with no setup - they render inline, in place, with no floating position or backdrop (headless doesn't add styling for you).
 
-To give them real sheet/modal chrome, register [NavigationRender](/docs/components-NavigationRender) once in your root layout:
+To give them real sheet/modal chrome, mount [Presentations](/docs/components-Presentations) once in your root layout:
 
 ```tsx
 // app/_layout.tsx
-import { NavigationRender, Slot } from 'one'
+import { Presentations, Slot } from 'one'
 import { Modal } from '~/interface/Modal'
 import { Sheet } from '~/interface/Sheet'
 
 export default function Layout() {
   return (
-    <NavigationRender
-      web={(opts) => {
-        if (opts.type === 'sheet') {
-          return (
-            <Sheet
-              open={opts.open}
-              onOpenChange={opts.onOpenChange}
-              snapPoints={opts.options.sheetAllowedDetents}
-            >
-              {opts.children}
-            </Sheet>
-          )
-        }
-        if (opts.type === 'modal') {
-          return (
-            <Modal open={opts.open} onOpenChange={opts.onOpenChange}>
-              {opts.children}
-            </Modal>
-          )
-        }
-      }}
-    >
+    <Presentations web={{ sheet: Sheet, modal: Modal }}>
       <Slot />
-    </NavigationRender>
+    </Presentations>
   )
 }
 ```
+
+`Sheet` and `Modal` are ordinary components receiving `open`, `onOpenChange`, `options`, `screen`, and `children`.
 
 Any layout that declares a sheet or modal screen picks this up automatically, using the same `presentation`/`sheetAllowedDetents` vocabulary you'd write for native:
 
@@ -146,7 +124,7 @@ Any layout that declares a sheet or modal screen picks this up automatically, us
 </Stack>
 ```
 
-Returning nothing for a kind keeps that kind's headless default, so you only need to handle the presentations you actually use.
+Omit `sheet` or `modal` and that kind keeps its headless default, so you only need to write the presentations you actually use.
 
 ## If your app renders react-native components on web
 
@@ -177,7 +155,7 @@ Native is unaffected by any of this. `<Stack>`, `<Tabs>`, and `<Drawer>` still r
 
 ## Related
 
-- [NavigationRender](/docs/components-NavigationRender)
+- [Presentations](/docs/components-Presentations)
 - [useStack](/docs/hooks-useStack)
 - [useTabs](/docs/hooks-useTabs)
 - [useDrawer](/docs/hooks-useDrawer)

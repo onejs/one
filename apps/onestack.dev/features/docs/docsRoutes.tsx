@@ -57,7 +57,7 @@ export const docsRoutes = [
       { title: 'LoadProgressBar', route: '/docs/components-LoadProgressBar' },
       { title: 'ScrollBehavior', route: '/docs/components-ScrollBehavior' },
       { title: 'SafeAreaView', route: '/docs/components-SafeAreaView' },
-      { title: 'NavigationRender', route: '/docs/components-NavigationRender' },
+      { title: 'Presentations', route: '/docs/components-Presentations' },
     ],
   },
 
