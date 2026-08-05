@@ -1399,6 +1399,7 @@
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
     "@expo/plist@0.8.1": "patches/@expo%2Fplist@0.8.1.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
+    "expo-modules-core@57.0.8": "patches/expo-modules-core@57.0.8.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "expo-modules-jsi@57.0.4": "patches/expo-modules-jsi@57.0.4.patch",
   },
