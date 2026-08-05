@@ -1,4 +1,4 @@
-import { type NavigationContainerProps } from '@react-navigation/native';
+import type { NavigationContainerProps } from '@react-navigation/native';
 import { type FunctionComponent, type ReactNode } from 'react';
 import type { OneLinkingConfig } from './link/getLinking';
 import type { GlobbedRouteImports } from './types';

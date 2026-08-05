@@ -2,6 +2,8 @@ import type { NativeStackNavigationOptions } from '@react-navigation/native-stac
 import type { ImageSourcePropType } from 'react-native'
 import type { ScreenStackHeaderConfigProps } from 'react-native-screens'
 
+import { NAVIGATOR_CONFIG } from '../../headless/children'
+
 export interface StackHeaderBackButtonProps {
   children?: string
   style?: NativeStackNavigationOptions['headerBackTitleStyle']
@@ -17,6 +19,8 @@ export interface StackHeaderBackButtonProps {
 export function StackHeaderBackButton(_props: StackHeaderBackButtonProps) {
   return null
 }
+
+Object.assign(StackHeaderBackButton, { [NAVIGATOR_CONFIG]: true })
 
 export function appendStackHeaderBackButtonPropsToOptions(
   options: NativeStackNavigationOptions,

@@ -1,18 +1,8 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
-import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import type { NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
-import { StackScreen, StackHeaderComponent, StackHeaderSearchBar } from './stack-utils';
-import { type StackRender } from '../router/web/ScreenRenderContext';
-type StackExtraProps = {
-    /**
-     * Platform-keyed render component for overlay routes (modal / formSheet /
-     * pageSheet / transparentModal / fullScreenModal). v1 consumes `web` only;
-     * `ios` / `android` are reserved for future use. Per-route overrides go on
-     * `<Stack.Screen options={{ render }} />`.
-     */
-    render?: StackRender;
-};
-export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+import { StackHeaderComponent, StackHeaderSearchBar, StackScreen } from './stack-utils';
+export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: StackNavigationState<ParamListBase>;
@@ -53,13 +43,13 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
 } | {
     id: string;
-})), "children"> & Partial<Pick<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/core").DefaultRouterOptions<string> & ({
+})), "children"> & Partial<Pick<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & ({
     children: React.ReactNode;
     layout?: ((props: {
         state: StackNavigationState<ParamListBase>;
@@ -100,15 +90,16 @@ export declare const Stack: React.ForwardRefExoticComponent<Omit<Omit<Omit<impor
         payload?: object;
         source?: string;
         target?: string;
-    }>>(original: import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/core").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
+    }>>(original: import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>) => Partial<import("@react-navigation/routers").Router<StackNavigationState<ParamListBase>, Action>>) | undefined;
     UNSTABLE_routeNamesChangeBehavior?: "firstMatch" | "lastUnhandled";
 } & ({
     id?: undefined;
 } | {
     id: string;
-})), "children">> & React.RefAttributes<unknown> & StackExtraProps, "ref"> & React.RefAttributes<unknown>> & {
+})), "children">> & React.RefAttributes<unknown>, "ref"> & React.RefAttributes<unknown>> & {
     Screen: typeof StackScreen;
     Header: typeof StackHeaderComponent & {
+        __oneNavigatorConfig: boolean;
         Left: typeof import("./stack-utils").StackHeaderLeft;
         Right: typeof import("./stack-utils").StackHeaderRight;
         BackButton: typeof import("./stack-utils").StackHeaderBackButton;

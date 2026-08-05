@@ -1,6 +1,6 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { type ReactNode } from 'react';
-import { type ColorValue, type StyleProp } from 'react-native';
+import type { ColorValue, StyleProp } from 'react-native';
 import type { ScreenStackHeaderConfigProps } from 'react-native-screens';
 export interface StackHeaderProps {
     children?: ReactNode;

@@ -1,6 +1,13 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import React from 'react'
-import { Platform } from 'react-native'
+
+// the header helpers read the platform constant, not react-native
+const platform = vi.hoisted(() => ({ current: 'web' }))
+vi.mock('../../../utils/platform', () => ({
+  get PLATFORM() {
+    return platform.current
+  },
+}))
 
 import {
   StackHeaderTitle,
@@ -68,26 +75,20 @@ describe('Stack Header Composition', () => {
     })
 
     it('sets headerTransparent only on iOS when large is true', () => {
-      // Store original Platform.OS
-      const originalOS = Platform.OS
-
       // Test on iOS - should set headerTransparent
-      ;(Platform as any).OS = 'ios'
+      platform.current = 'ios'
       const iosResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(iosResult.headerTransparent).toBe(true)
 
       // Test on Android - should NOT set headerTransparent
-      ;(Platform as any).OS = 'android'
+      platform.current = 'android'
       const androidResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(androidResult.headerTransparent).toBeUndefined()
 
       // Test on web - should NOT set headerTransparent
-      ;(Platform as any).OS = 'web'
+      platform.current = 'web'
       const webResult = appendStackHeaderTitlePropsToOptions({}, { large: true })
       expect(webResult.headerTransparent).toBeUndefined()
-
-      // Restore original
-      ;(Platform as any).OS = originalOS
     })
   })
 

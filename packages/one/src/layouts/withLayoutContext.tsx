@@ -96,9 +96,12 @@ export function useFilterScreenChildren(
       // Handle other children (custom components in custom Navigator)
       if (isCustomNavigator) {
         customChildren.push(child)
-      } else if (child != null) {
+      } else if (child != null && process.env.NODE_ENV === 'development') {
+        // a non-config child is the documented way to give a navigator a custom
+        // layout on web. it can't apply here, where react-navigation draws the
+        // chrome, so say that rather than calling it a mistake
         console.warn(
-          `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app${contextKey}/_layout"`
+          `[one] a non-<Screen> child of the navigator at "app${contextKey}/_layout" renders on web only. On native this navigator is drawn by react-navigation and the child is ignored.`
         )
       }
     }

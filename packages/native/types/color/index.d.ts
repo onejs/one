@@ -1,4 +1,4 @@
-import { type ColorValue } from 'react-native';
+import type { ColorValue } from 'react-native';
 import type { AndroidDynamicMaterialColorType } from './android.dynamic.types';
 import type { AndroidStaticMaterialColorType } from './android.material.types';
 import type { IOSBaseColor } from './ios.types';
