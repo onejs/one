@@ -10,6 +10,12 @@ export default function Home() {
       <Link href="/feed" data-testid="to-feed">
         feed
       </Link>
+      <Link href="/compose" data-testid="to-compose">
+        compose
+      </Link>
+      <Link href="/kept-a" data-testid="to-kept-a">
+        kept a
+      </Link>
     </main>
   )
 }
