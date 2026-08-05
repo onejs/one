@@ -1,3 +1,5 @@
+import type { RequestOptions } from 'metro/private/shared/types'
+
 export type BundleCommandArgs = {
   assetsDest?: string
   assetCatalogDest?: string
@@ -16,7 +18,7 @@ export type BundleCommandArgs = {
   sourcemapSourcesRoot?: string
   sourcemapUseAbsolutePath: boolean
   verbose: boolean
-  unstableTransformProfile: string
+  unstableTransformProfile: NonNullable<RequestOptions['unstable_transformProfile']>
   indexedRamBundle?: boolean
   resolverOption?: Array<string>
 }
