@@ -55,48 +55,28 @@ chrome). Drawer: focused screen; open state is navigation state, chrome is
 yours. Slot: unchanged, it was always the identity.
 
 Screens with `keepMounted` stay mounted inside React 19.2
-`<Activity mode="hidden">` (no styled wrapper, effects deferred). Inactive
-screens unmount by default. SSR emits exactly the focused screen.
+`<Activity mode="hidden">` (no styled wrapper, effects deferred), in all
+three navigators. Tabs and Drawer hold every route in state from the start,
+so they only keep a screen once it has actually been focused, matching
+react-navigation's lazy behavior on native. Inactive screens unmount by
+default. SSR emits exactly the focused screen.
 
-### App-wide defaults: `NavigationRender`
+### App-wide defaults: `Presentations`
 
 The single-place configuration layer. Plain context, consumed by the default
-web renderers. One callback, discriminated by kind, so types arrive by
-inference (no prop-type imports) and `console.log(opts)` shows exactly what
-flows. (Name unsettled; one-symbol rename later is fine.)
+web renderers. One component per presentation kind, so hooks and state work
+normally inside them and each gets its own prop types.
 
 ```tsx
 // app/_layout.tsx — once. `web` scopes platform.
-import { NavigationRender, Slot } from 'one'
+import { Presentations, Slot } from 'one'
 import { Modal } from '~/interface/Modal'
 import { Sheet } from '~/interface/Sheet'
 
 export default () => (
-  <NavigationRender
-    web={(opts) => {
-      if (opts.type === 'sheet') {
-        return (
-          <Sheet
-            open={opts.open}
-            onOpenChange={opts.onOpenChange}
-            snapPoints={opts.options.sheetAllowedDetents}
-          >
-            {opts.children}
-          </Sheet>
-        )
-      }
-      if (opts.type === 'modal') {
-        return (
-          <Modal open={opts.open} onOpenChange={opts.onOpenChange}>
-            {opts.children}
-          </Modal>
-        )
-      }
-      // return nothing → that kind keeps the headless default
-    }}
-  >
+  <Presentations web={{ sheet: Sheet, modal: Modal }}>
     <Slot />
-  </NavigationRender>
+  </Presentations>
 )
 ```
 
@@ -112,57 +92,51 @@ export default () => (
 ```
 
 Native maps `presentation` to the native equivalent as today; the `web` key
-only configures web rendering, which is why it is platform-scoped. The
-callback argument is a discriminated union, per presentation kind and per
-navigator (tabs and drawer have no presentations; any future tabs override
-gets its own union members shaped for tabs, never these):
+only configures web rendering, which is why it is platform-scoped. Keeping
+the platform as a namespace leaves room for a `native` key that swaps the OS
+sheet for a JS one (Tamagui, Gorhom). That is not implemented: it needs the
+native stack's `presentation` mapped down to `transparentModal` so the JS
+component owns the visuals. Adding it later is purely additive.
+
+Each component receives:
 
 ```ts
-type NavigationRenderOpts =
-  | {
-      type: 'sheet'
-      open: boolean
-      onOpenChange: (open: boolean) => void
-      // typed sheet-relevant subset of the screen's options, in
-      // react-navigation's existing vocabulary (what you declare for native
-      // is what you receive; no parallel prettier names — mapping to your
-      // Sheet's props is your adapter's job)
-      options: {
-        sheetAllowedDetents?: number[] | 'fitToContents'
-        sheetGrabberVisible?: boolean
-        sheetCornerRadius?: number
-        sheetExpandsWhenScrolledToEdge?: boolean
-        gestureEnabled?: boolean
-        title?: string
-      }
-      screen: StackScreenEntry // full entry: name, params, complete options
-      children: ReactNode
-    }
-  | {
-      type: 'modal'
-      open: boolean
-      onOpenChange: (open: boolean) => void
-      options: { gestureEnabled?: boolean; title?: string }
-      screen: StackScreenEntry
-      children: ReactNode
-    }
+type PresentationProps<Options> = {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  // typed presentation-relevant subset of the screen's options, in
+  // react-navigation's existing vocabulary (what you declare for native
+  // is what you receive; no parallel prettier names — mapping to your
+  // Sheet's props is your adapter's job). a narrowed view of
+  // screen.options, never a copy of it
+  options: Options
+  screen: ScreenEntry // full entry: name, params, complete options
+  children: ReactNode
+}
+
+type SheetPresentationOptions = {
+  sheetAllowedDetents?: number[] | 'fitToContents'
+  sheetGrabberVisible?: boolean
+  sheetCornerRadius?: number
+  sheetExpandsWhenScrolledToEdge?: boolean
+  gestureEnabled?: boolean
+  title?: string
+}
+
+type ModalPresentationOptions = { gestureEnabled?: boolean; title?: string }
 ```
 
 `children` is the screen's element, already placed. `open`/`onOpenChange` is
 the ecosystem-standard shape (vaul, Radix Dialog, most design-system
-sheets), so adapters are one-liners. Narrowing on `opts.type` types
-everything inline; nothing needs importing to be fully typed. The opts
-object is designed to spread: a handler that needs hooks or state returns
-`<MySheetChrome {...opts} />`, which renders under the navigator so
-`useStack()` works inside. Returning nothing for a kind keeps that kind's
-headless default, so apps handle only what they care about. Known kinds:
-`card`, `modal`, `sheet`. Custom string kinds are allowed for app-specific
-types: they register their options type via the same module augmentation
-that types the rest of options and appear as additional union members, so
-custom presentations are as typed as built-ins. The native preset maps known
-kinds and treats unknown kinds as modal-like.
+sheets), so adapters are one-liners. `open` mounts `false` and flips `true`
+on the next commit so enter animations play. Because these are components
+rather than a render callback, hooks inside them are legal, and passing
+module-level components keeps the context value referentially stable.
+Omitting a key keeps that kind's headless default, so apps write only what
+they care about. Known kinds: `card`, `modal`, `sheet`. The native preset
+maps known kinds and treats unknown kinds as modal-like.
 
-Because it is context, sub-trees can mount their own `NavigationRender`
+Because it is context, sub-trees can mount their own `Presentations`
 to override locally. Standard React scoping, no extra API.
 
 ### Custom layout: the hook
@@ -246,7 +220,7 @@ import 'one/react-navigation-web'
 ```
 
 Registers react-navigation's web renderers as the app-wide defaults (the
-same `NavigationRender` mechanism, preset-flavored). Requires
+same `Presentations` mechanism, preset-flavored). Requires
 react-native-web installed; this import is the explicit RNW path and
 replaces any config flag. Existing apps add one line during migration and
 nothing changes; remove the line when ready to go headless.
@@ -271,7 +245,7 @@ nothing changes; remove the line when ready to go headless.
 
 - Slot: identity everywhere. Unchanged.
 - Stack: native native-stack as today. Web default: focused screen +
-  presentation overlays via `NavigationRender`. Custom: `useStack()`.
+  presentation overlays via `Presentations`. Custom: `useStack()`.
 - Tabs: native bottom-tabs as today (`react-native-bottom-tabs` remains a
   native alternative). Web default: focused screen, no bar. Custom:
   `useTabs()`.
@@ -281,7 +255,7 @@ nothing changes; remove the line when ready to go headless.
 
 ## Packaging
 
-- `one`: navigators (same exports as today), hooks, `NavigationRender`,
+- `one`: navigators (same exports as today), hooks, `Presentations`,
   `Link`. The web module graph contains no react-native, react-native-web,
   react-navigation view packages, or react-native-screens (state layer
   `@react-navigation/core`/`routers` is verified RN-free and stays).
@@ -306,4 +280,16 @@ nothing changes; remove the line when ready to go headless.
    presentation components, or stay presentation-maps-only until a real
    need shows up (lean: presentation-maps-only, KISS; each navigator's
    override props stay navigator-specific either way).
-4. Naming: `NavigationRender` is unsettled (Nate: "i dont love it"); rename is one symbol whenever a better name appears.
+4. A `native` key on `Presentations`, letting an app swap the OS sheet for a
+   JS one. Needs the native stack's `presentation` mapped down to
+   `transparentModal` so the JS component owns the visuals.
+5. Not headless work, found while testing it: in a PROD build the first client
+   navigation after hydration unmounts and remounts the layout, throwing away
+   all layout and screen state exactly once. Verified with an ordinary group
+   layout holding `useState` and no navigator of its own, so it is not specific
+   to `keepMounted`, which works correctly on every navigation after the first.
+   Ruled out by measurement: the route's stack key is stable across it
+   (`(plain)-0` before and after), `getQualifiedRouteComponent` never misses its
+   cache on the client, and the page component keeps its identity. Something
+   else in the prod client tears the subtree down. `tests/test-headless-web`
+   navigates once before measuring state because of this.

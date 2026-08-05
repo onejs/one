@@ -1,0 +1,100 @@
+---
+title: "<Presentations />"
+---
+
+`Presentations` sets the components that render `sheet` and `modal` presentations on web. Mount it once near the root of your app.
+
+By default a presentation screen renders on web with no chrome at all: just the screen's content, inline, with no backdrop or floating position. `Presentations` is how you plug in a real sheet or modal (Tamagui Sheet, Vaul, Radix Dialog, or your own).
+
+## Usage
+
+```tsx
+// app/_layout.tsx
+import { Presentations, Slot } from 'one'
+import { Modal } from '~/interface/Modal'
+import { Sheet } from '~/interface/Sheet'
+
+export default function Layout() {
+  return (
+    <Presentations web={{ sheet: Sheet, modal: Modal }}>
+      <Slot />
+    </Presentations>
+  )
+}
+```
+
+Any `<Stack.Screen>` with a `presentation` option picks these up automatically, using the same vocabulary you'd write for native:
+
+```tsx
+<Stack>
+  <Stack.Screen
+    name="compose"
+    options={{ presentation: 'sheet', sheetAllowedDetents: [0.6, 1] }}
+  />
+</Stack>
+```
+
+## Writing a presentation component
+
+Each one is an ordinary component, so hooks, context, and refs all work normally:
+
+```tsx
+import type { SheetPresentationProps } from 'one'
+
+export function Sheet({ open, onOpenChange, options, children }: SheetPresentationProps) {
+  const theme = useTheme()
+
+  return (
+    <MySheet open={open} onOpenChange={onOpenChange} snapPoints={options.sheetAllowedDetents}>
+      {children}
+    </MySheet>
+  )
+}
+```
+
+| Prop | Type | Description |
+|------|------|--------------|
+| `open` | `boolean` | Whether the presentation should be visible. Starts `false` on mount and flips to `true` on the next commit, so enter animations play. |
+| `onOpenChange` | `(open: boolean) => void` | Call with `false` when your UI dismisses. Pops the screen. |
+| `options` | `SheetPresentationOptions` / `ModalPresentationOptions` | The presentation options set on the screen. |
+| `screen` | `ScreenEntry` | The full screen entry: `name`, `params`, complete `options`, `href`. |
+| `children` | `ReactNode` | The screen's content. |
+
+`options` is a narrowed view of the screen's `options`, taken straight from `Stack.Screen`, using the same values you'd set for native:
+
+- Sheet: `sheetAllowedDetents`, `sheetGrabberVisible`, `sheetCornerRadius`, `sheetExpandsWhenScrolledToEdge`, `gestureEnabled`, `title`
+- Modal: `gestureEnabled`, `title`
+
+Everything the screen declared is still on `screen.options` if you need a key that isn't narrowed.
+
+## Which presentations map where
+
+| Component | `presentation` values |
+|-----------|-----------------------|
+| `sheet` | `'sheet'`, `'formSheet'`, `'pageSheet'` |
+| `modal` | Any other non-`'card'`/`'push'` value (`'modal'`, `'containedModal'`, `'fullScreenModal'`, `'transparentModal'`, ...) |
+
+Omit one and that presentation keeps rendering its content inline with no chrome.
+
+## Scoping
+
+`Presentations` is just context, so nesting one further down the tree overrides it for that subtree only:
+
+```tsx
+<Presentations web={{ sheet: Sheet }}>
+  <Slot />
+  <Presentations web={{ sheet: SpecialSheet }}>
+    {/* screens rendered under here use SpecialSheet instead */}
+  </Presentations>
+</Presentations>
+```
+
+## Native
+
+On native, presentations are handled by react-navigation, so the `web` components never run there. A `native` option that lets you swap the OS sheet for your own component is not implemented yet.
+
+## Related
+
+- [Stack](/docs/components-Stack)
+- [useStack](/docs/hooks-useStack)
+- [Headless web navigators](/docs/guides-headless-web)
