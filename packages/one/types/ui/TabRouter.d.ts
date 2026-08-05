@@ -44,15 +44,15 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
         index: number;
         routeNames: string[];
         history?: unknown[];
-        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+        routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
-    }> | import("@react-navigation/routers").PartialState<Readonly<{
+    }> | import("@react-navigation/core").PartialState<Readonly<{
         key: string;
         index: number;
         routeNames: string[];
         history?: unknown[];
-        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+        routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
     }>> | (Omit<Readonly<{
@@ -60,11 +60,11 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
         index: number;
         routeNames: string[];
         history?: unknown[];
-        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+        routes: import("@react-navigation/core").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
     }>, "routes"> & {
-        routes: Omit<import("@react-navigation/routers").Route<string>, "key">[];
+        routes: Omit<import("@react-navigation/core").Route<string>, "key">[];
     })) | undefined;
     source?: string;
     target?: string;
