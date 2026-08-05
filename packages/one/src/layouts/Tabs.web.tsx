@@ -12,6 +12,7 @@ import { Children, Fragment, forwardRef, type ReactNode, useMemo, useRef } from 
 import { getPathFromState } from '../fork/getPathFromState'
 import { getCustomNavigatorChildren, isNavigatorConfigChild } from '../headless/children'
 import { devHeadlessNote } from '../headless/devHeadlessNote'
+import { renderKeptMountedScreens, useVisitedScreens } from '../headless/keepMounted'
 import { useTabs } from '../headless/useTabs'
 import { getResolvedLinking } from '../router/linkingConfig'
 import { TabTriggerMapContext } from '../ui/TabContext'
@@ -115,14 +116,15 @@ function WebTabsNavigator({
 }
 
 function HeadlessTabsView({ customChildren }: { customChildren?: ReactNode[] }) {
-  const { focused } = useTabs()
+  const { screens, focused } = useTabs()
+  const visited = useVisitedScreens(focused.key)
   devHeadlessNote('Tabs')
 
   if (customChildren?.length) {
     return <Fragment>{customChildren}</Fragment>
   }
 
-  return focused.element
+  return renderKeptMountedScreens(screens, visited)
 }
 
 const RNTabs = withLayoutContext(WebTabsNavigator)
