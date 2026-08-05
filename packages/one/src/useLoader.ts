@@ -54,8 +54,12 @@ const recordLoaderTiming =
         if (loaderTimingHistory.length > MAX_TIMING_HISTORY) {
           loaderTimingHistory.pop()
         }
-        // Dispatch event for devtools (web only - CustomEvent doesn't exist on native)
-        if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') {
+        // dispatch event for web devtools only
+        if (
+          process.env.TAMAGUI_TARGET !== 'native' &&
+          typeof window !== 'undefined' &&
+          typeof CustomEvent !== 'undefined'
+        ) {
           window.dispatchEvent(new CustomEvent('one-loader-timing', { detail: entry }))
 
           // Also dispatch error event if there was an error
