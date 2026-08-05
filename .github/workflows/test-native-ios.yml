@@ -13,6 +13,7 @@ on:
       - ci/rolldown-native-tests
       - ci/test-native-ios-matrix-split
       - react-native-82
+      - ci/xcode-26-3
     paths:
       - '.github/actions/install/**'
       - '.github/workflows/build-ios-test-container-app.yml'
