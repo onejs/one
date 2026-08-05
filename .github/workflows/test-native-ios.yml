@@ -1,9 +1,9 @@
 name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
-  simulator_ios_version: 18
+  simulator_ios_version: 26.4
   # Name of the simulator device to use.
-  simulator_device_name: iPhone 16 Pro
+  simulator_device_name: iPhone 17 Pro
 
 on:
   push:
@@ -70,7 +70,7 @@ jobs:
     needs:
       - build-ios-test-container-dev
       - build-ios-test-container-prod
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 45
     # rolldown:prod is experimental — don't fail the workflow on it.
     # (prod used to crash on launch with a SIGSEGV from an upstream RN
@@ -97,7 +97,7 @@ jobs:
             test-script: test-ios:rolldown:prod
     steps:
       - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.2.app
+        run: sudo xcode-select -s /Applications/Xcode_26.4.app
 
       - name: Checkout
         uses: actions/checkout@v6
