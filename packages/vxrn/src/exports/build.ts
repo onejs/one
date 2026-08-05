@@ -106,7 +106,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         resetGlobalCache: true,
         sourcemapUseAbsolutePath: true,
         verbose: false,
-        unstableTransformProfile: '',
+        unstableTransformProfile: 'default',
       }
     )
   }
