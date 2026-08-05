@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx-rust",
-  "version": "1.21.8",
+  "version": "1.22.0",
   "type": "module",
   "sideEffects": false,
   "module": "dist",
@@ -48,8 +48,8 @@
     "react": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
-    "react": "19.2.0"
+    "@tamagui/build": "2.6.2",
+    "react": "19.2.3"
   },
   "publishConfig": {
     "access": "public"

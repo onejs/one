@@ -53,9 +53,6 @@ declare global {
 
 globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
 
-// @modified - SSR-optimized container (bypasses BaseNavigationContainer's 32+ hooks)
-import { SSRNavigationContainer } from './SSRNavigationContainer'
-
 type Props<ParamList extends {}> = NavigationContainerProps & {
   direction?: LocaleDirection
   linking?: LinkingOptions<ParamList>
@@ -80,42 +77,18 @@ type Props<ParamList extends {}> = NavigationContainerProps & {
  * @param props.ref Ref object which refers to the navigation object containing helper methods.
  */
 function NavigationContainerInner(
-  props: Props<ParamListBase>,
+  {
+    direction = getLocaleDirection(),
+    theme = DefaultTheme,
+    linking,
+    fallback = null,
+    documentTitle,
+    onReady,
+    onStateChange,
+    ...rest
+  }: Props<ParamListBase>,
   ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
 ) {
-  // @modified - SSR fast path: bypass BaseNavigationContainer entirely
-  // BaseNavigationContainer has 32+ hooks and 7 providers that are all
-  // unnecessary on SSR (event emitters, child listeners, state sync, etc.)
-  // we provide only the minimal contexts that child navigators read
-  // @modified - SSR fast path: bypass BaseNavigationContainer entirely
-  // eliminates 32+ hooks and reduces 8 providers to 4
-  if (typeof window === 'undefined') {
-    const { theme = DefaultTheme, initialState, linking, children } = props
-    return (
-      <SSRNavigationContainer initialState={initialState} theme={theme} linking={linking}>
-        {children}
-      </SSRNavigationContainer>
-    )
-  }
-
-  return <NavigationContainerClientInner {...props} forwardedRef={ref} />
-}
-
-// @modified - full client NavigationContainer with all hooks and providers
-function NavigationContainerClientInner({
-  forwardedRef,
-  direction = getLocaleDirection(),
-  theme = DefaultTheme,
-  linking,
-  fallback = null,
-  documentTitle,
-  onReady,
-  onStateChange,
-  ...rest
-}: Props<ParamListBase> & {
-  forwardedRef?: React.Ref<NavigationContainerRef<ParamListBase> | null>
-}) {
-  const ref = forwardedRef
   const isLinkingEnabled = linking ? linking.enabled !== false : false
 
   if (linking?.config) {

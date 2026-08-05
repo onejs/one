@@ -1,6 +1,7 @@
 import { exec, spawn, type ChildProcess } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 import getPort, { portNumbers } from 'get-port'
 import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
@@ -21,6 +22,10 @@ const ONE_RUN_ENTRY = join(
 const VITE_BIN_ENTRY = join(
   dirname(requireFromHere.resolve('vite/package.json')),
   'bin/vite.js'
+)
+const SERVER_WATCHDOG_ENTRY = join(
+  dirname(fileURLToPath(import.meta.url)),
+  'serverWatchdog.mjs'
 )
 
 const isWindows = process.platform === 'win32'
@@ -89,6 +94,11 @@ const MAX_OUTPUT_LINES = 200
  * spawn a server process with piped stdio so we can capture output for
  * diagnostics and detect early crashes. the streams are unref'd so the
  * parent process can still exit cleanly.
+ *
+ * the server always runs under `serverWatchdog.mjs`, which tears the process
+ * group down as soon as this runner dies. teardown only runs on a graceful
+ * vitest exit, so without it a timeout or a cancelled turbo task strands these
+ * servers as PPID 1 orphans burning a core each on metro's file watcher.
  */
 function spawnServer(
   command: string,
@@ -101,15 +111,19 @@ function spawnServer(
 ): { child: ChildProcess; getOutput: () => string; exited: Promise<number | null> } {
   const outputLines: string[] = []
 
-  const child = spawn(command, args, {
-    ...options,
-    detached: options.detached ?? true,
-    // pipe so we can capture output for crash diagnostics
-    stdio: ['ignore', 'pipe', 'pipe'],
-    // suppress the conhost flash that `detached: true` would otherwise produce
-    // for each spawned server on Windows
-    windowsHide: true,
-  })
+  const child = spawn(
+    process.execPath,
+    [SERVER_WATCHDOG_ENTRY, String(process.pid), command, ...args],
+    {
+      ...options,
+      detached: options.detached ?? true,
+      // pipe so we can capture output for crash diagnostics
+      stdio: ['ignore', 'pipe', 'pipe'],
+      // suppress the conhost flash that `detached: true` would otherwise produce
+      // for each spawned server on Windows
+      windowsHide: true,
+    }
+  )
 
   const appendOutput = (data: Buffer) => {
     const lines = data.toString().split('\n')

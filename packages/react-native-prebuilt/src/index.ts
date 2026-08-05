@@ -136,13 +136,7 @@ export async function buildReact(options: BuildOptions = {}) {
 
 export async function buildReactNative(
   options: BuildOptions = {},
-  {
-    platform,
-    enableExperimentalReactNativeWithReact19Support = false,
-  }: {
-    platform: 'ios' | 'android'
-    enableExperimentalReactNativeWithReact19Support?: boolean
-  }
+  { platform }: { platform: 'ios' | 'android' }
 ) {
   return build({
     bundle: true,
@@ -200,37 +194,6 @@ export async function buildReactNative(
                 return
               }
 
-              if (enableExperimentalReactNativeWithReact19Support) {
-                // Patch React Native to support React 19 during prebuild
-                if (
-                  input.path.includes('Libraries/Renderer/implementations/ReactFabric')
-                ) {
-                  const reactFabricRendererPath = requireResolve(
-                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactFabric-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
-                  )
-
-                  return {
-                    contents: await readFile(reactFabricRendererPath, 'utf-8'),
-                    loader: 'js',
-                  }
-                }
-
-                if (
-                  input.path.includes(
-                    'Libraries/Renderer/implementations/ReactNativeRenderer'
-                  )
-                ) {
-                  const reactNativeRendererPath = requireResolve(
-                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactNativeRenderer-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
-                  )
-
-                  return {
-                    contents: await readFile(reactNativeRendererPath, 'utf-8'),
-                    loader: 'js',
-                  }
-                }
-              }
-
               const code = await readFile(input.path, 'utf-8')
 
               // so ugly but no class support?
@@ -282,11 +245,16 @@ var __commonJS = function __commonJS(cb, mod) {
         if (cachedMod) return cachedMod;
 
         var moduleFn = cb[path];
-        mod = {
-            exports: {}
-        };
-        moduleFn(mod.exports, mod);
-        mod = mod.exports;
+        try {
+            mod = {
+                exports: {}
+            };
+            moduleFn(mod.exports, mod);
+            mod = mod.exports;
+        } catch (e) {
+            // match esbuild: don't leave a half-initialized module cached
+            throw mod = 0, e;
+        }
         // this is one of our patches basically allowing importing the inner contents:
         globalThis["__cachedModules"][modulePath] = mod;
         return mod;
@@ -306,7 +274,7 @@ var __commonJS = function __commonJS(cb, mod) {
           replace: [
             `const rn = require_$1();`,
             `rn.AssetRegistry = require_registry();`,
-            `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
+            `require_ReactFabric();`, // This is react-native/Libraries/Renderer/shims/ReactFabric.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
             `if (typeof require_InitializeCore === 'function') { require_InitializeCore(); }`, // Since we're accessing the RefreshRuntime directly via `__cachedModules` directly in the RN bundle, we need to ensure it's loaded in time. Note that calling `require_react_refresh_runtime_development()`, `require_setUpReactRefresh()` or `require_setUpDeveloperTools()` directly won't work.
             `return rn;`,
           ].join('\n'),
@@ -330,7 +298,11 @@ var __commonJS = function __commonJS(cb, mod) {
 }
 
 const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };`
 
 export const RNExportNames = [
@@ -395,12 +367,16 @@ export const RNExportNames = [
   'UIManager',
   'unstable_batchedUpdates',
   'useAnimatedValue',
+  'useAnimatedValueXY',
+  'useAnimatedColor',
   'useColorScheme',
+  'usePressability',
   'useWindowDimensions',
   'UTFSequence',
   'Vibration',
   'DeviceEventEmitter',
   'DynamicColorIOS',
+  'EventEmitter',
   'NativeAppEventEmitter',
   'NativeModules',
   'Platform',

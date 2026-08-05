@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/use-isomorphic-layout-effect",
-  "version": "1.21.8",
+  "version": "1.22.0",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -30,11 +30,11 @@
     }
   },
   "peerDependencies": {
-    "react": "^19.2.0"
+    "react": "^19.2.3"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
-    "react": "19.2.0"
+    "@tamagui/build": "2.6.2",
+    "react": "19.2.3"
   },
   "publishConfig": {
     "access": "public"

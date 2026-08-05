@@ -4,32 +4,20 @@ import type { ConfigT } from 'metro-config'
 import type ServerT from 'metro/private/Server'
 import ServerModule from 'metro/private/Server'
 import metroBundle from 'metro/private/shared/output/bundle'
-import type metroRamBundle from 'metro/private/shared/output/RamBundle'
+import type { RequestOptions } from 'metro/private/shared/types'
 import type { BundleCommandArgs } from './types'
 import saveAssets from './saveAssets'
 
 // Metro uses CJS with exports.default, so ESM import gets { default: Server }
 const Server = (ServerModule as unknown as { default: typeof ServerT }).default
 
-// RequestOptions type from Metro - inlined since the path changed between versions
-type RequestOptions = {
-  entryFile: string
-  sourceMapUrl?: string | null
-  dev: boolean
-  minify: boolean
-  platform: string
-  unstable_transformProfile?: string
-  customResolverOptions?: unknown[]
-}
-
 export async function buildBundleWithConfig(
   args: BundleCommandArgs,
   config: ConfigT,
-  bundleImpl: typeof metroBundle | typeof metroRamBundle = metroBundle,
+  bundleImpl: typeof metroBundle = metroBundle,
   { patchServer }: { patchServer?: (server: ServerT) => void } = {}
 ): Promise<void> {
-  // const customResolverOptions = parseKeyValueParamArray(args.resolverOption ?? [])
-  const customResolverOptions = []
+  const customResolverOptions: RequestOptions['customResolverOptions'] = {}
 
   if (config.resolver.platforms.indexOf(args.platform) === -1) {
     console.error(

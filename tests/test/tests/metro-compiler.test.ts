@@ -123,5 +123,10 @@ describe('Metro React compiler', { retry: 1 }, () => {
     // should not contain module resolution errors for compiler-runtime specifically
     expect(bundle).not.toContain("Cannot find module 'react/compiler-runtime'")
     expect(bundle).not.toContain('Unable to resolve module react/compiler-runtime')
+
+    // Native modules that apps must install explicitly cannot enter the default One graph.
+    expect(bundle).not.toContain('VxrnToolbarHost')
+    expect(bundle).not.toContain('VxrnToolbarItem')
+    expect(bundle).not.toContain('VxrnMenuAction')
   }, 300_000)
 })

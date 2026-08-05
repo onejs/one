@@ -478,6 +478,16 @@ export declare namespace One {
              * @default false
              */
             suspendRoutes?: boolean;
+            /**
+             * Experimental: serve the web client through Vite 8.1's bundled dev mode
+             * (rolldown-powered FullBundleDevEnvironment) instead of unbundled ESM dev.
+             * Fewer requests / faster parse, especially for apps with large icon/util
+             * imports. Dev-only; ignored for builds.
+             *
+             * @experimental
+             * @default false
+             */
+            experimentalBundledDev?: boolean;
         };
         /**
          * Development tools configuration. Set to `true` to enable all devtools,

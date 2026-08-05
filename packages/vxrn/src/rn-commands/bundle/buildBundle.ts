@@ -1,31 +1,13 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
-import { bundle as metroBundle } from '@vxrn/vite-plugin-metro/rn-commands'
+import {
+  bundle as metroBundle,
+  type BundleCommandArgs,
+} from '@vxrn/vite-plugin-metro/rn-commands'
 import { loadEnv } from '../../exports/loadEnv'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
-export type BundleCommandArgs = {
-  assetsDest?: string
-  assetCatalogDest?: string
-  entryFile: string
-  resetCache: boolean
-  resetGlobalCache: boolean
-  transformer?: string
-  minify?: boolean
-  config?: string
-  platform: 'ios' | 'android'
-  dev: boolean
-  bundleOutput: string
-  bundleEncoding?: 'utf8' | 'utf16le' | 'ascii'
-  maxWorkers?: number
-  sourcemapOutput?: string
-  sourcemapSourcesRoot?: string
-  sourcemapUseAbsolutePath: boolean
-  verbose: boolean
-  unstableTransformProfile: string
-  indexedRamBundle?: boolean
-  resolverOption?: Array<string>
-}
+export type { BundleCommandArgs }
 
 export async function buildBundle(
   _argv: Array<string>,
