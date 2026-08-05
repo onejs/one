@@ -79,9 +79,6 @@ const dev = defineCommand({
     port: {
       type: 'string',
     },
-    https: {
-      type: 'boolean',
-    },
     mode: {
       type: 'string',
       description:

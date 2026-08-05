@@ -1,5 +1,6 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native';
 import React from 'react';
+import type { OneRouter } from '../interfaces/router';
 import { type ScreenProps } from '../router/useScreens';
 import type { PickPartial } from '../types';
 import { Screen } from '../views/Screen';
@@ -11,7 +12,13 @@ export declare function useFilterScreenChildren(children: React.ReactNode, { isC
     screens: any[];
     children: any[];
     protectedScreens: Set<string>;
+    guardedRedirects: Map<string, OneRouter.Href<{
+        __branded__: any;
+    }> | undefined>;
 };
+export declare function useResolvedGuardedRedirects(guardedRedirects: Map<string, OneRouter.Href | undefined>): Map<string, OneRouter.Href<{
+    __branded__: any;
+}> | undefined>;
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */
 export declare function withLayoutContext<TOptions extends object, T extends React.ComponentType<any>, State extends NavigationState, EventMap extends EventMapBase>(Nav: T, processor?: (options: ScreenProps<TOptions, State, EventMap>[]) => ScreenProps<TOptions, State, EventMap>[], options?: {
     props: any;

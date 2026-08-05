@@ -46,10 +46,10 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
 
       if (isChildOfType(child, Protected)) {
         // recursively process Protected children
-        return (
-          <Protected key={`protected-${index}`} guard={child.props.guard}>
-            {mapChildren(child.props.children)}
-          </Protected>
+        return React.cloneElement(
+          child,
+          { key: `protected-${index}` },
+          mapChildren(child.props.children)
         )
       }
 

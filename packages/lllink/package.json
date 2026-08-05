@@ -1,6 +1,6 @@
 {
   "name": "lllink",
-  "version": "1.21.6",
+  "version": "1.21.13",
   "type": "module",
   "module": "dist",
   "exports": {
@@ -9,7 +9,9 @@
       "import": "./dist/index.mjs"
     }
   },
-  "bin": "./dist/index.mjs",
+  "bin": {
+    "lllink": "dist/index.mjs"
+  },
   "files": [
     "src"
   ],
@@ -23,7 +25,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
-    "@tamagui/build": "2.3.0"
+    "@tamagui/build": "2.6.2"
   },
   "publishConfig": {
     "access": "public"

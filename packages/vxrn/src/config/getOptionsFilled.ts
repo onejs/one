@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
 import type { Mode, VXRNOptions } from '../types'
 import { getServerOptionsFilled } from './getServerOptionsFilled'
-import { readState, writeState } from '../utils/state'
+import { readState } from '../utils/state'
 import { getCacheDir } from '../utils/getCacheDir'
 
 const require = createRequire(import.meta.url)
@@ -71,9 +71,6 @@ export async function fillOptions(
       ? 'vite'
       : false
 
-  // no need to wait to write state
-  void writeState(cacheDir, { versionHash })
-
   if (typeof options.build?.server !== 'boolean' && !options.build?.server) {
     // default building server to off
     options.build ||= {}
@@ -106,6 +103,7 @@ export async function fillOptions(
     state,
     packageRootDir,
     cacheDir,
+    versionHash,
   } as const
 
   optionsFilled = final

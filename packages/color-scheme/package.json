@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.21.6",
+  "version": "1.21.13",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -34,14 +34,14 @@
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
-    "react": "19.2.0",
-    "react-native": "0.83.2",
+    "@tamagui/build": "2.6.2",
+    "react": "19.2.3",
+    "react-native": "0.86.2",
     "vitest": "^4.1.0"
   },
   "peerDependencies": {
-    "react": "19.2.0",
-    "react-native": "0.83.2"
+    "react": "19.2.3",
+    "react-native": "0.86.2"
   },
   "publishConfig": {
     "access": "public"

@@ -26,10 +26,12 @@ export async function getViteServerConfig(
     mergeConfig(getAdditionalViteConfig(), {
       plugins: [...getReactNativePlugins(config)],
       server: {
-        hmr: {
+        // vite 8.1 deprecated server.hmr.* in favor of server.ws.*
+        ws: {
           path: '/__vxrnhmr',
         },
         host: server.host,
+        https: server.https,
         port: server.port,
       },
       root,

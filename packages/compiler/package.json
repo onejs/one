@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.21.6",
+  "version": "1.21.13",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -35,23 +35,23 @@
     "@babel/plugin-transform-flow-strip-types": "^7.27.1",
     "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@babel/plugin-transform-regenerator": "^7.28.4",
-    "@react-native/babel-plugin-codegen": "^0.83.0",
+    "@react-native/babel-plugin-codegen": "^0.86.2",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
     "babel-plugin-syntax-hermes-parser": "^0.32.0",
-    "react-native-css-interop": "^0.2.1",
+    "react-native-css-interop": "^0.2.6",
     "ts-deepmerge": "^7.0.2"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
+    "@tamagui/build": "2.6.2",
     "depcheck": "^1.4.7",
-    "rolldown": "^1.0.1",
-    "vite": "^8.0.13",
+    "rolldown": "^1.1.2",
+    "vite": "^8.1.0",
     "vitest": "^4.1.0"
   },
   "peerDependencies": {
-    "vite": "^8.0.13"
+    "vite": "^8.1.0"
   },
   "peerDependenciesMeta": {
     "vite": {

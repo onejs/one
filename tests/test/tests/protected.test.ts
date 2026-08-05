@@ -49,6 +49,26 @@ describe('Protected Routes', { retry: 1 }, () => {
     expect(page.url()).not.toContain('/dashboard')
   })
 
+  it('should replace a protected route with its redirectTo target', async () => {
+    const page = await context.newPage()
+    await page.goto(`${serverUrl}/protected-test`)
+
+    await page.getByTestId('link-settings').click()
+    expect(await page.getByTestId('login-page').textContent()).toContain('Login Page')
+    expect(page.url()).toContain('/protected-test/login')
+
+    await page.goBack()
+    expect(page.url()).not.toContain('/settings')
+  })
+
+  it('should redirect a protected deep link to its redirectTo target', async () => {
+    const page = await context.newPage()
+    await page.goto(`${serverUrl}/protected-test/settings`)
+
+    await page.waitForURL(`${serverUrl}/protected-test/login`)
+    expect(await page.getByTestId('login-page').textContent()).toContain('Login Page')
+  })
+
   it('should navigate to protected route after auth toggle', async () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/protected-test`)
@@ -148,5 +168,8 @@ describe('Protected Routes', { retry: 1 }, () => {
     await page.waitForTimeout(500)
     const publicPage = await page.getByTestId('public-page').textContent()
     expect(publicPage).toContain('Public Page')
+
+    await page.goBack()
+    expect(page.url()).not.toContain('/dashboard')
   })
 })

@@ -18,6 +18,13 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
     apply: 'serve', // only in dev
 
     configureServer(server) {
+      // vite 8.1 bundledDev: /@vite/client and /@react-refresh aren't standalone
+      // modules (the HMR client + refresh runtime are bundled into the entry), so
+      // dev.mjs's top-level imports of them 404 / fail MIME checks and take the whole
+      // devtools script down. stub them: HMR (route/loader/css/cursor) becomes a
+      // no-op here and the refresh preamble is installed by the bundled entry instead.
+      const isBundledDev = !!(server.config as any).experimental?.bundledDev
+
       // serve the devtools script by reading and combining the source files
       server.middlewares.use(async (req, res, next) => {
         if (req.url === DEVTOOLS_VIRTUAL_ID) {
@@ -30,6 +37,18 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
             let code = devEntry
               .replace("import './devtools.mjs'", '')
               .replace("import './source-inspector.mjs'", '')
+
+            if (isBundledDev) {
+              code = code
+                .replace(
+                  "import { createHotContext } from '/@vite/client'",
+                  'const createHotContext = () => ({ on() {}, off() {}, accept() {}, dispose() {}, prune() {}, send() {}, invalidate() {} })'
+                )
+                .replace(
+                  "import { injectIntoGlobalHook } from '/@react-refresh'",
+                  'const injectIntoGlobalHook = () => {}'
+                )
+            }
 
             // only include devtools UI if enabled
             if (includeUI) {

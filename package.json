@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "repository": {
-    "url": "https://github.com/onejs/one"
+    "url": "git+https://github.com/onejs/one.git"
   },
   "workspaces": [
     "./apps/*",
@@ -29,6 +29,7 @@
     ]
   },
   "scripts": {
+    "audit": "bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -81,25 +82,26 @@
     "@xmldom/xmldom": "0.9.10",
     "fast-xml-parser": "5.9.0",
     "tar": "7.5.11",
-    "undici": "7.28.0",
+    "undici": "7.29.0",
     "esbuild": "0.28.1",
-    "vite": "8.0.16",
-    "rolldown": "1.0.1",
+    "vite": "8.1.0",
+    "rolldown": "1.1.2",
     "basic-ftp": "5.3.1",
     "fast-xml-builder": "1.1.7",
-    "fast-uri": "3.1.2",
+    "fast-uri": "3.1.5",
     "@babel/plugin-transform-modules-systemjs": "7.29.4",
     "@babel/core": "7.29.7",
     "drizzle-orm": "0.45.2",
     "lodash": "4.18.1",
-    "expo": "55.0.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-native": "0.83.2",
+    "expo": "57.0.9",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.2",
     "@react-navigation/native": "7.2.2",
-    "react-native-reanimated": "4.2.1",
+    "react-native-reanimated": "4.5.1",
+    "sharp": "0.35.3",
     "minimatch": "3.1.5",
-    "brace-expansion": "1.1.15",
+    "brace-expansion": "5.0.9",
     "node-forge": "1.4.0",
     "picomatch": "^4.0.4",
     "piscina": "4.9.3",
@@ -114,8 +116,8 @@
     "form-data": "4.0.6",
     "qs": "6.15.2",
     "ajv": "8.20.0",
-    "ip-address": "10.2.0",
-    "postcss": "8.5.15",
+    "ip-address": "10.4.0",
+    "postcss": "8.5.18",
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
     "uuid": "11.1.1",
@@ -136,7 +138,7 @@
     "patch-package": "^8.0.0",
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
-    "tamagui": "2.3.0",
+    "tamagui": "2.6.2",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "^5.7.3",
@@ -170,14 +172,18 @@
     "memory": true
   },
   "patchedDependencies": {
-    "@expo/plist@0.5.2": "patches/@expo%2Fplist@0.5.2.patch",
+    "@expo/plist@0.8.1": "patches/@expo%2Fplist@0.8.1.patch",
+    "expo-modules-jsi@57.0.4": "patches/expo-modules-jsi@57.0.4.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
     "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
-    "depcheck@1.4.7": "patches/depcheck@1.4.7.patch"
+    "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
+    "minimatch@3.1.5": "patches/minimatch@3.1.5.patch"
   },
   "dependencies": {
-    "one": "^1.21.3",
-    "vxrn": "^1.21.3"
+    "axios": "1.18.1",
+    "one": "workspace:*",
+    "shell-quote": "1.8.4",
+    "vxrn": "workspace:*"
   }
 }

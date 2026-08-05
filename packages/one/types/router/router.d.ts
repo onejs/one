@@ -18,16 +18,14 @@ export declare let rootComponent: ComponentType;
  * Register protected routes for a navigator context.
  * Called by navigators when their protectedScreens changes.
  */
-export declare function registerProtectedRoutes(contextKey: string, protectedScreens: Set<string>): void;
+export declare function registerProtectedRoutes(contextKey: string, guardedRedirects: Map<string, OneRouter.Href | undefined>): void;
 /**
  * Unregister protected routes for a navigator context.
  * Called when a navigator unmounts.
  */
 export declare function unregisterProtectedRoutes(contextKey: string): void;
-/**
- * Check if a route path is protected and should be blocked.
- * Returns true if the route is protected.
- */
+/** resolve a protected href to its allowed redirect target. */
+export declare function resolveProtectedHref(href: string): string | undefined;
 export declare function isRouteProtected(href: string): boolean;
 export declare let hasAttemptedToHideSplash: boolean;
 export declare let initialState: OneRouter.ResultState | undefined;
@@ -64,7 +62,7 @@ export declare function canGoBack(): boolean;
 export declare function canDismiss(): boolean;
 export declare function getSortedRoutes(): RouteNode[];
 export declare function updateState(state: OneRouter.ResultState, nextStateParam?: OneRouter.ResultState): void;
-export declare function consumePendingNavigationAction(): "NAVIGATE" | "REPLACE" | "PUSH" | undefined;
+export declare function consumePendingNavigationAction(): "REPLACE" | "NAVIGATE" | "PUSH" | undefined;
 export declare function subscribeToRootState(subscriber: OneRouter.RootStateListener): () => void;
 export declare function subscribeToStore(subscriber: () => void): () => void;
 export declare function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListener): () => void;

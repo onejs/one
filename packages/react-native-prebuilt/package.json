@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/react-native-prebuilt",
-  "version": "1.21.6",
+  "version": "1.21.13",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -12,11 +12,7 @@
     },
     "./vendor/react-native-0.74.1": "./vendor/react-native-0.74.1/index.js",
     "./vendor/react-18.3.1": "./vendor/react-18.3.1/index.js",
-    "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js",
-    "./vendor/rn-react-19-support/ReactFabric-dev.js": "./vendor/rn-react-19-support/ReactFabric-dev.js",
-    "./vendor/rn-react-19-support/ReactFabric-prod.js": "./vendor/rn-react-19-support/ReactFabric-prod.js",
-    "./vendor/rn-react-19-support/ReactNativeRenderer-dev.js": "./vendor/rn-react-19-support/ReactNativeRenderer-dev.js",
-    "./vendor/rn-react-19-support/ReactNativeRenderer-prod.js": "./vendor/rn-react-19-support/ReactNativeRenderer-prod.js"
+    "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js"
   },
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -43,16 +39,16 @@
     "import-meta-resolve": "^4.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "2.3.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-native": "0.83.2",
+    "@tamagui/build": "2.6.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.2",
     "tsx": "^4.20.6"
   },
   "peerDependencies": {
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-native": "0.83.2"
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.2"
   },
   "publishConfig": {
     "access": "public"

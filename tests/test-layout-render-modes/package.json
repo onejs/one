@@ -1,6 +1,6 @@
 {
   "name": "test-layout-render-modes",
-  "version": "1.21.6",
+  "version": "1.21.13",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "one": "workspace:*",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "playwright": "^1.58.2",
     "tsx": "^4.20.6",
     "typescript": "^5.7.3",
-    "vite": "^8.0.13",
+    "vite": "^8.1.0",
     "vitest": "^4.1.0"
   }
 }

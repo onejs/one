@@ -187,6 +187,7 @@ export { LoadProgressBar } from './views/LoadProgressBar'
 export { Navigator, Slot } from './views/Navigator'
 export { ScrollBehavior } from './views/ScrollBehavior'
 export { SourceInspector, type SourceInspectorProps } from './views/SourceInspector'
+export type { SuspenseFallbackProps } from './views/SuspenseFallback'
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 // scroll position groups
 export { useScrollGroup } from './useScrollGroup'

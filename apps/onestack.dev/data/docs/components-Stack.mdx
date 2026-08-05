@@ -59,6 +59,73 @@ This is a convenient way to configure settings for each page up front, but you c
 
 The `options` property passes to the React Navigation NativeStack, and so [takes the same options](https://reactnavigation.org/docs/native-stack-navigator#options).
 
+### StackToolbar
+
+<New />
+
+`StackToolbar` adds native iOS toolbar items to either side of the navigation header or to the bottom of a page. It uses `UIBarButtonItem` and `UIToolbar`, including SF Symbols, native menus, badges, and Liquid Glass appearance on iOS 26. It lives in the optional `@vxrn/native` package so apps that do not use it keep the native module out of their dependency graph and Metro bundle.
+
+Install the native package directly in your app so React Native autolinking includes it:
+
+```bash
+npm install @vxrn/native
+```
+
+```tsx
+import { StackToolbar } from '@vxrn/native'
+
+export default function Inbox() {
+  return (
+    <>
+      <StackToolbar placement="right">
+        <StackToolbar.Button icon="square.and.arrow.up" onPress={share}>
+          Share
+        </StackToolbar.Button>
+        <StackToolbar.Menu icon="ellipsis.circle" title="Actions">
+          <StackToolbar.MenuAction icon="archivebox" onPress={archive}>
+            Archive
+          </StackToolbar.MenuAction>
+          <StackToolbar.MenuAction icon="trash" destructive onPress={remove}>
+            Delete
+          </StackToolbar.MenuAction>
+        </StackToolbar.Menu>
+      </StackToolbar>
+
+      <StackToolbar>
+        <StackToolbar.Button icon="photo.on.rectangle" onPress={selectPhotos}>
+          Select
+        </StackToolbar.Button>
+        <StackToolbar.Spacer />
+        <StackToolbar.Button icon="plus" onPress={addPhoto}>
+          Add
+        </StackToolbar.Button>
+      </StackToolbar>
+
+      <InboxContent />
+    </>
+  )
+}
+```
+
+The default placement is `bottom`. Render `StackToolbar` in a page component so it can configure that page's native screen. Set `placement="left"` or `placement="right"` for header items:
+
+```tsx
+<StackToolbar placement="left">
+  <StackToolbar.Button icon="sidebar.left" onPress={openSidebar} />
+</StackToolbar>
+```
+
+Toolbar components:
+
+- `StackToolbar.Button` renders a native action. Use an SF Symbol name in `icon`, or compose `Icon`, `Label`, and `Badge` children.
+- `StackToolbar.Menu` renders a native menu and supports nested or inline submenus.
+- `StackToolbar.MenuAction` supports selected, disabled, destructive, hidden, and keep-presented states.
+- `StackToolbar.Spacer` renders flexible bottom spacing when `width` is omitted, or fixed spacing when it is set.
+- `StackToolbar.View` embeds a custom React Native view.
+- `StackToolbar.SearchBarSlot` places a configured native search bar in the bottom toolbar on iOS 26 or newer.
+
+This API is alpha and currently renders on iOS. On web and Android it renders nothing. Use `separateBackground`, `hidesSharedBackground`, and badges to control the native iOS 26 grouping and appearance without recreating the toolbar in JavaScript.
+
 ### Header Composition API
 
 <New />

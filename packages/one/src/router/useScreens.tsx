@@ -22,11 +22,14 @@ import {
   type DynamicConvention,
   type LoadedRoute,
   Route,
+  RouteParamsContext,
   type RouteNode,
+  SuspenseFallbackContext,
   useRouteNode,
 } from './Route'
 import { SpaShellContext } from './SpaShellContext'
 import { NamedSlot } from '../views/Navigator'
+import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { getRouteHmrEpoch, subscribeRouteHmr } from './routeHmr'
 import { getClientMatchesSnapshot } from '../useMatches'
@@ -337,7 +340,7 @@ export function useSortedScreens(
   return sortedScreens
 }
 
-function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
+function fromImport({ ErrorBoundary, SuspenseFallback, ...component }: LoadedRoute) {
   if (ErrorBoundary) {
     return {
       default: React.forwardRef((props: any, ref: any) => {
@@ -347,16 +350,30 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
         })
         return <Try catch={ErrorBoundary}>{children}</Try>
       }),
+      SuspenseFallback,
     }
   }
   if (process.env.NODE_ENV !== 'production') {
     const exported = getPageExport(component)
     if (exported && typeof exported === 'object' && Object.keys(exported).length === 0) {
-      return { default: EmptyRoute }
+      return { default: EmptyRoute, SuspenseFallback }
     }
   }
 
-  return { default: getPageExport(component) }
+  return { default: getPageExport(component), SuspenseFallback }
+}
+
+function RouteSuspenseFallback({
+  component: Component,
+  route,
+}: {
+  component?: React.ComponentType<SuspenseFallbackProps>
+  route: string
+}) {
+  const params = useContext(RouteParamsContext)
+  return Component ? (
+    <Component route={route} params={(params ?? {}) as SuspenseFallbackProps['params']} />
+  ) : null
 }
 
 // TODO: Maybe there's a more React-y way to do this?
@@ -412,6 +429,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     // content after hydration.
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const isSpaShell = useContext(SpaShellContext)
+    const InheritedSuspenseFallback = useContext(SuspenseFallbackContext)
     const matches = getRouteMatchesForProps()
 
     if (isSpaShell && props.segment !== '') {
@@ -423,8 +441,10 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }
     }
 
-    const res = value.loadRoute()
-    const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
+    const res = fromImport(value.loadRoute())
+    const Component = getPageExport(res) as React.ComponentType<any>
+    const LayoutSuspenseFallback =
+      value.type === 'layout' ? res.SuspenseFallback : undefined
     const match =
       matches.find((match) => match.routeId === value.contextKey) ||
       (!value.children?.length ? matches[matches.length - 1] : undefined)
@@ -450,25 +470,48 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }
     }
 
+    let rendered: React.ReactNode
+
     // Root layout with HTML support - use RootLayoutRenderer for proper HMR tracking
     if (props.segment === '') {
-      return (
+      rendered = (
         <RootLayoutRenderer
           LayoutComponent={Component}
           layoutProps={{ ...props, ...slotProps, ...loaderDataProps }}
           forwardedRef={ref}
         />
       )
+    } else {
+      rendered = (
+        <RouteErrorBoundary routeName={value.route}>
+          <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
+        </RouteErrorBoundary>
+      )
     }
 
+    if (value.type !== 'layout') {
+      return rendered
+    }
+
+    const providedSuspenseFallback = LayoutSuspenseFallback ?? InheritedSuspenseFallback
+
     return (
-      <RouteErrorBoundary routeName={value.route}>
-        <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
-      </RouteErrorBoundary>
+      <SuspenseFallbackContext.Provider value={providedSuspenseFallback}>
+        {LayoutSuspenseFallback
+          ? wrapSuspense(rendered, LayoutSuspenseFallback)
+          : rendered}
+      </SuspenseFallbackContext.Provider>
     )
   })
 
-  const wrapSuspense = (children: any) => {
+  const wrapSuspense = (
+    children: React.ReactNode,
+    SuspenseFallback?: React.ComponentType<SuspenseFallbackProps>
+  ) => {
+    const fallback = (
+      <RouteSuspenseFallback component={SuspenseFallback} route={value.contextKey} />
+    )
+
     if (process.env.TAMAGUI_TARGET === 'native') {
       // native opt-out: set native.suspendRoutes to false in your one() config
       // OR set globalThis.__ONE_DISABLE_SUSPENSE_ROUTES__ = true at runtime
@@ -487,7 +530,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       ) {
         return children
       }
-      return <Suspense fallback={null}>{children}</Suspense>
+      return <Suspense fallback={fallback}>{children}</Suspense>
     }
 
     // web opt-in: set web.suspendRoutes to true in your one() config
@@ -497,7 +540,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       process.env.ONE_SUSPEND_ROUTES === '1' &&
       (globalThis as any).__ONE_DISABLE_SUSPENSE_ROUTES__ !== true
     ) {
-      return <Suspense fallback={null}>{children}</Suspense>
+      return <Suspense fallback={fallback}>{children}</Suspense>
     }
     return children
   }
@@ -515,6 +558,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }: any,
       ref: any
     ) => {
+      const InheritedSuspenseFallback = useContext(SuspenseFallbackContext)
+
       return (
         <Route route={route} node={value}>
           <>
@@ -527,7 +572,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                   // the intention is to make it possible to deduce shared routes.
                   segment: value.route,
                 }}
-              />
+              />,
+              InheritedSuspenseFallback
             )}
           </>
         </Route>

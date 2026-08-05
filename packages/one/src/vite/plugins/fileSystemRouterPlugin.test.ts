@@ -1,4 +1,5 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { EventEmitter } from 'node:events'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -8,7 +9,6 @@ vi.mock('vite', async () => {
   return {
     ...actual,
     createServerModuleRunner: vi.fn(() => ({
-      clearCache: vi.fn(),
       import: vi.fn(),
     })),
   }
@@ -23,6 +23,7 @@ type MiddlewareHandler = (
 type WatcherListener = (...args: string[]) => void | Promise<void>
 
 describe('createFileSystemRouterPlugin', () => {
+  const previousVxrnVersion = globalThis['__vxrnVersion']
   const previousIsVxrnCli = process.env.IS_VXRN_CLI
   const previousViteEnvironment = process.env.VITE_ENVIRONMENT
   let previousVxrnPluginConfig: unknown
@@ -54,6 +55,7 @@ describe('createFileSystemRouterPlugin', () => {
     } else {
       ;(globalThis as any).__vxrnPluginConfig__ = previousVxrnPluginConfig
     }
+    globalThis['__vxrnVersion'] = previousVxrnVersion
     vi.restoreAllMocks()
   })
 
@@ -134,7 +136,6 @@ describe('createFileSystemRouterPlugin', () => {
     let renderCount = 0
     const render = vi.fn(async () => `<html><body>${++renderCount}</body></html>`)
     const runner = {
-      clearCache: vi.fn(),
       import: vi.fn(async (id: string) => {
         if (id === virtualEntryId) {
           return { default: { render } }
@@ -192,23 +193,31 @@ describe('createFileSystemRouterPlugin', () => {
 
     async function request(pathname: string) {
       const chunks: string[] = []
-      const req = {
+      const req = Object.assign(new EventEmitter(), {
+        aborted: false,
+        complete: true,
         originalUrl: pathname,
         url: pathname,
         headers: {
-          host: 'localhost',
+          ':authority': 'localhost',
+          ':method': 'GET',
         },
         method: 'GET',
-      }
-      const res = {
+      })
+      const res = Object.assign(new EventEmitter(), {
+        destroyed: false,
+        writableFinished: false,
         setHeader: vi.fn(),
         appendHeader: vi.fn(),
         writeHead: vi.fn(),
         write: vi.fn((chunk: string) => {
           chunks.push(chunk)
         }),
-        end: vi.fn(),
-      }
+        end: vi.fn(() => {
+          res.writableFinished = true
+          res.emit('finish')
+        }),
+      })
       const next = vi.fn((error?: unknown) => {
         if (error) {
           throw error
@@ -225,15 +234,25 @@ describe('createFileSystemRouterPlugin', () => {
     await expect(request('/')).resolves.toContain('<body>1</body>')
     expect(render).toHaveBeenCalledTimes(1)
 
-    const allListeners = watcherListeners.get('all') || []
-    const invalidateRunner = allListeners[0]
-    if (!invalidateRunner) {
-      throw new Error('Expected runner invalidation listener to be registered')
-    }
-    invalidateRunner('change', routeFile)
+    const versionBeforeChange = globalThis['__vxrnVersion']
+    // vite calls hotUpdate on the ssr environment after invalidating the graph;
+    // that is what tells the next render its route tree is built out of pre-edit
+    // modules
+    ;(plugin as any).hotUpdate.call(
+      {
+        environment: {
+          name: 'ssr',
+          moduleGraph: { getModulesByFile: () => new Set([{ id: routeFile }]) },
+        },
+      },
+      { file: routeFile }
+    )
 
     await expect(request('/')).resolves.toContain('<body>2</body>')
     expect(render).toHaveBeenCalledTimes(2)
-    expect(runner.clearCache).toHaveBeenCalledTimes(2)
+
+    // the render also has to invalidate the route context the tree is built
+    // from, otherwise it renders fresh html out of pre-edit route modules
+    expect(globalThis['__vxrnVersion']).toBe((versionBeforeChange || 0) + 1)
   })
 })

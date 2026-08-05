@@ -28,6 +28,22 @@ export default function Layout() {
 
 When `session` is null/undefined, the `dashboard` and `settings` routes don't exist in the navigation tree. Attempts to navigate to them will be blocked.
 
+## Redirect Unauthorized Navigation
+
+Set `redirectTo` to send unauthorized navigation to a specific route. One uses a replace navigation, so the protected route is not left in history:
+
+```tsx
+<Stack>
+  <Stack.Screen name="login" />
+  <Protected guard={!!session} redirectTo="/login">
+    <Stack.Screen name="dashboard" />
+    <Stack.Screen name="settings" />
+  </Protected>
+</Stack>
+```
+
+If the guard becomes false while a wrapped route is focused, One redirects to `redirectTo` and removes guarded screens from the navigator history. Without `redirectTo`, the navigator uses its first available route.
+
 ## Works with Any Navigator
 
 `<Protected />` works with Stack, Tabs, Drawer, and the base Navigator component:
@@ -77,10 +93,10 @@ There are two main approaches to protecting routes:
 
 | Approach | When to Use |
 |----------|-------------|
-| `<Protected />` | Routes should not exist when unauthorized |
+| `<Protected />` | Routes should not exist when unauthorized, with an optional redirect target |
 | `<Redirect />` | Routes exist but redirect unauthorized users |
 
-**Use `<Protected />`** when routes should be completely hidden - they won't appear in tab bars, won't be in the navigation history, and navigation attempts will be blocked.
+**Use `<Protected />`** when routes should be completely hidden - they won't appear in tab bars or remain in navigation history. Add `redirectTo` when unauthorized navigation should land on a specific route.
 
 **Use `<Redirect />`** when you want to intercept navigation and send users to a login page. This is better for deep linking scenarios where you want to redirect to login, then back to the original destination.
 
@@ -109,6 +125,7 @@ export default function AppLayout() {
 | Prop | Type | Description |
 |------|------|-------------|
 | `guard` | `boolean` | When `false`, all wrapped screens are filtered out |
+| `redirectTo` | `Href` | Route used when the guard fails. Defaults to the navigator's first available route |
 | `children` | `ReactNode` | `<Stack.Screen />`, `<Tabs.Screen />`, or other `<Protected />` elements |
 
 ## Related

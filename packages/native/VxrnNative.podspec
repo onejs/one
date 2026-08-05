@@ -1,6 +1,6 @@
 require 'json'
 
-package = JSON.parse(File.read(File.join(__dir__, '..', 'package.json')))
+package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 
 Pod::Spec.new do |s|
   s.name           = 'VxrnNative'
@@ -26,6 +26,6 @@ Pod::Spec.new do |s|
     'OTHER_SWIFT_FLAGS' => '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module',
   }
 
-  s.source_files = "**/*.{h,m,swift,mm,cpp}"
-  s.exclude_files = 'Tests/**/*'
+  s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}'
+  s.exclude_files = 'ios/Tests/**/*'
 end

@@ -98,6 +98,7 @@ declare module 'one' {
         | `/protected-test`
         | `/protected-test/`
         | `/protected-test/dashboard`
+        | `/protected-test/login`
         | `/protected-test/settings`
         | `/refetch-test`
         | `/rn-features/native-tree-shaking/mdx-loader-test`

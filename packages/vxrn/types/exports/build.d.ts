@@ -29,6 +29,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         };
         readonly packageRootDir: string;
         readonly cacheDir: string;
+        readonly versionHash: string;
         readonly skipEnv?: boolean;
         readonly build?: {
             server?: boolean | import("..").VXRNBuildOptions;

@@ -1,4 +1,5 @@
 import type { Hono } from 'hono'
+import type { ServerOptions as HttpsServerOptions } from 'node:https'
 import type { OutputAsset, OutputChunk, TreeshakingOptions } from 'rolldown'
 import type { FilterPattern, InlineConfig, UserConfig } from 'vite'
 
@@ -120,6 +121,7 @@ export type VXRNOptions = {
     host?: string
     port?: number
     compress?: boolean
+    https?: HttpsServerOptions
 
     /**
      * Whether to run the Vite logic to load .env files before running the server
@@ -165,9 +167,9 @@ export type HMRListener = (update: { file: string; contents: string }) => void
 type VXRNServeOptionsBase = VXRNOptions['server']
 
 export type VXRNServeOptionsFilled = Required<
-  Omit<NonNullable<VXRNServeOptionsBase>, 'cacheControl'>
+  Omit<NonNullable<VXRNServeOptionsBase>, 'cacheControl' | 'https'>
 > &
-  Pick<NonNullable<VXRNServeOptionsBase>, 'cacheControl'> & {
+  Pick<NonNullable<VXRNServeOptionsBase>, 'cacheControl' | 'https'> & {
     url: string
     protocol: string
   }

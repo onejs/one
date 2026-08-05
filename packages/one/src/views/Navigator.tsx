@@ -7,7 +7,10 @@ import {
 import { NavigationRouteContext } from '@react-navigation/core'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useFilterScreenChildren } from '../layouts/withLayoutContext'
+import {
+  useFilterScreenChildren,
+  useResolvedGuardedRedirects,
+} from '../layouts/withLayoutContext'
 import {
   findNearestNotFoundRoute,
   findRouteNodeByPath,
@@ -20,8 +23,12 @@ import {
   getSafeWindowPathname,
   initialPathname,
   lastIntendedPathname,
+  replace,
+  registerProtectedRoutes,
+  resolveProtectedHref,
+  routeInfo,
+  unregisterProtectedRoutes,
 } from '../router/router'
-import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
 import { useSortedScreens, getQualifiedRouteComponent } from '../router/useScreens'
 import { Screen } from './Screen'
 
@@ -174,21 +181,34 @@ export function Navigator({
     screens,
     children: otherSlot,
     protectedScreens,
+    guardedRedirects,
   } = useFilterScreenChildren(children, {
     isCustomNavigator: true,
     contextKey,
   })
+  const resolvedGuardedRedirects = useResolvedGuardedRedirects(guardedRedirects)
 
   // Register protected routes globally so linkTo can block navigation to them
   // Register immediately (not just in effect) to catch navigation attempts during first render
-  registerProtectedRoutes(contextKey, protectedScreens)
+  registerProtectedRoutes(contextKey, resolvedGuardedRedirects)
+
+  const currentPathname = routeInfo?.pathname
+  const protectedHref = currentPathname
+    ? resolveProtectedHref(currentPathname)
+    : currentPathname
 
   React.useEffect(() => {
-    registerProtectedRoutes(contextKey, protectedScreens)
+    registerProtectedRoutes(contextKey, resolvedGuardedRedirects)
     return () => {
       unregisterProtectedRoutes(contextKey)
     }
-  }, [contextKey, protectedScreens])
+  }, [contextKey, resolvedGuardedRedirects])
+
+  React.useEffect(() => {
+    if (currentPathname && protectedHref && protectedHref !== currentPathname) {
+      replace(protectedHref)
+    }
+  }, [currentPathname, protectedHref])
 
   const sorted = useSortedScreens(screens ?? [], { protectedScreens })
 

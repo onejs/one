@@ -2,10 +2,10 @@ import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { ImageMeta } from './types'
 
-async function getSharp(): Promise<typeof import('sharp') | null> {
+async function getSharp(): Promise<(typeof import('sharp'))['default'] | null> {
   try {
     const sharpModule = await import('sharp')
-    return (sharpModule as any).default || sharpModule
+    return sharpModule.default
   } catch {
     // silent fallback - no warning needed
     return null

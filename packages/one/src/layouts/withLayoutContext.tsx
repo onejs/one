@@ -1,8 +1,17 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native'
 import React from 'react'
-import { useContextKey } from '../router/Route'
-import { registerProtectedRoutes, unregisterProtectedRoutes } from '../router/router'
+import type { OneRouter } from '../interfaces/router'
+import { getContextKey, stripInvisibleSegmentsFromPath } from '../router/matchers'
+import { useContextKey, useRouteNode } from '../router/Route'
+import {
+  registerProtectedRoutes,
+  replace,
+  resolveProtectedHref,
+  routeInfo,
+  unregisterProtectedRoutes,
+} from '../router/router'
 import { type ScreenProps, useSortedScreens } from '../router/useScreens'
+import { sortRoutesWithInitial } from '../router/sortRoutes'
 import type { PickPartial } from '../types'
 import { withStaticProperties } from '../utils/withStaticProperties'
 import { isProtectedElement } from '../views/Protected'
@@ -24,12 +33,17 @@ export function useFilterScreenChildren(
     const customChildren: any[] = []
     const screens: any[] = []
     const protectedScreens = new Set<string>()
+    const guardedRedirects = new Map<string, OneRouter.Href | undefined>()
 
     /**
      * Recursively process children, handling Protected elements.
      * When exclude is true, all Screen children are added to protectedScreens instead of screens.
      */
-    function flattenChild(child: React.ReactNode, exclude = false) {
+    function flattenChild(
+      child: React.ReactNode,
+      exclude = false,
+      redirectTo?: OneRouter.Href
+    ) {
       // Handle Screen or StackScreen elements
       if (
         React.isValidElement(child) &&
@@ -61,6 +75,7 @@ export function useFilterScreenChildren(
         const screenProps = child.props as ScreenProps
         if (exclude && screenProps.name) {
           protectedScreens.add(screenProps.name)
+          guardedRedirects.set(screenProps.name, redirectTo)
         } else {
           screens.push(screenProps)
         }
@@ -69,10 +84,11 @@ export function useFilterScreenChildren(
 
       // Handle Protected elements - recursively process children with guard logic
       if (isProtectedElement(child)) {
-        // Key logic: exclude if parent excluded OR guard is false
-        const excludeChildren = exclude || !child.props.guard
+        const guardFails = !child.props.guard
+        const excludeChildren = exclude || guardFails
+        const childRedirectTo = guardFails ? child.props.redirectTo : redirectTo
         React.Children.forEach(child.props.children, (nested) => {
-          flattenChild(nested, excludeChildren)
+          flattenChild(nested, excludeChildren, childRedirectTo)
         })
         return
       }
@@ -102,8 +118,38 @@ export function useFilterScreenChildren(
       screens,
       children: customChildren,
       protectedScreens,
+      guardedRedirects,
     }
   }, [children, contextKey, isCustomNavigator])
+}
+
+export function useResolvedGuardedRedirects(
+  guardedRedirects: Map<string, OneRouter.Href | undefined>
+) {
+  const node = useRouteNode()
+
+  return React.useMemo(() => {
+    if (!node) {
+      return guardedRedirects
+    }
+
+    const defaultRoute = [...node.children]
+      .sort(sortRoutesWithInitial(node.initialRouteName))
+      .find((child) => {
+        const normalized = child.route.replace(/\/index$/, '')
+        return !(guardedRedirects.has(child.route) || guardedRedirects.has(normalized))
+      })
+    const defaultHref = defaultRoute
+      ? stripInvisibleSegmentsFromPath(getContextKey(defaultRoute.contextKey)) || '/'
+      : undefined
+
+    return new Map(
+      Array.from(guardedRedirects, ([name, redirectTo]) => [
+        name,
+        redirectTo ?? defaultHref,
+      ])
+    )
+  }, [guardedRedirects, node])
 }
 
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */
@@ -124,20 +170,33 @@ export function withLayoutContext<
       (propsIn, ref) => {
         const { children, ...props } = propsIn as React.ComponentProps<T>
         const contextKey = useContextKey()
-        const { screens, protectedScreens } = useFilterScreenChildren(children, {
-          contextKey,
-        })
+        const { screens, protectedScreens, guardedRedirects } = useFilterScreenChildren(
+          children,
+          { contextKey }
+        )
+        const resolvedGuardedRedirects = useResolvedGuardedRedirects(guardedRedirects)
 
         // Register protected routes globally so linkTo can block navigation to them
         // Register immediately (not just in effect) to catch navigation attempts during first render
-        registerProtectedRoutes(contextKey, protectedScreens)
+        registerProtectedRoutes(contextKey, resolvedGuardedRedirects)
+
+        const currentPathname = routeInfo?.pathname
+        const protectedHref = currentPathname
+          ? resolveProtectedHref(currentPathname)
+          : currentPathname
 
         React.useEffect(() => {
-          registerProtectedRoutes(contextKey, protectedScreens)
+          registerProtectedRoutes(contextKey, resolvedGuardedRedirects)
           return () => {
             unregisterProtectedRoutes(contextKey)
           }
-        }, [contextKey, protectedScreens])
+        }, [contextKey, resolvedGuardedRedirects])
+
+        React.useEffect(() => {
+          if (currentPathname && protectedHref && protectedHref !== currentPathname) {
+            replace(protectedHref)
+          }
+        }, [currentPathname, protectedHref])
 
         const processed = processor ? processor(screens ?? ([] as any)) : screens
         const sorted = useSortedScreens((processed ?? []) as any, {

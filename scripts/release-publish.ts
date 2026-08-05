@@ -1,5 +1,48 @@
 import pMap from 'p-map'
 
+type NpmAuthenticationOptions = {
+  env: NodeJS.ProcessEnv
+  whoami: () => Promise<void>
+  login: () => Promise<void>
+}
+
+export function isGitHubTrustedPublishingEnvironment(env: NodeJS.ProcessEnv) {
+  return (
+    env.GITHUB_ACTIONS === 'true' &&
+    !!env.ACTIONS_ID_TOKEN_REQUEST_URL &&
+    !!env.ACTIONS_ID_TOKEN_REQUEST_TOKEN
+  )
+}
+
+export async function ensureNpmAuthentication({
+  env,
+  whoami,
+  login,
+}: NpmAuthenticationOptions) {
+  if (isGitHubTrustedPublishingEnvironment(env)) {
+    return
+  }
+
+  try {
+    await whoami()
+    return
+  } catch {
+    try {
+      await login()
+    } catch {
+      // whoami below provides one consistent authentication error
+    }
+  }
+
+  try {
+    await whoami()
+  } catch (error) {
+    throw new Error(
+      `npm is still not authenticated. Run \`npm login\`, confirm \`npm whoami\` succeeds, and then re-run the release.\n\n${error}`
+    )
+  }
+}
+
 export type PublishPackage = {
   name: string
   cwd: string
