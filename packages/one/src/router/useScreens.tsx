@@ -583,8 +583,12 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   QualifiedRoute.displayName = `Route(${value.route})`
 
-  qualifiedStore.set(value, QualifiedRoute)
-  return memo(QualifiedRoute)
+  // cache the memoized component, not the raw one: returning a different
+  // component type on the first call than on every call after it remounts the
+  // whole route subtree once, throwing away layout and screen state
+  const Memoized = memo(QualifiedRoute)
+  qualifiedStore.set(value, Memoized)
+  return Memoized
 }
 
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
