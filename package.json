@@ -174,6 +174,7 @@
   "patchedDependencies": {
     "@expo/plist@0.8.1": "patches/@expo%2Fplist@0.8.1.patch",
     "expo-modules-jsi@57.0.4": "patches/expo-modules-jsi@57.0.4.patch",
+    "expo-modules-core@57.0.8": "patches/expo-modules-core@57.0.8.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
     "@tamagui/web@2.0.0-rc.32": "patches/@tamagui%2Fweb@2.0.0-rc.32.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
