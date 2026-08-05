@@ -85,21 +85,29 @@ const navigate = async (page: Page, linkId: string, expectId: string) => {
   await page.waitForSelector(testId(expectId))
 }
 
-/**
- * The first client navigation after hydration remounts the layout in a prod
- * build, which throws away all layout and screen state once. That is a routing
- * bug independent of keepMounted (an ordinary layout holding useState loses it
- * the same way), so these navigate once before measuring.
- */
-const warmUp = async (page: Page) => {
-  await navigate(page, 'to-kept-b', 'kept-b')
-  await navigate(page, 'to-kept-a', 'kept-a')
-}
+describe('layouts', () => {
+  test('a layout keeps its state across navigation between its routes', async () => {
+    const page = await open('/kept-a')
+
+    await clickTestId(page, 'layout-inc')
+    await clickTestId(page, 'layout-inc')
+    expect(await textOf(page, 'layout-count')).toBe('2')
+
+    // getQualifiedRouteComponent used to hand out a memo() wrapper on its first
+    // call and the bare component on every call after, so the first navigation
+    // swapped the component type and remounted the whole route subtree
+    await navigate(page, 'to-kept-b', 'kept-b')
+    expect(await textOf(page, 'layout-count')).toBe('2')
+
+    await navigate(page, 'to-kept-a', 'kept-a')
+    expect(await textOf(page, 'layout-count')).toBe('2')
+    await page.close()
+  })
+})
 
 describe('keepMounted', () => {
   test('keeps a visited screen mounted and preserves its state', async () => {
     const page = await open('/kept-a')
-    await warmUp(page)
 
     await clickTestId(page, 'kept-a-inc')
     await clickTestId(page, 'kept-a-inc')
@@ -116,7 +124,6 @@ describe('keepMounted', () => {
 
   test('unmounts a screen that did not ask to be kept', async () => {
     const page = await open('/kept-a')
-    await warmUp(page)
 
     await navigate(page, 'to-kept-b', 'kept-b')
     await clickTestId(page, 'kept-b-inc')
