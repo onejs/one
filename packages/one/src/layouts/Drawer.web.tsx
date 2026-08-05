@@ -16,6 +16,7 @@ import { Children, type ComponentProps, forwardRef, type ReactNode } from 'react
 
 import { getCustomNavigatorChildren, isNavigatorConfigChild } from '../headless/children'
 import { devHeadlessNote } from '../headless/devHeadlessNote'
+import { renderKeptMountedScreens, useVisitedScreens } from '../headless/keepMounted'
 import {
   DrawerStateProvider,
   type HeadlessDrawerDescriptors,
@@ -71,7 +72,8 @@ function WebDrawerNavigator({
 }
 
 function HeadlessDrawerView({ customChildren }: { customChildren?: ReactNode[] }) {
-  const drawer = useDrawer()
+  const { screens, focused } = useDrawer()
+  const visited = useVisitedScreens(focused.key)
 
   devHeadlessNote('Drawer')
 
@@ -79,7 +81,7 @@ function HeadlessDrawerView({ customChildren }: { customChildren?: ReactNode[] }
     return <>{customChildren}</>
   }
 
-  return drawer.focused.element
+  return renderKeptMountedScreens(screens, visited)
 }
 
 const DrawerNavigator = createNavigatorFactory(WebDrawerNavigator)().Navigator

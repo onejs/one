@@ -36,7 +36,7 @@ type WebStackNavigatorProps = {
  *
  * Uses the same router (StackRouter) and option shape as native-stack so
  * navigation behavior is identical; the view renders the focused screen and
- * delegates presentation chrome to NavigationRender.
+ * delegates presentation chrome to Presentations.
  */
 function WebStackNavigator({
   initialRouteName,

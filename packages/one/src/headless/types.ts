@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react'
+import type { ComponentType, ReactElement, ReactNode } from 'react'
 
 // shared contract for headless web navigators. see plans/headless-navigators.md
 
@@ -15,24 +15,14 @@ export type ScreenEntry = {
   element: ReactElement
 }
 
-export type StackNavigation = {
-  back: () => void
-  push: (href: string) => void
-  replace: (href: string) => void
-}
-
 export type UseStackResult = {
   screens: ScreenEntry[]
   focused: ScreenEntry
-  navigation: StackNavigation
 }
 
 export type UseTabsResult = {
-  tabs: ScreenEntry[]
+  screens: ScreenEntry[]
   focused: ScreenEntry
-  navigation: {
-    switchTab: (name: string) => void
-  }
 }
 
 export type UseDrawerResult = {
@@ -44,7 +34,9 @@ export type UseDrawerResult = {
   toggle: () => void
 }
 
-export type SheetRenderOptions = {
+// the subset of Stack.Screen options each presentation understands. these are a
+// narrowed view of ScreenEntry['options'], never a copy of it
+export type SheetPresentationOptions = {
   sheetAllowedDetents?: number[] | 'fitToContents'
   sheetGrabberVisible?: boolean
   sheetCornerRadius?: number
@@ -53,29 +45,28 @@ export type SheetRenderOptions = {
   title?: string
 }
 
-export type ModalRenderOptions = {
+export type ModalPresentationOptions = {
   gestureEnabled?: boolean
   title?: string
 }
 
-export type NavigationRenderOpts =
-  | {
-      type: 'sheet'
-      open: boolean
-      onOpenChange: (open: boolean) => void
-      options: SheetRenderOptions
-      screen: ScreenEntry
-      children: ReactNode
-    }
-  | {
-      type: 'modal'
-      open: boolean
-      onOpenChange: (open: boolean) => void
-      options: ModalRenderOptions
-      screen: ScreenEntry
-      children: ReactNode
-    }
+type PresentationProps<Options> = {
+  /** whether the presentation should be visible. toggles as you navigate */
+  open: boolean
+  /** call with false when your UI dismisses. pops the screen */
+  onOpenChange: (open: boolean) => void
+  /** the presentation options set on the screen, same vocabulary as native */
+  options: Options
+  /** the full screen entry: name, params, complete options */
+  screen: ScreenEntry
+  /** the screen's content */
+  children: ReactNode
+}
 
-export type NavigationRenderWebCallback = (
-  opts: NavigationRenderOpts
-) => ReactNode | undefined
+export type SheetPresentationProps = PresentationProps<SheetPresentationOptions>
+export type ModalPresentationProps = PresentationProps<ModalPresentationOptions>
+
+export type WebPresentations = {
+  sheet?: ComponentType<SheetPresentationProps>
+  modal?: ComponentType<ModalPresentationProps>
+}

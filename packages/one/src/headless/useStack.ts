@@ -1,7 +1,7 @@
 'use client'
 
 import type { ParamListBase } from '@react-navigation/core'
-import type { StackActionHelpers, StackNavigationState } from '@react-navigation/routers'
+import type { StackNavigationState } from '@react-navigation/routers'
 import {
   createContext,
   createElement,
@@ -13,7 +13,6 @@ import {
 
 import type { UseStackResult } from './types'
 import { getPathFromState } from '../fork/getPathFromState'
-import { router } from '../router/imperative-api'
 import { getResolvedLinking } from '../router/linkingConfig'
 
 export type HeadlessStackDescriptors = Record<
@@ -27,7 +26,6 @@ export type HeadlessStackDescriptors = Record<
 type StackStateProviderProps = PropsWithChildren<{
   state: StackNavigationState<ParamListBase>
   descriptors: HeadlessStackDescriptors
-  navigation: StackActionHelpers<ParamListBase> & { goBack: () => void }
 }>
 
 const StackContext = createContext<UseStackResult | null>(null)
@@ -35,7 +33,6 @@ const StackContext = createContext<UseStackResult | null>(null)
 export function StackStateProvider({
   state,
   descriptors,
-  navigation,
   children,
 }: StackStateProviderProps) {
   const linking = getResolvedLinking()
@@ -60,16 +57,8 @@ export function StackStateProvider({
       }
     })
 
-    return {
-      screens,
-      focused: screens[state.index]!,
-      navigation: {
-        back: () => navigation.goBack(),
-        push: (href) => router.push(href as any),
-        replace: (href) => router.replace(href as any),
-      },
-    }
-  }, [descriptors, linking, navigation, state])
+    return { screens, focused: screens[state.index]! }
+  }, [descriptors, linking, state])
 
   return createElement(StackContext.Provider, { value }, children)
 }

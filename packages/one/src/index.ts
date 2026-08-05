@@ -81,9 +81,17 @@ export { href } from './href'
 export { getLinking, type OneLinkingConfig } from './link/getLinking'
 export { useSitemap, type SitemapType } from './router/sitemap'
 // components
-export { NavigationRender, type NavigationRenderProps } from './headless/NavigationRender'
+export { Presentations, type PresentationsProps } from './headless/Presentations'
 export { useStack } from './headless/useStack'
-export type { NavigationRenderOpts, ScreenEntry, UseStackResult } from './headless/types'
+export type {
+  ModalPresentationOptions,
+  ModalPresentationProps,
+  ScreenEntry,
+  SheetPresentationOptions,
+  SheetPresentationProps,
+  UseStackResult,
+  WebPresentations,
+} from './headless/types'
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
 export { Protected, type ProtectedProps } from './views/Protected'

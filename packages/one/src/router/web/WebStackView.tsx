@@ -14,15 +14,21 @@ import {
   Activity,
   Fragment,
   useCallback,
-  useRef,
+  useEffect,
+  useState,
   type ReactElement,
   type ReactNode,
 } from 'react'
 import useLatestCallback from 'use-latest-callback'
 
 import { devHeadlessNote } from '../../headless/devHeadlessNote'
-import { useNavigationRenderWeb } from '../../headless/NavigationRender'
-import type { NavigationRenderOpts, ScreenEntry } from '../../headless/types'
+import { useWebPresentations } from '../../headless/Presentations'
+import type {
+  ModalPresentationOptions,
+  ScreenEntry,
+  SheetPresentationOptions,
+  WebPresentations,
+} from '../../headless/types'
 import {
   StackStateProvider,
   useStack,
@@ -55,11 +61,6 @@ type WebStackViewProps = {
   eventMap?: NativeStackNavigationEventMap
 }
 
-type PersistentScreen = {
-  routeName: string
-  screen: ScreenEntry
-}
-
 export function WebStackView({
   state,
   navigation,
@@ -67,11 +68,7 @@ export function WebStackView({
   customChildren,
 }: WebStackViewProps) {
   return (
-    <StackStateProvider
-      state={state}
-      navigation={navigation}
-      descriptors={descriptors as HeadlessStackDescriptors}
-    >
+    <StackStateProvider state={state} descriptors={descriptors as HeadlessStackDescriptors}>
       <HeadlessStackView
         state={state}
         navigation={navigation}
@@ -89,8 +86,7 @@ function HeadlessStackView({
   customChildren,
 }: WebStackViewProps) {
   const stack = useStack()
-  const renderWeb = useNavigationRenderWeb()
-  const persistentScreens = useRef<Map<string, PersistentScreen>>(new Map())
+  const presentations = useWebPresentations()
 
   if (customChildren?.length) {
     return <Fragment>{customChildren}</Fragment>
@@ -108,20 +104,6 @@ function HeadlessStackView({
   )
   const baseFocusedKey = state.routes[lastBaseIndex]?.key
   const overlayRoutes = state.routes.slice(lastBaseIndex + 1)
-  const overlayRouteNames = new Set(overlayRoutes.map((route) => route.name))
-
-  for (const screen of stack.screens) {
-    if (
-      screen.keepMounted &&
-      getPresentationType(screen.options) &&
-      !persistentScreens.current.has(screen.name)
-    ) {
-      persistentScreens.current.set(screen.name, {
-        routeName: screen.name,
-        screen,
-      })
-    }
-  }
 
   return (
     <Fragment>
@@ -147,50 +129,24 @@ function HeadlessStackView({
         )
       })}
 
-      {overlayRoutes
-        .filter((route) => !descriptors[route.key]?.options.keepMounted)
-        .map((route) => {
-          const screen = stack.screens.find((entry) => entry.key === route.key)
-          const type = getPresentationType(descriptors[route.key]?.options)
-          if (!screen || !type) return null
+      {overlayRoutes.map((route) => {
+        const screen = stack.screens.find((entry) => entry.key === route.key)
+        const type = getPresentationType(descriptors[route.key]?.options)
+        if (!screen || !type) return null
 
-          return (
-            <PresentationScreen
-              key={route.key}
-              screen={screen}
-              type={type}
-              open
-              renderWeb={renderWeb}
-              onDismiss={() =>
-                navigation.dispatch({
-                  ...StackActions.pop(),
-                  source: route.key,
-                  target: state.key,
-                })
-              }
-            />
-          )
-        })}
-
-      {Array.from(persistentScreens.current.values()).map((slot) => {
-        const open = overlayRouteNames.has(slot.routeName)
         return (
           <PresentationScreen
-            key={slot.routeName}
-            screen={slot.screen}
-            type={getPresentationType(slot.screen.options)!}
-            open={open}
-            renderWeb={renderWeb}
-            onDismiss={() => {
-              const route = state.routes.find((route) => route.name === slot.routeName)
-              if (route) {
-                navigation.dispatch({
-                  ...StackActions.pop(),
-                  source: route.key,
-                  target: state.key,
-                })
-              }
-            }}
+            key={route.key}
+            screen={screen}
+            type={type}
+            presentations={presentations}
+            onDismiss={() =>
+              navigation.dispatch({
+                ...StackActions.pop(),
+                source: route.key,
+                target: state.key,
+              })
+            }
           />
         )
       })}
@@ -201,14 +157,12 @@ function HeadlessStackView({
 function PresentationScreen({
   screen,
   type,
-  open,
-  renderWeb,
+  presentations,
   onDismiss,
 }: {
   screen: ScreenEntry
   type: 'sheet' | 'modal'
-  open: boolean
-  renderWeb: ReturnType<typeof useNavigationRenderWeb>
+  presentations: WebPresentations | undefined
   onDismiss: () => void
 }) {
   const dismiss = useLatestCallback(onDismiss)
@@ -218,42 +172,38 @@ function PresentationScreen({
     },
     [dismiss]
   )
-  const opts: NavigationRenderOpts =
-    type === 'sheet'
-      ? {
-          type,
-          open,
-          onOpenChange,
-          options: {
-            sheetAllowedDetents: screen.options.sheetAllowedDetents,
-            sheetGrabberVisible: screen.options.sheetGrabberVisible,
-            sheetCornerRadius: screen.options.sheetCornerRadius,
-            sheetExpandsWhenScrolledToEdge: screen.options.sheetExpandsWhenScrolledToEdge,
-            gestureEnabled: screen.options.gestureEnabled,
-            title: screen.options.title,
-          },
-          screen,
-          children: screen.element,
-        }
-      : {
-          type,
-          open,
-          onOpenChange,
-          options: {
-            gestureEnabled: screen.options.gestureEnabled,
-            title: screen.options.title,
-          },
-          screen,
-          children: screen.element,
-        }
-  const rendered = renderWeb?.(opts)
-  const content = rendered ?? screen.element
+  // mount closed and open on the next commit, so sheet/modal components that
+  // animate on a false -> true transition still play their enter animation
+  const [open, setOpen] = useState(false)
+  useEffect(() => setOpen(true), [])
 
-  if (screen.keepMounted) {
-    return <Activity mode={open ? 'visible' : 'hidden'}>{content}</Activity>
+  if (type === 'sheet') {
+    const Sheet = presentations?.sheet
+    if (!Sheet) return screen.element
+    return (
+      <Sheet
+        open={open}
+        onOpenChange={onOpenChange}
+        options={screen.options as SheetPresentationOptions}
+        screen={screen}
+      >
+        {screen.element}
+      </Sheet>
+    )
   }
 
-  return content
+  const Modal = presentations?.modal
+  if (!Modal) return screen.element
+  return (
+    <Modal
+      open={open}
+      onOpenChange={onOpenChange}
+      options={screen.options as ModalPresentationOptions}
+      screen={screen}
+    >
+      {screen.element}
+    </Modal>
+  )
 }
 
 function getPresentationType(

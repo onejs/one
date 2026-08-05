@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { ComponentType, ReactElement, ReactNode } from 'react';
 export type ScreenEntry = {
     key: string;
     name: string;
@@ -9,22 +9,13 @@ export type ScreenEntry = {
     options: Record<string, any>;
     element: ReactElement;
 };
-export type StackNavigation = {
-    back: () => void;
-    push: (href: string) => void;
-    replace: (href: string) => void;
-};
 export type UseStackResult = {
     screens: ScreenEntry[];
     focused: ScreenEntry;
-    navigation: StackNavigation;
 };
 export type UseTabsResult = {
-    tabs: ScreenEntry[];
+    screens: ScreenEntry[];
     focused: ScreenEntry;
-    navigation: {
-        switchTab: (name: string) => void;
-    };
 };
 export type UseDrawerResult = {
     screens: ScreenEntry[];
@@ -34,7 +25,7 @@ export type UseDrawerResult = {
     close: () => void;
     toggle: () => void;
 };
-export type SheetRenderOptions = {
+export type SheetPresentationOptions = {
     sheetAllowedDetents?: number[] | 'fitToContents';
     sheetGrabberVisible?: boolean;
     sheetCornerRadius?: number;
@@ -42,24 +33,27 @@ export type SheetRenderOptions = {
     gestureEnabled?: boolean;
     title?: string;
 };
-export type ModalRenderOptions = {
+export type ModalPresentationOptions = {
     gestureEnabled?: boolean;
     title?: string;
 };
-export type NavigationRenderOpts = {
-    type: 'sheet';
+type PresentationProps<Options> = {
+    /** whether the presentation should be visible. toggles as you navigate */
     open: boolean;
+    /** call with false when your UI dismisses. pops the screen */
     onOpenChange: (open: boolean) => void;
-    options: SheetRenderOptions;
+    /** the presentation options set on the screen, same vocabulary as native */
+    options: Options;
+    /** the full screen entry: name, params, complete options */
     screen: ScreenEntry;
-    children: ReactNode;
-} | {
-    type: 'modal';
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-    options: ModalRenderOptions;
-    screen: ScreenEntry;
+    /** the screen's content */
     children: ReactNode;
 };
-export type NavigationRenderWebCallback = (opts: NavigationRenderOpts) => ReactNode | undefined;
+export type SheetPresentationProps = PresentationProps<SheetPresentationOptions>;
+export type ModalPresentationProps = PresentationProps<ModalPresentationOptions>;
+export type WebPresentations = {
+    sheet?: ComponentType<SheetPresentationProps>;
+    modal?: ComponentType<ModalPresentationProps>;
+};
+export {};
 //# sourceMappingURL=types.d.ts.map

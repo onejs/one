@@ -1,8 +1,10 @@
 'use client'
 
-import { useMemo, type ReactElement } from 'react'
+import { use, useMemo, type ReactElement } from 'react'
 
-import { useTabTrigger } from '../ui/useTabTrigger'
+import { appendBaseUrl } from '../fork/getPathFromState-mods'
+import { stripGroupSegmentsFromPath } from '../router/matchers'
+import { TabTriggerMapContext } from '../ui/TabContext'
 import { useNavigatorContext } from '../views/Navigator'
 import type { UseTabsResult } from './types'
 
@@ -13,19 +15,19 @@ type TabsDescriptor = {
 
 export function useTabs(): UseTabsResult {
   const { state, descriptorsRef } = useNavigatorContext()
-  const { getTrigger, switchTab } = useTabTrigger({ name: '' })
+  const triggerMap = use(TabTriggerMapContext)
   const descriptors = descriptorsRef.current
 
   return useMemo(() => {
-    const tabs = state.routes.map((route, index) => {
+    const screens = state.routes.map((route, index) => {
       const descriptor = descriptors[route.key] as TabsDescriptor
-      const trigger = getTrigger(route.name)
+      const config = triggerMap[route.name]
 
       return {
         key: route.key,
         name: route.name,
         params: (route.params ?? {}) as Record<string, any>,
-        href: trigger?.resolvedHref ?? '',
+        href: config ? stripGroupSegmentsFromPath(appendBaseUrl(config.href)) : '',
         isFocused: index === state.index,
         keepMounted: descriptor.options.keepMounted === true,
         options: descriptor.options,
@@ -33,12 +35,6 @@ export function useTabs(): UseTabsResult {
       }
     })
 
-    return {
-      tabs,
-      focused: tabs[state.index]!,
-      navigation: {
-        switchTab: (name: string) => switchTab(name, {}),
-      },
-    }
-  }, [descriptors, getTrigger, state, switchTab])
+    return { screens, focused: screens[state.index]! }
+  }, [descriptors, state, triggerMap])
 }
