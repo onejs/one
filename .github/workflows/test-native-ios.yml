@@ -141,9 +141,11 @@ jobs:
           AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json | jq -r '[.devices | to_entries[] | select(.key | contains("SimRuntime.iOS")) | .key as $runtime | .value[] | { runtime: $runtime, name: .name, udid: .udid }]')
           echo "Available simulators: $AVAILABLE_SIMULATORS"
 
-          SELECTED_SIMULATOR=$(echo $AVAILABLE_SIMULATORS | jq -r "[.[] | select(.runtime | contains(\"$SIMULATOR_IOS_VERSION\")) | select(.name == \"$SIMULATOR_DEVICE_NAME\")] | first")
+          # runtime ids spell the version with dashes, e.g. iOS 26.4 -> ...SimRuntime.iOS-26-4
+          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${SIMULATOR_IOS_VERSION//./-}"
+          SELECTED_SIMULATOR=$(echo $AVAILABLE_SIMULATORS | jq -r "[.[] | select(.runtime == \"$RUNTIME_ID\") | select(.name == \"$SIMULATOR_DEVICE_NAME\")] | first")
           if [ -z "$SELECTED_SIMULATOR" ] || [ "$SELECTED_SIMULATOR" = "null" ]; then
-            echo "Error: No simulator found for iOS version $SIMULATOR_IOS_VERSION and device name $SIMULATOR_DEVICE_NAME"
+            echo "Error: No simulator found for runtime $RUNTIME_ID and device name $SIMULATOR_DEVICE_NAME"
             echo "Available devices:"
             echo "$AVAILABLE_SIMULATORS" | jq -r '.[] | "\(.name) (\(.runtime))"'
             exit 1
