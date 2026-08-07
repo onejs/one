@@ -204,6 +204,10 @@ export async function scanDepsToOptimize(
             dep
           ) /* If this dep is in the include list, then pre-bundle it */ ||
           hasRequiredDep(depPkgJson, 'react') ||
+          // an optional react peer still means the package ships react
+          // entrypoints (e.g. better-auth/react). left external, those load a
+          // second react copy in SSR and crash hooks with a null dispatcher.
+          !!depPkgJson.peerDependencies?.react ||
           hasRequiredDep(depPkgJson, 'react-native') ||
           hasRequiredDep(depPkgJson, 'expo-modules-core') ||
           // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
