@@ -1,4 +1,4 @@
-import type { NavigationState, PartialRoute } from '@react-navigation/native'
+import type { NavigationState, PartialRoute } from '@react-navigation/core'
 import { nanoid } from 'nanoid/non-secure'
 import type { OneRouter } from '../../interfaces/router'
 import { setLastAction } from '../lastAction'

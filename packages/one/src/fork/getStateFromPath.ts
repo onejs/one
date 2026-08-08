@@ -16,7 +16,7 @@ import escape from 'escape-string-regexp'
 
 // import * as queryString from 'query-string'
 
-import type { PathConfigMap } from '@react-navigation/native' // @modified
+import type { PathConfigMap } from '@react-navigation/core' // @modified
 import { getParamValue, isDynamicPart, replacePart } from './_shared'
 import { findFocusedRoute } from './findFocusedRoute'
 import {

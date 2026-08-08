@@ -1,4 +1,4 @@
-import { useStateForPath } from '@react-navigation/native'
+import { useStateForPath } from '@react-navigation/core'
 import type React from 'react'
 import { createContext, useRef } from 'react'
 import type { UrlObject } from './getNormalizedStatePath'

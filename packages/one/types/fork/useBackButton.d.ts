@@ -4,6 +4,6 @@
  *
  * No changes are made except of formatting.
  */
-import type { NavigationContainerRef, ParamListBase } from '@react-navigation/native';
+import type { NavigationContainerRef, ParamListBase } from '@react-navigation/core';
 export declare function useBackButton(_: React.RefObject<NavigationContainerRef<ParamListBase> | null>): void;
 //# sourceMappingURL=useBackButton.d.ts.map

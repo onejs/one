@@ -4,7 +4,8 @@
  *
  * No changes are made except of formatting and updating the imports.
  */
-import type { DocumentTitleOptions, NavigationContainerRef, ParamListBase } from '@react-navigation/native';
+import type { NavigationContainerRef, ParamListBase } from '@react-navigation/core';
+import type { DocumentTitleOptions } from '@react-navigation/native';
 import * as React from 'react';
 /**
  * Set the document title for the active screen

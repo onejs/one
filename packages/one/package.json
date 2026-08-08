@@ -265,6 +265,7 @@
     }
   },
   "devDependencies": {
+    "@react-navigation/core": "~7.21.12",
     "@react-navigation/drawer": "~7.13.8",
     "@react-navigation/native": "~7.3.16",
     "@tamagui/build": "2.6.2",

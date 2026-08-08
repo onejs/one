@@ -1,6 +1,7 @@
 'use client'
 
-import { type ParamListBase, useNavigationBuilder } from '@react-navigation/native'
+import type { ParamListBase } from '@react-navigation/core'
+import { useNavigationBuilder } from '@react-navigation/core'
 import {
   type TabActionHelpers,
   type TabNavigationState,

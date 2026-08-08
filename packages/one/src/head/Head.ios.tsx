@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused } from '@react-navigation/core'
 import React, { type JSX } from 'react'
 import { useParams, usePathname, useSegments, useUnstableGlobalHref } from '../hooks'
 import { HeadModule, type UserActivity } from './HeadModule'

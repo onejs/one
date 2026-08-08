@@ -11,25 +11,27 @@ import {
   getActionFromState,
   getPathFromState,
   getStateFromPath,
-  type DocumentTitleOptions,
-  LinkingContext,
-  type LinkingOptions,
-  LocaleDirContext,
-  type LocaleDirection,
   type NavigationContainerProps,
   type NavigationContainerRef,
   type NavigationState,
   type ParamListBase,
   ThemeProvider,
-  UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
   validatePathConfig,
-} from '@react-navigation/native'
+} from '@react-navigation/core'
 // @modified - start
 // import { LinkingContext } from './LinkingContext'
 // import { LocaleDirContext } from './LocaleDirContext'
 // import { DefaultTheme } from './theming/DefaultTheme'
 // import type { DocumentTitleOptions, LinkingOptions, LocaleDirection } from './types'
 // import { UnhandledLinkingContext } from './UnhandledLinkingContext'
+import {
+  type DocumentTitleOptions,
+  LinkingContext,
+  type LinkingOptions,
+  LocaleDirContext,
+  type LocaleDirection,
+  UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
+} from '@react-navigation/native'
 import * as React from 'react'
 import useLatestCallback from 'use-latest-callback'
 // @modified - end

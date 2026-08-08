@@ -1,4 +1,4 @@
-import type { ParamListBase } from '@react-navigation/native';
+import type { ParamListBase } from '@react-navigation/core';
 import { type StackActionHelpers, type StackNavigationState } from '@react-navigation/routers';
 import type { NativeStackNavigationEventMap, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { type ReactElement, type ReactNode } from 'react';

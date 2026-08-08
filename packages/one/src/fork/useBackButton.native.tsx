@@ -5,7 +5,7 @@
  * No changes are made except of formatting.
  */
 
-import type { NavigationContainerRef, ParamListBase } from '@react-navigation/native'
+import type { NavigationContainerRef, ParamListBase } from '@react-navigation/core'
 import * as React from 'react'
 import { BackHandler } from 'react-native'
 
