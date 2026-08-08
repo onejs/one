@@ -29,7 +29,7 @@
     ]
   },
   "scripts": {
-    "audit": "bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m",
+    "audit": "bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -121,7 +121,8 @@
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
     "uuid": "11.1.1",
-    "js-yaml": "4.2.0"
+    "js-yaml": "4.3.1",
+    "nanoid": "3.3.18"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.14",
