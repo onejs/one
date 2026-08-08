@@ -14,7 +14,8 @@ export type MetroConfigLike = { resolver?: Record<string, any> } | undefined
  * getMetroConfigFromViteConfig pipeline both production native bundles and
  * standalone Metro invocations (expo export, eas update) go through. The
  * overrides handle One-specific concerns: server-only stripping, .css → empty,
- * _middleware → empty, react-native-svg fix.
+ * _middleware → empty, native singleton ownership, and react-native-svg's
+ * compiled entry point.
  *
  * Returns a function that takes Metro's default config and produces an
  * overridden config. Callers compose any additional overrides on top.
@@ -28,6 +29,7 @@ export function buildOneMetroResolverOverrides({
   const emptyPath = require.resolve('@vxrn/vite-plugin-metro/empty', {
     paths: [projectRoot],
   })
+  const projectPackagePath = path.join(projectRoot, 'package.json')
 
   return <T extends MetroConfigLike>(defaultConfig: T): T => {
     const resolver: Record<string, any> = {
@@ -37,6 +39,21 @@ export function buildOneMetroResolverOverrides({
       },
       nodeModulesPaths: defaultConfig?.resolver?.nodeModulesPaths,
       resolveRequest: (context: any, moduleName: string, platform: string) => {
+        const defaultResolveRequest =
+          defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+
+        // worklets owns native singleton state. always resolve it from the app root.
+        if (
+          moduleName === 'react-native-worklets' ||
+          moduleName.startsWith('react-native-worklets/')
+        ) {
+          return defaultResolveRequest(
+            { ...context, originModulePath: projectPackagePath },
+            moduleName,
+            platform
+          )
+        }
+
         if (moduleName.endsWith('.css')) {
           return {
             type: 'sourceFile',
@@ -63,12 +80,9 @@ export function buildOneMetroResolverOverrides({
           }
         }
 
-        // react-native-svg's package.json has "react-native": "src/index.ts"
-        // which points to TS source that only type-exports Svg/Circle/Path etc.
-        // force resolution to the compiled JS which has proper named value exports.
+        // react-native-svg's package.json points native resolution at TS source
+        // that only type-exports Svg/Circle/Path. use its compiled value exports.
         if (moduleName === 'react-native-svg') {
-          const defaultResolveRequest =
-            defaultConfig?.resolver?.resolveRequest || context.resolveRequest
           const res = defaultResolveRequest(context, moduleName, platform)
           const svgSrcSuffix = `${path.sep}src${path.sep}index.ts`
           if (res && 'filePath' in res && res.filePath.includes(svgSrcSuffix)) {
@@ -83,8 +97,6 @@ export function buildOneMetroResolverOverrides({
           return res
         }
 
-        const defaultResolveRequest =
-          defaultConfig?.resolver?.resolveRequest || context.resolveRequest
         const res = defaultResolveRequest(context, moduleName, platform)
 
         // catch .server files that were resolved by path

@@ -11,7 +11,8 @@ export type MetroConfigLike = {
  * getMetroConfigFromViteConfig pipeline both production native bundles and
  * standalone Metro invocations (expo export, eas update) go through. The
  * overrides handle One-specific concerns: server-only stripping, .css → empty,
- * _middleware → empty, react-native-svg fix.
+ * _middleware → empty, native singleton ownership, and react-native-svg's
+ * compiled entry point.
  *
  * Returns a function that takes Metro's default config and produces an
  * overridden config. Callers compose any additional overrides on top.
