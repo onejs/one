@@ -1,4 +1,4 @@
-import type { PathConfigMap } from '@react-navigation/core'
+import type { PathConfigMap } from '@react-navigation/native'
 import { describe, expect, it } from 'vitest'
 
 import { getPathFromState, type State } from './getPathFromState'

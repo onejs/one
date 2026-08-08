@@ -9,11 +9,11 @@
 import {
   getActionFromState as getActionFromStateDefault,
   getStateFromPath as getStateFromPathDefault,
+  type LinkingOptions,
   type NavigationContainerRef,
   type ParamListBase,
   useNavigationIndependentTree,
-} from '@react-navigation/core'
-import type { LinkingOptions } from '@react-navigation/native' // @modified: import from @react-navigation/native
+} from '@react-navigation/native'
 import * as React from 'react'
 import { Linking, Platform } from 'react-native'
 import { extractPathFromURL } from './extractPathFromURL'

@@ -32,7 +32,7 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
  * // MyRoute.LoaderProps = { params: { slug: string }, path: string, request?: Request }
  */
 export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
-export { useIsFocused } from '@react-navigation/core';
+export { useIsFocused } from '@react-navigation/native';
 export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';

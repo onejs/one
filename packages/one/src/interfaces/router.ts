@@ -2,7 +2,7 @@ import type {
   NavigationContainerRefWithCurrent,
   NavigationState,
   PartialState,
-} from '@react-navigation/core'
+} from '@react-navigation/native'
 import type { JSX, ReactNode } from 'react'
 import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native'
 

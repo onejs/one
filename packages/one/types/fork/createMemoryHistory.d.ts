@@ -11,7 +11,7 @@
  * - Store __tempLocation in history.state for route masking (persists across refresh)
  * - Added unmaskOnReload support via __tempKey mechanism
  */
-import type { NavigationState } from '@react-navigation/core';
+import type { NavigationState } from '@react-navigation/native';
 type HistoryRecord = {
     id: string;
     state: NavigationState;

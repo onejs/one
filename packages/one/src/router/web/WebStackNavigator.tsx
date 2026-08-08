@@ -5,7 +5,7 @@ import {
   useNavigationBuilder,
   type EventArg,
   type ParamListBase,
-} from '@react-navigation/core'
+} from '@react-navigation/native'
 import {
   StackActions,
   StackRouter,

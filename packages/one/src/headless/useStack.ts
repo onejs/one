@@ -1,6 +1,6 @@
 'use client'
 
-import type { ParamListBase } from '@react-navigation/core'
+import type { ParamListBase } from '@react-navigation/native'
 import type { StackNavigationState } from '@react-navigation/routers'
 import {
   createContext,

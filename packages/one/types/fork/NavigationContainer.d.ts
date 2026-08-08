@@ -5,8 +5,7 @@
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
  */
-import { type NavigationContainerProps, type NavigationContainerRef } from '@react-navigation/core';
-import { type DocumentTitleOptions, type LinkingOptions, type LocaleDirection } from '@react-navigation/native';
+import { type DocumentTitleOptions, type LinkingOptions, type LocaleDirection, type NavigationContainerProps, type NavigationContainerRef } from '@react-navigation/native';
 import * as React from 'react';
 declare global {
     var REACT_NAVIGATION_DEVTOOLS: WeakMap<NavigationContainerRef<any>, {
