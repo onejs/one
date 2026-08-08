@@ -14,9 +14,14 @@ import {
   StackHeaderComponent,
   StackHeaderSearchBar,
   StackScreen,
+  StackToolbar,
   type StackScreenProps,
 } from './stack-utils'
 import { withLayoutContext } from './withLayoutContext'
+import {
+  useStackToolbarImplementation,
+  type StackToolbarImplementation,
+} from './stack-utils/StackToolbarImplementation'
 
 const NativeStackNavigator = createStackNavigator().Navigator
 
@@ -31,12 +36,19 @@ const RNStack = withLayoutContext<
  * Pre-process children to convert StackScreen (with Header children) to Screen (with options).
  * This allows the Header Composition API to work in layout files.
  */
-function mapChildren(children: React.ReactNode): React.ReactNode {
+function mapChildren(
+  children: React.ReactNode,
+  toolbarImplementation: StackToolbarImplementation | null
+): React.ReactNode {
   return Children.toArray(children)
     .map((child, index) => {
       if (isChildOfType(child, StackScreen)) {
         // convert StackScreen to Screen with options extracted from Header children
-        const options = appendScreenStackPropsToOptions({}, child.props)
+        const options = appendScreenStackPropsToOptions(
+          {},
+          child.props,
+          toolbarImplementation
+        )
         const { children: _, ...rest } = child.props
         return <Screen key={child.props.name ?? index} {...rest} options={options} />
       }
@@ -46,7 +58,7 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
         return React.cloneElement(
           child,
           { key: `protected-${index}` },
-          mapChildren(child.props.children)
+          mapChildren(child.props.children, toolbarImplementation)
         )
       }
 
@@ -71,6 +83,7 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
 const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNStack>>(
   (props, ref) => {
     const { children, screenOptions, ...rest } = props
+    const toolbarImplementation = useStackToolbarImplementation()
 
     // extract Stack.Header from children for screenOptions
     const screenOptionsWithHeader = useMemo(() => {
@@ -84,19 +97,30 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
           if (typeof screenOptions === 'function') {
             return (...args: Parameters<typeof screenOptions>) => {
               const opts = screenOptions(...args)
-              return appendScreenStackPropsToOptions(opts, headerProps)
+              return appendScreenStackPropsToOptions(
+                opts,
+                headerProps,
+                toolbarImplementation
+              )
             }
           }
-          return appendScreenStackPropsToOptions(screenOptions, headerProps)
+          return appendScreenStackPropsToOptions(
+            screenOptions,
+            headerProps,
+            toolbarImplementation
+          )
         }
-        return appendScreenStackPropsToOptions({}, headerProps)
+        return appendScreenStackPropsToOptions({}, headerProps, toolbarImplementation)
       }
 
       return screenOptions
-    }, [children, screenOptions])
+    }, [children, screenOptions, toolbarImplementation])
 
     // pre-process children to convert StackScreen to Screen
-    const processedChildren = useMemo(() => mapChildren(children), [children])
+    const processedChildren = useMemo(
+      () => mapChildren(children, toolbarImplementation),
+      [children, toolbarImplementation]
+    )
     const navigatorProps = useMemo(() => getStackNavigatorProps(children), [children])
 
     return (
@@ -119,6 +143,7 @@ export const Stack = Object.assign(StackWithComposition, {
   Header: StackHeader,
   Protected,
   SearchBar: StackHeaderSearchBar,
+  Toolbar: StackToolbar,
 })
 
 export default Stack

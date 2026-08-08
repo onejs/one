@@ -95,7 +95,7 @@ function DetailScreen() {
 
 Native iOS `UIToolbar` rendered at the bottom of the screen. Supports SF Symbols, badges, and Liquid Glass on iOS 26.
 
-For routed screens, prefer [`StackToolbar`](/docs/components-Stack#stacktoolbar). It is exported by `@vxrn/native` and adds header and bottom toolbars with buttons, menus, spacers, custom views, and search-bar placement. The primitives below are its lower-level building blocks.
+For routed screens, prefer [`Stack.Toolbar`](/docs/components-Stack#stacktoolbar). It is exported by `one` and adds header and bottom toolbars with buttons, menus, spacers, custom views, and search-bar placement. You must install `@vxrn/native` directly in the app and mount its `StackToolbarProvider` above the stack. The package supplies the native implementation and declares its native dependencies. The primitives below are its lower-level building blocks.
 
 ```tsx
 import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'

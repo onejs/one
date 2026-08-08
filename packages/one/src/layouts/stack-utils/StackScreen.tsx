@@ -9,6 +9,15 @@ import {
   appendStackHeaderPropsToOptions,
   type StackHeaderProps,
 } from './StackHeaderComponent'
+import {
+  StackToolbar,
+  appendStackToolbarPropsToOptions,
+  type StackToolbarProps,
+} from './StackToolbar'
+import {
+  useStackToolbarImplementation,
+  type StackToolbarImplementation,
+} from './StackToolbarImplementation'
 import { Screen } from '../../views/Screen'
 
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
@@ -47,12 +56,17 @@ export interface StackScreenProps extends PropsWithChildren {
  * ```
  */
 export function StackScreen({ children, options, ...rest }: StackScreenProps) {
+  const toolbarImplementation = useStackToolbarImplementation()
   const updatedOptions = useMemo(
     () =>
-      appendScreenStackPropsToOptions(options ?? {}, {
-        children,
-      }),
-    [options, children]
+      appendScreenStackPropsToOptions(
+        options ?? {},
+        {
+          children,
+        },
+        toolbarImplementation
+      ),
+    [options, children, toolbarImplementation]
   )
   return <Screen {...rest} options={updatedOptions as NativeStackNavigationOptions} />
 }
@@ -101,7 +115,8 @@ export function validateStackPresentation(
 
 export function appendScreenStackPropsToOptions(
   options: StackScreenOptions,
-  props: StackScreenProps
+  props: StackScreenProps,
+  toolbarImplementation?: StackToolbarImplementation | null
 ): StackScreenOptions {
   let updatedOptions: StackScreenOptions = { ...options, ...props.options }
 
@@ -113,6 +128,12 @@ export function appendScreenStackPropsToOptions(
       return appendStackHeaderPropsToOptions(
         options as NativeStackNavigationOptions,
         child.props as StackHeaderProps
+      ) as StackScreenOptions
+    } else if (child.type === StackToolbar) {
+      return appendStackToolbarPropsToOptions(
+        options as NativeStackNavigationOptions,
+        child.props as StackToolbarProps,
+        toolbarImplementation
       ) as StackScreenOptions
     } else {
       console.warn(

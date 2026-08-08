@@ -1,4 +1,5 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+import type { StackToolbarConfig } from '../layouts/stack-utils/StackToolbar.types'
 
 // shared contract for headless web navigators. see plans/headless-navigators.md
 
@@ -10,7 +11,7 @@ export type ScreenEntry = {
   isFocused: boolean
   keepMounted: boolean
   // compiled options: semantic keys plus opaque passthrough of preset keys
-  options: Record<string, any>
+  options: Record<string, any> & { toolbar?: StackToolbarConfig }
   // lazy: rendering it mounts the route (descriptor.render underneath)
   element: ReactElement
 }

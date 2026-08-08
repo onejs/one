@@ -19,6 +19,8 @@ export type { MenuActionProps } from './menu'
 export { SplitView } from './split-view'
 export type { SplitViewProps, SplitViewColumnProps } from './split-view'
 
+export { StackToolbarProvider } from './StackToolbarProvider'
+
 export { StackToolbar } from './stack-toolbar/StackToolbar'
 export type {
   StackToolbarBadgeProps,
