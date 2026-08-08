@@ -30,14 +30,14 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native": "~7.3.16",
     "@tamagui/config": "2.6.2",
     "@tamagui/lucide-icons-2": "2.6.2",
     "@tamagui/vite-plugin": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "@vxrn/test-package": "workspace:*",
-    "expo": "~57.0.9",
+    "expo": "~57.0.11",
     "expo-clipboard": "~57.0.1",
     "expo-linear-gradient": "~57.0.1",
     "expo-video": "~57.0.2",

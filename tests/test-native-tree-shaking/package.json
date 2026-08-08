@@ -12,9 +12,9 @@
     "test:native-bundle": "tsx scripts/test-native-bundle.ts"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native": "~7.3.16",
     "@vxrn/mdx": "workspace:*",
-    "expo": "~57.0.9",
+    "expo": "~57.0.11",
     "mdx-bundler": "^10.0.2",
     "one": "workspace:*",
     "react": "19.2.3",

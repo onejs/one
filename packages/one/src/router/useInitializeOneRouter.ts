@@ -1,4 +1,4 @@
-import { useNavigationContainerRef } from '@react-navigation/native'
+import { useNavigationContainerRef } from '@react-navigation/core'
 import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
 import type { OneLinkingConfig } from '../link/getLinking'
@@ -22,7 +22,7 @@ export function useInitializeOneRouter(
   initialLocation: URL | undefined,
   linking?: OneLinkingConfig
 ) {
-  const navigationRef = useNavigationContainerRef()
+  const navigationRef = useNavigationContainerRef<ReactNavigation.RootParamList>()
 
   // SSR: initialize route tree once, then compute per-request state via cache
   if (typeof window === 'undefined') {

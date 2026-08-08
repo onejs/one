@@ -11,10 +11,10 @@
     "prebuild:native": "one prebuild"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.2",
+    "@react-navigation/native": "~7.3.16",
     "@vxrn/native": "workspace:*",
-    "expo": "~57.0.9",
-    "expo-build-properties": "~57.0.8",
+    "expo": "~57.0.11",
+    "expo-build-properties": "~57.0.9",
     "expo-clipboard": "~57.0.1",
     "one": "workspace:*",
     "react": "19.2.3",
