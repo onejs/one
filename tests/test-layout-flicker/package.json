@@ -13,8 +13,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.2.2",
-    "expo": "~57.0.9",
+    "@react-navigation/native": "~7.3.16",
+    "expo": "~57.0.11",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",

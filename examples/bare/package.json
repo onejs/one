@@ -16,7 +16,7 @@
     "prebuild": "vxrn prebuild --expo false"
   },
   "dependencies": {
-    "expo-constants": "~57.0.8",
+    "expo-constants": "~57.0.9",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.2"
