@@ -17,7 +17,7 @@ vi.hoisted(() => {
   Object.defineProperty(globalThis, 'window', { configurable: true, value: {} })
 })
 
-vi.mock('@react-navigation/native', () => ({
+vi.mock('@react-navigation/core', () => ({
   useNavigationContainerRef: () => probe.navigationRef,
 }))
 

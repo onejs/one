@@ -1,4 +1,4 @@
-import { useNavigationContainerRef } from '@react-navigation/native'
+import { useNavigationContainerRef } from '@react-navigation/core'
 import { resetLoaderState } from '../useLoader'
 import type { One } from '../vite/types'
 import type { OneLinkingConfig } from '../link/getLinking'
