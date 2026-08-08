@@ -3,7 +3,7 @@
  * We need to treat exports as an API and not change them, maybe not
  * the best decision.
  */
-import { type NavigationContainerRefWithCurrent, type NavigationState } from '@react-navigation/native';
+import type { NavigationContainerRefWithCurrent, NavigationState } from '@react-navigation/core';
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router';
 import type { OneLinkingConfig } from '../link/getLinking';

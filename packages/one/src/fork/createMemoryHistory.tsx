@@ -12,7 +12,7 @@
  * - Added unmaskOnReload support via __tempKey mechanism
  */
 
-import type { NavigationState } from '@react-navigation/native'
+import type { NavigationState } from '@react-navigation/core'
 import { nanoid } from 'nanoid/non-secure'
 
 type HistoryRecord = {

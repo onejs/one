@@ -1,10 +1,10 @@
-import {
-  createNavigatorFactory,
-  type EventMapBase,
-  type NavigationState,
-  type ParamListBase,
-  type RouteProp,
-  type ScreenListeners,
+import { createNavigatorFactory } from '@react-navigation/core'
+import type {
+  EventMapBase,
+  NavigationState,
+  ParamListBase,
+  RouteProp,
+  ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useContext, useEffect, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -34,7 +34,7 @@ import { getRouteHmrEpoch, subscribeRouteHmr } from './routeHmr'
 import { SpaShellContext } from './SpaShellContext'
 import { sortRoutesWithInitial } from './sortRoutes'
 
-// `@react-navigation/native` does not expose the Screen or Group components directly, so we have to
+// `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
 
 /**

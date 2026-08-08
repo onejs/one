@@ -3,7 +3,7 @@
  *
  * The purpose of keeping things in this separated file is to keep changes to the copied code as little as possible, making merging upstream updates easier.
  */
-import type { Route } from '@react-navigation/native';
+import type { Route } from '@react-navigation/core';
 export type AdditionalOptions = {
     preserveDynamicRoutes?: boolean;
     preserveGroups?: boolean;

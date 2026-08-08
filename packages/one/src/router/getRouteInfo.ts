@@ -1,4 +1,4 @@
-import type { getPathFromState as originalGetPathFromState } from '@react-navigation/native'
+import type { getPathFromState as originalGetPathFromState } from '@react-navigation/core'
 import { getPathDataFromState, type State } from '../fork/getPathFromState'
 import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 import type { OneRouter } from '../interfaces/router'

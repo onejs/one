@@ -1,6 +1,6 @@
 'use client'
 
-import type { ParamListBase } from '@react-navigation/native'
+import type { ParamListBase } from '@react-navigation/core'
 import {
   StackActions,
   type StackActionHelpers,

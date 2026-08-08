@@ -19,7 +19,7 @@ import {
 import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
 // import * as queryString from 'query-string' // @modified: not used
 
-import type { PathConfig, PathConfigMap } from '@react-navigation/native' // @modified: import from package instead of relative code
+import type { PathConfig, PathConfigMap } from '@react-navigation/core' // @modified: import from package instead of relative code
 import { validatePathConfig } from './validatePathConfig'
 
 // @modified - start: use constants for internal navigation param names to avoid magic strings
