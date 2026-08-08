@@ -125,6 +125,12 @@
       "import": "./dist/esm/headless.mjs",
       "require": "./dist/cjs/headless.cjs"
     },
+    "./stack-toolbar-implementation": {
+      "react-native": "./dist/esm/stack-toolbar-implementation.native.js",
+      "types": "./types/stack-toolbar-implementation.d.ts",
+      "import": "./dist/esm/stack-toolbar-implementation.mjs",
+      "require": "./dist/cjs/stack-toolbar-implementation.cjs"
+    },
     "./headless-server": {
       "types": "./types/headless-server.d.ts",
       "import": "./dist/esm/headless-server.mjs",

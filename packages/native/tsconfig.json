@@ -6,6 +6,9 @@
   },
   "references": [
     {
+      "path": "../one"
+    },
+    {
       "path": "../use-isomorphic-layout-effect"
     }
   ]
