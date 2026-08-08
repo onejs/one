@@ -50,7 +50,7 @@ export type { ModalPresentationOptions, ModalPresentationProps, ScreenEntry, She
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 export { Protected, type ProtectedProps } from './views/Protected';
-export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, } from './layouts/stack-utils';
+export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarConfig, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarViewProps, } from './layouts/stack-utils';
 export { useTabs } from './headless/useTabs';
 export { useDrawer } from './headless/useDrawer';
 export type { UseTabsResult, UseDrawerResult } from './headless/types';
