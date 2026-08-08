@@ -851,7 +851,6 @@
         "@vxrn/mdx": "workspace:*",
         "@vxrn/test-package": "workspace:*",
         "expo": "~57.0.11",
-        "expo-clipboard": "~57.0.1",
         "expo-linear-gradient": "~57.0.1",
         "expo-video": "~57.0.2",
         "mdx-bundler": "^10.0.2",
