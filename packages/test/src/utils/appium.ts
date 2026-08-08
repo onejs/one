@@ -100,8 +100,6 @@ async function waitForDisplayedOrAppCrash(
 
 /**
  * Like `element.setValue` but types slowly, character by character, to reduce the risk of missing characters.
- *
- * See also: `setValueSafe` - it's much faster.
  */
 export async function setValueSlowly(
   driver: Browser,
@@ -131,119 +129,12 @@ export async function setValueSlowly(
   }
 }
 
-/**
- * Like `element.setValue` but using some trick to reduce the risk of missing characters.
- *
- * Note that the implementation may use the clipboard to paste the text.
- * See also: `setValueSafe` - it's safer since it does not rely on the clipboard, but is slower.
- */
-export async function setValueSafe(
-  driver: Browser,
-  element: ChainablePromiseElement,
-  text: string
-) {
-  // TODO: using setValueSlowly for now since we can't find a way to paste text reliably on CI.
-  await setValueSlowly(driver, element, text)
-  return
-
-  // Not working on CI
-  // Command + V pasting is not stable
-
-  // await driver.setClipboard(Buffer.from(text).toString('base64'), 'plaintext')
-  // await element.clearValue()
-  // await element.click()
-  // await driver.pause(50)
-
-  // // Not working on iOS
-  // // await driver.executeScript('mobile: paste', [])
-
-  // // Not working on iOS
-  // // await driver.execute('mobile: performEditorAction', { action: 'paste' })
-
-  // // Not working on iOS
-  // // await driver.keys(['Meta', 'v']);
-
-  // // Not working on iOS
-  // // await driver.performActions([
-  // //   {
-  // //     type: 'key',
-  // //     id: 'keyboard',
-  // //     actions: [
-  // //       { type: 'keyDown', value: '\uE03D' },
-  // //       { type: 'keyDown', value: 'v' },
-  // //       { type: 'keyUp', value: 'v' },
-  // //       { type: 'keyUp', value: '\uE03D' },
-  // //     ],
-  // //   },
-  // // ])
-  // // await driver.releaseActions()
-
-  // // Works on iOS
-  // // https://github.com/appium/appium-xcuitest-driver/blob/v9.9.6/docs/reference/execute-methods.md#mobile-keys
-  // await driver.execute('mobile: keys', {
-  //   keys: [
-  //     {
-  //       key: 'v',
-  //       modifierFlags: 1 << 4, // XCUIKeyModifierCommand
-  //     },
-  //   ],
-  // })
-}
-
-/**
- * Currently, this only works when the `TestNavigationHelper` component is shown on the screen.
- */
 export async function navigateTo(driver: Browser, path: string) {
   const NAVIGATE_TIMEOUT = 2 * 60 * 1000
-
-  const quickNavigatePixel = driver.$('~quick-navigate-pixel')
-  try {
-    await waitForDisplayedOrAppCrash(driver, quickNavigatePixel, NAVIGATE_TIMEOUT)
-    await driver.setClipboard(Buffer.from(path).toString('base64'), 'plaintext')
-    await quickNavigatePixel.click()
-    await driver.pause(50)
-
-    // system alert dialog asking whether to allow clipboard access
-    // on iOS 16+ this may not appear if permission was already granted
-    try {
-      const alertButtons: Array<string> = await driver.execute('mobile: alert', {
-        action: 'getButtons',
-      })
-      const allowButton = alertButtons.find((label: string) => {
-        return label.startsWith('Allow') || label.startsWith('允許')
-      })
-      if (allowButton) {
-        await driver.execute('mobile: alert', {
-          action: 'accept',
-          buttonLabel: allowButton,
-        })
-      } else {
-        console.warn(
-          'appium.navigateTo: "Allow Paste" button not found, trying another way'
-        )
-        // on iOS, "Don't Allow" is the default button ('accept'),
-        // so we need to use 'dismiss' for "Allow".
-        await driver.execute('mobile: alert', { action: 'dismiss' })
-      }
-    } catch {
-      // no alert present — clipboard access already granted or not needed
-    }
-
-    return
-  } catch (e) {
-    // if the app crashed, don't bother with fallback - fail immediately
-    if (e instanceof AppCrashedError) throw e
-
-    console.warn(
-      `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
-    )
-    await takeScreenshotForError(driver, e)
-  }
-
-  const navigatePathInput = driver.$('~test-navigate-path-input')
+  const navigatePathInput = driver.$('~quick-navigate-path-input')
   await waitForDisplayedOrAppCrash(driver, navigatePathInput, NAVIGATE_TIMEOUT)
-  await setValueSafe(driver, navigatePathInput, path)
-  await driver.$('~test-navigate').click()
+  await setValueSlowly(driver, navigatePathInput, path)
+  await driver.$('~quick-navigate-submit').click()
   await driver.pause(100)
 }
 

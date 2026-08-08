@@ -8,7 +8,7 @@ import { TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import config from '../config/tamagui.config'
-import { QuickNavigatePixel } from '~/features/test-helpers/QuickNavigatePixel'
+import { QuickNavigateInput } from '~/features/test-helpers/QuickNavigateInput'
 
 export default function Layout() {
   useServerHeadInsertion(() => {
@@ -29,7 +29,7 @@ export default function Layout() {
         <SafeAreaProvider>
           <TamaguiRootProvider>
             <Slot />
-            <QuickNavigatePixel />
+            <QuickNavigateInput />
           </TamaguiRootProvider>
         </SafeAreaProvider>
       </SchemeProvider>
