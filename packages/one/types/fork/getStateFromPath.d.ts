@@ -6,7 +6,7 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 import type { NavigationState, PartialState } from '@react-navigation/routers';
-import type { PathConfigMap } from '@react-navigation/core';
+import type { PathConfigMap } from '@react-navigation/native';
 import { type AdditionalRouteConfig } from './getStateFromPath-mods';
 type Options<ParamList extends {}> = {
     path?: string;

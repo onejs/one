@@ -4,11 +4,11 @@
  * the best decision.
  */
 
-import type {
-  NavigationContainerRefWithCurrent,
-  NavigationState,
-} from '@react-navigation/core'
-import { StackActions } from '@react-navigation/native'
+import {
+  StackActions,
+  type NavigationContainerRefWithCurrent,
+  type NavigationState,
+} from '@react-navigation/native'
 import {
   type ComponentType,
   Fragment,

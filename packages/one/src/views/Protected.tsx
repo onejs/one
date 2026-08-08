@@ -1,4 +1,4 @@
-import { createNavigatorFactory } from '@react-navigation/core'
+import { createNavigatorFactory } from '@react-navigation/native'
 import {
   type FunctionComponent,
   isValidElement,

@@ -1,6 +1,6 @@
 'use client'
 
-import { createNavigatorFactory, useNavigationBuilder } from '@react-navigation/core'
+import { createNavigatorFactory, useNavigationBuilder } from '@react-navigation/native'
 import type {
   DrawerNavigationEventMap,
   DrawerNavigationOptions,
