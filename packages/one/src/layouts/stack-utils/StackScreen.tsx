@@ -15,7 +15,7 @@ import {
   type StackToolbarProps,
 } from './StackToolbar'
 import {
-  useStackToolbarImplementation,
+  getStackToolbarImplementation,
   type StackToolbarImplementation,
 } from './StackToolbarImplementation'
 import { Screen } from '../../views/Screen'
@@ -56,7 +56,7 @@ export interface StackScreenProps extends PropsWithChildren {
  * ```
  */
 export function StackScreen({ children, options, ...rest }: StackScreenProps) {
-  const toolbarImplementation = useStackToolbarImplementation()
+  const toolbarImplementation = getStackToolbarImplementation()
   const updatedOptions = useMemo(
     () =>
       appendScreenStackPropsToOptions(

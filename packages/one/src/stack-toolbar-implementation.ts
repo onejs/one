@@ -1,6 +1,7 @@
 export {
   STACK_TOOLBAR_CHILD,
-  StackToolbarImplementationProvider,
+  getStackToolbarImplementation,
+  registerStackToolbarImplementation,
   type StackToolbarChildType,
   type StackToolbarImplementation,
 } from './layouts/stack-utils/StackToolbarImplementation'

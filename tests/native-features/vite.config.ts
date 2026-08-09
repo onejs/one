@@ -4,6 +4,9 @@ import { one } from 'one/vite'
 export default defineConfig({
   plugins: [
     one({
+      setupFile: {
+        native: './setup.native.ts',
+      },
       app: {
         key: 'native-feature-tests',
       },

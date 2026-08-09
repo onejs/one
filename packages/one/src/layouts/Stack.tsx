@@ -19,7 +19,7 @@ import {
 } from './stack-utils'
 import { withLayoutContext } from './withLayoutContext'
 import {
-  useStackToolbarImplementation,
+  getStackToolbarImplementation,
   type StackToolbarImplementation,
 } from './stack-utils/StackToolbarImplementation'
 
@@ -83,7 +83,7 @@ function mapChildren(
 const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNStack>>(
   (props, ref) => {
     const { children, screenOptions, ...rest } = props
-    const toolbarImplementation = useStackToolbarImplementation()
+    const toolbarImplementation = getStackToolbarImplementation()
 
     // extract Stack.Header from children for screenOptions
     const screenOptionsWithHeader = useMemo(() => {

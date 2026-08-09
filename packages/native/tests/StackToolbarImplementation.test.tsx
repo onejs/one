@@ -1,5 +1,8 @@
 import React from 'react'
-import { STACK_TOOLBAR_CHILD } from 'one/stack-toolbar-implementation'
+import {
+  getStackToolbarImplementation,
+  STACK_TOOLBAR_CHILD,
+} from 'one/stack-toolbar-implementation'
 import { Platform } from 'react-native'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -7,8 +10,9 @@ vi.mock('@react-navigation/native', () => ({
   useNavigation: () => ({ setOptions() {} }),
 }))
 
-import { stackToolbarImplementation } from '../src/StackToolbarProvider'
+import { stackToolbarImplementation } from '../src/StackToolbarImplementation'
 import { StackToolbar as NativeStackToolbar } from '../src/stack-toolbar/StackToolbar'
+import '../src/index'
 
 const ToolbarButton = Object.assign((_props: Record<string, any>) => null, {
   [STACK_TOOLBAR_CHILD]: 'button',
@@ -17,7 +21,7 @@ const ToolbarLabel = Object.assign((_props: Record<string, any>) => null, {
   [STACK_TOOLBAR_CHILD]: 'label',
 })
 
-describe('StackToolbarProvider', () => {
+describe('Stack.Toolbar native implementation', () => {
   const withIOS = <T,>(run: () => T): T => {
     const originalOS = Platform.OS
     ;(Platform as { OS: string }).OS = 'ios'
@@ -27,6 +31,10 @@ describe('StackToolbarProvider', () => {
       ;(Platform as { OS: string }).OS = originalOS
     }
   }
+
+  it('registers when the native package loads', () => {
+    expect(getStackToolbarImplementation()).toBe(stackToolbarImplementation)
+  })
 
   it('hands Stack.Toolbar header declarations to the native implementation', () =>
     withIOS(() => {

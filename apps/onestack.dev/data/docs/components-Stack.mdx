@@ -71,22 +71,13 @@ The API is always available from `one`, but rendering a native toolbar requires 
 npm install @vxrn/native
 ```
 
-Then mount `StackToolbarProvider` above your stack, usually in the root layout:
+Then import it from your native setup file:
 
-```tsx title="app/_layout.tsx"
-import { StackToolbarProvider } from '@vxrn/native'
-import { Stack } from 'one'
-
-export default function Layout() {
-  return (
-    <StackToolbarProvider>
-      <Stack />
-    </StackToolbarProvider>
-  )
-}
+```tsx title="setup.native.ts"
+import '@vxrn/native'
 ```
 
-Installing `@vxrn/native` directly in the app is required. The package owns the native toolbar implementation and declares its React Navigation and React Native dependencies. Without it and `StackToolbarProvider`, `Stack.Toolbar` remains a no-op on native.
+Configure that file with One's [`setupFile`](/docs/configuration#setupfile) option if your app does not already have a native setup file. Installing `@vxrn/native` directly in the app is required. The package owns the native toolbar implementation and declares its React Navigation and React Native dependencies. Importing it during native setup registers that implementation before the app renders. Without the setup import, `Stack.Toolbar` remains a no-op on native.
 
 ```tsx
 import { Stack } from 'one'
@@ -141,7 +132,7 @@ Toolbar components:
 - `Stack.Toolbar.View` embeds a custom React Native view.
 - `Stack.Toolbar.SearchBarSlot` places a configured native search bar in the bottom toolbar on iOS 26 or newer.
 
-This API is alpha and currently renders on iOS when `@vxrn/native` is installed and its provider is mounted. It renders no toolbar on web, Android, or native apps without the package. Headless stack implementations still receive every placement through `useStack().focused.options.toolbar`, so a web layout can render the same configuration itself. Use `separateBackground`, `hidesSharedBackground`, and badges to control the native iOS 26 grouping and appearance without recreating the toolbar in JavaScript.
+This API is alpha and currently renders on iOS when `@vxrn/native` is installed and imported by the native setup file. It renders no toolbar on web, Android, or native apps without that setup import. Headless stack implementations still receive every placement through `useStack().focused.options.toolbar`, so a web layout can render the same configuration itself. Use `separateBackground`, `hidesSharedBackground`, and badges to control the native iOS 26 grouping and appearance without recreating the toolbar in JavaScript.
 
 ### Header Composition API
 
