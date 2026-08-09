@@ -5,12 +5,11 @@ import {
   createElement,
   isValidElement,
   type ComponentType,
-  type PropsWithChildren,
   type ReactNode,
 } from 'react'
 import {
   STACK_TOOLBAR_CHILD,
-  StackToolbarImplementationProvider,
+  registerStackToolbarImplementation,
   type StackToolbarChildType,
   type StackToolbarImplementation,
   type StackToolbarProps,
@@ -92,10 +91,6 @@ export const stackToolbarImplementation: StackToolbarImplementation = {
   },
 }
 
-export function StackToolbarProvider({ children }: PropsWithChildren) {
-  return (
-    <StackToolbarImplementationProvider implementation={stackToolbarImplementation}>
-      {children}
-    </StackToolbarImplementationProvider>
-  )
+export function registerNativeStackToolbar() {
+  registerStackToolbarImplementation(stackToolbarImplementation)
 }

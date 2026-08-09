@@ -1,6 +1,10 @@
 // @vxrn/native - native navigation features for One
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
 
+import { registerNativeStackToolbar } from './StackToolbarImplementation'
+
+registerNativeStackToolbar()
+
 export { Color } from './color'
 export type { ColorType } from './color'
 
@@ -18,8 +22,6 @@ export type { MenuActionProps } from './menu'
 
 export { SplitView } from './split-view'
 export type { SplitViewProps, SplitViewColumnProps } from './split-view'
-
-export { StackToolbarProvider } from './StackToolbarProvider'
 
 export { StackToolbar } from './stack-toolbar/StackToolbar'
 export type {

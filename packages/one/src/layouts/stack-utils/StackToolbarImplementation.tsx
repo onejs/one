@@ -1,7 +1,7 @@
 'use client'
 
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-import { createContext, useContext, type PropsWithChildren, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import type { StackToolbarProps } from './StackToolbar.types'
 
@@ -26,20 +26,14 @@ export type StackToolbarImplementation = {
   render: (props: StackToolbarProps) => ReactNode
 }
 
-const StackToolbarImplementationContext =
-  createContext<StackToolbarImplementation | null>(null)
+let stackToolbarImplementation: StackToolbarImplementation | null = null
 
-export function StackToolbarImplementationProvider({
-  children,
-  implementation,
-}: PropsWithChildren<{ implementation: StackToolbarImplementation }>) {
-  return (
-    <StackToolbarImplementationContext.Provider value={implementation}>
-      {children}
-    </StackToolbarImplementationContext.Provider>
-  )
+export function registerStackToolbarImplementation(
+  implementation: StackToolbarImplementation
+) {
+  stackToolbarImplementation = implementation
 }
 
-export function useStackToolbarImplementation() {
-  return useContext(StackToolbarImplementationContext)
+export function getStackToolbarImplementation() {
+  return stackToolbarImplementation
 }

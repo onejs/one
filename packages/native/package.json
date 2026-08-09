@@ -7,7 +7,12 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "types/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/index.ts",
+    "./dist/esm/index.native.js",
+    "./dist/esm/index.mjs",
+    "./dist/cjs/index.cjs"
+  ],
   "files": [
     "src",
     "types",

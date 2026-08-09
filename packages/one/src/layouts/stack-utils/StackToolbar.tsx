@@ -8,7 +8,7 @@ import { NAVIGATOR_CONFIG } from '../../headless/children'
 import { useNavigation } from '../../router/useNavigation'
 import {
   STACK_TOOLBAR_CHILD,
-  useStackToolbarImplementation,
+  getStackToolbarImplementation,
   type StackToolbarImplementation,
 } from './StackToolbarImplementation'
 import { appendStackToolbarConfig } from './StackToolbar.shared'
@@ -38,7 +38,7 @@ export function appendStackToolbarPropsToOptions(
 
 function StackToolbarComponent(props: StackToolbarProps) {
   const navigation = useNavigation()
-  const implementation = useStackToolbarImplementation()
+  const implementation = getStackToolbarImplementation()
   const options = useMemo(
     () => appendStackToolbarPropsToOptions({}, props, implementation),
     [
