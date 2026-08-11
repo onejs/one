@@ -3,6 +3,11 @@
 
 globalThis['global'] = globalThis
 
+// --------------- web streams -------------------
+// expo fetch reads ReadableStream while normalizing FormData request bodies
+
+import 'web-streams-polyfill/polyfill/es5'
+
 // --------------- TextDecoder -------------------
 // for viem and other web3/crypto packages that need TextDecoder on React Native
 

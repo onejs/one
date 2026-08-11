@@ -4,7 +4,12 @@
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
-    "setup.js"
+    "setup.js",
+    "**/polyfills-mobile.*",
+    "web-streams-polyfill/polyfill/es5",
+    "@azure/core-asynciterator-polyfill",
+    "core-js/actual/url",
+    "core-js/actual/url-search-params"
   ],
   "type": "module",
   "exports": {
@@ -220,6 +225,7 @@
     "use-latest-callback": "^0.2.3",
     "vite": "^8.1.0",
     "vxrn": "workspace:*",
+    "web-streams-polyfill": "^4.3.0",
     "ws": "^8.21.0",
     "xxhashjs": "^0.2.2"
   },
