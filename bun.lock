@@ -431,6 +431,7 @@
         "use-latest-callback": "^0.2.3",
         "vite": "^8.1.0",
         "vxrn": "workspace:*",
+        "web-streams-polyfill": "^4.3.0",
         "ws": "^8.21.0",
         "xxhashjs": "^0.2.2",
       },
@@ -5131,6 +5132,8 @@
     "wcwidth": ["wcwidth@1.0.1", "", { "dependencies": { "defaults": "^1.0.3" } }, "sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg=="],
 
     "web-namespaces": ["web-namespaces@2.0.1", "", {}, "sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ=="],
+
+    "web-streams-polyfill": ["web-streams-polyfill@4.3.0", "", {}, "sha512-/Gnggvj9oSrEvJbDyyPtAnxBt5fGQM2iWOKQNu7ie1OxDgK40iZpyV3TKaRiEzVj1oA1UxKnEy9XPXh6PW3eVw=="],
 
     "webdriver": ["webdriver@9.23.0", "", { "dependencies": { "@types/node": "^20.1.0", "@types/ws": "^8.5.3", "@wdio/config": "9.23.0", "@wdio/logger": "9.18.0", "@wdio/protocols": "9.16.2", "@wdio/types": "9.20.0", "@wdio/utils": "9.23.0", "deepmerge-ts": "^7.0.3", "https-proxy-agent": "^7.0.6", "undici": "^6.21.3", "ws": "^8.8.0" } }, "sha512-XkZOhjoBOY7maKI3BhDF2rNiDne4wBD6Gw6VUnt4X9b7j9NtfzcCrThBlT0hnA8W77bWNtMRCSpw9Ajy08HqKg=="],
 
