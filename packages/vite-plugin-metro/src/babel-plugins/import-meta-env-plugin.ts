@@ -43,6 +43,16 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
       MemberExpression(path) {
         const { node } = path
 
+        // an env read is a value; the left side of an assignment is not one.
+        // Substituting there emits `"client" = "ssr"`, which babel rejects with
+        // `Property left of AssignmentExpression expected node to be of a type
+        // ["LVal"...] but instead got "StringLiteral"`, so the whole file fails
+        // to compile. `src/server/setServerGlobals.ts` does exactly that with
+        // `process.env.VITE_ENVIRONMENT = 'ssr'`, and it is why every build of
+        // One's own dist carries five broken server files. Leaving the
+        // assignment alone matches what a bundler define does with one.
+        if (path.parentPath.isAssignmentExpression({ left: node })) return
+
         const isImportMeta =
           t.isMetaProperty(node.object) &&
           node.object.meta.name === 'import' &&
