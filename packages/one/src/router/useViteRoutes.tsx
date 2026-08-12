@@ -283,6 +283,27 @@ export function globbedRoutesToRouteContext(
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err, new Error().stack)
+          // rendering an empty component keeps one bad route from taking down the
+          // app, but it also makes the failure invisible: nothing inside the route
+          // mounts and the only trace is the line above. in dev, hand it to the
+          // dev server so it reaches the terminal and the vite overlay. the global
+          // is installed by devtools/dev.mjs, so this is inert on native and in
+          // any build without it.
+          if (process.env.NODE_ENV === 'development') {
+            ;(
+              globalThis as typeof globalThis & {
+                __oneReportRouteLoadError?: (detail: {
+                  id: string
+                  message: string
+                  stack?: string
+                }) => void
+              }
+            ).__oneReportRouteLoadError?.({
+              id,
+              message: err instanceof Error ? err.message : String(err),
+              stack: err instanceof Error ? err.stack : undefined,
+            })
+          }
           loadedRoutes[id] = {
             default: () => null,
           }
