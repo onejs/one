@@ -1,4 +1,4 @@
-package dev.vxrn.native
+package dev.vxrn.nativebridge
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
