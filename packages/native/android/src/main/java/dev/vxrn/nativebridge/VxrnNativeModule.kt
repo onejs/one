@@ -1,7 +1,6 @@
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
-package dev.vxrn.native
+package dev.vxrn.nativebridge
 
-import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import com.facebook.react.bridge.ReactApplicationContext

@@ -1,12 +1,9 @@
 module.exports = {
   dependency: {
     platforms: {
-      ios: {
-        podspecPath: './VxrnNative.podspec',
-      },
       android: {
         sourceDir: './android',
-        packageImportPath: 'import dev.vxrn.native.VxrnNativePackage;',
+        packageImportPath: 'import dev.vxrn.nativebridge.VxrnNativePackage;',
         packageInstance: 'new VxrnNativePackage()',
       },
     },
