@@ -228,24 +228,35 @@ export function createVirtualEntry(options: {
           ? `linking: ${JSON.stringify(options.router.linking)},`
           : ''
 
-        // vite 8.1 bundledDev: the client is a single bundle, so the react-refresh
-        // preamble normally provided by /@one/dev.js (which imports /@vite/client —
-        // a module that doesn't exist in bundled mode) never installs $RefreshReg$,
-        // and every compiler-wrapped route module then throws "preamble was not
-        // loaded". install it here instead — this runs at entry-body time, before
-        // the lazily-globbed route modules evaluate. ('one' and /@react-refresh are
-        // node_modules / the runtime, so neither is refresh-wrapped.)
-        // `isBundled` is true for EVERY environment during build, so it alone can't
-        // gate this — a prod build would emit an import of /@react-refresh, which
-        // only exists while serving. dev mode is what makes the preamble necessary.
-        const isBundledClient =
-          this.environment.mode === 'dev' &&
-          this.environment.name === 'client' &&
-          !!(this.environment.config as any)?.isBundled
-        const refreshPreambleImport = isBundledClient
+        // the react-refresh preamble has to be installed before the first
+        // compiler-wrapped module evaluates, or that module throws "React refresh
+        // preamble was not loaded" and client init aborts. /@one/dev.js installs
+        // it, but it cannot be relied on to win: it is a DEFERRED module script,
+        // so it waits for the document to finish parsing, while the client entry
+        // is async and runs the moment it arrives. that race is decided by
+        // document size. a SPA shell is a few hundred bytes and dev.js wins; a
+        // prerendered +ssg/ssr page is hundreds of KB and the entry regularly
+        // wins, throws on the first route module, and leaves the page unhydrated
+        // and unthemed on the very same server. bundled dev has no working
+        // /@one/dev.js at all, since it imports /@vite/client, which does not
+        // exist there.
+        // so install it from the entry, whose body is the one point guaranteed to
+        // run before the lazily-globbed route modules in every dev client. the
+        // !$RefreshReg$ guard makes this a no-op when dev.js already won, and
+        // dev.js keeps its own install because injectIntoGlobalHook wants to run
+        // before react evaluates. ('one' and /@react-refresh are node_modules /
+        // the runtime, so neither is refresh-wrapped, and on the client the setup
+        // file is imported lazily rather than statically.)
+        // this must stay gated to a dev CLIENT. `isBundled` is true for EVERY
+        // environment during build, so it cannot gate this on its own, and a prod
+        // build emitting an import of /@react-refresh would reference a module
+        // that only exists while serving.
+        const isDevClient =
+          this.environment.mode === 'dev' && this.environment.name === 'client'
+        const refreshPreambleImport = isDevClient
           ? `import { injectIntoGlobalHook as __oneInjectRefresh } from '/@react-refresh'`
           : ''
-        const refreshPreambleSetup = isBundledClient
+        const refreshPreambleSetup = isDevClient
           ? `if (typeof window !== 'undefined' && !window.$RefreshReg$) {
   __oneInjectRefresh(window)
   window.$RefreshReg$ = () => {}

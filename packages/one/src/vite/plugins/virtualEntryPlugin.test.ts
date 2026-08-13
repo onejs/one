@@ -18,11 +18,16 @@ vi.mock('@vxrn/compiler', () => ({
   configuration: { enableNativewind: false },
 }))
 
-function loadEntry(plugin: any, envName: string, command: 'serve' | 'build' = 'build') {
+function loadEntry(
+  plugin: any,
+  envName: string,
+  command: 'serve' | 'build' = 'build',
+  envMode: 'dev' | 'build' = command === 'serve' ? 'dev' : 'build'
+) {
   // simulate configResolved so isDevMode is set
   plugin.configResolved?.({ root: '', command })
   const ctx = {
-    environment: { name: envName },
+    environment: { name: envName, mode: envMode },
   }
   return plugin.load.call(ctx, '\0virtual:one-entry')
 }
@@ -232,6 +237,50 @@ export const registerPreloadedRoute = () => {}`
       expect(code).toContain(
         'linking: {"scheme":"threepunchconvo","prefixes":["threepunchconvo://app"]}'
       )
+    })
+  })
+
+  describe('react-refresh preamble', () => {
+    const base = {
+      root: 'app',
+      flags: {},
+      routeIndex: {
+        getPaths: () => [],
+        update: () => false,
+      },
+    }
+
+    // /@one/dev.js also installs the preamble, but it is a deferred module
+    // script and the client entry is async, so on a large prerendered document
+    // the entry wins and every compiler-wrapped route module throws "React
+    // refresh preamble was not loaded". the entry has to install it itself so
+    // the result does not depend on which script arrives first.
+    it('dev client installs the preamble before route modules load', () => {
+      const code = loadEntry(createVirtualEntry(base), 'client', 'serve')
+      expect(code).toContain(`from '/@react-refresh'`)
+      expect(code).toContain('window.$RefreshReg$ = () => {}')
+      // must be guarded so it is a no-op when /@one/dev.js already won the race
+      expect(code).toContain(`!window.$RefreshReg$`)
+      // and it has to sit in the entry body, ahead of the lazily-globbed routes
+      expect(code.indexOf('__oneInjectRefresh(window)')).toBeLessThan(
+        code.indexOf('createApp(')
+      )
+    })
+
+    it('production build emits no reference to the dev-only refresh runtime', () => {
+      const code = loadEntry(createVirtualEntry(base), 'client', 'build')
+      // /@react-refresh only exists while serving, so a build that imported it
+      // would ship a broken specifier
+      expect(code).not.toContain('/@react-refresh')
+      expect(code).not.toContain('$RefreshReg$')
+    })
+
+    it('server and native entries never get the preamble', () => {
+      for (const envName of ['ssr', 'ios', 'android']) {
+        const code = loadEntry(createVirtualEntry(base), envName, 'serve')
+        expect(code).not.toContain('/@react-refresh')
+        expect(code).not.toContain('$RefreshReg$')
+      }
     })
   })
 })
