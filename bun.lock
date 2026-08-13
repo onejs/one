@@ -1064,7 +1064,6 @@
         "react-native-web": "^0.21.2",
       },
       "devDependencies": {
-        "puppeteer": "^24.10.0",
         "typescript": "^5.7.3",
         "vite": "^8.1.0",
         "vitest": "^4.1.0",
@@ -1401,6 +1400,7 @@
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "@expo/plist@0.8.1": "patches/@expo%2Fplist@0.8.1.patch",
+    "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
   },
   "overrides": {
@@ -4479,8 +4479,6 @@
 
     "pump": ["pump@3.0.3", "", { "dependencies": { "end-of-stream": "^1.1.0", "once": "^1.3.1" } }, "sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA=="],
 
-    "puppeteer": ["puppeteer@24.36.0", "", { "dependencies": { "@puppeteer/browsers": "2.11.1", "chromium-bidi": "13.0.1", "cosmiconfig": "^9.0.0", "devtools-protocol": "0.0.1551306", "puppeteer-core": "24.36.0", "typed-query-selector": "^2.12.0" }, "bin": { "puppeteer": "lib/cjs/puppeteer/node/cli.js" } }, "sha512-BD/VCyV/Uezvd6o7Fd1DmEJSxTzofAKplzDy6T9d4WbLTQ5A+06zY7VwO91ZlNU22vYE8sidVEsTpTrKc+EEnQ=="],
-
     "puppeteer-core": ["puppeteer-core@24.36.0", "", { "dependencies": { "@puppeteer/browsers": "2.11.1", "chromium-bidi": "13.0.1", "debug": "^4.4.3", "devtools-protocol": "0.0.1551306", "typed-query-selector": "^2.12.0", "webdriver-bidi-protocol": "0.4.0", "ws": "^8.19.0" } }, "sha512-P3Ou0MAFDCQ0dK1d9F9+8jTrg6JvXjUacgG0YkJQP4kbEnUOGokSDEMmMId5ZhXD5HwsHM202E9VwEpEjWfwxg=="],
 
     "qs": ["qs@6.15.2", "", { "dependencies": { "side-channel": "^1.1.0" } }, "sha512-Rzq0KEyX/w/tEybncDgdkZrJgVUsUMk3xjh3t5bv3S1HTAtg+uOYt72+ZfwiQwKdysThkTBdL/rTi6HDmX9Ddw=="],
@@ -5874,8 +5872,6 @@
     "proxy-agent/lru-cache": ["lru-cache@7.18.3", "", {}, "sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA=="],
 
     "proxy-agent/proxy-from-env": ["proxy-from-env@1.1.0", "", {}, "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg=="],
-
-    "puppeteer/cosmiconfig": ["cosmiconfig@9.0.0", "", { "dependencies": { "env-paths": "^2.2.1", "import-fresh": "^3.3.0", "js-yaml": "^4.1.0", "parse-json": "^5.2.0" }, "peerDependencies": { "typescript": ">=4.9.5" }, "optionalPeers": ["typescript"] }, "sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg=="],
 
     "r-json/w-json": ["w-json@1.3.10", "", {}, "sha512-XadVyw0xE+oZ5FGApXsdswv96rOhStzKqL53uSe5UaTadABGkWIg1+DTx8kiZ/VqTZTBneoL0l65RcPe4W3ecw=="],
 

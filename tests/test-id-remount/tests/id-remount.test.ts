@@ -1,43 +1,8 @@
-// NOTE THIS IS TRUE BUT IDK HOW TO DO THIS IN CI/CD??
-
-// import puppeteer, { type Browser, type Page } from 'puppeteer'
-// import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-
-// /**
-//  * Hydration ID Remount Tests
-//  *
-//  * These tests use Puppeteer with real Chrome (NOT Playwright's Chromium)
-//  * because the hydration bug only reproduces in real browsers.
-//  *
-//  * The bug: useId() changes from SSR format (uppercase R like «Rd6qlj»)
-//  * to client format (lowercase r like «r0») during hydration, which means
-//  * React abandoned hydration and remounted the component tree.
-//  */
-
-// const serverUrl = process.env.ONE_SERVER_URL
-
-// let browser: Browser
-
-// beforeAll(async () => {
-//   browser = await puppeteer.launch({
-//     headless: true,
-//     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-//     args: ['--no-sandbox'],
-//   })
-// })
-
-// afterAll(async () => {
-//   await browser.close()
-// })
-
-import { type Browser, type BrowserContext, chromium } from 'playwright'
+import { type Browser, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 /**
  * Hydration ID Remount Tests
- *
- * These tests use Puppeteer with real Chrome (NOT Playwright's Chromium)
- * because the hydration bug only reproduces in real browsers.
  *
  * The bug: useId() changes from SSR format (uppercase R like «Rd6qlj»)
  * to client format (lowercase r like «r0») during hydration, which means
@@ -47,11 +12,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 const serverUrl = process.env.ONE_SERVER_URL
 
 let browser: Browser
-let context: BrowserContext
 
 beforeAll(async () => {
   browser = await chromium.launch({ headless: true })
-  context = await browser.newContext()
 })
 
 // helper to retry page.goto on transient network errors (common in CI)
