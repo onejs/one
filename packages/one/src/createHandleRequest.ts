@@ -190,7 +190,8 @@ export async function resolveLoaderRoute(
 
   const isNativeRequest =
     url.searchParams.get('platform') === 'ios' ||
-    url.searchParams.get('platform') === 'android'
+    url.searchParams.get('platform') === 'android' ||
+    url.searchParams.get('platform') === 'native'
 
   const response = await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {

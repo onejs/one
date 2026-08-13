@@ -485,11 +485,22 @@ export function createFileSystemRouterPlugin(
             throw new Error(`No transformed js returned`)
           }
 
+          const platform = url.searchParams.get('platform')
+          const isNativeRequest =
+            platform === 'ios' || platform === 'android' || platform === 'native'
+
           // the client tree-shake plugin replaces loader exports with stubs
           // like "export function loader()". if no stub exists, this route has
           // no loader - skip the SSR module import to avoid evaluating modules
-          // with potentially SSR-incompatible deps (e.g. tamagui in SSR)
-          if (!/export function loader\(\)/.test(transformedJS)) {
+          // with potentially SSR-incompatible deps (e.g. tamagui in SSR).
+          // never take this shortcut for native requests: native runs loader
+          // responses as CJS on hermes, so returning the vite-transformed web
+          // ESM (import statements + HMR preamble) is unparseable there and
+          // silently drops the route's loader data. the stub can also be
+          // legitimately absent for loader shapes the tree-shaker doesn't
+          // rewrite (e.g. `export { x as loader } from './loaders'`), which the
+          // module runner import below resolves fine.
+          if (!isNativeRequest && !/export function loader\(\)/.test(transformedJS)) {
             return transformedJS
           }
 
@@ -562,9 +573,7 @@ export function createFileSystemRouterPlugin(
             })
           }
 
-          const platform = url.searchParams.get('platform')
-
-          if (platform === 'ios' || platform === 'android' || platform === 'native') {
+          if (isNativeRequest) {
             // Need to transpile to CommonJS for React Native
 
             const environment =

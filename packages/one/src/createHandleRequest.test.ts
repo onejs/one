@@ -242,6 +242,76 @@ describe('createHandleRequest', () => {
     })
   })
 
+  describe('loader responses for ?platform=native requests', () => {
+    // in dev, useLoader on native fetches loaders with ?platform=native and
+    // runs the response body as CJS on hermes - a web ESM body
+    // ("export function loader()...") is a parse error there, which the
+    // client swallows (the route silently loses its loader data)
+
+    it('should serve loader bodies as CJS for platform=native', async () => {
+      const mockHandlersWithLoader = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleLoader: vi
+          .fn()
+          .mockResolvedValue('export function loader() { return {"a":1} }'),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithLoader, {
+        routerRoot: '/app',
+      })
+
+      const response = (await handler(
+        createRequest('/assets/profile_123_vxrn_loader.js?platform=native')
+      )) as Response | null
+
+      expect(response).not.toBeNull()
+      const body = await response!.text()
+      expect(body).toContain('exports.loader=')
+      expect(body).not.toContain('export function loader')
+    })
+
+    it('should serve redirect loader bodies as CJS for platform=native', async () => {
+      const mockHandlersWithLoader = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleLoader: vi.fn().mockRejectedValue(
+          new Response(null, {
+            status: 302,
+            headers: { location: '/login' },
+          })
+        ),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithLoader, {
+        routerRoot: '/app',
+      })
+
+      const response = (await handler(
+        createRequest('/assets/profile_123_vxrn_loader.js?platform=native')
+      )) as Response | null
+
+      expect(response).not.toBeNull()
+      const body = await response!.text()
+      expect(body).toContain('exports.loader=')
+      expect(body).toContain('__oneRedirect')
+    })
+
+    it('should keep serving ESM loader bodies to web requests', async () => {
+      const esmBody = 'export function loader() { return {"a":1} }'
+      const mockHandlersWithLoader = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleLoader: vi.fn().mockResolvedValue(esmBody),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithLoader, {
+        routerRoot: '/app',
+      })
+
+      const response = (await handler(
+        createRequest('/assets/profile_123_vxrn_loader.js')
+      )) as Response | null
+
+      expect(response).not.toBeNull()
+      expect(await response!.text()).toBe(esmBody)
+    })
+  })
+
   describe('dynamic route matching', () => {
     it('should match dynamic routes for regular paths without extensions', async () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
