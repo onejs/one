@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { configuration } from './configure'
 
 /**
@@ -36,11 +37,45 @@ function getCacheDir(): string {
   return cacheDir
 }
 
-// hash config state so cache invalidates when compiler/reanimated/nativewind toggles change
+// the cache persists in node_modules/.vxrn/compiler-cache and entries are
+// validated only against input file mtime/content + the config fingerprint.
+// transform output also depends on the compiler implementation itself, so the
+// fingerprint must include the compiler version - otherwise entries written by
+// an older @vxrn/compiler survive an upgrade and serve stale transforms.
+function getOwnVersion(): string {
+  try {
+    const dir =
+      typeof __dirname !== 'undefined'
+        ? // CommonJS
+          __dirname
+        : // ESM
+          dirname(fileURLToPath(import.meta.url))
+    // compiled output runs from dist/{esm,cjs}, two levels below the package
+    // root; straight from src (tests) it's one level below
+    for (const relativeRoot of ['..', join('..', '..')]) {
+      const candidate = join(dir, relativeRoot, 'package.json')
+      if (existsSync(candidate)) {
+        const packageJson = JSON.parse(readFileSync(candidate, 'utf-8'))
+        if (packageJson.name === '@vxrn/compiler' && packageJson.version) {
+          return packageJson.version
+        }
+      }
+    }
+  } catch {
+    // fall through to the static fallback marker
+  }
+  return 'unknown'
+}
+
+const compilerVersion = getOwnVersion()
+
+// hash compiler version + config state so cache invalidates when the compiler
+// is upgraded or the compiler/reanimated/nativewind toggles change
 function getConfigFingerprint(): string {
   return createHash('sha1')
     .update(
       JSON.stringify({
+        version: compilerVersion,
         compiler: configuration.enableCompiler,
         reanimated: configuration.enableReanimated,
         nativewind: configuration.enableNativewind,
