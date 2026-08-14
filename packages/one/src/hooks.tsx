@@ -136,6 +136,17 @@ export function usePathname(): string {
       // no als context available, fall through
     }
   }
+  // a 404 render is route-masked on the client: createApp points the router at
+  // +not-found via history.state.__tempLocation while the address bar keeps the
+  // original url. the server rendered with that original url (loaderProps.path
+  // above), so hydration has to read it here too or pathname-driven ui renders
+  // differently on each side and hydration fails
+  if (typeof window !== 'undefined') {
+    const historyState = window.history?.state
+    if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
+      return normalizeRoutePathname(window.location.pathname)
+    }
+  }
   return getPathnameWithRecoveredDynamicSegment(routeInfoPathname)
 }
 

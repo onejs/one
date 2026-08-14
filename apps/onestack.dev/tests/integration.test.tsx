@@ -116,11 +116,17 @@ test('missing blog post shows 404 page instead of crashing', async () => {
   // wait for navigation to complete and potential redirects
   await page.waitForLoadState('networkidle')
 
-  // should not have destructuring errors or other JS crashes
-  const hasDestructuringError = consoleErrors.some(
-    (msg) => msg.includes('Cannot destructure') || msg.includes('undefined')
+  // should not crash or fatally fail hydration. react's non-fatal attribute
+  // diagnostics ("A tree hydrated but...") legitimately contain the word
+  // "undefined" in prop dumps, so match crash signatures, not that word alone
+  const hasCrashError = consoleErrors.some(
+    (msg) =>
+      msg.includes('Cannot destructure') ||
+      msg.includes('Cannot read properties of undefined') ||
+      msg.includes('is not a function') ||
+      msg.includes('Hydration failed')
   )
-  expect(hasDestructuringError).toBe(false)
+  expect(hasCrashError).toBe(false)
 
   // should show 404 page content
   const pageContent = await page.content()
