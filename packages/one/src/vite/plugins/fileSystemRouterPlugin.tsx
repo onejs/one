@@ -393,6 +393,16 @@ export function createFileSystemRouterPlugin(
             // for 404 with notFoundRoutePath, render the +not-found page at that path
             const renderPath = notFoundRoutePath || loaderProps?.path || '/'
 
+            // a prod build prerenders +not-found at its own route path, so ssr
+            // hooks reading loaderProps.path (usePathname) see that path. align
+            // dev's live 404 render with it, or the dev server renders
+            // pathname-driven ui with the failing url while the hydrating
+            // client routes to +not-found and the trees never match
+            if (notFoundRoutePath && loaderProps) {
+              loaderProps = { ...loaderProps, path: notFoundRoutePath }
+              setServerContext({ loaderProps })
+            }
+
             let html = await render({
               mode: isSpaShell
                 ? 'spa-shell'
