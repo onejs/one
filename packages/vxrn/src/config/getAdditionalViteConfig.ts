@@ -44,6 +44,30 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
     optimizeDeps: {},
 
     server: {
+      // native build output never enters the module graph, and watching it is
+      // actively harmful. cocoapods materializes `ios/Pods` as a forest of
+      // symlinked C++ headers (boost, folly, React). chokidar follows symlinks
+      // and registers one fsevents listener per link, all on the single watcher
+      // it consolidates at the project root. a monorepo with a handful of iOS
+      // projects measured 227k listeners, 99% of them Pods headers.
+      // chokidar's raw fsevents callback fans every event out to every listener
+      // before any ignore check runs, so a single unrelated file write cost
+      // 227k closure calls plus a string concat and substring search each:
+      // enough to pin the dev server's main thread at 100% cpu and churn
+      // gigabytes of short-lived strings. ignoring these paths keeps the
+      // initial walk from ever descending into that tree, which is the only
+      // thing that actually stops the fan-out.
+      watch: {
+        ignored: [
+          '**/ios/Pods/**',
+          '**/ios/build/**',
+          '**/android/build/**',
+          '**/android/app/build/**',
+          '**/android/.gradle/**',
+          '**/.expo/**',
+        ],
+      },
+
       // preflightContinue lets OPTIONS fall through Vite's cors middleware so
       // user middleware / api route OPTIONS handlers get to shape the preflight
       // response — same as prod where Hono dispatches OPTIONS to the api handler
