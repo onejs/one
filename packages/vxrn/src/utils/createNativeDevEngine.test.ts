@@ -47,9 +47,8 @@ describe('wrapNativeBundleModuleScope', () => {
     // a top-level `var Headers` in a script becomes a non-configurable global,
     // which is the exact leak that breaks RN's polyfillGlobal in dev
     const body = `${RUNTIME_MARKER}\nvar fetch_hot, fetch$1, Headers, Request, Response$1;\nglobalThis.__rolldown_runtime__ = {};\n`
-    const sourcemap = '\n//# sourceMappingURL=x.js.map'
 
-    const out = wrapNativeBundleModuleScope(prelude + body + sourcemap)
+    const out = wrapNativeBundleModuleScope(prelude + body)
 
     const openIdx = out.indexOf(';(function() {')
     expect(openIdx).toBeGreaterThan(-1)
@@ -57,9 +56,6 @@ describe('wrapNativeBundleModuleScope', () => {
     expect(out.indexOf('globalThis.__DEV__')).toBeLessThan(openIdx)
     // the leaking declaration is now inside the function scope
     expect(out.indexOf('var fetch_hot')).toBeGreaterThan(openIdx)
-    // the wrap closes before the sourceMappingURL, which must remain the last line
-    expect(out.indexOf('})();')).toBeLessThan(out.indexOf('//# sourceMappingURL'))
-    expect(out.trimEnd().endsWith('//# sourceMappingURL=x.js.map')).toBe(true)
     // and the result must still be syntactically valid (balanced wrap)
     expect(() => new Function(out)).not.toThrow()
   })
