@@ -24,7 +24,6 @@ interface NativeDevEngineResult {
     engine: any;
     getBundle: () => Promise<{
         code: string;
-        map?: string;
     }>;
     close: () => Promise<void>;
 }
@@ -71,6 +70,8 @@ interface NativeBuildOptions {
     entryFile?: string;
     assetsDest?: string;
     plugins?: Plugin[];
+    /** only pass when the map is written somewhere — it costs a second copy of the bundle */
+    sourcemap?: boolean;
 }
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
     code: string;

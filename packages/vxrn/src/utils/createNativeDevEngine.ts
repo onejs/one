@@ -52,7 +52,7 @@ interface NativeDevEngineOptions {
 
 interface NativeDevEngineResult {
   engine: any
-  getBundle: () => Promise<{ code: string; map?: string }>
+  getBundle: () => Promise<{ code: string }>
   close: () => Promise<void>
 }
 
@@ -242,10 +242,10 @@ function getNativePlugins(
 }
 
 // shared output options for native builds
-function getNativeOutputOptions(prelude: string): OutputOptions {
+function getNativeOutputOptions(prelude: string, sourcemap: boolean): OutputOptions {
   return {
     format: 'esm',
-    sourcemap: true,
+    sourcemap,
     intro: prelude,
     codeSplitting: false,
     strictExecutionOrder: true,
@@ -323,16 +323,7 @@ export function wrapNativeBundleModuleScope(code: string): string {
   const idx = code.indexOf(marker)
   if (idx === -1) return code
 
-  const open = ';(function() {\n'
-  const close = '\n})();\n'
-
-  // keep the sourceMappingURL comment as the final line if present
-  const sm = code.match(/\n\/\/# sourceMappingURL=[^\n]*\s*$/)
-  if (sm) {
-    const smIdx = code.lastIndexOf(sm[0])
-    return code.slice(0, idx) + open + code.slice(idx, smIdx) + close + code.slice(smIdx)
-  }
-  return code.slice(0, idx) + open + code.slice(idx) + close
+  return code.slice(0, idx) + ';(function() {\n' + code.slice(idx) + '\n})();\n'
 }
 
 /**
@@ -408,7 +399,7 @@ export async function createNativeDevEngine(
     serverUrl: serverUrl || `http://${host}:${port}`,
   })
 
-  let currentBundle: { code: string; map?: string } | null = null
+  let currentBundle: { code: string } | null = null
   let bundleResolve: ((value: any) => void) | null = null
   let bundlePromise: Promise<any> | null = null
 
@@ -449,7 +440,12 @@ export async function createNativeDevEngine(
   }
 
   const outputOptions: OutputOptions = {
-    ...getNativeOutputOptions(prelude),
+    // no dev sourcemap: nothing consumes one. the bundle handler serves .code and
+    // /symbolicate isn't implemented, and the map wouldn't line up anyway — the
+    // served code is post-processed (runtime downleveling, IIFE wrap) after the
+    // map is generated. generating it cost ~90ms and ~250MB RSS per rebuild on a
+    // 6MB bundle, held for the life of the dev server, per platform.
+    ...getNativeOutputOptions(prelude, false),
     // connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
 try {
@@ -503,13 +499,8 @@ try {
         // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
         code = wrapNativeBundleModuleScope(code)
 
-        currentBundle = {
-          code,
-          map: chunk.map?.toString(),
-        }
-        console.info(
-          `[vxrn] native bundle ready (${Math.round(chunk.code.length / 1024)}KB)`
-        )
+        currentBundle = { code }
+        console.info(`[vxrn] native bundle ready (${Math.round(code.length / 1024)}KB)`)
         if (bundleResolve) {
           bundleResolve(currentBundle)
           bundleResolve = null
@@ -587,6 +578,8 @@ interface NativeBuildOptions {
   entryFile?: string
   assetsDest?: string
   plugins?: Plugin[]
+  /** only pass when the map is written somewhere — it costs a second copy of the bundle */
+  sourcemap?: boolean
 }
 
 export async function buildNativeBundle(
@@ -600,6 +593,7 @@ export async function buildNativeBundle(
     entryFile,
     assetsDest,
     plugins: userPlugins = [],
+    sourcemap = false,
   } = options
 
   const { build } = await import('rolldown')
@@ -636,7 +630,7 @@ export async function buildNativeBundle(
       ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
       ...userPlugins,
     ],
-    output: getNativeOutputOptions(prelude),
+    output: getNativeOutputOptions(prelude, sourcemap),
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
 
@@ -646,7 +640,12 @@ export async function buildNativeBundle(
 
   let code = postProcessNativeBundle(chunk.code)
   code = await downlevelClassFieldsInBundle(code)
-  return { code, map: chunk.map?.toString() }
+  // note: this map is only as good as the chunk's — it describes chunk.code, and
+  // the two post-process passes above shift lines. the per-module transforms
+  // (vxrnCompilerPlugin, hermesCompatSWCPlugin) also return code without maps, so
+  // module positions are post-babel/post-swc. good enough for file attribution,
+  // not for exact line/column symbolication.
+  return { code, map: sourcemap ? chunk.map?.toString() : undefined }
 }
 
 const VIRTUAL_NATIVE_ENTRY = 'virtual:native-entry'

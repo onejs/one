@@ -66,6 +66,7 @@ export async function buildBundle(
     // 'http://one-server.example.com' and runtime loader fetches fail in prod.
     serverUrl: process.env.ONE_SERVER_URL,
     assetsDest,
+    sourcemap: !!args.sourcemapOutput,
   })
   const builtBundle = result.code
 
