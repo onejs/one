@@ -20,6 +20,35 @@ function setupOrphanDetection() {
   interval.unref()
 }
 
+/**
+ * Vite's dep optimizer allocates gigabytes of short-lived data while pre-bundling
+ * and then stops allocating entirely. V8 only runs a major collection in response
+ * to allocation pressure, so nothing ever collects that burst and the dev server
+ * keeps the whole thing for the rest of its life. Measured cold on the one-basic
+ * example: the heap idles at 1470MB, stays there across 4+ minutes of idle, and
+ * drops to 167MB after a single collection.
+ *
+ * `waitForRequestsIdle` resolves when the module crawl ends, which is the point
+ * the optimizer stops discovering, so it's the one moment we know the burst is
+ * over and nothing is waiting on us.
+ */
+function collectStartupGarbage(server: ViteDevServer) {
+  const webEnvironmentsIdle = ['client', 'ssr']
+    .map((name) => server.environments[name])
+    .filter(Boolean)
+    .map((environment) => environment.waitForRequestsIdle())
+
+  void Promise.all(webEnvironmentsIdle).then(async () => {
+    // the optimizer still runs one final pre-bundle pass after the crawl ends
+    await new Promise((res) => setTimeout(res, 2_000).unref())
+    const [v8, vm] = await Promise.all([import('node:v8'), import('node:vm')])
+    v8.setFlagsFromString('--expose-gc')
+    const gc = vm.runInNewContext('gc')
+    v8.setFlagsFromString('--no-expose-gc')
+    gc()
+  })
+}
+
 export type DevOptions = VXRNOptions & {
   clean?: boolean
   /**
@@ -197,6 +226,8 @@ export default defineConfig({
       })
 
       await viteServer.listen()
+
+      collectStartupGarbage(viteServer)
 
       const totalStartupTime = Date.now() - devStartTime
 
