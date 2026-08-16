@@ -283,4 +283,21 @@ describe('createHandleRequest', () => {
       expect(mockHandlers.handlePage).toHaveBeenCalled()
     })
   })
+
+  describe('requests without a Host header', () => {
+    // every other test here builds its request through createRequest, which
+    // always sets Host, and an incoming request on a real server always carries
+    // one. a request constructed by hand does not, and `host` is a forbidden
+    // header name in a browser so it cannot be added there. resolving the URL
+    // against an empty-string base threw "Invalid base URL" even though the
+    // request URL was already absolute, which took down every embedder that
+    // builds its own Request.
+    it('resolves an absolute request URL with no Host header', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+      const request = new Request('http://localhost:3000/some-page')
+      expect(request.headers.get('host')).toBeNull()
+      await expect(handler(request)).resolves.not.toThrow()
+      expect(mockHandlers.handlePage).toHaveBeenCalled()
+    })
+  })
 })
