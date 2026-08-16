@@ -328,10 +328,14 @@ export function getURLfromRequestURL(request: Request) {
   let url = _urlCache.get(request)
   if (url) return url
   const urlString = request.url || ''
-  url = new URL(
-    urlString || '',
-    request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
-  )
+  const host = request.headers.get('host')
+  // `undefined`, never '': a base is only optional when it is ABSENT. passing
+  // an empty string is passing an invalid base, and URL throws on it even when
+  // urlString is already absolute. an incoming cloudflare/node request always
+  // carries Host so this never showed there, but a Request built by hand has
+  // no Host (it is a forbidden header name in a browser) and every call threw
+  // "Invalid base URL".
+  url = new URL(urlString || '', host ? `http://${host}` : undefined)
   _urlCache.set(request, url)
   return url
 }
