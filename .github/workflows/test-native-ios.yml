@@ -4,6 +4,9 @@ env:
   simulator_ios_version: 26.4
   # Name of the simulator device to use.
   simulator_device_name: iPhone 17 Pro
+  # Pinned so a run never picks up an incompatible appium/driver pair.
+  appium_version: 3.6.0
+  appium_xcuitest_version: 12.5.0
 
 on:
   push:
@@ -165,34 +168,25 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
         run: xcrun simctl boot $SIMULATOR_UDID
 
-      - name: Cache Appium
-        id: appium-cache
-        uses: actions/cache@v5
-        with:
-          path: |
-            ~/.appium
-            /usr/local/lib/node_modules/appium
-            /usr/local/bin/appium
-          key: appium-xcuitest-${{ runner.os }}-v3
-
       - name: Install Appium
-        if: steps.appium-cache.outputs.cache-hit != 'true'
+        env:
+          APPIUM_VERSION: ${{ env.appium_version }}
+          APPIUM_XCUITEST_VERSION: ${{ env.appium_xcuitest_version }}
         run: |
-          npm install -g appium
-          appium driver install xcuitest
-
-      - name: Verify Appium
-        run: |
-          # ensure cached appium is functional (symlink can break)
-          if ! appium --version 2>/dev/null; then
-            echo "appium not functional, reinstalling..."
-            npm install -g appium
-            appium driver install xcuitest 2>/dev/null || appium driver update xcuitest
-          fi
-          # ensure xcuitest driver is up to date
-          appium driver update xcuitest 2>/dev/null || true
+          # deliberately not cached: the xcuitest driver resolves `appium` from
+          # its own node_modules under ~/.appium, so a restored tree drifts from
+          # whatever `npm install -g appium` put on this runner. that drift
+          # still lets the server start, then fails every session with
+          # "Could not find a driver for automationName 'XCUITest'". a clean
+          # pinned install takes ~2min and can't drift.
+          npm install -g appium@$APPIUM_VERSION
+          appium driver install xcuitest@$APPIUM_XCUITEST_VERSION
           appium --version
           appium driver list --installed
+          # loading the driver is the only thing that proves the install is
+          # usable; `appium --version` and `driver list` both pass on a tree
+          # whose driver can't import appium.
+          cd ~/.appium && node --input-type=module -e 'await import("appium-xcuitest-driver")'
 
       - name: Start Appium Server
         run: |
