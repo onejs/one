@@ -29,7 +29,7 @@
     ]
   },
   "scripts": {
-    "audit": "bun audit --audit-level high --ignore GHSA-3ppc-4f35-3m26 --ignore GHSA-395f-4hp3-45gv --ignore GHSA-3jxr-9vmj-r5cp --ignore GHSA-52cp-r559-cp3m --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx",
+    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -100,12 +100,13 @@
     "@react-navigation/native": "7.3.16",
     "react-native-reanimated": "4.5.1",
     "sharp": "0.35.3",
+    "image-size": "1.2.1",
     "minimatch": "3.1.5",
     "brace-expansion": "5.0.9",
     "node-forge": "1.4.0",
     "picomatch": "^4.0.4",
     "piscina": "4.9.3",
-    "shell-quote": "1.8.4",
+    "shell-quote": "1.10.0",
     "cross-spawn": "7.0.6",
     "got": "11.8.5",
     "hono": "4.12.25",
@@ -178,12 +179,13 @@
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
-    "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch"
+    "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
+    "image-size@1.2.1": "patches/image-size@1.2.1.patch"
   },
   "dependencies": {
     "axios": "1.18.1",
     "one": "workspace:*",
-    "shell-quote": "1.8.4",
+    "shell-quote": "1.10.0",
     "vxrn": "workspace:*"
   }
 }

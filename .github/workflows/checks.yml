@@ -34,12 +34,10 @@ jobs:
           install-playwright: 'false'
 
       - name: Security Audit
-        # GHSA-3ppc-4f35-3m26: minimatch ReDoS - can't force resolve without breaking depcheck
-        # 2026-07-20 batch, all quadratic-CPU DoS in dev-only tooling paths, no fixed
-        # transitive ranges available yet:
-        # GHSA-395f-4hp3-45gv shell-quote (npm-run-all/launch-editor)
-        # GHSA-3jxr-9vmj-r5cp brace-expansion (ultra-runner/babel-jest)
-        # GHSA-52cp-r559-cp3m js-yaml (vite plugins/rn cli)
+        # image-size and extract-zip have no fixed releases; both are patched in patchedDependencies.
+        # recheck GHSA-w3rx-r6r6-pgpr, GHSA-5p2g-fcmc-qvqq, and GHSA-jmr9-qjv8-65gv by 2026-09-18.
+        # GHSA-ggr8-5vv4-36mx is dev-only through webdriverio, which still pins deepmerge-ts 7.x;
+        # recheck webdriverio support for the fixed deepmerge-ts 8.x by 2026-09-18.
         run: bun run audit
 
       - name: Check
