@@ -44,6 +44,7 @@ import {
 } from './findRouteNode'
 import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
+import { isStateAwaitingNavigatorMount } from './isStateAwaitingNavigatorMount'
 import { getRouteArtifactPaths } from './getRouteArtifactPath'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
@@ -495,6 +496,18 @@ export function getSortedRoutes() {
 export function updateState(state: OneRouter.ResultState, nextStateParam = state) {
   rootState = state
   nextState = nextStateParam
+
+  // a layout that renders anything other than its <Slot /> leaves the navigator
+  // below it unmounted, and react-navigation then publishes a state truncated at
+  // that layout. the URL is unchanged, so route info must not move: serializing
+  // the truncation reports `/` for `/project/x/main`, and a layout whose gate
+  // reads the pathname then flips on its own report, forever.
+  if (isStateAwaitingNavigatorMount(state, routeNode)) {
+    if (process.env.ONE_DEBUG_ROUTER) {
+      console.info(`[one] 🧭 keeping ${routeInfo?.pathname}: a navigator has not mounted`)
+    }
+    return
+  }
 
   const nextRouteInfo = getRouteInfo(state)
   if (pendingNavigationPathname === nextRouteInfo.pathname) {
