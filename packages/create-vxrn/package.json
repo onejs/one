@@ -1,6 +1,6 @@
 {
   "name": "create-vxrn",
-  "version": "1.24.5",
+  "version": "1.24.6",
   "bin": {
     "create-vxrn": "run.js"
   },
