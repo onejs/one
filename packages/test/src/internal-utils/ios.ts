@@ -478,7 +478,13 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
-    connectionRetryTimeout: 240 * 1000,
+    // the first session of a run pays the whole cold start: install WDA on the
+    // simulator, launch it, then launch the app. the driver already retries WDA
+    // startup on its own (wdaLaunchTimeout x wdaStartupRetries, 180s by
+    // default), so this has to sit above that budget. at 240s a slow CI runner
+    // aborts a session the server is still legitimately starting, and the next
+    // attempt repeats the entire cold start, which cost one CI job 8 minutes.
+    connectionRetryTimeout: 420 * 1000,
     connectionRetryCount: 3,
     logLevel: 'warn' as const,
     capabilities,
