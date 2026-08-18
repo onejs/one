@@ -74,7 +74,10 @@ jobs:
       - build-ios-test-container-dev
       - build-ios-test-container-prod
     runs-on: macos-26
-    timeout-minutes: 45
+    # a slow runner roughly doubles this job: dev/metro ran 24m48s on 2026-08-15
+    # and 45m51s on 2026-08-18, where the metro dev bundle alone went 22s -> 56s.
+    # 45 killed that job 10 seconds after its tests had all passed.
+    timeout-minutes: 60
     # rolldown:prod is experimental — don't fail the workflow on it.
     # (prod used to crash on launch with a SIGSEGV from an upstream RN
     # TurboModule/Hermes concurrency bug — now fixed via a builtInDepPatches
@@ -190,7 +193,8 @@ jobs:
 
       - name: Start Appium Server
         run: |
-          appium > /tmp/appium.log 2>&1 &
+          # timestamps make the log usable for finding where a slow session went
+          appium --log-timestamp > /tmp/appium.log 2>&1 &
           # wait for appium to be ready
           for i in {1..30}; do
             if curl -s http://localhost:4723/status | grep -q '"ready":true'; then
