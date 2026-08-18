@@ -40,20 +40,25 @@ export class RootErrorBoundary extends React.Component<
       }
     }
 
-    window.dispatchEvent(
-      new CustomEvent('one-error', {
-        detail: {
-          error: {
-            message: error.message,
-            stack: error.stack,
-            name: error.name,
+    // this boundary also runs during SSR of a web build, where `window` doesn't
+    // exist. dispatching unconditionally threw here and replaced the render
+    // error above with `window is not defined`.
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent('one-error', {
+          detail: {
+            error: {
+              message: error.message,
+              stack: error.stack,
+              name: error.name,
+            },
+            componentStack: info.componentStack,
+            timestamp: Date.now(),
+            type: 'render',
           },
-          componentStack: info.componentStack,
-          timestamp: Date.now(),
-          type: 'render',
-        },
-      })
-    )
+        })
+      )
+    }
   }
 
   handleRetry = () => {
