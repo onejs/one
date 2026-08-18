@@ -40,7 +40,15 @@ export default defineConfig({
       '.tsx',
       '.json',
     ],
+    // bun installs a second @react-navigation/core under @react-navigation/native.
+    // two copies mean two NavigationBuilderContext instances, so a navigator
+    // rendered under One's NavigationContainer fork cannot find its container.
+    dedupe: ['@react-navigation/core'],
     alias: [
+      {
+        find: /^@react-navigation\/core$/,
+        replacement: resolve(__dirname, '../../node_modules/@react-navigation/core'),
+      },
       {
         find: /^react-native$/,
         replacement: resolve(
