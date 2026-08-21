@@ -1,6 +1,6 @@
 {
   "name": "test-warm-routes",
-  "version": "1.24.9",
+  "version": "1.25.0",
   "private": true,
   "type": "module",
   "scripts": {

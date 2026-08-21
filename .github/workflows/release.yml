@@ -13,6 +13,14 @@ on:
           - patch
           - minor
           - major
+          # publish the version already committed on main, bumping nothing.
+          # `patch`/`minor`/`major` bump in-workflow and then have to push that
+          # version commit to main, which main's protection rejects outright:
+          # "GH006 ... Changes must be made through the merge queue". every
+          # stable release attempt has died there. so land the version bump as
+          # an ordinary pull request through the queue, then dispatch this to
+          # publish it. see docs/releasing.md.
+          - republish
 
 permissions: {}
 
@@ -156,7 +164,10 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      # republish takes the version exactly as main already has it, so there is
+      # nothing to prepare and nothing to push.
       - name: Prepare release commit
+        if: inputs.release != 'republish'
         env:
           RELEASE_KIND: ${{ inputs.release }}
         shell: bash
@@ -172,8 +183,13 @@ jobs:
       # pull request and a merge queue, so the push is rejected with GH006 and
       # the publish step below never runs. the version bump only has to exist in
       # the tree for npm, never on main.
+      #
+      # the same rejection kills patch/minor/major, which DO need their version
+      # commit on main. those have never once published: every Release run in
+      # this repo's history failed here. use `republish` instead, which expects
+      # the version commit to already be on main via a normal pull request.
       - name: Push release commit
-        if: inputs.release != 'canary'
+        if: inputs.release != 'canary' && inputs.release != 'republish'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
@@ -206,6 +222,12 @@ jobs:
         run: |
           set -euo pipefail
           version=$(node -p "require('./packages/one/package.json').version")
+          # the bump path tags as part of preparing the version. republish has
+          # no prepare step, so tag the main commit that already carries this
+          # version. the assertion below guards both paths identically.
+          if ! git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then
+            git tag "v$version"
+          fi
           [[ "$(git rev-list -n 1 "v$version")" == "$(git rev-parse HEAD)" ]]
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
           trap 'git config --local --unset-all http.https://github.com/.extraheader || true' EXIT
