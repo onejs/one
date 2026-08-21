@@ -40,6 +40,7 @@
     "@vxrn/vite-native-client": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
     "babel-plugin-syntax-hermes-parser": "^0.32.0",
+    "oxc-transform-react": "^0.145.0",
     "react-native-css-interop": "^0.2.6",
     "ts-deepmerge": "^7.0.2"
   },

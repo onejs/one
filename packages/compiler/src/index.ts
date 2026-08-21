@@ -14,7 +14,11 @@ import type { OutputChunk } from 'rolldown'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
 import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
-import { getBabelOptions, transformBabel } from './transformBabel'
+import {
+  getBabelOptions,
+  transformBabel,
+  transformOxcReactCompiler,
+} from './transformBabel'
 import type { Environment, GetTransformProps, Options } from './types'
 import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
@@ -168,9 +172,20 @@ async function performBabelTransform({
         return cached
       }
 
+      // when the react compiler is the only transform this file needs (the
+      // common case on web) run oxc's rust port instead of babel. files that
+      // also need reanimated, nativewind, RN codegen or generator lowering
+      // still go through babel, which is the only implementation of those.
+      const compilerOnly = hasCompilerPlugin && babelOptions.plugins?.length === 1
+      const compilerTarget = compilerOnly
+        ? ((babelOptions.plugins![0] as any[])[1]?.target ?? '19')
+        : '19'
+
       // Cache miss - do the transform
       const startTime = Date.now()
-      const babelOut = await transformBabel(id, code, babelOptions)
+      const babelOut = compilerOnly
+        ? await transformOxcReactCompiler(id, code, compilerTarget)
+        : await transformBabel(id, code, babelOptions)
       const babelTime = Date.now() - startTime
 
       if (babelOut?.code) {
@@ -267,32 +282,36 @@ export async function createVXRNCompilerPlugin(
     {
       name: `one:compiler-css-to-js`,
 
-      transform(codeIn, id) {
-        const environment = getEnvName(this.environment.name)
-        if (
-          configuration.enableNativeCSS &&
-          (environment === 'ios' || environment === 'android')
-        ) {
-          if (extname(id) === '.css') {
-            const data = JSON.stringify(
-              cssToReactNativeRuntime(codeIn, { inlineRem: 16 })
-            )
-            // TODO were hardcoding the require id we bundle as: nativewind/dist/index.js
-            // could at least resolve this using resolvePath
-            const code = `require("nativewind/dist/index.js").__require().StyleSheet.registerCompiled(${data})`
-            const newId = `${id}.js`
+      // only .css files can match, so let rust reject everything else
+      transform: {
+        filter: { id: /\.css$/ },
+        handler(codeIn: string, id: string) {
+          const environment = getEnvName(this.environment.name)
+          if (
+            configuration.enableNativeCSS &&
+            (environment === 'ios' || environment === 'android')
+          ) {
+            {
+              const data = JSON.stringify(
+                cssToReactNativeRuntime(codeIn, { inlineRem: 16 })
+              )
+              // TODO were hardcoding the require id we bundle as: nativewind/dist/index.js
+              // could at least resolve this using resolvePath
+              const code = `require("nativewind/dist/index.js").__require().StyleSheet.registerCompiled(${data})`
+              const newId = `${id}.js`
 
-            // rollup uses relative to its node_modules parent dir, vite here uses absolute
-            const cssId = newId.replace(rolldownNodeMods + sep, '')
-            cssTransformCache.set(cssId, code)
+              // rollup uses relative to its node_modules parent dir, vite here uses absolute
+              const cssId = newId.replace(rolldownNodeMods + sep, '')
+              cssTransformCache.set(cssId, code)
 
-            return {
-              code,
-              id: newId,
-              map: null,
+              return {
+                code,
+                id: newId,
+                map: null,
+              }
             }
           }
-        }
+        },
       },
 
       generateBundle(_, bundle) {
