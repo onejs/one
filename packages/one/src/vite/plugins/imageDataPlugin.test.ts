@@ -35,29 +35,17 @@ describe('imageDataPlugin', () => {
   })
 
   describe('resolveId', () => {
-    it('should return null for non-imagedata imports', async () => {
+    // these ids are now rejected by the rust-side hook filter, so the handler
+    // never runs for them. assert the filter itself does that.
+    it('filters out ids without a trailing ?imagedata', async () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
+      const filter = (plugin.resolveId as any).filter.id as RegExp
 
-      if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig())
-      }
-
-      const result = await (plugin.resolveId as any)('./image.jpg', undefined)
-      expect(result).toBeNull()
-    })
-
-    it('should return null for imports with imagedata not as suffix', async () => {
-      const { imageDataPlugin } = await import('./imageDataPlugin')
-      const plugin = imageDataPlugin()
-
-      if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig())
-      }
-
+      expect(filter.test('./image.jpg')).toBe(false)
       // ?imagedata in the middle should not match
-      const result = await (plugin.resolveId as any)('./image?imagedata.jpg', undefined)
-      expect(result).toBeNull()
+      expect(filter.test('./image?imagedata.jpg')).toBe(false)
+      expect(filter.test('./image.jpg?imagedata')).toBe(true)
     })
 
     it('should resolve public dir paths starting with /', async () => {
@@ -68,7 +56,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '/test-image.jpg?imagedata',
         undefined
       )
@@ -83,7 +71,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         './test-image.jpg?imagedata',
         HERO_FILE
       )
@@ -98,7 +86,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '/nonexistent.jpg?imagedata',
         undefined
       )
@@ -115,7 +103,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '/../../../etc/passwd?imagedata',
         undefined
       )
@@ -130,7 +118,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '../../../../etc/passwd?imagedata',
         HERO_FILE
       )
@@ -145,7 +133,7 @@ describe('imageDataPlugin', () => {
         ;(plugin.configResolved as any)(mockConfig())
       }
 
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '../../../etc/passwd?imagedata',
         undefined
       )
@@ -162,7 +150,7 @@ describe('imageDataPlugin', () => {
 
       // Going up and back down should still work if within bounds
       // From /project/src/components, ../.. goes to /project, then src/test-image.jpg
-      const result = await (plugin.resolveId as any)(
+      const result = await (plugin.resolveId as any).handler(
         '../../src/test-image.jpg?imagedata',
         HERO_FILE
       )
@@ -171,20 +159,13 @@ describe('imageDataPlugin', () => {
   })
 
   describe('load', () => {
-    it('should return null for non-virtual modules', async () => {
+    it('filters out non-virtual modules before the handler runs', async () => {
       const { imageDataPlugin } = await import('./imageDataPlugin')
       const plugin = imageDataPlugin()
+      const filter = (plugin.load as any).filter.id as RegExp
 
-      if (plugin.configResolved) {
-        ;(plugin.configResolved as any)(mockConfig())
-      }
-
-      const mockContext = {
-        addWatchFile: vi.fn(),
-      }
-
-      const result = await (plugin.load as any).call(mockContext, './image.jpg')
-      expect(result).toBeNull()
+      expect(filter.test('./image.jpg')).toBe(false)
+      expect(filter.test('\0imagedata:/abs/path/image.jpg')).toBe(true)
     })
 
     it('should return fallback data when sharp fails', async () => {
@@ -203,7 +184,7 @@ describe('imageDataPlugin', () => {
 
       // This will fail because the file doesn't actually exist
       // But it should gracefully fallback
-      const result = await (plugin.load as any).call(
+      const result = await (plugin.load as any).handler.call(
         mockContext,
         '\0imagedata:' + testFilePath
       )
@@ -248,7 +229,7 @@ describe('imageDataPlugin output format', () => {
 
     const testFilePath = resolve(PUBLIC_DIR, 'test-image.jpg')
 
-    const result = await (plugin.load as any).call(
+    const result = await (plugin.load as any).handler.call(
       mockContext,
       '\0imagedata:' + testFilePath
     )

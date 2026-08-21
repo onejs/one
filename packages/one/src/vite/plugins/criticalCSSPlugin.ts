@@ -15,6 +15,9 @@ import type { Plugin } from 'vite'
  */
 
 const INLINE_CSS_EXT = '.inline.css'
+// rust-side hook filter, so non-css ids never cross into js. exactly equivalent
+// to the `id.endsWith(INLINE_CSS_EXT)` guard it replaced.
+const INLINE_CSS_RE = /\.inline\.css$/
 
 // source paths of CSS files with .inline.css extension (relative to root)
 const criticalCSSSources = new Set<string>()
@@ -57,19 +60,20 @@ export function criticalCSSPlugin(): Plugin {
       root = config.root
     },
 
-    async resolveId(id, importer) {
-      if (!id.endsWith(INLINE_CSS_EXT)) return null
+    resolveId: {
+      filter: { id: INLINE_CSS_RE },
+      async handler(id, importer) {
+        const resolved = await this.resolve(id, importer, { skipSelf: true })
 
-      const resolved = await this.resolve(id, importer, { skipSelf: true })
+        if (resolved) {
+          // store as relative path to match manifest keys (forward slashes to match Vite)
+          const relativePath = normalizePath(relative(root, resolved.id))
+          criticalCSSSources.add(relativePath)
+          return resolved
+        }
 
-      if (resolved) {
-        // store as relative path to match manifest keys (forward slashes to match Vite)
-        const relativePath = normalizePath(relative(root, resolved.id))
-        criticalCSSSources.add(relativePath)
-        return resolved
-      }
-
-      return null
+        return null
+      },
     },
   }
 }

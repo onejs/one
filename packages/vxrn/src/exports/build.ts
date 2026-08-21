@@ -188,13 +188,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     name: 'omit-api-routes',
     transform: {
       order: 'pre',
-      handler(code, id) {
-        if (/\+api.tsx?$/.test(id)) {
-          return ``
-        }
-        if (/_middleware.tsx?$/.test(id)) {
-          return ``
-        }
+      // both patterns as one rust-side filter, so only api/middleware files
+      // cross into js instead of every module in the client bundle
+      filter: { id: /(?:\+api|_middleware)\.tsx?$/ },
+      handler() {
+        return ``
       },
     },
   } satisfies Plugin

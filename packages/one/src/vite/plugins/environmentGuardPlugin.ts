@@ -19,6 +19,7 @@
  * platform, not by consumer type.
  */
 
+import { prefixRegex } from 'rolldown/filter'
 import type { Plugin } from 'vite'
 
 const VIRTUAL_PREFIX = '\0one-env-guard:'
@@ -29,6 +30,9 @@ const GUARD_SPECIFIERS = [
   'native-only',
   'web-only',
 ] as const
+
+// derived so the hook filter can never drift from the list above
+const GUARD_SPECIFIERS_RE = new RegExp(`^(?:${GUARD_SPECIFIERS.join('|')})$`)
 
 type GuardSpecifier = (typeof GUARD_SPECIFIERS)[number]
 type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android'
@@ -141,15 +145,24 @@ export function environmentGuardPlugin(options?: EnvironmentGuardOptions): Plugi
     name: 'one:environment-guard',
     enforce: 'pre',
 
-    resolveId(source) {
-      const envName = this.environment?.name
-      if (!envName) return null
-      const consumer = this.environment?.config?.consumer
-      return resolveEnvironmentGuard(source, envName, consumer, options)
+    // filters are evaluated in rust, so non-guard ids never cross into js.
+    // without them every import in the graph paid a napi round trip to be told
+    // it wasn't one of these four specifiers.
+    resolveId: {
+      filter: { id: GUARD_SPECIFIERS_RE },
+      handler(source) {
+        const envName = this.environment?.name
+        if (!envName) return null
+        const consumer = this.environment?.config?.consumer
+        return resolveEnvironmentGuard(source, envName, consumer, options)
+      },
     },
 
-    load(id) {
-      return loadEnvironmentGuard(id)
+    load: {
+      filter: { id: prefixRegex(VIRTUAL_PREFIX) },
+      handler(id) {
+        return loadEnvironmentGuard(id)
+      },
     },
   }
 }

@@ -38,11 +38,13 @@ const MIME: Record<string, string> = {
 // FullBundleDev and diverges from the client's inlined data-uri → React hydration
 // mismatch. So the inliner runs on client (rolldown plugin) and ssr (top-level
 // transform) alike — see bundledDevPlugin().
+const ASSET_EXT_RE = /\.(png|jpe?g|gif|webp|avif|bmp|ico)/
+
 function inlineAssetImports(
   code: string,
   id: string
 ): { code: string; map: null } | null {
-  if (!/\.(png|jpe?g|gif|webp|avif|bmp|ico)/.test(code)) return null
+  if (!ASSET_EXT_RE.test(code)) return null
   const importRe =
     /import\s+(\w+)\s+from\s*['"]([^'"?]+\.(?:png|jpe?g|gif|webp|avif|bmp|ico))['"]\s*;?/g
   const base = id.split('?')[0]
@@ -78,12 +80,20 @@ export function bundledDevPlugin(enabled: boolean): Plugin {
 
     // mirror the client's asset inlining on the server env so SSR emits the same
     // data-uris (the rolldown client plugin above can't reach the ssr pipeline).
-    transform(code, id) {
-      if (!enabled) return
-      const env = (this as any).environment
-      if (!env || env.name !== 'ssr' || env.mode !== 'dev') return
-      return inlineAssetImports(code, id)
-    },
+    // bundledDev is off by default, so only register the hook when it's on, and
+    // let rust pre-filter on the asset extensions inlineAssetImports looks for.
+    ...(enabled
+      ? {
+          transform: {
+            filter: { code: ASSET_EXT_RE },
+            handler(code: string, id: string) {
+              const env = (this as any).environment
+              if (!env || env.name !== 'ssr' || env.mode !== 'dev') return
+              return inlineAssetImports(code, id)
+            },
+          },
+        }
+      : {}),
 
     config(_userConfig, env) {
       if (!enabled || env.command !== 'serve') return
