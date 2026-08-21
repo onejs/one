@@ -14,4 +14,16 @@ export function setupBuildInfo(buildInfo: One.BuildInfo) {
   }
   process.env.ONE_DEFAULT_RENDER_MODE ||=
     buildInfo.oneOptions?.web?.defaultRenderMode || 'ssg'
+
+  // the build hoists inlined stylesheet contents out of every route into one
+  // map keyed by css path, so the manifest doesn't serialize the same file once
+  // per route. rebuild each route's array parallel to its `css`, which the
+  // render path reads. the slots hold references to the one string the map
+  // owns, so this costs pointers rather than copies.
+  const { cssContentsByPath } = buildInfo
+  if (cssContentsByPath) {
+    for (const route of Object.values(buildInfo.routeToBuildInfo)) {
+      route.cssContents = route.css.map((cssPath) => cssContentsByPath[cssPath] ?? '')
+    }
+  }
 }

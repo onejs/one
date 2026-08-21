@@ -1272,6 +1272,15 @@ export async function build(args: {
   const cssPreloads: Record<string, boolean> = {}
   const loaders: Record<string, boolean> = {}
 
+  // every route inlines the same stylesheets, so writing each route's
+  // cssContents into the manifest stored an identical copy of every stylesheet
+  // once per route. with inlineLayoutCSS that copy is the whole stylesheet, so
+  // the manifest grew to routes x stylesheet size, and the manifest ships inside
+  // the server bundle. hoist the contents to one map keyed by css path;
+  // setupBuildInfo rebuilds each route's parallel array when the server loads
+  // the manifest.
+  let cssContentsByPath: Record<string, string> | undefined
+
   for (const route of builtRoutes) {
     if (!route.cleanPath.includes('*')) {
       routeMap[route.cleanPath] = route.htmlPath
@@ -1279,8 +1288,17 @@ export async function build(args: {
     const {
       // dont include loaderData it can be huge
       loaderData: _loaderData,
+      cssContents,
       ...rest
     } = route
+
+    if (cssContents) {
+      const contentsByPath = (cssContentsByPath ||= {})
+      route.css.forEach((cssPath, index) => {
+        const content = cssContents[index]
+        if (content) contentsByPath[cssPath] = content
+      })
+    }
 
     routeToBuildInfo[route.routeFile] = rest
     for (const p of getCleanPaths([route.path, route.cleanPath])) {
@@ -1334,6 +1352,7 @@ export async function build(args: {
     outDir,
     oneOptions,
     routeToBuildInfo,
+    cssContentsByPath,
     pathToRoute,
     manifest: {
       pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
