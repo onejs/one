@@ -1,0 +1,12 @@
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  clearScreen: false,
+  test: {
+    globalSetup: '@vxrn/test/setup',
+    retry: 1,
+    fileParallelism: false,
+    testTimeout: 120000,
+    hookTimeout: 120000,
+  },
+})

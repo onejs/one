@@ -546,10 +546,15 @@ export namespace One {
       suspendRoutes?: boolean
 
       /**
-       * Experimental: serve the web client through Vite 8.1's bundled dev mode
+       * Experimental: serve the web client through Vite's bundled dev mode
        * (rolldown-powered FullBundleDevEnvironment) instead of unbundled ESM dev.
        * Fewer requests / faster parse, especially for apps with large icon/util
        * imports. Dev-only; ignored for builds.
+       *
+       * Covered by tests/test-bundled-dev. It is easy to break without noticing,
+       * because a broken client bundle still serves a 200 with correct SSR html
+       * and only fails to hydrate, so that test asserts interactivity rather
+       * than response status.
        *
        * @experimental
        * @default false
