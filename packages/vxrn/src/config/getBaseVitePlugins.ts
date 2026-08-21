@@ -28,13 +28,6 @@ export function getBaseVitePlugins(): PluginOption[] {
     return exists
   }
 
-  // this plugin is enforce:'pre', so the this.resolve() below re-enters the
-  // resolveId chain of every other plugin. measured on onestack.dev, 9k real
-  // resolutions became 24k hook calls in each other plugin. resolution is
-  // deterministic per (environment, importer, source, isEntry) within a build,
-  // so memoizing collapses that amplification.
-  const resolveCache = new Map<string, unknown>()
-
   return [
     {
       name: 'platform-specific-resolve',
@@ -84,65 +77,46 @@ export function getBaseVitePlugins(): PluginOption[] {
         // @ts-expect-error - scan is not in Vite's types but exists at runtime
         if (options?.scan) return
 
-        // `custom` carries per-callsite plugin state, so those resolutions
-        // aren't interchangeable and are never memoized
-        const cacheKey = options?.custom
-          ? null
-          : `${this.environment.name}\0${importer ?? ''}\0${source}\0${options?.isEntry ? 1 : 0}`
+        const resolved = await this.resolve(source, importer, options)
 
-        // `has`, not `get`: undefined is a meaningful cached value here (it
-        // means "not handled, let the chain resolve it")
-        if (cacheKey !== null && resolveCache.has(cacheKey)) {
-          return resolveCache.get(cacheKey) as any
+        if (!resolved || resolved.id.includes('node_modules')) {
+          return resolved
         }
 
-        const result = await (async () => {
-          const resolved = await this.resolve(source, importer, options)
+        // resolve .server files to a throwing stub on client/native
+        // instead of erroring at build time, since dynamic imports behind
+        // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
+        // are still resolved by vite's import analysis
+        if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
+          return { id: `\0server-only-stub:${source}` }
+        }
 
-          if (!resolved || resolved.id.includes('node_modules')) {
-            return resolved
-          }
+        if (process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
+          return undefined
+        }
 
-          // resolve .server files to a throwing stub on client/native
-          // instead of erroring at build time, since dynamic imports behind
-          // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
-          // are still resolved by vite's import analysis
-          if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
-            return { id: `\0server-only-stub:${source}` }
-          }
+        // an import that already carries an extension (`./x.js`) still has to
+        // prefer a `./x.web.js` sibling, and resolve.extensions only appends to
+        // extensionless imports, so this probe can't be replaced by it. see
+        // packages/test-package + tests/test/tests/resolving.test.ts
+        const jsExtension = extname(resolved.id)
+        const withoutExt = resolved.id.slice(0, resolved.id.length - jsExtension.length)
+        const platformSpecificExtension =
+          PLATFORM_EXTENSIONS_BY_ENVIRONMENT[this.environment.name]
 
-          if (process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
-            return undefined
-          }
-
-          // not in node_modules, vite doesn't apply extensions! we need to manually
-          const jsExtension = extname(resolved.id)
-          const withoutExt = resolved.id.slice(0, resolved.id.length - jsExtension.length)
-          const platformSpecificExtension =
-            PLATFORM_EXTENSIONS_BY_ENVIRONMENT[this.environment.name]
-
-          if (platformSpecificExtension) {
-            for (const platformExtension of platformSpecificExtension) {
-              const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
-              if (cachedPathExists(fullPath)) {
-                return { id: fullPath }
-              }
+        if (platformSpecificExtension) {
+          for (const platformExtension of platformSpecificExtension) {
+            const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
+            if (cachedPathExists(fullPath)) {
+              return { id: fullPath }
             }
           }
-
-          // no platform sibling: return undefined so the chain resolves it,
-          // matching the original fall-through
-          return undefined
-        })()
-
-        if (cacheKey !== null) resolveCache.set(cacheKey, result)
-        return result
+        }
       },
 
       // adding or deleting a .web/.native sibling changes what a source
-      // resolves to, so drop both caches when the watcher sees a change
+      // resolves to, so drop the exists cache when the watcher sees a change
       watchChange() {
-        resolveCache.clear()
         pathExistsCache.clear()
       },
     },
