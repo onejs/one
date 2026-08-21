@@ -223,7 +223,7 @@
     "ts-pattern": "^5.6.2",
     "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
-    "vite": "^8.1.0",
+    "vite": "^8.2.2",
     "vxrn": "workspace:*",
     "web-streams-polyfill": "^4.3.0",
     "ws": "^8.21.0",
@@ -289,7 +289,7 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.2",
     "react-test-renderer": "^19.2.0",
-    "rolldown": "^1.1.2",
+    "rolldown": "^1.2.4",
     "sharp": "^0.35.3",
     "typescript": "^5.7.3",
     "vitest": "^4.1.0"
