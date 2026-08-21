@@ -231,6 +231,14 @@ ${contents}
   {
     module: 'react-native-reanimated',
     patchFiles: {
+      // reanimated 4 ships no JSX in its `.js`. Measured against 4.5.1: all 374
+      // files parse with SWC at `jsx: false`, and the only JSX-shaped text is
+      // inside comments. The transform still rewrote and reformatted every one
+      // of them, which is how a patch aimed at reanimated ended up re-printing
+      // its nested `semver` and giving one package@version two contents on
+      // disk. Left in place below 4 rather than deleted, because we verified 4
+      // and not the 3.x line.
+      version: '<4.0.0',
       '**/*.js': ['jsx'],
     },
   },
@@ -240,7 +248,11 @@ ${contents}
   {
     module: 'react-native-gesture-handler',
     patchFiles: {
-      version: '>=2.0.0 <=2.30.0',
+      // no upper bound. this was capped at 2.30.0, but 2.32.0 still ships the
+      // exact unsafe line in all three targets, so the cap silently dropped the
+      // crash guard rather than retiring it. each replacement is a no-op when
+      // its target is absent, so an uncapped range retires itself.
+      version: '>=2.0.0',
 
       'lib/module/getShadowNodeFromRef.js': (contents) => {
         return contents?.replace(
@@ -449,34 +461,21 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: 'react-native-css-interop',
     patchFiles: {
+      // 2 of 53 dist files genuinely need JSX parsing, so this one is real.
+      //
+      // Two sibling patches were removed here, both dead. A `wrap-jsx.js` entry
+      // tried to hoist `require("./components")` out of the function so
+      // cssInterop registration runs, but `patches.ts` selects with
+      // `filePatches.find(relativePath)` and `dist/**/*.js` is declared first,
+      // so the glob shadowed it and the hoist never executed once: the patched
+      // file on disk still has the require inside the function. A `package.json`
+      // entry set `sideEffects` to keep components.js from being tree-shaken,
+      // and 0.2.6 already ships exactly that value.
+      //
+      // So nativewind registration has never actually been hoisted by this
+      // patch. Anyone deciding whether to keep the CSS-on-native path should
+      // start from that, not from the assumption that it works today.
       'dist/**/*.js': ['jsx'],
-
-      // Fix the dynamic require inside wrapJSX function to be a top-level import
-      // This ensures components.js is bundled and executed to register Text, View, etc. with cssInterop
-      'dist/runtime/wrap-jsx.js': (contents) => {
-        assertString(contents)
-        // Move the require("./components") from inside the function to module level
-        return contents
-          .replace(
-            /if\s*\(\s*process\.env\.NODE_ENV\s*!==\s*["']test["']\s*\)\s*require\s*\(\s*["']\.\/components["']\s*\)\s*;?/,
-            ''
-          )
-          .replace(
-            '"use strict";',
-            `"use strict";
-if (process.env.NODE_ENV !== "test") require("./components");`
-          )
-      },
-
-      // Fix sideEffects: false causing components.js to be tree-shaken
-      // components.js registers Text, View, etc. with cssInterop and MUST run
-      'package.json': (contents) => {
-        assertString(contents)
-        const pkg = JSON.parse(contents)
-        // Change sideEffects to include components.js
-        pkg.sideEffects = ['dist/runtime/components.js']
-        return JSON.stringify(pkg, null, 2)
-      },
     },
   },
 
