@@ -32,7 +32,7 @@ describe('resolveId hooks should skip during dep optimization scan', () => {
         throw new Error('Plugin not found or missing resolveId')
       }
 
-      const resolveId = plugin.resolveId as Function
+      const resolveId = (plugin.resolveId as any).handler as Function
 
       // Mock the plugin context
       const mockContext = {

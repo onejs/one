@@ -39,41 +39,45 @@ function createMockContext(envName: string, resolvedId?: string) {
 
 describe('platform-specific-resolve', () => {
   describe('.server extension', () => {
-    it('ssr resolves .server files', async () => {
+    // extensionless imports are resolved to their platform variant by vite's
+    // own resolve.extensions (asserted in 'config extensions' below), so the
+    // hook filter drops them before any js runs. this hook now only exists for
+    // imports that already carry an extension, which resolve.extensions cannot
+    // rewrite because it only appends.
+    it('filters out extensionless sources, leaving them to resolve.extensions', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const resolveId = plugin.resolveId as Function
+      const filter = (plugin.resolveId as any).filter.id as RegExp
 
-      existsSyncMock.mockImplementation((path: any) => {
-        return String(path).includes('.server.')
-      })
-
-      const ctx = createMockContext('ssr', '/src/db.ts')
-      const result = await resolveId.call(ctx, './db', '/src/app.tsx', {})
-
-      expect(result).toEqual({ id: '/src/db.server.ts' })
-
-      vi.restoreAllMocks()
+      expect(filter.test('./db')).toBe(false)
+      expect(filter.test('react')).toBe(false)
+      // still reaches js: already has an extension, or is a bare .server import
+      expect(filter.test('./db.js')).toBe(true)
+      expect(filter.test('./test-web.js')).toBe(true)
+      expect(filter.test('./db.server')).toBe(true)
     })
 
-    it('client does not resolve .server files', async () => {
+    it('prefers a platform sibling for an import that already has an extension', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const resolveId = plugin.resolveId as Function
+      const resolveId = (plugin.resolveId as any).handler as Function
 
       existsSyncMock.mockImplementation((path: any) => {
         return String(path).includes('.web.')
       })
 
-      const ctx = createMockContext('client', '/src/db.ts')
-      const result = await resolveId.call(ctx, './db', '/src/app.tsx', {})
+      // no ctx.resolve call is needed: a relative source with an extension
+      // resolves to a path the hook computes directly
+      const ctx = createMockContext('client')
+      const result = await resolveId.call(ctx, './db.ts', '/src/app.tsx', {})
 
       expect(result).toEqual({ id: '/src/db.web.ts' })
+      expect(ctx.resolve).not.toHaveBeenCalled()
 
       vi.restoreAllMocks()
     })
 
     it('stubs .server file when explicitly imported on client', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const resolveId = plugin.resolveId as Function
+      const resolveId = (plugin.resolveId as any).handler as Function
 
       const ctx = createMockContext('client', '/src/db.server.ts')
 
@@ -83,7 +87,7 @@ describe('platform-specific-resolve', () => {
 
     it('stubs .server file when explicitly imported on ios', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const resolveId = plugin.resolveId as Function
+      const resolveId = (plugin.resolveId as any).handler as Function
 
       const ctx = createMockContext('ios', '/src/db.server.ts')
 
@@ -93,7 +97,7 @@ describe('platform-specific-resolve', () => {
 
     it('allows .server file import on ssr', async () => {
       const plugin = await getPlatformResolvePlugin()
-      const resolveId = plugin.resolveId as Function
+      const resolveId = (plugin.resolveId as any).handler as Function
 
       existsSyncMock.mockReturnValue(false)
 
