@@ -6,6 +6,13 @@ import { ssrExtensions, webExtensions } from '../constants'
 
 // essentially base web config not base everything
 
+const PLATFORM_EXTENSIONS_BY_ENVIRONMENT = {
+  client: ['web'],
+  ssr: ['server', 'web'],
+  ios: ['ios', 'native'],
+  android: ['android', 'native'],
+}
+
 export function getBaseVitePlugins(): PluginOption[] {
   // cache pathExists results during build (files don't change)
   // skip caching in dev since files can be added/removed
@@ -20,6 +27,13 @@ export function getBaseVitePlugins(): PluginOption[] {
     pathExistsCache.set(path, exists)
     return exists
   }
+
+  // this plugin is enforce:'pre', so the this.resolve() below re-enters the
+  // resolveId chain of every other plugin. measured on onestack.dev, 9k real
+  // resolutions became 24k hook calls in each other plugin. resolution is
+  // deterministic per (environment, importer, source, isEntry) within a build,
+  // so memoizing collapses that amplification.
+  const resolveCache = new Map<string, unknown>()
 
   return [
     {
@@ -54,11 +68,12 @@ export function getBaseVitePlugins(): PluginOption[] {
         }
       },
 
-      load(id) {
-        if (id.startsWith('\0server-only-stub:')) {
+      load: {
+        filter: { id: /^\0server-only-stub:/ },
+        handler(id) {
           const source = id.slice('\0server-only-stub:'.length)
           return `throw new Error("[one] .server file cannot be imported on client: ${source}")`
-        }
+        },
       },
 
       // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
@@ -69,52 +84,66 @@ export function getBaseVitePlugins(): PluginOption[] {
         // @ts-expect-error - scan is not in Vite's types but exists at runtime
         if (options?.scan) return
 
-        // if (process.env.NODE_ENV !== 'development') {
-        //   // is this only dev mode problem?
-        //   return
-        // }
+        // `custom` carries per-callsite plugin state, so those resolutions
+        // aren't interchangeable and are never memoized
+        const cacheKey = options?.custom
+          ? null
+          : `${this.environment.name}\0${importer ?? ''}\0${source}\0${options?.isEntry ? 1 : 0}`
 
-        const resolved = await this.resolve(source, importer, options)
-
-        if (!resolved || resolved.id.includes('node_modules')) {
-          return resolved
+        // `has`, not `get`: undefined is a meaningful cached value here (it
+        // means "not handled, let the chain resolve it")
+        if (cacheKey !== null && resolveCache.has(cacheKey)) {
+          return resolveCache.get(cacheKey) as any
         }
 
-        // resolve .server files to a throwing stub on client/native
-        // instead of erroring at build time, since dynamic imports behind
-        // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
-        // are still resolved by vite's import analysis
-        if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
-          return {
-            id: `\0server-only-stub:${source}`,
+        const result = await (async () => {
+          const resolved = await this.resolve(source, importer, options)
+
+          if (!resolved || resolved.id.includes('node_modules')) {
+            return resolved
           }
-        }
 
-        if (!process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
+          // resolve .server files to a throwing stub on client/native
+          // instead of erroring at build time, since dynamic imports behind
+          // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
+          // are still resolved by vite's import analysis
+          if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
+            return { id: `\0server-only-stub:${source}` }
+          }
+
+          if (process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
+            return undefined
+          }
+
           // not in node_modules, vite doesn't apply extensions! we need to manually
           const jsExtension = extname(resolved.id)
-          const withoutExt = resolved.id.replace(new RegExp(`\\${jsExtension}$`), '')
-
-          const extensionsByEnvironment = {
-            client: ['web'],
-            ssr: ['server', 'web'],
-            ios: ['ios', 'native'],
-            android: ['android', 'native'],
-          }
-
-          const platformSpecificExtension = extensionsByEnvironment[this.environment.name]
+          const withoutExt = resolved.id.slice(0, resolved.id.length - jsExtension.length)
+          const platformSpecificExtension =
+            PLATFORM_EXTENSIONS_BY_ENVIRONMENT[this.environment.name]
 
           if (platformSpecificExtension) {
             for (const platformExtension of platformSpecificExtension) {
               const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
               if (cachedPathExists(fullPath)) {
-                return {
-                  id: fullPath,
-                }
+                return { id: fullPath }
               }
             }
           }
-        }
+
+          // no platform sibling: return undefined so the chain resolves it,
+          // matching the original fall-through
+          return undefined
+        })()
+
+        if (cacheKey !== null) resolveCache.set(cacheKey, result)
+        return result
+      },
+
+      // adding or deleting a .web/.native sibling changes what a source
+      // resolves to, so drop both caches when the watcher sees a change
+      watchChange() {
+        resolveCache.clear()
+        pathExistsCache.clear()
       },
     },
 

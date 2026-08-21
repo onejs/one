@@ -13,32 +13,16 @@ describe('criticalCSSPlugin', () => {
   })
 
   describe('resolveId', () => {
-    it('should return null for non-inline CSS imports', async () => {
+    // non-matching ids are now rejected by the rust-side hook filter, so the
+    // handler never runs for them. assert the filter itself does that.
+    it('filters out non-inline CSS imports before the handler runs', async () => {
       const { criticalCSSPlugin } = await import('./criticalCSSPlugin')
       const plugin = criticalCSSPlugin()
+      const filter = (plugin.resolveId as any).filter.id as RegExp
 
-      ;(plugin.configResolved as any)({ root: PROJECT_ROOT })
-
-      const result = await (plugin.resolveId as any).call(
-        { resolve: vi.fn() },
-        './styles.css',
-        resolve('/project/src/App.tsx')
-      )
-      expect(result).toBeNull()
-    })
-
-    it('should return null for non-css imports', async () => {
-      const { criticalCSSPlugin } = await import('./criticalCSSPlugin')
-      const plugin = criticalCSSPlugin()
-
-      ;(plugin.configResolved as any)({ root: PROJECT_ROOT })
-
-      const result = await (plugin.resolveId as any).call(
-        { resolve: vi.fn() },
-        './data.json',
-        resolve('/project/src/App.tsx')
-      )
-      expect(result).toBeNull()
+      expect(filter.test('./styles.css')).toBe(false)
+      expect(filter.test('./data.json')).toBe(false)
+      expect(filter.test('./styles.inline.css')).toBe(true)
     })
 
     it('should resolve .inline.css and track it', async () => {
@@ -53,7 +37,7 @@ describe('criticalCSSPlugin', () => {
       })
 
       const importerPath = resolve('/project/src/App.tsx')
-      const result = await (plugin.resolveId as any).call(
+      const result = await (plugin.resolveId as any).handler.call(
         { resolve: mockResolve },
         './styles.inline.css',
         importerPath
@@ -77,7 +61,7 @@ describe('criticalCSSPlugin', () => {
         id: resolve('/project/src/layout.inline.css'),
       })
 
-      await (plugin.resolveId as any).call(
+      await (plugin.resolveId as any).handler.call(
         { resolve: mockResolve },
         './layout.inline.css',
         resolve('/project/src/App.tsx')
@@ -98,7 +82,7 @@ describe('criticalCSSPlugin', () => {
 
       const mockResolve = vi.fn().mockResolvedValue(null)
 
-      const result = await (plugin.resolveId as any).call(
+      const result = await (plugin.resolveId as any).handler.call(
         { resolve: mockResolve },
         './nonexistent.inline.css',
         resolve('/project/src/App.tsx')
@@ -119,7 +103,7 @@ describe('criticalCSSPlugin', () => {
       const mockResolve = vi.fn().mockResolvedValue({
         id: resolve('/project/app/layout.inline.css'),
       })
-      await (plugin.resolveId as any).call(
+      await (plugin.resolveId as any).handler.call(
         { resolve: mockResolve },
         './layout.inline.css',
         resolve('/project/app/_layout.tsx')

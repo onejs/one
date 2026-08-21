@@ -8,6 +8,7 @@ import {
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
+import { exactRegex } from 'rolldown/filter'
 import { normalizePath, type Plugin, type PluginOption } from 'vite'
 import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
@@ -36,6 +37,11 @@ import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
+
+// deep react-native Libraries/* paths that don't exist in react-native-web.
+// used as a rust-side resolveId filter so ordinary imports never reach js.
+const RN_DEEP_IMPORT_RE =
+  /^react-native\/Libraries\/|react-native-web(-lite)?\/.*\/Libraries\//
 
 /**
  * This needs a big refactor!
@@ -388,6 +394,28 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               } catch {}
             }
 
+            // load eagerly so the rust-side hook filter below can be built from
+            // the actual tsconfig prefixes. hook filters are fixed at
+            // registration time, so waiting for configResolved would mean no
+            // filter at all and a napi round trip for every import in the graph
+            loadMappings(root)
+
+            // only ids that could match a mapping reach js. if the eager load
+            // found nothing we can't narrow to prefixes, so fall back to "any
+            // bare specifier" — tsconfig paths are never relative or absolute,
+            // so this still drops every ./ and ../ import while staying correct
+            // if configResolved loads mappings later from a different root.
+            const tsconfigPathsFilter = mappings.length
+              ? new RegExp(
+                  mappings
+                    .map(
+                      (m) =>
+                        `^${m.prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${m.wildcard ? '' : '$'}`
+                    )
+                    .join('|')
+                )
+              : /^[^./]/
+
             return {
               name: 'one:tsconfig-paths',
               enforce: 'pre',
@@ -404,40 +432,43 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 }
               },
 
-              resolveId(source: string) {
-                const jsExts = [
-                  '.ts',
-                  '.tsx',
-                  '.js',
-                  '.jsx',
-                  '.mts',
-                  '.mjs',
-                  '.cjs',
-                  '.cts',
-                ]
-                for (const m of mappings) {
-                  let candidate: string | undefined
-                  if (m.wildcard) {
-                    if (source.startsWith(m.prefix)) {
-                      candidate = m.replacement + source.slice(m.prefix.length)
+              resolveId: {
+                filter: { id: tsconfigPathsFilter },
+                handler(source: string) {
+                  const jsExts = [
+                    '.ts',
+                    '.tsx',
+                    '.js',
+                    '.jsx',
+                    '.mts',
+                    '.mjs',
+                    '.cjs',
+                    '.cts',
+                  ]
+                  for (const m of mappings) {
+                    let candidate: string | undefined
+                    if (m.wildcard) {
+                      if (source.startsWith(m.prefix)) {
+                        candidate = m.replacement + source.slice(m.prefix.length)
+                      }
+                    } else if (source === m.prefix) {
+                      candidate = m.replacement
                     }
-                  } else if (source === m.prefix) {
-                    candidate = m.replacement
+                    if (!candidate) continue
+                    // already has a js/ts extension
+                    if (jsExts.includes(path.extname(candidate))) return candidate
+                    // try appending extensions
+                    for (const e of jsExts) {
+                      if (existsSync(candidate + e)) return candidate + e
+                    }
+                    // try /index
+                    for (const e of jsExts) {
+                      if (existsSync(candidate + '/index' + e))
+                        return candidate + '/index' + e
+                    }
+                    return candidate
                   }
-                  if (!candidate) continue
-                  // already has a js/ts extension
-                  if (jsExts.includes(path.extname(candidate))) return candidate
-                  // try appending extensions
-                  for (const e of jsExts) {
-                    if (existsSync(candidate + e)) return candidate + e
-                  }
-                  // try /index
-                  for (const e of jsExts) {
-                    if (existsSync(candidate + '/index' + e))
-                      return candidate + '/index' + e
-                  }
-                  return candidate
-                }
+                },
               },
             } satisfies Plugin
           })(),
@@ -471,24 +502,40 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               android: resolveMap(a.android),
             }
 
+            // every alias is an exact source match, so the union of all keys is
+            // an exact rust-side filter. anything else never enters js.
+            const aliasKeys = [
+              ...new Set(
+                Object.values(resolved).flatMap((m) => (m ? Object.keys(m) : []))
+              ),
+            ]
+            const aliasFilter = aliasKeys.length
+              ? new RegExp(
+                  `^(?:${aliasKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
+                )
+              : /(?!)/
+
             return {
               name: 'one:alias',
               enforce: 'pre',
-              resolveId(source) {
-                const env = this.environment?.name
+              resolveId: {
+                filter: { id: aliasFilter },
+                handler(source) {
+                  const env = this.environment?.name
 
-                // specific env wins over general
-                const specific = env ? resolved[env as keyof typeof resolved] : null
-                if (specific && source in specific) {
-                  return { id: specific[source], external: false }
-                }
+                  // specific env wins over general
+                  const specific = env ? resolved[env as keyof typeof resolved] : null
+                  if (specific && source in specific) {
+                    return { id: specific[source], external: false }
+                  }
 
-                // fall back to general (web/native)
-                const isWeb = !env || env === 'client' || env === 'ssr'
-                const general = isWeb ? resolved.web : resolved.native
-                if (general && source in general) {
-                  return { id: general[source], external: false }
-                }
+                  // fall back to general (web/native)
+                  const isWeb = !env || env === 'client' || env === 'ssr'
+                  const general = isWeb ? resolved.web : resolved.native
+                  if (general && source in general) {
+                    return { id: general[source], external: false }
+                  }
+                },
               },
             } satisfies Plugin
           })(),
@@ -501,21 +548,22 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       name: 'one:redirect-rn-deep-imports',
       enforce: 'pre',
 
-      resolveId(source) {
-        if (this.environment?.name === 'client' || this.environment?.name === 'ssr') {
-          if (
-            source.startsWith('react-native/Libraries/') ||
-            /react-native-web(-lite)?\/.*\/Libraries\//.test(source)
-          ) {
+      // rust-side filter matching the two source patterns below, so the ~24k
+      // non-matching imports in a build never enter js at all
+      resolveId: {
+        filter: { id: RN_DEEP_IMPORT_RE },
+        handler(source) {
+          if (this.environment?.name === 'client' || this.environment?.name === 'ssr') {
             return '\0rn-empty-module'
           }
-        }
+        },
       },
 
-      load(id) {
-        if (id === '\0rn-empty-module') {
+      load: {
+        filter: { id: exactRegex('\0rn-empty-module') },
+        handler() {
           return 'export default {}; export {};'
-        }
+        },
       },
     } satisfies Plugin,
 
@@ -734,15 +782,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       name: 'one:remove-server-from-client',
       enforce: 'pre',
 
-      transform(code, id) {
-        if (this.environment.name === 'client') {
-          if (id.includes(`one-server-only`)) {
-            return code.replace(
-              `import { AsyncLocalStorage } from "node:async_hooks"`,
-              `class AsyncLocalStorage {}`
-            )
-          }
-        }
+      // both conditions are rust-side: only one-server-only modules that
+      // actually contain the import cross into js
+      transform: {
+        filter: {
+          id: /one-server-only/,
+          code: 'import { AsyncLocalStorage } from "node:async_hooks"',
+        },
+        handler(code) {
+          if (this.environment.name !== 'client') return
+          return code.replace(
+            `import { AsyncLocalStorage } from "node:async_hooks"`,
+            `class AsyncLocalStorage {}`
+          )
+        },
       },
     },
 
@@ -773,7 +826,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     // (source) path. the optimizer doesn't recognize the real path, so it
     // loads from source — creating a duplicate instance.
     // this plugin forces optimized SSR deps to resolve via node_modules.
-    ssrSymlinkDedupPlugin,
+    // off by default, and every hook bails on `!dedupeSymlinks`, so skip
+    // registering it entirely rather than paying a napi round trip per import
+    ...(dedupeSymlinks ? [ssrSymlinkDedupPlugin] : []),
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments

@@ -29,7 +29,7 @@ function loadEntry(
   const ctx = {
     environment: { name: envName, mode: envMode },
   }
-  return plugin.load.call(ctx, '\0virtual:one-entry')
+  return plugin.load.handler.call(ctx, '\0virtual:one-entry')
 }
 
 describe('virtualEntryPlugin', () => {
