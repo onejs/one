@@ -23,8 +23,33 @@ Two steps, because `main` is protected by a merge queue.
    ```
 
    It checks that `main` is current and that CI is green on that exact SHA,
-   publishes the version `main` already carries via npm trusted publishing
-   (OIDC, no token), pushes the `vX.Y.Z` tag, and creates the GitHub release.
+   publishes the version `main` already carries, pushes the `vX.Y.Z` tag, and
+   creates the GitHub release.
+
+## npm authentication
+
+Publishing needs an `NPM_TOKEN` repository secret: a granular access token with
+read and write on the `@vxrn` scope plus `one`, `vxrn`, `create-vxrn` and
+`lllink`.
+
+npm trusted publishing (OIDC, no token) would be better, but it is configured
+per package on npmjs.com and only two of this workspace's 25 packages have it.
+The 1.25.0 release published `create-vxrn` and
+`@vxrn/use-isomorphic-layout-effect`, then died on the third package:
+
+```
+npm error code E401
+npm error 401 Unauthorized - PUT https://registry.npmjs.org/@vxrn%2femitter
+  - Failed to generate Web Auth URLs due to error: BadRequestError: token is invalid
+```
+
+With no trusted publisher and no token, npm falls through to interactive web
+auth, which cannot work in CI. Adding trusted publishers for the remaining 23
+packages would also fix it and would let the token go away.
+
+Publishing is idempotent per package: `scripts/release.ts` checks `npm view`
+for each one and skips those already published at the current version, so a
+partially-published version is safe to re-dispatch.
 
 ## Why not `release=minor` directly
 

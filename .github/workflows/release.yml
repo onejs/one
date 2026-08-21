@@ -203,10 +203,24 @@ jobs:
           git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
           git push origin HEAD:main
 
+      # trusted publishing is configured per package on npmjs.com, and only
+      # create-vxrn and @vxrn/use-isomorphic-layout-effect have it. the other 23
+      # packages have no trusted publisher, so npm falls through to interactive
+      # web auth and dies with `E401 ... Failed to generate Web Auth URLs`. that
+      # is what killed 1.25.0 after two packages had already published. the
+      # setup-node step above already wrote an .npmrc pointing at
+      # NODE_AUTH_TOKEN, so a granular token covering the @vxrn scope plus one,
+      # vxrn, create-vxrn and lllink is all npm needs to authenticate the rest.
       - name: Publish prepared version
         shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           set -euo pipefail
+          [[ -n "${NODE_AUTH_TOKEN:-}" ]] || {
+            echo "NPM_TOKEN secret is not set; npm cannot authenticate" >&2
+            exit 1
+          }
           version=$(node -p "require('./packages/one/package.json').version")
           flags=(--republish --ci --dirty --skip-finish)
           if [[ "$version" =~ -[0-9]{10,}$ ]]; then
