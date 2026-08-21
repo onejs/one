@@ -1,6 +1,6 @@
 {
   "name": "test-params-stability",
-  "version": "1.24.6",
+  "version": "1.24.7",
   "private": true,
   "type": "module",
   "scripts": {
