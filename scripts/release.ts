@@ -557,9 +557,18 @@ async function run() {
 
       async function finishAndCommit(cwd = process.cwd()) {
         if (!rePublish || reRun || finish) {
-          await spawnify(`git add -A`, { cwd })
+          // stage only what a release actually changes. `git add -A` swept an
+          // unrelated agent's uncommitted edit into two release commits in this
+          // shared checkout before it was caught, and a release commit that
+          // carries someone else's half-finished work is very hard to notice
+          // afterwards. every v* commit in this repo's history touches nothing
+          // but package.json files and the lockfile.
+          await spawnify(`git add -- **/package.json package.json bun.lock`, { cwd })
 
-          await spawnify(`git commit -m ${gitTag}`, { cwd, allowFail: finish })
+          await spawnify(`git commit -m ${gitTag} -- **/package.json package.json bun.lock`, {
+            cwd,
+            allowFail: finish,
+          })
 
           if (!canary) {
             if (!dirty) {
