@@ -699,9 +699,13 @@ export function createFileSystemRouterPlugin(
       // 404s in this mode, so point preloads (and bootstrap) at the bundled url.
       const clientEnv = server.environments?.client as any
       if (clientEnv?.config?.isBundled || clientEnv?.bundledDev) {
-        // bundled mode: the HMR client + refresh runtime are bundled into the
-        // entry; /@vite/client doesn't exist as a standalone module (404s).
-        preloads = ['/assets/_virtual_one-entry.js']
+        // bundled mode: /@vite/client doesn't exist as a standalone module
+        // (404s). vite 8.2 moved the bundled-dev client out of the entry bundle
+        // and serves it standalone at /bundledDevClient.mjs; it defines
+        // __rolldown_runtime__, which the entry calls on nearly every module, so
+        // it has to load first or nothing hydrates. bootstrapModules emits these
+        // in order, and module scripts execute in order.
+        preloads = ['/bundledDevClient.mjs', '/assets/_virtual_one-entry.js']
       }
 
       // change this to .server to test using the indepedently scoped env
