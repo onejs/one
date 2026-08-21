@@ -70,6 +70,40 @@ function logPerfSummary() {
   }
 }
 
+// a single page request can run the compiler over hundreds of files, so
+// accumulate and print one line once transforms go quiet instead of per-file
+const compilerLog = {
+  compiled: 0,
+  cached: 0,
+  time: 0,
+  // typed loose because the dom lib types setTimeout as number, but node gives
+  // us a Timeout we need to unref so the debounce never holds the process open
+  timer: null as any,
+}
+
+function logCompiled(cached: boolean, ms: number) {
+  if (cached) {
+    compilerLog.cached++
+  } else {
+    compilerLog.compiled++
+    compilerLog.time += ms
+  }
+
+  if (compilerLog.timer) clearTimeout(compilerLog.timer)
+  compilerLog.timer = setTimeout(() => {
+    const total = compilerLog.compiled + compilerLog.cached
+    const detail = compilerLog.compiled
+      ? `${compilerLog.compiled} compiled in ${compilerLog.time}ms${compilerLog.cached ? `, ${compilerLog.cached} cached` : ''}`
+      : `all cached`
+    console.info(` 🪄 [compiler] ${total} file${total === 1 ? '' : 's'} (${detail})`)
+    compilerLog.compiled = 0
+    compilerLog.cached = 0
+    compilerLog.time = 0
+    compilerLog.timer = null
+  }, 500)
+  compilerLog.timer.unref?.()
+}
+
 // Shared Babel transform logic
 async function performBabelTransform({
   id,
@@ -117,7 +151,6 @@ async function performBabelTransform({
       const hasCompilerPlugin = babelOptions.plugins?.some(
         (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
       )
-      const relId = relative(process.cwd(), id)
 
       // Check cache first
       const cached = getCachedTransform(id, code, environment)
@@ -128,7 +161,8 @@ async function performBabelTransform({
           (cached.code.includes('react/compiler-runtime') ||
             cached.code.includes('react-compiler-runtime'))
         ) {
-          console.info(` 🪄 [compiler] ${relId} (cached)`)
+          debug?.(` 🪄 [compiler] ${relative(process.cwd(), id)} (cached)`)
+          logCompiled(true, 0)
         }
         debug?.(`[babel/cached] ${id}`)
         return cached
@@ -150,7 +184,8 @@ async function performBabelTransform({
           (babelOut.code.includes('react/compiler-runtime') ||
             babelOut.code.includes('react-compiler-runtime'))
         ) {
-          console.info(` 🪄 [compiler] ${relId} (${babelTime}ms)`)
+          debug?.(` 🪄 [compiler] ${relative(process.cwd(), id)} (${babelTime}ms)`)
+          logCompiled(false, babelTime)
         }
 
         debug?.(`[babel] ${id}`)
