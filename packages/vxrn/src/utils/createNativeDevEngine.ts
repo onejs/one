@@ -530,7 +530,11 @@ try {
       }
     },
 
-    rebuildStrategy: 'auto',
+    // rolldown 1.2 dropped 'auto': the server no longer decides full reloads,
+    // so callers pull fresh output explicitly instead. getBundle() below
+    // already awaits ensureLatestBuildOutput(), which is that explicit pull,
+    // so 'never' keeps the same behavior without rebuilding on every hmr patch.
+    rebuildStrategy: 'never',
     watch: {},
   })
 

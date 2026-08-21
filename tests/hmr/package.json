@@ -19,7 +19,7 @@
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
-    "vite": "^8.1.0"
+    "vite": "^8.2.2"
   },
   "devDependencies": {
     "playwright": "^1.58.2",
