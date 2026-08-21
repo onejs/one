@@ -77,6 +77,7 @@ export async function createServer(options: HeadlessServerOptions) {
     manifest,
     oneOptions: options.oneOptions,
     routeToBuildInfo: options.buildInfo?.routeToBuildInfo ?? {},
+    cssContentsByPath: options.buildInfo?.cssContentsByPath,
     routeMap: options.buildInfo?.routeMap ?? {},
     preloads: options.buildInfo?.preloads ?? {},
     cssPreloads: options.buildInfo?.cssPreloads ?? {},

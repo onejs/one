@@ -749,6 +749,14 @@ export namespace One {
       allRoutes: RouteInfo[]
     }
 
+    /**
+     * Inlined stylesheet contents keyed by css path. Every route that inlines
+     * css shares the same stylesheets, so the manifest stores each one once and
+     * `setupBuildInfo` rebuilds each route's `cssContents` array from it.
+     * Undefined when the build inlines no css at all.
+     */
+    cssContentsByPath?: Record<string, string>
+
     // for quick checking if preload exists
     preloads: Record<string, boolean>
     cssPreloads: Record<string, boolean>
@@ -782,7 +790,11 @@ export namespace One {
     css: string[]
     /** CSS from layout entries only - loaded before scripts to prevent FOUC */
     layoutCSS: string[]
-    /** When inlineLayoutCSS is enabled, contains the actual CSS content */
+    /**
+     * When inlineLayoutCSS is enabled, contains the actual CSS content, parallel
+     * to `css`. The build manifest does not serialize it. The contents live once
+     * in `BuildInfo.cssContentsByPath` and `setupBuildInfo` restores this array.
+     */
     cssContents?: string[]
   }
 
