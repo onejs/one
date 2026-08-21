@@ -1,10 +1,17 @@
 import { createVXRNCompilerPlugin } from '@vxrn/compiler'
 import { existsSync } from 'node:fs'
-import { extname } from 'node:path'
+import { dirname, extname, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import { ssrExtensions, webExtensions } from '../constants'
 
 // essentially base web config not base everything
+
+// a source that already ends in a js extension: resolve.extensions can't help
+// these, because it only appends to extensionless imports
+const JS_EXTENSION_RE = /\.[cm]?[jt]sx?$/
+// what may reach the resolveId hook below. the `.server` alternative keeps bare
+// `./db.server` imports (no js extension) reaching the server-only stub.
+const PLATFORM_RESOLVE_SOURCE_RE = /(?:\.[cm]?[jt]sx?|\.server)$/
 
 const PLATFORM_EXTENSIONS_BY_ENVIRONMENT = {
   client: ['web'],
@@ -69,49 +76,79 @@ export function getBaseVitePlugins(): PluginOption[] {
         },
       },
 
-      // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
-      async resolveId(source, importer, options) {
-        // Skip during Vite's dependency optimization scan to avoid interfering with dep discovery
-        // which can cause hard page reloads when new deps are found during navigation
-        // @see https://github.com/remix-run/remix/discussions/8917
-        // @ts-expect-error - scan is not in Vite's types but exists at runtime
-        if (options?.scan) return
+      // vite's resolve.extensions already prefers platform variants for
+      // extensionless imports in every environment (webExtensions /
+      // ssrExtensions here, getNativeExtensions for ios+android), verified by
+      // building with this hook disabled. the only thing left for this hook is
+      // an import that already carries an extension, since resolve.extensions
+      // only ever appends. so filter to those rust-side, plus bare `.server`
+      // which still needs an extension appended to be recognised as a server
+      // file. measured on onestack.dev this takes the hook from 25422 calls to
+      // 6880.
+      resolveId: {
+        filter: { id: PLATFORM_RESOLVE_SOURCE_RE },
+        async handler(source, importer, options) {
+          // Skip during Vite's dependency optimization scan to avoid interfering with dep discovery
+          // which can cause hard page reloads when new deps are found during navigation
+          // @see https://github.com/remix-run/remix/discussions/8917
+          // @ts-expect-error - scan is not in Vite's types but exists at runtime
+          if (options?.scan) return
 
-        const resolved = await this.resolve(source, importer, options)
-
-        if (!resolved || resolved.id.includes('node_modules')) {
-          return resolved
-        }
-
-        // resolve .server files to a throwing stub on client/native
-        // instead of erroring at build time, since dynamic imports behind
-        // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
-        // are still resolved by vite's import analysis
-        if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolved.id)) {
-          return { id: `\0server-only-stub:${source}` }
-        }
-
-        if (process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
-          return undefined
-        }
-
-        // an import that already carries an extension (`./x.js`) still has to
-        // prefer a `./x.web.js` sibling, and resolve.extensions only appends to
-        // extensionless imports, so this probe can't be replaced by it. see
-        // packages/test-package + tests/test/tests/resolving.test.ts
-        const jsExtension = extname(resolved.id)
-        const withoutExt = resolved.id.slice(0, resolved.id.length - jsExtension.length)
-        const platformSpecificExtension =
-          PLATFORM_EXTENSIONS_BY_ENVIRONMENT[this.environment.name]
-
-        if (platformSpecificExtension) {
-          for (const platformExtension of platformSpecificExtension) {
-            const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
-            if (cachedPathExists(fullPath)) {
-              return { id: fullPath }
+          // a relative or absolute source that already carries a js extension
+          // needs no extension appending, so its target is just the join and we
+          // can skip re-entering the whole resolver. that covered 6872 of the
+          // 6880 sources reaching this hook, which is the actual cost here: this
+          // plugin is enforce:'pre', so every this.resolve() re-ran the resolveId
+          // chain of every other plugin.
+          let resolvedId: string | undefined
+          if (JS_EXTENSION_RE.test(source)) {
+            if (source[0] === '/') {
+              resolvedId = source
+            } else if (source[0] === '.' && importer) {
+              resolvedId = resolve(dirname(importer), source)
             }
           }
-        }
+
+          if (!resolvedId) {
+            const resolved = await this.resolve(source, importer, options)
+            if (!resolved) return resolved
+            resolvedId = resolved.id
+          }
+
+          if (resolvedId.includes('node_modules')) {
+            return
+          }
+
+          // resolve .server files to a throwing stub on client/native
+          // instead of erroring at build time, since dynamic imports behind
+          // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
+          // are still resolved by vite's import analysis
+          if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolvedId)) {
+            return { id: `\0server-only-stub:${source}` }
+          }
+
+          if (process.env.VXRN_SKIP_STRICTER_PLATFORM_RESOLVE) {
+            return undefined
+          }
+
+          // an import that already carries an extension (`./x.js`) still has to
+          // prefer a `./x.web.js` sibling, and resolve.extensions only appends to
+          // extensionless imports, so this probe can't be replaced by it. see
+          // packages/test-package + tests/test/tests/resolving.test.ts
+          const jsExtension = extname(resolvedId)
+          const withoutExt = resolvedId.slice(0, resolvedId.length - jsExtension.length)
+          const platformSpecificExtension =
+            PLATFORM_EXTENSIONS_BY_ENVIRONMENT[this.environment.name]
+
+          if (platformSpecificExtension) {
+            for (const platformExtension of platformSpecificExtension) {
+              const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
+              if (cachedPathExists(fullPath)) {
+                return { id: fullPath }
+              }
+            }
+          }
+        },
       },
 
       // adding or deleting a .web/.native sibling changes what a source
