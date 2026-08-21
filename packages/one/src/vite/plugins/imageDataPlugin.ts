@@ -1,11 +1,14 @@
 import { existsSync } from 'node:fs'
 import { dirname, relative, resolve, sep } from 'node:path'
+import { prefixRegex } from 'rolldown/filter'
 import type { Plugin, ResolvedConfig } from 'vite'
 import { normalizePath } from 'vite'
 import { processImageMeta } from '../../image/getImageData'
 
 const IMAGEDATA_SUFFIX = '?imagedata'
 const VIRTUAL_PREFIX = '\0imagedata:'
+// rust-side hook filter, exactly equivalent to the endsWith guard it replaced
+const IMAGEDATA_SUFFIX_RE = /\?imagedata$/
 
 export function imageDataPlugin(): Plugin {
   let publicDir: string
@@ -36,55 +39,57 @@ export function imageDataPlugin(): Plugin {
       root = resolvedConfig.root
     },
 
-    async resolveId(id, importer) {
-      if (!id.endsWith(IMAGEDATA_SUFFIX)) return null
+    resolveId: {
+      filter: { id: IMAGEDATA_SUFFIX_RE },
+      async handler(id, importer) {
+        const cleanId = id.slice(0, -IMAGEDATA_SUFFIX.length)
+        let filePath: string
+        let allowedDir: string
 
-      const cleanId = id.slice(0, -IMAGEDATA_SUFFIX.length)
-      let filePath: string
-      let allowedDir: string
+        // Handle public dir paths (starting with /)
+        if (cleanId.startsWith('/')) {
+          filePath = resolve(publicDir, cleanId.slice(1))
+          allowedDir = publicDir
+        } else if (importer) {
+          // Handle relative imports
+          filePath = resolve(dirname(importer.replace(VIRTUAL_PREFIX, '')), cleanId)
+          allowedDir = root
+        } else {
+          filePath = resolve(root, cleanId)
+          allowedDir = root
+        }
 
-      // Handle public dir paths (starting with /)
-      if (cleanId.startsWith('/')) {
-        filePath = resolve(publicDir, cleanId.slice(1))
-        allowedDir = publicDir
-      } else if (importer) {
-        // Handle relative imports
-        filePath = resolve(dirname(importer.replace(VIRTUAL_PREFIX, '')), cleanId)
-        allowedDir = root
-      } else {
-        filePath = resolve(root, cleanId)
-        allowedDir = root
-      }
+        // Security: prevent path traversal outside allowed directory
+        if (!isPathWithinBounds(filePath, allowedDir)) {
+          console.warn(`[one] ?imagedata: Path traversal blocked: ${cleanId}`)
+          return null
+        }
 
-      // Security: prevent path traversal outside allowed directory
-      if (!isPathWithinBounds(filePath, allowedDir)) {
-        console.warn(`[one] ?imagedata: Path traversal blocked: ${cleanId}`)
-        return null
-      }
+        if (!existsSync(filePath)) {
+          console.warn(`[one] ?imagedata: File not found: ${filePath}`)
+          return null
+        }
 
-      if (!existsSync(filePath)) {
-        console.warn(`[one] ?imagedata: File not found: ${filePath}`)
-        return null
-      }
-
-      return VIRTUAL_PREFIX + filePath
+        return VIRTUAL_PREFIX + filePath
+      },
     },
 
-    async load(id) {
-      if (!id.startsWith(VIRTUAL_PREFIX)) return null
+    load: {
+      filter: { id: prefixRegex(VIRTUAL_PREFIX) },
+      async handler(id) {
+        const filePath = id.slice(VIRTUAL_PREFIX.length)
+        const src = getSrcPath(filePath)
 
-      const filePath = id.slice(VIRTUAL_PREFIX.length)
-      const src = getSrcPath(filePath)
+        // Track file for rebuild on change
+        this.addWatchFile(filePath)
 
-      // Track file for rebuild on change
-      this.addWatchFile(filePath)
+        const meta = await processImageMeta(filePath)
+        if (!meta) {
+          return createImageDataExport(src)
+        }
 
-      const meta = await processImageMeta(filePath)
-      if (!meta) {
-        return createImageDataExport(src)
-      }
-
-      return createImageDataExport(src, meta.width, meta.height, meta.blurDataURL)
+        return createImageDataExport(src, meta.width, meta.height, meta.blurDataURL)
+      },
     },
   }
 }
