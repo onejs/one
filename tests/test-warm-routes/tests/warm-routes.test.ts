@@ -1,10 +1,12 @@
 import { spawn, type ChildProcess } from 'node:child_process'
-import { existsSync, readFileSync, rmSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 
 const testDir = join(import.meta.dirname, '..')
 const cacheFile = join(testDir, 'node_modules', '.vite', 'one-warm-deps.json')
+const privateExportDep = '@one-tests/private-export'
+const privateExportDir = join(testDir, 'node_modules', '@one-tests', 'private-export')
 // Resolve one's JS entry (run.mjs) instead of node_modules/.bin/one: on Windows
 // the .bin shim is a .cmd/.ps1/.exe wrapper that `node <path>` can't load
 // (MODULE_NOT_FOUND), so the dev server never starts. Resolving via package.json
@@ -19,6 +21,9 @@ function cleanup() {
   const viteCache = join(testDir, 'node_modules', '.vite')
   if (existsSync(viteCache)) {
     rmSync(viteCache, { recursive: true })
+  }
+  if (existsSync(privateExportDir)) {
+    rmSync(privateExportDir, { recursive: true })
   }
 }
 
@@ -53,7 +58,13 @@ function startDevServer(port: number): {
 
   function waitFor(pattern: string | RegExp, timeoutMs = 60_000): Promise<string> {
     return new Promise((resolve, reject) => {
+      const cleanupListeners = () => {
+        proc.stdout?.off('data', onData)
+        proc.stderr?.off('data', onData)
+        proc.off('exit', onExit)
+      }
       const timer = setTimeout(() => {
+        cleanupListeners()
         reject(
           new Error(
             `Timed out waiting for "${pattern}" after ${timeoutMs}ms.\nOutput so far:\n${output.join('')}`
@@ -76,13 +87,22 @@ function startDevServer(port: number): {
         const all = output.join('')
         if (typeof pattern === 'string' ? all.includes(pattern) : pattern.test(all)) {
           clearTimeout(timer)
-          proc.stdout?.off('data', onData)
-          proc.stderr?.off('data', onData)
+          cleanupListeners()
           resolve(all)
         }
       }
+      const onExit = (code: number | null) => {
+        clearTimeout(timer)
+        cleanupListeners()
+        reject(
+          new Error(
+            `Dev server exited with code ${code} before "${pattern}".\nOutput so far:\n${output.join('')}`
+          )
+        )
+      }
       proc.stdout?.on('data', onData)
       proc.stderr?.on('data', onData)
+      proc.on('exit', onExit)
     })
   }
 
@@ -160,7 +180,26 @@ async function main() {
     process.exit(1)
   }
 
-  console.info('--- Run 2: expecting cached deps to be loaded on startup ---\n')
+  const cache = JSON.parse(readFileSync(cacheFile, 'utf-8'))
+  mkdirSync(privateExportDir, { recursive: true })
+  writeFileSync(
+    join(privateExportDir, 'package.json'),
+    JSON.stringify(
+      {
+        name: privateExportDep,
+        type: 'module',
+        exports: { './allowed': './allowed.js' },
+      },
+      null,
+      2
+    )
+  )
+  writeFileSync(
+    cacheFile,
+    JSON.stringify({ deps: [...cache.deps, privateExportDep].sort() }, null, 2)
+  )
+
+  console.info('--- Run 2: expecting stale cached deps to be pruned on startup ---\n')
 
   const run2 = startDevServer(port)
 
@@ -178,6 +217,11 @@ async function main() {
       console.info('\n❌ Run 2 FAILED: cached deps were NOT loaded on startup')
       console.info('Full output:')
       console.info(fullOutput)
+    }
+
+    const prunedCache = JSON.parse(readFileSync(cacheFile, 'utf-8'))
+    if (prunedCache.deps.includes(privateExportDep)) {
+      throw new Error(`Stale warm dependency was not pruned: ${privateExportDep}`)
     }
   } finally {
     run2.kill()
