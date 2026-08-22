@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { deepMergeOptimizeDeps } from './mergeUserConfig'
+import { deepMergeOptimizeDeps, mergeUserConfig } from './mergeUserConfig'
 
 describe('deepMergeOptimizeDeps', () => {
   it('filters excluded deps from include list', () => {
@@ -122,5 +122,45 @@ describe('deepMergeOptimizeDeps', () => {
     expect(a.noExternal).toContain(regex)
     expect(a.noExternal).toContain('react')
     expect(a.noExternal).not.toContain('react-native-reanimated')
+  })
+})
+
+describe('mergeUserConfig', () => {
+  const optimizeDeps = {
+    include: [],
+    exclude: [],
+    needsInterop: [],
+    rolldownOptions: {
+      moduleTypes: { '.js': 'jsx', '.ts': 'ts', '.tsx': 'tsx' },
+    },
+  }
+
+  it('keeps the client optimizer moduleTypes when the app declares optimizeDeps', () => {
+    // an app declaring its own optimizeDeps used to replace the client
+    // environment's wholesale once vite normalized it, dropping moduleTypes and
+    // breaking every dep that ships .ts (all of expo 57).
+    const serverConfig = {
+      optimizeDeps: {},
+      environments: {
+        client: {
+          optimizeDeps: {
+            include: ['react-native-screens'],
+            rolldownOptions: optimizeDeps.rolldownOptions,
+          },
+        },
+      },
+    }
+
+    const merged: any = mergeUserConfig(optimizeDeps, serverConfig as any, {
+      optimizeDeps: { include: ['async-retry'], exclude: ['oxc-parser'] },
+    })
+
+    const client = merged.environments.client.optimizeDeps
+    expect(client.rolldownOptions.moduleTypes['.ts']).toBe('ts')
+    expect(client.include).toContain('async-retry')
+    expect(client.include).toContain('react-native-screens')
+    expect(client.exclude).toContain('oxc-parser')
+    // rolldownOptions must travel exactly one path
+    expect(merged.optimizeDeps).toEqual({})
   })
 })

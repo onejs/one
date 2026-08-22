@@ -44,6 +44,24 @@ export function mergeUserConfig(
     // vite doesnt merge arrays but we want that
     // deepMergeOptimizeDeps(serverConfig, userViteConfig, optimizeDeps)
 
+    // vite folds a top-level `optimizeDeps` into environments.client while
+    // normalizing, which happens after this merge. so an app that declares one
+    // replaces the client optimizer options getAdditionalViteConfig set, and
+    // takes rolldownOptions.moduleTypes with it. every dep that ships .ts then
+    // gets re-parsed as jsx and dies on its first `import { type Foo }`, which
+    // is how expo 57 packages are written. fold it in here instead, and leave
+    // the top level empty so rolldownOptions only ever travels one path (two
+    // paths trips a vite compat-proxy deprecation warning).
+    if (serverConfig.optimizeDeps && Object.keys(serverConfig.optimizeDeps).length) {
+      serverConfig.environments ||= {}
+      serverConfig.environments.client ||= {}
+      serverConfig.environments.client.optimizeDeps = mergeConfig(
+        serverConfig.environments.client.optimizeDeps ?? {},
+        serverConfig.optimizeDeps
+      )
+      serverConfig.optimizeDeps = {}
+    }
+
     // TODO move to `server` environment
     serverConfig.ssr ||= {}
     userViteConfig.ssr ||= {}
