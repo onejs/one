@@ -300,6 +300,23 @@ export async function applyDependencyPatches(
                     const out = await patchDef(sourceContent)
                     if (typeof out === 'string' && out !== sourceContent) {
                       patchedContent = out
+                    } else if (typeof out === 'string') {
+                      // the patch ran and changed nothing. these patches are
+                      // literal string replaces against upstream source, so
+                      // that means the code it targets moved or was rewritten
+                      // and the patch is now a no-op. silence here is
+                      // dangerous: react-native's RCTTurboModule.mm patch
+                      // guards an ios SIGSEGV, and it stopped matching on RN
+                      // 0.86 without a word, which only turned up because
+                      // someone read the patch by hand during an upgrade.
+                      //
+                      // a patch that doesn't apply says so by returning
+                      // undefined (`if (contents.includes(x)) return`), so a
+                      // returned string that equals its input is always a stale
+                      // patch, never an intentional skip.
+                      console.warn(
+                        `[vxrn] patch for ${patch.module} matched nothing in ${relativePath} — it is stale and is no longer protecting anything`
+                      )
                     }
                   }
 

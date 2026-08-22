@@ -273,4 +273,67 @@ describe('applyDependencyPatches', () => {
     )
     expect(content).toContain('// marker')
   })
+
+  it('warns when a patch matches nothing, and stays quiet when it applies', async () => {
+    // a patch is a literal string replace against upstream source. when
+    // upstream moves the code, the replace silently stops doing anything and
+    // whatever it was guarding is quietly unprotected. that is how
+    // react-native's RCTTurboModule.mm SIGSEGV patch went dead on RN 0.86.
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    const stale: DepPatch[] = [
+      {
+        module: 'test-pkg',
+        patchFiles: {
+          'index.js': (contents) => (contents || '').replace('CODE THAT MOVED', 'fixed'),
+        },
+      },
+    ]
+
+    await setupAndPatch({
+      patches: stale,
+      setupFs: async (nm) => {
+        const pkgDir = join(nm, 'test-pkg')
+        await FSExtra.ensureDir(pkgDir)
+        await FSExtra.writeFile(
+          join(pkgDir, 'package.json'),
+          makePkg('test-pkg', '1.0.0')
+        )
+        await FSExtra.writeFile(join(pkgDir, 'index.js'), 'module.exports = {}')
+      },
+    })
+
+    expect(warn.mock.calls.flat().join(' ')).toContain('stale')
+    warn.mockClear()
+
+    // a patch that does apply must not warn, or the warning is noise
+    const applies: DepPatch[] = [
+      {
+        module: 'test-pkg',
+        patchFiles: {
+          'index.js': (contents) =>
+            (contents || '').replace(
+              'module.exports',
+              'globalThis.x = 1; module.exports'
+            ),
+        },
+      },
+    ]
+
+    await setupAndPatch({
+      patches: applies,
+      setupFs: async (nm) => {
+        const pkgDir = join(nm, 'test-pkg')
+        await FSExtra.ensureDir(pkgDir)
+        await FSExtra.writeFile(
+          join(pkgDir, 'package.json'),
+          makePkg('test-pkg', '1.0.0')
+        )
+        await FSExtra.writeFile(join(pkgDir, 'index.js'), 'module.exports = {}')
+      },
+    })
+
+    expect(warn.mock.calls.flat().join(' ')).not.toContain('stale')
+    warn.mockRestore()
+  })
 })
