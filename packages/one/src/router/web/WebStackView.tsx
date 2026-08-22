@@ -68,7 +68,10 @@ export function WebStackView({
   customChildren,
 }: WebStackViewProps) {
   return (
-    <StackStateProvider state={state} descriptors={descriptors as HeadlessStackDescriptors}>
+    <StackStateProvider
+      state={state}
+      descriptors={descriptors as HeadlessStackDescriptors}
+    >
       <HeadlessStackView
         state={state}
         navigation={navigation}
