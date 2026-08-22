@@ -530,10 +530,10 @@ try {
       }
     },
 
-    // rolldown 1.2 dropped 'auto': the server no longer decides full reloads,
-    // so callers pull fresh output explicitly instead. getBundle() below
-    // already awaits ensureLatestBuildOutput(), which is that explicit pull,
-    // so 'never' keeps the same behavior without rebuilding on every hmr patch.
+    // rolldown 1.2 dropped 'auto': the server no longer rebuilds on its own
+    // after an hmr update, so nothing refreshes the bundle unless a caller asks.
+    // getBundle() does that ask. keeping 'never' here avoids rebuilding on every
+    // patch, which is the whole point of hmr.
     rebuildStrategy: 'never',
     watch: {},
   })
@@ -547,6 +547,13 @@ try {
     engine,
 
     async getBundle() {
+      // pull fresh output BEFORE serving the cached bundle. under rolldown 1.1's
+      // 'auto' the engine rebuilt itself and onOutput kept currentBundle current,
+      // so returning it early was safe. under 1.2 nothing rebuilds on its own, so
+      // an early return hands back the bundle built at startup forever: edit a
+      // component, take a full reload, and the device still gets the old code.
+      // that is what broke fast refresh on native in 1.25.0.
+      await engine.ensureLatestBuildOutput()
       if (currentBundle) return currentBundle
       if (!bundlePromise) {
         let timeoutId: ReturnType<typeof setTimeout>
@@ -561,8 +568,6 @@ try {
           )
         })
       }
-      await engine.ensureLatestBuildOutput()
-      if (currentBundle) return currentBundle
       return bundlePromise
     },
 
