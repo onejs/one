@@ -1333,6 +1333,20 @@ export async function linkTo(
   currentMatches = newMatches
   setClientMatches(newMatches)
 
+  // every await above (route preload, route validation, a module promise thrown
+  // by loadRoute) can outlive the tree that started this navigation. an auth
+  // gate that swaps Slot for Redirect unmounts the subtree mid-flight, and any
+  // host that hot-swaps an app by unmounting the React root and re-evaluating
+  // its bundle in the same realm leaves this closure holding a container ref
+  // that is detached for good. every method on a detached ref logs "The
+  // 'navigation' object hasn't been initialized yet", and there is no tree left
+  // to dispatch into, so abandon the navigation. do not wait for readiness: it
+  // never returns for an orphaned navigation.
+  if (!navigationRef.isReady()) {
+    setLoadingState('loaded')
+    return
+  }
+
   const currentRootState = navigationRef.getRootState()
 
   const hash = href.indexOf('#')
@@ -1423,6 +1437,14 @@ export async function linkTo(
 
   let warningTm
   const interval = setInterval(() => {
+    // this fires after the dispatch, later than 16ms on a busy main thread, and
+    // the tree it belongs to can be gone by then. a detached ref never
+    // re-attaches for this navigation, so stop rather than poll it.
+    if (!navigationRef.isReady()) {
+      clearTimeout(warningTm)
+      clearInterval(interval)
+      return
+    }
     const next = navigationRef.getCurrentRoute()
     if (currentRouteBeforeDispatch !== next) {
       // let the main thread clear at least before running
@@ -1431,7 +1453,10 @@ export async function linkTo(
       })
     }
     clearTimeout(warningTm)
-    clearTimeout(interval)
+    // clearInterval to match the setInterval above and the early return's
+    // teardown. clearTimeout also worked here (browsers and node share one
+    // handle space between the two), so this is consistency, not a fix.
+    clearInterval(interval)
   }, 16)
   if (process.env.NODE_ENV === 'development') {
     warningTm = setTimeout(() => {
