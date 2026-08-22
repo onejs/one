@@ -12,6 +12,8 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
             };
             moduleTypes: {
                 '.js': "jsx";
+                '.ts': "ts";
+                '.tsx': "tsx";
             };
             shimMissingExports: true;
         };
