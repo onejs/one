@@ -530,11 +530,10 @@ try {
       }
     },
 
-    // rolldown 1.2 dropped 'auto': the server no longer rebuilds on its own
-    // after an hmr update, so nothing refreshes the bundle unless a caller asks.
-    // getBundle() does that ask. keeping 'never' here avoids rebuilding on every
-    // patch, which is the whole point of hmr.
-    rebuildStrategy: 'never',
+    // EXPERIMENT: 1.24.9 used 'auto', which rolldown 1.2 removed. pulling fresh
+    // output in getBundle() was not enough to restore native fast refresh, so
+    // test whether the rebuild itself is what the hmr patch path depends on.
+    rebuildStrategy: 'always',
     watch: {},
   })
 
