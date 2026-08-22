@@ -53,21 +53,47 @@ export function autoWarmPlugin(persistPath?: string): Plugin {
       }
     },
 
-    configResolved(config: ResolvedConfig) {
-      // build the exclude set from the resolved config
+    async configResolved(config: ResolvedConfig) {
       excludeSet = new Set(config.optimizeDeps.exclude || [])
 
-      if (cachedDeps.length > 0 && excludeSet.size > 0) {
-        // remove any cached deps that are in the exclude list
-        const conflicts = cachedDeps.filter((d) => excludeSet.has(d))
-        if (conflicts.length > 0) {
-          console.info(`[one] filtered ${conflicts.length} excluded deps from warm cache`)
+      if (cachedDeps.length > 0) {
+        const resolve = config.createResolver()
+        const staleDeps = new Set<string>()
 
-          // mutate the resolved include to remove conflicts
+        await Promise.all(
+          cachedDeps.map(async (dep) => {
+            if (excludeSet.has(dep)) {
+              staleDeps.add(dep)
+              return
+            }
+
+            try {
+              if (!(await resolve(dep))) staleDeps.add(dep)
+            } catch {
+              staleDeps.add(dep)
+            }
+          })
+        )
+
+        if (staleDeps.size > 0) {
+          cachedDeps = cachedDeps.filter((dep) => !staleDeps.has(dep))
+          console.info(`[one] pruned ${staleDeps.size} stale deps from warm cache`)
+
           if (config.optimizeDeps.include) {
-            ;(config.optimizeDeps as any).include = config.optimizeDeps.include.filter(
-              (d: string) => !excludeSet.has(d)
+            config.optimizeDeps.include = config.optimizeDeps.include.filter(
+              (dep) => !staleDeps.has(dep)
             )
+          }
+
+          try {
+            const nextRaw = JSON.stringify({ deps: [...cachedDeps].sort() }, null, 2)
+            if (!existsSync(cacheFile) || readFileSync(cacheFile, 'utf-8') !== nextRaw) {
+              const dir = dirname(cacheFile)
+              if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
+              writeFileSync(cacheFile, nextRaw)
+            }
+          } catch {
+            // a future snapshot can retry the cache write
           }
         }
       }
