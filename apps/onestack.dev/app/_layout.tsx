@@ -27,6 +27,7 @@ export default function Layout() {
         />
         <link rel="icon" href="/favicon.png" sizes="32x32" />
         <link rel="icon" href="/large-icon.png" sizes="192x192" />
+        <link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" />
       </head>
 
       <body>
