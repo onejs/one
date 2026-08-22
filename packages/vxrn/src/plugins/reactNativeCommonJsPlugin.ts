@@ -209,8 +209,12 @@ export function reactNativeCommonJsPlugin(options: {
           include: undefined,
 
           rolldownOptions: {
+            // same extractExportsData fallback as the web optimizer config in
+            // getOptimizeDeps.ts — an undeclared .ts dep entry is retried as JSX
             moduleTypes: {
               '.js': 'jsx',
+              '.ts': 'ts',
+              '.tsx': 'tsx',
             },
           },
         },

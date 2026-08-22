@@ -146,8 +146,13 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         resolve: {
           extensions: webExtensions,
         },
-        // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js)
-        moduleTypes: { '.js': 'jsx' },
+        // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js).
+        // .ts/.tsx must be declared too. when es-module-lexer can't read a dep entry,
+        // vite's extractExportsData retries it as `moduleTypes[extname] || 'jsx'`, and
+        // lexer always fails on TS syntax — so an undeclared .ts entry gets re-parsed as
+        // JSX and dies on the first inline type specifier (`import { type Foo }`), which
+        // is how expo 57 packages are written.
+        moduleTypes: { '.js': 'jsx', '.ts': 'ts', '.tsx': 'tsx' },
         // react-native packages import native-only exports (TurboModuleRegistry etc.)
         // from react-native, which is aliased to react-native-web on web. react-native-web
         // doesn't export these, so rolldown would error. shimMissingExports creates
