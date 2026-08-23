@@ -682,6 +682,7 @@
         "metro-config": "^0.84.3",
         "react-native": "0.86.2",
         "vite": "^8.2.2",
+        "vitest": "^4.1.0",
       },
       "peerDependencies": {
         "@expo/metro-config": "~57.0.7",

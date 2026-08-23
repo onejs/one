@@ -102,6 +102,6 @@ export declare function hmrClientNoopPlugin(): Plugin;
  * react-native codegen, react compiler, and react-refresh (dev only) —
  * same pipeline as metro, single babel pass per file.
  */
-export declare function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin;
+export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string): Plugin;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

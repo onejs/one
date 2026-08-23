@@ -227,7 +227,7 @@ function getNativePlugins(
     // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
     // type argument intact. stripping Flow first would erase it (which is why the
     // codegen "didn't run for <Component>" warning fired).
-    vxrnCompilerPlugin(platform, dev),
+    vxrnCompilerPlugin(platform, dev, root),
     // strip Flow from any react-native / @react-native `.js` the compiler didn't
     // handle, the guaranteed safety net before rolldown's oxc core parse (which
     // can't parse Flow). now downstream of the compiler, so codegen sees the types.
@@ -894,7 +894,11 @@ function cssStubPlugin(): Plugin {
  * react-native codegen, react compiler, and react-refresh (dev only) —
  * same pipeline as metro, single babel pass per file.
  */
-export function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
+export function vxrnCompilerPlugin(
+  platform: string,
+  dev: boolean,
+  projectRoot = process.cwd()
+): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
 
   // whether a file is a user file that should get react-refresh wiring
@@ -918,6 +922,7 @@ export function vxrnCompilerPlugin(platform: string, dev: boolean): Plugin {
         const props = {
           id,
           code,
+          projectRoot,
           development: dev,
           environment: platform as 'ios' | 'android',
           reactForRNVersion: '19' as const,
