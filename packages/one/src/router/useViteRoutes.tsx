@@ -1,5 +1,6 @@
 import type { GlobbedRouteImports } from '../types'
 import type { One } from '../vite/types'
+import { diagnoseRouteLoadFailure } from './diagnoseRouteLoadFailure'
 import { hmrImport } from './hmrImport'
 
 // essentially a development helper
@@ -303,6 +304,15 @@ export function globbedRoutesToRouteContext(
               message: err instanceof Error ? err.message : String(err),
               stack: err instanceof Error ? err.stack : undefined,
             })
+
+            // `Importing a module script failed` names neither the module nor
+            // the reason. when a browser content blocker refused one of the
+            // route's imports, walking the graph finds the exact file.
+            if (typeof document !== 'undefined' && routePaths[id]) {
+              diagnoseRouteLoadFailure(id, routePaths[id]).then((message) => {
+                if (message) console.error(message)
+              })
+            }
           }
           loadedRoutes[id] = {
             default: () => null,
