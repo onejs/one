@@ -47,6 +47,7 @@
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
+    "test": "vitest run --dir src",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -80,7 +81,8 @@
     "metro": "^0.84.3",
     "metro-config": "^0.84.3",
     "react-native": "0.86.2",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vitest": "^4.1.0"
   },
   "publishConfig": {
     "access": "public"

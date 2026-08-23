@@ -55,13 +55,8 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   }
 
   if (enableNativewind || shouldBabelReanimated(props)) {
-    debug?.(`Using babel reanimated on file ${props.id}`)
-    plugins.push(
-      // TODO make this configurable
-      process.env.VXRN_WORKLET_PLUGIN
-        ? 'react-native-worklets/plugin'
-        : 'react-native-reanimated/plugin'
-    )
+    debug?.(`Using babel worklets on file ${props.id}`)
+    plugins.push(resolvePath('react-native-worklets/plugin', props.projectRoot))
   }
 
   if (shouldBabelReactCompiler(props)) {

@@ -112,6 +112,7 @@ function logCompiled(cached: boolean, ms: number) {
 async function performBabelTransform({
   id,
   code,
+  projectRoot,
   environment,
   production,
   reactForRNVersion,
@@ -119,6 +120,7 @@ async function performBabelTransform({
 }: {
   id: string
   code: string
+  projectRoot: string
   environment: Environment
   production: boolean
   reactForRNVersion: '18' | '19'
@@ -134,6 +136,7 @@ async function performBabelTransform({
   const transformProps: GetTransformProps = {
     id,
     code,
+    projectRoot,
     development: !production,
     environment,
     reactForRNVersion,
@@ -392,6 +395,7 @@ ${rootJS.code}
                       const result = await performBabelTransform({
                         id,
                         code,
+                        projectRoot: config.root,
                         environment,
                         production,
                         reactForRNVersion,
@@ -504,6 +508,7 @@ ${rootJS.code}
         return performBabelTransform({
           id,
           code: codeIn,
+          projectRoot: config.root,
           environment,
           production,
           reactForRNVersion,

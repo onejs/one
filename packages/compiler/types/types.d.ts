@@ -12,6 +12,7 @@ export type Options = {
 export type GetTransformProps = {
     id: string;
     code: string;
+    projectRoot?: string;
     development: boolean;
     environment: Environment;
     reactForRNVersion: '18' | '19';
