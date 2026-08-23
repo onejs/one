@@ -23,8 +23,9 @@ Two steps, because `main` is protected by a merge queue.
    ```
 
    It checks that `main` is current and that CI is green on that exact SHA,
-   publishes the version `main` already carries via npm trusted publishing
-   (OIDC, no token), pushes the `vX.Y.Z` tag, and creates the GitHub release.
+   builds the packages in its fresh checkout, publishes the version `main`
+   already carries via npm trusted publishing (OIDC, no token), pushes the
+   `vX.Y.Z` tag, and creates the GitHub release.
 
 ## Why not `release=minor` directly
 
