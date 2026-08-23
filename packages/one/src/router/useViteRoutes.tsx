@@ -308,7 +308,7 @@ export function globbedRoutesToRouteContext(
             // `Importing a module script failed` names neither the module nor
             // the reason. when a browser content blocker refused one of the
             // route's imports, walking the graph finds the exact file.
-            if (typeof document !== 'undefined' && routePaths[id]) {
+            if (process.env.NODE_ENV === 'development' && routePaths[id]) {
               diagnoseRouteLoadFailure(id, routePaths[id]).then((message) => {
                 if (message) console.error(message)
               })
