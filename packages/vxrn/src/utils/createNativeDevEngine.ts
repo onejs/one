@@ -10,6 +10,7 @@ import { basename, dirname, extname, join, relative, resolve } from 'node:path'
 import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
+import type { DevEngine } from 'rolldown/experimental'
 import { normalizePath } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -47,11 +48,22 @@ interface NativeDevEngineOptions {
   platform: 'ios' | 'android'
   serverUrl?: string
   plugins?: Plugin[]
-  onHmrUpdate?: (update: { type: string; code?: string }) => void
+  onHmrUpdate?: (update: NativeHmrUpdate) => void
 }
 
+export type NativeHmrUpdate =
+  | {
+      type: 'hmr:update'
+      clientId: string
+      code: string
+      changedIds: string[]
+      seq: number
+    }
+  | { type: 'hmr:reload'; clientId: string }
+  | { type: 'hmr:error' }
+
 interface NativeDevEngineResult {
-  engine: any
+  engine: DevEngine
   getBundle: () => Promise<{ code: string }>
   close: () => Promise<void>
 }
@@ -450,18 +462,18 @@ export async function createNativeDevEngine(
     outro: `
 try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
-  var __hmrUrl = 'ws://${resolvedHost}:${port}/hot';
+  var __hmrUrl = 'ws://${resolvedHost}:${port}/hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
   var __hmrWS = new __WS(__hmrUrl);
   __hmrWS.onmessage = function(event) {
     try {
       var msg = JSON.parse(event.data);
       var g = typeof global !== 'undefined' ? global : globalThis;
       if (msg.type === 'hmr:update' && msg.code) {
-        if (g.globalEvalWithSourceUrl) g.globalEvalWithSourceUrl(msg.code);
-        else (0, eval)(msg.code);
-        setTimeout(function() {
-          try { if (g.__ReactRefresh) g.__ReactRefresh.performReactRefresh(); } catch(e) {}
-        }, 50);
+        var applied = __rolldown_runtime__.applyHmrUpdate(msg.code, msg.changedIds, msg.seq);
+        if (!applied) {
+          var updateSettings = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
+          if (updateSettings && updateSettings.reload) updateSettings.reload();
+        }
       } else if (msg.type === 'hmr:reload') {
         var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
         if (ds && ds.reload) ds.reload();
@@ -470,7 +482,7 @@ try {
   };
   __hmrWS.onopen = function() {
     if (typeof __rolldown_runtime__ !== 'undefined' && __rolldown_runtime__.setup) {
-      __rolldown_runtime__.setup(__hmrWS, __hmrUrl.replace('ws://', 'http://'));
+      __rolldown_runtime__.setup(__hmrWS);
     }
   };
   __hmrWS.onerror = function(e) { console.warn('[vxrn] HMR connection error:', e.message || e); };
@@ -515,44 +527,35 @@ try {
         onHmrUpdate?.({ type: 'hmr:error' })
         return
       }
-      const updates = (result as any).updates || []
-      for (const item of updates) {
-        const update = item.update || item
+      for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
-          onHmrUpdate?.({ type: 'hmr:update', code: update.code })
+          onHmrUpdate?.({
+            type: 'hmr:update',
+            clientId,
+            code: update.code,
+            changedIds: update.changedIds,
+            seq: update.seq,
+          })
         } else if (update.type === 'FullReload') {
-          onHmrUpdate?.({ type: 'hmr:reload' })
+          onHmrUpdate?.({ type: 'hmr:reload', clientId })
         }
-      }
-
-      if (updates.length === 0) {
-        onHmrUpdate?.({ type: 'hmr:reload' })
       }
     },
 
-    // rolldown 1.2 dropped 'auto': the server no longer rebuilds on its own
-    // after an hmr update, so nothing refreshes the bundle unless a caller asks.
-    // getBundle() does that ask. keeping 'never' here avoids rebuilding on every
-    // patch, which is the whole point of hmr.
+    // patches update the registered client runtime directly. a full bundle rebuild
+    // is only needed when the runtime requests a reload.
     rebuildStrategy: 'never',
     watch: {},
   })
 
   await engine.run()
 
-  // modules are registered via WebSocket messages from the HMR client
-  // (the devMode runtime sends hmr:module-registered messages)
-
   return {
     engine,
 
     async getBundle() {
-      // pull fresh output BEFORE serving the cached bundle. under rolldown 1.1's
-      // 'auto' the engine rebuilt itself and onOutput kept currentBundle current,
-      // so returning it early was safe. under 1.2 nothing rebuilds on its own, so
-      // an early return hands back the bundle built at startup forever: edit a
-      // component, take a full reload, and the device still gets the old code.
-      // that is what broke fast refresh on native in 1.25.0.
+      // a runtime invalidation marks the full output stale before reloading. pull
+      // that output before serving the cached bundle to the restarted app.
       await engine.ensureLatestBuildOutput()
       if (currentBundle) return currentBundle
       if (!bundlePromise) {
@@ -1155,33 +1158,40 @@ function hermesCompatSWCPlugin(dev: boolean): Plugin {
 
 // --- HMR runtime ---
 
-function getHmrRuntimeSource(): string {
+export function getHmrRuntimeSource(): string {
   return `
 // vxrn HMR runtime for rolldown devMode
 var BaseDevRuntime = DevRuntime;
 
 class ReactNativeDevRuntime extends BaseDevRuntime {
   constructor() {
-    var _shared = { _socket: null, _queue: [] };
     var clientId = 'rn-' + Date.now() + '-' + Math.random().toString(36).slice(2);
-    super({ send: function(msg) {
-      var s = JSON.stringify(msg);
-      if (_shared._socket && _shared._socket.readyState === 1) { _shared._socket.send(s); }
-      else { _shared._queue.push(s); }
-    }}, clientId);
-    this._shared = _shared;
+    super(clientId);
     this._socket = null;
-    this._queue = [];
     this.moduleHotContexts = {};
+    this.lastSeq = 0;
   }
 
   createModuleHotContext(moduleId) {
+    var runtime = this;
     var ctx = {
       acceptCallbacks: [],
-      accept: function(cb) {
-        if (cb) ctx.acceptCallbacks.push({ deps: [moduleId], fn: cb });
+      accept: function(deps, callback) {
+        if (typeof deps === 'function' || !deps) {
+          ctx.acceptCallbacks.push({
+            deps: [moduleId],
+            fn: function(modules) { if (typeof deps === 'function') deps(modules[0]); }
+          });
+        } else if (typeof deps === 'string') {
+          ctx.acceptCallbacks.push({
+            deps: [deps],
+            fn: function(modules) { if (callback) callback(modules[0]); }
+          });
+        } else if (Array.isArray(deps)) {
+          ctx.acceptCallbacks.push({ deps: deps, fn: callback || function() {} });
+        }
       },
-      invalidate: function() {},
+      invalidate: function() { runtime.requestReload('module invalidated: ' + moduleId); },
       on: function() {},
       off: function() {},
       send: function() {},
@@ -1212,55 +1222,112 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     return ctx;
   }
 
-  applyUpdates(boundaries) {
-    for (var i = 0; i < boundaries.length; i++) {
-      var moduleId = boundaries[i][0];
-      var ctx = this.moduleHotContexts[moduleId];
-      if (ctx && ctx.acceptCallbacks) {
-        for (var j = 0; j < ctx.acceptCallbacks.length; j++) {
-          ctx.acceptCallbacks[j].fn(this.modules[moduleId].exports);
-        }
+  isSelfAccepted(moduleId) {
+    var ctx = this.moduleHotContexts[moduleId];
+    return !!(ctx && ctx.acceptCallbacks.some(function(callback) {
+      return callback.deps.indexOf(moduleId) !== -1;
+    }));
+  }
+
+  acceptsDependency(parentId, moduleId) {
+    var ctx = this.moduleHotContexts[parentId];
+    return !!(ctx && ctx.acceptCallbacks.some(function(callback) {
+      return callback.deps.indexOf(moduleId) !== -1;
+    }));
+  }
+
+  findBoundaries(moduleId, traversed, updateSet, boundaries) {
+    if (traversed.has(moduleId)) return true;
+    traversed.add(moduleId);
+    updateSet.add(moduleId);
+
+    if (this.isSelfAccepted(moduleId)) {
+      boundaries.push({ boundary: moduleId, acceptedVia: moduleId });
+      return true;
+    }
+
+    var importers = this.getImporters(moduleId).filter(function(importer) {
+      return this.isExecuted(importer);
+    }, this);
+    if (importers.length === 0) return false;
+
+    for (var i = 0; i < importers.length; i++) {
+      var importer = importers[i];
+      if (this.acceptsDependency(importer, moduleId)) {
+        boundaries.push({ boundary: importer, acceptedVia: moduleId });
+      } else if (!this.findBoundaries(importer, traversed, updateSet, boundaries)) {
+        return false;
       }
-      // surface each committed module id to the framework hot-update hook (if one
-      // is registered). RN's React Refresh can't repaint frameworks that re-wrap
-      // route components away from the edited module's Refresh family (e.g. One),
-      // and the web route-update event has no equivalent on the native /hot
-      // socket, so this generic vxrn global is the bridge.
+    }
+    return true;
+  }
+
+  applyHmrUpdate(code, changedIds, seq) {
+    if (seq !== this.lastSeq + 1) return false;
+    this.lastSeq = seq;
+
+    var traversed = new Set();
+    var updateSet = new Set();
+    var boundaries = [];
+    for (var i = 0; i < changedIds.length; i++) {
+      var changedId = changedIds[i];
+      if (!this.isExecuted(changedId)) continue;
+      if (!this.findBoundaries(changedId, traversed, updateSet, boundaries)) return false;
+    }
+    if (boundaries.length === 0) return true;
+
+    var callbacks = boundaries.map(function(item) {
+      var ctx = this.moduleHotContexts[item.boundary];
+      return {
+        boundary: item.boundary,
+        acceptedVia: item.acceptedVia,
+        callbacks: ctx ? ctx.acceptCallbacks.filter(function(callback) {
+          return callback.deps.indexOf(item.acceptedVia) !== -1;
+        }) : []
+      };
+    }, this);
+
+    if (globalThis.globalEvalWithSourceUrl) globalThis.globalEvalWithSourceUrl(code);
+    else (0, eval)(code);
+
+    var modulesToReplace = Array.from(updateSet);
+    for (var j = 0; j < modulesToReplace.length; j++) {
+      if (!this.hasFactory(modulesToReplace[j])) return false;
+    }
+    for (var k = 0; k < modulesToReplace.length; k++) {
+      this.removeModuleCache(modulesToReplace[k]);
+    }
+
+    for (var m = 0; m < callbacks.length; m++) {
+      var apply = callbacks[m];
+      this.initModule(apply.acceptedVia);
+      var freshExports = this.loadExports(apply.acceptedVia);
+      for (var n = 0; n < apply.callbacks.length; n++) {
+        apply.callbacks[n].fn([freshExports]);
+      }
+    }
+
+    for (var p = 0; p < changedIds.length; p++) {
       try {
-        if (globalThis.__VXRN_ON_MODULE_UPDATED__ && moduleId) globalThis.__VXRN_ON_MODULE_UPDATED__(moduleId);
+        if (globalThis.__VXRN_ON_MODULE_UPDATED__) {
+          globalThis.__VXRN_ON_MODULE_UPDATED__(changedIds[p]);
+        }
       } catch (error) {
         console.error('[vxrn HMR]: module update hook failed', error);
       }
     }
+    return true;
   }
 
-  setup(socket, origin) {
+  requestReload(reason) {
+    if (this._socket && this._socket.readyState === 1) {
+      this._socket.send(JSON.stringify({ type: 'hmr:invalidate', reason: reason }));
+    }
+  }
+
+  setup(socket) {
     if (this._socket) return;
     this._socket = socket;
-    // also set the shared messenger socket so queued messages can flush
-    if (this._shared) this._shared._socket = socket;
-
-    var flushQueues = function() {
-      // flush messenger queue
-      if (this._shared && this._shared._queue.length) {
-        for (var i = 0; i < this._shared._queue.length; i++) socket.send(this._shared._queue[i]);
-        this._shared._queue = [];
-      }
-      // flush instance queue
-      for (var i = 0; i < this._queue.length; i++) socket.send(this._queue[i]);
-      this._queue = [];
-    }.bind(this);
-
-    if (socket.readyState === 1) {
-      flushQueues();
-    } else {
-      socket.addEventListener('open', function() {
-        flushQueues();
-      }, { once: true });
-    }
-
-    // HMR message handling is done by the outro WebSocket handler
-    // the runtime's setup() only needs to flush queued messages
   }
 }
 

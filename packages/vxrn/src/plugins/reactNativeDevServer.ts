@@ -1,5 +1,5 @@
 import type { Connect, Plugin, ViteDevServer } from 'vite'
-import { WebSocketServer } from 'ws'
+import { WebSocketServer, type WebSocket } from 'ws'
 import { createMessageSocket } from '@vxrn/utils'
 import {
   addConnectedNativeClient,
@@ -15,6 +15,11 @@ type ClientMessage = {
   type: 'client-log'
   level: 'log' | 'error' | 'info' | 'debug' | 'warn'
   data: string[]
+}
+
+type NativeHmrSocket = WebSocket & {
+  vxrnClientId: string
+  vxrnPlatform: 'ios' | 'android'
 }
 
 export function createReactNativeDevServerPlugin(
@@ -61,18 +66,17 @@ export function createReactNativeDevServerPlugin(
 
         // rolldown HMR socket (used by rolldown dev() HMR client)
         if (url.startsWith('/hot')) {
+          const hmrUrl = new URL(url, `http://${req.headers.host || 'localhost'}`)
+          const platform = validPlatforms[hmrUrl.searchParams.get('platform') || '']
+          const clientId = hmrUrl.searchParams.get('clientId')
+          if (!platform || !clientId) {
+            socket.destroy()
+            return
+          }
           hmrWSS.handleUpgrade(req, socket, head, (ws) => {
-            // listen for module registration messages from client
-            ws.on('message', async (data: any) => {
-              try {
-                const msg = JSON.parse(data.toString())
-                if (msg.type === 'hmr:module-registered' && msg.modules) {
-                  const currentEngine = devEngines['ios'] || devEngines['android']
-                  if (currentEngine?.engine) {
-                    await currentEngine.engine.registerModules('vxrn-dev', msg.modules)
-                  }
-                }
-              } catch {}
+            Object.assign(ws, {
+              vxrnClientId: clientId,
+              vxrnPlatform: platform,
             })
             hmrWSS.emit('connection', ws, req)
           })
@@ -95,17 +99,47 @@ export function createReactNativeDevServerPlugin(
         }
       })
 
-      hmrWSS.on('connection', (socket) => {
+      hmrWSS.on('connection', async (socket: NativeHmrSocket) => {
+        const currentEngine = devEngines[socket.vxrnPlatform]
+        if (!currentEngine) {
+          socket.close(1013, 'native dev engine unavailable')
+          return
+        }
+
+        try {
+          await currentEngine.engine.registerClient(socket.vxrnClientId)
+        } catch (error) {
+          console.error('[hmr] failed to register native client', error)
+          socket.close(1011, 'native HMR registration failed')
+          return
+        }
         addConnectedNativeClient()
 
-        socket.on('message', (message) => {
-          if (message.toString().includes('ping')) {
+        socket.on('message', async (message) => {
+          const value = message.toString()
+          if (value === 'ping') {
             socket.send('pong')
+            return
+          }
+
+          let update: { type?: string }
+          try {
+            update = JSON.parse(value)
+          } catch {
+            return
+          }
+          if (update.type === 'hmr:invalidate') {
+            currentEngine.engine.triggerFullBuild()
+            await currentEngine.engine.ensureLatestBuildOutput()
+            socket.send(JSON.stringify({ type: 'hmr:reload' }))
           }
         })
 
         socket.on('close', () => {
           removeConnectedNativeClient()
+          currentEngine.engine.removeClient(socket.vxrnClientId).catch((error) => {
+            console.error('[hmr] failed to remove native client', error)
+          })
         })
 
         socket.on('error', (error) => {
@@ -181,8 +215,14 @@ export function createReactNativeDevServerPlugin(
                       serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
                       onHmrUpdate: (update) => {
                         const msg = JSON.stringify(update)
-                        hmrWSS.clients.forEach((client: any) => {
-                          if (client.readyState === 1) {
+                        hmrWSS.clients.forEach((client) => {
+                          const nativeClient = client as NativeHmrSocket
+                          if (
+                            nativeClient.readyState === 1 &&
+                            nativeClient.vxrnPlatform === platform &&
+                            (update.type === 'hmr:error' ||
+                              nativeClient.vxrnClientId === update.clientId)
+                          ) {
                             client.send(msg)
                           }
                         })

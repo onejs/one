@@ -6,6 +6,7 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 import type { Plugin } from 'rolldown';
+import type { DevEngine } from 'rolldown/experimental';
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
 export declare function getHermesSWCIncludes(dev: boolean): string[];
 interface NativeDevEngineOptions {
@@ -15,13 +16,22 @@ interface NativeDevEngineOptions {
     platform: 'ios' | 'android';
     serverUrl?: string;
     plugins?: Plugin[];
-    onHmrUpdate?: (update: {
-        type: string;
-        code?: string;
-    }) => void;
+    onHmrUpdate?: (update: NativeHmrUpdate) => void;
 }
+export type NativeHmrUpdate = {
+    type: 'hmr:update';
+    clientId: string;
+    code: string;
+    changedIds: string[];
+    seq: number;
+} | {
+    type: 'hmr:reload';
+    clientId: string;
+} | {
+    type: 'hmr:error';
+};
 interface NativeDevEngineResult {
-    engine: any;
+    engine: DevEngine;
     getBundle: () => Promise<{
         code: string;
     }>;
@@ -103,5 +113,6 @@ export declare function hmrClientNoopPlugin(): Plugin;
  * same pipeline as metro, single babel pass per file.
  */
 export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string): Plugin;
+export declare function getHmrRuntimeSource(): string;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

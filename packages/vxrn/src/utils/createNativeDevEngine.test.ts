@@ -1,11 +1,106 @@
+import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { dev } from 'rolldown/experimental'
 import { describe, expect, it } from 'vitest'
 import {
   getHermesSWCIncludes,
+  getHmrRuntimeSource,
   getNativeTransformConfig,
   hmrClientNoopPlugin,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
+
+describe('native Rolldown HMR runtime', () => {
+  it(
+    'registers a Rolldown 1.2 client and applies a self-accepted patch',
+    { timeout: 30_000 },
+    async () => {
+      const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-'))
+      const entry = join(testRoot, 'entry.js')
+      const source = (version: string) => `
+globalThis.__vxrnHmrBody = '${version}'
+export const value = '${version}'
+if (import.meta.hot) {
+  import.meta.hot.accept((next) => {
+    globalThis.__vxrnHmrAccepted = next.value
+  })
+}
+`
+      await writeFile(entry, source('v1'))
+
+      let resolveInitialOutput!: (output: any) => void
+      const initialOutput = new Promise<any>((resolve) => {
+        resolveInitialOutput = resolve
+      })
+      let resolveHmrUpdate!: (output: any) => void
+      const hmrUpdate = new Promise<any>((resolve) => {
+        resolveHmrUpdate = resolve
+      })
+      const engine = await dev(
+        {
+          cwd: testRoot,
+          input: entry,
+          experimental: { devMode: { implement: getHmrRuntimeSource() } },
+        },
+        { format: 'esm' },
+        {
+          onOutput(result) {
+            resolveInitialOutput(result)
+          },
+          onHmrUpdates(result) {
+            if (!(result instanceof Error) && result.changedFiles.length) {
+              resolveHmrUpdate(result)
+            }
+          },
+        }
+      )
+
+      try {
+        await engine.run()
+        const initial = await initialOutput
+        if (initial instanceof Error) throw initial
+        const chunk = initial.output.find(
+          (item: any) => item.type === 'chunk' && item.isEntry
+        )
+        expect(chunk).toBeTruthy()
+
+        delete (globalThis as any).__rolldown_runtime__
+        await import(
+          `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+        )
+        const runtime = (globalThis as any).__rolldown_runtime__
+        expect(typeof runtime.clientId).toBe('string')
+        await engine.registerClient(runtime.clientId)
+
+        await new Promise((resolve) => setTimeout(resolve, 100))
+        await writeFile(entry, source('v2'))
+        const result = await Promise.race([
+          hmrUpdate,
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('timed out waiting for HMR patch')), 10_000)
+          ),
+        ])
+        const patch = result.updates.find(
+          (item: any) =>
+            item.clientId === runtime.clientId && item.update.type === 'Patch'
+        )?.update
+        expect(patch).toBeTruthy()
+
+        expect(runtime.applyHmrUpdate(patch.code, patch.changedIds, patch.seq)).toBe(true)
+        expect((globalThis as any).__vxrnHmrBody).toBe('v2')
+        expect((globalThis as any).__vxrnHmrAccepted).toBe('v2')
+      } finally {
+        await engine.close()
+        await rm(testRoot, { recursive: true, force: true })
+        delete (globalThis as any).__rolldown_runtime__
+        delete (globalThis as any).__vxrnHmrBody
+        delete (globalThis as any).__vxrnHmrAccepted
+      }
+    }
+  )
+})
 
 // use a root with no .env files so only the platform defines are present
 const root = '/tmp/vxrn-native-env-define-test-nonexistent'
