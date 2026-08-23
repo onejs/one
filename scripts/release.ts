@@ -66,7 +66,7 @@ const skipTest =
 const skipNativeTest =
   process.argv.includes('--skip-native-test') ||
   process.argv.includes('--skip-native-tests')
-const skipBuild = finish || rePublish || skipAll || process.argv.includes('--skip-build')
+const skipBuild = finish || skipAll || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
 const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
 const isCI = finish || rePublish || undocumented || process.argv.includes('--ci')
