@@ -924,7 +924,6 @@ url: ${url}`)
 
   for (const route of compiledManifest.apiRoutes) {
     app.get(route.urlPath, createHonoHandler(route))
-    app.on('HEAD', route.urlPath, createHonoHandler(route))
     app.put(route.urlPath, createHonoHandler(route))
     app.post(route.urlPath, createHonoHandler(route))
     app.delete(route.urlPath, createHonoHandler(route))
@@ -933,7 +932,6 @@ url: ${url}`)
 
     if (route.urlPath !== route.urlCleanPath) {
       app.get(route.urlCleanPath, createHonoHandler(route))
-      app.on('HEAD', route.urlCleanPath, createHonoHandler(route))
       app.put(route.urlCleanPath, createHonoHandler(route))
       app.post(route.urlCleanPath, createHonoHandler(route))
       app.delete(route.urlCleanPath, createHonoHandler(route))
@@ -944,11 +942,9 @@ url: ${url}`)
 
   for (const route of compiledManifest.pageRoutes) {
     app.get(route.urlPath, createHonoHandler(route))
-    app.on('HEAD', route.urlPath, createHonoHandler(route))
 
     if (route.urlPath !== route.urlCleanPath) {
       app.get(route.urlCleanPath, createHonoHandler(route))
-      app.on('HEAD', route.urlCleanPath, createHonoHandler(route))
     }
   }
 
