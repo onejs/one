@@ -62,8 +62,9 @@ vi.mock('./vite/getManifest', () => ({
   }),
 }))
 
-function createRequest(path: string) {
+function createRequest(path: string, method = 'GET') {
   return new Request(`http://localhost:3000${path}`, {
+    method,
     headers: {
       host: 'localhost:3000',
     },
@@ -259,6 +260,52 @@ describe('createHandleRequest', () => {
       const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
       await handler(createRequest('/my-awesome-page'))
       expect(mockHandlers.handlePage).toHaveBeenCalled()
+    })
+  })
+
+  describe('request method dispatch', () => {
+    it('routes HEAD requests to page handlers', async () => {
+      const handlePage = vi.fn().mockResolvedValue(new Response(null, { status: 200 }))
+      const { handler } = createHandleRequest(
+        { handlePage },
+        { routerRoot: '/app' }
+      )
+
+      const result = await handler(createRequest('/my-page', 'HEAD'))
+
+      expect(result).toBeInstanceOf(Response)
+      expect(handlePage).toHaveBeenCalledOnce()
+    })
+
+    it('continues routing HEAD requests to API handlers', async () => {
+      const mockHandlersWithAPI = {
+        handlePage: vi.fn().mockResolvedValue('<html></html>'),
+        handleAPI: vi.fn().mockResolvedValue({
+          HEAD: () => new Response(null, { status: 204 }),
+        }),
+      }
+      const { handler } = createHandleRequest(mockHandlersWithAPI, {
+        routerRoot: '/app',
+      })
+
+      const result = await handler(createRequest('/api/github/agent/run.sh', 'HEAD'))
+
+      expect(result).toBeInstanceOf(Response)
+      if (!(result instanceof Response)) {
+        throw new Error('expected HEAD API request to return a Response')
+      }
+      expect(result.status).toBe(204)
+      expect(mockHandlersWithAPI.handleAPI).toHaveBeenCalledOnce()
+      expect(mockHandlersWithAPI.handlePage).not.toHaveBeenCalled()
+    })
+
+    it('does not route POST requests to page handlers', async () => {
+      const { handler } = createHandleRequest(mockHandlers, { routerRoot: '/app' })
+
+      const result = await handler(createRequest('/my-page', 'POST'))
+
+      expect(result).toBeNull()
+      expect(mockHandlers.handlePage).not.toHaveBeenCalled()
     })
   })
 

@@ -944,9 +944,11 @@ url: ${url}`)
 
   for (const route of compiledManifest.pageRoutes) {
     app.get(route.urlPath, createHonoHandler(route))
+    app.on('HEAD', route.urlPath, createHonoHandler(route))
 
     if (route.urlPath !== route.urlCleanPath) {
       app.get(route.urlCleanPath, createHonoHandler(route))
+      app.on('HEAD', route.urlCleanPath, createHonoHandler(route))
     }
   }
 
