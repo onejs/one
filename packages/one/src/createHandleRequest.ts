@@ -35,6 +35,13 @@ function isStaticAssetRequestPath(pathname: string): boolean {
   )
 }
 
+// page (document) routes answer HEAD exactly like GET. the transport drops the
+// body: node's ServerResponse suppresses it for HEAD and workerd does the same.
+// without this a HEAD document request falls through to a bare 404 while GET is 200.
+export function isPageRequestMethod(method: string) {
+  return method === 'GET' || method === 'HEAD'
+}
+
 // ensure handler results are always a proper Response so middleware
 // can safely use response.body / response.headers / new Response(response.body, ...)
 function ensureResponse(value: any): Response {
@@ -425,7 +432,7 @@ export function createHandleRequest(
         }
       }
 
-      if (request.method !== 'GET') {
+      if (!isPageRequestMethod(request.method)) {
         return null
       }
 

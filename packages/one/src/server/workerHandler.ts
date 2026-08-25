@@ -7,6 +7,7 @@ import {
   compileManifest,
   getSubdomain,
   getURLfromRequestURL,
+  isPageRequestMethod,
   type RequestHandlers,
   resolveAPIRoute,
   resolveLoaderRoute,
@@ -706,8 +707,8 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       }
     }
 
-    // 6. page routes (GET only)
-    if (method === 'GET') {
+    // 6. page routes
+    if (isPageRequestMethod(method)) {
       for (const route of compiledManifest.pageRoutes) {
         if (!route.compiledRegex.test(pathname)) continue
 
