@@ -264,17 +264,24 @@ describe('createHandleRequest', () => {
   })
 
   describe('request method dispatch', () => {
-    it('routes HEAD requests to page handlers', async () => {
-      const handlePage = vi.fn().mockResolvedValue(new Response(null, { status: 200 }))
-      const { handler } = createHandleRequest(
-        { handlePage },
-        { routerRoot: '/app' }
+    it('answers HEAD page requests exactly like GET', async () => {
+      const handlePage = vi.fn(
+        async () =>
+          new Response('<html></html>', { headers: { 'content-type': 'text/html' } })
       )
+      const { handler } = createHandleRequest({ handlePage }, { routerRoot: '/app' })
 
-      const result = await handler(createRequest('/my-page', 'HEAD'))
+      const get = await handler(createRequest('/my-page', 'GET'))
+      const head = await handler(createRequest('/my-page', 'HEAD'))
 
-      expect(result).toBeInstanceOf(Response)
-      expect(handlePage).toHaveBeenCalledOnce()
+      if (!(get instanceof Response) || !(head instanceof Response)) {
+        throw new Error('expected both GET and HEAD to return a Response')
+      }
+      // the transport drops the body for HEAD, so the handler layer must agree
+      // with GET on everything else: status and content type.
+      expect(head.status).toBe(get.status)
+      expect(head.headers.get('content-type')).toBe(get.headers.get('content-type'))
+      expect(handlePage).toHaveBeenCalledTimes(2)
     })
 
     it('continues routing HEAD requests to API handlers', async () => {

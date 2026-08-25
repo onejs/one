@@ -88,22 +88,22 @@ afterEach(() => {
 })
 
 describe('createWorkerHandler', () => {
-  it('routes HEAD requests to page handlers', async () => {
-    const response = await createHandler()(
+  it('answers HEAD page requests exactly like GET', async () => {
+    const handleRequest = createHandler()
+    const get = await handleRequest(new Request('https://example.com/some-page'))
+    const head = await handleRequest(
       new Request('https://example.com/some-page', { method: 'HEAD' })
     )
 
-    expect(response).toBeInstanceOf(Response)
-    expect(response?.status).toBe(200)
-  })
-
-  it('routes GET requests to page handlers', async () => {
-    const response = await createHandler()(
-      new Request('https://example.com/some-page')
-    )
-
-    expect(response).toBeInstanceOf(Response)
-    expect(response?.status).toBe(200)
+    if (!(get instanceof Response) || !(head instanceof Response)) {
+      throw new Error('expected both GET and HEAD to return a Response')
+    }
+    // workerd drops the body for HEAD, so the handler must agree with GET on
+    // status and content type. asserting an empty body here would only be
+    // asserting the transport's job.
+    expect(get.status).toBe(200)
+    expect(head.status).toBe(get.status)
+    expect(head.headers.get('content-type')).toBe(get.headers.get('content-type'))
   })
 
   it('does not route POST requests to page handlers', async () => {
