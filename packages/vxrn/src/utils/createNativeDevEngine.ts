@@ -6,13 +6,14 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
-import { basename, dirname, extname, join, relative, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { normalizePath } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
+import { getReactNativeAssetData } from '../plugins/reactNativeDevAssetPlugin'
 import { getNativePrelude } from '../runtime/native-prelude'
 
 // files that contain Flow syntax and need stripping
@@ -34,12 +35,25 @@ const HERMES_CLASS_TRANSFORMS = [
   'transform-private-property-in-object',
 ] as const
 
-// prod-only: needed for hermesc bytecode AOT compilation, not the dev interpreter
-const HERMES_PROD_TRANSFORMS = ['transform-async-to-generator'] as const
+// production hermesc needs every async function lowered. the dev interpreter
+// supports ordinary async functions but rejects async generators, so those
+// modules opt into the same transform below.
+const HERMES_ASYNC_TRANSFORMS = ['transform-async-to-generator'] as const
+const HERMES_ASYNC_GENERATOR_PATTERN = /(?:async\s+(?:function\s*)?\*|for\s+await\s*\()/
+const HERMES_LEXICAL_LOOP_TRANSFORMS = ['transform-block-scoping'] as const
+const HERMES_LEXICAL_LOOP_PATTERN = /for(?:\s+await)?\s*\(\s*(?:const|let)\b/
 
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
-export function getHermesSWCIncludes(dev: boolean): string[] {
-  return [...HERMES_CLASS_TRANSFORMS, ...(dev ? [] : HERMES_PROD_TRANSFORMS)]
+export function getHermesSWCIncludes(
+  dev: boolean,
+  hasAsyncGenerator = false,
+  hasLexicalLoop = false
+): string[] {
+  return [
+    ...HERMES_CLASS_TRANSFORMS,
+    ...(!dev || hasAsyncGenerator ? HERMES_ASYNC_TRANSFORMS : []),
+    ...(hasLexicalLoop ? HERMES_LEXICAL_LOOP_TRANSFORMS : []),
+  ]
 }
 
 interface NativeDevEngineOptions {
@@ -80,12 +94,41 @@ function getResolveExtensions(platform: 'ios' | 'android'): string[] {
   return [...platformExts, ...nativeExts, ...defaultExts]
 }
 
-// shared rolldown resolve config for native builds
-function getNativeResolveConfig(platform: 'ios' | 'android') {
+// shared vite-resolve config for native builds
+export function getNativeViteResolveConfig(
+  root: string,
+  platform: 'ios' | 'android',
+  dev: boolean
+) {
   return {
-    extensions: getResolveExtensions(platform),
-    conditionNames: ['react-native', 'import', 'require', 'default'],
-    mainFields: ['react-native', 'module', 'main'],
+    resolveOptions: {
+      isBuild: !dev,
+      isProduction: !dev,
+      asSrc: true,
+      preferRelative: false,
+      root,
+      scan: false,
+      mainFields: ['react-native', 'module', 'main'],
+      // rolldown adds `import` or `require` according to each importing syntax.
+      // activating both globally makes commonjs require calls select esm exports.
+      conditions: ['react-native', 'default'],
+      externalConditions: [],
+      extensions: getResolveExtensions(platform),
+      tryIndex: true,
+      preserveSymlinks: false,
+      tsconfigPaths: true,
+    },
+    environmentConsumer: 'client',
+    environmentName: platform,
+    builtins: [],
+    external: [],
+    noExternal: [],
+    dedupe: [],
+    // metro and babel unwrap `exports.default` from transpiled commonjs even when
+    // the app package is `type: module`. package metadata makes rolldown switch
+    // those importers to node esm interop, which returns the namespace object.
+    legacyInconsistentCjsInterop: true,
+    resolveSubpathImports() {},
   }
 }
 
@@ -217,10 +260,14 @@ function getNativePlugins(
   root: string,
   platform: string,
   viteImportGlobPlugin: any,
+  viteResolvePlugin: any,
   dev: boolean,
   assetsDest?: string
 ): Plugin[] {
   return [
+    viteResolvePlugin(
+      getNativeViteResolveConfig(root, platform as 'ios' | 'android', dev)
+    ),
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...(globalThis.__vxrnAddNativePlugins || []),
     // block .server.* and _middleware.* files from entering the native bundle
@@ -402,7 +449,9 @@ export async function createNativeDevEngine(
     onHmrUpdate,
   } = options
 
-  const { dev, viteImportGlobPlugin } = await import('rolldown/experimental')
+  const { dev, viteImportGlobPlugin, viteResolvePlugin } = await import(
+    'rolldown/experimental'
+  )
 
   const hmrRuntimeSource = getHmrRuntimeSource()
 
@@ -424,7 +473,6 @@ export async function createNativeDevEngine(
     input: VIRTUAL_NATIVE_ENTRY,
     cwd: root,
     platform: 'neutral',
-    resolve: getNativeResolveConfig(platform),
     transform: getNativeTransformConfig(platform, true, root),
 
     experimental: {
@@ -449,7 +497,7 @@ export async function createNativeDevEngine(
 
     plugins: [
       nativeVirtualEntryPlugin(root, { dev: true }),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
+      ...getNativePlugins(root, platform, viteImportGlobPlugin, viteResolvePlugin, true),
       ...userPlugins,
     ],
   }
@@ -634,7 +682,9 @@ export async function buildNativeBundle(
   } = options
 
   const { build } = await import('rolldown')
-  const { viteImportGlobPlugin } = await import('rolldown/experimental')
+  const { viteImportGlobPlugin, viteResolvePlugin } = await import(
+    'rolldown/experimental'
+  )
 
   const prelude = getNativePrelude({
     dev,
@@ -649,7 +699,6 @@ export async function buildNativeBundle(
     input: buildEntry,
     cwd: root,
     platform: 'neutral',
-    resolve: getNativeResolveConfig(platform),
     transform: getNativeTransformConfig(platform, dev, root),
     treeshake: !dev,
     experimental: {
@@ -664,7 +713,14 @@ export async function buildNativeBundle(
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev })]),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
+      ...getNativePlugins(
+        root,
+        platform,
+        viteImportGlobPlugin,
+        viteResolvePlugin,
+        dev,
+        assetsDest
+      ),
       ...userPlugins,
     ],
     output: getNativeOutputOptions(prelude, sourcemap),
@@ -1067,7 +1123,7 @@ function flowStripPlugin(): Plugin {
  * Handle asset imports (.png, .jpg, .ttf, etc.)
  * Returns JS code that registers the asset with RN's AssetRegistry.
  */
-function assetPlugin(opts: {
+export function assetPlugin(opts: {
   root: string
   platform: string
   assetsDest?: string
@@ -1080,44 +1136,35 @@ function assetPlugin(opts: {
       async handler(id) {
         if (!assetRegex.test(id)) return
 
-        const ext = extname(id).slice(1)
-        const name = basename(id, `.${ext}`)
-        const dir = dirname(id)
-        const relativePath = relative(opts.root, id)
-        // On Windows, change backslashes to slashes to get proper URL path from file path.
-        const httpLocation = '/assets/' + dirname(relativePath).replace(/\\/g, '/')
-
-        // simple asset registration (TODO: scale detection like rollipop)
-        const assetData = {
-          __packager_asset: true,
-          name,
-          type: ext,
-          scales: [1],
-          httpServerLocation: httpLocation,
-          fileSystemLocation: dir,
-          hash: '',
-          width: undefined as number | undefined,
-          height: undefined as number | undefined,
-        }
+        const assetData = await getReactNativeAssetData({
+          id,
+          root: opts.root,
+          mode: opts.assetsDest ? 'prod' : 'dev',
+        })
+        let width: number | undefined
+        let height: number | undefined
 
         // try to get image dimensions
-        if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp'].includes(ext)) {
+        if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp'].includes(assetData.type)) {
           try {
             const { imageSize } = await import('image-size')
             const dims = imageSize(id)
-            assetData.width = dims.width
-            assetData.height = dims.height
+            width = dims.width
+            height = dims.height
           } catch {}
         }
 
         if (opts.assetsDest) {
-          const relativeAssetDir = dirname(relativePath).replace(/\\/g, '/')
-          const assetDestDir = join(opts.assetsDest, 'assets', relativeAssetDir)
+          const assetDestDir = join(
+            opts.assetsDest,
+            'assets',
+            assetData.relativeFileSystemLocation
+          )
           mkdirSync(assetDestDir, { recursive: true })
-          copyFileSync(id, join(assetDestDir, `${name}.${ext}`))
+          copyFileSync(id, join(assetDestDir, `${assetData.name}.${assetData.type}`))
         }
 
-        const code = `module.exports = require('react-native/Libraries/Image/AssetRegistry').registerAsset(${JSON.stringify(assetData)});`
+        const code = `module.exports = require('react-native/Libraries/Image/AssetRegistry').registerAsset(${JSON.stringify({ ...assetData, width, height })});`
 
         return { code, moduleType: 'js' as any }
       },
@@ -1140,17 +1187,23 @@ export function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
+      const hasAsyncGenerator = HERMES_ASYNC_GENERATOR_PATTERN.test(code)
+      const hasLexicalLoop = HERMES_LEXICAL_LOOP_PATTERN.test(code)
       const hasAsync = !dev && code.includes('async ')
-      if (!hasClass && !hasAsync) return
+      if (!hasClass && !hasAsync && !hasAsyncGenerator && !hasLexicalLoop) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
       try {
         if (!swc) swc = await import('@swc/core')
 
-        // app modules: the Hermes class set (unconditional), plus async-to-generator
-        // in prod only (see HERMES_CLASS_TRANSFORMS / HERMES_PROD_TRANSFORMS)
-        const envIncludes = getHermesSWCIncludes(dev)
+        // app modules: the Hermes class set plus async lowering when production
+        // hermesc or the dev interpreter requires it.
+        const envIncludes = getHermesSWCIncludes(
+          dev,
+          hasAsyncGenerator,
+          hasLexicalLoop
+        )
 
         const result = await swc.transform(code, {
           filename: id,

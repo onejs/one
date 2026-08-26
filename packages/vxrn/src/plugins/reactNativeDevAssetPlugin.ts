@@ -1,13 +1,60 @@
+import { createHash } from 'node:crypto'
 import path from 'node:path'
 import FSExtra from 'fs-extra'
 
 import type { Plugin, ResolvedConfig } from 'vite'
+import { getMimeType } from 'hono/utils/mime'
 import colors from 'picocolors'
 import { isNativeEnvironment } from '../utils/environmentUtils'
 
 const ASSET_DEST_DIR = 'assets'
 /** `/assets` is too common and might conflict with web, using another path for dev server in development. */
 const DEV_ASSET_DEST_PATH = '__vxrn_dev_native_assets'
+const devAssetFiles = new Map<string, string>()
+
+export async function getReactNativeAssetData({
+  id,
+  root,
+  mode,
+}: {
+  id: string
+  root: string
+  mode: 'dev' | 'prod'
+}) {
+  const relativeAssetPath = path.relative(root, id)
+  let assetUrlPath = relativeAssetPath
+  if (path.sep === '\\') {
+    assetUrlPath = assetUrlPath.replaceAll('\\', '/')
+  }
+
+  const relativeAssetDir = path.dirname(relativeAssetPath)
+  const assetBasename = path.basename(relativeAssetPath)
+  const assetExt = path.extname(assetBasename).slice(1)
+  const assetName = assetBasename.slice(0, -(assetExt.length + 1))
+  const bytes = await FSExtra.readFile(id)
+  const hash = createHash('md5').update(bytes).digest('hex')
+
+  let httpServerLocation: string
+  if (mode === 'dev') {
+    const sourceId = createHash('sha256').update(id).digest('hex')
+    devAssetFiles.set(sourceId, id)
+    httpServerLocation = `/${DEV_ASSET_DEST_PATH}/${sourceId}`
+  } else {
+    const assetUrlDir = assetUrlPath.slice(0, -(assetBasename.length + 1))
+    httpServerLocation = `/${ASSET_DEST_DIR}/${assetUrlDir}`
+  }
+
+  return {
+    __packager_asset: true,
+    fileSystemLocation: path.dirname(id),
+    relativeFileSystemLocation: relativeAssetDir,
+    httpServerLocation,
+    scales: [1],
+    name: assetName,
+    type: assetExt,
+    hash,
+  }
+}
 
 type ReactNativeDevAssetPluginConfig = {
   /** The list file extensions to be treated as assets. Assets are recognized by their extension. */
@@ -22,43 +69,12 @@ export function reactNativeDevAssetPlugin(
   options: ReactNativeDevAssetPluginConfig
 ): Plugin {
   const { assetExts } = options
+  const mode = options.mode ?? 'dev'
 
   const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
   const isAssetFile = (id: string) => assetExtsRegExp.test(id)
 
   let config: ResolvedConfig
-
-  async function getAssetData(id) {
-    const projectRoot = config.root
-    /** Asset path relative to the project root. */
-    const relativeAssetPath = path.relative(projectRoot, id) // TODO: Handle assets that are outside the project root.
-
-    let assetUrlPath = relativeAssetPath
-    // On Windows, change backslashes to slashes to get proper URL path from file path.
-    if (path.sep === '\\') {
-      assetUrlPath = assetUrlPath.replaceAll('\\', '/')
-    }
-
-    const relativeAssetDir = path.dirname(relativeAssetPath)
-    const assetBasename = path.basename(relativeAssetPath)
-    const assetExt = path.extname(assetBasename).slice(1)
-    const assetName = assetBasename.slice(
-      0,
-      -((assetExt.length + 1) /* for the dot before the extension */)
-    )
-
-    const assetData = {
-      __packager_asset: true,
-      fileSystemLocation: path.dirname(id),
-      relativeFileSystemLocation: relativeAssetDir,
-      httpServerLocation: `/${options.mode === 'dev' ? DEV_ASSET_DEST_PATH : ASSET_DEST_DIR}/${assetUrlPath.slice(0, -(assetBasename.length + 1) /* removing the `/filename.ext` at the end */)}`,
-      scales: [1], // TODO
-      name: assetName,
-      type: assetExt,
-    }
-
-    return assetData
-  }
 
   return {
     name: 'vxrn:react-native-dev-asset',
@@ -79,9 +95,9 @@ export function reactNativeDevAssetPlugin(
       if (!isNativeEnvironment(this.environment)) return
       if (!isAssetFile(id)) return
 
-      const assetData = await getAssetData(id)
+      const assetData = await getReactNativeAssetData({ id, root: config.root, mode })
 
-      if (options.mode === 'prod' && options.assetsDest) {
+      if (mode === 'prod' && options.assetsDest) {
         // Copy the asset to the assetsDest directory.
         // TODO: Handle different scales.
         const assetsDestDir = path.join(
@@ -129,16 +145,23 @@ export default asset;
           return next()
         }
 
-        // TODO: Better way to do this?
         const url = new URL('http://example.com' + req.url)
-        const pathname = url.pathname // '/assets/src/assets/one-ball.png.'
-        const assetPath =
-          './' + pathname.slice(`/${DEV_ASSET_DEST_PATH}/`.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
+        const pathname = url.pathname
+        const sourceId = pathname
+          .slice(`/${DEV_ASSET_DEST_PATH}/`.length)
+          .split('/')[0]
+        const assetPath = sourceId ? devAssetFiles.get(sourceId) : undefined
+
+        if (!assetPath) {
+          res.statusCode = 404
+          res.end()
+          return
+        }
 
         try {
           const asset = await FSExtra.readFile(assetPath)
 
-          res.setHeader('content-type', 'image/png')
+          res.setHeader('content-type', getMimeType(assetPath) || 'application/octet-stream')
           res.write(asset)
           res.end()
         } catch (e) {
@@ -150,9 +173,7 @@ export default asset;
           )
 
           res.statusCode =
-            e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT'
-              ? 404
-              : 500
+            e && typeof e === 'object' && 'code' in e && e.code === 'ENOENT' ? 404 : 500
           res.end()
         }
       })

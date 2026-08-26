@@ -6,6 +6,7 @@ const rolldownState = vi.hoisted(() => ({
 
 vi.mock('rolldown/experimental', () => ({
   viteImportGlobPlugin: () => ({ name: 'test:import-glob' }),
+  viteResolvePlugin: () => ({ name: 'test:resolve' }),
   dev: async (
     _input: unknown,
     _output: unknown,

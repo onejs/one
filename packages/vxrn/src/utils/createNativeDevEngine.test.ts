@@ -1,13 +1,17 @@
-import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { parse } from '@swc/core'
 import { rolldown } from 'rolldown'
-import { dev } from 'rolldown/experimental'
+import { dev, viteResolvePlugin } from 'rolldown/experimental'
 import { describe, expect, it } from 'vitest'
 import {
+  assetPlugin,
   getHermesSWCIncludes,
   getHmrRuntimeSource,
   getNativeTransformConfig,
+  getNativeViteResolveConfig,
   hermesCompatSWCPlugin,
   hmrClientNoopPlugin,
   vxrnCompilerPlugin,
@@ -114,6 +118,173 @@ if (import.meta.hot) {
 // use a root with no .env files so only the platform defines are present
 const root = '/tmp/vxrn-native-env-define-test-nonexistent'
 
+describe('native Rolldown assets', () => {
+  it('emits fetchable development metadata with a content hash per asset', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
+    const assetRoot = join(testRoot, 'assets', 'fonts')
+    const firstAsset = join(assetRoot, 'first.ttf')
+    const secondAsset = join(assetRoot, 'second.ttf')
+    await mkdir(assetRoot, { recursive: true })
+    await writeFile(firstAsset, 'first-font')
+    await writeFile(secondAsset, 'second-font')
+
+    const plugin = assetPlugin({ root: testRoot, platform: 'ios' })
+
+    const loadMetadata = async (id: string) => {
+      if (!plugin.load || typeof plugin.load === 'function') {
+        throw new Error('native asset plugin has no object load hook')
+      }
+      const result = await Reflect.apply(plugin.load.handler, {}, [id])
+      if (
+        !result ||
+        typeof result === 'string' ||
+        !('code' in result) ||
+        typeof result.code !== 'string'
+      ) {
+        throw new Error('native asset plugin did not emit JavaScript')
+      }
+
+      const generatedModule: { exports: unknown } = { exports: {} }
+      Function('require', 'module', result.code)(
+        (source: string) => {
+          expect(source).toBe('react-native/Libraries/Image/AssetRegistry')
+          return { registerAsset: (asset: unknown) => asset }
+        },
+        generatedModule
+      )
+      return generatedModule.exports
+    }
+
+    try {
+      const first = await loadMetadata(firstAsset)
+      const second = await loadMetadata(secondAsset)
+
+      expect(first).toMatchObject({
+        httpServerLocation: expect.stringMatching(
+          /^\/__vxrn_dev_native_assets\/[a-f0-9]+$/
+        ),
+        hash: createHash('md5').update('first-font').digest('hex'),
+      })
+      expect(second).toMatchObject({
+        httpServerLocation: expect.stringMatching(
+          /^\/__vxrn_dev_native_assets\/[a-f0-9]+$/
+        ),
+        hash: createHash('md5').update('second-font').digest('hex'),
+      })
+      expect(first).not.toEqual(second)
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native Rolldown package conditions', () => {
+  it('selects import and require exports according to the importing syntax', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-conditions-'))
+    const packageRoot = join(testRoot, 'node_modules', 'conditional-pkg')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({
+        name: 'conditional-pkg',
+        exports: {
+          '.': {
+            import: './import.js',
+            require: './require.cjs',
+            default: './default.cjs',
+          },
+        },
+      })
+    )
+    await writeFile(join(packageRoot, 'import.js'), "export const mode = 'import'\n")
+    await writeFile(
+      join(packageRoot, 'require.cjs'),
+      "module.exports = { mode: 'require' }\n"
+    )
+    await writeFile(
+      join(packageRoot, 'default.cjs'),
+      "module.exports = { mode: 'default' }\n"
+    )
+    await writeFile(
+      join(testRoot, 'required.cjs'),
+      "module.exports = require('conditional-pkg')\n"
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      "import { mode as imported } from 'conditional-pkg'\nimport required from './required.cjs'\nexport const modes = [imported, required.mode]\n"
+    )
+
+    const build = await rolldown({
+      cwd: testRoot,
+      input: join(testRoot, 'entry.js'),
+      plugins: [viteResolvePlugin(getNativeViteResolveConfig(testRoot, 'ios', false))],
+    })
+
+    try {
+      const output = await build.generate({ format: 'esm' })
+      const chunk = output.output.find((item) => item.type === 'chunk')
+      expect(chunk).toBeTruthy()
+      if (!chunk) throw new Error('Rolldown did not emit a JavaScript chunk')
+
+      const module = await import(
+        `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+      )
+      expect(module.modes).toEqual(['import', 'require'])
+    } finally {
+      await build.close()
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('unwraps transpiled CommonJS defaults in type-module apps', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-interop-'))
+    const packageRoot = join(testRoot, 'node_modules', 'transpiled-cjs')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(testRoot, 'package.json'),
+      JSON.stringify({ name: 'type-module-app', private: true, type: 'module' })
+    )
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ name: 'transpiled-cjs', main: './index.js' })
+    )
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      "Object.defineProperty(exports, '__esModule', { value: true })\nexports.default = function Component() {}\n"
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      "import Component from 'transpiled-cjs'\nexport const result = { type: typeof Component, keys: Object.keys(Component) }\n"
+    )
+
+    try {
+      for (const dev of [true, false]) {
+        const build = await rolldown({
+          cwd: testRoot,
+          input: join(testRoot, 'entry.js'),
+          plugins: [viteResolvePlugin(getNativeViteResolveConfig(testRoot, 'ios', dev))],
+        })
+
+        try {
+          const output = await build.generate({ format: 'esm' })
+          const chunk = output.output.find((item) => item.type === 'chunk')
+          expect(chunk).toBeTruthy()
+          if (!chunk) throw new Error('Rolldown did not emit a JavaScript chunk')
+
+          const module = await import(
+            `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+          )
+          expect(module.result).toEqual({ type: 'function', keys: [] })
+        } finally {
+          await build.close()
+        }
+      }
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('getNativeTransformConfig platform env defines', () => {
   for (const platform of ['ios', 'android'] as const) {
     for (const dev of [true, false]) {
@@ -187,9 +358,17 @@ describe('getHermesSWCIncludes', () => {
     expect(getHermesSWCIncludes(false)).toEqual(expect.arrayContaining(CLASS_SET))
   })
 
-  it('adds transform-async-to-generator only in production', () => {
+  it('adds transform-async-to-generator for production and dev async generators', () => {
     expect(getHermesSWCIncludes(true)).not.toContain('transform-async-to-generator')
+    expect(getHermesSWCIncludes(true, true)).toContain('transform-async-to-generator')
     expect(getHermesSWCIncludes(false)).toContain('transform-async-to-generator')
+  })
+
+  it('adds transform-block-scoping for lexical loop bindings', () => {
+    expect(getHermesSWCIncludes(true)).not.toContain('transform-block-scoping')
+    expect(getHermesSWCIncludes(true, false, true)).toContain(
+      'transform-block-scoping'
+    )
   })
 
   it('bundles lowered classes whose constructors use default and rest parameters', async () => {
@@ -225,6 +404,143 @@ export const result = new ParameterProbe(undefined, 'rest-a', 'rest-b').result
         `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
       )
       expect(module.result).toBe('value:default:rest-a:rest-b')
+    } finally {
+      await build.close()
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('bundles executable async generators without unsupported Hermes syntax', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-hermes-async-generator-'))
+    const entry = join(testRoot, 'entry.js')
+    await writeFile(
+      entry,
+      `
+export async function* values() {
+  yield await Promise.resolve('first')
+  yield 'second'
+}
+
+export async function collect() {
+  const result = []
+  for await (const value of values()) result.push(value)
+  return result.join(':')
+}
+`
+    )
+
+    const build = await rolldown({
+      input: entry,
+      plugins: [hermesCompatSWCPlugin(true)],
+    })
+
+    try {
+      const output = await build.generate({ format: 'esm' })
+      const chunk = output.output.find((item) => item.type === 'chunk')
+      expect(chunk).toBeTruthy()
+      if (!chunk) throw new Error('Rolldown did not emit a JavaScript chunk')
+
+      const syntax = await parse(chunk.code, { syntax: 'ecmascript' })
+      const pending: unknown[] = [syntax]
+      const unsupported: object[] = []
+      while (pending.length) {
+        const value = pending.pop()
+        if (Array.isArray(value)) {
+          pending.push(...value)
+          continue
+        }
+        if (typeof value !== 'object' || value === null) continue
+        if ('async' in value && 'generator' in value && value.async && value.generator) {
+          unsupported.push(value)
+        }
+        pending.push(...Object.values(value))
+      }
+      expect(unsupported).toEqual([])
+
+      const module = await import(
+        `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+      )
+      expect(await module.collect()).toBe('first:second')
+    } finally {
+      await build.close()
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('lowers per-iteration lexical bindings used by lazy method getters', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-hermes-loop-bindings-'))
+    const entry = join(testRoot, 'entry.js')
+    await writeFile(
+      entry,
+      `
+class Schema {}
+
+const methods = {
+  nullish() {
+    return 'nullish'
+  },
+  apply(fn) {
+    return fn(this)
+  },
+}
+
+for (const key in methods) {
+  const fn = methods[key]
+  Object.defineProperty(Schema.prototype, key, {
+    get() {
+      const bound = fn.bind(this)
+      Object.defineProperty(this, key, { value: bound })
+      return bound
+    },
+  })
+}
+
+export const result = new Schema().nullish()
+`
+    )
+
+    const build = await rolldown({
+      input: entry,
+      plugins: [hermesCompatSWCPlugin(true)],
+    })
+
+    try {
+      const output = await build.generate({ format: 'esm' })
+      const chunk = output.output.find((item) => item.type === 'chunk')
+      expect(chunk).toBeTruthy()
+      if (!chunk) throw new Error('Rolldown did not emit a JavaScript chunk')
+
+      const syntax = await parse(chunk.code, { syntax: 'ecmascript' })
+      const pending: unknown[] = [syntax]
+      const unsupported: object[] = []
+      while (pending.length) {
+        const value = pending.pop()
+        if (Array.isArray(value)) {
+          pending.push(...value)
+          continue
+        }
+        if (typeof value !== 'object' || value === null) continue
+        if (
+          'type' in value &&
+          value.type === 'ForInStatement' &&
+          'left' in value &&
+          typeof value.left === 'object' &&
+          value.left !== null &&
+          'type' in value.left &&
+          value.left.type === 'VariableDeclaration' &&
+          'kind' in value.left &&
+          value.left.kind !== 'var'
+        ) {
+          unsupported.push(value)
+        }
+        pending.push(...Object.values(value))
+      }
+      expect(unsupported).toEqual([])
+
+      const module = await import(
+        `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+      )
+      expect(module.result).toBe('nullish')
     } finally {
       await build.close()
       await rm(testRoot, { recursive: true, force: true })
