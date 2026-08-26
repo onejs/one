@@ -8,9 +8,6 @@ const GROUP_KEY = 'one-sr-groups'
 const getState = () => JSON.parse(sessionStorage.getItem(KEY) || '{}')
 const getGroupState = () => JSON.parse(sessionStorage.getItem(GROUP_KEY) || '{}')
 
-// prevent scroll to top on first load
-let isFirstLoad = true
-
 // Active scroll groups - defined by layouts
 let activeGroups: Set<string> = new Set()
 
@@ -33,7 +30,7 @@ function getGroupKey(pathname: string): string | null {
   let longestMatch: string | null = null
   for (const group of activeGroups) {
     if (
-      pathname.startsWith(group) &&
+      (pathname === group || pathname.startsWith(`${group}/`)) &&
       (!longestMatch || group.length > longestMatch.length)
     ) {
       longestMatch = group
@@ -108,6 +105,11 @@ function configure(props: ScrollBehaviorProps) {
 
   disable?.()
 
+  const initialLocation =
+    `${window.location.pathname}${window.location.search}${window.location.hash}`
+  let isFirstStateChange = true
+  previousPathname = window.location.pathname
+
   const popStateController = new AbortController()
 
   window.addEventListener(
@@ -128,10 +130,18 @@ function configure(props: ScrollBehaviorProps) {
   })
 
   const disposeOnRootState = subscribeToRootState((state) => {
-    if (isFirstLoad) {
-      isFirstLoad = false
-      previousPathname = window.location.pathname
-      return
+    if (isFirstStateChange) {
+      isFirstStateChange = false
+
+      // Depending on navigator mount timing, the initial state notification may
+      // happen before or after this effect subscribes. Only ignore it when the
+      // browser is still at the URL where ScrollBehavior mounted. Otherwise this
+      // is the first real navigation and must receive normal scroll handling.
+      const currentLocation =
+        `${window.location.pathname}${window.location.search}${window.location.hash}`
+      if (currentLocation === initialLocation) {
+        return
+      }
     }
 
     if (state.linkOptions?.scroll === false) {
