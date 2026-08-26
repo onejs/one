@@ -1,12 +1,14 @@
 import { mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { rolldown } from 'rolldown'
 import { dev } from 'rolldown/experimental'
 import { describe, expect, it } from 'vitest'
 import {
   getHermesSWCIncludes,
   getHmrRuntimeSource,
   getNativeTransformConfig,
+  hermesCompatSWCPlugin,
   hmrClientNoopPlugin,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
@@ -38,6 +40,7 @@ if (import.meta.hot) {
       const hmrUpdate = new Promise<any>((resolve) => {
         resolveHmrUpdate = resolve
       })
+      let registeredClientId: string | undefined
       const engine = await dev(
         {
           cwd: testRoot,
@@ -50,7 +53,13 @@ if (import.meta.hot) {
             resolveInitialOutput(result)
           },
           onHmrUpdates(result) {
-            if (!(result instanceof Error) && result.changedFiles.length) {
+            if (
+              !(result instanceof Error) &&
+              result.updates.some(
+                (item) =>
+                  item.clientId === registeredClientId && item.update.type === 'Patch'
+              )
+            ) {
               resolveHmrUpdate(result)
             }
           },
@@ -72,9 +81,9 @@ if (import.meta.hot) {
         )
         const runtime = (globalThis as any).__rolldown_runtime__
         expect(typeof runtime.clientId).toBe('string')
+        registeredClientId = runtime.clientId
         await engine.registerClient(runtime.clientId)
 
-        await new Promise((resolve) => setTimeout(resolve, 100))
         await writeFile(entry, source('v2'))
         const result = await Promise.race([
           hmrUpdate,
@@ -164,6 +173,7 @@ describe('wrapNativeBundleModuleScope', () => {
 describe('getHermesSWCIncludes', () => {
   const CLASS_SET = [
     'transform-classes',
+    'transform-parameters',
     'transform-class-properties',
     'transform-class-static-block',
     'transform-private-methods',
@@ -180,6 +190,45 @@ describe('getHermesSWCIncludes', () => {
   it('adds transform-async-to-generator only in production', () => {
     expect(getHermesSWCIncludes(true)).not.toContain('transform-async-to-generator')
     expect(getHermesSWCIncludes(false)).toContain('transform-async-to-generator')
+  })
+
+  it('bundles lowered classes whose constructors use default and rest parameters', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-hermes-parameters-'))
+    const entry = join(testRoot, 'entry.js')
+    await writeFile(
+      entry,
+      `
+class ParameterProbe {
+  prefix = 'value'
+
+  constructor(value = 'default', ...rest) {
+    this.result = [this.prefix, value, ...rest].join(':')
+  }
+}
+
+export const result = new ParameterProbe(undefined, 'rest-a', 'rest-b').result
+`
+    )
+
+    const build = await rolldown({
+      input: entry,
+      plugins: [hermesCompatSWCPlugin(true)],
+    })
+
+    try {
+      const output = await build.generate({ format: 'esm' })
+      const chunk = output.output.find((item) => item.type === 'chunk')
+      expect(chunk).toBeTruthy()
+      if (!chunk) throw new Error('Rolldown did not emit a JavaScript chunk')
+
+      const module = await import(
+        `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+      )
+      expect(module.result).toBe('value:default:rest-a:rest-b')
+    } finally {
+      await build.close()
+      await rm(testRoot, { recursive: true, force: true })
+    }
   })
 })
 
