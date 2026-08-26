@@ -1,7 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 const mocks = vi.hoisted(() => ({
+  diagnoseRouteLoadFailure: vi.fn(() => Promise.resolve(null)),
   hmrImport: vi.fn(),
+}))
+
+vi.mock('./diagnoseRouteLoadFailure', () => ({
+  diagnoseRouteLoadFailure: mocks.diagnoseRouteLoadFailure,
 }))
 
 vi.mock('./hmrImport', () => ({
@@ -14,6 +19,7 @@ const realWindow = (globalThis as any).window
 
 afterEach(() => {
   vi.unstubAllEnvs()
+  mocks.diagnoseRouteLoadFailure.mockClear()
   mocks.hmrImport.mockReset()
   ;(globalThis as any).window = realWindow
 })
@@ -45,5 +51,27 @@ describe('globbedRoutesToRouteContext HMR', () => {
 
     await expect(resolveRoute(context)).resolves.toBe(updatedRoute)
     expect(mocks.hmrImport).toHaveBeenCalledWith('/routes/index.tsx')
+  })
+
+  it.each([
+    { target: 'native', diagnosticCalls: 0 },
+    { target: 'web', diagnosticCalls: 1 },
+  ])('runs browser-only route diagnostics for $target', async ({ target, diagnosticCalls }) => {
+    vi.stubEnv('NODE_ENV', 'development')
+    vi.stubEnv('TAMAGUI_TARGET', target)
+    ;(globalThis as any).window = {}
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const context = globbedRoutesToRouteContext(
+      { '/app/index.tsx': () => Promise.reject(new Error('route failed')) },
+      'app'
+    )
+
+    try {
+      const route = await resolveRoute(context)
+      expect(route.default()).toBeNull()
+      expect(mocks.diagnoseRouteLoadFailure).toHaveBeenCalledTimes(diagnosticCalls)
+    } finally {
+      error.mockRestore()
+    }
   })
 })
