@@ -1,5 +1,6 @@
 import path from 'node:path'
 import * as proc from 'node:child_process'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
 import fs, { ensureDir, writeJson, writeJSON } from 'fs-extra'
@@ -625,59 +626,93 @@ if (intoIdx !== -1) {
 
   ;(async () => {
     const packages = await getWorkspacePackages()
-    const tmpDir = `/tmp/one-release-into`
-    await ensureDir(tmpDir)
+    const targetPackages: Array<{
+      name: string
+      location: string
+      destDir: string
+    }> = []
 
-    await spawnify(`bun run build`, {
-      avoidLog: true,
-    })
+    for (const pkg of packages) {
+      const destDir = join(targetDir, 'node_modules', pkg.name)
+      if (await fs.pathExists(destDir)) {
+        targetPackages.push({ ...pkg, destDir })
+      }
+    }
 
-    let released = 0
-
-    await pMap(
-      packages,
-      async ({ name, location }) => {
-        const destDir = join(targetDir, 'node_modules', name)
-        if (!(await fs.pathExists(destDir))) return
-
-        const cwd = path.resolve(location)
-
-        try {
-          await spawnify(`npm pack --ignore-scripts --pack-destination ${tmpDir}`, {
-            cwd,
-            avoidLog: true,
-          })
-
-          // npm pack names files based on version in package.json, find the actual file
-          const files = await fs.readdir(tmpDir)
-          const prefix = name.replace('@', '').replace('/', '-')
-          const packed = files.find((f) => f.startsWith(prefix) && f.endsWith('.tgz'))
-
-          if (!packed) {
-            console.warn(`  skip ${name}: pack produced no tgz`)
-            return
-          }
-
-          const actualTgz = join(tmpDir, packed)
-
-          // clear destination and extract
-          await spawnify(`tar -xzf ${actualTgz} -C ${destDir} --strip-components=1`, {
-            avoidLog: true,
-          })
-
-          await fs.remove(actualTgz)
-          released++
-          console.info(`  ✓ ${name}`)
-        } catch (err) {
-          console.warn(`  ✗ ${name}: ${err}`)
-        }
-      },
-      { concurrency: 10 }
+    console.info(
+      `Installing ${targetPackages.length} local packages:\n${targetPackages
+        .map((pkg) => `  ${pkg.name}`)
+        .join('\n')}`
     )
 
-    console.info(`\n✅ Released ${released} packages into ${targetDir}`)
-    process.exit(0)
+    const tmpDir = await fs.mkdtemp(join(tmpdir(), 'one-release-into-'))
+
+    try {
+      await spawnify(`bun run build`, {
+        avoidLog: true,
+      })
+
+      let released = 0
+      const failures: string[] = []
+
+      await pMap(
+        targetPackages,
+        async ({ name, location, destDir }, index) => {
+          const cwd = path.resolve(location)
+
+          try {
+            const packageTmpDir = join(tmpDir, `package-${index}`)
+            await ensureDir(packageTmpDir)
+            await spawnify(
+              `npm pack --ignore-scripts --pack-destination ${packageTmpDir}`,
+              {
+                cwd,
+                avoidLog: true,
+              }
+            )
+            const packedFiles = await fs.readdir(packageTmpDir)
+
+            if (packedFiles.length !== 1 || !packedFiles[0].endsWith('.tgz')) {
+              throw new Error(`npm pack produced ${packedFiles.length} files`)
+            }
+
+            const actualTgz = join(packageTmpDir, packedFiles[0])
+            const stagedDir = join(tmpDir, `staged-${index}`)
+            await ensureDir(stagedDir)
+
+            await spawnify(`tar -xzf ${actualTgz} -C ${stagedDir} --strip-components=1`, {
+              avoidLog: true,
+            })
+
+            await fs.remove(destDir)
+            await fs.move(stagedDir, destDir)
+            released++
+            console.info(`  ✓ ${name}`)
+          } catch (err) {
+            const message = err instanceof Error ? err.message : String(err)
+            failures.push(`${name}: ${message}`)
+            console.warn(`  ✗ ${name}: ${message}`)
+          }
+        },
+        { concurrency: 10 }
+      )
+
+      if (failures.length > 0 || released !== targetPackages.length) {
+        throw new Error(
+          `Local install failed for ${failures.length} of ${targetPackages.length} packages:\n${failures.join('\n')}`
+        )
+      }
+
+      console.info(`\n✅ Released ${released} packages into ${targetDir}`)
+    } finally {
+      await fs.remove(tmpDir)
+    }
   })()
+    .then(() => process.exit(0))
+    .catch((err) => {
+      console.error(err)
+      process.exit(1)
+    })
 } else {
   run()
 }
