@@ -27,6 +27,7 @@ const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].
 // hand-copied include lists).
 const HERMES_CLASS_TRANSFORMS = [
   'transform-classes',
+  'transform-parameters',
   'transform-class-properties',
   'transform-class-static-block',
   'transform-private-methods',
@@ -412,8 +413,10 @@ export async function createNativeDevEngine(
   })
 
   let currentBundle: { code: string } | null = null
-  let bundleResolve: ((value: any) => void) | null = null
-  let bundlePromise: Promise<any> | null = null
+  let firstBuildError: Error | null = null
+  let bundleResolve: ((value: { code: string }) => void) | null = null
+  let bundleReject: ((error: Error) => void) | null = null
+  let bundlePromise: Promise<{ code: string }> | null = null
 
   const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
 
@@ -494,12 +497,23 @@ try {
     onOutput: async (result) => {
       if (result instanceof Error) {
         console.error('[vxrn] native bundle error:', result.message)
+        if (!currentBundle) {
+          firstBuildError ||= result
+          if (bundleReject) {
+            const reject = bundleReject
+            bundleResolve = null
+            bundleReject = null
+            bundlePromise = null
+            reject(firstBuildError)
+          }
+        }
         return
       }
 
       const output = result as RolldownOutput
       const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
       if (chunk && 'code' in chunk) {
+        firstBuildError = null
         let code = postProcessNativeBundle(chunk.code)
 
         // downlevel class fields from the rolldown runtime (virtual module
@@ -516,6 +530,7 @@ try {
         if (bundleResolve) {
           bundleResolve(currentBundle)
           bundleResolve = null
+          bundleReject = null
           bundlePromise = null
         }
       }
@@ -558,6 +573,7 @@ try {
       // that output before serving the cached bundle to the restarted app.
       await engine.ensureLatestBuildOutput()
       if (currentBundle) return currentBundle
+      if (firstBuildError) throw firstBuildError
       if (!bundlePromise) {
         let timeoutId: ReturnType<typeof setTimeout>
         bundlePromise = new Promise((resolve, reject) => {
@@ -565,8 +581,17 @@ try {
             clearTimeout(timeoutId)
             resolve(value)
           }
+          bundleReject = (error) => {
+            clearTimeout(timeoutId)
+            reject(error)
+          }
           timeoutId = setTimeout(
-            () => reject(new Error('[vxrn] bundle build timed out after 120s')),
+            () => {
+              bundleResolve = null
+              bundleReject = null
+              bundlePromise = null
+              reject(new Error('[vxrn] bundle build timed out after 120s'))
+            },
             120_000
           )
         })
@@ -1105,7 +1130,7 @@ function assetPlugin(opts: {
  * Transforms class properties and private fields that Hermes doesn't support.
  * Inspired by rollipop's swc-plugin.ts.
  */
-function hermesCompatSWCPlugin(dev: boolean): Plugin {
+export function hermesCompatSWCPlugin(dev: boolean): Plugin {
   let swc: typeof import('@swc/core') | null = null
 
   return {
