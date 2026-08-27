@@ -1,10 +1,11 @@
-import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { rolldown } from 'rolldown'
 import { dev } from 'rolldown/experimental'
 import { describe, expect, it } from 'vitest'
 import {
+  buildNativeBundle,
   getHermesSWCIncludes,
   getHmrRuntimeSource,
   getNativeTransformConfig,
@@ -13,6 +14,35 @@ import {
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
+
+const nativeTransformProbe = `
+export const transformProbe = () => {
+  'worklet'
+  return 'transformed'
+}
+`
+
+async function createThrowingWorkletsProject() {
+  const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-failure-'))
+  const packageRoot = join(testRoot, 'node_modules/react-native-worklets')
+  await mkdir(packageRoot, { recursive: true })
+  await writeFile(
+    join(packageRoot, 'package.json'),
+    JSON.stringify({ name: 'react-native-worklets' })
+  )
+  await writeFile(
+    join(packageRoot, 'plugin.js'),
+    `module.exports = () => ({
+      visitor: {
+        Program() {
+          throw new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+        }
+      }
+    })`
+  )
+  await writeFile(join(testRoot, 'entry.ts'), nativeTransformProbe)
+  return testRoot
+}
 
 describe('native Rolldown HMR runtime', () => {
   it(
@@ -313,5 +343,96 @@ describe('vxrnCompilerPlugin React Refresh registration', () => {
     } finally {
       process.env.NODE_ENV = previousNodeEnv
     }
+  })
+})
+
+describe('native required transform failures', () => {
+  it.each([true, false])(
+    'rejects valid worklet source when its required compiler transform fails (dev=%s)',
+    async (dev) => {
+      const testRoot = await createThrowingWorkletsProject()
+      const compiler = await import('@vxrn/compiler')
+      compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+
+      try {
+        const plugin = vxrnCompilerPlugin('ios', dev, testRoot)
+        if (typeof plugin.transform !== 'function') {
+          throw new Error('vxrn compiler transform hook is not callable')
+        }
+
+        await expect(
+          Reflect.apply(plugin.transform, undefined, [
+            nativeTransformProbe,
+            join(testRoot, 'entry.ts'),
+          ])
+        ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+      } finally {
+        compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+        await rm(testRoot, { recursive: true, force: true })
+      }
+    }
+  )
+
+  it('returns a dev build error and no output when the required compiler transform fails', async () => {
+    const testRoot = await createThrowingWorkletsProject()
+    const compiler = await import('@vxrn/compiler')
+    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    let resolveOutput!: (output: unknown) => void
+    const output = new Promise<unknown>((resolve) => {
+      resolveOutput = resolve
+    })
+    const engine = await dev(
+      {
+        cwd: testRoot,
+        input: join(testRoot, 'entry.ts'),
+        plugins: [vxrnCompilerPlugin('ios', true, testRoot)],
+      },
+      { format: 'esm' },
+      { onOutput: resolveOutput }
+    )
+
+    try {
+      await engine.run()
+      const result = await output
+      expect(result).toBeInstanceOf(Error)
+      expect(String(result)).toContain('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+    } finally {
+      await engine.close()
+      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('emits no production bundle when the required compiler transform fails', async () => {
+    const testRoot = await createThrowingWorkletsProject()
+    const compiler = await import('@vxrn/compiler')
+    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+
+    try {
+      await expect(
+        buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.ts',
+        })
+      ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+    } finally {
+      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('rejects Hermes compatibility transform errors instead of returning source', async () => {
+    const plugin = hermesCompatSWCPlugin(true)
+    if (typeof plugin.transform !== 'function') {
+      throw new Error('Hermes compatibility transform hook is not callable')
+    }
+
+    await expect(
+      Reflect.apply(plugin.transform, undefined, [
+        'class TransformProbe { value = ; }',
+        '/project/TransformProbe.ts',
+      ])
+    ).rejects.toBeTruthy()
   })
 })

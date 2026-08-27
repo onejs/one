@@ -165,32 +165,14 @@ export async function transformBabel(
     ],
   }
 
-  try {
-    const out = await new Promise<babel.BabelFileResult>((res, rej) => {
-      babel.transform(code, babelOptions, (err: any, result) => {
-        if (!result || err) {
-          return rej(err || 'no res')
-        }
-        res(result!)
-      })
+  return await new Promise<babel.BabelFileResult>((res, rej) => {
+    babel.transform(code, babelOptions, (err: unknown, result) => {
+      if (!result || err) {
+        return rej(err || new Error(`[vxrn:compiler] babel returned no result for ${id}`))
+      }
+      res(result)
     })
-
-    return out
-  } catch (err: any) {
-    // codegen failures are expected for NativeComponent files without type
-    // declarations — codegenNativeComponent has a runtime fallback
-    if (err?.message?.includes('Could not find component config')) {
-      return
-    }
-    console.error(
-      `[vxrn:compiler] babel transform error`,
-      err,
-      `with options`,
-      babelOptions
-    )
-    console.error('code', code)
-    console.error('id', id)
-  }
+  })
 }
 
 const getBasePlugins = ({ development }: Props) =>
