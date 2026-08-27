@@ -54,6 +54,17 @@ export async function getViteServerConfig(
 
   serverConfig = mergeUserConfig(optimizeDeps, serverConfig, mergableUserConf)
 
+  // fillOptions has already resolved the CLI/env address and checked that an
+  // explicitly requested port is available. Preserve that resolved address
+  // after merging the user's Vite config so a static server block cannot
+  // silently route this CLI launch back to a different server.
+  serverConfig.server = {
+    ...serverConfig.server,
+    host: server.host,
+    https: server.https,
+    port: server.port,
+  }
+
   if (rerouteNoExternalConfig) {
     serverConfig.ssr!.noExternal = true
   }
