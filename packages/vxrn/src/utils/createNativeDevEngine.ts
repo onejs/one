@@ -358,35 +358,30 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   const runtimeEnd = endIdx + endMarker.length
   const runtimeSection = code.slice(startIdx, runtimeEnd)
 
-  try {
-    const swc = await import('@swc/core')
-    const result = await swc.transform(runtimeSection, {
-      filename: 'rolldown-runtime.js',
-      configFile: false,
-      swcrc: false,
-      sourceMaps: false,
-      inputSourceMap: false,
-      isModule: false,
-      env: {
-        targets: { node: 9999 },
-        // dev-only runtime prelude: the class set only, no prod bytecode transforms
-        include: [...HERMES_CLASS_TRANSFORMS],
+  const swc = await import('@swc/core')
+  const result = await swc.transform(runtimeSection, {
+    filename: 'rolldown-runtime.js',
+    configFile: false,
+    swcrc: false,
+    sourceMaps: false,
+    inputSourceMap: false,
+    isModule: false,
+    env: {
+      targets: { node: 9999 },
+      // dev-only runtime prelude: the class set only, no prod bytecode transforms
+      include: [...HERMES_CLASS_TRANSFORMS],
+    },
+    jsc: {
+      parser: { syntax: 'ecmascript' },
+      transform: { react: { runtime: 'preserve' } },
+      externalHelpers: false,
+      assumptions: {
+        setPublicClassFields: true,
+        privateFieldsAsProperties: true,
       },
-      jsc: {
-        parser: { syntax: 'ecmascript' },
-        transform: { react: { runtime: 'preserve' } },
-        externalHelpers: false,
-        assumptions: {
-          setPublicClassFields: true,
-          privateFieldsAsProperties: true,
-        },
-      },
-    })
-    return code.slice(0, startIdx) + result.code + code.slice(runtimeEnd)
-  } catch (err) {
-    console.warn('[vxrn] downlevelClassFieldsInBundle failed, returning original:', err)
-    return code
-  }
+    },
+  })
+  return code.slice(0, startIdx) + result.code + code.slice(runtimeEnd)
 }
 
 export async function createNativeDevEngine(
@@ -585,15 +580,12 @@ try {
             clearTimeout(timeoutId)
             reject(error)
           }
-          timeoutId = setTimeout(
-            () => {
-              bundleResolve = null
-              bundleReject = null
-              bundlePromise = null
-              reject(new Error('[vxrn] bundle build timed out after 120s'))
-            },
-            120_000
-          )
+          timeoutId = setTimeout(() => {
+            bundleResolve = null
+            bundleReject = null
+            bundlePromise = null
+            reject(new Error('[vxrn] bundle build timed out after 120s'))
+          }, 120_000)
         })
       }
       return bundlePromise
@@ -1017,17 +1009,8 @@ if (import.meta.hot) {
 
           return { code: out }
         }
-      } catch (err: any) {
-        // log but don't crash — fallback to rolldown's own transform
-        if (dev) {
-          console.warn(`[vxrn:compiler] ${id}: ${err.message || err}`)
-        }
-        // if babel transform fails for a refresh candidate, still add accept boundary
-        if (needsRefresh) {
-          return {
-            code: code + `\nif (import.meta.hot) { import.meta.hot.accept(); }\n`,
-          }
-        }
+      } catch (err) {
+        throw err
       }
     },
   }
@@ -1055,8 +1038,8 @@ function flowStripPlugin(): Plugin {
           })
           // don't set moduleType - let rolldown's global moduleTypes config handle it
           return { code: result.code, map: result.map }
-        } catch (err: any) {
-          console.warn(`[vxrn:flow-strip] ${id}: ${err.message}`)
+        } catch (err) {
+          throw err
         }
       },
     },
@@ -1174,8 +1157,8 @@ export function hermesCompatSWCPlugin(dev: boolean): Plugin {
           isModule: !id.endsWith('.cjs'),
         })
         return { code: result.code }
-      } catch (err: any) {
-        // don't crash on SWC transform errors (eg static blocks not supported)
+      } catch (err) {
+        throw err
       }
     },
   }

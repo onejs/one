@@ -62,4 +62,20 @@ describe('transformBabel Flow parsing', () => {
     expect(result?.code).toContain("codegenNativeComponent('VirtualView')")
     expect(result?.code).not.toContain('HostComponent')
   })
+
+  it('rejects a required transform error instead of returning untransformed source', async () => {
+    const negativeControl = () => ({
+      visitor: {
+        Program() {
+          throw new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+        },
+      },
+    })
+
+    await expect(
+      transformBabel('/project/TransformProbe.ts', 'export const marker = 1', {
+        plugins: [negativeControl],
+      })
+    ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
+  })
 })
