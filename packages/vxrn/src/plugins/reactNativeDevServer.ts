@@ -7,6 +7,7 @@ import {
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
+import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 import { getBoundPort } from '../utils/getBoundPort'
@@ -20,6 +21,36 @@ type ClientMessage = {
 type NativeHmrSocket = WebSocket & {
   vxrnClientId: string
   vxrnPlatform: 'ios' | 'android'
+}
+
+export function getNativeAssetContentType(type: string): string {
+  switch (type.toLowerCase()) {
+    case 'bmp':
+      return 'image/bmp'
+    case 'gif':
+      return 'image/gif'
+    case 'jpeg':
+    case 'jpg':
+      return 'image/jpeg'
+    case 'json':
+      return 'application/json'
+    case 'otf':
+      return 'font/otf'
+    case 'png':
+      return 'image/png'
+    case 'svg':
+      return 'image/svg+xml'
+    case 'ttf':
+      return 'font/ttf'
+    case 'webp':
+      return 'image/webp'
+    case 'woff':
+      return 'font/woff'
+    case 'woff2':
+      return 'font/woff2'
+    default:
+      return 'application/octet-stream'
+  }
 }
 
 export function createReactNativeDevServerPlugin(
@@ -36,6 +67,15 @@ export function createReactNativeDevServerPlugin(
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
       const messageWSS = createMessageSocket()
+      const validPlatforms: Record<string, 'ios' | 'android' | undefined> = {
+        ios: 'ios',
+        android: 'android',
+      }
+      const devEngines: Record<
+        string,
+        Awaited<ReturnType<typeof createNativeDevEngine>> | null
+      > = {}
+      const devEngineCreating: Record<string, Promise<unknown> | null> = {}
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -45,6 +85,55 @@ export function createReactNativeDevServerPlugin(
         unstable_experiments: {
           enableStandaloneFuseboxShell: false,
         },
+      })
+
+      // Native AssetSourceResolver requests the URL registered in the Rolldown
+      // bundle. Install this before React Native's generic middleware, which
+      // otherwise terminates unknown /assets requests with an HTML 404.
+      server.middlewares.use(async (req, res, next) => {
+        if (req.method !== 'GET' && req.method !== 'HEAD') return next()
+
+        const rawUrl = req.url || '/'
+        const rawPathname = rawUrl.split('?', 1)[0]
+        if (!rawPathname.startsWith('/assets/')) return next()
+
+        const url = new URL(rawUrl, `http://${req.headers.host || 'localhost'}`)
+
+        const platform = validPlatforms[url.searchParams.get('platform') || '']
+        const engine = platform ? devEngines[platform] : undefined
+        if (!engine) return next()
+
+        let pathname: string
+        try {
+          pathname = decodeURIComponent(rawPathname)
+        } catch {
+          res.writeHead(400, { 'Content-Type': 'text/plain' })
+          res.end('Invalid native asset path')
+          return
+        }
+
+        const asset = engine.getAsset(pathname, url.searchParams.get('hash') || undefined)
+        if (!asset) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' })
+          res.end('Native asset not found')
+          return
+        }
+
+        try {
+          const contents = await readFile(asset.filePath)
+          res.writeHead(200, {
+            'Cache-Control': 'no-cache',
+            'Content-Length': String(contents.byteLength),
+            'Content-Type': getNativeAssetContentType(asset.type),
+          })
+          res.end(req.method === 'HEAD' ? undefined : contents)
+        } catch (error) {
+          console.error(
+            `[vxrn] failed to serve native asset ${pathname}: ${error instanceof Error ? error.message : String(error)}`
+          )
+          res.writeHead(500, { 'Content-Type': 'text/plain' })
+          res.end('Failed to read native asset')
+        }
       })
 
       server.middlewares.use(middleware)
@@ -176,18 +265,6 @@ export function createReactNativeDevServerPlugin(
           }
         })
       })
-
-      const validPlatforms: Record<string, 'ios' | 'android' | undefined> = {
-        ios: 'ios',
-        android: 'android',
-      }
-
-      // rolldown DevEngine instances (per platform)
-      const devEngines: Record<
-        string,
-        Awaited<ReturnType<typeof createNativeDevEngine>> | null
-      > = {}
-      const devEngineCreating: Record<string, Promise<any> | null> = {}
 
       // React Native bundle handler
       const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {

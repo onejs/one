@@ -1,16 +1,23 @@
+import { existsSync } from 'node:fs'
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { rolldown } from 'rolldown'
+import { runInNewContext } from 'node:vm'
+import { rolldown, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
 import { describe, expect, it } from 'vitest'
+import { getNativePrelude } from '../runtime/native-prelude'
 import {
   buildNativeBundle,
+  createNativeDevAssetRegistry,
+  getNativeAssetData,
   getHermesSWCIncludes,
   getHmrRuntimeSource,
   getNativeTransformConfig,
   hermesCompatSWCPlugin,
   hmrClientNoopPlugin,
+  nativeAnimatedGuardPlugin,
+  normalizeNativeCommonJSInterop,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
 } from './createNativeDevEngine'
@@ -22,7 +29,7 @@ export const transformProbe = () => {
 }
 `
 
-async function createThrowingWorkletsProject() {
+async function createWorkletsProject(throwOnTransform = true) {
   const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-failure-'))
   const packageRoot = join(testRoot, 'node_modules/react-native-worklets')
   await mkdir(packageRoot, { recursive: true })
@@ -32,17 +39,42 @@ async function createThrowingWorkletsProject() {
   )
   await writeFile(
     join(packageRoot, 'plugin.js'),
-    `module.exports = () => ({
+    throwOnTransform
+      ? `module.exports = () => ({
       visitor: {
         Program() {
           throw new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
         }
       }
     })`
+      : `module.exports = () => ({ visitor: {} })`
   )
   await writeFile(join(testRoot, 'entry.ts'), nativeTransformProbe)
   return testRoot
 }
+
+describe('native prelude', () => {
+  it('does not advertise a host event API that cannot remove listeners', () => {
+    const context = {
+      addEventListener() {},
+    }
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
+
+    expect(Reflect.get(context, 'addEventListener')).toBeUndefined()
+  })
+
+  it('preserves a complete host event API', () => {
+    const addEventListener = () => {}
+    const removeEventListener = () => {}
+    const context = { addEventListener, removeEventListener }
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'ios' }), context)
+
+    expect(context.addEventListener).toBe(addEventListener)
+    expect(context.removeEventListener).toBe(removeEventListener)
+  })
+})
 
 describe('native Rolldown HMR runtime', () => {
   it(
@@ -127,7 +159,14 @@ if (import.meta.hot) {
         )?.update
         expect(patch).toBeTruthy()
 
-        expect(runtime.applyHmrUpdate(patch.code, patch.changedIds, patch.seq)).toBe(true)
+        const applyHmrUpdate = Reflect.get(runtime, 'applyHmrUpdate')
+        expect(
+          Reflect.apply(applyHmrUpdate, runtime, [
+            patch.code,
+            patch.changedIds,
+            patch.seq,
+          ])
+        ).toBe(true)
         expect((globalThis as any).__vxrnHmrBody).toBe('v2')
         expect((globalThis as any).__vxrnHmrAccepted).toBe('v2')
       } finally {
@@ -139,6 +178,181 @@ if (import.meta.hot) {
       }
     }
   )
+
+  it(
+    'propagates a non-component update to a React Refresh boundary',
+    { timeout: 30_000 },
+    async () => {
+      const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-refresh-boundary-'))
+      const entry = join(testRoot, 'entry.js')
+      const leaf = join(testRoot, 'leaf.js')
+      await writeFile(
+        entry,
+        `
+import { value } from './leaf.js'
+globalThis.__vxrnRefreshBoundaryValue = value
+export function App() {}
+if (import.meta.hot) {
+  import.meta.hot.acceptReactRefresh(() => {
+    globalThis.__vxrnRefreshBoundaryAccepted = true
+  })
+}
+`
+      )
+      await writeFile(leaf, `export const value = 'v1'`)
+
+      let resolveInitialOutput!: (output: any) => void
+      const initialOutput = new Promise<any>((resolve) => {
+        resolveInitialOutput = resolve
+      })
+      let resolveHmrUpdate!: (output: any) => void
+      const hmrUpdate = new Promise<any>((resolve) => {
+        resolveHmrUpdate = resolve
+      })
+      let registeredClientId: string | undefined
+      const engine = await dev(
+        {
+          cwd: testRoot,
+          input: entry,
+          experimental: { devMode: { implement: getHmrRuntimeSource() } },
+        },
+        { format: 'esm' },
+        {
+          onOutput(result) {
+            resolveInitialOutput(result)
+          },
+          onHmrUpdates(result) {
+            if (
+              !(result instanceof Error) &&
+              result.updates.some(
+                (item) =>
+                  item.clientId === registeredClientId && item.update.type === 'Patch'
+              )
+            ) {
+              resolveHmrUpdate(result)
+            }
+          },
+        }
+      )
+
+      const previousRefreshRuntime = Reflect.get(globalThis, '__ReactRefresh')
+      Reflect.set(globalThis, '__ReactRefresh', {
+        isLikelyComponentType(value: unknown) {
+          return typeof value === 'function'
+        },
+      })
+
+      try {
+        await engine.run()
+        const initial = await initialOutput
+        if (initial instanceof Error) throw initial
+        const chunk = initial.output.find(
+          (item: any) => item.type === 'chunk' && item.isEntry
+        )
+        expect(chunk).toBeTruthy()
+
+        Reflect.deleteProperty(globalThis, '__rolldown_runtime__')
+        await import(
+          `data:text/javascript;base64,${Buffer.from(chunk.code).toString('base64')}`
+        )
+        const runtime = Reflect.get(globalThis, '__rolldown_runtime__')
+        registeredClientId = runtime.clientId
+        await engine.registerClient(runtime.clientId)
+
+        await writeFile(leaf, `export const value = 'v2'`)
+        const result = await Promise.race([
+          hmrUpdate,
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('timed out waiting for HMR patch')), 10_000)
+          ),
+        ])
+        const patch = result.updates.find(
+          (item: any) =>
+            item.clientId === runtime.clientId && item.update.type === 'Patch'
+        )?.update
+        expect(patch).toBeTruthy()
+
+        const applyHmrUpdate = Reflect.get(runtime, 'applyHmrUpdate')
+        expect(
+          Reflect.apply(applyHmrUpdate, runtime, [
+            patch.code,
+            patch.changedIds,
+            patch.seq,
+          ])
+        ).toBe(true)
+        expect(Reflect.get(globalThis, '__vxrnRefreshBoundaryValue')).toBe('v2')
+        expect(Reflect.get(globalThis, '__vxrnRefreshBoundaryAccepted')).toBe(true)
+      } finally {
+        await engine.close()
+        await rm(testRoot, { recursive: true, force: true })
+        Reflect.deleteProperty(globalThis, '__rolldown_runtime__')
+        Reflect.deleteProperty(globalThis, '__vxrnRefreshBoundaryValue')
+        Reflect.deleteProperty(globalThis, '__vxrnRefreshBoundaryAccepted')
+        if (previousRefreshRuntime === undefined) {
+          Reflect.deleteProperty(globalThis, '__ReactRefresh')
+        } else {
+          Reflect.set(globalThis, '__ReactRefresh', previousRefreshRuntime)
+        }
+      }
+    }
+  )
+})
+
+describe('native production import.meta lowering', () => {
+  it('emits a Hermes-compatible bundle for guarded import.meta.env reads', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-import-meta-'))
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `globalThis.__vxrnNativeImportMetaProbe = typeof import.meta !== 'undefined' && import.meta.env.DEV`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      expect(result.code).not.toContain('typeof import.meta')
+
+      const context = { globalThis: {}, process: { env: {} } }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context.globalThis, '__vxrnNativeImportMetaProbe')).toBe(false)
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native animated guard transform', () => {
+  it('preserves line count and returns a composable source map', async () => {
+    const plugin = nativeAnimatedGuardPlugin()
+    if (typeof plugin.transform !== 'function') {
+      throw new Error('native animated guard transform hook is not callable')
+    }
+    const source = [
+      'function call(methodName) {',
+      '  const method = nullthrows(NativeAnimatedModule)[methodName];',
+      '  method();',
+      '}',
+    ].join('\n')
+
+    const result = await Reflect.apply(plugin.transform, undefined, [
+      source,
+      '/project/node_modules/react-native/src/private/animated/NativeAnimatedHelper.js',
+    ])
+
+    expect(result.code.split('\n')).toHaveLength(source.split('\n').length)
+    expect(result.code).toContain("if (typeof method !== 'function') return")
+    expect(result.map).toEqual({
+      version: 3,
+      sources: [
+        '/project/node_modules/react-native/src/private/animated/NativeAnimatedHelper.js',
+      ],
+      sourcesContent: [source],
+      names: [],
+      mappings: 'AAAA;AACA;AACA;AACA',
+    })
+  })
 })
 
 // use a root with no .env files so only the platform defines are present
@@ -170,6 +384,24 @@ describe('getNativeTransformConfig platform env defines', () => {
       })
     }
   }
+
+  it('inlines EXPO_PUBLIC values supplied by the native build environment', () => {
+    const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
+    const previous = process.env[key]
+    process.env[key] = 'native-env-value'
+
+    try {
+      const { define } = getNativeTransformConfig('ios', false, root)
+      expect(define[`process.env.${key}`]).toBe('"native-env-value"')
+      expect(define[`import.meta.env.${key}`]).toBe('"native-env-value"')
+      expect(JSON.parse(define['import.meta.env'] as string)[key]).toBe(
+        'native-env-value'
+      )
+    } finally {
+      if (previous === undefined) delete process.env[key]
+      else process.env[key] = previous
+    }
+  })
 })
 
 describe('wrapNativeBundleModuleScope', () => {
@@ -204,6 +436,7 @@ describe('getHermesSWCIncludes', () => {
   const CLASS_SET = [
     'transform-classes',
     'transform-parameters',
+    'transform-block-scoping',
     'transform-class-properties',
     'transform-class-static-block',
     'transform-private-methods',
@@ -217,9 +450,60 @@ describe('getHermesSWCIncludes', () => {
     expect(getHermesSWCIncludes(false)).toEqual(expect.arrayContaining(CLASS_SET))
   })
 
-  it('adds transform-async-to-generator only in production', () => {
-    expect(getHermesSWCIncludes(true)).not.toContain('transform-async-to-generator')
+  it('adds transform-async-to-generator in development and production', () => {
+    expect(getHermesSWCIncludes(true)).toContain('transform-async-to-generator')
     expect(getHermesSWCIncludes(false)).toContain('transform-async-to-generator')
+  })
+
+  it('lowers async generators for the Hermes development interpreter', async () => {
+    const plugin = hermesCompatSWCPlugin(true)
+    if (typeof plugin.transform !== 'function') {
+      throw new Error('Hermes compatibility transform hook is not callable')
+    }
+
+    const result = await Reflect.apply(plugin.transform, undefined, [
+      'export async function* values() { yield await Promise.resolve(1) }',
+      '/project/async-generator.ts',
+    ])
+    expect(result.code).not.toContain('async function*')
+    expect(result.code).not.toContain('async function *')
+  })
+
+  it('preserves per-iteration bindings used by lazy method getters', async () => {
+    const plugin = hermesCompatSWCPlugin(true)
+    if (typeof plugin.transform !== 'function') {
+      throw new Error('Hermes compatibility transform hook is not callable')
+    }
+
+    const result = await Reflect.apply(plugin.transform, undefined, [
+      `
+const installedGroups = new WeakMap()
+function install(inst, methods) {
+  const proto = Object.getPrototypeOf(inst)
+  for (const key in methods) {
+    const fn = methods[key]
+    Object.defineProperty(proto, key, {
+      get() { return fn.bind(this) }
+    })
+  }
+}
+function Schema() {
+  install(this, {
+    nullish() { return 'nullish' },
+    apply(fn) { return fn(this) }
+  })
+}
+globalThis.__vxrnBlockScopeProbe = new Schema().nullish()
+`,
+      '/project/block-scope-loop.ts',
+    ])
+
+    try {
+      new Function(result.code)()
+      expect(Reflect.get(globalThis, '__vxrnBlockScopeProbe')).toBe('nullish')
+    } finally {
+      Reflect.deleteProperty(globalThis, '__vxrnBlockScopeProbe')
+    }
   })
 
   it('bundles lowered classes whose constructors use default and rest parameters', async () => {
@@ -340,6 +624,7 @@ describe('vxrnCompilerPlugin React Refresh registration', () => {
       expect(code).toContain('var __vxrnRefreshReg = globalThis.$RefreshReg$')
       expect(code).toContain('__vxrnRefreshReg(')
       expect(code).toContain('"$RefreshReg$("')
+      expect(code).toContain('import.meta.hot.acceptReactRefresh(')
     } finally {
       process.env.NODE_ENV = previousNodeEnv
     }
@@ -350,7 +635,7 @@ describe('native required transform failures', () => {
   it.each([true, false])(
     'rejects valid worklet source when its required compiler transform fails (dev=%s)',
     async (dev) => {
-      const testRoot = await createThrowingWorkletsProject()
+      const testRoot = await createWorkletsProject()
       const compiler = await import('@vxrn/compiler')
       compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
 
@@ -374,7 +659,7 @@ describe('native required transform failures', () => {
   )
 
   it('returns a dev build error and no output when the required compiler transform fails', async () => {
-    const testRoot = await createThrowingWorkletsProject()
+    const testRoot = await createWorkletsProject()
     const compiler = await import('@vxrn/compiler')
     compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
     let resolveOutput!: (output: unknown) => void
@@ -404,7 +689,7 @@ describe('native required transform failures', () => {
   })
 
   it('emits no production bundle when the required compiler transform fails', async () => {
-    const testRoot = await createThrowingWorkletsProject()
+    const testRoot = await createWorkletsProject()
     const compiler = await import('@vxrn/compiler')
     compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
 
@@ -434,5 +719,276 @@ describe('native required transform failures', () => {
         '/project/TransformProbe.ts',
       ])
     ).rejects.toBeTruthy()
+  })
+
+  it('returns maps for every required production transform', async () => {
+    const testRoot = await createWorkletsProject(false)
+    const compiler = await import('@vxrn/compiler')
+    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+
+    try {
+      const compilerPlugin = vxrnCompilerPlugin('ios', false, testRoot, true)
+      if (typeof compilerPlugin.transform !== 'function') {
+        throw new Error('vxrn compiler transform hook is not callable')
+      }
+      const compilerResult = await Reflect.apply(compilerPlugin.transform, undefined, [
+        nativeTransformProbe,
+        join(testRoot, 'entry.ts'),
+      ])
+      expect(compilerResult.map).toBeTruthy()
+
+      const hermesPlugin = hermesCompatSWCPlugin(false, true)
+      if (typeof hermesPlugin.transform !== 'function') {
+        throw new Error('Hermes compatibility transform hook is not callable')
+      }
+      const hermesResult = await Reflect.apply(hermesPlugin.transform, undefined, [
+        'export class TransformProbe { value = 1 }',
+        join(testRoot, 'TransformProbe.ts'),
+      ])
+      expect(hermesResult.map).toBeTruthy()
+    } finally {
+      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native production assets', () => {
+  it('registers scale siblings and keeps monorepo assets inside assetsDest', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
+    const appRoot = join(testRoot, 'workspace/apps/native-app')
+    const appAssets = join(appRoot, 'assets')
+    const packageAssets = join(testRoot, 'workspace/node_modules/example/assets')
+    const assetsDest = join(testRoot, 'output')
+    await mkdir(appAssets, { recursive: true })
+    await mkdir(packageAssets, { recursive: true })
+    await writeFile(join(appAssets, 'icon.png'), 'icon-1x')
+    await writeFile(join(appAssets, 'icon@2x.png'), 'icon-2x')
+    await writeFile(join(appAssets, 'icon@3x.png'), 'icon-3x')
+    await writeFile(join(packageAssets, 'back.png'), 'back-1x')
+    await writeFile(join(packageAssets, 'back@2x.png'), 'back-2x')
+    await writeFile(
+      join(appRoot, 'entry.js'),
+      `
+import icon from './assets/icon.png'
+import back from '../../node_modules/example/assets/back.png'
+globalThis.__nativeAssetProbe = [icon, back]
+`
+    )
+
+    try {
+      const assetData = await getNativeAssetData(
+        join(appAssets, 'icon.png'),
+        appRoot,
+        'ios'
+      )
+      expect(assetData.scales).toEqual([1, 2, 3])
+      expect(assetData.files.map((file) => file.slice(appAssets.length + 1))).toEqual([
+        'icon.png',
+        'icon@2x.png',
+        'icon@3x.png',
+      ])
+      expect(assetData.hash).not.toBe('')
+
+      const registry = createNativeDevAssetRegistry()
+      registry.register(assetData)
+      expect(
+        registry.resolve('/assets/assets/icon@2x.png', assetData.hash)?.filePath
+      ).toBe(join(appAssets, 'icon@2x.png'))
+      expect(
+        registry.resolve('/assets/assets/icon.png', 'stale-content-hash')
+      ).toBeUndefined()
+      expect(
+        registry.resolve('/assets/../../package.json', assetData.hash)
+      ).toBeUndefined()
+
+      const result = await buildNativeBundle({
+        root: appRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        assetsDest,
+      })
+
+      expect(result.code).toMatch(/"scales":\s*\[\s*1,\s*2,\s*3\s*\]/)
+      for (const file of ['icon.png', 'icon@2x.png', 'icon@3x.png']) {
+        expect(existsSync(join(assetsDest, 'assets/assets', file))).toBe(true)
+      }
+      for (const file of ['back.png', 'back@2x.png']) {
+        expect(
+          existsSync(join(assetsDest, 'assets/_/_/node_modules/example/assets', file))
+        ).toBe(true)
+      }
+
+      // the old path join normalized ../../ out of assetsDest.
+      expect(existsSync(join(testRoot, 'node_modules/example/assets/back.png'))).toBe(
+        false
+      )
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native conditional exports', () => {
+  it('uses the require condition for CommonJS calls', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-conditions-'))
+    const packageRoot = join(testRoot, 'node_modules/conditional-helper')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({
+        name: 'conditional-helper',
+        exports: {
+          '.': {
+            import: './esm.js',
+            require: './cjs.cjs',
+          },
+        },
+        type: 'module',
+      })
+    )
+    await writeFile(
+      join(packageRoot, 'esm.js'),
+      `export default function helper() { return 'import' }`
+    )
+    await writeFile(
+      join(packageRoot, 'cjs.cjs'),
+      `module.exports = function helper() { return 'require' }`
+    )
+    await writeFile(
+      join(testRoot, 'entry.cjs'),
+      `
+const helper = require('conditional-helper')
+globalThis.__vxrnConditionalExportProbe = helper()
+`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.cjs',
+        dev: true,
+      })
+      const context = {
+        clearTimeout,
+        console,
+        process: { env: {} },
+        setTimeout,
+      }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, '__vxrnConditionalExportProbe')).toBe('require')
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it(
+    'unwraps the default export of Babel CommonJS modules in dev output',
+    { timeout: 30_000 },
+    async () => {
+      const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-default-'))
+      const packageRoot = join(testRoot, 'node_modules/default-export-helper')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ name: 'default-export-helper', main: './index.js' })
+      )
+      await writeFile(
+        join(packageRoot, 'index.js'),
+        `Object.defineProperty(exports, '__esModule', { value: true }); exports.default = function Component() {}`
+      )
+      await writeFile(
+        join(testRoot, 'entry.js'),
+        `import Component from 'default-export-helper'; globalThis.__vxrnCjsDefaultProbe = typeof Component`
+      )
+
+      let resolveOutput!: (output: Error | RolldownOutput) => void
+      const output = new Promise<Error | RolldownOutput>((resolve) => {
+        resolveOutput = resolve
+      })
+      const engine = await dev(
+        {
+          cwd: testRoot,
+          input: join(testRoot, 'entry.js'),
+          experimental: { devMode: { implement: getHmrRuntimeSource() } },
+        },
+        { format: 'esm', codeSplitting: false, strictExecutionOrder: true },
+        { onOutput: resolveOutput }
+      )
+
+      try {
+        await engine.run()
+        const result = await output
+        if (result instanceof Error) throw result
+        const chunk = result.output.find((item) => item.type === 'chunk' && item.isEntry)
+        if (!chunk || chunk.type !== 'chunk') {
+          throw new Error('Rolldown did not emit a native dev entry chunk')
+        }
+
+        // Calibrate the exact Rolldown node-mode form observed in the app: it
+        // must expose the Babel exports object before the integration fix.
+        const nodeModeCode = chunk.code.replace(
+          /(\b__toESM(?:\$\d+)?\(\s*require[\w$]*\(\)\s*)\)/,
+          '$1, 1)'
+        )
+        expect(nodeModeCode).not.toBe(chunk.code)
+
+        Reflect.deleteProperty(globalThis, '__rolldown_runtime__')
+        await import(
+          `data:text/javascript;base64,${Buffer.from(nodeModeCode).toString('base64')}`
+        )
+        expect(Reflect.get(globalThis, '__vxrnCjsDefaultProbe')).toBe('object')
+
+        Reflect.deleteProperty(globalThis, '__rolldown_runtime__')
+        Reflect.deleteProperty(globalThis, '__vxrnCjsDefaultProbe')
+        const normalized = normalizeNativeCommonJSInterop(nodeModeCode)
+        await import(
+          `data:text/javascript;base64,${Buffer.from(normalized).toString('base64')}`
+        )
+        expect(Reflect.get(globalThis, '__vxrnCjsDefaultProbe')).toBe('function')
+      } finally {
+        await engine.close()
+        Reflect.deleteProperty(globalThis, '__rolldown_runtime__')
+        Reflect.deleteProperty(globalThis, '__vxrnCjsDefaultProbe')
+        await rm(testRoot, { recursive: true, force: true })
+      }
+    }
+  )
+
+  it('unwraps the default export of Babel CommonJS modules in production output', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-prod-cjs-default-'))
+    const packageRoot = join(testRoot, 'node_modules/default-export-helper')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ name: 'default-export-helper', main: './index.js' })
+    )
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      `Object.defineProperty(exports, '__esModule', { value: true }); exports.default = function Component() {}`
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import Component from 'default-export-helper'; globalThis.__vxrnProdCjsDefaultProbe = typeof Component`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = {
+        clearTimeout,
+        console,
+        process: { env: {} },
+        setTimeout,
+      }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, '__vxrnProdCjsDefaultProbe')).toBe('function')
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
   })
 })
