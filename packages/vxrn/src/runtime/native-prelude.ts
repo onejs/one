@@ -30,6 +30,13 @@ global.self = global.self || global;
 global.navigator = global.navigator || { product: 'ReactNative', userAgent: '' };
 global.performance = global.performance || { now: function() { return Date.now(); } };
 
+// hermes can expose addEventListener without the matching removal API. browser
+// libraries use addEventListener as their capability check, then crash during
+// cleanup. keep the incomplete host API from advertising browser event support.
+if (typeof global.addEventListener === 'function' && typeof global.removeEventListener !== 'function') {
+  global.addEventListener = undefined;
+}
+
 // ErrorUtils - used by RN's error handling system
 if (!global.ErrorUtils) {
   var _handler = null;

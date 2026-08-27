@@ -35,6 +35,7 @@ interface NativeDevEngineResult {
     getBundle: () => Promise<{
         code: string;
     }>;
+    getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }
 export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
@@ -46,6 +47,13 @@ export declare function getNativeTransformConfig(platform: 'ios' | 'android', de
         React: string;
     };
 };
+/**
+ * Post-process a native bundle to fix rolldown devMode output quirks.
+ * Most concerns have been moved to plugins/config:
+ * - VXRN_REACT_19 → handled by define in getNativeTransformConfig
+ * - DevSettings stripping → stripDevSettingsPlugin
+ */
+export declare function normalizeNativeCommonJSInterop(code: string): string;
 /**
  * Wrap the dev bundle body in a function scope so module top-level
  * `var`/`function` declarations don't leak onto the global object.
@@ -88,6 +96,14 @@ export declare function buildNativeBundle(options: NativeBuildOptions): Promise<
     map?: string;
 }>;
 /**
+ * Guard NativeAnimatedHelper's createNativeOperations against undefined methods.
+ * The methodNames array includes "removeListener" (singular) but the TurboModule
+ * spec only has "removeListeners" (plural). The closure calls
+ * nullthrows(NativeAnimatedModule)[methodName] which returns undefined, then
+ * method(...args) throws "undefined is not a function".
+ */
+export declare function nativeAnimatedGuardPlugin(): Plugin;
+/**
  * alias react-native's Metro HMR client (`Libraries/Utilities/HMRClient`) to a
  * no-op module.
  *
@@ -112,7 +128,35 @@ export declare function hmrClientNoopPlugin(): Plugin;
  * react-native codegen, react compiler, and react-refresh (dev only) —
  * same pipeline as metro, single babel pass per file.
  */
-export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string): Plugin;
+export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string, sourceMaps?: boolean): Plugin;
+type NativeAssetData = {
+    __packager_asset: true;
+    name: string;
+    type: string;
+    scales: number[];
+    files: string[];
+    httpServerLocation: string;
+    fileSystemLocation: string;
+    hash: string;
+    width?: number;
+    height?: number;
+};
+export type NativeDevAsset = {
+    filePath: string;
+    hash: string;
+    type: string;
+};
+export declare function createNativeDevAssetRegistry(): {
+    register: (asset: NativeAssetData) => void;
+    resolve: (pathname: string, hash?: string) => NativeDevAsset | undefined;
+};
+export declare function getNativeAssetData(id: string, root: string, platform: string): Promise<NativeAssetData>;
+/**
+ * SWC transform for Hermes compatibility.
+ * Transforms class properties and private fields that Hermes doesn't support.
+ * Inspired by rollipop's swc-plugin.ts.
+ */
+export declare function hermesCompatSWCPlugin(dev: boolean, sourceMaps?: boolean): Plugin;
 export declare function getHmrRuntimeSource(): string;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

@@ -6,12 +6,20 @@
  * https://github.com/leegeunhyeok/rollipop
  */
 
+import { createHash } from 'node:crypto'
 import { basename, dirname, extname, join, relative, resolve } from 'node:path'
-import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  realpathSync,
+  readdirSync,
+  readFileSync,
+} from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
-import { normalizePath } from 'vite'
+import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 
@@ -28,18 +36,21 @@ const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].
 const HERMES_CLASS_TRANSFORMS = [
   'transform-classes',
   'transform-parameters',
+  'transform-block-scoping',
   'transform-class-properties',
   'transform-class-static-block',
   'transform-private-methods',
   'transform-private-property-in-object',
 ] as const
 
-// prod-only: needed for hermesc bytecode AOT compilation, not the dev interpreter
-const HERMES_PROD_TRANSFORMS = ['transform-async-to-generator'] as const
+// Hermes V1 rejects async generators in both the dev interpreter and AOT
+// compilation. Keep the async lowering identical across modes: a dev bundle
+// that parses in Rolldown but redboxes in Hermes is not a usable build.
+const HERMES_ASYNC_TRANSFORMS = ['transform-async-to-generator'] as const
 
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
 export function getHermesSWCIncludes(dev: boolean): string[] {
-  return [...HERMES_CLASS_TRANSFORMS, ...(dev ? [] : HERMES_PROD_TRANSFORMS)]
+  return [...HERMES_CLASS_TRANSFORMS, ...HERMES_ASYNC_TRANSFORMS]
 }
 
 interface NativeDevEngineOptions {
@@ -66,6 +77,7 @@ export type NativeHmrUpdate =
 interface NativeDevEngineResult {
   engine: DevEngine
   getBundle: () => Promise<{ code: string }>
+  getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
 }
 
@@ -84,7 +96,11 @@ function getResolveExtensions(platform: 'ios' | 'android'): string[] {
 function getNativeResolveConfig(platform: 'ios' | 'android') {
   return {
     extensions: getResolveExtensions(platform),
-    conditionNames: ['react-native', 'import', 'require', 'default'],
+    // Rolldown supplies `import`, `require`, and `default` contextually. Adding
+    // both here makes a CommonJS require eligible for an export map's ESM
+    // `import` target (for example @babel/runtime), which turns callable CJS
+    // helpers into namespace objects at runtime.
+    conditionNames: ['react-native'],
     mainFields: ['react-native', 'module', 'main'],
   }
 }
@@ -120,36 +136,18 @@ export function getNativeTransformConfig(
     }
   })()
 
-  // load .env files for VITE_* variables (mirrors what Vite does)
-  const envDefines = (() => {
-    const defines: Record<string, string> = {}
-    try {
-      const mode = dev ? 'development' : 'production'
-      // load .env, .env.local, .env.[mode], .env.[mode].local (same order as Vite)
-      for (const envFile of [
-        '.env',
-        '.env.local',
-        `.env.${mode}`,
-        `.env.${mode}.local`,
-      ]) {
-        const envPath = join(root, envFile)
-        if (!existsSync(envPath)) continue
-        const content = readFileSync(envPath, 'utf8')
-        for (const line of content.split('\n')) {
-          const match = line.match(/^\s*(VITE_\w+)\s*=\s*(.*)$/)
-          if (match) {
-            const [, key, rawVal] = match
-            const val = rawVal.replace(/^['"]|['"]$/g, '').trim()
-            defines[`import.meta.env.${key}`] = JSON.stringify(val)
-            defines[`process.env.${key}`] = JSON.stringify(val)
-          }
-        }
-      }
-    } catch {}
-    return defines
-  })()
-
   const mode = dev ? 'development' : 'production'
+
+  // Match One's Vite client contract: load public values from process.env and
+  // the mode-specific env files, with shell values taking precedence. Native
+  // apps commonly use Expo's EXPO_PUBLIC_ prefix; accepting only VITE_ here
+  // made the same source silently receive `undefined` after leaving Metro.
+  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'EXPO_PUBLIC_'])
+  const envDefines: Record<string, string> = {}
+  for (const [key, value] of Object.entries(publicEnv)) {
+    envDefines[`import.meta.env.${key}`] = JSON.stringify(value)
+    envDefines[`process.env.${key}`] = JSON.stringify(value)
+  }
 
   // build the full import.meta.env object for when it's used as a whole (e.g. JSON.stringify(import.meta.env))
   const envObject: Record<string, any> = {
@@ -163,7 +161,7 @@ export function getNativeTransformConfig(
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: platform,
   }
-  // add VITE_* from .env files
+  // add public values from the shell and mode-specific env files
   for (const [key, val] of Object.entries(envDefines)) {
     const match = key.match(/^import\.meta\.env\.(.+)$/)
     if (match) {
@@ -218,7 +216,9 @@ function getNativePlugins(
   platform: string,
   viteImportGlobPlugin: any,
   dev: boolean,
-  assetsDest?: string
+  assetsDest?: string,
+  onAsset?: (asset: NativeAssetData) => void,
+  sourceMaps = false
 ): Plugin[] {
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
@@ -240,7 +240,7 @@ function getNativePlugins(
     // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
     // type argument intact. stripping Flow first would erase it (which is why the
     // codegen "didn't run for <Component>" warning fired).
-    vxrnCompilerPlugin(platform, dev, root),
+    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
     // strip Flow from any react-native / @react-native `.js` the compiler didn't
     // handle, the guaranteed safety net before rolldown's oxc core parse (which
     // can't parse Flow). now downstream of the compiler, so codegen sees the types.
@@ -248,9 +248,9 @@ function getNativePlugins(
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
-    assetPlugin({ root, platform, assetsDest }),
+    assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
-    hermesCompatSWCPlugin(dev),
+    hermesCompatSWCPlugin(dev, sourceMaps),
   ]
 }
 
@@ -271,7 +271,25 @@ function getNativeOutputOptions(prelude: string, sourcemap: boolean): OutputOpti
  * - VXRN_REACT_19 → handled by define in getNativeTransformConfig
  * - DevSettings stripping → stripDevSettingsPlugin
  */
+export function normalizeNativeCommonJSInterop(code: string): string {
+  // Rolldown can mark ESM default imports from internal CommonJS modules as
+  // Node-mode conversions in both dev and production. Babel CommonJS packages
+  // expose their actual default behind `exports.default`; Node mode instead
+  // returns the whole exports object and React receives `{ default: Component }`.
+  return code.replace(
+    /(\b__toESM(?:\$\d+)?\(\s*require[\w$]*\(\)\s*),\s*1(\s*\))/g,
+    '$1$2'
+  )
+}
+
 function postProcessNativeBundle(code: string): string {
+  code = normalizeNativeCommonJSInterop(code)
+
+  // Rolldown replaces import.meta.env reads but can leave a guarding
+  // `typeof import.meta` expression behind. Hermes rejects import.meta syntax
+  // even when the other side of the condition has already folded to false.
+  code = code.replace(/\btypeof\s+import\.meta\b/g, '"object"')
+
   // rolldown devMode still emits ESM export statements that hermes can't parse.
   // this is a rolldown behavior we can't configure away yet.
   code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
@@ -357,6 +375,7 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
 
   const runtimeEnd = endIdx + endMarker.length
   const runtimeSection = code.slice(startIdx, runtimeEnd)
+  const originalNewlines = runtimeSection.match(/\n/g)?.length ?? 0
 
   const swc = await import('@swc/core')
   const result = await swc.transform(runtimeSection, {
@@ -366,6 +385,11 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
     sourceMaps: false,
     inputSourceMap: false,
     isModule: false,
+    // Compact only Rolldown's generated runtime, then restore its original
+    // newline count below. This keeps every application module at the exact
+    // generated line recorded by Rolldown's source map while still lowering
+    // runtime class fields for Hermes.
+    minify: true,
     env: {
       targets: { node: 9999 },
       // dev-only runtime prelude: the class set only, no prod bytecode transforms
@@ -381,7 +405,21 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
       },
     },
   })
-  return code.slice(0, startIdx) + result.code + code.slice(runtimeEnd)
+  const transformedCode = result.code.trimEnd()
+  // SWC minification strips comments, but the dev bundle scope wrapper uses
+  // this generated-runtime marker as its structural boundary.
+  const transformed = transformedCode.includes(startMarker)
+    ? transformedCode
+    : `${startMarker}\n${transformedCode}`
+  const transformedNewlines = transformed.match(/\n/g)?.length ?? 0
+  if (transformedNewlines > originalNewlines) {
+    throw new Error(
+      '[vxrn] Hermes runtime transform added lines and would invalidate the production source map'
+    )
+  }
+  const linePreservingRuntime =
+    transformed + '\n'.repeat(originalNewlines - transformedNewlines)
+  return code.slice(0, startIdx) + linePreservingRuntime + code.slice(runtimeEnd)
 }
 
 export async function createNativeDevEngine(
@@ -406,6 +444,7 @@ export async function createNativeDevEngine(
     platform,
     serverUrl: serverUrl || `http://${host}:${port}`,
   })
+  const assetRegistry = createNativeDevAssetRegistry()
 
   let currentBundle: { code: string } | null = null
   let firstBuildError: Error | null = null
@@ -444,7 +483,15 @@ export async function createNativeDevEngine(
 
     plugins: [
       nativeVirtualEntryPlugin(root, { dev: true }),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, true),
+      ...getNativePlugins(
+        root,
+        platform,
+        viteImportGlobPlugin,
+        true,
+        undefined,
+        assetRegistry.register,
+        false
+      ),
       ...userPlugins,
     ],
   }
@@ -591,6 +638,10 @@ try {
       return bundlePromise
     },
 
+    getAsset(pathname, hash) {
+      return assetRegistry.resolve(pathname, hash)
+    },
+
     async close() {
       await engine.close()
     },
@@ -656,7 +707,15 @@ export async function buildNativeBundle(
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev })]),
-      ...getNativePlugins(root, platform, viteImportGlobPlugin, dev, assetsDest),
+      ...getNativePlugins(
+        root,
+        platform,
+        viteImportGlobPlugin,
+        dev,
+        assetsDest,
+        undefined,
+        sourcemap
+      ),
       ...userPlugins,
     ],
     output: getNativeOutputOptions(prelude, sourcemap),
@@ -669,11 +728,10 @@ export async function buildNativeBundle(
 
   let code = postProcessNativeBundle(chunk.code)
   code = await downlevelClassFieldsInBundle(code)
-  // note: this map is only as good as the chunk's — it describes chunk.code, and
-  // the two post-process passes above shift lines. the per-module transforms
-  // (vxrnCompilerPlugin, hermesCompatSWCPlugin) also return code without maps, so
-  // module positions are post-babel/post-swc. good enough for file attribution,
-  // not for exact line/column symbolication.
+  // Per-module Babel/SWC transforms return maps when requested, and the
+  // generated-runtime downlevel pass preserves its input line count. The
+  // remaining post-processing replaces syntax in place, so application frames
+  // retain Rolldown's generated line and compose back to original source.
   return { code, map: sourcemap ? chunk.map?.toString() : undefined }
 }
 
@@ -783,18 +841,32 @@ createApp({
  * nullthrows(NativeAnimatedModule)[methodName] which returns undefined, then
  * method(...args) throws "undefined is not a function".
  */
-function nativeAnimatedGuardPlugin(): Plugin {
+export function nativeAnimatedGuardPlugin(): Plugin {
   return {
     name: 'vxrn:native-animated-guard',
     transform(code, id) {
       if (!id.includes('animated/NativeAnimatedHelper')) return
       const target = 'const method = nullthrows(NativeAnimatedModule)[methodName];'
       if (!code.includes(target)) return
+      const transformed = code.replace(
+        target,
+        `${target} if (typeof method !== 'function') return;`
+      )
       return {
-        code: code.replace(
-          target,
-          `const method = nullthrows(NativeAnimatedModule)[methodName];\n        if (typeof method !== 'function') return;`
-        ),
+        code: transformed,
+        // this transform deliberately preserves line count. Give Rolldown a
+        // line-identity map so it can compose the earlier compiler map instead
+        // of dropping source-map coverage for this module.
+        map: {
+          version: 3,
+          sources: [id],
+          sourcesContent: [code],
+          names: [],
+          mappings: code
+            .split('\n')
+            .map((_, index) => (index === 0 ? 'AAAA' : 'AACA'))
+            .join(';'),
+        },
       }
     },
   }
@@ -917,7 +989,8 @@ function cssStubPlugin(): Plugin {
 export function vxrnCompilerPlugin(
   platform: string,
   dev: boolean,
-  projectRoot = process.cwd()
+  projectRoot = process.cwd(),
+  sourceMaps = false
 ): Plugin {
   let compiler: typeof import('@vxrn/compiler') | null = null
 
@@ -936,51 +1009,62 @@ export function vxrnCompilerPlugin(
 
       const needsRefresh = isRefreshCandidate(id)
 
-      try {
-        if (!compiler) compiler = await import('@vxrn/compiler')
+      if (!compiler) compiler = await import('@vxrn/compiler')
 
-        const props = {
-          id,
-          code,
-          projectRoot,
-          development: dev,
-          environment: platform as 'ios' | 'android',
-          reactForRNVersion: '19' as const,
+      const props = {
+        id,
+        code,
+        projectRoot,
+        development: dev,
+        environment: platform as 'ios' | 'android',
+        reactForRNVersion: '19' as const,
+      }
+
+      let babelOptions = compiler.getBabelOptions(props)
+
+      if (needsRefresh) {
+        // merge react-refresh/babel into the existing plugins (or create new options)
+        const existingPlugins = babelOptions?.plugins || []
+        babelOptions = {
+          ...babelOptions,
+          plugins: [
+            ...existingPlugins,
+            [
+              'react-refresh/babel',
+              {
+                skipEnvCheck: true,
+                refreshReg: '__vxrnRefreshReg',
+                refreshSig: '__vxrnRefreshSig',
+              },
+            ],
+          ],
         }
+      }
 
-        let babelOptions = compiler.getBabelOptions(props)
+      if (!babelOptions) return
+
+      if (sourceMaps) {
+        // Rolldown composes plugin maps in transform order. Without this map,
+        // every module Babel changes is attributed only to Babel's generated
+        // output, which makes production Hermes frames miss the original
+        // source line even though the bundle command emits a `.map` file.
+        babelOptions = {
+          ...babelOptions,
+          sourceMaps: true,
+          sourceFileName: id,
+        }
+      }
+
+      const result = await compiler.transformBabel(id, code, babelOptions)
+
+      if (result?.code) {
+        let out = result.code
 
         if (needsRefresh) {
-          // merge react-refresh/babel into the existing plugins (or create new options)
-          const existingPlugins = babelOptions?.plugins || []
-          babelOptions = {
-            ...babelOptions,
-            plugins: [
-              ...existingPlugins,
-              [
-                'react-refresh/babel',
-                {
-                  skipEnvCheck: true,
-                  refreshReg: '__vxrnRefreshReg',
-                  refreshSig: '__vxrnRefreshSig',
-                },
-              ],
-            ],
-          }
-        }
-
-        if (!babelOptions) return
-
-        const result = await compiler.transformBabel(id, code, babelOptions)
-
-        if (result?.code) {
-          let out = result.code
-
-          if (needsRefresh) {
-            // wrap with per-file $RefreshReg$ that includes the file path as unique ID
-            // and schedule performReactRefresh() after HMR patch re-execution
-            const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-            out = `
+          // wrap with per-file $RefreshReg$ that includes the file path as unique ID
+          // and schedule performReactRefresh() after HMR patch re-execution
+          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+          out = `
 var __prevRefreshReg = globalThis.$RefreshReg$;
 var __prevRefreshSig = globalThis.$RefreshSig$;
 if (globalThis.__ReactRefresh) {
@@ -998,19 +1082,16 @@ ${out}
 globalThis.$RefreshReg$ = __prevRefreshReg;
 globalThis.$RefreshSig$ = __prevRefreshSig;
 if (import.meta.hot) {
-  import.meta.hot.accept(function() {
+  import.meta.hot.acceptReactRefresh(function() {
     if (globalThis.__ReactRefresh) {
       setTimeout(function() { globalThis.__ReactRefresh.performReactRefresh(); }, 30);
     }
   });
 }
 `
-          }
-
-          return { code: out }
         }
-      } catch (err) {
-        throw err
+
+        return { code: out, map: sourceMaps ? result.map : undefined }
       }
     },
   }
@@ -1027,20 +1108,16 @@ function flowStripPlugin(): Plugin {
       async handler(code, id) {
         if (!FLOW_FILE_PATTERN.test(id)) return
 
-        try {
-          const fft = await import('fast-flow-transform')
-          const result = await fft.default({
-            filename: id,
-            source: code,
-            sourcemap: true,
-            dialect: 'flow',
-            format: 'pretty',
-          })
-          // don't set moduleType - let rolldown's global moduleTypes config handle it
-          return { code: result.code, map: result.map }
-        } catch (err) {
-          throw err
-        }
+        const fft = await import('fast-flow-transform')
+        const result = await fft.default({
+          filename: id,
+          source: code,
+          sourcemap: true,
+          dialect: 'flow',
+          format: 'pretty',
+        })
+        // don't set moduleType - let rolldown's global moduleTypes config handle it
+        return { code: result.code, map: result.map }
       },
     },
   }
@@ -1054,6 +1131,7 @@ function assetPlugin(opts: {
   root: string
   platform: string
   assetsDest?: string
+  onAsset?: (asset: NativeAssetData) => void
 }): Plugin {
   const assetRegex = new RegExp(`\\.(?:${DEFAULT_ASSET_EXTS.join('|')})$`)
 
@@ -1063,41 +1141,11 @@ function assetPlugin(opts: {
       async handler(id) {
         if (!assetRegex.test(id)) return
 
-        const ext = extname(id).slice(1)
-        const name = basename(id, `.${ext}`)
-        const dir = dirname(id)
-        const relativePath = relative(opts.root, id)
-        // On Windows, change backslashes to slashes to get proper URL path from file path.
-        const httpLocation = '/assets/' + dirname(relativePath).replace(/\\/g, '/')
-
-        // simple asset registration (TODO: scale detection like rollipop)
-        const assetData = {
-          __packager_asset: true,
-          name,
-          type: ext,
-          scales: [1],
-          httpServerLocation: httpLocation,
-          fileSystemLocation: dir,
-          hash: '',
-          width: undefined as number | undefined,
-          height: undefined as number | undefined,
-        }
-
-        // try to get image dimensions
-        if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp'].includes(ext)) {
-          try {
-            const { imageSize } = await import('image-size')
-            const dims = imageSize(id)
-            assetData.width = dims.width
-            assetData.height = dims.height
-          } catch {}
-        }
+        const assetData = await getNativeAssetData(id, opts.root, opts.platform)
+        opts.onAsset?.(assetData)
 
         if (opts.assetsDest) {
-          const relativeAssetDir = dirname(relativePath).replace(/\\/g, '/')
-          const assetDestDir = join(opts.assetsDest, 'assets', relativeAssetDir)
-          mkdirSync(assetDestDir, { recursive: true })
-          copyFileSync(id, join(assetDestDir, `${name}.${ext}`))
+          copyNativeAssetFiles(assetData, opts.assetsDest, opts.platform)
         }
 
         const code = `module.exports = require('react-native/Libraries/Image/AssetRegistry').registerAsset(${JSON.stringify(assetData)});`
@@ -1108,12 +1156,243 @@ function assetPlugin(opts: {
   }
 }
 
+type NativeAssetData = {
+  __packager_asset: true
+  name: string
+  type: string
+  scales: number[]
+  files: string[]
+  httpServerLocation: string
+  fileSystemLocation: string
+  hash: string
+  width?: number
+  height?: number
+}
+
+export type NativeDevAsset = {
+  filePath: string
+  hash: string
+  type: string
+}
+
+export function createNativeDevAssetRegistry(): {
+  register: (asset: NativeAssetData) => void
+  resolve: (pathname: string, hash?: string) => NativeDevAsset | undefined
+} {
+  const assets = new Map<string, NativeDevAsset>()
+
+  return {
+    register(asset) {
+      for (const [index, scale] of asset.scales.entries()) {
+        const filePath = asset.files[index]
+        if (!filePath) continue
+        const fileName = `${asset.name}${scale === 1 ? '' : `@${scale}x`}.${asset.type}`
+        assets.set(`${asset.httpServerLocation}/${fileName}`, {
+          filePath,
+          hash: asset.hash,
+          type: asset.type,
+        })
+      }
+    },
+
+    resolve(pathname, hash) {
+      const asset = assets.get(pathname)
+      if (!asset || (hash !== undefined && hash !== asset.hash)) return
+      return asset
+    },
+  }
+}
+
+type ParsedNativeAssetName = {
+  name: string
+  scale: number
+  platform: string | undefined
+  type: string
+}
+
+const NATIVE_IMAGE_EXTS = new Set([
+  'png',
+  'jpg',
+  'jpeg',
+  'gif',
+  'webp',
+  'bmp',
+  'psd',
+  'svg',
+  'tiff',
+  'ktx',
+])
+
+function parseNativeAssetName(filePath: string): ParsedNativeAssetName | undefined {
+  const type = extname(filePath).slice(1)
+  if (!type) return
+
+  const stem = basename(filePath, `.${type}`)
+  const platformMatch = stem.match(/^(.*)\.(ios|android)$/)
+  const platform = platformMatch?.[2]
+  const unqualifiedStem = platformMatch?.[1] ?? stem
+  const scaleMatch = unqualifiedStem.match(/^(.+?)(?:@([\d.]+)x)?$/)
+  if (!scaleMatch) return
+
+  const scale = scaleMatch[2] === undefined ? 1 : Number.parseFloat(scaleMatch[2])
+  if (!Number.isFinite(scale) || scale <= 0) return
+
+  return {
+    name: scaleMatch[1],
+    scale,
+    platform,
+    type,
+  }
+}
+
+function getNativeAssetUrlDirectory(root: string, assetDirectory: string): string {
+  const relativeDirectory = relative(
+    realpathSync(root),
+    realpathSync(assetDirectory)
+  ).replace(/\\/g, '/')
+  const safeDirectory = relativeDirectory
+    .split('/')
+    .filter((segment) => segment && segment !== '.')
+    .map((segment) => (segment === '..' ? '_' : segment))
+    .join('/')
+  return safeDirectory ? `/assets/${safeDirectory}` : '/assets'
+}
+
+export async function getNativeAssetData(
+  id: string,
+  root: string,
+  platform: string
+): Promise<NativeAssetData> {
+  const requested = parseNativeAssetName(id)
+  if (!requested) {
+    throw new Error(`[vxrn] invalid native asset path: ${id}`)
+  }
+
+  const assetDirectory = dirname(id)
+  const filesByScale = new Map<number, { file: string; platformSpecific: boolean }>()
+
+  for (const fileName of readdirSync(assetDirectory)) {
+    const candidate = parseNativeAssetName(fileName)
+    if (
+      !candidate ||
+      candidate.name !== requested.name ||
+      candidate.type !== requested.type ||
+      (candidate.platform !== undefined && candidate.platform !== platform)
+    ) {
+      continue
+    }
+
+    const platformSpecific = candidate.platform === platform
+    const existing = filesByScale.get(candidate.scale)
+    if (!existing || (platformSpecific && !existing.platformSpecific)) {
+      filesByScale.set(candidate.scale, {
+        file: join(assetDirectory, fileName),
+        platformSpecific,
+      })
+    }
+  }
+
+  const scales = [...filesByScale.keys()].sort((a, b) => a - b)
+  const files = scales.map((scale) => filesByScale.get(scale)!.file)
+  if (files.length === 0) {
+    throw new Error(`[vxrn] native asset has no files for ${platform}: ${id}`)
+  }
+
+  const hash = createHash('md5')
+  for (const file of files) hash.update(readFileSync(file))
+
+  const assetData: NativeAssetData = {
+    __packager_asset: true,
+    name: requested.name,
+    type: requested.type,
+    scales,
+    files,
+    httpServerLocation: getNativeAssetUrlDirectory(root, assetDirectory),
+    fileSystemLocation: assetDirectory,
+    hash: hash.digest('hex'),
+  }
+
+  if (NATIVE_IMAGE_EXTS.has(requested.type)) {
+    try {
+      const { imageSize } = await import('image-size')
+      const dims = imageSize(files[0])
+      assetData.width = dims.width === undefined ? undefined : dims.width / scales[0]
+      assetData.height = dims.height === undefined ? undefined : dims.height / scales[0]
+    } catch {}
+  }
+
+  return assetData
+}
+
+function getIOSAssetScales(scales: number[]): number[] {
+  const supported = scales.filter((scale) => scale === 1 || scale === 2 || scale === 3)
+  if (supported.length > 0 || scales.length === 0) return supported
+  return [scales.find((scale) => scale > 3) ?? scales[scales.length - 1]]
+}
+
+function getAndroidAssetDirectory(type: string, scale: number): string {
+  if (
+    !new Set(['gif', 'heic', 'heif', 'jpeg', 'jpg', 'ktx', 'png', 'webp', 'xml']).has(
+      type
+    )
+  ) {
+    return 'raw'
+  }
+
+  const density = new Map([
+    [0.75, 'ldpi'],
+    [1, 'mdpi'],
+    [1.5, 'hdpi'],
+    [2, 'xhdpi'],
+    [3, 'xxhdpi'],
+    [4, 'xxxhdpi'],
+  ]).get(scale)
+  if (density) return `drawable-${density}`
+  return `drawable-${Math.round(scale * 160)}dpi`
+}
+
+function getAndroidAssetName(asset: NativeAssetData): string {
+  return `${asset.httpServerLocation}/${asset.name}`
+    .toLowerCase()
+    .replace(/^\//, '')
+    .replace(/\//g, '_')
+    .replace(/([^a-z0-9_])/g, '')
+    .replace(/^assets_/, '')
+}
+
+function copyNativeAssetFiles(
+  asset: NativeAssetData,
+  assetsDest: string,
+  platform: string
+): void {
+  const validIOSScales = new Set(getIOSAssetScales(asset.scales))
+
+  for (const [index, scale] of asset.scales.entries()) {
+    if (platform === 'ios' && !validIOSScales.has(scale)) continue
+
+    const destination =
+      platform === 'android'
+        ? join(
+            assetsDest,
+            getAndroidAssetDirectory(asset.type, scale),
+            `${getAndroidAssetName(asset)}.${asset.type}`
+          )
+        : join(
+            assetsDest,
+            asset.httpServerLocation.slice(1),
+            `${asset.name}${scale === 1 ? '' : `@${scale}x`}.${asset.type}`
+          )
+    mkdirSync(dirname(destination), { recursive: true })
+    copyFileSync(asset.files[index], destination)
+  }
+}
+
 /**
  * SWC transform for Hermes compatibility.
  * Transforms class properties and private fields that Hermes doesn't support.
  * Inspired by rollipop's swc-plugin.ts.
  */
-export function hermesCompatSWCPlugin(dev: boolean): Plugin {
+export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
   let swc: typeof import('@swc/core') | null = null
 
   return {
@@ -1123,43 +1402,43 @@ export function hermesCompatSWCPlugin(dev: boolean): Plugin {
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
-      const hasAsync = !dev && code.includes('async ')
-      if (!hasClass && !hasAsync) return
+      const hasAsync = code.includes('async ')
+      const hasBlockScopedLoop = /\bfor\s*\(\s*(?:const|let)\b/.test(code)
+      if (!hasClass && !hasAsync && !hasBlockScopedLoop) return
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
-      try {
-        if (!swc) swc = await import('@swc/core')
+      if (!swc) swc = await import('@swc/core')
 
-        // app modules: the Hermes class set (unconditional), plus async-to-generator
-        // in prod only (see HERMES_CLASS_TRANSFORMS / HERMES_PROD_TRANSFORMS)
-        const envIncludes = getHermesSWCIncludes(dev)
+      // app modules: the Hermes class and async sets in both modes.
+      const envIncludes = getHermesSWCIncludes(dev)
 
-        const result = await swc.transform(code, {
-          filename: id,
-          configFile: false,
-          swcrc: false,
-          sourceMaps: false,
-          inputSourceMap: false,
-          env: {
-            targets: { node: 9999 },
-            include: envIncludes,
+      const result = await swc.transform(code, {
+        filename: id,
+        configFile: false,
+        swcrc: false,
+        // Return the transform-to-input map and let Rolldown compose it with
+        // earlier plugin maps. `inputSourceMap` stays false deliberately:
+        // feeding the prior map to SWC as well would compose it twice.
+        sourceMaps,
+        sourceFileName: sourceMaps ? id : undefined,
+        inputSourceMap: false,
+        env: {
+          targets: { node: 9999 },
+          include: envIncludes,
+        },
+        jsc: {
+          parser: { syntax: 'typescript', tsx: true },
+          transform: { react: { runtime: 'preserve' } },
+          externalHelpers: false,
+          assumptions: {
+            setPublicClassFields: true,
+            privateFieldsAsProperties: true,
           },
-          jsc: {
-            parser: { syntax: 'typescript', tsx: true },
-            transform: { react: { runtime: 'preserve' } },
-            externalHelpers: false,
-            assumptions: {
-              setPublicClassFields: true,
-              privateFieldsAsProperties: true,
-            },
-          },
-          isModule: !id.endsWith('.cjs'),
-        })
-        return { code: result.code }
-      } catch (err) {
-        throw err
-      }
+        },
+        isModule: !id.endsWith('.cjs'),
+      })
+      return { code: result.code, map: sourceMaps ? result.map : undefined }
     },
   }
 }
@@ -1184,6 +1463,7 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     var runtime = this;
     var ctx = {
       acceptCallbacks: [],
+      reactRefreshAcceptCallback: null,
       accept: function(deps, callback) {
         if (typeof deps === 'function' || !deps) {
           ctx.acceptCallbacks.push({
@@ -1198,6 +1478,9 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
         } else if (Array.isArray(deps)) {
           ctx.acceptCallbacks.push({ deps: deps, fn: callback || function() {} });
         }
+      },
+      acceptReactRefresh: function(callback) {
+        ctx.reactRefreshAcceptCallback = callback;
       },
       invalidate: function() { runtime.requestReload('module invalidated: ' + moduleId); },
       on: function() {},
@@ -1232,9 +1515,18 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
 
   isSelfAccepted(moduleId) {
     var ctx = this.moduleHotContexts[moduleId];
-    return !!(ctx && ctx.acceptCallbacks.some(function(callback) {
+    var explicitlyAccepted = !!(ctx && ctx.acceptCallbacks.some(function(callback) {
       return callback.deps.indexOf(moduleId) !== -1;
     }));
+    if (explicitlyAccepted) return { accepted: true, reactRefresh: false };
+    if (!ctx || !ctx.reactRefreshAcceptCallback || !globalThis.__ReactRefresh) {
+      return { accepted: false, reactRefresh: false };
+    }
+    var exports = this.loadExports(moduleId);
+    return {
+      accepted: ctx.refreshUtils.isReactRefreshBoundary(exports),
+      reactRefresh: true
+    };
   }
 
   acceptsDependency(parentId, moduleId) {
@@ -1249,8 +1541,13 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     traversed.add(moduleId);
     updateSet.add(moduleId);
 
-    if (this.isSelfAccepted(moduleId)) {
-      boundaries.push({ boundary: moduleId, acceptedVia: moduleId });
+    var selfAcceptance = this.isSelfAccepted(moduleId);
+    if (selfAcceptance.accepted) {
+      boundaries.push({
+        boundary: moduleId,
+        acceptedVia: moduleId,
+        reactRefresh: selfAcceptance.reactRefresh
+      });
       return true;
     }
 
@@ -1286,12 +1583,19 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
 
     var callbacks = boundaries.map(function(item) {
       var ctx = this.moduleHotContexts[item.boundary];
+      var selectedCallbacks = ctx ? ctx.acceptCallbacks.filter(function(callback) {
+        return callback.deps.indexOf(item.acceptedVia) !== -1;
+      }) : [];
+      if (item.reactRefresh && ctx && ctx.reactRefreshAcceptCallback) {
+        selectedCallbacks.push({
+          deps: [item.acceptedVia],
+          fn: function() { ctx.reactRefreshAcceptCallback(); }
+        });
+      }
       return {
         boundary: item.boundary,
         acceptedVia: item.acceptedVia,
-        callbacks: ctx ? ctx.acceptCallbacks.filter(function(callback) {
-          return callback.deps.indexOf(item.acceptedVia) !== -1;
-        }) : []
+        callbacks: selectedCallbacks
       };
     }, this);
 
