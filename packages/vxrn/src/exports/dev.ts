@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
 import { debounce } from 'perfect-debounce'
@@ -6,14 +7,44 @@ import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
 
-// Exit if we become orphaned (parent dies). This prevents zombie dev servers.
+function readParentPid(pid: number): number | undefined {
+  try {
+    const output = execFileSync('ps', ['-o', 'ppid=', '-p', `${pid}`], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()
+    const ppid = Number.parseInt(output, 10)
+    return Number.isFinite(ppid) ? ppid : undefined
+  } catch {
+    return undefined
+  }
+}
+
+function processExists(pid: number): boolean {
+  try {
+    process.kill(pid, 0)
+    return true
+  } catch (error) {
+    return (error as NodeJS.ErrnoException).code !== 'ESRCH'
+  }
+}
+
+// Exit if we become orphaned (parent dies). `bun run` stays between One and
+// its launcher, so monitor the launcher's PID too instead of only Bun's PID.
 function setupOrphanDetection() {
   if (process.platform === 'win32') return
 
   const initialPpid = process.ppid
+  const launcherPid = readParentPid(initialPpid)
+  if (initialPpid === 1 || launcherPid === 1) {
+    process.exit(0)
+  }
+
   const interval = setInterval(() => {
-    // If parent changed (usually to PID 1), we're orphaned
-    if (process.ppid !== initialPpid) {
+    if (
+      process.ppid !== initialPpid ||
+      (launcherPid !== undefined && !processExists(launcherPid))
+    ) {
       process.exit(0)
     }
   }, 500)
