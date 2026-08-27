@@ -9,6 +9,7 @@ import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
 import { ensureNpmAuthentication, publishPackagesWithAuthProbe } from './release-publish'
+import { resolveCanaryVersion } from './release-version'
 
 // avoid emitter error
 process.setMaxListeners(50)
@@ -85,7 +86,7 @@ const currentRCNumber = rcMatch ? Number.parseInt(rcMatch[2], 10) : 0
 
 const nextVersion = (() => {
   if (canary) {
-    return `${curVersion.replace(/(-\d+)+$/, '')}-${Date.now()}`
+    return resolveCanaryVersion(curVersion, { rePublish })
   }
 
   if (rePublish) {
