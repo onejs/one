@@ -355,9 +355,11 @@ if (typeof document === 'undefined') globalThis.document = {}
         recordTiming('ssrRender', performance.now() - t0)
 
         // Apply after-LCP script loading if enabled
-        // Load all preloads (not just critical) to ensure good TTI after first paint
         if (useAfterLCP) {
-          html = applyAfterLCPScriptLoad(html, preloads)
+          html = applyAfterLCPScriptLoad(
+            html,
+            useAfterLCPAggressive ? criticalPreloads || preloads : preloads
+          )
         }
 
         t0 = performance.now()
@@ -400,7 +402,10 @@ if (typeof document === 'undefined') globalThis.document = {}
           recordTiming('spaShellRender', performance.now() - t0)
 
           if (useAfterLCP) {
-            html = applyAfterLCPScriptLoad(html, preloads)
+            html = applyAfterLCPScriptLoad(
+              html,
+              useAfterLCPAggressive ? criticalPreloads || preloads : preloads
+            )
           }
 
           t0 = performance.now()
