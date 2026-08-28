@@ -28,6 +28,23 @@ function isSSRFormat(id: string): boolean {
 }
 
 describe('Hydration useId Stability', () => {
+  it('aggressive loading starts only the critical entry modules', async () => {
+    const page = await context.newPage()
+
+    await page.goto(`${serverUrl}/`, { waitUntil: 'domcontentloaded' })
+    await page.waitForFunction(() => (window as any).__hydrationTest?.page)
+
+    const moduleScripts = await page.evaluate(
+      () => document.querySelectorAll('script[type="module"][src]').length
+    )
+
+    // virtual entry, route entry, and root layout. imports stay in the module
+    // graph instead of becoming additional top-level scripts.
+    expect(moduleScripts).toBe(3)
+
+    await page.close()
+  })
+
   it('index page: useId should be stable during hydration', async () => {
     const page = await context.newPage()
 
