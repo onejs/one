@@ -16,6 +16,7 @@ import {
 import type { LinkingOptions } from '@react-navigation/native' // @modified: import from @react-navigation/native
 import * as React from 'react'
 import { Linking, Platform } from 'react-native'
+import { getNavigateAction } from '../router/utils/getNavigateAction' // @modified
 import { extractPathFromURL } from './extractPathFromURL'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
@@ -24,13 +25,9 @@ type Options = LinkingOptions<ParamListBase>
 
 const linkingHandlers: symbol[] = []
 
-// @modified: our fork of getStateFromPath assigns deterministic route keys
-// (SSR/hydration stability), but upstream getActionFromState only produces a
-// nested NAVIGATE for keyless routes — keyed routes degrade to a whole-tree
-// RESET that the One router store immediately reverts, so incoming Linking
-// 'url' events never navigated on native. Strip the keys before deriving the
-// action; hydration keys only matter for web SSR, never for a live native
-// deep link.
+// @modified: custom getActionFromState functions have received keyless routes
+// since One added deterministic hydration keys. preserve that contract; the
+// default native path uses getNavigateAction directly.
 type LinkingResultState = NonNullable<ResultState>
 
 function stripRouteKeys(state: LinkingResultState): LinkingResultState {
@@ -218,11 +215,12 @@ export function useLinking(
           return
         }
 
-        // @modified: keys stripped so getActionFromState can produce NAVIGATE
-        const action = getActionFromStateRef.current(
-          stripRouteKeys(state),
-          configRef.current
-        )
+        // @modified: use One's action builder for the default path so incoming
+        // links get the same nested param propagation as imperative navigation.
+        const action =
+          getActionFromStateRef.current === getActionFromStateDefault
+            ? getNavigateAction(state, rootState)
+            : getActionFromStateRef.current(stripRouteKeys(state), configRef.current)
 
         if (action !== undefined) {
           try {
