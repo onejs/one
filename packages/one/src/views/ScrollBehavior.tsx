@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { setLastAction } from '../router/lastAction'
-import { subscribeToLoadingState, subscribeToRootState } from '../router/router'
+import { routeInfo, subscribeToLoadingState, subscribeToRootState } from '../router/router'
 
 const KEY = 'one-sr'
 const GROUP_KEY = 'one-sr-groups'
@@ -105,8 +105,8 @@ function configure(props: ScrollBehaviorProps) {
 
   disable?.()
 
-  const initialLocation =
-    `${window.location.pathname}${window.location.search}${window.location.hash}`
+  // routeInfo carries no hash, so the mount comparison below is pathname+search
+  const initialLocation = `${window.location.pathname}${window.location.search}`
   let isFirstStateChange = true
   previousPathname = window.location.pathname
 
@@ -130,16 +130,21 @@ function configure(props: ScrollBehaviorProps) {
   })
 
   const disposeOnRootState = subscribeToRootState((state) => {
+    // updateState refreshes routeInfo and then notifies these subscribers, all
+    // before react-navigation's linking listener writes the new URL. so
+    // window.location here still reports the route being left, and the router's
+    // own route info is the only current view of where we just navigated to.
+    const currentHref = routeInfo?.unstable_globalHref ?? ''
+    const currentPathname = routeInfo?.pathname ?? ''
+
     if (isFirstStateChange) {
       isFirstStateChange = false
 
       // Depending on navigator mount timing, the initial state notification may
       // happen before or after this effect subscribes. Only ignore it when the
-      // browser is still at the URL where ScrollBehavior mounted. Otherwise this
+      // router is still on the route where ScrollBehavior mounted. Otherwise this
       // is the first real navigation and must receive normal scroll handling.
-      const currentLocation =
-        `${window.location.pathname}${window.location.search}${window.location.hash}`
-      if (currentLocation === initialLocation) {
+      if (currentHref === initialLocation) {
         return
       }
     }
@@ -149,7 +154,6 @@ function configure(props: ScrollBehaviorProps) {
     }
 
     const { hash } = state
-    const currentPathname = window.location.pathname
 
     if (hash) {
       setTimeout(() => {
