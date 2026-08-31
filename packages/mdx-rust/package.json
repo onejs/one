@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx-rust",
-  "version": "1.25.10",
+  "version": "1.25.11",
   "type": "module",
   "sideEffects": false,
   "module": "dist",
