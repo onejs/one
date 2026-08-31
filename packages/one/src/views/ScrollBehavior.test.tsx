@@ -7,11 +7,25 @@ const subscriptions = vi.hoisted(() => ({
   root: undefined as ((state: any) => void) | undefined,
 }))
 
+// the router's committed route. updateState writes this and then notifies root
+// state subscribers, so it is current inside the subscriber while
+// window.location still points at the route being left — react-navigation's
+// linking listener writes the URL after. every test below drives the two in
+// that order.
+const router = vi.hoisted(() => ({
+  routeInfo: { unstable_globalHref: '/', pathname: '/' } as
+    | { unstable_globalHref: string; pathname: string }
+    | undefined,
+}))
+
 vi.mock('../router/lastAction', () => ({
   setLastAction: vi.fn(),
 }))
 
 vi.mock('../router/router', () => ({
+  get routeInfo() {
+    return router.routeInfo
+  },
   subscribeToLoadingState: (subscriber: typeof subscriptions.loading) => {
     subscriptions.loading = subscriber
     return () => {
@@ -40,9 +54,19 @@ let renderer: TestRenderer.ReactTestRenderer | undefined
 let location: MockLocation
 let scrollTo: ReturnType<typeof vi.fn>
 
+// one navigation, in the order the router performs it: commit the route, notify
+// subscribers, then let the linking listener catch the URL up.
+function navigate(pathname: string, search = '') {
+  router.routeInfo = { unstable_globalHref: `${pathname}${search}`, pathname }
+  act(() => subscriptions.root?.({}))
+  location.pathname = pathname
+  location.search = search
+}
+
 beforeEach(() => {
   process.env.VITE_ENVIRONMENT = 'client'
   location = { pathname: '/', search: '', hash: '' }
+  router.routeInfo = { unstable_globalHref: '/', pathname: '/' }
   scrollTo = vi.fn()
 
   const windowMock = Object.assign(new EventTarget(), {
@@ -81,17 +105,13 @@ describe('ScrollBehavior initial navigation', () => {
   })
 
   it('scrolls to the top when the first state notification is a real navigation', () => {
-    location.pathname = '/compat/react-native-gesture-handler'
-
-    act(() => subscriptions.root?.({}))
+    navigate('/compat/react-native-gesture-handler')
 
     expect(scrollTo).toHaveBeenCalledWith(0, 0)
   })
 
   it('handles a query change as a first navigation', () => {
-    location.search = '?platform=ios'
-
-    act(() => subscriptions.root?.({}))
+    navigate('/', '?platform=ios')
 
     expect(scrollTo).toHaveBeenCalledWith(0, 0)
   })
@@ -102,14 +122,11 @@ describe('ScrollBehavior groups', () => {
     vi.useFakeTimers()
     const unregister = registerScrollGroup('/compat/react-native-gesture-handler')
 
-    act(() => subscriptions.root?.({}))
-    location.pathname = '/compat/react-native-gesture-handler'
-    act(() => subscriptions.root?.({}))
+    navigate('/compat/react-native-gesture-handler')
     scrollTo.mockClear()
 
     act(() => subscriptions.loading?.('loading'))
-    location.pathname = '/compat/react-native-gesture-handler/pan-gesture'
-    act(() => subscriptions.root?.({}))
+    navigate('/compat/react-native-gesture-handler/pan-gesture')
     vi.runAllTimers()
 
     expect(scrollTo).toHaveBeenCalledWith(0, 500)
@@ -121,14 +138,11 @@ describe('ScrollBehavior groups', () => {
   it('does not match a different route whose slug has the same prefix', () => {
     const unregister = registerScrollGroup('/compat/react-native')
 
-    act(() => subscriptions.root?.({}))
-    location.pathname = '/compat/react-native/core'
-    act(() => subscriptions.root?.({}))
+    navigate('/compat/react-native/core')
     scrollTo.mockClear()
 
     act(() => subscriptions.loading?.('loading'))
-    location.pathname = '/compat/react-native-gesture-handler'
-    act(() => subscriptions.root?.({}))
+    navigate('/compat/react-native-gesture-handler')
 
     expect(scrollTo).toHaveBeenCalledWith(0, 0)
 
