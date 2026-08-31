@@ -149,8 +149,13 @@ export function getNativeTransformConfig(
     envDefines[`process.env.${key}`] = JSON.stringify(value)
   }
 
-  // build the full import.meta.env object for when it's used as a whole (e.g. JSON.stringify(import.meta.env))
+  // Build the full import.meta.env object for when it's used as a whole (e.g.
+  // JSON.stringify(import.meta.env)). `one/vite` initializes the config-loading
+  // process as SSR, so loadViteEnv() can inherit VITE_ENVIRONMENT=ssr from the
+  // shell. Public env belongs first: the native platform contract below must be
+  // authoritative over inherited web/server values.
   const envObject: Record<string, any> = {
+    ...publicEnv,
     MODE: mode,
     DEV: dev,
     PROD: !dev,
@@ -161,17 +166,6 @@ export function getNativeTransformConfig(
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: platform,
   }
-  // add public values from the shell and mode-specific env files
-  for (const [key, val] of Object.entries(envDefines)) {
-    const match = key.match(/^import\.meta\.env\.(.+)$/)
-    if (match) {
-      try {
-        envObject[match[1]] = JSON.parse(val as string)
-      } catch {
-        envObject[match[1]] = val
-      }
-    }
-  }
 
   return {
     jsx: {
@@ -180,6 +174,9 @@ export function getNativeTransformConfig(
       runtime: 'classic' as const,
     },
     define: {
+      // Public values are applied first so platform-owned keys cannot inherit
+      // the SSR values used while loading One's Vite config.
+      ...envDefines,
       'process.env.NODE_ENV': JSON.stringify(mode),
       'process.env.VXRN_REACT_19': 'false',
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
@@ -200,7 +197,6 @@ export function getNativeTransformConfig(
       'import.meta.env.EXPO_OS': JSON.stringify(platform),
       'import.meta.env.TAMAGUI_TARGET': '"native"',
       'import.meta.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
-      ...envDefines,
       ...setupFileDefines,
     },
     // auto-inject React import for classic JSX (React.createElement)

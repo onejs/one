@@ -402,6 +402,30 @@ describe('getNativeTransformConfig platform env defines', () => {
       else process.env[key] = previous
     }
   })
+
+  it('keeps native platform values authoritative over inherited SSR env', () => {
+    const previousEnvironment = process.env.VITE_ENVIRONMENT
+    const previousNative = process.env.VITE_NATIVE
+    process.env.VITE_ENVIRONMENT = 'ssr'
+    process.env.VITE_NATIVE = ''
+
+    try {
+      const { define } = getNativeTransformConfig('ios', false, root)
+      const envObject = JSON.parse(define['import.meta.env'] as string)
+
+      expect(define['process.env.VITE_ENVIRONMENT']).toBe('"ios"')
+      expect(define['import.meta.env.VITE_ENVIRONMENT']).toBe('"ios"')
+      expect(define['process.env.VITE_NATIVE']).toBe('"1"')
+      expect(define['import.meta.env.VITE_NATIVE']).toBe('"1"')
+      expect(envObject.VITE_ENVIRONMENT).toBe('ios')
+      expect(envObject.VITE_NATIVE).toBe('1')
+    } finally {
+      if (previousEnvironment === undefined) delete process.env.VITE_ENVIRONMENT
+      else process.env.VITE_ENVIRONMENT = previousEnvironment
+      if (previousNative === undefined) delete process.env.VITE_NATIVE
+      else process.env.VITE_NATIVE = previousNative
+    }
+  })
 })
 
 describe('wrapNativeBundleModuleScope', () => {
