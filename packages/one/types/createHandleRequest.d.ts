@@ -16,6 +16,7 @@ type RequestHandlerProps<RouteExtraProps extends object = {}> = {
     loaderProps?: LoaderProps;
 };
 type RequestHandlerResponse = null | string | Response;
+export declare function isPageRequestMethod(method: string): method is "GET" | "HEAD";
 export declare function runMiddlewares(handlers: RequestHandlers, request: Request, route: RouteInfo, getResponse: () => Promise<Response>): Promise<Response>;
 export declare function resolveAPIRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled, env?: unknown, executionCtx?: unknown): Promise<Response>;
 export declare function resolveLoaderRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
