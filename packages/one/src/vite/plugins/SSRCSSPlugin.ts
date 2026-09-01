@@ -1,4 +1,4 @@
-import type { Plugin, ViteDevServer } from 'vite'
+import type { ModuleNode, Plugin, ViteDevServer } from 'vite'
 import { VIRTUAL_SSR_CSS_ENTRY, VIRTUAL_SSR_CSS_HREF } from '../../constants'
 
 // thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
@@ -152,6 +152,21 @@ async function collectStyleUrls(
 ): Promise<string[]> {
   const visited = new Set<string>()
 
+  // every module in importedModules already carries the id vite resolved when
+  // it entered the graph, so walk them directly. resolveUrl runs the whole
+  // plugin container and was awaited once per import EDGE rather than once per
+  // module, which on a large app is the entire cost of serving this stylesheet.
+  // the walk is an explicit stack so a deep import chain cannot overflow.
+  function walk(root: ModuleNode) {
+    const stack = [root]
+    while (stack.length) {
+      const mod = stack.pop()!
+      if (!mod.id || mod.url.includes('.server.') || visited.has(mod.id)) continue
+      visited.add(mod.id)
+      for (const childMod of mod.importedModules) stack.push(childMod)
+    }
+  }
+
   async function traverse(url: string) {
     if (url.includes('.server.')) return
     const [, id] = await server.moduleGraph.resolveUrl(url)
@@ -163,7 +178,7 @@ async function collectStyleUrls(
     if (!mod) {
       return
     }
-    await Promise.all([...mod.importedModules].map((childMod) => traverse(childMod.url)))
+    for (const childMod of mod.importedModules) walk(childMod)
   }
 
   // ensure vite's import analysis is ready _only_ for top entries to not go too aggresive
