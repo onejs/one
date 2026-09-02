@@ -194,6 +194,19 @@ export const registerPreloadedRoute = () => {}`
       expect(code).not.toContain('__oneGetSetupPromise')
     })
 
+    it('worker environment uses the server setupFile like ssr', () => {
+      const plugin = createVirtualEntry({
+        ...base,
+        setupFile: {
+          client: './src/setupClient.ts',
+          server: './src/setupServer.ts',
+        },
+      })
+      const code = loadEntry(plugin, 'worker', 'serve')
+      expect(code).toContain('import "./src/setupServer.ts"')
+      expect(code).not.toContain('__oneGetSetupPromise')
+    })
+
     it('no setupFile produces no import', () => {
       const plugin = createVirtualEntry(base)
       const code = loadEntry(plugin, 'ssr')

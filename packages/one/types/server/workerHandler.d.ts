@@ -14,6 +14,7 @@ type WorkerHandlerOptions = {
     oneOptions: One.PluginOptions;
     buildInfo: One.BuildInfo;
     lazyRoutes: LazyRoutes;
+    disableModuleCache?: boolean;
 };
 export declare function createWorkerHandler(options: WorkerHandlerOptions): {
     handleRequest: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;

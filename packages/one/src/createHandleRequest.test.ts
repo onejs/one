@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { createHandleRequest } from './createHandleRequest'
+import { createHandleRequest } from './createDevHandleRequest'
 
 // Mock the manifest. Specific routes come before dynamic ones, matching how
 // the real manifest is ordered after matchers.sortRoutes().

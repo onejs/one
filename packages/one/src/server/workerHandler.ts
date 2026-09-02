@@ -38,10 +38,14 @@ type WorkerHandlerOptions = {
   oneOptions: One.PluginOptions
   buildInfo: One.BuildInfo
   lazyRoutes: LazyRoutes
+  // when true, skip the module/loader caches so vite hmr of a route file is
+  // visible on the next request. production omits this.
+  disableModuleCache?: boolean
 }
 
 export function createWorkerHandler(options: WorkerHandlerOptions) {
   const { oneOptions } = options
+  const disableModuleCache = !!options.disableModuleCache
 
   // mutable state for route swapping
   let currentLazyRoutes = options.lazyRoutes
@@ -137,25 +141,29 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     lazyKey: string | undefined
   ): Function | null | Promise<Function | null> {
     const cacheKey = lazyKey || ''
-    const cached = loaderCache.get(cacheKey)
-    if (cached !== undefined) return cached
+    if (!disableModuleCache) {
+      const cached = loaderCache.get(cacheKey)
+      if (cached !== undefined) return cached
+    }
 
     return (async () => {
       let routeExported: any
-      if (moduleImportCache.has(cacheKey)) {
+      if (!disableModuleCache && moduleImportCache.has(cacheKey)) {
         routeExported = moduleImportCache.get(cacheKey)
       } else if (lazyKey && currentLazyRoutes.pages[lazyKey]) {
         routeExported = await currentLazyRoutes.pages[lazyKey]()
-        moduleImportCache.set(cacheKey, routeExported)
+        if (!disableModuleCache) moduleImportCache.set(cacheKey, routeExported)
       } else {
         console.warn(`[one/worker] no lazy route for ${cacheKey}`)
-        loaderCache.set(cacheKey, null)
+        if (!disableModuleCache) loaderCache.set(cacheKey, null)
         return null
       }
 
       const loader = routeExported?.loader || null
-      loaderCache.set(cacheKey, loader)
-      loaderCacheFnMap.set(cacheKey, routeExported?.loaderCache ?? null)
+      if (!disableModuleCache) {
+        loaderCache.set(cacheKey, loader)
+        loaderCacheFnMap.set(cacheKey, routeExported?.loaderCache ?? null)
+      }
       return loader
     })()
   }

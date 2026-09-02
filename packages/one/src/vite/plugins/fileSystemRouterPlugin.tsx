@@ -7,7 +7,7 @@ import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner, normalizePath } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
 import { getSpaHeaderElements } from '../../constants'
-import { createHandleRequest } from '../../createHandleRequest'
+import { createHandleRequest } from '../../createDevHandleRequest'
 import type { RouteNode } from '../../router/Route' // used for type in runLoaderWithTracking
 import type { RenderAppProps } from '../../types'
 import { getPageExport } from '../../utils/getPageExport'
@@ -41,9 +41,6 @@ const routeTypeColors: Record<string, (s: string) => string> = {
   spa: colors.yellow,
   api: colors.magenta,
 }
-
-// server needs better dep optimization
-const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouterPlugin(
   options: One.PluginOptions,
@@ -615,6 +612,11 @@ export function createFileSystemRouterPlugin(
       handleRequest = createRequestHandler()
       ssgHtmlCache.clear()
       needsRouteRefresh = true
+      const workerGraph = server?.environments.worker?.moduleGraph
+      const workerEntry = workerGraph?.getModuleById('\0virtual:one-workerd-dev-entry')
+      if (workerGraph && workerEntry) {
+        workerGraph.invalidateModule(workerEntry)
+      }
     } catch (error) {
       console.warn(`[one] Failed to rebuild routes after ${changedPath} changed.`, error)
     }
@@ -708,10 +710,14 @@ export function createFileSystemRouterPlugin(
         preloads = ['/bundledDevClient.mjs', '/assets/_virtual_one-entry.js']
       }
 
-      // change this to .server to test using the indepedently scoped env
-      runner = createServerModuleRunner(
-        USE_SERVER_ENV ? server.environments.server : server.environments.ssr
-      )
+      const workerDev = !!server.environments.worker
+
+      // workerd-backed worker env handles web requests via @cloudflare/vite-plugin
+      // middleware (node req/res <-> fetch). the node module runner is only for
+      // the default (flag off) path.
+      if (!workerDev) {
+        runner = createServerModuleRunner(server.environments.ssr)
+      }
 
       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))
 
@@ -762,6 +768,12 @@ export function createFileSystemRouterPlugin(
       // Vite's transform middleware so that we can focus on handling the requests
       // we're interested in.
       return () => {
+        if (workerDev) {
+          // @cloudflare/vite-plugin already dispatches the request into workerd.
+          // do not run the node handler alongside it.
+          return
+        }
+
         // packager status fallback — runs after one's routing so user-defined
         // /status routes, +api handlers, and custom middleware take priority.
         // only fires if nothing else handled the request.
