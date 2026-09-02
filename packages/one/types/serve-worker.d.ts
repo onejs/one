@@ -11,7 +11,9 @@ export type { LazyRoutes };
  *          API route handler contexts as `{ env, executionCtx }`).
  *          Call `updateRoutes(newBuildInfo, newLazyRoutes?)` to hot-swap the route table.
  */
-export declare function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes): Promise<{
+export declare function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes, serveOptions?: {
+    disableModuleCache?: boolean;
+}): Promise<{
     fetch: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
     updateRoutes(newBuildInfo: One.BuildInfo, newLazyRoutes?: LazyRoutes): void;
 }>;

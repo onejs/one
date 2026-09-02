@@ -122,4 +122,27 @@ describe('createWorkerHandler', () => {
     expect(response).toBeInstanceOf(Response)
     expect(response?.status).toBe(204)
   })
+
+  it('disableModuleCache re-imports the page module on each request', async () => {
+    vi.stubEnv('ONE_BUFFERED_SSR', '1')
+    let imports = 0
+    const handleRequest = createWorkerHandler({
+      oneOptions: { web: { defaultRenderMode: 'ssr' } },
+      buildInfo,
+      disableModuleCache: true,
+      lazyRoutes: {
+        ...lazyRoutes,
+        pages: {
+          [pageRoute.file]: async () => {
+            imports += 1
+            return {}
+          },
+        },
+      },
+    }).handleRequest
+
+    await handleRequest(new Request('https://example.com/some-page'))
+    await handleRequest(new Request('https://example.com/some-page'))
+    expect(imports).toBeGreaterThan(1)
+  })
 })

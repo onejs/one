@@ -19,7 +19,11 @@ export type { LazyRoutes }
  *          API route handler contexts as `{ env, executionCtx }`).
  *          Call `updateRoutes(newBuildInfo, newLazyRoutes?)` to hot-swap the route table.
  */
-export async function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes) {
+export async function serve(
+  buildInfo: One.BuildInfo,
+  lazyRoutes?: LazyRoutes,
+  serveOptions?: { disableModuleCache?: boolean }
+) {
   setupBuildInfo(buildInfo)
   ensureExists(buildInfo.oneOptions)
   setServerGlobals()
@@ -28,6 +32,7 @@ export async function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes) {
     oneOptions: buildInfo.oneOptions!,
     buildInfo,
     lazyRoutes: lazyRoutes!,
+    disableModuleCache: serveOptions?.disableModuleCache,
   })
 
   return {
