@@ -21,7 +21,6 @@ import {
 } from 'react'
 import useLatestCallback from 'use-latest-callback'
 
-import { devHeadlessNote } from '../../headless/devHeadlessNote'
 import { useWebPresentations } from '../../headless/Presentations'
 import type {
   ModalPresentationOptions,
@@ -94,8 +93,6 @@ function HeadlessStackView({
   if (customChildren?.length) {
     return <Fragment>{customChildren}</Fragment>
   }
-
-  devHeadlessNote('Stack')
 
   const lastBaseIndex = findLastNonOverlayIndex(
     state,

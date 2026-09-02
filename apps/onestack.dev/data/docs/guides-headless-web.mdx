@@ -19,12 +19,6 @@ export default function Layout() {
 
 On native this renders a bottom tab bar as usual. On web it renders only the focused tab's screen - no bar. Your site's own nav is your tab bar.
 
-The first time a navigator renders headless on web, it logs a one-line note in development so the missing chrome doesn't read as breakage:
-
-```
-[one] <Tabs> renders headless on web (just the matched route). Pass your own layout as a child, or build one with useTabs().
-```
-
 ## Why
 
 One's web build doesn't ship react-native-web. Rendering full react-navigation chrome (tab bars, headers, drawers) on web meant carrying RNW just to draw them, so on web the navigators stopped rendering any of that and instead expose the underlying navigation state as data. Bring your own DOM, Tamagui, or whatever you already use to build your site's chrome.
