@@ -15,7 +15,8 @@ type RequestHandlerProps<RouteExtraProps extends object = {}> = {
     url: URL;
     loaderProps?: LoaderProps;
 };
-type RequestHandlerResponse = null | string | Response;
+export type RequestHandlerResponse = null | string | Response;
+export declare function isStaticAssetRequestPath(pathname: string): boolean;
 export declare function isPageRequestMethod(method: string): method is "GET" | "HEAD";
 export declare function runMiddlewares(handlers: RequestHandlers, request: Request, route: RouteInfo, getResponse: () => Promise<Response>): Promise<Response>;
 export declare function resolveAPIRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled, env?: unknown, executionCtx?: unknown): Promise<Response>;
@@ -29,14 +30,6 @@ export declare function compileManifest(manifest: {
 }): {
     pageRoutes: RouteInfoCompiled[];
     apiRoutes: RouteInfoCompiled[];
-};
-export declare function createHandleRequest(handlers: RequestHandlers, { routerRoot, ignoredRouteFiles, routePaths, }: {
-    routerRoot: string;
-    ignoredRouteFiles?: string[];
-    routePaths?: string[];
-}): {
-    manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
-    handler: (request: Request) => Promise<RequestHandlerResponse>;
 };
 export declare function getLoaderParams(url: URL, config: {
     compiledRegex: RegExp;

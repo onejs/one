@@ -16,6 +16,7 @@ const PLATFORM_RESOLVE_SOURCE_RE = /(?:\.[cm]?[jt]sx?|\.server)$/
 const PLATFORM_EXTENSIONS_BY_ENVIRONMENT = {
   client: ['web'],
   ssr: ['server', 'web'],
+  worker: ['server', 'web'],
   ios: ['ios', 'native'],
   android: ['android', 'native'],
 }
@@ -123,7 +124,11 @@ export function getBaseVitePlugins(): PluginOption[] {
           // instead of erroring at build time, since dynamic imports behind
           // dead code branches (e.g. if (process.env.VITE_ENVIRONMENT === 'ssr'))
           // are still resolved by vite's import analysis
-          if (this.environment.name !== 'ssr' && /\.server\.\w+$/.test(resolvedId)) {
+          if (
+            this.environment.name !== 'ssr' &&
+            this.environment.name !== 'worker' &&
+            /\.server\.\w+$/.test(resolvedId)
+          ) {
             return { id: `\0server-only-stub:${source}` }
           }
 

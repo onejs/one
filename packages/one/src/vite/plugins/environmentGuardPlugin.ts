@@ -35,11 +35,11 @@ const GUARD_SPECIFIERS = [
 const GUARD_SPECIFIERS_RE = new RegExp(`^(?:${GUARD_SPECIFIERS.join('|')})$`)
 
 type GuardSpecifier = (typeof GUARD_SPECIFIERS)[number]
-type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android'
+type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android' | 'worker'
 
 const ALLOWED_BY_NAME: Partial<Record<GuardSpecifier, readonly ViteEnvironment[]>> = {
   'native-only': ['ios', 'android'],
-  'web-only': ['client', 'ssr'],
+  'web-only': ['client', 'ssr', 'worker'],
 }
 
 const ALLOWED_BY_CONSUMER: Partial<Record<GuardSpecifier, 'server' | 'client'>> = {

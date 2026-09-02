@@ -88,6 +88,7 @@ function getSetupFileImport(
   const envMap: Record<string, keyof NormalizedSetupFiles> = {
     client: 'client',
     ssr: 'server',
+    worker: 'server',
     ios: 'ios',
     android: 'android',
   }
@@ -170,7 +171,8 @@ export function createVirtualEntry(options: {
       handler(id) {
         if (id === resolvedVirtualEntryId) {
           const isNative = isNativeEnvironment(this.environment)
-          const isSSR = this.environment.name === 'ssr'
+          const isSSR =
+            this.environment.name === 'ssr' || this.environment.name === 'worker'
           const serverSpaRouteFiles = isSSR
             ? options.routeIndex
                 .getPaths()

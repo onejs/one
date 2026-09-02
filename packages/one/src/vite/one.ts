@@ -34,6 +34,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
+import { createWorkerdDevPlugins, shouldEnableWorkerdDev } from './plugins/workerdDevPlugin'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
@@ -553,7 +554,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       resolveId: {
         filter: { id: RN_DEEP_IMPORT_RE },
         handler(source) {
-          if (this.environment?.name === 'client' || this.environment?.name === 'ssr') {
+          if (
+            this.environment?.name === 'client' ||
+            this.environment?.name === 'ssr' ||
+            this.environment?.name === 'worker'
+          ) {
             return '\0rn-empty-module'
           }
         },
@@ -867,7 +872,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     return inspector ? sourceInspectorPlugin({ editor }) : []
   })()
 
+  const workerdDevPlugins = shouldEnableWorkerdDev(options.web?.deploy, root)
+    ? createWorkerdDevPlugins(options, root, routeIndex)
+    : []
+
   return [
+    ...workerdDevPlugins,
     ...vxrnPlugins,
     ...devAndProdPlugins,
     ...inspectorPlugins,
