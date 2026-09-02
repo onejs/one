@@ -135,6 +135,11 @@ describe('environmentGuardPlugin', () => {
       expect(result).toBe('export {}')
     })
 
+    it('web-only: allowed in worker', () => {
+      const result = loadEnvironmentGuard('\0one-env-guard:web-only:worker:server')
+      expect(result).toBe('export {}')
+    })
+
     it('web-only: forbidden in ios', () => {
       const result = loadEnvironmentGuard('\0one-env-guard:web-only:ios:unknown')
       expect(result).toContain('throw new Error')

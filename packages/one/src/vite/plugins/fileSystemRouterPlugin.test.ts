@@ -124,6 +124,50 @@ describe('createFileSystemRouterPlugin', () => {
     )
   })
 
+  it('does not install the node request middleware when a worker environment exists', async () => {
+    process.env.IS_VXRN_CLI = '1'
+    tempRoot = mkdtempSync(path.join(tmpdir(), 'one-router-worker-'))
+    const appDir = path.join(tempRoot, 'app')
+    writeFileSync(path.join(tempRoot, 'package.json'), '{}\n')
+    mkdirSync(appDir)
+    writeFileSync(
+      path.join(appDir, 'index.tsx'),
+      'export default function Index() { return null }\n'
+    )
+
+    ;(globalThis as any).__vxrnPluginConfig__ = {
+      web: {
+        defaultRenderMode: 'ssg',
+      },
+    }
+
+    const { createRouteIndex } = await import('../../utils/routeIndex')
+    const { createFileSystemRouterPlugin } = await import('./fileSystemRouterPlugin')
+    const plugin = createFileSystemRouterPlugin(
+      {
+        router: { root: appDir },
+      },
+      createRouteIndex({ routerRoot: appDir })
+    )
+
+    const use = vi.fn()
+    const server = {
+      environments: {
+        ssr: {},
+        worker: { moduleGraph: { getModuleById: vi.fn() } },
+      },
+      middlewares: { use },
+      watcher: {
+        addListener: vi.fn(),
+        on: vi.fn(),
+      },
+    }
+
+    const installMiddlewares = (plugin as any).configureServer(server)
+    installMiddlewares()
+    expect(use).not.toHaveBeenCalled()
+  })
+
   it('caches dev ssg html until the module runner is invalidated', async () => {
     process.env.VITE_ENVIRONMENT = 'ssr'
     tempRoot = mkdtempSync(path.join(tmpdir(), 'one-router-ssg-cache-'))

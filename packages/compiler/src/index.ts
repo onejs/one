@@ -238,6 +238,8 @@ export async function createVXRNCompilerPlugin(
   }
 
   function getEnvName(name: string) {
+    // workerd-backed one dev uses a `worker` environment; treat it as ssr
+    if (name === 'worker') return 'ssr'
     if (!envNames[name]) throw new Error(`Invalid env: ${name}`)
     return name as Environment
   }
