@@ -78,6 +78,7 @@
     "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput"
   },
   "resolutions": {
+    "browserslist": "4.28.8",
     "@isaacs/brace-expansion": "5.0.1",
     "@xmldom/xmldom": "0.9.10",
     "fast-xml-parser": "5.9.0",
