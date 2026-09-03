@@ -14,6 +14,7 @@ import { isResponse } from '../utils/isResponse'
 import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One, RouteInfo } from '../vite/types'
+import { getRouteExports } from './serverRouteModules'
 
 const { readFile, outputFile } = FSExtra
 
@@ -45,6 +46,7 @@ export function printBuildTimings() {
 
 export async function buildPage(
   serverEntry: string,
+  routerRoot: string,
   path: string,
   relativeId: string,
   params: any,
@@ -186,7 +188,7 @@ prefetchCSS()
     recordTiming('writeCSSPreload', performance.now() - t0)
 
     t0 = performance.now()
-    const exported = await import(toAbsoluteUrl(serverJsPath))
+    const exported = await getRouteExports(serverEntry, routerRoot, foundRoute.file)
     recordTiming('importServerModule', performance.now() - t0)
 
     const loaderProps: LoaderProps = { path, params }
@@ -200,14 +202,13 @@ prefetchCSS()
       const layoutResults = await Promise.all(
         foundRoute.layouts.map(async (layout) => {
           try {
-            const layoutServerPath = layout.loaderServerPath
-            if (!layoutServerPath) {
+            if (!layout.loaderServerPath) {
               return { contextKey: layout.contextKey, loaderData: undefined }
             }
-            // derive server dir from clientDir (e.g. dist/client -> dist/server)
-            const serverDir = join(clientDir, '..', 'server')
-            const layoutExported = await import(
-              toAbsoluteUrl(join(serverDir, layoutServerPath))
+            const layoutExported = await getRouteExports(
+              serverEntry,
+              routerRoot,
+              layout.contextKey
             )
             const layoutLoaderData = await layoutExported?.loader?.(loaderProps)
             return { contextKey: layout.contextKey, loaderData: layoutLoaderData }
@@ -301,6 +302,7 @@ if (typeof document === 'undefined') globalThis.document = {}
             replaceLoader({
               code,
               loaderData,
+              routeId: foundRoute.file,
             })
           await outputFile(loaderPartialPath, withLoader)
           // native-friendly CJS version with just the data (no ESM imports)

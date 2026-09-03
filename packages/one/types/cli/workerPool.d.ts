@@ -17,6 +17,7 @@ export declare class BuildWorkerPool {
     private dispatch;
     buildPage(args: {
         serverEntry: string;
+        routerRoot: string;
         path: string;
         relativeId: string;
         params: any;

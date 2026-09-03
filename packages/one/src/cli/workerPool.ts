@@ -105,6 +105,7 @@ export class BuildWorkerPool {
 
   async buildPage(args: {
     serverEntry: string
+    routerRoot: string
     path: string
     relativeId: string
     params: any
