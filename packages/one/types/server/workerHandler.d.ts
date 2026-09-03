@@ -6,7 +6,6 @@ export type LazyRoutes = {
             renderStream?: (props: any) => Promise<ReadableStream>;
         };
     }>;
-    pages: Record<string, () => Promise<any>>;
     api: Record<string, () => Promise<any>>;
     middlewares: Record<string, () => Promise<any>>;
 };

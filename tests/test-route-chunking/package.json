@@ -7,7 +7,7 @@
     "dev": "one dev",
     "build:web": "one build --platform web",
     "serve": "one serve",
-    "test": "vitest --run --reporter=verbose --color=false",
+    "test": "TEST_ONLY=prod vitest --run --reporter=verbose --color=false",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "typescript": "^5.7.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "@vxrn/test": "workspace:*"
   }
 }

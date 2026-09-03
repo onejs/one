@@ -15,10 +15,12 @@ import {
 } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
+import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { isResponse } from '../utils/isResponse'
 import { resolveResponse } from '../vite/resolveResponse'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
@@ -29,7 +31,6 @@ export type LazyRoutes = {
       renderStream?: (props: any) => Promise<ReadableStream>
     }
   }>
-  pages: Record<string, () => Promise<any>>
   api: Record<string, () => Promise<any>>
   middlewares: Record<string, () => Promise<any>>
 }
@@ -46,6 +47,7 @@ type WorkerHandlerOptions = {
 export function createWorkerHandler(options: WorkerHandlerOptions) {
   const { oneOptions } = options
   const disableModuleCache = !!options.disableModuleCache
+  const routerRoot = getRouterRootFromOneOptions(oneOptions)
 
   // mutable state for route swapping
   let currentLazyRoutes = options.lazyRoutes
@@ -95,13 +97,21 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
   let renderStream: ((props: RenderAppProps) => Promise<ReadableStream>) | null = null
   let renderLoading: Promise<void> | null = null
   let renderGeneration = 0
+  let entryLoading: Promise<any> | null = null
+
+  // route modules are resolved through the built server entry, see
+  // routeExportsFromEntry
+  function loadServerEntry(): Promise<any> {
+    if (!entryLoading) entryLoading = currentLazyRoutes.serverEntry()
+    return entryLoading
+  }
 
   function ensureRenderLoaded(): void | Promise<void> {
     if (render) return
     if (renderLoading) return renderLoading
     const gen = ++renderGeneration
     renderLoading = (async () => {
-      const entry = await currentLazyRoutes.serverEntry()
+      const entry = await loadServerEntry()
       // if updateRoutes was called while we were loading, discard stale entry
       if (gen !== renderGeneration) return
       render = entry.default.render as any
@@ -150,13 +160,16 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       let routeExported: any
       if (!disableModuleCache && moduleImportCache.has(cacheKey)) {
         routeExported = moduleImportCache.get(cacheKey)
-      } else if (lazyKey && currentLazyRoutes.pages[lazyKey]) {
-        routeExported = await currentLazyRoutes.pages[lazyKey]()
-        if (!disableModuleCache) moduleImportCache.set(cacheKey, routeExported)
       } else {
-        console.warn(`[one/worker] no lazy route for ${cacheKey}`)
-        if (!disableModuleCache) loaderCache.set(cacheKey, null)
-        return null
+        routeExported = lazyKey
+          ? await getRouteExportsFromEntry(await loadServerEntry(), routerRoot, lazyKey)
+          : null
+        if (!routeExported) {
+          console.warn(`[one/worker] no lazy route for ${cacheKey}`)
+          if (!disableModuleCache) loaderCache.set(cacheKey, null)
+          return null
+        }
+        if (!disableModuleCache) moduleImportCache.set(cacheKey, routeExported)
       }
 
       const loader = routeExported?.loader || null
@@ -797,6 +810,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     render = null
     renderStream = null
     renderLoading = null
+        entryLoading = null
   }
 
   return { handleRequest, updateRoutes }

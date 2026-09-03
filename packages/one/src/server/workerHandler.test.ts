@@ -2,8 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { One } from '../vite/types'
 import { createWorkerHandler, type LazyRoutes } from './workerHandler'
 
+// route files are router-root relative, the way createRoutesManifest emits them
 const pageRoute = {
-  file: 'app/some-page.tsx',
+  file: './some-page.tsx',
   page: '/some-page',
   namedRegex: '^/some-page(?:/)?$',
   urlPath: '/some-page',
@@ -14,7 +15,7 @@ const pageRoute = {
 } satisfies One.BuildInfo['manifest']['pageRoutes'][number]
 
 const apiRoute = {
-  file: 'app/api/status+api.ts',
+  file: './api/status+api.ts',
   page: '/api/status',
   namedRegex: '^/api/status(?:/)?$',
   urlPath: '/api/status',
@@ -57,15 +58,20 @@ const buildInfo = {
   loaders: {},
 } satisfies One.BuildInfo
 
-const lazyRoutes = {
-  serverEntry: async () => ({
+// route modules are reached through the server entry's own route map, keyed by
+// the router-root prefixed path its `import.meta.glob` produces
+const routeKey = `/app/${pageRoute.file.slice(2)}`
+
+const makeServerEntry = (importPage: () => Promise<any> = async () => ({})) =>
+  async () => ({
     default: {
       render: () => '<html></html>',
+      options: { routes: { [routeKey]: importPage } },
     },
-  }),
-  pages: {
-    [pageRoute.file]: async () => ({}),
-  },
+  })
+
+const lazyRoutes = {
+  serverEntry: makeServerEntry(),
   api: {
     [apiRoute.page]: async () => ({
       HEAD: () => new Response(null, { status: 204 }),
@@ -77,7 +83,7 @@ const lazyRoutes = {
 function createHandler() {
   vi.stubEnv('ONE_BUFFERED_SSR', '1')
   return createWorkerHandler({
-    oneOptions: { web: { defaultRenderMode: 'ssr' } },
+    oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssr' } },
     buildInfo,
     lazyRoutes,
   }).handleRequest
@@ -127,17 +133,15 @@ describe('createWorkerHandler', () => {
     vi.stubEnv('ONE_BUFFERED_SSR', '1')
     let imports = 0
     const handleRequest = createWorkerHandler({
-      oneOptions: { web: { defaultRenderMode: 'ssr' } },
+      oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssr' } },
       buildInfo,
       disableModuleCache: true,
       lazyRoutes: {
         ...lazyRoutes,
-        pages: {
-          [pageRoute.file]: async () => {
-            imports += 1
-            return {}
-          },
-        },
+        serverEntry: makeServerEntry(async () => {
+          imports += 1
+          return {}
+        }),
       },
     }).handleRequest
 

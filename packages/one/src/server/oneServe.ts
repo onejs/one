@@ -16,10 +16,12 @@ import {
 } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
+import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { toAbsoluteUrl } from '../utils/toAbsolute'
 import { toServerOutputPath } from '../utils/toServerOutputPath'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import { getRouteExportsFromEntry } from './routeExportsFromEntry'
 import { setSSRLoaderData } from './ssrLoaderData'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
@@ -75,7 +77,6 @@ async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string
  */
 type LazyRoutes = {
   serverEntry: () => Promise<{ default: { render: (props: any) => any } }>
-  pages: Record<string, () => Promise<any>>
   api: Record<string, () => Promise<any>>
   middlewares: Record<string, () => Promise<any>>
 }
@@ -150,6 +151,7 @@ export async function oneServe(
   }
 
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
+  const routerRoot = getRouterRootFromOneOptions(oneOptions)
 
   // pre-computed constants to avoid per-request overhead
   const useStreaming = !process.env.ONE_BUFFERED_SSR
@@ -169,6 +171,21 @@ export async function oneServe(
     { promise: Promise<any>; expires: number }
   >()
 
+  // route modules are resolved through the built server entry, see
+  // routeExportsFromEntry
+  async function importRouteModule(
+    lazyKey: string | undefined,
+    serverPath: string | undefined
+  ): Promise<any> {
+    if (lazyKey) {
+      const entry = await loadServerEntry()
+      const exported = await getRouteExportsFromEntry(entry, routerRoot, lazyKey)
+      if (exported) return exported
+    }
+    // layouts and middlewares outside the router root still resolve by path
+    return await import(toAbsoluteUrl(toServerOutputPath(serverPath || lazyKey || '', outDir)))
+  }
+
   // resolve a route module's loader - sync on cache hit, async on cold start
   function resolveLoaderSync(
     serverPath: string | undefined,
@@ -180,18 +197,11 @@ export async function oneServe(
 
     // cold path - async import
     return (async () => {
-      const pathToResolve = serverPath || lazyKey || ''
-      const resolvedPath = toServerOutputPath(pathToResolve, outDir)
-
       let routeExported: any
       if (moduleImportCache.has(cacheKey)) {
         routeExported = moduleImportCache.get(cacheKey)
       } else {
-        routeExported = lazyKey
-          ? options?.lazyRoutes?.pages?.[lazyKey]
-            ? await options.lazyRoutes.pages[lazyKey]()
-            : await import(toAbsoluteUrl(resolvedPath))
-          : await import(toAbsoluteUrl(serverPath!))
+        routeExported = await importRouteModule(lazyKey, serverPath)
         setBounded(moduleImportCache, cacheKey, routeExported, MODULE_CACHE_MAX)
       }
 
@@ -286,18 +296,26 @@ export async function oneServe(
   let render: ((props: RenderAppProps) => any) | null = null
   let renderStream: ((props: RenderAppProps) => Promise<ReadableStream>) | null = null
   let renderLoading: Promise<void> | null = null
+  let entryLoading: Promise<any> | null = null
+
+  function loadServerEntry(): Promise<any> {
+    if (!entryLoading) {
+      entryLoading = options?.lazyRoutes?.serverEntry
+        ? options.lazyRoutes.serverEntry()
+        : import(
+            toAbsoluteUrl(
+              `${serverOptions.root}/${outDir}/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
+            )
+          )
+    }
+    return entryLoading
+  }
 
   function ensureRenderLoaded(): void | Promise<void> {
     if (render) return // sync!
     if (renderLoading) return renderLoading
     renderLoading = (async () => {
-      const entry = options?.lazyRoutes?.serverEntry
-        ? await options.lazyRoutes.serverEntry()
-        : await import(
-            toAbsoluteUrl(
-              `${serverOptions.root}/${outDir}/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
-            )
-          )
+      const entry = await loadServerEntry()
       render = entry.default.render as (props: RenderAppProps) => any
       renderStream = entry.default.renderStream as
         | ((props: RenderAppProps) => Promise<ReadableStream>)
