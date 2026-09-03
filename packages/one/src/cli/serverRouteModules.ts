@@ -22,7 +22,8 @@ export async function getRouteExports(
   const exported = await getRouteExportsFromEntry(entry, routerRoot, routeFile)
 
   if (!exported) {
-    const routes = entry?.default?.options?.routes ?? entry?.default?.default?.options?.routes
+    const routes =
+      entry?.default?.options?.routes ?? entry?.default?.default?.options?.routes
     throw new Error(
       `[one] route ${routeFile} is missing from the built server entry route map (looked in: ${Object.keys(routes ?? {}).join(', ')})`
     )

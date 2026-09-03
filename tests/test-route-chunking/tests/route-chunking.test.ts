@@ -27,7 +27,11 @@ describe('routes that other routes re-export', () => {
   })
 
   test('every route generates its static params', () => {
-    for (const path of ['/posts/hello-world', '/mirror/hello-world', '/alt/another-post']) {
+    for (const path of [
+      '/posts/hello-world',
+      '/mirror/hello-world',
+      '/alt/another-post',
+    ]) {
       expect(Object.keys(buildInfo.routeMap)).toContain(path)
     }
   })
@@ -73,7 +77,7 @@ describe('routes whose loader runs per request', () => {
     expect(chunk).not.toMatch(/export \{[^}]*\bloader\s*[,}]/)
   })
 
-  test('the loader endpoint returns each route\'s data', async () => {
+  test("the loader endpoint returns each route's data", async () => {
     // client-side navigation fetches this, so it is the runtime read of the
     // route module's `loader` export - the html path never needs that read
     // because `useLoader` already holds the real function in the render graph

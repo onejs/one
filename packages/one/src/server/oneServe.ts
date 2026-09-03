@@ -183,7 +183,9 @@ export async function oneServe(
       if (exported) return exported
     }
     // layouts and middlewares outside the router root still resolve by path
-    return await import(toAbsoluteUrl(toServerOutputPath(serverPath || lazyKey || '', outDir)))
+    return await import(
+      toAbsoluteUrl(toServerOutputPath(serverPath || lazyKey || '', outDir))
+    )
   }
 
   // resolve a route module's loader - sync on cache hit, async on cold start

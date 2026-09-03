@@ -62,7 +62,8 @@ const buildInfo = {
 // the router-root prefixed path its `import.meta.glob` produces
 const routeKey = `/app/${pageRoute.file.slice(2)}`
 
-const makeServerEntry = (importPage: () => Promise<any> = async () => ({})) =>
+const makeServerEntry =
+  (importPage: () => Promise<any> = async () => ({})) =>
   async () => ({
     default: {
       render: () => '<html></html>',

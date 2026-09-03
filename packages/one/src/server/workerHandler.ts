@@ -810,7 +810,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     render = null
     renderStream = null
     renderLoading = null
-        entryLoading = null
+    entryLoading = null
   }
 
   return { handleRequest, updateRoutes }

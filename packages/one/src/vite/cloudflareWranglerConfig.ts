@@ -122,9 +122,10 @@ export function hasUserWranglerConfig(root: string): boolean {
   return false
 }
 
-function parseUserWranglerFile(
-  configPath: string
-): { path: string; config: Record<string, JsonValue> } {
+function parseUserWranglerFile(configPath: string): {
+  path: string
+  config: Record<string, JsonValue>
+} {
   const contents = readFileSync(configPath, 'utf-8')
   let parsed: unknown
   try {
@@ -242,7 +243,10 @@ export function isExperimentalWorkerDevEnabled(): boolean {
 
 export function shouldEnableWorkerdDev(deploy: unknown, root: string): boolean {
   if (!isExperimentalWorkerDevEnabled()) return false
-  const target = typeof deploy === 'string' ? deploy : (deploy as { target?: string } | undefined)?.target
+  const target =
+    typeof deploy === 'string'
+      ? deploy
+      : (deploy as { target?: string } | undefined)?.target
   if (target === 'cloudflare') return true
   return hasUserWranglerConfig(root)
 }

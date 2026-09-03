@@ -34,7 +34,10 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
-import { createWorkerdDevPlugins, shouldEnableWorkerdDev } from './plugins/workerdDevPlugin'
+import {
+  createWorkerdDevPlugins,
+  shouldEnableWorkerdDev,
+} from './plugins/workerdDevPlugin'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions

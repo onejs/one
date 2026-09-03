@@ -28,7 +28,9 @@ function collectImports(source: string, base: string): string[] {
       out.push(new URL(spec, base).href)
     } catch {}
   }
-  for (const m of source.matchAll(/(?:^|[\s;}])(?:import|export)[^'"]{0,300}?from\s*["']([^"']+)["']/g))
+  for (const m of source.matchAll(
+    /(?:^|[\s;}])(?:import|export)[^'"]{0,300}?from\s*["']([^"']+)["']/g
+  ))
     add(m[1])
   for (const m of source.matchAll(/\bimport\s*\(\s*["']([^"']+)["']\s*\)/g)) add(m[1])
   for (const m of source.matchAll(/(?:^|[\s;}])import\s*["']([^"']+)["']/g)) add(m[1])

@@ -567,10 +567,13 @@ async function run() {
           // but package.json files and the lockfile.
           await spawnify(`git add -- **/package.json package.json bun.lock`, { cwd })
 
-          await spawnify(`git commit -m ${gitTag} -- **/package.json package.json bun.lock`, {
-            cwd,
-            allowFail: finish,
-          })
+          await spawnify(
+            `git commit -m ${gitTag} -- **/package.json package.json bun.lock`,
+            {
+              cwd,
+              allowFail: finish,
+            }
+          )
 
           if (!canary) {
             if (!dirty) {
