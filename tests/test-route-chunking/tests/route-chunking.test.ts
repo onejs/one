@@ -61,3 +61,47 @@ describe('routes that other routes re-export', () => {
     }
   })
 })
+
+describe('routes whose loader runs per request', () => {
+  const serverUrl = () => process.env.ONE_SERVER_URL!
+
+  test('the canonical ssr route also lands in a chunk with renamed exports', () => {
+    const info = routeInfo('./ssr/[slug]+ssr.tsx')
+    const chunk = readFileSync(join(process.cwd(), info.serverJsPath), 'utf-8')
+
+    expect(chunk).toMatch(/export \{[^}]*loader as \w+/)
+    expect(chunk).not.toMatch(/export \{[^}]*\bloader\s*[,}]/)
+  })
+
+  test('the loader endpoint returns each route\'s data', async () => {
+    // client-side navigation fetches this, so it is the runtime read of the
+    // route module's `loader` export - the html path never needs that read
+    // because `useLoader` already holds the real function in the render graph
+    const cacheKey = buildInfo.constants.CACHE_KEY
+
+    for (const [path, slug] of [
+      ['ssr/hello-world', 'hello-world'],
+      ['ssr-mirror/another-post', 'another-post'],
+    ]) {
+      const url = `${serverUrl()}/assets/${path}_${cacheKey}_vxrn_loader.js`
+      const res = await fetch(url)
+      expect(res.status, url).toBe(200)
+
+      const code = await res.text()
+      expect(code, url).toContain(`ssr content for ${slug}`)
+    }
+  })
+
+  test('the server renders each route with its loader data', async () => {
+    for (const [url, slug] of [
+      ['/ssr/hello-world', 'hello-world'],
+      ['/ssr-mirror/another-post', 'another-post'],
+    ]) {
+      const res = await fetch(`${serverUrl()}${url}`)
+      expect(res.status, url).toBe(200)
+
+      const html = await res.text()
+      expect(html, url).toContain(`ssr content for ${slug}`)
+    }
+  })
+})

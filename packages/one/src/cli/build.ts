@@ -1270,20 +1270,8 @@ export async function build(args: {
         )
         return importPath.startsWith('.') ? importPath : `./${importPath}`
       }
-      const pageRouteMap: string[] = []
       const apiRouteMap: string[] = []
       const middlewareRouteMap: string[] = []
-
-      // Generate lazy imports for SSR/SSG page server bundles
-      for (const [routeFile, info] of Object.entries(
-        buildInfoForWriting.routeToBuildInfo
-      )) {
-        if (info.serverJsPath) {
-          const importPath =
-            './' + info.serverJsPath.replace(new RegExp(`^${outDir}/`), '')
-          pageRouteMap.push(`  '${routeFile}': () => import('${importPath}')`)
-        }
-      }
 
       // Generate lazy imports for API routes
       for (const route of buildInfoForWriting.manifest.apiRoutes) {
@@ -1319,9 +1307,6 @@ import { serve, setFetchStaticHtml } from 'one/serve-worker'
 // Lazy import map - modules load on-demand when route is matched
 const lazyRoutes = {
   serverEntry: () => import('./server/_virtual_one-entry.js'),
-  pages: {
-${pageRouteMap.join(',\n')}
-  },
   api: {
 ${apiRouteMap.join(',\n')}
   },

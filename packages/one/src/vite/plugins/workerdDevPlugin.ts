@@ -107,22 +107,11 @@ export function generateWorkerdDevEntryModule(args: {
     throw new Error('[one] workerd dev: no routes manifest')
   }
 
-  const pageImports = new Map<string, string>()
   const apiImports = new Map<string, string>()
   const middlewareImports = new Map<string, string>()
   const routeToBuildInfo: One.BuildInfo['routeToBuildInfo'] = {}
 
-  const registerPage = (routeFile: string | undefined) => {
-    if (!routeFile) return
-    if (pageImports.has(routeFile)) return
-    pageImports.set(routeFile, toImportHref(root, routerRoot, routeFile))
-  }
-
   for (const route of manifest.pageRoutes) {
-    registerPage(route.file)
-    for (const layout of route.layouts || []) {
-      registerPage(layout.contextKey)
-    }
     for (const middleware of route.middlewares || []) {
       if (!middleware.contextKey || middlewareImports.has(middleware.contextKey)) continue
       middlewareImports.set(
@@ -184,9 +173,6 @@ import { serve, setFetchStaticHtml } from 'one/serve-worker'
 
 const lazyRoutes = {
   serverEntry: () => import(${JSON.stringify(virtualEntryId)}),
-  pages: {
-${serializeImportMap([...pageImports])}
-  },
   api: {
 ${serializeImportMap([...apiImports])}
   },

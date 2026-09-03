@@ -1240,6 +1240,7 @@
         "react-dom": "19.2.3",
       },
       "devDependencies": {
+        "@vxrn/test": "workspace:*",
         "typescript": "^5.7.3",
         "vitest": "^4.1.0",
       },

@@ -211,12 +211,12 @@ export function createVirtualEntry(options: {
           const serverSpaBuildGlobs = serverSpaRouteFiles.map(
             (file) => `/${options.root}/${file}`
           )
+          const serverSpaExportGlob = (name: string) =>
+            `  ${name}: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: '${name}', query: '?one-spa-build' })`
           const serverSpaBuildRoutes = serverSpaBuildGlobs.length
-            ? `{
-  loader: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'loader', query: '?one-spa-build' }),
-  generateStaticParams: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'generateStaticParams', query: '?one-spa-build' }),
-  sitemap: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: 'sitemap', query: '?one-spa-build' })
-}`
+            ? `{\n${['loader', 'loaderCache', 'generateStaticParams', 'sitemap']
+                .map(serverSpaExportGlob)
+                .join(',\n')}\n}`
             : '{}'
           const webRouteGlobs = [
             ...routeGlobs,
@@ -301,9 +301,11 @@ if (typeof window !== 'undefined') {
   window.__oneRegisterPreloadedRoute = registerPreloadedRoute
 }
 
-// build-only spa exports generate route artifacts without exposing the page
-// component to the runtime server route map.
-export const oneBuildOnlySpaRoutes = ${serverSpaBuildRoutes}
+// a route that declares spa by filename or parent directory is stubbed out of
+// the route map below so the server never holds its page component. its
+// server-side exports come from here instead, one glob per export so the page
+// never comes with them.
+export const oneServerSpaRouteExports = ${serverSpaBuildRoutes}
 
 // globbing ${JSON.stringify(webRouteGlobs)}
 export default createApp({

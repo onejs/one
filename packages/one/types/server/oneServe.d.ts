@@ -10,7 +10,6 @@ type LazyRoutes = {
             render: (props: any) => any;
         };
     }>;
-    pages: Record<string, () => Promise<any>>;
     api: Record<string, () => Promise<any>>;
     middlewares: Record<string, () => Promise<any>>;
 };

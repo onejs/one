@@ -20,7 +20,6 @@
  *     oneOptions: { web: { defaultRenderMode: 'spa' } },
  *     routes: {
  *       api: { '/api/hello': () => import('./api/hello') },
- *       pages: { '/index': () => import('./index') },
  *       middlewares: {},
  *       serverEntry: () => import('./entry-server'),
  *     },
