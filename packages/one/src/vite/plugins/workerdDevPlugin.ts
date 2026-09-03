@@ -46,7 +46,9 @@ function toImportHref(root: string, routerRoot: string, routeFile: string): stri
 
 function serializeImportMap(entries: Array<[string, string]>): string {
   return entries
-    .map(([key, href]) => `  ${JSON.stringify(key)}: () => import(${JSON.stringify(href)})`)
+    .map(
+      ([key, href]) => `  ${JSON.stringify(key)}: () => import(${JSON.stringify(href)})`
+    )
     .join(',\n')
 }
 
@@ -344,7 +346,9 @@ export function createWorkerdDevPlugins(
             `Expected wrangler config at ${wranglerInputPath}.`
         )
       }
-      console.info('[one] experimental workerd dev enabled (ONE_EXPERIMENTAL_WORKER_DEV=1)')
+      console.info(
+        '[one] experimental workerd dev enabled (ONE_EXPERIMENTAL_WORKER_DEV=1)'
+      )
     },
   }
 

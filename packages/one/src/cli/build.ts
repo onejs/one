@@ -939,7 +939,11 @@ export async function build(args: {
 
     let exported
     try {
-      exported = await getRouteExports(vxrnOutput.serverEntry, routerRoot, foundRoute.file)
+      exported = await getRouteExports(
+        vxrnOutput.serverEntry,
+        routerRoot,
+        foundRoute.file
+      )
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something

@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import { setLastAction } from '../router/lastAction'
-import { routeInfo, subscribeToLoadingState, subscribeToRootState } from '../router/router'
+import {
+  routeInfo,
+  subscribeToLoadingState,
+  subscribeToRootState,
+} from '../router/router'
 
 const KEY = 'one-sr'
 const GROUP_KEY = 'one-sr-groups'
