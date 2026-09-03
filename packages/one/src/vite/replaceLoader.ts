@@ -4,12 +4,19 @@
 //   minified (rolldown): return`./loader-refetch/index.tsx`
 const routeIdReturnRegex = /return\s*["'`]\.\/[^"'`]+["'`]/
 
+// a chunk can hold more than one route's stub once the bundler merges routes,
+// so target this route's own id when we know it rather than the first stub
+const routeIdReturnRegexFor = (routeId: string) =>
+  new RegExp(`return\\s*["'\`]${routeId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'\`]`)
+
 export function replaceLoader({
   code,
   loaderData,
+  routeId,
 }: {
   code: string
   loaderData: object
+  routeId?: string
 }) {
   const stringifiedData = JSON.stringify(loaderData)
   const safeData = stringifiedData.replace(/\$/g, '$$$$')
@@ -28,8 +35,9 @@ export function replaceLoader({
 
     // new-style routeId stub from clientTreeShakePlugin
     // works with both minified (return"./path") and non-minified (return "./path") code
-    if (routeIdReturnRegex.test(code)) {
-      return code.replace(routeIdReturnRegex, 'return ' + safeData)
+    const stubRegex = routeId ? routeIdReturnRegexFor(routeId) : routeIdReturnRegex
+    if (stubRegex.test(code)) {
+      return code.replace(stubRegex, 'return ' + safeData)
     }
 
     return code + `\nexport const loader = () => (${stringifiedData})`

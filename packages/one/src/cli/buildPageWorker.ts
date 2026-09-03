@@ -68,6 +68,7 @@ parentPort.on('message', async (msg: any) => {
       const result = await runWithAsyncLocalContext(async () => {
         return await buildPage(
           msg.args.serverEntry,
+          msg.args.routerRoot,
           msg.args.path,
           msg.args.relativeId,
           msg.args.params,

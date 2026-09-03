@@ -45,6 +45,7 @@ import { checkNodeVersion } from './checkNodeVersion'
 import { getWorkerPool, terminateWorkerPool } from './workerPool'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
+import { getRouteExports } from './serverRouteModules'
 import { pLimit } from '../utils/pLimit'
 import { getCriticalCSSOutputPaths } from '../vite/plugins/criticalCSSPlugin'
 
@@ -537,16 +538,35 @@ export async function build(args: {
   }
 
   // build a direct mapping from source file path to client chunk info
-  // this is more reliable than manifest.json which can have ambiguous keys
+  // this is more reliable than manifest.json which can have ambiguous keys.
+  // index every module a chunk contains, not just its facade: a route that
+  // another route re-exports from stops being a dynamic entry and lands in a
+  // plain shared chunk, which has no facade and so gets no source-path key in
+  // the manifest either. the facade pass runs second so it wins where both hit.
   const clientChunksBySource = new Map<string, { fileName: string; imports: string[] }>()
   if (vxrnOutput.clientOutput) {
     for (const chunk of vxrnOutput.clientOutput) {
-      if (chunk.type === 'chunk' && chunk.facadeModuleId) {
-        clientChunksBySource.set(chunk.facadeModuleId, {
-          fileName: chunk.fileName,
-          imports: chunk.imports || [],
-        })
+      if (chunk.type !== 'chunk') continue
+      const info = { fileName: chunk.fileName, imports: chunk.imports || [] }
+      for (const moduleId of chunk.moduleIds ?? []) {
+        clientChunksBySource.set(moduleId, info)
       }
+    }
+    for (const chunk of vxrnOutput.clientOutput) {
+      if (chunk.type !== 'chunk' || !chunk.facadeModuleId) continue
+      clientChunksBySource.set(chunk.facadeModuleId, {
+        fileName: chunk.fileName,
+        imports: chunk.imports || [],
+      })
+    }
+  }
+
+  // the manifest keys chunks by source path only when they have a facade, so
+  // reach the rest through the chunk file name that clientChunksBySource gives us
+  const clientManifestByFile = new Map<string, ClientManifestEntry>()
+  for (const entry of Object.values(vxrnOutput.clientManifest) as ClientManifestEntry[]) {
+    if (entry.file) {
+      clientManifestByFile.set(entry.file, entry)
     }
   }
 
@@ -643,7 +663,9 @@ export async function build(args: {
 
     // also look up in manifest for additional info (css, nested imports, etc)
     const manifestKey = `${routerRoot}${foundRoute.file.slice(1)}`
-    const clientManifestEntry = vxrnOutput.clientManifest[manifestKey]
+    const clientManifestEntry: ClientManifestEntry | undefined =
+      vxrnOutput.clientManifest[manifestKey] ??
+      (clientChunk ? clientManifestByFile.get(clientChunk.fileName) : undefined)
 
     // SPA and SSG routes may not have client chunks - that's expected
     if (!clientChunk && foundRoute.type !== 'spa' && foundRoute.type !== 'ssg') {
@@ -668,7 +690,7 @@ export async function build(args: {
     }
 
     function collectImports(
-      entry: ClientManifestEntry,
+      entry: Partial<ClientManifestEntry>,
       { type = 'js' }: { type?: 'js' | 'css' } = {}
     ): string[] {
       const { imports = [], css } = entry
@@ -739,13 +761,9 @@ export async function build(args: {
     }
 
     // add the page itself using the direct chunk lookup (more reliable than manifest)
-    if (clientChunk) {
-      const routeKey = `/${routerRoot}${foundRoute.file.slice(1)}`
-      routePreloads[routeKey] = `/${clientChunk.fileName}`
-    } else if (clientManifestEntry) {
-      // fallback to manifest if no chunk (shouldn't happen normally)
-      const routeKey = `/${routerRoot}${foundRoute.file.slice(1)}`
-      routePreloads[routeKey] = `/${clientManifestEntry.file}`
+    const routeChunkFile = clientChunk?.fileName ?? clientManifestEntry?.file
+    if (routeChunkFile) {
+      routePreloads[`/${routerRoot}${foundRoute.file.slice(1)}`] = `/${routeChunkFile}`
     }
 
     const preloadSetupFilePreloads = (() => {
@@ -921,11 +939,11 @@ export async function build(args: {
 
     let exported
     try {
-      exported = await import(toAbsoluteUrl(serverJsPath))
+      exported = await getRouteExports(vxrnOutput.serverEntry, routerRoot, foundRoute.file)
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something
-      throw new Error(`Error importing page: ${serverJsPath}`, {
+      throw new Error(`Error importing page: ${foundRoute.file}`, {
         cause: err,
       })
     }
@@ -995,6 +1013,7 @@ export async function build(args: {
         return workerPool
           .buildPage({
             serverEntry: vxrnOutput.serverEntry,
+            routerRoot,
             path,
             relativeId,
             params,
@@ -1024,6 +1043,7 @@ export async function build(args: {
         const built = await runWithAsyncLocalContext(async () => {
           return await buildPage(
             vxrnOutput.serverEntry,
+            routerRoot,
             path,
             relativeId,
             params,

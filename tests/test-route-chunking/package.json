@@ -1,0 +1,22 @@
+{
+  "name": "test-route-chunking",
+  "version": "1.25.13",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "build:web": "one build --platform web",
+    "serve": "one serve",
+    "test": "vitest --run --reporter=verbose --color=false",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vitest": "^4.1.0"
+  }
+}
