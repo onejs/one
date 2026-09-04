@@ -7,7 +7,7 @@ import { render } from './render'
 import { initClientMatches } from './router/router'
 import { registerPreloadedRoute } from './router/useViteRoutes'
 import { setupSkewProtection } from './skewProtection'
-import { handleSkewError } from './utils/dynamicImport'
+import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
 import { findRootLayout } from './utils/findRootLayout'
 import type { RenderAppProps } from './types'
 import type { OneLinkingConfig } from './link/getLinking'
@@ -293,5 +293,9 @@ export function createApp(options: CreateAppProps) {
     })
     .catch((err) => {
       console.error(`Error during client initialization:`, err)
+      if (isChunkLoadError(err)) {
+        handleSkewError()
+      }
     })
 }
+

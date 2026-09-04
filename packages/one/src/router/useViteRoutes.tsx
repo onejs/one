@@ -1,5 +1,6 @@
 import type { GlobbedRouteImports } from '../types'
 import type { One } from '../vite/types'
+import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { diagnoseRouteLoadFailure } from './diagnoseRouteLoadFailure'
 import { hmrImport } from './hmrImport'
 
@@ -146,7 +147,11 @@ export async function preloadRouteModules(href: string): Promise<void> {
           .then((mod: any) => {
             preloadedModules[key] = mod
           })
-          .catch(() => {})
+          .catch((err: any) => {
+            if (isChunkLoadError(err)) {
+              handleSkewError()
+            }
+          })
       )
     }
   }
@@ -284,6 +289,9 @@ export function globbedRoutesToRouteContext(
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err, new Error().stack)
+          if (isChunkLoadError(err)) {
+            handleSkewError()
+          }
           // rendering an empty component keeps one bad route from taking down the
           // app, but it also makes the failure invisible: nothing inside the route
           // mounts and the only trace is the line above. in dev, hand it to the
