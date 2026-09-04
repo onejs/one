@@ -25,6 +25,7 @@ import { setSSRLoaderData } from './ssrLoaderData'
 import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 export type LazyRoutes = {
+  pages?: Record<string, () => Promise<any>>
   serverEntry: () => Promise<{
     default: {
       render: (props: any) => any
@@ -160,6 +161,9 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
       let routeExported: any
       if (!disableModuleCache && moduleImportCache.has(cacheKey)) {
         routeExported = moduleImportCache.get(cacheKey)
+      } else if (currentLazyRoutes.pages?.[cacheKey]) {
+        routeExported = await currentLazyRoutes.pages[cacheKey]()
+        if (!disableModuleCache) moduleImportCache.set(cacheKey, routeExported)
       } else {
         routeExported = lazyKey
           ? await getRouteExportsFromEntry(await loadServerEntry(), routerRoot, lazyKey)
