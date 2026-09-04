@@ -1,5 +1,6 @@
 import type { One } from '../vite/types';
 export type LazyRoutes = {
+    pages?: Record<string, () => Promise<any>>;
     serverEntry: () => Promise<{
         default: {
             render: (props: any) => any;

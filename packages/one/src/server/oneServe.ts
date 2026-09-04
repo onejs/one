@@ -76,6 +76,7 @@ async function readStaticHtml(htmlPath: string, outDir = 'dist'): Promise<string
  * Modules are loaded on-demand when a route is matched, not all upfront.
  */
 type LazyRoutes = {
+  pages?: Record<string, () => Promise<any>>
   serverEntry: () => Promise<{ default: { render: (props: any) => any } }>
   api: Record<string, () => Promise<any>>
   middlewares: Record<string, () => Promise<any>>
@@ -177,6 +178,9 @@ export async function oneServe(
     lazyKey: string | undefined,
     serverPath: string | undefined
   ): Promise<any> {
+    if (lazyKey && options?.lazyRoutes?.pages?.[lazyKey]) {
+      return await options.lazyRoutes.pages[lazyKey]()
+    }
     if (lazyKey) {
       const entry = await loadServerEntry()
       const exported = await getRouteExportsFromEntry(entry, routerRoot, lazyKey)
