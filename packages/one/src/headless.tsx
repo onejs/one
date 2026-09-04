@@ -4,6 +4,7 @@ import type { OneLinkingConfig } from './link/getLinking'
 import { Root } from './Root'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
+import { handleSkewError, isChunkLoadError } from './utils/dynamicImport'
 import { findRootLayout } from './utils/findRootLayout'
 import type { One } from './vite/types'
 
@@ -51,5 +52,9 @@ export function createApp(options: CreateHeadlessAppProps) {
     })
     .catch((err) => {
       console.error(`[one/headless] Error during initialization:`, err)
+      if (isChunkLoadError(err)) {
+        handleSkewError()
+      }
     })
 }
+
