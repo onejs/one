@@ -278,22 +278,29 @@ describe('metroNativeWorker', () => {
   it('correctly sets transformerPath in buildMetroConfigInputFromViteConfig when active', async () => {
     const mockViteConfig = { root: process.cwd() } as any
 
-    // Flag off
+    // transformerPath is read by metro at the top level of the config. asserting
+    // it under `transformer` passes while metro silently keeps its own worker,
+    // so both the presence and the nesting are checked here.
+
+    // Flag off: the key still holds expo's default worker, which is itself proof
+    // that top level is where metro reads it from.
     delete process.env.ONE_METRO_NATIVE_TRANSFORMS
     const configOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
-    expect(configOff.defaultConfig.transformer.transformerPath).toBeUndefined()
+    expect(configOff.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
 
     // Flag on via environment variable
     process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
     const configEnvOn = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
-    expect(configEnvOn.defaultConfig.transformer.transformerPath).toContain('metroNativeWorker')
+    expect(configEnvOn.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    expect(configEnvOn.defaultConfig.transformer.transformerPath).toBeUndefined()
 
     // Flag on via metroPluginOptions
     delete process.env.ONE_METRO_NATIVE_TRANSFORMS
     const configOptOn = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
       nativeTransforms: true,
     })
-    expect(configOptOn.defaultConfig.transformer.transformerPath).toContain('metroNativeWorker')
+    expect(configOptOn.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    expect(configOptOn.defaultConfig.transformer.transformerPath).toBeUndefined()
   })
 
   it('transforms and executes a real 2-module Metro bundle through metro-runtime require polyfill', async () => {

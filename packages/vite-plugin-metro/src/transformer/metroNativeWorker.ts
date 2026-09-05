@@ -75,6 +75,17 @@ const WORKER_CACHE_KEY_VERSION = '2'
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
 /**
+ * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
+ * unless told otherwise. parsing those as 'js' fails on the first JSX element,
+ * so every non-typescript file is parsed as jsx.
+ */
+function langForFilename(filename: string): 'ts' | 'tsx' | 'jsx' {
+  if (filename.endsWith('.tsx')) return 'tsx'
+  if (filename.endsWith('.ts')) return 'ts'
+  return 'jsx'
+}
+
+/**
  * Recursively collects identifier names from patterns (bindings).
  */
 export function collectPatternNames(pattern: any, names: Set<string>) {
@@ -393,9 +404,19 @@ export function rewriteDependencyCalls(
 
   let parsed: any
   try {
-    parsed = parseSync(filename, code)
-  } catch {
-    return emptyResult
+    parsed = parseSync(filename, code, { lang: langForFilename(filename) })
+  } catch (err: any) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${err.message || err}`
+    )
+  }
+
+  // a silent bail here leaves raw require("./dep") calls that metro never
+  // registered, so the module is absent from the bundle and throws at runtime.
+  if (parsed?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for dependency rewriting: ${parsed.errors[0].message}`
+    )
   }
 
   if (!parsed?.program) return emptyResult
@@ -569,9 +590,18 @@ export function extractDependencies(
 
   let parseResult: any
   try {
-    parseResult = parseSync(filename, code)
+    parseResult = parseSync(filename, code, { lang: langForFilename(filename) })
   } catch (err: any) {
     throw new Error(`[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${err.message || err}`)
+  }
+
+  // oxc reports syntax errors on the result rather than throwing. ignoring them
+  // yields zero dependencies, which metro turns into a bundle that is missing
+  // modules and only fails at runtime, so surface it here instead.
+  if (parseResult?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${parseResult.errors[0].message}`
+    )
   }
 
   if (!parseResult?.program) {
@@ -864,7 +894,11 @@ export async function transform(
       }
     }
 
-    const assetCode = `module.exports = require(${JSON.stringify(assetRegistryPath)}).registerAsset(${JSON.stringify(properDescriptor)});`
+    // the registry is dependency 0 below, and metro's runtime require takes a
+    // module id from the dependency map. emitting the bare specifier here leaves
+    // a require metro cannot resolve, so every asset throws when it renders.
+    const assetDepMapName = config.unstable_dependencyMapReservedName || '_dependencyMap'
+    const assetCode = `module.exports = require(${assetDepMapName}[0], ${JSON.stringify(assetRegistryPath)}).registerAsset(${JSON.stringify(properDescriptor)});`
     let code =
       config.unstable_disableModuleWrapping === true
         ? assetCode
@@ -1003,14 +1037,13 @@ export async function transform(
   }
 
   // Step E: Hermes lowering + CommonJS + TS/JSX via oxc + esbuild (zero Babel, zero SWC)
-  const isTS = filename.endsWith('.ts') || filename.endsWith('.tsx')
-  const isTSX = filename.endsWith('.tsx') || filename.endsWith('.jsx')
+  const lang = langForFilename(filename)
 
   const { transformSync: oxcTransform } = await import('oxc-transform')
   let oxcRes: any
   try {
     oxcRes = oxcTransform(filename, code, {
-      lang: isTS ? (isTSX ? 'tsx' : 'ts') : isTSX ? 'jsx' : 'js',
+      lang,
       target: 'es2020',
       assumptions: {
         setPublicClassFields: true,
@@ -1053,39 +1086,22 @@ export async function transform(
     }
   }
 
-  // If JSX runtime or compiler runtime was injected, include in dependencies
-  const jsxRuntimeDep = options.dev ? 'react/jsx-dev-runtime' : 'react/jsx-runtime'
-  if (
-    (code.includes('react/jsx-runtime') || code.includes('react/jsx-dev-runtime')) &&
-    !dependencies.some(
-      (d) => d.name === 'react/jsx-runtime' || d.name === 'react/jsx-dev-runtime'
-    )
-  ) {
-    dependencies.unshift({
-      name: jsxRuntimeDep,
-      data: {
-        key: getDependencyKey(jsxRuntimeDep, true, null),
-        asyncType: null,
-        locs: [{ line: 1, column: 0 }],
-        isESMImportAtSource: true,
-        isESMImport: true,
-        index: dependencies.length,
-      },
-    })
-  }
-
-  if (
-    code.includes('react/compiler-runtime') &&
-    !dependencies.some((d) => d.name === 'react/compiler-runtime')
-  ) {
+  // steps C through E inject their own imports after step B extracted
+  // dependencies: the jsx runtime, react/compiler-runtime, oxc's
+  // @oxc-project/runtime helpers and the asset registry. metro only bundles what
+  // it was told about, so an unregistered require is a module missing from the
+  // bundle that throws the moment it runs. re-read the final code and register
+  // whatever it actually requires rather than naming each injector here.
+  for (const injected of extractDependencies(code, filename, {
+    asyncRequireModulePath: asyncRequirePath,
+  })) {
+    if (dependencies.some((d) => d.name === injected.name)) {
+      continue
+    }
     dependencies.push({
-      name: 'react/compiler-runtime',
+      ...injected,
       data: {
-        key: getDependencyKey('react/compiler-runtime', true, null),
-        asyncType: null,
-        locs: [{ line: 1, column: 0 }],
-        isESMImportAtSource: true,
-        isESMImport: true,
+        ...injected.data,
         index: dependencies.length,
       },
     })

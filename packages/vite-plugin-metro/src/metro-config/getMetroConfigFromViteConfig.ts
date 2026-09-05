@@ -177,21 +177,12 @@ export async function buildMetroConfigInputFromViteConfig(
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
-    try {
-      nativeWorkerPath = require.resolve(
-        '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
-      )
-    } catch {
-      try {
-        nativeWorkerPath = require.resolve(
-          '../transformer/metroNativeWorker'
-        )
-      } catch {
-        nativeWorkerPath = require.resolve(
-          '../transformer/metroNativeWorker.ts'
-        )
-      }
-    }
+    // must resolve through createRequire: this module is also built as ESM,
+    // where a bare require.resolve is not defined.
+    nativeWorkerPath = projectResolve(
+      projectRoot,
+      '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
+    )
   }
 
   const defaultConfig: MetroInputConfig = {
@@ -236,13 +227,11 @@ export async function buildMetroConfigInputFromViteConfig(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
       ),
-      ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     },
+    // transformerPath is a TOP-LEVEL metro config key, not a transformer option.
+    // nesting it under transformer silently leaves metro on its default worker.
+    ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     reporter: await getTerminalReporter(projectRoot),
-  }
-
-  if (nativeWorkerPath) {
-    ;(defaultConfig.transformer as any).transformerPath = nativeWorkerPath
   }
 
   const merged = {
@@ -361,21 +350,12 @@ export async function getMetroConfigFromViteConfig(
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
-    try {
-      nativeWorkerPath = require.resolve(
-        '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
-      )
-    } catch {
-      try {
-        nativeWorkerPath = require.resolve(
-          '../transformer/metroNativeWorker'
-        )
-      } catch {
-        nativeWorkerPath = require.resolve(
-          '../transformer/metroNativeWorker.ts'
-        )
-      }
-    }
+    // must resolve through createRequire: this module is also built as ESM,
+    // where a bare require.resolve is not defined.
+    nativeWorkerPath = projectResolve(
+      projectRoot,
+      '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
+    )
   }
 
   const defaultConfig: MetroInputConfig = {
@@ -428,13 +408,11 @@ export async function getMetroConfigFromViteConfig(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
       ),
-      ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     },
+    // transformerPath is a TOP-LEVEL metro config key, not a transformer option.
+    // nesting it under transformer silently leaves metro on its default worker.
+    ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     reporter: await getTerminalReporter(projectRoot),
-  }
-
-  if (nativeWorkerPath) {
-    ;(defaultConfig.transformer as any).transformerPath = nativeWorkerPath
   }
 
   const metroConfig = await loadConfig(
