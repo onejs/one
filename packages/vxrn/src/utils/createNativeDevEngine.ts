@@ -1533,8 +1533,13 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       const hasAsyncGenerator = /(async \*|async function\*|for await)/.test(code)
       const target = hasAsyncGenerator ? 'es2015' : 'es2020'
 
+      // a .ts file is not tsx: `const f = <T>(x: T) => x` parses as an unclosed
+      // jsx element under tsx. react-native ships jsx inside plain .js files,
+      // so everything that isn't .ts is parsed as jsx.
+      const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+
       const result = oxc.transformSync(id, code, {
-        lang: 'tsx',
+        lang,
         target,
         assumptions: {
           setPublicClassFields: true,

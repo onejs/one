@@ -564,3 +564,15 @@ describe('transformWorklets', () => {
 
 
 
+
+describe('worklet detection gate', () => {
+  it('accepts files whose only worklets come from gesture callbacks', () => {
+    // .onBegin/.onEnd/.onTouchesMove are auto-workletized by the transform, so
+    // a gate that misses them ships those callbacks untransformed.
+    configureVXRNCompilerPlugin({ enableReanimated: true, enableNativeWorklets: true })
+    const code = `
+      const tap = Gesture.Tap().onBegin((e) => { setState(e) }).onTouchesMove((e) => {}).onEnd(() => {})
+    `
+    expect(shouldTransformWorklets({ id: '/app/gesture.native.js', code })).toBe(true)
+  })
+})

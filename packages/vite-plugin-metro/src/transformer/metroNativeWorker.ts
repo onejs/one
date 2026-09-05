@@ -1,4 +1,5 @@
 import crypto from 'node:crypto'
+import { createRequire } from 'node:module'
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseSync } from 'oxc-parser'
@@ -1275,6 +1276,33 @@ function checkReservedStrings(sourceCode: string, config: MetroWorkerConfig, opt
 /**
  * Main transform entry point conforming to Metro's worker contract with ZERO Babel.
  */
+let workletsConfigured = false
+
+/**
+ * Turns on @vxrn/compiler's reanimated transform inside this metro worker
+ * process when the project actually depends on reanimated.
+ */
+async function configureWorkletsForWorker(projectRoot: string | undefined) {
+  if (workletsConfigured) return
+  workletsConfigured = true
+  if (!projectRoot) return
+
+  const req = createRequire(path.resolve(projectRoot, 'package.json'))
+  let hasReanimated = false
+  try {
+    req.resolve('react-native-reanimated/package.json')
+    hasReanimated = true
+  } catch {
+    try {
+      req.resolve('react-native-worklets/package.json')
+      hasReanimated = true
+    } catch {}
+  }
+
+  const { configureVXRNCompilerPlugin } = await import('@vxrn/compiler')
+  configureVXRNCompilerPlugin({ enableReanimated: hasReanimated })
+}
+
 export async function transform(
   config: MetroWorkerConfig,
   projectRoot: string,
@@ -1568,14 +1596,18 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   }
 
   // Step D: Native Worklets (via @vxrn/compiler)
+  //
+  // @vxrn/compiler's reanimated gate is process-global state set by one's vite
+  // plugin. metro runs its transformer in separate worker processes that never
+  // see that call, so the gate reads false there and every worklet in the app
+  // silently ships untransformed. configure it once per worker from the same
+  // fact the vite side derives it from: does the project have reanimated.
+  await configureWorkletsForWorker(projectRoot)
+
   let shouldRunWorklets = Boolean(options.customTransformOptions?.worklets)
   if (!shouldRunWorklets) {
-    try {
-      const { shouldTransformWorklets } = await import('@vxrn/compiler')
-      shouldRunWorklets = shouldTransformWorklets?.({ id: filename, code }) ?? false
-    } catch {
-      shouldRunWorklets = code.includes('worklet')
-    }
+    const { shouldTransformWorklets } = await import('@vxrn/compiler')
+    shouldRunWorklets = shouldTransformWorklets({ id: filename, code })
   }
 
   if (shouldRunWorklets) {

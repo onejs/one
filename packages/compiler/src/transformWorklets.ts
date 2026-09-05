@@ -2,7 +2,12 @@ import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { configuration, isNativeWorkletsEnabled } from './configure'
+import { AUTOWORKLET_FUNCTION_ARGS } from './worklets/autoworklet'
 
+// every callee the transform auto-workletizes has to be in this gate, or files
+// whose only worklets come from gesture callbacks (`.onBegin`, `.onEnd`,
+// `.onTouchesMove`) are skipped before the transform ever sees them and ship
+// untransformed.
 export const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
   'worklet',
   'useAnimatedGestureHandler',
@@ -22,7 +27,13 @@ export const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
   'executeOnUIRuntimeSync',
 ]
 
-const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join('|'))
+const REANIMATED_REGEX = new RegExp(
+  [
+    ...new Set([...REANIMATED_AUTOWORKLETIZATION_KEYWORDS, ...Object.keys(AUTOWORKLET_FUNCTION_ARGS)]),
+  ]
+    .map((name) => `\\b${name}\\b`)
+    .join('|')
+)
 
 const REANIMATED_IGNORED_PATHS = [
   'react-native-prebuilt',
@@ -30,6 +41,10 @@ const REANIMATED_IGNORED_PATHS = [
   'node_modules/react/',
   'node_modules/react-dom/',
   'node_modules/react-native/',
+  // react-native's own scoped packages are flow, and the worklets transform
+  // runs before flow stripping in the vite pipeline. they never hold app
+  // worklets, exactly like node_modules/react-native/ above.
+  'node_modules/@react-native/',
   'node_modules/react-native-web/',
 ]
 

@@ -18,9 +18,19 @@ export function executeWorkletTransform(
 ): { code: string; map?: any } {
   const cleanId = id.split('?')[0]
 
+  // react-native ships jsx inside plain .js files, and oxc disables jsx for .js
+  // unless told otherwise, so those files fail to parse on their first element.
+  // a .ts file is not tsx: `<T>(x: T) => x` is a generic arrow, not an element.
+  const lang = /\.[cm]?ts$/.test(cleanId)
+    ? ('ts' as const)
+    : cleanId.endsWith('.tsx')
+      ? ('tsx' as const)
+      : ('jsx' as const)
+
   // 1. Initial quick parse to check if any worklet candidates exist
   const initialParse = parseSync(cleanId, code, {
     sourceType: 'module',
+    lang,
   })
 
   if (initialParse.errors && initialParse.errors.length > 0) {
@@ -66,6 +76,7 @@ export function executeWorkletTransform(
   while (remainingPassBudget-- > 0) {
     const parseResult = parseSync(cleanId, currentCode, {
       sourceType: 'module',
+      lang,
     })
 
     if (parseResult.errors && parseResult.errors.length > 0) {
@@ -162,7 +173,7 @@ export function executeWorkletTransform(
   }
 
   // Check if any candidates remain untransformed after budget
-  const finalCheck = parseSync(cleanId, currentCode, { sourceType: 'module' })
+  const finalCheck = parseSync(cleanId, currentCode, { sourceType: 'module', lang })
   const remaining = findWorkletCandidates(finalCheck.program)
   if (remaining.length > 0) {
     throw new Error(

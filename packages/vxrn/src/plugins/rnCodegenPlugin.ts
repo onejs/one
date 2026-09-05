@@ -93,6 +93,8 @@ function getLibraryName(filename: string): string {
   return replaced === base ? base.replace(/\.[cm]?[jt]sx?$/, '') : replaced
 }
 
+const CODEGEN_CALL_RE = /codegenNativeComponent\s*[<(]/
+
 function unwrapExpression(node: any): any {
   while (node) {
     if (
@@ -201,7 +203,12 @@ export function transformReactNativeCodegen(
     return
   }
 
-  if (!code.includes('codegenNativeComponent')) {
+  // the transform runs more than once over the same module, so it must not
+  // reject the output it just produced. matching the bare name matches the
+  // surviving `import codegenNativeComponent from ...` too; only a remaining
+  // CALL means the file still needs generating. a comment marker cannot do
+  // this job because oxc drops leading comments on the next pass.
+  if (!CODEGEN_CALL_RE.test(code)) {
     return
   }
 

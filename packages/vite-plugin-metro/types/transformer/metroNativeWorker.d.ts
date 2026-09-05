@@ -204,9 +204,6 @@ export declare function extractDependencies(code: string, filename: string, opti
     asyncRequireModulePath?: string;
     allowOptionalDependencies?: any;
 }): MetroDependency[];
-/**
- * Main transform entry point conforming to Metro's worker contract with ZERO Babel.
- */
 export declare function transform(config: MetroWorkerConfig, projectRoot: string, filename: string, data: Buffer | string, options: MetroWorkerOptions): Promise<MetroWorkerResult>;
 declare const _default: {
     transform: typeof transform;

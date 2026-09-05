@@ -36,6 +36,38 @@ export default codegenNativeComponent<NativeProps>('MyCustomView') as HostCompon
     expect(result?.map).toBeDefined()
   })
 
+  it('leaves already-generated output alone on a second pass', () => {
+    // the transform runs more than once over the same module. its own output
+    // keeps the codegenNativeComponent import and turns Commands into a plain
+    // object, which the reserved-export check would otherwise reject.
+    const inputCode = `
+import type { ViewProps, HostComponent } from 'react-native';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+
+export interface NativeProps extends ViewProps {
+  color?: string;
+}
+
+interface NativeCommands {
+  reload: (viewRef: React.ElementRef<HostComponent<NativeProps>>) => void;
+}
+
+export const Commands = codegenNativeCommands<NativeCommands>({
+  supportedCommands: ['reload'],
+});
+
+export default codegenNativeComponent<NativeProps>('MyCustomView') as HostComponent<NativeProps>;
+`
+
+    const id = '/workspace/src/MyCustomViewNativeComponent.ts'
+    const first = transformReactNativeCodegen(inputCode, id)
+    expect(first?.code).toContain('export const Commands')
+
+    expect(() => transformReactNativeCodegen(first!.code, id)).not.toThrow()
+    expect(transformReactNativeCodegen(first!.code, id)).toBeUndefined()
+  })
+
   it('removes export const Commands = codegenNativeCommands(...) and generates runtime commands', () => {
     const inputCode = `
 import * as React from 'react';
