@@ -1,8 +1,9 @@
 import type { Plugin } from 'vite';
 export declare const clientTreeShakePlugin: (opts?: {
     runtime?: "vite" | "rolldown";
+    routerRoot?: string;
 }) => Plugin;
-export declare function transformTreeShakeClient(code: string, id: string, root?: string): Promise<{
+export declare function transformTreeShakeClient(code: string, id: string, root?: string, routerRoot?: string): Promise<{
     code: string;
     map: {
         version: number;

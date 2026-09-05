@@ -566,6 +566,7 @@ export function createFileSystemRouterPlugin(
             transformedJS = replaceLoader({
               code: transformedJS,
               loaderData,
+              routeId: route.file,
             })
           }
 

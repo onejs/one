@@ -148,6 +148,34 @@ export default function Layout() {
       expect(result!.code).not.toContain('__vxrn__loader__')
     })
 
+    it('should strip a custom router root from the loader stub routeId', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { useLoader } from 'one'
+
+export const loader = async () => {
+  return serverOnlyModule()
+}
+
+export default function Page() {
+  const data = useLoader(loader)
+  return data
+}
+`
+      const result = await transformTreeShakeClient(
+        code,
+        '/project/app-sootsim/(marketing)/changelog/index+ssg.tsx',
+        '/project',
+        'app-sootsim'
+      )
+      expect(result).toBeDefined()
+      // buildPage looks the stub up by the route contextKey, which is relative
+      // to the configured router root rather than to a hardcoded app/
+      expect(result!.code).toContain(
+        'export function loader() {return "./(marketing)/changelog/index+ssg.tsx"}'
+      )
+    })
+
     it('should embed routeId with render mode suffix in loader stub', async () => {
       const code = `
 import { serverOnlyModule } from 'server-only-pkg'
