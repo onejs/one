@@ -840,11 +840,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   ] satisfies Plugin[]
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin()]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
 
   // TODO make this passed into vxrn through real API
   if (!nativeDisabled) {
-    globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin({ runtime: 'rolldown' })]
+    globalThis.__vxrnAddNativePlugins = [
+      clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
+    ]
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 

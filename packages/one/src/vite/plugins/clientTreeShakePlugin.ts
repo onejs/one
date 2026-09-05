@@ -54,8 +54,13 @@ function restoreTypeImports(ast: t.File, typeImports: t.ImportDeclaration[]) {
 export const clientTreeShakePlugin = (opts?: {
   // 'rolldown' when used in the native rolldown DevEngine (no vite environment context)
   runtime?: 'vite' | 'rolldown'
+  // the configured router root (One.PluginOptions.router.root), relative to the
+  // project root. the loader stub's routeId is built off it, so it must be the
+  // real one or buildPage cannot match the stub back to the route.
+  routerRoot?: string
 }): Plugin => {
   const runtime = opts?.runtime ?? 'vite'
+  const routerRoot = opts?.routerRoot ?? 'app'
 
   return {
     name: 'one-client-tree-shake',
@@ -81,7 +86,7 @@ export const clientTreeShakePlugin = (opts?: {
           return
         }
 
-        const out = await transformTreeShakeClient(code, id, process.cwd())
+        const out = await transformTreeShakeClient(code, id, process.cwd(), routerRoot)
 
         return out
       },
@@ -89,7 +94,12 @@ export const clientTreeShakePlugin = (opts?: {
   } satisfies Plugin
 }
 
-export async function transformTreeShakeClient(code: string, id: string, root?: string) {
+export async function transformTreeShakeClient(
+  code: string,
+  id: string,
+  root?: string,
+  routerRoot = 'app'
+) {
   if (!/generateStaticParams|loader/.test(code)) {
     return
   }
@@ -199,10 +209,13 @@ export async function transformTreeShakeClient(code: string, id: string, root?: 
           .map((key) => {
             if (key === 'loader') {
               if (root) {
-                // compute routeId relative to the app/ directory to match route contextKey format
+                // compute routeId relative to the router root so it matches the
+                // route contextKey format buildPage looks the stub up by.
                 // contextKeys are like "./_layout.tsx", "./matches-test/page1+ssg.tsx"
                 const fromRoot = relative(root, id).replace(/\\/g, '/')
-                const routeId = './' + fromRoot.replace(/^app\//, '')
+                const prefix = routerRoot.replace(/^\.\//, '').replace(/\/$/, '') + '/'
+                const routeId =
+                  './' + (fromRoot.startsWith(prefix) ? fromRoot.slice(prefix.length) : fromRoot)
                 return makeLoaderRouteIdStub(routeId)
               }
               return EMPTY_LOADER_STRING

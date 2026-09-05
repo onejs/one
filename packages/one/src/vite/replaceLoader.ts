@@ -1,13 +1,13 @@
-// matches the routeId stub return value in both minified and non-minified code:
+// matches this route's own routeId stub return value, minified or not:
 //   non-minified: return "./loader-refetch/index.tsx"
 //   minified:     return"./loader-refetch/index.tsx"
 //   minified (rolldown): return`./loader-refetch/index.tsx`
-const routeIdReturnRegex = /return\s*["'`]\.\/[^"'`]+["'`]/
-
 // a chunk can hold more than one route's stub once the bundler merges routes,
-// so target this route's own id when we know it rather than the first stub
+// so always target this route's own id
 const routeIdReturnRegexFor = (routeId: string) =>
   new RegExp(`return\\s*["'\`]${routeId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'\`]`)
+
+const anyRouteIdReturnRegex = /return\s*["'`](\.\/[^"'`]+)["'`]/
 
 export function replaceLoader({
   code,
@@ -16,32 +16,32 @@ export function replaceLoader({
 }: {
   code: string
   loaderData: object
-  routeId?: string
+  routeId: string
 }) {
   const stringifiedData = JSON.stringify(loaderData)
   const safeData = stringifiedData.replace(/\$/g, '$$$$')
 
-  const out = (() => {
-    // old-style placeholder stub
-    if (code.includes('__vxrn__loader__')) {
-      return code.replace(
-        /["']__vxrn__loader__['"]/,
-        // make sure this ' ' is added in front,
-        // minifiers will do `return"something"
-        // but if its null then it becomes returnnull
-        ' ' + safeData
-      )
-    }
+  // old-style placeholder stub from the babel remove-server-code plugin
+  if (code.includes('__vxrn__loader__')) {
+    return code.replace(
+      /["']__vxrn__loader__['"]/,
+      // make sure this ' ' is added in front,
+      // minifiers will do `return"something"
+      // but if its null then it becomes returnnull
+      ' ' + safeData
+    )
+  }
 
-    // new-style routeId stub from clientTreeShakePlugin
-    // works with both minified (return"./path") and non-minified (return "./path") code
-    const stubRegex = routeId ? routeIdReturnRegexFor(routeId) : routeIdReturnRegex
-    if (stubRegex.test(code)) {
-      return code.replace(stubRegex, 'return ' + safeData)
-    }
+  // routeId stub from clientTreeShakePlugin
+  const stubRegex = routeIdReturnRegexFor(routeId)
+  if (!stubRegex.test(code)) {
+    const found = code.match(anyRouteIdReturnRegex)
+    throw new Error(
+      `[one] no loader stub for route "${routeId}" in its client chunk${
+        found ? `, found a stub for "${found[1]}" instead` : ''
+      }. clientTreeShakePlugin must emit a routeId relative to the configured router root so it matches the route contextKey.`
+    )
+  }
 
-    return code + `\nexport const loader = () => (${stringifiedData})`
-  })()
-
-  return out
+  return code.replace(stubRegex, 'return ' + safeData)
 }
