@@ -18,7 +18,6 @@ import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import type { RouteIndex } from '../../utils/routeIndex'
 import { isRouteFileWatchEvent } from '../../utils/routeFileWatch'
 import { trackLoaderDependencies } from '../../utils/trackLoaderDependencies'
-import { replaceLoader } from '../../vite/replaceLoader'
 import type { One, RouteInfo } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
@@ -561,15 +560,6 @@ export function createFileSystemRouterPlugin(
             }
           }
 
-          if (loaderData) {
-            // add loader back in!
-            transformedJS = replaceLoader({
-              code: transformedJS,
-              loaderData,
-              routeId: route.file,
-            })
-          }
-
           const platform = url.searchParams.get('platform')
 
           if (platform === 'ios' || platform === 'android' || platform === 'native') {
@@ -583,10 +573,13 @@ export function createFileSystemRouterPlugin(
               )
             }
 
-            // [3] Just use a simple function to return the loader data for now.
-            const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
+            return `exports.loader = () => (${JSON.stringify(loaderData)});`
+          }
 
-            return nativeTransformedJS
+          if (loaderData) {
+            // the client only reads loader() off this module, so serve the data
+            // alone instead of the whole route module with its stub rewritten
+            return `export function loader(){return ${JSON.stringify(loaderData)}}`
           }
 
           return transformedJS

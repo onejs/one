@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { describe, expect, test } from 'vitest'
 
 // `/posts/[slug]+ssg.tsx` holds the page body, `/mirror` and `/alt` re-export it.
@@ -47,7 +48,7 @@ describe('routes that other routes re-export', () => {
     }
   })
 
-  test('every route emits a client loader carrying its own data', () => {
+  test('every route emits a client loader carrying its own data', async () => {
     const assets = readdirSync(join(dist, 'client', 'assets'))
 
     for (const [prefix, slug] of [
@@ -55,13 +56,22 @@ describe('routes that other routes re-export', () => {
       ['mirror_hello-world', 'hello-world'],
       ['alt_another-post', 'another-post'],
     ]) {
-      const file = assets.find(
+      const nativeFile = assets.find(
         (name) => name.startsWith(`${prefix}_`) && name.endsWith('vxrn_loader.native.js')
       )
-      expect(file, prefix).toBeDefined()
+      expect(nativeFile, prefix).toBeDefined()
+      const nativeCode = readFileSync(join(dist, 'client', 'assets', nativeFile!), 'utf-8')
+      expect(nativeCode, prefix).toContain(`content for ${slug}`)
 
-      const code = readFileSync(join(dist, 'client', 'assets', file!), 'utf-8')
-      expect(code, prefix).toContain(`content for ${slug}`)
+      // the browser evaluates this module, so it has to be valid esm with one
+      // loader export even when the route re-exports its loader from another
+      // route and its chunk holds no stub of its own
+      const file = assets.find(
+        (name) => name.startsWith(`${prefix}_`) && name.endsWith('vxrn_loader.js')
+      )
+      expect(file, prefix).toBeDefined()
+      const module = await import(pathToFileURL(join(dist, 'client', 'assets', file!)).href)
+      expect(module.loader(), prefix).toEqual({ slug, content: `content for ${slug}` })
     }
   })
 })
