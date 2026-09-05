@@ -1,10 +1,26 @@
+export type MetroContextParams = {
+    recursive: boolean;
+    filter: {
+        pattern: string;
+        flags: string;
+    };
+    mode: 'sync' | 'eager' | 'lazy' | 'lazy-once';
+};
 export type MetroDependencyData = {
     key?: string;
     asyncType?: 'async' | 'weak' | 'maybeSync' | null;
+    contextParams?: MetroContextParams;
     locs: Array<{
-        line: number;
-        column: number;
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
     }>;
+    isOptional?: boolean;
     isESMImportAtSource?: boolean;
     isESMImport?: boolean;
     index?: number;
@@ -57,6 +73,51 @@ export type WrapModuleOptions = {
     dependencyMapName?: string;
     requireAlias?: boolean;
 };
+export type OneRouterMetroOptions = {
+    ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY?: string;
+    ONE_ROUTER_LINKING_CONFIG?: unknown;
+    ONE_ROUTER_ROOT_FOLDER_NAME?: string;
+    ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING?: string;
+    ONE_SETUP_FILE_NATIVE?: string;
+};
+/**
+ * one's router options reach the transformer on the same channel the babel
+ * transformer reads them from, as the options of its `one-router-metro` plugin
+ * entry.
+ */
+export declare function getOneRouterMetroOptions(options: MetroWorkerOptions): OneRouterMetroOptions | undefined;
+/**
+ * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
+ * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
+ * the rest are prefixes.
+ */
+export declare function getModuleResolverAliases(options: MetroWorkerOptions): Record<string, string> | undefined;
+/**
+ * Resolves one tsconfig-path alias to a specifier relative to the importing
+ * file. The native worker replaces the babel transformer, so without this every
+ * aliased import fails to resolve.
+ */
+export declare function resolveAliasSpecifier(specifier: string, filename: string, projectRoot: string, aliases: Record<string, string>): string | undefined;
+/**
+ * Rewrites aliased import/export/require specifiers in place.
+ */
+export declare function applyModuleResolverAliases(code: string, filename: string, projectRoot: string, aliases: Record<string, string>): string;
+/**
+ * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars`. In
+ * production every `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in
+ * development each one is routed through the `expo/virtual/env` module so edits
+ * to .env take effect without a full rebuild. Without this the reads survive
+ * into the bundle and every EXPO_PUBLIC_ value is undefined at runtime.
+ */
+export declare function applyExpoInlineEnvVars(code: string, filename: string, isProduction: boolean): string;
+/**
+ * Native port of one's `babel-plugin-one-router-metro`. The native worker
+ * replaces the babel transformer wholesale, so without this the router entry
+ * keeps `process.env.ONE_ROUTER_*` reads that never resolve: `require.context`
+ * gets a non-literal regex and metro drops the entire route tree, and the
+ * configured setup file is never imported.
+ */
+export declare function applyOneRouterMetro(code: string, filename: string, options: OneRouterMetroOptions): string;
 /**
  * Recursively collects identifier names from patterns (bindings).
  */
@@ -116,7 +177,7 @@ export declare function wrapModule(code: string, options?: WrapModuleOptions): s
 /**
  * Metro canonical dependency qualifier key format.
  */
-export declare function getDependencyKey(name: string, isESM: boolean, asyncType?: 'async' | 'weak' | 'maybeSync' | null): string;
+export declare function getDependencyKey(name: string, isESM: boolean, asyncType?: 'async' | 'weak' | 'maybeSync' | null, contextParams?: MetroContextParams): string;
 /**
  * Rewrites require("dep") calls to Metro's dependency ABI:
  * require(_dependencyMap[index], "dep")
@@ -141,6 +202,7 @@ export declare function rewriteDependencyCalls(code: string, dependencies: Metro
  */
 export declare function extractDependencies(code: string, filename: string, options?: {
     asyncRequireModulePath?: string;
+    allowOptionalDependencies?: any;
 }): MetroDependency[];
 /**
  * Main transform entry point conforming to Metro's worker contract with ZERO Babel.

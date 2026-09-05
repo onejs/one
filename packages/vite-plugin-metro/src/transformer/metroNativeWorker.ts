@@ -6,10 +6,18 @@ import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
 
+export type MetroContextParams = {
+  recursive: boolean
+  filter: { pattern: string; flags: string }
+  mode: 'sync' | 'eager' | 'lazy' | 'lazy-once'
+}
+
 export type MetroDependencyData = {
   key?: string
   asyncType?: 'async' | 'weak' | 'maybeSync' | null
-  locs: Array<{ line: number; column: number }>
+  contextParams?: MetroContextParams
+  locs: Array<{ start: { line: number; column: number }; end: { line: number; column: number } }>
+  isOptional?: boolean
   isESMImportAtSource?: boolean
   isESMImport?: boolean
   index?: number
@@ -83,6 +91,328 @@ function langForFilename(filename: string): 'ts' | 'tsx' | 'jsx' {
   if (filename.endsWith('.tsx')) return 'tsx'
   if (filename.endsWith('.ts')) return 'ts'
   return 'jsx'
+}
+
+export type OneRouterMetroOptions = {
+  ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY?: string
+  ONE_ROUTER_LINKING_CONFIG?: unknown
+  ONE_ROUTER_ROOT_FOLDER_NAME?: string
+  ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING?: string
+  ONE_SETUP_FILE_NATIVE?: string
+}
+
+/**
+ * one's router options reach the transformer on the same channel the babel
+ * transformer reads them from, as the options of its `one-router-metro` plugin
+ * entry.
+ */
+export function getOneRouterMetroOptions(options: MetroWorkerOptions): OneRouterMetroOptions | undefined {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  if (!Array.isArray(plugins)) return undefined
+  for (const plugin of plugins) {
+    if (Array.isArray(plugin) && typeof plugin[0] === 'string' && plugin[0].includes('one-router-metro')) {
+      return plugin[1] as OneRouterMetroOptions
+    }
+  }
+  return undefined
+}
+
+/**
+ * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
+ * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
+ * the rest are prefixes.
+ */
+export function getModuleResolverAliases(
+  options: MetroWorkerOptions
+): Record<string, string> | undefined {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  if (!Array.isArray(plugins)) return undefined
+  for (const plugin of plugins) {
+    if (
+      Array.isArray(plugin) &&
+      typeof plugin[0] === 'string' &&
+      plugin[0].includes('module-resolver')
+    ) {
+      const alias = plugin[1]?.alias
+      if (alias && typeof alias === 'object') return alias
+    }
+  }
+  return undefined
+}
+
+/**
+ * Resolves one tsconfig-path alias to a specifier relative to the importing
+ * file. The native worker replaces the babel transformer, so without this every
+ * aliased import fails to resolve.
+ */
+export function resolveAliasSpecifier(
+  specifier: string,
+  filename: string,
+  projectRoot: string,
+  aliases: Record<string, string>
+): string | undefined {
+  for (const [rawKey, value] of Object.entries(aliases)) {
+    let target: string | undefined
+    if (rawKey.endsWith('$')) {
+      if (specifier === rawKey.slice(0, -1)) target = value
+    } else if (specifier === rawKey || specifier.startsWith(`${rawKey}/`)) {
+      target = value + specifier.slice(rawKey.length)
+    }
+    if (target === undefined) continue
+
+    const abs = path.resolve(projectRoot, target)
+    let rel = path.relative(path.dirname(filename), abs).split(path.sep).join('/')
+    if (!rel.startsWith('.')) rel = `./${rel}`
+    return rel
+  }
+  return undefined
+}
+
+/**
+ * Rewrites aliased import/export/require specifiers in place.
+ */
+export function applyModuleResolverAliases(
+  code: string,
+  filename: string,
+  projectRoot: string,
+  aliases: Record<string, string>
+): string {
+  const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
+  if (parsed?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for alias resolution: ${parsed.errors[0].message}`
+    )
+  }
+  if (!parsed?.program) return code
+
+  const ms = new MagicString(code)
+  let changed = false
+
+  function rewrite(sourceNode: any) {
+    if (sourceNode?.type !== 'Literal' || typeof sourceNode.value !== 'string') return
+    const resolved = resolveAliasSpecifier(sourceNode.value, filename, projectRoot, aliases)
+    if (resolved === undefined) return
+    ms.overwrite(sourceNode.start, sourceNode.end, JSON.stringify(resolved))
+    changed = true
+  }
+
+  function walk(node: any) {
+    if (!node || typeof node !== 'object') return
+
+    if (
+      node.type === 'ImportDeclaration' ||
+      node.type === 'ExportNamedDeclaration' ||
+      node.type === 'ExportAllDeclaration' ||
+      node.type === 'ImportExpression'
+    ) {
+      rewrite(node.source)
+    } else if (
+      node.type === 'CallExpression' &&
+      node.callee?.type === 'Identifier' &&
+      node.callee.name === 'require'
+    ) {
+      rewrite(node.arguments?.[0])
+    }
+
+    for (const k of Object.keys(node)) {
+      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      const child = node[k]
+      if (Array.isArray(child)) {
+        for (const item of child) walk(item)
+      } else if (child && typeof child === 'object') {
+        walk(child)
+      }
+    }
+  }
+
+  walk(parsed.program)
+  return changed ? ms.toString() : code
+}
+
+/**
+ * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars`. In
+ * production every `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in
+ * development each one is routed through the `expo/virtual/env` module so edits
+ * to .env take effect without a full rebuild. Without this the reads survive
+ * into the bundle and every EXPO_PUBLIC_ value is undefined at runtime.
+ */
+export function applyExpoInlineEnvVars(
+  code: string,
+  filename: string,
+  isProduction: boolean
+): string {
+  const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
+  if (parsed?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for env inlining: ${parsed.errors[0].message}`
+    )
+  }
+  if (!parsed?.program) return code
+
+  const ms = new MagicString(code)
+  let needsEnvImport = false
+
+  function keyOf(prop: any, computed: boolean): string | undefined {
+    if (!computed && prop?.type === 'Identifier') return prop.name
+    if (prop?.type === 'Literal' && typeof prop.value === 'string') return prop.value
+    return undefined
+  }
+
+  function walk(node: any, parent: any) {
+    if (!node || typeof node !== 'object') return
+
+    if (node.type === 'MemberExpression' || node.type === 'OptionalMemberExpression') {
+      const obj = node.object
+      const isProcessEnv =
+        (obj?.type === 'MemberExpression' || obj?.type === 'OptionalMemberExpression') &&
+        obj.object?.type === 'Identifier' &&
+        obj.object.name === 'process' &&
+        keyOf(obj.property, obj.computed) === 'env'
+      // an assignment target is left alone, matching the babel plugin: rewriting
+      // it would produce a write to the virtual module.
+      const isAssignmentTarget =
+        parent?.type === 'AssignmentExpression' && parent.left === node
+      const key = keyOf(node.property, node.computed)
+
+      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
+        if (isProduction) {
+          ms.overwrite(node.start, node.end, JSON.stringify(process.env[key] ?? undefined))
+        } else {
+          ms.overwrite(node.start, node.end, `_$$_EXPO_ENV.${key}`)
+          needsEnvImport = true
+        }
+        return
+      }
+    }
+
+    for (const k of Object.keys(node)) {
+      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      const child = node[k]
+      if (Array.isArray(child)) {
+        for (const item of child) walk(item, node)
+      } else if (child && typeof child === 'object') {
+        walk(child, node)
+      }
+    }
+  }
+
+  walk(parsed.program, null)
+
+  if (needsEnvImport) {
+    ms.prepend(`import { env as _$$_EXPO_ENV } from "expo/virtual/env";\n`)
+  }
+  return ms.hasChanged() ? ms.toString() : code
+}
+
+/**
+ * Native port of one's `babel-plugin-one-router-metro`. The native worker
+ * replaces the babel transformer wholesale, so without this the router entry
+ * keeps `process.env.ONE_ROUTER_*` reads that never resolve: `require.context`
+ * gets a non-literal regex and metro drops the entire route tree, and the
+ * configured setup file is never imported.
+ */
+export function applyOneRouterMetro(
+  code: string,
+  filename: string,
+  options: OneRouterMetroOptions
+): string {
+  const isMetroEntry = filename.endsWith('metro-entry.js')
+  const isEntryCtx = filename.endsWith('metro-entry-ctx.js')
+  if (!isMetroEntry && !isEntryCtx) return code
+
+  const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
+  if (parsed?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for one-router-metro: ${parsed.errors[0].message}`
+    )
+  }
+  if (!parsed?.program) return code
+
+  const ms = new MagicString(code)
+  let lastImportEnd = -1
+
+  function replacementFor(key: string): string | undefined {
+    if (key.startsWith('ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY')) {
+      return JSON.stringify(options.ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY)
+    }
+    if (key.startsWith('ONE_ROUTER_ROOT_FOLDER_NAME')) {
+      return JSON.stringify(options.ONE_ROUTER_ROOT_FOLDER_NAME)
+    }
+    if (key.startsWith('ONE_ROUTER_REQUIRE_CONTEXT_REGEX')) {
+      // must become a real regex literal: metro rejects any other node type as
+      // the third argument of require.context.
+      return `/${options.ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING}/`
+    }
+    if (key === 'ONE_ROUTER_LINKING_CONFIG') {
+      // gated to the entry so a user module reading this name is left alone
+      return isMetroEntry ? JSON.stringify(options.ONE_ROUTER_LINKING_CONFIG ?? null) : undefined
+    }
+    if (key === 'ONE_SETUP_FILE_NATIVE') {
+      return options.ONE_SETUP_FILE_NATIVE
+        ? JSON.stringify(options.ONE_SETUP_FILE_NATIVE)
+        : 'undefined'
+    }
+    return undefined
+  }
+
+  function walk(node: any, parent: any) {
+    if (!node || typeof node !== 'object') return
+
+    if (node.type === 'ImportDeclaration' && parent === parsed.program) {
+      lastImportEnd = Math.max(lastImportEnd, node.end)
+    }
+
+    if (
+      node.type === 'MemberExpression' &&
+      node.object?.type === 'MemberExpression' &&
+      !node.object.computed &&
+      node.object.object?.type === 'Identifier' &&
+      node.object.object.name === 'process' &&
+      node.object.property?.type === 'Identifier' &&
+      node.object.property.name === 'env'
+    ) {
+      const key = node.computed
+        ? node.property?.type === 'Literal' && typeof node.property.value === 'string'
+          ? node.property.value
+          : undefined
+        : node.property?.type === 'Identifier'
+          ? node.property.name
+          : undefined
+      const isAssignTarget =
+        parent?.type === 'AssignmentExpression' && parent.left === node
+      if (key && !isAssignTarget) {
+        const replacement = replacementFor(key)
+        if (replacement !== undefined) {
+          ms.overwrite(node.start, node.end, replacement)
+        }
+      }
+    }
+
+    for (const k of Object.keys(node)) {
+      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      const child = node[k]
+      if (Array.isArray(child)) {
+        for (const item of child) walk(item, node)
+      } else if (child && typeof child === 'object') {
+        walk(child, node)
+      }
+    }
+  }
+
+  walk(parsed.program, parsed.program)
+
+  // the setup file goes after the existing imports so react-native is
+  // initialized before it runs, matching the babel plugin's ordering.
+  if (isMetroEntry && options.ONE_SETUP_FILE_NATIVE) {
+    const stmt = `\nimport ${JSON.stringify(options.ONE_SETUP_FILE_NATIVE)};`
+    if (lastImportEnd >= 0) {
+      ms.appendRight(lastImportEnd, stmt)
+    } else {
+      ms.prepend(`${stmt}\n`)
+    }
+  }
+
+  return ms.toString()
 }
 
 /**
@@ -356,11 +686,24 @@ export function wrapModule(
 export function getDependencyKey(
   name: string,
   isESM: boolean,
-  asyncType: 'async' | 'weak' | 'maybeSync' | null = null
+  asyncType: 'async' | 'weak' | 'maybeSync' | null = null,
+  contextParams?: MetroContextParams
 ): string {
   let key = `${name}\0${isESM ? 'import' : 'require'}`
   if (asyncType != null) {
     key += `\0${asyncType}`
+  }
+  // mirrors metro's getKeyForDependency so a require.context dependency keys the
+  // same way metro's own collectDependencies would key it.
+  if (contextParams) {
+    key += [
+      '',
+      'context',
+      String(contextParams.recursive),
+      String(contextParams.filter.pattern),
+      String(contextParams.filter.flags),
+      contextParams.mode,
+    ].join('\0')
   }
   return key
 }
@@ -523,6 +866,33 @@ export function rewriteDependencyCalls(
           ms.overwrite(arg.start, arg.end, `${depMapName}[${index}], ${JSON.stringify(arg.value)}`)
         }
       }
+    } else if (
+      // metro rewrites require.context(dir, ...) down to a plain require of the
+      // single context module it registered for that directory.
+      node.type === 'CallExpression' &&
+      node.callee?.type === 'MemberExpression' &&
+      !node.callee.computed &&
+      node.callee.object?.type === 'Identifier' &&
+      node.callee.object.name === 'require' &&
+      node.callee.property?.type === 'Identifier' &&
+      node.callee.property.name === 'context' &&
+      !scopeTracker.isShadowed('require') &&
+      node.arguments?.length >= 1
+    ) {
+      const arg = node.arguments[0]
+      if (arg.type === 'Literal' && typeof arg.value === 'string') {
+        const dep = dependencies.find(
+          (d) => d.name === arg.value && d.data.contextParams != null
+        )
+        if (dep) {
+          const index = dep.data.index ?? dependencies.indexOf(dep)
+          ms.overwrite(
+            node.start,
+            node.end,
+            `require(${depMapName}[${index}], ${JSON.stringify(arg.value)})`
+          )
+        }
+      }
     }
 
     for (const key of Object.keys(node)) {
@@ -561,10 +931,12 @@ export function extractDependencies(
   filename: string,
   options?: {
     asyncRequireModulePath?: string
+    allowOptionalDependencies?: any
   }
 ): MetroDependency[] {
   const asyncRequirePath =
     options?.asyncRequireModulePath || 'metro-runtime/src/modules/asyncRequire'
+  const allowOptionalDependencies = options?.allowOptionalDependencies
   const lineOffsets = [0]
   for (let i = 0; i < code.length; i++) {
     if (code[i] === '\n') {
@@ -610,10 +982,21 @@ export function extractDependencies(
 
   const depMap = new Map<string, MetroDependency>()
 
-  function addDep(name: string, isESM: boolean, asyncType: 'async' | 'weak' | 'maybeSync' | null, pos: number) {
-    const key = getDependencyKey(name, isESM, asyncType)
+  function addDep(
+    name: string,
+    isESM: boolean,
+    asyncType: 'async' | 'weak' | 'maybeSync' | null,
+    start: number,
+    end: number,
+    contextParams?: MetroContextParams,
+    isOptional?: boolean
+  ) {
+    const key = getDependencyKey(name, isESM, asyncType, contextParams)
     let entry = depMap.get(key)
-    const loc = offsetToLoc(pos)
+    // metro reads loc.start.line / loc.end.line when it formats an
+    // unable-to-resolve error. a flat {line, column} makes that error path throw
+    // instead, which hides the real resolution failure behind a crash.
+    const loc = { start: offsetToLoc(start), end: offsetToLoc(end) }
     if (!entry) {
       entry = {
         name,
@@ -624,12 +1007,56 @@ export function extractDependencies(
           isESMImportAtSource: isESM,
           isESMImport: isESM,
           index: depMap.size,
+          ...(contextParams ? { contextParams } : {}),
+          ...(isOptional ? { isOptional: true } : {}),
         },
       }
       depMap.set(key, entry)
     } else {
       entry.data.locs.push(loc)
     }
+  }
+
+  // metro evaluates require.context arguments instead of demanding literals, so
+  // a module-scope const holding the value works there. this covers that one
+  // case rather than reimplementing babel's full constant evaluation.
+  const moduleConsts = new Map<string, any>()
+  for (const stmt of parseResult.program.body || []) {
+    if (stmt.type !== 'VariableDeclaration' || stmt.kind !== 'const') continue
+    for (const decl of stmt.declarations || []) {
+      if (decl.id?.type === 'Identifier' && decl.init?.type === 'Literal') {
+        moduleConsts.set(decl.id.name, decl.init)
+      }
+    }
+  }
+
+  function resolveConst(node: any): any {
+    if (node?.type === 'Identifier') return moduleConsts.get(node.name)
+    return node
+  }
+
+  // mirrors metro's isOptionalDependency: a require within three statement
+  // levels of a try block is allowed to fail resolution. optional native modules
+  // like react-native-worklets-core are required exactly this way, and treating
+  // them as required fails the whole build.
+  const ancestors: any[] = []
+  function isOptionalHere(name: string): boolean {
+    if (!allowOptionalDependencies) return false
+    if (Array.isArray(allowOptionalDependencies.exclude)) {
+      if (allowOptionalDependencies.exclude.includes(name)) return false
+    }
+    let sCount = 0
+    for (let i = ancestors.length - 1; i >= 0 && sCount < 3; i--) {
+      const n = ancestors[i]
+      const isStatement = /(?:Statement|Declaration)$/.test(n.type)
+      if (!isStatement) continue
+      if (n.type === 'BlockStatement') {
+        const parent = ancestors[i - 1]
+        return parent?.type === 'TryStatement' && parent.block === n
+      }
+      sCount += 1
+    }
+    return false
   }
 
   const scopeTracker = new ScopeTracker()
@@ -649,6 +1076,7 @@ export function extractDependencies(
     if (!node || typeof node !== 'object') return
 
     let pushedScope = false
+    ancestors.push(node)
 
     if (
       node.type === 'FunctionDeclaration' ||
@@ -697,7 +1125,7 @@ export function extractDependencies(
           !node.specifiers?.length ||
           node.specifiers.some((s: any) => s.importKind !== 'type')
         if (hasValueSpecifier) {
-          addDep(node.source.value, true, null, node.start)
+          addDep(node.source.value, true, null, node.start, node.end)
         }
       }
     } else if (
@@ -705,12 +1133,12 @@ export function extractDependencies(
       node.source?.value
     ) {
       if (node.exportKind !== 'type') {
-        addDep(node.source.value, true, null, node.start)
+        addDep(node.source.value, true, null, node.start, node.end)
       }
     } else if (node.type === 'ImportExpression') {
       if (node.source?.type === 'Literal' && typeof node.source.value === 'string') {
-        addDep(node.source.value, true, 'async', node.start)
-        addDep(asyncRequirePath, false, null, node.start)
+        addDep(node.source.value, true, 'async', node.start, node.end)
+        addDep(asyncRequirePath, false, null, node.start, node.end)
       } else {
         throw new Error(`[vxrn/metro] Dynamic import with non-string literal is not supported by Metro in ${filename}`)
       }
@@ -724,8 +1152,81 @@ export function extractDependencies(
         node.arguments?.[0]?.type === 'Literal' &&
         typeof node.arguments[0].value === 'string'
       ) {
-        addDep(node.arguments[0].value, false, null, node.start)
+        addDep(
+          node.arguments[0].value,
+          false,
+          null,
+          node.start,
+          node.end,
+          undefined,
+          node.arguments[0].value !== asyncRequirePath && isOptionalHere(node.arguments[0].value)
+        )
       }
+    } else if (
+      // require.context(dir, recursive?, filter?, mode?) registers a whole
+      // directory as one dependency. one's router entry uses it for the route
+      // tree, so dropping it silently omits every route from the bundle.
+      node.type === 'CallExpression' &&
+      node.callee?.type === 'MemberExpression' &&
+      !node.callee.computed &&
+      node.callee.object?.type === 'Identifier' &&
+      node.callee.object.name === 'require' &&
+      node.callee.property?.type === 'Identifier' &&
+      node.callee.property.name === 'context' &&
+      !scopeTracker.isShadowed('require')
+    ) {
+      const args = node.arguments || []
+      // metro evaluates these arguments rather than requiring literals, so a
+      // module-scope const holding the string is valid. one's router entry reads
+      // its route root through exactly such a const.
+      const dir = resolveConst(args[0])
+      if (dir?.type !== 'Literal' || typeof dir.value !== 'string') {
+        throw new Error(
+          `[vxrn/metro] First argument of require.context must be a string literal in ${filename}`
+        )
+      }
+      if (args.length > 4) {
+        throw new Error(
+          `[vxrn/metro] Too many arguments provided to require.context in ${filename}. Expected 4, got: ${args.length}`
+        )
+      }
+
+      let recursive = true
+      const recursiveArg = resolveConst(args[1])
+      if (recursiveArg) {
+        if (recursiveArg.type !== 'Literal' || typeof recursiveArg.value !== 'boolean') {
+          throw new Error(
+            `[vxrn/metro] Second argument of require.context must be an optional boolean literal in ${filename}`
+          )
+        }
+        recursive = recursiveArg.value
+      }
+
+      let filter = { pattern: '.*', flags: '' }
+      const filterArg = resolveConst(args[2])
+      if (filterArg) {
+        // oxc reports regex literals as Literal nodes carrying a `regex` field.
+        if (filterArg.type !== 'Literal' || !filterArg.regex) {
+          throw new Error(
+            `[vxrn/metro] Third argument of require.context must be an optional RegExp literal in ${filename}, instead found node of type: ${filterArg.type}`
+          )
+        }
+        filter = { pattern: filterArg.regex.pattern, flags: filterArg.regex.flags || '' }
+      }
+
+      let mode: MetroContextParams['mode'] = 'sync'
+      const modeArg = resolveConst(args[3])
+      if (modeArg) {
+        const m = modeArg.type === 'Literal' ? modeArg.value : undefined
+        if (m !== 'sync' && m !== 'eager' && m !== 'lazy' && m !== 'lazy-once') {
+          throw new Error(
+            `[vxrn/metro] require.context mode must be one of sync, eager, lazy, lazy-once in ${filename}`
+          )
+        }
+        mode = m
+      }
+
+      addDep(dir.value, false, null, node.start, node.end, { recursive, filter, mode })
     }
 
     for (const key of Object.keys(node)) {
@@ -738,6 +1239,7 @@ export function extractDependencies(
       }
     }
 
+    ancestors.pop()
     if (pushedScope) {
       scopeTracker.exit()
     }
@@ -780,7 +1282,38 @@ export async function transform(
   data: Buffer | string,
   options: MetroWorkerOptions
 ): Promise<MetroWorkerResult> {
-  const sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+  let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+
+  // expo's own transform worker substitutes the source of two virtual files
+  // before transforming them. this worker replaces that worker outright, so
+  // without the same substitution `expo/virtual/env` stays a bare
+  // `process.env` re-export and no .env file ever reaches the bundle.
+  const environment = options.customTransformOptions?.environment
+  const isClientEnvironment = environment !== 'node' && environment !== 'react-server'
+
+  if (isClientEnvironment && /[\\/]expo[\\/]virtual[\\/]env\.js$/.test(filename)) {
+    if (options.dev) {
+      const rel = path.relative(path.dirname(filename), projectRoot).split(path.sep).join('/')
+      sourceCode = `const dotEnvModules = require.context(${JSON.stringify(rel)},false,/^\\.\\/\\.env/);
+export const env = !dotEnvModules.keys().length ? process.env : { ...process.env, ...['.env', '.env.development', '.env.local', '.env.development.local'].reduce((acc, file) => {
+  return { ...acc, ...(dotEnvModules(file)?.default ?? {}) };
+}, {}) };`
+    } else {
+      // production inlines every value at its use site, so reaching this module
+      // at all is a bug worth naming rather than silently returning undefined.
+      sourceCode = `export const env = new Proxy({}, {
+  get(target, key) {
+    throw new Error(\`Attempting to access internal environment variable "\${String(key)}" is not supported in production bundles.\`);
+  },
+});`
+    }
+  } else if (/(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/.test(filename)) {
+    const { parseEnvFile } = await import(
+      '@expo/metro-config/build/transform-worker/dot-env-development'
+    )
+    sourceCode = `export default ${JSON.stringify(parseEnvFile(sourceCode, isClientEnvironment))};`
+  }
+
   checkReservedStrings(sourceCode, config, options)
 
   // 1. JSON files
@@ -944,6 +1477,15 @@ export async function transform(
   let code = sourceCode
   const intermediateMaps: any[] = []
 
+  // Step A0: one's router entry rewrites. must run before dependency extraction
+  // so the injected setup import and the inlined require.context regex are both
+  // visible to it.
+  const oneRouterOptions = getOneRouterMetroOptions(options)
+  if (oneRouterOptions) {
+    code = applyOneRouterMetro(code, filename, oneRouterOptions)
+  }
+
+
   // Step A: Flow stripping
   const hasFlowPragma = code.includes('@flow')
   const isFlowCandidate =
@@ -977,9 +1519,29 @@ export async function transform(
   const asyncRequirePath =
     config.asyncRequireModulePath || 'metro-runtime/src/modules/asyncRequire'
 
+  // Step A1: tsconfig path aliases. runs after flow stripping so the parse can
+  // succeed, and before dependency extraction so metro only ever sees
+  // specifiers it can resolve. the substring guard keeps the extra parse off
+  // the files that have no aliased import at all.
+  const aliases = getModuleResolverAliases(options)
+  if (aliases && projectRoot) {
+    const aliasKeys = Object.keys(aliases)
+    if (aliasKeys.some((k) => code.includes(k.endsWith('$') ? k.slice(0, -1) : k))) {
+      code = applyModuleResolverAliases(code, filename, projectRoot, aliases)
+    }
+  }
+
+  // Step A2: expo public env vars. after flow stripping so the parse succeeds,
+  // before extraction so the injected `expo/virtual/env` import is seen. the
+  // substring guard keeps the extra parse off files with no EXPO_PUBLIC_ read.
+  if (code.includes('EXPO_PUBLIC_')) {
+    code = applyExpoInlineEnvVars(code, filename, !options.dev)
+  }
+
   // Step B: Extract dependencies using oxc-parser (zero Babel, lexical scope aware)
   const dependencies = extractDependencies(code, filename, {
     asyncRequireModulePath: asyncRequirePath,
+    allowOptionalDependencies: config.allowOptionalDependencies,
   })
 
   // Step C: React Compiler (via @vxrn/compiler / oxc-transform-react)
@@ -1058,6 +1620,15 @@ export async function transform(
     throw new Error(`[vxrn/metro] Oxc transform failed for ${filename}: ${err.message || err}`)
   }
 
+  // oxc reports errors on the result rather than throwing. falling back to the
+  // untransformed source here leaves jsx and typescript in place, which only
+  // fails later in esbuild with a misleading message about the wrong step.
+  if (oxcRes.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Oxc transform failed for ${filename}: ${oxcRes.errors[0].message || oxcRes.errors[0]}`
+    )
+  }
+
   code = oxcRes.code || code
   if (oxcRes.map) {
     intermediateMaps.push(
@@ -1086,25 +1657,28 @@ export async function transform(
     }
   }
 
-  // steps C through E inject their own imports after step B extracted
-  // dependencies: the jsx runtime, react/compiler-runtime, oxc's
-  // @oxc-project/runtime helpers and the asset registry. metro only bundles what
-  // it was told about, so an unregistered require is a module missing from the
-  // bundle that throws the moment it runs. re-read the final code and register
-  // whatever it actually requires rather than naming each injector here.
-  for (const injected of extractDependencies(code, filename, {
+  // step B read the original source, but steps C through E both add and remove
+  // imports: they inject the jsx runtime, react/compiler-runtime, oxc's
+  // @oxc-project/runtime helpers and the asset registry, and oxc elides
+  // type-only imports typescript never emits. metro resolves and bundles exactly
+  // this list, so an extra entry is an unresolvable module that fails the build
+  // and a missing one is a module absent from the bundle. reconcile against what
+  // the final code actually requires.
+  const finalDeps = extractDependencies(code, filename, {
     asyncRequireModulePath: asyncRequirePath,
-  })) {
-    if (dependencies.some((d) => d.name === injected.name)) {
-      continue
-    }
-    dependencies.push({
-      ...injected,
-      data: {
-        ...injected.data,
-        index: dependencies.length,
-      },
-    })
+    allowOptionalDependencies: config.allowOptionalDependencies,
+  })
+  const finalNames = new Set(finalDeps.map((d) => d.name))
+  // keep the original entries, which carry the source's ESM metadata that the
+  // cjs-lowered code no longer shows, then append whatever was injected.
+  const reconciled = dependencies.filter((d) => finalNames.has(d.name))
+  for (const injected of finalDeps) {
+    if (reconciled.some((d) => d.name === injected.name)) continue
+    reconciled.push(injected)
+  }
+  dependencies.length = 0
+  for (const dep of reconciled) {
+    dependencies.push({ ...dep, data: { ...dep.data, index: dependencies.length } })
   }
 
   // Step F: Module Wrapping & Dependency ABI Rewriting with full sourcemap tracking

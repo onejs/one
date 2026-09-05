@@ -108,8 +108,13 @@ describe('metroNativeWorker', () => {
     expect(reactDep.data.isESMImportAtSource).toBe(true)
     expect(reactDep.data.asyncType).toBeNull()
     expect(reactDep.data.locs.length).toBeGreaterThan(0)
-    expect(reactDep.data.locs[0]).toHaveProperty('line')
-    expect(reactDep.data.locs[0]).toHaveProperty('column')
+    // metro's unable-to-resolve error path reads loc.start.line and loc.end.line,
+    // so a flat {line, column} makes that error throw and hide the real failure.
+    const loc = reactDep.data.locs[0]
+    expect(loc.start.line).toBeGreaterThan(0)
+    expect(loc.start.column).toBeGreaterThanOrEqual(0)
+    expect(loc.end.line).toBeGreaterThanOrEqual(loc.start.line)
+    expect(loc.end.column).toBeGreaterThanOrEqual(0)
 
     // CJS require flag
     const helperDep = deps.find((d) => d.name === './helper')!
@@ -119,6 +124,32 @@ describe('metroNativeWorker', () => {
     // Dynamic import flag
     const dynamicDep = deps.find((d) => d.name === './dynamic-module')!
     expect(dynamicDep.data.asyncType).toBe('async')
+  })
+
+  it('marks requires inside a try block optional', () => {
+    // optional native modules are required exactly this way. without
+    // data.isOptional metro fails the whole build when one is absent.
+    const code = `
+      let worklets
+      try {
+        worklets = require('react-native-worklets-core')
+      } catch {}
+      const always = require('./always-there')
+    `
+
+    const off = extractDependencies(code, 'setup.js')
+    expect(off.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBeUndefined()
+
+    const on = extractDependencies(code, 'setup.js', { allowOptionalDependencies: true })
+    expect(on.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBe(true)
+    expect(on.find((d) => d.name === './always-there')!.data.isOptional).toBeUndefined()
+
+    const excluded = extractDependencies(code, 'setup.js', {
+      allowOptionalDependencies: { exclude: ['react-native-worklets-core'] },
+    })
+    expect(
+      excluded.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional
+    ).toBeUndefined()
   })
 
   it('wraps modules in Metro CommonJS format with and without moduleId', () => {
