@@ -12,11 +12,10 @@ import {
 } from '../utils/cleanUrl'
 import { isResponse } from '../utils/isResponse'
 import { toAbsolute, toAbsoluteUrl } from '../utils/toAbsolute'
-import { replaceLoader } from '../vite/replaceLoader'
 import type { One, RouteInfo } from '../vite/types'
 import { getRouteExports } from './serverRouteModules'
 
-const { readFile, outputFile } = FSExtra
+const { outputFile } = FSExtra
 
 // Convert URL path (with forward slashes) to filesystem path for cross-platform compatibility
 function urlPathToFilePath(urlPath: string): string {
@@ -293,20 +292,15 @@ prefetchCSS()
           loaderPath = getLoaderPath(path)
           loaderData = {}
         } else {
-          const code = await readFile(clientJsPath, 'utf-8')
-          const withLoader =
-            // super dirty to quickly make ssr loaders work until we have better
-            `
-if (typeof document === 'undefined') globalThis.document = {}
-` +
-            replaceLoader({
-              code,
-              loaderData,
-              routeId: foundRoute.file,
-            })
-          await outputFile(loaderPartialPath, withLoader)
-          // native-friendly CJS version with just the data (no ESM imports)
-          const nativeCjs = `exports.loader = function(){return ${JSON.stringify(loaderData)}}`
+          // the loader module only ever has its loader() read off it, so it
+          // carries the data and nothing else. embedding the route chunk here
+          // duplicated the page module per url and broke when a route
+          // re-exported its loader from another route (the chunk then had no
+          // stub of its own to replace)
+          const data = JSON.stringify(loaderData)
+          await outputFile(loaderPartialPath, `export function loader(){return ${data}}`)
+          // native-friendly CJS version
+          const nativeCjs = `exports.loader = function(){return ${data}}`
           await outputFile(loaderPartialPath.replace(/\.js$/, '.native.js'), nativeCjs)
           await outputFile(uncachedNativePath, nativeCjs)
           loaderPath = getLoaderPath(path)
