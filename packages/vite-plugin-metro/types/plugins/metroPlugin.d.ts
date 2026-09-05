@@ -48,6 +48,10 @@ export type MetroPluginOptions = {
      * Use 'lazy' to speed up dev server startup when you don't always need Metro.
      */
     startup?: 'eager' | 'lazy';
+    /**
+     * Use custom native transforms (0% Babel worker) for Metro bundling.
+     */
+    nativeTransforms?: boolean;
 };
 export declare function metroPlugin(options?: MetroPluginOptions): PluginOption;
 export {};

@@ -157,6 +157,7 @@ export declare function getNativeAssetData(id: string, root: string, platform: s
  * Inspired by rollipop's swc-plugin.ts.
  */
 export declare function hermesCompatSWCPlugin(dev: boolean, sourceMaps?: boolean): Plugin;
+export declare const hermesCompatPlugin: typeof hermesCompatSWCPlugin;
 export declare function getHmrRuntimeSource(): string;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

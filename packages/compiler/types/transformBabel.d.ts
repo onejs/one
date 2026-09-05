@@ -13,13 +13,14 @@ export declare function getBabelOptions(props: Props): babel.TransformOptions | 
  * still applies the project's jsxImportSource and dev-mode settings, exactly
  * as it did when babel only stripped types here.
  */
-export declare function transformOxcReactCompiler(id: string, code: string, target: '18' | '19'): Promise<{
+export declare function transformOxcReactCompiler(id: string, code: string, target: '18' | '19', sourceMap?: boolean): Promise<{
     code: string;
-    map: undefined;
+    map: any;
 }>;
 /**
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
 export declare function transformBabel(id: string, code: string, options: babel.TransformOptions): Promise<babel.BabelFileResult>;
+export declare const shouldBabelReactNativeCodegen: ({ id, environment }: Props) => boolean;
 export {};
 //# sourceMappingURL=transformBabel.d.ts.map

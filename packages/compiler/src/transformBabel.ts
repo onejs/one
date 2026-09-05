@@ -55,8 +55,14 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   }
 
   if (enableNativewind || shouldBabelReanimated(props)) {
-    debug?.(`Using babel worklets on file ${props.id}`)
-    plugins.push(resolvePath('react-native-worklets/plugin', props.projectRoot))
+    try {
+      const workletsPlugin = resolvePath(
+        'react-native-worklets/plugin',
+        props.projectRoot
+      )
+      debug?.(`Using babel worklets on file ${props.id}`)
+      plugins.push(workletsPlugin)
+    } catch {}
   }
 
   if (shouldBabelReactCompiler(props)) {
@@ -88,11 +94,13 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 export async function transformOxcReactCompiler(
   id: string,
   code: string,
-  target: '18' | '19'
+  target: '18' | '19',
+  sourceMap = false
 ) {
   const { transform } = await import('oxc-transform-react')
   const result = await transform(id, code, {
     jsx: 'preserve',
+    sourcemap: sourceMap,
     reactCompiler: { target },
   })
 
@@ -114,7 +122,7 @@ export async function transformOxcReactCompiler(
     )
   }
 
-  return { code: result.code, map: undefined }
+  return { code: result.code, map: sourceMap ? (result.map as any) : undefined }
 }
 
 /**
@@ -195,15 +203,10 @@ const getBasePlugins = ({ development }: Props) =>
  * ----- react native codegen ----
  */
 
-// Codegen specification files need to go through the react-native codegen babel plugin.
-// See:
-// * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
-// * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
-
 const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
 const SPEC_FILE_RE = /[/\\]specs?[/\\]/
 
-const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
+export const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
   return (
     (environment === 'ios' || environment === 'android') &&
     (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id))

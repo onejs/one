@@ -171,6 +171,29 @@ export async function buildMetroConfigInputFromViteConfig(
     ...buildOutputExclusions,
   ]
 
+  const isNativeTransforms =
+    process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
+    metroPluginOptions.nativeTransforms === true
+
+  let nativeWorkerPath: string | undefined
+  if (isNativeTransforms) {
+    try {
+      nativeWorkerPath = require.resolve(
+        '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
+      )
+    } catch {
+      try {
+        nativeWorkerPath = require.resolve(
+          '../transformer/metroNativeWorker'
+        )
+      } catch {
+        nativeWorkerPath = require.resolve(
+          '../transformer/metroNativeWorker.ts'
+        )
+      }
+    }
+  }
+
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
     resolver: {
@@ -213,8 +236,13 @@ export async function buildMetroConfigInputFromViteConfig(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
       ),
+      ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     },
     reporter: await getTerminalReporter(projectRoot),
+  }
+
+  if (nativeWorkerPath) {
+    ;(defaultConfig.transformer as any).transformerPath = nativeWorkerPath
   }
 
   const merged = {
@@ -327,6 +355,29 @@ export async function getMetroConfigFromViteConfig(
     ...buildOutputExclusions,
   ]
 
+  const isNativeTransforms =
+    process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
+    metroPluginOptions.nativeTransforms === true
+
+  let nativeWorkerPath: string | undefined
+  if (isNativeTransforms) {
+    try {
+      nativeWorkerPath = require.resolve(
+        '@vxrn/vite-plugin-metro/transformer/metroNativeWorker'
+      )
+    } catch {
+      try {
+        nativeWorkerPath = require.resolve(
+          '../transformer/metroNativeWorker'
+        )
+      } catch {
+        nativeWorkerPath = require.resolve(
+          '../transformer/metroNativeWorker.ts'
+        )
+      }
+    }
+  }
+
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
     resolver: {
@@ -377,8 +428,13 @@ export async function getMetroConfigFromViteConfig(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
       ),
+      ...(nativeWorkerPath ? { transformerPath: nativeWorkerPath } : {}),
     },
     reporter: await getTerminalReporter(projectRoot),
+  }
+
+  if (nativeWorkerPath) {
+    ;(defaultConfig.transformer as any).transformerPath = nativeWorkerPath
   }
 
   const metroConfig = await loadConfig(

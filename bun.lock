@@ -13,6 +13,7 @@
       "devDependencies": {
         "@hono/node-server": "^1.19.14",
         "@manypkg/cli": "^0.25.1",
+        "@react-native-swc/worklets-plugin": "0.1.5",
         "@take-out/cli": "0.4.17",
         "@types/react": "^19.2.2",
         "check-dependency-version-consistency": "^3.0.3",
@@ -420,6 +421,7 @@
         "fs-extra": "^11.2.0",
         "hono": "^4.12.8",
         "lightningcss": "^1.30.1",
+        "magic-string": "^0.30.21",
         "micromatch": "^4.0.8",
         "nanoid": "^3.3.18",
         "oxc-parser": "^0.112.0",
@@ -617,10 +619,8 @@
       "name": "@vxrn/vite-flow",
       "version": "1.25.15",
       "dependencies": {
-        "@babel/core": "^7.28.5",
-        "@babel/helper-plugin-utils": "^7.27.1",
-        "@react-native/babel-preset": "^0.86.2",
         "@vxrn/resolve": "workspace:*",
+        "fast-flow-transform": "^0.0.3",
         "vite": "^8.2.2",
       },
       "devDependencies": {
@@ -702,6 +702,9 @@
       "dependencies": {
         "@expo/config-plugins": "~57.0.6",
         "@hono/node-server": "^1.19.14",
+        "@jridgewell/remapping": "^2.3.0",
+        "@jridgewell/trace-mapping": "^0.3.25",
+        "@react-native/codegen": "^0.86.2",
         "@react-native/dev-middleware": "^0.86.2",
         "@swc/core": "^1.14.0",
         "@vxrn/compiler": "workspace:*",
@@ -726,7 +729,9 @@
         "get-port-please": "^3.1.2",
         "hono": "^4.12.8",
         "image-size": "^1.2.1",
+        "magic-string": "^0.30.21",
         "micromatch": "^4.0.8",
+        "oxc-parser": "^0.112.0",
         "perfect-debounce": "^1.0.0",
         "picocolors": "^1.0.0",
         "pkg-types": "^1.0.3",
@@ -2361,6 +2366,8 @@
     "@react-native-community/template": ["@react-native-community/template@0.86.2", "", {}, "sha512-OuGaahEiKfZcExNvMNwGV3NKfNT8OHghF/y/fj9FlvYEdKa5NdYhWsOMXqxMxbdDxi8GmdsrcWy0Pq/ZBtpPCw=="],
 
     "@react-native-masked-view/masked-view": ["@react-native-masked-view/masked-view@0.3.2", "", { "peerDependencies": { "react": ">=16", "react-native": ">=0.57" } }, "sha512-XwuQoW7/GEgWRMovOQtX3A4PrXhyaZm0lVUiY8qJDvdngjLms9Cpdck6SmGAUNqQwcj2EadHC1HwL0bEyoa/SQ=="],
+
+    "@react-native-swc/worklets-plugin": ["@react-native-swc/worklets-plugin@0.1.5", "", {}, "sha512-q2ZFjUYf3fBJyAG6ziIm0pG1TNZ97FY8q0y492P9s3azbcLJeQKQQzkofO1M/EhcliznTvMXRVZWuM/jRYU2/A=="],
 
     "@react-native/assets-registry": ["@react-native/assets-registry@0.86.2", "", {}, "sha512-vcX/mBjWAVnWofu7KecotquI2unZ/tITwA7OGdq/mdY/zmGXIEvYhfEYyOQij/LRqi9WAL+iizInTBWnxDhK/Q=="],
 
