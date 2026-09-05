@@ -1,50 +1,56 @@
 import type { WorkletCandidate } from './types'
 
-export const AUTOWORKLET_FUNCTION_ARGS: Record<string, number[]> = {
-  useFrameCallback: [0],
-  useAnimatedStyle: [0],
-  useAnimatedProps: [0],
-  createAnimatedPropAdapter: [0],
-  useDerivedValue: [0],
-  useAnimatedScrollHandler: [0],
-  useAnimatedGestureHandler: [0],
-  useAnimatedReaction: [0, 1],
-  createAnimatedComponent: [0],
-  withTiming: [2],
-  withSpring: [2],
-  withDecay: [1],
-  withRepeat: [3],
-  runOnUI: [0],
-  executeOnUIRuntimeSync: [0],
-  scheduleOnUI: [0],
-  runOnUISync: [0],
-  runOnUIAsync: [0],
-  runOnRuntime: [1],
-  runOnRuntimeSync: [1],
-  runOnRuntimeAsync: [1],
-  scheduleOnRuntime: [1],
-  runOnRuntimeSyncWithId: [1],
-  scheduleOnRuntimeWithId: [1],
-  useTapGesture: [0],
-  usePanGesture: [0],
-  usePinchGesture: [0],
-  useRotationGesture: [0],
-  useFlingGesture: [0],
-  useLongPressGesture: [0],
-  useNativeGesture: [0],
-  useManualGesture: [0],
-  useHoverGesture: [0],
-  onBegin: [0],
-  onStart: [0],
-  onEnd: [0],
-  onFinalize: [0],
-  onUpdate: [0],
-  onChange: [0],
-  onTouchesDown: [0],
-  onTouchesMove: [0],
-  onTouchesUp: [0],
-  onTouchesCancelled: [0],
-}
+// null-prototype: callee names are arbitrary source identifiers, so a plain
+// object literal would resolve `constructor`, `toString` and friends off
+// Object.prototype and hand back a non-iterable.
+export const AUTOWORKLET_FUNCTION_ARGS: Record<string, number[]> = Object.assign(
+  Object.create(null),
+  {
+    useFrameCallback: [0],
+    useAnimatedStyle: [0],
+    useAnimatedProps: [0],
+    createAnimatedPropAdapter: [0],
+    useDerivedValue: [0],
+    useAnimatedScrollHandler: [0],
+    useAnimatedGestureHandler: [0],
+    useAnimatedReaction: [0, 1],
+    createAnimatedComponent: [0],
+    withTiming: [2],
+    withSpring: [2],
+    withDecay: [1],
+    withRepeat: [3],
+    runOnUI: [0],
+    executeOnUIRuntimeSync: [0],
+    scheduleOnUI: [0],
+    runOnUISync: [0],
+    runOnUIAsync: [0],
+    runOnRuntime: [1],
+    runOnRuntimeSync: [1],
+    runOnRuntimeAsync: [1],
+    scheduleOnRuntime: [1],
+    runOnRuntimeSyncWithId: [1],
+    scheduleOnRuntimeWithId: [1],
+    useTapGesture: [0],
+    usePanGesture: [0],
+    usePinchGesture: [0],
+    useRotationGesture: [0],
+    useFlingGesture: [0],
+    useLongPressGesture: [0],
+    useNativeGesture: [0],
+    useManualGesture: [0],
+    useHoverGesture: [0],
+    onBegin: [0],
+    onStart: [0],
+    onEnd: [0],
+    onFinalize: [0],
+    onUpdate: [0],
+    onChange: [0],
+    onTouchesDown: [0],
+    onTouchesMove: [0],
+    onTouchesUp: [0],
+    onTouchesCancelled: [0],
+  }
+)
 
 export function hasWorkletDirective(fnNode: any): boolean {
   if (!fnNode || !fnNode.body) return false
@@ -158,8 +164,8 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
     // Check auto-workletized calls
     if (node.type === 'CallExpression') {
       const calleeName = getCalleeName(node.callee)
-      if (calleeName && AUTOWORKLET_FUNCTION_ARGS[calleeName]) {
-        const argIndices = AUTOWORKLET_FUNCTION_ARGS[calleeName]
+      const argIndices = calleeName ? AUTOWORKLET_FUNCTION_ARGS[calleeName] : undefined
+      if (argIndices) {
         for (const idx of argIndices) {
           const arg = node.arguments[idx]
           if (!arg) continue

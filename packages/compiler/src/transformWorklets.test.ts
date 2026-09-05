@@ -66,6 +66,19 @@ describe('transformWorklets', () => {
     expect(result.map).toBeUndefined()
   })
 
+  it('ignores calls whose callee name collides with Object.prototype', async () => {
+    // reanimated calls .constructor(), .toString() and similar. these must not
+    // resolve against the auto-worklet argument map's prototype chain.
+    const code = `
+      const out = value.constructor(1)
+      const s = thing.toString()
+      const h = obj.hasOwnProperty('x')
+      const v = obj.valueOf()
+    `
+    const result = await transformWorklets('/app/collide.ts', code, false)
+    expect(result.code).not.toContain('__workletHash')
+  })
+
   it('transforms closure variables into worklet parameters', async () => {
     const code = `
       const factor = 2
