@@ -7,8 +7,13 @@ import { EMPTY_LOADER_STRING, makeLoaderRouteIdStub } from '../constants'
 export const clientTreeShakePlugin = (opts?: {
   // 'rolldown' when used in the native rolldown DevEngine (no vite environment context)
   runtime?: 'vite' | 'rolldown'
+  // the configured router root (One.PluginOptions.router.root), relative to the
+  // project root. the loader stub's routeId is built off it, so it must be the
+  // real one or buildPage cannot match the stub back to the route.
+  routerRoot?: string
 }): Plugin => {
   const runtime = opts?.runtime ?? 'vite'
+  const routerRoot = opts?.routerRoot ?? 'app'
 
   return {
     name: 'one-client-tree-shake',
@@ -34,7 +39,7 @@ export const clientTreeShakePlugin = (opts?: {
           return
         }
 
-        const out = await transformTreeShakeClient(code, id, process.cwd())
+        const out = await transformTreeShakeClient(code, id, process.cwd(), routerRoot)
 
         return out
       },
@@ -363,7 +368,12 @@ function getReferencedIdentifiers(
   return referenced
 }
 
-export async function transformTreeShakeClient(code: string, id: string, root?: string) {
+export async function transformTreeShakeClient(
+  code: string,
+  id: string,
+  root?: string,
+  routerRoot = 'app'
+) {
   if (!/generateStaticParams|loader/.test(code)) {
     return
   }
@@ -402,7 +412,7 @@ export async function transformTreeShakeClient(code: string, id: string, root?: 
   const ast = parseResult.program
 
   try {
-    return doTreeShakeClient(code, id, root, ast)
+    return doTreeShakeClient(code, id, root, ast, routerRoot)
   } catch (error) {
     if (isProd) {
       throw error instanceof Error ? error : new Error(String(error))
@@ -416,7 +426,13 @@ export async function transformTreeShakeClient(code: string, id: string, root?: 
   }
 }
 
-function doTreeShakeClient(code: string, id: string, root: string | undefined, ast: any) {
+function doTreeShakeClient(
+  code: string,
+  id: string,
+  root: string | undefined,
+  ast: any,
+  routerRoot: string
+) {
   const removed: Record<string, boolean> = {
     loader: false,
     generateStaticParams: false,
@@ -654,8 +670,13 @@ function doTreeShakeClient(code: string, id: string, root: string | undefined, a
     const stubs: string[] = []
     if (info.names.has('loader')) {
       if (root) {
+        // compute routeId relative to the router root so it matches the
+        // route contextKey format buildPage looks the stub up by.
+        // contextKeys are like "./_layout.tsx", "./matches-test/page1+ssg.tsx"
         const fromRoot = relative(root, id).replace(/\\/g, '/')
-        const routeId = './' + fromRoot.replace(/^app\//, '')
+        const prefix = routerRoot.replace(/^\.\//, '').replace(/\/$/, '') + '/'
+        const routeId =
+          './' + (fromRoot.startsWith(prefix) ? fromRoot.slice(prefix.length) : fromRoot)
         stubs.push(makeLoaderRouteIdStub(routeId))
       } else {
         stubs.push(EMPTY_LOADER_STRING)

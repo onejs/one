@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-plugin-metro",
-  "version": "1.25.15",
+  "version": "1.25.16",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
@@ -71,13 +71,13 @@
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/helper-plugin-utils": "^7.27.1",
-    "@jridgewell/remapping": "^0.3.25",
+    "@jridgewell/remapping": "^2.3.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/utils": "workspace:*",
     "babel-preset-expo": "~57.0.5",
-    "esbuild": "^0.28.1",
+    "esbuild": "^0.25.12",
     "fast-flow-transform": "^0.0.3",
     "launch-editor": "^2.10.0",
     "magic-string": "^0.30.21",
