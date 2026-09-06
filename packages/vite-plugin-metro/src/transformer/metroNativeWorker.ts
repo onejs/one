@@ -7,6 +7,7 @@ import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
 import { transformHermesLoops, transformReactNativeCodegen } from '@vxrn/compiler'
+import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 // `async function*`, the `async *name()` method shorthand, and `for await (`.
 // Hermes rejects all three at parse time with "async generators are unsupported".
@@ -211,6 +212,91 @@ export function getRemoveServerCodeRouterRoot(
  * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
  * the rest are prefixes.
  */
+/**
+ * Reads the env map one hands to its `import-meta-env-plugin`, with the
+ * platform's own values layered on top exactly as that plugin does. Without it
+ * every `import.meta.env.X` read compiles to a property of the empty
+ * `var import_meta = {}` oxc emits when it lowers ESM to CJS, so the whole map
+ * silently reads `undefined` on native.
+ */
+export function getImportMetaEnv(
+  options: MetroWorkerOptions
+): Record<string, string | boolean | undefined> {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  let env: Record<string, string | boolean | undefined> = {}
+  if (Array.isArray(plugins)) {
+    for (const plugin of plugins) {
+      if (
+        Array.isArray(plugin) &&
+        typeof plugin[0] === 'string' &&
+        plugin[0].includes('import-meta-env-plugin')
+      ) {
+        const found = plugin[1]?.env
+        if (found && typeof found === 'object') env = found
+      }
+    }
+  }
+  return {
+    ...env,
+    ...getPlatformEnv(metroPlatformToViteEnvironment(options.platform)),
+  }
+}
+
+// every babel plugin id this worker has a native port of. the worker runs no
+// babel at all, so a plugin outside this list has no effect whatsoever.
+const PORTED_BABEL_PLUGINS = [
+  'import-meta-env-plugin',
+  'one-router-metro',
+  'remove-server-code',
+  'module-resolver',
+  'environment-guard',
+  'inline-one-server-url',
+  // the worklets transform is a native oxc port, so both plugin names it can
+  // arrive under are covered.
+  'react-native-worklets/plugin',
+  'react-native-reanimated/plugin',
+  'babel-plugin-react-compiler',
+]
+
+// keyed on the plugins array so the scan happens once per bundle rather than
+// once per file, while every file still fails.
+const unportedPluginCache = new WeakMap<object, string[]>()
+
+/**
+ * A babel plugin the user added through `bundlerOptions.babelConfigOverrides`
+ * would silently do nothing here, because this worker replaced babel outright.
+ * Silently dropping someone's OTA or instrumentation plugin is worse than
+ * refusing to build, so it is named and thrown.
+ */
+export function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  if (!Array.isArray(plugins)) return
+
+  let unported = unportedPluginCache.get(plugins)
+  if (!unported) {
+    unported = []
+    for (const plugin of plugins) {
+      const id = Array.isArray(plugin) ? plugin[0] : plugin
+      if (typeof id !== 'string') {
+        unported.push('(a function or object plugin, which cannot be ported)')
+        continue
+      }
+      if (!PORTED_BABEL_PLUGINS.some((ported) => id.includes(ported))) {
+        unported.push(id)
+      }
+    }
+    unportedPluginCache.set(plugins, unported)
+  }
+
+  if (unported.length) {
+    throw new Error(
+      `[vxrn/metro] ONE_METRO_NATIVE_TRANSFORMS=1 runs no babel, so these babel plugins would be silently ignored:\n` +
+        unported.map((id) => `  - ${id}`).join('\n') +
+        `\n\nRemove them from bundlerOptions.babelConfigOverrides, or unset ONE_METRO_NATIVE_TRANSFORMS to go back to the babel transformer.`
+    )
+  }
+}
+
 export function getModuleResolverAliases(
   options: MetroWorkerOptions
 ): Record<string, string> | undefined {
@@ -336,7 +422,8 @@ export function applyModuleResolverAliases(
 export function applyInlineEnvVars(
   code: string,
   filename: string,
-  isProduction: boolean
+  isProduction: boolean,
+  env: Record<string, string | boolean | undefined> = {}
 ): string {
   const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
   if (parsed?.errors?.length) {
@@ -349,10 +436,28 @@ export function applyInlineEnvVars(
   const ms = new MagicString(code)
   let needsEnvImport = false
 
+  // edits are collected rather than written straight through, because a folded
+  // dead branch swallows the range an inner edit sits in and MagicString throws
+  // on overlapping overwrites.
+  const edits: { start: number; end: number; text: string }[] = []
+  // nodes whose value is known after inlining, so `if (import.meta.env.SSR)`
+  // can be resolved instead of left for metro to resolve imports inside.
+  const known = new Map<any, unknown>()
+
+  function replace(node: any, value: unknown) {
+    const text = value === undefined ? 'undefined' : JSON.stringify(value)
+    edits.push({ start: node.start, end: node.end, text })
+    known.set(node, value)
+  }
+
   function keyOf(prop: any, computed: boolean): string | undefined {
     if (!computed && prop?.type === 'Identifier') return prop.name
     if (prop?.type === 'Literal' && typeof prop.value === 'string') return prop.value
     return undefined
+  }
+
+  function isImportMeta(node: any): boolean {
+    return node?.type === 'MetaProperty' && node.meta?.name === 'import' && node.property?.name === 'meta'
   }
 
   function walk(node: any, parent: any) {
@@ -360,8 +465,9 @@ export function applyInlineEnvVars(
 
     if (node.type === 'MemberExpression' || node.type === 'OptionalMemberExpression') {
       const obj = node.object
+      const isMember = obj?.type === 'MemberExpression' || obj?.type === 'OptionalMemberExpression'
       const isProcessEnv =
-        (obj?.type === 'MemberExpression' || obj?.type === 'OptionalMemberExpression') &&
+        isMember &&
         obj.object?.type === 'Identifier' &&
         obj.object.name === 'process' &&
         keyOf(obj.property, obj.computed) === 'env'
@@ -372,17 +478,44 @@ export function applyInlineEnvVars(
       const key = keyOf(node.property, node.computed)
 
       if (isProcessEnv && !isAssignmentTarget && key === 'ONE_SERVER_URL') {
-        ms.overwrite(node.start, node.end, JSON.stringify(process.env.ONE_SERVER_URL || ''))
+        replace(node, process.env.ONE_SERVER_URL || '')
         return
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
         if (isProduction) {
-          ms.overwrite(node.start, node.end, JSON.stringify(process.env[key] ?? undefined))
+          replace(node, process.env[key] ?? undefined)
         } else {
-          ms.overwrite(node.start, node.end, `_$$_EXPO_ENV.${key}`)
+          edits.push({ start: node.start, end: node.end, text: `_$$_EXPO_ENV.${key}` })
           needsEnvImport = true
         }
+        return
+      }
+
+      // `import.meta.env.X`. the walk is top-down, so this outer node is reached
+      // before the `import.meta.env` inside it and the shorter form never fires.
+      if (
+        !isAssignmentTarget &&
+        isMember &&
+        isImportMeta(obj.object) &&
+        keyOf(obj.property, obj.computed) === 'env' &&
+        key !== undefined
+      ) {
+        replace(node, env[key])
+        return
+      }
+
+      // bare `import.meta.env`, spread or passed around whole.
+      if (!isAssignmentTarget && isImportMeta(obj) && key === 'env') {
+        edits.push({ start: node.start, end: node.end, text: JSON.stringify(env) })
+        return
+      }
+
+      // `process.env.X` for anything the vite env map defines. runs after the
+      // two branches above so ONE_SERVER_URL and EXPO_PUBLIC_ keep their own
+      // handling.
+      if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
+        replace(node, env[key])
         return
       }
     }
@@ -399,6 +532,65 @@ export function applyInlineEnvVars(
   }
 
   walk(parsed.program, null)
+
+  // resolves a test expression to a boolean when inlining made it constant.
+  function testValue(node: any): boolean | undefined {
+    if (known.has(node)) return !!known.get(node)
+    if (node?.type === 'UnaryExpression' && node.operator === '!') {
+      const inner = testValue(node.argument)
+      return inner === undefined ? undefined : !inner
+    }
+    if (node?.type === 'BinaryExpression' && (node.operator === '===' || node.operator === '!==')) {
+      const left = known.has(node.left) ? known.get(node.left) : undefined
+      const right = node.right?.type === 'Literal' ? node.right.value : undefined
+      if (!known.has(node.left) || node.right?.type !== 'Literal') return undefined
+      return node.operator === '===' ? left === right : left !== right
+    }
+    return undefined
+  }
+
+  // fold constant branches so metro never tries to resolve the imports inside a
+  // dead one. only the dead ranges are cut, never the kept branch, so env reads
+  // inside the surviving branch still get their own inlining.
+  const dead: { start: number; end: number; text: string }[] = []
+  ;(function foldWalk(node: any) {
+    if (!node || typeof node !== 'object') return
+    if (Array.isArray(node)) {
+      for (const child of node) foldWalk(child)
+      return
+    }
+    if (node.type === 'IfStatement' || node.type === 'ConditionalExpression') {
+      const value = testValue(node.test)
+      if (value !== undefined) {
+        const kept = value ? node.consequent : node.alternate
+        if (!kept) {
+          // `if (false) {...}` with no else: the whole statement is dead.
+          dead.push({ start: node.start, end: node.end, text: ';' })
+          return
+        }
+        // cutting `if (test)` off leaves the consequent as a bare statement or
+        // block, and cutting `test ?` leaves the branch as a bare expression.
+        dead.push({ start: node.start, end: kept.start, text: '' })
+        if (kept.end < node.end) {
+          dead.push({ start: kept.end, end: node.end, text: '' })
+        }
+        foldWalk(kept)
+        return
+      }
+    }
+    for (const k of Object.keys(node)) {
+      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      foldWalk(node[k])
+    }
+  })(parsed.program)
+
+  for (const range of dead) {
+    ms.overwrite(range.start, range.end, range.text)
+  }
+  for (const edit of edits) {
+    if (dead.some((d) => edit.start >= d.start && edit.end <= d.end)) continue
+    ms.overwrite(edit.start, edit.end, edit.text)
+  }
 
   if (needsEnvImport) {
     ms.prepend(`import { env as _$$_EXPO_ENV } from "expo/virtual/env";\n`)
@@ -1475,6 +1667,8 @@ export async function transform(
   data: Buffer | string,
   options: MetroWorkerOptions
 ): Promise<MetroWorkerResult> {
+  assertNoUnportedBabelPlugins(options)
+
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
 
   // expo's own transform worker substitutes the source of two virtual files
@@ -1748,12 +1942,12 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     }
   }
 
-  // Step A2: expo public env vars and one's server url. after flow stripping so
-  // the parse succeeds, before extraction so the injected `expo/virtual/env`
-  // import is seen. the substring guards keep the extra parse off files with no
-  // such read at all.
-  if (code.includes('EXPO_PUBLIC_') || code.includes('ONE_SERVER_URL')) {
-    code = applyInlineEnvVars(code, filename, !options.dev)
+  // Step A2: expo public env vars, one's server url, and `import.meta.env`.
+  // after flow stripping so the parse succeeds, before extraction so both the
+  // injected `expo/virtual/env` import and any folded-away dead branch are seen.
+  // the substring guards keep the extra parse off files with no such read at all.
+  if (code.includes('process.env') || code.includes('import.meta')) {
+    code = applyInlineEnvVars(code, filename, !options.dev, getImportMetaEnv(options))
   }
 
   // Step A3: one's environment guards. `import 'server-only'` in a native

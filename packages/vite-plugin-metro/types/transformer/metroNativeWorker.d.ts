@@ -97,6 +97,21 @@ export declare function getRemoveServerCodeRouterRoot(options: MetroWorkerOption
  * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
  * the rest are prefixes.
  */
+/**
+ * Reads the env map one hands to its `import-meta-env-plugin`, with the
+ * platform's own values layered on top exactly as that plugin does. Without it
+ * every `import.meta.env.X` read compiles to a property of the empty
+ * `var import_meta = {}` oxc emits when it lowers ESM to CJS, so the whole map
+ * silently reads `undefined` on native.
+ */
+export declare function getImportMetaEnv(options: MetroWorkerOptions): Record<string, string | boolean | undefined>;
+/**
+ * A babel plugin the user added through `bundlerOptions.babelConfigOverrides`
+ * would silently do nothing here, because this worker replaced babel outright.
+ * Silently dropping someone's OTA or instrumentation plugin is worse than
+ * refusing to build, so it is named and thrown.
+ */
+export declare function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void;
 export declare function getModuleResolverAliases(options: MetroWorkerOptions): Record<string, string> | undefined;
 /**
  * Resolves one tsconfig-path alias to a specifier relative to the importing
@@ -123,7 +138,7 @@ export declare function applyModuleResolverAliases(code: string, filename: strin
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
  */
-export declare function applyInlineEnvVars(code: string, filename: string, isProduction: boolean): string;
+export declare function applyInlineEnvVars(code: string, filename: string, isProduction: boolean, env?: Record<string, string | boolean | undefined>): string;
 /**
  * Native port of one's `babel-plugin-environment-guard`.
  */

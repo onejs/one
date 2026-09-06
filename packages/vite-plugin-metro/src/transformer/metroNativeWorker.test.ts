@@ -12,6 +12,7 @@ import {
   rewriteDependencyCalls,
   countLinesAndTerminateMap,
   applyInlineEnvVars,
+  assertNoUnportedBabelPlugins,
   applyEnvironmentGuard,
   getRemoveServerCodeRouterRoot,
 } from './metroNativeWorker'
@@ -969,6 +970,97 @@ describe('one native transform ports', () => {
   it('leaves ONE_SERVER_URL alone when it is only a string', () => {
     const src = 'export const key = "process.env.ONE_SERVER_URL";'
     expect(applyInlineEnvVars(src, 'a.ts', false)).toBe(src)
+  })
+
+  it('inlines import.meta.env reads, which oxc otherwise lowers to an empty object', () => {
+    // oxc's CJS lowering emits `var import_meta = {}`, so an untouched
+    // `import.meta.env.X` silently reads undefined in every native bundle.
+    const env = { DEV: false, VITE_POSTHOG_API_KEY: 'pk_live', TAMAGUI_TARGET: 'native' }
+    const out = applyInlineEnvVars(
+      `export const key = import.meta.env.VITE_POSTHOG_API_KEY;
+export const target = import.meta.env?.TAMAGUI_TARGET;
+export const missing = import.meta.env.NOT_SET;
+export const all = { ...import.meta.env };`,
+      'env.ts',
+      true,
+      env
+    )
+    expect(out).toContain('export const key = "pk_live";')
+    expect(out).toContain('export const target = "native";')
+    expect(out).toContain('export const missing = undefined;')
+    expect(out).toContain('"VITE_POSTHOG_API_KEY":"pk_live"')
+    expect(out).not.toContain('import.meta')
+  })
+
+  it('inlines process.env keys the vite env map defines', () => {
+    const out = applyInlineEnvVars(
+      'export const t = process.env.TAMAGUI_TARGET; export const u = process.env.UNKNOWN_THING;',
+      'env.ts',
+      true,
+      { TAMAGUI_TARGET: 'native' }
+    )
+    expect(out).toContain('export const t = "native";')
+    // a key the map does not define is left for the runtime, not guessed at.
+    expect(out).toContain('process.env.UNKNOWN_THING')
+  })
+
+  it('never rewrites an env read in an assignment target', () => {
+    const src = 'process.env.VITE_ENVIRONMENT = "ssr";'
+    expect(applyInlineEnvVars(src, 'a.ts', true, { VITE_ENVIRONMENT: 'ios' })).toBe(src)
+  })
+
+  it('folds branches the inlining made constant so metro never resolves dead imports', () => {
+    const out = applyInlineEnvVars(
+      `if (import.meta.env.SSR) { require('./server-only-thing') } else { load(import.meta.env.API) }`,
+      'branch.ts',
+      true,
+      { SSR: false, API: 'https://api.test' }
+    )
+    expect(out).not.toContain('server-only-thing')
+    // the surviving branch still gets its own inlining, which a fold that
+    // copied original source would have thrown away.
+    expect(out).toContain('load("https://api.test")')
+  })
+
+  it('folds a ternary and keeps a branch it cannot resolve', () => {
+    expect(
+      applyInlineEnvVars('const a = import.meta.env.DEV ? x : y;', 'a.ts', true, { DEV: false })
+    ).toContain('const a = y;')
+    const dynamic = 'const a = flag ? x : y;'
+    expect(applyInlineEnvVars(dynamic, 'a.ts', true, { DEV: false })).toBe(dynamic)
+  })
+
+  it('refuses to build when a user babel plugin has no native port', () => {
+    // this worker runs no babel, so an unrecognized plugin does nothing at all.
+    // takeout adds `hot-updater/babel-plugin` for OTA; dropping it silently
+    // would ship a build whose updates never apply.
+    const withPlugins = (plugins: any[]) =>
+      ({ customTransformOptions: { vite: { babelConfig: { plugins } } } }) as any
+
+    expect(() =>
+      assertNoUnportedBabelPlugins(
+        withPlugins([
+          ['@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin', { env: {} }],
+          'one/babel-plugin-environment-guard',
+          'hot-updater/babel-plugin',
+        ])
+      )
+    ).toThrow(/hot-updater\/babel-plugin/)
+
+    expect(() =>
+      assertNoUnportedBabelPlugins(
+        withPlugins([
+          ['@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin', { env: {} }],
+          'one/babel-plugin-environment-guard',
+          ['one/babel-plugin-remove-server-code', { routerRoot: 'app' }],
+          ['babel-plugin-module-resolver', { alias: {} }],
+          ['one/babel-plugin-one-router-metro', {}],
+          'one/babel-plugin-inline-one-server-url',
+          'babel-plugin-react-compiler',
+          'react-native-reanimated/plugin',
+        ])
+      )
+    ).not.toThrow()
   })
 
   it('turns a server-only import into a throw and drops native-only', () => {
