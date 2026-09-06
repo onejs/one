@@ -2,12 +2,54 @@ import path from 'node:path'
 import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { parseSync } from 'oxc-parser'
-import { findWorkletCandidates } from './autoworklet'
+import { bodyStartAfterDirectives, findWorkletCandidates, hasDirective } from './autoworklet'
 import { createGlobalsSet } from './globals'
 import { calculateWorkletHash } from './hash'
 import { getClosureVariables } from './scope'
 import { buildLocalFunction, serializeWorkletForUI } from './serialize'
 import type { TransformWorkletsOptions } from './types'
+
+const FUNCTION_TYPES = new Set([
+  'FunctionDeclaration',
+  'FunctionExpression',
+  'ArrowFunctionExpression',
+])
+
+/**
+ * Innermost function whose body strictly contains `node`. A worklet marked
+ * `limit-init-data-hoisting` puts its init data at the top of that body instead
+ * of at module scope, so a `no-worklet-closure` parent can still reach it after
+ * being serialized to a string and evaluated on a worklet runtime.
+ */
+function findEnclosingFunction(program: any, node: any): any {
+  let best: any = undefined
+  const walk = (n: any) => {
+    if (!n || typeof n !== 'object') return
+    if (Array.isArray(n)) {
+      for (const c of n) walk(c)
+      return
+    }
+    if (typeof n.type !== 'string') return
+    // a node that does not span the target cannot contain it, so skip its subtree
+    if (typeof n.start === 'number' && (n.start > node.start || n.end < node.end)) return
+    if (
+      FUNCTION_TYPES.has(n.type) &&
+      n !== node &&
+      n.body?.type === 'BlockStatement' &&
+      n.body.start < node.start &&
+      n.body.end > node.end &&
+      (!best || n.body.start > best.body.start)
+    ) {
+      best = n
+    }
+    for (const key in n) {
+      if (key === 'parent') continue
+      walk(n[key])
+    }
+  }
+  walk(program)
+  return best
+}
 
 export function executeWorkletTransform(
   id: string,
@@ -105,23 +147,44 @@ export function executeWorkletTransform(
 
     const ms = new MagicString(currentCode)
 
+    // init data declared inside an enclosing function body, keyed by that body's
+    // start offset, so the same hash is not declared twice in one function.
+    const inlinedInitData = new Map<number, Set<string>>()
+
     for (const candidate of innermostCandidates) {
-      const closureVars = getClosureVariables(candidate.fnNode, globals)
+      // `no-worklet-closure` says the worklet captures nothing, so it gets no
+      // unpacker line and an empty `__closure`. it is what lets the worklets
+      // runtime evaluate the serialized code with no closure to bind.
+      const closureVars = hasDirective(candidate.fnNode, 'no-worklet-closure')
+        ? []
+        : getClosureVariables(candidate.fnNode, globals)
       const fnName = candidate.name
 
       const serializedCode = serializeWorkletForUI(candidate.fnNode, currentCode, fnName, closureVars)
       const workletHash = calculateWorkletHash(serializedCode)
       const initDataVar = `_worklet_${workletHash}_init_data`
 
-      if (!initDataDefs.has(initDataVar)) {
-        const initDataObj = {
-          code: serializedCode,
-          location,
+      const initDataDecl = `var ${initDataVar} = {\n    code: ${JSON.stringify(serializedCode)},\n    location: ${JSON.stringify(location)}\n};`
+
+      const enclosingFn = hasDirective(candidate.fnNode, 'limit-init-data-hoisting')
+        ? findEnclosingFunction(parseResult.program, candidate.fnNode)
+        : undefined
+
+      if (enclosingFn) {
+        // past the parent's own directive prologue, or inserting here would stop
+        // its `'worklet'` from being a directive at all.
+        const insertAt = bodyStartAfterDirectives(enclosingFn, currentCode)
+        let declared = inlinedInitData.get(insertAt)
+        if (!declared) {
+          declared = new Set()
+          inlinedInitData.set(insertAt, declared)
         }
-        initDataDefs.set(
-          initDataVar,
-          `var ${initDataVar} = {\n    code: ${JSON.stringify(initDataObj.code)},\n    location: ${JSON.stringify(initDataObj.location)}\n};`
-        )
+        if (!declared.has(initDataVar)) {
+          declared.add(initDataVar)
+          ms.appendLeft(insertAt, `\n${initDataDecl}\n`)
+        }
+      } else if (!initDataDefs.has(initDataVar)) {
+        initDataDefs.set(initDataVar, initDataDecl)
       }
 
       const localFnCode = buildLocalFunction(candidate.fnNode, currentCode, fnName)

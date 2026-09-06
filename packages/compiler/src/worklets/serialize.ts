@@ -1,5 +1,28 @@
 import { transformSync } from 'oxc-transform'
-import { hasWorkletDirective } from './autoworklet'
+import { bodyStartAfterDirectives } from './autoworklet'
+
+/**
+ * oxc returns empty code plus errors rather than throwing, and an empty
+ * `__initData.code` only fails much later on a worklet runtime with a message
+ * that names none of this. So refuse to emit one.
+ */
+function assertTransformed(
+  transformed: { code: string; errors?: any[] },
+  name: string | undefined,
+  what: string
+) {
+  const error = transformed.errors?.[0]
+  if (error) {
+    throw new Error(
+      `[worklets] failed to build ${what} code for ${name || 'anonymous worklet'}: ${error.message || error}`
+    )
+  }
+  if (!transformed.code.trim()) {
+    throw new Error(
+      `[worklets] built empty ${what} code for ${name || 'anonymous worklet'}`
+    )
+  }
+}
 
 /**
  * Serializes a worklet function into a string for the Hermes UI thread (__initData.code).
@@ -21,13 +44,7 @@ export function serializeWorkletForUI(
 
   let rawBody = ''
   if (fnNode.body.type === 'BlockStatement') {
-    let bodyStart = fnNode.body.start + 1
-    if (hasWorkletDirective(fnNode)) {
-      bodyStart = fnNode.body.body[0].end
-      while (bodyStart < fnNode.body.end && (code[bodyStart] === ';' || /\s/.test(code[bodyStart]))) {
-        bodyStart++
-      }
-    }
+    const bodyStart = bodyStartAfterDirectives(fnNode, code)
     const bodyEnd = fnNode.body.end - 1
     rawBody = code.slice(bodyStart, bodyEnd)
   } else {
@@ -45,6 +62,7 @@ export function serializeWorkletForUI(
   const fullFn = `${asyncPrefix}function${genPrefix} ${fnName}(${rawParams}) {\n${unpacker}${rawBody}\n}`
 
   const transformed = transformSync('worklet.ts', fullFn)
+  assertTransformed(transformed, name, 'serialized')
   return transformed.code.trim()
 }
 
@@ -66,13 +84,7 @@ export function buildLocalFunction(
 
   let rawBody = ''
   if (fnNode.body.type === 'BlockStatement') {
-    let bodyStart = fnNode.body.start + 1
-    if (hasWorkletDirective(fnNode)) {
-      bodyStart = fnNode.body.body[0].end
-      while (bodyStart < fnNode.body.end && (code[bodyStart] === ';' || /\s/.test(code[bodyStart]))) {
-        bodyStart++
-      }
-    }
+    const bodyStart = bodyStartAfterDirectives(fnNode, code)
     const bodyEnd = fnNode.body.end - 1
     rawBody = code.slice(bodyStart, bodyEnd)
   } else {
@@ -90,9 +102,13 @@ export function buildLocalFunction(
       rawFn = `${asyncPrefix}(${rawParams}) => (${rawBody})`
     }
   } else {
-    rawFn = `${asyncPrefix}function${genPrefix} ${name || ''}(${rawParams}) {\n${rawBody}\n}`
+    // an anonymous `function (x) {}` does not parse on its own, and this is
+    // emitted into `var <localName> = ...`, where a name binds only inside the
+    // function itself.
+    rawFn = `${asyncPrefix}function${genPrefix} ${name || '_worklet'}(${rawParams}) {\n${rawBody}\n}`
   }
 
   const transformed = transformSync('local.ts', rawFn)
+  assertTransformed(transformed, name, 'local')
   return transformed.code.trim().replace(/;$/, '')
 }

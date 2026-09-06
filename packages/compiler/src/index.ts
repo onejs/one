@@ -28,6 +28,8 @@ export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
 export * from './transformWorklets'
+export * from './reactNativeCodegen'
+export * from './transformHermesLoops'
 export type { GetTransform } from './types'
 
 // Performance tracking

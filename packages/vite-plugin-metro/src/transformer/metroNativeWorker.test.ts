@@ -233,6 +233,51 @@ describe('metroNativeWorker', () => {
     expect(depNames).toContain('react/jsx-dev-runtime')
   })
 
+  it('lowers async generators, including the method shorthand Hermes also rejects', async () => {
+    // each form goes through on its own, so a detector that misses one cannot be
+    // covered for by another form sharing the module.
+    const sources = {
+      // the shorthand the device caught: `async *name()` in a class body.
+      'cursor.ts': `
+        export class Cursor {
+          async *rows() {
+            yield await Promise.resolve(1)
+          }
+        }
+      `,
+      'stream.ts': `
+        export async function* stream() {
+          yield 1
+        }
+      `,
+      'drain.ts': `
+        export async function drain(src) {
+          for await (const x of src) {
+            console.log(x)
+          }
+        }
+      `,
+    }
+
+    for (const [filename, sourceCode] of Object.entries(sources)) {
+      const result = await transform(
+        {},
+        '/project',
+        filename,
+        Buffer.from(sourceCode, 'utf8'),
+        { dev: true, platform: 'ios', type: 'module' }
+      )
+
+      assertZeroBabelCalls()
+
+      const code = result.output[0].data.code
+      // hermes rejects all three of these at parse time, so none may survive.
+      expect(code, filename).not.toMatch(/\basync\s+function\s*\*/)
+      expect(code, filename).not.toMatch(/\basync\s*\*\s*[\w$[]/)
+      expect(code, filename).not.toMatch(/\bfor\s+await\s*\(/)
+    }
+  })
+
   it('handles JSON files without Babel', async () => {
     const jsonSource = JSON.stringify({ name: 'my-package', version: '1.0.0' })
     const result = await transform(
@@ -813,5 +858,89 @@ describe('metroNativeWorker', () => {
 
     expect(posUnwrapped.line).toBe(1)
     expect(posUnwrapped.column).toBe(28)
+  })
+
+  it('routes a require.context whose directory is held in a variable through the dependency map', async () => {
+    // one's router entry reads its route root into a binding and passes that to
+    // require.context. if the call is not rewritten it survives into the bundle
+    // and reaches metro's fallbackRequireContext, which throws at startup.
+    const sourceCode = `
+      const routeRoot = './app'
+      export const ctx = require.context(routeRoot, true, /\\.tsx$/)
+    `
+
+    const result = await transform({}, '/project', 'entry.js', Buffer.from(sourceCode, 'utf8'), {
+      dev: true,
+      platform: 'ios',
+      type: 'module',
+    })
+
+    const contextDep = result.dependencies.find((d) => d.data.contextParams != null)
+    expect(contextDep?.name).toBe('./app')
+
+    const calls: any[] = []
+    let ctx: any
+    const sandbox: any = {
+      __d: (factory: any) => {
+        const module = { exports: {} as any }
+        const req: any = (...args: any[]) => {
+          calls.push(args)
+          return { keys: () => [] }
+        }
+        // reaching this means the call was left as a runtime require.context
+        req.context = () => {
+          throw new Error('fallbackRequireContext reached')
+        }
+        factory({}, req, () => ({}), () => ({}), module, module.exports, ['./app'])
+        ctx = module.exports.ctx
+      },
+    }
+
+    vm.runInNewContext(result.output[0].data.code, sandbox)
+
+    expect(ctx).toBeDefined()
+    expect(calls[0][1]).toBe('./app')
+  })
+
+  it('gives loop bodies per-iteration bindings that survive a runtime without them', async () => {
+    const sourceCode = `
+      export function collect() {
+        const out = []
+        for (let i = 0; i < 2; i++) out.push(() => i)
+        for (const label of ['a', 'b']) out.push(() => label)
+        for (const key in { x: 1, y: 2 }) out.push(() => key)
+        return out.map((f) => f())
+      }
+    `
+
+    const result = await transform({}, '/project', 'loops.ts', Buffer.from(sourceCode, 'utf8'), {
+      dev: true,
+      platform: 'ios',
+      type: 'module',
+    })
+
+    const code = result.output[0].data.code
+
+    // Hermes emits one CreateFunctionEnvironment before a loop rather than one
+    // per iteration, so a `let` loop head behaves exactly like `var` there.
+    // Rewriting the heads that way reproduces Hermes on a runtime that is
+    // otherwise spec-correct, which is what makes this assertion meaningful:
+    // the untransformed source returns 2,2,b,b,y,y under it.
+    const asHermesWouldSeeIt = code.replace(
+      /\bfor\s*\(\s*(let|const)\b/g,
+      'for (var'
+    )
+
+    let collect: any
+    const sandbox: any = {
+      __d: (factory: any) => {
+        const module = { exports: {} as any }
+        factory({}, () => ({}), () => ({}), () => ({}), module, module.exports, [])
+        collect = module.exports.collect
+      },
+    }
+    vm.runInNewContext(asHermesWouldSeeIt, sandbox)
+
+    expect(collect()).toEqual([0, 1, 'a', 'b', 'x', 'y'])
   })
 })

@@ -6,6 +6,72 @@ import { parseSync } from 'oxc-parser'
 import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
+import { transformHermesLoops, transformReactNativeCodegen } from '@vxrn/compiler'
+
+// `async function*`, the `async *name()` method shorthand, and `for await (`.
+// Hermes rejects all three at parse time with "async generators are unsupported".
+// the shorthand arm can also match `async * x` multiplication, which only costs
+// that module a lower transform target.
+const HERMES_UNSUPPORTED_ASYNC_RE =
+  /\basync\s+function\s*\*|\basync\s*\*\s*[\w$[]|\bfor\s+await\s*\(/
+
+/**
+ * Module-scope bindings initialized to a literal and never reassigned, so a
+ * `require.context` argument held in a variable resolves to its value. Metro
+ * evaluates those arguments rather than demanding literals, and one's router
+ * entry keeps its route root in exactly such a binding.
+ *
+ * The declaration kind is deliberately ignored. The Hermes loop-binding pass
+ * rewrites every `const` to `var`, so matching on the keyword would stop
+ * resolving the router root and drop every route from the bundle. Not being
+ * reassigned is the property that actually matters.
+ */
+function collectModuleLiteralBindings(program: any): Map<string, any> {
+  const reassigned = new Set<string>()
+  const declCount = new Map<string, number>()
+
+  ;(function findReassignments(node: any) {
+    if (!node || typeof node !== 'object') return
+    if (Array.isArray(node)) {
+      for (const child of node) findReassignments(child)
+      return
+    }
+    if (node.type === 'AssignmentExpression' && node.left?.type === 'Identifier') {
+      reassigned.add(node.left.name)
+    } else if (node.type === 'UpdateExpression' && node.argument?.type === 'Identifier') {
+      reassigned.add(node.argument.name)
+    }
+    for (const key in node) {
+      if (key === 'type' || key === 'start' || key === 'end') continue
+      findReassignments(node[key])
+    }
+  })(program)
+
+  for (const stmt of program.body || []) {
+    if (stmt.type !== 'VariableDeclaration') continue
+    for (const decl of stmt.declarations || []) {
+      if (decl.id?.type === 'Identifier') {
+        declCount.set(decl.id.name, (declCount.get(decl.id.name) || 0) + 1)
+      }
+    }
+  }
+
+  const bindings = new Map<string, any>()
+  for (const stmt of program.body || []) {
+    if (stmt.type !== 'VariableDeclaration') continue
+    for (const decl of stmt.declarations || []) {
+      if (
+        decl.id?.type === 'Identifier' &&
+        decl.init?.type === 'Literal' &&
+        !reassigned.has(decl.id.name) &&
+        declCount.get(decl.id.name) === 1
+      ) {
+        bindings.set(decl.id.name, decl.init)
+      }
+    }
+  }
+  return bindings
+}
 
 export type MetroContextParams = {
   recursive: boolean
@@ -765,6 +831,8 @@ export function rewriteDependencyCalls(
 
   if (!parsed?.program) return emptyResult
 
+  const contextLiteralBindings = collectModuleLiteralBindings(parsed.program)
+
   const scopeTracker = new ScopeTracker()
   collectHoistedBindings(parsed.program, scopeTracker.currentScope())
   collectBlockBindings(parsed.program.body, scopeTracker.currentScope())
@@ -880,8 +948,15 @@ export function rewriteDependencyCalls(
       !scopeTracker.isShadowed('require') &&
       node.arguments?.length >= 1
     ) {
-      const arg = node.arguments[0]
-      if (arg.type === 'Literal' && typeof arg.value === 'string') {
+      // resolved the same way dependency extraction resolved it. matching only
+      // a direct Literal here left a variable-held directory registered as a
+      // dependency but never rewritten, so the call reached metro's
+      // fallbackRequireContext at runtime and threw.
+      const arg =
+        node.arguments[0]?.type === 'Identifier'
+          ? contextLiteralBindings.get(node.arguments[0].name)
+          : node.arguments[0]
+      if (arg?.type === 'Literal' && typeof arg.value === 'string') {
         const dep = dependencies.find(
           (d) => d.name === arg.value && d.data.contextParams != null
         )
@@ -1021,15 +1096,7 @@ export function extractDependencies(
   // metro evaluates require.context arguments instead of demanding literals, so
   // a module-scope const holding the value works there. this covers that one
   // case rather than reimplementing babel's full constant evaluation.
-  const moduleConsts = new Map<string, any>()
-  for (const stmt of parseResult.program.body || []) {
-    if (stmt.type !== 'VariableDeclaration' || stmt.kind !== 'const') continue
-    for (const decl of stmt.declarations || []) {
-      if (decl.id?.type === 'Identifier' && decl.init?.type === 'Literal') {
-        moduleConsts.set(decl.id.name, decl.init)
-      }
-    }
-  }
+  const moduleConsts = collectModuleLiteralBindings(parseResult.program)
 
   function resolveConst(node: any): any {
     if (node?.type === 'Identifier') return moduleConsts.get(node.name)
@@ -1514,6 +1581,30 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   }
 
 
+  // Step A0b: React Native codegen. `codegenNativeComponent('RNSScreen')` is a
+  // spec that has to become a real view config registration; without it the
+  // component has no view config and the screen never mounts. Metro's default
+  // pipeline gets this from @react-native/babel-plugin-codegen inside
+  // @react-native/babel-preset, which this transformer replaces.
+  //
+  // This runs before Flow stripping because codegen reads the component's props
+  // out of the type argument to codegenNativeComponent. Once Step A removes the
+  // types there is nothing left to generate from, and react-native's own parser
+  // rejects the file with "Could not find component config".
+  try {
+    const codegenRes = transformReactNativeCodegen(code, filename, projectRoot)
+    if (codegenRes?.code) {
+      code = codegenRes.code
+      if (codegenRes.map) {
+        intermediateMaps.push(codegenRes.map)
+      }
+    }
+  } catch (err: any) {
+    throw new Error(
+      `[vxrn/metro] React Native codegen failed for ${filename}: ${err.message || err}`
+    )
+  }
+
   // Step A: Flow stripping
   const hasFlowPragma = code.includes('@flow')
   const isFlowCandidate =
@@ -1613,9 +1704,11 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   if (shouldRunWorklets) {
     try {
       const { transformWorklets } = await import('@vxrn/compiler')
+      // no pluginVersion here: the compiler reads it from the worklets package
+      // the app actually installed, and worklets throws at runtime when the
+      // stamped version is not exactly its own.
       const workletRes = await transformWorklets(filename, code, true, {
         projectRoot,
-        pluginVersion: '3.0.0',
       })
       if (workletRes?.code) {
         code = workletRes.code
@@ -1638,7 +1731,13 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   try {
     oxcRes = oxcTransform(filename, code, {
       lang,
-      target: 'es2020',
+      // Hermes supports BigInt but not async generators or for-await-of, and no
+      // single oxc target expresses that: es2020 keeps BigInt and leaves async
+      // generators in, es2017 lowers them but rejects BigInt literals. oxc's
+      // `hermes*` targets claim async generators are supported, which the device
+      // disproves. So the level is chosen per module. A module using both is
+      // vanishingly rare and fails loudly here rather than at runtime.
+      target: HERMES_UNSUPPORTED_ASYNC_RE.test(code) ? 'es2017' : 'es2020',
       assumptions: {
         setPublicClassFields: true,
       },
@@ -1687,6 +1786,26 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     } catch (err: any) {
       throw new Error(`[vxrn/metro] esbuild CJS lowering failed for ${filename}: ${err.message || err}`)
     }
+  }
+
+  // Step E2: per-iteration loop bindings for Hermes.
+  //
+  // Runs after esbuild because esbuild's own __copyProps interop helper is built
+  // on `for (let key of ...)` with a closure in the body, which under Hermes
+  // makes every named export of a module resolve to its last one. See
+  // transformHermesLoops for the engine detail and the bytecode evidence.
+  try {
+    const loopsRes = transformHermesLoops(code, filename)
+    if (loopsRes) {
+      code = loopsRes.code
+      for (const map of loopsRes.maps) {
+        intermediateMaps.push(map)
+      }
+    }
+  } catch (err: any) {
+    throw new Error(
+      `[vxrn/metro] Hermes loop-binding transform failed for ${filename}: ${err.message || err}`
+    )
   }
 
   // step B read the original source, but steps C through E both add and remove

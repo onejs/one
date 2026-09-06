@@ -75,6 +75,82 @@ export function getClosureVariables(fnNode: any, globals: Set<string>): string[]
     }
   }
 
+  // same as addBindings but never walks a default value, so hoisting cannot
+  // resolve an identifier before the scope's declarations are all known.
+  function addBindingsOnly(pattern: any, targetSet: Set<string>) {
+    if (!pattern) return
+    switch (pattern.type) {
+      case 'Identifier':
+        targetSet.add(pattern.name)
+        break
+      case 'AssignmentPattern':
+        addBindingsOnly(pattern.left, targetSet)
+        break
+      case 'RestElement':
+        addBindingsOnly(pattern.argument, targetSet)
+        break
+      case 'ArrayPattern':
+        for (const el of pattern.elements) {
+          if (el) addBindingsOnly(el, targetSet)
+        }
+        break
+      case 'ObjectPattern':
+        for (const prop of pattern.properties) {
+          if (prop.type === 'Property') {
+            addBindingsOnly(prop.value, targetSet)
+          } else if (prop.type === 'RestElement') {
+            addBindingsOnly(prop.argument, targetSet)
+          }
+        }
+        break
+    }
+  }
+
+  /**
+   * Declarations a scope already has before its first statement runs: functions,
+   * classes and let/const at this level, plus `var` from anywhere below that is
+   * not inside a nested function. Without this a name used before its
+   * declaration, which hoisting makes legal, looks like a captured variable and
+   * ends up in the worklet's closure, where it does not exist.
+   */
+  function hoistDeclarations(node: any, direct: boolean) {
+    if (!node || typeof node !== 'object' || typeof node.type !== 'string') return
+    switch (node.type) {
+      case 'FunctionDeclaration':
+        if (node.id?.name) {
+          currentScope.bindings.add(node.id.name)
+          currentScope.varBindings.add(node.id.name)
+        }
+        return
+      case 'FunctionExpression':
+      case 'ArrowFunctionExpression':
+        return
+      case 'ClassDeclaration':
+        if (direct && node.id?.name) currentScope.bindings.add(node.id.name)
+        return
+      case 'VariableDeclaration':
+        if (node.kind === 'var') {
+          for (const d of node.declarations) addBindingsOnly(d.id, currentScope.varBindings)
+        } else if (direct) {
+          for (const d of node.declarations) addBindingsOnly(d.id, currentScope.bindings)
+        }
+        return
+      case 'ExportNamedDeclaration':
+      case 'ExportDefaultDeclaration':
+        hoistDeclarations(node.declaration, direct)
+        return
+    }
+    for (const key of Object.keys(node)) {
+      if (key === 'start' || key === 'end' || key === 'loc' || key === 'range') continue
+      const child = node[key]
+      if (Array.isArray(child)) {
+        for (const item of child) hoistDeclarations(item, false)
+      } else if (child && typeof child === 'object') {
+        hoistDeclarations(child, false)
+      }
+    }
+  }
+
   // Parameters belong to the root function scope
   if (fnNode.params) {
     for (const param of fnNode.params) {
@@ -133,6 +209,9 @@ export function getClosureVariables(fnNode: any, globals: Set<string>): string[]
         const isRootBody = node === fnNode.body
         if (!isRootBody) {
           pushScope(false)
+        }
+        for (const stmt of node.body) {
+          hoistDeclarations(stmt, true)
         }
         for (const stmt of node.body) {
           walk(stmt)

@@ -9,6 +9,8 @@ export * from './configure';
 export * from './transformBabel';
 export * from './transformSWC';
 export * from './transformWorklets';
+export * from './reactNativeCodegen';
+export * from './transformHermesLoops';
 export type { GetTransform } from './types';
 export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): Promise<PluginOption[]>;
 //# sourceMappingURL=index.d.ts.map

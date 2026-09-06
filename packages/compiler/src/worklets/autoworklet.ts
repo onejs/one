@@ -52,38 +52,63 @@ export const AUTOWORKLET_FUNCTION_ARGS: Record<string, number[]> = Object.assign
   }
 )
 
-export function hasWorkletDirective(fnNode: any): boolean {
+// the worklets directives, in the order the runtime expects to find them.
+export const WORKLET_DIRECTIVES = ['worklet', 'no-worklet-closure', 'limit-init-data-hoisting']
+
+function statementDirective(stmt: any): string | undefined {
+  if (!stmt || stmt.type !== 'ExpressionStatement') return undefined
+  if (typeof stmt.directive === 'string') return stmt.directive
+  if (stmt.expression?.type === 'Literal' && typeof stmt.expression.value === 'string') {
+    return stmt.expression.value
+  }
+  return undefined
+}
+
+export function hasDirective(fnNode: any, directive: string): boolean {
   if (!fnNode || !fnNode.body) return false
 
   // Directives array in Oxc
   if (Array.isArray(fnNode.body.directives)) {
     for (const d of fnNode.body.directives) {
-      if (d.directive === 'worklet' || d.value === 'worklet') {
+      if (d.directive === directive || d.value === directive) {
         return true
       }
     }
   }
 
-  // First statement in body
-  if (
-    fnNode.body.type === 'BlockStatement' &&
-    Array.isArray(fnNode.body.body) &&
-    fnNode.body.body.length > 0
-  ) {
-    const first = fnNode.body.body[0]
-    if (first.type === 'ExpressionStatement') {
-      if (first.directive === 'worklet') return true
-      if (
-        first.expression &&
-        first.expression.type === 'Literal' &&
-        first.expression.value === 'worklet'
-      ) {
-        return true
-      }
+  // leading directive statements in the body
+  if (fnNode.body.type === 'BlockStatement' && Array.isArray(fnNode.body.body)) {
+    for (const stmt of fnNode.body.body) {
+      const found = statementDirective(stmt)
+      if (found === undefined) break
+      if (found === directive) return true
     }
   }
 
   return false
+}
+
+export function hasWorkletDirective(fnNode: any): boolean {
+  return hasDirective(fnNode, 'worklet')
+}
+
+/**
+ * Source offset just past every leading worklets directive in the body, so a
+ * body slice drops all of them rather than only the first. Returns the offset
+ * of the first real statement.
+ */
+export function bodyStartAfterDirectives(fnNode: any, code: string): number {
+  let start = fnNode.body.start + 1
+  if (fnNode.body.type !== 'BlockStatement' || !Array.isArray(fnNode.body.body)) return start
+  for (const stmt of fnNode.body.body) {
+    const found = statementDirective(stmt)
+    if (found === undefined || !WORKLET_DIRECTIVES.includes(found)) break
+    start = stmt.end
+    while (start < fnNode.body.end && (code[start] === ';' || /\s/.test(code[start]))) {
+      start++
+    }
+  }
+  return start
 }
 
 export function findWorkletCandidates(program: any): WorkletCandidate[] {

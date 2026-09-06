@@ -92,6 +92,91 @@ describe('transformWorklets', () => {
     expect(result.code).toContain('factor')
   })
 
+  it('transforms an anonymous function expression worklet', async () => {
+    // passed inline, so there is no variable to take a name from.
+    const code = `
+      register(function (e) {
+        'worklet'
+        return e.x
+      })
+    `
+    const result = await transformWorklets('/app/handler.ts', code, false)
+    expect(result.code).toContain('__workletHash')
+    expect(result.code).toMatch(/code: "function _worklet\(e\)/)
+    expect(result.code).toContain('var _worklet = function _worklet(e)')
+  })
+
+  it('does not capture hoisted declarations used before their declaration', async () => {
+    // `flushQueue` and `later` are declared below their use. hoisting makes that
+    // legal, so neither is a captured variable; treating them as captured puts
+    // undefined in the closure and the worklet throws on the UI thread.
+    const code = `
+      export function setupLoop() {
+        'worklet'
+        function nativeFlush(t: number) {
+          flushQueue(t)
+        }
+        globalThis.__native(nativeFlush)
+        function flushQueue(t: number) {
+          globalThis.__stamp = t
+        }
+        const start = () => later()
+        const later = () => start
+        return start
+      }
+    `
+    const result = await transformWorklets('/app/setupLoop.ts', code, false)
+
+    expect(result.code).toMatch(/setupLoop\.__closure = \{\s*\}/)
+    const init = result.code.match(/code: "function setupLoop[^"]*"/)
+    expect(init, 'serialized worklet code').toBeTruthy()
+    expect(init![0]).not.toContain('this.__closure')
+    expect(init![0]).toContain('flushQueue')
+  })
+
+  it('honors no-worklet-closure and limit-init-data-hoisting the way the worklets runtime needs', async () => {
+    // this is the shape react-native-worklets uses for its unpacker installers.
+    // the outer worklet is serialized to a string and evaluated on a worklet
+    // runtime with no closure bound, so it must not emit an unpacker line, and
+    // the inner worklet's init data must live inside it rather than at module
+    // scope, which does not exist over there.
+    const code = `
+      const outerModuleValue = 1
+      export function installUnpacker() {
+        'worklet'
+        'no-worklet-closure'
+        const proxy = globalThis.__proxy
+        proxy.register(outerModuleValue)
+        proxy.install(() => {
+          'worklet'
+          'limit-init-data-hoisting'
+          return 42
+        })
+      }
+    `
+    const result = await transformWorklets('/app/installUnpacker.ts', code, false)
+
+    const outerInit = result.code.match(/code: "function installUnpacker[^"]*"/)
+    expect(outerInit, 'outer worklet serialized code').toBeTruthy()
+    // no unpacker line: nothing is read off `this` on the worklet runtime.
+    expect(outerInit![0]).not.toContain('this.__closure')
+    expect(result.code).toMatch(/installUnpacker\.__closure = \{\s*\}/)
+    // the directives themselves are not part of the serialized body.
+    expect(outerInit![0]).not.toContain('no-worklet-closure')
+
+    // the inner worklet's init data is declared inside the outer function body,
+    // not hoisted to module scope where the worklet runtime cannot see it.
+    const innerVar = result.code.match(/var (_worklet_\d+_init_data) = \{\s*code: "function _worklet/)
+    expect(innerVar, 'inner worklet init data').toBeTruthy()
+    // only look past the serialized string, which mentions the same name inside
+    // its escaped body.
+    const emitted = result.code.slice(result.code.indexOf('export var installUnpacker'))
+    expect(emitted).toContain(`var ${innerVar![1]} = {`)
+    expect(result.code.slice(0, result.code.indexOf('export var installUnpacker'))).not.toContain(
+      `\nvar ${innerVar![1]} = {`
+    )
+  })
+
   it('autoworkletizes hooks like useAnimatedStyle and withTiming', async () => {
     const code = `
       export function Card() {
