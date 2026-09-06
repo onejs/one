@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import * as babel from '@babel/core'
 import * as vm from 'node:vm'
+import { parseSync } from 'oxc-parser'
 import * as fs from 'node:fs'
 import {
   transform,
@@ -10,6 +11,9 @@ import {
   extractDependencies,
   rewriteDependencyCalls,
   countLinesAndTerminateMap,
+  applyInlineEnvVars,
+  applyEnvironmentGuard,
+  getRemoveServerCodeRouterRoot,
 } from './metroNativeWorker'
 import { buildMetroConfigInputFromViteConfig } from '../metro-config/getMetroConfigFromViteConfig'
 
@@ -942,5 +946,59 @@ describe('metroNativeWorker', () => {
     vm.runInNewContext(asHermesWouldSeeIt, sandbox)
 
     expect(collect()).toEqual([0, 1, 'a', 'b', 'x', 'y'])
+  })
+})
+
+describe('one native transform ports', () => {
+  it('inlines process.env.ONE_SERVER_URL so a native bundle can find its loaders', () => {
+    // without this a native prod bundle keeps a `process.env` read that has
+    // nothing behind it at runtime, and every loader fetch goes to undefined.
+    process.env.ONE_SERVER_URL = 'https://example.test'
+    try {
+      const out = applyInlineEnvVars(
+        'export const url = process.env.ONE_SERVER_URL;',
+        'loader.ts',
+        false
+      )
+      expect(out).toBe('export const url = "https://example.test";')
+    } finally {
+      process.env.ONE_SERVER_URL = undefined
+    }
+  })
+
+  it('leaves ONE_SERVER_URL alone when it is only a string', () => {
+    const src = 'export const key = "process.env.ONE_SERVER_URL";'
+    expect(applyInlineEnvVars(src, 'a.ts', false)).toBe(src)
+  })
+
+  it('turns a server-only import into a throw and drops native-only', () => {
+    const out = applyEnvironmentGuard(
+      `import 'native-only'\nimport 'server-only'\nexport const a = 1`,
+      'route.ts'
+    )
+    expect(out).not.toContain('native-only')
+    expect(out).toContain('server-only cannot be imported in a native environment')
+    // the throw has to replace the import as a STATEMENT. an expression left in
+    // its place is a syntax error, which would fail the whole bundle to parse.
+    const parsed = parseSync('route.ts', out, { lang: 'ts' })
+    expect(parsed.errors).toEqual([])
+    expect(parsed.program.body.map((n: any) => n.type)).toContain('ThrowStatement')
+  })
+
+  it('reads the router root off one\'s remove-server-code plugin entry', () => {
+    const options: any = {
+      customTransformOptions: {
+        vite: {
+          babelConfig: {
+            plugins: [['one/babel-plugin-remove-server-code', { routerRoot: 'src/app' }]],
+          },
+        },
+      },
+    }
+    expect(getRemoveServerCodeRouterRoot(options)).toBe('src/app')
+    // absent means one did not ask for it, which must not be read as 'app'
+    expect(getRemoveServerCodeRouterRoot({ customTransformOptions: {} } as any)).toBe(
+      undefined
+    )
   })
 })

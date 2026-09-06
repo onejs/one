@@ -91,6 +91,11 @@
       "import": "./dist/esm/babel-preset/index.mjs",
       "require": "./dist/cjs/babel-preset/index.cjs"
     },
+    "./native-transforms": {
+      "types": "./types/native-transforms.d.ts",
+      "import": "./dist/esm/native-transforms.mjs",
+      "require": "./dist/cjs/native-transforms.cjs"
+    },
     "./metro-config": {
       "types": "./types/metro-config/withOne.d.ts",
       "import": "./dist/esm/metro-config/withOne.mjs",

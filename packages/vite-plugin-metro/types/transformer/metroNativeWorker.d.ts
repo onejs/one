@@ -87,6 +87,12 @@ export type OneRouterMetroOptions = {
  */
 export declare function getOneRouterMetroOptions(options: MetroWorkerOptions): OneRouterMetroOptions | undefined;
 /**
+ * Reads the router root one's babel preset hands to
+ * `babel-plugin-remove-server-code`. Its absence means one did not ask for
+ * server-code removal, so the step is skipped rather than guessed at.
+ */
+export declare function getRemoveServerCodeRouterRoot(options: MetroWorkerOptions): string | undefined;
+/**
  * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
  * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
  * the rest are prefixes.
@@ -103,13 +109,25 @@ export declare function resolveAliasSpecifier(specifier: string, filename: strin
  */
 export declare function applyModuleResolverAliases(code: string, filename: string, projectRoot: string, aliases: Record<string, string>): string;
 /**
- * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars`. In
- * production every `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in
- * development each one is routed through the `expo/virtual/env` module so edits
- * to .env take effect without a full rebuild. Without this the reads survive
- * into the bundle and every EXPO_PUBLIC_ value is undefined at runtime.
+ * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
+ * one's `babel-plugin-inline-one-server-url`. In production every
+ * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
+ * one is routed through the `expo/virtual/env` module so edits to .env take
+ * effect without a full rebuild. Without this the reads survive into the bundle
+ * and every EXPO_PUBLIC_ value is undefined at runtime.
+ *
+ * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
+ * it is how a native bundle knows where to fetch loader data from, and a native
+ * runtime has no `process.env` to read it back out of.
+ *
+ * Both live in one pass because they are the same rewrite over the same walk,
+ * and a second parse of every file is the cost this transformer exists to avoid.
  */
-export declare function applyExpoInlineEnvVars(code: string, filename: string, isProduction: boolean): string;
+export declare function applyInlineEnvVars(code: string, filename: string, isProduction: boolean): string;
+/**
+ * Native port of one's `babel-plugin-environment-guard`.
+ */
+export declare function applyEnvironmentGuard(code: string, filename: string): string;
 /**
  * Native port of one's `babel-plugin-one-router-metro`. The native worker
  * replaces the babel transformer wholesale, so without this the router entry

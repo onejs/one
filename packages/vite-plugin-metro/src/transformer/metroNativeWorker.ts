@@ -185,6 +185,28 @@ export function getOneRouterMetroOptions(options: MetroWorkerOptions): OneRouter
 }
 
 /**
+ * Reads the router root one's babel preset hands to
+ * `babel-plugin-remove-server-code`. Its absence means one did not ask for
+ * server-code removal, so the step is skipped rather than guessed at.
+ */
+export function getRemoveServerCodeRouterRoot(
+  options: MetroWorkerOptions
+): string | undefined {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  if (!Array.isArray(plugins)) return undefined
+  for (const plugin of plugins) {
+    if (
+      Array.isArray(plugin) &&
+      typeof plugin[0] === 'string' &&
+      plugin[0].includes('remove-server-code')
+    ) {
+      return plugin[1]?.routerRoot ?? 'app'
+    }
+  }
+  return undefined
+}
+
+/**
  * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
  * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
  * the rest are prefixes.
@@ -297,13 +319,21 @@ export function applyModuleResolverAliases(
 }
 
 /**
- * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars`. In
- * production every `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in
- * development each one is routed through the `expo/virtual/env` module so edits
- * to .env take effect without a full rebuild. Without this the reads survive
- * into the bundle and every EXPO_PUBLIC_ value is undefined at runtime.
+ * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
+ * one's `babel-plugin-inline-one-server-url`. In production every
+ * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
+ * one is routed through the `expo/virtual/env` module so edits to .env take
+ * effect without a full rebuild. Without this the reads survive into the bundle
+ * and every EXPO_PUBLIC_ value is undefined at runtime.
+ *
+ * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
+ * it is how a native bundle knows where to fetch loader data from, and a native
+ * runtime has no `process.env` to read it back out of.
+ *
+ * Both live in one pass because they are the same rewrite over the same walk,
+ * and a second parse of every file is the cost this transformer exists to avoid.
  */
-export function applyExpoInlineEnvVars(
+export function applyInlineEnvVars(
   code: string,
   filename: string,
   isProduction: boolean
@@ -341,6 +371,11 @@ export function applyExpoInlineEnvVars(
         parent?.type === 'AssignmentExpression' && parent.left === node
       const key = keyOf(node.property, node.computed)
 
+      if (isProcessEnv && !isAssignmentTarget && key === 'ONE_SERVER_URL') {
+        ms.overwrite(node.start, node.end, JSON.stringify(process.env.ONE_SERVER_URL || ''))
+        return
+      }
+
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
         if (isProduction) {
           ms.overwrite(node.start, node.end, JSON.stringify(process.env[key] ?? undefined))
@@ -369,6 +404,47 @@ export function applyExpoInlineEnvVars(
     ms.prepend(`import { env as _$$_EXPO_ENV } from "expo/virtual/env";\n`)
   }
   return ms.hasChanged() ? ms.toString() : code
+}
+
+// `native-only` is a side-effect guard that is satisfied simply by being in a
+// native build, so the import is dropped. the other three assert the file is
+// NOT in one, and a native bundle that keeps them silently ships web or server
+// code, so the import becomes the throw it was standing in for.
+const GUARD_SPECIFIERS = new Set(['server-only', 'client-only', 'web-only'])
+
+/**
+ * Native port of one's `babel-plugin-environment-guard`.
+ */
+export function applyEnvironmentGuard(code: string, filename: string): string {
+  const parsed = parseSync(filename, code, { lang: langForFilename(filename) })
+  if (parsed?.errors?.length) {
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for environment guards: ${parsed.errors[0].message}`
+    )
+  }
+  const body = parsed?.program?.body
+  if (!body) return code
+
+  const ms = new MagicString(code)
+  let changed = false
+
+  for (const node of body) {
+    if (node.type !== 'ImportDeclaration') continue
+    const source = node.source?.value
+    if (source === 'native-only') {
+      ms.remove(node.start, node.end)
+      changed = true
+    } else if (GUARD_SPECIFIERS.has(source)) {
+      ms.overwrite(
+        node.start,
+        node.end,
+        `throw new Error(${JSON.stringify(`${source} cannot be imported in a native environment`)});`
+      )
+      changed = true
+    }
+  }
+
+  return changed ? ms.toString() : code
 }
 
 /**
@@ -1349,6 +1425,28 @@ let workletsConfigured = false
  * Turns on @vxrn/compiler's reanimated transform inside this metro worker
  * process when the project actually depends on reanimated.
  */
+type OneNativeTransforms = typeof import('one/native-transforms')
+
+let oneNativeTransforms: OneNativeTransforms | null | undefined
+
+/**
+ * Resolves `one/native-transforms` from the user's project. Returns null once
+ * and stays null when one isn't installed, so a bare vite-plugin-metro app
+ * doesn't pay a failed resolve per file.
+ */
+function loadOneNativeTransforms(projectRoot: string) {
+  if (oneNativeTransforms !== undefined) return oneNativeTransforms
+  try {
+    // require, not import: this worker runs as cjs, so `resolve` lands on one's
+    // cjs build, whose named exports an `import()` namespace would not carry.
+    const req = createRequire(path.resolve(projectRoot, 'package.json'))
+    oneNativeTransforms = req('one/native-transforms') as OneNativeTransforms
+  } catch {
+    oneNativeTransforms = null
+  }
+  return oneNativeTransforms
+}
+
 async function configureWorkletsForWorker(projectRoot: string | undefined) {
   if (workletsConfigured) return
   workletsConfigured = true
@@ -1650,11 +1748,41 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     }
   }
 
-  // Step A2: expo public env vars. after flow stripping so the parse succeeds,
-  // before extraction so the injected `expo/virtual/env` import is seen. the
-  // substring guard keeps the extra parse off files with no EXPO_PUBLIC_ read.
-  if (code.includes('EXPO_PUBLIC_')) {
-    code = applyExpoInlineEnvVars(code, filename, !options.dev)
+  // Step A2: expo public env vars and one's server url. after flow stripping so
+  // the parse succeeds, before extraction so the injected `expo/virtual/env`
+  // import is seen. the substring guards keep the extra parse off files with no
+  // such read at all.
+  if (code.includes('EXPO_PUBLIC_') || code.includes('ONE_SERVER_URL')) {
+    code = applyInlineEnvVars(code, filename, !options.dev)
+  }
+
+  // Step A3: one's environment guards. `import 'server-only'` in a native
+  // bundle has to become a throw, and it has to happen before extraction or
+  // metro tries to resolve a module that only exists to be rejected.
+  if (code.includes('-only')) {
+    code = applyEnvironmentGuard(code, filename)
+  }
+
+  // Step A4: one's server-only route exports. a route's `loader` runs on the
+  // server, and leaving it in drags everything it imports — database clients,
+  // secrets — into the app bundle. this reuses one's own oxc tree-shaker rather
+  // than reimplementing its dead-code elimination here; it is resolved out of
+  // the user's `one` install because one depends on this package, not the
+  // reverse.
+  const serverCodeRouterRoot = getRemoveServerCodeRouterRoot(options)
+  if (serverCodeRouterRoot && projectRoot && !filename.includes('node_modules')) {
+    const oneNativeTransforms = loadOneNativeTransforms(projectRoot)
+    if (oneNativeTransforms) {
+      const shaken = await oneNativeTransforms.transformTreeShakeClient(
+        code,
+        filename,
+        projectRoot,
+        serverCodeRouterRoot
+      )
+      if (shaken?.code) {
+        code = shaken.code
+      }
+    }
   }
 
   // Step B: Extract dependencies using oxc-parser (zero Babel, lexical scope aware)
