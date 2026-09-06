@@ -137,6 +137,16 @@ export function getNativeTransformConfig(
     }
   })()
 
+  // app-supplied defines (One's native.bundlerOptions.define). vite's rule:
+  // a string is a raw expression, anything else is JSON stringified. rolldown's
+  // binding only accepts strings, so normalize rather than crashing the build.
+  const userDefines: Record<string, string> = {}
+  for (const [key, value] of Object.entries(
+    ((globalThis as any).__vxrnNativeUserDefine || {}) as Record<string, unknown>
+  )) {
+    userDefines[key] = typeof value === 'string' ? value : JSON.stringify(value)
+  }
+
   const mode = dev ? 'development' : 'production'
 
   // Match One's Vite client contract: load public values from process.env and
@@ -175,6 +185,9 @@ export function getNativeTransformConfig(
       runtime: 'classic' as const,
     },
     define: {
+      // first in the map, so nothing the user set can shadow a platform-owned
+      // key below.
+      ...userDefines,
       // Public values are applied first so platform-owned keys cannot inherit
       // the SSR values used while loading One's Vite config.
       ...envDefines,

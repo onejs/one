@@ -854,11 +854,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // TODO move to single config and through environments
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
 
-  // TODO make this passed into vxrn through real API
+  // TODO move this handoff off globalThis, like the other one -> vxrn options
   if (!nativeDisabled) {
+    // the native bundler is its own rolldown instance rather than a vite
+    // environment, so nothing in `config.plugins` reaches it. one's own plugins
+    // go first, then whatever the app opted in through native.bundlerOptions.
+    const viteBundlerOptions =
+      nativeOptions?.bundler === 'metro' ? undefined : (nativeOptions?.bundlerOptions as any)
+
     globalThis.__vxrnAddNativePlugins = [
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
+      ...(viteBundlerOptions?.plugins ?? []),
     ]
+    ;(globalThis as any).__vxrnNativeUserDefine = viteBundlerOptions?.define
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
