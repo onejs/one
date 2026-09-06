@@ -3,6 +3,7 @@ import * as babel from '@babel/core'
 import * as vm from 'node:vm'
 import { parseSync } from 'oxc-parser'
 import * as fs from 'node:fs'
+import * as path from 'node:path'
 import {
   transform,
   getCacheKey,
@@ -1046,7 +1047,10 @@ export const all = { ...import.meta.env };`,
       {},
       import.meta.dirname,
       'ota.ts',
-      Buffer.from('export const id = __EXAMPLE_BUILD_ID;', 'utf8'),
+      Buffer.from(
+        'export const id = __EXAMPLE_BUILD_ID; export const from = __EXAMPLE_FILENAME;',
+        'utf8'
+      ),
       {
         dev: true,
         platform: 'ios',
@@ -1062,6 +1066,10 @@ export const all = { ...import.meta.env };`,
     assertZeroBabelCalls()
     expect(result.output[0].data.code).toContain('"ios-build"')
     expect(result.output[0].data.code).not.toContain('__EXAMPLE_BUILD_ID')
+    // the transform is handed an absolute path, not metro's relative one
+    expect(result.output[0].data.code).toContain(
+      JSON.stringify(path.join(import.meta.dirname, 'ota.ts'))
+    )
   })
 
   it('refuses to build when a user babel plugin has no native port', () => {

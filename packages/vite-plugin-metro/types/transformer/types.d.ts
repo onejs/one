@@ -29,6 +29,7 @@ export type ViteCustomTransformOptions = {
  * anything else — it just must not be a babel plugin.
  */
 export type NativeTransform = (code: string, context: {
+    /** absolute path to the file being transformed */
     filename: string;
     platform: string | null | undefined;
     dev: boolean;

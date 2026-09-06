@@ -1931,6 +1931,27 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   let code = sourceCode
   const intermediateMaps: any[] = []
 
+  // Step A00: the user's own native transforms, each standing in for a babel
+  // plugin. they run on the file exactly as it came off disk, because in the
+  // babel path every plugin visits one AST parsed from that source, so a plugin
+  // that reads positions (jump-to-source stamps file:line:column) sees original
+  // line numbers. one's ports below are sequential string rewrites that shift
+  // lines, so running these after them would report a location the editor
+  // cannot jump to.
+  for (const nativeTransform of getNativeTransforms(options, projectRoot)) {
+    const out = nativeTransform(code, {
+      // absolute, unlike metro's own project-relative name. a transform that
+      // matches on paths (include/exclude lists, node_modules skips) or stamps
+      // a location into the output would otherwise get a different answer here
+      // than the babel plugin it replaced, which is handed an absolute path.
+      filename: path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename),
+      platform: options.platform,
+      dev: options.dev,
+      projectRoot,
+    })
+    if (typeof out === 'string') code = out
+  }
+
   // Step A0: one's router entry rewrites. must run before dependency extraction
   // so the injected setup import and the inlined require.context regex are both
   // visible to it.
@@ -2044,19 +2065,6 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code = shaken.code
       }
     }
-  }
-
-  // Step A5: the user's own native transforms. after one's ports so they see
-  // the same code a babel plugin placed last would have, and before extraction
-  // so any import they add or remove reaches the dependency graph.
-  for (const nativeTransform of getNativeTransforms(options, projectRoot)) {
-    const out = nativeTransform(code, {
-      filename,
-      platform: options.platform,
-      dev: options.dev,
-      projectRoot,
-    })
-    if (typeof out === 'string') code = out
   }
 
   // Step B: Extract dependencies using oxc-parser (zero Babel, lexical scope aware)
