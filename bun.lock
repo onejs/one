@@ -216,6 +216,7 @@
         "@babel/plugin-transform-flow-strip-types": "^7.27.1",
         "@babel/plugin-transform-react-jsx": "^7.27.1",
         "@babel/plugin-transform-regenerator": "^7.28.4",
+        "@jridgewell/remapping": "^2.3.0",
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-native-client": "workspace:*",
         "babel-plugin-react-compiler": "^1.0.0",
@@ -226,9 +227,9 @@
         "oxc-transform": "^0.112.0",
         "oxc-transform-react": "^0.145.0",
         "react-native-css-interop": "^0.2.6",
-        "ts-deepmerge": "^7.0.2",
       },
       "devDependencies": {
+        "@jridgewell/trace-mapping": "^0.3.25",
         "@tamagui/build": "2.6.2",
         "depcheck": "^1.4.7",
         "rolldown": "^1.2.4",
@@ -5080,8 +5081,6 @@
     "trim-lines": ["trim-lines@3.0.1", "", {}, "sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg=="],
 
     "trough": ["trough@2.2.0", "", {}, "sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw=="],
-
-    "ts-deepmerge": ["ts-deepmerge@7.0.3", "", {}, "sha512-Du/ZW2RfwV/D4cmA5rXafYjBQVuvu4qGiEEla4EmEHVHgRdx68Gftx7i66jn2bzHPwSVZY36Ae6OuDn9el4ZKA=="],
 
     "ts-interface-checker": ["ts-interface-checker@0.1.13", "", {}, "sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA=="],
 

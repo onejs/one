@@ -77,8 +77,8 @@ const GESTURE_KINDS = new Set([
 
 // `FadeIn.duration(300).withCallback(fn)` - same shape, same reason for gating
 // on the chain root rather than on the method name.
-const LAYOUT_ANIMATIONS = new Set([
-  ...`BounceIn BounceInDown BounceInLeft BounceInRight BounceInUp BounceOut BounceOutDown
+const LAYOUT_ANIMATIONS = new Set(
+  `BounceIn BounceInDown BounceInLeft BounceInRight BounceInUp BounceOut BounceOutDown
    BounceOutLeft BounceOutRight BounceOutUp FadeIn FadeInDown FadeInLeft FadeInRight FadeInUp
    FadeOut FadeOutDown FadeOutLeft FadeOutRight FadeOutUp FlipInEasyX FlipInEasyY FlipInXDown
    FlipInXUp FlipInYLeft FlipInYRight FlipOutEasyX FlipOutEasyY FlipOutXDown FlipOutXUp
@@ -90,8 +90,8 @@ const LAYOUT_ANIMATIONS = new Set([
    StretchOutX StretchOutY ZoomIn ZoomInDown ZoomInEasyDown ZoomInEasyUp ZoomInLeft ZoomInRight
    ZoomInRotate ZoomInUp ZoomOut ZoomOutDown ZoomOutEasyDown ZoomOutEasyUp ZoomOutLeft
    ZoomOutRight ZoomOutRotate ZoomOutUp Layout LinearTransition SequencedTransition
-   FadingTransition JumpingTransition CurvedTransition EntryExitTransition`.split(/\s+/),
-])
+   FadingTransition JumpingTransition CurvedTransition EntryExitTransition`.split(/\s+/)
+)
 
 const LAYOUT_ANIMATION_CHAIN_METHODS = new Set([
   'build',

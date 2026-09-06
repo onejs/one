@@ -322,6 +322,30 @@ function getNativeTransforms(
 }
 
 /**
+ * The same files @vxrn/compiler's `applyDefaultFilters` runs the react compiler
+ * on for the vite path: app typescript only. node_modules is excluded because
+ * react-native's own sources are flow, which the oxc react compiler rejects
+ * outright, and the app never asked for its dependencies to be memoized.
+ */
+function isReactCompilerCandidate(filename: string): boolean {
+  if (!/\.tsx?$/.test(filename)) return false
+  if (filename.includes('node_modules')) return false
+  if (filename.includes('+api.')) return false
+  return true
+}
+
+/**
+ * Whether the babel plugin list one handed metro names `id`. The list is the
+ * only channel one has to say "the app turned this on", so the ported
+ * transforms read their own gate out of it.
+ */
+function hasBabelPlugin(options: MetroWorkerOptions, id: string): boolean {
+  const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  if (!Array.isArray(plugins)) return false
+  return plugins.some((plugin) => (Array.isArray(plugin) ? plugin[0] : plugin) === id)
+}
+
+/**
  * A babel plugin the user added through `bundlerOptions.babelConfigOverrides`
  * would silently do nothing here, because this worker replaced babel outright.
  * Silently dropping someone's OTA or instrumentation plugin is worse than
@@ -2074,8 +2098,16 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   })
 
   // Step C: React Compiler (via @vxrn/compiler / oxc-transform-react)
+  //
+  // `react: { compiler: true }` in one's config reaches metro as
+  // babel-plugin-react-compiler in the babel plugin list, not as expo's
+  // customTransformOptions.reactCompiler (which only ever comes from a
+  // `transform.reactCompiler` query param on the bundle url). the babel
+  // transformer read the plugin list, so this one has to as well or the app
+  // asked for the compiler and silently got nothing.
   const shouldRunReactCompiler =
     Boolean(options.customTransformOptions?.reactCompiler) ||
+    (hasBabelPlugin(options, 'babel-plugin-react-compiler') && isReactCompilerCandidate(filename)) ||
     code.includes('"use memo"') ||
     code.includes("'use memo'")
 
