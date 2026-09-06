@@ -14,7 +14,6 @@ export const AUTOWORKLET_FUNCTION_ARGS: Record<string, number[]> = Object.assign
     useAnimatedScrollHandler: [0],
     useAnimatedGestureHandler: [0],
     useAnimatedReaction: [0, 1],
-    createAnimatedComponent: [0],
     withTiming: [2],
     withSpring: [2],
     withDecay: [1],
@@ -39,18 +38,139 @@ export const AUTOWORKLET_FUNCTION_ARGS: Record<string, number[]> = Object.assign
     useNativeGesture: [0],
     useManualGesture: [0],
     useHoverGesture: [0],
-    onBegin: [0],
-    onStart: [0],
-    onEnd: [0],
-    onFinalize: [0],
-    onUpdate: [0],
-    onChange: [0],
-    onTouchesDown: [0],
-    onTouchesMove: [0],
-    onTouchesUp: [0],
-    onTouchesCancelled: [0],
   }
 )
+
+// gesture builder callbacks are NOT matched by name. `onChange`, `onStart` and
+// `onEnd` are ordinary identifiers in plenty of unrelated code, and turning one
+// of those callbacks into a worklet ships a function to the UI runtime that was
+// never written for it. the callback only counts when the receiver is a
+// `Gesture.<Kind>()` chain, which is what the babel plugin requires too.
+export const GESTURE_BUILDER_METHODS = new Set([
+  'onBegin',
+  'onStart',
+  'onEnd',
+  'onFinalize',
+  'onUpdate',
+  'onChange',
+  'onTouchesDown',
+  'onTouchesMove',
+  'onTouchesUp',
+  'onTouchesCancelled',
+])
+
+const GESTURE_KINDS = new Set([
+  'Tap',
+  'Pan',
+  'Pinch',
+  'Rotation',
+  'Fling',
+  'LongPress',
+  'ForceTouch',
+  'Native',
+  'Manual',
+  'Race',
+  'Simultaneous',
+  'Exclusive',
+  'Hover',
+])
+
+// `FadeIn.duration(300).withCallback(fn)` - same shape, same reason for gating
+// on the chain root rather than on the method name.
+const LAYOUT_ANIMATIONS = new Set([
+  ...`BounceIn BounceInDown BounceInLeft BounceInRight BounceInUp BounceOut BounceOutDown
+   BounceOutLeft BounceOutRight BounceOutUp FadeIn FadeInDown FadeInLeft FadeInRight FadeInUp
+   FadeOut FadeOutDown FadeOutLeft FadeOutRight FadeOutUp FlipInEasyX FlipInEasyY FlipInXDown
+   FlipInXUp FlipInYLeft FlipInYRight FlipOutEasyX FlipOutEasyY FlipOutXDown FlipOutXUp
+   FlipOutYLeft FlipOutYRight LightSpeedInLeft LightSpeedInRight LightSpeedOutLeft
+   LightSpeedOutRight PinwheelIn PinwheelOut RollInLeft RollInRight RollOutLeft RollOutRight
+   RotateInDownLeft RotateInDownRight RotateInUpLeft RotateInUpRight RotateOutDownLeft
+   RotateOutDownRight RotateOutUpLeft RotateOutUpRight SlideInDown SlideInLeft SlideInRight
+   SlideInUp SlideOutDown SlideOutLeft SlideOutRight SlideOutUp StretchInX StretchInY
+   StretchOutX StretchOutY ZoomIn ZoomInDown ZoomInEasyDown ZoomInEasyUp ZoomInLeft ZoomInRight
+   ZoomInRotate ZoomInUp ZoomOut ZoomOutDown ZoomOutEasyDown ZoomOutEasyUp ZoomOutLeft
+   ZoomOutRight ZoomOutRotate ZoomOutUp Layout LinearTransition SequencedTransition
+   FadingTransition JumpingTransition CurvedTransition EntryExitTransition`.split(/\s+/),
+])
+
+const LAYOUT_ANIMATION_CHAIN_METHODS = new Set([
+  'build',
+  'duration',
+  'delay',
+  'getDuration',
+  'randomDelay',
+  'getDelay',
+  'getDelayFunction',
+  'easing',
+  'rotate',
+  'springify',
+  'damping',
+  'mass',
+  'stiffness',
+  'overshootClamping',
+  'energyThreshold',
+  'restDisplacementThreshold',
+  'restSpeedThreshold',
+  'withInitialValues',
+  'getAnimationAndConfig',
+  'easingX',
+  'easingY',
+  'easingWidth',
+  'easingHeight',
+  'entering',
+  'exiting',
+  'reverse',
+])
+
+function isGestureObject(exp: any): boolean {
+  return (
+    exp?.type === 'CallExpression' &&
+    exp.callee?.type === 'MemberExpression' &&
+    exp.callee.object?.type === 'Identifier' &&
+    exp.callee.object.name === 'Gesture' &&
+    exp.callee.property?.type === 'Identifier' &&
+    GESTURE_KINDS.has(exp.callee.property.name)
+  )
+}
+
+function containsGestureObject(exp: any): boolean {
+  if (isGestureObject(exp)) return true
+  return (
+    exp?.type === 'CallExpression' &&
+    exp.callee?.type === 'MemberExpression' &&
+    containsGestureObject(exp.callee.object)
+  )
+}
+
+function isLayoutAnimationChain(exp: any): boolean {
+  if (exp?.type === 'Identifier' && LAYOUT_ANIMATIONS.has(exp.name)) return true
+  if (
+    exp?.type === 'NewExpression' &&
+    exp.callee?.type === 'Identifier' &&
+    LAYOUT_ANIMATIONS.has(exp.callee.name)
+  ) {
+    return true
+  }
+  return (
+    exp?.type === 'CallExpression' &&
+    exp.callee?.type === 'MemberExpression' &&
+    exp.callee.property?.type === 'Identifier' &&
+    LAYOUT_ANIMATION_CHAIN_METHODS.has(exp.callee.property.name) &&
+    isLayoutAnimationChain(exp.callee.object)
+  )
+}
+
+// true when every argument of the call should be workletized rather than the
+// indices a named hook declares.
+function isChainedCallback(callee: any): boolean {
+  if (callee?.type !== 'MemberExpression' || callee.property?.type !== 'Identifier') {
+    return false
+  }
+  const name = callee.property.name
+  if (GESTURE_BUILDER_METHODS.has(name)) return containsGestureObject(callee.object)
+  if (name === 'withCallback') return isLayoutAnimationChain(callee.object)
+  return false
+}
 
 // the worklets directives, in the order the runtime expects to find them.
 export const WORKLET_DIRECTIVES = ['worklet', 'no-worklet-closure', 'limit-init-data-hoisting']
@@ -190,8 +310,11 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
     if (node.type === 'CallExpression') {
       const calleeName = getCalleeName(node.callee)
       const argIndices = calleeName ? AUTOWORKLET_FUNCTION_ARGS[calleeName] : undefined
-      if (argIndices) {
-        for (const idx of argIndices) {
+      const chained = !argIndices && isChainedCallback(node.callee)
+      const indices =
+        argIndices ?? (chained ? node.arguments.map((_: unknown, i: number) => i) : undefined)
+      if (indices) {
+        for (const idx of indices) {
           const arg = node.arguments[idx]
           if (!arg) continue
 

@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { configuration, isNativeWorkletsEnabled } from './configure'
-import { AUTOWORKLET_FUNCTION_ARGS } from './worklets/autoworklet'
+import { AUTOWORKLET_FUNCTION_ARGS, GESTURE_BUILDER_METHODS } from './worklets/autoworklet'
 
 // every callee the transform auto-workletizes has to be in this gate, or files
 // whose only worklets come from gesture callbacks (`.onBegin`, `.onEnd`,
@@ -29,7 +29,15 @@ export const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
 
 const REANIMATED_REGEX = new RegExp(
   [
-    ...new Set([...REANIMATED_AUTOWORKLETIZATION_KEYWORDS, ...Object.keys(AUTOWORKLET_FUNCTION_ARGS)]),
+    ...new Set([
+      ...REANIMATED_AUTOWORKLETIZATION_KEYWORDS,
+      ...Object.keys(AUTOWORKLET_FUNCTION_ARGS),
+      // gesture callbacks are only workletized on a `Gesture.<Kind>()` chain,
+      // but this file gate has to be permissive or a file whose only worklets
+      // are gesture callbacks never reaches the transform at all.
+      ...GESTURE_BUILDER_METHODS,
+      'withCallback',
+    ]),
   ]
     .map((name) => `\\b${name}\\b`)
     .join('|')

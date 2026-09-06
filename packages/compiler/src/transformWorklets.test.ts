@@ -79,6 +79,40 @@ describe('transformWorklets', () => {
     expect(result.code).not.toContain('__workletHash')
   })
 
+  it('workletizes gesture callbacks only when the receiver is a Gesture chain', async () => {
+    // `onChange`/`onStart`/`onEnd` are ordinary identifiers in unrelated code.
+    // matching them by name alone ships app callbacks to the UI runtime.
+    const gesture = await transformWorklets(
+      '/app/gesture.ts',
+      `const g = Gesture.Pan().onStart((e) => { scale.value = e.x }).onChange((e) => { scale.value = e.y })`,
+      false
+    )
+    expect((gesture.code.match(/__workletHash/g) ?? []).length).toBe(2)
+
+    const notAGesture = await transformWorklets(
+      '/app/plain.ts',
+      `onChange((d) => d + scrollDiff); emitter.onStart(function () { return count })`,
+      false
+    )
+    expect(notAGesture.code).not.toContain('__workletHash')
+  })
+
+  it('workletizes withCallback only on a layout animation chain', async () => {
+    const layout = await transformWorklets(
+      '/app/layout.ts',
+      `const a = FadeIn.duration(300).withCallback((finished) => { done.value = finished })`,
+      false
+    )
+    expect(layout.code).toContain('__workletHash')
+
+    const plain = await transformWorklets(
+      '/app/plain-callback.ts',
+      `queue.withCallback((finished) => { done.value = finished })`,
+      false
+    )
+    expect(plain.code).not.toContain('__workletHash')
+  })
+
   it('transforms closure variables into worklet parameters', async () => {
     const code = `
       const factor = 2
