@@ -1,12 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
-import { join } from 'node:path'
-import {
-  getCodegen,
-  rnCodegenPlugin,
-  transformReactNativeCodegen,
-} from './rnCodegenPlugin'
+import { rnCodegenPlugin, transformReactNativeCodegen } from './rnCodegenPlugin'
 
 describe('rnCodegenPlugin', () => {
   it('generates view-config replacement for codegenNativeComponent default export', () => {
@@ -316,51 +309,5 @@ export default codegenNativeComponent<FlowViewProps>('FlowView') as HostComponen
     expect(result).toBeDefined()
     expect(result?.code).toContain('uiViewClassName: "FlowView"')
     expect(result?.code).toContain('export default NativeComponentRegistry.get')
-  })
-})
-
-describe('getCodegen dependency resolution', () => {
-  it('resolves app-specific Codegen installation when present in projectRoot', async () => {
-    const tempRoot = await mkdtemp(join(tmpdir(), 'codegen-app-test-'))
-    try {
-      const appRoot = join(tempRoot, 'app')
-      const codegenDir = join(appRoot, 'node_modules/@react-native/codegen')
-      await mkdir(codegenDir, { recursive: true })
-      await writeFile(join(appRoot, 'package.json'), JSON.stringify({ name: 'app' }))
-      await writeFile(
-        join(codegenDir, 'package.json'),
-        JSON.stringify({ name: '@react-native/codegen', version: '99.0.0' })
-      )
-
-      const customGenDir = join(codegenDir, 'lib/generators')
-      await mkdir(customGenDir, { recursive: true })
-      await writeFile(
-        join(customGenDir, 'RNCodegen.js'),
-        'module.exports = { isCustomAppCodegen: true };'
-      )
-
-      const customFlowDir = join(codegenDir, 'lib/parsers/flow')
-      await mkdir(customFlowDir, { recursive: true })
-      await writeFile(
-        join(customFlowDir, 'parser.js'),
-        'class FlowParser { isCustomAppFlow = true; }; module.exports = { FlowParser };'
-      )
-
-      const customTsDir = join(codegenDir, 'lib/parsers/typescript')
-      await mkdir(customTsDir, { recursive: true })
-      await writeFile(
-        join(customTsDir, 'parser.js'),
-        'class TypeScriptParser { isCustomAppTs = true; }; module.exports = { TypeScriptParser };'
-      )
-
-      const appCodegen = getCodegen(appRoot)
-      expect(appCodegen.RNCodegen?.isCustomAppCodegen).toBe(true)
-      expect(appCodegen.flowParser.isCustomAppFlow).toBe(true)
-
-      const defaultCodegen = getCodegen('/nonexistent-isolated-path')
-      expect(defaultCodegen.RNCodegen?.isCustomAppCodegen).toBeUndefined()
-    } finally {
-      await rm(tempRoot, { recursive: true, force: true })
-    }
   })
 })

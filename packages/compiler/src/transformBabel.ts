@@ -72,11 +72,6 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
     plugins.push(getBabelReactCompilerPlugin(props))
   }
 
-  if (shouldBabelReactNativeCodegen(props)) {
-    debug?.(`Using babel @react-native/babel-plugin-codegen on file`)
-    plugins.push('@react-native/babel-plugin-codegen')
-  }
-
   if (plugins.length) {
     return { plugins }
   }
@@ -204,20 +199,6 @@ const getBasePlugins = ({ development }: Props) =>
       },
     ],
   ] satisfies babel.PluginItem[]
-
-/**
- * ----- react native codegen ----
- */
-
-const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
-const SPEC_FILE_RE = /[/\\]specs?[/\\]/
-
-export const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
-  return (
-    (environment === 'ios' || environment === 'android') &&
-    (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id))
-  )
-}
 
 /**
  * ----- react compiler -----

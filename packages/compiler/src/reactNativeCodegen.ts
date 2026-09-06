@@ -1,13 +1,9 @@
-import { createRequire } from 'node:module'
-import { basename, join } from 'node:path'
 import MagicString from 'magic-string'
-import { parseSync } from 'oxc-parser'
-
-// this module is built to both esm and cjs. the metro transformer worker loads
-// the cjs build, where `import.meta.url` is undefined and createRequire throws,
-// so resolve against whichever of the two the running build actually has.
-const SELF_URL: string =
-  typeof __filename !== 'undefined' ? __filename : import.meta.url
+import {
+  generateViewConfig,
+  parseSpec,
+  renderViewConfigModule,
+} from './reactNativeViewConfig'
 
 // vite's normalizePath, inlined so this stays usable from the metro transformer
 // worker, which must not pull vite into a worker process.
@@ -16,94 +12,11 @@ function normalizePath(id: string) {
 }
 
 const CODEGEN_FILE_RE = /(?:NativeComponent\.[cm]?[jt]sx?$|[/\\]specs?[/\\])/
-
-let hermesParser: any = undefined
-
-export function getCodegen(projectRoot?: string) {
-  let req: NodeRequire = createRequire(SELF_URL)
-  if (projectRoot) {
-    try {
-      const rootReq = createRequire(join(projectRoot, 'package.json'))
-      // Resolve package.json rather than bare specifier because @react-native/codegen
-      // has no root exports/main entry and throws MODULE_NOT_FOUND on bare import.
-      rootReq.resolve('@react-native/codegen/package.json')
-      req = rootReq
-    } catch {
-      try {
-        const rootReq = createRequire(join(projectRoot, 'package.json'))
-        const rnPkg = rootReq.resolve('react-native/package.json')
-        const rnReq = createRequire(rnPkg)
-        rnReq.resolve('@react-native/codegen/package.json')
-        req = rnReq
-      } catch {
-        req = createRequire(SELF_URL)
-      }
-    }
-  }
-
-  let FlowParser: any
-  let TypeScriptParser: any
-  let RNCodegen: any
-
-  try {
-    FlowParser = req('@react-native/codegen/lib/parsers/flow/parser').FlowParser
-    TypeScriptParser = req(
-      '@react-native/codegen/lib/parsers/typescript/parser'
-    ).TypeScriptParser
-    RNCodegen = req('@react-native/codegen/lib/generators/RNCodegen')
-  } catch {
-    FlowParser = req('@react-native/codegen/src/parsers/flow/parser').FlowParser
-    TypeScriptParser = req(
-      '@react-native/codegen/src/parsers/typescript/parser'
-    ).TypeScriptParser
-    RNCodegen = req('@react-native/codegen/src/generators/RNCodegen')
-  }
-
-  return {
-    req,
-    flowParser: new FlowParser(),
-    typeScriptParser: new TypeScriptParser(),
-    RNCodegen,
-  }
-}
-
-function getHermesParser(projectRoot?: string) {
-  if (hermesParser === undefined) {
-    try {
-      const req = projectRoot
-        ? createRequire(join(projectRoot, 'package.json'))
-        : createRequire(SELF_URL)
-      hermesParser = req('hermes-parser')
-    } catch {
-      try {
-        const req = createRequire(SELF_URL)
-        hermesParser = req('hermes-parser')
-      } catch {
-        hermesParser = null
-      }
-    }
-  }
-  return hermesParser
-}
-
-function parseFile(filename: string, code: string, projectRoot?: string) {
-  const { flowParser, typeScriptParser } = getCodegen(projectRoot)
-  if (/\.[cm]?tsx?$/.test(filename)) {
-    return typeScriptParser.parseString(code, filename)
-  }
-  if (/\.[cm]?jsx?$/.test(filename)) {
-    return flowParser.parseString(code, filename)
-  }
-  throw new Error(`Unable to parse file '${filename}'. Unsupported filename extension.`)
-}
-
-function getLibraryName(filename: string): string {
-  const base = basename(filename)
-  const replaced = base.replace(/NativeComponent\.[cm]?[jt]sx?$/, '')
-  return replaced === base ? base.replace(/\.[cm]?[jt]sx?$/, '') : replaced
-}
-
 const CODEGEN_CALL_RE = /codegenNativeComponent\s*[<(]/
+
+// oxc reports positions as start/end, hermes-parser (the flow specs) as range
+const startOf = (node: any): number => node.start ?? node.range[0]
+const endOf = (node: any): number => node.end ?? node.range[1]
 
 function unwrapExpression(node: any): any {
   while (node) {
@@ -141,65 +54,21 @@ function isCodegenDeclaration(declaration: any): boolean {
   }
 
   const unwrapped = unwrapExpression(declaration)
-  if (
+  return (
     unwrapped?.type === 'CallExpression' &&
-    (unwrapped.callee?.name === 'codegenNativeComponent' ||
-      (unwrapped.callee?.type === 'Identifier' &&
-        unwrapped.callee.name === 'codegenNativeComponent'))
-  ) {
-    return true
-  }
-
-  return false
+    unwrapped.callee?.type === 'Identifier' &&
+    unwrapped.callee.name === 'codegenNativeComponent'
+  )
 }
 
 function isCodegenNativeCommandsDeclaration(declaration: any): boolean {
   if (!declaration) return false
-
   const unwrapped = unwrapExpression(declaration)
   return (
     unwrapped?.type === 'CallExpression' &&
-    (unwrapped.callee?.name === 'codegenNativeCommands' ||
-      (unwrapped.callee?.type === 'Identifier' &&
-        unwrapped.callee.name === 'codegenNativeCommands'))
+    unwrapped.callee?.type === 'Identifier' &&
+    unwrapped.callee.name === 'codegenNativeCommands'
   )
-}
-
-function parseAst(filename: string, code: string) {
-  const isTS = /\.[cm]?tsx?$/.test(filename)
-  try {
-    const oxcResult = parseSync(filename, code, {
-      lang: isTS
-        ? filename.endsWith('x')
-          ? 'tsx'
-          : 'ts'
-        : filename.endsWith('x')
-          ? 'jsx'
-          : 'js',
-    })
-    if (!oxcResult.errors || oxcResult.errors.length === 0) {
-      return oxcResult.program
-    }
-  } catch {
-    // oxc parser failed, try fallback
-  }
-
-  const hermes = getHermesParser()
-  if (hermes) {
-    try {
-      const hermesResult = hermes.parse(code, {
-        babel: true,
-        flow: 'all',
-        reactRuntimeTarget: '19',
-        sourceFilename: filename,
-      })
-      return hermesResult.program
-    } catch {
-      // hermes failed
-    }
-  }
-
-  return null
 }
 
 export function transformReactNativeCodegen(
@@ -222,8 +91,8 @@ export function transformReactNativeCodegen(
     return
   }
 
-  const ast = parseAst(cleanId, code)
-  const body = ast?.body
+  const program = parseSpec(code, cleanId, projectRoot)
+  const body = program?.body
   if (!body) {
     return
   }
@@ -285,24 +154,25 @@ export function transformReactNativeCodegen(
     return
   }
 
-  const { RNCodegen } = getCodegen(projectRoot)
-  const schema = parseFile(cleanId, code, projectRoot)
-  const libraryName = getLibraryName(cleanId)
-  const viewConfig = RNCodegen.generateViewConfig({
-    libraryName,
-    schema,
-  })
+  const generated = generateViewConfig(program)
+  if (!generated) {
+    return
+  }
 
   const s = new MagicString(code)
 
   if (commandsExport) {
-    let removeEnd = commandsExport.end
+    let removeEnd = endOf(commandsExport)
     if (code[removeEnd] === '\r') removeEnd++
     if (code[removeEnd] === '\n') removeEnd++
-    s.remove(commandsExport.start, removeEnd)
+    s.remove(startOf(commandsExport), removeEnd)
   }
 
-  s.overwrite(defaultExport.start, defaultExport.end, viewConfig)
+  s.overwrite(
+    startOf(defaultExport),
+    endOf(defaultExport),
+    renderViewConfigModule(generated)
+  )
 
   return {
     code: s.toString(),
