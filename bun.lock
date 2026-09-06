@@ -664,6 +664,7 @@
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
+        "@babel/types": "^7.28.5",
         "@jridgewell/remapping": "^2.3.0",
         "@jridgewell/trace-mapping": "^0.3.25",
         "@oxc-project/runtime": "^0.112.0",
@@ -741,8 +742,8 @@
         "image-size": "^1.2.1",
         "magic-string": "^0.30.21",
         "micromatch": "^4.0.8",
-        "oxc-parser": "^0.112.0",
         "oxc-transform": "^0.112.0",
+        "oxc-transform-react": "^0.145.0",
         "perfect-debounce": "^1.0.0",
         "picocolors": "^1.0.0",
         "pkg-types": "^1.0.3",

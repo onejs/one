@@ -455,9 +455,20 @@ describe('transformWorklets', () => {
 
     // Verify Hermes bytecode compilation via hermesc if available
     const { execFileSync } = await import('node:child_process')
+    // hermes-compiler ships all three platforms' binaries, so the osx one exists
+    // on linux CI too and running it gets a shell syntax error rather than a
+    // skip. pick the one that can actually execute here.
+    const hermescDir =
+      process.platform === 'darwin'
+        ? 'osx-bin'
+        : process.platform === 'win32'
+          ? 'win64-bin'
+          : 'linux64-bin'
     const hermescPath = path.resolve(
       __dirname,
-      '../../../node_modules/hermes-compiler/hermesc/osx-bin/hermesc'
+      `../../../node_modules/hermes-compiler/hermesc/${hermescDir}/hermesc${
+        process.platform === 'win32' ? '.exe' : ''
+      }`
     )
     if (fs.existsSync(hermescPath)) {
       const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-worklet-test-'))
