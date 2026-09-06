@@ -207,11 +207,13 @@ export function getRemoveServerCodeRouterRoot(
   return undefined
 }
 
-/**
- * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
- * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
- * the rest are prefixes.
- */
+// the merged map is the same for every file in a bundle, so it is built once
+// per (plugins array, platform) rather than per file.
+const importMetaEnvCache = new WeakMap<
+  object,
+  Map<string, Record<string, string | boolean | undefined>>
+>()
+
 /**
  * Reads the env map one hands to its `import-meta-env-plugin`, with the
  * platform's own values layered on top exactly as that plugin does. Without it
@@ -223,6 +225,12 @@ export function getImportMetaEnv(
   options: MetroWorkerOptions
 ): Record<string, string | boolean | undefined> {
   const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
+  const platform = options.platform ?? ''
+
+  let byPlatform = Array.isArray(plugins) ? importMetaEnvCache.get(plugins) : undefined
+  const cached = byPlatform?.get(platform)
+  if (cached) return cached
+
   let env: Record<string, string | boolean | undefined> = {}
   if (Array.isArray(plugins)) {
     for (const plugin of plugins) {
@@ -236,10 +244,20 @@ export function getImportMetaEnv(
       }
     }
   }
-  return {
+
+  const merged = {
     ...env,
     ...getPlatformEnv(metroPlatformToViteEnvironment(options.platform)),
   }
+
+  if (Array.isArray(plugins)) {
+    if (!byPlatform) {
+      byPlatform = new Map()
+      importMetaEnvCache.set(plugins, byPlatform)
+    }
+    byPlatform.set(platform, merged)
+  }
+  return merged
 }
 
 // every babel plugin id this worker has a native port of. the worker runs no
@@ -297,6 +315,11 @@ export function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void 
   }
 }
 
+/**
+ * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
+ * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
+ * the rest are prefixes.
+ */
 export function getModuleResolverAliases(
   options: MetroWorkerOptions
 ): Record<string, string> | undefined {

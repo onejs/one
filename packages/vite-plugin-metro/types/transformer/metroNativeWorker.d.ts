@@ -93,11 +93,6 @@ export declare function getOneRouterMetroOptions(options: MetroWorkerOptions): O
  */
 export declare function getRemoveServerCodeRouterRoot(options: MetroWorkerOptions): string | undefined;
 /**
- * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
- * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
- * the rest are prefixes.
- */
-/**
  * Reads the env map one hands to its `import-meta-env-plugin`, with the
  * platform's own values layered on top exactly as that plugin does. Without it
  * every `import.meta.env.X` read compiles to a property of the empty
@@ -112,6 +107,11 @@ export declare function getImportMetaEnv(options: MetroWorkerOptions): Record<st
  * refusing to build, so it is named and thrown.
  */
 export declare function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void;
+/**
+ * Reads the alias map one's babel preset hands to `babel-plugin-module-resolver`
+ * (its "vite-tsconfig-paths for Metro"). Keys ending in `$` are exact matches,
+ * the rest are prefixes.
+ */
 export declare function getModuleResolverAliases(options: MetroWorkerOptions): Record<string, string> | undefined;
 /**
  * Resolves one tsconfig-path alias to a specifier relative to the importing
