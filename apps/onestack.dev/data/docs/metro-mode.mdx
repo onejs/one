@@ -46,7 +46,7 @@ When using Metro mode, only some of the Vite features are supported. One provide
 <Notice theme="blue">
   Metro mode intentionally supports only a subset of Vite configurations and features. This approach helps avoid implementation differences between Vite and Metro that could cause compatibility issues with React Native packages.
   <br />
-  We are actively working on expanding Vite feature support, but for any features we don't yet provide through Vite configuration, you can always use the standard React Native way to change the configuration using `babel.config.js` and `metro.config.js`.
+  We are actively working on expanding Vite feature support, but for any features we don't yet provide through Vite configuration, you can always use the standard React Native way to change the configuration using `metro.config.js`.
 </Notice>
 
 Only the following Vite features and configurations are supported in Metro mode for now:
@@ -63,20 +63,7 @@ By default, the Metro bundler is configured with [Expo's defaults](https://docs.
   We recommend using the standard Vite way for configuring if possible, as it provides a more consistent experience across web and native builds, and will be more future-proof to switch between bundlers.
 </Notice>
 
-Like ordinary React Native apps, you can still configure Metro using standard configuration files:
-
-**`babel.config.js`** - Configure Babel transformations for your JavaScript/TypeScript code:
-
-```js fileName=babel.config.js
-module.exports = function (api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
-  };
-};
-```
-
-**`metro.config.js`** - Configure more advanced Metro bundler settings, such as resolver, transformations, or watcher options:
+Like ordinary React Native apps, you can still configure Metro using `metro.config.js` for more advanced settings, such as resolver or watcher options:
 
 ```js fileName=metro.config.js
 const { getDefaultConfig } = require('expo/metro-config');
@@ -86,7 +73,40 @@ const config = getDefaultConfig(__dirname);
 module.exports = config;
 ```
 
-These configuration files work exactly as they would in a standard React Native project, giving you full control over the bundling process.
+`metro.config.js` works exactly as it would in a standard React Native project, giving you full control over the bundling process.
+
+### No Babel
+
+Metro mode runs no Babel. One replaces Expo's Babel transformer with its own worker built on oxc, so `babel.config.js` and `babel-preset-expo` have no effect and every plugin One used to ship on native is a Rust port instead.
+
+A Babel plugin One has no port for would silently do nothing, so instead the build fails and names it. You have three options:
+
+- Port it and list it in `native.bundlerOptions.nativeTransformModules`. Each entry is a module id (Metro runs transforms in separate worker processes, so it has to be serializable) that default-exports `(code, ctx) => string | null`. Your transforms run first, on the original source, with an absolute `ctx.filename`.
+- Remove it from `native.bundlerOptions.babelConfigOverrides`.
+- Set `native.bundlerOptions.nativeTransforms: false` to go back to the Babel transformer, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run.
+
+A native transform is the shape a Babel plugin takes when there is no Babel — source in, source out, free to use oxc, a regex, or anything else:
+
+```js fileName=scripts/my-transform.cjs
+module.exports = function myTransform(code, ctx) {
+  // ctx: { filename, platform, dev, projectRoot }
+  if (!code.includes('__BUILD_ID')) return null
+  return code.replace(/__BUILD_ID/g, JSON.stringify(process.env.BUILD_ID))
+}
+```
+
+```tsx fileName=vite.config.ts
+one({
+  native: {
+    bundler: 'metro',
+    bundlerOptions: {
+      nativeTransformModules: ['./scripts/my-transform.cjs'],
+    },
+  },
+})
+```
+
+Return `null` to leave the file alone. Transforms run in order, before One's own ports, on the file exactly as it came off disk — so a transform that reads positions sees the original line numbers, the same view a Babel plugin got.
 
 ## Lazy Startup
 
@@ -125,4 +145,4 @@ This can significantly speed up dev server startup when you don't always need na
 
 ## Performance
 
-Metro mode is designed for production stability, but it may not match the performance of Vite as it is not optimized for speed, and is using Babel instead of SWC for transformations. However, we observed that Metro mode somehow provides better memory efficiency.
+Metro mode is designed for production stability, but it may not match the performance of Vite, which bundles with Rolldown. Both paths transform with oxc and run no Babel. We observed that Metro mode provides better memory efficiency.

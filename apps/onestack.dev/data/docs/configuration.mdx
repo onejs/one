@@ -289,6 +289,35 @@ When using Metro mode, you can also configure `bundlerOptions.startup: 'lazy'` t
 
 For detailed information including limitations, configuration options, and performance considerations, see the [Metro Mode documentation](/docs/metro-mode).
 
+Note that `native.bundler` only affects dev. `one build --platform ios` and `--platform android` always produce the native bundle through Rolldown.
+
+### native.bundlerOptions
+
+Options for whichever bundler `native.bundler` selects. With `'vite'`:
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      native: {
+        bundlerOptions: {
+          plugins: [myRolldownPlugin()],
+          define: {
+            __MY_FLAG__: true,
+          },
+        },
+      },
+    }),
+  ],
+}
+```
+
+`plugins` are Rolldown plugins run on the native bundle in both dev and build. The native bundler is its own Rolldown instance rather than a Vite environment, so plugins in your top-level `plugins` array never reach it — this is how you add one.
+
+`define` follows Vite's rules: a string value is inserted as a raw expression, anything else is JSON stringified. It's deliberately separate from your Vite `define` rather than inherited from it, because plugins add web-only defines there. `@tamagui/vite-plugin` sets `_WORKLET: false` for Reanimated on web, and inheriting that on native would statically kill every worklet.
+
+With `'metro'`, see the [Metro Mode documentation](/docs/metro-mode) for `nativeTransformModules`, `nativeTransforms`, `startup`, and the Metro config passthroughs.
+
 ### native.css
 
 Enables [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
