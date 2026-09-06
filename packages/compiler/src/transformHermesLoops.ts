@@ -42,11 +42,13 @@ type Loop = {
 }
 
 function langFor(filename: string) {
-  const ext = filename.split('.').pop() || 'js'
+  const ext = filename.split('?')[0].split('.').pop() || 'js'
+  // a .ts file is not tsx (`const f = <T>(x: T) => x` is a type parameter
+  // there, an unclosed element under tsx), but everything else is parsed as
+  // jsx: react-native ships jsx inside plain .js, and oxc's `js` rejects it.
   if (ext === 'ts' || ext === 'cts' || ext === 'mts') return 'ts' as const
   if (ext === 'tsx') return 'tsx' as const
-  if (ext === 'jsx') return 'jsx' as const
-  return 'js' as const
+  return 'jsx' as const
 }
 
 function collectPatternNames(node: any, out: string[]) {
@@ -312,13 +314,10 @@ function transformOnce(
     // both are rare and left alone rather than rewritten incorrectly.
     if (facts.hasYield || facts.assignsBinding || facts.hasLabeledJump) continue
 
-    if (names.length) {
-      const decl = headDeclaration(node)
-      // the head binding becomes function-scoped; the per-iteration copy is now
-      // the parameter of _loop, which shadows it.
-      s.overwrite(decl.start, decl.start + decl.kind.length, 'var')
-    }
-
+    // the head declaration is left exactly as written. lowering it to `var`
+    // hoists it out of the loop, where it collides with any sibling `const` of
+    // the same name (react-native-gesture-handler's Pressable declares `const
+    // gesture` right after a `for (const gesture of gestures)`).
     const fnName = `_hermesLoop${counter++}`
     const params = names.join(', ')
 

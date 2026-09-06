@@ -243,6 +243,33 @@ describe('transformHermesLoops', () => {
     expect(transformHermesLoops('for (var i = 0; i < 3; i++) fns.push(() => i)', 'test.js')).toBeNull()
   })
 
+  it('leaves the head declaration alone so it cannot collide with a sibling', () => {
+    // react-native-gesture-handler's Pressable declares `const gesture` in the
+    // same block as `for (const gesture of gestures)`. hoisting the head to
+    // `var` made that a redeclaration and failed the whole bundle to parse.
+    const out = transformHermesLoops(
+      `function build(gestures) {
+         var handlers = []
+         for (const gesture of gestures) { handlers.push(() => gesture) }
+         const gesture = gestures[0]
+         return gesture
+       }`,
+      'Pressable.js'
+    )
+    // a redeclaration is a SyntaxError, so compiling is the whole assertion
+    expect(() => new vm.Script(out!.code)).not.toThrow()
+  })
+
+  it('rewrites a loop in a .js file that still contains jsx', () => {
+    // react-native and its dependencies ship jsx inside plain `.js`, and the
+    // rolldown native pipeline keeps jsx unlowered until after this transform.
+    const out = transformHermesLoops(
+      'for (const c of items) rows.push(() => <Row key={c} />)',
+      'Rows.js'
+    )
+    expect(out?.code).toContain('_hermesLoop0')
+  })
+
   it('does not rewrite a loop that reassigns its own binding', () => {
     // the update would be stranded inside the lifted function
     expect(

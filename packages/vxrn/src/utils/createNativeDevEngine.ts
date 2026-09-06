@@ -250,6 +250,9 @@ function getNativePlugins(
     assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
     hermesCompatSWCPlugin(dev, sourceMaps),
+    // hermes compat: per-iteration loop bindings. runs last so it also covers
+    // loops the earlier lowering steps emit.
+    hermesLoopsPlugin(sourceMaps),
   ]
 }
 
@@ -1560,6 +1563,41 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
 }
 
 export const hermesCompatPlugin = hermesCompatSWCPlugin
+
+/**
+ * Hermes gives a loop one environment, not one per iteration, so every closure
+ * created in a loop body sees the binding's final value. zod installs its schema
+ * methods with `for (const key in methods) defineProperty(proto, key, {get(){...}})`,
+ * and without this every method on every zod schema resolved to the last one:
+ * `string().nullish()` called `apply` and the app red-screened at startup.
+ * See @vxrn/compiler's transformHermesLoops for the bytecode evidence.
+ *
+ * Rolldown's own interop helpers are emitted after this runs, but they are
+ * already `var`-based with `.bind(null, key)`, so they need no rewriting.
+ */
+export function hermesLoopsPlugin(sourceMaps = false): Plugin {
+  let compiler: typeof import('@vxrn/compiler') | null = null
+
+  return {
+    name: 'vxrn:hermes-loops',
+    async transform(code, id) {
+      if (!/\.[cm]?[jt]sx?$/.test(id)) return
+      if (id.includes('\0') || id.includes('virtual:')) return
+
+      if (!compiler) compiler = await import('@vxrn/compiler')
+      const result = compiler.transformHermesLoops(code, id)
+      if (!result) return
+
+      if (!sourceMaps) return { code: result.code, map: null }
+      if (result.maps.length === 1) return { code: result.code, map: result.maps[0] as any }
+      const remapping = (await import('@jridgewell/remapping')).default
+      return {
+        code: result.code,
+        map: remapping(result.maps.slice().reverse(), () => null) as any,
+      }
+    },
+  }
+}
 
 // --- HMR runtime ---
 

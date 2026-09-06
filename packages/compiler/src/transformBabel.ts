@@ -1,7 +1,9 @@
 import { extname, relative } from 'node:path'
-import babel from '@babel/core'
+// type-only, so that importing this module does not drag babel in. every metro
+// worker loads it through the package index, and on the native transform path
+// babel is never called at all: loading it there is pure startup cost.
+import type * as babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
-import hermesParserPlugin from 'babel-plugin-syntax-hermes-parser'
 import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
@@ -133,6 +135,10 @@ export async function transformBabel(
   code: string,
   options: babel.TransformOptions
 ) {
+  const [{ default: babelCore }, { default: hermesParserPlugin }] = await Promise.all([
+    import('@babel/core'),
+    import('babel-plugin-syntax-hermes-parser'),
+  ])
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
@@ -174,7 +180,7 @@ export async function transformBabel(
   }
 
   return await new Promise<babel.BabelFileResult>((res, rej) => {
-    babel.transform(code, babelOptions, (err: unknown, result) => {
+    babelCore.transform(code, babelOptions, (err: unknown, result) => {
       if (!result || err) {
         return rej(err || new Error(`[vxrn:compiler] babel returned no result for ${id}`))
       }
