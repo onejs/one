@@ -171,9 +171,13 @@ export async function buildMetroConfigInputFromViteConfig(
     ...buildOutputExclusions,
   ]
 
+  // no babel by default. the worker throws on a babel plugin it has no port
+  // for, so opting back in is explicit rather than something you drift into.
   const isNativeTransforms =
-    process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
-    metroPluginOptions.nativeTransforms === true
+    process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
+      ? false
+      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
+        metroPluginOptions.nativeTransforms !== false
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
@@ -344,9 +348,13 @@ export async function getMetroConfigFromViteConfig(
     ...buildOutputExclusions,
   ]
 
+  // no babel by default. the worker throws on a babel plugin it has no port
+  // for, so opting back in is explicit rather than something you drift into.
   const isNativeTransforms =
-    process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
-    metroPluginOptions.nativeTransforms === true
+    process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
+      ? false
+      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
+        metroPluginOptions.nativeTransforms !== false
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {

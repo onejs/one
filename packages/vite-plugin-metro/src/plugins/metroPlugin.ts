@@ -53,8 +53,8 @@ export type MetroPluginOptions = {
   babelConfig?: TransformOptions
   babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions
   /**
-   * Module ids of transforms to run on the native transform path
-   * (`ONE_METRO_NATIVE_TRANSFORMS=1`), which runs no babel at all. Each module
+   * Module ids of transforms to run on the native transform path (the
+   * default), which runs no babel at all. Each module
    * default-exports a `NativeTransform`: `(code, ctx) => string | null`. They
    * run in order, after one's own ports and before dependency extraction.
    *
@@ -86,7 +86,13 @@ export type MetroPluginOptions = {
    */
   startup?: 'eager' | 'lazy'
   /**
-   * Use custom native transforms (0% Babel worker) for Metro bundling.
+   * Run Metro's transforms through the oxc worker, which uses no babel at all.
+   *
+   * On by default. The worker refuses to build when it sees a babel plugin it
+   * has no port for, so a plugin is never silently dropped: port it and list it
+   * in `nativeTransformModules`, or set this to `false` to go back to babel.
+   *
+   * `ONE_METRO_NATIVE_TRANSFORMS=0` turns it off for one run.
    */
   nativeTransforms?: boolean
 }

@@ -364,25 +364,32 @@ describe('metroNativeWorker', () => {
     // it under `transformer` passes while metro silently keeps its own worker,
     // so both the presence and the nesting are checked here.
 
-    // Flag off: the key still holds expo's default worker, which is itself proof
-    // that top level is where metro reads it from.
+    // Default: the no-babel worker, with nothing configured.
     delete process.env.ONE_METRO_NATIVE_TRANSFORMS
-    const configOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
-    expect(configOff.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
+    const configDefault = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+    expect(configDefault.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    expect(configDefault.defaultConfig.transformer.transformerPath).toBeUndefined()
 
-    // Flag on via environment variable
-    process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
-    const configEnvOn = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
-    expect(configEnvOn.defaultConfig.transformerPath).toContain('metroNativeWorker')
-    expect(configEnvOn.defaultConfig.transformer.transformerPath).toBeUndefined()
-
-    // Flag on via metroPluginOptions
-    delete process.env.ONE_METRO_NATIVE_TRANSFORMS
-    const configOptOn = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
-      nativeTransforms: true,
+    // Opting back into babel via metroPluginOptions leaves expo's default
+    // worker in the key, which is itself proof that top level is where metro
+    // reads it from.
+    const configOptOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+      nativeTransforms: false,
     })
-    expect(configOptOn.defaultConfig.transformerPath).toContain('metroNativeWorker')
-    expect(configOptOn.defaultConfig.transformer.transformerPath).toBeUndefined()
+    expect(configOptOff.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
+
+    // Opting back into babel for one run via the environment variable
+    process.env.ONE_METRO_NATIVE_TRANSFORMS = '0'
+    const configEnvOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+    expect(configEnvOff.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
+
+    // and the env var wins over an option that asked for babel
+    process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+    const configEnvOn = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+      nativeTransforms: false,
+    })
+    expect(configEnvOn.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    delete process.env.ONE_METRO_NATIVE_TRANSFORMS
   })
 
   it('transforms and executes a real 2-module Metro bundle through metro-runtime require polyfill', async () => {

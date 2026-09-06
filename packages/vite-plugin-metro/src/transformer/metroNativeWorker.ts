@@ -349,10 +349,11 @@ export function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void 
 
   if (unported.length) {
     throw new Error(
-      `[vxrn/metro] ONE_METRO_NATIVE_TRANSFORMS=1 runs no babel, so these babel plugins would be silently ignored:\n` +
+      `[vxrn/metro] the native transform path runs no babel, so these babel plugins would be silently ignored:\n` +
         unported.map((id) => `  - ${id}`).join('\n') +
         `\n\nPort each one to a native transform and list it in bundlerOptions.nativeTransformModules, ` +
-        `remove it from bundlerOptions.babelConfigOverrides, or unset ONE_METRO_NATIVE_TRANSFORMS ` +
+        `remove it from bundlerOptions.babelConfigOverrides, or set ` +
+        `bundlerOptions.nativeTransforms: false (or ONE_METRO_NATIVE_TRANSFORMS=0) ` +
         `to go back to the babel transformer.`
     )
   }

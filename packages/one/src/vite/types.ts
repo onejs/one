@@ -371,10 +371,14 @@ export namespace One {
           css?: boolean
 
           /**
-           * Specifies the bundler to use for native builds. Defaults to 'vite'.
+           * Which bundler serves the native dev bundle. Defaults to 'vite'.
            *
-           * - 'metro' is recommended for production stability. Note that this option comes with some limitations, see https://onestack.dev/docs/metro-mode#limitations for more info.
-           * - 'vite' is experimental but offers faster builds with SWC.
+           * - 'vite' runs rolldown with oxc transforms and no babel.
+           * - 'metro' runs Metro, also with no babel by default. See
+           *   https://onestack.dev/docs/metro-mode#limitations for its limits.
+           *
+           * This only affects dev. `one build` always produces the native
+           * bundle through the rolldown path.
            *
            * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
            */
