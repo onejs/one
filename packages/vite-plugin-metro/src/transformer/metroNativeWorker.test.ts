@@ -58,25 +58,26 @@ vi.mock('@babel/core', async (importOriginal) => {
   }
 })
 
+// module scope so every describe in this file can assert it, not just the first
+beforeEach(() => {
+  babelCalls.transform = 0
+  babelCalls.transformSync = 0
+  babelCalls.transformAsync = 0
+  babelCalls.transformFromAstSync = 0
+  babelCalls.parse = 0
+  babelCalls.parseSync = 0
+})
+
+function assertZeroBabelCalls() {
+  expect(babelCalls.transform).toBe(0)
+  expect(babelCalls.transformSync).toBe(0)
+  expect(babelCalls.transformAsync).toBe(0)
+  expect(babelCalls.transformFromAstSync).toBe(0)
+  expect(babelCalls.parse).toBe(0)
+  expect(babelCalls.parseSync).toBe(0)
+}
+
 describe('metroNativeWorker', () => {
-  beforeEach(() => {
-    babelCalls.transform = 0
-    babelCalls.transformSync = 0
-    babelCalls.transformAsync = 0
-    babelCalls.transformFromAstSync = 0
-    babelCalls.parse = 0
-    babelCalls.parseSync = 0
-  })
-
-  function assertZeroBabelCalls() {
-    expect(babelCalls.transform).toBe(0)
-    expect(babelCalls.transformSync).toBe(0)
-    expect(babelCalls.transformAsync).toBe(0)
-    expect(babelCalls.transformFromAstSync).toBe(0)
-    expect(babelCalls.parse).toBe(0)
-    expect(babelCalls.parseSync).toBe(0)
-  }
-
   it('extracts all dependencies with oxc-parser and zero Babel', () => {
     const code = `
       import React, { useState } from 'react'
@@ -1028,6 +1029,32 @@ export const all = { ...import.meta.env };`,
     ).toContain('const a = y;')
     const dynamic = 'const a = flag ? x : y;'
     expect(applyInlineEnvVars(dynamic, 'a.ts', true, { DEV: false })).toBe(dynamic)
+  })
+
+  it('runs the user native transforms that stand in for their babel plugins', async () => {
+    // takeout's OTA plugin rewrites a bare `__HOT_UPDATER_BUNDLE_ID` that is
+    // otherwise undeclared, so without a way to run it the bundle throws a
+    // ReferenceError at module load. this is that way.
+    const result = await transform(
+      {},
+      import.meta.dirname,
+      'ota.ts',
+      Buffer.from('export const id = __EXAMPLE_BUILD_ID;', 'utf8'),
+      {
+        dev: true,
+        platform: 'ios',
+        type: 'module',
+        customTransformOptions: {
+          vite: {
+            nativeTransformModules: ['./__fixtures__/exampleNativeTransform.cjs'],
+          },
+        },
+      } as any
+    )
+
+    assertZeroBabelCalls()
+    expect(result.output[0].data.code).toContain('"ios-build"')
+    expect(result.output[0].data.code).not.toContain('__EXAMPLE_BUILD_ID')
   })
 
   it('refuses to build when a user babel plugin has no native port', () => {

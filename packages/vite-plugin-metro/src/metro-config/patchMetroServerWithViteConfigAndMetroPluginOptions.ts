@@ -40,6 +40,7 @@ export function patchMetroServerWithViteConfigAndMetroPluginOptions(
       // config: server.config,
       babelConfig,
       oneViteMetroBabelConfig: options.oneViteMetroBabelConfig,
+      nativeTransformModules: options.nativeTransformModules,
     }
     return originalTransformFile(
       filePath,

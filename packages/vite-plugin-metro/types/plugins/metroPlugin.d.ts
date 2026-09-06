@@ -27,6 +27,17 @@ export type MetroPluginOptions = {
     babelConfig?: TransformOptions;
     babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions;
     /**
+     * Module ids of transforms to run on the native transform path
+     * (`ONE_METRO_NATIVE_TRANSFORMS=1`), which runs no babel at all. Each module
+     * default-exports a `NativeTransform`: `(code, ctx) => string | null`. They
+     * run in order, after one's own ports and before dependency extraction.
+     *
+     * This is how a babel plugin that has no native port gets replaced rather
+     * than dropped. The worker refuses to build when it sees a babel plugin it
+     * cannot run, so porting it here is the way through.
+     */
+    nativeTransformModules?: string[];
+    /**
      * internal marker used by one's babel preset to avoid double-applying its
      * plugin chain when one already supplied the vite metro babel config.
      */

@@ -146,7 +146,9 @@ export type WrapModuleOptions = {
   requireAlias?: boolean
 }
 
-const WORKER_CACHE_KEY_VERSION = '2'
+// bump whenever this worker's output changes, or metro serves cached modules
+// transformed by the previous version. '3' adds import.meta.env inlining.
+const WORKER_CACHE_KEY_VERSION = '3'
 
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
@@ -280,6 +282,45 @@ const PORTED_BABEL_PLUGINS = [
 // once per file, while every file still fails.
 const unportedPluginCache = new WeakMap<object, string[]>()
 
+const loadedNativeTransforms = new Map<string, (code: string, ctx: any) => unknown>()
+
+/**
+ * Loads the user's own native transforms — the thing a babel plugin becomes
+ * when there is no babel. Each module default-exports `(code, ctx) => string`.
+ * Resolved from the project root, since they are the app's dependencies rather
+ * than this package's.
+ */
+function getNativeTransforms(
+  options: MetroWorkerOptions,
+  projectRoot: string
+): ((code: string, ctx: any) => unknown)[] {
+  const ids = (options.customTransformOptions as any)?.vite?.nativeTransformModules
+  if (!Array.isArray(ids) || !ids.length) return []
+
+  const req = createRequire(path.join(projectRoot, 'package.json'))
+  return ids.map((id: string) => {
+    const cached = loadedNativeTransforms.get(id)
+    if (cached) return cached
+
+    let mod: any
+    try {
+      mod = req(id)
+    } catch (err: any) {
+      throw new Error(
+        `[vxrn/metro] Could not load the native transform "${id}" from ${projectRoot}: ${err.message}`
+      )
+    }
+    const fn = mod?.default ?? mod
+    if (typeof fn !== 'function') {
+      throw new Error(
+        `[vxrn/metro] The native transform "${id}" must default-export a function (code, ctx) => string.`
+      )
+    }
+    loadedNativeTransforms.set(id, fn)
+    return fn
+  })
+}
+
 /**
  * A babel plugin the user added through `bundlerOptions.babelConfigOverrides`
  * would silently do nothing here, because this worker replaced babel outright.
@@ -310,7 +351,9 @@ export function assertNoUnportedBabelPlugins(options: MetroWorkerOptions): void 
     throw new Error(
       `[vxrn/metro] ONE_METRO_NATIVE_TRANSFORMS=1 runs no babel, so these babel plugins would be silently ignored:\n` +
         unported.map((id) => `  - ${id}`).join('\n') +
-        `\n\nRemove them from bundlerOptions.babelConfigOverrides, or unset ONE_METRO_NATIVE_TRANSFORMS to go back to the babel transformer.`
+        `\n\nPort each one to a native transform and list it in bundlerOptions.nativeTransformModules, ` +
+        `remove it from bundlerOptions.babelConfigOverrides, or unset ONE_METRO_NATIVE_TRANSFORMS ` +
+        `to go back to the babel transformer.`
     )
   }
 }
@@ -2000,6 +2043,19 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code = shaken.code
       }
     }
+  }
+
+  // Step A5: the user's own native transforms. after one's ports so they see
+  // the same code a babel plugin placed last would have, and before extraction
+  // so any import they add or remove reaches the dependency graph.
+  for (const nativeTransform of getNativeTransforms(options, projectRoot)) {
+    const out = nativeTransform(code, {
+      filename,
+      platform: options.platform,
+      dev: options.dev,
+      projectRoot,
+    })
+    if (typeof out === 'string') code = out
   }
 
   // Step B: Extract dependencies using oxc-parser (zero Babel, lexical scope aware)
