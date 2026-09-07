@@ -260,8 +260,10 @@ export async function applyDependencyPatches(
                     patchedContent = patchDef
                   } else if (Array.isArray(patchDef)) {
                     // strategy-array patches (flow/jsx/swc transforms) are non-critical
-                    // if they fail (e.g. babel + lru-cache incompatibility on Node 24+),
-                    // warn and skip rather than crashing the whole patch process
+                    // if they fail, warn and skip rather than crashing the whole patch
+                    // process. the message carries the real error: a skipped Flow strip
+                    // here leaves raw Flow in node_modules, and the only sign of it used
+                    // to be a bundler parse failure several steps later.
                     try {
                       let contents = sourceContent
                       for (const strategy of patchDef) {
@@ -288,11 +290,10 @@ export async function applyDependencyPatches(
                       if (!transformWarnedModules.has(patch.module)) {
                         transformWarnedModules.add(patch.module)
                         console.warn(
-                          `  ⚠ Patch transform failed for ${patch.module} (likely Node version compat), skipping non-critical patch`
+                          `  ⚠ Patch transform failed for ${patch.module} in ${relativePath}, skipping non-critical patch: ${
+                            (transformErr as Error)?.stack ?? transformErr
+                          }`
                         )
-                        if (process.env.DEBUG) {
-                          console.warn(transformErr)
-                        }
                       }
                       return
                     }

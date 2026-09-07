@@ -148,6 +148,7 @@ export type TransformWorkletsOptions = {
 }
 
 import { executeWorkletTransform } from './worklets/transform'
+export { prepareWorkletsForReactCompiler } from './worklets/transform'
 
 export async function transformWorklets(
   id: string,
@@ -157,4 +158,3 @@ export async function transformWorklets(
 ): Promise<{ code: string; map?: any }> {
   return executeWorkletTransform(id, code, sourceMaps, options, getWorkletsVersion)
 }
-

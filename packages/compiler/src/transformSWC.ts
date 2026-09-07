@@ -12,6 +12,18 @@ export interface Output {
 // posix-only — id is normalized below
 const ignoreId = /node_modules\/(\.vite|vite)\//
 
+export function shouldStripFlow(id: string, code: string): boolean {
+  const filename = id.split('?')[0]
+  if (!/\.jsx?$/.test(filename)) return false
+  if (/node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/.test(filename)) {
+    return true
+  }
+  // scan the complete comment preamble, including license blocks before @flow.
+  const header =
+    code.match(/^(?:#![^\r\n]*(?:\r?\n|$))?(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*)*/)?.[0] || ''
+  return /@flow\b/.test(header) || /\b(?:import|export)\s+type\b/.test(code)
+}
+
 export async function transformSWC(
   id: string,
   code: string,
@@ -291,10 +303,9 @@ function getLang(id: string, forceJSX = false): 'js' | 'jsx' | 'ts' | 'tsx' | un
   if (extension === '.ts') return 'ts'
   if (extension === '.jsx' || extension === '.mdx') return 'jsx'
   if (extension === '.js' || extension === '.mjs' || extension === '.cjs') {
-    if (forceJSX || id.includes('expo-modules-core')) {
-      return 'jsx'
-    }
-    return 'js'
+    // native packages ship jsx inside plain js files; jsx mode also accepts
+    // ordinary javascript, matching the native bundler's parser.
+    return 'jsx'
   }
 
   if (!extension) {

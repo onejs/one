@@ -4,6 +4,7 @@ import * as vm from 'node:vm'
 import { parseSync } from 'oxc-parser'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
+import { createRequire } from 'node:module'
 import {
   transform,
   getCacheKey,
@@ -79,6 +80,67 @@ function assertZeroBabelCalls() {
 }
 
 describe('metroNativeWorker', () => {
+  it.each([['data.json', true], ['data.json', false], ['data.js', false]] as const)('minifies %s with source maps enabled=%s without stale mappings', async (filename, sourceMap) => {
+    const result = await transform(
+      {
+        minifierPath: createRequire(import.meta.url).resolve('metro-minify-terser'),
+        minifierConfig: { sourceMap },
+      },
+      '/project',
+      filename,
+      Buffer.from(filename.endsWith('.json') ? '{"answer":42}' : 'module.exports = { answer: 42 }'),
+      { dev: false, minify: true, platform: 'ios', type: 'module' }
+    )
+    const module = { exports: {} as any }
+    const { code, map } = result.output[0].data
+    vm.runInNewContext(code, {
+      __d(factory: any) {
+        factory({}, () => {}, () => {}, () => {}, module, module.exports, [])
+      },
+    })
+    expect(module.exports.answer).toBe(42)
+    expect(map.every((entry) => entry.length === 2)).toBe(true)
+    assertZeroBabelCalls()
+  })
+
+  it('minifies production modules with executable output and original source locations', async () => {
+    const source = 'exports.answer = function answer(value) {\n  return value + 42\n}\n'
+    const result = await transform(
+      {
+        minifierPath: createRequire(import.meta.url).resolve('metro-minify-terser'),
+        minifierConfig: { mangle: true },
+      },
+      '/project',
+      'answer.js',
+      Buffer.from(source),
+      { dev: false, minify: true, platform: 'ios', type: 'module' }
+    )
+    const { code, map } = result.output[0].data
+    const module = { exports: {} as any }
+    vm.runInNewContext(code, {
+      __d(factory: any) {
+        factory({}, () => {}, () => {}, () => {}, module, module.exports, [])
+      },
+    })
+    expect(module.exports.answer(8)).toBe(50)
+
+    const msm = await import('metro-source-map')
+    const fullMap = (msm.fromRawMappings as any)([
+      { code, path: 'answer.js', source, map },
+    ]).toMap()
+    const offset = code.indexOf('42')
+    expect(offset).toBeGreaterThan(-1)
+    const prefix = code.slice(0, offset).split('\n')
+    const position = new msm.Consumer(fullMap).originalPositionFor({
+      line: prefix.length as any,
+      column: prefix.at(-1)!.length as any,
+    })
+    expect(position.source).toBe('answer.js')
+    expect(position.line).toBe(2)
+    expect(position.column).toBe(17)
+    assertZeroBabelCalls()
+  })
+
   it('extracts all dependencies with oxc-parser and zero Babel', () => {
     const code = `
       import React, { useState } from 'react'

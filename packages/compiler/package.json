@@ -43,7 +43,7 @@
     "hermes-parser": "^0.32.0",
     "magic-string": "^0.30.21",
     "oxc-parser": "^0.112.0",
-    "oxc-transform": "^0.112.0",
+    "oxc-transform": "^0.148.0",
     "oxc-transform-react": "^0.145.0",
     "react-native-css-interop": "^0.2.6"
   },

@@ -20,12 +20,10 @@ import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
+import { shouldStripFlow } from '@vxrn/compiler'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
-
-// files that contain Flow syntax and need stripping
-const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
 
 // Hermes needs the whole class shape lowered *together*. downleveling only the
 // class fields while leaving `class ... extends` as modern ES6 produces a
@@ -1022,34 +1020,6 @@ export function vxrnCompilerPlugin(
       let curCode = code
       const intermediateMaps: any[] = []
 
-      // React Compiler via Rust (oxc)
-      const compilerPluginIndex =
-        babelOptions?.plugins?.findIndex(
-          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
-        ) ?? -1
-
-      if (compilerPluginIndex !== -1) {
-        const compilerTarget =
-          (babelOptions!.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
-        const compilerOut = await compiler.transformOxcReactCompiler(
-          id,
-          curCode,
-          compilerTarget,
-          sourceMaps
-        )
-        if (compilerOut?.code) {
-          curCode = compilerOut.code
-          if (sourceMaps && compilerOut.map) {
-            intermediateMaps.push(compilerOut.map)
-          }
-        }
-        babelOptions!.plugins!.splice(compilerPluginIndex, 1)
-        if (babelOptions!.plugins!.length === 0) {
-          babelOptions = null
-        }
-      }
-
-      // Native Worklets via Rust/Wasm SWC
       const isWorkletPlugin = (entry: any) => {
         if (!entry) return false
         const name =
@@ -1060,42 +1030,52 @@ export function vxrnCompilerPlugin(
             name.includes('react-native-reanimated'))
         )
       }
-      const workletPluginIndex = babelOptions?.plugins?.findIndex(isWorkletPlugin) ?? -1
-      let workletPluginOptions: any = undefined
-      if (workletPluginIndex !== -1) {
-        const entry = babelOptions!.plugins![workletPluginIndex]
-        if (Array.isArray(entry) && entry[1] && typeof entry[1] === 'object') {
-          workletPluginOptions = entry[1]
+      const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
+      const workletPluginOptions = Array.isArray(workletEntry) ? workletEntry[1] : undefined
+      const useWorklets =
+        compiler.isNativeWorkletsEnabled() &&
+        (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
+      const compilerPluginIndex =
+        babelOptions?.plugins?.findIndex(
+          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+        ) ?? -1
+
+      if (compilerPluginIndex !== -1) {
+        // preserve automatic worklet candidates before react compiler hoists them.
+        if (useWorklets) {
+          const prepared = compiler.prepareWorkletsForReactCompiler(id, curCode, sourceMaps)
+          if (prepared) {
+            curCode = prepared.code
+            if (prepared.map) intermediateMaps.push(prepared.map)
+          }
         }
+        const compilerTarget =
+          (babelOptions!.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
+        const compilerOut = await compiler.transformOxcReactCompiler(
+          id, curCode, compilerTarget, sourceMaps
+        )
+        if (compilerOut?.code) {
+          curCode = compilerOut.code
+          if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
+        }
+        babelOptions!.plugins!.splice(compilerPluginIndex, 1)
+        if (babelOptions!.plugins!.length === 0) babelOptions = null
       }
 
-      const useNativeWorklets = compiler.isNativeWorkletsEnabled
-        ? compiler.isNativeWorkletsEnabled()
-        : Boolean(
-            process.env.VXRN_NATIVE_WORKLETS === 'true' ||
-            process.env.VXRN_NATIVE_WORKLETS === '1'
-          )
-
-      if (
-        useNativeWorklets &&
-        (workletPluginIndex !== -1 ||
-          compiler.shouldTransformWorklets?.({ id, code: curCode }))
-      ) {
+      if (useWorklets) {
         const workletOut = await compiler.transformWorklets(id, curCode, sourceMaps, {
           projectRoot,
           ...workletPluginOptions,
         })
         if (workletOut?.code) {
           curCode = workletOut.code
-          if (sourceMaps && workletOut.map) {
-            intermediateMaps.push(workletOut.map)
-          }
+          if (sourceMaps && workletOut.map) intermediateMaps.push(workletOut.map)
         }
-        if (workletPluginIndex !== -1) {
-          babelOptions!.plugins!.splice(workletPluginIndex, 1)
-          if (babelOptions!.plugins!.length === 0) {
-            babelOptions = null
-          }
+        if (babelOptions?.plugins) {
+          babelOptions.plugins = babelOptions.plugins.filter(
+            (entry) => !isWorkletPlugin(entry)
+          )
+          if (babelOptions.plugins.length === 0) babelOptions = null
         }
       }
 
@@ -1234,15 +1214,19 @@ if (import.meta.hot) {
 }
 
 /**
- * Strip Flow types from react-native source files.
- * Uses hermes-parser which is already a dep of react-native.
+ * Strip Flow types from react-native and other Flow-authored source files.
+ *
+ * The `.vxrn.original` patch step rewrites some of these packages in
+ * node_modules ahead of time, but that step is best-effort and skips a module
+ * whose transform throws. Deciding here on the file's own contents means the
+ * bundle no longer depends on that mutation having succeeded.
  */
 function flowStripPlugin(): Plugin {
   return {
     name: 'vxrn:flow-strip',
     transform: {
       async handler(code, id) {
-        if (!FLOW_FILE_PATTERN.test(id)) return
+        if (!shouldStripFlow(id, code)) return
 
         const fft = await import('fast-flow-transform')
         const result = await fft.default({

@@ -3,6 +3,7 @@ export interface Output {
     code: string;
     map?: any;
 }
+export declare function shouldStripFlow(id: string, code: string): boolean;
 export declare function transformSWC(id: string, code: string, options: Options & {
     es5?: boolean;
 }, swcOptions?: any): Promise<Output | undefined>;

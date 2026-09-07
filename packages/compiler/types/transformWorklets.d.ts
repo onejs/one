@@ -15,6 +15,7 @@ export type TransformWorkletsOptions = {
     strictGlobal?: boolean;
     pluginVersion?: string;
 };
+export { prepareWorkletsForReactCompiler } from './worklets/transform';
 export declare function transformWorklets(id: string, code: string, sourceMaps?: boolean, options?: TransformWorkletsOptions): Promise<{
     code: string;
     map?: any;
