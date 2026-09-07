@@ -2,11 +2,12 @@ import { existsSync } from 'node:fs'
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { runInNewContext } from 'node:vm'
+import { createContext, runInContext, runInNewContext } from 'node:vm'
 import { rolldown, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
 import { describe, expect, it, vi } from 'vitest'
 import { getNativePrelude } from '../runtime/native-prelude'
+import { workletImportsPlugin } from '../plugins/workletImportsPlugin'
 import {
   buildNativeBundle,
   createNativeDevAssetRegistry,
@@ -287,6 +288,211 @@ describe('native prelude', () => {
     expect(context.addEventListener).toBe(addEventListener)
     expect(context.removeEventListener).toBe(removeEventListener)
   })
+})
+
+describe('native pure-function worklet imports', () => {
+  it('keeps live module versions isolated across a transitive HMR update', async () => {
+    const root = await createWorkletsProject(false)
+    const packageRoot = join(root, 'node_modules/pure-math')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ type: 'module', exports: './index.js' })
+    )
+    const dependency = join(packageRoot, 'amount.ios.js')
+    await writeFile(dependency, 'export const amount = 2')
+    await writeFile(join(packageRoot, 'amount.android.js'), 'export const amount = 99')
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      `
+import { amount } from './amount'
+const instance = globalThis.moduleInitializations = (globalThis.moduleInitializations || 0) + 1
+export default function calculate(value) { return value + amount }
+export function reads() { return instance }
+`
+    )
+    await writeFile(
+      join(root, 'entry.mjs'),
+      `
+import calculate, { reads } from 'pure-math'
+globalThis.calculate = calculate
+globalThis.reads = reads
+if (import.meta.hot) import.meta.hot.accept(() => {})
+`
+    )
+    const compiler = await import('@vxrn/compiler')
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    let resolveUpdate!: (value: any) => void
+    const updated = new Promise<any>((resolve) => {
+      resolveUpdate = resolve
+    })
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [
+        workletImportsPlugin({ 'pure-math': ['default', 'reads'] }),
+        {
+          name: 'worklet-import-fixture',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
+          },
+        },
+      ],
+      onHmrUpdate: resolveUpdate,
+    })
+    try {
+      const initial = await native.getBundle()
+      const rn: any = { console, setTimeout, clearTimeout }
+      runInNewContext(initial.code, rn)
+      expect(rn.calculate(10)).toBe(12)
+      expect(rn.reads()).toBe(1)
+      const ui: any = createContext({})
+      const compiled = new Map<number, Function>()
+      const reconstruct = (worklet: any): Function => {
+        if (!worklet.__initData || !worklet.__workletHash)
+          throw new Error('remote function')
+        let fn = compiled.get(worklet.__workletHash)
+        if (!fn) {
+          fn = runInContext(`(${worklet.__initData.code})`, ui)
+          compiled.set(worklet.__workletHash, fn!)
+        }
+        const closure = Object.fromEntries(
+          Object.entries(worklet.__closure).map(([name, value]) => [
+            name,
+            typeof value === 'function' ? reconstruct(value) : value,
+          ])
+        )
+        return fn!.bind({ __closure: closure })
+      }
+      expect(() => reconstruct((value: number) => value + 2)).toThrow('remote function')
+      const old = reconstruct(rn.calculate)
+      const oldReads = reconstruct(rn.reads)
+      expect(old(10)).toBe(12)
+      expect(reconstruct(rn.calculate)(11)).toBe(13)
+      expect(oldReads()).toBe(1)
+      expect(rn.reads()).toBe(1)
+
+      const runtime = rn.__rolldown_runtime__
+      await native.engine.registerClient(runtime.clientId)
+      await writeFile(dependency, 'export const amount = 3')
+      const update = await updated
+      expect(update.type).toBe('hmr:update')
+      expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(
+        true
+      )
+      expect(rn.calculate(10)).toBe(13)
+      const next = reconstruct(rn.calculate)
+      expect([old(10), next(10), old(10), next(10)]).toEqual([12, 13, 12, 13])
+      const nextReads = reconstruct(rn.reads)
+      expect([oldReads(), nextReads(), oldReads(), nextReads()]).toEqual([1, 2, 1, 2])
+      expect(ui.moduleInitializations).toBe(2)
+      expect(rn.reads()).toBe(2)
+
+      await writeFile(
+        join(root, 'production.mjs'),
+        `import calculate, { reads } from 'pure-math'; globalThis.calculate = calculate; globalThis.reads = reads`
+      )
+      const production = await buildNativeBundle({
+        root,
+        platform: 'android',
+        entryFile: 'production.mjs',
+        plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
+      })
+      const productionRN: any = { console }
+      runInNewContext(production.code, productionRN)
+      expect(productionRN.calculate(10)).toBe(109)
+      expect(reconstruct(productionRN.calculate)(10)).toBe(109)
+      expect(reconstruct(productionRN.reads)()).toBe(3)
+      expect(productionRN.reads()).toBe(1)
+    } finally {
+      await native.close()
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it.each([
+    [
+      'unselected',
+      'export default function value() { return 1 }; export const other = 2',
+      `import { other } from 'pure-math'; globalThis.value = other`,
+      /unselected export other/,
+    ],
+    [
+      'missing',
+      'export const other = 2',
+      `import value from 'pure-math'; globalThis.value = value`,
+      /default.*not exported|MISSING_EXPORT/,
+    ],
+    [
+      'builtin',
+      `import fs from 'node:fs'; export default function value() { return fs.readFileSync('x') }`,
+      `import value from 'pure-math'; globalThis.value = value`,
+      /runtime dependency node:fs/,
+    ],
+    [
+      'global',
+      'export default function value() { return process.pid }',
+      `import value from 'pure-math'; globalThis.value = value`,
+      /unsupported runtime globals: process/,
+    ],
+    [
+      'dynamic',
+      `export default function value() { return import('./other.js') }`,
+      `import value from 'pure-math'; globalThis.value = value`,
+      /dynamic imports are unsupported/,
+    ],
+  ] as const)(
+    'rejects %s through the native engine',
+    async (_name, source, entry, expected) => {
+      const root = await createWorkletsProject(false)
+      const packageRoot = join(root, 'node_modules/pure-math')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ type: 'module', exports: './index.js' })
+      )
+      await writeFile(join(packageRoot, 'index.js'), source)
+      await writeFile(join(root, 'entry.mjs'), entry)
+      const compiler = await import('@vxrn/compiler')
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: true,
+        enableNativeWorklets: true,
+      })
+      const native = await createNativeDevEngine({
+        root,
+        port: 0,
+        platform: 'ios',
+        plugins: [
+          workletImportsPlugin({ 'pure-math': ['default'] }),
+          {
+            name: 'worklet-import-negative-fixture',
+            transform(_code, id) {
+              if (id.endsWith('/__virtual-native-entry.tsx'))
+                return `import './entry.mjs'`
+            },
+          },
+        ],
+      })
+      try {
+        await expect(native.getBundle()).rejects.toThrow(expected)
+      } finally {
+        await native.close()
+        compiler.configureVXRNCompilerPlugin({
+          enableReanimated: false,
+          enableNativeWorklets: false,
+        })
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
 })
 
 describe('native Rolldown HMR runtime', () => {
