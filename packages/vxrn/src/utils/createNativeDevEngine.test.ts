@@ -408,6 +408,22 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
       expect(reconstruct(productionRN.calculate)(10)).toBe(109)
       expect(reconstruct(productionRN.reads)()).toBe(3)
       expect(productionRN.reads()).toBe(1)
+
+      const sharedPlugin = workletImportsPlugin({ 'pure-math': ['default', 'reads'] })
+      const parallel = await Promise.all(
+        (['ios', 'android'] as const).map(async (platform) => {
+          const output = await buildNativeBundle({
+            root,
+            platform,
+            entryFile: 'production.mjs',
+            plugins: [sharedPlugin],
+          })
+          const context: any = { console }
+          runInNewContext(output.code, context)
+          return context.calculate(10)
+        })
+      )
+      expect(parallel).toEqual([13, 109])
     } finally {
       await native.close()
       compiler.configureVXRNCompilerPlugin({
