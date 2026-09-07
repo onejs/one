@@ -18,5 +18,6 @@ export * from './utils/getServerEntry';
 export * from './plugins/rollupRemoveUnusedImports';
 export * from './plugins/autoDepOptimizePlugin';
 export * from './plugins/rnCodegenPlugin';
+export * from './plugins/workletImportsPlugin';
 export * from './types';
 //# sourceMappingURL=index.d.ts.map
