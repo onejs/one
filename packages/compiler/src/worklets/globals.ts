@@ -1,4 +1,4 @@
-export const DEFAULT_GLOBALS = new Set([
+export const JS_GLOBALS = new Set([
   // Value properties
   'globalThis',
   'Infinity',
@@ -80,6 +80,10 @@ export const DEFAULT_GLOBALS = new Set([
   'Proxy',
   // Internationalization
   'Intl',
+])
+
+export const DEFAULT_GLOBALS = new Set([
+  ...JS_GLOBALS,
   // Environment / Runtime
   'null',
   'this',

@@ -318,6 +318,36 @@ export default {
 
 With `'metro'`, see the [Metro Mode documentation](/docs/metro-mode) for `nativeTransformModules`, `nativeTransforms`, `startup`, and the Metro config passthroughs.
 
+#### Imported functions in worklets
+
+For Rolldown, `workletImportsPlugin` from `vxrn` makes selected exports from a pure JavaScript package callable inside ordinary worklets:
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+import { workletImportsPlugin } from 'vxrn'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        bundler: 'vite',
+        bundlerOptions: {
+          plugins: [workletImportsPlugin({ remend: ['default'] })],
+        },
+      },
+    }),
+  ],
+}
+```
+
+Keep your usual `import remend from 'remend'` in application code. The plugin bundles the selected exports and their dependencies into worklets, so they can run on a separate worklet runtime. This is an explicit opt-in that adds bundled code and serialized worklet code for each configured entry.
+
+Select synchronous functions that work without a receiver or native runtime dependencies. The replacement module exposes only the selected exports. Function identity, `name`, `length`, attached properties, and constructor behavior are not preserved. Each entry owns its dependency graph, so module state is not shared with other configured entries or ordinary imports through another path.
+
+Initialization happens lazily once per runtime and live module version. Editing a dependency rebuilds the worklet module during development; retained worklets keep their original version. Restart the dev server after changing the plugin configuration or package export mappings.
+
+Node built-ins, React Native runtime packages, dynamic imports, and unsupported free runtime globals are rejected. The plugin cannot prove that a function is pure: the selected functions and their dependencies must not rely on host objects, runtime-specific properties on `globalThis`, or asynchronous module initialization.
+
 ### native.css
 
 Enables [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
