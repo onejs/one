@@ -29,6 +29,121 @@ export const transformProbe = () => {
 }
 `
 
+describe.each(['shared', 'rolldown', 'metro'])('React Compiler worklets through %s', (pipeline) => {
+  it.each([
+    ['block', 'useDerivedValue(() => { return value + 8 }, [value])', 18],
+    ['expression', 'useDerivedValue(() => value + 8, [value])', 18],
+    ['object', 'useDerivedValue(() => ({ lift: value + 8 }), [value])', { lift: 18 }],
+    ['nested', 'useDerivedValue(() => runOnUI(() => value + 8), [value])', 18],
+    ['gesture', 'useDerivedValue(() => Gesture.Pan().onUpdate(() => value + 8), [value])', 18],
+  ])('preserves %s callbacks on the UI runtime and memoizes stable inputs', async (_name, callback, expected) => {
+    const compiler = await import('@vxrn/compiler')
+    const { parseSync } = await import('oxc-parser')
+    const { default: MagicString } = await import('magic-string')
+    const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
+    const projectRoot = await createWorkletsProject(false)
+    const sourceMaps = process.env.VXRN_ENABLE_SOURCE_MAP
+    process.env.VXRN_ENABLE_SOURCE_MAP = '1'
+    compiler.configureVXRNCompilerPlugin({
+      enableCompiler: true,
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    try {
+      const id = join(projectRoot, 'useProbe.ts')
+      const source = `export function useProbe(value) {\n return ${callback};\n}\n`
+      await writeFile(id, source)
+      let result: any
+      if (pipeline === 'shared') {
+        const plugins = await compiler.createVXRNCompilerPlugin()
+        const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
+        await plugin.configResolved({ root: projectRoot, build: {} })
+        const hook = plugin.transform.handler || plugin.transform
+        result = await hook.call({ environment: { name: 'ios' } }, source, id)
+      } else if (pipeline === 'metro') {
+        const { transform } = await import('@vxrn/vite-plugin-metro/metroNativeWorker')
+        const output = await transform({}, projectRoot, id, Buffer.from(source), {
+          dev: false,
+          platform: 'ios',
+          type: 'module',
+          customTransformOptions: { reactCompiler: true, worklets: true },
+        })
+        const data = output.output[0].data
+        const msm = await import('metro-source-map')
+        result = {
+          code: data.code,
+          map: (msm.fromRawMappings as any)([{ code: data.code, path: id, source, map: data.map }]).toMap(),
+        }
+      } else {
+        const plugin = vxrnCompilerPlugin('ios', false, projectRoot, true)
+        result = await Reflect.apply(plugin.transform as Function, undefined, [source, id])
+      }
+      const runnable = new MagicString(result.code)
+      for (const node of parseSync('probe.js', result.code).program.body) {
+        if (node.type === 'ImportDeclaration') runnable.remove(node.start, node.end)
+        if (node.type === 'ExportNamedDeclaration' && node.declaration) {
+          runnable.remove(node.start, node.declaration.start)
+        }
+      }
+      let cache: any[] | undefined
+      let cacheCalls = 0
+      const memo = (size: number) => {
+        cacheCalls++
+        return cache ??= Array(size).fill(Symbol.for('react.memo_cache_sentinel'))
+      }
+      const module = { exports: {} as any }
+      const probe = new Function('_c', 'useDerivedValue', 'runOnUI', 'Gesture', '__d', 'module',
+        `${runnable}\nreturn ${pipeline === 'metro' ? 'module.exports.useProbe' : 'useProbe'}`
+      )(
+        memo,
+        (fn: any) => fn,
+        (fn: any) => fn,
+        { Pan: () => ({ onUpdate: (fn: any) => fn }) },
+        (factory: any) => factory(globalThis, () => ({ c: memo }), () => {}, () => {}, module, module.exports, []),
+        module
+      )
+      const first = probe(10)
+      expect(first.__initData?.code).toBeTypeOf('string')
+      for (const onUI of [false, true]) {
+        let fn = first
+        let value: any
+        for (let depth = 0; depth < 2; depth++) {
+          expect(fn.__initData?.code).toBeTypeOf('string')
+          value = onUI
+            ? new Function('runOnUI', `return (${fn.__initData.code})`)((fn: any) => fn)
+                .call({ __closure: fn.__closure })
+            : fn()
+          if (typeof value !== 'function') break
+          fn = value
+        }
+        expect(value).toEqual(expected)
+      }
+      expect(probe(10)).toBe(first)
+      expect(cacheCalls).toBe(2)
+      expect(probe(20)).not.toBe(first)
+
+      const lines = result.code.split('\n')
+      const line = lines.findIndex((text: string) => text.includes('function useProbe('))
+      expect(line).toBeGreaterThanOrEqual(0)
+      const position = originalPositionFor(new TraceMap(result.map), {
+        line: line + 1,
+        column: lines[line].indexOf('function'),
+      })
+      expect(position.source).toBe(id)
+      expect(position.line).toBe(1)
+    } finally {
+      if (sourceMaps === undefined) delete process.env.VXRN_ENABLE_SOURCE_MAP
+      else process.env.VXRN_ENABLE_SOURCE_MAP = sourceMaps
+      compiler.configureVXRNCompilerPlugin({
+        enableCompiler: false,
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
+      await rm(projectRoot, { recursive: true, force: true })
+    }
+  })
+})
+
 async function createWorkletsProject(throwOnTransform = true) {
   const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-failure-'))
   const packageRoot = join(testRoot, 'node_modules/react-native-worklets')
@@ -1338,6 +1453,63 @@ globalThis.__vxrnConditionalExportProbe = helper()
       }
       runInNewContext(result.code, context)
       expect(Reflect.get(context, '__vxrnProdCjsDefaultProbe')).toBe('function')
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('native Flow sources', () => {
+  it.each(['', `/* ${'license text '.repeat(150)} */\n`])('strips third-party Flow following a license header (%#)', async (license) => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-flow-'))
+    // mirrors @react-native-masked-view/masked-view: a Flow `.js` component
+    // outside the react-native / @react-native scopes, which is what reached
+    // rolldown unstripped when its patch was skipped.
+    const packageRoot = join(testRoot, 'node_modules/@flowy-scope/flowy-lib')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ name: '@flowy-scope/flowy-lib', main: './js/Flowy.js' })
+    )
+    await mkdir(join(packageRoot, 'js'), { recursive: true })
+    await writeFile(
+      join(packageRoot, 'js/Flowy.js'),
+      `${license}/**
+ * @flow
+ * @format
+ */
+
+type FlowyProps = {|
+  +value: number,
+|}
+
+export default class Flowy {
+  _seen: boolean = false
+
+  measure(props: FlowyProps): number {
+    const { value, ...rest }: FlowyProps = props
+    this._seen = true
+    return ((value: any): number) + Object.keys(rest).length
+  }
+}
+`
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import Flowy from '@flowy-scope/flowy-lib'
+globalThis.__vxrnFlowProbe = new Flowy().measure({ value: 41 }) + 1
+`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = { clearTimeout, console, process: { env: {} }, setTimeout }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, '__vxrnFlowProbe')).toBe(42)
     } finally {
       await rm(testRoot, { recursive: true, force: true })
     }

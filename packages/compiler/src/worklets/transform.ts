@@ -15,6 +15,43 @@ const FUNCTION_TYPES = new Set([
   'ArrowFunctionExpression',
 ])
 
+export function prepareWorkletsForReactCompiler(
+  id: string,
+  code: string,
+  sourceMaps = false
+): { code: string; map?: any } | null {
+  const cleanId = id.split('?')[0]
+  const parsed = parseSync(cleanId, code, {
+    sourceType: 'module',
+    lang: /\.[cm]?ts$/.test(cleanId) ? 'ts' : cleanId.endsWith('.tsx') ? 'tsx' : 'jsx',
+  })
+  if (parsed.errors.length) {
+    const error = parsed.errors[0]
+    throw new Error(error.codeframe || error.message || 'Syntax Error while parsing worklet')
+  }
+  const candidates = findWorkletCandidates(parsed.program).filter(
+    (candidate) => candidate.isAutoWorklet && !hasDirective(candidate.fnNode, 'worklet')
+  )
+  if (!candidates.length) return null
+
+  const output = new MagicString(code)
+  for (const { fnNode } of candidates) {
+    const body = fnNode.body
+    if (body.type === 'BlockStatement') {
+      output.appendLeft(body.start + 1, "'worklet';")
+    } else {
+      output.appendLeft(body.start, "{ 'worklet'; return (")
+      output.appendLeft(body.end, '); }')
+    }
+  }
+  return {
+    code: output.toString(),
+    map: sourceMaps
+      ? output.generateMap({ source: cleanId, hires: true, includeContent: true })
+      : undefined,
+  }
+}
+
 /**
  * Innermost function whose body strictly contains `node`. A worklet marked
  * `limit-init-data-hoisting` puts its init data at the top of that body instead
