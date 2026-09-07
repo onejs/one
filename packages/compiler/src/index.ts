@@ -20,7 +20,11 @@ import {
   transformOxcReactCompiler,
 } from './transformBabel'
 import { shouldSourceMap } from './transformSWC'
-import { shouldTransformWorklets, transformWorklets } from './transformWorklets'
+import {
+  prepareWorkletsForReactCompiler,
+  shouldTransformWorklets,
+  transformWorklets,
+} from './transformWorklets'
 import type { Environment, GetTransformProps, Options } from './types'
 import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
@@ -180,29 +184,6 @@ async function performBabelTransform({
         return cached
       }
 
-      // React compiler through oxc's rust port instead of babel.
-      let compilerOut: { code: string; map?: any } | null = null
-      const compilerPluginIndex =
-        babelOptions.plugins?.findIndex(
-          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
-        ) ?? -1
-
-      if (compilerPluginIndex !== -1) {
-        const compilerTarget =
-          (babelOptions.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
-        compilerOut = await transformOxcReactCompiler(
-          id,
-          code,
-          compilerTarget,
-          shouldSourceMap()
-        )
-        babelOptions.plugins!.splice(compilerPluginIndex, 1)
-      }
-
-      let curCode = compilerOut ? compilerOut.code : code
-
-      // Native Worklets through custom native/Oxc worklet transformer instead of babel.
-      let workletsOut: { code: string; map?: any } | null = null
       const isWorkletPlugin = (entry: any) => {
         if (!entry) return false
         const name =
@@ -213,26 +194,45 @@ async function performBabelTransform({
             name.includes('react-native-reanimated'))
         )
       }
-      const workletPluginIndex = babelOptions.plugins?.findIndex(isWorkletPlugin) ?? -1
-      let workletPluginOptions: any = undefined
-      if (workletPluginIndex !== -1) {
-        const entry = babelOptions.plugins![workletPluginIndex]
-        if (Array.isArray(entry) && entry[1] && typeof entry[1] === 'object') {
-          workletPluginOptions = entry[1]
+      const workletEntry = babelOptions.plugins?.find(isWorkletPlugin)
+      const workletPluginOptions = Array.isArray(workletEntry) ? workletEntry[1] : undefined
+      const useWorklets =
+        isNativeWorkletsEnabled() &&
+        (Boolean(workletEntry) || shouldTransformWorklets({ id, code }))
+      let curCode = code
+      let workletPreparation: { code: string; map?: any } | null = null
+      let compilerOut: { code: string; map?: any } | null = null
+      const compilerPluginIndex =
+        babelOptions.plugins?.findIndex(
+          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+        ) ?? -1
+
+      if (compilerPluginIndex !== -1) {
+        // mark callbacks before react compiler moves them into memoized bindings.
+        if (useWorklets) {
+          workletPreparation = prepareWorkletsForReactCompiler(
+            id, curCode, shouldSourceMap()
+          )
+          if (workletPreparation) curCode = workletPreparation.code
         }
+        const compilerTarget =
+          (babelOptions.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
+        compilerOut = await transformOxcReactCompiler(
+          id, curCode, compilerTarget, shouldSourceMap()
+        )
+        if (compilerOut) curCode = compilerOut.code
+        babelOptions.plugins!.splice(compilerPluginIndex, 1)
       }
 
-      if (
-        isNativeWorkletsEnabled() &&
-        (workletPluginIndex !== -1 || shouldTransformWorklets({ id, code: curCode }))
-      ) {
+      let workletsOut: { code: string; map?: any } | null = null
+      if (useWorklets) {
         workletsOut = await transformWorklets(id, curCode, shouldSourceMap(), {
           projectRoot,
           ...workletPluginOptions,
         })
-        if (workletPluginIndex !== -1) {
-          babelOptions.plugins!.splice(workletPluginIndex, 1)
-        }
+        babelOptions.plugins = babelOptions.plugins?.filter(
+          (entry) => !isWorkletPlugin(entry)
+        )
         curCode = workletsOut.code
       }
 
@@ -243,7 +243,7 @@ async function performBabelTransform({
       if (babelOptions.plugins?.length === 0) {
         let finalMap: any = undefined
         if (shouldSourceMap()) {
-          const intermediateMaps = [compilerOut?.map, workletsOut?.map].filter(Boolean)
+          const intermediateMaps = [workletPreparation?.map, compilerOut?.map, workletsOut?.map].filter(Boolean)
           if (intermediateMaps.length === 1) {
             finalMap = intermediateMaps[0]
           } else if (intermediateMaps.length > 1) {
@@ -254,12 +254,12 @@ async function performBabelTransform({
         babelOut = { code: curCode, map: finalMap }
       } else {
         const babelOptsWithMap =
-          shouldSourceMap() && (workletsOut?.map || compilerOut?.map)
+          shouldSourceMap() && (workletsOut?.map || compilerOut?.map || workletPreparation?.map)
             ? { ...babelOptions, sourceMaps: true }
             : babelOptions
         babelOut = await transformBabel(id, curCode, babelOptsWithMap)
         if (shouldSourceMap() && babelOut?.map) {
-          const priorMaps = [compilerOut?.map, workletsOut?.map].filter(Boolean)
+          const priorMaps = [workletPreparation?.map, compilerOut?.map, workletsOut?.map].filter(Boolean)
           if (priorMaps.length > 0) {
             const remapping = (await import('@jridgewell/remapping')).default
             babelOut.map = remapping(

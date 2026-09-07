@@ -6,7 +6,11 @@ import { parseSync } from 'oxc-parser'
 import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
-import { transformHermesLoops, transformReactNativeCodegen } from '@vxrn/compiler'
+import {
+  shouldStripFlow,
+  transformHermesLoops,
+  transformReactNativeCodegen,
+} from '@vxrn/compiler'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 // `async function*`, the `async *name()` method shorthand, and `for await (`.
@@ -147,10 +151,8 @@ export type WrapModuleOptions = {
 }
 
 // bump whenever this worker's output changes, or metro serves cached modules
-// transformed by the previous version. '3' adds import.meta.env inlining.
-const WORKER_CACHE_KEY_VERSION = '3'
-
-const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
+// transformed by the previous version.
+const WORKER_CACHE_KEY_VERSION = '4'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -1823,7 +1825,6 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
           code,
           config: config.minifierConfig,
           filename,
-          map: [],
         })
         code = minified.code
       } catch (err: any) {
@@ -2010,12 +2011,7 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   }
 
   // Step A: Flow stripping
-  const hasFlowPragma = code.includes('@flow')
-  const isFlowCandidate =
-    (filename.endsWith('.js') || filename.endsWith('.jsx')) &&
-    (hasFlowPragma || FLOW_FILE_PATTERN.test(filename) || code.includes('import type'))
-
-  if (isFlowCandidate) {
+  if (shouldStripFlow(filename, code)) {
     try {
       const fft = await import('fast-flow-transform')
       const flowTransform = fft.default || fft
@@ -2097,6 +2093,21 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     allowOptionalDependencies: config.allowOptionalDependencies,
   })
 
+  // determine worklet candidates before react compiler can hoist them.
+  //
+  // @vxrn/compiler's reanimated gate is process-global state set by one's vite
+  // plugin. metro runs its transformer in separate worker processes that never
+  // see that call, so the gate reads false there and every worklet in the app
+  // silently ships untransformed. configure it once per worker from the same
+  // fact the vite side derives it from: does the project have reanimated.
+  await configureWorkletsForWorker(projectRoot)
+
+  let shouldRunWorklets = Boolean(options.customTransformOptions?.worklets)
+  if (!shouldRunWorklets) {
+    const { shouldTransformWorklets } = await import('@vxrn/compiler')
+    shouldRunWorklets = shouldTransformWorklets({ id: filename, code })
+  }
+
   // Step C: React Compiler (via @vxrn/compiler / oxc-transform-react)
   //
   // `react: { compiler: true }` in one's config reaches metro as
@@ -2113,8 +2124,16 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
 
   if (shouldRunReactCompiler) {
     try {
-      const { transformOxcReactCompiler } = await import('@vxrn/compiler')
-      const compilerRes = await transformOxcReactCompiler(filename, code, '19')
+      const { prepareWorkletsForReactCompiler, transformOxcReactCompiler } =
+        await import('@vxrn/compiler')
+      if (shouldRunWorklets) {
+        const prepared = prepareWorkletsForReactCompiler(filename, code, true)
+        if (prepared) {
+          code = prepared.code
+          if (prepared.map) intermediateMaps.push(prepared.map)
+        }
+      }
+      const compilerRes = await transformOxcReactCompiler(filename, code, '19', true)
       if (compilerRes?.code) {
         code = compilerRes.code
         if (compilerRes.map) {
@@ -2129,20 +2148,6 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   }
 
   // Step D: Native Worklets (via @vxrn/compiler)
-  //
-  // @vxrn/compiler's reanimated gate is process-global state set by one's vite
-  // plugin. metro runs its transformer in separate worker processes that never
-  // see that call, so the gate reads false there and every worklet in the app
-  // silently ships untransformed. configure it once per worker from the same
-  // fact the vite side derives it from: does the project have reanimated.
-  await configureWorkletsForWorker(projectRoot)
-
-  let shouldRunWorklets = Boolean(options.customTransformOptions?.worklets)
-  if (!shouldRunWorklets) {
-    const { shouldTransformWorklets } = await import('@vxrn/compiler')
-    shouldRunWorklets = shouldTransformWorklets({ id: filename, code })
-  }
-
   if (shouldRunWorklets) {
     try {
       const { transformWorklets } = await import('@vxrn/compiler')
@@ -2326,13 +2331,20 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code,
         config: config.minifierConfig,
         filename,
-        map: [],
+        map: new MagicString(code).generateMap({
+          source: filename,
+          hires: true,
+          includeContent: true,
+        }),
       })
       code = minified.code
       if (minified.map) {
         intermediateMaps.push(
           typeof minified.map === 'string' ? JSON.parse(minified.map) : minified.map
         )
+      } else {
+        // earlier maps describe the unminified code and cannot be used here.
+        intermediateMaps.length = 0
       }
     } catch (err: any) {
       throw new Error(`[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`)
