@@ -1,5 +1,6 @@
 import type { GlobbedRouteImports } from '../types'
 import type { One } from '../vite/types'
+import { hasWebHistory } from '../constants'
 import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { diagnoseRouteLoadFailure } from './diagnoseRouteLoadFailure'
 import { hmrImport } from './hmrImport'
@@ -316,10 +317,12 @@ export function globbedRoutesToRouteContext(
             // `Importing a module script failed` names neither the module nor
             // the reason. when a browser content blocker refused one of the
             // route's imports, walking the graph finds the exact file.
-            if (process.env.NODE_ENV === 'development' && routePaths[id]) {
-              diagnoseRouteLoadFailure(id, routePaths[id]).then((message) => {
-                if (message) console.error(message)
-              })
+            if (hasWebHistory && routePaths[id]) {
+              diagnoseRouteLoadFailure(id, routePaths[id])
+                .then((message) => {
+                  if (message) console.error(message)
+                })
+                .catch(() => {})
             }
           }
           loadedRoutes[id] = {
