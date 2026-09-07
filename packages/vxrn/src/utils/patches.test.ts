@@ -10,6 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 vi.mock('@vxrn/compiler', () => ({ transformSWC: vi.fn() }))
 vi.mock('@vxrn/vite-flow', () => ({ transformFlowBabel: vi.fn() }))
 
+import { transformSWC } from '@vxrn/compiler'
 import {
   type DepPatch,
   applyDependencyPatches,
@@ -335,5 +336,37 @@ describe('applyDependencyPatches', () => {
 
     expect(warn.mock.calls.flat().join(' ')).not.toContain('stale')
     warn.mockRestore()
+  })
+
+  // a patch is written to node_modules once and then read by every later build,
+  // so it must be transformed as production. the dev JSX runtime emits `jsxDEV`,
+  // which React's production build exports as `void 0`, so a patched dependency
+  // rendering JSX threw "undefined is not a function" from render in every
+  // production bundle while dev builds stayed green.
+  it('transforms strategy-array patches as production, never the dev JSX runtime', async () => {
+    const mockedTransform = vi.mocked(transformSWC)
+    mockedTransform.mockClear()
+    mockedTransform.mockResolvedValue({ code: 'transformed' } as never)
+
+    await setupAndPatch({
+      patches: [{ module: 'test-pkg', patchFiles: { 'index.js': ['swc'] } }],
+      setupFs: async (nm) => {
+        const pkgDir = join(nm, 'test-pkg')
+        await FSExtra.ensureDir(pkgDir)
+        await FSExtra.writeFile(
+          join(pkgDir, 'package.json'),
+          makePkg('test-pkg', '1.0.0')
+        )
+        await FSExtra.writeFile(
+          join(pkgDir, 'index.js'),
+          'export default () => <div />'
+        )
+      },
+    })
+
+    expect(mockedTransform).toHaveBeenCalled()
+    for (const call of mockedTransform.mock.calls) {
+      expect(call[2]).toMatchObject({ production: true })
+    }
   })
 })
