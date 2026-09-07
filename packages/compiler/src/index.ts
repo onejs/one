@@ -12,19 +12,24 @@ import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rolldown'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
-import { configuration } from './configure'
+import { configuration, isNativeWorkletsEnabled } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import {
   getBabelOptions,
   transformBabel,
   transformOxcReactCompiler,
 } from './transformBabel'
+import { shouldSourceMap } from './transformSWC'
+import { shouldTransformWorklets, transformWorklets } from './transformWorklets'
 import type { Environment, GetTransformProps, Options } from './types'
 import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
+export * from './transformWorklets'
+export * from './reactNativeCodegen'
+export * from './transformHermesLoops'
 export type { GetTransform } from './types'
 
 // Performance tracking
@@ -148,7 +153,7 @@ async function performBabelTransform({
     return null
   }
 
-  if (userTransform !== 'swc') {
+  if (userTransform !== 'swc' && userTransform !== 'oxc') {
     const babelOptions = getBabelOptions({
       ...transformProps,
       userSetting: userTransform,
@@ -175,20 +180,95 @@ async function performBabelTransform({
         return cached
       }
 
-      // when the react compiler is the only transform this file needs (the
-      // common case on web) run oxc's rust port instead of babel. files that
-      // also need reanimated, nativewind, RN codegen or generator lowering
-      // still go through babel, which is the only implementation of those.
-      const compilerOnly = hasCompilerPlugin && babelOptions.plugins?.length === 1
-      const compilerTarget = compilerOnly
-        ? ((babelOptions.plugins![0] as any[])[1]?.target ?? '19')
-        : '19'
+      // React compiler through oxc's rust port instead of babel.
+      let compilerOut: { code: string; map?: any } | null = null
+      const compilerPluginIndex =
+        babelOptions.plugins?.findIndex(
+          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+        ) ?? -1
+
+      if (compilerPluginIndex !== -1) {
+        const compilerTarget =
+          (babelOptions.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
+        compilerOut = await transformOxcReactCompiler(
+          id,
+          code,
+          compilerTarget,
+          shouldSourceMap()
+        )
+        babelOptions.plugins!.splice(compilerPluginIndex, 1)
+      }
+
+      let curCode = compilerOut ? compilerOut.code : code
+
+      // Native Worklets through custom native/Oxc worklet transformer instead of babel.
+      let workletsOut: { code: string; map?: any } | null = null
+      const isWorkletPlugin = (entry: any) => {
+        if (!entry) return false
+        const name =
+          typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
+        return (
+          typeof name === 'string' &&
+          (name.includes('react-native-worklets') ||
+            name.includes('react-native-reanimated'))
+        )
+      }
+      const workletPluginIndex = babelOptions.plugins?.findIndex(isWorkletPlugin) ?? -1
+      let workletPluginOptions: any = undefined
+      if (workletPluginIndex !== -1) {
+        const entry = babelOptions.plugins![workletPluginIndex]
+        if (Array.isArray(entry) && entry[1] && typeof entry[1] === 'object') {
+          workletPluginOptions = entry[1]
+        }
+      }
+
+      if (
+        isNativeWorkletsEnabled() &&
+        (workletPluginIndex !== -1 || shouldTransformWorklets({ id, code: curCode }))
+      ) {
+        workletsOut = await transformWorklets(id, curCode, shouldSourceMap(), {
+          projectRoot,
+          ...workletPluginOptions,
+        })
+        if (workletPluginIndex !== -1) {
+          babelOptions.plugins!.splice(workletPluginIndex, 1)
+        }
+        curCode = workletsOut.code
+      }
 
       // Cache miss - do the transform
       const startTime = Date.now()
-      const babelOut = compilerOnly
-        ? await transformOxcReactCompiler(id, code, compilerTarget)
-        : await transformBabel(id, code, babelOptions)
+      let babelOut: { code?: string | null; map?: any } | null = null
+
+      if (babelOptions.plugins?.length === 0) {
+        let finalMap: any = undefined
+        if (shouldSourceMap()) {
+          const intermediateMaps = [compilerOut?.map, workletsOut?.map].filter(Boolean)
+          if (intermediateMaps.length === 1) {
+            finalMap = intermediateMaps[0]
+          } else if (intermediateMaps.length > 1) {
+            const remapping = (await import('@jridgewell/remapping')).default
+            finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+          }
+        }
+        babelOut = { code: curCode, map: finalMap }
+      } else {
+        const babelOptsWithMap =
+          shouldSourceMap() && (workletsOut?.map || compilerOut?.map)
+            ? { ...babelOptions, sourceMaps: true }
+            : babelOptions
+        babelOut = await transformBabel(id, curCode, babelOptsWithMap)
+        if (shouldSourceMap() && babelOut?.map) {
+          const priorMaps = [compilerOut?.map, workletsOut?.map].filter(Boolean)
+          if (priorMaps.length > 0) {
+            const remapping = (await import('@jridgewell/remapping')).default
+            babelOut.map = remapping(
+              [babelOut.map, ...priorMaps.slice().reverse()],
+              () => null
+            )
+          }
+        }
+      }
       const babelTime = Date.now() - startTime
 
       if (babelOut?.code) {

@@ -55,6 +55,15 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-hmr',
   '@vxrn/compiler',
   '@vxrn/vite-native-client',
+
+  // build-time only, and they load native .node addons the ssr dep optimizer
+  // cannot parse. apps list vxrn as a dependency because it is their dev
+  // server, which is exactly why it must never be pre-bundled for ssr.
+  'vxrn',
+  '@vxrn/vite-plugin-metro',
+  'oxc-transform',
+  'oxc-parser',
+
   'react-native-ios-utilities',
   'react-native-ios-modal',
   'react-native-ios-context-menu',

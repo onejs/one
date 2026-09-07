@@ -1,4 +1,4 @@
-import type { Options as SWCOptions } from '@swc/core';
+import type { TransformOptions as OxcTransformOptions } from 'oxc-transform';
 export type Environment = 'ios' | 'android' | 'ssr' | 'client';
 export type Options = {
     environment: Environment;
@@ -18,11 +18,11 @@ export type GetTransformProps = {
     reactForRNVersion: '18' | '19';
 };
 export type GetTransform = (props: GetTransformProps) => GetTransformResponse;
-export type GetTransformResponse = boolean | 'babel' | 'swc' | TransformOptions;
+export type GetTransformResponse = boolean | 'babel' | 'swc' | 'oxc' | TransformOptions;
 export type TransformOptions = BabelTransformOptions | SWCTransformOptions;
 export type SWCTransformOptions = {
-    transform: 'swc';
-} & SWCOptions;
+    transform: 'swc' | 'oxc';
+} & OxcTransformOptions;
 export type BabelTransformOptions = {
     transform: 'babel';
     excludeDefaultPlugins?: boolean;

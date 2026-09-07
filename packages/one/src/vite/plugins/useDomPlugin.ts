@@ -23,7 +23,7 @@
  **/
 
 import { extname } from 'node:path'
-import * as swc from '@swc/core'
+import { parseSync } from 'oxc-parser'
 import type { Plugin } from 'vite'
 
 // PLAN
@@ -39,46 +39,34 @@ export function useDOMPlugin(): Plugin {
         return
       }
 
-      const ext = extname(id)
-      const mod = swc.parseSync(code, parseOpts(ext))
+      try {
+        const parsed = parseSync(id, code)
+        let hasUseDom = false
 
-      let hasUseDom = false
-
-      for (let i = 0; i < mod.body.length; ++i) {
-        const item = mod.body[i]!
-        if (item.type === 'ExpressionStatement') {
-          if (item.expression.type === 'StringLiteral') {
-            if (item.expression.value === 'use dom') {
+        for (let i = 0; i < parsed.program.body.length; ++i) {
+          const item = parsed.program.body[i]!
+          if (item.type === 'ExpressionStatement') {
+            if (
+              (item as any).directive === 'use dom' ||
+              ((item as any).expression?.type === 'Literal' &&
+                (item as any).expression?.value === 'use dom') ||
+              ((item as any).expression?.type === 'StringLiteral' &&
+                (item as any).expression?.value === 'use dom')
+            ) {
               hasUseDom = true
               break
             }
           }
-        } else {
-          // HACK we can't stop the loop here, because vite may put some import statements before the directives
-          // break;
         }
-      }
 
-      if (!hasUseDom) {
+        if (!hasUseDom) {
+          return
+        }
+
+        // does have use dom - lets transform
+      } catch {
         return
       }
-
-      // does have use dom - lets transform
     },
   }
-}
-
-const parseOpts = (ext: string) => {
-  if (ext === '.ts' || ext === '.tsx') {
-    return {
-      syntax: 'typescript',
-      tsx: ext.endsWith('x'),
-    } as const
-  }
-  // We hoped to use 'typescript' for everything, but it fails in some cases.
-  // https://github.com/dai-shi/waku/issues/677
-  return {
-    syntax: 'ecmascript',
-    jsx: ext.endsWith('x'),
-  } as const
 }

@@ -28,10 +28,8 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@babel/core": "^7.28.5",
-    "@babel/helper-plugin-utils": "^7.27.1",
-    "@react-native/babel-preset": "^0.86.2",
     "@vxrn/resolve": "workspace:*",
+    "fast-flow-transform": "^0.0.3",
     "vite": "^8.2.2"
   },
   "devDependencies": {

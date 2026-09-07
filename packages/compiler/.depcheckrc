@@ -2,9 +2,10 @@ ignores:
   - "babel-plugin-react-compiler"
   - "@babel/plugin-transform-destructuring"
   - "@babel/plugin-transform-flow-strip-types"
-  - "@react-native/babel-plugin-codegen"
   - "@babel/plugin-transform-react-jsx"
   - "@babel/plugin-transform-regenerator"
   - "@vxrn/vite-native-client"
+  # required by string id in reactNativeViewConfig, so depcheck cannot see it
+  - "hermes-parser"
   # kept as export for vxrn native HMR consumers, dep provided by workspace
   - "@swc/core"

@@ -298,4 +298,3 @@ export function createApp(options: CreateAppProps) {
       }
     })
 }
-

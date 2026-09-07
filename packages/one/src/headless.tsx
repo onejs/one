@@ -57,4 +57,3 @@ export function createApp(options: CreateHeadlessAppProps) {
       }
     })
 }
-
