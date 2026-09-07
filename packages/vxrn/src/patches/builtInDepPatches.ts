@@ -32,6 +32,31 @@ export const builtInDepPatches: DepPatch[] = [
     },
   },
 
+  // react-native-maps ships TypeScript source, and every map child component
+  // declares the members decorateMapComponent installs on the prototype as
+  // definite-assignment class fields (`getNativeComponent!: () => ...`). oxc
+  // keeps a field declaration that has no initializer, so constructing the
+  // component gives each instance its own `undefined` property that shadows the
+  // prototype method, and the first render throws "this.getNativeComponent is
+  // not a function". babel's loose class properties erase these on native, so
+  // only the vite side breaks. oxc ignores useDefineForClassFields, so no
+  // tsconfig or oxc option reaches this; `declare` is what the declaration
+  // always meant and every transform erases it.
+  {
+    module: 'react-native-maps',
+    patchFiles: {
+      'src/*.tsx': (contents) => {
+        assertString(contents)
+        const patched = contents.replace(
+          /^(\s*)(context|getNativeComponent|getMapManagerCommand|getUIManagerCommand)!:/gm,
+          '$1declare $2:'
+        )
+        bailIfUnchanged(patched, contents)
+        return patched
+      },
+    },
+  },
+
   // react-native-web doesn't export unstable_batchedUpdates but react-native does,
   // so libraries like @legendapp/list break when aliased to rnw on web
   {
