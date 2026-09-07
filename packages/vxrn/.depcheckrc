@@ -19,3 +19,6 @@ ignores:
   - "qrcode-terminal"
   # resolved from user's project root in expo-plugin.cjs, not a direct dependency
   - "expo-modules-core"
+  # resolved by string id from the app root in rnCodegenPlugin, with this copy
+  # as the fallback, so depcheck cannot see it
+  - "@react-native/codegen"

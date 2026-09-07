@@ -2,6 +2,7 @@ interface CacheStats {
     hits: 0;
     misses: 0;
     writes: 0;
+    errors: 0;
 }
 export declare function getCachedTransform(filePath: string, code: string, environment: string): {
     code: string;

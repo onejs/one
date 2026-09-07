@@ -22,6 +22,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
+import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
 
 // files that contain Flow syntax and need stripping
 const FLOW_FILE_PATTERN = /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/
@@ -136,6 +137,16 @@ export function getNativeTransformConfig(
     }
   })()
 
+  // app-supplied defines (One's native.bundlerOptions.define). vite's rule:
+  // a string is a raw expression, anything else is JSON stringified. rolldown's
+  // binding only accepts strings, so normalize rather than crashing the build.
+  const userDefines: Record<string, string> = {}
+  for (const [key, value] of Object.entries(
+    ((globalThis as any).__vxrnNativeUserDefine || {}) as Record<string, unknown>
+  )) {
+    userDefines[key] = typeof value === 'string' ? value : JSON.stringify(value)
+  }
+
   const mode = dev ? 'development' : 'production'
 
   // Match One's Vite client contract: load public values from process.env and
@@ -174,6 +185,9 @@ export function getNativeTransformConfig(
       runtime: 'classic' as const,
     },
     define: {
+      // first in the map, so nothing the user set can shadow a platform-owned
+      // key below.
+      ...userDefines,
       // Public values are applied first so platform-owned keys cannot inherit
       // the SSR values used while loading One's Vite config.
       ...envDefines,
@@ -237,6 +251,8 @@ function getNativePlugins(
     // type argument intact. stripping Flow first would erase it (which is why the
     // codegen "didn't run for <Component>" warning fired).
     vxrnCompilerPlugin(platform, dev, root, sourceMaps),
+    // react-native codegen: transforms TurboModule / Fabric specs before Flow stripping
+    rnCodegenPlugin({ projectRoot: root }),
     // strip Flow from any react-native / @react-native `.js` the compiler didn't
     // handle, the guaranteed safety net before rolldown's oxc core parse (which
     // can't parse Flow). now downstream of the compiler, so codegen sees the types.
@@ -247,6 +263,9 @@ function getNativePlugins(
     assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
     hermesCompatSWCPlugin(dev, sourceMaps),
+    // hermes compat: per-iteration loop bindings. runs last so it also covers
+    // loops the earlier lowering steps emit.
+    hermesLoopsPlugin(sourceMaps),
   ]
 }
 
@@ -373,34 +392,16 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   const runtimeSection = code.slice(startIdx, runtimeEnd)
   const originalNewlines = runtimeSection.match(/\n/g)?.length ?? 0
 
-  const swc = await import('@swc/core')
-  const result = await swc.transform(runtimeSection, {
-    filename: 'rolldown-runtime.js',
-    configFile: false,
-    swcrc: false,
-    sourceMaps: false,
-    inputSourceMap: false,
-    isModule: false,
-    // Compact only Rolldown's generated runtime, then restore its original
-    // newline count below. This keeps every application module at the exact
-    // generated line recorded by Rolldown's source map while still lowering
-    // runtime class fields for Hermes.
-    minify: true,
-    env: {
-      targets: { node: 9999 },
-      // dev-only runtime prelude: the class set only, no prod bytecode transforms
-      include: [...HERMES_CLASS_TRANSFORMS],
-    },
-    jsc: {
-      parser: { syntax: 'ecmascript' },
-      transform: { react: { runtime: 'preserve' } },
-      externalHelpers: false,
-      assumptions: {
-        setPublicClassFields: true,
-        privateFieldsAsProperties: true,
-      },
+  const { transformSync } = await import('oxc-transform')
+  const result = transformSync('rolldown-runtime.js', runtimeSection, {
+    target: 'es2020',
+    assumptions: {
+      setPublicClassFields: true,
     },
   })
+  if (result.errors?.length) {
+    throw new Error(result.errors.map((e) => e.message).join('\n'))
+  }
   const transformedCode = result.code.trimEnd()
   // SWC minification strips comments, but the dev bundle scope wrapper uses
   // this generated-runtime marker as its structural boundary.
@@ -1018,50 +1019,168 @@ export function vxrnCompilerPlugin(
 
       let babelOptions = compiler.getBabelOptions(props)
 
-      if (needsRefresh) {
-        // merge react-refresh/babel into the existing plugins (or create new options)
-        const existingPlugins = babelOptions?.plugins || []
-        babelOptions = {
-          ...babelOptions,
-          plugins: [
-            ...existingPlugins,
-            [
-              'react-refresh/babel',
-              {
-                skipEnvCheck: true,
-                refreshReg: '__vxrnRefreshReg',
-                refreshSig: '__vxrnRefreshSig',
-              },
-            ],
-          ],
+      let curCode = code
+      const intermediateMaps: any[] = []
+
+      // React Compiler via Rust (oxc)
+      const compilerPluginIndex =
+        babelOptions?.plugins?.findIndex(
+          (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
+        ) ?? -1
+
+      if (compilerPluginIndex !== -1) {
+        const compilerTarget =
+          (babelOptions!.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
+        const compilerOut = await compiler.transformOxcReactCompiler(
+          id,
+          curCode,
+          compilerTarget,
+          sourceMaps
+        )
+        if (compilerOut?.code) {
+          curCode = compilerOut.code
+          if (sourceMaps && compilerOut.map) {
+            intermediateMaps.push(compilerOut.map)
+          }
+        }
+        babelOptions!.plugins!.splice(compilerPluginIndex, 1)
+        if (babelOptions!.plugins!.length === 0) {
+          babelOptions = null
         }
       }
 
-      if (!babelOptions) return
+      // Native Worklets via Rust/Wasm SWC
+      const isWorkletPlugin = (entry: any) => {
+        if (!entry) return false
+        const name =
+          typeof entry === 'string' ? entry : Array.isArray(entry) ? entry[0] : null
+        return (
+          typeof name === 'string' &&
+          (name.includes('react-native-worklets') ||
+            name.includes('react-native-reanimated'))
+        )
+      }
+      const workletPluginIndex = babelOptions?.plugins?.findIndex(isWorkletPlugin) ?? -1
+      let workletPluginOptions: any = undefined
+      if (workletPluginIndex !== -1) {
+        const entry = babelOptions!.plugins![workletPluginIndex]
+        if (Array.isArray(entry) && entry[1] && typeof entry[1] === 'object') {
+          workletPluginOptions = entry[1]
+        }
+      }
 
-      if (sourceMaps) {
-        // Rolldown composes plugin maps in transform order. Without this map,
-        // every module Babel changes is attributed only to Babel's generated
-        // output, which makes production Hermes frames miss the original
-        // source line even though the bundle command emits a `.map` file.
+      const useNativeWorklets = compiler.isNativeWorkletsEnabled
+        ? compiler.isNativeWorkletsEnabled()
+        : Boolean(
+            process.env.VXRN_NATIVE_WORKLETS === 'true' ||
+            process.env.VXRN_NATIVE_WORKLETS === '1'
+          )
+
+      if (
+        useNativeWorklets &&
+        (workletPluginIndex !== -1 ||
+          compiler.shouldTransformWorklets?.({ id, code: curCode }))
+      ) {
+        const workletOut = await compiler.transformWorklets(id, curCode, sourceMaps, {
+          projectRoot,
+          ...workletPluginOptions,
+        })
+        if (workletOut?.code) {
+          curCode = workletOut.code
+          if (sourceMaps && workletOut.map) {
+            intermediateMaps.push(workletOut.map)
+          }
+        }
+        if (workletPluginIndex !== -1) {
+          babelOptions!.plugins!.splice(workletPluginIndex, 1)
+          if (babelOptions!.plugins!.length === 0) {
+            babelOptions = null
+          }
+        }
+      }
+
+      if (!babelOptions && !needsRefresh) {
+        if (curCode !== code) {
+          let finalMap: any = undefined
+          if (sourceMaps && intermediateMaps.length > 0) {
+            if (intermediateMaps.length === 1) {
+              finalMap = intermediateMaps[0]
+            } else {
+              const remapping = (await import('@jridgewell/remapping')).default
+              finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+            }
+          }
+          return { code: curCode, map: finalMap }
+        }
+        return
+      }
+
+      if (sourceMaps && babelOptions) {
+        // Individual stage maps are collected in intermediateMaps and composed
+        // once via remapping([wrapMap, refreshMap, ...intermediateMaps.reverse()]).
+        // Do not pass intermediateMaps as inputSourceMap to Babel, which would
+        // cause Babel to pre-compose and remapping to double-compose the compiler map.
         babelOptions = {
           ...babelOptions,
           sourceMaps: true,
           sourceFileName: id,
         }
+        delete (babelOptions as any).inputSourceMap
       }
 
-      const result = await compiler.transformBabel(id, code, babelOptions)
+      if (babelOptions) {
+        const result = await compiler.transformBabel(id, curCode, babelOptions)
+        if (result?.code) {
+          curCode = result.code
+          if (sourceMaps && result.map) {
+            intermediateMaps.push(result.map)
+          }
+          if (!needsRefresh) {
+            let finalMap: any = undefined
+            if (sourceMaps && intermediateMaps.length > 0) {
+              if (intermediateMaps.length === 1) {
+                finalMap = intermediateMaps[0]
+              } else {
+                const remapping = (await import('@jridgewell/remapping')).default
+                finalMap = remapping(intermediateMaps.slice().reverse(), () => null)
+              }
+            }
+            return { code: curCode, map: finalMap }
+          }
+        }
+      }
 
-      if (result?.code) {
-        let out = result.code
+      if (needsRefresh) {
+        const { transformSync } = await import('oxc-transform-react')
+        const jsxImportSource =
+          compiler.configuration?.enableNativewind && !id.includes('node_modules')
+            ? 'nativewind'
+            : 'react'
 
-        if (needsRefresh) {
-          // wrap with per-file $RefreshReg$ that includes the file path as unique ID
-          // and schedule performReactRefresh() after HMR patch re-execution
-          const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-          out = `
-var __prevRefreshReg = globalThis.$RefreshReg$;
+        const res = transformSync(id, curCode, {
+          jsx: {
+            development: dev,
+            runtime: 'automatic',
+            importSource: jsxImportSource,
+            refresh: {
+              refreshReg: '__vxrnRefreshReg',
+              refreshSig: '__vxrnRefreshSig',
+            },
+          },
+          reactCompiler: false,
+          sourcemap: sourceMaps,
+        })
+
+        if (res.fatal) {
+          throw new Error(
+            `[vxrn:compiler] oxc react transform failed on ${id}: ${(res.errors ?? [])
+              .map((e: any) => e.message ?? String(e))
+              .join(', ')}`
+          )
+        }
+
+        const escapedId = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+        const header = `var __prevRefreshReg = globalThis.$RefreshReg$;
 var __prevRefreshSig = globalThis.$RefreshSig$;
 if (globalThis.__ReactRefresh) {
   globalThis.$RefreshReg$ = function(type, id) {
@@ -1073,7 +1192,8 @@ if (globalThis.__ReactRefresh) {
 var __vxrnRefreshReg = globalThis.$RefreshReg$;
 var __vxrnRefreshSig = globalThis.$RefreshSig$;
 
-${out}
+`
+        const footer = `
 
 globalThis.$RefreshReg$ = __prevRefreshReg;
 globalThis.$RefreshSig$ = __prevRefreshSig;
@@ -1085,9 +1205,29 @@ if (import.meta.hot) {
   });
 }
 `
+        let out: string
+        let finalMap: any = undefined
+
+        if (sourceMaps) {
+          const MagicString = (await import('magic-string')).default
+          const ms = new MagicString(res.code)
+          ms.prepend(header)
+          ms.append(footer)
+          out = ms.toString()
+          const wrapMap = ms.generateMap({ source: id, hires: true })
+
+          const allMaps = [
+            wrapMap,
+            res.map,
+            ...intermediateMaps.slice().reverse(),
+          ].filter(Boolean)
+          const remapping = (await import('@jridgewell/remapping')).default
+          finalMap = remapping(allMaps, () => null)
+        } else {
+          out = header + res.code + footer
         }
 
-        return { code: out, map: sourceMaps ? result.map : undefined }
+        return { code: out, map: finalMap }
       }
     },
   }
@@ -1389,7 +1529,7 @@ function copyNativeAssetFiles(
  * Inspired by rollipop's swc-plugin.ts.
  */
 export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
-  let swc: typeof import('@swc/core') | null = null
+  let oxc: typeof import('oxc-transform') | null = null
 
   return {
     name: 'vxrn:hermes-compat',
@@ -1404,37 +1544,70 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       // skip very large prebuilt files
       if (code.length > 500_000) return
 
-      if (!swc) swc = await import('@swc/core')
+      if (!oxc) oxc = await import('oxc-transform')
 
-      // app modules: the Hermes class and async sets in both modes.
-      const envIncludes = getHermesSWCIncludes(dev)
+      const hasAsyncGenerator = /(async \*|async function\*|for await)/.test(code)
+      const target = hasAsyncGenerator ? 'es2015' : 'es2020'
 
-      const result = await swc.transform(code, {
-        filename: id,
-        configFile: false,
-        swcrc: false,
-        // Return the transform-to-input map and let Rolldown compose it with
-        // earlier plugin maps. `inputSourceMap` stays false deliberately:
-        // feeding the prior map to SWC as well would compose it twice.
-        sourceMaps,
-        sourceFileName: sourceMaps ? id : undefined,
-        inputSourceMap: false,
-        env: {
-          targets: { node: 9999 },
-          include: envIncludes,
+      // a .ts file is not tsx: `const f = <T>(x: T) => x` parses as an unclosed
+      // jsx element under tsx. react-native ships jsx inside plain .js files,
+      // so everything that isn't .ts is parsed as jsx.
+      const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+
+      const result = oxc.transformSync(id, code, {
+        lang,
+        target,
+        assumptions: {
+          setPublicClassFields: true,
         },
-        jsc: {
-          parser: { syntax: 'typescript', tsx: true },
-          transform: { react: { runtime: 'preserve' } },
-          externalHelpers: false,
-          assumptions: {
-            setPublicClassFields: true,
-            privateFieldsAsProperties: true,
-          },
-        },
-        isModule: !id.endsWith('.cjs'),
+        jsx: 'preserve',
+        sourcemap: sourceMaps,
+        sourceType: id.endsWith('.cjs') ? 'script' : 'module',
       })
-      return { code: result.code, map: sourceMaps ? result.map : undefined }
+
+      if (result.errors?.length) {
+        const err = result.errors[0]
+        throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
+      }
+
+      return { code: result.code, map: sourceMaps ? (result.map as any) : undefined }
+    },
+  }
+}
+
+export const hermesCompatPlugin = hermesCompatSWCPlugin
+
+/**
+ * Hermes gives a loop one environment, not one per iteration, so every closure
+ * created in a loop body sees the binding's final value. zod installs its schema
+ * methods with `for (const key in methods) defineProperty(proto, key, {get(){...}})`,
+ * and without this every method on every zod schema resolved to the last one:
+ * `string().nullish()` called `apply` and the app red-screened at startup.
+ * See @vxrn/compiler's transformHermesLoops for the bytecode evidence.
+ *
+ * Rolldown's own interop helpers are emitted after this runs, but they are
+ * already `var`-based with `.bind(null, key)`, so they need no rewriting.
+ */
+export function hermesLoopsPlugin(sourceMaps = false): Plugin {
+  let compiler: typeof import('@vxrn/compiler') | null = null
+
+  return {
+    name: 'vxrn:hermes-loops',
+    async transform(code, id) {
+      if (!/\.[cm]?[jt]sx?$/.test(id)) return
+      if (id.includes('\0') || id.includes('virtual:')) return
+
+      if (!compiler) compiler = await import('@vxrn/compiler')
+      const result = compiler.transformHermesLoops(code, id)
+      if (!result) return
+
+      if (!sourceMaps) return { code: result.code, map: null }
+      if (result.maps.length === 1) return { code: result.code, map: result.maps[0] as any }
+      const remapping = (await import('@jridgewell/remapping')).default
+      return {
+        code: result.code,
+        map: remapping(result.maps.slice().reverse(), () => null) as any,
+      }
     },
   }
 }

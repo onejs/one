@@ -1,7 +1,9 @@
 import { extname, relative } from 'node:path'
-import babel from '@babel/core'
+// type-only, so that importing this module does not drag babel in. every metro
+// worker loads it through the package index, and on the native transform path
+// babel is never called at all: loading it there is pure startup cost.
+import type * as babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
-import hermesParserPlugin from 'babel-plugin-syntax-hermes-parser'
 import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
@@ -55,18 +57,19 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   }
 
   if (enableNativewind || shouldBabelReanimated(props)) {
-    debug?.(`Using babel worklets on file ${props.id}`)
-    plugins.push(resolvePath('react-native-worklets/plugin', props.projectRoot))
+    try {
+      const workletsPlugin = resolvePath(
+        'react-native-worklets/plugin',
+        props.projectRoot
+      )
+      debug?.(`Using babel worklets on file ${props.id}`)
+      plugins.push(workletsPlugin)
+    } catch {}
   }
 
   if (shouldBabelReactCompiler(props)) {
     debug?.(`Using babel react compiler on file`)
     plugins.push(getBabelReactCompilerPlugin(props))
-  }
-
-  if (shouldBabelReactNativeCodegen(props)) {
-    debug?.(`Using babel @react-native/babel-plugin-codegen on file`)
-    plugins.push('@react-native/babel-plugin-codegen')
   }
 
   if (plugins.length) {
@@ -88,11 +91,13 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 export async function transformOxcReactCompiler(
   id: string,
   code: string,
-  target: '18' | '19'
+  target: '18' | '19',
+  sourceMap = false
 ) {
   const { transform } = await import('oxc-transform-react')
   const result = await transform(id, code, {
     jsx: 'preserve',
+    sourcemap: sourceMap,
     reactCompiler: { target },
   })
 
@@ -114,7 +119,7 @@ export async function transformOxcReactCompiler(
     )
   }
 
-  return { code: result.code, map: undefined }
+  return { code: result.code, map: sourceMap ? (result.map as any) : undefined }
 }
 
 /**
@@ -125,6 +130,10 @@ export async function transformBabel(
   code: string,
   options: babel.TransformOptions
 ) {
+  const [{ default: babelCore }, { default: hermesParserPlugin }] = await Promise.all([
+    import('@babel/core'),
+    import('babel-plugin-syntax-hermes-parser'),
+  ])
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
@@ -166,7 +175,7 @@ export async function transformBabel(
   }
 
   return await new Promise<babel.BabelFileResult>((res, rej) => {
-    babel.transform(code, babelOptions, (err: unknown, result) => {
+    babelCore.transform(code, babelOptions, (err: unknown, result) => {
       if (!result || err) {
         return rej(err || new Error(`[vxrn:compiler] babel returned no result for ${id}`))
       }
@@ -190,25 +199,6 @@ const getBasePlugins = ({ development }: Props) =>
       },
     ],
   ] satisfies babel.PluginItem[]
-
-/**
- * ----- react native codegen ----
- */
-
-// Codegen specification files need to go through the react-native codegen babel plugin.
-// See:
-// * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
-// * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
-
-const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
-const SPEC_FILE_RE = /[/\\]specs?[/\\]/
-
-const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
-  return (
-    (environment === 'ios' || environment === 'android') &&
-    (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id))
-  )
-}
 
 /**
  * ----- react compiler -----

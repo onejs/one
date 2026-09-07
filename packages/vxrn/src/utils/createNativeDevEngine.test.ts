@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { runInNewContext } from 'node:vm'
 import { rolldown, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { getNativePrelude } from '../runtime/native-prelude'
 import {
   buildNativeBundle,
@@ -35,7 +35,7 @@ async function createWorkletsProject(throwOnTransform = true) {
   await mkdir(packageRoot, { recursive: true })
   await writeFile(
     join(packageRoot, 'package.json'),
-    JSON.stringify({ name: 'react-native-worklets' })
+    JSON.stringify({ name: 'react-native-worklets', version: '0.10.1' })
   )
   await writeFile(
     join(packageRoot, 'plugin.js'),
@@ -493,6 +493,35 @@ describe('getHermesSWCIncludes', () => {
     expect(result.code).not.toContain('async function *')
   })
 
+  it('downlevels private fields, public class fields, and static blocks for Hermes', async () => {
+    const plugin = hermesCompatSWCPlugin(true)
+    if (typeof plugin.transform !== 'function') {
+      throw new Error('Hermes compatibility transform hook is not callable')
+    }
+
+    const result = await Reflect.apply(plugin.transform, undefined, [
+      `
+class TransformProbe {
+  #privateField = 1
+  publicField = 2
+  static {
+    TransformProbe.initialized = true
+  }
+
+  getSecret() {
+    return this.#privateField
+  }
+}
+`,
+      '/project/TransformProbe.ts',
+    ])
+
+    expect(result.code).not.toContain('#privateField')
+    expect(result.code).not.toMatch(/^\s*publicField\s*=/m)
+    expect(result.code).not.toContain('static {')
+    expect(result.code).toContain('this.publicField = 2')
+  })
+
   it('preserves per-iteration bindings used by lazy method getters', async () => {
     const plugin = hermesCompatSWCPlugin(true)
     if (typeof plugin.transform !== 'function') {
@@ -661,6 +690,9 @@ describe('native required transform failures', () => {
     async (dev) => {
       const testRoot = await createWorkletsProject()
       const compiler = await import('@vxrn/compiler')
+      const spy = vi
+        .spyOn(compiler, 'transformWorklets')
+        .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
       compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
 
       try {
@@ -676,6 +708,7 @@ describe('native required transform failures', () => {
           ])
         ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
       } finally {
+        spy.mockRestore()
         compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
         await rm(testRoot, { recursive: true, force: true })
       }
@@ -685,6 +718,9 @@ describe('native required transform failures', () => {
   it('returns a dev build error and no output when the required compiler transform fails', async () => {
     const testRoot = await createWorkletsProject()
     const compiler = await import('@vxrn/compiler')
+    const spy = vi
+      .spyOn(compiler, 'transformWorklets')
+      .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
     compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
     let resolveOutput!: (output: unknown) => void
     const output = new Promise<unknown>((resolve) => {
@@ -706,6 +742,7 @@ describe('native required transform failures', () => {
       expect(result).toBeInstanceOf(Error)
       expect(String(result)).toContain('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
     } finally {
+      spy.mockRestore()
       await engine.close()
       compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
       await rm(testRoot, { recursive: true, force: true })
@@ -715,6 +752,9 @@ describe('native required transform failures', () => {
   it('emits no production bundle when the required compiler transform fails', async () => {
     const testRoot = await createWorkletsProject()
     const compiler = await import('@vxrn/compiler')
+    const spy = vi
+      .spyOn(compiler, 'transformWorklets')
+      .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
     compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
 
     try {
@@ -726,6 +766,7 @@ describe('native required transform failures', () => {
         })
       ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
     } finally {
+      spy.mockRestore()
       compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
       await rm(testRoot, { recursive: true, force: true })
     }
@@ -773,6 +814,292 @@ describe('native required transform failures', () => {
     } finally {
       compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
       await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('composes source maps across React Compiler, Fast Refresh, and module wrapper back to original source lines', async () => {
+    const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
+    const compiler = await import('@vxrn/compiler')
+    compiler.configureVXRNCompilerPlugin({ enableCompiler: true })
+
+    try {
+      const plugin = vxrnCompilerPlugin('ios', true, '/project', true)
+      if (typeof plugin.transform !== 'function') {
+        throw new Error('transform hook not callable')
+      }
+
+      const inputCode = `import { useState } from 'react'
+
+export function Counter() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+`
+      const id = '/project/Counter.tsx'
+      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+
+      expect(result).toBeDefined()
+      expect(result.map).toBeDefined()
+
+      const tracer = new TraceMap(result.map)
+      const lines = result.code.split('\n')
+      const counterLineIndex = lines.findIndex((l: string) =>
+        l.includes('function Counter')
+      )
+      expect(counterLineIndex).toBeGreaterThan(0)
+
+      const pos = originalPositionFor(tracer, {
+        line: counterLineIndex + 1,
+        column: 16,
+      })
+
+      expect(pos.source).toBe(id)
+      expect(pos.line).toBe(3)
+    } finally {
+      compiler.configureVXRNCompilerPlugin({ enableCompiler: false })
+    }
+  })
+
+  it('composes source maps accurately across mixed path (React Compiler + Babel + Fast Refresh + module wrapper)', async () => {
+    const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
+    const compiler = await import('@vxrn/compiler')
+    const origEnv = process.env.VXRN_USE_BABEL_FOR_GENERATORS
+    process.env.VXRN_USE_BABEL_FOR_GENERATORS = '1'
+    compiler.configureVXRNCompilerPlugin({
+      enableCompiler: true,
+      enableReanimated: false,
+    })
+
+    try {
+      const plugin = vxrnCompilerPlugin('ios', true, '/project', true)
+      if (typeof plugin.transform !== 'function') {
+        throw new Error('transform hook not callable')
+      }
+
+      const inputCode = `export function Counter() { return <View />; }
+
+
+
+
+
+
+
+export async function* probe() { throw new Error("MARKER"); }
+`
+      const id = '/project/Counter.tsx'
+      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+
+      expect(result).toBeDefined()
+      expect(result.map).toBeDefined()
+      // Assert that Babel's generator downleveling actually executed
+      expect(
+        result.code.includes('_wrapAsyncGenerator') ||
+          result.code.includes('regeneratorRuntime')
+      ).toBe(true)
+
+      const tracer = new TraceMap(result.map)
+      const lines = result.code.split('\n')
+      const markerLineIndex = lines.findIndex((l: string) => l.includes('MARKER'))
+      expect(markerLineIndex).toBeGreaterThan(0)
+      const markerCol = lines[markerLineIndex].indexOf('throw')
+
+      const pos = originalPositionFor(tracer, {
+        line: markerLineIndex + 1,
+        column: markerCol,
+      })
+
+      expect(pos.source).toBe(id)
+      expect(pos.line).toBe(9)
+      expect(pos.column).toBe(33)
+
+      // Negative control: verify that remapping through compilerOut.map a second time
+      // (the prior double-composition bug) breaks the trace and returns null source/line.
+      const compilerOut = await compiler.transformOxcReactCompiler(
+        id,
+        inputCode,
+        '19',
+        true
+      )
+      const remapping = (await import('@jridgewell/remapping')).default
+      const doubleComposedMap = remapping(
+        [result.map as any, compilerOut.map as any],
+        () => null
+      )
+      const badTracer = new TraceMap(doubleComposedMap as any)
+      const badPos = originalPositionFor(badTracer, {
+        line: markerLineIndex + 1,
+        column: markerCol,
+      })
+      expect(badPos.source).toBeNull()
+      expect(badPos.line).toBeNull()
+    } finally {
+      compiler.configureVXRNCompilerPlugin({ enableCompiler: false })
+      if (origEnv !== undefined) {
+        process.env.VXRN_USE_BABEL_FOR_GENERATORS = origEnv
+      } else {
+        delete process.env.VXRN_USE_BABEL_FOR_GENERATORS
+      }
+    }
+  })
+
+  it('transforms worklets via native Rust/Wasm SWC with zero Babel execution and accurate sourcemaps', async () => {
+    const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
+    const compiler = await import('@vxrn/compiler')
+    const { vi } = await import('vitest')
+    const babelSpy = vi.spyOn(compiler, 'transformBabel')
+
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+      enableCompiler: false,
+    })
+
+    try {
+      const projectRoot = process.cwd()
+      const plugin = vxrnCompilerPlugin('ios', true, projectRoot, true)
+      if (typeof plugin.transform !== 'function') {
+        throw new Error('transform hook not callable')
+      }
+
+      const inputCode = `import { useAnimatedStyle } from 'react-native-reanimated'
+
+export function Box() {
+  const animatedStyle = useAnimatedStyle(() => {
+    return { opacity: 1 }
+  })
+  return <div style={animatedStyle} />
+}
+`
+      const id = join(projectRoot, 'Box.tsx')
+      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+
+      expect(result).toBeDefined()
+      expect(result.code).toContain('__workletHash')
+      expect(result.code).toContain('__closure')
+      // Zero Babel calls!
+      expect(babelSpy).not.toHaveBeenCalled()
+
+      // Source map tracing
+      expect(result.map).toBeDefined()
+      const tracer = new TraceMap(result.map)
+      const lines = result.code.split('\n')
+      const boxLineIndex = lines.findIndex((l: string) =>
+        l.includes('export function Box')
+      )
+      expect(boxLineIndex).toBeGreaterThan(0)
+
+      const pos = originalPositionFor(tracer, {
+        line: boxLineIndex + 1,
+        column: 16,
+      })
+
+      expect(pos.source).toBe(id)
+      expect(pos.line).toBe(3)
+    } finally {
+      babelSpy.mockRestore()
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
+    }
+  })
+
+  it('retains the existing Babel backend by default when enableNativeWorklets is false for auto-detected Reanimated and ordinary configured worklets plugin', async () => {
+    const compiler = await import('@vxrn/compiler')
+    const { vi } = await import('vitest')
+    const babelSpy = vi.spyOn(compiler, 'transformBabel').mockResolvedValue({
+      code: '/* babel transformed */',
+    } as any)
+    const workletSpy = vi.spyOn(compiler, 'transformWorklets')
+
+    // enableReanimated is auto-detected, but enableNativeWorklets is NOT explicitly enabled
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: false,
+    })
+
+    const getBabelOptionsSpy = vi.spyOn(compiler, 'getBabelOptions').mockReturnValue({
+      plugins: ['react-native-reanimated/plugin'],
+    } as any)
+
+    try {
+      const projectRoot = process.cwd()
+      const plugin = vxrnCompilerPlugin('ios', true, projectRoot, false)
+      if (typeof plugin.transform !== 'function') {
+        throw new Error('transform hook not callable')
+      }
+
+      const inputCode = `export function fn() { 'worklet'; return 1 }`
+      const id = join(projectRoot, 'DefaultWorklet.tsx')
+      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+
+      expect(result).toBeDefined()
+      // Retained existing Babel backend: Babel was called with the plugin
+      expect(babelSpy).toHaveBeenCalledWith(
+        id,
+        inputCode,
+        expect.objectContaining({
+          plugins: expect.arrayContaining(['react-native-reanimated/plugin']),
+        })
+      )
+      // Native SWC was NOT called
+      expect(workletSpy).not.toHaveBeenCalled()
+    } finally {
+      babelSpy.mockRestore()
+      workletSpy.mockRestore()
+      getBabelOptionsSpy.mockRestore()
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
+    }
+  })
+
+  it('intercepts tuple worklet plugins with options, executes native SWC with options, and skips Babel when enableNativeWorklets is true', async () => {
+    const compiler = await import('@vxrn/compiler')
+    const { vi } = await import('vitest')
+    const babelSpy = vi.spyOn(compiler, 'transformBabel')
+    const workletSpy = vi.spyOn(compiler, 'transformWorklets')
+
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+
+    const getBabelOptionsSpy = vi.spyOn(compiler, 'getBabelOptions').mockReturnValue({
+      plugins: [['react-native-reanimated/plugin', { globals: ['customGlobal'] }]],
+    } as any)
+
+    try {
+      const projectRoot = process.cwd()
+      const plugin = vxrnCompilerPlugin('ios', true, projectRoot, false)
+      if (typeof plugin.transform !== 'function') {
+        throw new Error('transform hook not callable')
+      }
+
+      const inputCode = `export function fn() { 'worklet'; return customGlobal * 2 }`
+      const id = join(projectRoot, 'TupleWorklet.tsx')
+      const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
+
+      expect(result).toBeDefined()
+      expect(result.code).toContain('__workletHash')
+      // Forwarded options
+      expect(workletSpy).toHaveBeenCalledWith(
+        id,
+        expect.any(String),
+        false,
+        expect.objectContaining({ globals: ['customGlobal'], projectRoot })
+      )
+      // Babel was completely skipped
+      expect(babelSpy).not.toHaveBeenCalled()
+    } finally {
+      babelSpy.mockRestore()
+      workletSpy.mockRestore()
+      getBabelOptionsSpy.mockRestore()
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
     }
   })
 })

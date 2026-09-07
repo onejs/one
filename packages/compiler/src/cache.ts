@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { configuration } from './configure'
+import { configuration, isNativeWorkletsEnabled } from './configure'
 
 /**
  * Fast file-based cache for babel transforms
@@ -23,9 +23,15 @@ interface CacheStats {
   hits: 0
   misses: 0
   writes: 0
+  errors: 0
 }
 
-const stats: CacheStats = { hits: 0, misses: 0, writes: 0 }
+const stats: CacheStats = {
+  hits: 0,
+  misses: 0,
+  writes: 0,
+  errors: 0,
+}
 
 function getCacheDir(): string {
   // Use .vxrn cache directory
@@ -43,6 +49,7 @@ function getConfigFingerprint(): string {
       JSON.stringify({
         compiler: configuration.enableCompiler,
         reanimated: configuration.enableReanimated,
+        nativeWorklets: isNativeWorkletsEnabled(),
         nativewind: configuration.enableNativewind,
         nativeCSS: configuration.enableNativeCSS,
         // bump when the transform engine changes, so entries written by a

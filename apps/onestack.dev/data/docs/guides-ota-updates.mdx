@@ -163,7 +163,12 @@ The first command sets up the bundler-config files Metro needs. They're regenera
 
 ## Owning the config files yourself
 
-If you'd rather commit `babel.config.cjs` / `metro.config.cjs` and customize them (extra babel plugins, custom Metro resolvers, etc.), generate them once:
+If you'd rather commit `babel.config.cjs` / `metro.config.cjs` and customize them (custom Metro resolvers, watcher options, etc.), generate them once:
+
+<Notice theme="yellow">
+  Metro mode runs no Babel, so `babel.config.cjs` has no effect on the bundle. To replace a Babel plugin, use `native.bundlerOptions.nativeTransformModules` — see [Metro mode](/docs/metro-mode#no-babel).
+</Notice>
+
 
 ```bash
 npx one metro-eject

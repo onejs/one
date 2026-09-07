@@ -1,5 +1,6 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { metroPlugin } from '@vxrn/vite-plugin-metro';
+import type { Plugin as RolldownPlugin } from 'rolldown';
 import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
@@ -317,10 +318,14 @@ export declare namespace One {
              */
             css?: boolean;
             /**
-             * Specifies the bundler to use for native builds. Defaults to 'vite'.
+             * Which bundler serves the native dev bundle. Defaults to 'vite'.
              *
-             * - 'metro' is recommended for production stability. Note that this option comes with some limitations, see https://onestack.dev/docs/metro-mode#limitations for more info.
-             * - 'vite' is experimental but offers faster builds with SWC.
+             * - 'vite' runs rolldown with oxc transforms and no babel.
+             * - 'metro' runs Metro, also with no babel by default. See
+             *   https://onestack.dev/docs/metro-mode#limitations for its limits.
+             *
+             * This only affects dev. `one build` always produces the native
+             * bundle through the rolldown path.
              *
              * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
              */
@@ -331,9 +336,56 @@ export declare namespace One {
             bundlerOptions?: MetroPluginOptions;
         } | {
             bundler?: 'vite';
-            /** No configurable options with the default vite bundler. */
             bundlerOptions?: {
-                currentlyHaveNoOptions?: null;
+                /**
+                 * Rolldown plugins to run on the native (ios + android) bundle,
+                 * in both dev and build.
+                 *
+                 * The native bundler is a separate rolldown instance rather than
+                 * a vite environment, so the plugins in your vite config are not
+                 * applied to it. This is how you opt one in. It also runs no
+                 * babel, so a transform that would have been a babel plugin
+                 * becomes an ordinary plugin here whose `transform` hook does the
+                 * rewrite (oxc-parser and magic-string, or `transformWithOxc`).
+                 *
+                 * For replacing a build-time constant, use `define` below
+                 * instead, which needs no plugin.
+                 *
+                 * @example
+                 * ```ts
+                 * one({
+                 *   native: {
+                 *     bundler: 'vite',
+                 *     bundlerOptions: { plugins: [myNativePlugin()] },
+                 *   },
+                 * })
+                 * ```
+                 */
+                plugins?: RolldownPlugin[];
+                /**
+                 * Build-time constants for the native bundle, same rules as
+                 * vite's `define`: a string value is inserted as a raw
+                 * expression, anything else is JSON stringified.
+                 *
+                 * This is deliberately separate from the `define` in your vite
+                 * config rather than inheriting it. Plugins add web-only
+                 * defines there (`@tamagui/vite-plugin` sets `_WORKLET: false`
+                 * for reanimated on web, which would break worklets if it
+                 * reached native), so native states its own.
+                 *
+                 * @example
+                 * ```ts
+                 * one({
+                 *   native: {
+                 *     bundler: 'vite',
+                 *     bundlerOptions: {
+                 *       define: { __MY_BUNDLE_ID: JSON.stringify(bundleId) },
+                 *     },
+                 *   },
+                 * })
+                 * ```
+                 */
+                define?: Record<string, any>;
             };
         }));
         web?: {

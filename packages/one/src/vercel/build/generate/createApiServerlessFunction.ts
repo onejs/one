@@ -1,8 +1,6 @@
 import { dirname, join, resolve } from 'node:path'
-import generator from '@babel/generator'
-import parser from '@babel/parser'
-import traverse from '@babel/traverse'
-import t from '@babel/types'
+import { parseSync } from 'oxc-parser'
+import MagicString from 'magic-string'
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 
@@ -86,114 +84,69 @@ export async function createApiServerlessFunction(
  * So we need to wrap the handler function to parse the params from the request,
  * and pass them to the handler function.
  */
-function wrapHandlerFunctions(code) {
-  const ast = parser.parse(code, {
-    sourceType: 'module',
-  })
+function wrapHandlerFunctions(code: string): string {
+  let parsed: any
+  try {
+    parsed = parseSync('api.js', code)
+  } catch {
+    return code
+  }
 
-  // TODO: idk why the TypeScript type does not match the actual type. Seems that we should use `traverse.default`, but TypeScript thinks we should use `traverse` directly.
-  ;((traverse as any).default as typeof traverse)(ast, {
-    FunctionDeclaration(path) {
-      const { node } = path
+  if (!parsed?.program) return code
 
-      const functionNamesToHandle = [
-        'GET',
-        'POST',
-        'PUT',
-        'PATCH',
-        'DELETE',
-        'HEAD',
-        'OPTIONS',
-        // TODO: more possibilities?
-      ]
+  const functionNamesToHandle = new Set([
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'HEAD',
+    'OPTIONS',
+  ])
 
-      if (!node.id || !functionNamesToHandle.includes(node.id.name)) return
-      // TODO: may need to also check if the function is export in any way, if
-      // the isn't exported at all, we can skip.
-      if (node.extra && node.extra.isWrapper) return
-      if (node.extra && node.extra.isWrapped) return
+  const ms = new MagicString(code)
+  const wrappersToAppend: string[] = []
 
-      const originalName = `orig_${node.id.name}`
+  for (const item of parsed.program.body || []) {
+    let fnDecl: any = null
+    let isExported = false
+    let exportNode: any = null
 
-      const originalFunction = t.functionDeclaration(
-        t.identifier(originalName),
-        node.params,
-        node.body,
-        node.generator,
-        node.async
-      )
+    if (
+      item.type === 'ExportNamedDeclaration' &&
+      item.declaration?.type === 'FunctionDeclaration'
+    ) {
+      fnDecl = item.declaration
+      isExported = true
+      exportNode = item
+    } else if (item.type === 'FunctionDeclaration') {
+      fnDecl = item
+      isExported = false
+    }
 
-      /* The first argument of the handler function, which is the request object. */
-      const requestIdentifier = t.identifier('request')
-      const wrapperParams = [requestIdentifier]
+    if (!fnDecl || !fnDecl.id?.name || !functionNamesToHandle.has(fnDecl.id.name)) {
+      continue
+    }
 
-      /* A local variable in the wrapper function to hold the URL object. */
-      const urlIdentifier = t.identifier('url')
-      /* A local variable in the wrapper function to hold parsed params. */
-      const paramsIdentifier = t.identifier('params')
+    const name = fnDecl.id.name
+    const originalName = `orig_${name}`
 
-      const urlDecl = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          urlIdentifier,
-          t.newExpression(t.identifier('URL') /* Node.js global */, [
-            t.memberExpression(requestIdentifier, t.identifier('url')) /* request.url */,
-          ])
-        ),
-      ])
+    if (isExported) {
+      ms.remove(exportNode.start, fnDecl.start)
+    }
 
-      const paramsDecl = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          paramsIdentifier,
-          t.callExpression(
-            t.memberExpression(t.identifier('Object'), t.identifier('fromEntries')),
-            [
-              t.callExpression(
-                t.memberExpression(
-                  t.memberExpression(
-                    urlIdentifier,
-                    t.identifier('searchParams')
-                  ) /* url.searchParams */,
-                  t.identifier('entries')
-                ),
-                []
-              ),
-            ]
-          )
-        ),
-      ])
+    ms.overwrite(fnDecl.id.start, fnDecl.id.end, originalName)
 
-      const callOrigFnStatement = t.callExpression(t.identifier(originalName), [
-        requestIdentifier,
-        t.objectExpression([t.objectProperty(t.identifier('params'), paramsIdentifier)]),
-      ])
+    const exportPrefix = isExported ? 'export ' : ''
+    wrappersToAppend.push(
+      `\n${exportPrefix}function ${name}(request) {\n  const url = new URL(request.url);\n  const params = Object.fromEntries(url.searchParams.entries());\n  return ${originalName}(request, { params });\n}`
+    )
+  }
 
-      const wrapperFunction = t.functionDeclaration(
-        t.identifier(node.id.name + ''),
-        wrapperParams,
-        t.blockStatement([urlDecl, paramsDecl, t.returnStatement(callOrigFnStatement)])
-        // No need to care if the wrapper function should be async,
-        // since we didn't use any await in the wrapper function, and we'll
-        // just return what the original function returns.
-      )
+  if (wrappersToAppend.length > 0) {
+    ms.append(wrappersToAppend.join('\n'))
+    return ms.toString()
+  }
 
-      node.extra = node.extra || {}
-      node.extra.isWrapped = true
-
-      wrapperFunction.extra = wrapperFunction.extra || {}
-      wrapperFunction.extra.isWrapper = true
-
-      if (path.parentPath.isExportNamedDeclaration()) {
-        path.replaceWithMultiple([
-          originalFunction,
-          t.exportNamedDeclaration(wrapperFunction, []),
-        ])
-      } else {
-        path.replaceWithMultiple([originalFunction, wrapperFunction])
-      }
-    },
-  })
-
-  // TODO: idk why the TypeScript type does not match the actual type. Seems that we should use `generator.default`, but TypeScript thinks we should use `generator` directly.
-  const output = ((generator as any).default as typeof generator)(ast, {}).code
-  return output
+  return code
 }

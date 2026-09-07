@@ -5,14 +5,6 @@ export declare const clientTreeShakePlugin: (opts?: {
 }) => Plugin;
 export declare function transformTreeShakeClient(code: string, id: string, root?: string, routerRoot?: string): Promise<{
     code: string;
-    map: {
-        version: number;
-        sources: string[];
-        names: string[];
-        sourceRoot?: string | undefined;
-        sourcesContent?: string[] | undefined;
-        mappings: string;
-        file: string;
-    } | null;
+    map: import("magic-string").SourceMap;
 } | undefined>;
 //# sourceMappingURL=clientTreeShakePlugin.d.ts.map

@@ -87,7 +87,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     | (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions)
     | null = (() => {
     if (nativeDisabled) return null
-    if (nativeOptions?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
+    if (nativeOptions?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) {
+      // the vite native bundler runs no babel and has nowhere to put a babel
+      // plugin, so anything configured here is dropped. that is silent by
+      // default, and a dropped plugin usually means a broken bundle rather than
+      // a missing optimization, so name it.
+      const dropped = nativeOptions?.bundlerOptions as any
+      if (dropped?.babelConfig || dropped?.babelConfigOverrides) {
+        console.warn(
+          `[one] native.bundlerOptions configures babel plugins, but native.bundler is "${nativeOptions?.bundler}", which runs no babel. Those plugins will not run and whatever they were rewriting will reach the bundle untransformed.`
+        )
+      }
+      return null
+    }
 
     if (process.env.ONE_METRO_MODE) {
       console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
@@ -842,11 +854,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // TODO move to single config and through environments
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
 
-  // TODO make this passed into vxrn through real API
+  // TODO move this handoff off globalThis, like the other one -> vxrn options
   if (!nativeDisabled) {
+    // the native bundler is its own rolldown instance rather than a vite
+    // environment, so nothing in `config.plugins` reaches it. one's own plugins
+    // go first, then whatever the app opted in through native.bundlerOptions.
+    const viteBundlerOptions =
+      nativeOptions?.bundler === 'metro' ? undefined : (nativeOptions?.bundlerOptions as any)
+
     globalThis.__vxrnAddNativePlugins = [
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
+      ...(viteBundlerOptions?.plugins ?? []),
     ]
+    ;(globalThis as any).__vxrnNativeUserDefine = viteBundlerOptions?.define
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 

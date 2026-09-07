@@ -53,6 +53,18 @@ export type MetroPluginOptions = {
   babelConfig?: TransformOptions
   babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions
   /**
+   * Module ids of transforms to run on the native transform path (the
+   * default), which runs no babel at all. Each module
+   * default-exports a `NativeTransform`: `(code, ctx) => string | null`. They
+   * run in order, on the original source, before one's own ports — the same
+   * view of the file a babel plugin gets.
+   *
+   * This is how a babel plugin that has no native port gets replaced rather
+   * than dropped. The worker refuses to build when it sees a babel plugin it
+   * cannot run, so porting it here is the way through.
+   */
+  nativeTransformModules?: string[]
+  /**
    * internal marker used by one's babel preset to avoid double-applying its
    * plugin chain when one already supplied the vite metro babel config.
    */
@@ -74,6 +86,16 @@ export type MetroPluginOptions = {
    * Use 'lazy' to speed up dev server startup when you don't always need Metro.
    */
   startup?: 'eager' | 'lazy'
+  /**
+   * Run Metro's transforms through the oxc worker, which uses no babel at all.
+   *
+   * On by default. The worker refuses to build when it sees a babel plugin it
+   * has no port for, so a plugin is never silently dropped: port it and list it
+   * in `nativeTransformModules`, or set this to `false` to go back to babel.
+   *
+   * `ONE_METRO_NATIVE_TRANSFORMS=0` turns it off for one run.
+   */
+  nativeTransforms?: boolean
 }
 
 export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {

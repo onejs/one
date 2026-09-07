@@ -130,6 +130,7 @@
   "devDependencies": {
     "@hono/node-server": "^1.19.14",
     "@manypkg/cli": "^0.25.1",
+    "@react-native-swc/worklets-plugin": "0.1.5",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",

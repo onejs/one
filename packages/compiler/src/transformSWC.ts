@@ -1,16 +1,13 @@
 import { extname } from 'node:path'
-import {
-  type Output,
-  type ParserConfig,
-  type Options as SWCOptions,
-  type TransformConfig,
-  transform,
-} from '@swc/core'
-import { merge } from 'ts-deepmerge'
 import { normalizePath } from 'vite'
 import { configuration } from './configure'
-import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
+import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
+
+export interface Output {
+  code: string
+  map?: any
+}
 
 // posix-only — id is normalized below
 const ignoreId = /node_modules\/(\.vite|vite)\//
@@ -19,8 +16,8 @@ export async function transformSWC(
   id: string,
   code: string,
   options: Options & { es5?: boolean },
-  swcOptions?: SWCOptions
-) {
+  swcOptions?: any
+): Promise<Output | undefined> {
   // unify caller contracts (Vite plugin: POSIX id; patches.ts: native id)
   id = normalizePath(id.split('?')[0]).replace(normalizePath(process.cwd()), '')
 
@@ -32,9 +29,8 @@ export async function transformSWC(
     return
   }
 
-  const parser = getParser(id, options.forceJSX)
-
-  if (!parser) {
+  const lang = getLang(id, options.forceJSX)
+  if (!lang) {
     return
   }
 
@@ -45,108 +41,62 @@ export async function transformSWC(
     !options.forceJSX &&
     !id.includes('node_modules')
 
-  const reactConfig = {
-    refresh,
-    development: !options.forceJSX && !options.production,
-    runtime: 'automatic',
-    importSource: 'react',
-    ...(configuration.enableNativewind && !id.includes('node_modules')
-      ? {
-          importSource: 'nativewind',
-          // pragma: 'createInteropElement',
-          // pragmaFrag: '_InteropFragment',
-          // swc doesnt actually change the import right
-          // runtime: 'classic',
-        }
-      : {}),
-  } satisfies TransformConfig['react']
+  const importSource =
+    configuration.enableNativewind && !id.includes('node_modules')
+      ? 'nativewind'
+      : 'react'
 
-  const transformOptions = ((): SWCOptions => {
-    if (options.environment === 'client' || options.environment === 'ssr') {
-      return {
-        sourceMaps: shouldSourceMap(),
-        jsc: {
-          target: 'es2020',
-          parser,
-          transform: {
-            useDefineForClassFields: true,
-            react: reactConfig,
-          },
-        },
-      }
-    }
+  const shouldEs5Transform =
+    options.es5 ||
+    (!process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code))
 
-    const shouldEs5Transform =
-      options.es5 ||
-      (!process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code))
+  const target = shouldEs5Transform ? 'es2015' : 'es2020'
+  const sourceMaps =
+    swcOptions?.sourceMaps !== undefined
+      ? Boolean(swcOptions.sourceMaps)
+      : shouldSourceMap()
 
-    const opts: SWCOptions = shouldEs5Transform
-      ? {
-          jsc: {
-            parser,
-            target: 'es5',
-            transform: {
-              useDefineForClassFields: true,
-              react: reactConfig,
-            },
-          },
-        }
-      : {
-          ...(!options.forceJSX && { env: SWC_ENV }),
-          jsc: {
-            ...(options.forceJSX && { target: 'esnext' }),
-            parser,
-            transform: {
-              useDefineForClassFields: true,
-              react: reactConfig,
-            },
-          },
-        }
-
-    return {
-      sourceMaps: shouldSourceMap(),
-      module: {
-        importInterop: 'none',
-        type: 'nodenext',
-      },
-      ...(options.mode === 'serve-cjs' && {
-        module: {
-          importInterop: 'none',
-          type: 'commonjs',
-          strict: true,
-        },
-      }),
-      ...opts,
-    }
-  })()
-
-  const finalOptions = merge(
-    {
-      filename: id,
-      swcrc: false,
-      configFile: false,
-      ...transformOptions,
+  const oxcOptions: import('oxc-transform').TransformOptions = {
+    lang,
+    target,
+    assumptions: {
+      setPublicClassFields: true,
+      ...(swcOptions?.assumptions || {}),
     },
-    swcOptions || {}
-  ) satisfies SWCOptions
+    sourcemap: sourceMaps,
+    jsx: {
+      runtime: 'automatic',
+      development: !options.forceJSX && !options.production,
+      refresh: Boolean(refresh),
+      importSource,
+    },
+  }
 
-  const result: Output = await (async () => {
+  const { transformSync } = await import('oxc-transform')
+
+  const result: Output = (() => {
     try {
       debug?.(
-        `transformSWC ${id} using options:\n${JSON.stringify(finalOptions, null, 2)}`
+        `transformSWC (oxc) ${id} using options:\n${JSON.stringify(oxcOptions, null, 2)}`
       )
 
-      return await transform(code, finalOptions)
-    } catch (e: any) {
-      const message: string = e.message
-      const fileStartIndex = message.indexOf('╭─[')
-      if (fileStartIndex !== -1) {
-        const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
-        if (match) {
-          e.line = match[1]
-          e.column = match[2]
+      const res = transformSync(id, code, oxcOptions)
+      if (res.errors?.length) {
+        const err = res.errors[0]
+        const error: any = new Error(
+          err.message + (err.codeframe ? `\n${err.codeframe}` : '')
+        )
+        if (err.labels?.[0]) {
+          error.start = err.labels[0].start
+          error.end = err.labels[0].end
         }
+        throw error
       }
+      return {
+        code: res.code,
+        map: res.map,
+      }
+    } catch (e: any) {
       throw e
     }
   })()
@@ -163,7 +113,7 @@ export async function transformSWC(
   // fix for node_modules that ship tsx but don't use type-specific imports
   if (
     options.fixNonTypeSpecificImports ||
-    (id.includes('node_modules') && parser.syntax === 'typescript')
+    (id.includes('node_modules') && (lang === 'ts' || lang === 'tsx'))
   ) {
     // we need to keep fake objects for type exports
     const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
@@ -199,6 +149,8 @@ export async function transformSWC(
   return result
 }
 
+export const transformOxc = transformSWC
+
 function wrapSourceInRefreshRuntime(
   id: string,
   result: Output,
@@ -219,7 +171,11 @@ function wrapSourceInRefreshRuntimeWeb(
   result: Output,
   hasRefreshRuntime: boolean
 ) {
-  const sourceMap = result.map ? JSON.parse(result.map) : undefined
+  const sourceMap = result.map
+    ? typeof result.map === 'string'
+      ? JSON.parse(result.map)
+      : { ...result.map }
+    : undefined
   if (sourceMap) {
     sourceMap.mappings = ';;' + sourceMap.mappings
   }
@@ -286,7 +242,11 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 module.url = '${id}'
 module.hot = createHotContext(module.url)`
 
-    const sourceMap = result.map ? JSON.parse(result.map) : undefined
+    const sourceMap = result.map
+      ? typeof result.map === 'string'
+        ? JSON.parse(result.map)
+        : { ...result.map }
+      : undefined
 
     if (sourceMap) {
       // we need ";" equal to number of lines added to the top
@@ -314,72 +274,61 @@ ${postfixCode}
   return result
 }
 
-const SWC_ENV = {
-  targets: {
-    node: '4',
-  },
-  // debug: true,
-  include: [],
-  // this breaks the uniswap app for any file with a ...spread
-  exclude: [
-    'transform-spread',
-    'transform-destructuring',
-    'transform-object-rest-spread',
-    // `transform-async-to-generator` is relying on `transform-destructuring`.
-    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
-    // with error: `called `Option::unwrap()` on a `None` value`.
-    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
-    'transform-async-to-generator',
-    'transform-regenerator', // Similar to above
-  ],
-} satisfies SWCOptions['env']
-
 const refreshContentRE = /\$Refresh(?:Reg|Sig)\$\(/
 
-function shouldSourceMap() {
+export function shouldSourceMap() {
   return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
 }
 
-function getParser(id: string, forceJSX = false) {
+function getLang(id: string, forceJSX = false): 'js' | 'jsx' | 'ts' | 'tsx' | undefined {
   if (id.endsWith('one-entry-native')) {
-    return parsers['.tsx']
+    return 'tsx'
   }
 
   const extension = extname(id)
-  let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
 
-  if (extension === '.js' || extension === '.mjs') {
-    if (forceJSX) {
-      parser = parsers['.jsx']
+  if (extension === '.tsx') return 'tsx'
+  if (extension === '.ts') return 'ts'
+  if (extension === '.jsx' || extension === '.mdx') return 'jsx'
+  if (extension === '.js' || extension === '.mjs' || extension === '.cjs') {
+    if (forceJSX || id.includes('expo-modules-core')) {
+      return 'jsx'
     }
-
-    if (id.includes('expo-modules-core')) {
-      parser = parsers['.jsx']
-    }
+    return 'js'
   }
 
-  return parser
+  if (!extension) {
+    return forceJSX ? 'jsx' : 'js'
+  }
+
+  return undefined
 }
 
 export const transformSWCStripJSX = async (id: string, code: string) => {
-  const parser = getParser(id)
-  if (!parser) return
-  return await transform(code, {
-    filename: id,
-    swcrc: false,
-    configFile: false,
-    sourceMaps: shouldSourceMap(),
-    jsc: {
-      target: 'es2019',
-      parser,
-      transform: {
-        useDefineForClassFields: true,
-        react: {
-          development: true,
-          runtime: 'automatic',
-          refresh: false,
-        },
-      },
+  const lang = getLang(id)
+  if (!lang) return
+
+  const { transformSync } = await import('oxc-transform')
+  const res = transformSync(id, code, {
+    lang,
+    target: 'es2020',
+    assumptions: {
+      setPublicClassFields: true,
+    },
+    sourcemap: shouldSourceMap(),
+    jsx: {
+      runtime: 'automatic',
+      development: true,
+      refresh: false,
     },
   })
+
+  if (res.errors?.length) {
+    const err = res.errors[0]
+    throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
+  }
+
+  return { code: res.code, map: res.map as any }
 }
+
+export const transformOxcStripJSX = transformSWCStripJSX

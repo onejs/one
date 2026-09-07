@@ -6,5 +6,10 @@ ignores:
   # Metro is already listed as peer dependency, if we have metro we generally
   # have these (see: https://www.npmjs.com/package/metro?activeTab=code).
   - "metro-babel-transformer"
+  - "metro-runtime"
+  - "metro-source-map"
   - "debug"
   - "hermes-parser"
+  # oxc injects imports of these helpers into the bundles we produce, so the
+  # app resolves them through us rather than us importing them
+  - "@oxc-project/runtime"
