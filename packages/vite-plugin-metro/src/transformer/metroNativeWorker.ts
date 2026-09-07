@@ -8,17 +8,11 @@ import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
 import {
   shouldStripFlow,
+  transformHermesAsync,
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
-
-// `async function*`, the `async *name()` method shorthand, and `for await (`.
-// Hermes rejects all three at parse time with "async generators are unsupported".
-// the shorthand arm can also match `async * x` multiplication, which only costs
-// that module a lower transform target.
-const HERMES_UNSUPPORTED_ASYNC_RE =
-  /\basync\s+function\s*\*|\basync\s*\*\s*[\w$[]|\bfor\s+await\s*\(/
 
 /**
  * Module-scope bindings initialized to a literal and never reassigned, so a
@@ -152,7 +146,7 @@ export type WrapModuleOptions = {
 
 // bump whenever this worker's output changes, or metro serves cached modules
 // transformed by the previous version.
-const WORKER_CACHE_KEY_VERSION = '4'
+const WORKER_CACHE_KEY_VERSION = '5'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -2178,13 +2172,7 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   try {
     oxcRes = oxcTransform(filename, code, {
       lang,
-      // Hermes supports BigInt but not async generators or for-await-of, and no
-      // single oxc target expresses that: es2020 keeps BigInt and leaves async
-      // generators in, es2017 lowers them but rejects BigInt literals. oxc's
-      // `hermes*` targets claim async generators are supported, which the device
-      // disproves. So the level is chosen per module. A module using both is
-      // vanishingly rare and fails loudly here rather than at runtime.
-      target: HERMES_UNSUPPORTED_ASYNC_RE.test(code) ? 'es2017' : 'es2020',
+      target: 'es2020',
       assumptions: {
         setPublicClassFields: true,
       },
@@ -2214,25 +2202,19 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     )
   }
 
-  if (options.type !== 'script') {
-    try {
-      const esbuild = await import('esbuild')
-      const esbuildRes = esbuild.transformSync(code, {
-        loader: 'js',
-        format: 'cjs',
-        target: 'es2020',
-        sourcemap: true,
-        sourcefile: filename,
-      })
+  // run after worklets, including scripts; only module wrapping is conditional.
+  try {
+    const esbuildRes = await transformHermesAsync(
+      code, filename, true, options.type === 'script' ? undefined : 'cjs'
+    )
+    if (esbuildRes) {
       code = esbuildRes.code
       if (esbuildRes.map) {
-        intermediateMaps.push(
-          typeof esbuildRes.map === 'string' ? JSON.parse(esbuildRes.map) : esbuildRes.map
-        )
+        intermediateMaps.push(esbuildRes.map)
       }
-    } catch (err: any) {
-      throw new Error(`[vxrn/metro] esbuild CJS lowering failed for ${filename}: ${err.message || err}`)
     }
+  } catch (err: any) {
+    throw new Error(`[vxrn/metro] native async/CJS lowering failed for ${filename}: ${err.message || err}`)
   }
 
   // Step E2: per-iteration loop bindings for Hermes.

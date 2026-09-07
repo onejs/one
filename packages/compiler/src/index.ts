@@ -34,6 +34,7 @@ export * from './transformSWC'
 export * from './transformWorklets'
 export * from './reactNativeCodegen'
 export * from './transformHermesLoops'
+export * from './transformHermesAsync'
 export type { GetTransform } from './types'
 
 // Performance tracking
