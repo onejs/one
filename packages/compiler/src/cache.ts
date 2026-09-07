@@ -54,7 +54,7 @@ function getConfigFingerprint(): string {
         nativeCSS: configuration.enableNativeCSS,
         // bump when the transform engine changes, so entries written by a
         // previous engine aren't served for the same source
-        engine: 'oxc-react-compiler-worklet-directives',
+        engine: 'oxc-worklets-hermes-async',
       })
     )
     .digest('hex')

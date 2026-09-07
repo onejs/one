@@ -20,7 +20,7 @@ import { pathToFileURL } from 'node:url'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
-import { shouldStripFlow } from '@vxrn/compiler'
+import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -1520,39 +1520,36 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
       const hasClass = code.includes('class ') || code.includes('class{')
-      const hasAsync = code.includes('async ')
+      const hasAsync = code.includes('async')
       const hasBlockScopedLoop = /\bfor\s*\(\s*(?:const|let)\b/.test(code)
       if (!hasClass && !hasAsync && !hasBlockScopedLoop) return
-      // skip very large prebuilt files
-      if (code.length > 500_000) return
-
-      if (!oxc) oxc = await import('oxc-transform')
-
-      const hasAsyncGenerator = /(async \*|async function\*|for await)/.test(code)
-      const target = hasAsyncGenerator ? 'es2015' : 'es2020'
-
-      // a .ts file is not tsx: `const f = <T>(x: T) => x` parses as an unclosed
-      // jsx element under tsx. react-native ships jsx inside plain .js files,
-      // so everything that isn't .ts is parsed as jsx.
-      const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
-
-      const result = oxc.transformSync(id, code, {
-        lang,
-        target,
-        assumptions: {
-          setPublicClassFields: true,
-        },
-        jsx: 'preserve',
-        sourcemap: sourceMaps,
-        sourceType: id.endsWith('.cjs') ? 'script' : 'module',
-      })
-
-      if (result.errors?.length) {
-        const err = result.errors[0]
-        throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
+      let output: { code: string; map?: any } | undefined
+      // keep the existing oxc limit for large prebuilt files. async lowering
+      // below has no size exemption and runs after the worklet transform.
+      if (code.length <= 500_000) {
+        if (!oxc) oxc = await import('oxc-transform')
+        const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
+        const result = oxc.transformSync(id, code, {
+          lang,
+          target: 'es2020',
+          assumptions: { setPublicClassFields: true },
+          jsx: 'preserve',
+          sourcemap: sourceMaps,
+          sourceType: id.endsWith('.cjs') ? 'script' : 'module',
+        })
+        if (result.errors?.length) {
+          const err = result.errors[0]
+          throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
+        }
+        output = { code: result.code, map: sourceMaps ? result.map : undefined }
       }
-
-      return { code: result.code, map: sourceMaps ? (result.map as any) : undefined }
+      const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)
+      if (!lowered) return output
+      if (lowered.map && output?.map) {
+        const remapping = (await import('@jridgewell/remapping')).default
+        lowered.map = remapping([lowered.map, output.map], () => null)
+      }
+      return lowered
     },
   }
 }
