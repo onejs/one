@@ -279,6 +279,16 @@ export async function applyDependencyPatches(
                                 forceJSX: strategy === 'jsx',
                                 noHMR: true,
                                 fixNonTypeSpecificImports: true,
+                                // a patch is written to node_modules ONCE and then read by
+                                // every later build, dev and production alike, so its output
+                                // has to be valid in both. the automatic JSX runtime is not:
+                                // its dev form emits `jsxDEV` from react/jsx-dev-runtime, and
+                                // React's production build exports `jsxDEV = void 0`, so a
+                                // patched dependency that renders JSX throws "undefined is not
+                                // a function" from render in any production bundle. `jsx`/`jsxs`
+                                // work in both builds, and refresh is already off for
+                                // node_modules, so the stable runtime is the only correct output.
+                                production: true,
                               })
                             )?.code || contents
                         }
