@@ -30,6 +30,103 @@ export const transformProbe = () => {
 }
 `
 
+// node guards lowering semantics; the async-default regression itself needs
+// hermes, where the original arrow resolves its await to undefined.
+describe.each(['rolldown-dev', 'rolldown-build', 'metro-module', 'metro-script'])(
+  'native async through %s',
+  (pipeline) => {
+    it('preserves defaults, lexical bindings, bigint, rejection, and iterator cleanup', async () => {
+      const id = '/project/native-async.js'
+      const source = `
+globalThis.result = (function(parentArgument) {
+  const events = [];
+  const run = async(value = 2n, fail = false) => {
+    try {
+      const awaited = await (fail ? Promise.reject(new Error('rejected')) : Promise.resolve(3n));
+      events.push('after-await');
+      return [String(value + awaited), this.base, arguments[0]];
+    } catch (error) { return error.message; }
+    finally { events.push('finally'); }
+  };
+  const badDefault = async(value = (() => { throw new Error('default'); })()) => value;
+  let synchronousThrow = false;
+  let rejectedDefault;
+  try { rejectedDefault = badDefault().catch(error => error.message); }
+  catch { synchronousThrow = true; }
+  async function* values() {
+    try { yield 1n; yield 2n; }
+    finally { events.push('closed'); }
+  }
+  const first = async() => { for await (const value of values()) return String(value); };
+  return Promise.all([run(), run(4n), run(undefined, true), rejectedDefault, first()])
+    .then(values => ({ values, events, synchronousThrow }));
+}).call({ base: 7 }, 'lexical');
+`
+      let output: any
+      if (pipeline.startsWith('metro')) {
+        const { transform } = await import('@vxrn/vite-plugin-metro/metroNativeWorker')
+        const result = await transform({}, '/project', id, Buffer.from(source), {
+          dev: false,
+          platform: 'ios',
+          type: pipeline === 'metro-script' ? 'script' : 'module',
+        })
+        const data = result.output[0].data
+        const { fromRawMappings } = await import('metro-source-map')
+        output = {
+          code: data.code,
+          map: (fromRawMappings as any)([
+            { code: data.code, path: id, source, map: data.map },
+          ]).toMap(),
+        }
+      } else {
+        const plugin = hermesCompatSWCPlugin(pipeline === 'rolldown-dev', true)
+        output = await Reflect.apply(plugin.transform as Function, undefined, [
+          source,
+          id,
+        ])
+      }
+      const context: any = {}
+      context.__d = (factory: any) => {
+        const module = { exports: {} }
+        factory(
+          context,
+          (name: string) => {
+            throw new Error(`unexpected dependency ${name}`)
+          },
+          () => {},
+          () => {},
+          module,
+          module.exports,
+          []
+        )
+      }
+      runInNewContext(output.code, context)
+      const result = await context.result
+      expect(result.values).toEqual([
+        ['5', 7, 'lexical'],
+        ['7', 7, 'lexical'],
+        'rejected',
+        'default',
+        '1',
+      ])
+      expect(result.synchronousThrow).toBe(false)
+      expect(result.events.filter((value: string) => value === 'finally')).toHaveLength(3)
+      expect(result.events.filter((value: string) => value === 'closed')).toHaveLength(1)
+      const { originalPositionFor, TraceMap } = await import('@jridgewell/trace-mapping')
+      const lines = output.code.split('\n')
+      const line = lines.findIndex((value: string) => value.includes('after-await'))
+      const position = originalPositionFor(new TraceMap(output.map), {
+        line: line + 1,
+        column: lines[line].indexOf('events.push'),
+      })
+      expect(position.source).toBe(id)
+      expect(position.line).toBe(
+        source.split('\n').findIndex((value) => value.includes('after-await')) + 1
+      )
+    })
+  }
+)
+
 describe.each(['shared', 'rolldown', 'metro'])('React Compiler worklets through %s', (pipeline) => {
   it.each([
     ['block', 'useDerivedValue(() => { return value + 8 }, [value])', 18],

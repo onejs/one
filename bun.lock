@@ -219,6 +219,7 @@
         "@vxrn/vite-native-client": "workspace:*",
         "babel-plugin-react-compiler": "^1.0.0",
         "babel-plugin-syntax-hermes-parser": "^0.32.0",
+        "esbuild": "^0.25.12",
         "hermes-parser": "^0.32.0",
         "magic-string": "^0.30.21",
         "oxc-parser": "^0.112.0",
