@@ -287,12 +287,10 @@ function getNativeOutputOptions(prelude: string, sourcemap: boolean): OutputOpti
  * - DevSettings stripping → stripDevSettingsPlugin
  */
 export function normalizeNativeCommonJSInterop(code: string): string {
-  // Rolldown can mark ESM default imports from internal CommonJS modules as
-  // Node-mode conversions in both dev and production. Babel CommonJS packages
-  // expose their actual default behind `exports.default`; Node mode instead
-  // returns the whole exports object and React receives `{ default: Component }`.
+  // native packages expose Babel defaults through exports.default. apply the
+  // same interop to bundled require helpers and HMR's runtime export lookups.
   return code.replace(
-    /(\b__toESM(?:\$\d+)?\(\s*require[\w$]*\(\)\s*),\s*1(\s*\))/g,
+    /(\b__toESM(?:\$\d+)?\(\s*(?:require[\w$]*\(\)|__rolldown_runtime__\.loadExports\("(?:\\.|[^"\\])*"\))\s*),\s*1(\s*\))/g,
     '$1$2'
   )
 }
@@ -586,7 +584,7 @@ try {
           onHmrUpdate?.({
             type: 'hmr:update',
             clientId,
-            code: update.code,
+            code: normalizeNativeCommonJSInterop(update.code),
             changedIds: update.changedIds,
             seq: update.seq,
           })
