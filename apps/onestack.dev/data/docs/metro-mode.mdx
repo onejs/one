@@ -77,7 +77,7 @@ module.exports = config;
 
 ### No Babel
 
-Metro mode runs no Babel. One replaces Expo's Babel transformer with its own worker built on oxc, so `babel.config.js` and `babel-preset-expo` have no effect and every plugin One used to ship on native is a Rust port instead.
+By default, One replaces Expo's Babel transformer with its own worker built around Oxc. The worker combines Oxc's Rust parser and transforms with TypeScript implementations of One's native transforms, Hermes parsing for Flow, and esbuild for syntax lowering. This pipeline runs without Babel; it is not a standalone Rust bundler. `babel.config.js` and `babel-preset-expo` do not configure this worker.
 
 A Babel plugin One has no port for would silently do nothing, so instead the build fails and names it. You have three options:
 
@@ -85,7 +85,7 @@ A Babel plugin One has no port for would silently do nothing, so instead the bui
 - Remove it from `native.bundlerOptions.babelConfigOverrides`.
 - Set `native.bundlerOptions.nativeTransforms: false` to go back to the Babel transformer, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run.
 
-A native transform is the shape a Babel plugin takes when there is no Babel — source in, source out, free to use oxc, a regex, or anything else:
+A native transform receives source text and returns updated source text. It can use Oxc or another tool suited to the transformation:
 
 ```js fileName=scripts/my-transform.cjs
 module.exports = function myTransform(code, ctx) {
@@ -106,7 +106,7 @@ one({
 })
 ```
 
-Return `null` to leave the file alone. Transforms run in order, before One's own ports, on the file exactly as it came off disk — so a transform that reads positions sees the original line numbers, the same view a Babel plugin got.
+Return `null` to leave the file alone. Transforms run in order, before One's built-in transforms. The first receives the original file contents; each subsequent transform receives the previous transform's output. A transform that records original source positions should run first.
 
 ## Lazy Startup
 
