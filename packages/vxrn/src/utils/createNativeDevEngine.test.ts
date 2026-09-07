@@ -10,6 +10,7 @@ import { getNativePrelude } from '../runtime/native-prelude'
 import {
   buildNativeBundle,
   createNativeDevAssetRegistry,
+  createNativeDevEngine,
   getNativeAssetData,
   getHermesSWCIncludes,
   getHmrRuntimeSource,
@@ -192,6 +193,61 @@ describe('native prelude', () => {
 })
 
 describe('native Rolldown HMR runtime', () => {
+  it.each([true, false])('keeps CommonJS default components callable through the native HMR wire path (Babel=%s)', async (babel) => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-interop-'))
+    const entry = join(root, 'entry.mjs')
+    const packageRoot = join(root, 'node_modules/component')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({ main: './component(view).js' })
+    )
+    await writeFile(
+      join(packageRoot, 'component(view).js'),
+      babel
+        ? `Object.defineProperty(exports, '__esModule', { value: true }); exports.default = function Component() { return 42 }`
+        : `module.exports = function Component() { return 42 }`
+    )
+    const source = (version: number) => `
+import Component from 'component'
+globalThis.renderComponent = Component
+export const version = ${version}
+if (import.meta.hot) import.meta.hot.accept(() => {})
+`
+    await writeFile(entry, source(1))
+    let resolveUpdate!: (update: any) => void
+    const updateReceived = new Promise<any>((resolve) => { resolveUpdate = resolve })
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [{
+        name: 'native-hmr-fixture-entry',
+        transform(_code, id) {
+          if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
+        },
+      }],
+      onHmrUpdate: resolveUpdate,
+    })
+    try {
+      const initial = await native.getBundle()
+      const context: any = { console, setTimeout, clearTimeout }
+      runInNewContext(initial.code, context)
+      expect(context.renderComponent()).toBe(42)
+      const runtime = context.__rolldown_runtime__
+      await native.engine.registerClient(runtime.clientId)
+      await writeFile(entry, source(2))
+      const update = await updateReceived
+      expect(update.type).toBe('hmr:update')
+      expect(update.clientId).toBe(runtime.clientId)
+      expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(true)
+      expect(context.renderComponent()).toBe(42)
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it(
     'registers a Rolldown 1.2 client and applies a self-accepted patch',
     { timeout: 30_000 },
