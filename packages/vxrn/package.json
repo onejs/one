@@ -108,6 +108,8 @@
     "@types/qrcode-terminal": "^0",
     "@types/ws": "^8.18.1",
     "depcheck": "^1.4.7",
+    "metro-source-map": "0.84.4",
+    "oxc-parser": "^0.112.0",
     "vitest": "^4.1.0"
   },
   "publishConfig": {

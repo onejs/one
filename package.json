@@ -133,22 +133,26 @@
     "@react-native-swc/worklets-plugin": "0.1.5",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
+    "axios": "1.18.1",
     "check-dependency-version-consistency": "^3.0.3",
     "fast-flow-transform": "^0.0.3",
     "hono": "^4.12.8",
     "npm-run-all": "^4.1.5",
+    "one": "workspace:*",
     "oxfmt": "^0.16.0",
     "oxlint": "^1.31.0",
     "p-map": "^7.0.3",
     "patch-package": "^8.0.0",
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
+    "shell-quote": "1.10.0",
     "tamagui": "2.6.2",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "^5.7.3",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
+    "vxrn": "workspace:*",
     "zod": "3.25.67"
   },
   "upgradeSets": {
@@ -184,11 +188,5 @@
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "image-size@1.2.1": "patches/image-size@1.2.1.patch"
-  },
-  "dependencies": {
-    "axios": "1.18.1",
-    "one": "workspace:*",
-    "shell-quote": "1.10.0",
-    "vxrn": "workspace:*"
   }
 }
