@@ -346,7 +346,9 @@ function transformOnce(
     s.overwrite(node.body.start, node.body.end, call)
     // an arrow, so `this`, `arguments`, `new.target` and `super` inside the body
     // still mean what they meant in the function that contained the loop.
-    s.appendLeft(node.start, `var ${fnName} = ${asyncKw}(${params}) => ${bodyText};\n`)
+    // keep the declaration and loop together when the parent takes one statement.
+    s.appendLeft(node.start, `{\nvar ${fnName} = ${asyncKw}(${params}) => ${bodyText};\n`)
+    s.appendLeft(node.end, '\n}')
     changed = true
   }
 
