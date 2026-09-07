@@ -27,6 +27,63 @@ function run(source: string) {
 }
 
 describe('transformHermesLoops', () => {
+  it.each([
+    ['if (false)', []],
+    ['if (true)', [1, 2]],
+    ['for (var pass = 0; pass < 2; pass++)', [1, 2, 1, 2]],
+    ['while (passes++ < 2)', [1, 2, 1, 2]],
+  ])('keeps a captured loop inside a single-statement %s body', (parent, expected) => {
+    expect(
+      run(`
+        var fns = []
+        var passes = 0
+        ${parent} for (const n of [1, 2]) fns.push(() => n)
+        result = fns.map((f) => f())
+      `)
+    ).toEqual(expected)
+  })
+
+  it.each([true, false])(
+    'preserves if/else selection when the condition is %s',
+    (condition) => {
+      expect(
+        run(`
+        var fns = []
+        if (${condition}) for (const n of [1, 2]) fns.push(() => n)
+        else for (const n of [3, 4]) fns.push(() => n)
+        result = fns.map((f) => f())
+      `)
+      ).toEqual(condition ? [1, 2] : [3, 4])
+    }
+  )
+
+  it('preserves a do/while with a single-statement loop body', () => {
+    expect(
+      run(`
+        var fns = []
+        var passes = 0
+        do for (const n of [1, 2]) fns.push(() => n)
+        while (passes++ < 1)
+        result = fns.map((f) => f())
+      `)
+    ).toEqual([1, 2, 1, 2])
+  })
+
+  it('guards optional Zero query patches through nested loop transforms', () => {
+    expect(
+      run(`
+        var fns = []
+        var parts = [{}, { desiredQueriesPatches: { a: ['x', 'y'], b: ['z'] } }]
+        for (const part of parts) {
+          if (part.desiredQueriesPatches)
+            for (const [clientID, queriesPatch] of Object.entries(part.desiredQueriesPatches))
+              for (const op of queriesPatch) fns.push(() => clientID + ':' + op)
+        }
+        result = fns.map((f) => f())
+      `)
+    ).toEqual(['a:x', 'a:y', 'b:z'])
+  })
+
   it('gives a C-style loop a per-iteration binding', () => {
     expect(
       run(`
@@ -240,7 +297,9 @@ describe('transformHermesLoops', () => {
   })
 
   it('leaves a loop with no lexical binding untouched', () => {
-    expect(transformHermesLoops('for (var i = 0; i < 3; i++) fns.push(() => i)', 'test.js')).toBeNull()
+    expect(
+      transformHermesLoops('for (var i = 0; i < 3; i++) fns.push(() => i)', 'test.js')
+    ).toBeNull()
   })
 
   it('leaves the head declaration alone so it cannot collide with a sibling', () => {
