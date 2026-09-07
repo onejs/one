@@ -1,8 +1,8 @@
 import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
-import { transformFlowBabel } from './transformFlowBabel'
+import { transformFlow, transformFlowBabel } from './transformFlowBabel'
 
-export { transformFlowBabel } from './transformFlowBabel'
+export { transformFlow, transformFlowBabel } from './transformFlowBabel'
 
 export type Options = {
   include?: FilterPattern
@@ -21,7 +21,7 @@ export default function createFlowPlugin(opts?: Options): PluginOption {
     enforce: 'pre',
     transform(code, id) {
       if (filter(id)) {
-        return transformFlowBabel(code)
+        return transformFlow(code, { path: id })
       }
       return null
     },

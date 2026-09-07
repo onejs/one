@@ -76,6 +76,7 @@ export function createReactNativeDevServerPlugin(
         Awaited<ReturnType<typeof createNativeDevEngine>> | null
       > = {}
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
+      const warnedProdBundleRequest = new Set<string>()
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -274,6 +275,17 @@ export function createReactNativeDevServerPlugin(
 
         if (!platform) {
           return
+        }
+
+        // the dev engine only ever builds a dev bundle, so honoring `dev=false`
+        // here would mean a second engine per platform. production native bundles
+        // come from the build command instead. say so rather than quietly serving
+        // dev bytes to something that asked for production ones.
+        if (url.searchParams.get('dev') === 'false' && !warnedProdBundleRequest.has(platform)) {
+          warnedProdBundleRequest.add(platform)
+          console.warn(
+            `[vxrn] ${platform} bundle requested with dev=false, but the dev server only builds dev bundles. Serving a dev bundle. Use the build command for a production one.`
+          )
         }
 
         try {

@@ -335,5 +335,206 @@ export default function Page() {
       // Runtime import should be removed
       expect(result!.code).not.toContain('discord-client')
     })
+
+    it('should preserve side-effect imports during tree shaking', async () => {
+      const code = `
+import './style.css'
+import { serverOnlyModule } from 'server-only-pkg'
+import { Text } from 'react-native'
+
+export function loader() {
+  return serverOnlyModule()
+}
+
+export default function Page() {
+  return <Text>Hello</Text>
+}
+`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain("import './style.css'")
+      expect(result!.code).not.toContain('server-only-pkg')
+    })
+
+    it('should remove transitive local bindings exclusively used by loader', async () => {
+      const code = `
+import { db } from 'server-only-db'
+import { Text } from 'react-native'
+
+const secretKey = 'my-secret'
+
+function querySecret() {
+  return db.query(secretKey)
+}
+
+export async function loader() {
+  return querySecret()
+}
+
+export default function Page() {
+  return <Text>Hello</Text>
+}
+`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).not.toContain('server-only-db')
+      expect(result!.code).not.toContain('secretKey')
+      expect(result!.code).not.toContain('querySecret')
+      expect(result!.code).toContain('export default function Page')
+    })
+
+    it('should preserve shared local bindings used by both loader and client', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { Text } from 'react-native'
+
+const sharedConfig = { siteName: 'One' }
+
+function getTitle() {
+  return sharedConfig.siteName
+}
+
+export function loader() {
+  serverOnlyModule()
+  return getTitle()
+}
+
+export default function Page() {
+  return <Text>{getTitle()}</Text>
+}
+`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).not.toContain('server-only-pkg')
+      expect(result!.code).toContain('sharedConfig')
+      expect(result!.code).toContain('getTitle')
+    })
+
+    it('should throw build error on syntax error in production', async () => {
+      const origEnv = process.env.NODE_ENV
+      try {
+        process.env.NODE_ENV = 'production'
+        const code = `
+import { serverOnly } from 'server-only-pkg'
+export function loader() {
+  bad syntax {
+}
+`
+        await expect(transformTreeShakeClient(code, '/app/index.tsx')).rejects.toThrow(
+          /Failed to parse/
+        )
+      } finally {
+        process.env.NODE_ENV = origEnv
+      }
+    })
+
+    it('should log warning and return undefined on syntax error in development', async () => {
+      const origEnv = process.env.NODE_ENV
+      try {
+        process.env.NODE_ENV = 'development'
+        const code = `
+import { serverOnly } from 'server-only-pkg'
+export function loader() {
+  bad syntax {
+}
+`
+        const result = await transformTreeShakeClient(code, '/app/index.tsx')
+        expect(result).toBeUndefined()
+      } finally {
+        process.env.NODE_ENV = origEnv
+      }
+    })
+
+    it('should generate a valid sourcemap', async () => {
+      const code = `
+import { serverOnlyModule } from 'server-only-pkg'
+import { Text } from 'react-native'
+
+export function loader() {
+  return serverOnlyModule()
+}
+
+export default function Page() {
+  return <Text>Hello</Text>
+}
+`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.map).toBeDefined()
+      expect(result!.map.mappings).toBeDefined()
+    })
+
+    it('preserves shared import referenced in destructuring default parameter', async () => {
+      const code = `import {shared} from "./shared"; export function loader(){return shared}; export default function Page({x = shared}) {return x}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('import {shared} from "./shared"')
+      expect(result!.code).toContain('Page({x = shared})')
+      expect(result!.code).toContain('export function loader()')
+    })
+
+    it('preserves shared import referenced in top-level executable statement', async () => {
+      const code = `import {shared} from "./shared"; export function loader(){return shared}; if (globalThis.ready) shared();`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('import {shared} from "./shared"')
+      expect(result!.code).toContain('if (globalThis.ready) shared();')
+      expect(result!.code).toContain('export function loader()')
+    })
+
+    it('preserves shared import referenced in top-level retained initializer', async () => {
+      const code = `import {shared} from "./shared"; const retained = shared(); export function loader(){return shared}; export default function Page(){return null}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('import {shared} from "./shared"')
+      expect(result!.code).toContain('const retained = shared();')
+      expect(result!.code).toContain('export function loader()')
+    })
+
+    it('removes top-level declaration and import used exclusively by loader', async () => {
+      const code = `import {secret} from "./secret"; const localSecret = secret(); export function loader(){return localSecret}; export default function Page(){return null}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).not.toContain('./secret')
+      expect(result!.code).not.toContain('localSecret')
+      expect(result!.code).toContain('export function loader()')
+    })
+
+    it('preserves shared import referenced in top-level destructuring default binding', async () => {
+      const code = `import {shared} from "./shared"; const {x = shared} = {}; export function loader(){return [x,shared]}; export default function Page(){return x}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('import {shared} from "./shared"')
+      expect(result!.code).toContain('const {x = shared} = {}')
+      expect(result!.code).toContain('return x')
+    })
+
+    it('removes server-only import referenced in top-level destructuring default binding when used only by loader', async () => {
+      const code = `import {secret} from "./server"; const {x = secret} = {}; export function loader(){return x}; export default function Page(){return null}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).not.toContain('./server')
+      expect(result!.code).not.toContain('secret')
+      expect(result!.code).not.toContain('{x = secret}')
+      expect(result!.code).toContain('Page(){return null}')
+    })
+
+    it('removes server-only enum and class declarations used only by loader', async () => {
+      const code = `import {server} from "./server"; enum E { X = server() }; export function loader() {return E.X}; export default function Page(){return null}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).not.toContain('./server')
+      expect(result!.code).not.toContain('enum E')
+      expect(result!.code).toContain('Page(){return null}')
+    })
+
+    it('preserves shared enum used by both loader and client Page', async () => {
+      const code = `import {shared} from "./shared"; enum E { X = shared() }; export function loader() {return E.X}; export default function Page(){return E.X}`
+      const result = await transformTreeShakeClient(code, '/app/index.tsx')
+      expect(result).toBeDefined()
+      expect(result!.code).toContain('import {shared} from "./shared"')
+      expect(result!.code).toContain('enum E')
+      expect(result!.code).toContain('Page(){return E.X}')
+    })
   })
 })

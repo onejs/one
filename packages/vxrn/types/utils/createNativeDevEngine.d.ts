@@ -157,6 +157,19 @@ export declare function getNativeAssetData(id: string, root: string, platform: s
  * Inspired by rollipop's swc-plugin.ts.
  */
 export declare function hermesCompatSWCPlugin(dev: boolean, sourceMaps?: boolean): Plugin;
+export declare const hermesCompatPlugin: typeof hermesCompatSWCPlugin;
+/**
+ * Hermes gives a loop one environment, not one per iteration, so every closure
+ * created in a loop body sees the binding's final value. zod installs its schema
+ * methods with `for (const key in methods) defineProperty(proto, key, {get(){...}})`,
+ * and without this every method on every zod schema resolved to the last one:
+ * `string().nullish()` called `apply` and the app red-screened at startup.
+ * See @vxrn/compiler's transformHermesLoops for the bytecode evidence.
+ *
+ * Rolldown's own interop helpers are emitted after this runs, but they are
+ * already `var`-based with `.bind(null, key)`, so they need no rewriting.
+ */
+export declare function hermesLoopsPlugin(sourceMaps?: boolean): Plugin;
 export declare function getHmrRuntimeSource(): string;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map

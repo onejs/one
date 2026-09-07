@@ -18,6 +18,7 @@ type CompilerConfig =
 type Conf = {
   enableNativewind?: boolean
   enableReanimated?: boolean
+  enableNativeWorklets?: boolean
   enableCompiler?: CompilerConfig
   enableNativeCSS?: boolean
 }
@@ -25,8 +26,19 @@ type Conf = {
 export const configuration: Conf = {
   enableNativewind: false,
   enableReanimated: false,
+  enableNativeWorklets: true,
   enableCompiler: false,
   enableNativeCSS: false,
+}
+
+export function isNativeWorkletsEnabled() {
+  if (
+    process.env.VXRN_NATIVE_WORKLETS === 'false' ||
+    process.env.VXRN_NATIVE_WORKLETS === '0'
+  ) {
+    return false
+  }
+  return configuration.enableNativeWorklets !== false
 }
 
 export function configureVXRNCompilerPlugin(_: Conf) {
