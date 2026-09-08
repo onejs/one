@@ -1,6 +1,6 @@
 {
   "name": "test-id-remount",
-  "version": "1.25.16",
+  "version": "1.26.0",
   "private": true,
   "type": "module",
   "scripts": {
