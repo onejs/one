@@ -1,13 +1,16 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import type { UserConfig } from 'vite'
 import { webExtensions } from '../constants'
 
 // TODO we need to traverse to get sub-deps...
 
 export function getOptimizeDeps(mode: 'build' | 'serve', root = process.cwd()) {
+  // callers hand us a vite/vxrn root that may be relative, and the node_modules walk needs
+  // an absolute path or it stops at the cwd instead of continuing to the filesystem root
+  const rootDir = resolve(root)
   const packageJsonCache = new Map<string, PackageManifest | null>()
-  const isIncludable = (dep: string) => subpathIsDeclared(dep, root, packageJsonCache)
+  const isIncludable = (dep: string) => subpathIsDeclared(dep, rootDir, packageJsonCache)
 
   const needsInterop = [
     'nativewind',
@@ -238,12 +241,12 @@ function exportsDeclaresSubpath(exports: unknown, subpath: string): boolean {
     // a string or array `exports` declares the root entry only
     return false
   }
-  const keys = Object.keys(exports)
-  if (!keys.some((key) => key[0] === '.')) {
-    // conditions-only map, again the root entry only
-    return false
-  }
-  return keys.some((key) => exportKeyMatches(key, subpath))
+  // a `null` target is an explicit "not exported", so key presence alone proves nothing, and
+  // keys not starting with `.` are a conditions-only map, again the root entry only. this is
+  // the same walk vite does in `expandGlobIds`.
+  return Object.entries(exports as Record<string, unknown>).some(
+    ([key, target]) => target != null && key[0] === '.' && exportKeyMatches(key, subpath)
+  )
 }
 
 function exportKeyMatches(key: string, subpath: string): boolean {
