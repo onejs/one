@@ -1,3 +1,4 @@
+export declare function stripPathSuffix(path: string): string;
 export declare function stripTrailingSlash(pathname: string): string;
 export declare function normalizeRoutePathname(pathname: string): string;
 export declare function hasLostDynamicSegment(path: string): boolean;
