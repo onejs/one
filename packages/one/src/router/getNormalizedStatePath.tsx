@@ -1,4 +1,5 @@
 import { stripBaseUrl } from '../fork/getStateFromPath-mods'
+import { stripPathSuffix } from './path'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -21,7 +22,7 @@ export function getNormalizedStatePath(
   },
   baseUrl?: string
 ): Pick<UrlObject, 'segments' | 'params'> {
-  const [pathname] = statePath.split('?')
+  const pathname = stripPathSuffix(statePath)
   return {
     // Strip empty path at the start
     segments: stripBaseUrl(pathname, baseUrl)

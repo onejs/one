@@ -1,6 +1,6 @@
 import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 
-function stripPathSuffix(path: string): string {
+export function stripPathSuffix(path: string): string {
   const queryIndex = path.indexOf('?')
   const hashIndex = path.indexOf('#')
   let end = path.length
