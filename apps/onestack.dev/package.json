@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.25.16",
+  "version": "1.26.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
