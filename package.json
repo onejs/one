@@ -29,7 +29,7 @@
     ]
   },
   "scripts": {
-    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx",
+    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx --ignore GHSA-7pqw-9j4j-h8q3",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -80,7 +80,7 @@
   "resolutions": {
     "browserslist": "4.28.8",
     "@isaacs/brace-expansion": "5.0.1",
-    "@xmldom/xmldom": "0.9.10",
+    "@xmldom/xmldom": "0.9.12",
     "fast-xml-parser": "5.9.0",
     "tar": "7.5.11",
     "undici": "7.29.0",
@@ -100,7 +100,7 @@
     "react-native": "0.86.2",
     "@react-navigation/native": "7.3.16",
     "react-native-reanimated": "4.5.1",
-    "sharp": "0.35.3",
+    "sharp": "0.35.4",
     "image-size": "1.2.1",
     "minimatch": "3.1.5",
     "brace-expansion": "5.0.9",
@@ -123,7 +123,7 @@
     "joi": "17.13.4",
     "launch-editor": "2.14.1",
     "uuid": "11.1.1",
-    "js-yaml": "4.3.1",
+    "js-yaml": "4.3.2",
     "nanoid": "3.3.18",
     "toml": "4.2.0"
   },

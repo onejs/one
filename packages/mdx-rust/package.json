@@ -33,7 +33,7 @@
     "watch": "bun run build --watch"
   },
   "optionalDependencies": {
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.4"
   },
   "dependencies": {
     "compare-versions": "^4.1.3",
