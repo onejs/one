@@ -52,6 +52,12 @@ export function getHermesSWCIncludes(dev: boolean): string[] {
   return [...HERMES_CLASS_TRANSFORMS, ...HERMES_ASYNC_TRANSFORMS]
 }
 
+export interface NativePluginContext {
+  root: string
+  platform: 'ios' | 'android'
+  dev: boolean
+}
+
 interface NativeDevEngineOptions {
   root: string
   port: number
@@ -221,13 +227,15 @@ export function getNativeTransformConfig(
 // shared plugins used by both dev and prod native builds
 function getNativePlugins(
   root: string,
-  platform: string,
+  platform: NativePluginContext['platform'],
   viteImportGlobPlugin: any,
   dev: boolean,
   assetsDest?: string,
   onAsset?: (asset: NativeAssetData) => void,
-  sourceMaps = false
+  sourceMaps = false,
+  userPlugins: Plugin[] = []
 ): Plugin[] {
+  const context: NativePluginContext = { root, platform, dev }
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
     ...(globalThis.__vxrnAddNativePlugins || []),
@@ -264,7 +272,10 @@ function getNativePlugins(
     // hermes compat: per-iteration loop bindings. runs last so it also covers
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
-  ]
+    ...userPlugins,
+  ].map((plugin: Plugin) =>
+    plugin.api?.vxrnNative ? plugin.api.vxrnNative(context) : plugin
+  )
 }
 
 // shared output options for native builds
@@ -483,9 +494,9 @@ export async function createNativeDevEngine(
         true,
         undefined,
         assetRegistry.register,
-        false
+        false,
+        userPlugins
       ),
-      ...userPlugins,
     ],
   }
 
@@ -707,9 +718,9 @@ export async function buildNativeBundle(
         dev,
         assetsDest,
         undefined,
-        sourcemap
+        sourcemap,
+        userPlugins
       ),
-      ...userPlugins,
     ],
     output: getNativeOutputOptions(prelude, sourcemap),
   })

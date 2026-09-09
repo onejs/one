@@ -3,7 +3,7 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
-import { rolldown, type RolldownOutput } from 'rolldown'
+import { rolldown, type Plugin, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
 import { describe, expect, it, vi } from 'vitest'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -22,7 +22,68 @@ import {
   normalizeNativeCommonJSInterop,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
+  type NativePluginContext,
 } from './createNativeDevEngine'
+
+describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (platform) => {
+  it.each(['dev', 'build'] as const)('binds configured plugins to the %s bundle', async (mode) => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-plugin-adapter-'))
+    await writeFile(
+      join(root, 'entry.js'),
+      `globalThis.nativePluginResult = [__GLOBAL_PLUGIN__, __DIRECT_PLUGIN__, 'plain-plugin']`
+    )
+    const factories = ['global', 'direct'].map((name) =>
+      vi.fn((context: NativePluginContext): Plugin => ({
+        name: `${name}-native`,
+        transform(code, id) {
+          if (id.endsWith('/entry.js')) {
+            return code.replace(`__${name.toUpperCase()}_PLUGIN__`, JSON.stringify({ name, ...context }))
+          }
+        },
+      }))
+    )
+    const plugins = factories.map((vxrnNative, index): Plugin => ({
+      name: `adapter-${index}`,
+      api: { vxrnNative },
+    }))
+    const previousPlugins = globalThis.__vxrnAddNativePlugins
+    globalThis.__vxrnAddNativePlugins = [plugins[0]]
+    const configuredPlugins: Plugin[] = [
+      plugins[1],
+      {
+        name: 'plain-native-plugin',
+        transform(code, id) {
+          if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          if (id.endsWith('/entry.js')) return code.replace('plain-plugin', 'plain')
+        },
+      },
+    ]
+    let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+    try {
+      let code: string
+      if (mode === 'dev') {
+        native = await createNativeDevEngine({ root, platform, port: 0, plugins: configuredPlugins })
+        code = (await native.getBundle()).code
+      } else {
+        code = (await buildNativeBundle({ root, platform, entryFile: 'entry.js', plugins: configuredPlugins })).code
+      }
+      const context = { console, setTimeout, clearTimeout, __GLOBAL_PLUGIN__: 'unadapted', __DIRECT_PLUGIN__: 'unadapted' }
+      runInNewContext(code, context)
+      expect(Reflect.get(context, 'nativePluginResult')).toEqual([
+        { name: 'global', root, platform, dev: mode === 'dev' },
+        { name: 'direct', root, platform, dev: mode === 'dev' },
+        'plain',
+      ])
+      for (const factory of factories) {
+        expect(factory).toHaveBeenCalledExactlyOnceWith({ root, platform, dev: mode === 'dev' })
+      }
+    } finally {
+      await native?.close()
+      globalThis.__vxrnAddNativePlugins = previousPlugins
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
 
 const nativeTransformProbe = `
 export const transformProbe = () => {
