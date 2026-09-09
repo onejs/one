@@ -9,6 +9,11 @@ import type { Plugin } from 'rolldown';
 import type { DevEngine } from 'rolldown/experimental';
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
 export declare function getHermesSWCIncludes(dev: boolean): string[];
+export interface NativePluginContext {
+    root: string;
+    platform: 'ios' | 'android';
+    dev: boolean;
+}
 interface NativeDevEngineOptions {
     root: string;
     port: number;
