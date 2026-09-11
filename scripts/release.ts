@@ -9,7 +9,11 @@ import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
 import { ensureNpmAuthentication, publishPackagesWithAuthProbe } from './release-publish'
-import { resolveCanaryVersion } from './release-version'
+import {
+  resolveBetaVersion,
+  resolveCanaryVersion,
+  resolvePublishTag,
+} from './release-version'
 
 // avoid emitter error
 process.setMaxListeners(50)
@@ -55,6 +59,8 @@ const undocumented = process.argv.includes('--undocumented')
 
 const canary = process.argv.includes('--canary')
 const isRC = process.argv.includes('--rc')
+const betaVersion = resolveBetaVersion(process.argv.slice(2))
+const isBeta = betaVersion !== null
 const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
 const shouldPatch = process.argv.includes('--patch')
 const dirty = finish || rePublish || undocumented || process.argv.includes('--dirty')
@@ -85,6 +91,10 @@ const currentRCBase = rcMatch ? rcMatch[1] : null
 const currentRCNumber = rcMatch ? Number.parseInt(rcMatch[2], 10) : 0
 
 const nextVersion = (() => {
+  if (isBeta) {
+    return betaVersion
+  }
+
   if (canary) {
     return resolveCanaryVersion(curVersion, { rePublish })
   }
@@ -176,8 +186,8 @@ async function run() {
     let version = curVersion
 
     // ensure we are up to date
-    // ensure we are on main (skip for canary and rc releases)
-    if (!canary && !isRC && !process.env.CI) {
+    // ensure we are on main (skip for prereleases)
+    if (!canary && !isRC && !isBeta && !process.env.CI) {
       if ((await exec(`git rev-parse --abbrev-ref HEAD`)).stdout.trim() !== 'main') {
         throw new Error(`Not on main`)
       }
@@ -436,7 +446,7 @@ async function run() {
       await fs.remove(tmpDir)
       await ensureDir(tmpDir)
 
-      const publishTag = canary ? 'canary' : version.includes('-rc.') ? 'rc' : 'latest'
+      const publishTag = resolvePublishTag(version, { canary })
       const publishOptions = [publishTag && `--tag ${publishTag}`]
         .filter(Boolean)
         .join(' ')

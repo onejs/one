@@ -64,3 +64,26 @@ bun release --into ~/<downstream>
 Verify a canary by its content, never its version string: a local `--into`
 build and a published npm canary have carried the same version with different
 code. `npm pack <pkg>@<version>` and grep the built output.
+
+## V2 beta branch
+
+The `v2-beta` branch prepares automatic versions named
+`2.0.0-beta.<workflow-run>.<attempt>` on the npm `beta` dist-tag. The beta job
+is intentionally disabled with a literal `false` condition. Pushing this branch
+cannot publish a package.
+
+Activating the beta requires the user's explicit cut permission. After that
+permission:
+
+1. Verify npm trusted publishing for every public workspace package against
+   `.github/workflows/release.yml` with no GitHub environment configured.
+2. Copy the `workflow_run` trigger and beta job from `v2-beta` to the default
+   branch, remove the literal `false` condition there, and merge that workflow
+   change through the normal queue.
+3. Remove the same literal `false` condition on `v2-beta` so the trigger and job
+   remain identical on both branches.
+4. Bring `v2-beta` current with `origin/main`, then push the explicitly approved
+   beta-cut commit. A successful `Checks` run for that exact latest branch SHA
+   publishes one beta.
+
+Do not dispatch the release workflow or create a tag for this beta path.
