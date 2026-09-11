@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeToggleComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeToggleComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

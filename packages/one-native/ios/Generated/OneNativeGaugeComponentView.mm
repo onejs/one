@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeGaugeComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
   }
   return self;
 }

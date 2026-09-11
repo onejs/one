@@ -72,7 +72,7 @@ ${dialogButtons}
         if !model.message.isEmpty { Text(model.message) }
       }`,
     validate: dialogValidate('Alert'),
-    presentation: true,
+    layout: 'presentation',
   },
   {
     name: 'ConfirmationDialog',
@@ -103,6 +103,6 @@ ${dialogButtons}
         if !model.message.isEmpty { Text(model.message) }
       }`,
     validate: dialogValidate('ConfirmationDialog'),
-    presentation: true,
+    layout: 'presentation',
   },
 ]

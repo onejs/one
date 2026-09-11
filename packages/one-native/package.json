@@ -65,6 +65,7 @@
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeProgressView": "OneNativeProgressViewComponentView",
         "OneNativeGauge": "OneNativeGaugeComponentView",
+        "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
         "OneNativeTextField": "OneNativeTextFieldComponentView",
         "OneNativeSecureField": "OneNativeSecureFieldComponentView",
         "OneNativeAlert": "OneNativeAlertComponentView",

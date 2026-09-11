@@ -20,6 +20,7 @@ export declare const Swift: {
     Button: (_props: import("./types").ButtonProps) => never;
     ProgressView: (_props: import("./types").ProgressViewProps) => never;
     Gauge: (_props: import("./types").GaugeProps) => never;
+    VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
     Alert: (_props: import("./types").AlertProps) => never;

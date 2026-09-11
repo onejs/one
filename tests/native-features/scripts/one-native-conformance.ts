@@ -1350,6 +1350,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const control = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a composed Toggle would look like it never emitted.
+    const pressSwitch = (frame: { x: number; y: number; width: number; height: number }) =>
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
 
     await tapNav('nav-one-native-accessibility')
     let nodes = await wait('accessibility: the screen mounted', (n) =>
@@ -1396,7 +1412,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // would miss.
     const composed = control(snapshot(config.simulatorId), 'Composed switch')?.frame
     if (!composed) throw new Error('The composed toggle left the accessibility tree')
-    point(composed.x + composed.width - 25, composed.y + composed.height / 2)
+    pressSwitch(composed)
     await wait('accessibility: the composed toggle element is the real control', (n) =>
       status(n, 'Host', 'true')
     )

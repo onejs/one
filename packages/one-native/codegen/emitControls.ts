@@ -71,9 +71,14 @@ export type OneNativeViewProps = Pick<
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
     const styleFields = publicFields.filter(([, field]) => field.enum)
     const disabled = Object.hasOwn(fields, 'disabled')
-    // everything but a presentation reports the height SwiftUI measured, so it supplies its
-    // own shadow node and the spec must not generate one.
-    const measured = !control.presentation
+    // a measured control reports the height SwiftUI measured, so it supplies its own shadow
+    // node and the spec must not generate one. fill and presentation controls are sized by
+    // React Native, so they keep the shadow node codegen writes.
+    const measured = !control.layout
+    const presentation = control.layout === 'presentation'
+    // weakSelf only exists for the blocks below it, so a control with none would declare it
+    // and never read it.
+    const callbacks = measured || !!value || actions.length > 0
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
     const callbackType = (action: { payload?: Record<string, ScalarType> }) =>
       `(${Object.entries(action.payload ?? {})
@@ -127,10 +132,7 @@ ${
         publicProp: action.prop,
         event: `onNative${name}${action.event}`,
       })),
-      layout:
-        control.presentation
-          ? { kind: 'presentation' }
-          : { kind: 'measured' },
+      layout: { kind: control.layout ?? 'measured' },
       slots: [],
       interfaceOnly: measured,
     })
@@ -178,11 +180,12 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       'style',
       '...props',
     ]
-    // a measured control's height arrives from SwiftUI through Fabric state, so the adapter
-    // supplies no height at all; a presentation has no box to occupy.
-    const styleProp = measured
-      ? 'style={style}'
-      : "style={[{ position: 'absolute', width: 0, height: 0 }, style]}"
+    // a measured control's height arrives from SwiftUI through Fabric state and a fill
+    // control takes the box it was given, so both pass style straight through. only a
+    // presentation collapses, because it has no box to occupy.
+    const styleProp = presentation
+      ? "style={[{ position: 'absolute', width: 0, height: 0 }, style]}"
+      : 'style={style}'
     adapters += `import Native${name} from '../specs/${nativeName}NativeComponent'
 export function ${name}({ ${parameters.join(', ')} }: Types.${name}Props) {
 ${control.validate}
@@ -228,7 +231,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
       `ios/Generated/${nativeName}View.swift`,
       header +
         `import SwiftUI
-import UIKit
+import UIKit${(control.imports ?? []).map((framework) => `\nimport ${framework}`).join('')}
 
 private final class ${name}Model: ObservableObject {
 ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value.type)}>(${literal(value.initial)})\n` : ''}${swiftFields}
@@ -324,7 +327,7 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
   public func reset() {
     compositionParent = nil
     model.active = false${value ? '; model.onChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
-${control.presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
+${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
 }
 private struct ${name}Content: View {
@@ -414,12 +417,10 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const ${nativeName}Props>();
 ${objectFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
-    __weak ${nativeName}ComponentView *weakSelf = self;
-${measured ? `    _nativeView.onHeight = ^(CGFloat height) {
+${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}${measured ? `    _nativeView.onHeight = ^(CGFloat height) {
       ${nativeName}ComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
-    };\n` : ''}
-${
+    };\n` : ''}${
   value
     ? `    _nativeView.onChange = ^(${objcScalar(value.type)}value, NSInteger eventCount, NSInteger revision) {
       ${nativeName}ComponentView *strongSelf = weakSelf;

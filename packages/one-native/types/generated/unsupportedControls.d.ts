@@ -10,6 +10,7 @@ declare function Label(_props: Types.LabelProps): never;
 declare function Button(_props: Types.ButtonProps): never;
 declare function ProgressView(_props: Types.ProgressViewProps): never;
 declare function Gauge(_props: Types.GaugeProps): never;
+declare function VideoPlayer(_props: Types.VideoPlayerProps): never;
 declare function TextField(_props: Types.TextFieldProps): never;
 declare function SecureField(_props: Types.SecureFieldProps): never;
 declare function Alert(_props: Types.AlertProps): never;
@@ -26,6 +27,7 @@ export declare const unsupportedControls: {
     Button: typeof Button;
     ProgressView: typeof ProgressView;
     Gauge: typeof Gauge;
+    VideoPlayer: typeof VideoPlayer;
     TextField: typeof TextField;
     SecureField: typeof SecureField;
     Alert: typeof Alert;

@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeButtonComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
     _nativeView.onPress = ^(NSInteger eventCount) {
       OneNativeButtonComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

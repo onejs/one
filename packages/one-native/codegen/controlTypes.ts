@@ -58,9 +58,13 @@ export type Control = {
   swift: string
   extraSwift?: string
   validate: string
-  // a presentation host renders nothing inline and takes no layout space. every other
-  // control is measured by SwiftUI, so none of them declares a height.
-  presentation?: true
+  // how the control occupies the box React Native gave it. the default is measured:
+  // SwiftUI reports its ideal height and Yoga sizes the row, which is why no control
+  // declares a height. `fill` is for content with no ideal height, like video, which
+  // takes the box instead. `presentation` renders nothing inline and takes no space.
+  layout?: 'fill' | 'presentation'
+  // frameworks the generated Swift needs beyond SwiftUI and UIKit, such as AVKit.
+  imports?: readonly string[]
 }
 
 export const commonFields = {

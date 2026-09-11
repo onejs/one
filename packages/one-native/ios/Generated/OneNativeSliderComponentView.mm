@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeSliderComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
     _nativeView.onChange = ^(double value, NSInteger eventCount, NSInteger revision) {
       OneNativeSliderComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeStepperComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
     _nativeView.onChange = ^(double value, NSInteger eventCount, NSInteger revision) {
       OneNativeStepperComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

@@ -428,6 +428,18 @@ export function Gauge({
     />
   )
 }
+import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
+export function VideoPlayer({
+  url = '',
+  autoplay = false,
+  style,
+  ...props
+}: Types.VideoPlayerProps) {
+  if (typeof url !== 'string' || !url)
+    throw new Error('VideoPlayer url must be a non-empty string')
+
+  return <NativeVideoPlayer {...props} style={style} url={url} autoplay={autoplay} />
+}
 import NativeTextField from '../specs/OneNativeTextFieldNativeComponent'
 export function TextField({
   text,
