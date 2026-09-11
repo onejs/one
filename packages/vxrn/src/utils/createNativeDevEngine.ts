@@ -79,9 +79,19 @@ export type NativeHmrUpdate =
   | { type: 'hmr:reload'; clientId: string }
   | { type: 'hmr:error' }
 
+/**
+ * The served dev bundle and the map that resolves a frame in it back to the
+ * authored file. `map` is the serialized JSON, parsed only when a symbolicate
+ * request arrives.
+ */
+export interface NativeDevBundle {
+  code: string
+  map: string
+}
+
 interface NativeDevEngineResult {
   engine: DevEngine
-  getBundle: () => Promise<{ code: string }>
+  getBundle: () => Promise<NativeDevBundle>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
 }
@@ -283,6 +293,11 @@ function getNativeOutputOptions(prelude: string, sourcemap: boolean): OutputOpti
   return {
     format: 'esm',
     sourcemap,
+    // emit absolute source paths, the way Metro does. a relative path is only
+    // meaningful next to the map file, and neither /symbolicate nor a crash
+    // reporter reading the shipped .map has that directory.
+    sourcemapPathTransform: (relativeSourcePath, sourcemapPath) =>
+      normalizePath(resolve(dirname(sourcemapPath), relativeSourcePath)),
     intro: prelude,
     codeSplitting: false,
     strictExecutionOrder: true,
@@ -304,7 +319,40 @@ export function normalizeNativeCommonJSInterop(code: string): string {
   )
 }
 
-function postProcessNativeBundle(code: string): string {
+/**
+ * Every post-processing pass below rewrites the bundle after Rolldown has
+ * already emitted its source map, so a pass that changes the number of lines
+ * shifts every later frame away from the source it maps to. Replacing a removed
+ * span with its own newlines keeps each surviving statement on the line the map
+ * recorded for it.
+ */
+function blankPreservingLines(match: string): string {
+  return '\n'.repeat(match.match(/\n/g)?.length ?? 0)
+}
+
+function countLines(code: string): number {
+  return (code.match(/\n/g)?.length ?? 0) + 1
+}
+
+/**
+ * Guard the source map's only invariant: application code has to stay on the
+ * line Rolldown mapped it to. A pass that gains or loses a line is a bug in that
+ * pass, and a symbolicated frame that silently points a few lines off is worse
+ * than a build that stops and says so.
+ */
+function assertBundleLinesPreserved(before: string, after: string, stage: string): void {
+  const beforeLines = countLines(before)
+  const afterLines = countLines(after)
+  if (beforeLines !== afterLines) {
+    throw new Error(
+      `[vxrn] native bundle post-processing (${stage}) changed the line count ` +
+        `(${beforeLines} -> ${afterLines}), which invalidates the source map. ` +
+        `Every pass after Rolldown emits the map must preserve lines.`
+    )
+  }
+}
+
+export function postProcessNativeBundle(code: string): string {
   code = normalizeNativeCommonJSInterop(code)
 
   // Rolldown replaces import.meta.env reads but can leave a guarding
@@ -313,9 +361,14 @@ function postProcessNativeBundle(code: string): string {
   code = code.replace(/\btypeof\s+import\.meta\b/g, '"object"')
 
   // rolldown devMode still emits ESM export statements that hermes can't parse.
-  // this is a rolldown behavior we can't configure away yet.
-  code = code.replace(/^\s*export\s*\{[^}]*\}\s*;?\s*$/gm, '')
-  code = code.replace(/^\s*export\s+default\s+([^;\n]+);?\s*$/gm, '$1;')
+  // this is a rolldown behavior we can't configure away yet. both patterns match
+  // horizontal whitespace only: a plain `\s` swallows the blank line above the
+  // statement, and a swallowed line moves every frame below it.
+  code = code.replace(/^[^\S\n]*export[^\S\n]*\{[^}]*\}[^\S\n]*;?[^\S\n]*$/gm, blankPreservingLines)
+  code = code.replace(
+    /^([^\S\n]*)export[^\S\n]+default[^\S\n]+([^;\n]+);?[^\S\n]*$/gm,
+    '$1$2;'
+  )
   // rolldown devMode runtime leaves some raw import.meta.hot references
   // that aren't compiled through the normal plugin pipeline.
   code = code.replace(/^if \(import\.meta\.hot\).*$/gm, '')
@@ -333,9 +386,11 @@ function postProcessNativeBundle(code: string): string {
           const afterMarker = code.indexOf('})();', idx)
           if (afterMarker !== -1) {
             const end = afterMarker + '})();'.length
+            const removed = code.slice(beforeMarker, end)
             code =
               code.slice(0, beforeMarker) +
               'NativeAnimatedModule = NativeAnimatedModule_default ?? NativeAnimatedTurboModule_default;' +
+              blankPreservingLines(removed) +
               code.slice(end)
           }
         }
@@ -376,7 +431,10 @@ export function wrapNativeBundleModuleScope(code: string): string {
   const idx = code.indexOf(marker)
   if (idx === -1) return code
 
-  return code.slice(0, idx) + ';(function() {\n' + code.slice(idx) + '\n})();\n'
+  // the opener shares the marker's line (the rest of that line is a comment) so
+  // the wrap costs no lines, and the closer only appends past the last mapped
+  // line. the served bundle therefore stays aligned with Rolldown's source map.
+  return code.slice(0, idx) + ';(function() {' + code.slice(idx) + '\n})();\n'
 }
 
 /**
@@ -450,11 +508,11 @@ export async function createNativeDevEngine(
   })
   const assetRegistry = createNativeDevAssetRegistry()
 
-  let currentBundle: { code: string } | null = null
+  let currentBundle: NativeDevBundle | null = null
   let firstBuildError: Error | null = null
-  let bundleResolve: ((value: { code: string }) => void) | null = null
+  let bundleResolve: ((value: NativeDevBundle) => void) | null = null
   let bundleReject: ((error: Error) => void) | null = null
-  let bundlePromise: Promise<{ code: string }> | null = null
+  let bundlePromise: Promise<NativeDevBundle> | null = null
 
   const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
 
@@ -494,19 +552,20 @@ export async function createNativeDevEngine(
         true,
         undefined,
         assetRegistry.register,
-        false,
+        // per-module maps: without them a module's transform output has no path
+        // back to its authored file, and /symbolicate can only report the
+        // bundle offset it was handed.
+        true,
         userPlugins
       ),
     ],
   }
 
   const outputOptions: OutputOptions = {
-    // no dev sourcemap: nothing consumes one. the bundle handler serves .code and
-    // /symbolicate isn't implemented, and the map wouldn't line up anyway — the
-    // served code is post-processed (runtime downleveling, IIFE wrap) after the
-    // map is generated. generating it cost ~90ms and ~250MB RSS per rebuild on a
-    // 6MB bundle, held for the life of the dev server, per platform.
-    ...getNativeOutputOptions(prelude, false),
+    // the dev map is what /symbolicate resolves a device frame through. it is
+    // generated once per full bundle build, not per edit: rebuildStrategy is
+    // 'never', so Fast Refresh patches never re-enter this path.
+    ...getNativeOutputOptions(prelude, true),
     // connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
 try {
@@ -565,13 +624,24 @@ try {
         // downlevel class fields from the rolldown runtime (virtual module
         // skipped by the per-file SWC plugin) so old Hermes can parse them
         code = await downlevelClassFieldsInBundle(code)
+        assertBundleLinesPreserved(chunk.code, code, 'dev')
 
         // wrap module code in a function scope so top-level `var`s (e.g. RN
         // fetch.js's `Headers`/`Request`) don't leak as non-configurable
         // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
+        // it only appends past the last mapped line, so it needs no assertion.
         code = wrapNativeBundleModuleScope(code)
 
-        currentBundle = { code }
+        if (!chunk.map) {
+          throw new Error(
+            '[vxrn] rolldown produced no source map for the dev bundle, so /symbolicate cannot resolve a frame'
+          )
+        }
+        // hold the serialized map, not a parsed one: parsing a map for a bundle
+        // this size costs hundreds of megabytes that would stay resident for the
+        // life of the dev server, and /symbolicate runs only when a frame needs
+        // resolving.
+        currentBundle = { code, map: chunk.map.toString() }
         console.info(`[vxrn] native bundle ready (${Math.round(code.length / 1024)}KB)`)
         if (bundleResolve) {
           bundleResolve(currentBundle)
@@ -732,10 +802,17 @@ export async function buildNativeBundle(
 
   let code = postProcessNativeBundle(chunk.code)
   code = await downlevelClassFieldsInBundle(code)
-  // Per-module Babel/SWC transforms return maps when requested, and the
-  // generated-runtime downlevel pass preserves its input line count. The
-  // remaining post-processing replaces syntax in place, so application frames
-  // retain Rolldown's generated line and compose back to original source.
+  // Per-module Babel/SWC transforms return maps when requested, and every pass
+  // here rewrites the bundle in place or blanks a removed span into its own
+  // newlines, so an application frame keeps Rolldown's generated line and
+  // composes back to the authored source.
+  assertBundleLinesPreserved(chunk.code, code, 'production')
+
+  if (sourcemap && !chunk.map) {
+    throw new Error(
+      '[vxrn] a source map was requested but rolldown produced none for the production bundle'
+    )
+  }
   return { code, map: sourcemap ? chunk.map?.toString() : undefined }
 }
 
