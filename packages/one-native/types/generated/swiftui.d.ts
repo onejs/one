@@ -17,6 +17,9 @@ export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'cha
 export type Axis = 'horizontal' | 'vertical';
 export type Edge = 'top' | 'leading' | 'bottom' | 'trailing';
 export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover';
+export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
+export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
+export type ImageScale = 'small' | 'medium' | 'large';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -135,6 +138,25 @@ export declare const swiftUIValues: {
         readonly popover: 16.4;
         readonly sheet: 16.4;
         readonly fullScreenCover: 16.4;
+    };
+    readonly SymbolRenderingMode: {
+        readonly monochrome: 15;
+        readonly multicolor: 15;
+        readonly hierarchical: 15;
+        readonly palette: 15;
+    };
+    readonly SymbolVariants: {
+        readonly none: 15;
+        readonly circle: 15;
+        readonly square: 15;
+        readonly rectangle: 15;
+        readonly fill: 15;
+        readonly slash: 15;
+    };
+    readonly ImageScale: {
+        readonly small: 13;
+        readonly medium: 13;
+        readonly large: 13;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

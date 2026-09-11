@@ -235,6 +235,25 @@
       "popover": 16.4,
       "sheet": 16.4,
       "fullScreenCover": 16.4
+    },
+    "SymbolRenderingMode": {
+      "monochrome": 15,
+      "multicolor": 15,
+      "hierarchical": 15,
+      "palette": 15
+    },
+    "SymbolVariants": {
+      "none": 15,
+      "circle": 15,
+      "square": 15,
+      "rectangle": 15,
+      "fill": 15,
+      "slash": 15
+    },
+    "ImageScale": {
+      "small": 13,
+      "medium": 13,
+      "large": 13
     }
   },
   "modifiers": [
@@ -447,6 +466,50 @@
           "label": "_",
           "name": "autocapitalization",
           "type": "SwiftUI.TextInputAutocapitalization?"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "symbolRenderingMode",
+      "type": "SymbolRenderingMode",
+      "module": "SwiftUICore",
+      "optional": true,
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "mode",
+          "type": "SwiftUICore.SymbolRenderingMode?"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "symbolVariant",
+      "type": "SymbolVariants",
+      "module": "SwiftUICore",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "variant",
+          "type": "SwiftUICore.SymbolVariants"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "imageScale",
+      "type": "ImageScale",
+      "swiftType": "Image.Scale",
+      "module": "SwiftUICore",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "scale",
+          "type": "SwiftUICore.Image.Scale"
         }
       ],
       "requirements": []
@@ -920,6 +983,37 @@
         "MarkedValueLabels == SwiftUICore.EmptyView",
         "V : Swift.BinaryFloatingPoint"
       ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Image",
+      "parameters": [
+        {
+          "label": "systemName",
+          "name": "systemName",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Image",
+      "parameters": [
+        {
+          "label": "systemName",
+          "name": "systemName",
+          "type": "Swift.String"
+        },
+        {
+          "label": "variableValue",
+          "name": "variableValue",
+          "type": "Swift.Double?"
+        }
+      ],
+      "requirements": [],
       "ios": 16
     },
     {
