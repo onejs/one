@@ -1048,6 +1048,66 @@
       ],
       "requirements": [],
       "ios": 15
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "RoundedRectangle",
+      "parameters": [
+        {
+          "label": "cornerRadius",
+          "name": "cornerRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "EdgeInsets",
+      "parameters": [
+        {
+          "label": "top",
+          "name": "top",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "leading",
+          "name": "leading",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "bottom",
+          "name": "bottom",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "trailing",
+          "name": "trailing",
+          "type": "CoreFoundation.CGFloat"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Color",
+      "parameters": [
+        {
+          "label": "uiColor",
+          "name": "uiColor",
+          "type": "UIKit.UIColor"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
     }
   ]
 }

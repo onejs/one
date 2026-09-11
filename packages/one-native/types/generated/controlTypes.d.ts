@@ -1,6 +1,34 @@
-import type { ViewProps } from 'react-native';
+import type { ColorValue, ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
-export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'>;
+export interface OneNativeStyle {
+    fontSize?: number;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ColorValue;
+    tint?: ColorValue;
+    background?: ColorValue;
+    padding?: number;
+    paddingTop?: number;
+    paddingLeading?: number;
+    paddingBottom?: number;
+    paddingTrailing?: number;
+    width?: number;
+    height?: number;
+    minWidth?: number;
+    idealWidth?: number;
+    maxWidth?: number;
+    minHeight?: number;
+    idealHeight?: number;
+    maxHeight?: number;
+    cornerRadius?: number;
+    opacity?: number;
+    borderColor?: ColorValue;
+    borderWidth?: number;
+}
+export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'> & {
+    swiftStyle?: OneNativeStyle;
+};
 export type PickerOption = Readonly<{
     value: string;
     label: string;

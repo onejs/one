@@ -75,6 +75,32 @@ export default function OneNativeAccessibility() {
         </Swift.Section>
       </Swift.Form>
 
+      {/* styled: verifies swiftStyle sets font, foregroundStyle, tint, background, cornerRadius, padding while preserving accessibility */}
+      <Swift.Button
+        testID="one-native-a11y-styled-button"
+        label="Styled button"
+        accessibilityLabel="Styled action"
+        swiftStyle={{
+          fontSize: 16,
+          fontWeight: 'bold',
+          foregroundStyle: '#ffffff',
+          tint: '#007aff',
+          background: '#007aff',
+          cornerRadius: 8,
+          padding: 8,
+        }}
+      />
+      <Swift.Toggle
+        testID="one-native-a11y-styled-toggle"
+        label="Styled switch"
+        accessibilityLabel="Styled toggle"
+        isOn={standaloneOn}
+        onIsOnChange={setStandaloneOn}
+        swiftStyle={{
+          tint: '#34c759',
+        }}
+      />
+
       <Text testID="one-native-a11y-text-height" style={styles.line}>{`Text: ${textHeight}`}</Text>
       <Text testID="one-native-a11y-toggle-height" style={styles.line}>{`Toggle: ${toggleHeight}`}</Text>
       <Text testID="one-native-a11y-taps" style={styles.line}>{`Taps: ${taps}`}</Text>

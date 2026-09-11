@@ -8,6 +8,7 @@ private final class VideoPlayerModel: ObservableObject {
   @Published var url: String = ""
   @Published var autoplay: Bool = false
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
 }
 @objcMembers public final class OneNativeVideoPlayerView: UIView, OneNativeComposable {
@@ -18,6 +19,10 @@ private final class VideoPlayerModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ url: String, autoplay: Bool) {
     if model.url != url { model.url = url }
@@ -61,6 +66,7 @@ private struct VideoPlayerContent: View {
   var body: some View {
     VideoPlayerSurface(url: model.url, autoplay: model.autoplay)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
 // AVPlayer holds the playback position and is expensive to build, so it is created once per

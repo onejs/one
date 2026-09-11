@@ -1392,6 +1392,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('accessibility: a control composed into a Form carries its testID', (n) =>
       Boolean(id(n, 'one-native-a11y-form'))
     )
+    await wait('accessibility: a styled control carries its label', (n) =>
+      labels(n).includes('Styled action')
+    )
+    await wait('accessibility: a styled control carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-styled-button'))
+    )
+    await wait('accessibility: a styled toggle carries its label', (n) =>
+      labels(n).includes('Styled toggle')
+    )
+    await wait('accessibility: a styled toggle carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-styled-toggle'))
+    )
     screenshot('a11y-short-text.png')
 
     // an accessibility element that is not the real control would pass every check above
