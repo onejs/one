@@ -115,6 +115,22 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   native drag is blocked with interactive dismissal disabled and dismisses with
   it enabled, updating React and the dismiss callback.
 
+- Native layout measurement (stage 1 probe of `plans/one-native-layout-design.md`,
+  probe removed after the run). A container must write only the measured HEIGHT into
+  Fabric state: pinning both axes through `setSize` makes it ignore the width its
+  parent gives it. `UIHostingController.sizeThatFits(in:)` at the Yoga width is the
+  mechanism; `intrinsicContentSize` ignores the proposed width and answers a different
+  question. The returned WIDTH is SwiftUI's ideal, smaller than the proposal, so only
+  the height is usable. `Form` has no intrinsic height at all: proposed infinity it
+  returns 0, proposed 10,000 it returns 10,000, at every row count and width, while
+  `VStack` and `Text` agree under both proposals. A state write from `layoutSubviews`
+  reaches Yoga in the SAME display frame, and the measure/layout loop terminates
+  (frozen at 38 measures / 15 layouts / 7 writes over five idle seconds). Measuring in
+  the same turn as the model write returns the PREVIOUS content's height, so measure
+  from `layoutSubviews`. And by negative control, with every explicit schedule removed
+  `layoutSubviews` ran exactly once: SwiftUI content changes do not invalidate the
+  Fabric host's layout, so a composition host must schedule its own remeasure.
+
 Automation details that prevent false diagnoses:
 
 - Fabric normalizes transport event names globally. Use `onNative...`, never a
@@ -170,9 +186,13 @@ Automation details that prevent false diagnoses:
    unimplemented, as do the `presenting:` value-bound alert overloads and
    `presentationCompactAdaptation`.
 2. Add real native layout/content composition (Host, VStack/HStack, Text/Label,
-   Form/Section, explicit RN slot). Leaf heights are currently bounded JS layout;
-   intrinsic content measurement is not implemented. This is the next difficult
-   layout boundary, and should get an assembled design review before broad fanout.
+   Form/Section, explicit RN slot). Design reviewed once (r26161) and stage 1 probed;
+   see `plans/one-native-layout-design.md` for the measurement contract and what the
+   review changed. Stage 2 is an emitter change, not a mechanical mode split: composed
+   controls need an `internal` published model type (the generated `<Name>Model` and
+   `<Name>Content` are `private`), activation on publication rather than on window
+   membership (a never-windowed child keeps `active == false` and emits nothing), and
+   a decision about the inherited `ViewProps` that land on a UIView nobody displays.
 3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map
