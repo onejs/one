@@ -15,4 +15,6 @@ interface NativeProps extends ViewProps {
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
 }
-export default codegenNativeComponent<NativeProps>('OneNativeToggle')
+export default codegenNativeComponent<NativeProps>('OneNativeToggle', {
+  interfaceOnly: true,
+})

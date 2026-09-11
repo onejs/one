@@ -47,10 +47,7 @@ export function Picker({
   return (
     <NativePicker
       {...props}
-      style={[
-        { height: pickerStyle === 'wheel' || pickerStyle === 'inline' ? 216 : 44 },
-        style,
-      ]}
+      style={style}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -106,17 +103,7 @@ export function DatePicker({
   return (
     <NativeDatePicker
       {...props}
-      style={[
-        {
-          height:
-            datePickerStyle === 'graphical'
-              ? 360
-              : datePickerStyle === 'wheel'
-                ? 216
-                : 44,
-        },
-        style,
-      ]}
+      style={style}
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -157,7 +144,7 @@ export function ColorPicker({
   return (
     <NativeColorPicker
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -195,7 +182,7 @@ export function Toggle({
   return (
     <NativeToggle
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       value={isOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -239,7 +226,7 @@ export function Slider({
   return (
     <NativeSlider
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -285,7 +272,7 @@ export function Stepper({
   return (
     <NativeStepper
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -304,7 +291,7 @@ import NativeText from '../specs/OneNativeTextNativeComponent'
 export function Text({ text = '', style, ...props }: Types.TextProps) {
   if (typeof text !== 'string') throw new Error('Text text must be a string')
 
-  return <NativeText {...props} style={[{ height: 24 }, style]} text={text} />
+  return <NativeText {...props} style={style} text={text} />
 }
 import NativeLabel from '../specs/OneNativeLabelNativeComponent'
 export function Label({
@@ -322,7 +309,7 @@ export function Label({
   return (
     <NativeLabel
       {...props}
-      style={[{ height: 24 }, style]}
+      style={style}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -356,7 +343,7 @@ export function Button({
   return (
     <NativeButton
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -390,7 +377,7 @@ export function ProgressView({
   return (
     <NativeProgressView
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -428,16 +415,7 @@ export function Gauge({
   return (
     <NativeGauge
       {...props}
-      style={[
-        {
-          height:
-            gaugeStyle === 'accessoryCircular' ||
-            gaugeStyle === 'accessoryCircularCapacity'
-              ? 100
-              : 44,
-        },
-        style,
-      ]}
+      style={style}
       label={label}
       disabled={disabled}
       value={value}
@@ -494,7 +472,7 @@ export function TextField({
   return (
     <NativeTextField
       {...props}
-      style={[{ height: axis === 'vertical' ? 120 : 44 }, style]}
+      style={style}
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -555,7 +533,7 @@ export function SecureField({
   return (
     <NativeSecureField
       {...props}
-      style={[{ height: 44 }, style]}
+      style={style}
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}

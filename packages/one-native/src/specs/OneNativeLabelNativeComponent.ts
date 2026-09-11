@@ -9,4 +9,6 @@ interface NativeProps extends ViewProps {
   disabled: boolean
   systemImage: string
 }
-export default codegenNativeComponent<NativeProps>('OneNativeLabel')
+export default codegenNativeComponent<NativeProps>('OneNativeLabel', {
+  interfaceOnly: true,
+})

@@ -13,13 +13,19 @@ private final class GaugeModel: ObservableObject {
   @Published var minimumValueLabel: String = ""
   @Published var maximumValueLabel: String = ""
   @Published var gaugeStyle: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
 }
 @objcMembers public final class OneNativeGaugeView: UIView, OneNativeComposable {
   private var model = GaugeModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<GaugeContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<GaugeContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ label: String, disabled: Bool, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String, gaugeStyle: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
@@ -53,7 +59,7 @@ private final class GaugeModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: GaugeContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: GaugeContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -78,5 +84,6 @@ private struct GaugeContent: View {
       }
       .oneNativeGaugeStyle(model.gaugeStyle)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

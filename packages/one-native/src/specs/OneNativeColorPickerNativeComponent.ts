@@ -15,4 +15,6 @@ interface NativeProps extends ViewProps {
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
   >
 }
-export default codegenNativeComponent<NativeProps>('OneNativeColorPicker')
+export default codegenNativeComponent<NativeProps>('OneNativeColorPicker', {
+  interfaceOnly: true,
+})

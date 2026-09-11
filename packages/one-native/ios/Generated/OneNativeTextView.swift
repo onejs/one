@@ -5,13 +5,19 @@ import UIKit
 
 private final class TextModel: ObservableObject {
   @Published var text: String = ""
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
 }
 @objcMembers public final class OneNativeTextView: UIView, OneNativeComposable {
   private var model = TextModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<TextContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<TextContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ text: String) {
     if model.text != text { model.text = text }
   }
@@ -37,7 +43,7 @@ private final class TextModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: TextContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: TextContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -52,5 +58,6 @@ private struct TextContent: View {
   @ObservedObject var model: TextModel
   var body: some View {
     Text(verbatim: model.text)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

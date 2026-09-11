@@ -2,17 +2,25 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativeButtonComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeButtonShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeButtonComponentView { OneNativeButtonView *_nativeView; }
+@implementation OneNativeButtonComponentView { OneNativeButtonView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeButtonComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeButtonProps>();
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeButtonView new]; self.contentView = _nativeView;
     __weak OneNativeButtonComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativeButtonComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
     _nativeView.onPress = ^(NSInteger eventCount) {
       OneNativeButtonComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -26,9 +34,13 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeButtonProps>(props);
 
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.label)
     disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

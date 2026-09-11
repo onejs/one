@@ -66,10 +66,6 @@ export const textControls: Control[] = [
       }
 ${textModifiers}`,
     validate: `  if (typeof text !== 'string') throw new Error('TextField text must be a string')`,
-    height: {
-      default: 44,
-      when: [{ prop: 'axis', values: ['vertical'], height: 120 }],
-    },
   },
   {
     name: 'SecureField',
@@ -95,6 +91,5 @@ ${textModifiers}`,
       }
 ${textModifiers}`,
     validate: `  if (typeof text !== 'string') throw new Error('SecureField text must be a string')`,
-    height: { default: 44 },
   },
 ]

@@ -8,6 +8,7 @@ private final class ToggleModel: ObservableObject {
   @Published var label: String = ""
   @Published var disabled: Bool = false
   @Published var toggleStyle: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
@@ -19,9 +20,14 @@ private final class ToggleModel: ObservableObject {
 @objcMembers public final class OneNativeToggleView: UIView, OneNativeComposable {
   public var onChange: ((Bool, Int, Int) -> Void)?
   private var model = ToggleModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<ToggleContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<ToggleContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, toggleStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
@@ -51,7 +57,7 @@ private final class ToggleModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ToggleContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: ToggleContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -73,5 +79,6 @@ private struct ToggleContent: View {
       }
       .oneNativeToggleStyle(model.toggleStyle)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

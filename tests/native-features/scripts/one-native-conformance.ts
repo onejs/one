@@ -25,6 +25,7 @@ type Suite =
   | 'host'
   | 'containers'
   | 'popover'
+  | 'accessibility'
 type Config = {
   simulatorId: string
   bundleId: string
@@ -35,7 +36,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers|popover] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers|popover|accessibility] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
 }
 
@@ -67,10 +68,11 @@ function parse(args: string[]): Config {
         value !== 'dialogs' &&
         value !== 'host' &&
         value !== 'containers' &&
-        value !== 'popover'
+        value !== 'popover' &&
+        value !== 'accessibility'
       )
         throw new Error(
-          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, containers, or popover.'
+          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, containers, popover, or accessibility.'
         )
       suite = value
     } else throw new Error(`Unknown argument: ${arg}`)
@@ -196,6 +198,9 @@ const containersLoaded = (nodes: Node[]) =>
   has(nodes, 'Form: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
+const accessibilityLoaded = (nodes: Node[]) =>
+  labels(nodes).some((label) => label.startsWith('Text: ')) &&
+  labels(nodes).includes('Standalone switch')
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -206,8 +211,10 @@ const homeLoaded = (nodes: Node[], suite: Suite) =>
   Boolean(
     id(
       nodes,
-      suite === 'popover'
-        ? 'nav-one-native-popover'
+      suite === 'accessibility'
+        ? 'nav-one-native-accessibility'
+        : suite === 'popover'
+          ? 'nav-one-native-popover'
         : suite === 'containers'
           ? 'nav-one-native-containers'
           : suite === 'host'
@@ -259,7 +266,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
                       ? containersLoaded(nodes)
                       : config.suite === 'popover'
                         ? popoverLoaded(nodes)
-                        : fixtureLoaded(nodes)
+                        : config.suite === 'accessibility'
+                          ? accessibilityLoaded(nodes)
+                          : fixtureLoaded(nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -1095,16 +1104,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-containers')
-    // a standalone leaf owns its own hosting controller and takes the catalog's default
-    // height, so this is the generated Text and Label outside a container.
-    await wait(
-      'standalone Text and Label take the default leaf height',
-      (n) =>
-        Math.round(box(n, 'Standalone text')?.height ?? 0) === 24 &&
-        Math.round(box(n, 'Standalone label')?.height ?? 0) === 24
-    )
+    // a standalone leaf owns its own hosting controller and reports the height SwiftUI
+    // measured, so a zero here means nothing measured at all. the Text fits one line in this
+    // narrow box while the Label carries an SF Symbol and wraps onto two, which is exactly
+    // what a fixed 24pt leaf height used to clip.
+    await wait('standalone Text and Label report a measured height', (n) => {
+      const text = Math.round(box(n, 'Standalone text')?.height ?? 0)
+      const label = Math.round(box(n, 'Standalone label')?.height ?? 0)
+      return text > 0 && label > text && label < text * 3
+    })
     // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
-    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 534))
+    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 508))
     await wait(
       'a Section renders its rows inside the Form',
       (n) =>
@@ -1327,6 +1337,117 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Open', 'false')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'accessibility') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const measured = (nodes: Node[], label: string) => {
+      const line = labels(nodes).find((text) => text.startsWith(`${label}: `))
+      if (!line) throw new Error(`No ${label} measurement on screen`)
+      return Number(line.slice(label.length + 2))
+    }
+    const control = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label)
+
+    await tapNav('nav-one-native-accessibility')
+    let nodes = await wait('accessibility: the screen mounted', (n) =>
+      labels(n).some((label) => label.startsWith('Text: '))
+    )
+
+    // a standalone control's own UIView is on screen, so UIKit could have carried these.
+    await wait('accessibility: a standalone control carries its label', (n) =>
+      labels(n).includes('Standalone switch')
+    )
+    await wait('accessibility: a standalone control carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-standalone'))
+    )
+    await wait('accessibility: a standalone leaf carries its label', (n) =>
+      labels(n).includes('Standalone paragraph')
+    )
+
+    // a composed control never joins the view hierarchy, so nothing but the SwiftUI content
+    // can be carrying these. this is the case that silently exposed nothing before.
+    await wait('accessibility: a composed control carries its label', (n) =>
+      labels(n).includes('Composed switch')
+    )
+    await wait('accessibility: a composed control carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-composed'))
+    )
+    await wait('accessibility: a composed button carries its label', (n) =>
+      labels(n).includes('Composed action')
+    )
+    await wait('accessibility: a control composed into a Form carries its label', (n) =>
+      labels(n).includes('Form switch')
+    )
+    await wait('accessibility: a control composed into a Form carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-form'))
+    )
+
+    // an accessibility element that is not the real control would pass every check above
+    // and do nothing here.
+    tap({ label: 'Composed action' })
+    await wait('accessibility: the composed button element is the real control', (n) =>
+      status(n, 'Taps', 1)
+    )
+    // a SwiftUI Toggle outside a Form only responds on the switch, so this drives the
+    // control from the accessibility node's own frame: a decoy element in the wrong place
+    // would miss.
+    const composed = control(snapshot(config.simulatorId), 'Composed switch')?.frame
+    if (!composed) throw new Error('The composed toggle left the accessibility tree')
+    point(composed.x + composed.width - 25, composed.y + composed.height / 2)
+    await wait('accessibility: the composed toggle element is the real control', (n) =>
+      status(n, 'Host', 'true')
+    )
+    // SwiftUI owns the composed switch's accessibility value, so this is the control's
+    // own state reaching the tree rather than anything React Native supplied.
+    await wait('accessibility: a composed control reports its own value', (n) =>
+      Boolean(
+        n.find((node) => node.AXUniqueId === 'one-native-a11y-composed' && node.AXValue === '1')
+      )
+    )
+
+    // sizing: no control declares a height any more, so these are SwiftUI's own numbers.
+    nodes = snapshot(config.simulatorId)
+    const shortText = measured(nodes, 'Text')
+    const toggleHeight = measured(nodes, 'Toggle')
+    if (!(shortText > 0))
+      throw new Error(`A standalone Text measured ${shortText}, so nothing was reported`)
+    if (!(toggleHeight > 0))
+      throw new Error(`A standalone Toggle measured ${toggleHeight}, so nothing was reported`)
+    checks.push({ name: 'accessibility: standalone leaves report a measured height', durationMs: 0 })
+    console.log('PASS accessibility: standalone leaves report a measured height')
+
+    // the case a fixed height clipped: this paragraph cannot fit on one line.
+    tap({ id: 'one-native-a11y-wrap' })
+    const wrapped = await wait('accessibility: wrapping text grows its box', (n) => {
+      const line = labels(n).find((text) => text.startsWith('Text: '))
+      return Boolean(line) && Number(line!.slice(6)) > shortText
+    })
+    const wrappedText = measured(wrapped, 'Text')
+    if (!(wrappedText > shortText * 2))
+      throw new Error(
+        `A paragraph that wraps onto several lines measured ${wrappedText} against ${shortText} for one line, so it is still being clipped`
+      )
+    checks.push({ name: 'accessibility: a wrapped paragraph is not clipped', durationMs: 0 })
+    console.log('PASS accessibility: a wrapped paragraph is not clipped')
+
+    // the SwiftUI element has to survive a recycle, because the model is rebuilt on reset.
+    tap({ label: 'index' })
+    await wait('accessibility: home mounted', () => true, true)
+    await tapNav('nav-one-native-accessibility')
+    await wait('accessibility: a recycled composed control still carries its label', (n) =>
+      labels(n).includes('Composed switch')
+    )
+    await wait('accessibility: a recycled composed control still carries its testID', (n) =>
+      Boolean(id(n, 'one-native-a11y-composed'))
+    )
+    if (!control(snapshot(config.simulatorId), 'Form switch'))
+      throw new Error('A recycled Form lost its composed control')
+    checks.push({ name: 'accessibility: a recycled Form keeps its composed control', durationMs: 0 })
+    console.log('PASS accessibility: a recycled Form keeps its composed control')
+
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -13,7 +13,13 @@
   if ([child isKindOfClass:OneNativeContainerSlotComponentView.class])
     return ((OneNativeContainerSlotComponentView *)child).slotView;
   UIView *content = [child isKindOfClass:RCTViewComponentView.class] ? ((RCTViewComponentView *)child).contentView : nil;
-  NSAssert(content != nil, @"One Native containers take One Native children");
+  // a child with no composable content can never render here, and publication would drop it
+  // without saying so. reject it where the mounted node is known, in every build.
+  if (content == nil)
+    [NSException raise:@"OneNativeInvalidChild"
+                format:@"%@ is not a One Native control. A One Native container takes One "
+                       @"Native children; wrap React Native content in Swift.Slot.",
+                       NSStringFromClass(child.class)];
   return content;
 }
 

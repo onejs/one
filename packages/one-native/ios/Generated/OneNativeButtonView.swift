@@ -9,6 +9,7 @@ private final class ButtonModel: ObservableObject {
   @Published var systemImage: String = ""
   @Published var buttonRole: String = ""
   @Published var buttonStyle: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onPress: ((Int) -> Void)?
   private var pressCount = 0
@@ -21,9 +22,14 @@ private final class ButtonModel: ObservableObject {
 @objcMembers public final class OneNativeButtonView: UIView, OneNativeComposable {
   public var onPress: ((Int) -> Void)?
   private var model = ButtonModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<ButtonContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<ButtonContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
@@ -54,7 +60,7 @@ private final class ButtonModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ButtonContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: ButtonContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -77,5 +83,6 @@ private struct ButtonContent: View {
       }
       .oneNativeButtonStyle(model.buttonStyle)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

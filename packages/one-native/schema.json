@@ -219,23 +219,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44,
-          "when": [
-            {
-              "prop": "pickerStyle",
-              "values": [
-                "wheel",
-                "inline"
-              ],
-              "height": 216
-            }
-          ]
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeDatePicker",
@@ -289,29 +276,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44,
-          "when": [
-            {
-              "prop": "datePickerStyle",
-              "values": [
-                "graphical"
-              ],
-              "height": 360
-            },
-            {
-              "prop": "datePickerStyle",
-              "values": [
-                "wheel"
-              ],
-              "height": 216
-            }
-          ]
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeColorPicker",
@@ -355,13 +323,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeToggle",
@@ -406,13 +371,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeSlider",
@@ -462,13 +424,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeStepper",
@@ -518,13 +477,10 @@
       },
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeText",
@@ -537,13 +493,10 @@
       "events": {},
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 24
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeLabel",
@@ -562,13 +515,10 @@
       "events": {},
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 24
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeButton",
@@ -606,13 +556,10 @@
         }
       ],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeProgressView",
@@ -641,13 +588,10 @@
       "events": {},
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeGauge",
@@ -685,23 +629,10 @@
       "events": {},
       "actions": [],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44,
-          "when": [
-            {
-              "prop": "gaugeStyle",
-              "values": [
-                "accessoryCircular",
-                "accessoryCircularCapacity"
-              ],
-              "height": 100
-            }
-          ]
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeTextField",
@@ -774,22 +705,10 @@
         }
       ],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44,
-          "when": [
-            {
-              "prop": "axis",
-              "values": [
-                "vertical"
-              ],
-              "height": 120
-            }
-          ]
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeSecureField",
@@ -858,13 +777,10 @@
         }
       ],
       "layout": {
-        "kind": "inline",
-        "height": {
-          "default": 44
-        }
+        "kind": "measured"
       },
       "slots": [],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeAlert",

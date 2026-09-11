@@ -25,7 +25,6 @@ export const formControls: Control[] = [
       }
       .oneNativeToggleStyle(model.toggleStyle)`,
     validate: `  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')`,
-    height: { default: 44 },
   },
   {
     name: 'Slider',
@@ -58,7 +57,6 @@ export const formControls: Control[] = [
   if (minimumValue >= maximumValue) throw new Error('Slider minimumValue must be less than maximumValue')
   if (step <= 0) throw new Error('Slider step must be greater than 0')
   if (value < minimumValue || value > maximumValue) throw new Error('Slider value must be within minimumValue and maximumValue')`,
-    height: { default: 44 },
   },
   {
     name: 'Stepper',
@@ -91,6 +89,5 @@ export const formControls: Control[] = [
   if (minimumValue >= maximumValue) throw new Error('Stepper minimumValue must be less than maximumValue')
   if (step <= 0) throw new Error('Stepper step must be greater than 0')
   if (value < minimumValue || value > maximumValue) throw new Error('Stepper value must be within minimumValue and maximumValue')`,
-    height: { default: 44 },
   },
 ]

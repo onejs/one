@@ -14,6 +14,7 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeConfirmationDialogView new]; self.contentView = _nativeView;
     __weak OneNativeConfirmationDialogComponentView *weakSelf = self;
+
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeConfirmationDialogComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -43,6 +44,10 @@ using namespace facebook::react;
     _actionsDirty = NO;
   }
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:next.value
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision title:RCTNSStringFromString(next.title) message:RCTNSStringFromString(next.message) titleVisibility:RCTNSStringFromString(next.titleVisibility)];
   [super updateProps:props oldProps:oldProps];

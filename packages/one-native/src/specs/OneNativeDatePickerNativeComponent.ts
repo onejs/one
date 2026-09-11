@@ -22,4 +22,6 @@ interface NativeProps extends ViewProps {
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>
   >
 }
-export default codegenNativeComponent<NativeProps>('OneNativeDatePicker')
+export default codegenNativeComponent<NativeProps>('OneNativeDatePicker', {
+  interfaceOnly: true,
+})

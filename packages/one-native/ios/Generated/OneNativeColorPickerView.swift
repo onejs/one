@@ -8,6 +8,7 @@ private final class ColorPickerModel: ObservableObject {
   @Published var label: String = ""
   @Published var disabled: Bool = false
   @Published var supportsOpacity: Bool = true
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
@@ -19,9 +20,14 @@ private final class ColorPickerModel: ObservableObject {
 @objcMembers public final class OneNativeColorPickerView: UIView, OneNativeComposable {
   public var onChange: ((String, Int, Int) -> Void)?
   private var model = ColorPickerModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<ColorPickerContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<ColorPickerContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, supportsOpacity: Bool) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
@@ -51,7 +57,7 @@ private final class ColorPickerModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ColorPickerContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: ColorPickerContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -70,6 +76,7 @@ private struct ColorPickerContent: View {
         set: { value in model.change(oneNativeEncodeColor(value, supportsOpacity: model.supportsOpacity)) }
       ), supportsOpacity: model.supportsOpacity)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }
 private func oneNativeDecodeColor(_ value: String) -> Color {

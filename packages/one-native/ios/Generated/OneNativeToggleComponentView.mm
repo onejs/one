@@ -2,17 +2,25 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativeToggleComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeToggleShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeToggleComponentView { OneNativeToggleView *_nativeView; }
+@implementation OneNativeToggleComponentView { OneNativeToggleView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeToggleComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeToggleProps>();
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeToggleView new]; self.contentView = _nativeView;
     __weak OneNativeToggleComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativeToggleComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeToggleComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -26,9 +34,13 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeToggleProps>(props);
 
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:next.value
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled toggleStyle:RCTNSStringFromString(next.toggleStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

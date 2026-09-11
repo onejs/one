@@ -21,4 +21,6 @@ interface NativeProps extends ViewProps {
   >
   onNativeTextFieldSubmit?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeTextField')
+export default codegenNativeComponent<NativeProps>('OneNativeTextField', {
+  interfaceOnly: true,
+})

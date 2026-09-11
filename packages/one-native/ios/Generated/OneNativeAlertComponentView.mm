@@ -14,6 +14,7 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeAlertView new]; self.contentView = _nativeView;
     __weak OneNativeAlertComponentView *weakSelf = self;
+
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeAlertComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -43,6 +44,10 @@ using namespace facebook::react;
     _actionsDirty = NO;
   }
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:next.value
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision title:RCTNSStringFromString(next.title) message:RCTNSStringFromString(next.message)];
   [super updateProps:props oldProps:oldProps];

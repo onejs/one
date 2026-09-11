@@ -12,4 +12,6 @@ interface NativeProps extends ViewProps {
   buttonStyle: string
   onNativeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeButton')
+export default codegenNativeComponent<NativeProps>('OneNativeButton', {
+  interfaceOnly: true,
+})

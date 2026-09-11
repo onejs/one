@@ -151,7 +151,7 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   Toggle` and a host inside a section both work, a Toggle two containers deep emits,
   and its native AXValue follows React. A section mounted later, a section prop change,
   and a section unmount all reach SwiftUI through the published tree. A `Form` fills
-  its Yoga box (534 points in the fixture) because it has no ideal height; composed
+  its Yoga box (508 points in the fixture) because it has no ideal height; composed
   into a measured host it reports 0 and renders nothing, so `Swift.Host` rejects a
   `Swift.Form` child in JavaScript.
 - React Native inside a container (`Swift.Slot`). A slot reuses `OneNativeSlot` and the
