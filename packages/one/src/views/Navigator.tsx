@@ -68,7 +68,7 @@ function resolveInitialRouteFromLinking(
     const nameSegments = focused.name.split('/').filter(Boolean)
     const expected = segments.slice(i, i + nameSegments.length).join('/')
     if (focused.name !== expected) return undefined
-    current = focused.state
+    current = focused.state as typeof current
     i += nameSegments.length
   }
 
@@ -307,8 +307,6 @@ function QualifiedNavigator({
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
     router,
     {
-      // Used for getting the parent with navigation.getParent('/normalized/path')
-      id: contextKey,
       children: screens,
       screenOptions,
       initialRouteName: resolvedInitialRouteName,

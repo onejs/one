@@ -2,17 +2,12 @@
   "name": "@vxrn/native",
   "version": "1.26.0",
   "type": "module",
-  "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
+  "description": "UIKit and Android extras: zoom, bottom toolbar, toolbar menus, split view, and platform colors.",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "types/index.d.ts",
-  "sideEffects": [
-    "./src/index.ts",
-    "./dist/esm/index.native.js",
-    "./dist/esm/index.mjs",
-    "./dist/cjs/index.cjs"
-  ],
+  "sideEffects": false,
   "files": [
     "src",
     "types",
@@ -24,11 +19,7 @@
   ],
   "scripts": {
     "build": "tamagui-build",
-    "clean": "tamagui-build clean",
-    "test": "vitest run --dir tests"
-  },
-  "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "workspace:*"
+    "clean": "tamagui-build clean"
   },
   "exports": {
     ".": {
@@ -72,13 +63,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@react-navigation/native": "~7.3.16",
-    "@react-navigation/native-stack": "~7.18.8",
-    "one": "1.26.0",
     "react": "*",
     "react-native": "*",
-    "react-native-screens": ">=4.0.0",
-    "react-native-safe-area-context": ">=5.4.0"
+    "react-native-screens": ">=4.25.0",
+    "react-native-safe-area-context": ">=5.5.0"
   },
   "peerDependenciesMeta": {
     "react-native-safe-area-context": {
@@ -86,11 +74,7 @@
     }
   },
   "devDependencies": {
-    "@react-navigation/native": "~7.3.16",
-    "@react-navigation/native-stack": "~7.18.8",
     "@tamagui/build": "2.6.2",
-    "one": "workspace:*",
-    "react-native-web": "^0.21.2",
-    "vitest": "^4.1.0"
+    "react-native-web": "^0.21.2"
   }
 }

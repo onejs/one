@@ -17,9 +17,6 @@ ignores:
   # Imported by @react-navigation components (drawer/bottom-tabs), needed for native builds
   - "@react-native-masked-view/masked-view"
 
-  # Optional peer dep — loaded via try/catch require in NativeTabs.tsx
-  - "@bottom-tabs/react-navigation"
-
   # Used in metro-config (see getViteMetroPluginOptions)
   - babel-plugin-module-resolver
 

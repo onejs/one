@@ -4,7 +4,7 @@ title: "<Tabs />"
 
 This component should only be rendered inside a `_layout.tsx` file, where it will serve as the location that children will render for routes below the layout.
 
-Tabs is simply a [React Navigation Bottom Tabs view](https://reactnavigation.org/docs/bottom-tab-navigator) and accepts the same props as React Navigation.
+Tabs is a [React Navigation Bottom Tabs view](https://reactnavigation.org/docs/bottom-tab-navigator) and accepts the same props as React Navigation. On iOS and Android it uses React Navigation 8's native tab implementation. On web it uses One's headless implementation.
 
 For now, you do need to set the `href` option on each Tabs.Screen to match the route file name. The plan is to automate this in the future.
 
@@ -29,6 +29,30 @@ export default function Layout() {
 <Notice>
   Adding a new tab route has a bug currently that can cause it to not show up until you re-run your app with `--clean`.
 </Notice>
+
+### Native tabs
+
+React Navigation owns the native tab bar on iOS and Android. Use its native tab options directly, including `tabBarIcon`, `tabBarSystemItem`, `tabBarMinimizeBehavior`, and `tabBarSelectionEnabled`. An action that should not select a route can prevent navigation through `tabPress` and disable selection:
+
+```tsx
+<Tabs.Screen
+  name="new"
+  listeners={{
+    tabPress(event) {
+      event.preventDefault()
+      openComposer()
+    },
+  }}
+  options={{
+    title: 'New',
+    tabBarSelectionEnabled: false,
+    tabBarIcon: ({ focused }) => ({
+      type: 'sfSymbol',
+      name: focused ? 'plus.circle.fill' : 'plus.circle',
+    }),
+  }}
+/>
+```
 
 ### On web
 

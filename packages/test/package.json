@@ -21,7 +21,7 @@
   "devDependencies": {
     "@vxrn/utils": "workspace:*",
     "get-port": "^7.1.0",
-    "typescript": "^5.7.3",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.0"
   }
 }

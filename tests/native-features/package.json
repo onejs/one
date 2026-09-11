@@ -13,7 +13,7 @@
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/native": "workspace:*",
     "expo": "~57.0.11",
     "expo-build-properties": "~57.0.9",
@@ -23,7 +23,7 @@
     "react": "19.2.3",
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-screens": "~4.27.0",
     "vite": "^8.2.2"
   },
   "devDependencies": {

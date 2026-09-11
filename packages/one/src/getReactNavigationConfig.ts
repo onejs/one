@@ -49,6 +49,28 @@ function parseRouteSegments(segments: string): string {
   )
 }
 
+function hasDescendantWithRoute(node: RouteNode, route: string): boolean {
+  return node.children.some(
+    (child) => child.route === route || hasDescendantWithRoute(child, route)
+  )
+}
+
+export function getReactNavigationRouteName(node: RouteNode): string {
+  if (node.children.length && hasDescendantWithRoute(node, node.route)) {
+    return `__one_layout:${node.contextKey}`
+  }
+  return node.route
+}
+
+function getReactNavigationInitialRouteName(
+  nodes: RouteNode[],
+  initialRouteName: string | undefined
+): string | undefined {
+  if (!initialRouteName) return undefined
+  const initialRoute = nodes.find((node) => node.route === initialRouteName)
+  return initialRoute ? getReactNavigationRouteName(initialRoute) : initialRouteName
+}
+
 function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
   const path = parseRouteSegments(node.route)
 
@@ -72,7 +94,10 @@ function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
     // to be loaded into memory. We should move towards a system where
     // the initial route name is either loaded asynchronously in the Layout Route
     // or defined via a file system convention.
-    initialRouteName: node.initialRouteName,
+    initialRouteName: getReactNavigationInitialRouteName(
+      node.children,
+      node.initialRouteName
+    ),
   }
 
   if (!metaOnly) {
@@ -87,7 +112,13 @@ function getReactNavigationScreensConfig(
   metaOnly: boolean
 ): Record<string, Screen> {
   return Object.fromEntries(
-    nodes.map((node) => [node.route, convertRouteNodeToScreen(node, metaOnly)] as const)
+    nodes.map(
+      (node) =>
+        [
+          getReactNavigationRouteName(node),
+          convertRouteNodeToScreen(node, metaOnly),
+        ] as const
+    )
   )
 }
 
@@ -102,7 +133,10 @@ export function getReactNavigationConfig(
     return { screens: {} }
   }
   return {
-    initialRouteName: routes.initialRouteName,
+    initialRouteName: getReactNavigationInitialRouteName(
+      routes.children,
+      routes.initialRouteName
+    ),
     screens: getReactNavigationScreensConfig(routes.children, metaOnly),
   }
 }

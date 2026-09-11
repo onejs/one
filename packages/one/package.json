@@ -124,22 +124,10 @@
       "import": "./dist/esm/drawer.mjs",
       "require": "./dist/cjs/drawer.cjs"
     },
-    "./native-tabs": {
-      "react-native": "./dist/esm/native-tabs.native.js",
-      "types": "./types/native-tabs.d.ts",
-      "import": "./dist/esm/native-tabs.mjs",
-      "require": "./dist/cjs/native-tabs.cjs"
-    },
     "./headless": {
       "types": "./types/headless.d.ts",
       "import": "./dist/esm/headless.mjs",
       "require": "./dist/cjs/headless.cjs"
-    },
-    "./stack-toolbar-implementation": {
-      "react-native": "./dist/esm/stack-toolbar-implementation.native.js",
-      "types": "./types/stack-toolbar-implementation.d.ts",
-      "import": "./dist/esm/stack-toolbar-implementation.mjs",
-      "require": "./dist/cjs/stack-toolbar-implementation.cjs"
     },
     "./headless-server": {
       "types": "./types/headless-server.d.ts",
@@ -192,9 +180,9 @@
     "@bacons/text-decoder": "^0.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.2",
-    "@react-navigation/bottom-tabs": "~7.18.16",
-    "@react-navigation/native-stack": "~7.18.8",
-    "@react-navigation/routers": "~7.6.4",
+    "@react-navigation/bottom-tabs": "~8.0.0-alpha.50",
+    "@react-navigation/native-stack": "~8.0.0-alpha.52",
+    "@react-navigation/routers": "~8.0.0-alpha.17",
     "@cloudflare/vite-plugin": "^1.33.1",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
@@ -235,31 +223,23 @@
     "xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
-    "@bottom-tabs/react-navigation": ">=0.9.0",
-    "@react-navigation/drawer": "~7.13.8",
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/drawer": "~8.0.0-alpha.51",
+    "@react-navigation/native": "~8.0.0-alpha.44",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-native": "^0.86.0",
-    "react-native-bottom-tabs": ">=1.0.0",
-    "react-native-gesture-handler": ">=2.0.0",
+    "react-native-gesture-handler": ">=3.0.0",
     "react-native-reanimated": ">=4.0.0",
-    "react-native-safe-area-context": ">=5.0.0",
-    "react-native-screens": ">=4.0.0",
+    "react-native-safe-area-context": ">=5.5.0",
+    "react-native-screens": ">=4.25.0",
     "react-native-worklets": ">=0.7.0",
     "sharp": "^0.35.4"
   },
   "peerDependenciesMeta": {
-    "@bottom-tabs/react-navigation": {
-      "optional": true
-    },
     "@react-navigation/drawer": {
       "optional": true
     },
     "react-native": {
-      "optional": true
-    },
-    "react-native-bottom-tabs": {
       "optional": true
     },
     "react-native-gesture-handler": {
@@ -276,14 +256,14 @@
     }
   },
   "devDependencies": {
-    "@react-navigation/core": "~7.21.12",
-    "@react-navigation/drawer": "~7.13.8",
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/core": "~8.0.0-alpha.34",
+    "@react-navigation/drawer": "~8.0.0-alpha.51",
+    "@react-navigation/native": "~8.0.0-alpha.44",
     "@tamagui/build": "2.6.2",
-    "react-native-gesture-handler": "~2.32.0",
+    "react-native-gesture-handler": "~3.3.0",
     "react-native-reanimated": "~4.5.1",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-screens": "~4.27.0",
     "react-native-worklets": "~0.10.1",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.2.2",
@@ -296,7 +276,7 @@
     "react-test-renderer": "^19.2.0",
     "rolldown": "^1.2.4",
     "sharp": "^0.35.4",
-    "typescript": "^5.7.3",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.0"
   },
   "publishConfig": {

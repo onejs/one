@@ -3,7 +3,7 @@ title: Native Features (Alpha)
 description: Experimental native navigation features for iOS and Android
 ---
 
-One ships `@vxrn/native` — a package of native navigation primitives that bring iOS and Android platform features to your app. These are experimental and the API may change.
+One ships `@vxrn/native`, a package of native primitives for capabilities outside React Navigation. These are experimental and the API may change.
 
 <Notice theme="yellow">
   These features are experimental. Install the package and try them out, but expect API changes.
@@ -15,7 +15,7 @@ One ships `@vxrn/native` — a package of native navigation primitives that brin
 npm install @vxrn/native
 ```
 
-`@vxrn/native` uses standard React Native native modules (RCTViewManager + TurboModules) and links automatically during the native build.
+`@vxrn/native` links automatically during the native build.
 
 ---
 
@@ -95,7 +95,7 @@ function DetailScreen() {
 
 Native iOS `UIToolbar` rendered at the bottom of the screen. Supports SF Symbols, badges, and Liquid Glass on iOS 26.
 
-For routed screens, prefer [`Stack.Toolbar`](/docs/components-Stack#stacktoolbar). It is exported by `one` and adds header and bottom toolbars with buttons, menus, spacers, custom views, and search-bar placement. You must install `@vxrn/native` directly in the app and add `import '@vxrn/native'` to its native setup file. The package supplies the native implementation and declares its native dependencies. The primitives below are its lower-level building blocks.
+Use React Navigation's `unstable_headerLeftItems` and `unstable_headerRightItems` screen options for header actions. Use `ToolbarHost` directly for a bottom `UIToolbar`; One does not add a second toolbar abstraction.
 
 ```tsx
 import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'
@@ -206,55 +206,6 @@ On iPhone, SplitView collapses to a single column automatically.
 
 ---
 
-## NativeTabs
-
-Platform-native tab bars using `react-native-bottom-tabs`. Renders `UITabBarController` on iOS and `BottomNavigationView` on Android.
-
-```bash
-npx expo install @bottom-tabs/react-navigation react-native-bottom-tabs
-```
-
-```tsx
-import { NativeTabs } from 'one/native-tabs'
-
-export default function Layout() {
-  return (
-    <NativeTabs>
-      <NativeTabs.Screen
-        name="feed"
-        options={{
-          title: 'Feed',
-          tabBarIcon: () => ({ sfSymbol: 'newspaper' }),
-        }}
-      />
-      <NativeTabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: () => ({ sfSymbol: 'person' }),
-        }}
-      />
-    </NativeTabs>
-  )
-}
-```
-
-### Tabs.Protected / NativeTabs.Protected
-
-Guard routes behind authentication:
-
-```tsx
-<NativeTabs>
-  <NativeTabs.Screen name="login" />
-  <NativeTabs.Protected guard={isAuthed}>
-    <NativeTabs.Screen name="dashboard" />
-    <NativeTabs.Screen name="settings" />
-  </NativeTabs.Protected>
-</NativeTabs>
-```
-
----
-
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -264,6 +215,5 @@ Guard routes behind authentication:
 | Toolbar | UIToolbar + SF Symbols | — | — |
 | Menu Actions | UIMenu / UIAction | — | — |
 | SplitView | iPad (gamma required) | — | — |
-| NativeTabs | UITabBarController | BottomNavigationView | — |
 
 All components return `null` on unsupported platforms — safe to use in cross-platform code.
