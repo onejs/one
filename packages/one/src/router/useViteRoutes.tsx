@@ -227,17 +227,18 @@ export function globbedRoutesToRouteContext(
         })
       },
       clearFile: (file: string) => {
-        hmrVersion++
         const normalizedFile = file.replace(/\\/g, '/').replace(/^\//, '')
         const routeId = moduleKeys.find(
           (key) =>
             routePaths[key].replace(/\\/g, '/').replace(/^\//, '') === normalizedFile
         )
-        if (!routeId) return
+        if (!routeId) return false
 
+        hmrVersion++
         delete loadedRoutes[routeId]
         delete promises[routeId]
         delete preloadedModules[routePaths[routeId]]
+        return true
       },
       getVersion: () => hmrVersion,
     }

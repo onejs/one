@@ -40,10 +40,24 @@ describe('routeHmr.native', () => {
   })
 
   it('evicts the route cache for the updated file when window.__oneRouteCache is present', () => {
-    const clearFile = vi.fn()
+    const clearFile = vi.fn(() => true)
     ;(globalThis as any).window = { __oneRouteCache: { clearFile } }
     globalThis.__VXRN_ON_MODULE_UPDATED__!('app/_layout.tsx')
     expect(clearFile).toHaveBeenCalledWith('app/_layout.tsx')
+  })
+
+  it('does not bump the epoch for a non-route module when the cache says so', () => {
+    const before = routeHmr.getRouteHmrEpoch()
+    const listener = vi.fn()
+    const unsubscribe = routeHmr.subscribeRouteHmr(listener)
+    ;(globalThis as any).window = {
+      __oneRouteCache: { clearFile: () => false },
+    }
+
+    globalThis.__VXRN_ON_MODULE_UPDATED__!('features/onboarding/HmrProbeChild.tsx')
+    expect(routeHmr.getRouteHmrEpoch()).toBe(before)
+    expect(listener).not.toHaveBeenCalled()
+    unsubscribe()
   })
 
   it('does not throw when window / route cache is absent', () => {
