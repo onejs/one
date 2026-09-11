@@ -60,6 +60,8 @@
         "OneNativeToggle": "OneNativeToggleComponentView",
         "OneNativeSlider": "OneNativeSliderComponentView",
         "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativeText": "OneNativeTextComponentView",
+        "OneNativeLabel": "OneNativeLabelComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeProgressView": "OneNativeProgressViewComponentView",
         "OneNativeGauge": "OneNativeGaugeComponentView",
@@ -69,7 +71,9 @@
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
-        "OneNativeHost": "OneNativeHostComponentView"
+        "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeForm": "OneNativeFormComponentView",
+        "OneNativeSection": "OneNativeSectionComponentView"
       }
     }
   }

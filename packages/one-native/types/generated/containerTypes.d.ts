@@ -8,6 +8,14 @@ export interface HostProps extends ViewProps {
     alignment?: HostAlignment;
     children: ReactNode;
 }
+export interface FormProps extends ViewProps {
+    children: ReactNode;
+}
+export interface SectionProps extends ViewProps {
+    title?: string;
+    footer?: string;
+    children: ReactNode;
+}
 export declare const hostAxes: readonly ["vertical", "horizontal"];
 export declare const hostAlignments: readonly ["leading", "center", "trailing"];
-//# sourceMappingURL=hostTypes.d.ts.map
+//# sourceMappingURL=containerTypes.d.ts.map

@@ -660,6 +660,40 @@
       "ios": 13
     },
     {
+      "module": "SwiftUICore",
+      "type": "Text",
+      "parameters": [
+        {
+          "label": "verbatim",
+          "name": "content",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Label",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "systemImage",
+          "name": "name",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [
+        "Title == SwiftUICore.Text",
+        "Icon == SwiftUICore.Image"
+      ],
+      "ios": 14
+    },
+    {
       "module": "SwiftUI",
       "type": "Button",
       "parameters": [

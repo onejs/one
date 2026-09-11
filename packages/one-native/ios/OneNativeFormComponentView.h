@@ -1,5 +1,5 @@
 #ifdef __cplusplus
 #import "OneNativeContainerComponentView.h"
-@interface OneNativeHostComponentView : OneNativeContainerComponentView
+@interface OneNativeFormComponentView : OneNativeContainerComponentView
 @end
 #endif

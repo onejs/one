@@ -1,9 +1,9 @@
 # One Native
 
-Generated SwiftUI tabs, menus, pickers, form controls, and sheets for React Native,
-exposed through `Swift`. This is an initial implementation on the `feat/one-native`
-branch. It requires an iOS 18+ native build and React Native's New Architecture. It
-is not published to npm.
+Generated SwiftUI tabs, menus, pickers, form controls, sheets, and containers for
+React Native, exposed through `Swift`. This is an initial implementation on the
+`feat/one-native` branch. It requires an iOS 18+ native build and React Native's New
+Architecture. It is not published to npm.
 
 ```tsx
 import { useState } from 'react'
@@ -184,10 +184,11 @@ Every control also accepts `label`, `disabled`, and `revision`.
 
 ## Buttons, indicators, and text input
 
-`Button` signals; `ProgressView` and `Gauge` only display; `TextField` and
-`SecureField` carry a controlled string. They take the same flat props and the
-same default height of 44, except `Gauge` with an `accessoryCircular` style (100)
-and `TextField` with `axis="vertical"` (120).
+`Text` and `Label` display a string; `Button` signals; `ProgressView` and `Gauge`
+only display; `TextField` and `SecureField` carry a controlled string. They take
+the same flat props and the same default height of 44, except `Text` and `Label`
+(24), `Gauge` with an `accessoryCircular` style (100) and `TextField` with
+`axis="vertical"` (120).
 
 ```tsx
 function Leaves() {
@@ -195,6 +196,8 @@ function Leaves() {
   const [secret, setSecret] = useState('')
   return (
     <View style={{ width: '100%' }}>
+      <Swift.Text text="Read only" />
+      <Swift.Label label="Starred" systemImage="star.fill" />
       <Swift.Button
         label="Delete"
         systemImage="trash"
@@ -227,6 +230,11 @@ function Leaves() {
   )
 }
 ```
+
+`Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
+pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
+SwiftUI does. Both are display only: they have no events and no controlled value, and
+they are most useful as rows inside a container.
 
 `Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
@@ -359,12 +367,12 @@ A `Swift.Sheet` inside presented children presents a nested sheet.
 
 Add `one-native: workspace:*` to the native application's dependencies and rebuild
 the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
-selection, reordered pages with local state, and nested menus. Control and sheet
-fixtures live under `tests/native-features`. The picker, form-control, and sheet
-simulator suites pass on iOS 26.4, including rejected native changes and retained
-RN state in presented content. The package's build, typecheck, and test scripts run
-from `packages/one-native`. See `tests/native-features/scripts/README.md` for the
-conformance commands and their device/automation constraints.
+selection, reordered pages with local state, and nested menus. Control, sheet, and
+container fixtures live under `tests/native-features`. All eight simulator suites pass
+on iOS 26.4, including rejected native changes, retained RN state in presented content,
+and composed controls two containers deep. The package's build, typecheck, and test
+scripts run from `packages/one-native`. See `tests/native-features/scripts/README.md`
+for the conformance commands and their device/automation constraints.
 
 ## Native composition
 
@@ -401,14 +409,42 @@ Two consequences worth knowing:
 - A child's own `height` style is ignored. The host measures, so the layout comes from
   SwiftUI.
 
-Only One Native controls can be children. A React Native subtree inside a host is not
-supported yet; it needs an explicit slot, which is the next piece of this work.
+Children are One Native controls and One Native containers. A React Native subtree
+inside a container is not supported yet; it needs an explicit slot, which is the next
+piece of this work.
 
 Horizontal hosts hold whatever fits. Several SwiftUI controls are width-greedy, so
 three of them side by side on a phone overflow, and SwiftUI then reports a much taller
 ideal height. That is SwiftUI's layout for content that does not fit, not a
 measurement error, but it means a horizontal host wants few children or explicit
 widths.
+
+### Forms and sections
+
+`Swift.Form` is a SwiftUI `Form` and `Swift.Section` is a section inside one. They
+compose children exactly the way a host does, and containers nest, so the React tree
+describes the SwiftUI tree.
+
+```tsx
+<Swift.Form style={{ flex: 1 }}>
+  <Swift.Section title="Details" footer="Shown under the rows">
+    <Swift.Text text="Read only" />
+    <Swift.Label label="Starred" systemImage="star.fill" />
+    <Swift.Toggle label="Notify" isOn={on} onIsOnChange={setOn} />
+  </Swift.Section>
+  <Swift.Section title="More">
+    <Swift.Button label="Save" onPress={save} />
+  </Swift.Section>
+</Swift.Form>
+```
+
+An empty `title` or `footer` omits that header or footer.
+
+A `Form` is height-greedy and reports no ideal height, so it fills the box React Native
+gives it: give it a height or a flex parent. That is also why a `Form` cannot be a child
+of a `Swift.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
+the form then renders nothing at all; `Swift.Host` throws instead of rendering a blank.
+A host inside a form or a section works, and so does a section inside a host.
 
 ## Generation
 

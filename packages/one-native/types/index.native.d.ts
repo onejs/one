@@ -1,4 +1,4 @@
-import { Host } from './Host.native';
+import { Form, Host, Section } from './Containers.native';
 import { Menu } from './Menu.native';
 import { Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
@@ -9,6 +9,8 @@ export declare const Swift: {
     Toggle({ isOn, onIsOnChange, revision, label, disabled, toggleStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
     Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
+    Text({ text, style, ...props }: import("./types").TextProps): import("react/jsx-runtime").JSX.Element;
+    Label({ label, disabled, systemImage, style, ...props }: import("./types").LabelProps): import("react/jsx-runtime").JSX.Element;
     Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
@@ -21,6 +23,8 @@ export declare const Swift: {
     Menu: typeof Menu;
     Sheet: typeof Sheet;
     Host: typeof Host;
+    Form: typeof Form;
+    Section: typeof Section;
 };
 export type * from './types';
 //# sourceMappingURL=index.native.d.ts.map

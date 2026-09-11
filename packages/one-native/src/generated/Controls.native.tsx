@@ -300,6 +300,35 @@ export function Stepper({
     />
   )
 }
+import NativeText from '../specs/OneNativeTextNativeComponent'
+export function Text({ text = '', style, ...props }: Types.TextProps) {
+  if (typeof text !== 'string') throw new Error('Text text must be a string')
+
+  return <NativeText {...props} style={[{ height: 24 }, style]} text={text} />
+}
+import NativeLabel from '../specs/OneNativeLabelNativeComponent'
+export function Label({
+  label = '',
+  disabled = false,
+  systemImage = '',
+  style,
+  ...props
+}: Types.LabelProps) {
+  if (typeof label !== 'string' || !label)
+    throw new Error('Label label must be a non-empty string')
+  if (typeof systemImage !== 'string' || !systemImage)
+    throw new Error('Label systemImage must be a non-empty SF Symbol name')
+
+  return (
+    <NativeLabel
+      {...props}
+      style={[{ height: 24 }, style]}
+      label={label}
+      disabled={disabled}
+      systemImage={systemImage}
+    />
+  )
+}
 import NativeButton from '../specs/OneNativeButtonNativeComponent'
 export function Button({
   onPress,

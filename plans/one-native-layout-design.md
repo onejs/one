@@ -1,6 +1,6 @@
 # design proposal: native layout and composition
 
-status: stages 1 to 3 landed, stage 4 next
+status: stages 1 to 4 landed, stage 5 next
 branch: `feat/one-native`
 scope: SwiftUI tree composition, intrinsic measurement, explicit RN slots, Popover
 
@@ -215,10 +215,11 @@ Each stage compiles, regenerates, and has a runtime suite before the next starts
 3. Done. `Swift.Host` with `axis`, `spacing` and cross-axis `alignment`, carrying the
    thirteen already-generated controls, with the height-only shadow node write. The
    `host` conformance suite covers it.
-4. `Text`, `Label`, `Form`, `Section` as generated catalog entries that are containers
-   or leaves within a host. `Form` takes an explicit height; it has no intrinsic one.
-5. Explicit RN slot inside a host, reusing `OneNativeSlot` in `fill` mode. Until then a
-   host takes One Native controls only.
+4. Done. `Text` and `Label` as generated leaf controls, and `Swift.Form` and
+   `Swift.Section` as containers built on one shared `OneNativeContainerView`, so
+   containers nest. The `containers` conformance suite covers it.
+5. Explicit RN slot inside a container, reusing `OneNativeSlot` in `fill` mode. Until
+   then a container takes One Native controls and containers only.
 6. Popover.
 
 ### What stages 2 and 3 changed against the plan
@@ -247,6 +248,29 @@ on a phone overflow, and SwiftUI then reports a much taller ideal height (128 po
 for 50 points of content, 362 with 20-point spacing). One child measures exactly. That
 is SwiftUI's layout for content that does not fit, confirmed by measuring the same host
 with one child, so the suite asserts horizontal by child order rather than by height.
+
+### What stage 4 changed against the plan
+
+Containers turned out to be one thing, not three. `OneNativeContainerView` owns the
+children array, the publication into SwiftUI, the composition state, and the standalone
+hosting controller; a host, a form and a section differ only in the SwiftUI container
+they wrap the published children in, which each supplies at init. A container is
+composable itself, which is what makes `Form > Section > Toggle` and a host inside a
+section work without any container knowing what its parent is.
+
+A `Form` gets its height from React Native rather than from a prop. The plan said
+`Form` takes an explicit height, and it does, but through the ordinary `style` that
+every Fabric view already has: the adapter defaults it to `flex: 1` and the caller
+overrides with a height. A second height API next to `style` would have been a second
+way to say the same thing.
+
+A `Form` composed into a `Swift.Host` renders nothing, and that is now rejected in
+JavaScript. RAN: wrapping the containers fixture's form in a host reported `Form: 0`
+and the form and both its sections vanished from the accessibility tree. It follows
+from stage 1's finding that a `Form` has no ideal height, since a measured host asks
+for exactly that, but the failure is silent, so `Swift.Host` throws when a direct child
+is a `Swift.Form`. A host inside a form or a section is fine and is covered by the
+suite.
 
 ## What this does not cover
 
