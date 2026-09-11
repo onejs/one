@@ -14,9 +14,11 @@ import {
   mkdirSync,
   realpathSync,
   readdirSync,
+  statSync,
   readFileSync,
 } from 'node:fs'
 import { pathToFileURL } from 'node:url'
+import micromatch from 'micromatch'
 import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldown'
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
@@ -76,7 +78,9 @@ export type NativeHmrUpdate =
       changedIds: string[]
       seq: number
     }
-  | { type: 'hmr:reload'; clientId: string }
+  // a reload with no clientId goes to every client on the platform: a full
+  // build re-expands the route globs for all of them at once
+  | { type: 'hmr:reload'; clientId?: string }
   | { type: 'hmr:error' }
 
 /**
@@ -92,8 +96,6 @@ export interface NativeDevBundle {
 interface NativeDevEngineResult {
   engine: DevEngine
   getBundle: () => Promise<NativeDevBundle>
-  /** rebuild every module from scratch; resolves to whether the output changed */
-  rebuildFromScratch: () => Promise<boolean>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
 }
@@ -550,6 +552,18 @@ export async function createNativeDevEngine(
   let bundlePromise: Promise<NativeDevBundle> | null = null
 
   const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
+  const virtualEntry = nativeVirtualEntryPlugin(root, { dev: true })
+
+  // one build at a time: a bundle request and a full rebuild can arrive
+  // together (a reload lands on the bundle route while a new route file is
+  // being picked up), and the engine holds a single output the second would
+  // race the first for.
+  let engineWork: Promise<unknown> = Promise.resolve()
+  const queueEngineWork = <T>(work: () => Promise<T>): Promise<T> => {
+    const result = engineWork.then(work, work)
+    engineWork = result.catch(() => {})
+    return result
+  }
 
   const inputOptions: InputOptions = {
     input: VIRTUAL_NATIVE_ENTRY,
@@ -579,7 +593,7 @@ export async function createNativeDevEngine(
     },
 
     plugins: [
-      nativeVirtualEntryPlugin(root, { dev: true }),
+      virtualEntry.plugin,
       ...getNativePlugins(
         root,
         platform,
@@ -620,65 +634,22 @@ try {
 `,
   }
 
+  // rolldown does not await this callback, so `ensureLatestBuildOutput()`
+  // resolves while the emitted chunk is still being post-processed and
+  // `currentBundle` still holds the previous build. anything that has to see
+  // the finished bundle waits on this too.
+  let outputProcessed: Promise<void> = Promise.resolve()
+
   const engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
-      if (result instanceof Error) {
-        console.error('[vxrn] native bundle error:', result.message)
-        if (/panic/i.test(result.message)) {
-          // a panicked rolldown worker stops producing HMR patches for the rest
-          // of the process, so every later edit reloads the whole app. nothing
-          // else says so, and the app looks fine.
-          console.error(
-            '[vxrn] rolldown itself panicked. Fast Refresh will full-reload until you restart the dev server.'
-          )
-        }
-        if (!currentBundle) {
-          firstBuildError ||= result
-          if (bundleReject) {
-            const reject = bundleReject
-            bundleResolve = null
-            bundleReject = null
-            bundlePromise = null
-            reject(firstBuildError)
-          }
-        }
-        return
-      }
-
-      const output = result as RolldownOutput
-      const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
-      if (chunk && 'code' in chunk) {
-        firstBuildError = null
-        let code = postProcessNativeBundle(chunk.code)
-
-        // downlevel class fields from the rolldown runtime (virtual module
-        // skipped by the per-file SWC plugin) so old Hermes can parse them
-        code = await downlevelClassFieldsInBundle(code)
-        assertBundleLinesPreserved(chunk.code, code, 'dev')
-
-        // wrap module code in a function scope so top-level `var`s (e.g. RN
-        // fetch.js's `Headers`/`Request`) don't leak as non-configurable
-        // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
-        // it only appends past the last mapped line, so it needs no assertion.
-        code = wrapNativeBundleModuleScope(code)
-
-        if (!chunk.map) {
-          throw new Error(
-            '[vxrn] rolldown produced no source map for the dev bundle, so /symbolicate cannot resolve a frame'
-          )
-        }
-        // hold the serialized map, not a parsed one: parsing a map for a bundle
-        // this size costs hundreds of megabytes that would stay resident for the
-        // life of the dev server, and /symbolicate runs only when a frame needs
-        // resolving.
-        currentBundle = { code, map: chunk.map.toString() }
-        console.info(`[vxrn] native bundle ready (${Math.round(code.length / 1024)}KB)`)
-        if (bundleResolve) {
-          bundleResolve(currentBundle)
-          bundleResolve = null
-          bundleReject = null
-          bundlePromise = null
-        }
+      let finishOutput = () => {}
+      outputProcessed = new Promise<void>((resolve) => {
+        finishOutput = resolve
+      })
+      try {
+        await handleOutput(result)
+      } finally {
+        finishOutput()
       }
     },
 
@@ -688,6 +659,33 @@ try {
         onHmrUpdate?.({ type: 'hmr:error' })
         return
       }
+
+      // a route file that was just created has no module, so rolldown reports
+      // the change and stops: in devMode it never re-scans, and the entry's
+      // `import.meta.glob` was expanded back when it transformed the entry.
+      // only a full build re-expands it, and rolldown tells no client that
+      // happened, so the reload is sent from here.
+      const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
+      const routeAdded = result.changedFiles.some((file) => {
+        if (isRouteFile(file)) return !knownRoutes.has(file)
+        // a directory created under the route root is reported as the directory
+        // itself, and nothing watches inside it until the build that follows
+        // walks it, so the files it arrived with are only found by rebuilding
+        return (
+          file.startsWith(`${routeRoot}/`) &&
+          statSync(file, { throwIfNoEntry: false })?.isDirectory() === true
+        )
+      })
+      if (routeAdded) {
+        await queueEngineWork(async () => {
+          engine.triggerFullBuild()
+          await engine.ensureLatestBuildOutput()
+          await outputProcessed
+        })
+        onHmrUpdate?.({ type: 'hmr:reload' })
+        return
+      }
+
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
           onHmrUpdate?.({
@@ -709,18 +707,68 @@ try {
     watch: {},
   })
 
-  await engine.run()
+  async function handleOutput(result: RolldownOutput | Error) {
+    if (result instanceof Error) {
+      console.error('[vxrn] native bundle error:', result.message)
+      if (/panic/i.test(result.message)) {
+        // a panicked rolldown worker stops producing HMR patches for the rest
+        // of the process, so every later edit reloads the whole app. nothing
+        // else says so, and the app looks fine.
+        console.error(
+          '[vxrn] rolldown itself panicked. Fast Refresh will full-reload until you restart the dev server.'
+        )
+      }
+      if (!currentBundle) {
+        firstBuildError ||= result
+        if (bundleReject) {
+          const reject = bundleReject
+          bundleResolve = null
+          bundleReject = null
+          bundlePromise = null
+          reject(firstBuildError)
+        }
+      }
+      return
+    }
 
-  // one build at a time: a bundle request and a glob rebuild can arrive
-  // together (a reload lands on the bundle route while a new file is being
-  // picked up), and the engine holds a single output the second would race the
-  // first for.
-  let engineWork: Promise<unknown> = Promise.resolve()
-  const queueEngineWork = <T>(work: () => Promise<T>): Promise<T> => {
-    const result = engineWork.then(work, work)
-    engineWork = result.catch(() => {})
-    return result
+    const output = result as RolldownOutput
+    const chunk = output.output.find((o) => o.type === 'chunk' && o.isEntry)
+    if (chunk && 'code' in chunk) {
+      firstBuildError = null
+      let code = postProcessNativeBundle(chunk.code)
+
+      // downlevel class fields from the rolldown runtime (virtual module
+      // skipped by the per-file SWC plugin) so old Hermes can parse them
+      code = await downlevelClassFieldsInBundle(code)
+      assertBundleLinesPreserved(chunk.code, code, 'dev')
+
+      // wrap module code in a function scope so top-level `var`s (e.g. RN
+      // fetch.js's `Headers`/`Request`) don't leak as non-configurable
+      // globals and break RN's polyfillGlobal (dev-only redbox). see fn doc.
+      // it only appends past the last mapped line, so it needs no assertion.
+      code = wrapNativeBundleModuleScope(code)
+
+      if (!chunk.map) {
+        throw new Error(
+          '[vxrn] rolldown produced no source map for the dev bundle, so /symbolicate cannot resolve a frame'
+        )
+      }
+      // hold the serialized map, not a parsed one: parsing a map for a bundle
+      // this size costs hundreds of megabytes that would stay resident for the
+      // life of the dev server, and /symbolicate runs only when a frame needs
+      // resolving.
+      currentBundle = { code, map: chunk.map.toString() }
+      console.info(`[vxrn] native bundle ready (${Math.round(code.length / 1024)}KB)`)
+      if (bundleResolve) {
+        bundleResolve(currentBundle)
+        bundleResolve = null
+        bundleReject = null
+        bundlePromise = null
+      }
+    }
   }
+
+  await engine.run()
 
   return {
     engine,
@@ -728,7 +776,10 @@ try {
     async getBundle() {
       // a runtime invalidation marks the full output stale before reloading. pull
       // that output before serving the cached bundle to the restarted app.
-      await queueEngineWork(() => engine.ensureLatestBuildOutput())
+      await queueEngineWork(async () => {
+        await engine.ensureLatestBuildOutput()
+        await outputProcessed
+      })
       if (currentBundle) return currentBundle
       if (firstBuildError) throw firstBuildError
       if (!bundlePromise) {
@@ -751,28 +802,6 @@ try {
         })
       }
       return bundlePromise
-    },
-
-    // rolldown expands `import.meta.glob` while it transforms the module and
-    // records no dependency on the globbed directories, so a file created after
-    // the first build never joins the graph, not even on a fresh bundle request.
-    // that is what leaves a newly added route invisible to the running app.
-    // rebuilding from scratch re-expands every glob; the return value says
-    // whether the output actually moved, so a creation no glob picks up costs a
-    // rebuild and nothing the app can see.
-    rebuildFromScratch() {
-      return queueEngineWork(async () => {
-        const previousCode = currentBundle?.code
-        // a deleted file reaches rolldown's own watcher too, and starting a full
-        // build while it is still retiring that module panics its worker (an
-        // "index out of bounds" out of oxc_index), after which every bundle
-        // request answers 500 until the dev server restarts. settling whatever
-        // the watcher already queued keeps the two off each other.
-        await engine.ensureLatestBuildOutput()
-        engine.triggerFullBuild()
-        await engine.ensureLatestBuildOutput()
-        return currentBundle?.code !== previousCode
-      })
     },
 
     getAsset(pathname, hash) {
@@ -849,7 +878,7 @@ export async function buildNativeBundle(
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
-      ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev })]),
+      ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev }).plugin]),
       ...getNativePlugins(
         root,
         platform,
@@ -879,12 +908,30 @@ export async function buildNativeBundle(
   // Per-module Babel/SWC transforms return maps when requested, and
   // nativeBundlePostProcessPlugin runs inside the bundle, so Rolldown's map
   // already describes the emitted chunk and composes back to original source.
-  return { code: chunk.code, map: sourcemap ? chunk.map?.toString() : undefined }
+  return {
+    code: chunk.code,
+    map: sourcemap ? chunk.map?.toString() : undefined,
+  }
 }
 
 const VIRTUAL_NATIVE_ENTRY = 'virtual:native-entry'
 
-function nativeVirtualEntryPlugin(root: string, opts?: { dev?: boolean }): Plugin {
+/**
+ * The route files the last build expanded `import.meta.glob` over. rolldown's
+ * dev engine reports a change to a watched file it holds no module for, but in
+ * devMode it never re-scans, so this is what tells a created route apart from
+ * an edit to one that already exists.
+ */
+interface NativeRouteRegistry {
+  routeRoot: string
+  files: Set<string>
+  isRouteFile: (file: string) => boolean
+}
+
+function nativeVirtualEntryPlugin(
+  root: string,
+  opts?: { dev?: boolean }
+): { plugin: Plugin; routes: NativeRouteRegistry } {
   const isDev = opts?.dev !== false
   // absolute for import.meta.glob resolution; forward-slash for module-graph convention
   const resolvedId = normalizePath(resolve(root, '__virtual-native-entry.tsx'))
@@ -964,17 +1011,64 @@ createApp({
 });
 `
 
+  const routeRoot = resolve(root, routerRoot)
+  // the entry's globs are written for `import.meta.glob`, which reads a leading
+  // `!` as an exclusion and a leading `./` as the project root. micromatch
+  // reads neither: `!p` matches everything except p, so a negation would match
+  // every ordinary file, and `./app/x` never matches `./app/**`. split the
+  // exclusions out and drop the `./` from both sides to keep the same meaning.
+  const stripDot = (pattern: string) => pattern.replace(/^\.\//, '')
+  const includeGlobs = routeGlobs.filter((p) => !p.startsWith('!')).map(stripDot)
+  const excludeGlobs = routeGlobs
+    .filter((p) => p.startsWith('!'))
+    .map((p) => stripDot(p.slice(1)))
+  const isRouteFile = (file: string) => {
+    const relativeToRoot = normalizePath(relative(root, file))
+    return (
+      micromatch.isMatch(relativeToRoot, includeGlobs) &&
+      !micromatch.isMatch(relativeToRoot, excludeGlobs)
+    )
+  }
+  const routes: NativeRouteRegistry = {
+    routeRoot,
+    files: new Set(),
+    isRouteFile,
+  }
+
   return {
-    name: 'vxrn:native-virtual-entry',
-    resolveId(id) {
-      if (id === VIRTUAL_NATIVE_ENTRY) {
-        return resolvedId
-      }
-    },
-    load(id) {
-      if (id === resolvedId) {
+    routes,
+    plugin: {
+      name: 'vxrn:native-virtual-entry',
+      resolveId(id) {
+        if (id === VIRTUAL_NATIVE_ENTRY) {
+          return resolvedId
+        }
+      },
+      load(id) {
+        if (id !== resolvedId) return
+        // rolldown expands `import.meta.glob` during transform and records a
+        // dependency on the files it matched, never on the directories it
+        // searched. registering those directories is what makes its own watcher
+        // report a route file appearing, and walking them is what lets the
+        // engine tell that report apart from an edit.
+        //
+        // watching a directory is not recursive, so every directory under the
+        // route root is registered. a new subdirectory is itself a change to
+        // its watched parent, and the full build that follows re-runs this
+        // hook, so the build that picks up `app/foo/index.tsx` is also what
+        // starts watching `app/foo`.
+        routes.files.clear()
+        const walkRouteRoot = (dir: string) => {
+          this.addWatchFile(dir)
+          for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const child = resolve(dir, entry.name)
+            if (entry.isDirectory()) walkRouteRoot(child)
+            else if (isRouteFile(child)) routes.files.add(child)
+          }
+        }
+        walkRouteRoot(routeRoot)
         return entryCode
-      }
+      },
     },
   }
 }
@@ -1183,7 +1277,9 @@ export function vxrnCompilerPlugin(
         )
       }
       const workletEntry = babelOptions?.plugins?.find(isWorkletPlugin)
-      const workletPluginOptions = Array.isArray(workletEntry) ? workletEntry[1] : undefined
+      const workletPluginOptions = Array.isArray(workletEntry)
+        ? workletEntry[1]
+        : undefined
       const useWorklets =
         compiler.isNativeWorkletsEnabled() &&
         (Boolean(workletEntry) || compiler.shouldTransformWorklets({ id, code }))
@@ -1195,7 +1291,11 @@ export function vxrnCompilerPlugin(
       if (compilerPluginIndex !== -1) {
         // preserve automatic worklet candidates before react compiler hoists them.
         if (useWorklets) {
-          const prepared = compiler.prepareWorkletsForReactCompiler(id, curCode, sourceMaps)
+          const prepared = compiler.prepareWorkletsForReactCompiler(
+            id,
+            curCode,
+            sourceMaps
+          )
           if (prepared) {
             curCode = prepared.code
             if (prepared.map) intermediateMaps.push(prepared.map)
@@ -1204,7 +1304,10 @@ export function vxrnCompilerPlugin(
         const compilerTarget =
           (babelOptions!.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
         const compilerOut = await compiler.transformOxcReactCompiler(
-          id, curCode, compilerTarget, sourceMaps
+          id,
+          curCode,
+          compilerTarget,
+          sourceMaps
         )
         if (compilerOut?.code) {
           curCode = compilerOut.code
@@ -1695,7 +1798,10 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
           const err = result.errors[0]
           throw new Error(err.message + (err.codeframe ? `\n${err.codeframe}` : ''))
         }
-        output = { code: result.code, map: sourceMaps ? result.map : undefined }
+        output = {
+          code: result.code,
+          map: sourceMaps ? result.map : undefined,
+        }
       }
       const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)
       if (!lowered) return output
@@ -1735,7 +1841,8 @@ export function hermesLoopsPlugin(sourceMaps = false): Plugin {
       if (!result) return
 
       if (!sourceMaps) return { code: result.code, map: null }
-      if (result.maps.length === 1) return { code: result.code, map: result.maps[0] as any }
+      if (result.maps.length === 1)
+        return { code: result.code, map: result.maps[0] as any }
       const remapping = (await import('@jridgewell/remapping')).default
       return {
         code: result.code,
