@@ -333,7 +333,7 @@ export function Button({
       systemImage={systemImage}
       buttonRole={buttonRole}
       buttonStyle={buttonStyle}
-      onNativeButtonPress={() => onPress?.()}
+      onNativeButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )
 }
@@ -480,7 +480,7 @@ export function TextField({
       onNativeTextFieldValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
-      onNativeTextFieldSubmit={() => onSubmit?.()}
+      onNativeTextFieldSubmit={({ nativeEvent }) => onSubmit?.()}
     />
   )
 }
@@ -540,7 +540,111 @@ export function SecureField({
       onNativeSecureFieldValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
-      onNativeSecureFieldSubmit={() => onSubmit?.()}
+      onNativeSecureFieldSubmit={({ nativeEvent }) => onSubmit?.()}
+    />
+  )
+}
+import NativeAlert from '../specs/OneNativeAlertNativeComponent'
+export function Alert({
+  isPresented,
+  onIsPresentedChange,
+  revision = 0,
+  onAction,
+  title = '',
+  message = '',
+  actions,
+  style,
+  ...props
+}: Types.AlertProps) {
+  for (const action of actions) {
+    if (typeof action?.id !== 'string' || typeof action?.label !== 'string')
+      throw new Error('Alert actions must contain string id and label fields')
+    if (action.role)
+      assertSwiftUIValue(
+        'ButtonRole',
+        action.role,
+        Number.parseFloat(String(Platform.Version))
+      )
+  }
+  if (!actions.length) throw new Error('Alert must have at least one action')
+  if (new Set(actions.map((action) => action.id)).size !== actions.length)
+    throw new Error('Alert action ids must be unique')
+
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsPresentedChange(event.value), revision)
+  return (
+    <NativeAlert
+      {...props}
+      style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      value={isPresented}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      title={title}
+      message={message}
+      actions={actions}
+      onNativeAlertValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeAlertAction={({ nativeEvent }) => onAction?.(nativeEvent.id)}
+    />
+  )
+}
+import NativeConfirmationDialog from '../specs/OneNativeConfirmationDialogNativeComponent'
+export function ConfirmationDialog({
+  isPresented,
+  onIsPresentedChange,
+  revision = 0,
+  onAction,
+  title = '',
+  message = '',
+  actions,
+  titleVisibility = 'automatic',
+  style,
+  ...props
+}: Types.ConfirmationDialogProps) {
+  for (const action of actions) {
+    if (typeof action?.id !== 'string' || typeof action?.label !== 'string')
+      throw new Error(
+        'ConfirmationDialog actions must contain string id and label fields'
+      )
+    if (action.role)
+      assertSwiftUIValue(
+        'ButtonRole',
+        action.role,
+        Number.parseFloat(String(Platform.Version))
+      )
+  }
+  if (!actions.length) throw new Error('ConfirmationDialog must have at least one action')
+  if (new Set(actions.map((action) => action.id)).size !== actions.length)
+    throw new Error('ConfirmationDialog action ids must be unique')
+  assertSwiftUIValue(
+    'Visibility',
+    titleVisibility,
+    Number.parseFloat(String(Platform.Version))
+  )
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsPresentedChange(event.value), revision)
+  return (
+    <NativeConfirmationDialog
+      {...props}
+      style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      value={isPresented}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      title={title}
+      message={message}
+      actions={actions}
+      titleVisibility={titleVisibility}
+      onNativeConfirmationDialogValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeConfirmationDialogAction={({ nativeEvent }) => onAction?.(nativeEvent.id)}
     />
   )
 }

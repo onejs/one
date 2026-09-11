@@ -1,6 +1,7 @@
 // semantic recipes for bounded SwiftUI controls; the SDK supplies signatures and style cases.
+export type ScalarType = 'string' | 'boolean' | 'Double'
 export type ControlField = {
-  type: 'string' | 'boolean' | 'Double' | 'options'
+  type: ScalarType | 'objects'
   default: string | boolean | number
   enum?: string
   publicType?: string
@@ -8,11 +9,20 @@ export type ControlField = {
   nativeValue?: string
   // native-only prop computed from the public props; not part of the public interface.
   derived?: boolean
+  // for `objects`: the payload type name, its element fields, and any public type
+  // overrides for those fields (the native side always carries the scalar).
+  payload?: {
+    name: string
+    element: Record<string, ScalarType>
+    publicTypes?: Record<string, string>
+    // fields a caller may omit; the native struct still carries the scalar default.
+    optional?: readonly string[]
+  }
 }
 // a two-way value using the shared controlled protocol: optimistic native state,
 // numbered events, acknowledgement and reset revisions.
 export type ControlValue = {
-  type: 'string' | 'boolean' | 'Double'
+  type: ScalarType
   prop: string
   event: string
   initial: string | boolean | number
@@ -26,6 +36,8 @@ export type ControlAction = {
   prop: string
   // native event suffix, for example Press for onNative<Control>Press
   event: string
+  // extra event fields, passed to the public callback in declaration order.
+  payload?: Record<string, ScalarType>
 }
 export type ModifierSelector = {
   name: string
@@ -47,10 +59,13 @@ export type Control = {
   extraSwift?: string
   validate: string
   // the host has no intrinsic size in Yoga, so the adapter supplies a default height.
-  height: {
-    default: number
-    when?: readonly { prop: string; values: readonly string[]; height: number }[]
-  }
+  // `presentation` hosts render nothing inline and take no layout space.
+  height:
+    | 'presentation'
+    | {
+        default: number
+        when?: readonly { prop: string; values: readonly string[]; height: number }[]
+      }
 }
 
 export const commonFields = {

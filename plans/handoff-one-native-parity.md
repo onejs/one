@@ -28,9 +28,18 @@ work yourself and use a small squad for bounded catalog/fixture work.
 - `ios/OneNativeSlot.swift` owns RN slots with fill, passive, and presented modes.
   `cpp/OneNativeSlotShadowNode.h` shares native size/origin state and descriptors.
   Presented content has a local zero origin and its own Fabric touch handler.
-- `Picker`, `DatePicker`, `ColorPicker`, `Toggle`, `Slider`, and `Stepper` come from
-  `codegen/{pickerCatalog,formCatalog,emitControls}.ts`. Native hosts, ObjC++
-  adapters, TS types, Fabric specs, enum validation, and schema are generated.
+- `Picker`, `DatePicker`, `ColorPicker`, `Toggle`, `Slider`, `Stepper`, `Button`,
+  `ProgressView`, `Gauge`, `TextField`, `SecureField`, `Alert`, and
+  `ConfirmationDialog` come from `codegen/{picker,form,leaf,text,presentation}Catalog.ts`
+  through `emitControls.ts`. Native hosts, ObjC++ adapters, TS types, Fabric specs,
+  enum validation, the non-iOS throwing stubs, and schema are generated.
+- The control emitter covers three shapes, with no per-control branches: a
+  controlled value, numbered action events that may carry payload fields, and
+  read-only display. `height: 'presentation'` emits a zero-size host that dismisses
+  its presented view controller on recycle. Object-array props are generic: a field
+  declares `payload: { name, element }` and gets a shared Swift struct in
+  `ios/Generated/OneNativePayloads.swift`, a dirty-flagged ObjC++ diff, and a public
+  TS type. `PickerOption` is one instance of that mechanism, not a special case.
 - `Sheet` uses a real SwiftUI `.sheet`: controlled presentation, nested RN
   content, medium/large/fraction/height detents, drag indicator, dismissal blocking,
   and `onDismiss`. `codegen/emitSheet.ts`, `ios/OneNativeSheetView.swift`,
@@ -154,30 +163,45 @@ Automation details that prevent false diagnoses:
 
 ## Next work
 
-1. Expand the leaf catalog with Button, ProgressView, Gauge, and text input.
-   Start at `codegen/controlTypes.ts` and `emitControls.ts`: the current template
-   assumes a controlled value, so stateless/read-only leaves need an explicit
-   catalog shape rather than dummy bindings. Keep SDK selection exact and compile
-   each assembled result. Give Grok/AGY one named family with its fixture and
-   validation commands, and keep shared emitter changes with one owner.
-2. Add Popover, Alert, and ConfirmationDialog using the presentation protocol and
-   existing slot policy. Sheet sizing-to-content, selected detent binding,
-   presentation background/interaction/sizing remain unimplemented. Extend
-   `emitSheet.ts` or factor only the bridge code actually shared by a second host.
-   Prove RN touch coordinates, dismissal, and recycling in the existing runner.
-3. Add real native layout/content composition (Host, VStack/HStack, Text/Label,
+1. Add Popover. It needs both a trigger slot and a presented content slot, which is
+   a new runtime boundary, so bundle it with the layout wave below and give that
+   wave one assembled design review before implementation. Sheet sizing-to-content,
+   selected detent binding, and presentation background/interaction/sizing remain
+   unimplemented, as do the `presenting:` value-bound alert overloads and
+   `presentationCompactAdaptation`.
+2. Add real native layout/content composition (Host, VStack/HStack, Text/Label,
    Form/Section, explicit RN slot). Leaf heights are currently bounded JS layout;
    intrinsic content measurement is not implemented. This is the next difficult
    layout boundary, and should get an assembled design review before broad fanout.
-4. Connect Soot to `schema.json`. Its existing component-name seam can intercept
-   Fabric components. Generate prop/event types from the schema and use these same
-   fixture behaviors as conformance cases. The browser implementations do not yet
-   exist. Read `~/soot/packages/compat/src/stubs/native-seams/vxrn-native.tsx` before
-   adding a parallel mechanism. No zero-payload or performance parity claim is proven.
-5. Migrate @vxrn/native by caller behavior, not export-name similarity. Color tokens,
+3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
+   intercepts by NATIVE VIEW NAME, not npm specifier.
+   `registerNativeComponentImplementation(viewName, component)` fills a global map
+   that both `requireNativeComponent` and `codegenNativeComponent` consult first
+   (`~/soot/packages/sootsim-engine/src/react-native/index.ts`). `@vxrn/native` is
+   only a boot-time loader key in `~/soot/packages/compat/src/native-seam-loaders.ts`;
+   a register module is side-effect-only. So a Soot seam implements
+   `OneNativePicker`, `OneNativeAlert` and the rest, and our public adapters in
+   `src/generated/Controls.native.tsx` run unchanged on top, keeping validation, the
+   controlled protocol, and the default height. Seams emit RN-shaped
+   `onX({ nativeEvent: payload })`, which matches `eventDelivery` in the schema.
+   No schema/manifest reader exists in Soot today; every seam there is hand-written.
+   The schema's honest gaps for an independent implementation are accessibility role
+   and label mapping, an executable definition of the slot `layout` values, and any
+   imperative ref/command/`setNativeProps`/measurement contract.
+4. Migrate @vxrn/native by caller behavior, not export-name similarity. Color tokens,
    StackToolbar/ToolbarHost header ownership, SplitView, and ZoomTransition are One/
    react-native-screens integration. SwiftUI NavigationStack/Toolbar are not their
    drop-in replacements. `one-native-coverage.md` records the actual remaining work.
+   A read-only worker inventoried the real callers: almost everything is test
+   fixtures under `tests/native-features/app/*` (color-test, toolbar-test, menu-test,
+   split-view-test, zoom-test, zoom-detail), the docs page
+   `apps/onestack.dev/data/docs/native-features.mdx`, one Soot fixture using
+   `StackToolbar` (`~/soot/packages/sootsim-engine/src/test-fixtures/VxrnNativeToolbarTest.tsx`),
+   and a side-effect import in `~/soot/packages/contrast-native/src/index.ts`.
+   `ToolbarHost`, `ToolbarItem`, `ZoomTransitionAlignmentRectDetector`, and every type
+   export have zero direct callers. Migration cost is therefore mostly behavior
+   preservation for Color, StackToolbar, SplitView, and ZoomTransition, not a wide
+   call-site sweep.
 
 ## Measurement and delivery
 

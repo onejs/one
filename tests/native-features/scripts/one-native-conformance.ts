@@ -9,12 +9,13 @@ type Node = {
   AXValue?: string | number
   AXRole?: string
   role?: string
+  subrole?: string
   type?: string
   enabled?: boolean
   frame?: { x: number; y: number; width: number; height: number }
   [key: string]: unknown
 }
-type Suite = 'tabs-menu' | 'pickers' | 'forms' | 'sheets'
+type Suite = 'tabs-menu' | 'pickers' | 'forms' | 'sheets' | 'leaves' | 'dialogs'
 type Config = {
   simulatorId: string
   bundleId: string
@@ -25,7 +26,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
 }
 
@@ -52,9 +53,13 @@ function parse(args: string[]): Config {
         value !== 'tabs-menu' &&
         value !== 'pickers' &&
         value !== 'forms' &&
-        value !== 'sheets'
+        value !== 'sheets' &&
+        value !== 'leaves' &&
+        value !== 'dialogs'
       )
-        throw new Error('Suite must be tabs-menu, pickers, forms, or sheets.')
+        throw new Error(
+          'Suite must be tabs-menu, pickers, forms, sheets, leaves, or dialogs.'
+        )
       suite = value
     } else throw new Error(`Unknown argument: ${arg}`)
   }
@@ -159,15 +164,29 @@ const sheetsLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-sheet-open')) ||
     Boolean(id(nodes, 'one-native-sheet-close')) ||
     Boolean(id(nodes, 'one-native-sheet-nested-close')))
+const leavesLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-leaf-category-button')) &&
+  has(nodes, 'Category: ')
+const dialogsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-dialog-category-alert')) ||
+    ['Cancel alert', 'Confirm alert', 'Cancel confirmation', 'Confirm confirmation'].some(
+      (label) => labels(nodes).includes(label)
+    ))
 const homeLoaded = (nodes: Node[], suite: Suite) =>
   Boolean(
     id(
       nodes,
-      suite === 'sheets'
-        ? 'nav-one-native-sheet'
-        : suite !== 'tabs-menu'
-          ? 'nav-one-native-controls'
-          : 'nav-one-native'
+      suite === 'dialogs'
+        ? 'nav-one-native-dialogs'
+        : suite === 'leaves'
+          ? 'nav-one-native-leaves'
+          : suite === 'sheets'
+            ? 'nav-one-native-sheet'
+            : suite !== 'tabs-menu'
+              ? 'nav-one-native-controls'
+              : 'nav-one-native'
     )
   )
 const firstState = (nodes: Node[]) =>
@@ -196,7 +215,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             ? formsLoaded(nodes)
             : config.suite === 'sheets'
               ? sheetsLoaded(nodes)
-              : fixtureLoaded(nodes)
+              : config.suite === 'leaves'
+                ? leavesLoaded(nodes)
+                : config.suite === 'dialogs'
+                  ? dialogsLoaded(nodes)
+                  : fixtureLoaded(nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -224,6 +247,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
       config.simulatorId
     )
+  // the home list scrolls; a row below the fold takes a clamped tap that lands on the
+  // wrong route, so bring it fully on screen before tapping it.
+  const tapNav = async (testID: string) => {
+    await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
+    for (let attempt = 0; attempt < 6; attempt++) {
+      const nodes = snapshot(config.simulatorId)
+      const app = nodes.find((node) => node.type === 'Application')?.frame
+      const row = id(nodes, testID)?.frame
+      if (!app || !row) throw new Error(`Home row ${testID} disappeared while scrolling`)
+      if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+      command(
+        [
+          'ui-automation',
+          'swipe',
+          '--x1',
+          String(Math.round(app.width / 2)),
+          '--y1',
+          String(Math.round(app.height * 0.75)),
+          '--x2',
+          String(Math.round(app.width / 2)),
+          '--y2',
+          String(Math.round(app.height * 0.35)),
+          '--duration',
+          '0.3',
+        ],
+        config.simulatorId
+      )
+      await new Promise((resolve) => setTimeout(resolve, 400))
+    }
+    throw new Error(`Could not bring ${testID} into view on the home list`)
+  }
   const screenshot = (name: string) => {
     const target = path.join(config.artifactDir, name)
     execFileSync('xcrun', ['simctl', 'io', config.simulatorId, 'screenshot', target], {
@@ -392,7 +446,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
-    tap({ id: 'nav-one-native-sheet' })
+    await tapNav('nav-one-native-sheet')
     await wait('sheet fixture closed', (n) => closed(n, 0))
     tap({ id: 'one-native-sheet-open' })
     await wait('RN sheet content presented', (n) =>
@@ -465,7 +519,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'BackButton' })
     await wait('sheet recycle home mounted', () => true, true)
     await dismissWarning(true)
-    tap({ id: 'nav-one-native-sheet' })
+    await tapNav('nav-one-native-sheet')
     await wait('sheet recycled fixture is fresh', (n) => closed(n, 0))
     tap({ id: 'one-native-sheet-open' })
     await wait(
@@ -507,7 +561,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
-    tap({ id: 'nav-one-native-controls' })
+    await tapNav('nav-one-native-controls')
     await wait('controls screen mounted', (n) => value(n, 'alpha'))
     tap({ id: 'one-native-control-category-toggle' })
     await wait(
@@ -654,6 +708,503 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'leaves') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // a SecureField reports as a TextField carrying the AXSecureTextField subrole.
+    const field = (nodes: Node[], secure = false) =>
+      nodes.find(
+        (node) =>
+          node.type === 'TextField' && (node.subrole === 'AXSecureTextField') === secure
+      )
+    // the snapshot exposes no focus flag and the attached hardware keyboard suppresses
+    // the software one, so the typed value asserted next is the focus evidence.
+    const focus = async (secure = false) => {
+      const nodes = await wait('editable native field mounted', (n) =>
+        Boolean(field(n, secure)?.frame)
+      )
+      const bounds = field(nodes, secure)!.frame!
+      point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+    }
+    const type = (text: string) =>
+      command(['ui-automation', 'type-text', '--text', text], config.simulatorId)
+    const submit = () =>
+      command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
+    const indicator = (nodes: Node[], label: string) =>
+      nodes.filter((node) => node.AXLabel === label)
+    const captureIndicator = (name: string, nodes: Node[]) => {
+      // native AX coverage has not been probed for these leaves. Save the actual snapshot
+      // with the screenshot; where AX omits values, the assertion proves fixture state only.
+      fs.writeFileSync(
+        path.join(config.artifactDir, `${name}.json`),
+        JSON.stringify(nodes, null, 2)
+      )
+      screenshot(`${name}.png`)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-leaves')
+    await wait(
+      'fresh Button mounted',
+      (n) =>
+        status(n, 'Category', 'Button') &&
+        status(n, 'Presses', 0) &&
+        n.some((x) => x.AXLabel === 'Press leaf' && x.type === 'Button')
+    )
+    for (let count = 1; count <= 3; count++) {
+      tap({ label: 'Press leaf' })
+      await wait(`Button emits exactly ${count} presses`, (n) =>
+        status(n, 'Presses', count)
+      )
+    }
+    tap({ label: 'Star leaf' })
+    await wait('system image Button emits fourth press', (n) => status(n, 'Presses', 4))
+    screenshot('button-system-image.png')
+    tap({ id: 'one-native-leaf-toggle-disabled' })
+    const disabled = await wait(
+      'Button disabled natively',
+      (n) =>
+        status(n, 'Disabled', 'true') &&
+        n.some((x) => x.AXLabel === 'Press leaf' && x.enabled === false)
+    )
+    const bounds = disabled.find((n) => n.AXLabel === 'Press leaf')!.frame!
+    point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+    // the subsequent React action is an ordering barrier before checking the unchanged count.
+    tap({ id: 'one-native-leaf-toggle-role' })
+    await wait(
+      'disabled tap does not emit',
+      (n) =>
+        status(n, 'Role', 'destructive') &&
+        status(n, 'Presses', 4) &&
+        status(n, 'Disabled', 'true')
+    )
+    tap({ id: 'one-native-leaf-toggle-disabled' })
+    await wait(
+      'destructive Button enabled and present',
+      (n) =>
+        status(n, 'Disabled', 'false') &&
+        n.some((x) => x.AXLabel === 'Press leaf' && x.enabled === true)
+    )
+    tap({ label: 'Press leaf' })
+    await wait(
+      'destructive Button emits fifth press',
+      (n) => status(n, 'Role', 'destructive') && status(n, 'Presses', 5)
+    )
+    await wait('initial automatic Button style', (n) => status(n, 'Style', 'automatic'))
+    screenshot('button-automatic.png')
+    for (const style of [
+      'bordered',
+      'borderedProminent',
+      'plain',
+      'glass',
+      'automatic',
+    ]) {
+      tap({ id: 'one-native-leaf-cycle-style' })
+      await wait(
+        `Button style ${style}`,
+        (n) =>
+          status(n, 'Style', style) &&
+          n.some((x) => x.AXLabel === 'Press leaf' && x.type === 'Button')
+      )
+      screenshot(`button-${style}.png`)
+    }
+    tap({ id: 'one-native-leaf-toggle-role' })
+    await wait(
+      'Button role cleared',
+      (n) => status(n, 'Role', 'unset') && status(n, 'Presses', 5)
+    )
+
+    for (const category of ['Progress', 'Gauge'] as const) {
+      const nativeLabel = category === 'Progress' ? 'Leaf progress' : 'Leaf gauge'
+      tap({ id: `one-native-leaf-category-${category.toLowerCase()}` })
+      let previous = await wait(
+        `${category} initial zero`,
+        (n) =>
+          status(n, 'Category', category) &&
+          value(n, '0') &&
+          status(n, 'Style', 'automatic')
+      )
+      captureIndicator(`${category.toLowerCase()}-initial`, previous)
+      for (const next of category === 'Progress' ? [0.5, 1, 0] : [50, 100, 0]) {
+        const before = indicator(previous, nativeLabel)
+          .map((n) => n.AXValue)
+          .filter((v) => v !== undefined && v !== '')
+          .map(String)
+        tap({ id: 'one-native-leaf-step' })
+        previous = await wait(`${category} value ${next}`, (n) => {
+          if (!value(n, String(next))) return false
+          // when a native value is exposed, require an actual native change as well.
+          const after = indicator(n, nativeLabel)
+            .map((x) => x.AXValue)
+            .filter((v) => v !== undefined && v !== '')
+            .map(String)
+          return (
+            before.length === 0 ||
+            (after.length > 0 && JSON.stringify(after) !== JSON.stringify(before))
+          )
+        })
+        captureIndicator(`${category.toLowerCase()}-${next}`, previous)
+      }
+      for (const style of category === 'Progress'
+        ? ['linear', 'circular', 'automatic']
+        : ['linearCapacity', 'accessoryCircular', 'automatic']) {
+        tap({ id: 'one-native-leaf-cycle-style' })
+        const nodes = await wait(
+          `${category} style ${style}`,
+          (n) => status(n, 'Style', style) && value(n, '0')
+        )
+        captureIndicator(`${category.toLowerCase()}-${style}`, nodes)
+      }
+      if (category === 'Progress') {
+        // a determinate ProgressView reports a percentage here; the indeterminate
+        // spinner reports a plain animating value instead, so the percentage must go.
+        const percentage = (n: Node[]) =>
+          indicator(n, nativeLabel).filter((x) => /%$/.test(String(x.AXValue ?? '')))
+        await wait('Progress determinate reports a percentage', (n) =>
+          Boolean(percentage(n).length)
+        )
+        tap({ id: 'one-native-leaf-indeterminate' })
+        const nodes = await wait(
+          'Progress indeterminate drops the determinate percentage',
+          (n) =>
+            value(n, 'indeterminate') &&
+            indicator(n, nativeLabel).length > 0 &&
+            percentage(n).length === 0
+        )
+        captureIndicator('progress-indeterminate', nodes)
+        tap({ id: 'one-native-leaf-step' })
+        captureIndicator(
+          'progress-determinate-again',
+          await wait(
+            'Progress returns to a determinate percentage',
+            (n) => value(n, '0') && percentage(n).length > 0
+          )
+        )
+      }
+    }
+
+    tap({ id: 'one-native-leaf-category-text' })
+    await wait(
+      'TextField starts empty',
+      (n) =>
+        status(n, 'Category', 'Text') &&
+        value(n, '') &&
+        status(n, 'Submits', 0) &&
+        Boolean(field(n))
+    )
+    await focus()
+    type('leaf')
+    await wait(
+      'TextField accepts exact text',
+      (n) => value(n, 'leaf') && request(n, 'leaf') && field(n)?.AXValue === 'leaf'
+    )
+    tap({ id: 'one-native-leaf-reject' })
+    await wait('TextField rejection enabled', (n) => status(n, 'Reject', 'on'))
+    await focus()
+    // one character makes the rejected request independent of per-keystroke rollback.
+    type('x')
+    await wait(
+      'TextField rejects and restores native value',
+      (n) => value(n, 'leaf') && request(n, 'leafx') && field(n)?.AXValue === 'leaf'
+    )
+    screenshot('text-rejected.png')
+    tap({ id: 'one-native-leaf-external' })
+    await wait(
+      'TextField external set reaches native while rejecting',
+      (n) => value(n, 'outside') && field(n)?.AXValue === 'outside'
+    )
+    tap({ id: 'one-native-leaf-reset' })
+    await wait(
+      'TextField revision reset reaches native',
+      (n) =>
+        value(n, '') &&
+        status(n, 'Revision', 1) &&
+        field(n)?.AXValue === 'Type a leaf note'
+    )
+    tap({ id: 'one-native-leaf-reject' })
+    await wait('TextField rejection disabled', (n) => status(n, 'Reject', 'off'))
+    await focus()
+    type('submit')
+    await wait(
+      'TextField ready to submit',
+      (n) =>
+        value(n, 'submit') && field(n)?.AXValue === 'submit' && status(n, 'Submits', 0)
+    )
+    submit()
+    await wait(
+      'TextField emits exactly one submit',
+      (n) => status(n, 'Submits', 1) && value(n, 'submit')
+    )
+    tap({ id: 'one-native-leaf-axis-toggle' })
+    await wait(
+      'TextField vertical axis preserves native value',
+      (n) => status(n, 'Axis', 'vertical') && field(n)?.AXValue === 'submit'
+    )
+    screenshot('text-vertical.png')
+    tap({ id: 'one-native-leaf-axis-toggle' })
+    await wait(
+      'TextField horizontal axis preserves native value',
+      (n) => status(n, 'Axis', 'horizontal') && field(n)?.AXValue === 'submit'
+    )
+
+    tap({ id: 'one-native-leaf-category-secure' })
+    await wait(
+      'SecureField starts empty',
+      (n) =>
+        status(n, 'Category', 'Secure') &&
+        value(n, 'codes:') &&
+        status(n, 'Submits', 0) &&
+        Boolean(field(n, true))
+    )
+    await focus(true)
+    type('s3cr3t')
+    await wait(
+      'SecureField commits exact secret and masks every character',
+      (n) =>
+        value(n, 'codes:115,51,99,114,51,116') &&
+        request(n, 'codes:115,51,99,114,51,116') &&
+        field(n, true)?.AXValue === '\u2022'.repeat(6) &&
+        !JSON.stringify(n).includes('s3cr3t')
+    )
+    screenshot('secure-masked.png')
+    submit()
+    await wait(
+      'SecureField emits exactly one submit',
+      (n) =>
+        status(n, 'Submits', 1) &&
+        value(n, 'codes:115,51,99,114,51,116') &&
+        !JSON.stringify(n).includes('s3cr3t')
+    )
+
+    for (let cycle = 1; cycle <= 2; cycle++) {
+      tap({ id: 'BackButton' })
+      await wait(`leaves recycle ${cycle}: home mounted`, () => true, true)
+      await dismissWarning(true)
+      await tapNav('nav-one-native-leaves')
+      await wait(
+        `leaves recycle ${cycle}: fresh Button state`,
+        (n) =>
+          status(n, 'Category', 'Button') &&
+          status(n, 'Presses', 0) &&
+          status(n, 'Disabled', 'false') &&
+          status(n, 'Role', 'unset') &&
+          status(n, 'Style', 'automatic') &&
+          n.some((x) => x.AXLabel === 'Press leaf' && x.type === 'Button')
+      )
+      tap({ label: 'Press leaf' })
+      await wait(`leaves recycle ${cycle}: current Button emitter`, (n) =>
+        status(n, 'Presses', 1)
+      )
+      tap({ id: 'one-native-leaf-category-text' })
+      await wait(
+        `leaves recycle ${cycle}: fresh TextField state`,
+        (n) =>
+          status(n, 'Category', 'Text') &&
+          value(n, '') &&
+          status(n, 'Revision', 0) &&
+          status(n, 'Reject', 'off') &&
+          status(n, 'Submits', 0) &&
+          Boolean(field(n))
+      )
+      await focus()
+      type(`cycle${cycle}`)
+      await wait(
+        `leaves recycle ${cycle}: current TextField emitter`,
+        (n) =>
+          value(n, `cycle${cycle}`) &&
+          request(n, `cycle${cycle}`) &&
+          field(n)?.AXValue === `cycle${cycle}`
+      )
+      submit()
+      await wait(`leaves recycle ${cycle}: current submit emitter`, (n) =>
+        status(n, 'Submits', 1)
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'dialogs') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dialogButton = (nodes: Node[], label: string) =>
+      nodes.some((node) => node.AXLabel === label && node.type === 'Button')
+    const alertPresented = (nodes: Node[]) =>
+      dialogButton(nodes, 'Cancel alert') && dialogButton(nodes, 'Confirm alert')
+    // on iPhone, iOS 26 adapts a confirmation dialog to a popover anchored to the host.
+    // that adaptation draws no cancel button; the cancel-role action is raised by tapping
+    // outside instead. asserting its absence pins the behavior rather than assuming it.
+    const confirmationPresented = (nodes: Node[]) =>
+      dialogButton(nodes, 'Confirm confirmation') &&
+      !dialogButton(nodes, 'Cancel confirmation') &&
+      labels(nodes).includes('dismiss popup')
+    const outside = (nodes: Node[]) => {
+      const popup = nodes.find((node) => node.AXLabel === 'dismiss popup')?.frame
+      if (!popup) throw new Error('Expected a dismissable popup before tapping outside')
+      return popup
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-dialogs')
+    await wait(
+      'fresh Alert mounted',
+      (n) =>
+        status(n, 'Category', 'Alert') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Actions', 0) &&
+        status(n, 'Last', 'none') &&
+        status(n, 'Reject', 'off') &&
+        status(n, 'Revision', 0)
+    )
+    tap({ id: 'one-native-dialog-open' })
+    await wait('Alert presents from its zero-size host', alertPresented)
+    screenshot('alert-open.png')
+    tap({ label: 'Cancel alert' })
+    await wait(
+      'Alert cancel emits dismissal and cancel action exactly once',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 2) &&
+        status(n, 'Actions', 1) &&
+        status(n, 'Last', 'cancel')
+    )
+    tap({ id: 'one-native-dialog-open' })
+    await wait('Alert reopens for confirm action', alertPresented)
+    tap({ label: 'Confirm alert' })
+    await wait(
+      'Alert confirm emits dismissal and confirm action exactly once',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 4) &&
+        status(n, 'Actions', 2) &&
+        status(n, 'Last', 'confirm')
+    )
+    tap({ id: 'one-native-dialog-reject' })
+    await wait('Alert reject-close mode enabled', (n) => status(n, 'Reject', 'on'))
+    tap({ id: 'one-native-dialog-open' })
+    await wait('Alert reopens before the refused dismissal', alertPresented)
+    tap({ label: 'Cancel alert' })
+    // the native side dismissed itself and React refused the change, so the controlled
+    // protocol has to roll the native value back and present the alert again. a presented
+    // dialog owns the accessibility tree, so the app's own status rows are gone while it
+    // is up; their absence is what distinguishes this from a dismissed alert.
+    await wait(
+      'refused dismissal rolls the native host back to presented',
+      (n) =>
+        alertPresented(n) && !labels(n).some((label) => label.startsWith('Presented: '))
+    )
+    screenshot('alert-refused-dismissal.png')
+    tap({ label: 'Reset alert revision' })
+    await wait(
+      'revision reset closes the rolled-back Alert',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 7) &&
+        status(n, 'Actions', 4) &&
+        status(n, 'Last', 'reset') &&
+        status(n, 'Revision', 1) &&
+        status(n, 'Reject', 'off') &&
+        !dialogButton(n, 'Confirm alert')
+    )
+
+    tap({ id: 'one-native-dialog-category-confirmation' })
+    await wait(
+      'fresh ConfirmationDialog mounted',
+      (n) =>
+        status(n, 'Category', 'Confirmation') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Actions', 0) &&
+        status(n, 'Last', 'none') &&
+        status(n, 'Revision', 0) &&
+        status(n, 'Title visibility', 'automatic')
+    )
+    tap({ id: 'one-native-dialog-open' })
+    await wait('automatic ConfirmationDialog presents as an anchored popover', (n) =>
+      confirmationPresented(n)
+    )
+    screenshot('confirmation-automatic.png')
+    tap({ label: 'Confirm confirmation' })
+    await wait(
+      'automatic ConfirmationDialog confirm emits exact events',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 2) &&
+        status(n, 'Actions', 1) &&
+        status(n, 'Last', 'confirm')
+    )
+    tap({ id: 'one-native-dialog-title-visibility' })
+    await wait('ConfirmationDialog title visibility is visible', (n) =>
+      status(n, 'Title visibility', 'visible')
+    )
+    tap({ id: 'one-native-dialog-open' })
+    const visible = await wait(
+      'visible ConfirmationDialog shows its title',
+      (n) => confirmationPresented(n) && labels(n).includes('One Native Confirmation')
+    )
+    screenshot('confirmation-visible.png')
+    const popup = outside(visible)
+    point(popup.x + popup.width / 2, popup.y + popup.height - 40)
+    await wait(
+      'outside dismissal raises the cancel-role action exactly once',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 4) &&
+        status(n, 'Actions', 2) &&
+        status(n, 'Last', 'cancel')
+    )
+    tap({ id: 'one-native-dialog-title-visibility' })
+    await wait('ConfirmationDialog title visibility is hidden', (n) =>
+      status(n, 'Title visibility', 'hidden')
+    )
+    tap({ id: 'one-native-dialog-open' })
+    await wait(
+      'hidden ConfirmationDialog presents without its title',
+      (n) => confirmationPresented(n) && !labels(n).includes('One Native Confirmation')
+    )
+    screenshot('confirmation-hidden.png')
+    tap({ label: 'Confirm confirmation' })
+    await wait(
+      'hidden ConfirmationDialog confirm emits exact events',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 6) &&
+        status(n, 'Actions', 3) &&
+        status(n, 'Last', 'confirm')
+    )
+
+    for (let cycle = 1; cycle <= 2; cycle++) {
+      tap({ id: 'BackButton' })
+      await wait(`dialogs recycle ${cycle}: home mounted`, () => true, true)
+      await dismissWarning(true)
+      await tapNav('nav-one-native-dialogs')
+      await wait(
+        `dialogs recycle ${cycle}: fresh Alert state`,
+        (n) =>
+          status(n, 'Category', 'Alert') &&
+          status(n, 'Presented', 'false') &&
+          status(n, 'Changes', 0) &&
+          status(n, 'Actions', 0) &&
+          status(n, 'Last', 'none') &&
+          status(n, 'Reject', 'off') &&
+          status(n, 'Revision', 0)
+      )
+      tap({ id: 'one-native-dialog-open' })
+      await wait(`dialogs recycle ${cycle}: Alert presents`, alertPresented)
+      tap({ label: 'Confirm alert' })
+      await wait(
+        `dialogs recycle ${cycle}: fresh action emits once`,
+        (n) =>
+          status(n, 'Presented', 'false') &&
+          status(n, 'Changes', 2) &&
+          status(n, 'Actions', 1) &&
+          status(n, 'Last', 'confirm')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'pickers') {
     const tapSegment = async (index: number, name: string) => {
       const nodes = await wait(name, (current) =>
@@ -681,7 +1232,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
-    tap({ id: 'nav-one-native-controls' })
+    await tapNav('nav-one-native-controls')
     await wait(
       'segmented picker mounted',
       (nodes) => value(nodes, 'alpha') && nodes.some((node) => node.type === 'TabGroup')
@@ -872,7 +1423,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   await wait('home screen mounted', () => true, true)
   await dismissWarning(true)
-  tap({ id: 'nav-one-native' })
+  await tapNav('nav-one-native')
   await wait(
     'initial fixture state',
     (n) =>
@@ -1047,7 +1598,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'BackButton' })
     await wait(`recycle ${cycle}: home mounted`, () => true, true)
     await dismissWarning(true)
-    tap({ id: 'nav-one-native' })
+    await tapNav('nav-one-native')
     await wait(
       `recycle ${cycle}: fresh menu props`,
       (n) =>

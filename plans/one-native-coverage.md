@@ -41,9 +41,10 @@ matrix uses the source inventory, not a claim of exact SDK 57 parity.
 | Menus | nested menus, sections, dividers, buttons, toggles, control groups, palettes | primary actions, context menu previews, pickers in menu content |
 | Tabs | keyed RN pages, controlled selection, search role, adaptive sidebar, minimization | page style, sections, accessories, customization |
 | Pickers | standalone Picker, DatePicker, ColorPicker with flat props. Picker styles `automatic`, `menu`, `segmented`, `wheel`, `inline` (`navigationLink` and `palette` rejected, they need a native container context). DatePicker `Date` selection/range, `displayedComponents`, and `automatic`/`compact`/`graphical`/`wheel` styles. ColorPicker `#RRGGBB`/`#RRGGBBAA` and `supportsOpacity` | pickers in menu content |
-| Form controls | standalone Toggle, Slider, Stepper with flat props, plus the existing menu buttons/toggles. Toggle styles `automatic`, `button`, and `switch`. Slider/Stepper bounded numeric value, min, max, and step | standalone Button, ProgressView, Gauge, text inputs |
+| Form controls | standalone Toggle, Slider, Stepper with flat props, plus the existing menu buttons/toggles. Toggle styles `automatic`, `button`, and `switch`. Slider/Stepper bounded numeric value, min, max, and step | pickers in menu content |
+| Leaves and text input | standalone Button (`buttonRole`, `buttonStyle`, SF Symbol label), ProgressView (determinate and indeterminate, `progressViewStyle`), Gauge (value range, three value labels, `gaugeStyle`), TextField (controlled text, `prompt`, `submitLabel`, `onSubmit`, `axis`) and SecureField | keyboard type and programmatic focus, which need UIKit types and `@FocusState` |
 | Sheets | controlled `isPresented`, RN children, fixed detents (`medium`, `large`, fraction, height), `onDismiss`, nested sheets, `interactiveDismissDisabled`, local slot origin and a supplied touch handler | fitToContents, selected detent binding, presentationBackground, backgroundInteraction, presentationSizing |
-| Other presentation | none | popover, alert, confirmation dialog |
+| Other presentation | Alert and ConfirmationDialog as generated zero-size presentation hosts: controlled `isPresented`, data-driven actions with roles, `onAction` by id, `titleVisibility` | popover, `presenting:` value-bound overloads, `presentationCompactAdaptation` |
 | Layout | bounded RN tab pages, menu triggers, presented sheet RN content, and leaf controls with default heights that need parent width | native stacks, text/labels, forms, sections, scroll/list/grid, explicit RN slots |
 | Navigation | One keeps ownership | evaluate native SwiftUI navigation separately from One integration |
 | Media/shapes | menu SF Symbols | images, shapes, masks, backgrounds, overlays, sharing, charts |
@@ -144,3 +145,36 @@ With the same Bun 1.4.0 benchmark configuration, menu flattening p50/p95 was
 establish Hermes or end-to-end UI performance.
 
 Final simulator receipts: `tabs-menu` 55 passed conditions, `pickers` 26 passed conditions, `forms` 30 passed conditions, `sheets` 32 passed conditions. These counts describe the exercised behaviors in the runner, not a coverage percentage. All four suites passed on the rebuilt app after the Fabric recycling fix.
+
+## Leaves and dialogs wave
+
+Six suites pass on iPhone 16 / iOS 26.4 against a Debug build of the native-features
+app: `tabs-menu` 58, `pickers` 29, `forms` 31, `sheets` 34, `leaves` 71, `dialogs` 32
+passed conditions. The four earlier suites gained a condition each from a new home
+navigation helper and are otherwise unchanged, so they also serve as the regression
+check on the generalized control emitter.
+
+What the two new suites establish at runtime:
+
+- Button emits exactly one numbered press per tap, a tap while disabled emits nothing,
+  and all five button styles plus the destructive role keep the native button present.
+- ProgressView reports a determinate percentage through accessibility, drops it when
+  `value` is omitted, and reports one again when a value returns. Gauge steps through
+  its range and its three styles.
+- TextField and SecureField accept typed text, roll a rejected edit back to the native
+  value, take an external value, reset through `revision`, and emit exactly one submit.
+  SecureField masks every character in the accessibility tree while the controlled
+  value is exact.
+- Alert presents from a zero-size host, and a button raises both the dismissal and its
+  action exactly once. Refusing the dismissal in React rolls the native value back and
+  re-presents the alert, which is the presentation-host case of the controlled protocol.
+- ConfirmationDialog adapts to a popover anchored to the host's own position in React
+  Native layout. That adaptation draws no cancel button; tapping outside raises the
+  cancel-role action and reports the dismissal. `titleVisibility` shows and hides the
+  title. Both hosts start clean after two route re-entries.
+
+Three runtime facts the accessibility snapshot forced, recorded so they are not
+rediscovered: a presented dialog owns the accessibility tree, so the app's own status
+rows are invisible while it is up; a SecureField reports as a `TextField` carrying the
+`AXSecureTextField` subrole; and an attached hardware keyboard suppresses the software
+keyboard, so there is no keyboard element to wait on before typing.

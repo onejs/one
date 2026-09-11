@@ -259,6 +259,52 @@ Keyboard type and programmatic focus are not bound. SwiftUI exposes those throug
 UIKit's `UIKeyboardType` and `@FocusState`, neither of which the current prop
 pipeline carries.
 
+## Alerts and confirmation dialogs
+
+`Swift.Alert` and `Swift.ConfirmationDialog` are zero-size presentation hosts, like
+`Swift.Sheet`: they take no layout space and present over the app. Their buttons are
+data, not children, because SwiftUI builds them inside the presented dialog where a
+React Native subtree cannot go.
+
+```tsx
+function DeleteButton({ item }: { item: Item }) {
+  const [confirming, setConfirming] = useState(false)
+  return (
+    <View>
+      <Swift.Button label="Delete" onPress={() => setConfirming(true)} />
+      <Swift.Alert
+        title="Delete item?"
+        message="This cannot be undone."
+        isPresented={confirming}
+        onIsPresentedChange={setConfirming}
+        actions={[
+          { id: 'cancel', label: 'Cancel', role: 'cancel' },
+          { id: 'delete', label: 'Delete', role: 'destructive' },
+        ]}
+        onAction={(id) => id === 'delete' && remove(item)}
+      />
+    </View>
+  )
+}
+```
+
+`isPresented` is controlled with the same acknowledgement and `revision` reset as
+every other control, so refusing to set it back to true rolls the native state back,
+and bumping `revision` closes an open dialog. Tapping a button dismisses the dialog
+and fires both `onIsPresentedChange(false)` and `onAction` with that button's `id`.
+
+`actions` needs at least one entry with unique `id` values. `role` is optional and
+takes the same values as `Swift.Button`'s `buttonRole`. `title` and `message` are
+plain strings; an empty `message` renders no message. `ConfirmationDialog` adds
+`titleVisibility`: `automatic`, `visible`, or `hidden`.
+
+Neither host takes a `disabled` prop. SwiftUI's `.disabled` propagates through the
+environment into the presented content, so a host-level `disabled` would silently
+disable every dialog button. Disable the control that opens the dialog instead.
+
+The `presenting:` overloads that bind a value into the dialog, and
+`presentationCompactAdaptation`, are not bound yet.
+
 ## Sheets
 
 `Swift.Sheet` presents its React Native children in a SwiftUI sheet. The host has
@@ -368,7 +414,9 @@ entry.
 version 2. Each component carries its Fabric name, its public component name, its
 props and event payloads as `{ type, enum? }` entries, its controlled value and
 event when it has one, its action events with the public prop that raises them,
-its default height, and its React Native slots. Top-level `enums` lists every
+its `layout` (`inline` with the default height the adapter
+applies, `presentation` for a zero-size host, or `container` for a host React Native
+lays out itself), and its React Native slots. Top-level `enums` lists every
 SwiftUI enum case with the iOS version that introduced it, and `eventDelivery`
 records that React Native hands each payload to the component as
 `onX({ nativeEvent: payload })`.

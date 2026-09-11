@@ -39,7 +39,7 @@ private final class ButtonModel: ObservableObject {
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onPress = { [weak self] count in self?.onPress?(count) }
+      model.onPress = { [weak self] pressCount in self?.onPress?(pressCount) }
       controller = OneNativeHostingController(rootView: ButtonContent(model: model))
     }
     controller?.attach(to: self)

@@ -6,7 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeTextFieldComponentView { OneNativeTextFieldView *_nativeView;  }
+@implementation OneNativeTextFieldComponentView { OneNativeTextFieldView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeTextFieldComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -36,5 +36,5 @@ using namespace facebook::react;
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled axis:RCTNSStringFromString(next.axis)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end

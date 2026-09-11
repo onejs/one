@@ -41,6 +41,7 @@ export const sheetComponents = [
     },
     enumProps: { presentationDragIndicator: 'Visibility' },
     controlled: { value: 'isPresented', event: 'onNativeSheetIsPresentedChange' },
+    layout: { kind: 'presentation' },
     slots: [
       {
         name: 'content',
@@ -56,6 +57,7 @@ export const sheetComponents = [
     publicName: null,
     props: {},
     events: {},
+    layout: { kind: 'container' },
     slots: [
       {
         name: 'content',

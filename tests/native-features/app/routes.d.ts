@@ -13,6 +13,8 @@ declare module 'one' {
         | `/menu-test`
         | `/one-native`
         | `/one-native-controls`
+        | `/one-native-dialogs`
+        | `/one-native-leaves`
         | `/one-native-sheet`
         | `/split-view-test`
         | `/toolbar-test`

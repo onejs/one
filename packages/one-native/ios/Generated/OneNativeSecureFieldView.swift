@@ -53,7 +53,7 @@ private final class SecureFieldModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      model.onSubmit = { [weak self] count in self?.onSubmit?(count) }
+      model.onSubmit = { [weak self] submitCount in self?.onSubmit?(submitCount) }
       controller = OneNativeHostingController(rootView: SecureFieldContent(model: model))
     }
     controller?.attach(to: self)
