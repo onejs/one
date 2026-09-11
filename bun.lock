@@ -807,6 +807,7 @@
         "expo": "~57.0.11",
         "expo-build-properties": "~57.0.9",
         "expo-clipboard": "~57.0.1",
+        "expo-file-system": "~57.0.2",
         "expo-modules-core": "~57.0.10",
         "one": "workspace:*",
         "one-native": "workspace:*",

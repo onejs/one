@@ -15,17 +15,20 @@ type Node = {
   frame?: { x: number; y: number; width: number; height: number }
   [key: string]: unknown
 }
-type Suite =
-  | 'tabs-menu'
-  | 'pickers'
-  | 'forms'
-  | 'sheets'
-  | 'leaves'
-  | 'dialogs'
-  | 'host'
-  | 'containers'
-  | 'popover'
-  | 'accessibility'
+const suites = [
+  'tabs-menu',
+  'pickers',
+  'forms',
+  'sheets',
+  'leaves',
+  'dialogs',
+  'host',
+  'containers',
+  'popover',
+  'accessibility',
+  'media',
+] as const
+type Suite = (typeof suites)[number]
 type Config = {
   simulatorId: string
   bundleId: string
@@ -36,7 +39,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers|popover|accessibility] [--artifact-dir <PATH>] [--timeout <MS>]'
+    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>]`
   )
 }
 
@@ -59,22 +62,9 @@ function parse(args: string[]): Config {
     else if (arg === '--timeout') timeout = Number(args[++i])
     else if (arg === '--suite') {
       const value = args[++i] || ''
-      if (
-        value !== 'tabs-menu' &&
-        value !== 'pickers' &&
-        value !== 'forms' &&
-        value !== 'sheets' &&
-        value !== 'leaves' &&
-        value !== 'dialogs' &&
-        value !== 'host' &&
-        value !== 'containers' &&
-        value !== 'popover' &&
-        value !== 'accessibility'
-      )
-        throw new Error(
-          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, containers, popover, or accessibility.'
-        )
-      suite = value
+      if (!(suites as readonly string[]).includes(value))
+        throw new Error(`Suite must be one of ${suites.join(', ')}.`)
+      suite = value as Suite
     } else throw new Error(`Unknown argument: ${arg}`)
   }
   if (
@@ -201,35 +191,48 @@ const containersLoaded = (nodes: Node[]) =>
 const accessibilityLoaded = (nodes: Node[]) =>
   labels(nodes).some((label) => label.startsWith('Text: ')) &&
   labels(nodes).includes('Standalone switch')
+// a presented Quick Look takes the whole accessibility tree, leaving the fixture behind it
+// out, so the fixture counts as loaded from either side of the presentation.
+const mediaLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-media-category-player')) &&
+    has(nodes, 'Video bytes: ')) ||
+    Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
     Boolean(id(nodes, 'PopoverDismissRegion')) ||
     labels(nodes).includes('Popover body') ||
     labels(nodes).includes('Section body'))
-const homeLoaded = (nodes: Node[], suite: Suite) =>
-  Boolean(
-    id(
-      nodes,
-      suite === 'accessibility'
-        ? 'nav-one-native-accessibility'
-        : suite === 'popover'
-          ? 'nav-one-native-popover'
-        : suite === 'containers'
-          ? 'nav-one-native-containers'
-          : suite === 'host'
-            ? 'nav-one-native-host'
-            : suite === 'dialogs'
-              ? 'nav-one-native-dialogs'
-              : suite === 'leaves'
-                ? 'nav-one-native-leaves'
-                : suite === 'sheets'
-                  ? 'nav-one-native-sheet'
-                  : suite !== 'tabs-menu'
-                    ? 'nav-one-native-controls'
-                    : 'nav-one-native'
-    )
-  )
+// the fixture the suite drives, and the home row that reaches it. pickers and forms share
+// one screen; tabs-menu drives the One Native hub rather than a control fixture.
+const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
+  'tabs-menu': fixtureLoaded,
+  pickers: pickersLoaded,
+  forms: formsLoaded,
+  sheets: sheetsLoaded,
+  leaves: leavesLoaded,
+  dialogs: dialogsLoaded,
+  host: hostLoaded,
+  containers: containersLoaded,
+  popover: popoverLoaded,
+  accessibility: accessibilityLoaded,
+  media: mediaLoaded,
+}
+const suiteHome: Record<Suite, string> = {
+  'tabs-menu': 'nav-one-native',
+  pickers: 'nav-one-native-controls',
+  forms: 'nav-one-native-controls',
+  sheets: 'nav-one-native-sheet',
+  leaves: 'nav-one-native-leaves',
+  dialogs: 'nav-one-native-dialogs',
+  host: 'nav-one-native-host',
+  containers: 'nav-one-native-containers',
+  popover: 'nav-one-native-popover',
+  accessibility: 'nav-one-native-accessibility',
+  media: 'nav-one-native-media',
+}
+const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
   fixtureLoaded(nodes) &&
   has(nodes, 'First tab') &&
@@ -250,25 +253,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       nodes = snapshot(config.simulatorId)
       const loaded = home
         ? homeLoaded(nodes, config.suite)
-        : config.suite === 'pickers'
-          ? pickersLoaded(nodes)
-          : config.suite === 'forms'
-            ? formsLoaded(nodes)
-            : config.suite === 'sheets'
-              ? sheetsLoaded(nodes)
-              : config.suite === 'leaves'
-                ? leavesLoaded(nodes)
-                : config.suite === 'dialogs'
-                  ? dialogsLoaded(nodes)
-                  : config.suite === 'host'
-                    ? hostLoaded(nodes)
-                    : config.suite === 'containers'
-                      ? containersLoaded(nodes)
-                      : config.suite === 'popover'
-                        ? popoverLoaded(nodes)
-                        : config.suite === 'accessibility'
-                          ? accessibilityLoaded(nodes)
-                          : fixtureLoaded(nodes)
+        : suiteLoaded[config.suite](nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -1597,6 +1582,106 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'media') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the two controls that only exist because the generator reads SwiftUI's overlay
+    // modules: VideoPlayer comes from _AVKit_SwiftUI, QuickLook from _QuickLook_SwiftUI.
+    const player = (nodes: Node[]) =>
+      nodes.find((node) => node.AXLabel === 'Video' && node.frame?.height)
+    const elapsed = (nodes: Node[]) =>
+      nodes.find((node) => node.AXUniqueId === 'Elapsed Time')?.AXLabel
+    const playPause = (nodes: Node[]) =>
+      nodes.find((node) => node.AXUniqueId === 'Play/Pause')?.AXLabel
+    // AVKit hides the transport overlay a few seconds after it appears, so a single tap can
+    // be gone by the time the next snapshot lands. tapping only when the snapshot shows it
+    // hidden keeps the tap and the reading in step. the play button covers the middle of
+    // the surface, so reveal from the top edge rather than the centre.
+    const withTransport = (name: string, predicate: (nodes: Node[]) => boolean) =>
+      wait(name, (nodes) => {
+        if (playPause(nodes)) return predicate(nodes)
+        const frame = player(nodes)?.frame
+        if (frame) point(frame.x + frame.width / 2, frame.y + 20)
+        return false
+      })
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-media')
+    // the byte counts are the fixture reading back what it wrote, so they prove both files
+    // reached disk before either control was handed a url.
+    await wait(
+      'fixture wrote both media files',
+      (n) =>
+        status(n, 'Category', 'Player') &&
+        status(n, 'Video bytes', 2653) &&
+        status(n, 'Preview bytes', 171) &&
+        status(n, 'Autoplay', 'off') &&
+        status(n, 'Height', 220)
+    )
+    // a fill control reports no ideal height, so the box React Native gave it is the only
+    // thing that can be deciding this size.
+    await wait(
+      'VideoPlayer fills the box React Native gave it',
+      (n) => player(n)?.frame?.height === 220 && player(n)?.frame?.width === 373
+    )
+    tap({ id: 'one-native-media-height' })
+    await wait(
+      'the player follows the box when the style changes',
+      (n) => status(n, 'Height', 320) && player(n)?.frame?.height === 320
+    )
+    tap({ id: 'one-native-media-height' })
+    await wait(
+      'the player follows the box back',
+      (n) => status(n, 'Height', 220) && player(n)?.frame?.height === 220
+    )
+    await withTransport(
+      'the player does not start itself without autoplay',
+      (n) => playPause(n) === 'Play' && elapsed(n) === '0:00 elapsed'
+    )
+
+    tap({ id: 'one-native-media-autoplay' })
+    await wait('autoplay is on for the next mount', (n) => status(n, 'Autoplay', 'on'))
+    // autoplay is read when the url loads, so it only takes effect on a fresh player.
+    // switching categories unmounts this one and mounts another over the same native view.
+    tap({ id: 'one-native-media-category-preview' })
+    await wait('QuickLook replaces the player', (n) =>
+      Boolean(id(n, 'one-native-media-open'))
+    )
+    tap({ id: 'one-native-media-category-player' })
+    await withTransport(
+      'autoplay starts the fresh player',
+      (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed'
+    )
+
+    tap({ id: 'one-native-media-category-preview' })
+    await wait(
+      'fresh QuickLook mounted',
+      (n) =>
+        status(n, 'Category', 'Preview') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0)
+    )
+    tap({ id: 'one-native-media-open' })
+    // the text search button is QuickLook having resolved the file:// url to a text
+    // preview, which a controller presented over a url it could not read would not carry.
+    await wait(
+      'QuickLook previews the file it was given',
+      (n) =>
+        Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
+        Boolean(id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier'))
+    )
+    tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
+    // dismissal arrives as a nil url, which the control has to report as false rather than
+    // leaving React thinking the preview is still up. reading the fixture again at all is
+    // what proves the preview went away.
+    await wait(
+      'dismissing reports back through the binding',
+      (n) => status(n, 'Presented', 'false') && status(n, 'Changes', 2)
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

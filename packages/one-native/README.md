@@ -286,6 +286,10 @@ per url and reused, so unrelated prop changes do not restart playback. `autoplay
 is read when the url loads; flipping it afterwards does not start or stop the
 video.
 
+AVKit publishes the player's own accessibility element over the control, so
+`accessibilityLabel` never reaches a screen reader here even though every other
+control honors it.
+
 ## Alerts and confirmation dialogs
 
 `Swift.Alert` and `Swift.ConfirmationDialog` are zero-size presentation hosts, like
