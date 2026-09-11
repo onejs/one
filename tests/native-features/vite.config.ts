@@ -7,9 +7,6 @@ export default defineConfig({
       setupFile: {
         native: './setup.native.ts',
       },
-      app: {
-        key: 'native-feature-tests',
-      },
       native: {
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },

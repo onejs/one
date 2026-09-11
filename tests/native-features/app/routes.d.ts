@@ -11,6 +11,7 @@ declare module 'one' {
         | `/_sitemap`
         | `/color-test`
         | `/menu-test`
+        | `/one-native`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`
