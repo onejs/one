@@ -926,6 +926,47 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeQuickLook",
+      "publicName": "QuickLook",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeQuickLookValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeQuickLookValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeSheet",
       "publicName": "Sheet",
       "props": {

@@ -25,6 +25,7 @@ export declare const Swift: {
     SecureField: (_props: import("./types").SecureFieldProps) => never;
     Alert: (_props: import("./types").AlertProps) => never;
     ConfirmationDialog: (_props: import("./types").ConfirmationDialogProps) => never;
+    QuickLook: (_props: import("./types").QuickLookProps) => never;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;

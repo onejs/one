@@ -150,4 +150,10 @@ export interface ConfirmationDialogProps extends OneNativeViewProps {
     actions: readonly DialogAction[];
     titleVisibility?: Styles.Visibility;
 }
+export interface QuickLookProps extends OneNativeViewProps {
+    isPresented: boolean;
+    onIsPresentedChange: (value: boolean) => void;
+    revision?: number;
+    url?: string;
+}
 //# sourceMappingURL=controlTypes.d.ts.map

@@ -667,3 +667,38 @@ export function ConfirmationDialog({
     />
   )
 }
+import NativeQuickLook from '../specs/OneNativeQuickLookNativeComponent'
+export function QuickLook({
+  isPresented,
+  onIsPresentedChange,
+  revision = 0,
+  url = '',
+  style,
+  ...props
+}: Types.QuickLookProps) {
+  if (typeof url !== 'string' || !url)
+    throw new Error('QuickLook url must be a non-empty string')
+  if (!url.startsWith('file://'))
+    throw new Error(
+      'QuickLook url must be a file:// URL; Quick Look previews local files'
+    )
+
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsPresentedChange(event.value), revision)
+  return (
+    <NativeQuickLook
+      {...props}
+      style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      value={isPresented}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      url={url}
+      onNativeQuickLookValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+    />
+  )
+}

@@ -20,6 +20,7 @@ export declare const Swift: {
     SecureField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
     Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, style, ...props }: import("./types").AlertProps): import("react/jsx-runtime").JSX.Element;
     ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, titleVisibility, style, ...props }: import("./types").ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
+    QuickLook({ isPresented, onIsPresentedChange, revision, url, style, ...props }: import("./types").QuickLookProps): import("react/jsx-runtime").JSX.Element;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;

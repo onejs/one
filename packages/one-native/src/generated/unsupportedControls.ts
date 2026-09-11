@@ -63,6 +63,11 @@ function ConfirmationDialog(_props: Types.ConfirmationDialogProps): never {
     'Swift.ConfirmationDialog requires an iOS native build with one-native installed'
   )
 }
+function QuickLook(_props: Types.QuickLookProps): never {
+  throw new Error(
+    'Swift.QuickLook requires an iOS native build with one-native installed'
+  )
+}
 export const unsupportedControls = {
   Picker,
   DatePicker,
@@ -80,4 +85,5 @@ export const unsupportedControls = {
   SecureField,
   Alert,
   ConfirmationDialog,
+  QuickLook,
 }
