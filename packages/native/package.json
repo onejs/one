@@ -2,7 +2,7 @@
   "name": "@vxrn/native",
   "version": "1.26.0",
   "type": "module",
-  "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
+  "description": "One native extras: zoom, bottom toolbar, menus, split view, color. Native tabs and stack headers come from React Navigation v8.",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
