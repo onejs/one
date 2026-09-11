@@ -1,17 +1,17 @@
 # handoff: One Native parity expansion
 
-date: 2026-09-10 (Hawaii)
+date: 2026-09-11
 branch: `feat/one-native`
 worktree: `/Users/n8/.worktrees/one-native`
-last earlier commit: `3dcfe61d2` (generated SwiftUI menus and tabs)
-main observed during final checks: `afe3ad6b0` (not merged into this tested feature tip)
+tip: `bfb15b5ff`
 production: unpublished package; no release authorized
 
-Continue implementation after this expansion commit. Nate explicitly requested
-Opus at extra-high to take over coordination after three or four substantial
-areas work, with Grok and AGY doing most implementation. The completed areas are
-picker varieties, form controls, and sheets. Keep doing the difficult integration
-work yourself and use a small squad for bounded catalog/fixture work.
+This file is the current-state snapshot. Every number in it was produced by running the
+command beside it, not recalled. Re-run before trusting it. The SwiftUI gap analysis lives in
+`one-native-swiftui-gap.md`; this file does not restate it.
+
+Keep the difficult runtime and schema integration work in-house and use a small squad for
+bounded catalog, fixture and conformance work. Every worker goes through `tm run`.
 
 ## What landed
 
@@ -51,6 +51,20 @@ work yourself and use a small squad for bounded catalog/fixture work.
   accessibility/visual state. Only our menu items, picker options, and sheet detents
   caches are marked dirty when models reset. The runner leaves/reenters the menu
   route twice and asserts the native trigger and first page remain accessible.
+- The generator reads every SwiftUI overlay module, all 23 `_<Framework>_SwiftUI` frameworks,
+  not just SwiftUI and SwiftUICore. That took the inventory from 9,715 to 11,212 declarations and
+  is what makes `VideoPlayer` (`_AVKit_SwiftUI`), `QuickLook` (`_QuickLook_SwiftUI`) and `Map`
+  (`_MapKit_SwiftUI`) reachable. The evidence is not the declaration count: all three overlays
+  appear in the test dylib's load commands, so they are live at runtime.
+- `layout: 'fill'` joined `measured` and `presentation`. A fill control reports no ideal height
+  and takes the box React Native gave it, which is what `VideoPlayer` and `Map` need. Asserted by
+  number in the suites (373 by 220, following the style to 320 and back).
+- Visual verification. The accessibility assertions cannot see whether anything painted, so a
+  control publishing a correct tree with correct frames while rendering nothing passed all 386.
+  `scripts/visual-*.ts` closes that with 18 checks over declared crop regions. No baseline images
+  are committed and none will be: each check stores a region, a pixel measurement, a floor, and
+  its calibration. `tests/native-features/scripts/README.md` documents the three enforced
+  properties and why the Gemini oracle is advisory rather than gating.
 
 Read `one-native-opus-review.md` and `one-native-foundation-review.md` for the two
 already assigned reviews and dispositions. Do not re-review the same foundation
@@ -89,8 +103,19 @@ bun scripts/one-native-conformance.ts \
   --artifact-dir /tmp/one-native-final-sheets
 ```
 
-Run each suite separately: `tabs-menu`, `pickers`, `forms`, `sheets`, `leaves`,
-`dialogs`, `host`, `containers`, `popover`. Each stops
+Or run everything, all twelve suites then the visual pass, with one command:
+
+```sh
+bun scripts/one-native-conformance-all.ts \
+  --simulator-id 36CB8903-C59C-4438-BA29-E7A3C8876C37 \
+  --bundle-id dev.one.native.tests --artifact-dir /tmp/one-native-conformance
+```
+
+The visual pass runs last and against the artifact root rather than per suite, because several
+checks take their negative capture from another suite's directory.
+
+Suites are `tabs-menu`, `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`,
+`containers`, `popover`, `accessibility`, `media`, `map`. Each stops
 and relaunches the app and asserts loaded state. Do not run concurrent simulator
 operators. Do not edit application sources while testing state retention; HMR
 invalidates that test. `pod install` runs inside `tests/native-features/ios` after
@@ -209,10 +234,14 @@ Automation details that prevent false diagnoses:
 
 ## Final verification receipts
 
-- `bun run test`: 19 tests in two existing package test files pass.
+- `bun run test`: 19 tests, 64 assertions, pass.
 - `bun run typecheck` and `bun run build` pass.
-- `generate:check`: SDK 26.4, 9,715 declarations, 126 mapped symbols, 89 generated
-  files; assembled Swift compiles and controlled-state probes pass.
+- `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 131 mapped symbols, 127 generated
+  files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
+  rejection, stale acknowledgments, reset and mixed sources.
+- Conformance end to end: 386 accessibility checks across twelve suites plus 18/18 visual
+  checks, exit 0. Per suite: tabs-menu 58, pickers 29, forms 31, sheets 34, leaves 71,
+  dialogs 32, host 27, containers 29, popover 26, accessibility 21, media 15, map 13.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
@@ -226,7 +255,43 @@ Automation details that prevent false diagnoses:
 
 ## Next work
 
-1. Sheet sizing-to-content, selected detent binding, and presentation
+Ranked. `one-native-swiftui-gap.md` carries the evidence for this ordering.
+
+1. **A styling surface.** There is none. Grep the catalogs for `font`, `tint`,
+   `foregroundStyle`, `padding`, `frame`, `background`: none exist, so every control renders at
+   system defaults and no `tint` means a whole app is stuck on system blue. `style` reaches the
+   Fabric UIView behind the SwiftUI content, not the content. Unbound by family: decoration and
+   effects 54, box and layout 28, text appearance 33, colour 7. This is the only item that
+   changes what the existing 29 bindings can do rather than adding a 30th, and the mechanism
+   exists: one `swiftStyle` object payload prop applied by a single generated
+   `.oneNativeStyle(model.style)` helper, every field selected from the SDK for provenance the
+   way `methods` entries already are.
+2. **Standalone `Image` with SF Symbols.** Symbols are reachable today only through `Label` and
+   the `systemImage` prop on `Button`, so there are no symbol effects, rendering modes, or
+   variable values. Small and self-contained.
+3. **Focus and `keyboardType`.** All 11 focus modifiers unbound, and `keyboardType` with them.
+   No programmatic focus, no next-field chain, no numeric keyboard. For form controls this is a
+   functional blocker, not polish; `textCatalog.ts` already admits it in a comment. Drive
+   `FocusState` from a `focused` prop plus an `onFocusChange` event over the existing controlled
+   protocol.
+4. **Environment propagation** on `Host` and `Form`: `colorScheme`, `dynamicTypeSize`, `locale`,
+   `tint`, `isEnabled` set once per screen and inherited, instead of per control. 148
+   `EnvironmentValues` keys are currently neither readable nor writable.
+5. **`PhotosPicker`, `ShareLink`, `fullScreenCover`, `contextMenu`, `ContentUnavailableView`.**
+   All reachable with mechanisms that already exist.
+
+Two items are blocked on a decision rather than on work:
+
+- **`WebView`** is `_WebKit_SwiftUI` and iOS 26 while the package declares `minimumVersion: 18`,
+  so it needs a control-level availability gate that does not exist. What happens on iOS 18 when
+  a control requires 26 is a product call: throw at construction, render nothing, or render a
+  fallback. Do not invent one.
+- **Navigation** wants a design pass before code. `NavigationStack`, `NavigationLink`,
+  `navigationDestination`, `navigationTitle`, `toolbar` and its ten companions, `searchable` and
+  its seven: 22 navigation modifiers at zero. Binding it means owning the interaction with
+  whatever router the app already uses.
+
+6. Sheet sizing-to-content, selected detent binding, and presentation
    background/interaction/sizing remain unimplemented, as do the `presenting:`
    value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
 2. The layout wave is finished: controls compose into one SwiftUI tree, a host reports
