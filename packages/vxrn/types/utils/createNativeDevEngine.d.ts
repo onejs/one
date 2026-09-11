@@ -49,6 +49,7 @@ interface NativeDevEngineResult {
     getBundle: () => Promise<NativeDevBundle>;
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
+    handleAddedFile: (file: string) => Promise<void>;
 }
 export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
     jsx: {

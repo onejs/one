@@ -412,9 +412,9 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }, [])
     }
 
-    // native Fast Refresh: subscribe to the route-hot epoch (the routeHmr.native
-    // store bumps it when vxrn reports a route module update) so this component
-    // re-renders and re-runs loadRoute() to pick up the edited module's exports
+    // native Fast Refresh: subscribe to the route-hot epoch. route file patches
+    // are applied in place and do not bump it; a bump re-runs loadRoute() and
+    // remounts the screen.
     if (
       process.env.NODE_ENV === 'development' &&
       process.env.TAMAGUI_TARGET === 'native'
