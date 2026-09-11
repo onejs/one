@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Swift } from 'one-native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-const categories = ['Button', 'Progress', 'Gauge', 'Text', 'Secure'] as const
+const categories = ['Button', 'Progress', 'Gauge', 'Text', 'Secure', 'Image'] as const
 const buttonStyles = [
   'automatic',
   'bordered',
@@ -12,6 +12,9 @@ const buttonStyles = [
 ] as const
 const progressStyles = ['automatic', 'linear', 'circular'] as const
 const gaugeStyles = ['automatic', 'linearCapacity', 'accessoryCircular'] as const
+const renderingModes = ['monochrome', 'hierarchical', 'palette', 'multicolor'] as const
+const symbolVariants = ['none', 'circle', 'square', 'rectangle', 'fill', 'slash'] as const
+const imageScales = ['small', 'medium', 'large'] as const
 const initialText = { text: '', observed: '', revision: 0, reject: false, submits: 0 }
 
 export default function OneNativeLeaves() {
@@ -24,6 +27,11 @@ export default function OneNativeLeaves() {
   const [progressStyleIndex, setProgressStyleIndex] = useState(0)
   const [gauge, setGauge] = useState(0)
   const [gaugeStyleIndex, setGaugeStyleIndex] = useState(0)
+  const [renderingModeIndex, setRenderingModeIndex] = useState(0)
+  const [symbolVariantIndex, setSymbolVariantIndex] = useState(0)
+  const [imageScaleIndex, setImageScaleIndex] = useState(1)
+  const [variableValue, setVariableValue] = useState<number | undefined>(undefined)
+  const [imageSystemName, setImageSystemName] = useState('star.fill')
   const [fields, setFields] = useState({ Text: initialText, Secure: initialText })
   const [vertical, setVertical] = useState(false)
   const fieldCategory = category === 'Secure' ? 'Secure' : 'Text'
@@ -32,6 +40,9 @@ export default function OneNativeLeaves() {
   const buttonStyle = buttonStyles[buttonStyleIndex % buttonStyles.length]
   const progressViewStyle = progressStyles[progressStyleIndex % progressStyles.length]
   const gaugeStyle = gaugeStyles[gaugeStyleIndex % gaugeStyles.length]
+  const symbolRenderingMode = renderingModes[renderingModeIndex % renderingModes.length]
+  const symbolVariant = symbolVariants[symbolVariantIndex % symbolVariants.length]
+  const imageScale = imageScales[imageScaleIndex % imageScales.length]
   const textProps = {
     text: field.text,
     revision: field.revision,
@@ -102,6 +113,15 @@ export default function OneNativeLeaves() {
           ...(category === 'Text'
             ? [['Axis', vertical ? 'vertical' : 'horizontal']]
             : []),
+        ] as [string, string | number][])
+      : []),
+    ...(category === 'Image'
+      ? ([
+          ['SystemName', imageSystemName],
+          ['RenderingMode', symbolRenderingMode],
+          ['Variant', symbolVariant],
+          ['Scale', imageScale],
+          ['VariableValue', variableValue === undefined ? 'unset' : variableValue],
         ] as [string, string | number][])
       : []),
   ]
@@ -189,6 +209,18 @@ export default function OneNativeLeaves() {
             {...textProps}
             label="Leaf secret"
             testID="one-native-leaf-secure"
+          />
+        ) : null}
+        {category === 'Image' ? (
+          <Swift.Image
+            systemName={imageSystemName}
+            symbolRenderingMode={symbolRenderingMode}
+            symbolVariant={symbolVariant}
+            imageScale={imageScale}
+            variableValue={variableValue}
+            accessibilityLabel="Leaf image"
+            style={styles.nativeControl}
+            testID="one-native-leaf-image"
           />
         ) : null}
       </View>
@@ -329,6 +361,58 @@ export default function OneNativeLeaves() {
                 <Text style={styles.actionText}>Toggle axis</Text>
               </Pressable>
             ) : null}
+          </>
+        ) : null}
+        {category === 'Image' ? (
+          <>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.action}
+              testID="one-native-leaf-cycle-rendering-mode"
+              onPress={() => setRenderingModeIndex((v) => v + 1)}
+            >
+              <Text style={styles.actionText}>Change rendering</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.action}
+              testID="one-native-leaf-cycle-variant"
+              onPress={() => setSymbolVariantIndex((v) => v + 1)}
+            >
+              <Text style={styles.actionText}>Change variant</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.action}
+              testID="one-native-leaf-cycle-scale"
+              onPress={() => setImageScaleIndex((v) => v + 1)}
+            >
+              <Text style={styles.actionText}>Change scale</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.action}
+              testID="one-native-leaf-step-variable-value"
+              onPress={() =>
+                setVariableValue((v) =>
+                  v === undefined ? 0.5 : v === 0.5 ? 1 : undefined
+                )
+              }
+            >
+              <Text style={styles.actionText}>Step variable</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.action}
+              testID="one-native-leaf-toggle-systemname"
+              onPress={() =>
+                setImageSystemName((curr) =>
+                  curr === 'star.fill' ? 'speaker.wave.3' : 'star.fill'
+                )
+              }
+            >
+              <Text style={styles.actionText}>Toggle symbol</Text>
+            </Pressable>
           </>
         ) : null}
       </View>

@@ -256,3 +256,15 @@ it('exposes Swift keyword identifiers without source escaping', () => {
     'Unknown SwiftUI'
   )
 })
+
+describe('SF symbol enums', () => {
+  it('validates SymbolRenderingMode, SymbolVariants, and ImageScale values', () => {
+    expect(() => assertSwiftUIValue('SymbolRenderingMode', 'hierarchical', 15)).not.toThrow()
+    expect(() => assertSwiftUIValue('SymbolRenderingMode', 'invalid', 15)).toThrow('Unknown SwiftUI')
+    expect(() => assertSwiftUIValue('SymbolVariants', 'fill', 15)).not.toThrow()
+    expect(() => assertSwiftUIValue('SymbolVariants', 'invalid', 15)).toThrow('Unknown SwiftUI')
+    expect(() => assertSwiftUIValue('ImageScale', 'medium', 13)).not.toThrow()
+    expect(() => assertSwiftUIValue('ImageScale', 'invalid', 13)).toThrow('Unknown SwiftUI')
+  })
+})
+

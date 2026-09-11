@@ -428,6 +428,53 @@ export function Gauge({
     />
   )
 }
+import NativeImage from '../specs/OneNativeImageNativeComponent'
+export function Image({
+  systemName = '',
+  symbolRenderingMode = '',
+  symbolVariant = '',
+  imageScale = '',
+  variableValue = undefined,
+  style,
+  ...props
+}: Types.ImageProps) {
+  if (typeof systemName !== 'string' || !systemName)
+    throw new Error('Image systemName must be a non-empty SF Symbol name')
+  if (variableValue !== undefined && !Number.isFinite(variableValue))
+    throw new Error('Image variableValue must be a finite number or undefined')
+  if (variableValue !== undefined && (variableValue < 0 || variableValue > 1))
+    throw new Error('Image variableValue must be between 0 and 1')
+  if (symbolRenderingMode)
+    assertSwiftUIValue(
+      'SymbolRenderingMode',
+      symbolRenderingMode,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (symbolVariant)
+    assertSwiftUIValue(
+      'SymbolVariants',
+      symbolVariant,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (imageScale)
+    assertSwiftUIValue(
+      'ImageScale',
+      imageScale,
+      Number.parseFloat(String(Platform.Version))
+    )
+  return (
+    <NativeImage
+      {...props}
+      style={style}
+      systemName={systemName}
+      symbolRenderingMode={symbolRenderingMode}
+      symbolVariant={symbolVariant}
+      imageScale={imageScale}
+      variableValue={variableValue ?? 0}
+      hasVariableValue={variableValue !== undefined}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',

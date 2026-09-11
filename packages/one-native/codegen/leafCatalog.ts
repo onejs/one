@@ -156,4 +156,63 @@ export const leafControls: Control[] = [
   if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
   if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
   },
+  {
+    name: 'Image',
+    fields: {
+      systemName: { type: 'string', default: '' },
+      symbolRenderingMode: {
+        type: 'string',
+        default: '',
+        enum: 'SymbolRenderingMode',
+      },
+      symbolVariant: {
+        type: 'string',
+        default: '',
+        enum: 'SymbolVariants',
+      },
+      imageScale: {
+        type: 'string',
+        default: '',
+        enum: 'ImageScale',
+      },
+      variableValue: {
+        type: 'Double',
+        default: 0,
+        jsDefault: 'undefined',
+        nativeValue: 'variableValue ?? 0',
+      },
+      hasVariableValue: {
+        type: 'boolean',
+        default: false,
+        derived: true,
+        nativeValue: 'variableValue !== undefined',
+      },
+    },
+    constructors: [
+      {
+        type: 'Image',
+        parameters: [{ label: 'systemName', type: 'Swift.String' }],
+      },
+      {
+        type: 'Image',
+        parameters: [
+          { label: 'systemName', type: 'Swift.String' },
+          { label: 'variableValue', type: 'Swift.Double?' },
+        ],
+      },
+    ],
+    swift: `Group {
+        if model.hasVariableValue {
+          Image(systemName: model.systemName, variableValue: model.variableValue)
+        } else {
+          Image(systemName: model.systemName)
+        }
+      }
+      .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
+      .oneNativeSymbolVariant(model.symbolVariant)
+      .oneNativeImageScale(model.imageScale)`,
+    validate: `  if (typeof systemName !== 'string' || !systemName) throw new Error('Image systemName must be a non-empty SF Symbol name')
+  if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
+  if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')`,
+  },
 ]

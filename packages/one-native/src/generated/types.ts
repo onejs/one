@@ -22,6 +22,9 @@ import type {
   Axis,
   Edge,
   PresentationAdaptation,
+  SymbolRenderingMode,
+  SymbolVariants,
+  ImageScale,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -43,6 +46,9 @@ export type {
   Axis,
   Edge,
   PresentationAdaptation,
+  SymbolRenderingMode,
+  SymbolVariants,
+  ImageScale,
 } from './swiftui'
 export interface MenuAction {
   type: 'action'

@@ -22,6 +22,23 @@ export const modifiers = [
     type: 'TextInputAutocapitalization',
     optional: true,
   },
+  {
+    name: 'symbolRenderingMode',
+    type: 'SymbolRenderingMode',
+    module: 'SwiftUICore',
+    optional: true,
+  },
+  {
+    name: 'symbolVariant',
+    type: 'SymbolVariants',
+    module: 'SwiftUICore',
+  },
+  {
+    name: 'imageScale',
+    type: 'ImageScale',
+    swiftType: 'Image.Scale',
+    module: 'SwiftUICore',
+  },
 ] as const
 export const enumTypes = [
   'MenuOrder',
@@ -43,6 +60,9 @@ export const enumTypes = [
   'Axis',
   'Edge',
   'PresentationAdaptation',
+  'SymbolRenderingMode',
+  'SymbolVariants',
+  'ImageScale',
 ]
 export const fields = {
   id: { type: 'string', default: '' },

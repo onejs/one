@@ -1040,6 +1040,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         !JSON.stringify(n).includes('s3cr3t')
     )
 
+    tap({ id: 'one-native-leaf-category-image' })
+    await wait(
+      'fresh Image mounted',
+      (n) =>
+        status(n, 'Category', 'Image') &&
+        status(n, 'SystemName', 'star.fill') &&
+        status(n, 'RenderingMode', 'monochrome') &&
+        status(n, 'Variant', 'none') &&
+        status(n, 'Scale', 'medium') &&
+        status(n, 'VariableValue', 'unset') &&
+        n.some((x) => x.AXLabel === 'Leaf image')
+    )
+    screenshot('image-initial.png')
+    tap({ id: 'one-native-leaf-cycle-rendering-mode' })
+    await wait('Image hierarchical rendering mode', (n) =>
+      status(n, 'RenderingMode', 'hierarchical')
+    )
+    screenshot('image-hierarchical.png')
+    tap({ id: 'one-native-leaf-cycle-variant' })
+    await wait('Image fill variant', (n) => status(n, 'Variant', 'fill'))
+    screenshot('image-fill.png')
+    tap({ id: 'one-native-leaf-cycle-scale' })
+    await wait('Image large scale', (n) => status(n, 'Scale', 'large'))
+    screenshot('image-large.png')
+    tap({ id: 'one-native-leaf-step-variable-value' })
+    await wait('Image variable value stepped', (n) =>
+      status(n, 'VariableValue', 0.5)
+    )
+    screenshot('image-variable-value.png')
+    tap({ id: 'one-native-leaf-toggle-systemname' })
+    await wait('Image systemName toggled', (n) =>
+      status(n, 'SystemName', 'speaker.wave.3')
+    )
+    screenshot('image-speaker.png')
+
     for (let cycle = 1; cycle <= 2; cycle++) {
       tap({ id: 'BackButton' })
       await wait(`leaves recycle ${cycle}: home mounted`, () => true, true)
@@ -1082,6 +1117,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       submit()
       await wait(`leaves recycle ${cycle}: current submit emitter`, (n) =>
         status(n, 'Submits', 1)
+      )
+      tap({ id: 'one-native-leaf-category-image' })
+      await wait(
+        `leaves recycle ${cycle}: fresh Image state`,
+        (n) =>
+          status(n, 'Category', 'Image') &&
+          status(n, 'SystemName', 'star.fill') &&
+          n.some((x) => x.AXLabel === 'Leaf image')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
