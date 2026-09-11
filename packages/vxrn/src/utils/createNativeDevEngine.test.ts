@@ -1,10 +1,12 @@
-import { existsSync } from 'node:fs'
+import { existsSync, realpathSync } from 'node:fs'
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
+import { originalPositionFor, TraceMap } from '@jridgewell/trace-mapping'
 import { rolldown, type Plugin, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
+import { normalizePath } from 'vite'
 import { describe, expect, it, vi } from 'vitest'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { workletImportsPlugin } from '../plugins/workletImportsPlugin'
@@ -20,6 +22,7 @@ import {
   hmrClientNoopPlugin,
   nativeAnimatedGuardPlugin,
   normalizeNativeCommonJSInterop,
+  postProcessNativeBundle,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
   type NativePluginContext,
@@ -1949,5 +1952,116 @@ globalThis.__vxrnFlowProbe = new Flowy().measure({ value: 41 }) + 1
     } finally {
       await rm(testRoot, { recursive: true, force: true })
     }
+  })
+})
+
+describe('native bundle source maps', () => {
+  // the generated position of a marker in the emitted bundle is exactly what a
+  // device reports in a stack frame, so resolving it is the same question as
+  // symbolicating a crash.
+  const generatedPositionOf = (code: string, marker: string) => {
+    const index = code.indexOf(marker)
+    expect(index).toBeGreaterThan(-1)
+    const before = code.slice(0, index)
+    const lastNewline = before.lastIndexOf('\n')
+    return {
+      line: (before.match(/\n/g)?.length ?? 0) + 1,
+      column: index - lastNewline - 1,
+    }
+  }
+
+  it(
+    'resolves a frame to the authored file and line across an app file and a package file',
+    { timeout: 60_000 },
+    async () => {
+      // realpath: macOS hands out /var/folders temp dirs that resolve to
+      // /private/var, and the map records the resolved path.
+      const testRoot = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-sourcemap-')))
+      const packageRoot = join(testRoot, 'node_modules/probe-package')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ name: 'probe-package', main: 'index.js', type: 'module' })
+      )
+      // a blank line directly above an `export default` is the case that used to
+      // disappear during post-processing and shift every frame below it.
+      await writeFile(
+        join(packageRoot, 'index.js'),
+        [
+          `function packageThrow() {`, // 1
+          `  throw new Error('__probe_package__')`, // 2
+          `}`, // 3
+          ``, // 4
+          `export default packageThrow`, // 5
+        ].join('\n')
+      )
+      await writeFile(
+        join(testRoot, 'entry.js'),
+        [
+          `import packageThrow from 'probe-package'`, // 1
+          ``, // 2
+          `function appThrow() {`, // 3
+          `  throw new Error('__probe_app__')`, // 4
+          `}`, // 5
+          ``, // 6
+          `globalThis.__probe = [appThrow, packageThrow]`, // 7
+        ].join('\n')
+      )
+
+      try {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          sourcemap: true,
+        })
+        expect(result.map).toBeTruthy()
+        const traced = new TraceMap(JSON.parse(result.map!))
+
+        const app = originalPositionFor(
+          traced,
+          generatedPositionOf(result.code, '__probe_app__')
+        )
+        const pkg = originalPositionFor(
+          traced,
+          generatedPositionOf(result.code, '__probe_package__')
+        )
+
+        // the authored line, which a post-processing pass that drops a line
+        // silently moves
+        expect(app.source?.endsWith('/entry.js')).toBe(true)
+        expect(app.line).toBe(4)
+        expect(pkg.source?.endsWith('/index.js')).toBe(true)
+        expect(pkg.line).toBe(2)
+
+        // and the absolute path, which is all a crash reporter has to go on
+        expect(app.source).toBe(normalizePath(join(testRoot, 'entry.js')))
+        expect(pkg.source).toBe(normalizePath(join(packageRoot, 'index.js')))
+      } finally {
+        await rm(testRoot, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
+describe('postProcessNativeBundle', () => {
+  // rolldown emits the map before these passes run, so a line they remove moves
+  // every frame below it away from the source it maps to.
+  const lines = (code: string) => code.split('\n').length
+
+  it('keeps the blank line above an export default', () => {
+    const input = ['var a = 1;', '', 'export default a;', 'var b = 2;', ''].join('\n')
+    const out = postProcessNativeBundle(input)
+    expect(lines(out)).toBe(lines(input))
+    expect(out.split('\n')[2]).toBe('a;')
+  })
+
+  it('keeps the lines of a multi-line export statement', () => {
+    const input = ['var a = 1;', 'export {', '  a', '};', 'var b = 2;', ''].join('\n')
+    const out = postProcessNativeBundle(input)
+    expect(lines(out)).toBe(lines(input))
+    expect(out).not.toContain('export {')
+    expect(out.split('\n')[4]).toBe('var b = 2;')
   })
 })
