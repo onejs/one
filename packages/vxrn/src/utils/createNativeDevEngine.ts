@@ -278,14 +278,20 @@ function getNativePlugins(
   )
 }
 
-// shared output options for native builds
-function getNativeOutputOptions(prelude: string, sourcemap: boolean): OutputOptions {
+// shared output options for native builds. `minify: false` keeps rolldown's
+// default `'dce-only'`, which is what native builds have always run with.
+function getNativeOutputOptions(
+  prelude: string,
+  sourcemap: boolean,
+  minify: boolean
+): OutputOptions {
   return {
     format: 'esm',
     sourcemap,
     intro: prelude,
     codeSplitting: false,
     strictExecutionOrder: true,
+    minify: minify || 'dce-only',
   }
 }
 
@@ -426,6 +432,34 @@ async function downlevelClassFieldsInBundle(code: string): Promise<string> {
   return code.slice(0, startIdx) + linePreservingRuntime + code.slice(runtimeEnd)
 }
 
+/**
+ * Run the native post-processing passes inside the bundle, where rolldown still
+ * hands them unminified output.
+ *
+ * Rolldown minifies a chunk *after* plugin `renderChunk` hooks, and every pass
+ * below reads the shape rolldown generates: `normalizeNativeCommonJSInterop`
+ * matches `__toESM(require_x(), 1)` by name, and `downlevelClassFieldsInBundle`
+ * locates the runtime by its `//#region` comment. Minification mangles the
+ * first and strips the second, so running these on the finished chunk would
+ * silently stop applying them as soon as `--minify` is on — a production bundle
+ * whose CommonJS interop differs from the dev one. This hook is what keeps a
+ * minified and an unminified bundle the same bundle.
+ *
+ * `map: null` records what the passes guarantee: they replace syntax in place
+ * without moving a line, so rolldown's own map still describes the result.
+ */
+function nativeBundlePostProcessPlugin(): Plugin {
+  return {
+    name: 'vxrn:native-post-process',
+    async renderChunk(code) {
+      return {
+        code: await downlevelClassFieldsInBundle(postProcessNativeBundle(code)),
+        map: null,
+      }
+    },
+  }
+}
+
 export async function createNativeDevEngine(
   options: NativeDevEngineOptions
 ): Promise<NativeDevEngineResult> {
@@ -506,7 +540,7 @@ export async function createNativeDevEngine(
     // served code is post-processed (runtime downleveling, IIFE wrap) after the
     // map is generated. generating it cost ~90ms and ~250MB RSS per rebuild on a
     // 6MB bundle, held for the life of the dev server, per platform.
-    ...getNativeOutputOptions(prelude, false),
+    ...getNativeOutputOptions(prelude, false, false),
     // connect HMR WebSocket using RN's WebSocket module (not the global)
     outro: `
 try {
@@ -664,6 +698,11 @@ interface NativeBuildOptions {
   plugins?: Plugin[]
   /** only pass when the map is written somewhere — it costs a second copy of the bundle */
   sourcemap?: boolean
+  /**
+   * Compress and mangle the output. Defaults to React Native's own rule for a
+   * bundle: on unless the build is a dev build.
+   */
+  minify?: boolean
 }
 
 export async function buildNativeBundle(
@@ -678,6 +717,7 @@ export async function buildNativeBundle(
     assetsDest,
     plugins: userPlugins = [],
     sourcemap = false,
+    minify = !dev,
   } = options
 
   const { build } = await import('rolldown')
@@ -721,8 +761,10 @@ export async function buildNativeBundle(
         sourcemap,
         userPlugins
       ),
+      // last, so it sees what every other plugin produced
+      nativeBundlePostProcessPlugin(),
     ],
-    output: getNativeOutputOptions(prelude, sourcemap),
+    output: getNativeOutputOptions(prelude, sourcemap, minify),
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
 
@@ -730,13 +772,10 @@ export async function buildNativeBundle(
     throw new Error('[vxrn] production build produced no output')
   }
 
-  let code = postProcessNativeBundle(chunk.code)
-  code = await downlevelClassFieldsInBundle(code)
-  // Per-module Babel/SWC transforms return maps when requested, and the
-  // generated-runtime downlevel pass preserves its input line count. The
-  // remaining post-processing replaces syntax in place, so application frames
-  // retain Rolldown's generated line and compose back to original source.
-  return { code, map: sourcemap ? chunk.map?.toString() : undefined }
+  // Per-module Babel/SWC transforms return maps when requested, and
+  // nativeBundlePostProcessPlugin runs inside the bundle, so Rolldown's map
+  // already describes the emitted chunk and composes back to original source.
+  return { code: chunk.code, map: sourcemap ? chunk.map?.toString() : undefined }
 }
 
 const VIRTUAL_NATIVE_ENTRY = 'virtual:native-entry'

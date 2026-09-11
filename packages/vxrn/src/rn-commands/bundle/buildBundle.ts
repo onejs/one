@@ -1,4 +1,3 @@
-import path from 'node:path'
 import FSExtra from 'fs-extra'
 import {
   bundle as metroBundle,
@@ -18,15 +17,25 @@ export async function buildBundle(
   const {
     platform, // Android is not supported yet.
     dev,
-    // bundleEncoding, // Not supported, we are using utf8.
-    // sourcemapUseAbsolutePath,
-    // unstableTransformProfile,
-    // resetCache, // Currently we are not using cache for production builds.
-    // readGlobalCache,
-    // entryFile, // Not supported. With VxRN, we are using a static entry file.
     bundleOutput,
+    // React Native's `--bundle-encoding` names a Node Buffer encoding.
+    bundleEncoding = 'utf8',
     assetsDest,
-    // minify, // Minification is not supported.
+    // `--minify` overrides React Native's default of "minify unless this is a
+    // dev bundle". undefined means the flag was not passed.
+    minify,
+    // `--entry-file` names the React Native root module. One generates its own
+    // native entry from the route tree instead, and __vxrnNativeEntryFile is
+    // the supported way to point the build somewhere else.
+    // `--reset-cache` / `--read-global-cache` / `--max-workers` / `--config` /
+    // `--transformer` / `--resolver-option` configure Metro's worker pool,
+    // transform cache and resolver. Rolldown production builds have none of
+    // them: every build transforms from source in-process.
+    // `--unstable-transform-profile` picks a JS engine to target. This pipeline
+    // always downlevels for Hermes, which is what every profile it accepts
+    // ('default', 'hermes', 'hermes-canary') can run.
+    // `--sourcemap-use-absolute-path`, `--sourcemap-sources-root`,
+    // `--asset-catalog-dest` and `--indexed-ram-bundle` are not implemented.
   } = args
 
   const { root } = ctx
@@ -67,6 +76,7 @@ export async function buildBundle(
     serverUrl: process.env.ONE_SERVER_URL,
     assetsDest,
     sourcemap: !!args.sourcemapOutput,
+    minify,
   })
   const builtBundle = result.code
 
@@ -76,7 +86,7 @@ export async function buildBundle(
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
-  FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: 'utf8' })
+  FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
   console.info('Done.')
 
   // Prevent the process not getting exited for some unknown reason.
