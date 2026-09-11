@@ -26,8 +26,8 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeDatePickerProps>(props);
 
 
-  [_nativeView configure:next.value acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-    label:RCTNSStringFromString(next.label) disabled:next.disabled minimumDate:next.minimumDate maximumDate:next.maximumDate displayedComponents:RCTNSStringFromString(next.displayedComponents) datePickerStyle:RCTNSStringFromString(next.datePickerStyle)];
+  [_nativeView configure:next.value
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled minimumDate:next.minimumDate maximumDate:next.maximumDate displayedComponents:RCTNSStringFromString(next.displayedComponents) datePickerStyle:RCTNSStringFromString(next.datePickerStyle)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }

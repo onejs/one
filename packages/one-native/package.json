@@ -60,6 +60,11 @@
         "OneNativeToggle": "OneNativeToggleComponentView",
         "OneNativeSlider": "OneNativeSliderComponentView",
         "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativeButton": "OneNativeButtonComponentView",
+        "OneNativeProgressView": "OneNativeProgressViewComponentView",
+        "OneNativeGauge": "OneNativeGaugeComponentView",
+        "OneNativeTextField": "OneNativeTextFieldComponentView",
+        "OneNativeSecureField": "OneNativeSecureFieldComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView"
       }

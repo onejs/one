@@ -26,8 +26,8 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeSliderProps>(props);
 
 
-  [_nativeView configure:next.value acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-    label:RCTNSStringFromString(next.label) disabled:next.disabled minimumValue:next.minimumValue maximumValue:next.maximumValue step:next.step];
+  [_nativeView configure:next.value
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled minimumValue:next.minimumValue maximumValue:next.maximumValue step:next.step];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }

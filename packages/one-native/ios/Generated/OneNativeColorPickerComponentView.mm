@@ -26,8 +26,8 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeColorPickerProps>(props);
 
 
-  [_nativeView configure:RCTNSStringFromString(next.value) acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-    label:RCTNSStringFromString(next.label) disabled:next.disabled supportsOpacity:next.supportsOpacity];
+  [_nativeView configure:RCTNSStringFromString(next.value)
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled supportsOpacity:next.supportsOpacity];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
