@@ -146,8 +146,14 @@ controls live beside them in `ios/` and conform to the same protocol. No
 1. Add the overlay module paths to `inventory.ts`. Largest surface gain per line
    changed, and it settles video, web, Quick Look, photo picker and maps at once.
    **Done.** `inventory.ts` now reads SwiftUI, SwiftUICore and all 23 overlay
-   modules, and `Swift.VideoPlayer` is generated from `_AVKit_SwiftUI` as the
-   first control that only exists because of it.
+   modules. `Swift.VideoPlayer` comes from `_AVKit_SwiftUI` and `Swift.QuickLook`
+   from `_QuickLook_SwiftUI`; between them they exercise both selector paths,
+   since `VideoPlayer` is picked by `selectConstructor` and `quickLookPreview` by
+   `selectModifier`. The `media` conformance suite drives both on a simulator.
+   Left from this list: `PhotosPicker` (`_PhotosUI_SwiftUI`), `Map`
+   (`_MapKit_SwiftUI`), and `WebView` (`_WebKit_SwiftUI`, which is iOS 26 while
+   the package declares `minimumVersion: 18`, so it needs a control-level
+   availability gate that does not exist yet).
 2. Zoomable image view (UIKit). Directly fixes a pain point we have hit.
 3. Zoom navigation transition (UIKit, iOS 18). Completes the gallery.
 4. PDF, only if an app asks and `quickLookPreview` is not enough.
