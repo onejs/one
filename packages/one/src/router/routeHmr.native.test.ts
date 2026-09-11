@@ -25,18 +25,16 @@ describe('routeHmr.native', () => {
     expect(typeof globalThis.__VXRN_ON_MODULE_UPDATED__).toBe('function')
   })
 
-  it('bumps the epoch and notifies subscribers, and stops after unsubscribe', () => {
+  it('does not bump the epoch, so Fast Refresh can keep the mounted route', () => {
     const before = routeHmr.getRouteHmrEpoch()
     const listener = vi.fn()
     const unsubscribe = routeHmr.subscribeRouteHmr(listener)
 
     globalThis.__VXRN_ON_MODULE_UPDATED__!('app/index.tsx')
-    expect(routeHmr.getRouteHmrEpoch()).toBe(before + 1)
-    expect(listener).toHaveBeenCalledTimes(1)
+    expect(routeHmr.getRouteHmrEpoch()).toBe(before)
+    expect(listener).not.toHaveBeenCalled()
 
     unsubscribe()
-    globalThis.__VXRN_ON_MODULE_UPDATED__!('app/index.tsx')
-    expect(listener).toHaveBeenCalledTimes(1)
   })
 
   it('evicts the route cache for the updated file when window.__oneRouteCache is present', () => {
@@ -46,7 +44,7 @@ describe('routeHmr.native', () => {
     expect(clearFile).toHaveBeenCalledWith('app/_layout.tsx')
   })
 
-  it('does not bump the epoch for a non-route module when the cache says so', () => {
+  it('does not bump the epoch for a non-route module either', () => {
     const before = routeHmr.getRouteHmrEpoch()
     const listener = vi.fn()
     const unsubscribe = routeHmr.subscribeRouteHmr(listener)
@@ -65,9 +63,10 @@ describe('routeHmr.native', () => {
     expect(() => globalThis.__VXRN_ON_MODULE_UPDATED__!('x.tsx')).not.toThrow()
   })
 
-  it('still notifies subscribers when route-cache eviction throws', () => {
+  it('does not throw or bump the epoch when route-cache eviction throws', () => {
     const listener = vi.fn()
     const unsubscribe = routeHmr.subscribeRouteHmr(listener)
+    const before = routeHmr.getRouteHmrEpoch()
     ;(globalThis as any).window = {
       __oneRouteCache: {
         clearFile() {
@@ -76,10 +75,9 @@ describe('routeHmr.native', () => {
       },
     }
 
-    expect(() => globalThis.__VXRN_ON_MODULE_UPDATED__!('app/index.tsx')).toThrow(
-      'cache eviction failed'
-    )
-    expect(listener).toHaveBeenCalledOnce()
+    expect(() => globalThis.__VXRN_ON_MODULE_UPDATED__!('app/index.tsx')).not.toThrow()
+    expect(routeHmr.getRouteHmrEpoch()).toBe(before)
+    expect(listener).not.toHaveBeenCalled()
     unsubscribe()
   })
 })
