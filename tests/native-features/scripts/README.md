@@ -40,3 +40,49 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
 Artifacts are written to `--artifact-dir`: key rendered screenshots and outcome.json with passed checks, durations, and `suite`, and a screenshot plus accessibility snapshot when a condition times out.
+
+## Visual verification
+
+The accessibility assertions above cannot see whether anything painted. A control that publishes a
+correct accessibility tree with correct frames while rendering nothing passes all 386 of them. That
+is a real failure mode: the same bug was found in `@expo/ui`'s segmented picker, which painted 0 of
+116,028 pixels while its test asserted only that its container ids existed.
+
+`visual-verification.ts` closes that. It grades declared crop regions of the screenshots the suites
+already write. Run everything with one command:
+
+```sh
+bun scripts/one-native-conformance-all.ts --simulator-id <UUID> --bundle-id dev.one.native.tests \
+  --artifact-dir /tmp/one-native-conformance
+```
+
+That runs the 12 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
+root. The visual pass runs last and against the root rather than per suite because several checks
+take their negative capture from another suite's directory.
+
+Each check in `visual-declarations.ts` declares a crop region, a subject measurement over the
+pixels in it, a floor, and a negative capture. Three properties are enforced rather than asserted
+in prose:
+
+- **The subject measurement is directional.** It reads the positive capture only. A symmetric diff
+  between two captures can never discriminate them, so it cannot be the gate.
+- **The negative capture must fail.** `--swap-test` feeds every check its own negative and requires
+  the reading to fall below the floor. A check that passes on both captures is not a check.
+- **Specificity is recorded, not assumed.** `--cross-sub` runs every check's measurement over all
+  captures in the corpus and reports how many clear the floor. A check that clears on 20 of 70
+  captures is a presence detector, and its name has to say so: `sheet-presentation-paints` clears on
+  16 of 70 and is named for what it measures. Every other check clears on 1 to 4, and each extra
+  match is a genuine instance of the subject.
+
+Floors come from measured values with the null state recorded beside them, for example map markers:
+positive pin-tint 3,718, floor 1,500, a pin-free map reads 356.
+
+Gemini vision (`visual-gemini-oracle.ts`, `--oracle`) is advisory commentary only and never decides
+pass or fail. It was measured returning the wrong verdict on `map-markers`' own negative capture one
+run in three, and on a pin-free map it could be flipped to pass by changing only the fixture's
+status text, which it read instead of the pixels. Anything it decides is a coin flip; use it to
+author and explain checks, not to gate them.
+
+When adding a check, do not tune a crop until only the positive passes. Verify it by erasing the
+subject in place: fill the declared region with a realistic null-state colour and confirm the
+reading falls below the floor. All 18 checks do.
