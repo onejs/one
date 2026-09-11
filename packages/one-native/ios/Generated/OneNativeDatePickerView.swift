@@ -11,6 +11,7 @@ private final class DatePickerModel: ObservableObject {
   @Published var maximumDate: Double = 64092211200000
   @Published var displayedComponents: String = "dateAndTime"
   @Published var datePickerStyle: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((Double, Int, Int) -> Void)?
   func change(_ value: Double) {
@@ -22,9 +23,14 @@ private final class DatePickerModel: ObservableObject {
 @objcMembers public final class OneNativeDatePickerView: UIView, OneNativeComposable {
   public var onChange: ((Double, Int, Int) -> Void)?
   private var model = DatePickerModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<DatePickerContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<DatePickerContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumDate: Double, maximumDate: Double, displayedComponents: String, datePickerStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
@@ -57,7 +63,7 @@ private final class DatePickerModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: DatePickerContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: DatePickerContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -79,6 +85,7 @@ private struct DatePickerContent: View {
       }
       .oneNativeDatePickerStyle(model.datePickerStyle)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }
 private func oneNativeDatePickerComponents(_ value: String) -> DatePicker<Text>.Components {

@@ -2,13 +2,30 @@
 // edit the generator or catalog, then regenerate.
 import type { ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
+
+// the React Native props a One Native control honors. a composed control renders inside its
+// parent's SwiftUI tree and its own UIView is never displayed, so the rest of ViewProps would
+// be accepted and then silently do nothing.
+//
+// accessibility travels into the SwiftUI content, so it means the same thing in both
+// positions. `style` and `onLayout` describe the outer Yoga box, which only a standalone
+// control has: composed, a control is measured by its parent instead.
+export type OneNativeViewProps = Pick<
+  ViewProps,
+  | 'accessibilityLabel'
+  | 'accessibilityHint'
+  | 'accessibilityValue'
+  | 'testID'
+  | 'style'
+  | 'onLayout'
+>
 export type PickerOption = Readonly<{ value: string; label: string }>
 export type DialogAction = Readonly<{
   id: string
   label: string
   role?: Styles.ButtonRole
 }>
-export interface PickerProps extends Omit<ViewProps, 'children'> {
+export interface PickerProps extends OneNativeViewProps {
   selection: string
   onSelectionChange: (value: string) => void
   revision?: number
@@ -17,7 +34,7 @@ export interface PickerProps extends Omit<ViewProps, 'children'> {
   options: readonly PickerOption[]
   pickerStyle?: Styles.PickerStyle
 }
-export interface DatePickerProps extends Omit<ViewProps, 'children'> {
+export interface DatePickerProps extends OneNativeViewProps {
   selection: Date
   onSelectionChange: (value: Date) => void
   revision?: number
@@ -28,7 +45,7 @@ export interface DatePickerProps extends Omit<ViewProps, 'children'> {
   displayedComponents?: 'date' | 'hourAndMinute' | 'dateAndTime'
   datePickerStyle?: Styles.DatePickerStyle
 }
-export interface ColorPickerProps extends Omit<ViewProps, 'children'> {
+export interface ColorPickerProps extends OneNativeViewProps {
   selection: string
   onSelectionChange: (value: string) => void
   revision?: number
@@ -36,7 +53,7 @@ export interface ColorPickerProps extends Omit<ViewProps, 'children'> {
   disabled?: boolean
   supportsOpacity?: boolean
 }
-export interface ToggleProps extends Omit<ViewProps, 'children'> {
+export interface ToggleProps extends OneNativeViewProps {
   isOn: boolean
   onIsOnChange: (value: boolean) => void
   revision?: number
@@ -44,7 +61,7 @@ export interface ToggleProps extends Omit<ViewProps, 'children'> {
   disabled?: boolean
   toggleStyle?: Styles.ToggleStyle
 }
-export interface SliderProps extends Omit<ViewProps, 'children'> {
+export interface SliderProps extends OneNativeViewProps {
   value: number
   onValueChange: (value: number) => void
   revision?: number
@@ -54,7 +71,7 @@ export interface SliderProps extends Omit<ViewProps, 'children'> {
   maximumValue?: number
   step?: number
 }
-export interface StepperProps extends Omit<ViewProps, 'children'> {
+export interface StepperProps extends OneNativeViewProps {
   value: number
   onValueChange: (value: number) => void
   revision?: number
@@ -64,15 +81,15 @@ export interface StepperProps extends Omit<ViewProps, 'children'> {
   maximumValue?: number
   step?: number
 }
-export interface TextProps extends Omit<ViewProps, 'children'> {
+export interface TextProps extends OneNativeViewProps {
   text?: string
 }
-export interface LabelProps extends Omit<ViewProps, 'children'> {
+export interface LabelProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   systemImage?: string
 }
-export interface ButtonProps extends Omit<ViewProps, 'children'> {
+export interface ButtonProps extends OneNativeViewProps {
   onPress?: () => void
   label?: string
   disabled?: boolean
@@ -80,14 +97,14 @@ export interface ButtonProps extends Omit<ViewProps, 'children'> {
   buttonRole?: Styles.ButtonRole | ''
   buttonStyle?: Styles.PrimitiveButtonStyle
 }
-export interface ProgressViewProps extends Omit<ViewProps, 'children'> {
+export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   value?: number
   total?: number
   progressViewStyle?: Styles.ProgressViewStyle
 }
-export interface GaugeProps extends Omit<ViewProps, 'children'> {
+export interface GaugeProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   value?: number
@@ -98,7 +115,7 @@ export interface GaugeProps extends Omit<ViewProps, 'children'> {
   maximumValueLabel?: string
   gaugeStyle?: Styles.GaugeStyle
 }
-export interface TextFieldProps extends Omit<ViewProps, 'children'> {
+export interface TextFieldProps extends OneNativeViewProps {
   text: string
   onTextChange: (value: string) => void
   revision?: number
@@ -112,7 +129,7 @@ export interface TextFieldProps extends Omit<ViewProps, 'children'> {
   autocorrectionDisabled?: boolean
   axis?: Styles.Axis
 }
-export interface SecureFieldProps extends Omit<ViewProps, 'children'> {
+export interface SecureFieldProps extends OneNativeViewProps {
   text: string
   onTextChange: (value: string) => void
   revision?: number
@@ -125,7 +142,7 @@ export interface SecureFieldProps extends Omit<ViewProps, 'children'> {
   textInputAutocapitalization?: Styles.TextInputAutocapitalization | ''
   autocorrectionDisabled?: boolean
 }
-export interface AlertProps extends Omit<ViewProps, 'children'> {
+export interface AlertProps extends OneNativeViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
@@ -134,7 +151,7 @@ export interface AlertProps extends Omit<ViewProps, 'children'> {
   message?: string
   actions: readonly DialogAction[]
 }
-export interface ConfirmationDialogProps extends Omit<ViewProps, 'children'> {
+export interface ConfirmationDialogProps extends OneNativeViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number

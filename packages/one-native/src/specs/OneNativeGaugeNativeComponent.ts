@@ -15,4 +15,6 @@ interface NativeProps extends ViewProps {
   maximumValueLabel: string
   gaugeStyle: string
 }
-export default codegenNativeComponent<NativeProps>('OneNativeGauge')
+export default codegenNativeComponent<NativeProps>('OneNativeGauge', {
+  interfaceOnly: true,
+})

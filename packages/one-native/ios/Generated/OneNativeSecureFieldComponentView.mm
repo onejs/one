@@ -2,17 +2,25 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativeSecureFieldComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeSecureFieldShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeSecureFieldComponentView { OneNativeSecureFieldView *_nativeView; }
+@implementation OneNativeSecureFieldComponentView { OneNativeSecureFieldView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeSecureFieldComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeSecureFieldProps>();
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeSecureFieldView new]; self.contentView = _nativeView;
     __weak OneNativeSecureFieldComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativeSecureFieldComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
     _nativeView.onChange = ^(NSString *value, NSInteger eventCount, NSInteger revision) {
       OneNativeSecureFieldComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -32,9 +40,13 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeSecureFieldProps>(props);
 
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.value)
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

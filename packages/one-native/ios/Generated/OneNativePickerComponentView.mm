@@ -2,18 +2,26 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativePickerComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativePickerShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativePickerComponentView { OneNativePickerView *_nativeView; BOOL _optionsDirty; }
+@implementation OneNativePickerComponentView { OneNativePickerView *_nativeView; OneNativeMeasuredHeight *_measured; BOOL _optionsDirty; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativePickerComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativePickerProps>();
     _optionsDirty = YES;
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativePickerView new]; self.contentView = _nativeView;
     __weak OneNativePickerComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativePickerComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
     _nativeView.onChange = ^(NSString *value, NSInteger eventCount, NSInteger revision) {
       OneNativePickerComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -37,9 +45,13 @@ using namespace facebook::react;
     _optionsDirty = NO;
   }
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.value)
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled pickerStyle:RCTNSStringFromString(next.pickerStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _optionsDirty = YES; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; _optionsDirty = YES; }
 @end

@@ -20,13 +20,6 @@ const nativeType = (field: ControlField) =>
 const literal = (value: string | boolean | number) => JSON.stringify(value)
 const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
-const height = (value: Exclude<Control['height'], 'presentation'>) =>
-  (value.when ?? [])
-    .map(
-      (entry) =>
-        `${entry.values.map((option) => `${entry.prop} === ${JSON.stringify(option)}`).join(' || ')} ? ${entry.height} : `
-    )
-    .join('') + value.default
 // an enum field defaulting to the empty string means unset; the Swift helper passes self through.
 const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.default === ''
 
@@ -46,7 +39,21 @@ export function emitControls(header: string, outputs: Map<string, string>) {
       .join('; ')} }>`
   let types =
     header +
-    "import type { ViewProps } from 'react-native'\nimport type * as Styles from './swiftui'\n" +
+    `import type { ViewProps } from 'react-native'
+import type * as Styles from './swiftui'
+
+// the React Native props a One Native control honors. a composed control renders inside its
+// parent's SwiftUI tree and its own UIView is never displayed, so the rest of ViewProps would
+// be accepted and then silently do nothing.
+//
+// accessibility travels into the SwiftUI content, so it means the same thing in both
+// positions. \`style\` and \`onLayout\` describe the outer Yoga box, which only a standalone
+// control has: composed, a control is measured by its parent instead.
+export type OneNativeViewProps = Pick<
+  ViewProps,
+  'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'
+>
+` +
     Object.keys(payloads)
       .map((name) => `export type ${name} = ${payloadType(name, true)}\n`)
       .join('')
@@ -64,12 +71,15 @@ export function emitControls(header: string, outputs: Map<string, string>) {
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
     const styleFields = publicFields.filter(([, field]) => field.enum)
     const disabled = Object.hasOwn(fields, 'disabled')
+    // everything but a presentation reports the height SwiftUI measured, so it supplies its
+    // own shadow node and the spec must not generate one.
+    const measured = !control.presentation
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
     const callbackType = (action: { payload?: Record<string, ScalarType> }) =>
       `(${Object.entries(action.payload ?? {})
         .map(([key, type]) => `${key}: ${tsScalar(type)}`)
         .join(', ')}) => void`
-    types += `export interface ${name}Props extends Omit<ViewProps, 'children'> {
+    types += `export interface ${name}Props extends OneNativeViewProps {
 ${
   value
     ? `  ${value.prop}: ${publicValueType}
@@ -118,11 +128,11 @@ ${
         event: `onNative${name}${action.event}`,
       })),
       layout:
-        control.height === 'presentation'
+        control.presentation
           ? { kind: 'presentation' }
-          : { kind: 'inline', height: control.height },
+          : { kind: 'measured' },
       slots: [],
-      interfaceOnly: false,
+      interfaceOnly: measured,
     })
     const codegenTypes = ['DirectEventHandler', 'Int32', 'Double'].filter((type) => {
       if (type === 'DirectEventHandler') return Object.keys(events).length > 0
@@ -154,7 +164,7 @@ ${Object.entries(events)
   )
   .join('\n')}
 }
-export default codegenNativeComponent<NativeProps>('${nativeName}')
+export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? ', { interfaceOnly: true }' : ''})
 `
     )
     const parameters = [
@@ -168,10 +178,11 @@ export default codegenNativeComponent<NativeProps>('${nativeName}')
       'style',
       '...props',
     ]
-    const style =
-      control.height === 'presentation'
-        ? "{ position: 'absolute', width: 0, height: 0 }"
-        : `{ height: ${height(control.height)} }`
+    // a measured control's height arrives from SwiftUI through Fabric state, so the adapter
+    // supplies no height at all; a presentation has no box to occupy.
+    const styleProp = measured
+      ? 'style={style}'
+      : "style={[{ position: 'absolute', width: 0, height: 0 }, style]}"
     adapters += `import Native${name} from '../specs/${nativeName}NativeComponent'
 export function ${name}({ ${parameters.join(', ')} }: Types.${name}Props) {
 ${control.validate}
@@ -180,7 +191,7 @@ ${
   value
     ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
     : ''
-}  return <Native${name} {...props} style={[${style}, style]}
+}  return <Native${name} {...props} ${styleProp}
 ${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
 ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${actions
       .map(
@@ -221,6 +232,7 @@ import UIKit
 
 private final class ${name}Model: ObservableObject {
 ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value.type)}>(${literal(value.initial)})\n` : ''}${swiftFields}
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
 ${
   value
@@ -253,9 +265,13 @@ ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Voi
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
           )
           .join('')}  private var model = ${name}Model()
-  private var controller: OneNativeHostingController<OneNativeStandalone<${name}Content>>?
+${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
 ${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${plainFields
           .map(([key]) => `    if model.${key} != ${key} { model.${key} = ${key} }`)
@@ -300,7 +316,7 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ${name}Content(model: model)))
+      controller = OneNativeHostingController(rootView: ${measured ? `OneNativeMeasuredStandalone(content: ${name}Content(model: model), onHeight: { [weak self] height in self?.onHeight?(height) })` : `OneNativeStandalone(content: ${name}Content(model: model))`})
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -308,18 +324,47 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
   public func reset() {
     compositionParent = nil
     model.active = false${value ? '; model.onChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
-${control.height === 'presentation' ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
+${control.presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
 }
 private struct ${name}Content: View {
   @ObservedObject var model: ${name}Model
   var body: some View {
     ${control.swift}
-${disabled ? '      .disabled(model.disabled)\n' : ''}  }
+${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
+  }
 }
 ${control.extraSwift ?? ''}
 `
     )
+    if (measured) {
+      outputs.set(
+        `cpp/${nativeName}ShadowNode.h`,
+        header +
+          `#pragma once
+#ifdef __cplusplus
+#include <react/renderer/components/OneNativeSpec/EventEmitters.h>
+#include <react/renderer/components/OneNativeSpec/Props.h>
+#include "OneNativeMeasuredShadowNode.h"
+namespace facebook::react {
+extern const char ${nativeName}ComponentName[];
+using ${nativeName}ShadowNode = OneNativeMeasuredShadowNode<${nativeName}ComponentName, ${nativeName}Props, ${nativeName}EventEmitter>;
+using ${nativeName}ComponentDescriptor = OneNativeMeasuredComponentDescriptor<${nativeName}ShadowNode>;
+}
+#endif
+`
+      )
+      outputs.set(
+        `cpp/${nativeName}ShadowNode.cpp`,
+        header +
+          `#include "${nativeName}ShadowNode.h"
+
+namespace facebook::react {
+extern const char ${nativeName}ComponentName[] = "${nativeName}";
+}
+`
+      )
+    }
     outputs.set(
       `ios/Generated/${nativeName}ComponentView.h`,
       header +
@@ -358,17 +403,22 @@ ${control.extraSwift ?? ''}
       header +
         `#import "${nativeName}ComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+${measured ? `#import "${nativeName}ShadowNode.h"\n#import "OneNativeMeasuredHeight.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')} }
-+ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
+@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')} }
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${measured ? `
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }` : ''}
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const ${nativeName}Props>();
-${objectFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
+${objectFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
     __weak ${nativeName}ComponentView *weakSelf = self;
+${measured ? `    _nativeView.onHeight = ^(CGFloat height) {
+      ${nativeName}ComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };\n` : ''}
 ${
   value
     ? `    _nativeView.onChange = ^(${objcScalar(value.type)}value, NSInteger eventCount, NSInteger revision) {
@@ -418,6 +468,10 @@ ${objectFields.length ? `  const auto &previous = *std::static_pointer_cast<cons
           })
           .join('\n')}
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:${call[0].expression}
     ${call
       .slice(1)
@@ -425,7 +479,7 @@ ${objectFields.length ? `  const auto &previous = *std::static_pointer_cast<cons
       .join(' ')}];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${objectFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${measured ? ' [_measured reset];' : ''}${objectFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }
 @end
 `
     )

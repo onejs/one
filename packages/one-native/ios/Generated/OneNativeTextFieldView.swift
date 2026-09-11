@@ -13,6 +13,7 @@ private final class TextFieldModel: ObservableObject {
   @Published var textInputAutocapitalization: String = ""
   @Published var autocorrectionDisabled: Bool = false
   @Published var axis: String = "horizontal"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
@@ -32,9 +33,14 @@ private final class TextFieldModel: ObservableObject {
   public var onChange: ((String, Int, Int) -> Void)?
   public var onSubmit: ((Int) -> Void)?
   private var model = TextFieldModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<TextFieldContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<TextFieldContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool, axis: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
@@ -70,7 +76,7 @@ private final class TextFieldModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: TextFieldContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: TextFieldContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -96,5 +102,6 @@ private struct TextFieldContent: View {
       .autocorrectionDisabled(model.autocorrectionDisabled)
       .onSubmit(of: .text) { model.submit() }
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

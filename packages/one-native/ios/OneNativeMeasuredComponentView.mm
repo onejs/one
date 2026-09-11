@@ -1,30 +1,28 @@
-#include <cmath>
 #import "OneNativeMeasuredComponentView.h"
-#import "OneNativeMeasuredShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 
 using namespace facebook::react;
 
 @implementation OneNativeMeasuredComponentView {
-  ConcreteState<OneNativeMeasuredState>::Shared _measuredState;
+  OneNativeMeasuredHeight *_measured;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) _measured = [OneNativeMeasuredHeight new];
+  return self;
 }
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
-  _measuredState = std::static_pointer_cast<const ConcreteState<OneNativeMeasuredState>>(state);
+  [_measured adopt:state];
 }
 
 - (void)updateMeasuredHeight:(CGFloat)height {
-  if (!_measuredState || !std::isfinite(height)) return;
-  const auto &old = _measuredState->getData();
-  if (old.measured && std::abs(old.height - (Float)height) < 0.5) return;
-  OneNativeMeasuredState data;
-  data.height = (Float)height;
-  data.measured = true;
-  _measuredState->updateState(std::move(data));
+  [_measured update:height];
 }
 
 - (void)prepareForRecycle {
   [super prepareForRecycle];
-  _measuredState.reset();
+  [_measured reset];
 }
 
 @end

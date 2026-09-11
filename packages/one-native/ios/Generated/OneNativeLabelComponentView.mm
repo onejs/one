@@ -2,17 +2,25 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativeLabelComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeLabelShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeLabelComponentView { OneNativeLabelView *_nativeView; }
+@implementation OneNativeLabelComponentView { OneNativeLabelView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeLabelComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeLabelProps>();
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeLabelView new]; self.contentView = _nativeView;
     __weak OneNativeLabelComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativeLabelComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
   }
   return self;
 }
@@ -20,9 +28,13 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeLabelProps>(props);
 
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.label)
     disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

@@ -20,4 +20,6 @@ interface NativeProps extends ViewProps {
   >
   onNativeSecureFieldSubmit?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeSecureField')
+export default codegenNativeComponent<NativeProps>('OneNativeSecureField', {
+  interfaceOnly: true,
+})

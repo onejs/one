@@ -2,17 +2,25 @@
 // edit the generator or catalog, then regenerate.
 #import "OneNativeGaugeComponentView.h"
 #import "OneNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeGaugeShadowNode.h"
+#import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeGaugeComponentView { OneNativeGaugeView *_nativeView; }
+@implementation OneNativeGaugeComponentView { OneNativeGaugeView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeGaugeComponentDescriptor>(); }
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeGaugeProps>();
+    _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeGaugeView new]; self.contentView = _nativeView;
     __weak OneNativeGaugeComponentView *weakSelf = self;
+    _nativeView.onHeight = ^(CGFloat height) {
+      OneNativeGaugeComponentView *strongSelf = weakSelf;
+      if (strongSelf) [strongSelf->_measured update:height];
+    };
+
   }
   return self;
 }
@@ -20,9 +28,13 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeGaugeProps>(props);
 
 
+  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.label)
     disabled:next.disabled value:next.value minimumValue:next.minimumValue maximumValue:next.maximumValue currentValueLabel:RCTNSStringFromString(next.currentValueLabel) minimumValueLabel:RCTNSStringFromString(next.minimumValueLabel) maximumValueLabel:RCTNSStringFromString(next.maximumValueLabel) gaugeStyle:RCTNSStringFromString(next.gaugeStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

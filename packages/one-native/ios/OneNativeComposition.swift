@@ -23,6 +23,19 @@ struct OneNativeStandalone<Content: View>: View {
   }
 }
 
+// a standalone control fills the width Yoga proposed and takes its own ideal height, then
+// reports it so Yoga can size the row. that is why no control carries a hardcoded height:
+// SwiftUI already knows how tall a Stepper or a wrapped Text is, per style and per type size.
+struct OneNativeMeasuredStandalone<Content: View>: View {
+  let content: Content
+  let onHeight: ((CGFloat) -> Void)?
+  var body: some View {
+    content
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .oneNativeMeasured(true, onHeight)
+  }
+}
+
 // a standalone container takes its ideal height whatever Yoga proposed and reports it
 // back. measuring from SwiftUI means every content change is caught by SwiftUI's own
 // update pass; a UIKit-side measurement would need explicit scheduling. composed, the
@@ -82,24 +95,32 @@ final class OneNativeChildren: ObservableObject {
   // controller has a parent, which is the rule a composed control follows.
   public func setActive(_ active: Bool) {}
 
+  // fabric mounts children one at a time, so publication is incremental: rebuilding the
+  // whole array per insertion would ask every sibling for its content again, N times over.
   public func insertChild(_ child: UIView, at index: Int) {
-    childViews.insert(child, at: min(index, childViews.count))
-    (child as? OneNativeComposable)?.composeInto(self)
-    publish()
+    let at = min(index, childViews.count)
+    childViews.insert(child, at: at)
+    guard let composable = child as? OneNativeComposable else { return }
+    composable.composeInto(self)
+    published.items.insert(
+      OneNativeComposedChild(
+        id: ObjectIdentifier(child), content: composable.compositionContent()),
+      at: publishedIndex(before: at))
   }
 
   public func removeChild(_ child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
     childViews.remove(at: index)
-    (child as? OneNativeComposable)?.decompose()
-    publish()
+    guard let composable = child as? OneNativeComposable else { return }
+    composable.decompose()
+    let id = ObjectIdentifier(child)
+    published.items.removeAll { $0.id == id }
   }
 
-  private func publish() {
-    published.items = childViews.compactMap { view in
-      guard let composable = view as? OneNativeComposable else { return nil }
-      return OneNativeComposedChild(
-        id: ObjectIdentifier(view), content: composable.compositionContent())
+  // a non-composable child occupies a slot in childViews but never reaches published.items.
+  private func publishedIndex(before index: Int) -> Int {
+    childViews.prefix(index).reduce(into: 0) { count, view in
+      if view is OneNativeComposable { count += 1 }
     }
   }
 

@@ -39,10 +39,6 @@ export const pickerControls: Control[] = [
   if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
   if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')
   if (pickerStyle === 'navigationLink' || pickerStyle === 'palette') throw new Error('PickerStyle.' + pickerStyle + ' requires a native container context that One Native does not provide yet')`,
-    height: {
-      default: 44,
-      when: [{ prop: 'pickerStyle', values: ['wheel', 'inline'], height: 216 }],
-    },
   },
   {
     name: 'DatePicker',
@@ -114,13 +110,6 @@ export const pickerControls: Control[] = [
   if (minimumTime > maximumTime) throw new Error('DatePicker minimumDate must not be after maximumDate')
   if (selectionTime < minimumTime || selectionTime > maximumTime) throw new Error('DatePicker selection must be within minimumDate and maximumDate')
   if (!['date', 'hourAndMinute', 'dateAndTime'].includes(displayedComponents)) throw new Error('DatePicker displayedComponents must be date, hourAndMinute, or dateAndTime')`,
-    height: {
-      default: 44,
-      when: [
-        { prop: 'datePickerStyle', values: ['graphical'], height: 360 },
-        { prop: 'datePickerStyle', values: ['wheel'], height: 216 },
-      ],
-    },
   },
   {
     name: 'ColorPicker',
@@ -170,6 +159,5 @@ private func oneNativeEncodeColor(_ color: Color, supportsOpacity: Bool) -> Stri
   return "#" + channels.map { String(format: "%02X", Int(($0 * 255).rounded())) }.joined()
 }`,
     validate: `  if (typeof selection !== 'string' || !/^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/.test(selection)) throw new Error('ColorPicker selection must be #RRGGBB or #RRGGBBAA')`,
-    height: { default: 44 },
   },
 ]

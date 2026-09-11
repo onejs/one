@@ -12,4 +12,6 @@ interface NativeProps extends ViewProps {
   indeterminate: boolean
   progressViewStyle: string
 }
-export default codegenNativeComponent<NativeProps>('OneNativeProgressView')
+export default codegenNativeComponent<NativeProps>('OneNativeProgressView', {
+  interfaceOnly: true,
+})

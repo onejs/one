@@ -9,6 +9,7 @@ private final class ConfirmationDialogModel: ObservableObject {
   @Published var message: String = ""
   @Published var actions: [OneNativeDialogAction] = []
   @Published var titleVisibility: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
@@ -31,6 +32,10 @@ private final class ConfirmationDialogModel: ObservableObject {
   private var controller: OneNativeHostingController<OneNativeStandalone<ConfirmationDialogContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String, titleVisibility: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.title != title { model.title = title }
@@ -89,5 +94,6 @@ private struct ConfirmationDialogContent: View {
       } message: {
         if !model.message.isEmpty { Text(model.message) }
       }
+      .oneNativeAccessibility(model.accessibility)
   }
 }

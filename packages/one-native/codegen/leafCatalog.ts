@@ -10,7 +10,6 @@ export const leafControls: Control[] = [
     ],
     swift: `Text(verbatim: model.text)`,
     validate: `  if (typeof text !== 'string') throw new Error('Text text must be a string')`,
-    height: { default: 24 },
   },
   {
     name: 'Label',
@@ -30,7 +29,6 @@ export const leafControls: Control[] = [
     swift: `Label(LocalizedStringKey(model.label), systemImage: model.systemImage)`,
     validate: `  if (typeof label !== 'string' || !label) throw new Error('Label label must be a non-empty string')
   if (typeof systemImage !== 'string' || !systemImage) throw new Error('Label systemImage must be a non-empty SF Symbol name')`,
-    height: { default: 24 },
   },
   {
     name: 'Button',
@@ -68,7 +66,6 @@ export const leafControls: Control[] = [
       }
       .oneNativeButtonStyle(model.buttonStyle)`,
     validate: `  if (typeof label !== 'string' || !label) throw new Error('Button label must be a non-empty string')`,
-    height: { default: 44 },
   },
   {
     name: 'ProgressView',
@@ -119,7 +116,6 @@ export const leafControls: Control[] = [
     validate: `  if (value !== undefined && !Number.isFinite(value)) throw new Error('ProgressView value must be a finite number or undefined')
   if (!Number.isFinite(total) || total <= 0) throw new Error('ProgressView total must be a finite number greater than 0')
   if (value !== undefined && (value < 0 || value > total)) throw new Error('ProgressView value must be between 0 and total')`,
-    height: { default: 44 },
   },
   {
     name: 'Gauge',
@@ -159,15 +155,5 @@ export const leafControls: Control[] = [
     validate: `  if (![value, minimumValue, maximumValue].every(Number.isFinite)) throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
   if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
   if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
-    height: {
-      default: 44,
-      when: [
-        {
-          prop: 'gaugeStyle',
-          values: ['accessoryCircular', 'accessoryCircularCapacity'],
-          height: 100,
-        },
-      ],
-    },
   },
 ]

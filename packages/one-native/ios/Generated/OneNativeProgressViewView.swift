@@ -10,13 +10,19 @@ private final class ProgressViewModel: ObservableObject {
   @Published var total: Double = 1
   @Published var indeterminate: Bool = false
   @Published var progressViewStyle: String = "automatic"
+  @Published var accessibility = OneNativeAccessibility()
   var active = false
 }
 @objcMembers public final class OneNativeProgressViewView: UIView, OneNativeComposable {
   private var model = ProgressViewModel()
-  private var controller: OneNativeHostingController<OneNativeStandalone<ProgressViewContent>>?
+  public var onHeight: ((CGFloat) -> Void)?
+  private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<ProgressViewContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
   public func configure(_ label: String, disabled: Bool, value: Double, total: Double, indeterminate: Bool, progressViewStyle: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
@@ -47,7 +53,7 @@ private final class ProgressViewModel: ObservableObject {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ProgressViewContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: ProgressViewContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -70,5 +76,6 @@ private struct ProgressViewContent: View {
       }
       .oneNativeProgressViewStyle(model.progressViewStyle)
       .disabled(model.disabled)
+      .oneNativeAccessibility(model.accessibility)
   }
 }

@@ -42,6 +42,11 @@ const testScreens = [
     label: 'One Native Popover',
     testID: 'nav-one-native-popover',
   },
+  {
+    href: '/one-native-accessibility',
+    label: 'One Native Accessibility',
+    testID: 'nav-one-native-accessibility',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

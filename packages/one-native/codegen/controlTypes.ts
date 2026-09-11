@@ -58,14 +58,9 @@ export type Control = {
   swift: string
   extraSwift?: string
   validate: string
-  // the host has no intrinsic size in Yoga, so the adapter supplies a default height.
-  // `presentation` hosts render nothing inline and take no layout space.
-  height:
-    | 'presentation'
-    | {
-        default: number
-        when?: readonly { prop: string; values: readonly string[]; height: number }[]
-      }
+  // a presentation host renders nothing inline and takes no layout space. every other
+  // control is measured by SwiftUI, so none of them declares a height.
+  presentation?: true
 }
 
 export const commonFields = {
