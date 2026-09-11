@@ -15,4 +15,5 @@ export declare function TextField({ text, onTextChange, revision, onSubmit, labe
 export declare function SecureField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, style, ...props }: Types.SecureFieldProps): import("react/jsx-runtime").JSX.Element;
 export declare function Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, style, ...props }: Types.AlertProps): import("react/jsx-runtime").JSX.Element;
 export declare function ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, titleVisibility, style, ...props }: Types.ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
+export declare function QuickLook({ isPresented, onIsPresentedChange, revision, url, style, ...props }: Types.QuickLookProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=Controls.native.d.ts.map

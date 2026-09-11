@@ -70,6 +70,7 @@
         "OneNativeSecureField": "OneNativeSecureFieldComponentView",
         "OneNativeAlert": "OneNativeAlertComponentView",
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
+        "OneNativeQuickLook": "OneNativeQuickLookComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",

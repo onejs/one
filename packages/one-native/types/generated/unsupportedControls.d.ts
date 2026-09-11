@@ -15,6 +15,7 @@ declare function TextField(_props: Types.TextFieldProps): never;
 declare function SecureField(_props: Types.SecureFieldProps): never;
 declare function Alert(_props: Types.AlertProps): never;
 declare function ConfirmationDialog(_props: Types.ConfirmationDialogProps): never;
+declare function QuickLook(_props: Types.QuickLookProps): never;
 export declare const unsupportedControls: {
     Picker: typeof Picker;
     DatePicker: typeof DatePicker;
@@ -32,6 +33,7 @@ export declare const unsupportedControls: {
     SecureField: typeof SecureField;
     Alert: typeof Alert;
     ConfirmationDialog: typeof ConfirmationDialog;
+    QuickLook: typeof QuickLook;
 };
 export {};
 //# sourceMappingURL=unsupportedControls.d.ts.map

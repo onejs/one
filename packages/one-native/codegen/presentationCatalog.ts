@@ -105,4 +105,36 @@ ${dialogButtons}
     validate: dialogValidate('ConfirmationDialog'),
     layout: 'presentation',
   },
+  {
+    // from _QuickLook_SwiftUI, one of the overlay modules. QLPreviewController previews a
+    // local file, so the url is a file:// one, which is what expo-file-system hands back.
+    name: 'QuickLook',
+    // importing QuickLook alongside SwiftUI is what loads the _QuickLook_SwiftUI overlay.
+    imports: ['QuickLook'],
+    value: {
+      type: 'boolean',
+      prop: 'isPresented',
+      event: 'onIsPresentedChange',
+      initial: false,
+    },
+    fields: { url: { type: 'string', default: '' } },
+    constructors: [],
+    methods: [
+      {
+        name: 'quickLookPreview',
+        parameters: [{ label: '_', type: 'SwiftUICore.Binding<Foundation.URL?>' }],
+        requirements: [],
+      },
+    ],
+    // the SDK binds the previewed item, not a boolean: a nil url is the dismissed state, so
+    // presenting means handing it one and dismissal comes back as nil.
+    swift: `Color.clear
+      .quickLookPreview(Binding(
+        get: { model.controlled.value ? URL(string: model.url) : nil },
+        set: { value in model.change(value != nil) }
+      ))`,
+    validate: `  if (typeof url !== 'string' || !url) throw new Error('QuickLook url must be a non-empty string')
+  if (!url.startsWith('file://')) throw new Error('QuickLook url must be a file:// URL; Quick Look previews local files')`,
+    layout: 'presentation',
+  },
 ]

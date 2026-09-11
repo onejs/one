@@ -332,6 +332,27 @@ disable every dialog button. Disable the control that opens the dialog instead.
 The `presenting:` overloads that bind a value into the dialog, and
 `presentationCompactAdaptation`, are not bound yet.
 
+## Quick Look
+
+`Swift.QuickLook` previews a local file with the system's Quick Look sheet. It is
+SwiftUI's `quickLookPreview` from the `_QuickLook_SwiftUI` overlay module, and
+like `Swift.Alert` it is a zero-size presentation host that takes no layout space.
+
+```tsx
+const [previewing, setPreviewing] = useState(false)
+<Swift.QuickLook
+  url={`file://${documentPath}`}
+  isPresented={previewing}
+  onIsPresentedChange={setPreviewing}
+/>
+```
+
+The SDK binds the previewed item rather than a boolean, so a nil url is the
+dismissed state: presenting hands Quick Look a url and a dismissal comes back as
+nil. `url` must be a `file://` URL, which is what `expo-file-system` returns;
+Quick Look previews local files and a remote url would silently preview nothing,
+so the adapter rejects one.
+
 ## Sheets
 
 `Swift.Sheet` presents its React Native children in a SwiftUI sheet. The host has
