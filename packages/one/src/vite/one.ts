@@ -860,7 +860,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     // environment, so nothing in `config.plugins` reaches it. one's own plugins
     // go first, then whatever the app opted in through native.bundlerOptions.
     const viteBundlerOptions =
-      nativeOptions?.bundler === 'metro' ? undefined : (nativeOptions?.bundlerOptions as any)
+      nativeOptions?.bundler === 'metro'
+        ? undefined
+        : (nativeOptions?.bundlerOptions as any)
 
     globalThis.__vxrnAddNativePlugins = [
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),

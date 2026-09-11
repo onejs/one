@@ -60,7 +60,10 @@ describe('routes that other routes re-export', () => {
         (name) => name.startsWith(`${prefix}_`) && name.endsWith('vxrn_loader.native.js')
       )
       expect(nativeFile, prefix).toBeDefined()
-      const nativeCode = readFileSync(join(dist, 'client', 'assets', nativeFile!), 'utf-8')
+      const nativeCode = readFileSync(
+        join(dist, 'client', 'assets', nativeFile!),
+        'utf-8'
+      )
       expect(nativeCode, prefix).toContain(`content for ${slug}`)
 
       // the browser evaluates this module, so it has to be valid esm with one
@@ -70,7 +73,9 @@ describe('routes that other routes re-export', () => {
         (name) => name.startsWith(`${prefix}_`) && name.endsWith('vxrn_loader.js')
       )
       expect(file, prefix).toBeDefined()
-      const module = await import(pathToFileURL(join(dist, 'client', 'assets', file!)).href)
+      const module = await import(
+        pathToFileURL(join(dist, 'client', 'assets', file!)).href
+      )
       expect(module.loader(), prefix).toEqual({ slug, content: `content for ${slug}` })
     }
   })

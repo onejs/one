@@ -2,7 +2,10 @@ import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { configuration, isNativeWorkletsEnabled } from './configure'
-import { AUTOWORKLET_FUNCTION_ARGS, GESTURE_BUILDER_METHODS } from './worklets/autoworklet'
+import {
+  AUTOWORKLET_FUNCTION_ARGS,
+  GESTURE_BUILDER_METHODS,
+} from './worklets/autoworklet'
 
 // every callee the transform auto-workletizes has to be in this gate, or files
 // whose only worklets come from gesture callbacks (`.onBegin`, `.onEnd`,

@@ -51,9 +51,10 @@ export function serializeWorkletForUI(
     rawBody = `return ${code.slice(fnNode.body.start, fnNode.body.end)};`
   }
 
-  const unpacker = closureVars.length > 0
-    ? `const { ${closureVars.join(', ')} } = this.__closure ?? this._closure;\n`
-    : ''
+  const unpacker =
+    closureVars.length > 0
+      ? `const { ${closureVars.join(', ')} } = this.__closure ?? this._closure;\n`
+      : ''
 
   const asyncPrefix = fnNode.async ? 'async ' : ''
   const genPrefix = fnNode.generator ? '*' : ''

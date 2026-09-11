@@ -80,28 +80,45 @@ function assertZeroBabelCalls() {
 }
 
 describe('metroNativeWorker', () => {
-  it.each([['data.json', true], ['data.json', false], ['data.js', false]] as const)('minifies %s with source maps enabled=%s without stale mappings', async (filename, sourceMap) => {
-    const result = await transform(
-      {
-        minifierPath: createRequire(import.meta.url).resolve('metro-minify-terser'),
-        minifierConfig: { sourceMap },
-      },
-      '/project',
-      filename,
-      Buffer.from(filename.endsWith('.json') ? '{"answer":42}' : 'module.exports = { answer: 42 }'),
-      { dev: false, minify: true, platform: 'ios', type: 'module' }
-    )
-    const module = { exports: {} as any }
-    const { code, map } = result.output[0].data
-    vm.runInNewContext(code, {
-      __d(factory: any) {
-        factory({}, () => {}, () => {}, () => {}, module, module.exports, [])
-      },
-    })
-    expect(module.exports.answer).toBe(42)
-    expect(map.every((entry) => entry.length === 2)).toBe(true)
-    assertZeroBabelCalls()
-  })
+  it.each([
+    ['data.json', true],
+    ['data.json', false],
+    ['data.js', false],
+  ] as const)(
+    'minifies %s with source maps enabled=%s without stale mappings',
+    async (filename, sourceMap) => {
+      const result = await transform(
+        {
+          minifierPath: createRequire(import.meta.url).resolve('metro-minify-terser'),
+          minifierConfig: { sourceMap },
+        },
+        '/project',
+        filename,
+        Buffer.from(
+          filename.endsWith('.json') ? '{"answer":42}' : 'module.exports = { answer: 42 }'
+        ),
+        { dev: false, minify: true, platform: 'ios', type: 'module' }
+      )
+      const module = { exports: {} as any }
+      const { code, map } = result.output[0].data
+      vm.runInNewContext(code, {
+        __d(factory: any) {
+          factory(
+            {},
+            () => {},
+            () => {},
+            () => {},
+            module,
+            module.exports,
+            []
+          )
+        },
+      })
+      expect(module.exports.answer).toBe(42)
+      expect(map.every((entry) => entry.length === 2)).toBe(true)
+      assertZeroBabelCalls()
+    }
+  )
 
   it('minifies production modules with executable output and original source locations', async () => {
     const source = 'exports.answer = function answer(value) {\n  return value + 42\n}\n'
@@ -119,7 +136,15 @@ describe('metroNativeWorker', () => {
     const module = { exports: {} as any }
     vm.runInNewContext(code, {
       __d(factory: any) {
-        factory({}, () => {}, () => {}, () => {}, module, module.exports, [])
+        factory(
+          {},
+          () => {},
+          () => {},
+          () => {},
+          module,
+          module.exports,
+          []
+        )
       },
     })
     expect(module.exports.answer(8)).toBe(50)
@@ -207,10 +232,14 @@ describe('metroNativeWorker', () => {
     `
 
     const off = extractDependencies(code, 'setup.js')
-    expect(off.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBeUndefined()
+    expect(
+      off.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional
+    ).toBeUndefined()
 
     const on = extractDependencies(code, 'setup.js', { allowOptionalDependencies: true })
-    expect(on.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBe(true)
+    expect(on.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBe(
+      true
+    )
     expect(on.find((d) => d.name === './always-there')!.data.isOptional).toBeUndefined()
 
     const excluded = extractDependencies(code, 'setup.js', {
@@ -361,7 +390,9 @@ describe('metroNativeWorker', () => {
     expect(result.dependencies).toEqual([])
     expect(result.output).toHaveLength(1)
     expect(result.output[0].type).toBe('js/module')
-    expect(result.output[0].data.code).toContain('module.exports = {"name":"my-package","version":"1.0.0"}')
+    expect(result.output[0].data.code).toContain(
+      'module.exports = {"name":"my-package","version":"1.0.0"}'
+    )
     expect(result.output[0].data.code).toContain('__d(function (global, require')
   })
 
@@ -409,8 +440,14 @@ describe('metroNativeWorker', () => {
   })
 
   it('generates a deterministic cache key without Babel', () => {
-    const key1 = getCacheKey({ globalPrefix: '__one_', minifierPath: 'terser' }, { projectRoot: '/app' })
-    const key2 = getCacheKey({ globalPrefix: '__one_', minifierPath: 'terser' }, { projectRoot: '/app' })
+    const key1 = getCacheKey(
+      { globalPrefix: '__one_', minifierPath: 'terser' },
+      { projectRoot: '/app' }
+    )
+    const key2 = getCacheKey(
+      { globalPrefix: '__one_', minifierPath: 'terser' },
+      { projectRoot: '/app' }
+    )
     const key3 = getCacheKey({ globalPrefix: '__other_' }, { projectRoot: '/app' })
 
     assertZeroBabelCalls()
@@ -460,7 +497,8 @@ describe('metroNativeWorker', () => {
     // Module 2 (dep.js): exports a value
     // Module 1 (a.js): requires dep.js using Metro dependency ABI and exports computed result
     const depSource = 'exports.value = 42;'
-    const aSource = 'const dep = require("./dep"); module.exports = { doubled: dep.value * 2 };'
+    const aSource =
+      'const dep = require("./dep"); module.exports = { doubled: dep.value * 2 };'
 
     // Transform dep.js (Module 2)
     const depRes = await transform(
@@ -478,19 +516,13 @@ describe('metroNativeWorker', () => {
     )
 
     // Transform a.js (Module 1) which depends on dep.js (dependency slot 0 -> moduleId 2)
-    const aRes = await transform(
-      {},
-      '/project',
-      'a.js',
-      Buffer.from(aSource, 'utf8'),
-      {
-        dev: false,
-        platform: 'ios',
-        type: 'module',
-        moduleId: 1,
-        dependencyIds: [2],
-      } as any
-    )
+    const aRes = await transform({}, '/project', 'a.js', Buffer.from(aSource, 'utf8'), {
+      dev: false,
+      platform: 'ios',
+      type: 'module',
+      moduleId: 1,
+      dependencyIds: [2],
+    } as any)
 
     assertZeroBabelCalls()
 
@@ -526,7 +558,8 @@ describe('metroNativeWorker', () => {
 
   it('transforms and executes a 2-module Metro bundle with ESM imports in dev mode', async () => {
     const depSource = 'export const greeting = "Hello Metro Native";'
-    const aSource = 'import { greeting } from "./dep"; export const message = greeting.toUpperCase();'
+    const aSource =
+      'import { greeting } from "./dep"; export const message = greeting.toUpperCase();'
 
     // Transform dep.js (Module 2)
     const depRes = await transform(
@@ -544,19 +577,13 @@ describe('metroNativeWorker', () => {
     )
 
     // Transform a.js (Module 1) depending on dep.js (dependency slot 0 -> moduleId 2)
-    const aRes = await transform(
-      {},
-      '/project',
-      'a.js',
-      Buffer.from(aSource, 'utf8'),
-      {
-        dev: true,
-        platform: 'ios',
-        type: 'module',
-        moduleId: 1,
-        dependencyIds: [2],
-      } as any
-    )
+    const aRes = await transform({}, '/project', 'a.js', Buffer.from(aSource, 'utf8'), {
+      dev: true,
+      platform: 'ios',
+      type: 'module',
+      moduleId: 1,
+      dependencyIds: [2],
+    } as any)
 
     assertZeroBabelCalls()
 
@@ -583,7 +610,8 @@ describe('metroNativeWorker', () => {
     // Exact probe from Astra:
     // function f(require){return require("./local")}; module.exports=f(x=>x);
     // require is shadowed by parameter: must NOT extract ./local, and must NOT rewrite require
-    const input = 'function f(require){return require("./local")}; module.exports=f(x=>x);'
+    const input =
+      'function f(require){return require("./local")}; module.exports=f(x=>x);'
 
     const res = await transform(
       {},
@@ -635,13 +663,11 @@ describe('metroNativeWorker', () => {
         const c = await import('./dep');
       }
     `
-    const res = await transform(
-      {},
-      '/project',
-      'index.js',
-      Buffer.from(code, 'utf8'),
-      { dev: false, platform: 'ios', type: 'module' }
-    )
+    const res = await transform({}, '/project', 'index.js', Buffer.from(code, 'utf8'), {
+      dev: false,
+      platform: 'ios',
+      type: 'module',
+    })
 
     assertZeroBabelCalls()
 
@@ -649,8 +675,12 @@ describe('metroNativeWorker', () => {
     const depNames = res.dependencies.map((d) => d.name)
     expect(depNames).toContain('./dep')
 
-    const syncDep = res.dependencies.find((d) => d.name === './dep' && d.data.asyncType === null)!
-    const asyncDep = res.dependencies.find((d) => d.name === './dep' && d.data.asyncType === 'async')!
+    const syncDep = res.dependencies.find(
+      (d) => d.name === './dep' && d.data.asyncType === null
+    )!
+    const asyncDep = res.dependencies.find(
+      (d) => d.name === './dep' && d.data.asyncType === 'async'
+    )!
     expect(syncDep).toBeDefined()
     expect(asyncDep).toBeDefined()
     expect(syncDep.data.index).not.toEqual(asyncDep.data.index)
@@ -721,7 +751,8 @@ describe('metroNativeWorker', () => {
     // Exact probe from Astra:
     // function f(){const x=require("./local"); function require(x){return x}; return x} module.exports=f();
     // function require is hoisted to f's function scope, so require("./local") is a local call and needs no module.
-    const input = 'function f(){const x=require("./local"); function require(x){return x}; return x} module.exports=f();'
+    const input =
+      'function f(){const x=require("./local"); function require(x){return x}; return x} module.exports=f();'
 
     const res = await transform(
       {},
@@ -823,7 +854,10 @@ describe('metroNativeWorker', () => {
     const polyfillCode = fs.readFileSync(polyfillPath, 'utf8')
     const asyncRequirePath = require.resolve('metro-runtime/src/modules/asyncRequire.js')
     const asyncRequireSource = fs.readFileSync(asyncRequirePath, 'utf8')
-    const wrappedAsyncRequire = wrapModule(asyncRequireSource, { moduleId: 1, dependencyIds: [] })
+    const wrappedAsyncRequire = wrapModule(asyncRequireSource, {
+      moduleId: 1,
+      dependencyIds: [],
+    })
 
     for (const isDev of [true, false]) {
       const contextObj = {
@@ -844,7 +878,9 @@ describe('metroNativeWorker', () => {
       expect(typeof mainFn).toBe('function')
 
       const promise = mainFn()
-      expect(promise instanceof Promise || (promise && typeof promise.then === 'function')).toBe(true)
+      expect(
+        promise instanceof Promise || (promise && typeof promise.then === 'function')
+      ).toBe(true)
 
       const resolved = await promise
       expect(resolved.message).toBe('hello dynamic')
@@ -945,11 +981,17 @@ describe('metroNativeWorker', () => {
       export const ctx = require.context(routeRoot, true, /\\.tsx$/)
     `
 
-    const result = await transform({}, '/project', 'entry.js', Buffer.from(sourceCode, 'utf8'), {
-      dev: true,
-      platform: 'ios',
-      type: 'module',
-    })
+    const result = await transform(
+      {},
+      '/project',
+      'entry.js',
+      Buffer.from(sourceCode, 'utf8'),
+      {
+        dev: true,
+        platform: 'ios',
+        type: 'module',
+      }
+    )
 
     const contextDep = result.dependencies.find((d) => d.data.contextParams != null)
     expect(contextDep?.name).toBe('./app')
@@ -967,7 +1009,15 @@ describe('metroNativeWorker', () => {
         req.context = () => {
           throw new Error('fallbackRequireContext reached')
         }
-        factory({}, req, () => ({}), () => ({}), module, module.exports, ['./app'])
+        factory(
+          {},
+          req,
+          () => ({}),
+          () => ({}),
+          module,
+          module.exports,
+          ['./app']
+        )
         ctx = module.exports.ctx
       },
     }
@@ -989,11 +1039,17 @@ describe('metroNativeWorker', () => {
       }
     `
 
-    const result = await transform({}, '/project', 'loops.ts', Buffer.from(sourceCode, 'utf8'), {
-      dev: true,
-      platform: 'ios',
-      type: 'module',
-    })
+    const result = await transform(
+      {},
+      '/project',
+      'loops.ts',
+      Buffer.from(sourceCode, 'utf8'),
+      {
+        dev: true,
+        platform: 'ios',
+        type: 'module',
+      }
+    )
 
     const code = result.output[0].data.code
 
@@ -1002,16 +1058,21 @@ describe('metroNativeWorker', () => {
     // Rewriting the heads that way reproduces Hermes on a runtime that is
     // otherwise spec-correct, which is what makes this assertion meaningful:
     // the untransformed source returns 2,2,b,b,y,y under it.
-    const asHermesWouldSeeIt = code.replace(
-      /\bfor\s*\(\s*(let|const)\b/g,
-      'for (var'
-    )
+    const asHermesWouldSeeIt = code.replace(/\bfor\s*\(\s*(let|const)\b/g, 'for (var')
 
     let collect: any
     const sandbox: any = {
       __d: (factory: any) => {
         const module = { exports: {} as any }
-        factory({}, () => ({}), () => ({}), () => ({}), module, module.exports, [])
+        factory(
+          {},
+          () => ({}),
+          () => ({}),
+          () => ({}),
+          module,
+          module.exports,
+          []
+        )
         collect = module.exports.collect
       },
     }
@@ -1095,7 +1156,9 @@ export const all = { ...import.meta.env };`,
 
   it('folds a ternary and keeps a branch it cannot resolve', () => {
     expect(
-      applyInlineEnvVars('const a = import.meta.env.DEV ? x : y;', 'a.ts', true, { DEV: false })
+      applyInlineEnvVars('const a = import.meta.env.DEV ? x : y;', 'a.ts', true, {
+        DEV: false,
+      })
     ).toContain('const a = y;')
     const dynamic = 'const a = flag ? x : y;'
     expect(applyInlineEnvVars(dynamic, 'a.ts', true, { DEV: false })).toBe(dynamic)
@@ -1181,7 +1244,7 @@ export const all = { ...import.meta.env };`,
     expect(parsed.program.body.map((n: any) => n.type)).toContain('ThrowStatement')
   })
 
-  it('reads the router root off one\'s remove-server-code plugin entry', () => {
+  it("reads the router root off one's remove-server-code plugin entry", () => {
     const options: any = {
       customTransformOptions: {
         vite: {

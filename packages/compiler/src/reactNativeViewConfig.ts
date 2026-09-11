@@ -208,7 +208,9 @@ function eventOf(name: string, type: TypeRef): EventProp | null {
   return {
     name,
     bubbling: t.name === 'BubblingEventHandler',
-    topName: normalizeInputEventName(override && override !== '__unknown' ? override : name),
+    topName: normalizeInputEventName(
+      override && override !== '__unknown' ? override : name
+    ),
   }
 }
 
@@ -328,7 +330,10 @@ function findComponentCall(body: any[]): any {
           ? expr.expressions[expr.expressions.length - 1]
           : null)
     }
-    if (expr?.type === 'CallExpression' && expr.callee?.name === 'codegenNativeComponent') {
+    if (
+      expr?.type === 'CallExpression' &&
+      expr.callee?.name === 'codegenNativeComponent'
+    ) {
       return expr
     }
   }
@@ -341,7 +346,10 @@ function findCommandsCall(body: any[]): any {
     const decl = node?.declarations?.[0]
     let init = decl?.init
     while (init && init.type !== 'CallExpression') init = init.expression
-    if (init?.type === 'CallExpression' && init.callee?.name === 'codegenNativeCommands') {
+    if (
+      init?.type === 'CallExpression' &&
+      init.callee?.name === 'codegenNativeCommands'
+    ) {
       return init
     }
   }
@@ -446,7 +454,9 @@ function printViewConfig(
     )
   }
   lines.push(
-    attrLines.length ? `  validAttributes: {\n${attrLines.join(',\n')}\n  }` : '  validAttributes: {}'
+    attrLines.length
+      ? `  validAttributes: {\n${attrLines.join(',\n')}\n  }`
+      : '  validAttributes: {}'
   )
 
   return `{\n${lines.join(',\n')}\n}`
@@ -496,7 +506,11 @@ export function parseSpec(code: string, filename: string, projectRoot?: string):
   try {
     // `babel: false` keeps this on hermes' own ESTree output, which is what
     // makes this path babel-free.
-    return hermes.parse(code, { babel: false, flow: 'all', sourceFilename: filename }) as any
+    return hermes.parse(code, {
+      babel: false,
+      flow: 'all',
+      sourceFilename: filename,
+    }) as any
   } catch {
     return null
   }

@@ -199,7 +199,9 @@ async function performBabelTransform({
         )
       }
       const workletEntry = babelOptions.plugins?.find(isWorkletPlugin)
-      const workletPluginOptions = Array.isArray(workletEntry) ? workletEntry[1] : undefined
+      const workletPluginOptions = Array.isArray(workletEntry)
+        ? workletEntry[1]
+        : undefined
       const useWorklets =
         isNativeWorkletsEnabled() &&
         (Boolean(workletEntry) || shouldTransformWorklets({ id, code }))
@@ -215,14 +217,19 @@ async function performBabelTransform({
         // mark callbacks before react compiler moves them into memoized bindings.
         if (useWorklets) {
           workletPreparation = prepareWorkletsForReactCompiler(
-            id, curCode, shouldSourceMap()
+            id,
+            curCode,
+            shouldSourceMap()
           )
           if (workletPreparation) curCode = workletPreparation.code
         }
         const compilerTarget =
           (babelOptions.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
         compilerOut = await transformOxcReactCompiler(
-          id, curCode, compilerTarget, shouldSourceMap()
+          id,
+          curCode,
+          compilerTarget,
+          shouldSourceMap()
         )
         if (compilerOut) curCode = compilerOut.code
         babelOptions.plugins!.splice(compilerPluginIndex, 1)
@@ -247,7 +254,11 @@ async function performBabelTransform({
       if (babelOptions.plugins?.length === 0) {
         let finalMap: any = undefined
         if (shouldSourceMap()) {
-          const intermediateMaps = [workletPreparation?.map, compilerOut?.map, workletsOut?.map].filter(Boolean)
+          const intermediateMaps = [
+            workletPreparation?.map,
+            compilerOut?.map,
+            workletsOut?.map,
+          ].filter(Boolean)
           if (intermediateMaps.length === 1) {
             finalMap = intermediateMaps[0]
           } else if (intermediateMaps.length > 1) {
@@ -258,12 +269,17 @@ async function performBabelTransform({
         babelOut = { code: curCode, map: finalMap }
       } else {
         const babelOptsWithMap =
-          shouldSourceMap() && (workletsOut?.map || compilerOut?.map || workletPreparation?.map)
+          shouldSourceMap() &&
+          (workletsOut?.map || compilerOut?.map || workletPreparation?.map)
             ? { ...babelOptions, sourceMaps: true }
             : babelOptions
         babelOut = await transformBabel(id, curCode, babelOptsWithMap)
         if (shouldSourceMap() && babelOut?.map) {
-          const priorMaps = [workletPreparation?.map, compilerOut?.map, workletsOut?.map].filter(Boolean)
+          const priorMaps = [
+            workletPreparation?.map,
+            compilerOut?.map,
+            workletsOut?.map,
+          ].filter(Boolean)
           if (priorMaps.length > 0) {
             const remapping = (await import('@jridgewell/remapping')).default
             babelOut.map = remapping(

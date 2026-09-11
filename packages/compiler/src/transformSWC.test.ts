@@ -71,22 +71,25 @@ class Sample {
     expect(res!.code).toContain('this.publicField = 100')
   })
 
-  it.each(['MyComponent.tsx', 'MyComponent.js', 'MyComponent.mjs', 'MyComponent.cjs'])('lowers JSX in %s to react automatic runtime calls', async (filename) => {
-    const input = `
+  it.each(['MyComponent.tsx', 'MyComponent.js', 'MyComponent.mjs', 'MyComponent.cjs'])(
+    'lowers JSX in %s to react automatic runtime calls',
+    async (filename) => {
+      const input = `
 export function MyComponent() {
   return <div className="test"><span>Hello</span></div>
 }
 `
-    const res = await transformSWC(filename, input, {
-      environment: 'client',
-      mode: 'build',
-    })
+      const res = await transformSWC(filename, input, {
+        environment: 'client',
+        mode: 'build',
+      })
 
-    expect(res).toBeDefined()
-    expect(res!.code).not.toContain('<div')
-    expect(res!.code).not.toContain('<span>')
-    expect(res!.code).toContain('_jsx')
-  })
+      expect(res).toBeDefined()
+      expect(res!.code).not.toContain('<div')
+      expect(res!.code).not.toContain('<span>')
+      expect(res!.code).toContain('_jsx')
+    }
+  )
 
   it('respects sourcemaps option', async () => {
     const input = `

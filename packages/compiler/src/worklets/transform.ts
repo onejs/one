@@ -2,7 +2,11 @@ import path from 'node:path'
 import MagicString from 'magic-string'
 import remapping from '@jridgewell/remapping'
 import { parseSync } from 'oxc-parser'
-import { bodyStartAfterDirectives, findWorkletCandidates, hasDirective } from './autoworklet'
+import {
+  bodyStartAfterDirectives,
+  findWorkletCandidates,
+  hasDirective,
+} from './autoworklet'
 import { createGlobalsSet } from './globals'
 import { calculateWorkletHash } from './hash'
 import { getClosureVariables } from './scope'
@@ -27,7 +31,9 @@ export function prepareWorkletsForReactCompiler(
   })
   if (parsed.errors.length) {
     const error = parsed.errors[0]
-    throw new Error(error.codeframe || error.message || 'Syntax Error while parsing worklet')
+    throw new Error(
+      error.codeframe || error.message || 'Syntax Error while parsing worklet'
+    )
   }
   const candidates = findWorkletCandidates(parsed.program).filter(
     (candidate) => candidate.isAutoWorklet && !hasDirective(candidate.fnNode, 'worklet')
@@ -160,7 +166,9 @@ export function executeWorkletTransform(
 
     if (parseResult.errors && parseResult.errors.length > 0) {
       const err = parseResult.errors[0]
-      throw new Error(err.codeframe || err.message || 'Syntax Error while parsing worklet')
+      throw new Error(
+        err.codeframe || err.message || 'Syntax Error while parsing worklet'
+      )
     }
 
     const candidates = findWorkletCandidates(parseResult.program)
@@ -179,7 +187,9 @@ export function executeWorkletTransform(
     })
 
     if (innermostCandidates.length === 0) {
-      throw new Error(`[worklets] Cyclic or unresolvable worklet nesting detected in ${cleanId}`)
+      throw new Error(
+        `[worklets] Cyclic or unresolvable worklet nesting detected in ${cleanId}`
+      )
     }
 
     const ms = new MagicString(currentCode)
@@ -197,7 +207,12 @@ export function executeWorkletTransform(
         : getClosureVariables(candidate.fnNode, globals)
       const fnName = candidate.name
 
-      const serializedCode = serializeWorkletForUI(candidate.fnNode, currentCode, fnName, closureVars)
+      const serializedCode = serializeWorkletForUI(
+        candidate.fnNode,
+        currentCode,
+        fnName,
+        closureVars
+      )
       const workletHash = calculateWorkletHash(serializedCode)
       const initDataVar = `_worklet_${workletHash}_init_data`
 
@@ -241,7 +256,11 @@ export function executeWorkletTransform(
 
       if (candidate.kind === 'function_declaration') {
         if (candidate.parent?.type === 'ExportNamedDeclaration') {
-          ms.overwrite(candidate.parent.start, candidate.parent.end, `export var ${candidate.name} = ${iife};`)
+          ms.overwrite(
+            candidate.parent.start,
+            candidate.parent.end,
+            `export var ${candidate.name} = ${iife};`
+          )
         } else if (candidate.parent?.type === 'ExportDefaultDeclaration') {
           ms.overwrite(
             candidate.parent.start,
@@ -249,10 +268,18 @@ export function executeWorkletTransform(
             `var ${candidate.name || '_defaultWorklet'} = ${iife};\nexport default ${candidate.name || '_defaultWorklet'};`
           )
         } else {
-          ms.overwrite(candidate.node.start, candidate.node.end, `var ${candidate.name} = ${iife};`)
+          ms.overwrite(
+            candidate.node.start,
+            candidate.node.end,
+            `var ${candidate.name} = ${iife};`
+          )
         }
       } else if (candidate.kind === 'object_method') {
-        ms.overwrite(candidate.node.start, candidate.node.end, `${candidate.name}: ${iife}`)
+        ms.overwrite(
+          candidate.node.start,
+          candidate.node.end,
+          `${candidate.name}: ${iife}`
+        )
       } else {
         ms.overwrite(candidate.node.start, candidate.node.end, iife)
       }
