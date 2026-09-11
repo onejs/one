@@ -12,6 +12,7 @@ private final class DatePickerModel: ObservableObject {
   @Published var displayedComponents: String = "dateAndTime"
   @Published var datePickerStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onChange: ((Double, Int, Int) -> Void)?
   func change(_ value: Double) {
@@ -30,6 +31,10 @@ private final class DatePickerModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumDate: Double, maximumDate: Double, displayedComponents: String, datePickerStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
@@ -86,6 +91,7 @@ private struct DatePickerContent: View {
       .oneNativeDatePickerStyle(model.datePickerStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
 private func oneNativeDatePickerComponents(_ value: String) -> DatePicker<Text>.Components {

@@ -24,6 +24,7 @@ import {
   enumTypes,
   fields,
   modifiers,
+  styleModifiers,
   nodes,
 } from './catalog'
 
@@ -93,7 +94,29 @@ emitSheet(header, outputs)
 emitContainers(header, outputs)
 emitPopover(header, outputs)
 selected.push(
-  ...[...sheetMethods, ...popoverMethods].map((method) => selectModifier(inventory, method))
+  ...[...sheetMethods, ...popoverMethods, ...styleModifiers].map((method) =>
+    selectModifier(inventory, method)
+  ),
+  selectConstructor(inventory, {
+    type: 'RoundedRectangle',
+    parameters: [
+      { label: 'cornerRadius', type: 'CoreFoundation.CGFloat' },
+      { label: 'style', type: 'SwiftUICore.RoundedCornerStyle' },
+    ],
+  }),
+  selectConstructor(inventory, {
+    type: 'EdgeInsets',
+    parameters: [
+      { label: 'top', type: 'CoreFoundation.CGFloat' },
+      { label: 'leading', type: 'CoreFoundation.CGFloat' },
+      { label: 'bottom', type: 'CoreFoundation.CGFloat' },
+      { label: 'trailing', type: 'CoreFoundation.CGFloat' },
+    ],
+  }),
+  selectConstructor(inventory, {
+    type: 'Color',
+    parameters: [{ label: 'uiColor', type: 'UIKit.UIColor' }],
+  })
 )
 outputs.set(
   'src/generated/swiftui.ts',

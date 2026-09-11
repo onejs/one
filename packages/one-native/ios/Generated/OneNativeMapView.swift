@@ -10,6 +10,7 @@ private final class MapModel: ObservableObject {
   @Published var distance: Double = 5000
   @Published var markers: [OneNativeMapMarker] = []
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onRegionChange: ((Double, Double, Double, Int) -> Void)?
   private var regionChangeCount = 0
@@ -28,6 +29,10 @@ private final class MapModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ latitude: Double, longitude: Double, distance: Double) {
     if model.latitude != latitude { model.latitude = latitude }
@@ -81,6 +86,7 @@ private struct MapContent: View {
         }
       )
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
 // the camera is SwiftUI state so a pan is not fought by the next render, and it is

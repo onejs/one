@@ -9,6 +9,7 @@ private final class ToggleModel: ObservableObject {
   @Published var disabled: Bool = false
   @Published var toggleStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
@@ -27,6 +28,10 @@ private final class ToggleModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, toggleStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
@@ -80,5 +85,6 @@ private struct ToggleContent: View {
       .oneNativeToggleStyle(model.toggleStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }

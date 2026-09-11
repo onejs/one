@@ -8,6 +8,7 @@ private final class LabelModel: ObservableObject {
   @Published var disabled: Bool = false
   @Published var systemImage: String = ""
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
 }
 @objcMembers public final class OneNativeLabelView: UIView, OneNativeComposable {
@@ -19,6 +20,10 @@ private final class LabelModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ label: String, disabled: Bool, systemImage: String) {
     if model.label != label { model.label = label }
@@ -64,5 +69,6 @@ private struct LabelContent: View {
     Label(LocalizedStringKey(model.label), systemImage: model.systemImage)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
