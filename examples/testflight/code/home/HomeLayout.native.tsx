@@ -7,7 +7,7 @@ export function HomeLayout() {
         name="index"
         options={{
           title: 'Feed',
-          tabBarIcon: () => ({ sfSymbol: 'newspaper' }),
+          tabBarIcon: { type: 'sfSymbol', name: 'newspaper' },
         }}
       />
 
@@ -15,7 +15,7 @@ export function HomeLayout() {
         name="notifications"
         options={{
           title: 'Notifications',
-          tabBarIcon: () => ({ sfSymbol: 'bell' }),
+          tabBarIcon: { type: 'sfSymbol', name: 'bell' },
         }}
       />
 
@@ -23,7 +23,7 @@ export function HomeLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: () => ({ sfSymbol: 'person' }),
+          tabBarIcon: { type: 'sfSymbol', name: 'person' },
         }}
       />
     </NativeTabs>

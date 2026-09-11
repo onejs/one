@@ -1,4 +1,7 @@
-// @vxrn/native - native navigation features for One
+// @vxrn/native - One native extras that React Navigation v8 / screens do not own.
+// keep: zoom transitions, bottom ToolbarHost, MenuAction, SplitView, Color,
+// and StackToolbar mapping onto native-stack headerLeft/Right items.
+// native tabs and default stack headers live in `one` + @react-navigation.
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
 
 import { registerNativeStackToolbar } from './StackToolbarImplementation'
