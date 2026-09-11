@@ -7,10 +7,8 @@ export default defineConfig({
       setupFile: {
         native: './setup.native.ts',
       },
-      app: {
-        key: 'native-feature-tests',
-      },
       native: {
+        key: 'native-feature-tests',
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
       router: {
@@ -21,8 +19,4 @@ export default defineConfig({
       },
     }),
   ],
-
-  optimizeDeps: {
-    exclude: ['react-native-bottom-tabs', '@bottom-tabs/react-navigation'],
-  },
 })

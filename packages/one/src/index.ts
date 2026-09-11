@@ -105,18 +105,6 @@ export type {
   StackHeaderTitleProps,
   StackScreenOptions,
   StackScreenProps,
-  StackToolbarBadgeProps,
-  StackToolbarButtonProps,
-  StackToolbarConfig,
-  StackToolbarIconProps,
-  StackToolbarLabelProps,
-  StackToolbarMenuActionProps,
-  StackToolbarMenuProps,
-  StackToolbarPlacement,
-  StackToolbarProps,
-  StackToolbarSearchBarSlotProps,
-  StackToolbarSpacerProps,
-  StackToolbarViewProps,
 } from './layouts/stack-utils'
 export { useTabs } from './headless/useTabs'
 export { useDrawer } from './headless/useDrawer'

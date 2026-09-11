@@ -20,6 +20,7 @@ import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
 import { getServerContext, useServerContext } from '../vite/one-server-only'
+import { getReactNavigationRouteName } from '../getReactNavigationConfig'
 import { filterRootHTML } from './filterRootHTML'
 import {
   type DynamicConvention,
@@ -630,13 +631,14 @@ function routeToScreen(
   route: RouteNode,
   { options, ...props }: Partial<ScreenProps> = {}
 ) {
+  const navigationRouteName = getReactNavigationRouteName(route)
   return (
     <Screen
       // Users can override the screen getId function.
       getId={createGetIdForRoute(route)}
       {...props}
-      name={route.route}
-      key={route.route}
+      name={navigationRouteName}
+      key={navigationRouteName}
       options={(args) => {
         // Only eager load generated components
         const staticOptions = route.generated ? route.loadRoute()?.getNavOptions : null

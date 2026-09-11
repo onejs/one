@@ -48,7 +48,7 @@
     "@types/node": "^24.10.0",
     "@types/vscode": "^1.80.0",
     "esbuild": "^0.25.12",
-    "typescript": "^5.7.3"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "ws": "^8.21.0"

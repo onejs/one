@@ -14,14 +14,9 @@ import {
   StackHeaderComponent,
   StackHeaderSearchBar,
   StackScreen,
-  StackToolbar,
   type StackScreenProps,
 } from './stack-utils'
 import { withLayoutContext } from './withLayoutContext'
-import {
-  getStackToolbarImplementation,
-  type StackToolbarImplementation,
-} from './stack-utils/StackToolbarImplementation'
 
 const NativeStackNavigator = createStackNavigator().Navigator
 
@@ -36,19 +31,12 @@ const RNStack = withLayoutContext<
  * Pre-process children to convert StackScreen (with Header children) to Screen (with options).
  * This allows the Header Composition API to work in layout files.
  */
-function mapChildren(
-  children: React.ReactNode,
-  toolbarImplementation: StackToolbarImplementation | null
-): React.ReactNode {
+function mapChildren(children: React.ReactNode): React.ReactNode {
   return Children.toArray(children)
     .map((child, index) => {
       if (isChildOfType(child, StackScreen)) {
         // convert StackScreen to Screen with options extracted from Header children
-        const options = appendScreenStackPropsToOptions(
-          {},
-          child.props,
-          toolbarImplementation
-        )
+        const options = appendScreenStackPropsToOptions({}, child.props)
         const { children: _, ...rest } = child.props
         return <Screen key={child.props.name ?? index} {...rest} options={options} />
       }
@@ -58,7 +46,7 @@ function mapChildren(
         return React.cloneElement(
           child,
           { key: `protected-${index}` },
-          mapChildren(child.props.children, toolbarImplementation)
+          mapChildren(child.props.children)
         )
       }
 
@@ -83,8 +71,6 @@ function mapChildren(
 const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNStack>>(
   (props, ref) => {
     const { children, screenOptions, ...rest } = props
-    const toolbarImplementation = getStackToolbarImplementation()
-
     // extract Stack.Header from children for screenOptions
     const screenOptionsWithHeader = useMemo(() => {
       const stackHeader = Children.toArray(children).find((child) =>
@@ -97,30 +83,19 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
           if (typeof screenOptions === 'function') {
             return (...args: Parameters<typeof screenOptions>) => {
               const opts = screenOptions(...args)
-              return appendScreenStackPropsToOptions(
-                opts,
-                headerProps,
-                toolbarImplementation
-              )
+              return appendScreenStackPropsToOptions(opts, headerProps)
             }
           }
-          return appendScreenStackPropsToOptions(
-            screenOptions,
-            headerProps,
-            toolbarImplementation
-          )
+          return appendScreenStackPropsToOptions(screenOptions, headerProps)
         }
-        return appendScreenStackPropsToOptions({}, headerProps, toolbarImplementation)
+        return appendScreenStackPropsToOptions({}, headerProps)
       }
 
       return screenOptions
-    }, [children, screenOptions, toolbarImplementation])
+    }, [children, screenOptions])
 
     // pre-process children to convert StackScreen to Screen
-    const processedChildren = useMemo(
-      () => mapChildren(children, toolbarImplementation),
-      [children, toolbarImplementation]
-    )
+    const processedChildren = useMemo(() => mapChildren(children), [children])
     const navigatorProps = useMemo(() => getStackNavigatorProps(children), [children])
 
     return (
@@ -138,12 +113,18 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
   }
 )
 
-export const Stack = Object.assign(StackWithComposition, {
+type StackType = ReturnType<typeof withLayoutContext> & {
+  Screen: typeof StackScreen
+  Header: typeof StackHeader
+  Protected: typeof Protected
+  SearchBar: typeof StackHeaderSearchBar
+}
+
+export const Stack: StackType = Object.assign(StackWithComposition, {
   Screen: StackScreen,
   Header: StackHeader,
   Protected,
   SearchBar: StackHeaderSearchBar,
-  Toolbar: StackToolbar,
-})
+}) as StackType
 
 export default Stack

@@ -7,14 +7,14 @@
     "dev": "one dev"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "expo": "~57.0.11",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-screens": "~4.27.0",
     "vite": "^8.2.2"
   },
   "devDependencies": {

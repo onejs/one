@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
       "vxrn": [
-        "packages/vxrn"
+        "./packages/vxrn"
       ],
       "@vxrn/*": [
-        "packages/*"
+        "./packages/*"
       ]
     },
     "importHelpers": true,
@@ -17,7 +16,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "downlevelIteration": true,
     "strict": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,

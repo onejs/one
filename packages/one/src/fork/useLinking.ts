@@ -68,13 +68,21 @@ const getPartialState = (state: any): any => {
 // routes.length but the focused route's nested navigator gained or lost
 // entries. that nested change is what determines push vs replace.
 function getFocusedRouteDepth(state: NavigationState): number {
-  const length = state.history ? state.history.length : state.routes.length
+  const length = getTotalHistoryLength(state)
   const focusedRoute = state.routes[state.index]
   const child = focusedRoute?.state as NavigationState | undefined
   if (child) {
     return length + getFocusedRouteDepth(child)
   }
   return length
+}
+
+const getTotalHistoryLength = (state: NavigationState): number => {
+  const baseHistoryLength = state.history ? state.history.length : state.routes.length
+  const routeHistoryLength = state.routes.reduce((acc, r) => {
+    return acc + (r.history ? r.history.length : 0)
+  }, 0)
+  return baseHistoryLength + routeHistoryLength
 }
 
 function getDynamicParamNames(routeName: string): string[] {
@@ -113,9 +121,8 @@ const findMatchingState = <T extends NavigationState>(
     return [undefined, undefined]
   }
 
-  // Tab and drawer will have `history` property, but stack will have history in `routes`
-  const aHistoryLength = a.history ? a.history.length : a.routes.length
-  const bHistoryLength = b.history ? b.history.length : b.routes.length
+  const aHistoryLength = getTotalHistoryLength(a)
+  const bHistoryLength = getTotalHistoryLength(b)
 
   const aRoute = a.routes[a.index]
   const bRoute = b.routes[b.index]
@@ -124,16 +131,18 @@ const findMatchingState = <T extends NavigationState>(
   const bChildState = bRoute.state as T | undefined
 
   // Stop here if this is the state object that changed:
-  // - history length is different
+  // - total history length is different (including route.history)
   // - focused routes are different
   // - one of them doesn't have child state
   // - child state keys are different
+  // - route history length is different
   if (
     aHistoryLength !== bHistoryLength ||
     aRoute.key !== bRoute.key ||
     aChildState === undefined ||
     bChildState === undefined ||
-    aChildState.key !== bChildState.key
+    aChildState.key !== bChildState.key ||
+    (aRoute.history?.length || 0) !== (bRoute.history?.length || 0)
   ) {
     return [a, b]
   }
@@ -153,7 +162,7 @@ export const series = (cb: () => Promise<void>) => {
   return callback
 }
 
-const linkingHandlers: symbol[] = []
+const linkingHandlers = new Set<symbol>()
 
 type Options = LinkingOptions<ParamListBase>
 
@@ -165,8 +174,7 @@ export function useLinking(
     getStateFromPath = getStateFromPathDefault,
     getPathFromState = getPathFromStateDefault,
     getActionFromState = getActionFromStateDefault,
-  }: Options,
-  onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
+  }: Options
 ) {
   // @modified - SSR fast path: skip all client-only linking logic
   // on the server, initialState is already computed and passed as a prop
@@ -198,7 +206,7 @@ export function useLinking(
       return undefined
     }
 
-    if (enabled !== false && linkingHandlers.length) {
+    if (enabled !== false && linkingHandlers.size) {
       console.error(
         [
           'Looks like you have configured linking in multiple places. This is likely an error since deep links should only be handled in one place to avoid conflicts. Make sure that:',
@@ -213,15 +221,11 @@ export function useLinking(
     const handler = Symbol()
 
     if (enabled !== false) {
-      linkingHandlers.push(handler)
+      linkingHandlers.add(handler)
     }
 
     return () => {
-      const index = linkingHandlers.indexOf(handler)
-
-      if (index > -1) {
-        linkingHandlers.splice(index, 1)
-      }
+      linkingHandlers.delete(handler)
     }
   }, [enabled, independent])
 
@@ -318,8 +322,7 @@ export function useLinking(
         value = getStateFromPathRef.current(path, configRef.current)
       }
 
-      // If the link were handled, it gets cleared in NavigationContainer
-      onUnhandledLinking(path)
+      // v8: unhandled link tracking removed
     }
 
     const thenable = {
@@ -417,8 +420,7 @@ export function useLinking(
       // We should only dispatch an action when going forward
       // Otherwise the action will likely add items to history, which would mess things up
       if (state) {
-        // If the link were handled, it gets cleared in NavigationContainer
-        onUnhandledLinking(path)
+        // v8: unhandled link tracking removed
         // Make sure that the routes in the state exist in the root navigator
         // Otherwise there's an error in the linking configuration
         if (validateRoutesNotExistInRootState(state)) {
@@ -472,7 +474,7 @@ export function useLinking(
         navigation.resetRoot(state)
       }
     })
-  }, [enabled, history, onUnhandledLinking, ref, validateRoutesNotExistInRootState])
+  }, [enabled, history, ref, validateRoutesNotExistInRootState])
 
   React.useEffect(() => {
     if (!enabled) {

@@ -1,12 +1,36 @@
-import { type FunctionComponent, type ReactElement, type ReactNode } from 'react';
-import type { OneRouter } from '../interfaces/router';
-declare const Group: any;
+import { type FunctionComponent, type ReactElement, type ReactNode } from 'react'
+import type { OneRouter } from '../interfaces/router'
+declare const Group: import('react').ComponentType<
+  import('@react-navigation/core').RouteGroupConfig<
+    import('@react-navigation/routers').ParamListBase,
+    {},
+    import('@react-navigation/core').NavigationProp<
+      import('@react-navigation/routers').ParamListBase,
+      string,
+      Readonly<{
+        key: string
+        index: number
+        routeNames: string[]
+        history?: unknown[] | undefined
+        routes: import('@react-navigation/routers').NavigationRoute<
+          import('@react-navigation/routers').ParamListBase,
+          string
+        >[]
+        type: string
+        stale: false
+      }>,
+      {},
+      {},
+      {}
+    >
+  >
+>
 export type ProtectedProps = {
-    guard: boolean;
-    /** where to redirect when `guard` is false. defaults to the navigator's first available route. */
-    redirectTo?: OneRouter.Href;
-    children?: ReactNode;
-};
+  guard: boolean
+  /** where to redirect when `guard` is false. defaults to the navigator's first available route. */
+  redirectTo?: OneRouter.Href
+  children?: ReactNode
+}
 /**
  * Wrap screens in a Protected component to conditionally show/hide them based on the guard prop.
  *
@@ -33,10 +57,12 @@ export type ProtectedProps = {
  * }
  * ```
  */
-export declare const Protected: FunctionComponent<ProtectedProps>;
-export { Group };
+export declare const Protected: FunctionComponent<ProtectedProps>
+export { Group }
 /**
  * Type guard to check if a React element is a Protected component with a guard prop.
  */
-export declare function isProtectedElement(child: ReactNode): child is ReactElement<ProtectedProps>;
+export declare function isProtectedElement(
+  child: ReactNode
+): child is ReactElement<ProtectedProps>
 //# sourceMappingURL=Protected.d.ts.map

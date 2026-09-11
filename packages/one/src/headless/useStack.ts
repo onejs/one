@@ -13,7 +13,6 @@ import {
 
 import type { UseStackResult } from './types'
 import { getPathFromState } from '../fork/getPathFromState'
-import { exposeStackToolbarConfig } from '../layouts/stack-utils/StackToolbar.shared'
 import { getResolvedLinking } from '../router/linkingConfig'
 
 export type HeadlessStackDescriptors = Record<
@@ -40,7 +39,7 @@ export function StackStateProvider({
   const value = useMemo<UseStackResult>(() => {
     const screens = state.routes.map((route, index) => {
       const descriptor = descriptors[route.key]!
-      const options = exposeStackToolbarConfig(descriptor.options)
+      const options = descriptor.options
       const href = (linking?.getPathFromState ?? getPathFromState)(
         { ...state, index },
         linking?.config

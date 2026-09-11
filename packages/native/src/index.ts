@@ -1,9 +1,5 @@
-// @vxrn/native - native navigation features for One
-// adapted from expo-router (MIT license) - https://github.com/expo/expo
-
-import { registerNativeStackToolbar } from './StackToolbarImplementation'
-
-registerNativeStackToolbar()
+// @vxrn/native provides UIKit and Android capabilities outside React Navigation.
+// adapted from expo-router (MIT license): https://github.com/expo/expo
 
 export { Color } from './color'
 export type { ColorType } from './color'
@@ -22,18 +18,3 @@ export type { MenuActionProps } from './menu'
 
 export { SplitView } from './split-view'
 export type { SplitViewProps, SplitViewColumnProps } from './split-view'
-
-export { StackToolbar } from './stack-toolbar/StackToolbar'
-export type {
-  StackToolbarBadgeProps,
-  StackToolbarButtonProps,
-  StackToolbarIconProps,
-  StackToolbarLabelProps,
-  StackToolbarMenuActionProps,
-  StackToolbarMenuProps,
-  StackToolbarPlacement,
-  StackToolbarProps,
-  StackToolbarSearchBarSlotProps,
-  StackToolbarSpacerProps,
-  StackToolbarViewProps,
-} from './stack-toolbar/StackToolbar.types'
