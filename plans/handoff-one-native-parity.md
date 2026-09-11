@@ -238,14 +238,15 @@ Automation details that prevent false diagnoses:
 
 ## Final verification receipts
 
-- `bun run test`: 19 tests, 64 assertions, pass.
+- `bun run test`: 20 tests pass.
 - `bun run typecheck` and `bun run build` pass.
-- `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 131 mapped symbols, 127 generated
+- `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: 393 accessibility checks across twelve suites plus 18/18 visual
-  checks, exit 0. Per suite: tabs-menu 59, pickers 29, forms 31, sheets 35, leaves 76,
-  dialogs 32, host 27, containers 29, popover 26, accessibility 21, media 15, map 13.
+- Conformance end to end: 426 accessibility checks across twelve suites plus 18/18 visual
+  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 59,
+  pickers 29, forms 43, sheets 35, leaves 93, dialogs 32, host 27, containers 29, popover 26,
+  accessibility 25, media 15, map 13.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
@@ -259,44 +260,68 @@ Automation details that prevent false diagnoses:
 
 ## Next work
 
-Ranked. `one-native-swiftui-gap.md` carries the evidence for this ordering.
+Ranked. `one-native-swiftui-gap.md` carries the evidence for this ordering. The first three
+items on the previous list landed: a `swiftStyle` object prop applied by one generated
+`.oneNativeStyle` helper, a standalone `Image` with SF Symbols, and focus with
+`keyboardType`/`textContentType`.
 
-1. **A styling surface.** There is none. Grep the catalogs for `font`, `tint`,
-   `foregroundStyle`, `padding`, `frame`, `background`: none exist, so every control renders at
-   system defaults and no `tint` means a whole app is stuck on system blue. `style` reaches the
-   Fabric UIView behind the SwiftUI content, not the content. Unbound by family: decoration and
-   effects 54, box and layout 28, text appearance 33, colour 7. This is the only item that
-   changes what the existing 29 bindings can do rather than adding a 30th, and the mechanism
-   exists: one `swiftStyle` object payload prop applied by a single generated
-   `.oneNativeStyle(model.style)` helper, every field selected from the SDK for provenance the
-   way `methods` entries already are.
-2. **Standalone `Image` with SF Symbols.** Symbols are reachable today only through `Label` and
-   the `systemImage` prop on `Button`, so there are no symbol effects, rendering modes, or
-   variable values. Small and self-contained.
-3. **Focus and `keyboardType`.** All 11 focus modifiers unbound, and `keyboardType` with them.
-   No programmatic focus, no next-field chain, no numeric keyboard. For form controls this is a
-   functional blocker, not polish; `textCatalog.ts` already admits it in a comment. Drive
-   `FocusState` from a `focused` prop plus an `onFocusChange` event over the existing controlled
-   protocol.
-4. **Environment propagation** on `Host` and `Form`: `colorScheme`, `dynamicTypeSize`, `locale`,
+1. **Environment propagation** on `Host` and `Form`: `colorScheme`, `dynamicTypeSize`, `locale`,
    `tint`, `isEnabled` set once per screen and inherited, instead of per control. 148
    `EnvironmentValues` keys are currently neither readable nor writable.
-5. **`PhotosPicker`, `ShareLink`, `fullScreenCover`, `contextMenu`, `ContentUnavailableView`.**
+2. **`PhotosPicker`, `ShareLink`, `fullScreenCover`, `contextMenu`, `ContentUnavailableView`.**
    All reachable with mechanisms that already exist.
-6. **`WebView`** (`_WebKit_SwiftUI`), now that the floor is iOS 26. An ordinary leaf, no new
+3. **`WebView`** (`_WebKit_SwiftUI`), now that the floor is iOS 26. An ordinary leaf, no new
    mechanism.
-7. Sheet sizing-to-content, selected detent binding, and presentation
+4. Sheet sizing-to-content, selected detent binding, and presentation
    background/interaction/sizing remain unimplemented, as do the `presenting:`
    value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
 
-One item wants a decision before code:
+Navigation is decided, and the decision is not to bind it.
+`plans/one-native-navigation-design.md` is the design pass (branch `feat/one-native-nav`,
+design-only). Its recommendation: One's native stack stays the sole navigation owner, and the
+existing title/toolbar/header-search path is what callers should use. Binding SwiftUI's
+`NavigationStack` is gated behind a runtime experiment on an isolated flow, with a matrix that
+names the independent variable and a rejecting observation for each row. Its riskiest unknown,
+labelled GUESSED, is whether an isolated stack hosting RN destination slots can complete and
+cancel iOS 26 interactive back navigation while cancelling RN touches and retaining destination
+lifetime. So the next navigation work is that experiment, not bindings. The document also lists
+what not to build, including a second app back stack, automatic parent navigation-item sharing,
+and freestanding `navigationTitle`/`searchable` props on leaf controls.
 
-- **Navigation** wants a design pass before code. `NavigationStack`, `NavigationLink`,
-  `navigationDestination`, `navigationTitle`, `toolbar` and its ten companions, `searchable` and
-  its seven: 22 navigation modifiers at zero. Binding it means owning the interaction with
-  whatever router the app already uses.
+## Known weak spots in the checks
 
-2. The layout wave is finished: controls compose into one SwiftUI tree, a host reports
+- **Visual regions are absolute fixture coordinates.** Adding a seventh category to the
+  controls fixture wrapped its button grid to a third row and moved every control below it down
+  39pt, which broke five visual checks at once across the pickers and forms suites. They report
+  as "Control appears unpainted", which reads like a product regression and was not one: the
+  same regions shifted by 39pt measure 67,857 / 12,485 / 4,794 / 4,247 / 188 against documented
+  calibrations of 67,857 / 12,485 / 4,798 / 4,248 / 188. Anchoring each region to its subject's
+  accessibility frame at capture time would remove the whole class. Until then, read the capture
+  before believing an unpainted verdict.
+- **`stepper-control` has almost no headroom**: it measures 188 against a floor of 100, where
+  every other check clears its floor by a wide margin.
+- **`Image variable value stepped` proves nothing about the native side.** It reads the
+  fixture's own React state, and the fixture applies the variable value to `star.fill`, a symbol
+  with no variable rendering, so no pixel changes either way. Closing it needs a visual
+  declaration on a symbol that actually varies, such as `speaker.wave.3`.
+
+## Known environment defect
+
+The native-features dev server's esbuild service dies mid-session. A file codegen has just
+rewritten then fails to transform with `[vxrn/metro] native async/CJS lowering failed for
+<file>: The service is no longer running`, and the app shows a RedBox. The dev-server log
+carries no crash trace, only the repeated downstream `TransformError`, and the service never
+restarts itself, so that file stays permanently wedged. Observed twice, on different files
+(`menuItems.ts`, then `OneNativeSecureFieldNativeComponent.ts`); uptime is not the variable.
+The only recovery found is killing the server by port (`lsof -nP -iTCP:8107 -sTCP:LISTEN -t`)
+and restarting it. Not diagnosed at the source: this is Metro/vxrn territory, outside this
+branch's scope. `wait` in the conformance script now detects the RedBox by its own buttons and
+throws with the error text, so a wedged server no longer looks like a fixture that failed to
+mount.
+
+## Longer horizon
+
+1. The layout wave is finished: controls compose into one SwiftUI tree, a host reports
    the height SwiftUI measured back to Yoga, `Text` and `Label` are generated leaves,
    `Swift.Form`/`Swift.Section` are containers that nest, `Swift.Slot` carries a React
    Native subtree into any of them, and `Swift.Popover` is a composed trigger with a
@@ -305,7 +330,7 @@ One item wants a decision before code:
    what each stage changed against the plan. What it leaves open: a composed child's
    inherited `ViewProps` land on a UIView nobody displays, which the catalog should
    eventually map or reject.
-3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
+2. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map
    that both `requireNativeComponent` and `codegenNativeComponent` consult first
@@ -320,7 +345,7 @@ One item wants a decision before code:
    The schema's honest gaps for an independent implementation are accessibility role
    and label mapping, an executable definition of the slot `layout` values, and any
    imperative ref/command/`setNativeProps`/measurement contract.
-4. Migrate @vxrn/native by caller behavior, not export-name similarity. Color tokens,
+3. Migrate @vxrn/native by caller behavior, not export-name similarity. Color tokens,
    StackToolbar/ToolbarHost header ownership, SplitView, and ZoomTransition are One/
    react-native-screens integration. SwiftUI NavigationStack/Toolbar are not their
    drop-in replacements. `one-native-coverage.md` records the actual remaining work.
