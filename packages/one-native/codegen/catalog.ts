@@ -40,6 +40,70 @@ export const modifiers = [
     module: 'SwiftUICore',
   },
 ] as const
+export const styleModifiers = [
+  {
+    name: 'font',
+    parameters: [{ label: '_', type: 'SwiftUICore.Font?' }],
+    requirements: [],
+  },
+  {
+    name: 'foregroundStyle',
+    parameters: [{ label: '_', type: 'S' }],
+    requirements: ['S : SwiftUICore.ShapeStyle'],
+  },
+  {
+    name: 'tint',
+    parameters: [{ label: '_', type: 'SwiftUICore.Color?' }],
+    requirements: [],
+  },
+  {
+    name: 'padding',
+    parameters: [{ label: '_', type: 'SwiftUICore.EdgeInsets' }],
+    requirements: [],
+  },
+  {
+    name: 'frame',
+    parameters: [
+      { label: 'minWidth', type: 'CoreFoundation.CGFloat?' },
+      { label: 'idealWidth', type: 'CoreFoundation.CGFloat?' },
+      { label: 'maxWidth', type: 'CoreFoundation.CGFloat?' },
+      { label: 'minHeight', type: 'CoreFoundation.CGFloat?' },
+      { label: 'idealHeight', type: 'CoreFoundation.CGFloat?' },
+      { label: 'maxHeight', type: 'CoreFoundation.CGFloat?' },
+      { label: 'alignment', type: 'SwiftUICore.Alignment' },
+    ],
+    requirements: [],
+  },
+  {
+    name: 'background',
+    parameters: [
+      { label: '_', type: 'S' },
+      { label: 'ignoresSafeAreaEdges', type: 'SwiftUICore.Edge.Set' },
+    ],
+    requirements: ['S : SwiftUICore.ShapeStyle'],
+  },
+  {
+    name: 'clipShape',
+    parameters: [
+      { label: '_', type: 'S' },
+      { label: 'style', type: 'SwiftUICore.FillStyle' },
+    ],
+    requirements: ['S : SwiftUICore.Shape'],
+  },
+  {
+    name: 'opacity',
+    parameters: [{ label: '_', type: 'Swift.Double' }],
+    requirements: [],
+  },
+  {
+    name: 'border',
+    parameters: [
+      { label: '_', type: 'S' },
+      { label: 'width', type: 'CoreFoundation.CGFloat' },
+    ],
+    requirements: ['S : SwiftUICore.ShapeStyle'],
+  },
+] as const
 export const enumTypes = [
   'MenuOrder',
   'Visibility',

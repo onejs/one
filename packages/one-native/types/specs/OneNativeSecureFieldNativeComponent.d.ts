@@ -1,5 +1,31 @@
-import type { ViewProps } from 'react-native';
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import type { ColorValue, ViewProps } from 'react-native';
+import type { DirectEventHandler, Int32, Double } from 'react-native/Libraries/Types/CodegenTypes';
+type OneNativeStyleNative = Readonly<{
+    fontSize?: Double;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ColorValue;
+    tint?: ColorValue;
+    background?: ColorValue;
+    padding?: Double;
+    paddingTop?: Double;
+    paddingLeading?: Double;
+    paddingBottom?: Double;
+    paddingTrailing?: Double;
+    width?: Double;
+    height?: Double;
+    minWidth?: Double;
+    idealWidth?: Double;
+    maxWidth?: Double;
+    minHeight?: Double;
+    idealHeight?: Double;
+    maxHeight?: Double;
+    cornerRadius?: Double;
+    opacity?: Double;
+    borderColor?: ColorValue;
+    borderWidth?: Double;
+}>;
 interface NativeProps extends ViewProps {
     value: string;
     acknowledgedEvent: Int32;
@@ -16,6 +42,7 @@ interface NativeProps extends ViewProps {
     autocorrectionDisabled: boolean;
     keyboardType: string;
     textContentType: string;
+    swiftStyle?: OneNativeStyleNative;
     onNativeSecureFieldValueChange?: DirectEventHandler<Readonly<{
         value: string;
         eventCount: Int32;

@@ -11,6 +11,7 @@ private final class StepperModel: ObservableObject {
   @Published var maximumValue: Double = 100
   @Published var step: Double = 1
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onChange: ((Double, Int, Int) -> Void)?
   func change(_ value: Double) {
@@ -29,6 +30,10 @@ private final class StepperModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
@@ -83,5 +88,6 @@ private struct StepperContent: View {
       } onEditingChanged: { _ in }
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }

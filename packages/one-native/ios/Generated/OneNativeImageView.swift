@@ -11,6 +11,7 @@ private final class ImageModel: ObservableObject {
   @Published var variableValue: Double = 0
   @Published var hasVariableValue: Bool = false
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
 }
 @objcMembers public final class OneNativeImageView: UIView, OneNativeComposable {
@@ -22,6 +23,10 @@ private final class ImageModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ systemName: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool) {
     if model.systemName != systemName { model.systemName = systemName }
@@ -78,5 +83,6 @@ private struct ImageContent: View {
       .oneNativeSymbolVariant(model.symbolVariant)
       .oneNativeImageScale(model.imageScale)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
