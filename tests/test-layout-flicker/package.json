@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "expo": "~57.0.11",
     "one": "workspace:*",
     "react": "19.2.3",

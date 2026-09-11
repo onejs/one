@@ -1,30 +1,18 @@
-import { createRequire } from 'node:module'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+
+vi.mock('@react-navigation/bottom-tabs', () => ({
+  createBottomTabNavigator: () => ({
+    Navigator: () => null,
+    Screen: () => null,
+  }),
+}))
+
 import { NativeTabs } from './NativeTabs'
 
-const require = createRequire(import.meta.url)
-
-function hasNativeTabsPeer() {
-  try {
-    require.resolve('@bottom-tabs/react-navigation')
-    return true
-  } catch {
-    return false
-  }
-}
-
-describe('NativeTabs optional peer', () => {
-  it('does not throw during ordinary import-time inspection', () => {
+describe('NativeTabs', () => {
+  it('exposes layout statics without a separate bottom-tabs peer', () => {
     expect(() => Object.prototype.toString.call(NativeTabs)).not.toThrow()
-    expect(() => Reflect.get(NativeTabs, '$$typeof')).not.toThrow()
-    expect(() => Reflect.get(NativeTabs, 'Screen')).not.toThrow()
-  })
-
-  it('keeps the missing-peer error on actual render use', () => {
-    if (hasNativeTabsPeer()) return
-
-    expect(() => (NativeTabs as any).render({}, null)).toThrow(
-      'NativeTabs requires @bottom-tabs/react-navigation and react-native-bottom-tabs'
-    )
+    expect(NativeTabs.Screen).toBeTruthy()
+    expect(NativeTabs.Protected).toBeTruthy()
   })
 })

@@ -54,7 +54,7 @@ export function getNavigateAction(
       break
     }
 
-    actionState = childState
+    actionState = childState as OneRouter.ResultState
     navigationState = nextNavigationState as NavigationState
   }
 

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
-    "@react-navigation/native": "~7.3.16",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/lucide-icons-2": "2.6.2",
     "@tamagui/react-native-web": "2.6.2",
@@ -33,7 +33,7 @@
     "react": "19.2.3",
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-screens": "~4.27.0",
     "tamagui": "2.6.2"
   },
   "devDependencies": {

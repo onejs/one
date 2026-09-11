@@ -21,8 +21,4 @@ export default defineConfig({
       },
     }),
   ],
-
-  optimizeDeps: {
-    exclude: ['react-native-bottom-tabs', '@bottom-tabs/react-navigation'],
-  },
 })
