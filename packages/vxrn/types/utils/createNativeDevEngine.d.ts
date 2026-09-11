@@ -31,15 +31,22 @@ export type NativeHmrUpdate = {
     seq: number;
 } | {
     type: 'hmr:reload';
-    clientId: string;
+    clientId?: string;
 } | {
     type: 'hmr:error';
 };
+/**
+ * The served dev bundle and the map that resolves a frame in it back to the
+ * authored file. `map` is the serialized JSON, parsed only when a symbolicate
+ * request arrives.
+ */
+export interface NativeDevBundle {
+    code: string;
+    map: string;
+}
 interface NativeDevEngineResult {
     engine: DevEngine;
-    getBundle: () => Promise<{
-        code: string;
-    }>;
+    getBundle: () => Promise<NativeDevBundle>;
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }
@@ -59,6 +66,7 @@ export declare function getNativeTransformConfig(platform: 'ios' | 'android', de
  * - DevSettings stripping → stripDevSettingsPlugin
  */
 export declare function normalizeNativeCommonJSInterop(code: string): string;
+export declare function postProcessNativeBundle(code: string): string;
 /**
  * Wrap the dev bundle body in a function scope so module top-level
  * `var`/`function` declarations don't leak onto the global object.
@@ -95,6 +103,11 @@ interface NativeBuildOptions {
     plugins?: Plugin[];
     /** only pass when the map is written somewhere — it costs a second copy of the bundle */
     sourcemap?: boolean;
+    /**
+     * Compress and mangle the output. Defaults to React Native's own rule for a
+     * bundle: on unless the build is a dev build.
+     */
+    minify?: boolean;
 }
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
     code: string;

@@ -137,3 +137,75 @@ describe('route SuspenseFallback', () => {
     expect(renderer!.toJSON()).toBeNull()
   })
 })
+
+describe('ErrorBoundary route identity', () => {
+  it('preserves page state across a re-render when the route exports ErrorBoundary', async () => {
+    let mounts = 0
+    function Page() {
+      const [count, setCount] = React.useState(0)
+      React.useEffect(() => {
+        mounts += 1
+      }, [])
+      return (
+        <button data-count={count} onClick={() => setCount((value) => value + 1)}>
+          {count}
+        </button>
+      )
+    }
+    function ErrorBoundary() {
+      return <div data-error="1" />
+    }
+
+    const node = createRouteNode('spa', 'onboarding', './auth/onboarding.tsx', () => ({
+      default: Page,
+      ErrorBoundary,
+    }))
+    const Route = getQualifiedRouteComponent(node)
+
+    function Harness({ tick }: { tick: number }) {
+      return <Route tick={tick} />
+    }
+
+    let renderer: TestRenderer.ReactTestRenderer
+    await act(async () => {
+      renderer = TestRenderer.create(<Harness tick={0} />)
+    })
+
+    const button = renderer!.root.findByType('button')
+    expect(button.props['data-count']).toBe(0)
+    await act(async () => {
+      button.props.onClick()
+    })
+    expect(renderer!.root.findByType('button').props['data-count']).toBe(1)
+    expect(mounts).toBe(1)
+
+    await act(async () => {
+      renderer.update(<Harness tick={1} />)
+    })
+
+    expect(renderer!.root.findByType('button').props['data-count']).toBe(1)
+    expect(mounts).toBe(1)
+  })
+
+  it('still renders the exported ErrorBoundary when the page throws', async () => {
+    function Page(): React.ReactNode {
+      throw new Error('boom')
+    }
+    function ErrorBoundary({ error }: { error: Error; retry: () => Promise<void> }) {
+      return <div data-caught={error.message} />
+    }
+
+    const node = createRouteNode('spa', 'broken', './broken.tsx', () => ({
+      default: Page,
+      ErrorBoundary,
+    }))
+    const Route = getQualifiedRouteComponent(node)
+
+    let renderer: TestRenderer.ReactTestRenderer
+    await act(async () => {
+      renderer = TestRenderer.create(<Route />)
+    })
+
+    expect(renderer!.root.findByProps({ 'data-caught': 'boom' })).toBeTruthy()
+  })
+})

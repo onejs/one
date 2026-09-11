@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { configuration, isNativeWorkletsEnabled } from './configure'
 
@@ -144,6 +144,11 @@ export function setCachedTransform(
     // Silently fail cache writes
     console.warn(`[cache] Failed to write cache for ${filePath}:`, err)
   }
+}
+
+/** Drop every cached transform, for `react-native bundle --reset-cache`. */
+export function clearTransformCache(): void {
+  rmSync(getCacheDir(), { recursive: true, force: true })
 }
 
 export function getCacheStats(): CacheStats {
