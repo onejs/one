@@ -1,0 +1,31 @@
+import type * as Types from './controlTypes';
+declare function Picker(_props: Types.PickerProps): never;
+declare function DatePicker(_props: Types.DatePickerProps): never;
+declare function ColorPicker(_props: Types.ColorPickerProps): never;
+declare function Toggle(_props: Types.ToggleProps): never;
+declare function Slider(_props: Types.SliderProps): never;
+declare function Stepper(_props: Types.StepperProps): never;
+declare function Button(_props: Types.ButtonProps): never;
+declare function ProgressView(_props: Types.ProgressViewProps): never;
+declare function Gauge(_props: Types.GaugeProps): never;
+declare function TextField(_props: Types.TextFieldProps): never;
+declare function SecureField(_props: Types.SecureFieldProps): never;
+declare function Alert(_props: Types.AlertProps): never;
+declare function ConfirmationDialog(_props: Types.ConfirmationDialogProps): never;
+export declare const unsupportedControls: {
+    Picker: typeof Picker;
+    DatePicker: typeof DatePicker;
+    ColorPicker: typeof ColorPicker;
+    Toggle: typeof Toggle;
+    Slider: typeof Slider;
+    Stepper: typeof Stepper;
+    Button: typeof Button;
+    ProgressView: typeof ProgressView;
+    Gauge: typeof Gauge;
+    TextField: typeof TextField;
+    SecureField: typeof SecureField;
+    Alert: typeof Alert;
+    ConfirmationDialog: typeof ConfirmationDialog;
+};
+export {};
+//# sourceMappingURL=unsupportedControls.d.ts.map

@@ -237,6 +237,7 @@ export const components = [
       menuActionDismissBehavior: 'MenuActionDismissBehavior',
     },
     controlled: { event: 'onNativeMenuValueChange' },
+    layout: { kind: 'container' },
     slots: [
       {
         name: 'trigger',
@@ -262,6 +263,7 @@ export const components = [
     },
     enumProps: { tabBarMinimizeBehavior: 'TabBarMinimizeBehavior' },
     controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
+    layout: { kind: 'container' },
     slots: [
       {
         name: 'pages',
@@ -285,6 +287,7 @@ export const components = [
     },
     events: {},
     enumProps: { tabRole: 'TabRole' },
+    layout: { kind: 'container' },
     slots: [
       {
         name: 'content',

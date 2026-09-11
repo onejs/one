@@ -418,8 +418,8 @@
         }
       ],
       "requirements": [
-        "Parent : SwiftUICore.View,",
-        "Content : SwiftUICore.View,",
+        "Parent : SwiftUICore.View",
+        "Content : SwiftUICore.View",
         "Footer == SwiftUICore.EmptyView"
       ],
       "ios": 13
@@ -440,8 +440,8 @@
         }
       ],
       "requirements": [
-        "Content == SwiftUI.LabeledControlGroupContent<C, L>,",
-        "C : SwiftUICore.View,",
+        "Content == SwiftUI.LabeledControlGroupContent<C, L>",
+        "C : SwiftUICore.View",
         "L : SwiftUICore.View"
       ],
       "ios": 16
@@ -479,8 +479,8 @@
         }
       ],
       "requirements": [
-        "Value : Swift.Hashable,",
-        "Content : SwiftUICore.View,",
+        "Value : Swift.Hashable",
+        "Content : SwiftUICore.View",
         "Label : SwiftUICore.View"
       ],
       "ios": 18
@@ -617,7 +617,7 @@
       ],
       "requirements": [
         "ValueLabel == SwiftUICore.EmptyView",
-        "V : Swift.BinaryFloatingPoint,",
+        "V : Swift.BinaryFloatingPoint",
         "V.Stride : Swift.BinaryFloatingPoint"
       ],
       "ios": 13
@@ -704,7 +704,7 @@
         }
       ],
       "requirements": [
-        "CurrentValueLabel == SwiftUICore.EmptyView,",
+        "CurrentValueLabel == SwiftUICore.EmptyView",
         "V : Swift.BinaryFloatingPoint"
       ],
       "ios": 14
@@ -761,11 +761,11 @@
         }
       ],
       "requirements": [
-        "Label : SwiftUICore.View,",
-        "CurrentValueLabel : SwiftUICore.View,",
-        "BoundsLabel : SwiftUICore.View,",
+        "Label : SwiftUICore.View",
+        "CurrentValueLabel : SwiftUICore.View",
+        "BoundsLabel : SwiftUICore.View",
         "MarkedValueLabels : SwiftUICore.View",
-        "MarkedValueLabels == SwiftUICore.EmptyView,",
+        "MarkedValueLabels == SwiftUICore.EmptyView",
         "V : Swift.BinaryFloatingPoint"
       ],
       "ios": 16

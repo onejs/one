@@ -6,7 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeGaugeComponentView { OneNativeGaugeView *_nativeView;  }
+@implementation OneNativeGaugeComponentView { OneNativeGaugeView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeGaugeComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -24,5 +24,5 @@ using namespace facebook::react;
     disabled:next.disabled value:next.value minimumValue:next.minimumValue maximumValue:next.maximumValue currentValueLabel:RCTNSStringFromString(next.currentValueLabel) minimumValueLabel:RCTNSStringFromString(next.minimumValueLabel) maximumValueLabel:RCTNSStringFromString(next.maximumValueLabel) gaugeStyle:RCTNSStringFromString(next.gaugeStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end

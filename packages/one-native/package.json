@@ -65,6 +65,8 @@
         "OneNativeGauge": "OneNativeGaugeComponentView",
         "OneNativeTextField": "OneNativeTextFieldComponentView",
         "OneNativeSecureField": "OneNativeSecureFieldComponentView",
+        "OneNativeAlert": "OneNativeAlertComponentView",
+        "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView"
       }

@@ -2,7 +2,7 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import UIKit
-struct OneNativePickerOption: Equatable { let value: String; let label: String }
+
 private final class PickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
   @Published var label: String = ""
@@ -29,7 +29,7 @@ private final class PickerModel: ObservableObject {
     if model.disabled != disabled { model.disabled = disabled }
     if model.pickerStyle != pickerStyle { model.pickerStyle = pickerStyle }
   }
-  public func setOptions(_ options: [[String: String]]) { model.options = options.map { OneNativePickerOption(value: $0["value"]!, label: $0["label"]!) } }
+  public func setOptions(_ items: [[String: Any]]) { model.options = items.map { OneNativePickerOption(value: $0["value"] as! String, label: $0["label"] as! String) } }
 
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }

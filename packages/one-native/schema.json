@@ -70,6 +70,9 @@
         "event": "onNativeMenuValueChange"
       },
       "actions": [],
+      "layout": {
+        "kind": "container"
+      },
       "slots": [
         {
           "name": "trigger",
@@ -120,6 +123,9 @@
         "event": "onNativeTabsSelectionChange"
       },
       "actions": [],
+      "layout": {
+        "kind": "container"
+      },
       "slots": [
         {
           "name": "pages",
@@ -154,6 +160,9 @@
       },
       "events": {},
       "actions": [],
+      "layout": {
+        "kind": "container"
+      },
       "slots": [
         {
           "name": "content",
@@ -209,18 +218,21 @@
         "event": "onNativePickerValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44,
-        "when": [
-          {
-            "prop": "pickerStyle",
-            "values": [
-              "wheel",
-              "inline"
-            ],
-            "height": 216
-          }
-        ]
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44,
+          "when": [
+            {
+              "prop": "pickerStyle",
+              "values": [
+                "wheel",
+                "inline"
+              ],
+              "height": 216
+            }
+          ]
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -276,24 +288,27 @@
         "event": "onNativeDatePickerValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44,
-        "when": [
-          {
-            "prop": "datePickerStyle",
-            "values": [
-              "graphical"
-            ],
-            "height": 360
-          },
-          {
-            "prop": "datePickerStyle",
-            "values": [
-              "wheel"
-            ],
-            "height": 216
-          }
-        ]
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44,
+          "when": [
+            {
+              "prop": "datePickerStyle",
+              "values": [
+                "graphical"
+              ],
+              "height": 360
+            },
+            {
+              "prop": "datePickerStyle",
+              "values": [
+                "wheel"
+              ],
+              "height": 216
+            }
+          ]
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -339,8 +354,11 @@
         "event": "onNativeColorPickerValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -387,8 +405,11 @@
         "event": "onNativeToggleValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -440,8 +461,11 @@
         "event": "onNativeSliderValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -493,8 +517,11 @@
         "event": "onNativeStepperValueChange"
       },
       "actions": [],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -534,8 +561,11 @@
           "event": "onNativeButtonPress"
         }
       ],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -566,8 +596,11 @@
       },
       "events": {},
       "actions": [],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -607,18 +640,21 @@
       },
       "events": {},
       "actions": [],
-      "defaultHeight": {
-        "default": 44,
-        "when": [
-          {
-            "prop": "gaugeStyle",
-            "values": [
-              "accessoryCircular",
-              "accessoryCircularCapacity"
-            ],
-            "height": 100
-          }
-        ]
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44,
+          "when": [
+            {
+              "prop": "gaugeStyle",
+              "values": [
+                "accessoryCircular",
+                "accessoryCircularCapacity"
+              ],
+              "height": 100
+            }
+          ]
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -693,17 +729,20 @@
           "event": "onNativeTextFieldSubmit"
         }
       ],
-      "defaultHeight": {
-        "default": 44,
-        "when": [
-          {
-            "prop": "axis",
-            "values": [
-              "vertical"
-            ],
-            "height": 120
-          }
-        ]
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44,
+          "when": [
+            {
+              "prop": "axis",
+              "values": [
+                "vertical"
+              ],
+              "height": 120
+            }
+          ]
+        }
       },
       "slots": [],
       "interfaceOnly": false
@@ -774,8 +813,135 @@
           "event": "onNativeSecureFieldSubmit"
         }
       ],
-      "defaultHeight": {
-        "default": 44
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 44
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeAlert",
+      "publicName": "Alert",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "ReadonlyArray<DialogAction>"
+        }
+      },
+      "events": {
+        "onNativeAlertValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeAlertAction": {
+          "id": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeAlertValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeAlertAction"
+        }
+      ],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeConfirmationDialog",
+      "publicName": "ConfirmationDialog",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "ReadonlyArray<DialogAction>"
+        },
+        "titleVisibility": {
+          "type": "string",
+          "enum": "Visibility"
+        }
+      },
+      "events": {
+        "onNativeConfirmationDialogValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeConfirmationDialogAction": {
+          "id": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeConfirmationDialogValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeConfirmationDialogAction"
+        }
+      ],
+      "layout": {
+        "kind": "presentation"
       },
       "slots": [],
       "interfaceOnly": false
@@ -827,6 +993,9 @@
         "event": "onNativeSheetIsPresentedChange"
       },
       "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
       "slots": [
         {
           "name": "content",
@@ -843,6 +1012,9 @@
       "props": {},
       "events": {},
       "actions": [],
+      "layout": {
+        "kind": "container"
+      },
       "slots": [
         {
           "name": "content",
@@ -862,6 +1034,19 @@
           "type": "string"
         },
         "label": {
+          "type": "string"
+        }
+      }
+    },
+    "DialogAction": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "role": {
           "type": "string"
         }
       }

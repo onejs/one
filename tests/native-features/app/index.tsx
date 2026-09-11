@@ -17,6 +17,16 @@ const testScreens = [
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',
   },
+  {
+    href: '/one-native-leaves',
+    label: 'One Native Leaves',
+    testID: 'nav-one-native-leaves',
+  },
+  {
+    href: '/one-native-dialogs',
+    label: 'One Native Dialogs',
+    testID: 'nav-one-native-dialogs',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

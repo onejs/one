@@ -3,6 +3,11 @@
 import type { ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 export type PickerOption = Readonly<{ value: string; label: string }>
+export type DialogAction = Readonly<{
+  id: string
+  label: string
+  role?: Styles.ButtonRole
+}>
 export interface PickerProps extends Omit<ViewProps, 'children'> {
   selection: string
   onSelectionChange: (value: string) => void
@@ -111,4 +116,23 @@ export interface SecureFieldProps extends Omit<ViewProps, 'children'> {
   submitLabel?: Styles.SubmitLabel | ''
   textInputAutocapitalization?: Styles.TextInputAutocapitalization | ''
   autocorrectionDisabled?: boolean
+}
+export interface AlertProps extends Omit<ViewProps, 'children'> {
+  isPresented: boolean
+  onIsPresentedChange: (value: boolean) => void
+  revision?: number
+  onAction?: (id: string) => void
+  title?: string
+  message?: string
+  actions: readonly DialogAction[]
+}
+export interface ConfirmationDialogProps extends Omit<ViewProps, 'children'> {
+  isPresented: boolean
+  onIsPresentedChange: (value: boolean) => void
+  revision?: number
+  onAction?: (id: string) => void
+  title?: string
+  message?: string
+  actions: readonly DialogAction[]
+  titleVisibility?: Styles.Visibility
 }

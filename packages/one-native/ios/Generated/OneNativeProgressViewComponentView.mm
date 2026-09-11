@@ -6,7 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeProgressViewComponentView { OneNativeProgressViewView *_nativeView;  }
+@implementation OneNativeProgressViewComponentView { OneNativeProgressViewView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeProgressViewComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -24,5 +24,5 @@ using namespace facebook::react;
     disabled:next.disabled value:next.value total:next.total indeterminate:next.indeterminate progressViewStyle:RCTNSStringFromString(next.progressViewStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end

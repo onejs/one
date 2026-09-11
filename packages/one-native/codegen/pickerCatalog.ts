@@ -6,7 +6,11 @@ export const pickerControls: Control[] = [
     value: { type: 'string', prop: 'selection', event: 'onSelectionChange', initial: '' },
     fields: {
       ...commonFields,
-      options: { type: 'options', default: '' },
+      options: {
+        type: 'objects',
+        default: '',
+        payload: { name: 'PickerOption', element: { value: 'string', label: 'string' } },
+      },
       pickerStyle: { type: 'string', default: 'automatic', enum: 'PickerStyle' },
     },
     constructors: [

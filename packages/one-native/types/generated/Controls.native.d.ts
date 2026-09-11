@@ -10,4 +10,6 @@ export declare function ProgressView({ label, disabled, value, total, progressVi
 export declare function Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, style, ...props }: Types.GaugeProps): import("react/jsx-runtime").JSX.Element;
 export declare function TextField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, axis, style, ...props }: Types.TextFieldProps): import("react/jsx-runtime").JSX.Element;
 export declare function SecureField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, style, ...props }: Types.SecureFieldProps): import("react/jsx-runtime").JSX.Element;
+export declare function Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, style, ...props }: Types.AlertProps): import("react/jsx-runtime").JSX.Element;
+export declare function ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, titleVisibility, style, ...props }: Types.ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=Controls.native.d.ts.map

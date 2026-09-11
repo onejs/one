@@ -6,7 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeButtonComponentView { OneNativeButtonView *_nativeView;  }
+@implementation OneNativeButtonComponentView { OneNativeButtonView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeButtonComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -30,5 +30,5 @@ using namespace facebook::react;
     disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end

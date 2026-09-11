@@ -19,6 +19,11 @@ struct Declaration: Codable {
   let type: String?
   let line: Int
 }
+// generic requirement elements carry their trailing comma; selectors compare on the text alone.
+func requirementText(_ requirement: GenericRequirementSyntax) -> String {
+  let text = requirement.trimmedDescription
+  return text.hasSuffix(",") ? String(text.dropLast()) : text
+}
 final class Inventory: SyntaxVisitor {
   let module: String
   let location: SourceLocationConverter
@@ -38,22 +43,22 @@ final class Inventory: SyntaxVisitor {
   func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
-      requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map { $0.trimmedDescription } ?? []),
+      requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes)
-    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
+    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: StructDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "enum", name: node.name.text, attrs: node.attributes)
-    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
+    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: EnumDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind {
-    owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
+    owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {

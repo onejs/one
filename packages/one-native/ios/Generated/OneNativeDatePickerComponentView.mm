@@ -6,7 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeDatePickerComponentView { OneNativeDatePickerView *_nativeView;  }
+@implementation OneNativeDatePickerComponentView { OneNativeDatePickerView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeDatePickerComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -30,5 +30,5 @@ using namespace facebook::react;
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled minimumDate:next.minimumDate maximumDate:next.maximumDate displayedComponents:RCTNSStringFromString(next.displayedComponents) datePickerStyle:RCTNSStringFromString(next.datePickerStyle)];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];  }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end

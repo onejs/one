@@ -26,13 +26,13 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativePickerProps>(props);
   const auto &previous = *std::static_pointer_cast<const OneNativePickerProps>(_props);
-  bool changed = _optionsDirty || previous.options.size() != next.options.size();
-  if (!changed) for (size_t i = 0; i < next.options.size(); i++) {
-    if (previous.options[i].value != next.options[i].value || previous.options[i].label != next.options[i].label) { changed = true; break; }
+  bool optionsChanged = _optionsDirty || previous.options.size() != next.options.size();
+  if (!optionsChanged) for (size_t i = 0; i < next.options.size(); i++) {
+    if (previous.options[i].value != next.options[i].value || previous.options[i].label != next.options[i].label) { optionsChanged = true; break; }
   }
-  if (changed) {
+  if (optionsChanged) {
     NSMutableArray *options = [NSMutableArray new];
-    for (const auto &option : next.options) [options addObject:@{@"value": RCTNSStringFromString(option.value), @"label": RCTNSStringFromString(option.label)}];
+    for (const auto &item : next.options) [options addObject:@{@"value": RCTNSStringFromString(item.value), @"label": RCTNSStringFromString(item.label)}];
     [_nativeView setOptions:options];
     _optionsDirty = NO;
   }
