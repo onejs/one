@@ -374,7 +374,10 @@ export function postProcessNativeBundle(code: string): string {
   // this is a rolldown behavior we can't configure away yet. both patterns match
   // horizontal whitespace only: a plain `\s` swallows the blank line above the
   // statement, and a swallowed line moves every frame below it.
-  code = code.replace(/^[^\S\n]*export[^\S\n]*\{[^}]*\}[^\S\n]*;?[^\S\n]*$/gm, blankPreservingLines)
+  code = code.replace(
+    /^[^\S\n]*export[^\S\n]*\{[^}]*\}[^\S\n]*;?[^\S\n]*$/gm,
+    blankPreservingLines
+  )
   code = code.replace(
     /^([^\S\n]*)export[^\S\n]+default[^\S\n]+([^;\n]+);?[^\S\n]*$/gm,
     '$1$2;'
@@ -1066,7 +1069,14 @@ createApp({
             else if (isRouteFile(child)) routes.files.add(child)
           }
         }
-        walkRouteRoot(routeRoot)
+        // a project can have no route root at all: `import.meta.glob` then
+        // expands to nothing and the app builds fine. watch the directory that
+        // would hold it, so creating it is the change that starts the walk.
+        if (statSync(routeRoot, { throwIfNoEntry: false })?.isDirectory()) {
+          walkRouteRoot(routeRoot)
+        } else {
+          this.addWatchFile(dirname(routeRoot))
+        }
         return entryCode
       },
     },
