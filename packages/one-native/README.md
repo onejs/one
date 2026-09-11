@@ -184,7 +184,7 @@ Every control also accepts `label`, `disabled`, and `revision`.
 
 ## Buttons, indicators, and text input
 
-`Text` and `Label` display a string; `Button` signals; `ProgressView` and `Gauge`
+`Text`, `Label`, and `Image` display; `Button` signals; `ProgressView` and `Gauge`
 only display; `TextField` and `SecureField` carry a controlled string. They take
 the same flat props. None of them declares a height: SwiftUI measures each one
 and reports it back to Yoga, so a wrapped `Text`, a circular `Gauge` and a
@@ -198,6 +198,7 @@ function Leaves() {
     <View style={{ width: '100%' }}>
       <Swift.Text text="Read only" />
       <Swift.Label label="Starred" systemImage="star.fill" />
+      <Swift.Image systemName="star.fill" symbolRenderingMode="hierarchical" imageScale="medium" />
       <Swift.Button
         label="Delete"
         systemImage="trash"
@@ -233,8 +234,9 @@ function Leaves() {
 
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
-SwiftUI does. Both are display only: they have no events and no controlled value, and
-they are most useful as rows inside a container.
+SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRenderingMode`,
+`symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
+and no controlled value, and they are most useful as rows inside a container.
 
 `Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named

@@ -40,6 +40,9 @@ function ProgressView(_props: Types.ProgressViewProps): never {
 function Gauge(_props: Types.GaugeProps): never {
   throw new Error('Swift.Gauge requires an iOS native build with one-native installed')
 }
+function Image(_props: Types.ImageProps): never {
+  throw new Error('Swift.Image requires an iOS native build with one-native installed')
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error(
     'Swift.VideoPlayer requires an iOS native build with one-native installed'
@@ -83,6 +86,7 @@ export const unsupportedControls = {
   Button,
   ProgressView,
   Gauge,
+  Image,
   VideoPlayer,
   Map,
   TextField,

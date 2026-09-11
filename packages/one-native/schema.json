@@ -635,6 +635,40 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeImage",
+      "publicName": "Image",
+      "props": {
+        "systemName": {
+          "type": "string"
+        },
+        "symbolRenderingMode": {
+          "type": "string",
+          "enum": "SymbolRenderingMode"
+        },
+        "symbolVariant": {
+          "type": "string",
+          "enum": "SymbolVariants"
+        },
+        "imageScale": {
+          "type": "string",
+          "enum": "ImageScale"
+        },
+        "variableValue": {
+          "type": "Double"
+        },
+        "hasVariableValue": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
@@ -1606,6 +1640,25 @@
       "popover": 16.4,
       "sheet": 16.4,
       "fullScreenCover": 16.4
+    },
+    "SymbolRenderingMode": {
+      "monochrome": 15,
+      "multicolor": 15,
+      "hierarchical": 15,
+      "palette": 15
+    },
+    "SymbolVariants": {
+      "none": 15,
+      "circle": 15,
+      "square": 15,
+      "rectangle": 15,
+      "fill": 15,
+      "slash": 15
+    },
+    "ImageScale": {
+      "small": 13,
+      "medium": 13,
+      "large": 13
     }
   }
 }

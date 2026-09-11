@@ -121,6 +121,13 @@ export interface GaugeProps extends OneNativeViewProps {
   maximumValueLabel?: string
   gaugeStyle?: Styles.GaugeStyle
 }
+export interface ImageProps extends OneNativeViewProps {
+  systemName?: string
+  symbolRenderingMode?: Styles.SymbolRenderingMode | ''
+  symbolVariant?: Styles.SymbolVariants | ''
+  imageScale?: Styles.ImageScale | ''
+  variableValue?: number
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string
   autoplay?: boolean
