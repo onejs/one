@@ -15,6 +15,7 @@ export declare const Swift: {
     Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
+    Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     Map({ onRegionChange, latitude, longitude, distance, markers, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, axis, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;

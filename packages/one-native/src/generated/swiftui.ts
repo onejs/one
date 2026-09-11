@@ -58,6 +58,9 @@ export type PresentationAdaptation =
   | 'popover'
   | 'sheet'
   | 'fullScreenCover'
+export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette'
+export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash'
+export type ImageScale = 'small' | 'medium' | 'large'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -176,6 +179,25 @@ export const swiftUIValues = {
     popover: 16.4,
     sheet: 16.4,
     fullScreenCover: 16.4,
+  },
+  SymbolRenderingMode: {
+    monochrome: 15,
+    multicolor: 15,
+    hierarchical: 15,
+    palette: 15,
+  },
+  SymbolVariants: {
+    none: 15,
+    circle: 15,
+    square: 15,
+    rectangle: 15,
+    fill: 15,
+    slash: 15,
+  },
+  ImageScale: {
+    small: 13,
+    medium: 13,
+    large: 13,
   },
 } as const
 export function assertSwiftUIValue(

@@ -34,14 +34,18 @@ const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
 const { sdk, swiftc, modules, paths, inventory } = readInventory(root)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
+const ownerMatches = (d: Declaration, type: string) => {
+  const parts = d.owner.split('.')
+  return parts.at(-1) === type || parts.slice(-2).join('') === type
+}
 const selected: Declaration[] = []
 const enums = Object.fromEntries(
   enumTypes.map((type) => {
     const cases = inventory.filter(
       (d) =>
-        shortOwner(d) === type &&
+        ownerMatches(d, type) &&
         d.kind === 'static' &&
-        (type.endsWith('Style') || d.type?.split('.').at(-1) === type) &&
+        (type.endsWith('Style') || d.type === 'Scale' || d.type?.split('.').at(-1) === type) &&
         available(d)
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
@@ -58,7 +62,7 @@ const methods = modifiers.map((modifier) => {
         label: '_',
         type: isStyle
           ? 'S'
-          : `${'module' in modifier ? modifier.module : 'SwiftUI'}.${modifier.type}${'optional' in modifier && modifier.optional ? '?' : ''}`,
+          : `${'module' in modifier ? modifier.module : 'SwiftUI'}.${'swiftType' in modifier ? (modifier as { swiftType: string }).swiftType : modifier.type}${'optional' in modifier && modifier.optional ? '?' : ''}`,
       },
     ],
     requirements: isStyle ? [`S: SwiftUI.${modifier.type}`] : [],
@@ -289,13 +293,15 @@ outputs.set(
 )
 outputs.set('src/menuItems.ts', emitMenuValidator(header))
 let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
+const swiftTypeNames: Record<string, string> = { ImageScale: 'Image.Scale' }
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
+  const swiftReturnType = swiftTypeNames[type] ?? type
   // an empty string is the SDK's own default, which these express as nil.
   const optional = ['ButtonRole', 'TabRole', 'Edge'].includes(type)
   const minimum = Math.min(...Object.values(cases))
   if (minimum > 18) swift += `  @available(iOS ${minimum}, *)\n`
-  swift += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${type}${optional ? '?' : ''} {\n    switch value {\n`
+  swift += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${swiftReturnType}${optional ? '?' : ''} {\n    switch value {\n`
   if (optional) swift += '    case "": return nil\n'
   for (const [name, version] of Object.entries(cases)) {
     swift += `    case "${name}":\n`

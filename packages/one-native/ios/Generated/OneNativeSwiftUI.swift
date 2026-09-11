@@ -148,6 +148,47 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid PresentationAdaptation: \(value)")
     }
   }
+  static func symbolRenderingMode(_ value: String) -> SymbolRenderingMode {
+    switch value {
+    case "monochrome":
+      return .monochrome
+    case "multicolor":
+      return .multicolor
+    case "hierarchical":
+      return .hierarchical
+    case "palette":
+      return .palette
+    default: preconditionFailure("invalid SymbolRenderingMode: \(value)")
+    }
+  }
+  static func symbolVariants(_ value: String) -> SymbolVariants {
+    switch value {
+    case "none":
+      return .none
+    case "circle":
+      return .circle
+    case "square":
+      return .square
+    case "rectangle":
+      return .rectangle
+    case "fill":
+      return .fill
+    case "slash":
+      return .slash
+    default: preconditionFailure("invalid SymbolVariants: \(value)")
+    }
+  }
+  static func imageScale(_ value: String) -> Image.Scale {
+    switch value {
+    case "small":
+      return .small
+    case "medium":
+      return .medium
+    case "large":
+      return .large
+    default: preconditionFailure("invalid ImageScale: \(value)")
+    }
+  }
   @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
       if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
@@ -298,5 +339,14 @@ extension View {
   }
   @ViewBuilder func oneNativeTextInputAutocapitalization(_ value: String) -> some View {
     if value.isEmpty { self } else { self.textInputAutocapitalization(OneNativeGenerated.textInputAutocapitalization(value)) }
+  }
+  @ViewBuilder func oneNativeSymbolRenderingMode(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.symbolRenderingMode(OneNativeGenerated.symbolRenderingMode(value)) }
+  }
+  @ViewBuilder func oneNativeSymbolVariant(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.symbolVariant(OneNativeGenerated.symbolVariants(value)) }
+  }
+  @ViewBuilder func oneNativeImageScale(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.imageScale(OneNativeGenerated.imageScale(value)) }
   }
 }
