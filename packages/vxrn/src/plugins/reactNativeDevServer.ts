@@ -211,7 +211,7 @@ export function createReactNativeDevServerPlugin(
         }
         addConnectedNativeClient()
 
-        socket.on('message', async (message) => {
+        socket.on('message', (message) => {
           const value = message.toString()
           if (value === 'ping') {
             socket.send('pong')
@@ -225,9 +225,9 @@ export function createReactNativeDevServerPlugin(
             return
           }
           if (update.type === 'hmr:invalidate') {
-            // the runtime asked for this reload, so it happens whether or not
-            // the rebuild changed anything
-            await currentEngine.rebuildFromScratch()
+            // the runtime could not accept an update, so restart it. the bundle
+            // it fetches on the way back settles the engine's pending work
+            // first, so it lands on the current output.
             socket.send(JSON.stringify({ type: 'hmr:reload' }))
           }
         })
@@ -254,70 +254,35 @@ export function createReactNativeDevServerPlugin(
         })
       }
 
-      // a file created or deleted after the first build changes what
-      // `import.meta.glob` matches, and rolldown expanded those globs when it
-      // transformed the module without recording the globbed directories as
-      // dependencies. nothing invalidates the glob's module, so adding a route
-      // otherwise leaves the running app on the old route map forever, and no
-      // bundle request fixes it. vite's own glob plugin covers this in
-      // `hotUpdate`, which the native engine has no equivalent of.
+      // a created file belongs to the dev engine now: the native entry plugin
+      // registers the route directories with addWatchFile, so rolldown's own
+      // watcher reports a route appearing and the engine rebuilds and reloads
+      // for that alone, instead of every file written anywhere in the project.
       //
-      // a deletion needs a different answer. rolldown's dev engine panics its
-      // worker when it retires a module that left the disk ("index out of
-      // bounds" out of oxc_index), and from then on every bundle request answers
-      // 500 even once the file comes back. that engine cannot be repaired, so
-      // drop it and let the next bundle request build a fresh one.
-      let graphChange: Promise<void> | null = null
-      let graphChangeQueued = false
-      let sawDeletion = false
-      const runGraphChange = () => {
-        if (graphChange) {
-          graphChangeQueued = true
-          return
-        }
-        graphChange = (async () => {
-          do {
-            graphChangeQueued = false
-            const deleted = sawDeletion
-            sawDeletion = false
-            for (const platform of Object.keys(devEngines)) {
-              const devEngine = devEngines[platform]
-              if (!devEngine) continue
-              if (deleted) {
-                devEngines[platform] = null
-                devEngineCreating[platform] = null
-                devEngine.close().catch(() => {})
-                reloadNativeClients(platform)
-                continue
-              }
-              try {
-                // only a rebuild that moved the output is worth a reload, so a
-                // new file no glob matches costs a rebuild and nothing else
-                if (!(await devEngine.rebuildFromScratch())) continue
-              } catch (error) {
-                console.error(`[vxrn] rebuilding the ${platform} bundle failed`, error)
-                continue
-              }
-              reloadNativeClients(platform)
-            }
-          } while (graphChangeQueued)
-        })().finally(() => {
-          graphChange = null
-        })
-      }
-      let graphChangeTimer: ReturnType<typeof setTimeout> | undefined
-      const onFileCreatedOrDeleted = (deletion: boolean) => (file: string) => {
+      // a deletion it cannot survive. rolldown's dev engine panics its worker
+      // when it retires a module that left the disk ("index out of bounds" out
+      // of oxc_index), and from then on every bundle request answers 500 even
+      // once the file comes back. that engine cannot be repaired, so drop it
+      // and let the next bundle request build a fresh one.
+      let deletionTimer: ReturnType<typeof setTimeout> | undefined
+      server.watcher.on('unlink', (file) => {
         // vite's watcher already skips node_modules and .git. keep out the rest
         // of what a dev server writes into a project while it runs: caches and
         // build output under a dot directory, editor swap files.
         if (file.split('/').some((segment) => segment.startsWith('.'))) return
-        sawDeletion ||= deletion
         // one pass for a burst (a branch switch, a generator, a rename)
-        clearTimeout(graphChangeTimer)
-        graphChangeTimer = setTimeout(runGraphChange, 500)
-      }
-      server.watcher.on('add', onFileCreatedOrDeleted(false))
-      server.watcher.on('unlink', onFileCreatedOrDeleted(true))
+        clearTimeout(deletionTimer)
+        deletionTimer = setTimeout(() => {
+          for (const platform of Object.keys(devEngines)) {
+            const devEngine = devEngines[platform]
+            if (!devEngine) continue
+            devEngines[platform] = null
+            devEngineCreating[platform] = null
+            devEngine.close().catch(() => {})
+            reloadNativeClients(platform)
+          }
+        }, 500)
+      })
 
       clientWSS.on('connection', (socket) => {
         socket.on('message', (messageRaw) => {
@@ -364,13 +329,15 @@ export function createReactNativeDevServerPlugin(
                   serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
                   onHmrUpdate: (update) => {
                     const msg = JSON.stringify(update)
+                    // an update with no clientId is for every client on the
+                    // platform: an error, or a reload after a full rebuild
+                    const target = 'clientId' in update ? update.clientId : undefined
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
                       if (
                         nativeClient.readyState === 1 &&
                         nativeClient.vxrnPlatform === platform &&
-                        (update.type === 'hmr:error' ||
-                          nativeClient.vxrnClientId === update.clientId)
+                        (!target || nativeClient.vxrnClientId === target)
                       ) {
                         client.send(msg)
                       }
@@ -404,7 +371,10 @@ export function createReactNativeDevServerPlugin(
         // here would mean a second engine per platform. production native bundles
         // come from the build command instead. say so rather than quietly serving
         // dev bytes to something that asked for production ones.
-        if (url.searchParams.get('dev') === 'false' && !warnedProdBundleRequest.has(platform)) {
+        if (
+          url.searchParams.get('dev') === 'false' &&
+          !warnedProdBundleRequest.has(platform)
+        ) {
           warnedProdBundleRequest.add(platform)
           console.warn(
             `[vxrn] ${platform} bundle requested with dev=false, but the dev server only builds dev bundles. Serving a dev bundle. Use the build command for a production one.`

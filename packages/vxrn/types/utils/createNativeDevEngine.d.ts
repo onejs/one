@@ -31,7 +31,7 @@ export type NativeHmrUpdate = {
     seq: number;
 } | {
     type: 'hmr:reload';
-    clientId: string;
+    clientId?: string;
 } | {
     type: 'hmr:error';
 };
@@ -47,8 +47,6 @@ export interface NativeDevBundle {
 interface NativeDevEngineResult {
     engine: DevEngine;
     getBundle: () => Promise<NativeDevBundle>;
-    /** rebuild every module from scratch; resolves to whether the output changed */
-    rebuildFromScratch: () => Promise<boolean>;
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }
