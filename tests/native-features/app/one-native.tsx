@@ -1,105 +1,10 @@
 import { useState, type ReactNode } from 'react'
-import { Swift } from 'one-native'
-import { View, Text, Pressable, TextInput, StyleSheet } from 'react-native'
+import { Swift, type MenuItem } from 'one-native'
+import { Platform, View, Text, Pressable, TextInput, StyleSheet } from 'react-native'
 
 const FIRST = 'first'
 const SECOND = 'second'
-
-const menuItems = [
-  {
-    type: 'action' as const,
-    id: 'copy',
-    title: 'Copy',
-    systemImage: 'doc.on.doc',
-  },
-  {
-    type: 'action' as const,
-    id: 'checked',
-    title: 'Checked',
-    systemImage: 'checkmark.circle',
-    state: 'on' as const,
-  },
-  {
-    type: 'action' as const,
-    id: 'disabled',
-    title: 'Disabled',
-    systemImage: 'xmark.circle',
-    disabled: true,
-  },
-  {
-    type: 'action' as const,
-    id: 'keep-open',
-    title: 'Keep Open',
-    systemImage: 'pin',
-    keepsMenuPresented: true,
-  },
-  {
-    type: 'action' as const,
-    id: 'hidden',
-    title: 'Hidden',
-    systemImage: 'eye.slash',
-    hidden: true,
-  },
-  {
-    type: 'submenu' as const,
-    id: 'nested',
-    title: 'More',
-    systemImage: 'ellipsis.circle',
-    children: [
-      {
-        type: 'action' as const,
-        id: 'nested-a',
-        title: 'Nested A',
-        systemImage: 'star',
-      },
-      {
-        type: 'action' as const,
-        id: 'nested-b',
-        title: 'Nested B',
-        destructive: true,
-      },
-      {
-        type: 'submenu' as const,
-        id: 'deeper',
-        title: 'Deeper',
-        children: [
-          {
-            type: 'action' as const,
-            id: 'deep-1',
-            title: 'Deep 1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'submenu' as const,
-    id: 'inline-group',
-    title: 'Inline',
-    displayInline: true,
-    singleSelection: true,
-    children: [
-      {
-        type: 'action' as const,
-        id: 'inline-off',
-        title: 'Off',
-        state: 'off' as const,
-      },
-      {
-        type: 'action' as const,
-        id: 'inline-on',
-        title: 'On',
-        state: 'on' as const,
-      },
-      {
-        type: 'action' as const,
-        id: 'inline-mixed',
-        title: 'Mixed',
-        state: 'mixed' as const,
-      },
-    ],
-  },
-]
+const iosVersion = Number.parseFloat(String(Platform.Version))
 
 function TabPage({
   id,
@@ -144,10 +49,111 @@ export default function OneNativeScreen() {
   const [ignoreSelectionChange, setIgnoreSelectionChange] = useState(false)
   const [lastAction, setLastAction] = useState('none')
   const [tabOrder, setTabOrder] = useState([FIRST, SECOND])
+  const [searchRole, setSearchRole] = useState(false)
+  const [toggleValues, setToggleValues] = useState<Record<string, boolean[]>>({
+    checked: [true],
+    mixed: [true, false],
+  })
 
   const otherTab = selection === FIRST ? SECOND : FIRST
   const titles = { [FIRST]: 'First', [SECOND]: 'Second' }
   const images = { [FIRST]: '1.circle', [SECOND]: '2.circle' }
+  const menuItems: MenuItem[] = [
+    {
+      type: 'action',
+      id: 'copy',
+      title: 'Copy',
+      systemImage: 'doc.on.doc',
+    },
+    {
+      type: 'toggle',
+      id: 'checked',
+      title: 'Checked',
+      systemImage: 'checkmark.circle',
+      values: toggleValues.checked,
+      menuActionDismissBehavior: 'disabled',
+    },
+    {
+      type: 'action',
+      id: 'disabled',
+      title: 'Disabled',
+      systemImage: 'xmark.circle',
+      disabled: true,
+    },
+    {
+      type: 'action',
+      id: 'keep-open',
+      title: 'Keep Open',
+      systemImage: 'pin',
+      menuActionDismissBehavior: 'disabled',
+    },
+    {
+      type: 'action',
+      id: 'hidden',
+      title: 'Hidden',
+      systemImage: 'eye.slash',
+      hidden: true,
+    },
+    {
+      type: 'submenu',
+      id: 'nested',
+      title: 'More',
+      systemImage: 'ellipsis.circle',
+      children: [
+        {
+          type: 'action',
+          id: 'nested-a',
+          title: 'Nested A',
+          systemImage: 'star',
+        },
+        {
+          type: 'action',
+          id: 'nested-b',
+          title: 'Nested B',
+          role: 'destructive',
+        },
+        {
+          type: 'submenu',
+          id: 'deeper',
+          title: 'Deeper',
+          children: [
+            {
+              type: 'action',
+              id: 'deep-1',
+              title: 'Deep 1',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'controlGroup',
+      id: 'tools',
+      title: 'Tools',
+      controlGroupStyle: 'palette',
+      children: [
+        { type: 'action', id: 'bold', title: 'Bold', systemImage: 'bold' },
+        { type: 'action', id: 'italic', title: 'Italic', systemImage: 'italic' },
+      ],
+    },
+    {
+      type: 'divider',
+      id: 'divider',
+    },
+    {
+      type: 'section',
+      id: 'sources',
+      title: 'Sources',
+      children: [
+        {
+          type: 'toggle',
+          id: 'mixed',
+          title: 'Mixed',
+          values: toggleValues.mixed,
+        },
+      ],
+    },
+  ]
 
   return (
     <View style={styles.container} testID="one-native-screen">
@@ -167,6 +173,16 @@ export default function OneNativeScreen() {
           <Text testID="one-native-ignore-selection">
             {ignoreSelectionChange ? 'on' : 'off'}
           </Text>
+        </Text>
+        <Text style={styles.statusLabel}>
+          Checked:{' '}
+          <Text testID="one-native-checked">
+            {toggleValues.checked[0] ? 'on' : 'off'}
+          </Text>
+          {'  '}Mixed:{' '}
+          <Text testID="one-native-mixed">{toggleValues.mixed.join(',')}</Text>
+          {'  '}Search:{' '}
+          <Text testID="one-native-search-role">{searchRole ? 'on' : 'off'}</Text>
         </Text>
       </View>
 
@@ -194,10 +210,20 @@ export default function OneNativeScreen() {
             {ignoreSelectionChange ? 'Accept selection' : 'Reject selection'}
           </Text>
         </Pressable>
+        <Pressable
+          testID="one-native-toggle-search-role"
+          style={styles.button}
+          onPress={() => setSearchRole((value) => !value)}
+        >
+          <Text style={styles.buttonText}>
+            {searchRole ? 'Clear search role' : 'Search role'}
+          </Text>
+        </Pressable>
       </View>
 
       <Swift.Tabs
         selection={selection}
+        tabBarMinimizeBehavior={iosVersion >= 26 ? 'never' : undefined}
         onSelectionChange={(id) => {
           setObservedSelection(id)
           if (!ignoreSelectionChange) {
@@ -212,14 +238,28 @@ export default function OneNativeScreen() {
             title={titles[id]}
             systemImage={images[id]}
             badge={id === FIRST ? '2' : undefined}
+            role={id === SECOND && searchRole ? 'search' : undefined}
             testID={`one-native-tab-${id}`}
           >
             <TabPage id={id} title={titles[id]}>
               {id === FIRST ? (
                 <Swift.Menu
                   accessibilityLabel="Open native menu"
+                  menuOrder="fixed"
+                  style={{
+                    padding: toggleValues.checked[0] ? 12 : 24,
+                    alignItems: 'center',
+                  }}
                   items={menuItems}
                   onAction={(actionId) => setLastAction(actionId)}
+                  onValueChange={(id, value, sourceIndex) => {
+                    setToggleValues((current) => ({
+                      ...current,
+                      [id]: current[id].map((entry, index) =>
+                        index === sourceIndex ? value : entry
+                      ),
+                    }))
+                  }}
                 >
                   <View testID="one-native-menu-trigger" style={styles.menuTrigger}>
                     <Text style={styles.buttonText}>Open Menu</Text>

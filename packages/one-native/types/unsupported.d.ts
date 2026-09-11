@@ -7,5 +7,5 @@ export declare const Swift: {
     Tab: typeof Tab;
     Menu: typeof Menu;
 };
-export type { TabProps, TabsProps, MenuProps, MenuItem, MenuAction, MenuSubmenu, } from './types';
+export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

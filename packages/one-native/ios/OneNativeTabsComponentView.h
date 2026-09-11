@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *systemImage;
 @property (nonatomic, copy) NSString *badge;
+@property (nonatomic, copy) NSString *role;
 - (void)updateNativeFrame:(CGRect)frame;
 @end
 

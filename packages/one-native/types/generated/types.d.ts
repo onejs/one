@@ -1,0 +1,86 @@
+import type { ReactNode } from 'react';
+import type { ViewProps } from 'react-native';
+import type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle } from './swiftui';
+export type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, } from './swiftui';
+export interface MenuAction {
+    type: 'action';
+    id: string;
+    title: string;
+    systemImage?: string;
+    role?: ButtonRole;
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+}
+export interface MenuToggle {
+    type: 'toggle';
+    id: string;
+    title: string;
+    systemImage?: string;
+    values: readonly boolean[];
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+}
+export interface MenuSubmenu {
+    type: 'submenu';
+    id: string;
+    title: string;
+    systemImage?: string;
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuOrder?: MenuOrder;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+    children: readonly MenuItem[];
+}
+export interface MenuSection {
+    type: 'section';
+    id: string;
+    title?: string;
+    hidden?: boolean;
+    children: readonly MenuItem[];
+}
+export interface MenuControlGroup {
+    type: 'controlGroup';
+    id: string;
+    title?: string;
+    systemImage?: string;
+    disabled?: boolean;
+    hidden?: boolean;
+    controlGroupStyle?: ControlGroupStyle;
+    children: readonly MenuItem[];
+}
+export interface MenuDivider {
+    type: 'divider';
+    id: string;
+}
+export type MenuItem = MenuAction | MenuToggle | MenuSubmenu | MenuSection | MenuControlGroup | MenuDivider;
+export interface MenuProps extends ViewProps {
+    items: readonly MenuItem[];
+    onAction: (id: string) => void;
+    onValueChange?: (id: string, value: boolean, sourceIndex: number) => void;
+    accessibilityLabel: string;
+    disabled?: boolean;
+    menuOrder?: MenuOrder;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+    children: ReactNode;
+}
+export interface TabProps {
+    id: string;
+    title: string;
+    systemImage?: string;
+    badge?: string;
+    role?: TabRole;
+    testID?: string;
+    children: ReactNode;
+}
+export interface TabsProps extends ViewProps {
+    selection: string;
+    onSelectionChange: (id: string) => void;
+    sidebarAdaptable?: boolean;
+    tabBarMinimizeBehavior?: TabBarMinimizeBehavior;
+}
+//# sourceMappingURL=types.d.ts.map

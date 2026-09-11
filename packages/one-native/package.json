@@ -30,7 +30,9 @@
   "scripts": {
     "build": "tamagui-build",
     "typecheck": "tsc --noEmit --composite false",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate": "bun codegen/generate.ts",
+    "generate:check": "bun codegen/generate.ts --check"
   },
   "peerDependencies": {
     "react": ">=19",

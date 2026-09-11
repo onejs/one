@@ -11,11 +11,4 @@ function Menu(_props: MenuProps): never {
 }
 
 export const Swift = { Tabs, Tab, Menu }
-export type {
-  TabProps,
-  TabsProps,
-  MenuProps,
-  MenuItem,
-  MenuAction,
-  MenuSubmenu,
-} from './types'
+export type * from './types'

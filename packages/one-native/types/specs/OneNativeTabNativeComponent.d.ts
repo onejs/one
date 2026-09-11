@@ -4,6 +4,7 @@ interface NativeProps extends ViewProps {
     title: string;
     systemImage: string;
     badge: string;
+    tabRole: string;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

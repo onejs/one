@@ -64,7 +64,7 @@ using namespace facebook::react;
   for (OneNativeTabComponentView *page in _pages) {
     __weak OneNativeTabComponentView *weakPage = page;
     OneNativeTabItem *item = [[OneNativeTabItem alloc]
-      initWithId:page.tabId title:page.title systemImage:page.systemImage badge:page.badge
+      initWithId:page.tabId title:page.title systemImage:page.systemImage badge:page.badge role:page.role
       view:page onLayout:^(CGRect frame) {
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
@@ -77,7 +77,7 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeTabsProps>(props);
   [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent
-         sidebarAdaptable:next.sidebarAdaptable];
+         sidebarAdaptable:next.sidebarAdaptable tabBarMinimizeBehavior:RCTNSStringFromString(next.tabBarMinimizeBehavior)];
   [super updateProps:props oldProps:oldProps];
 }
 
@@ -106,6 +106,7 @@ using namespace facebook::react;
     _title = @"";
     _systemImage = @"";
     _badge = @"";
+    _role = @"";
   }
   return self;
 }
@@ -116,12 +117,14 @@ using namespace facebook::react;
   NSString *title = RCTNSStringFromString(next.title);
   NSString *systemImage = RCTNSStringFromString(next.systemImage);
   NSString *badge = RCTNSStringFromString(next.badge);
+  NSString *role = RCTNSStringFromString(next.tabRole);
   BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.title isEqualToString:title] ||
-    ![self.systemImage isEqualToString:systemImage] || ![self.badge isEqualToString:badge];
+    ![self.systemImage isEqualToString:systemImage] || ![self.badge isEqualToString:badge] || ![self.role isEqualToString:role];
   self.tabId = tabId;
   self.title = title;
   self.systemImage = systemImage;
   self.badge = badge;
+  self.role = role;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
 }

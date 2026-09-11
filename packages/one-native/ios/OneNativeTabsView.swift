@@ -7,14 +7,16 @@ public final class OneNativeTabItem: NSObject, Identifiable {
   public let title: String
   public let systemImage: String
   public let badge: String
+  public let role: String
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
-  public init(id: String, title: String, systemImage: String, badge: String, view: UIView, onLayout: @escaping (CGRect) -> Void) {
+  public init(id: String, title: String, systemImage: String, badge: String, role: String, view: UIView, onLayout: @escaping (CGRect) -> Void) {
     self.id = id
     self.title = title
     self.systemImage = systemImage
     self.badge = badge
+    self.role = role
     self.view = view
     self.onLayout = onLayout
   }
@@ -24,6 +26,7 @@ private final class TabsModel: ObservableObject {
   @Published var pages: [OneNativeTabItem] = []
   @Published var selection = ""
   @Published var sidebarAdaptable = false
+  @Published var tabBarMinimizeBehavior = ""
   var eventCount = 0
   var active = false
   var onSelection: ((String, Int) -> Void)?
@@ -40,7 +43,7 @@ private final class TabsModel: ObservableObject {
 public final class OneNativeTabsView: UIView {
   public var onSelection: ((String, Int) -> Void)?
   private var model = TabsModel()
-  private var controller: UIHostingController<TabsContent>?
+  private var controller: OneNativeHostingController<TabsContent>?
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
@@ -52,9 +55,10 @@ public final class OneNativeTabsView: UIView {
     model.pages = pages
   }
 
-  public func setSelection(_ selection: String, acknowledgedEvent: Int, sidebarAdaptable: Bool) {
+  public func setSelection(_ selection: String, acknowledgedEvent: Int, sidebarAdaptable: Bool, tabBarMinimizeBehavior: String) {
     if acknowledgedEvent >= model.eventCount && model.selection != selection { model.selection = selection }
     if model.sidebarAdaptable != sidebarAdaptable { model.sidebarAdaptable = sidebarAdaptable }
+    if model.tabBarMinimizeBehavior != tabBarMinimizeBehavior { model.tabBarMinimizeBehavior = tabBarMinimizeBehavior }
   }
 
   public override func didMoveToWindow() {
@@ -71,29 +75,17 @@ public final class OneNativeTabsView: UIView {
 
   private func attachController() {
     guard window != nil else { return }
-    var responder: UIResponder? = next
-    while responder != nil && !(responder is UIViewController) { responder = responder?.next }
-    guard let parent = responder as? UIViewController else { return }
-    if controller?.parent === parent { return }
-    detachController()
-    model.onSelection = { [weak self] id, count in self?.onSelection?(id, count) }
-    let controller = self.controller ?? UIHostingController(rootView: TabsContent(model: model, host: self))
-    self.controller = controller
-    model.active = true
-    parent.addChild(controller)
-    controller.view.backgroundColor = .clear
-    controller.view.frame = bounds
-    controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    addSubview(controller.view)
-    controller.didMove(toParent: parent)
+    if controller == nil {
+      model.onSelection = { [weak self] id, count in self?.onSelection?(id, count) }
+      controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self))
+    }
+    controller?.attach(to: self)
+    model.active = controller?.parent != nil
   }
 
   private func detachController() {
     model.active = false
-    guard let controller, controller.parent != nil else { return }
-    controller.willMove(toParent: nil)
-    controller.view.removeFromSuperview()
-    controller.removeFromParent()
+    controller?.detach()
   }
 
   public func reset() {
@@ -110,23 +102,19 @@ private struct TabsContent: View {
   weak var host: OneNativeTabsView?
 
   var body: some View {
-    if model.sidebarAdaptable {
-      tabs.tabViewStyle(.sidebarAdaptable)
-    } else {
-      tabs.tabViewStyle(.tabBarOnly)
+    Group {
+      if model.sidebarAdaptable { tabs.tabViewStyle(.sidebarAdaptable) }
+      else { tabs.tabViewStyle(.tabBarOnly) }
     }
+    .oneNativeTabBarMinimizeBehavior(model.tabBarMinimizeBehavior)
   }
 
   private var tabs: some View {
     TabView(selection: Binding(get: { model.selection }, set: { model.select($0) })) {
       ForEach(model.pages) { page in
-        Tab(value: page.id) {
+        OneNativeGenerated.tab(id: page.id, title: page.title, systemImage: page.systemImage, badge: page.badge, role: page.role) {
           NativePageSlot(page: page, host: host)
-        } label: {
-          if page.systemImage.isEmpty { Text(page.title) }
-          else { Label(page.title, systemImage: page.systemImage) }
         }
-        .badge(page.badge.isEmpty ? nil : Text(page.badge))
       }
     }
   }

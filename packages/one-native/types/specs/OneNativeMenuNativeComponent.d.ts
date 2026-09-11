@@ -1,30 +1,33 @@
 import type { ViewProps } from 'react-native';
-import type { DirectEventHandler } from 'react-native/Libraries/Types/CodegenTypes';
+import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 export type NativeMenuItem = Readonly<{
-    id: string;
     parentId: string;
     type: string;
+    id: string;
     title: string;
-    subtitle: string;
     systemImage: string;
-    state: string;
+    role: string;
     disabled: boolean;
-    destructive: boolean;
     hidden: boolean;
-    keepsMenuPresented: boolean;
-    displayInline: boolean;
-    singleSelection: boolean;
-    displayAsPalette: boolean;
-    preferredElementSize: string;
-    discoverabilityTitle: string;
+    help: string;
+    controlGroupStyle: string;
+    values: ReadonlyArray<boolean>;
+    menuOrder: string;
+    menuActionDismissBehavior: string;
 }>;
 interface NativeProps extends ViewProps {
     items: ReadonlyArray<NativeMenuItem>;
-    menuTitle: string;
     triggerLabel: string;
     disabled: boolean;
+    menuOrder: string;
+    menuActionDismissBehavior: string;
     onAction?: DirectEventHandler<Readonly<{
         id: string;
+    }>>;
+    onValueChange?: DirectEventHandler<Readonly<{
+        id: string;
+        value: boolean;
+        sourceIndex: Int32;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
