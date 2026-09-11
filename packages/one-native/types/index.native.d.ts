@@ -1,5 +1,6 @@
 import { Form, Host, Section, Slot } from './Containers.native';
 import { Menu } from './Menu.native';
+import { Popover } from './Popover.native';
 import { Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
 export declare const Swift: {
@@ -22,6 +23,7 @@ export declare const Swift: {
     Tab: typeof Tab;
     Menu: typeof Menu;
     Sheet: typeof Sheet;
+    Popover: typeof Popover;
     Host: typeof Host;
     Form: typeof Form;
     Section: typeof Section;

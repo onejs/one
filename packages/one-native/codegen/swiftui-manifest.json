@@ -130,6 +130,19 @@
     "Axis": {
       "horizontal": 13,
       "vertical": 13
+    },
+    "Edge": {
+      "top": 13,
+      "leading": 13,
+      "bottom": 13,
+      "trailing": 13
+    },
+    "PresentationAdaptation": {
+      "automatic": 16.4,
+      "none": 16.4,
+      "popover": 16.4,
+      "sheet": 16.4,
+      "fullScreenCover": 16.4
     }
   },
   "modifiers": [
@@ -142,6 +155,19 @@
           "label": "_",
           "name": "order",
           "type": "SwiftUI.MenuOrder"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "presentationCompactAdaptation",
+      "type": "PresentationAdaptation",
+      "ios": 16.4,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "adaptation",
+          "type": "SwiftUI.PresentationAdaptation"
         }
       ],
       "requirements": []

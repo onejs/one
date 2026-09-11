@@ -1,8 +1,9 @@
-import type { FormProps, HostProps, MenuProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
+import type { FormProps, HostProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
 declare function Sheet(_props: SheetProps): never;
+declare function Popover(_props: PopoverProps): never;
 declare function Host(_props: HostProps): never;
 declare function Form(_props: FormProps): never;
 declare function Section(_props: SectionProps): never;
@@ -27,6 +28,7 @@ export declare const Swift: {
     Tab: typeof Tab;
     Menu: typeof Menu;
     Sheet: typeof Sheet;
+    Popover: typeof Popover;
     Host: typeof Host;
     Form: typeof Form;
     Section: typeof Section;

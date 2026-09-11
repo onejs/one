@@ -3,6 +3,7 @@ import type {
   FormProps,
   HostProps,
   MenuProps,
+  PopoverProps,
   SectionProps,
   SheetProps,
   SlotProps,
@@ -22,6 +23,9 @@ function Menu(_props: MenuProps): never {
 function Sheet(_props: SheetProps): never {
   throw new Error('Swift.Sheet requires an iOS native build with one-native installed')
 }
+function Popover(_props: PopoverProps): never {
+  throw new Error('Swift.Popover requires an iOS native build with one-native installed')
+}
 function Host(_props: HostProps): never {
   throw new Error('Swift.Host requires an iOS native build with one-native installed')
 }
@@ -39,6 +43,7 @@ export const Swift = {
   Tab,
   Menu,
   Sheet,
+  Popover,
   Host,
   Form,
   Section,

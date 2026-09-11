@@ -1,6 +1,6 @@
 # design proposal: native layout and composition
 
-status: stages 1 to 5 landed, stage 6 next
+status: all six stages landed
 branch: `feat/one-native`
 scope: SwiftUI tree composition, intrinsic measurement, explicit RN slots, Popover
 
@@ -221,7 +221,9 @@ Each stage compiles, regenerates, and has a runtime suite before the next starts
 5. Done. `Swift.Slot` carries a React Native subtree into a container, reusing
    `OneNativeSlot` and the shared slot shadow node. SwiftUI proposes the box from an
    explicit `height`, so the subtree lays out inside it.
-6. Popover.
+6. Done. `Swift.Popover` is a measured container whose children are the trigger and
+   whose `content` is a presented React Native subtree, so it is the composition
+   contract and the sheet's presented slot put together.
 
 ### What stages 2 and 3 changed against the plan
 
@@ -302,3 +304,26 @@ host exists. Android rendering and browser rendering stay in
 imperative ref/command/measurement contract) become more pressing once containers
 exist, because a Soot implementation of a container needs the measurement contract
 this proposal defines.
+
+### What stage 6 changed against the plan
+
+Nothing structural, which is what the plan was for. Popover needed no mechanism of its
+own: the trigger is `OneNativeContainerView` composition and the body is the sheet's
+presented slot, reusing `OneNativeSlot` and the shared slot shadow node. The measured
+height that `Swift.Host` reports is now a template, `OneNativeMeasuredShadowNode`, with
+an `OneNativeMeasuredComponentView` base on the Objective-C side, so the host and the
+popover trigger share one measurement contract rather than two copies of it.
+
+Three things the runtime settled (RAN in the new `popover` suite):
+
+- SwiftUI sizes a popover from its content, and a React Native subtree has no ideal
+  size, so `contentWidth` and `contentHeight` are required, the same bargain a slot
+  makes with `height`.
+- The anchor is the trigger's own bounds, so the trigger stack hugs its content and an
+  outer `frame(maxWidth: .infinity, alignment: .leading)` is what puts it at the leading
+  edge. Written the other way round the popover anchors to the full row and the arrow
+  points at the middle of the screen.
+- The dialog wave's finding held: anchoring works off the trigger's React Native
+  position, and the arrow points at the button. On an iPhone the default compact
+  adaptation presents the body as a full-height sheet, so the fixture covers both that
+  and `presentationCompactAdaptation: 'popover'`.

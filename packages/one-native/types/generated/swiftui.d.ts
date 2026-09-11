@@ -15,6 +15,8 @@ export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'plain';
 export type SubmitLabel = 'done' | 'go' | 'send' | 'join' | 'route' | 'search' | 'return' | 'next' | 'continue';
 export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters';
 export type Axis = 'horizontal' | 'vertical';
+export type Edge = 'top' | 'leading' | 'bottom' | 'trailing';
+export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -120,6 +122,19 @@ export declare const swiftUIValues: {
     readonly Axis: {
         readonly horizontal: 13;
         readonly vertical: 13;
+    };
+    readonly Edge: {
+        readonly top: 13;
+        readonly leading: 13;
+        readonly bottom: 13;
+        readonly trailing: 13;
+    };
+    readonly PresentationAdaptation: {
+        readonly automatic: 16.4;
+        readonly none: 16.4;
+        readonly popover: 16.4;
+        readonly sheet: 16.4;
+        readonly fullScreenCover: 16.4;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

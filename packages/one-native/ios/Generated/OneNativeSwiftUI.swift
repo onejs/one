@@ -119,6 +119,35 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid Axis: \(value)")
     }
   }
+  static func edge(_ value: String) -> Edge? {
+    switch value {
+    case "": return nil
+    case "top":
+      return .top
+    case "leading":
+      return .leading
+    case "bottom":
+      return .bottom
+    case "trailing":
+      return .trailing
+    default: preconditionFailure("invalid Edge: \(value)")
+    }
+  }
+  static func presentationAdaptation(_ value: String) -> PresentationAdaptation {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "none":
+      return .none
+    case "popover":
+      return .popover
+    case "sheet":
+      return .sheet
+    case "fullScreenCover":
+      return .fullScreenCover
+    default: preconditionFailure("invalid PresentationAdaptation: \(value)")
+    }
+  }
   @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
       if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
@@ -130,6 +159,9 @@ enum OneNativeGenerated {
 extension View {
   @ViewBuilder func oneNativeMenuOrder(_ value: String) -> some View {
     if value.isEmpty { self } else { self.menuOrder(OneNativeGenerated.menuOrder(value)) }
+  }
+  @ViewBuilder func oneNativePresentationCompactAdaptation(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.presentationCompactAdaptation(OneNativeGenerated.presentationAdaptation(value)) }
   }
   @ViewBuilder func oneNativePresentationDragIndicator(_ value: String) -> some View {
     if value.isEmpty { self } else { self.presentationDragIndicator(OneNativeGenerated.visibility(value)) }

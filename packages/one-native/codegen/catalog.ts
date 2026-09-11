@@ -1,6 +1,7 @@
 // semantic mappings that the Swift declarations alone cannot determine.
 export const modifiers = [
   { name: 'menuOrder', type: 'MenuOrder' },
+  { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation' },
   { name: 'presentationDragIndicator', type: 'Visibility', module: 'SwiftUICore' },
   { name: 'pickerStyle', type: 'PickerStyle' },
   { name: 'datePickerStyle', type: 'DatePickerStyle' },
@@ -40,6 +41,8 @@ export const enumTypes = [
   'SubmitLabel',
   'TextInputAutocapitalization',
   'Axis',
+  'Edge',
+  'PresentationAdaptation',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
