@@ -288,6 +288,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
       config.simulatorId
     )
+  // a field does not become first responder the moment the tap returns, the snapshot carries
+  // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
+  // firing the whole string blind drops the leading characters, and iOS then autocorrects what
+  // is left into a different word. so the first character is the focus probe: nothing more is
+  // sent until it has landed in the field.
+  const typeInto = async (
+    name: string,
+    text: string,
+    current: (nodes: Node[]) => string | undefined
+  ) => {
+    if (!text) throw new Error('typeInto requires text')
+    const before = current(snapshot(config.simulatorId)) ?? ''
+    command(['ui-automation', 'type-text', '--text', text[0]], config.simulatorId)
+    // a single character has no remainder to gate, and some fields are expected to reject it
+    // and restore the old value, so waiting for a change there would hang on correct behavior.
+    if (text.length === 1) return
+    await wait(
+      `${name} takes the first character`,
+      (nodes) => (current(nodes) ?? '') !== before
+    )
+    command(['ui-automation', 'type-text', '--text', text.slice(1)], config.simulatorId)
+  }
   // the home list scrolls; a row below the fold takes a clamped tap that lands on the
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
@@ -500,7 +522,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => id(n, 'one-native-sheet-counter')?.AXLabel === '1'
     )
     tap({ id: 'one-native-sheet-input' })
-    command(['ui-automation', 'type-text', '--text', 'retained'], config.simulatorId)
+    await typeInto('RN sheet input', 'retained', (n) => id(n, 'one-native-sheet-input')?.AXValue)
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
     tap({ id: 'one-native-sheet-close' })
@@ -759,7 +781,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           node.type === 'TextField' && (node.subrole === 'AXSecureTextField') === secure
       )
     // the snapshot exposes no focus flag and the attached hardware keyboard suppresses
-    // the software one, so the typed value asserted next is the focus evidence.
+    // the software one, so `type` probes with its first character rather than assuming the
+    // tap already made the field first responder.
     const focus = async (secure = false) => {
       const nodes = await wait('editable native field mounted', (n) =>
         Boolean(field(n, secure)?.frame)
@@ -767,8 +790,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const bounds = field(nodes, secure)!.frame!
       point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
     }
-    const type = (text: string) =>
-      command(['ui-automation', 'type-text', '--text', text], config.simulatorId)
+    const type = (text: string, secure = false) =>
+      typeInto(secure ? 'SecureField' : 'TextField', text, (n) => field(n, secure)?.AXValue)
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const indicator = (nodes: Node[], label: string) =>
@@ -934,7 +957,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(field(n))
     )
     await focus()
-    type('leaf')
+    await type('leaf')
     await wait(
       'TextField accepts exact text',
       (n) => value(n, 'leaf') && request(n, 'leaf') && field(n)?.AXValue === 'leaf'
@@ -943,7 +966,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('TextField rejection enabled', (n) => status(n, 'Reject', 'on'))
     await focus()
     // one character makes the rejected request independent of per-keystroke rollback.
-    type('x')
+    await type('x')
     await wait(
       'TextField rejects and restores native value',
       (n) => value(n, 'leaf') && request(n, 'leafx') && field(n)?.AXValue === 'leaf'
@@ -965,7 +988,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-leaf-reject' })
     await wait('TextField rejection disabled', (n) => status(n, 'Reject', 'off'))
     await focus()
-    type('submit')
+    await type('submit')
     await wait(
       'TextField ready to submit',
       (n) =>
@@ -998,7 +1021,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(field(n, true))
     )
     await focus(true)
-    type('s3cr3t')
+    await type('s3cr3t', true)
     await wait(
       'SecureField commits exact secret and masks every character',
       (n) =>
@@ -1048,7 +1071,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           Boolean(field(n))
       )
       await focus()
-      type(`cycle${cycle}`)
+      await type(`cycle${cycle}`)
       await wait(
         `leaves recycle ${cycle}: current TextField emitter`,
         (n) =>
@@ -2203,7 +2226,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
   tap({ id: 'one-native-increment-first' })
   tap({ id: 'one-native-input-first' })
-  command(['ui-automation', 'type-text', '--text', 'retained'], config.simulatorId)
+  await typeInto('first tab input', 'retained', (n) => id(n, 'one-native-input-first')?.AXValue)
   await wait('counter and input retain local state', firstState)
   tap({ id: 'one-native-select-external' })
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))
