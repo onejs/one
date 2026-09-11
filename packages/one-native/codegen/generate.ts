@@ -3,6 +3,7 @@ import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
 import { emitControls } from './emitControls'
+import { emitStyle } from './emitStyle'
 import { emitMenuValidator } from './menuValidator'
 import {
   readInventory,
@@ -102,6 +103,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 emitSheet(header, outputs)
 emitContainers(header, outputs)
 emitPopover(header, outputs)
+emitStyle(header, outputs)
 selected.push(
   ...[...sheetMethods, ...popoverMethods, ...styleModifiers].map((method) =>
     selectModifier(inventory, method)
