@@ -1,0 +1,63 @@
+import type { ViewProps } from 'react-native';
+import type * as Styles from './swiftui';
+export type PickerOption = Readonly<{
+    value: string;
+    label: string;
+}>;
+export interface PickerProps extends Omit<ViewProps, 'children'> {
+    selection: string;
+    onSelectionChange: (value: string) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    options: readonly PickerOption[];
+    pickerStyle?: Styles.PickerStyle;
+}
+export interface DatePickerProps extends Omit<ViewProps, 'children'> {
+    selection: Date;
+    onSelectionChange: (value: Date) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    minimumDate?: Date;
+    maximumDate?: Date;
+    displayedComponents?: 'date' | 'hourAndMinute' | 'dateAndTime';
+    datePickerStyle?: Styles.DatePickerStyle;
+}
+export interface ColorPickerProps extends Omit<ViewProps, 'children'> {
+    selection: string;
+    onSelectionChange: (value: string) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    supportsOpacity?: boolean;
+}
+export interface ToggleProps extends Omit<ViewProps, 'children'> {
+    isOn: boolean;
+    onIsOnChange: (value: boolean) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    toggleStyle?: Styles.ToggleStyle;
+}
+export interface SliderProps extends Omit<ViewProps, 'children'> {
+    value: number;
+    onValueChange: (value: number) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    minimumValue?: number;
+    maximumValue?: number;
+    step?: number;
+}
+export interface StepperProps extends Omit<ViewProps, 'children'> {
+    value: number;
+    onValueChange: (value: number) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    minimumValue?: number;
+    maximumValue?: number;
+    step?: number;
+}
+//# sourceMappingURL=controlTypes.d.ts.map

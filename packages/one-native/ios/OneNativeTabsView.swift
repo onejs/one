@@ -24,24 +24,22 @@ public final class OneNativeTabItem: NSObject, Identifiable {
 
 private final class TabsModel: ObservableObject {
   @Published var pages: [OneNativeTabItem] = []
-  @Published var selection = ""
+  @Published var controlled = OneNativeControlled("")
   @Published var sidebarAdaptable = false
   @Published var tabBarMinimizeBehavior = ""
-  var eventCount = 0
   var active = false
-  var onSelection: ((String, Int) -> Void)?
+  var onSelection: ((String, Int, Int) -> Void)?
 
   func select(_ id: String) {
-    guard active, selection != id, pages.contains(where: { $0.id == id }) else { return }
-    eventCount += 1
-    selection = id
-    onSelection?(id, eventCount)
+    guard active, controlled.value != id, pages.contains(where: { $0.id == id }) else { return }
+    controlled.change(id)
+    onSelection?(id, controlled.eventCount, controlled.revision)
   }
 }
 
 @objcMembers
 public final class OneNativeTabsView: UIView {
-  public var onSelection: ((String, Int) -> Void)?
+  public var onSelection: ((String, Int, Int) -> Void)?
   private var model = TabsModel()
   private var controller: OneNativeHostingController<TabsContent>?
 
@@ -55,8 +53,8 @@ public final class OneNativeTabsView: UIView {
     model.pages = pages
   }
 
-  public func setSelection(_ selection: String, acknowledgedEvent: Int, sidebarAdaptable: Bool, tabBarMinimizeBehavior: String) {
-    if acknowledgedEvent >= model.eventCount && model.selection != selection { model.selection = selection }
+  public func setSelection(_ selection: String, acknowledgedEvent: Int, revision: Int, sidebarAdaptable: Bool, tabBarMinimizeBehavior: String) {
+    if let next = model.controlled.applying(selection, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.sidebarAdaptable != sidebarAdaptable { model.sidebarAdaptable = sidebarAdaptable }
     if model.tabBarMinimizeBehavior != tabBarMinimizeBehavior { model.tabBarMinimizeBehavior = tabBarMinimizeBehavior }
   }
@@ -76,7 +74,7 @@ public final class OneNativeTabsView: UIView {
   private func attachController() {
     guard window != nil else { return }
     if controller == nil {
-      model.onSelection = { [weak self] id, count in self?.onSelection?(id, count) }
+      model.onSelection = { [weak self] id, count, revision in self?.onSelection?(id, count, revision) }
       controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self))
     }
     controller?.attach(to: self)
@@ -110,57 +108,12 @@ private struct TabsContent: View {
   }
 
   private var tabs: some View {
-    TabView(selection: Binding(get: { model.selection }, set: { model.select($0) })) {
+    TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(model.pages) { page in
         OneNativeGenerated.tab(id: page.id, title: page.title, systemImage: page.systemImage, badge: page.badge, role: page.role) {
-          NativePageSlot(page: page, host: host)
+          OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
         }
       }
     }
-  }
-}
-
-private struct NativePageSlot: UIViewRepresentable {
-  let page: OneNativeTabItem
-  weak var host: OneNativeTabsView?
-
-  func makeUIView(context: Context) -> SlotView {
-    SlotView(page: page, host: host)
-  }
-
-  func updateUIView(_ view: SlotView, context: Context) {
-    if view.page.view !== page.view {
-      view.page.view.removeFromSuperview()
-    }
-    if page.view.superview !== view { view.addSubview(page.view) }
-    view.page = page
-    view.host = host
-    view.setNeedsLayout()
-  }
-
-  static func dismantleUIView(_ view: SlotView, coordinator: ()) {
-    if view.page.view.superview === view { view.page.view.removeFromSuperview() }
-  }
-}
-
-private final class SlotView: UIView {
-  var page: OneNativeTabItem
-  weak var host: OneNativeTabsView?
-
-  init(page: OneNativeTabItem, host: OneNativeTabsView?) {
-    self.page = page
-    self.host = host
-    super.init(frame: .zero)
-    addSubview(page.view)
-  }
-
-  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
-
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    guard let host, window != nil else { return }
-    // report bounded SwiftUI allocation directly to Fabric, without a JS round trip.
-    page.onLayout(convert(bounds, to: host))
-    page.view.frame = bounds
   }
 }

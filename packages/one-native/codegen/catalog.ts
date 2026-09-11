@@ -1,30 +1,28 @@
 // semantic mappings that the Swift declarations alone cannot determine.
 export const modifiers = [
-  { name: 'menuOrder', type: 'MenuOrder', default: 'automatic' },
+  { name: 'menuOrder', type: 'MenuOrder' },
+  { name: 'presentationDragIndicator', type: 'Visibility', module: 'SwiftUICore' },
+  { name: 'pickerStyle', type: 'PickerStyle' },
+  { name: 'datePickerStyle', type: 'DatePickerStyle' },
+  { name: 'toggleStyle', type: 'ToggleStyle' },
   {
     name: 'menuActionDismissBehavior',
     type: 'MenuActionDismissBehavior',
-    default: 'automatic',
   },
-  { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: 'automatic' },
-  { name: 'tabBarMinimizeBehavior', type: 'TabBarMinimizeBehavior', default: '' },
+  { name: 'controlGroupStyle', type: 'ControlGroupStyle' },
+  { name: 'tabBarMinimizeBehavior', type: 'TabBarMinimizeBehavior' },
 ] as const
 export const enumTypes = [
   'MenuOrder',
+  'Visibility',
+  'PickerStyle',
+  'DatePickerStyle',
+  'ToggleStyle',
   'MenuActionDismissBehavior',
   'TabBarMinimizeBehavior',
   'ButtonRole',
   'TabRole',
   'ControlGroupStyle',
-]
-export const constructors = [
-  { type: 'Menu', labels: ['content', 'label'] },
-  { type: 'Button', labels: ['role', 'action', 'label'] },
-  { type: 'Toggle', labels: ['sources', 'isOn', 'label'] },
-  { type: 'Section', labels: ['content', 'header'] },
-  { type: 'ControlGroup', labels: ['content', 'label'] },
-  { type: 'Divider', labels: [] },
-  { type: 'Tab', labels: ['value', 'role', 'content', 'label'] },
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -39,9 +37,26 @@ export const fields = {
   menuOrder: { type: 'MenuOrder', default: '' },
   menuActionDismissBehavior: { type: 'MenuActionDismissBehavior', default: '' },
 } as const
+type MenuNode = {
+  kind: string
+  name: string
+  fields: readonly (keyof typeof fields)[]
+  required: readonly (keyof typeof fields)[]
+  children: boolean
+  constructor: { type: string; parameters: readonly { label: string; type: string }[] }
+  swift: string
+}
 export const nodes = [
   {
     kind: 'action',
+    constructor: {
+      type: 'Button',
+      parameters: [
+        { label: 'role', type: 'SwiftUI.ButtonRole?' },
+        { label: 'action', type: '@escaping @_Concurrency.MainActor () -> Swift.Void' },
+        { label: 'label', type: '() -> Label' },
+      ],
+    },
     name: 'MenuAction',
     fields: [
       'id',
@@ -60,6 +75,17 @@ export const nodes = [
   },
   {
     kind: 'toggle',
+    constructor: {
+      type: 'Toggle',
+      parameters: [
+        { label: 'sources', type: 'C' },
+        {
+          label: 'isOn',
+          type: 'Swift.KeyPath<C.Element, SwiftUICore.Binding<Swift.Bool>>',
+        },
+        { label: 'label', type: '() -> Label' },
+      ],
+    },
     name: 'MenuToggle',
     fields: [
       'id',
@@ -74,10 +100,17 @@ export const nodes = [
     required: ['id', 'title', 'values'],
     children: false,
     swift:
-      'Toggle(sources: item.values.indices.map { index in Binding(get: { item.values[index] }, set: { model.changeValue(item.id, index: index, value: $0) }) }, isOn: \\.self) { OneNativeMenuLabel(item: item) }',
+      'Toggle(sources: item.values.indices.map { index in Binding(get: { let values = model.controlled.value[item.id] ?? []; return values.indices.contains(index) && values[index] }, set: { model.changeValue(item.id, index: index, value: $0) }) }, isOn: \\.self) { OneNativeMenuLabel(item: item) }',
   },
   {
     kind: 'submenu',
+    constructor: {
+      type: 'Menu',
+      parameters: [
+        { label: 'content', type: '() -> Content' },
+        { label: 'label', type: '() -> Label' },
+      ],
+    },
     name: 'MenuSubmenu',
     fields: [
       'id',
@@ -96,6 +129,13 @@ export const nodes = [
   },
   {
     kind: 'section',
+    constructor: {
+      type: 'Section',
+      parameters: [
+        { label: 'content', type: '() -> Content' },
+        { label: 'header', type: '() -> Parent' },
+      ],
+    },
     name: 'MenuSection',
     fields: ['id', 'title', 'hidden'],
     required: ['id'],
@@ -105,6 +145,13 @@ export const nodes = [
   },
   {
     kind: 'controlGroup',
+    constructor: {
+      type: 'ControlGroup',
+      parameters: [
+        { label: 'content', type: '() -> C' },
+        { label: 'label', type: '() -> L' },
+      ],
+    },
     name: 'MenuControlGroup',
     fields: ['id', 'title', 'systemImage', 'disabled', 'hidden', 'controlGroupStyle'],
     required: ['id'],
@@ -114,10 +161,113 @@ export const nodes = [
   },
   {
     kind: 'divider',
+    constructor: { type: 'Divider', parameters: [] },
     name: 'MenuDivider',
     fields: ['id'],
     required: ['id'],
     children: false,
     swift: 'Divider()',
+  },
+] as const satisfies readonly MenuNode[]
+
+export const tabConstructor = {
+  type: 'Tab',
+  parameters: [
+    { label: 'value', type: 'Value' },
+    { label: 'role', type: 'SwiftUI.TabRole?' },
+    { label: 'content', type: '() -> Content' },
+    { label: 'label', type: '() -> Label' },
+  ],
+} as const
+
+export const modifierFamilies = [
+  'menu',
+  'tabBar',
+  'tabView',
+  'controlGroup',
+  'palette',
+  'picker',
+  'datePicker',
+  'toggle',
+  'slider',
+  'stepper',
+]
+const controlledProps = { acknowledgedEvent: 'Int32', revision: 'Int32' } as const
+const controlledEvent = { eventCount: 'Int32', revision: 'Int32' } as const
+export const components = [
+  {
+    name: 'OneNativeMenu',
+    publicName: 'Menu',
+    props: {
+      items: 'ReadonlyArray<NativeMenuItem>',
+      triggerLabel: 'string',
+      disabled: 'boolean',
+      menuOrder: 'string',
+      menuActionDismissBehavior: 'string',
+      ...controlledProps,
+    },
+    events: {
+      onNativeMenuAction: { id: 'string' },
+      onNativeMenuValueChange: {
+        id: 'string',
+        value: 'boolean',
+        sourceIndex: 'Int32',
+        ...controlledEvent,
+      },
+    },
+    slots: [
+      {
+        name: 'trigger',
+        content: 'react-native',
+        cardinality: 'one',
+        layout: 'yoga',
+        interaction: 'passive',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeTabs',
+    publicName: 'Tabs',
+    props: {
+      selection: 'string',
+      sidebarAdaptable: 'boolean',
+      tabBarMinimizeBehavior: 'string',
+      ...controlledProps,
+    },
+    events: {
+      onNativeTabsSelectionChange: { selection: 'string', ...controlledEvent },
+    },
+    slots: [
+      {
+        name: 'pages',
+        content: 'OneNativeTab',
+        cardinality: 'many',
+        key: 'tabId',
+        layout: 'swiftui',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeTab',
+    publicName: 'Tab',
+    props: {
+      tabId: 'string',
+      title: 'string',
+      systemImage: 'string',
+      badge: 'string',
+      tabRole: 'string',
+    },
+    events: {},
+    slots: [
+      {
+        name: 'content',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'swiftui-proposal-to-yoga',
+      },
+    ],
+    interfaceOnly: true,
   },
 ] as const

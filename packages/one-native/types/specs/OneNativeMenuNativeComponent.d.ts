@@ -21,13 +21,17 @@ interface NativeProps extends ViewProps {
     disabled: boolean;
     menuOrder: string;
     menuActionDismissBehavior: string;
-    onAction?: DirectEventHandler<Readonly<{
+    acknowledgedEvent: Int32;
+    revision: Int32;
+    onNativeMenuAction?: DirectEventHandler<Readonly<{
         id: string;
     }>>;
-    onValueChange?: DirectEventHandler<Readonly<{
+    onNativeMenuValueChange?: DirectEventHandler<Readonly<{
         id: string;
         value: boolean;
         sourceIndex: Int32;
+        eventCount: Int32;
+        revision: Int32;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

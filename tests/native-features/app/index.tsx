@@ -7,6 +7,16 @@ const testScreens = [
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
+  {
+    href: '/one-native-controls',
+    label: 'One Native Controls',
+    testID: 'nav-one-native-controls',
+  },
+  {
+    href: '/one-native-sheet',
+    label: 'One Native Sheets',
+    testID: 'nav-one-native-sheet',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

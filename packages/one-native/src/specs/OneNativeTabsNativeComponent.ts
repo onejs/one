@@ -3,13 +3,15 @@
 import type { ViewProps } from 'react-native'
 import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+
 interface NativeProps extends ViewProps {
   selection: string
-  acknowledgedEvent: Int32
   sidebarAdaptable: boolean
   tabBarMinimizeBehavior: string
-  onSelectionChange?: DirectEventHandler<
-    Readonly<{ selection: string; eventCount: Int32 }>
+  acknowledgedEvent: Int32
+  revision: Int32
+  onNativeTabsSelectionChange?: DirectEventHandler<
+    Readonly<{ selection: string; eventCount: Int32; revision: Int32 }>
   >
 }
 export default codegenNativeComponent<NativeProps>('OneNativeTabs')

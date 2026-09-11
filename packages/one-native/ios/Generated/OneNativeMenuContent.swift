@@ -58,7 +58,7 @@ struct OneNativeGeneratedMenuContent: View {
           case .action:
             Button(role: OneNativeGenerated.buttonRole(item.role), action: { model.action(item.id) }) { OneNativeMenuLabel(item: item) }
           case .toggle:
-            Toggle(sources: item.values.indices.map { index in Binding(get: { item.values[index] }, set: { model.changeValue(item.id, index: index, value: $0) }) }, isOn: \.self) { OneNativeMenuLabel(item: item) }
+            Toggle(sources: item.values.indices.map { index in Binding(get: { let values = model.controlled.value[item.id] ?? []; return values.indices.contains(index) && values[index] }, set: { model.changeValue(item.id, index: index, value: $0) }) }, isOn: \.self) { OneNativeMenuLabel(item: item) }
           case .submenu:
             Menu { OneNativeGeneratedMenuContent(model: model, parentId: item.id) } label: { OneNativeMenuLabel(item: item) }
           case .section:

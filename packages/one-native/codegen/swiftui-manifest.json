@@ -11,11 +11,12 @@
       "sha256": "8a30eb1b2b85c0239ef0fad1f3c48a14ac954041d0bab49c6d91d79f94e5669f"
     }
   ],
-  "extractedDeclarations": 9399,
+  "extractedDeclarations": 9715,
   "unmappedModifiers": [
     "menuIndicator",
     "menuStyle",
     "paletteSelectionEffect",
+    "sliderThumbVisibility",
     "tabViewBottomAccessory",
     "tabViewCustomization",
     "tabViewSearchActivation",
@@ -29,6 +30,31 @@
       "automatic": 16,
       "priority": 16,
       "fixed": 16
+    },
+    "Visibility": {
+      "automatic": 15,
+      "visible": 15,
+      "hidden": 15
+    },
+    "PickerStyle": {
+      "wheel": 13,
+      "inline": 14,
+      "automatic": 13,
+      "segmented": 13,
+      "palette": 17,
+      "navigationLink": 16,
+      "menu": 14
+    },
+    "DatePickerStyle": {
+      "wheel": 13,
+      "automatic": 13,
+      "graphical": 14,
+      "compact": 14
+    },
+    "ToggleStyle": {
+      "button": 15,
+      "automatic": 13,
+      "switch": 13
     },
     "MenuActionDismissBehavior": {
       "automatic": 16.4,
@@ -62,46 +88,118 @@
     {
       "name": "menuOrder",
       "type": "MenuOrder",
-      "default": "automatic",
-      "ios": 16
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "order",
+          "type": "SwiftUI.MenuOrder"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "presentationDragIndicator",
+      "type": "Visibility",
+      "module": "SwiftUICore",
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "visibility",
+          "type": "SwiftUICore.Visibility"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "pickerStyle",
+      "type": "PickerStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.PickerStyle"
+      ]
+    },
+    {
+      "name": "datePickerStyle",
+      "type": "DatePickerStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.DatePickerStyle"
+      ]
+    },
+    {
+      "name": "toggleStyle",
+      "type": "ToggleStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ToggleStyle"
+      ]
     },
     {
       "name": "menuActionDismissBehavior",
       "type": "MenuActionDismissBehavior",
-      "default": "automatic",
-      "ios": 16.4
+      "ios": 16.4,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "behavior",
+          "type": "SwiftUI.MenuActionDismissBehavior"
+        }
+      ],
+      "requirements": []
     },
     {
       "name": "controlGroupStyle",
       "type": "ControlGroupStyle",
-      "default": "automatic",
-      "ios": 15
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ControlGroupStyle"
+      ]
     },
     {
       "name": "tabBarMinimizeBehavior",
       "type": "TabBarMinimizeBehavior",
-      "default": "",
-      "ios": 26
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "behavior",
+          "type": "SwiftUI.TabBarMinimizeBehavior"
+        }
+      ],
+      "requirements": []
     }
   ],
   "constructors": [
-    {
-      "module": "SwiftUI",
-      "type": "Menu",
-      "parameters": [
-        {
-          "label": "content",
-          "name": "content",
-          "type": "() -> Content"
-        },
-        {
-          "label": "label",
-          "name": "label",
-          "type": "() -> Label"
-        }
-      ],
-      "ios": 14
-    },
     {
       "module": "SwiftUI",
       "type": "Button",
@@ -122,6 +220,7 @@
           "type": "() -> Label"
         }
       ],
+      "requirements": [],
       "ios": 15
     },
     {
@@ -144,7 +243,29 @@
           "type": "() -> Label"
         }
       ],
+      "requirements": [
+        "Label : SwiftUICore.View",
+        "C : Swift.RandomAccessCollection"
+      ],
       "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Menu",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 14
     },
     {
       "module": "SwiftUI",
@@ -160,6 +281,11 @@
           "name": "header",
           "type": "() -> Parent"
         }
+      ],
+      "requirements": [
+        "Parent : SwiftUICore.View,",
+        "Content : SwiftUICore.View,",
+        "Footer == SwiftUICore.EmptyView"
       ],
       "ios": 13
     },
@@ -178,12 +304,18 @@
           "type": "() -> L"
         }
       ],
+      "requirements": [
+        "Content == SwiftUI.LabeledControlGroupContent<C, L>,",
+        "C : SwiftUICore.View,",
+        "L : SwiftUICore.View"
+      ],
       "ios": 16
     },
     {
       "module": "SwiftUI",
       "type": "Divider",
       "parameters": [],
+      "requirements": [],
       "ios": 13
     },
     {
@@ -211,7 +343,186 @@
           "type": "() -> Label"
         }
       ],
+      "requirements": [
+        "Value : Swift.Hashable,",
+        "Content : SwiftUICore.View,",
+        "Label : SwiftUICore.View"
+      ],
       "ios": 18
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Picker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<SelectionValue>"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "DatePicker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<Foundation.Date>"
+        },
+        {
+          "label": "in",
+          "name": "range",
+          "type": "Swift.ClosedRange<Foundation.Date>"
+        },
+        {
+          "defaultValue": "[.hourAndMinute, .date]",
+          "label": "displayedComponents",
+          "name": "displayedComponents",
+          "type": "SwiftUI.DatePicker<Label>.Components"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ColorPicker",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<SwiftUICore.Color>"
+        },
+        {
+          "defaultValue": "true",
+          "label": "supportsOpacity",
+          "name": "supportsOpacity",
+          "type": "Swift.Bool"
+        }
+      ],
+      "requirements": [
+        "Label == SwiftUICore.Text"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Toggle",
+      "parameters": [
+        {
+          "label": "isOn",
+          "name": "isOn",
+          "type": "SwiftUICore.Binding<Swift.Bool>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Slider",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "SwiftUICore.Binding<V>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "defaultValue": "1",
+          "label": "step",
+          "name": "step",
+          "type": "V.Stride"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "defaultValue": "{ _ in }",
+          "label": "onEditingChanged",
+          "name": "onEditingChanged",
+          "type": "@escaping (Swift.Bool) -> Swift.Void"
+        }
+      ],
+      "requirements": [
+        "ValueLabel == SwiftUICore.EmptyView",
+        "V : Swift.BinaryFloatingPoint,",
+        "V.Stride : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Stepper",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "SwiftUICore.Binding<V>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "defaultValue": "1",
+          "label": "step",
+          "name": "step",
+          "type": "V.Stride"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "defaultValue": "{ _ in }",
+          "label": "onEditingChanged",
+          "name": "onEditingChanged",
+          "type": "@escaping (Swift.Bool) -> Swift.Void"
+        }
+      ],
+      "requirements": [
+        "V : Swift.Strideable"
+      ],
+      "ios": 13
     }
   ]
 }

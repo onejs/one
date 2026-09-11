@@ -1,3 +1,4 @@
+import { useControlled } from './controlled'
 import { useMemo } from 'react'
 import { Platform, View } from 'react-native'
 import NativeMenu from './specs/OneNativeMenuNativeComponent'
@@ -10,6 +11,7 @@ export function Menu({
   onAction,
   children,
   onValueChange,
+  revision = 0,
   menuOrder = 'automatic',
   menuActionDismissBehavior = 'automatic',
   disabled = false,
@@ -26,22 +28,29 @@ export function Menu({
   if (!onValueChange && nativeItems.some((item) => item.type === 'toggle')) {
     throw new Error('Swift.Menu with toggles requires onValueChange')
   }
+  const controlled = useControlled<{
+    id: string
+    value: boolean
+    sourceIndex: number
+    eventCount: number
+    revision: number
+  }>((event) => onValueChange?.(event.id, event.value, event.sourceIndex), revision)
   return (
     <NativeMenu
       {...props}
       items={nativeItems}
+      revision={revision}
+      acknowledgedEvent={controlled.acknowledgedEvent}
       menuOrder={menuOrder}
       menuActionDismissBehavior={menuActionDismissBehavior}
       triggerLabel={accessibilityLabel}
       disabled={disabled}
-      onAction={({ nativeEvent }) => onAction(nativeEvent.id)}
-      onValueChange={({ nativeEvent }) =>
-        onValueChange?.(nativeEvent.id, nativeEvent.value, nativeEvent.sourceIndex)
+      onNativeMenuAction={({ nativeEvent }) => onAction(nativeEvent.id)}
+      onNativeMenuValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
       }
     >
-      <View collapsable={false} pointerEvents="none" accessibilityElementsHidden>
-        {children}
-      </View>
+      <View collapsable={false}>{children}</View>
     </NativeMenu>
   )
 }

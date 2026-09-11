@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "platform": "ios",
+  "minimumVersion": 18,
+  "controlledProtocol": {
+    "version": 1,
+    "revision": "revision",
+    "acknowledgement": "acknowledgedEvent",
+    "eventCount": "eventCount"
+  },
+  "components": [
+    {
+      "name": "OneNativeMenu",
+      "publicName": "Menu",
+      "props": {
+        "items": "ReadonlyArray<NativeMenuItem>",
+        "triggerLabel": "string",
+        "disabled": "boolean",
+        "menuOrder": "string",
+        "menuActionDismissBehavior": "string",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32"
+      },
+      "events": {
+        "onNativeMenuAction": {
+          "id": "string"
+        },
+        "onNativeMenuValueChange": {
+          "id": "string",
+          "value": "boolean",
+          "sourceIndex": "Int32",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [
+        {
+          "name": "trigger",
+          "content": "react-native",
+          "cardinality": "one",
+          "layout": "yoga",
+          "interaction": "passive"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTabs",
+      "publicName": "Tabs",
+      "props": {
+        "selection": "string",
+        "sidebarAdaptable": "boolean",
+        "tabBarMinimizeBehavior": "string",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32"
+      },
+      "events": {
+        "onNativeTabsSelectionChange": {
+          "selection": "string",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [
+        {
+          "name": "pages",
+          "content": "OneNativeTab",
+          "cardinality": "many",
+          "key": "tabId",
+          "layout": "swiftui"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTab",
+      "publicName": "Tab",
+      "props": {
+        "tabId": "string",
+        "title": "string",
+        "systemImage": "string",
+        "badge": "string",
+        "tabRole": "string"
+      },
+      "events": {},
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePicker",
+      "publicName": "Picker",
+      "props": {
+        "value": "string",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "options": "ReadonlyArray<PickerOption>",
+        "pickerStyle": "string"
+      },
+      "events": {
+        "onNativePickerValueChange": {
+          "value": "string",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeDatePicker",
+      "publicName": "DatePicker",
+      "props": {
+        "value": "Double",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "minimumDate": "Double",
+        "maximumDate": "Double",
+        "displayedComponents": "string",
+        "datePickerStyle": "string"
+      },
+      "events": {
+        "onNativeDatePickerValueChange": {
+          "value": "Double",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeColorPicker",
+      "publicName": "ColorPicker",
+      "props": {
+        "value": "string",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "supportsOpacity": "boolean"
+      },
+      "events": {
+        "onNativeColorPickerValueChange": {
+          "value": "string",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToggle",
+      "publicName": "Toggle",
+      "props": {
+        "value": "boolean",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "toggleStyle": "string"
+      },
+      "events": {
+        "onNativeToggleValueChange": {
+          "value": "boolean",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSlider",
+      "publicName": "Slider",
+      "props": {
+        "value": "Double",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "minimumValue": "Double",
+        "maximumValue": "Double",
+        "step": "Double"
+      },
+      "events": {
+        "onNativeSliderValueChange": {
+          "value": "Double",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeStepper",
+      "publicName": "Stepper",
+      "props": {
+        "value": "Double",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "label": "string",
+        "disabled": "boolean",
+        "minimumValue": "Double",
+        "maximumValue": "Double",
+        "step": "Double"
+      },
+      "events": {
+        "onNativeStepperValueChange": {
+          "value": "Double",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSheet",
+      "publicName": "Sheet",
+      "props": {
+        "isPresented": "boolean",
+        "acknowledgedEvent": "Int32",
+        "revision": "Int32",
+        "detents": "ReadonlyArray<NativeSheetDetent>",
+        "interactiveDismissDisabled": "boolean",
+        "presentationDragIndicator": "string"
+      },
+      "events": {
+        "onNativeSheetIsPresentedChange": {
+          "isPresented": "boolean",
+          "eventCount": "Int32",
+          "revision": "Int32"
+        },
+        "onNativeSheetDismiss": {
+          "revision": "Int32"
+        }
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "OneNativeSheetContent",
+          "cardinality": "one",
+          "layout": "presented"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSheetContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
+    }
+  ],
+  "payloads": {
+    "PickerOption": {
+      "fields": {
+        "value": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "NativeSheetDetent": {
+      "fields": {
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "Double"
+        }
+      }
+    },
+    "NativeMenuItem": {
+      "fields": {
+        "parentId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "default": ""
+        },
+        "title": {
+          "type": "string",
+          "default": ""
+        },
+        "systemImage": {
+          "type": "string",
+          "default": ""
+        },
+        "role": {
+          "type": "ButtonRole",
+          "default": ""
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
+        "help": {
+          "type": "string",
+          "default": ""
+        },
+        "controlGroupStyle": {
+          "type": "ControlGroupStyle",
+          "default": "automatic"
+        },
+        "values": {
+          "type": "boolean[]",
+          "default": []
+        },
+        "menuOrder": {
+          "type": "MenuOrder",
+          "default": ""
+        },
+        "menuActionDismissBehavior": {
+          "type": "MenuActionDismissBehavior",
+          "default": ""
+        }
+      },
+      "nodes": [
+        {
+          "kind": "action",
+          "name": "MenuAction",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "role",
+            "disabled",
+            "hidden",
+            "help",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title"
+          ],
+          "children": false,
+          "swiftType": "Button"
+        },
+        {
+          "kind": "toggle",
+          "name": "MenuToggle",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "values",
+            "disabled",
+            "hidden",
+            "help",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title",
+            "values"
+          ],
+          "children": false,
+          "swiftType": "Toggle"
+        },
+        {
+          "kind": "submenu",
+          "name": "MenuSubmenu",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "disabled",
+            "hidden",
+            "help",
+            "menuOrder",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title"
+          ],
+          "children": true,
+          "swiftType": "Menu"
+        },
+        {
+          "kind": "section",
+          "name": "MenuSection",
+          "fields": [
+            "id",
+            "title",
+            "hidden"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": true,
+          "swiftType": "Section"
+        },
+        {
+          "kind": "controlGroup",
+          "name": "MenuControlGroup",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "disabled",
+            "hidden",
+            "controlGroupStyle"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": true,
+          "swiftType": "ControlGroup"
+        },
+        {
+          "kind": "divider",
+          "name": "MenuDivider",
+          "fields": [
+            "id"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": false,
+          "swiftType": "Divider"
+        }
+      ]
+    }
+  },
+  "enums": {
+    "MenuOrder": {
+      "automatic": 16,
+      "priority": 16,
+      "fixed": 16
+    },
+    "Visibility": {
+      "automatic": 15,
+      "visible": 15,
+      "hidden": 15
+    },
+    "PickerStyle": {
+      "wheel": 13,
+      "inline": 14,
+      "automatic": 13,
+      "segmented": 13,
+      "palette": 17,
+      "navigationLink": 16,
+      "menu": 14
+    },
+    "DatePickerStyle": {
+      "wheel": 13,
+      "automatic": 13,
+      "graphical": 14,
+      "compact": 14
+    },
+    "ToggleStyle": {
+      "button": 15,
+      "automatic": 13,
+      "switch": 13
+    },
+    "MenuActionDismissBehavior": {
+      "automatic": 16.4,
+      "enabled": 16.4,
+      "disabled": 16.4
+    },
+    "TabBarMinimizeBehavior": {
+      "automatic": 26,
+      "onScrollDown": 26,
+      "onScrollUp": 26,
+      "never": 26
+    },
+    "ButtonRole": {
+      "destructive": 15,
+      "cancel": 15,
+      "confirm": 26,
+      "close": 26
+    },
+    "TabRole": {
+      "search": 18
+    },
+    "ControlGroupStyle": {
+      "palette": 17,
+      "automatic": 15,
+      "navigation": 15,
+      "menu": 16.4,
+      "compactMenu": 16.4
+    }
+  }
+}
