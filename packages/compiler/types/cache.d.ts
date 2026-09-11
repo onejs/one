@@ -12,6 +12,8 @@ export declare function setCachedTransform(filePath: string, code: string, resul
     code: string;
     map?: any;
 }, environment: string): void;
+/** Drop every cached transform, for `react-native bundle --reset-cache`. */
+export declare function clearTransformCache(): void;
 export declare function getCacheStats(): CacheStats;
 export declare function logCacheStats(): void;
 export {};
