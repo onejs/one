@@ -1392,6 +1392,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('accessibility: a control composed into a Form carries its testID', (n) =>
       Boolean(id(n, 'one-native-a11y-form'))
     )
+    screenshot('a11y-short-text.png')
 
     // an accessibility element that is not the real control would pass every check above
     // and do nothing here.
@@ -1440,6 +1441,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     checks.push({ name: 'accessibility: a wrapped paragraph is not clipped', durationMs: 0 })
     console.log('PASS accessibility: a wrapped paragraph is not clipped')
+    screenshot('a11y-wrapped-text.png')
 
     // the SwiftUI element has to survive a recycle, because the model is rebuilt on reset.
     tap({ label: 'index' })
@@ -1619,6 +1621,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'Map fills the box React Native gave it',
       (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
     )
+    screenshot('map-two-pins.png')
     tap({ id: 'one-native-map-height' })
     await wait(
       'the map follows the box when the style changes',
@@ -1641,6 +1644,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'adding a marker adds it to the map',
       (n) => status(n, 'Pins', 3) && has(n, 'Pyramid') && has(n, 'Coit Tower')
     )
+    screenshot('map-three-pins.png')
     tap({ id: 'one-native-map-pins' })
     await wait(
       'emptying the array removes every marker',
@@ -1650,6 +1654,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         !has(n, 'Coit Tower') &&
         !has(n, 'Ballpark')
     )
+    screenshot('map-no-pins.png')
 
     // the camera the fixture seeded is what MapKit settled on, reported back through
     // onRegionChange rather than assumed.
@@ -1662,6 +1667,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       're-centering moves the camera and reports it',
       (n) => status(n, 'Center', '37.80,-122.47') && regions(n) > before
     )
+    screenshot('map-presidio.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -1708,6 +1714,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'VideoPlayer fills the box React Native gave it',
       (n) => player(n)?.frame?.height === 220 && player(n)?.frame?.width === 373
     )
+    screenshot('media-player.png')
     tap({ id: 'one-native-media-height' })
     await wait(
       'the player follows the box when the style changes',
@@ -1736,6 +1743,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'autoplay starts the fresh player',
       (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed'
     )
+    screenshot('media-playing.png')
 
     tap({ id: 'one-native-media-category-preview' })
     await wait(
@@ -1745,6 +1753,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Presented', 'false') &&
         status(n, 'Changes', 0)
     )
+    screenshot('media-no-player.png')
     tap({ id: 'one-native-media-open' })
     // the text search button is QuickLook having resolved the file:// url to a text
     // preview, which a controller presented over a url it could not read would not carry.
@@ -1754,6 +1763,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
         Boolean(id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier'))
     )
+    screenshot('media-quicklook-open.png')
     tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
     // dismissal arrives as a nil url, which the control has to report as false rather than
     // leaving React thinking the preview is still up. reading the fixture again at all is
