@@ -82,6 +82,8 @@ export type NativeHmrUpdate =
 interface NativeDevEngineResult {
   engine: DevEngine
   getBundle: () => Promise<{ code: string }>
+  /** rebuild every module from scratch; resolves to whether the output changed */
+  rebuildFromScratch: () => Promise<boolean>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
 }
@@ -507,35 +509,21 @@ export async function createNativeDevEngine(
     // map is generated. generating it cost ~90ms and ~250MB RSS per rebuild on a
     // 6MB bundle, held for the life of the dev server, per platform.
     ...getNativeOutputOptions(prelude, false),
-    // connect HMR WebSocket using RN's WebSocket module (not the global)
+    // open the HMR socket with RN's WebSocket module (not the global, which is
+    // only polyfilled once InitializeCore has run) and hand it to the runtime,
+    // which owns every message it carries. handed over immediately rather than
+    // from an open handler: a host that does not honor `socket.onopen = fn`
+    // would otherwise silently never get Fast Refresh.
     outro: `
 try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
   var __hmrUrl = 'ws://${resolvedHost}:${port}/hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
-  var __hmrWS = new __WS(__hmrUrl);
-  __hmrWS.onmessage = function(event) {
-    try {
-      var msg = JSON.parse(event.data);
-      var g = typeof global !== 'undefined' ? global : globalThis;
-      if (msg.type === 'hmr:update' && msg.code) {
-        var applied = __rolldown_runtime__.applyHmrUpdate(msg.code, msg.changedIds, msg.seq);
-        if (!applied) {
-          var updateSettings = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
-          if (updateSettings && updateSettings.reload) updateSettings.reload();
-        }
-      } else if (msg.type === 'hmr:reload') {
-        var ds = g.__turboModuleProxy ? g.__turboModuleProxy('DevSettings') : null;
-        if (ds && ds.reload) ds.reload();
-      }
-    } catch(e) { console.error('[vxrn] HMR eval error:', e); }
-  };
-  __hmrWS.onopen = function() {
-    if (typeof __rolldown_runtime__ !== 'undefined' && __rolldown_runtime__.setup) {
-      __rolldown_runtime__.setup(__hmrWS);
-    }
-  };
-  __hmrWS.onerror = function(e) { console.warn('[vxrn] HMR connection error:', e.message || e); };
-} catch(e) {}
+  __rolldown_runtime__.setup(new __WS(__hmrUrl));
+} catch(e) {
+  // a swallowed failure here leaves the app permanently without Fast Refresh and
+  // nothing on screen or in the terminal says so.
+  console.error('[vxrn] HMR client failed to start:', (e && e.message) || e);
+}
 `,
   }
 
@@ -543,6 +531,14 @@ try {
     onOutput: async (result) => {
       if (result instanceof Error) {
         console.error('[vxrn] native bundle error:', result.message)
+        if (/panic/i.test(result.message)) {
+          // a panicked rolldown worker stops producing HMR patches for the rest
+          // of the process, so every later edit reloads the whole app. nothing
+          // else says so, and the app looks fine.
+          console.error(
+            '[vxrn] rolldown itself panicked. Fast Refresh will full-reload until you restart the dev server.'
+          )
+        }
         if (!currentBundle) {
           firstBuildError ||= result
           if (bundleReject) {
@@ -611,13 +607,24 @@ try {
 
   await engine.run()
 
+  // one build at a time: a bundle request and a glob rebuild can arrive
+  // together (a reload lands on the bundle route while a new file is being
+  // picked up), and the engine holds a single output the second would race the
+  // first for.
+  let engineWork: Promise<unknown> = Promise.resolve()
+  const queueEngineWork = <T>(work: () => Promise<T>): Promise<T> => {
+    const result = engineWork.then(work, work)
+    engineWork = result.catch(() => {})
+    return result
+  }
+
   return {
     engine,
 
     async getBundle() {
       // a runtime invalidation marks the full output stale before reloading. pull
       // that output before serving the cached bundle to the restarted app.
-      await engine.ensureLatestBuildOutput()
+      await queueEngineWork(() => engine.ensureLatestBuildOutput())
       if (currentBundle) return currentBundle
       if (firstBuildError) throw firstBuildError
       if (!bundlePromise) {
@@ -640,6 +647,28 @@ try {
         })
       }
       return bundlePromise
+    },
+
+    // rolldown expands `import.meta.glob` while it transforms the module and
+    // records no dependency on the globbed directories, so a file created after
+    // the first build never joins the graph, not even on a fresh bundle request.
+    // that is what leaves a newly added route invisible to the running app.
+    // rebuilding from scratch re-expands every glob; the return value says
+    // whether the output actually moved, so a creation no glob picks up costs a
+    // rebuild and nothing the app can see.
+    rebuildFromScratch() {
+      return queueEngineWork(async () => {
+        const previousCode = currentBundle?.code
+        // a deleted file reaches rolldown's own watcher too, and starting a full
+        // build while it is still retiring that module panics its worker (an
+        // "index out of bounds" out of oxc_index), after which every bundle
+        // request answers 500 until the dev server restarts. settling whatever
+        // the watcher already queued keeps the two off each other.
+        await engine.ensureLatestBuildOutput()
+        engine.triggerFullBuild()
+        await engine.ensureLatestBuildOutput()
+        return currentBundle?.code !== previousCode
+      })
     },
 
     getAsset(pathname, hash) {
@@ -1796,9 +1825,44 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     }
   }
 
+  reload() {
+    var proxy = globalThis.__turboModuleProxy
+      ? globalThis.__turboModuleProxy('DevSettings')
+      : globalThis.nativeModuleProxy && globalThis.nativeModuleProxy.DevSettings;
+    if (proxy && proxy.reload) proxy.reload();
+  }
+
   setup(socket) {
     if (this._socket) return;
     this._socket = socket;
+    var runtime = this;
+    // addEventListener rather than socket.onmessage: the bundle's WebSocket is
+    // whatever the host platform provides, and a host that does not honor on*
+    // property assignment would otherwise leave the app permanently without
+    // Fast Refresh and say nothing.
+    socket.addEventListener('message', function(event) {
+      var message;
+      try {
+        message = JSON.parse(event.data);
+      } catch (error) {
+        return;
+      }
+      try {
+        if (message.type === 'hmr:update') {
+          // a patch that cannot be applied in place is the reload signal
+          if (!runtime.applyHmrUpdate(message.code, message.changedIds, message.seq)) {
+            runtime.reload();
+          }
+        } else if (message.type === 'hmr:reload') {
+          runtime.reload();
+        }
+      } catch (error) {
+        console.error('[vxrn HMR]: failed to apply update', error);
+      }
+    });
+    socket.addEventListener('error', function(event) {
+      console.warn('[vxrn HMR]: connection error', (event && event.message) || event);
+    });
   }
 }
 

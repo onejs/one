@@ -40,6 +40,8 @@ interface NativeDevEngineResult {
     getBundle: () => Promise<{
         code: string;
     }>;
+    /** rebuild every module from scratch; resolves to whether the output changed */
+    rebuildFromScratch: () => Promise<boolean>;
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }

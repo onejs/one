@@ -219,8 +219,9 @@ export function createReactNativeDevServerPlugin(
             return
           }
           if (update.type === 'hmr:invalidate') {
-            currentEngine.engine.triggerFullBuild()
-            await currentEngine.engine.ensureLatestBuildOutput()
+            // the runtime asked for this reload, so it happens whether or not
+            // the rebuild changed anything
+            await currentEngine.rebuildFromScratch()
             socket.send(JSON.stringify({ type: 'hmr:reload' }))
           }
         })
@@ -236,6 +237,81 @@ export function createReactNativeDevServerPlugin(
           console.error('[hmr] error', error)
         })
       })
+
+      const reloadNativeClients = (platform: string) => {
+        const reload = JSON.stringify({ type: 'hmr:reload' })
+        hmrWSS.clients.forEach((client) => {
+          const nativeClient = client as NativeHmrSocket
+          if (nativeClient.readyState === 1 && nativeClient.vxrnPlatform === platform) {
+            nativeClient.send(reload)
+          }
+        })
+      }
+
+      // a file created or deleted after the first build changes what
+      // `import.meta.glob` matches, and rolldown expanded those globs when it
+      // transformed the module without recording the globbed directories as
+      // dependencies. nothing invalidates the glob's module, so adding a route
+      // otherwise leaves the running app on the old route map forever, and no
+      // bundle request fixes it. vite's own glob plugin covers this in
+      // `hotUpdate`, which the native engine has no equivalent of.
+      //
+      // a deletion needs a different answer. rolldown's dev engine panics its
+      // worker when it retires a module that left the disk ("index out of
+      // bounds" out of oxc_index), and from then on every bundle request answers
+      // 500 even once the file comes back. that engine cannot be repaired, so
+      // drop it and let the next bundle request build a fresh one.
+      let graphChange: Promise<void> | null = null
+      let graphChangeQueued = false
+      let sawDeletion = false
+      const runGraphChange = () => {
+        if (graphChange) {
+          graphChangeQueued = true
+          return
+        }
+        graphChange = (async () => {
+          do {
+            graphChangeQueued = false
+            const deleted = sawDeletion
+            sawDeletion = false
+            for (const platform of Object.keys(devEngines)) {
+              const devEngine = devEngines[platform]
+              if (!devEngine) continue
+              if (deleted) {
+                devEngines[platform] = null
+                devEngineCreating[platform] = null
+                devEngine.close().catch(() => {})
+                reloadNativeClients(platform)
+                continue
+              }
+              try {
+                // only a rebuild that moved the output is worth a reload, so a
+                // new file no glob matches costs a rebuild and nothing else
+                if (!(await devEngine.rebuildFromScratch())) continue
+              } catch (error) {
+                console.error(`[vxrn] rebuilding the ${platform} bundle failed`, error)
+                continue
+              }
+              reloadNativeClients(platform)
+            }
+          } while (graphChangeQueued)
+        })().finally(() => {
+          graphChange = null
+        })
+      }
+      let graphChangeTimer: ReturnType<typeof setTimeout> | undefined
+      const onFileCreatedOrDeleted = (deletion: boolean) => (file: string) => {
+        // vite's watcher already skips node_modules and .git. keep out the rest
+        // of what a dev server writes into a project while it runs: caches and
+        // build output under a dot directory, editor swap files.
+        if (file.split('/').some((segment) => segment.startsWith('.'))) return
+        sawDeletion ||= deletion
+        // one pass for a burst (a branch switch, a generator, a rename)
+        clearTimeout(graphChangeTimer)
+        graphChangeTimer = setTimeout(runGraphChange, 500)
+      }
+      server.watcher.on('add', onFileCreatedOrDeleted(false))
+      server.watcher.on('unlink', onFileCreatedOrDeleted(true))
 
       clientWSS.on('connection', (socket) => {
         socket.on('message', (messageRaw) => {
