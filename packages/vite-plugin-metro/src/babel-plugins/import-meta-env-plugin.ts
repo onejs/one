@@ -1,6 +1,5 @@
+import { types as t, type PluginObj } from '@babel/core'
 import { declare } from '@babel/helper-plugin-utils'
-import * as t from '@babel/types'
-import type { PluginObj } from '@babel/core'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 type PluginOptions = {
