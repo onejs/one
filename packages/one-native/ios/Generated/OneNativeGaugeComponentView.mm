@@ -32,30 +32,30 @@ using namespace facebook::react;
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   NSMutableDictionary *style = [NSMutableDictionary new];
-  if (next.swiftStyle.fontSize > 0) style[@"fontSize"] = @(next.swiftStyle.fontSize);
+  if (next.swiftStyle.fontSize >= 0) style[@"fontSize"] = @(next.swiftStyle.fontSize);
   if (!next.swiftStyle.fontWeight.empty()) style[@"fontWeight"] = RCTNSStringFromString(next.swiftStyle.fontWeight);
   if (!next.swiftStyle.fontDesign.empty()) style[@"fontDesign"] = RCTNSStringFromString(next.swiftStyle.fontDesign);
   if (!next.swiftStyle.textStyle.empty()) style[@"textStyle"] = RCTNSStringFromString(next.swiftStyle.textStyle);
   if (next.swiftStyle.foregroundStyle) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.foregroundStyle); if (c) style[@"foregroundStyle"] = c; }
   if (next.swiftStyle.tint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.tint); if (c) style[@"tint"] = c; }
   if (next.swiftStyle.background) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.background); if (c) style[@"background"] = c; }
-  if (next.swiftStyle.padding > 0) style[@"padding"] = @(next.swiftStyle.padding);
-  if (next.swiftStyle.paddingTop > 0) style[@"paddingTop"] = @(next.swiftStyle.paddingTop);
-  if (next.swiftStyle.paddingLeading > 0) style[@"paddingLeading"] = @(next.swiftStyle.paddingLeading);
-  if (next.swiftStyle.paddingBottom > 0) style[@"paddingBottom"] = @(next.swiftStyle.paddingBottom);
-  if (next.swiftStyle.paddingTrailing > 0) style[@"paddingTrailing"] = @(next.swiftStyle.paddingTrailing);
-  if (next.swiftStyle.width > 0) style[@"width"] = @(next.swiftStyle.width);
-  if (next.swiftStyle.height > 0) style[@"height"] = @(next.swiftStyle.height);
-  if (next.swiftStyle.minWidth > 0) style[@"minWidth"] = @(next.swiftStyle.minWidth);
-  if (next.swiftStyle.idealWidth > 0) style[@"idealWidth"] = @(next.swiftStyle.idealWidth);
-  if (next.swiftStyle.maxWidth > 0) style[@"maxWidth"] = @(next.swiftStyle.maxWidth);
-  if (next.swiftStyle.minHeight > 0) style[@"minHeight"] = @(next.swiftStyle.minHeight);
-  if (next.swiftStyle.idealHeight > 0) style[@"idealHeight"] = @(next.swiftStyle.idealHeight);
-  if (next.swiftStyle.maxHeight > 0) style[@"maxHeight"] = @(next.swiftStyle.maxHeight);
-  if (next.swiftStyle.cornerRadius > 0) style[@"cornerRadius"] = @(next.swiftStyle.cornerRadius);
-  if (next.swiftStyle.opacity > 0) style[@"opacity"] = @(next.swiftStyle.opacity);
+  if (next.swiftStyle.padding >= 0) style[@"padding"] = @(next.swiftStyle.padding);
+  if (next.swiftStyle.paddingTop >= 0) style[@"paddingTop"] = @(next.swiftStyle.paddingTop);
+  if (next.swiftStyle.paddingLeading >= 0) style[@"paddingLeading"] = @(next.swiftStyle.paddingLeading);
+  if (next.swiftStyle.paddingBottom >= 0) style[@"paddingBottom"] = @(next.swiftStyle.paddingBottom);
+  if (next.swiftStyle.paddingTrailing >= 0) style[@"paddingTrailing"] = @(next.swiftStyle.paddingTrailing);
+  if (next.swiftStyle.width >= 0) style[@"width"] = @(next.swiftStyle.width);
+  if (next.swiftStyle.height >= 0) style[@"height"] = @(next.swiftStyle.height);
+  if (next.swiftStyle.minWidth >= 0) style[@"minWidth"] = @(next.swiftStyle.minWidth);
+  if (next.swiftStyle.idealWidth >= 0) style[@"idealWidth"] = @(next.swiftStyle.idealWidth);
+  if (next.swiftStyle.maxWidth >= 0) style[@"maxWidth"] = @(next.swiftStyle.maxWidth);
+  if (next.swiftStyle.minHeight >= 0) style[@"minHeight"] = @(next.swiftStyle.minHeight);
+  if (next.swiftStyle.idealHeight >= 0) style[@"idealHeight"] = @(next.swiftStyle.idealHeight);
+  if (next.swiftStyle.maxHeight >= 0) style[@"maxHeight"] = @(next.swiftStyle.maxHeight);
+  if (next.swiftStyle.cornerRadius >= 0) style[@"cornerRadius"] = @(next.swiftStyle.cornerRadius);
+  if (next.swiftStyle.opacity >= 0) style[@"opacity"] = @(next.swiftStyle.opacity);
   if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
-  if (next.swiftStyle.borderWidth > 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
+  if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.label)
     disabled:next.disabled value:next.value minimumValue:next.minimumValue maximumValue:next.maximumValue currentValueLabel:RCTNSStringFromString(next.currentValueLabel) minimumValueLabel:RCTNSStringFromString(next.minimumValueLabel) maximumValueLabel:RCTNSStringFromString(next.maximumValueLabel) gaugeStyle:RCTNSStringFromString(next.gaugeStyle)];

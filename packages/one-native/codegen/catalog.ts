@@ -104,6 +104,39 @@ export const styleModifiers = [
     requirements: ['S : SwiftUICore.ShapeStyle'],
   },
 ] as const
+export type StyleFieldKind = 'number' | 'string' | 'color'
+
+export interface StyleField {
+  name: string
+  kind: StyleFieldKind
+}
+
+export const styleFields: readonly StyleField[] = [
+  { name: 'fontSize', kind: 'number' },
+  { name: 'fontWeight', kind: 'string' },
+  { name: 'fontDesign', kind: 'string' },
+  { name: 'textStyle', kind: 'string' },
+  { name: 'foregroundStyle', kind: 'color' },
+  { name: 'tint', kind: 'color' },
+  { name: 'background', kind: 'color' },
+  { name: 'padding', kind: 'number' },
+  { name: 'paddingTop', kind: 'number' },
+  { name: 'paddingLeading', kind: 'number' },
+  { name: 'paddingBottom', kind: 'number' },
+  { name: 'paddingTrailing', kind: 'number' },
+  { name: 'width', kind: 'number' },
+  { name: 'height', kind: 'number' },
+  { name: 'minWidth', kind: 'number' },
+  { name: 'idealWidth', kind: 'number' },
+  { name: 'maxWidth', kind: 'number' },
+  { name: 'minHeight', kind: 'number' },
+  { name: 'idealHeight', kind: 'number' },
+  { name: 'maxHeight', kind: 'number' },
+  { name: 'cornerRadius', kind: 'number' },
+  { name: 'opacity', kind: 'number' },
+  { name: 'borderColor', kind: 'color' },
+  { name: 'borderWidth', kind: 'number' },
+] as const
 export const enumTypes = [
   'MenuOrder',
   'Visibility',

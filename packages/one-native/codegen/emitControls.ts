@@ -1,4 +1,5 @@
 import { controls } from './controlCatalog'
+import { styleFields } from './catalog'
 import type { Control, ControlField, ScalarType } from './controlTypes'
 
 const swiftScalar = (type: ScalarType) =>
@@ -46,30 +47,12 @@ import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 
 export interface OneNativeStyle {
-  fontSize?: number
-  fontWeight?: string
-  fontDesign?: string
-  textStyle?: string
-  foregroundStyle?: ColorValue
-  tint?: ColorValue
-  background?: ColorValue
-  padding?: number
-  paddingTop?: number
-  paddingLeading?: number
-  paddingBottom?: number
-  paddingTrailing?: number
-  width?: number
-  height?: number
-  minWidth?: number
-  idealWidth?: number
-  maxWidth?: number
-  minHeight?: number
-  idealHeight?: number
-  maxHeight?: number
-  cornerRadius?: number
-  opacity?: number
-  borderColor?: ColorValue
-  borderWidth?: number
+${styleFields
+  .map(
+    (field) =>
+      `  ${field.name}?: ${field.kind === 'number' ? 'number' : field.kind === 'color' ? 'ColorValue' : 'string'}`
+  )
+  .join('\n')}
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -101,7 +84,7 @@ export type OneNativeViewProps = Pick<
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
     const plainFields = fieldEntries.filter(([, field]) => field.type !== 'objects')
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
-    const styleFields = publicFields.filter(([, field]) => field.enum)
+    const enumFields = publicFields.filter(([, field]) => field.enum)
     const disabled = Object.hasOwn(fields, 'disabled')
     // a measured control reports the height SwiftUI measured, so it supplies its own shadow
     // node and the spec must not generate one. fill and presentation controls are sized by
@@ -197,9 +180,9 @@ ${
     const usedPayloads = [
       ...new Set(objectFields.map(([, field]) => payloadOf(field).name)),
     ]
-    const codegenTypes = ['DirectEventHandler', 'Int32', 'Double'].filter((type) => {
+    const codegenTypes = ['DirectEventHandler', 'Int32', 'Double', 'WithDefault'].filter((type) => {
       if (type === 'DirectEventHandler') return Object.keys(events).length > 0
-      if (type === 'Double') return true
+      if (type === 'Double' || type === 'WithDefault') return true
       return [
         ...Object.values(props),
         ...Object.values(events).flatMap((fields) => Object.values(fields)),
@@ -214,30 +197,12 @@ ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 ${usedPayloads.map((payload) => `type ${payload} = ${payloadType(payload, 'spec')}`).join('\n')}
 type OneNativeStyleNative = Readonly<{
-  fontSize?: Double
-  fontWeight?: string
-  fontDesign?: string
-  textStyle?: string
-  foregroundStyle?: ColorValue
-  tint?: ColorValue
-  background?: ColorValue
-  padding?: Double
-  paddingTop?: Double
-  paddingLeading?: Double
-  paddingBottom?: Double
-  paddingTrailing?: Double
-  width?: Double
-  height?: Double
-  minWidth?: Double
-  idealWidth?: Double
-  maxWidth?: Double
-  minHeight?: Double
-  idealHeight?: Double
-  maxHeight?: Double
-  cornerRadius?: Double
-  opacity?: Double
-  borderColor?: ColorValue
-  borderWidth?: Double
+${styleFields
+  .map(
+    (field) =>
+      `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'color' ? 'ColorValue' : 'string'}`
+  )
+  .join('\n')}
 }>
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
@@ -278,7 +243,7 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
     adapters += `import Native${name} from '../specs/${nativeName}NativeComponent'
 export function ${name}({ ${parameters.join(', ')} }: Types.${name}Props) {
 ${control.validate}
-${styleFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
+${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
   value
     ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
@@ -638,30 +603,18 @@ ${objectFields.length ? `  const auto &previous = *std::static_pointer_cast<cons
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   NSMutableDictionary *style = [NSMutableDictionary new];
-  if (next.swiftStyle.fontSize > 0) style[@"fontSize"] = @(next.swiftStyle.fontSize);
-  if (!next.swiftStyle.fontWeight.empty()) style[@"fontWeight"] = RCTNSStringFromString(next.swiftStyle.fontWeight);
-  if (!next.swiftStyle.fontDesign.empty()) style[@"fontDesign"] = RCTNSStringFromString(next.swiftStyle.fontDesign);
-  if (!next.swiftStyle.textStyle.empty()) style[@"textStyle"] = RCTNSStringFromString(next.swiftStyle.textStyle);
-  if (next.swiftStyle.foregroundStyle) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.foregroundStyle); if (c) style[@"foregroundStyle"] = c; }
-  if (next.swiftStyle.tint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.tint); if (c) style[@"tint"] = c; }
-  if (next.swiftStyle.background) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.background); if (c) style[@"background"] = c; }
-  if (next.swiftStyle.padding > 0) style[@"padding"] = @(next.swiftStyle.padding);
-  if (next.swiftStyle.paddingTop > 0) style[@"paddingTop"] = @(next.swiftStyle.paddingTop);
-  if (next.swiftStyle.paddingLeading > 0) style[@"paddingLeading"] = @(next.swiftStyle.paddingLeading);
-  if (next.swiftStyle.paddingBottom > 0) style[@"paddingBottom"] = @(next.swiftStyle.paddingBottom);
-  if (next.swiftStyle.paddingTrailing > 0) style[@"paddingTrailing"] = @(next.swiftStyle.paddingTrailing);
-  if (next.swiftStyle.width > 0) style[@"width"] = @(next.swiftStyle.width);
-  if (next.swiftStyle.height > 0) style[@"height"] = @(next.swiftStyle.height);
-  if (next.swiftStyle.minWidth > 0) style[@"minWidth"] = @(next.swiftStyle.minWidth);
-  if (next.swiftStyle.idealWidth > 0) style[@"idealWidth"] = @(next.swiftStyle.idealWidth);
-  if (next.swiftStyle.maxWidth > 0) style[@"maxWidth"] = @(next.swiftStyle.maxWidth);
-  if (next.swiftStyle.minHeight > 0) style[@"minHeight"] = @(next.swiftStyle.minHeight);
-  if (next.swiftStyle.idealHeight > 0) style[@"idealHeight"] = @(next.swiftStyle.idealHeight);
-  if (next.swiftStyle.maxHeight > 0) style[@"maxHeight"] = @(next.swiftStyle.maxHeight);
-  if (next.swiftStyle.cornerRadius > 0) style[@"cornerRadius"] = @(next.swiftStyle.cornerRadius);
-  if (next.swiftStyle.opacity > 0) style[@"opacity"] = @(next.swiftStyle.opacity);
-  if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
-  if (next.swiftStyle.borderWidth > 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
+${styleFields
+  .map((field) => {
+    switch (field.kind) {
+      case 'number':
+        return `  if (next.swiftStyle.${field.name} >= 0) style[@"${field.name}"] = @(next.swiftStyle.${field.name});`
+      case 'string':
+        return `  if (!next.swiftStyle.${field.name}.empty()) style[@"${field.name}"] = RCTNSStringFromString(next.swiftStyle.${field.name});`
+      case 'color':
+        return `  if (next.swiftStyle.${field.name}) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.${field.name}); if (c) style[@"${field.name}"] = c; }`
+    }
+  })
+  .join('\n')}
   [_nativeView configureStyle:style];
   [_nativeView configure:${call[0].expression}
     ${call
