@@ -19,17 +19,23 @@ split-view integrations in `@vxrn/native`.
   acknowledgements cannot overwrite a newer pending native selection. Accept in
   the callback synchronously; delayed decisions retain the old selection until
   the controlling prop changes.
-- `Swift.Menu` builds UIKit `UIMenu`/`UIAction` trees from typed Fabric props and
-  supports an arbitrary RN visual trigger, nested and inline groups, palettes,
-  preferred sizes, SF Symbols, subtitles, checked/mixed states, disabled/hidden/
-  destructive actions, and actions that keep the menu open.
-- The trigger has one native button responsible for touch and accessibility.
+- `Swift.Menu` uses generated SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
+  `Divider`, and `ControlGroup` constructors. RN trigger content is hosted through
+  `UIViewRepresentable`. Menu order, action dismissal, control-group styles,
+  button roles, tab roles, and tab-bar minimization derive their cases and iOS
+  availability from the installed SDK.
+- The SDK generator parses SwiftUI and SwiftUICore interfaces with SwiftSyntax.
+  An explicit catalog describes React identity, child slots, and event mappings.
+  It generates public types, Fabric specs, payload validation/conversion, native
+  constructors, modifier dispatch, and an SDK coverage manifest. Native slot
+  ownership and controller lifecycle remain authored runtime code.
+- The SwiftUI menu owns trigger touch and accessibility.
   RN page controls retain their existing responder path. Arbitrary simultaneous
   RNGH/SwiftUI gesture composition is still a later engine requirement.
 - The baseline is iOS 18, React Native 0.86.2 and New Architecture. Browser and
   Android entry points report unsupported rendering. General SwiftUI hosts,
-  modifiers, bindings, Nitro transport, SDK generation, and Contrast adapters
-  remain the next stages.
+  arbitrary modifiers/bindings, Nitro transport evaluation, broader SDK coverage,
+  and Contrast adapters remain the next stages.
 
 The installed `react-native-bottom-tabs` was exercised first. A rejected selection
 left native and React on different tabs, including incorrect page accessibility.
@@ -37,7 +43,7 @@ The owned host adds explicit acknowledgement. Its integration fixture also caugh
 reordered Fabric pages becoming detached from their SwiftUI slots; slot updates
 now attach the current Fabric view even when its identity did not change.
 
-**Validation of the first slice**
+**Validation**
 
 Built and ran the native-features app on an iPhone 16 simulator with iOS 26.4,
 Xcode 26.4, React Native 0.86.2, and Fabric enabled. The native smoke sequence
@@ -51,13 +57,27 @@ asserted mounted app/page content before interaction and checked:
   actions are absent, and keep-presented actions retain the open menu.
 - Pushing another native stack screen and returning preserves page content/state.
 
-Package build, TypeScript checks, four menu payload tests, and targeted lint pass.
+The SDK generator parsed 9,399 declarations from the SwiftUI and SwiftUICore
+26.4 interfaces and generated ten files covering the selected menu/tab bindings.
+Regeneration checks, package build, TypeScript checks, seven menu payload tests,
+and targeted lint passed. The generated constructors compiled in the native app.
+Simulator checks also verified checked and mixed toggle source updates, palette
+actions, native section headings and separators, fixed menu ordering, and search
+tab placement/selection while preserving the original page state.
 The native-features app TypeScript check also passes. Grok reviewed the assembled
 native lifecycle, event protocol, slots, and menus; runtime probes verified the
 selection and reorder fixes. iOS 18 runtime, iPad sidebar behavior, VoiceOver
 navigation, RNGH composition, performance under load, and device release builds
 have not been exercised. These checks establish the first slice, not complete
 SwiftUI/Fabric interoperability.
+
+The assembled generator review raised controlled-toggle, presentation, trigger
+layout, and controller-attachment concerns. Simulator probes retained an open
+menu across toggle prop updates. A centered, padded RN trigger exposed conflicting
+frame ownership: the SwiftUI slot replaced Yoga's alignment. The menu host now
+uses the Fabric parent's coordinate space and Yoga alone positions the trigger.
+Controller attachment retries on layout/window changes; stack reattachment was
+verified. Toggle changes remain controlled by React and incur a JS round trip.
 
 The page model mounts eagerly, so memory scales with the mounted React page trees.
 Geometry crosses no JS event channel and is published only when the allocated

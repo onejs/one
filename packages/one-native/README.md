@@ -1,6 +1,6 @@
 # One Native
 
-Apple-native tabs and menus for React Native, exposed through `Swift`. This is an
+Generated SwiftUI tabs and menus for React Native, exposed through `Swift`. This is an
 initial implementation on the `feat/one-native` branch. It requires an iOS 18+
 native build and React Native's New Architecture. It is not published to npm.
 
@@ -15,9 +15,8 @@ const actions: MenuItem[] = [
     type: 'submenu',
     id: 'sort',
     title: 'Sort',
-    singleSelection: true,
     children: [
-      { type: 'action', id: 'newest', title: 'Newest', state: 'on' },
+      { type: 'action', id: 'newest', title: 'Newest' },
       { type: 'action', id: 'oldest', title: 'Oldest' },
     ],
   },
@@ -68,14 +67,28 @@ direct `Swift.Tab` children (arrays and conditional children are supported).
 Pages mount eagerly and keep their React state when switching tabs. Give the tabs
 container bounded space, normally using `flex: 1` in a bounded parent.
 
-`Swift.Menu` uses a Fabric component with UIKit `UIMenu` and `UIAction`. Menu item
-ids are unique across the whole menu. Submenus support inline groups, palettes,
-single selection, and preferred element size. Actions support SF Symbols,
-subtitles, discoverability titles, disabled/hidden/destructive attributes,
-off/on/mixed state, and keeping the menu presented after selection. State is
-supplied by the application; selecting an action sends its id to `onAction`.
+`Swift.Menu` renders actual SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
+`Divider`, and `ControlGroup` views. Every node has a unique nonempty `id`.
+Use `type: 'submenu'` for nested menus, `type: 'section'` for groups with optional
+headings, and `type: 'divider'` for explicit separators. `controlGroup` supports
+SDK-derived styles, including `palette`, `menu`, and `compactMenu`.
 
-The menu's children supply its visual trigger. The native menu button owns that
+Actions support SF Symbols, `role`, `disabled`, `hidden`, `help`, and
+`menuActionDismissBehavior`. Use `menuOrder="fixed"` to preserve declaration order.
+Use `menuActionDismissBehavior="disabled"` to keep a menu open after an action.
+Both modifiers can be applied to the root menu or individual supported nodes.
+
+Checked and mixed states use SwiftUI's binding-based `Toggle`. A toggle node has
+`values: [true]` for one checked value, or a collection such as `[true, false]`
+for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and update
+that source in React state. SwiftUI may update each source separately; use a
+functional state update to preserve every change. Button actions call `onAction`.
+
+`Swift.Tab` accepts `role="search"`. `Swift.Tabs` accepts the SDK-derived
+`tabBarMinimizeBehavior` values on iOS 26+. Unsupported enum values and OS versions
+are rejected before submitting native props. Omit the modifier on older iOS.
+
+The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or a Tamagui layout
 as its content. Put independent interactive controls outside the trigger.
 
@@ -84,7 +97,39 @@ the app after installing pods. `tests/native-features/app/one-native.tsx` exerci
 selection, reordered pages with local state, and nested menus. The package's
 build, typecheck, and test scripts run from `packages/one-native`.
 
-This slice does not provide a general SwiftUI tree, SDK-wide generated bindings,
-browser rendering, or Android rendering. Those are separate stages in
-`plans/one-native-architecture.md`. The existing `@vxrn/native` remains available
-for navigation integrations that this package has not replaced.
+## Generation
+
+From `packages/one-native`, run:
+
+```sh
+bun run generate
+bun run generate:check
+bun run build
+bun run typecheck
+bun run test
+```
+
+Generation requires Xcode and its macOS/iPhoneSimulator SDKs. The checked-in
+manifest records the SDK and Swift compiler versions used for the current output.
+Normal package builds use the generated files and do not need to run the generator.
+
+`codegen/Extract.swift` uses the selected toolchain's SwiftParser and SwiftSyntax
+to parse SwiftUI and SwiftUICore `.swiftinterface` files. `codegen/catalog.ts`
+defines the supported constructor recipes and React-specific mappings, including
+identity, child slots, and controlled events. The generator derives enum cases
+and iOS availability from SDK declarations, checks selected constructor/modifier
+signatures, and emits:
+
+- public TypeScript types and runtime availability validation;
+- Fabric component specs, menu payload validation and Objective-C++ conversion;
+- SwiftUI menu constructors, a tab constructor, and modifier dispatch;
+- an SDK manifest, input hashes, and unbound menu/tab modifier names.
+
+Change the catalog or generator, regenerate, rebuild the native app, and exercise
+the integration fixture. `generate:check` fails if any output differs. Extending
+coverage still requires a semantic mapping where an API introduces a new kind of
+binding, slot, or layout behavior. The SDK does not supply that React integration.
+
+General SwiftUI tree composition, additional SDK bindings, browser rendering,
+and Android rendering remain separate stages in `plans/one-native-architecture.md`.
+The existing `@vxrn/native` remains available for its navigation integrations.

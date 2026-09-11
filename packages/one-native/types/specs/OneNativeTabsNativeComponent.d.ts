@@ -4,6 +4,7 @@ interface NativeProps extends ViewProps {
     selection: string;
     acknowledgedEvent: Int32;
     sidebarAdaptable: boolean;
+    tabBarMinimizeBehavior: string;
     onSelectionChange?: DirectEventHandler<Readonly<{
         selection: string;
         eventCount: Int32;

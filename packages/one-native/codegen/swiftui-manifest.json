@@ -1,0 +1,217 @@
+{
+  "compiler": "Apple Swift version 6.3 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)",
+  "sdk": "26.4",
+  "inputs": [
+    {
+      "module": "SwiftUI",
+      "sha256": "566ccc1d76157d01f7c91efa8ef1d0b505ac3a417a190b3edeca30caec77d7d1"
+    },
+    {
+      "module": "SwiftUICore",
+      "sha256": "8a30eb1b2b85c0239ef0fad1f3c48a14ac954041d0bab49c6d91d79f94e5669f"
+    }
+  ],
+  "extractedDeclarations": 9399,
+  "unmappedModifiers": [
+    "menuIndicator",
+    "menuStyle",
+    "paletteSelectionEffect",
+    "tabViewBottomAccessory",
+    "tabViewCustomization",
+    "tabViewSearchActivation",
+    "tabViewSidebarBottomBar",
+    "tabViewSidebarFooter",
+    "tabViewSidebarHeader",
+    "tabViewStyle"
+  ],
+  "enums": {
+    "MenuOrder": {
+      "automatic": 16,
+      "priority": 16,
+      "fixed": 16
+    },
+    "MenuActionDismissBehavior": {
+      "automatic": 16.4,
+      "enabled": 16.4,
+      "disabled": 16.4
+    },
+    "TabBarMinimizeBehavior": {
+      "automatic": 26,
+      "onScrollDown": 26,
+      "onScrollUp": 26,
+      "never": 26
+    },
+    "ButtonRole": {
+      "destructive": 15,
+      "cancel": 15,
+      "confirm": 26,
+      "close": 26
+    },
+    "TabRole": {
+      "search": 18
+    },
+    "ControlGroupStyle": {
+      "palette": 17,
+      "automatic": 15,
+      "navigation": 15,
+      "menu": 16.4,
+      "compactMenu": 16.4
+    }
+  },
+  "modifiers": [
+    {
+      "name": "menuOrder",
+      "type": "MenuOrder",
+      "default": "automatic",
+      "ios": 16
+    },
+    {
+      "name": "menuActionDismissBehavior",
+      "type": "MenuActionDismissBehavior",
+      "default": "automatic",
+      "ios": 16.4
+    },
+    {
+      "name": "controlGroupStyle",
+      "type": "ControlGroupStyle",
+      "default": "automatic",
+      "ios": 15
+    },
+    {
+      "name": "tabBarMinimizeBehavior",
+      "type": "TabBarMinimizeBehavior",
+      "default": "",
+      "ios": 26
+    }
+  ],
+  "constructors": [
+    {
+      "module": "SwiftUI",
+      "type": "Menu",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Button",
+      "parameters": [
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.ButtonRole?"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping @_Concurrency.MainActor () -> Swift.Void"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Toggle",
+      "parameters": [
+        {
+          "label": "sources",
+          "name": "sources",
+          "type": "C"
+        },
+        {
+          "label": "isOn",
+          "name": "isOn",
+          "type": "Swift.KeyPath<C.Element, SwiftUICore.Binding<Swift.Bool>>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Section",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "header",
+          "name": "header",
+          "type": "() -> Parent"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ControlGroup",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> C"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> L"
+        }
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Divider",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Tab",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "Value"
+        },
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.TabRole?"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 18
+    }
+  ]
+}
