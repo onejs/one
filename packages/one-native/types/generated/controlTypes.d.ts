@@ -1,5 +1,6 @@
 import type { ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
+import type { KeyboardType, TextContentType } from '../textTypes';
 export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'>;
 export type PickerOption = Readonly<{
     value: string;
@@ -121,6 +122,9 @@ export interface TextFieldProps extends OneNativeViewProps {
     text: string;
     onTextChange: (value: string) => void;
     revision?: number;
+    focused?: boolean;
+    onFocusChange?: (focused: boolean) => void;
+    focusRevision?: number;
     onSubmit?: () => void;
     label?: string;
     disabled?: boolean;
@@ -129,12 +133,17 @@ export interface TextFieldProps extends OneNativeViewProps {
     submitLabel?: Styles.SubmitLabel | '';
     textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
     autocorrectionDisabled?: boolean;
+    keyboardType?: KeyboardType | '';
+    textContentType?: TextContentType | '';
     axis?: Styles.Axis;
 }
 export interface SecureFieldProps extends OneNativeViewProps {
     text: string;
     onTextChange: (value: string) => void;
     revision?: number;
+    focused?: boolean;
+    onFocusChange?: (focused: boolean) => void;
+    focusRevision?: number;
     onSubmit?: () => void;
     label?: string;
     disabled?: boolean;
@@ -143,6 +152,8 @@ export interface SecureFieldProps extends OneNativeViewProps {
     submitLabel?: Styles.SubmitLabel | '';
     textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
     autocorrectionDisabled?: boolean;
+    keyboardType?: KeyboardType | '';
+    textContentType?: TextContentType | '';
 }
 export interface AlertProps extends OneNativeViewProps {
     isPresented: boolean;

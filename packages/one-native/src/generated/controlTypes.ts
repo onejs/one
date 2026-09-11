@@ -2,6 +2,7 @@
 // edit the generator or catalog, then regenerate.
 import type { ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
+import type { KeyboardType, TextContentType } from '../textTypes'
 
 // the React Native props a One Native control honors. a composed control renders inside its
 // parent's SwiftUI tree and its own UIView is never displayed, so the rest of ViewProps would
@@ -136,6 +137,9 @@ export interface TextFieldProps extends OneNativeViewProps {
   text: string
   onTextChange: (value: string) => void
   revision?: number
+  focused?: boolean
+  onFocusChange?: (focused: boolean) => void
+  focusRevision?: number
   onSubmit?: () => void
   label?: string
   disabled?: boolean
@@ -144,12 +148,17 @@ export interface TextFieldProps extends OneNativeViewProps {
   submitLabel?: Styles.SubmitLabel | ''
   textInputAutocapitalization?: Styles.TextInputAutocapitalization | ''
   autocorrectionDisabled?: boolean
+  keyboardType?: KeyboardType | ''
+  textContentType?: TextContentType | ''
   axis?: Styles.Axis
 }
 export interface SecureFieldProps extends OneNativeViewProps {
   text: string
   onTextChange: (value: string) => void
   revision?: number
+  focused?: boolean
+  onFocusChange?: (focused: boolean) => void
+  focusRevision?: number
   onSubmit?: () => void
   label?: string
   disabled?: boolean
@@ -158,6 +167,8 @@ export interface SecureFieldProps extends OneNativeViewProps {
   submitLabel?: Styles.SubmitLabel | ''
   textInputAutocapitalization?: Styles.TextInputAutocapitalization | ''
   autocorrectionDisabled?: boolean
+  keyboardType?: KeyboardType | ''
+  textContentType?: TextContentType | ''
 }
 export interface AlertProps extends OneNativeViewProps {
   isPresented: boolean
