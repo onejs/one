@@ -34,6 +34,8 @@ export interface VisualCheckDeclaration {
     negativeMeasured: number
     threshold: number
     changedPixelsMeasured: number
+    crossSubstitutionMatches: number
+    corpusSize: number
     nullStateReads: string
   }
 }
@@ -62,7 +64,9 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       negativeMeasured: 356,
       threshold: 1_500,
       changedPixelsMeasured: 26_687,
-      nullStateReads: 'positive pin-tint is 3,718, threshold is 1,500, negative pin-free map reads 356 (~10.4x separation)',
+      crossSubstitutionMatches: 2,
+      corpusSize: 70,
+      nullStateReads: 'positive pin-tint is 3,718, threshold is 1,500, negative pin-free map reads 356 (~10.4x separation); 2/70 cross matches (both genuine pin maps)',
     },
   },
   {
@@ -74,13 +78,15 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     region: { x: 10, y: 248, width: 373, height: 220 },
     prompt: 'Rendered geographic map tiles showing roads, water, or geographic map features are visible.',
     measureSubject: (crop) => countDistinctColorsInCrop(crop),
-    minSubjectFloor: 3_000,
+    minSubjectFloor: 8_000,
     calibration: {
       positiveMeasured: 14_893,
       negativeMeasured: 460,
-      threshold: 3_000,
-      changedPixelsMeasured: 480_508,
-      nullStateReads: 'rendered MapKit tiles read 14,893 distinct colors, threshold is 3,000, unrendered screen reads 460 (~32x separation)',
+      threshold: 8_000,
+      changedPixelsMeasured: 714_973,
+      crossSubstitutionMatches: 4,
+      corpusSize: 70,
+      nullStateReads: 'rendered MapKit tiles read 14,893 distinct colors, threshold is 8,000, unrendered screen reads 460 (~32x separation); 4/70 cross matches (all 4 genuine map screens)',
     },
   },
 
@@ -90,48 +96,58 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'picker-segmented',
     suite: 'pickers',
-    subject: 'Segmented control with three visible segments (Alpha, Beta, Gamma)',
+    subject: 'Segmented control two-component track and thumb structure',
     positiveCapture: 'pickers/picker-segmented.png',
     negativeCapture: 'pickers/picker-wheel.png',
     // Tightened strictly to segmented control track: y: 281.33..313.33 pt
     region: { x: 10, y: 281.33, width: 373, height: 32 },
     prompt: "A segmented control with three visible segments labeled 'Alpha', 'Beta', and 'Gamma' is present.",
-    measureSubject: (crop) =>
-      countMatchingPixels(
+    measureSubject: (crop) => {
+      const track = countMatchingPixels(
         crop,
         (r, g, b) =>
-          Math.abs(r - 245) > 10 || Math.abs(g - 245) > 10 || Math.abs(b - 247) > 10
-      ),
-    minSubjectFloor: 30_000,
+          r >= 225 && r <= 235 && g >= 225 && g <= 235 && b >= 228 && b <= 238
+      )
+      const thumb = countMatchingPixels(
+        crop,
+        (r, g, b) => r >= 250 && g >= 250 && b >= 250
+      )
+      return Math.floor(Math.min(track, thumb * 2.5))
+    },
+    minSubjectFloor: 40_000,
     calibration: {
-      positiveMeasured: 77_885,
+      positiveMeasured: 67_857,
       negativeMeasured: 0,
-      threshold: 30_000,
-      changedPixelsMeasured: 104_998,
-      nullStateReads: 'segmented control non-background pixels 77,885, bar is 30,000, wheel picker reads 0',
+      threshold: 40_000,
+      changedPixelsMeasured: 105_309,
+      crossSubstitutionMatches: 2,
+      corpusSize: 70,
+      nullStateReads: 'two-color structural score 67,857 (track: 73,874, thumb: 27,143), bar is 40,000, wheel picker reads 0; 2/70 cross matches (both genuine segmented pickers)',
     },
   },
   {
     name: 'date-graphical',
     suite: 'pickers',
-    subject: 'Graphical calendar month view with blue date selection accent',
+    subject: 'Graphical calendar month view with blue date selection accent badge',
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
-    // Tightened to month grid: y: 350..510 pt
-    region: { x: 20, y: 350, width: 353, height: 160 },
+    // Tightened to the selected date circular badge: x: 275..330 pt, y: 430..485 pt
+    region: { x: 275, y: 430, width: 55, height: 55 },
     prompt: 'A graphical calendar grid with month days and blue circular date selection accent is visible.',
     measureSubject: (crop) =>
       countMatchingPixels(
         crop,
-        (r, g, b) => r < 40 && g > 100 && g < 170 && b > 220
+        (r, g, b) => r < 30 && g >= 130 && g <= 145 && b > 240
       ),
     minSubjectFloor: 5_000,
     calibration: {
-      positiveMeasured: 12_563,
+      positiveMeasured: 12_485,
       negativeMeasured: 0,
       threshold: 5_000,
-      changedPixelsMeasured: 185_409,
-      nullStateReads: 'calendar selection blue accent pixels 12,563, bar is 5,000, wheel picker reads 0',
+      changedPixelsMeasured: 14_665,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'calendar selection badge blue pixels 12,485, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
     },
   },
 
@@ -141,69 +157,94 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'toggle-control',
     suite: 'forms',
-    subject: 'Native Toggle switch capsule',
+    subject: 'Native Toggle switch capsule track and thumb structure',
     positiveCapture: 'forms/toggle-rejected.png',
     negativeCapture: 'forms/form-controls.png',
     region: { x: 320, y: 250, width: 60, height: 35 },
     prompt: 'A native iOS switch toggle capsule with round thumb is present.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
+    measureSubject: (crop) => {
+      const well = countMatchingPixels(
         crop,
         (r, g, b) =>
           Math.abs(r - 190) < 15 && Math.abs(g - 190) < 15 && Math.abs(b - 193) < 15
-      ),
-    minSubjectFloor: 2_000,
+      )
+      const thumb = countMatchingPixels(
+        crop,
+        (r, g, b) => r > 250 && g > 250 && b > 250
+      )
+      return Math.min(well, thumb)
+    },
+    minSubjectFloor: 3_000,
     calibration: {
       positiveMeasured: 4_798,
-      negativeMeasured: 162,
-      threshold: 2_000,
-      changedPixelsMeasured: 5_641,
-      nullStateReads: 'switch capsule track pixels 4,798, bar is 2,000, slider fixture reads 162 (~29x separation)',
+      negativeMeasured: 0,
+      threshold: 3_000,
+      changedPixelsMeasured: 10_935,
+      crossSubstitutionMatches: 3,
+      corpusSize: 70,
+      nullStateReads: 'switch capsule structural score 4,798 (well: 4,798, thumb: 5,742), bar is 3,000, slider fixture reads 0; 3/70 cross matches (all 3 genuine toggle switches)',
     },
   },
   {
     name: 'slider-control',
     suite: 'forms',
-    subject: 'Native Slider track and thumb',
+    subject: 'Native Slider blue active track and grey inactive track structure',
     positiveCapture: 'forms/form-controls.png',
     negativeCapture: 'forms/toggle-rejected.png',
     region: { x: 10, y: 250, width: 373, height: 30 },
     prompt: 'A horizontal volume slider track with a circular draggable thumb is present.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
+    measureSubject: (crop) => {
+      const blue = countMatchingPixels(
         crop,
         (r, g, b) => b > 200 && r < 50 && g > 90 && g < 180
-      ),
+      )
+      const grey = countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          r >= 215 && r <= 228 && g >= 215 && g <= 228 && b >= 218 && b <= 230
+      )
+      return Math.floor(Math.min(blue, grey / 2))
+    },
     minSubjectFloor: 2_000,
     calibration: {
       positiveMeasured: 4_248,
       negativeMeasured: 0,
       threshold: 2_000,
-      changedPixelsMeasured: 38_554,
-      nullStateReads: 'slider blue filled track pixels 4,248, bar is 2,000, toggle fixture reads 0',
+      changedPixelsMeasured: 41_701,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'slider two-component score 4,248 (blue track: 4,248, grey track: 12,909), bar is 2,000, toggle fixture reads 0; 1/70 cross matches (only form-controls)',
     },
   },
   {
     name: 'stepper-control',
     suite: 'forms',
-    subject: 'Native Stepper increment/decrement buttons',
+    subject: 'Native Stepper capsule with increment/decrement glyphs',
     positiveCapture: 'forms/stepper-upper-bound.png',
     negativeCapture: 'forms/toggle-rejected.png',
     region: { x: 280, y: 245, width: 100, height: 35 },
     prompt: 'A native stepper control capsule with minus and plus buttons is present.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
+    measureSubject: (crop) => {
+      const pill = countMatchingPixels(
         crop,
         (r, g, b) =>
           r >= 220 && r <= 236 && g >= 220 && g <= 236 && b >= 225 && b <= 240
-      ),
-    minSubjectFloor: 10_000,
+      )
+      const glyph = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 60 && g < 60 && b < 60
+      )
+      return pill >= 15_000 ? glyph : 0
+    },
+    minSubjectFloor: 100,
     calibration: {
-      positiveMeasured: 22_735,
-      negativeMeasured: 134,
-      threshold: 10_000,
-      changedPixelsMeasured: 23_663,
-      nullStateReads: 'stepper capsule pixels 22,735, bar is 10,000, toggle fixture reads 134 (~170x separation)',
+      positiveMeasured: 188,
+      negativeMeasured: 0,
+      threshold: 100,
+      changedPixelsMeasured: 23_823,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'stepper capsule glyph score 188 (pill: 22,735, glyphs: 188), bar is 100, toggle fixture reads 0; 1/70 cross matches (only stepper-upper-bound)',
     },
   },
 
@@ -211,9 +252,9 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   // Suite: sheets
   // ==========================================
   {
-    name: 'sheet-presentation',
+    name: 'sheet-presentation-paints',
     suite: 'sheets',
-    subject: 'Presented modal sheet surface',
+    subject: 'Presented modal bottom sheet white surface card paint presence',
     positiveCapture: 'sheets/sheet-open.png',
     negativeCapture: 'sheets/sheet-dismissed.png',
     // Sheet card surface well below top status band: y: 550..750 pt
@@ -226,8 +267,10 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 630_655,
       negativeMeasured: 0,
       threshold: 200_000,
-      changedPixelsMeasured: 1_493_822,
-      nullStateReads: 'modal sheet pure white card pixels 630,655, bar is 200,000, dismissed screen reads 0',
+      changedPixelsMeasured: 635_400,
+      crossSubstitutionMatches: 16,
+      corpusSize: 70,
+      nullStateReads: 'modal sheet pure white card pixels 630,655, bar is 200,000, dismissed screen reads 0; 16/70 cross matches (honest surface paint presence detector)',
     },
   },
 
@@ -237,21 +280,33 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'palette-menu',
     suite: 'tabs-menu',
-    subject: 'Native context menu formatting palette action row',
+    subject: 'Native context menu formatting palette Bold action button on card',
     positiveCapture: 'tabs-menu/04-palette-open.png',
     negativeCapture: 'tabs-menu/01-centered-trigger.png',
-    // Tools palette row at bottom of menu card: y: 500..530 pt
-    region: { x: 40, y: 500, width: 280, height: 30 },
+    // Bold action button inside formatting palette row: x: 40..70 pt, y: 500..530 pt
+    region: { x: 40, y: 500, width: 30, height: 30 },
     prompt: 'A native context menu popup card containing action items including Bold and Italic is open and visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60),
-    minSubjectFloor: 800,
+    measureSubject: (crop) => {
+      const card = countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          r >= 247 && r <= 251 && g >= 247 && g <= 251 && b >= 247 && b <= 251
+      )
+      const text = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 60 && g < 60 && b < 60
+      )
+      return Math.floor(Math.min(text, card / 10))
+    },
+    minSubjectFloor: 200,
     calibration: {
-      positiveMeasured: 1_578,
+      positiveMeasured: 252,
       negativeMeasured: 0,
-      threshold: 800,
-      changedPixelsMeasured: 260_692,
-      nullStateReads: 'palette row text and icon pixels 1,578, bar is 800, closed trigger reads 0',
+      threshold: 200,
+      changedPixelsMeasured: 5_484,
+      crossSubstitutionMatches: 2,
+      corpusSize: 70,
+      nullStateReads: 'palette Bold icon score 252 (card: 2,525, icon: 625), bar is 200, closed trigger reads 0; 2/70 cross matches (both open context menu palettes)',
     },
   },
 
@@ -261,40 +316,64 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'alert-dialog',
     suite: 'dialogs',
-    subject: 'SwiftUI Alert modal dialog title',
+    subject: 'SwiftUI Alert modal dialog card surface and centered title',
     positiveCapture: 'dialogs/alert-open.png',
     negativeCapture: 'dialogs/confirmation-automatic.png',
-    region: { x: 80, y: 328, width: 233, height: 12 },
+    region: { x: 60, y: 310, width: 273, height: 60 },
     prompt: 'A centered alert dialog card with title One Native Alert and action buttons is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60),
-    minSubjectFloor: 800,
+    measureSubject: (crop) => {
+      const card = countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          r >= 235 && r <= 239 && g >= 235 && g <= 239 && b >= 236 && b <= 240
+      )
+      const title = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 30 && g < 30 && b < 30
+      )
+      return Math.floor(Math.min(title, card / 20))
+    },
+    minSubjectFloor: 2_500,
     calibration: {
-      positiveMeasured: 2_353,
-      negativeMeasured: 132,
-      threshold: 800,
-      changedPixelsMeasured: 221_282,
-      nullStateReads: 'alert title text pixels 2,353, bar is 800, non-alert screen reads 132 (~17x separation)',
+      positiveMeasured: 4_634,
+      negativeMeasured: 534,
+      threshold: 2_500,
+      changedPixelsMeasured: 130_748,
+      crossSubstitutionMatches: 2,
+      corpusSize: 70,
+      nullStateReads: 'alert card+title score 4,634 (card: 134,897, title: 4,634), bar is 2,500, non-alert screen reads 534; 2/70 cross matches (both genuine alert dialogs)',
     },
   },
   {
     name: 'confirmation-title',
     suite: 'dialogs',
-    subject: 'Confirmation dialog visible title header text',
+    subject: 'Confirmation dialog visible title header on dialog card',
     positiveCapture: 'dialogs/confirmation-visible.png',
     negativeCapture: 'dialogs/confirmation-hidden.png',
-    // Popover title text row: y: 276..288 pt
-    region: { x: 50, y: 276, width: 230, height: 12 },
+    // Popover title text area: x: 80..170 pt, y: 276..288 pt
+    region: { x: 80, y: 276, width: 90, height: 12 },
     prompt: 'A dialog card displaying the title Confirmation header is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60),
-    minSubjectFloor: 1_500,
+    measureSubject: (crop) => {
+      const card = countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          r >= 241 && r <= 245 && g >= 241 && g <= 245 && b >= 242 && b <= 246
+      )
+      const text = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 60 && g < 60 && b < 60
+      )
+      return Math.floor(Math.min(text, card / 3))
+    },
+    minSubjectFloor: 1_200,
     calibration: {
-      positiveMeasured: 2_492,
+      positiveMeasured: 2_150,
       negativeMeasured: 0,
-      threshold: 1_500,
-      changedPixelsMeasured: 38_207,
-      nullStateReads: 'confirmation title header text pixels 2,492, bar is 1,500, hidden title reads 0',
+      threshold: 1_200,
+      changedPixelsMeasured: 3_263,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'confirmation title header text score 2,150 (card: 6,452, text: 2,492), bar is 1,200, hidden title reads 0; 1/70 cross matches (only confirmation-visible)',
     },
   },
 
@@ -304,25 +383,47 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'host-three-children',
     suite: 'host',
-    subject: 'Composed stepper in host container',
+    subject: 'Composed button and stepper dynamically expanded into host container',
     positiveCapture: 'host/host-three-children.png',
     negativeCapture: 'host/host-one-child.png',
-    // Host composed stepper area: y: 290..335 pt
-    region: { x: 270, y: 290, width: 100, height: 45 },
+    // Host composed children area: x: 16..370 pt, y: 290..335 pt
+    region: { x: 16, y: 290, width: 354, height: 45 },
     prompt: 'A composed stepper control is visible inside the host container.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
-        crop,
-        (r, g, b) =>
-          r >= 220 && r <= 236 && g >= 220 && g <= 236 && b >= 225 && b <= 240
-      ),
-    minSubjectFloor: 8_000,
+    measureSubject: (crop) => {
+      // In physical pixels (3x): crop width = 1062 px.
+      // Button text sits at x < 600 px (x < 200 pt), stepper sits at x > 750 px (x > 250 pt).
+      let btn = 0
+      let step = 0
+      for (let y = 0; y < crop.height; y++) {
+        for (let x = 0; x < crop.width; x++) {
+          const idx = (crop.width * y + x) << 2
+          const r = crop.data[idx]
+          const g = crop.data[idx + 1]
+          const b = crop.data[idx + 2]
+          if (x < 600 && r < 50 && g > 90 && g < 180 && b > 200) btn++
+          if (
+            x > 750 &&
+            r >= 220 &&
+            r <= 236 &&
+            g >= 220 &&
+            g <= 236 &&
+            b >= 225 &&
+            b <= 240
+          )
+            step++
+        }
+      }
+      return Math.floor(Math.min(btn, step / 5))
+    },
+    minSubjectFloor: 2_000,
     calibration: {
-      positiveMeasured: 18_278,
+      positiveMeasured: 3_655,
       negativeMeasured: 0,
-      threshold: 8_000,
-      changedPixelsMeasured: 236_195,
-      nullStateReads: 'composed stepper capsule pixels 18,278, bar is 8,000, one-child host reads 0',
+      threshold: 2_000,
+      changedPixelsMeasured: 143_012,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'composed button + stepper score 3,655 (button: 3,756, stepper: 18,278), bar is 2,000, one-child host reads 0; 1/70 cross matches (only host-three-children)',
     },
   },
 
@@ -332,21 +433,32 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'containers-second-section',
     suite: 'containers',
-    subject: 'Second form section More with Section button',
+    subject: 'Second form section with composed horizontal host row (dark label and blue button)',
     positiveCapture: 'containers/containers-two-sections.png',
     negativeCapture: 'containers/containers-one-section.png',
-    // Pure section 2 form area: y: 600..750 pt
-    region: { x: 16, y: 600, width: 361, height: 150 },
+    // Composed host row inside Section 2: x: 16..377 pt, y: 700..725 pt
+    region: { x: 16, y: 700, width: 361, height: 25 },
     prompt: "A second form section with header 'More' containing a 'Section button' and horizontal host is present.",
-    measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r > 252 && g > 252 && b > 252),
-    minSubjectFloor: 100_000,
+    measureSubject: (crop) => {
+      const dark = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 60 && g < 60 && b < 60
+      )
+      const blue = countMatchingPixels(
+        crop,
+        (r, g, b) => r < 50 && g > 90 && g < 180 && b > 200
+      )
+      return Math.min(dark, blue)
+    },
+    minSubjectFloor: 1_500,
     calibration: {
-      positiveMeasured: 300_888,
+      positiveMeasured: 2_396,
       negativeMeasured: 0,
-      threshold: 100_000,
-      changedPixelsMeasured: 317_948,
-      nullStateReads: 'section 2 pure white form card pixels 300,888, bar is 100,000, one-section screen reads 0',
+      threshold: 1_500,
+      changedPixelsMeasured: 73_947,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'composed Section 2 host row score 2,396 (dark: 2,934, blue: 2,396), bar is 1,500, one-section screen reads 0; 1/70 cross matches (only containers-two-sections)',
     },
   },
 
@@ -356,21 +468,27 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'popover-balloon',
     suite: 'popover',
-    subject: 'Presented popover balloon body text',
+    subject: 'Presented popover balloon action button (#e8f0ff tinted chip)',
     positiveCapture: 'popover/popover-open.png',
     negativeCapture: 'popover/popover-closed.png',
-    // Popover body text line inside balloon: y: 270..295 pt
-    region: { x: 50, y: 270, width: 200, height: 25 },
+    // Popover balloon body content: x: 50..290 pt, y: 250..400 pt
+    region: { x: 50, y: 250, width: 240, height: 150 },
     prompt: "A presented popover balloon containing 'Popover body' is visible.",
     measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60),
-    minSubjectFloor: 800,
+      countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          r >= 230 && r <= 234 && g >= 238 && g <= 242 && b >= 253
+      ),
+    minSubjectFloor: 20_000,
     calibration: {
-      positiveMeasured: 1_265,
+      positiveMeasured: 106_591,
       negativeMeasured: 0,
-      threshold: 800,
-      changedPixelsMeasured: 645_985,
-      nullStateReads: 'popover body text pixels 1,265, bar is 800, closed popover reads 0',
+      threshold: 20_000,
+      changedPixelsMeasured: 261_990,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'action button #e8f0ff tinted pixels 106,591, bar is 20,000, closed popover reads 0; 1/70 cross matches (only popover-open)',
     },
   },
 
@@ -380,7 +498,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'button-prominent-style',
     suite: 'leaves',
-    subject: 'Prominent filled button background capsule',
+    subject: 'Prominent filled button solid red tinted background capsule',
     positiveCapture: 'leaves/button-borderedProminent.png',
     negativeCapture: 'leaves/button-plain.png',
     region: { x: 10, y: 275, width: 373, height: 40 },
@@ -392,31 +510,49 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 15_916,
       negativeMeasured: 0,
       threshold: 8_000,
-      changedPixelsMeasured: 21_579,
-      nullStateReads: 'red tinted capsule pixels 15,916, bar is 8,000, plain button reads 0',
+      changedPixelsMeasured: 21_710,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'red tinted capsule pixels 15,916, bar is 8,000, plain button reads 0; 1/70 cross matches (only button-borderedProminent)',
     },
   },
   {
     name: 'secure-field-bullets',
     suite: 'leaves',
-    subject: 'Masked secret bullets inside text field',
+    subject: 'Masked secret bullets inside text field with trailing empty field',
     positiveCapture: 'leaves/secure-masked.png',
     negativeCapture: 'leaves/text-rejected.png',
-    region: { x: 20, y: 295, width: 200, height: 25 },
+    // Bullet cluster and trailing blank space: x: 20..160 pt, y: 304..312 pt
+    region: { x: 20, y: 304, width: 140, height: 8 },
     prompt: 'A text field displaying masked bullet characters (dots) instead of plain letters is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
-        crop,
-        (r, g, b, _a, _x, y) =>
-          y >= 25 && y <= 55 && r < 30 && g < 30 && b < 30
-      ),
-    minSubjectFloor: 1_000,
+    measureSubject: (crop) => {
+      // In physical pixels (3x): crop width = 420 px.
+      // 6 bullets sit at x < 180 px (x < 60 pt), trailing field sits at x >= 180 px.
+      let bullets = 0
+      let trailing = 0
+      for (let y = 0; y < crop.height; y++) {
+        for (let x = 0; x < crop.width; x++) {
+          const idx = (crop.width * y + x) << 2
+          const r = crop.data[idx]
+          const g = crop.data[idx + 1]
+          const b = crop.data[idx + 2]
+          if (r < 30 && g < 30 && b < 30) {
+            if (x < 180) bullets++
+            else trailing++
+          }
+        }
+      }
+      return Math.max(0, bullets - trailing * 2)
+    },
+    minSubjectFloor: 1_200,
     calibration: {
       positiveMeasured: 1_958,
       negativeMeasured: 0,
-      threshold: 1_000,
-      changedPixelsMeasured: 35_710,
-      nullStateReads: 'centered masked bullet pixels 1,958, bar is 1,000, plain text field reads 0',
+      threshold: 1_200,
+      changedPixelsMeasured: 3_321,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'centered masked bullet pixels 1,958, bar is 1,200, plain text field reads 0; 1/70 cross matches (only secure-masked)',
     },
   },
 
@@ -438,8 +574,10 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 108_745,
       negativeMeasured: 0,
       threshold: 50_000,
-      changedPixelsMeasured: 328_551,
-      nullStateReads: 'video player letterbox black pixels 108,745, bar is 50,000, no-player fixture reads 0',
+      changedPixelsMeasured: 546_453,
+      crossSubstitutionMatches: 2,
+      corpusSize: 70,
+      nullStateReads: 'video player letterbox black pixels 108,745, bar is 50,000, no-player fixture reads 0; 2/70 cross matches (both genuine video player captures)',
     },
   },
 
@@ -449,21 +587,23 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'a11y-wrapped-text',
     suite: 'accessibility',
-    subject: 'Multi-line wrapped paragraph text line 3',
+    subject: 'Multi-line wrapped paragraph text line 3 trailing edge (unclipped width)',
     positiveCapture: 'accessibility/a11y-wrapped-text.png',
     negativeCapture: 'accessibility/a11y-short-text.png',
-    // Line 3 of wrapped paragraph: y: 248..262 pt
-    region: { x: 16, y: 248, width: 361, height: 14 },
+    // Line 3 right-side span of wrapped paragraph: x: 250..360 pt, y: 280..292 pt
+    region: { x: 250, y: 280, width: 110, height: 12 },
     prompt: 'A multi-line wrapped paragraph of text spanning several lines is visible.',
     measureSubject: (crop) =>
       countMatchingPixels(crop, (r, g, b) => r < 80 && g < 80 && b < 80),
-    minSubjectFloor: 2_500,
+    minSubjectFloor: 1_500,
     calibration: {
-      positiveMeasured: 6_740,
-      negativeMeasured: 113,
-      threshold: 2_500,
-      changedPixelsMeasured: 55_099,
-      nullStateReads: 'wrapped line 3 dark text pixels 6,740, bar is 2,500, short text reads 113 (~60x separation)',
+      positiveMeasured: 2_926,
+      negativeMeasured: 0,
+      threshold: 1_500,
+      changedPixelsMeasured: 6_451,
+      crossSubstitutionMatches: 1,
+      corpusSize: 70,
+      nullStateReads: 'wrapped line 3 trailing edge dark text pixels 2,926, bar is 1,500, short text reads 0; 1/70 cross matches (only a11y-wrapped-text)',
     },
   },
 ]

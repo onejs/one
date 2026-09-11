@@ -19,6 +19,8 @@ export interface SubjectGateResult {
   totalPixels: number
   changedRatio: number
   nullStateReads: string
+  crossSubstitutionMatches: number
+  corpusSize: number
   swapTestPassed: boolean
   failureReason?: string
 }
@@ -154,6 +156,8 @@ export async function verifyVisualCheck(
     totalPixels: changed.total,
     changedRatio: changed.ratio,
     nullStateReads: decl.calibration.nullStateReads,
+    crossSubstitutionMatches: decl.calibration.crossSubstitutionMatches,
+    corpusSize: decl.calibration.corpusSize,
     swapTestPassed: swapTestPass,
     failureReason: gateReason,
   }
@@ -271,6 +275,62 @@ export async function runSwapTest(
   }
 }
 
+export interface CrossSubstitutionResult {
+  name: string
+  suite: string
+  floor: number
+  matches: number
+  total: number
+  matchingCaptures: string[]
+}
+
+/**
+ * Runs the cross-substitution test across all corpus PNGs:
+ * For each check, applies its measureSubject over its own region to all 70 corpus captures
+ * and counts how many clear the floor. High-specificity subject detectors will match only
+ * their own positive (or genuine sibling instances of the same control).
+ */
+export async function runCrossSubstitutionTest(
+  options: VerifyOptions = {}
+): Promise<CrossSubstitutionResult[]> {
+  const captureDir = options.captureDir ?? DEFAULT_CAPTURE_DIR
+  const suites = fs.readdirSync(captureDir)
+  const allPngs: { suite: string; file: string; fullPath: string; rel: string }[] = []
+  for (const s of suites) {
+    const sPath = path.join(captureDir, s)
+    if (!fs.statSync(sPath).isDirectory()) continue
+    for (const f of fs.readdirSync(sPath)) {
+      if (f.endsWith('.png')) {
+        allPngs.push({ suite: s, file: f, fullPath: path.join(sPath, f), rel: `${s}/${f}` })
+      }
+    }
+  }
+
+  const results: CrossSubstitutionResult[] = []
+  for (const decl of VISUAL_CHECKS) {
+    let matches = 0
+    const matchingCaptures: string[] = []
+    for (const imgInfo of allPngs) {
+      const img = readPng(imgInfo.fullPath)
+      const crop = extractCrop(img, decl.region)
+      const val = decl.measureSubject(crop)
+      if (val >= decl.minSubjectFloor) {
+        matches++
+        matchingCaptures.push(imgInfo.rel)
+      }
+    }
+    results.push({
+      name: decl.name,
+      suite: decl.suite,
+      floor: decl.minSubjectFloor,
+      matches,
+      total: allPngs.length,
+      matchingCaptures,
+    })
+  }
+  return results
+}
+
 // ==========================================
 // CLI Execution
 // ==========================================
@@ -283,6 +343,7 @@ async function main() {
   let runOracle = false
   let jsonOutput = false
   let swapTestMode = false
+  let crossSubMode = false
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
@@ -292,6 +353,7 @@ async function main() {
     else if (arg === '--capture-dir' && args[i + 1]) captureDir = args[++i]
     else if (arg === '--oracle') runOracle = true
     else if (arg === '--swap-test') swapTestMode = true
+    else if (arg === '--cross-sub' || arg === '--cross-substitution') crossSubMode = true
     else if (arg === '--json') jsonOutput = true
   }
 
@@ -299,6 +361,18 @@ async function main() {
     artifactDir,
     captureDir,
     oracle: runOracle,
+  }
+
+  if (crossSubMode) {
+    console.log('\n=== RUNNING CROSS-SUBSTITUTION SPECIFICITY TEST (ALL 70 CORPUS CAPTURES) ===\n')
+    const crossResults = await runCrossSubstitutionTest(options)
+    for (const r of crossResults) {
+      console.log(
+        `${r.name.padEnd(28)} ${r.matches.toString().padStart(2)} / ${r.total} matches (floor: ${r.floor.toLocaleString().padStart(7)}): ${r.matchingCaptures.join(', ')}`
+      )
+    }
+    console.log('')
+    process.exit(0)
   }
 
   if (swapTestMode) {
@@ -365,6 +439,9 @@ async function main() {
     console.log(
       `  Changed pixels: ${res.gate.changedPixels.toLocaleString()} / ${res.gate.totalPixels.toLocaleString()} ` +
         `(${(res.gate.changedRatio * 100).toFixed(1)}%)`
+    )
+    console.log(
+      `  Cross-substitution: ${res.gate.crossSubstitutionMatches} / ${res.gate.corpusSize} matches (${res.gate.nullStateReads})`
     )
 
     if (res.gate.swapTestPassed) swapPassCount++
