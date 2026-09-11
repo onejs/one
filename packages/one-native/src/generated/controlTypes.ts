@@ -115,6 +115,10 @@ export interface GaugeProps extends OneNativeViewProps {
   maximumValueLabel?: string
   gaugeStyle?: Styles.GaugeStyle
 }
+export interface VideoPlayerProps extends OneNativeViewProps {
+  url?: string
+  autoplay?: boolean
+}
 export interface TextFieldProps extends OneNativeViewProps {
   text: string
   onTextChange: (value: string) => void

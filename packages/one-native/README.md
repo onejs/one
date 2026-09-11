@@ -186,9 +186,9 @@ Every control also accepts `label`, `disabled`, and `revision`.
 
 `Text` and `Label` display a string; `Button` signals; `ProgressView` and `Gauge`
 only display; `TextField` and `SecureField` carry a controlled string. They take
-the same flat props and the same default height of 44, except `Text` and `Label`
-(24), `Gauge` with an `accessoryCircular` style (100) and `TextField` with
-`axis="vertical"` (120).
+the same flat props. None of them declares a height: SwiftUI measures each one
+and reports it back to Yoga, so a wrapped `Text`, a circular `Gauge` and a
+vertical `TextField` come out at their real heights without being told.
 
 ```tsx
 function Leaves() {
@@ -266,6 +266,25 @@ and `onSubmit` fires when it is pressed. `textInputAutocapitalization` is `never
 Keyboard type and programmatic focus are not bound. SwiftUI exposes those through
 UIKit's `UIKeyboardType` and `@FocusState`, neither of which the current prop
 pipeline carries.
+
+## Video
+
+`Swift.VideoPlayer` is SwiftUI's `VideoPlayer` from the `_AVKit_SwiftUI` overlay
+module. Video has no ideal height to report, so unlike every other control it
+takes the box React Native gives it: size it with `style`.
+
+```tsx
+<Swift.VideoPlayer
+  url="https://example.com/clip.mp4"
+  autoplay
+  style={{ width: '100%', height: 220 }}
+/>
+```
+
+`url` is required and must be a non-empty string. The `AVPlayer` is built once
+per url and reused, so unrelated prop changes do not restart playback. `autoplay`
+is read when the url loads; flipping it afterwards does not start or stop the
+video.
 
 ## Alerts and confirmation dialogs
 
@@ -550,11 +569,14 @@ xcodebuild. Normal package builds use the generated files and do not need to run
 the generator.
 
 `codegen/Extract.swift` uses the selected toolchain's SwiftParser and SwiftSyntax
-to parse SwiftUI and SwiftUICore `.swiftinterface` files. `codegen/catalog.ts`
+to parse `.swiftinterface` files. `codegen/inventory.ts` feeds it every SwiftUI
+interface in the SDK: SwiftUI, SwiftUICore, and each `_<Framework>_SwiftUI`
+overlay module, which is where WebView, VideoPlayer, PhotosPicker, Map and
+quickLookPreview live. `codegen/catalog.ts`
 defines the supported constructor recipes and React-specific mappings, including
 identity, child slots, and controlled events. Control recipes live in
-`codegen/pickerCatalog.ts`, `codegen/formCatalog.ts`, `codegen/leafCatalog.ts`, and
-`codegen/textCatalog.ts`, and `codegen/emitControls.ts` turns each recipe into a
+`codegen/pickerCatalog.ts`, `codegen/formCatalog.ts`, `codegen/leafCatalog.ts`,
+`codegen/mediaCatalog.ts`, and `codegen/textCatalog.ts`, and `codegen/emitControls.ts` turns each recipe into a
 Swift host, an Objective-C++ adapter, a Fabric spec, public types, and a schema
 entry.
 
@@ -564,10 +586,10 @@ entry.
 version 2. Each component carries its Fabric name, its public component name, its
 props and event payloads as `{ type, enum? }` entries, its controlled value and
 event when it has one, its action events with the public prop that raises them,
-its `layout` (`inline` with the default height the adapter
-applies, `presentation` for a zero-size host, `container` for a host React Native lays
-out itself, or `measured` for a host that reports the height SwiftUI measured), and its
-React Native slots. Top-level `enums` lists every
+its `layout` (`measured` for a control that reports the height SwiftUI measured,
+`fill` for content with no ideal height that takes the box React Native gave it,
+`container` for a host React Native lays out itself, or `presentation` for a
+zero-size host), and its React Native slots. Top-level `enums` lists every
 SwiftUI enum case with the iOS version that introduced it, and `eventDelivery`
 records that React Native hands each payload to the component as
 `onX({ nativeEvent: payload })`.

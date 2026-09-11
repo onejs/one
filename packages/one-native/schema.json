@@ -635,6 +635,25 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeVideoPlayer",
+      "publicName": "VideoPlayer",
+      "props": {
+        "url": {
+          "type": "string"
+        },
+        "autoplay": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeTextField",
       "publicName": "TextField",
       "props": {

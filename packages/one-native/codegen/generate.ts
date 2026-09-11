@@ -32,7 +32,7 @@ const cache = join(root, '.codegen-cache')
 mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
-const { sdk, swiftc, paths, inventory } = readInventory(root)
+const { sdk, swiftc, modules, paths, inventory } = readInventory(root)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const selected: Declaration[] = []
 const enums = Object.fromEntries(
@@ -432,7 +432,7 @@ const manifest = {
     .join('\n'),
   sdk: run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version']),
   inputs: paths.map((path, index) => ({
-    module: ['SwiftUI', 'SwiftUICore'][index],
+    module: modules[index],
     sha256: createHash('sha256').update(readFileSync(path)).digest('hex'),
   })),
   extractedDeclarations: inventory.length,

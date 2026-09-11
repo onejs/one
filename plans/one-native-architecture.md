@@ -24,7 +24,9 @@ split-view integrations in `@vxrn/native`.
   `UIViewRepresentable`. Menu order, action dismissal, control-group styles,
   button roles, tab roles, and tab-bar minimization derive their cases and iOS
   availability from the installed SDK.
-- The SDK generator parses SwiftUI and SwiftUICore interfaces with SwiftSyntax.
+- The SDK generator parses every SwiftUI interface the SDK ships with SwiftSyntax:
+  SwiftUI, SwiftUICore, and the 23 `_<Framework>_SwiftUI` overlay modules that hold
+  the rest of SwiftUI's API (WebView, VideoPlayer, PhotosPicker, Map, quickLookPreview).
   An explicit catalog describes React identity, child slots, and event mappings.
   It generates public types, Fabric specs, payload validation/conversion, native
   constructors, modifier dispatch, and an SDK coverage manifest. Native slot
@@ -237,7 +239,7 @@ Build an SDK inventory tool, a semantic mapping policy, and code emitters as dis
 
 The extraction pipeline should:
 
-1. Record Xcode build, Swift compiler version, target triple, SDK version, and input hashes. Read public SwiftUI and SwiftUICore interfaces plus referenced public types as required. Respect conditional compilation and platform availability.
+1. Record Xcode build, Swift compiler version, target triple, SDK version, and input hashes. Read every public SwiftUI interface the SDK ships (SwiftUI, SwiftUICore, and each `_<Framework>_SwiftUI` overlay module) plus referenced public types as required. Respect conditional compilation and platform availability.
 2. Parse declarations, extensions, argument labels, overloads, generic constraints, attributes, defaults, enum cases, actor isolation, and closure signatures. Exclude private, underscored, and SPI-only APIs.
 3. Normalize into a deterministic schema containing symbol identity, supported overload, parameters, availability, child slots, binding/event roles, modifier receiver/result types, and preview support.
 4. Apply explicit semantic mappings. Map finite primitives, strings, optional values, tagged enums, colors, lengths, alignments, shapes, and bounded collections. Lower `Binding<T>` to the controlled protocol. Lower supported `@ViewBuilder` closures to named children. Treat arbitrary closures, protocols with associated types, key paths, custom styles, resources, and generic overload families as requiring an adapter or an exclusion reason.

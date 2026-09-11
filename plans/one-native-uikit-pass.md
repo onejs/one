@@ -13,8 +13,9 @@ const paths = ['SwiftUI', 'SwiftUICore'].map((module) => ...)
 ```
 
 The SDK ships **23 more** `_<Framework>_SwiftUI.framework` overlay modules, each
-with a `.swiftinterface` at the identical path layout, holding 616 public
-declarations between them. The generator has never looked at one.
+with a `.swiftinterface` at the identical path layout. The generator has never
+looked at one. Reading them takes the extracted inventory from 9,715
+declarations to 11,212, so they hold **1,497** between them.
 
 I ran the existing cached extractor against four of them with no changes at all:
 
@@ -144,6 +145,9 @@ controls live beside them in `ios/` and conform to the same protocol. No
 
 1. Add the overlay module paths to `inventory.ts`. Largest surface gain per line
    changed, and it settles video, web, Quick Look, photo picker and maps at once.
+   **Done.** `inventory.ts` now reads SwiftUI, SwiftUICore and all 23 overlay
+   modules, and `Swift.VideoPlayer` is generated from `_AVKit_SwiftUI` as the
+   first control that only exists because of it.
 2. Zoomable image view (UIKit). Directly fixes a pain point we have hit.
 3. Zoom navigation transition (UIKit, iOS 18). Completes the gallery.
 4. PDF, only if an app asks and `quickLookPreview` is not enough.
@@ -153,8 +157,5 @@ controls live beside them in `ios/` and conform to the same protocol. No
 
 - I said `quickLookPreview` was macOS only. It is iOS 14+, in
   `_QuickLook_SwiftUI`. I had grepped only the main SwiftUI interface.
-- I said the overlay modules held 1,497 declarations. That was a loose line
-  count. A strict count of public `struct`/`func`/`init`/`enum`/`protocol`
-  declarations gives 616 across 23 modules.
 - I listed Live Photo as absent, then as present, then as absent. Final answer:
   the view is absent, only a `Transferable` conformance ships.

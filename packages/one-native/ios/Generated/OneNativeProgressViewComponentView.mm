@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeProgressViewComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
   }
   return self;
 }

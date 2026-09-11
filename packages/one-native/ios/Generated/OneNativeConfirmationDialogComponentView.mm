@@ -14,7 +14,6 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeConfirmationDialogView new]; self.contentView = _nativeView;
     __weak OneNativeConfirmationDialogComponentView *weakSelf = self;
-
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeConfirmationDialogComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

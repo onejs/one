@@ -20,7 +20,6 @@ using namespace facebook::react;
       OneNativeTextFieldComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-
     _nativeView.onChange = ^(NSString *value, NSInteger eventCount, NSInteger revision) {
       OneNativeTextFieldComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

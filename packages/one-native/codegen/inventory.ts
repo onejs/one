@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { mkdirSync } from 'node:fs'
+import { mkdirSync, readdirSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
 export type Declaration = {
@@ -39,14 +39,22 @@ export function readInventory(root: string) {
     '-o',
     binary,
   ])
-  const paths = ['SwiftUI', 'SwiftUICore'].map((module) =>
+  // swiftui is not one module. it extends other frameworks through an overlay module each
+  // (_WebKit_SwiftUI, _AVKit_SwiftUI, and so on), and those hold real swiftui api: WebView,
+  // VideoPlayer, PhotosPicker, Map, quickLookPreview. read every one, not just the core two.
+  const overlays = readdirSync(join(sdk, 'System/Library/Frameworks'))
+    .filter((entry) => entry.startsWith('_') && entry.endsWith('_SwiftUI.framework'))
+    .map((entry) => entry.slice(0, -'.framework'.length))
+    .sort()
+  const modules = ['SwiftUI', 'SwiftUICore', ...overlays]
+  const paths = modules.map((module) =>
     join(
       sdk,
       `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`
     )
   )
   const inventory: Declaration[] = JSON.parse(run(binary, paths))
-  return { sdk, swiftc, paths, inventory }
+  return { sdk, swiftc, modules, paths, inventory }
 }
 
 function iosVersion(attribute: string): number | undefined {

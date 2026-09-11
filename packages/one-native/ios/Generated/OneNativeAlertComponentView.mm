@@ -14,7 +14,6 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeAlertView new]; self.contentView = _nativeView;
     __weak OneNativeAlertComponentView *weakSelf = self;
-
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeAlertComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
