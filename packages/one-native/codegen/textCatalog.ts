@@ -27,20 +27,32 @@ const textFields = {
     enum: 'TextInputAutocapitalization',
   },
   autocorrectionDisabled: { type: 'boolean', default: false },
+  keyboardType: {
+    type: 'string',
+    default: '',
+    publicType: 'KeyboardType',
+  },
+  textContentType: {
+    type: 'string',
+    default: '',
+    publicType: 'TextContentType',
+  },
 } as const
 
 const textModifiers = `      .oneNativeTextFieldStyle(model.textFieldStyle)
       .oneNativeSubmitLabel(model.submitLabel)
       .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
       .autocorrectionDisabled(model.autocorrectionDisabled)
+      .oneNativeKeyboardType(model.keyboardType)
+      .oneNativeTextContentType(model.textContentType)
       .onSubmit(of: .text) { model.submit() }`
 
-// keyboard type and programmatic focus are not bound yet; SwiftUI exposes them through
-// UIKit types and @FocusState, neither of which the current prop pipeline carries.
+// keyboard type uses a hand-written UIKit converter; focus uses @FocusState and the controlled protocol.
 export const textControls: Control[] = [
   {
     name: 'TextField',
     value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '' },
+    focus: true,
     actions: [{ prop: 'onSubmit', event: 'Submit' }],
     fields: {
       ...textFields,
@@ -70,6 +82,7 @@ ${textModifiers}`,
   {
     name: 'SecureField',
     value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '' },
+    focus: true,
     actions: [{ prop: 'onSubmit', event: 'Submit' }],
     fields: textFields,
     constructors: [

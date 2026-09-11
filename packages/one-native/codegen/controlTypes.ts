@@ -47,6 +47,7 @@ export type ModifierSelector = {
 export type Control = {
   name: string
   value?: ControlValue
+  focus?: boolean
   actions?: readonly ControlAction[]
   fields: Record<string, ControlField>
   constructors: readonly {

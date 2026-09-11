@@ -26,6 +26,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeSecureFieldEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSecureFieldValueChange({.value = std::string(value.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
     };
+    _nativeView.onFocusChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
+      OneNativeSecureFieldComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeSecureFieldEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSecureFieldFocusChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
+    };
     _nativeView.onSubmit = ^(NSInteger eventCount) {
       OneNativeSecureFieldComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -44,7 +50,7 @@ using namespace facebook::react;
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configure:RCTNSStringFromString(next.value)
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled keyboardType:RCTNSStringFromString(next.keyboardType) textContentType:RCTNSStringFromString(next.textContentType)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
