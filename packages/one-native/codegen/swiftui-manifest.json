@@ -938,6 +938,65 @@
       "ios": 14
     },
     {
+      "module": "_MapKit_SwiftUI",
+      "type": "Map",
+      "parameters": [
+        {
+          "label": "position",
+          "name": "position",
+          "type": "SwiftUICore.Binding<_MapKit_SwiftUI.MapCameraPosition>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "bounds",
+          "name": "bounds",
+          "type": "_MapKit_SwiftUI.MapCameraBounds?"
+        },
+        {
+          "defaultValue": ".all",
+          "label": "interactionModes",
+          "name": "interactionModes",
+          "type": "_MapKit_SwiftUI.MapInteractionModes"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> C"
+        }
+      ],
+      "requirements": [
+        "Content == _MapKit_SwiftUI.MapContentView<Swift.Never, C>",
+        "C : _MapKit_SwiftUI.MapContent"
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "Marker",
+      "parameters": [
+        {
+          "label": "coordinate",
+          "name": "coordinate",
+          "type": "_LocationEssentials.CLLocationCoordinate2D"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 17
+    },
+    {
       "module": "SwiftUI",
       "type": "TextField",
       "parameters": [

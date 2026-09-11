@@ -1,6 +1,7 @@
 import { pickerControls } from './pickerCatalog'
 import { formControls } from './formCatalog'
 import { leafControls } from './leafCatalog'
+import { mapControls } from './mapCatalog'
 import { mediaControls } from './mediaCatalog'
 import { textControls } from './textCatalog'
 import { presentationControls } from './presentationCatalog'
@@ -10,6 +11,7 @@ export const controls: Control[] = [
   ...formControls,
   ...leafControls,
   ...mediaControls,
+  ...mapControls,
   ...textControls,
   ...presentationControls,
 ]

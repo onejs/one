@@ -18,6 +18,7 @@ declare module 'one' {
         | `/one-native-dialogs`
         | `/one-native-host`
         | `/one-native-leaves`
+        | `/one-native-map`
         | `/one-native-media`
         | `/one-native-popover`
         | `/one-native-sheet`

@@ -45,6 +45,9 @@ function VideoPlayer(_props: Types.VideoPlayerProps): never {
     'Swift.VideoPlayer requires an iOS native build with one-native installed'
   )
 }
+function Map(_props: Types.MapProps): never {
+  throw new Error('Swift.Map requires an iOS native build with one-native installed')
+}
 function TextField(_props: Types.TextFieldProps): never {
   throw new Error(
     'Swift.TextField requires an iOS native build with one-native installed'
@@ -81,6 +84,7 @@ export const unsupportedControls = {
   ProgressView,
   Gauge,
   VideoPlayer,
+  Map,
   TextField,
   SecureField,
   Alert,

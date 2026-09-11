@@ -30,11 +30,13 @@ export function emitControls(header: string, outputs: Map<string, string>) {
     for (const field of Object.values(control.fields))
       if (field.type === 'objects') payloads[payloadOf(field).name] = payloadOf(field)
   // the public type may name a SwiftUI enum where the native prop carries a plain string.
-  const payloadType = (name: string, publicApi = false) =>
+  // the spec is read by React Native's codegen, which spells scalars its own way, so a
+  // payload field is `number` in the public types and `Double` in the spec.
+  const payloadType = (name: string, target: 'public' | 'spec') =>
     `Readonly<{ ${Object.entries(payloads[name].element)
       .map(
         ([key, type]) =>
-          `${key}${payloads[name].optional?.includes(key) ? '?' : ''}: ${(publicApi && payloads[name].publicTypes?.[key]) || tsScalar(type)}`
+          `${key}${payloads[name].optional?.includes(key) ? '?' : ''}: ${target === 'spec' ? type : payloads[name].publicTypes?.[key] || tsScalar(type)}`
       )
       .join('; ')} }>`
   let types =
@@ -55,7 +57,7 @@ export type OneNativeViewProps = Pick<
 >
 ` +
     Object.keys(payloads)
-      .map((name) => `export type ${name} = ${payloadType(name, true)}\n`)
+      .map((name) => `export type ${name} = ${payloadType(name, 'public')}\n`)
       .join('')
   let adapters =
     header +
@@ -136,23 +138,24 @@ ${
       slots: [],
       interfaceOnly: measured,
     })
+    const usedPayloads = [
+      ...new Set(objectFields.map(([, field]) => payloadOf(field).name)),
+    ]
     const codegenTypes = ['DirectEventHandler', 'Int32', 'Double'].filter((type) => {
       if (type === 'DirectEventHandler') return Object.keys(events).length > 0
       return [
         ...Object.values(props),
         ...Object.values(events).flatMap((fields) => Object.values(fields)),
+        ...usedPayloads.flatMap((payload) => Object.values(payloads[payload].element)),
       ].includes(type)
     })
-    const usedPayloads = [
-      ...new Set(objectFields.map(([, field]) => payloadOf(field).name)),
-    ]
     outputs.set(
       `src/specs/${nativeName}NativeComponent.ts`,
       header +
         `import type { ViewProps } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'` : ''}
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${usedPayloads.map((payload) => `type ${payload} = ${payloadType(payload)}`).join('\n')}
+${usedPayloads.map((payload) => `type ${payload} = ${payloadType(payload, 'spec')}`).join('\n')}
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
   .map(([key, type]) => `  ${key}: ${type}`)
