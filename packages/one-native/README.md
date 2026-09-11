@@ -43,7 +43,7 @@ export function App() {
         </View>
       </Swift.Tab>
       <Swift.Tab id="settings" title="Settings" systemImage="gearshape">
-        <Text>Ordinary React Native or Tamagui content goes here.</Text>
+        <Text>Ordinary React Native content goes here.</Text>
       </Swift.Tab>
     </Swift.Tabs>
   )
@@ -90,7 +90,7 @@ functional state update to preserve every change. Button actions call `onAction`
 are rejected before submitting native props. Omit the modifier on older iOS.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
-trigger's interaction and accessibility label; use a `View` or a Tamagui layout
+trigger's interaction and accessibility label; use a `View` or any React Native layout
 as its content. Put independent interactive controls outside the trigger.
 
 ## Pickers and form controls
