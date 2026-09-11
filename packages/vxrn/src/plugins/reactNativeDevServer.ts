@@ -11,6 +11,12 @@ import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 import { getBoundPort } from '../utils/getBoundPort'
+import {
+  getNativeFramePlatform,
+  isNativeBundleFrame,
+  symbolicateNativeStack,
+  type NativeStackFrame,
+} from '../utils/symbolicateNativeStack'
 
 type ClientMessage = {
   type: 'client-log'
@@ -343,6 +349,47 @@ export function createReactNativeDevServerPlugin(
         })
       })
 
+      const getDevEngine = async (platform: 'ios' | 'android') => {
+        if (!devEngines[platform]) {
+          // prevent duplicate creation from concurrent requests
+          if (!devEngineCreating[platform]) {
+            devEngineCreating[platform] = (async () => {
+              try {
+                console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
+                devEngines[platform] = await createNativeDevEngine({
+                  root,
+                  port: getBoundPort(server),
+                  host: typeof host === 'string' ? host : 'localhost',
+                  platform,
+                  serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
+                  onHmrUpdate: (update) => {
+                    const msg = JSON.stringify(update)
+                    hmrWSS.clients.forEach((client) => {
+                      const nativeClient = client as NativeHmrSocket
+                      if (
+                        nativeClient.readyState === 1 &&
+                        nativeClient.vxrnPlatform === platform &&
+                        (update.type === 'hmr:error' ||
+                          nativeClient.vxrnClientId === update.clientId)
+                      ) {
+                        client.send(msg)
+                      }
+                    })
+                  },
+                })
+                console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
+              } catch (err) {
+                // clear so next request retries instead of permanently failing
+                devEngineCreating[platform] = null
+                throw err
+              }
+            })()
+          }
+          await devEngineCreating[platform]
+        }
+        return devEngines[platform]!
+      }
+
       // React Native bundle handler
       const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {
         const url = new URL(req.url!, `http://${req.headers.host}`)
@@ -365,50 +412,10 @@ export function createReactNativeDevServerPlugin(
         }
 
         try {
-          const bundle = await (async () => {
-            if (!devEngines[platform]) {
-              // prevent duplicate creation from concurrent requests
-              if (!devEngineCreating[platform]) {
-                devEngineCreating[platform] = (async () => {
-                  try {
-                    console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
-                    devEngines[platform] = await createNativeDevEngine({
-                      root,
-                      port: getBoundPort(server),
-                      host: typeof host === 'string' ? host : 'localhost',
-                      platform,
-                      serverUrl: `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`,
-                      onHmrUpdate: (update) => {
-                        const msg = JSON.stringify(update)
-                        hmrWSS.clients.forEach((client) => {
-                          const nativeClient = client as NativeHmrSocket
-                          if (
-                            nativeClient.readyState === 1 &&
-                            nativeClient.vxrnPlatform === platform &&
-                            (update.type === 'hmr:error' ||
-                              nativeClient.vxrnClientId === update.clientId)
-                          ) {
-                            client.send(msg)
-                          }
-                        })
-                      },
-                    })
-                    console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
-                  } catch (err) {
-                    // clear so next request retries instead of permanently failing
-                    devEngineCreating[platform] = null
-                    throw err
-                  }
-                })()
-              }
-              await devEngineCreating[platform]
-            }
-
-            return await devEngines[platform]!.getBundle().then((r) => r.code)
-          })()
+          const bundle = await (await getDevEngine(platform)).getBundle()
 
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
-          res.end(bundle)
+          res.end(bundle.code)
         } catch (err) {
           console.error(` Error building React Native bundle`)
           console.error(err)
@@ -429,10 +436,49 @@ export function createReactNativeDevServerPlugin(
         }
       })
 
-      // Symbolicate endpoint
-      server.middlewares.use('/symbolicate', (_req, res) => {
-        res.writeHead(200, { 'Content-Type': 'text/plain' })
-        res.end('TODO')
+      // resolve a device stack back to authored files through the dev bundle's
+      // source map. react native posts here from LogBox and from console traces.
+      server.middlewares.use('/symbolicate', async (req, res) => {
+        try {
+          const chunks: Buffer[] = []
+          for await (const chunk of req) chunks.push(chunk as Buffer)
+          const body: { stack?: NativeStackFrame[] } = JSON.parse(
+            Buffer.concat(chunks).toString('utf8')
+          )
+          const stack = body.stack
+          if (!Array.isArray(stack)) {
+            throw new Error('expected a `stack` array in the request body')
+          }
+
+          const bundleFrame = stack.find((frame) => isNativeBundleFrame(frame.file))
+          if (!bundleFrame) {
+            // nothing in this stack came from the bundle, so there is nothing to
+            // resolve. hand it straight back rather than inventing frames.
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ stack, codeFrame: null }))
+            return
+          }
+
+          const framePlatform = getNativeFramePlatform(bundleFrame.file)
+          const platform = validPlatforms[framePlatform ?? '']
+          if (!platform) {
+            throw new Error(
+              `could not tell which platform "${bundleFrame.file}" was bundled for`
+            )
+          }
+
+          const bundle = await (await getDevEngine(platform)).getBundle()
+          res.writeHead(200, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify(symbolicateNativeStack(stack, bundle.map)))
+        } catch (err) {
+          console.error(`[vxrn] symbolicate failed`, err)
+          res.writeHead(500, { 'Content-Type': 'application/json' })
+          res.end(
+            JSON.stringify({
+              error: err instanceof Error ? err.message : String(err),
+            })
+          )
+        }
       })
     },
   }
