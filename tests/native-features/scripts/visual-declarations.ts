@@ -16,7 +16,16 @@ export interface VisualCheckDeclaration {
   positiveCapture: string
   /** Negative capture screenshot (natural opposite in corpus) where check MUST fail */
   negativeCapture: string
-  /** Declared crop region in logical points (393x852). Status band is strictly excluded. */
+  /**
+   * Declared crop region in logical points (393x852). Status band is strictly excluded.
+   *
+   * These are absolute fixture coordinates, so anything that gains a row above the subject moves
+   * every region below it. The controls fixture behind the pickers and forms suites moved 39pt,
+   * one category-row pitch, when its category grid gained a seventh entry and wrapped to a third
+   * row. A region left behind reports as "Control appears unpainted" or "0 pixels changed inside
+   * region", which reads like a product regression and is not one: check the capture first.
+   * Anchoring regions to the subject's accessibility frame would remove this class of failure.
+   */
   region: Rect
   /** Semantic verification prompt (for advisory LLM inspection) */
   prompt: string
@@ -99,8 +108,8 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Segmented control two-component track and thumb structure',
     positiveCapture: 'pickers/picker-segmented.png',
     negativeCapture: 'pickers/picker-wheel.png',
-    // Tightened strictly to segmented control track: y: 281.33..313.33 pt
-    region: { x: 10, y: 281.33, width: 373, height: 32 },
+    // strictly the segmented control track: y: 320.33..352.33 pt
+    region: { x: 10, y: 320.33, width: 373, height: 32 },
     prompt: "A segmented control with three visible segments labeled 'Alpha', 'Beta', and 'Gamma' is present.",
     measureSubject: (crop) => {
       const track = countMatchingPixels(
@@ -132,7 +141,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
     // Tightened to the selected date circular badge: x: 275..330 pt, y: 430..485 pt
-    region: { x: 275, y: 430, width: 55, height: 55 },
+    region: { x: 275, y: 469, width: 55, height: 55 },
     prompt: 'A graphical calendar grid with month days and blue circular date selection accent is visible.',
     measureSubject: (crop) =>
       countMatchingPixels(
@@ -160,7 +169,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native Toggle switch capsule track and thumb structure',
     positiveCapture: 'forms/toggle-rejected.png',
     negativeCapture: 'forms/form-controls.png',
-    region: { x: 320, y: 250, width: 60, height: 35 },
+    region: { x: 320, y: 289, width: 60, height: 35 },
     prompt: 'A native iOS switch toggle capsule with round thumb is present.',
     measureSubject: (crop) => {
       const well = countMatchingPixels(
@@ -191,7 +200,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native Slider blue active track and grey inactive track structure',
     positiveCapture: 'forms/form-controls.png',
     negativeCapture: 'forms/toggle-rejected.png',
-    region: { x: 10, y: 250, width: 373, height: 30 },
+    region: { x: 10, y: 289, width: 373, height: 30 },
     prompt: 'A horizontal volume slider track with a circular draggable thumb is present.',
     measureSubject: (crop) => {
       const blue = countMatchingPixels(
@@ -222,7 +231,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native Stepper capsule with increment/decrement glyphs',
     positiveCapture: 'forms/stepper-upper-bound.png',
     negativeCapture: 'forms/toggle-rejected.png',
-    region: { x: 280, y: 245, width: 100, height: 35 },
+    region: { x: 280, y: 284, width: 100, height: 35 },
     prompt: 'A native stepper control capsule with minus and plus buttons is present.',
     measureSubject: (crop) => {
       const pill = countMatchingPixels(

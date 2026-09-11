@@ -252,6 +252,17 @@ const firstState = (nodes: Node[]) =>
 
 async function run(config: Config, checks: { name: string; durationMs: number }[]) {
   fs.mkdirSync(config.artifactDir, { recursive: true })
+  // a RedBox replaces the whole accessibility tree, so every loaded-state assertion after one
+  // times out complaining about the fixture while the real error sits on screen. its own buttons
+  // identify it, and everything else it publishes is the message.
+  const redBoxButtons = ['Dismiss (ESC)', 'Reload (\u2318R)', 'Copy (\u2325\u2318C)', 'Extra Info (\u2318E)']
+  const redBox = (nodes: Node[]) => {
+    const found = labels(nodes)
+    if (!redBoxButtons.every((button) => found.includes(button))) return undefined
+    return found
+      .filter((label) => !redBoxButtons.includes(label) && label !== 'OneNativeTests')
+      .join(' ')
+  }
   const wait = async (
     name: string,
     predicate: (nodes: Node[]) => boolean,
@@ -269,6 +280,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
         return nodes
+      }
+      const error = redBox(nodes)
+      if (error) {
+        screenshot(`fail-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`)
+        throw new Error(`${name}: the app is showing a RedBox: ${error}`)
       }
       await Bun.sleep(250)
     } while (Date.now() < deadline)
@@ -300,17 +316,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   const typeInto = async (
     name: string,
     text: string,
-    current: (nodes: Node[]) => string | undefined
+    current: (nodes: Node[]) => string | number | undefined
   ) => {
     if (!text) throw new Error('typeInto requires text')
-    const before = current(snapshot(config.simulatorId)) ?? ''
+    const before = String(current(snapshot(config.simulatorId)) ?? '')
     command(['ui-automation', 'type-text', '--text', text[0]], config.simulatorId)
     // a single character has no remainder to gate, and some fields are expected to reject it
     // and restore the old value, so waiting for a change there would hang on correct behavior.
     if (text.length === 1) return
     await wait(
       `${name} takes the first character`,
-      (nodes) => (current(nodes) ?? '') !== before
+      (nodes) => String(current(nodes) ?? '') !== before
     )
     command(['ui-automation', 'type-text', '--text', text.slice(1)], config.simulatorId)
   }
@@ -1092,17 +1108,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         n.some((x) => x.AXLabel === 'Leaf image')
     )
     screenshot('image-initial.png')
-    tap({ id: 'one-native-leaf-cycle-rendering-mode' })
-    await wait('Image hierarchical rendering mode', (n) =>
-      status(n, 'RenderingMode', 'hierarchical')
-    )
-    screenshot('image-hierarchical.png')
-    tap({ id: 'one-native-leaf-cycle-variant' })
-    await wait('Image fill variant', (n) => status(n, 'Variant', 'fill'))
-    screenshot('image-fill.png')
+    // each of these values converts in Swift through a generated converter that fails loudly on
+    // an unknown case, so walking a whole cycle exercises every conversion rather than the first
+    // one. one tap per assertion also pins the order the fixture declares.
+    for (const mode of ['hierarchical', 'palette', 'multicolor', 'monochrome']) {
+      tap({ id: 'one-native-leaf-cycle-rendering-mode' })
+      await wait(`Image ${mode} rendering mode`, (n) => status(n, 'RenderingMode', mode))
+      screenshot(`image-rendering-${mode}.png`)
+    }
+    for (const variant of ['circle', 'square', 'rectangle', 'fill', 'slash', 'none']) {
+      tap({ id: 'one-native-leaf-cycle-variant' })
+      await wait(`Image ${variant} variant`, (n) => status(n, 'Variant', variant))
+      screenshot(`image-variant-${variant}.png`)
+    }
+    // the status panel only reports what React holds, so scale is checked against the rendered
+    // symbol instead: imageScale that never reached SwiftUI leaves the image the same size.
+    const imageWidth = (nodes: Node[]) => id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
+    const mediumWidth = imageWidth(snapshot(config.simulatorId))
+    if (!mediumWidth) throw new Error('the leaf image reported no width at medium scale')
     tap({ id: 'one-native-leaf-cycle-scale' })
-    await wait('Image large scale', (n) => status(n, 'Scale', 'large'))
+    await wait(
+      'Image large scale grows the symbol',
+      (n) => status(n, 'Scale', 'large') && imageWidth(n) > mediumWidth
+    )
     screenshot('image-large.png')
+    tap({ id: 'one-native-leaf-cycle-scale' })
+    await wait(
+      'Image small scale shrinks the symbol',
+      (n) => status(n, 'Scale', 'small') && imageWidth(n) < mediumWidth
+    )
+    screenshot('image-small.png')
     tap({ id: 'one-native-leaf-step-variable-value' })
     await wait('Image variable value stepped', (n) =>
       status(n, 'VariableValue', 0.5)
