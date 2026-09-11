@@ -186,3 +186,43 @@ export function countDistinctColors(imagePath: string, region: Rect): number {
 
   return colors.size
 }
+
+/**
+ * Counts distinct 24-bit RGB colors directly within a cropped PNG.
+ */
+export function countDistinctColorsInCrop(crop: PNG): number {
+  const colors = new Set<number>()
+  for (let i = 0; i < crop.data.length; i += 4) {
+    colors.add((crop.data[i] << 16) | (crop.data[i + 1] << 8) | crop.data[i + 2])
+  }
+  return colors.size
+}
+
+/**
+ * Counts pixels inside a cropped PNG satisfying a predicate function.
+ * Enables fast, subject-specific directional measurements with zero variance.
+ */
+export function countMatchingPixels(
+  crop: PNG,
+  predicate: (r: number, g: number, b: number, a: number, x: number, y: number) => boolean
+): number {
+  let count = 0
+  for (let y = 0; y < crop.height; y++) {
+    for (let x = 0; x < crop.width; x++) {
+      const idx = (y * crop.width + x) * 4
+      if (
+        predicate(
+          crop.data[idx],
+          crop.data[idx + 1],
+          crop.data[idx + 2],
+          crop.data[idx + 3],
+          x,
+          y
+        )
+      ) {
+        count++
+      }
+    }
+  }
+  return count
+}

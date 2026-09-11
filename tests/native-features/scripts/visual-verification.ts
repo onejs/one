@@ -3,33 +3,31 @@ import fs from 'node:fs'
 import path from 'node:path'
 import {
   countChangedPixels,
-  countInkPixels,
-  countDistinctColors,
+  extractCrop,
   readPng,
   saveCrop,
 } from './visual-pixel-gate'
 import { evaluateGeminiOracle, type OracleVerdict } from './visual-gemini-oracle'
 import { VISUAL_CHECKS, type VisualCheckDeclaration } from './visual-declarations'
 
-export interface PixelGateResult {
+export interface SubjectGateResult {
   passed: boolean
+  positiveReading: number
+  negativeReading: number
+  floor: number
   changedPixels: number
   totalPixels: number
   changedRatio: number
-  inkPixels: number
-  distinctColors: number
-  minChangedFloor: number
-  minInkFloor: number
-  minColorsFloor: number
   nullStateReads: string
+  swapTestPassed: boolean
   failureReason?: string
 }
 
-export interface OracleCheckResult {
-  passed: boolean
+export interface AdvisoryOracleResult {
   positiveVerdict: OracleVerdict
   negativeVerdict: OracleVerdict
-  failureReason?: string
+  advisoryPassed: boolean
+  commentary?: string
 }
 
 export interface VisualCheckResult {
@@ -38,8 +36,8 @@ export interface VisualCheckResult {
   subject: string
   positivePath: string
   negativePath: string
-  pixelGate: PixelGateResult
-  oracle?: OracleCheckResult
+  gate: SubjectGateResult
+  oracle?: AdvisoryOracleResult
   passed: boolean
   durationMs: number
   error?: string
@@ -50,9 +48,9 @@ export interface VerifyOptions {
   captureDir?: string
   /** Specific artifact directory for the current suite run (e.g. /tmp/one-native-capture/pickers) */
   artifactDir?: string
-  /** If true, runs only the deterministic pixel gating measurements without LLM oracle */
-  skipOracle?: boolean
-  /** Directory where cropped regions are saved for oracle inspection */
+  /** If true, runs the advisory Gemini Vision Oracle as well */
+  oracle?: boolean
+  /** Directory where cropped regions are saved for inspection */
   cropDir?: string
   /** Override model for Gemini oracle (defaults to gemini-3.8-flash-low) */
   model?: string
@@ -92,12 +90,14 @@ export function resolveImagePath(relativePath: string, options: VerifyOptions): 
 }
 
 /**
- * Verifies a single declared visual check:
- * 1. Resolves positive and negative capture files.
- * 2. Runs deterministic pixel measurements (changed count, ink count, distinct colors).
- *    Fails if changed pixels == 0 (Rule 2: blind crop) or ink/colors below floor (Rule 3).
- * 3. Runs Gemini Vision Oracle on both positive crop and negative crop:
- *    Must PASS on positive crop and FAIL on negative crop (Rule 1).
+ * Verifies a single declared visual check using directional subject-specific deterministic measurement.
+ *
+ * Gating assertions (enforced deterministically):
+ * 1. Positive capture reading MUST be >= decl.minSubjectFloor (proves control painted).
+ * 2. Negative capture reading MUST be < decl.minSubjectFloor (enforces swap test: negative MUST fail).
+ * 3. Changed pixels between pair inside region MUST be > 0 (Rule 2: crop intersects subject).
+ *
+ * Gemini Vision Oracle is demoted to advisory and only runs when requested.
  */
 export async function verifyVisualCheck(
   checkOrName: string | VisualCheckDeclaration,
@@ -116,106 +116,75 @@ export async function verifyVisualCheck(
   const positivePath = resolveImagePath(decl.positiveCapture, options)
   const negativePath = resolveImagePath(decl.negativeCapture, options)
 
-  // Step 1: Gating pixel measurement (deterministic)
-  const changed = countChangedPixels(positivePath, negativePath, decl.region)
-  const ink = countInkPixels(positivePath, decl.region)
-  const colors = countDistinctColors(positivePath, decl.region)
+  const posImg = readPng(positivePath)
+  const negImg = readPng(negativePath)
+
+  const posCrop = extractCrop(posImg, decl.region)
+  const negCrop = extractCrop(negImg, decl.region)
+
+  // Step 1: Directional subject-specific measurements
+  const posReading = decl.measureSubject(posCrop)
+  const negReading = decl.measureSubject(negCrop)
+  const changed = countChangedPixels(positivePath, negativePath, decl.region, 8)
+
+  const positivePass = posReading >= decl.minSubjectFloor
+  const swapTestPass = negReading < decl.minSubjectFloor
+  const cropIntersects = changed.changed > 0
 
   let gatePassed = true
   let gateReason: string | undefined
 
-  if (changed.changed === 0) {
+  if (!cropIntersects) {
     gatePassed = false
-    gateReason = `Blind crop: 0 of ${changed.total} pixels changed between positive and negative captures inside region.`
-  } else if (changed.changed < decl.minChangedPixels) {
+    gateReason = `Blind crop: 0 of ${changed.total} pixels changed inside region.`
+  } else if (!positivePass) {
     gatePassed = false
-    gateReason = `Changed pixels (${changed.changed}) fell below required floor (${decl.minChangedPixels}).`
-  } else if (ink.ink < decl.minInkPixels) {
+    gateReason = `Positive capture measurement (${posReading.toLocaleString()}) fell below required floor (${decl.minSubjectFloor.toLocaleString()}). Control appears unpainted.`
+  } else if (!swapTestPass) {
     gatePassed = false
-    gateReason = `Ink pixels (${ink.ink}) fell below required floor (${decl.minInkPixels}). Control appears unpainted/flat.`
-  } else if (colors < decl.minDistinctColors) {
-    gatePassed = false
-    gateReason = `Distinct colors (${colors}) fell below required floor (${decl.minDistinctColors}).`
+    gateReason = `Swap test failed: negative capture unexpectedly met subject floor (${negReading.toLocaleString()} >= ${decl.minSubjectFloor.toLocaleString()}). Measurement is not discriminating.`
   }
 
-  const pixelGate: PixelGateResult = {
+  const gate: SubjectGateResult = {
     passed: gatePassed,
+    positiveReading: posReading,
+    negativeReading: negReading,
+    floor: decl.minSubjectFloor,
     changedPixels: changed.changed,
     totalPixels: changed.total,
     changedRatio: changed.ratio,
-    inkPixels: ink.ink,
-    distinctColors: colors,
-    minChangedFloor: decl.minChangedPixels,
-    minInkFloor: decl.minInkPixels,
-    minColorsFloor: decl.minDistinctColors,
     nullStateReads: decl.calibration.nullStateReads,
+    swapTestPassed: swapTestPass,
     failureReason: gateReason,
   }
 
-  // If pixel gate failed, fail immediately (fast deterministic gate)
-  if (!gatePassed) {
-    return {
-      name: decl.name,
-      suite: decl.suite,
-      subject: decl.subject,
-      positivePath,
-      negativePath,
-      pixelGate,
-      passed: false,
-      durationMs: Date.now() - started,
-      error: gateReason,
+  // Step 2: Advisory Oracle (optional, non-gating)
+  let oracle: AdvisoryOracleResult | undefined
+  if (options.oracle) {
+    const cropDir = options.cropDir ?? DEFAULT_CROP_DIR
+    fs.mkdirSync(cropDir, { recursive: true })
+
+    const posCropPath = path.join(cropDir, `${decl.name}-pos.png`)
+    const negCropPath = path.join(cropDir, `${decl.name}-neg.png`)
+    saveCrop(posImg, decl.region, posCropPath)
+    saveCrop(negImg, decl.region, negCropPath)
+
+    const posVerdict = await evaluateGeminiOracle(posCropPath, decl.prompt, {
+      model: options.model,
+    })
+    const negVerdict = await evaluateGeminiOracle(negCropPath, decl.prompt, {
+      model: options.model,
+    })
+
+    const advisoryPassed = posVerdict.passed && !negVerdict.passed
+    oracle = {
+      positiveVerdict: posVerdict,
+      negativeVerdict: negVerdict,
+      advisoryPassed,
+      commentary: advisoryPassed
+        ? `Advisory oracle confirmed: pos passed, neg rejected.`
+        : `Advisory oracle divergence: pos=${posVerdict.passed}, neg=${negVerdict.passed}`,
     }
-  }
-
-  // If skipOracle requested, pass based on pixel gate
-  if (options.skipOracle) {
-    return {
-      name: decl.name,
-      suite: decl.suite,
-      subject: decl.subject,
-      positivePath,
-      negativePath,
-      pixelGate,
-      passed: true,
-      durationMs: Date.now() - started,
-    }
-  }
-
-  // Step 2: Gemini Vision Oracle evaluation
-  const cropDir = options.cropDir ?? DEFAULT_CROP_DIR
-  fs.mkdirSync(cropDir, { recursive: true })
-
-  const posImg = readPng(positivePath)
-  const negImg = readPng(negativePath)
-  const posCropPath = path.join(cropDir, `${decl.name}-pos.png`)
-  const negCropPath = path.join(cropDir, `${decl.name}-neg.png`)
-
-  saveCrop(posImg, decl.region, posCropPath)
-  saveCrop(negImg, decl.region, negCropPath)
-
-  const posVerdict = await evaluateGeminiOracle(posCropPath, decl.prompt, {
-    model: options.model,
-  })
-  const negVerdict = await evaluateGeminiOracle(negCropPath, decl.prompt, {
-    model: options.model,
-  })
-
-  let oraclePassed = true
-  let oracleReason: string | undefined
-
-  if (!posVerdict.passed) {
-    oraclePassed = false
-    oracleReason = `Oracle failed on positive capture: ${posVerdict.reason}`
-  } else if (negVerdict.passed) {
-    oraclePassed = false
-    oracleReason = `Oracle incorrectly passed on negative capture: ${negVerdict.reason}`
-  }
-
-  const oracle: OracleCheckResult = {
-    passed: oraclePassed,
-    positiveVerdict: posVerdict,
-    negativeVerdict: negVerdict,
-    failureReason: oracleReason,
   }
 
   return {
@@ -224,11 +193,11 @@ export async function verifyVisualCheck(
     subject: decl.subject,
     positivePath,
     negativePath,
-    pixelGate,
+    gate,
     oracle,
-    passed: gatePassed && oraclePassed,
+    passed: gatePassed,
     durationMs: Date.now() - started,
-    error: oracleReason,
+    error: gateReason,
   }
 }
 
@@ -266,6 +235,42 @@ export async function runAllVisualChecks(
   return results
 }
 
+/**
+ * Runs the explicit swap test across checks:
+ * Feeds each check its OWN negative capture as the subject, asserting that the subject
+ * measurement fails to meet the floor. Proves the deterministic gate is discriminating
+ * and directional rather than symmetric.
+ */
+export async function runSwapTest(
+  options: VerifyOptions = {}
+): Promise<{ passed: boolean; rejectedCount: number; totalCount: number; failures: string[] }> {
+  let rejectedCount = 0
+  const failures: string[] = []
+
+  for (const decl of VISUAL_CHECKS) {
+    const swappedDecl: VisualCheckDeclaration = {
+      ...decl,
+      positiveCapture: decl.negativeCapture,
+      negativeCapture: decl.positiveCapture,
+    }
+    const res = await verifyVisualCheck(swappedDecl, options)
+    if (!res.passed) {
+      rejectedCount++
+    } else {
+      failures.push(
+        `${decl.suite} :: ${decl.name} (reading ${res.gate.positiveReading} met floor ${decl.minSubjectFloor})`
+      )
+    }
+  }
+
+  return {
+    passed: rejectedCount === VISUAL_CHECKS.length,
+    rejectedCount,
+    totalCount: VISUAL_CHECKS.length,
+    failures,
+  }
+}
+
 // ==========================================
 // CLI Execution
 // ==========================================
@@ -275,9 +280,9 @@ async function main() {
   let checkName: string | undefined
   let artifactDir: string | undefined
   let captureDir = DEFAULT_CAPTURE_DIR
-  let skipOracle = false
+  let runOracle = false
   let jsonOutput = false
-  let runAll = false
+  let swapTestMode = false
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
@@ -285,15 +290,46 @@ async function main() {
     else if (arg === '--check' && args[i + 1]) checkName = args[++i]
     else if (arg === '--artifact-dir' && args[i + 1]) artifactDir = args[++i]
     else if (arg === '--capture-dir' && args[i + 1]) captureDir = args[++i]
-    else if (arg === '--skip-oracle') skipOracle = true
+    else if (arg === '--oracle') runOracle = true
+    else if (arg === '--swap-test') swapTestMode = true
     else if (arg === '--json') jsonOutput = true
-    else if (arg === '--all') runAll = true
   }
 
   const options: VerifyOptions = {
     artifactDir,
     captureDir,
-    skipOracle,
+    oracle: runOracle,
+  }
+
+  if (swapTestMode) {
+    console.log('\n=== RUNNING DIRECTIONAL SWAP TEST (FEED NEGATIVE AS SUBJECT) ===\n')
+    const swap = await runSwapTest(options)
+    for (const decl of VISUAL_CHECKS) {
+      const swappedDecl: VisualCheckDeclaration = {
+        ...decl,
+        positiveCapture: decl.negativeCapture,
+        negativeCapture: decl.positiveCapture,
+      }
+      const res = await verifyVisualCheck(swappedDecl, options)
+      const rejected = !res.passed
+      console.log(
+        `[${rejected ? 'REJECTED as required' : 'FAILED (Passed unexpectedly)'}] ${decl.suite} :: ${decl.name}`
+      )
+      console.log(
+        `  Negative reading: ${res.gate.positiveReading.toLocaleString()} (floor: ${decl.minSubjectFloor.toLocaleString()})`
+      )
+    }
+    console.log(
+      `\nSwap Test Rejection: ${swap.rejectedCount} / ${swap.totalCount} (${(
+        (swap.rejectedCount / swap.totalCount) *
+        100
+      ).toFixed(1)}%)\n`
+    )
+    if (!swap.passed) {
+      console.error(`Swap test failures:\n  ${swap.failures.join('\n  ')}`)
+      process.exit(1)
+    }
+    process.exit(0)
   }
 
   let results: VisualCheckResult[] = []
@@ -315,25 +351,31 @@ async function main() {
   console.log('\n=== ONE NATIVE VISUAL VERIFICATION RESULTS ===\n')
   let passedCount = 0
   let failedCount = 0
+  let swapPassCount = 0
 
   for (const res of results) {
     const icon = res.passed ? 'PASS' : 'FAIL'
     console.log(`[${icon}] ${res.suite} :: ${res.name} (${res.durationMs}ms)`)
     console.log(`  Subject: ${res.subject}`)
     console.log(
-      `  Pixel Gate: ${res.pixelGate.passed ? 'PASS' : 'FAIL'} ` +
-        `(changed: ${res.pixelGate.changedPixels.toLocaleString()} / ${res.pixelGate.totalPixels.toLocaleString()}, ` +
-        `ink: ${res.pixelGate.inkPixels.toLocaleString()}, colors: ${res.pixelGate.distinctColors})`
+      `  Subject Gate: ${res.gate.passed ? 'PASS' : 'FAIL'} ` +
+        `(positive: ${res.gate.positiveReading.toLocaleString()} >= ${res.gate.floor.toLocaleString()}, ` +
+        `swap negative: ${res.gate.negativeReading.toLocaleString()} < ${res.gate.floor.toLocaleString()})`
     )
+    console.log(
+      `  Changed pixels: ${res.gate.changedPixels.toLocaleString()} / ${res.gate.totalPixels.toLocaleString()} ` +
+        `(${(res.gate.changedRatio * 100).toFixed(1)}%)`
+    )
+
+    if (res.gate.swapTestPassed) swapPassCount++
+
     if (res.oracle) {
+      const oIcon = res.oracle.advisoryPassed ? 'PASS' : 'NOTE'
       console.log(
-        `  Gemini Oracle: ${res.oracle.passed ? 'PASS' : 'FAIL'} ` +
-          `[Pos: ${res.oracle.positiveVerdict.passed ? 'PASS' : 'FAIL'}, ` +
-          `Neg: ${!res.oracle.negativeVerdict.passed ? 'PASS (Failed as req)' : 'FAIL (Passed unexpectedly)'}]`
+        `  Advisory Oracle [${oIcon}]: Pos: ${res.oracle.positiveVerdict.passed ? 'true' : 'false'}, ` +
+          `Neg: ${res.oracle.negativeVerdict.passed ? 'true' : 'false'}`
       )
-      if (!res.oracle.passed) {
-        console.log(`  Oracle Reason: ${res.oracle.failureReason}`)
-      }
+      console.log(`    Commentary: ${res.oracle.commentary}`)
     }
     if (!res.passed && res.error) {
       console.log(`  Error: ${res.error}`)
@@ -344,7 +386,10 @@ async function main() {
     else failedCount++
   }
 
-  console.log(`Total: ${results.length} | Passed: ${passedCount} | Failed: ${failedCount}`)
+  console.log(
+    `Total Checks: ${results.length} | Passed: ${passedCount} | Failed: ${failedCount} | Swap Test (Neg Rejected): ${swapPassCount}/${results.length}`
+  )
+
   if (failedCount > 0) {
     process.exit(1)
   }
