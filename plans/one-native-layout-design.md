@@ -1,6 +1,6 @@
 # design proposal: native layout and composition
 
-status: proposed, awaiting one assigned review before implementation
+status: reviewed once (r26161, held), stage 1 probe run, stage 2 contract revised
 branch: `feat/one-native`
 scope: SwiftUI tree composition, intrinsic measurement, explicit RN slots, Popover
 
@@ -71,9 +71,7 @@ A container (`Host`, `VStack`, `HStack`, `Form`, `Section`, `Popover`) is a Fabr
 view that overrides `mountChildComponentView:index:` and
 `unmountChildComponentView:index:`. Fabric already delivers children in order with an
 index, so the container keeps an ordered list of child models and never adds the
-child views as subviews. The container's SwiftUI body switches over that list and
-renders `ToggleContent(model:)`, `ButtonContent(model:)`, and so on, which are the
-same private content structs the emitter already produces.
+child views as subviews.
 
 Good: the generated catalog stays the single source of truth. A composed Toggle keeps
 its own props, its own events, its own enum validation, and its own controlled state,
@@ -82,43 +80,112 @@ reconciliation, keys, and conditional rendering all behave normally. An explicit
 slot is just another child kind, reusing `OneNativeSlot` in `fill` mode.
 
 Bad: one Fabric component view per node, and every generated control needs the mode
-split. The emitter change is real but mechanical and lands in one place.
+split.
+
+### What the review changed
+
+The assigned review (r26161, codex xhigh) held the recommendation and rejected the
+claim that the thirteen controls work composed "unchanged". Two of its findings are
+confirmed by reading `ios/Generated/OneNativeToggleView.swift`:
+
+- `ToggleModel` and `ToggleContent` are `private` at file scope, so no separate
+  container file can render `ToggleContent(model:)`. The emitter has to publish a
+  composition type, not reuse the private structs.
+- `updateHost()` sets `model.active = controller?.parent != nil` behind
+  `guard window != nil`, and `change(_:)` starts with `guard active`. A child that is
+  never added as a subview never gets a window, so its `active` stays false and it
+  emits no events, forever. Composed mode has to activate on publication instead of
+  on window membership.
+
+The review also named the Fabric contract: `RCTComponentViewProtocol` says mounting
+adds the child as a subview and unmounting removes it. Nothing enforces it (the
+mounting manager calls the overrides without asserting, and recycling only requires
+`superview == nil`), and `OneNativeTab` is not a precedent for skipping it, because
+`OneNativeTabsView` does re-parent each page UIView into an `OneNativeSlot`. So a
+composed child's inherited `ViewProps` land on a UIView nobody displays: testID,
+accessibility, pointer, and visual props applied by `RCTViewComponentView` are lost,
+and `accessibilityOrder` walks UIKit subviews it cannot find. Composed mode must
+either map the props it supports into SwiftUI or reject the ones it does not, and
+that decision belongs in the catalog rather than in each container.
+
+Two mechanics the review supplied that stage 2 follows directly. Do not reach for a
+custom `YGMeasureFunc`: RN routes measurement through `measureContent`, a measurable
+node must also be a `LeafYogaNode`, and that function cannot call
+`UIHostingController.sizeThatFits` because it is not on the main thread. The state
+write plus `adopt` feedback path is the supported seam. And a composed child preserves
+`_props` through recycling, resetting only its parent reference, active flag,
+publication, and event bindings, while unmount removes it from the parent's list
+without resetting its model, because Fabric can remove and re-insert the same view
+without sending it through the recycle pool.
 
 Cost worth naming: a composed child's UIView is created and recycled by React Native
-even though nothing ever displays it. That is the same trade `OneNativeTab` already
-makes.
+even though nothing ever displays it.
 
-## The measurement loop, which is the actual risk
+## The measurement loop, which stage 1 settled
 
-Intrinsic sizing is the part that can go wrong quietly.
+Intrinsic sizing was the part that could go wrong quietly, so it was probed before
+any emitter work. A temporary `OneNativeMeasureProbe` Fabric component hosted a
+SwiftUI `Form`, `VStack`, and wrapping `Text` in a `UIHostingController`, measured
+each at the width Yoga proposed, wrote the height into Fabric state, and counted
+every measure, layout, and state write. A `CADisplayLink` counted frames between a
+state write and the layout that consumed it. The probe ran on iPhone 16, iOS 26.4,
+RN 0.86.2, and has been removed.
 
-The container measures its SwiftUI content with
-`hostingController.sizeThatFits(in:)` and writes the result into Fabric state, the
-way `OneNativeSlotState` already carries size and origin. Yoga then lays the
-container out at that size, which triggers `layoutSubviews`, which measures again.
+RAN, on the probe:
 
-That is a loop unless the write is conditional. The rule: only call
-`setState` when the newly measured size differs from the state's current size by
-more than half a point, and never during the layout pass that consumed the previous
-state. The sheet slot already survives this pattern; a container measuring its own
-content instead of receiving an allocation is the harder direction, because its size
-depends on the width proposed to it.
+**Write the height, never the size.** The first version pinned both axes through
+`YogaLayoutableShadowNode::setSize`, the way `OneNativeSlotShadowNode` does. A
+container that does this stops responding to its parent: changing the React Native
+`width` from 340 to 200 left the probe laid out at 340, because state had pinned the
+width. The fix is a shadow node method that writes only `yoga::Dimension::Height`,
+leaving the width to Yoga. With that, a 340 to 200 width change re-proposed 200 and
+the wrapping `Text` grew from 167 to 323 points, exactly the two-line result.
 
-Open questions the reviewer should push on, and that a runtime probe should answer
-before the emitter changes:
+**`sizeThatFits(in:)` is the mechanism. `intrinsicContentSize` is not.** With
+`sizingOptions = [.intrinsicContentSize]` the controller reported 597.67 by 89 for
+text that `sizeThatFits` measured as 316.33 by 167 at a 340-point proposal. The
+intrinsic size ignores the proposed width, so it answers a different question.
 
-- Does `sizeThatFits(in:)` on a controller whose root contains a `Form` return a
-  stable height when the proposed width comes from Yoga, or does it need a layout
-  pass first?
-- What does it return while a composed child's model is still empty, on the frame
-  between mounting the container and mounting its children? A zero-height container
-  that then grows is a visible jump, not a correctness bug, but it needs a decision.
-- Does a state write from `layoutSubviews` reach Yoga in the same frame, or does
-  every size change cost a frame?
+**A container must not adopt the measured width.** `sizeThatFits` returns SwiftUI's
+ideal width, which is smaller than the proposal: 316.33 against 340, 198.67 against
+200. Only the height it returns is usable.
 
-If the answers are bad, the honest fallback is a `height` prop on the container with
-the same explicitness the leaf controls have today, and intrinsic measurement becomes
-its own later stage rather than a silent approximation.
+**A `Form` has no intrinsic height.** Proposed `.greatestFiniteMagnitude` it returns
+0; proposed 10,000 it returns 10,000. It is greedy in height at every row count and
+every width. `VStack` and `Text` return the same height under both proposals, so the
+divergence identifies greedy content rather than a measurement bug. Intrinsic sizing
+therefore cannot be offered for `Form`: `Form` gets an explicit height, and the
+container API has to say so rather than silently measuring zero.
+
+**A state write from `layoutSubviews` costs no frame.** `framesToLayout` was 0 on
+every write, across row changes, mode changes, and width changes. Yoga consumed the
+write and laid the view out within the same display frame.
+
+**The loop terminates.** Each change cost about two layouts and three measures, and
+with the view idle for five seconds the counters stayed frozen at 38 measures, 15
+layouts, 7 writes. The half-point dedupe is enough.
+
+**A measurement taken in the same turn as the model write is stale.** Measuring from
+`updateProps`, immediately after publishing to the SwiftUI model, always returned the
+previous content's height: 100 when the truth was 323, 323 when the truth was 167.
+Measure from `layoutSubviews`, never from `updateProps`.
+
+**Nothing schedules a remeasure on its own.** This is the answer to the question the
+reviewer added, and it came from a negative control: the probe was rebuilt with every
+explicit `setNeedsLayout` and async remeasure removed, leaving `layoutSubviews` as
+the only path. `layoutSubviews` then ran exactly once, at mount. A mode change, two
+row changes, and three idle seconds produced no second layout, no second measure, and
+no report. SwiftUI re-rendered its content and the Fabric host never heard about it,
+even with `sizingOptions = [.intrinsicContentSize]` set. So a composition host must
+schedule its own remeasure whenever a child publishes, updates, or unpublishes a
+model, and whenever anything else changes content without changing host bounds.
+Nothing in UIKit or SwiftUI will do it.
+
+**An empty container measures 0.** Before any child exists, `sizeThatFits` returns
+zero height, so a container that mounts before its children occupies no space and
+then grows. Since the grow costs no frame, this is a first-frame flash rather than a
+lasting error, but a container whose children arrive in a later transaction than the
+container itself will visibly jump.
 
 ## Popover
 
@@ -140,20 +207,22 @@ a point. A Popover with real trigger content gets a real anchor rect for free.
 
 Each stage compiles, regenerates, and has a runtime suite before the next starts.
 
-1. Runtime probe only: measure a `Form` in a hosting controller at a proposed width,
-   write to Fabric state, and log every measure/layout cycle. Answer the three
-   questions above. No catalog change.
-2. `Host` plus `VStack`/`HStack` with the composed-child mechanism, carrying only
-   already-generated leaf controls. No new SwiftUI bindings. This isolates the
-   mounting and measurement work from catalog growth.
-3. `Text`, `Label`, `Form`, `Section` as generated catalog entries that are
-   containers or leaves within a host.
-4. Explicit RN slot inside a host, reusing `OneNativeSlot` in `fill` mode.
-5. Popover.
+1. Done. Runtime probe, results above, no catalog change, probe removed.
+2. The composition contract in the emitter: an `internal` published model type per
+   control, activation on publication rather than on window membership, the
+   height-only shadow node write, and a host that schedules its own remeasure on every
+   publication change. Carries only already-generated leaf controls, so the mounting
+   and measurement work stays separate from catalog growth.
+3. `Host` plus `VStack`/`HStack` using that contract, with intrinsic height.
+4. `Text`, `Label`, `Form`, `Section` as generated catalog entries that are containers
+   or leaves within a host. `Form` takes an explicit height; it has no intrinsic one.
+5. Explicit RN slot inside a host, reusing `OneNativeSlot` in `fill` mode.
+6. Popover.
 
-Stage 1 is a probe and stage 2 is the boundary. If stage 1 says intrinsic measurement
-is not reliable, stage 2 still lands with explicit container heights and the rest of
-the wave is unaffected.
+Stage 2 is the boundary, and it is an emitter change rather than the mechanical mode
+split the first draft assumed. Its runtime suite has to assert that a composed control
+still emits events, since that is the failure the review found by reading and the one
+a rendering screenshot would miss.
 
 ## What this does not cover
 
