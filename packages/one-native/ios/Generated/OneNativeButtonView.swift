@@ -18,10 +18,10 @@ private final class ButtonModel: ObservableObject {
     onPress?(pressCount)
   }
 }
-@objcMembers public final class OneNativeButtonView: UIView {
+@objcMembers public final class OneNativeButtonView: UIView, OneNativeComposable {
   public var onPress: ((Int) -> Void)?
   private var model = ButtonModel()
-  private var controller: OneNativeHostingController<ButtonContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<ButtonContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String) {
@@ -33,19 +33,34 @@ private final class ButtonModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(ButtonContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onPress = { [weak self] pressCount in self?.onPress?(pressCount) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onPress = { [weak self] pressCount in self?.onPress?(pressCount) }
-      controller = OneNativeHostingController(rootView: ButtonContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ButtonContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onPress = nil
     controller?.detach(); controller = nil; model = ButtonModel()
   }
@@ -62,6 +77,5 @@ private struct ButtonContent: View {
       }
       .oneNativeButtonStyle(model.buttonStyle)
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

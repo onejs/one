@@ -15,9 +15,9 @@ private final class GaugeModel: ObservableObject {
   @Published var gaugeStyle: String = "automatic"
   var active = false
 }
-@objcMembers public final class OneNativeGaugeView: UIView {
+@objcMembers public final class OneNativeGaugeView: UIView, OneNativeComposable {
   private var model = GaugeModel()
-  private var controller: OneNativeHostingController<GaugeContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<GaugeContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ label: String, disabled: Bool, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String, gaugeStyle: String) {
@@ -33,18 +33,33 @@ private final class GaugeModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(GaugeContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      controller = OneNativeHostingController(rootView: GaugeContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: GaugeContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false
     controller?.detach(); controller = nil; model = GaugeModel()
   }
@@ -63,6 +78,5 @@ private struct GaugeContent: View {
       }
       .oneNativeGaugeStyle(model.gaugeStyle)
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

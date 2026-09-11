@@ -68,7 +68,8 @@
         "OneNativeAlert": "OneNativeAlertComponentView",
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
-        "OneNativeSheetContent": "OneNativeSheetContentComponentView"
+        "OneNativeSheetContent": "OneNativeSheetContentComponentView",
+        "OneNativeHost": "OneNativeHostComponentView"
       }
     }
   }

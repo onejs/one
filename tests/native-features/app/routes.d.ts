@@ -14,6 +14,7 @@ declare module 'one' {
         | `/one-native`
         | `/one-native-controls`
         | `/one-native-dialogs`
+        | `/one-native-host`
         | `/one-native-leaves`
         | `/one-native-sheet`
         | `/split-view-test`

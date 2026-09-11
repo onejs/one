@@ -16,10 +16,10 @@ private final class ToggleModel: ObservableObject {
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 }
-@objcMembers public final class OneNativeToggleView: UIView {
+@objcMembers public final class OneNativeToggleView: UIView, OneNativeComposable {
   public var onChange: ((Bool, Int, Int) -> Void)?
   private var model = ToggleModel()
-  private var controller: OneNativeHostingController<ToggleContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<ToggleContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, toggleStyle: String) {
@@ -30,19 +30,34 @@ private final class ToggleModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(ToggleContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      controller = OneNativeHostingController(rootView: ToggleContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ToggleContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onChange = nil
     controller?.detach(); controller = nil; model = ToggleModel()
   }
@@ -58,6 +73,5 @@ private struct ToggleContent: View {
       }
       .oneNativeToggleStyle(model.toggleStyle)
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

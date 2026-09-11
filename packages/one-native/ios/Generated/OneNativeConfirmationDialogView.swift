@@ -24,11 +24,11 @@ private final class ConfirmationDialogModel: ObservableObject {
     onAction?(id, actionCount)
   }
 }
-@objcMembers public final class OneNativeConfirmationDialogView: UIView {
+@objcMembers public final class OneNativeConfirmationDialogView: UIView, OneNativeComposable {
   public var onChange: ((Bool, Int, Int) -> Void)?
   public var onAction: ((String, Int) -> Void)?
   private var model = ConfirmationDialogModel()
-  private var controller: OneNativeHostingController<ConfirmationDialogContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<ConfirmationDialogContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String, titleVisibility: String) {
@@ -39,20 +39,35 @@ private final class ConfirmationDialogModel: ObservableObject {
   }
   public func setActions(_ items: [[String: Any]]) { model.actions = items.map { OneNativeDialogAction(id: $0["id"] as! String, label: $0["label"] as! String, role: $0["role"] as! String) } }
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(ConfirmationDialogContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+    model.onAction = { [weak self] id, actionCount in self?.onAction?(id, actionCount) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      model.onAction = { [weak self] id, actionCount in self?.onAction?(id, actionCount) }
-      controller = OneNativeHostingController(rootView: ConfirmationDialogContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ConfirmationDialogContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onChange = nil; model.onAction = nil
     controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach(); controller = nil; model = ConfirmationDialogModel()
@@ -74,6 +89,5 @@ private struct ConfirmationDialogContent: View {
       } message: {
         if !model.message.isEmpty { Text(model.message) }
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

@@ -1,8 +1,9 @@
-import type { MenuProps, TabProps, TabsProps, SheetProps } from './types';
+import type { HostProps, MenuProps, TabProps, TabsProps, SheetProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
 declare function Sheet(_props: SheetProps): never;
+declare function Host(_props: HostProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -21,6 +22,7 @@ export declare const Swift: {
     Tab: typeof Tab;
     Menu: typeof Menu;
     Sheet: typeof Sheet;
+    Host: typeof Host;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

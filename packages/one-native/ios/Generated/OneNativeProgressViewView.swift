@@ -12,9 +12,9 @@ private final class ProgressViewModel: ObservableObject {
   @Published var progressViewStyle: String = "automatic"
   var active = false
 }
-@objcMembers public final class OneNativeProgressViewView: UIView {
+@objcMembers public final class OneNativeProgressViewView: UIView, OneNativeComposable {
   private var model = ProgressViewModel()
-  private var controller: OneNativeHostingController<ProgressViewContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<ProgressViewContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ label: String, disabled: Bool, value: Double, total: Double, indeterminate: Bool, progressViewStyle: String) {
@@ -27,18 +27,33 @@ private final class ProgressViewModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(ProgressViewContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      controller = OneNativeHostingController(rootView: ProgressViewContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ProgressViewContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false
     controller?.detach(); controller = nil; model = ProgressViewModel()
   }
@@ -55,6 +70,5 @@ private struct ProgressViewContent: View {
       }
       .oneNativeProgressViewStyle(model.progressViewStyle)
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

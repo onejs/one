@@ -246,14 +246,14 @@ ${
 `
           })
           .join('')}}
-@objcMembers public final class ${nativeName}View: UIView {
+@objcMembers public final class ${nativeName}View: UIView, OneNativeComposable {
 ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${actions
           .map(
             (action) =>
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
           )
           .join('')}  private var model = ${name}Model()
-  private var controller: OneNativeHostingController<${name}Content>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<${name}Content>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
@@ -272,28 +272,41 @@ ${objectFields
   })
   .join('\n')}
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(${name}Content(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
-  private func updateHost() {
-    model.active = false
-    guard window != nil else { controller?.detach(); return }
-    if controller == nil {
-${value ? '      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${actions
+  private func bindCallbacks() {
+${value ? '    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${actions
           .map((action) => {
             const names = [
               ...Object.keys(action.payload ?? {}),
               lower(action.event) + 'Count',
             ]
-            return `      model.on${action.event} = { [weak self] ${names.join(', ')} in self?.on${action.event}?(${names.join(', ')}) }\n`
+            return `    model.on${action.event} = { [weak self] ${names.join(', ')} in self?.on${action.event}?(${names.join(', ')}) }\n`
           })
-          .join(
-            ''
-          )}      controller = OneNativeHostingController(rootView: ${name}Content(model: model))
+          .join('')}  }
+  private func updateHost() {
+    guard compositionParent == nil else { return }
+    model.active = false
+    guard window != nil else { controller?.detach(); return }
+    if controller == nil {
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ${name}Content(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false${value ? '; model.onChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
 ${control.height === 'presentation' ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
@@ -302,8 +315,7 @@ private struct ${name}Content: View {
   @ObservedObject var model: ${name}Model
   var body: some View {
     ${control.swift}
-${disabled ? '      .disabled(model.disabled)\n' : ''}      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-  }
+${disabled ? '      .disabled(model.disabled)\n' : ''}  }
 }
 ${control.extraSwift ?? ''}
 `

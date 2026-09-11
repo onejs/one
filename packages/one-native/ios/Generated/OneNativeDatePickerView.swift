@@ -19,10 +19,10 @@ private final class DatePickerModel: ObservableObject {
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 }
-@objcMembers public final class OneNativeDatePickerView: UIView {
+@objcMembers public final class OneNativeDatePickerView: UIView, OneNativeComposable {
   public var onChange: ((Double, Int, Int) -> Void)?
   private var model = DatePickerModel()
-  private var controller: OneNativeHostingController<DatePickerContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<DatePickerContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumDate: Double, maximumDate: Double, displayedComponents: String, datePickerStyle: String) {
@@ -36,19 +36,34 @@ private final class DatePickerModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(DatePickerContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      controller = OneNativeHostingController(rootView: DatePickerContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: DatePickerContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onChange = nil
     controller?.detach(); controller = nil; model = DatePickerModel()
   }
@@ -64,7 +79,6 @@ private struct DatePickerContent: View {
       }
       .oneNativeDatePickerStyle(model.datePickerStyle)
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }
 private func oneNativeDatePickerComponents(_ value: String) -> DatePicker<Text>.Components {

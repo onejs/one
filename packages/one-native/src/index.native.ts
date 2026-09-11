@@ -1,10 +1,11 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
+import { Host } from './Host.native'
 import { Menu } from './Menu.native'
 import { Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs } from './Tabs.native'
 
 export const Swift =
-  Platform.OS === 'ios' ? { Tabs, Tab, Menu, Sheet, ...Controls } : UnsupportedSwift
+  Platform.OS === 'ios' ? { Tabs, Tab, Menu, Sheet, Host, ...Controls } : UnsupportedSwift
 export type * from './types'
