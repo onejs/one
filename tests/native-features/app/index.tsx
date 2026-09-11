@@ -7,6 +7,7 @@ const testScreens = [
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
+  { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 
 export default function HomeScreen() {
