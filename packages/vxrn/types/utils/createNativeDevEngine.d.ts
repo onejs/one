@@ -105,6 +105,11 @@ interface NativeBuildOptions {
     plugins?: Plugin[];
     /** only pass when the map is written somewhere — it costs a second copy of the bundle */
     sourcemap?: boolean;
+    /**
+     * Compress and mangle the output. Defaults to React Native's own rule for a
+     * bundle: on unless the build is a dev build.
+     */
+    minify?: boolean;
 }
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
     code: string;

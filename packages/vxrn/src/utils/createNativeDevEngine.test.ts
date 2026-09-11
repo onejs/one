@@ -1658,6 +1658,102 @@ export function Box() {
   })
 })
 
+describe('native production minification', () => {
+  // a cjs dependency reached through an esm module, a top-level export, and a
+  // runtime result that depends on both. minification mangles every top-level
+  // name here and drops every comment, which is what the bundle's
+  // post-processing reads, so a pass that runs on minified output stops
+  // applying — silently for the commonjs interop, and fatally for the `export`
+  // statement, which hermes cannot parse.
+  async function writeMinifyFixture() {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-minify-'))
+    const dep = join(root, 'node_modules', 'legacy-color')
+    await mkdir(dep, { recursive: true })
+    await writeFile(
+      join(dep, 'package.json'),
+      JSON.stringify({ name: 'legacy-color', main: 'index.js' })
+    )
+    await writeFile(
+      join(dep, 'index.js'),
+      `function LegacyColor(value) { this.value = value }
+LegacyColor.prototype.describe = function () { return 'legacy:' + this.value }
+module.exports = LegacyColor`
+    )
+    await writeFile(
+      join(root, 'views.js'),
+      `'use strict';
+import LegacyColor from 'legacy-color'
+import { level } from './entry.js'
+export const describeHeader = () => new LegacyColor(level()).describe()`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `import { describeHeader } from './views.js'
+export const level = () => 'header'
+globalThis.minifyProbe = describeHeader()`
+    )
+    return root
+  }
+
+  function runFixture(code: string) {
+    const context: Record<string, unknown> = { console }
+    runInNewContext(code, context)
+    return Reflect.get(context, 'minifyProbe')
+  }
+
+  it('minifies when asked, leaves the bundle alone when not, and both behave the same', async () => {
+    const root = await writeMinifyFixture()
+    try {
+      const [plain, minified] = await Promise.all(
+        [false, true].map((minify) =>
+          buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', minify })
+        )
+      )
+
+      // the unminified bundle keeps rolldown's generated names and layout
+      expect(plain.code).toContain('__toESM')
+      expect(plain.code).toContain('describeHeader')
+      expect(plain.code.split('\n').length).toBeGreaterThan(40)
+
+      // the minified one keeps neither
+      expect(minified.code).not.toContain('describeHeader')
+      expect(minified.code).not.toContain('//#region')
+      expect(minified.code.length).toBeLessThan(plain.code.length * 0.7)
+
+      // and both still run, with the same result. before the post-processing
+      // moved inside the bundle, the minified one threw on its surviving
+      // `export {}` statement.
+      expect(runFixture(minified.code)).toBe('legacy:header')
+      expect(runFixture(plain.code)).toBe('legacy:header')
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('defaults to react native\'s rule: minify a production bundle, never a dev one', async () => {
+    const root = await writeMinifyFixture()
+    try {
+      const [prod, devBundle, explicitOff] = await Promise.all([
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js' }),
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', dev: true }),
+        buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          minify: false,
+        }),
+      ])
+
+      expect(prod.code).not.toContain('describeHeader')
+      expect(devBundle.code).toContain('describeHeader')
+      expect(explicitOff.code).toContain('describeHeader')
+      expect(prod.code.length).toBeLessThan(explicitOff.code.length)
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native production assets', () => {
   it('registers scale siblings and keeps monorepo assets inside assetsDest', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
@@ -1714,7 +1810,23 @@ globalThis.__nativeAssetProbe = [icon, back]
         assetsDest,
       })
 
-      expect(result.code).toMatch(/"scales":\s*\[\s*1,\s*2,\s*3\s*\]/)
+      const registered: Array<{ name: string; scales: number[] }> = []
+      runInNewContext(result.code, {
+        console,
+        require: (id: string) =>
+          id === 'react-native/Libraries/Image/AssetRegistry'
+            ? {
+                registerAsset: (asset: { name: string; scales: number[] }) => {
+                  registered.push(asset)
+                  return asset
+                },
+              }
+            : {},
+      })
+      expect(registered.map((asset) => [asset.name, asset.scales])).toEqual([
+        ['icon', [1, 2, 3]],
+        ['back', [1, 2]],
+      ])
       for (const file of ['icon.png', 'icon@2x.png', 'icon@3x.png']) {
         expect(existsSync(join(assetsDest, 'assets/assets', file))).toBe(true)
       }
