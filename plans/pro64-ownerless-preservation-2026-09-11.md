@@ -1,6 +1,6 @@
 # pro-64 ownerless work preservation
 
-Preserved six feature branches on 2026-09-11. Each pushed tip was checked against `git ls-remote`. No main pushes, merges, rebases, releases, deploys, or runtime validation were performed. This is preservation, not approval to land. No coordinator messages were sent.
+Preserved six feature branches on 2026-09-11. Each pushed tip was checked against `git ls-remote`. After Nate clarified that authored work already on main should be committed there, One’s existing watcher was committed and pushed on main as `89117c9af`. Orez main was fast-forwarded to fetched origin. No rebases, releases, deploys, or runtime validation were performed. Feature-branch preservation is not approval to land those branches. No coordinator messages were sent.
 
 Fetched origin in One, Orez, Tamagui, and Team Machine before comparing branches. `git log origin/main..HEAD` was empty for Orez and Team Machine; `git rev-list --left-right --count origin/main...HEAD` returned `1 0` for each at inspection. Drift's `unpublished=4` and `52` disagree with Git and must not drive a push. Tamagui comparisons has no remotes, so its `unpublished=51` is not an actionable remote comparison. These observations establish a reporting discrepancy, not its implementation cause.
 
@@ -8,7 +8,7 @@ Verdict a means coherent authored work or an already preserved clean commit. Ver
 
 | Worktree | Verdict | Action taken | Branch pushed |
 | --- | --- | --- | --- |
-| `one` | a | Watcher absent from origin/main. Copied exact untracked `scripts/ops/watch-ci.ts` into a new worktree; committed as `55484c1f4`. Original file left untouched and primary checkout remains main. | `chore/preserve-ci-watcher-pro64` |
+| `one` | a | Watcher absent from origin/main. Copied exact untracked `scripts/ops/watch-ci.ts` into a new worktree; committed as `55484c1f4`. After Nate’s clarification, committed the original file on main as `89117c9af` and pushed main. | `chore/preserve-ci-watcher-pro64` |
 | `.worktrees/one-preserve-ci-watcher-pro64` | a | Created to preserve watcher and this report; left clean and pushed. | `chore/preserve-ci-watcher-pro64` |
 | `.worktrees/one-native` | excluded, live | Left untouched; branch matched fetched origin. | None |
 | `worktrees/one-react-navigation-v8` | b | Left generated route declarations, generated Tamagui CSS, and empty emitted test declaration untouched. Existing branch matches origin. | None |
@@ -32,4 +32,4 @@ Verdict a means coherent authored work or an already preserved clean commit. Ver
 | `.worktrees/team-machine-terra-continuation-check` | a | Clean; no same-name remote branch, but HEAD already reachable from origin/main. | None needed |
 | `team-machine-verify-terminal-survival` | a | Created branch from detached HEAD and preserved all nine authored Rust/docs files as `dc0264dcf`. Changes appear to start terminal-close expiry only when idle, retain active/awaiting-answer sessions, default grace to one hour, and verify shell actor process ancestry. Includes tests; not built or run in this sweep. | `fix/preserve-terminal-survival-pro64` |
 
-Soot, Takeout, and other machines were outside scope and were not operated on. The outstanding dirty work is intentionally retained as described above. The watcher source remains untracked in One main but its exact bytes are preserved on the pushed feature branch.
+Soot, Takeout, and other machines were outside scope and were not operated on. The outstanding dirty work is intentionally retained as described above. The watcher source is now tracked and pushed on One main, with identical bytes also preserved on the feature branch.
