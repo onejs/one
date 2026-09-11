@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Swift } from 'one-native'
 import { Button, Pressable, StyleSheet, Switch, Text, View } from 'react-native'
 
-const categories = ['Picker', 'Date', 'Color', 'Toggle', 'Slider', 'Stepper'] as const
+const categories = ['Picker', 'Date', 'Color', 'Toggle', 'Slider', 'Stepper', 'Focus'] as const
 type Category = (typeof categories)[number]
 
 type ControlState = {
@@ -25,6 +25,7 @@ const initialValues: Record<Category, string | boolean | number | Date> = {
   Toggle: true,
   Slider: 25,
   Stepper: 2,
+  Focus: 'ready',
 }
 
 const initialStates: ControlStates = {
@@ -39,6 +40,7 @@ const initialStates: ControlStates = {
   Toggle: { value: true, observed: 'true', revision: 0, externalUpdates: 0 },
   Slider: { value: 25, observed: '25', revision: 0, externalUpdates: 0 },
   Stepper: { value: 2, observed: '2', revision: 0, externalUpdates: 0 },
+  Focus: { value: 'ready', observed: 'ready', revision: 0, externalUpdates: 0 },
 }
 
 const pickerStyles = ['segmented', 'menu', 'wheel', 'inline'] as const
@@ -60,6 +62,13 @@ export default function OneNativeControls() {
   const [supportsOpacity, setSupportsOpacity] = useState(true)
   const [pickerStyleIndex, setPickerStyleIndex] = useState(0)
   const [dateStyleIndex, setDateStyleIndex] = useState(0)
+  const [field1Text, setField1Text] = useState('')
+  const [field2Text, setField2Text] = useState('')
+  const [numericText, setNumericText] = useState('')
+  const [field1Focused, setField1Focused] = useState(false)
+  const [field2Focused, setField2Focused] = useState(false)
+  const [numericFocused, setNumericFocused] = useState(false)
+  const [chainSubmits, setChainSubmits] = useState(0)
   const control = controls[category]
   const pickerStyle = pickerStyles[pickerStyleIndex % pickerStyles.length]
   const datePickerStyle = datePickerStyles[dateStyleIndex % datePickerStyles.length]
@@ -93,13 +102,42 @@ export default function OneNativeControls() {
       </View>
 
       <View style={styles.status}>
-        <Text numberOfLines={1} style={styles.statusText}>
-          Value:{' '}
-          <Text testID="one-native-control-value">{displayValue(control.value)}</Text>
-        </Text>
-        <Text numberOfLines={1} style={styles.statusText}>
-          Request: <Text testID="one-native-control-request">{control.observed}</Text>
-        </Text>
+        {category === 'Focus' ? (
+          <>
+            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-active">
+              Focus:{' '}
+              {field1Focused
+                ? 'field1'
+                : field2Focused
+                  ? 'field2'
+                  : numericFocused
+                    ? 'numeric'
+                    : 'none'}
+            </Text>
+            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-field-1-val">
+              Field 1: {field1Text}
+            </Text>
+            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-field-2-val">
+              Field 2: {field2Text}
+            </Text>
+            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-numeric-val">
+              Numeric: {numericText}
+            </Text>
+            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-submits">
+              Submits: {chainSubmits}
+            </Text>
+          </>
+        ) : (
+          <>
+            <Text numberOfLines={1} style={styles.statusText}>
+              Value:{' '}
+              <Text testID="one-native-control-value">{displayValue(control.value)}</Text>
+            </Text>
+            <Text numberOfLines={1} style={styles.statusText}>
+              Request: <Text testID="one-native-control-request">{control.observed}</Text>
+            </Text>
+          </>
+        )}
       </View>
 
       {(category === 'Picker' || category === 'Date') && (
@@ -205,6 +243,60 @@ export default function OneNativeControls() {
             value={controls.Stepper.value as number}
           />
         ) : null}
+        {category === 'Focus' ? (
+          <View style={styles.focusGroup}>
+            <Swift.TextField
+              focused={field1Focused}
+              label="Field 1"
+              onFocusChange={setField1Focused}
+              onSubmit={() => {
+                setChainSubmits((n) => n + 1)
+                setField1Focused(false)
+                setField2Focused(true)
+              }}
+              onTextChange={setField1Text}
+              prompt="First field"
+              style={styles.fieldControl}
+              submitLabel="next"
+              testID="one-native-focus-field-1"
+              text={field1Text}
+              textFieldStyle="roundedBorder"
+            />
+            <Swift.TextField
+              focused={field2Focused}
+              label="Field 2"
+              onFocusChange={setField2Focused}
+              onSubmit={() => {
+                setChainSubmits((n) => n + 1)
+                setField2Focused(false)
+              }}
+              onTextChange={setField2Text}
+              prompt="Second field"
+              style={styles.fieldControl}
+              submitLabel="done"
+              testID="one-native-focus-field-2"
+              text={field2Text}
+              textFieldStyle="roundedBorder"
+            />
+            <Swift.TextField
+              focused={numericFocused}
+              keyboardType="numberPad"
+              label="Numeric"
+              onFocusChange={setNumericFocused}
+              onSubmit={() => {
+                setChainSubmits((n) => n + 1)
+                setNumericFocused(false)
+              }}
+              onTextChange={setNumericText}
+              prompt="Numeric field"
+              style={styles.fieldControl}
+              submitLabel="done"
+              testID="one-native-focus-field-numeric"
+              text={numericText}
+              textFieldStyle="roundedBorder"
+            />
+          </View>
+        ) : null}
       </View>
 
       <Text style={styles.detail}>
@@ -215,72 +307,121 @@ export default function OneNativeControls() {
             : `Revision: ${control.revision} · Reject: ${rejectChanges ? 'on' : 'off'}`}
       </Text>
 
-      <View style={styles.actions}>
-        <View style={styles.action}>
-          <Button
-            onPress={() =>
-              setControls((current) => {
-                const updates = current[category].externalUpdates + 1
-                let value: ControlState['value']
-                switch (category) {
-                  case 'Picker':
-                    value = ['alpha', 'beta', 'gamma'][updates % 3]
-                    break
-                  case 'Date':
-                    value = new Date(initialDate.getTime() + (updates % 113) * 86_400_000)
-                    break
-                  case 'Color':
-                    value = ['#3366FF', '#FF6633', '#33AA66'][updates % 3]
-                    break
-                  case 'Toggle':
-                    value = !current.Toggle.value
-                    break
-                  case 'Slider':
-                    value = [25, 50, 75, 0][updates % 4]
-                    break
-                  case 'Stepper':
-                    value = (2 + updates) % 11
-                    break
-                }
-                return {
+      {category === 'Focus' ? (
+        <View style={styles.actions}>
+          <View style={styles.action}>
+            <Button
+              onPress={() => {
+                setField2Focused(false)
+                setNumericFocused(false)
+                setField1Focused(true)
+              }}
+              testID="one-native-focus-programmatic-1"
+              title="Focus 1"
+            />
+          </View>
+          <View style={styles.action}>
+            <Button
+              onPress={() => {
+                setField1Focused(false)
+                setNumericFocused(false)
+                setField2Focused(true)
+              }}
+              testID="one-native-focus-programmatic-2"
+              title="Focus 2"
+            />
+          </View>
+          <View style={styles.action}>
+            <Button
+              onPress={() => {
+                setField1Focused(false)
+                setField2Focused(false)
+                setNumericFocused(true)
+              }}
+              testID="one-native-focus-programmatic-numeric"
+              title="Focus 123"
+            />
+          </View>
+          <View style={styles.action}>
+            <Button
+              onPress={() => {
+                setField1Focused(false)
+                setField2Focused(false)
+                setNumericFocused(false)
+              }}
+              testID="one-native-focus-blur"
+              title="Blur"
+            />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.actions}>
+          <View style={styles.action}>
+            <Button
+              onPress={() =>
+                setControls((current) => {
+                  const updates = current[category].externalUpdates + 1
+                  let value: ControlState['value']
+                  switch (category) {
+                    case 'Picker':
+                      value = ['alpha', 'beta', 'gamma'][updates % 3]
+                      break
+                    case 'Date':
+                      value = new Date(initialDate.getTime() + (updates % 113) * 86_400_000)
+                      break
+                    case 'Color':
+                      value = ['#3366FF', '#FF6633', '#33AA66'][updates % 3]
+                      break
+                    case 'Toggle':
+                      value = !current.Toggle.value
+                      break
+                    case 'Slider':
+                      value = [25, 50, 75, 0][updates % 4]
+                      break
+                    case 'Stepper':
+                      value = (2 + updates) % 11
+                      break
+                  }
+                  return {
+                    ...current,
+                    [category]: {
+                      ...current[category],
+                      value,
+                      externalUpdates: updates,
+                    },
+                  }
+                })
+              }
+              testID="one-native-control-external"
+              title="External update"
+            />
+          </View>
+          <View style={styles.action}>
+            <Button
+              onPress={() => setRejectChanges((value) => !value)}
+              testID="one-native-control-reject"
+              title="Reject changes"
+            />
+          </View>
+          <View style={styles.action}>
+            <Button
+              onPress={() =>
+                setControls((current) => ({
                   ...current,
                   [category]: {
-                    ...current[category],
-                    value,
-                    externalUpdates: updates,
+                    value: initialValues[category],
+                    observed: current[category].observed,
+                    revision: current[category].revision + 1,
+                    externalUpdates: 0,
                   },
-                }
-              })
-            }
-            testID="one-native-control-external"
-            title="External update"
-          />
+                }))
+              }
+              testID="one-native-control-reset"
+              title="Reset revision"
+            />
+          </View>
         </View>
-        <View style={styles.action}>
-          <Button
-            onPress={() => setRejectChanges((value) => !value)}
-            testID="one-native-control-reject"
-            title="Reject changes"
-          />
-        </View>
-        <View style={styles.action}>
-          <Button
-            onPress={() =>
-              setControls((current) => ({
-                ...current,
-                [category]: {
-                  value: initialValues[category],
-                  observed: current[category].observed,
-                  revision: current[category].revision + 1,
-                  externalUpdates: 0,
-                },
-              }))
-            }
-            testID="one-native-control-reset"
-            title="Reset revision"
-          />
-        </View>
-      </View>
+      )}
     </View>
   )
 }
@@ -331,6 +472,14 @@ const styles = StyleSheet.create({
   },
   nativeControl: {
     width: '100%',
+  },
+  focusGroup: {
+    gap: 8,
+    paddingVertical: 4,
+  },
+  fieldControl: {
+    width: '100%',
+    minHeight: 36,
   },
   optionRow: {
     minHeight: 36,

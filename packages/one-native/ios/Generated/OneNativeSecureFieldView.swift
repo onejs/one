@@ -5,6 +5,7 @@ import UIKit
 
 private final class SecureFieldModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
+  @Published var controlledFocus = OneNativeControlled<Bool>(false)
   @Published var label: String = ""
   @Published var disabled: Bool = false
   @Published var prompt: String = ""
@@ -12,6 +13,8 @@ private final class SecureFieldModel: ObservableObject {
   @Published var submitLabel: String = ""
   @Published var textInputAutocapitalization: String = ""
   @Published var autocorrectionDisabled: Bool = false
+  @Published var keyboardType: String = ""
+  @Published var textContentType: String = ""
   @Published var accessibility = OneNativeAccessibility()
   var active = false
   var onChange: ((String, Int, Int) -> Void)?
@@ -19,6 +22,12 @@ private final class SecureFieldModel: ObservableObject {
     guard active, !disabled, controlled.value != value else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
+  }
+  var onFocusChange: ((Bool, Int, Int) -> Void)?
+  func changeFocus(_ value: Bool) {
+    guard active, !disabled, controlledFocus.value != value else { return }
+    controlledFocus.change(value)
+    onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
   var onSubmit: ((Int) -> Void)?
   private var submitCount = 0
@@ -30,6 +39,7 @@ private final class SecureFieldModel: ObservableObject {
 }
 @objcMembers public final class OneNativeSecureFieldView: UIView, OneNativeComposable {
   public var onChange: ((String, Int, Int) -> Void)?
+  public var onFocusChange: ((Bool, Int, Int) -> Void)?
   public var onSubmit: ((Int) -> Void)?
   private var model = SecureFieldModel()
   public var onHeight: ((CGFloat) -> Void)?
@@ -40,8 +50,9 @@ private final class SecureFieldModel: ObservableObject {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool, keyboardType: String, textContentType: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.prompt != prompt { model.prompt = prompt }
@@ -49,6 +60,8 @@ private final class SecureFieldModel: ObservableObject {
     if model.submitLabel != submitLabel { model.submitLabel = submitLabel }
     if model.textInputAutocapitalization != textInputAutocapitalization { model.textInputAutocapitalization = textInputAutocapitalization }
     if model.autocorrectionDisabled != autocorrectionDisabled { model.autocorrectionDisabled = autocorrectionDisabled }
+    if model.keyboardType != keyboardType { model.keyboardType = keyboardType }
+    if model.textContentType != textContentType { model.textContentType = textContentType }
   }
 
 
@@ -66,6 +79,7 @@ private final class SecureFieldModel: ObservableObject {
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+    model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }
     model.onSubmit = { [weak self] submitCount in self?.onSubmit?(submitCount) }
   }
   private func updateHost() {
@@ -81,12 +95,13 @@ private final class SecureFieldModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onChange = nil; model.onSubmit = nil
+    model.active = false; model.onChange = nil; model.onFocusChange = nil; model.onSubmit = nil
     controller?.detach(); controller = nil; model = SecureFieldModel()
   }
 }
 private struct SecureFieldContent: View {
   @ObservedObject var model: SecureFieldModel
+  @FocusState private var focused: Bool
   var body: some View {
     SecureField(text: Binding(
         get: { model.controlled.value },
@@ -98,7 +113,19 @@ private struct SecureFieldContent: View {
       .oneNativeSubmitLabel(model.submitLabel)
       .oneNativeTextInputAutocapitalization(model.textInputAutocapitalization)
       .autocorrectionDisabled(model.autocorrectionDisabled)
+      .oneNativeKeyboardType(model.keyboardType)
+      .oneNativeTextContentType(model.textContentType)
       .onSubmit(of: .text) { model.submit() }
+      .focused($focused)
+      .onChange(of: focused) { _, isFocused in
+        model.changeFocus(isFocused)
+      }
+      .onChange(of: model.controlledFocus.value) { _, isFocused in
+        if focused != isFocused { focused = isFocused }
+      }
+      .onAppear {
+        if model.controlledFocus.value { focused = true }
+      }
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
   }

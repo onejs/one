@@ -495,6 +495,9 @@ export function TextField({
   text,
   onTextChange,
   revision = 0,
+  focused,
+  onFocusChange,
+  focusRevision = 0,
   onSubmit,
   label = '',
   disabled = false,
@@ -503,6 +506,8 @@ export function TextField({
   submitLabel = '',
   textInputAutocapitalization = '',
   autocorrectionDisabled = false,
+  keyboardType = '',
+  textContentType = '',
   axis = 'horizontal',
   style,
   ...props
@@ -531,6 +536,11 @@ export function TextField({
     eventCount: number
     revision: number
   }>((event) => onTextChange(event.value), revision)
+  const controlledFocus = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onFocusChange?.(event.value), focusRevision)
   return (
     <NativeTextField
       {...props}
@@ -538,6 +548,11 @@ export function TextField({
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      focused={focused ?? false}
+      acknowledgedFocusEvent={
+        focused !== undefined ? controlledFocus.acknowledgedEvent : 0
+      }
+      focusRevision={focusRevision}
       label={label}
       disabled={disabled}
       prompt={prompt}
@@ -545,9 +560,14 @@ export function TextField({
       submitLabel={submitLabel}
       textInputAutocapitalization={textInputAutocapitalization}
       autocorrectionDisabled={autocorrectionDisabled}
+      keyboardType={keyboardType}
+      textContentType={textContentType}
       axis={axis}
       onNativeTextFieldValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
+      }
+      onNativeTextFieldFocusChange={({ nativeEvent }) =>
+        controlledFocus.onNativeChange(nativeEvent)
       }
       onNativeTextFieldSubmit={({ nativeEvent }) => onSubmit?.()}
     />
@@ -558,6 +578,9 @@ export function SecureField({
   text,
   onTextChange,
   revision = 0,
+  focused,
+  onFocusChange,
+  focusRevision = 0,
   onSubmit,
   label = '',
   disabled = false,
@@ -566,6 +589,8 @@ export function SecureField({
   submitLabel = '',
   textInputAutocapitalization = '',
   autocorrectionDisabled = false,
+  keyboardType = '',
+  textContentType = '',
   style,
   ...props
 }: Types.SecureFieldProps) {
@@ -592,6 +617,11 @@ export function SecureField({
     eventCount: number
     revision: number
   }>((event) => onTextChange(event.value), revision)
+  const controlledFocus = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onFocusChange?.(event.value), focusRevision)
   return (
     <NativeSecureField
       {...props}
@@ -599,6 +629,11 @@ export function SecureField({
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      focused={focused ?? false}
+      acknowledgedFocusEvent={
+        focused !== undefined ? controlledFocus.acknowledgedEvent : 0
+      }
+      focusRevision={focusRevision}
       label={label}
       disabled={disabled}
       prompt={prompt}
@@ -606,8 +641,13 @@ export function SecureField({
       submitLabel={submitLabel}
       textInputAutocapitalization={textInputAutocapitalization}
       autocorrectionDisabled={autocorrectionDisabled}
+      keyboardType={keyboardType}
+      textContentType={textContentType}
       onNativeSecureFieldValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
+      }
+      onNativeSecureFieldFocusChange={({ nativeEvent }) =>
+        controlledFocus.onNativeChange(nativeEvent)
       }
       onNativeSecureFieldSubmit={({ nativeEvent }) => onSubmit?.()}
     />

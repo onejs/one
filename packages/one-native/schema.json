@@ -711,6 +711,15 @@
         "revision": {
           "type": "Int32"
         },
+        "focused": {
+          "type": "boolean"
+        },
+        "acknowledgedFocusEvent": {
+          "type": "Int32"
+        },
+        "focusRevision": {
+          "type": "Int32"
+        },
         "label": {
           "type": "string"
         },
@@ -735,6 +744,12 @@
         "autocorrectionDisabled": {
           "type": "boolean"
         },
+        "keyboardType": {
+          "type": "string"
+        },
+        "textContentType": {
+          "type": "string"
+        },
         "axis": {
           "type": "string",
           "enum": "Axis"
@@ -744,6 +759,17 @@
         "onNativeTextFieldValueChange": {
           "value": {
             "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeTextFieldFocusChange": {
+          "value": {
+            "type": "boolean"
           },
           "eventCount": {
             "type": "Int32"
@@ -787,6 +813,15 @@
         "revision": {
           "type": "Int32"
         },
+        "focused": {
+          "type": "boolean"
+        },
+        "acknowledgedFocusEvent": {
+          "type": "Int32"
+        },
+        "focusRevision": {
+          "type": "Int32"
+        },
         "label": {
           "type": "string"
         },
@@ -810,12 +845,29 @@
         },
         "autocorrectionDisabled": {
           "type": "boolean"
+        },
+        "keyboardType": {
+          "type": "string"
+        },
+        "textContentType": {
+          "type": "string"
         }
       },
       "events": {
         "onNativeSecureFieldValueChange": {
           "value": {
             "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSecureFieldFocusChange": {
+          "value": {
+            "type": "boolean"
           },
           "eventCount": {
             "type": "Int32"

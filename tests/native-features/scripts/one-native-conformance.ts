@@ -602,6 +602,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'forms') {
     const nativeValue = (nodes: Node[], label: string, expected: string | number) =>
       nodes.some((n) => n.AXLabel === label && String(n.AXValue) === String(expected))
+    const type = (text: string) =>
+      command(['ui-automation', 'type-text', '--text', text], config.simulatorId)
+    const submit = () =>
+      command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const pressSwitch = async () => {
       const nodes = await wait('native switch is ready', (n) =>
         Boolean(n.find((x) => x.AXLabel === 'Enable notifications' && x.frame))
@@ -768,6 +772,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, '25') && nativeValue(n, 'Volume', 0.25)
     )
     screenshot('form-controls.png')
+    tap({ id: 'one-native-control-category-focus' })
+    await wait(
+      'focus controls mounted',
+      (n) => has(n, 'Focus: none') && Boolean(id(n, 'one-native-focus-programmatic-1'))
+    )
+    tap({ id: 'one-native-focus-programmatic-1' })
+    await wait('focus field one programmatically', (n) => has(n, 'Focus: field1'))
+    type('First')
+    await wait('field one received text', (n) => has(n, 'Field 1: First'))
+    submit()
+    await wait(
+      'submit advances focus to field two',
+      (n) => has(n, 'Focus: field2') && has(n, 'Submits: 1')
+    )
+    type('Second')
+    await wait('field two received text', (n) => has(n, 'Field 2: Second'))
+    submit()
+    await wait(
+      'submit field two drops focus',
+      (n) => has(n, 'Focus: none') && has(n, 'Submits: 2')
+    )
+    tap({ id: 'one-native-focus-programmatic-numeric' })
+    await wait('numeric field focused', (n) => has(n, 'Focus: numeric'))
+    type('12345')
+    await wait('numeric field received text', (n) => has(n, 'Numeric: 12345'))
+    tap({ id: 'one-native-focus-blur' })
+    await wait('blur drops numeric focus', (n) => has(n, 'Focus: none'))
+    screenshot('form-focus-chain.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
