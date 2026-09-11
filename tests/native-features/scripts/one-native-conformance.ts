@@ -602,8 +602,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'forms') {
     const nativeValue = (nodes: Node[], label: string, expected: string | number) =>
       nodes.some((n) => n.AXLabel === label && String(n.AXValue) === String(expected))
-    const type = (text: string) =>
-      command(['ui-automation', 'type-text', '--text', text], config.simulatorId)
+    const field = (nodes: Node[], label: string) =>
+      nodes.find((n) => n.type === 'TextField' && n.AXLabel === label)
+    const typeField = (label: string, text: string) =>
+      typeInto(label, text, (n) => {
+        const val =
+          field(n, label)?.AXValue ??
+          id(n, `one-native-focus-${label.toLowerCase().replace(' ', '-')}-val`)?.AXLabel
+        return val !== undefined ? String(val) : undefined
+      })
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const pressSwitch = async () => {
@@ -779,14 +786,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-focus-programmatic-1' })
     await wait('focus field one programmatically', (n) => has(n, 'Focus: field1'))
-    type('First')
+    await typeField('Field 1', 'First')
     await wait('field one received text', (n) => has(n, 'Field 1: First'))
     submit()
     await wait(
       'submit advances focus to field two',
       (n) => has(n, 'Focus: field2') && has(n, 'Submits: 1')
     )
-    type('Second')
+    await typeField('Field 2', 'Second')
     await wait('field two received text', (n) => has(n, 'Field 2: Second'))
     submit()
     await wait(
@@ -795,7 +802,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-focus-programmatic-numeric' })
     await wait('numeric field focused', (n) => has(n, 'Focus: numeric'))
-    type('12345')
+    await typeField('Numeric', '12345')
     await wait('numeric field received text', (n) => has(n, 'Numeric: 12345'))
     tap({ id: 'one-native-focus-blur' })
     await wait('blur drops numeric focus', (n) => has(n, 'Focus: none'))
