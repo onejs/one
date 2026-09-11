@@ -350,26 +350,16 @@ export function useSortedScreens(
 }
 
 function fromImport({ ErrorBoundary, SuspenseFallback, ...component }: LoadedRoute) {
-  if (ErrorBoundary) {
-    return {
-      default: React.forwardRef((props: any, ref: any) => {
-        const children = React.createElement(getPageExport(component) || EmptyRoute, {
-          ...props,
-          ref,
-        })
-        return <Try catch={ErrorBoundary}>{children}</Try>
-      }),
-      SuspenseFallback,
-    }
-  }
+  // keep ErrorBoundary on the returned module and wrap it in JSX below.
+  // a new forwardRef here remounts the route on every ScreenComponent render.
   if (process.env.NODE_ENV !== 'production') {
     const exported = getPageExport(component)
     if (exported && typeof exported === 'object' && Object.keys(exported).length === 0) {
-      return { default: EmptyRoute, SuspenseFallback }
+      return { default: EmptyRoute, ErrorBoundary, SuspenseFallback }
     }
   }
 
-  return { default: getPageExport(component), SuspenseFallback }
+  return { default: getPageExport(component), ErrorBoundary, SuspenseFallback }
 }
 
 function RouteSuspenseFallback({
@@ -451,7 +441,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     }
 
     const res = fromImport(value.loadRoute())
-    const Component = getPageExport(res) as React.ComponentType<any>
+    const Component = (res.default || EmptyRoute) as React.ComponentType<any>
+    const CatchBoundary = res.ErrorBoundary
     const LayoutSuspenseFallback =
       value.type === 'layout' ? res.SuspenseFallback : undefined
     const match =
@@ -491,9 +482,12 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         />
       )
     } else {
+      const page = (
+        <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
+      )
       rendered = (
         <RouteErrorBoundary routeName={value.route}>
-          <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
+          {CatchBoundary ? <Try catch={CatchBoundary}>{page}</Try> : page}
         </RouteErrorBoundary>
       )
     }
