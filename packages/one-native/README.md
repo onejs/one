@@ -2,7 +2,7 @@
 
 Generated SwiftUI tabs, menus, pickers, form controls, sheets, containers, popovers,
 video, maps, and Quick Look for React Native, exposed through `Swift`. This is an
-initial implementation on the `feat/one-native` branch. It requires an iOS 18+ native
+initial implementation on the `feat/one-native` branch. It requires an iOS 26+ native
 build and React Native's New Architecture. It is not published to npm.
 
 ```tsx
@@ -86,8 +86,8 @@ that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
 
 `Swift.Tab` accepts `role="search"`. `Swift.Tabs` accepts the SDK-derived
-`tabBarMinimizeBehavior` values on iOS 26+. Unsupported enum values and OS versions
-are rejected before submitting native props. Omit the modifier on older iOS.
+`tabBarMinimizeBehavior` values. Unsupported enum values are rejected before
+submitting native props.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
@@ -240,8 +240,8 @@ they are most useful as rows inside a container.
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
 accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
-`bordered`, `borderedProminent`, `glass`, or `glassProminent`; the last two
-require iOS 26. `onPress` does not fire while `disabled`.
+`bordered`, `borderedProminent`, `glass`, or `glassProminent`. `onPress` does
+not fire while `disabled`.
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be

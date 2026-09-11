@@ -1,6 +1,8 @@
 require 'json'
 
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
+# codegen/generate.ts owns the floor and writes it into schema.json.
+schema = JSON.parse(File.read(File.join(__dir__, 'schema.json')))
 
 Pod::Spec.new do |s|
   s.name = 'OneNative'
@@ -10,7 +12,7 @@ Pod::Spec.new do |s|
   s.license = package['license']
   s.author = 'One'
   s.source = { :git => 'https://github.com/onejs/one.git' }
-  s.platforms = { :ios => '18.0' }
+  s.platforms = { :ios => "#{schema['minimumVersion']}.0" }
   s.swift_version = '5.9'
   s.static_framework = true
   s.source_files = 'ios/**/*.{h,m,mm,swift}', 'cpp/**/*.{h,cpp}'

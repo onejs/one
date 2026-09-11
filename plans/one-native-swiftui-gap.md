@@ -171,9 +171,8 @@ Ordered by how often a real app wants them.
 9. **`SignInWithAppleButton`** (`_AuthenticationServices_SwiftUI`) and **`LocationButton`**
    (`_CoreLocationUI_SwiftUI`). Both are single-purpose buttons Apple requires you to use verbatim.
 10. **`PayWithApplePayButton`** / **`AddPassToWalletButton`** (`_PassKit_SwiftUI`). Same argument.
-11. **`WebView`** (`_WebKit_SwiftUI`). Blocked on an availability gate: it is iOS 26 and the package
-    declares `minimumVersion: 18`, so this needs a control-level `@available` mechanism that does not
-    exist yet. That is a design decision, not an implementation detail.
+11. **`WebView`** (`_WebKit_SwiftUI`). Was blocked on an availability gate, since it is iOS 26. The
+    floor moved to 26, so it is now an ordinary leaf with no new mechanism.
 12. **`Model3D`** / **`RealityView`** (`_RealityKit_SwiftUI`), **`SceneView`**, **`SpriteView`**,
     **`ArtworkImage`**, **`Query`**. Real API, narrow audience.
 

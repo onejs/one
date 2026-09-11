@@ -18,7 +18,11 @@ bounded catalog, fixture and conformance work. Every worker goes through `tm run
 - Exact SDK constructor signatures, generic modifier requirements, both Swift
   availability syntaxes, and normalized escaped identifiers. Ambiguity is an
   error. `codegen/Extract.swift`, `inventory.ts`, `generate.ts` own this pipeline.
-- Generated Swift is typechecked against the simulator SDK at an iOS 18 target.
+- The package floor is iOS 26. `MINIMUM_IOS` in `codegen/generate.ts` is the only place it is set;
+  `schema.json` carries it forward and `OneNative.podspec` reads it from there. Raising it deleted
+  every `@available` and `if #available` branch from the generated Swift, and it is what makes
+  `WebView` an ordinary leaf instead of a design problem.
+- Generated Swift is typechecked against the simulator SDK at an iOS 26 target.
   `generate:check` checks exact outputs and SDK provenance. CI pins Xcode 26.4
   and compiles the real native-features consumer, including ObjC++/Fabric code.
 - `ios/OneNativeControlled.swift` and `src/controlled.ts` share optimistic native
@@ -279,21 +283,19 @@ Ranked. `one-native-swiftui-gap.md` carries the evidence for this ordering.
    `EnvironmentValues` keys are currently neither readable nor writable.
 5. **`PhotosPicker`, `ShareLink`, `fullScreenCover`, `contextMenu`, `ContentUnavailableView`.**
    All reachable with mechanisms that already exist.
+6. **`WebView`** (`_WebKit_SwiftUI`), now that the floor is iOS 26. An ordinary leaf, no new
+   mechanism.
+7. Sheet sizing-to-content, selected detent binding, and presentation
+   background/interaction/sizing remain unimplemented, as do the `presenting:`
+   value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
 
-Two items are blocked on a decision rather than on work:
+One item wants a decision before code:
 
-- **`WebView`** is `_WebKit_SwiftUI` and iOS 26 while the package declares `minimumVersion: 18`,
-  so it needs a control-level availability gate that does not exist. What happens on iOS 18 when
-  a control requires 26 is a product call: throw at construction, render nothing, or render a
-  fallback. Do not invent one.
 - **Navigation** wants a design pass before code. `NavigationStack`, `NavigationLink`,
   `navigationDestination`, `navigationTitle`, `toolbar` and its ten companions, `searchable` and
   its seven: 22 navigation modifiers at zero. Binding it means owning the interaction with
   whatever router the app already uses.
 
-6. Sheet sizing-to-content, selected detent binding, and presentation
-   background/interaction/sizing remain unimplemented, as do the `presenting:`
-   value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
 2. The layout wave is finished: controls compose into one SwiftUI tree, a host reports
    the height SwiftUI measured back to Yoga, `Text` and `Label` are generated leaves,
    `Swift.Form`/`Swift.Section` are containers that nest, `Swift.Slot` carries a React

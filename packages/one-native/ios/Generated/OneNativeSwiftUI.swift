@@ -36,7 +36,6 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MenuActionDismissBehavior: \(value)")
     }
   }
-  @available(iOS 26, *)
   static func tabBarMinimizeBehavior(_ value: String) -> TabBarMinimizeBehavior {
     switch value {
     case "automatic":
@@ -58,11 +57,9 @@ enum OneNativeGenerated {
     case "cancel":
       return .cancel
     case "confirm":
-      if #available(iOS 26, *) { return .confirm }
-      preconditionFailure("ButtonRole.confirm requires iOS 26")
+      return .confirm
     case "close":
-      if #available(iOS 26, *) { return .close }
-      preconditionFailure("ButtonRole.close requires iOS 26")
+      return .close
     default: preconditionFailure("invalid ButtonRole: \(value)")
     }
   }
@@ -228,23 +225,18 @@ extension View {
     }
   }
   @ViewBuilder func oneNativeTabBarMinimizeBehavior(_ value: String) -> some View {
-    if #available(iOS 26, *) {
-      if value.isEmpty { self } else { self.tabBarMinimizeBehavior(OneNativeGenerated.tabBarMinimizeBehavior(value)) }
-    } else {
-      let _ = precondition(value.isEmpty, "tabBarMinimizeBehavior requires iOS 26")
-      self
-    }
+    if value.isEmpty { self } else { self.tabBarMinimizeBehavior(OneNativeGenerated.tabBarMinimizeBehavior(value)) }
   }
   @ViewBuilder func oneNativeButtonStyle(_ value: String) -> some View {
     switch value {
     case "automatic":
       self.buttonStyle(.automatic)
     case "glass":
-      if #available(iOS 26, *) { self.buttonStyle(.glass) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glass requires iOS 26"); self }
+      self.buttonStyle(.glass)
     case "borderless":
       self.buttonStyle(.borderless)
     case "glassProminent":
-      if #available(iOS 26, *) { self.buttonStyle(.glassProminent) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glassProminent requires iOS 26"); self }
+      self.buttonStyle(.glassProminent)
     case "plain":
       self.buttonStyle(.plain)
     case "bordered":
