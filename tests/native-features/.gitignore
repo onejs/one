@@ -3,3 +3,10 @@ android/
 node_modules/
 dist/
 .expo/
+
+# conformance run output. captures default to /tmp, but --artifact-dir takes any path and a run
+# pointed inside the repo would otherwise stage 70 screenshots.
+*.png
+*.jpg
+*.webp
+outcome.json
