@@ -8,6 +8,9 @@ interface NativeProps extends ViewProps {
   value: string
   acknowledgedEvent: Int32
   revision: Int32
+  focused: boolean
+  acknowledgedFocusEvent: Int32
+  focusRevision: Int32
   label: string
   disabled: boolean
   prompt: string
@@ -15,8 +18,13 @@ interface NativeProps extends ViewProps {
   submitLabel: string
   textInputAutocapitalization: string
   autocorrectionDisabled: boolean
+  keyboardType: string
+  textContentType: string
   onNativeSecureFieldValueChange?: DirectEventHandler<
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
+  >
+  onNativeSecureFieldFocusChange?: DirectEventHandler<
+    Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
   onNativeSecureFieldSubmit?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }

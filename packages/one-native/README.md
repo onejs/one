@@ -265,9 +265,10 @@ and `onSubmit` fires when it is pressed. `textInputAutocapitalization` is `never
 `autocorrectionDisabled` defaults to false. `TextField` also takes `axis`:
 `vertical` makes it grow to multiple lines.
 
-Keyboard type and programmatic focus are not bound. SwiftUI exposes those through
-UIKit's `UIKeyboardType` and `@FocusState`, neither of which the current prop
-pipeline carries.
+Programmatic focus is controlled through `focused` and `onFocusChange` using the shared
+controlled protocol, mapped to SwiftUI's `@FocusState`. `keyboardType` sets UIKit's
+`UIKeyboardType` (`default`, `numberPad`, `decimalPad`, `emailAddress`, etc.) and `textContentType`
+configures semantic text content.
 
 ## Video
 

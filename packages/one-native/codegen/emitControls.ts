@@ -43,6 +43,7 @@ export function emitControls(header: string, outputs: Map<string, string>) {
     header +
     `import type { ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
+import type { KeyboardType, TextContentType } from '../textTypes'
 
 // the React Native props a One Native control honors. a composed control renders inside its
 // parent's SwiftUI tree and its own UIView is never displayed, so the rest of ViewProps would
@@ -80,7 +81,7 @@ export type OneNativeViewProps = Pick<
     const presentation = control.layout === 'presentation'
     // weakSelf only exists for the blocks below it, so a control with none would declare it
     // and never read it.
-    const callbacks = measured || !!value || actions.length > 0
+    const callbacks = measured || !!value || actions.length > 0 || !!control.focus
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
     const callbackType = (action: { payload?: Record<string, ScalarType> }) =>
       `(${Object.entries(action.payload ?? {})
@@ -94,11 +95,25 @@ ${
   revision?: number
 `
     : ''
-}${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' ? '' : '?'}: ${field.publicType ?? (field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field))}`).join('\n')}
+}${
+  control.focus
+    ? `  focused?: boolean
+  onFocusChange?: (focused: boolean) => void
+  focusRevision?: number
+`
+    : ''
+}${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : (field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field))}`).join('\n')}
 }\n`
     const props = {
       ...(value
         ? { value: value.type, acknowledgedEvent: 'Int32', revision: 'Int32' }
+        : {}),
+      ...(control.focus
+        ? {
+            focused: 'boolean',
+            acknowledgedFocusEvent: 'Int32',
+            focusRevision: 'Int32',
+          }
         : {}),
       ...Object.fromEntries(fieldEntries.map(([key, field]) => [key, nativeType(field)])),
     }
@@ -107,6 +122,15 @@ ${
         ? {
             [`onNative${name}ValueChange`]: {
               value: value.type,
+              eventCount: 'Int32',
+              revision: 'Int32',
+            },
+          }
+        : {}),
+      ...(control.focus
+        ? {
+            [`onNative${name}FocusChange`]: {
+              value: 'boolean',
               eventCount: 'Int32',
               revision: 'Int32',
             },
@@ -129,6 +153,9 @@ ${
       ),
       controlled: value
         ? { value: 'value', event: `onNative${name}ValueChange` }
+        : undefined,
+      focus: control.focus
+        ? { value: 'focused', event: `onNative${name}FocusChange` }
         : undefined,
       actions: actions.map((action) => ({
         publicProp: action.prop,
@@ -174,6 +201,7 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
     )
     const parameters = [
       ...(value ? [value.prop, value.event, 'revision = 0'] : []),
+      ...(control.focus ? ['focused', 'onFocusChange', 'focusRevision = 0'] : []),
       ...actions.map((action) => action.prop),
       ...publicFields.map(([key, field]) =>
         field.type === 'objects'
@@ -197,9 +225,21 @@ ${
   value
     ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
     : ''
+}${
+  control.focus
+    ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
+    : ''
 }  return <Native${name} {...props} ${styleProp}
-${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
-${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${actions
+${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
+  control.focus
+    ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
+    : ''
+}${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
+${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${
+  control.focus
+    ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
+    : ''
+}${actions
       .map(
         (action) =>
           `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${Object.keys(
@@ -225,6 +265,13 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
             { label: 'revision', type: 'Int' },
           ]
         : []),
+      ...(control.focus
+        ? [
+            { label: 'focused', type: 'Bool' },
+            { label: 'acknowledgedFocusEvent', type: 'Int' },
+            { label: 'focusRevision', type: 'Int' },
+          ]
+        : []),
       ...plainFields.map(([key, field]) => ({ label: key, type: swiftType(field) })),
     ]
     // objective-c names the selector from the first label, so it is always unlabeled.
@@ -237,7 +284,9 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
 import UIKit${(control.imports ?? []).map((framework) => `\nimport ${framework}`).join('')}
 
 private final class ${name}Model: ObservableObject {
-${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value.type)}>(${literal(value.initial)})\n` : ''}${swiftFields}
+${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value.type)}>(${literal(value.initial)})\n` : ''}${
+  control.focus ? '  @Published var controlledFocus = OneNativeControlled<Bool>(false)\n' : ''
+}${swiftFields}
   @Published var accessibility = OneNativeAccessibility()
   var active = false
 ${
@@ -247,6 +296,16 @@ ${
     guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
+  }
+`
+    : ''
+}${
+  control.focus
+    ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
+  func changeFocus(_ value: Bool) {
+    guard ${[...guards, 'controlledFocus.value != value'].join(', ')} else { return }
+    controlledFocus.change(value)
+    onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
 `
     : ''
@@ -265,7 +324,9 @@ ${
           })
           .join('')}}
 @objcMembers public final class ${nativeName}View: UIView, OneNativeComposable {
-${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${actions
+${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${
+  control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
+}${actions
           .map(
             (action) =>
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
@@ -279,7 +340,9 @@ ${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var 
     if model.accessibility != next { model.accessibility = next }
   }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
-${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${plainFields
+${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${
+  control.focus ? '    if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }\n' : ''
+}${plainFields
           .map(([key]) => `    if model.${key} != ${key} { model.${key} = ${key} }`)
           .join('\n')}
   }
@@ -307,7 +370,9 @@ ${objectFields
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
-${value ? '    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${actions
+${value ? '    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${
+  control.focus ? '    model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }\n' : ''
+}${actions
           .map((action) => {
             const names = [
               ...Object.keys(action.payload ?? {}),
@@ -329,15 +394,29 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
   }
   public func reset() {
     compositionParent = nil
-    model.active = false${value ? '; model.onChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
+    model.active = false${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
 ${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
 }
 private struct ${name}Content: View {
   @ObservedObject var model: ${name}Model
-  var body: some View {
+${control.focus ? '  @FocusState private var focused: Bool\n' : ''}  var body: some View {
     ${control.swift}
-${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
+${
+  control.focus
+    ? `      .focused($focused)
+      .onChange(of: focused) { _, isFocused in
+        model.changeFocus(isFocused)
+      }
+      .onChange(of: model.controlledFocus.value) { _, isFocused in
+        if focused != isFocused { focused = isFocused }
+      }
+      .onAppear {
+        if model.controlledFocus.value { focused = true }
+      }
+`
+    : ''
+}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
   }
 }
 ${control.extraSwift ?? ''}
@@ -399,6 +478,13 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
             { label: 'revision', expression: 'next.revision' },
           ]
         : []),
+      ...(control.focus
+        ? [
+            { label: 'focused', expression: 'next.focused' },
+            { label: 'acknowledgedFocusEvent', expression: 'next.acknowledgedFocusEvent' },
+            { label: 'focusRevision', expression: 'next.focusRevision' },
+          ]
+        : []),
       ...plainFields.map(([key, field]) => ({
         label: key,
         expression: convert(key, field.type),
@@ -430,6 +516,16 @@ ${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}$
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
       emitter->onNative${name}ValueChange({.value = ${cppScalar(value.type, 'value')}, .eventCount = (int)eventCount, .revision = (int)revision});
+    };
+`
+    : ''
+}${
+  control.focus
+    ? `    _nativeView.onFocusChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
+      ${nativeName}ComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNative${name}FocusChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
     };
 `
     : ''
