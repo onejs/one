@@ -159,11 +159,15 @@ const pickersLoaded = (nodes: Node[]) => {
     Boolean(id(nodes, 'one-native-control-category-color'))
   )
 }
+// the controls fixture swaps its body per category, so the status panel differs: the value
+// categories publish Value:/Request: and the focus category publishes its own focus state. the
+// category row is what stays mounted in every category, so the guard leans on that and accepts
+// either panel. requiring only the value panel made every focus check time out on the guard
+// rather than on its own predicate.
 const formsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-control-category-toggle')) &&
-  has(nodes, 'Value: ') &&
-  has(nodes, 'Request: ')
+  ((has(nodes, 'Value: ') && has(nodes, 'Request: ')) || has(nodes, 'Focus: '))
 const sheetsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   (Boolean(id(nodes, 'one-native-sheet-open')) ||
@@ -602,15 +606,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'forms') {
     const nativeValue = (nodes: Node[], label: string, expected: string | number) =>
       nodes.some((n) => n.AXLabel === label && String(n.AXValue) === String(expected))
-    const field = (nodes: Node[], label: string) =>
-      nodes.find((n) => n.type === 'TextField' && n.AXLabel === label)
-    const typeField = (label: string, text: string) =>
-      typeInto(label, text, (n) => {
-        const val =
-          field(n, label)?.AXValue ??
-          id(n, `one-native-focus-${label.toLowerCase().replace(' ', '-')}-val`)?.AXLabel
-        return val !== undefined ? String(val) : undefined
-      })
+    // the native TextField publishes no AXLabel, so its testID is the only handle on its value.
+    // matching on AXLabel found nothing, which made the typing probe unable to observe the
+    // character it had just sent, so the check could never pass rather than never fail.
+    const typeField = (name: string, testID: string, text: string) =>
+      typeInto(name, text, (n) => id(n, testID)?.AXValue)
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const pressSwitch = async () => {
@@ -786,14 +786,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-focus-programmatic-1' })
     await wait('focus field one programmatically', (n) => has(n, 'Focus: field1'))
-    await typeField('Field 1', 'First')
+    await typeField('Field 1', 'one-native-focus-field-1', 'First')
     await wait('field one received text', (n) => has(n, 'Field 1: First'))
     submit()
     await wait(
       'submit advances focus to field two',
       (n) => has(n, 'Focus: field2') && has(n, 'Submits: 1')
     )
-    await typeField('Field 2', 'Second')
+    await typeField('Field 2', 'one-native-focus-field-2', 'Second')
     await wait('field two received text', (n) => has(n, 'Field 2: Second'))
     submit()
     await wait(
@@ -802,7 +802,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-focus-programmatic-numeric' })
     await wait('numeric field focused', (n) => has(n, 'Focus: numeric'))
-    await typeField('Numeric', '12345')
+    await typeField('Numeric', 'one-native-focus-field-numeric', '12345')
     await wait('numeric field received text', (n) => has(n, 'Numeric: 12345'))
     tap({ id: 'one-native-focus-blur' })
     await wait('blur drops numeric focus', (n) => has(n, 'Focus: none'))
