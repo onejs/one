@@ -73,7 +73,8 @@
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
-        "OneNativeSection": "OneNativeSectionComponentView"
+        "OneNativeSection": "OneNativeSectionComponentView",
+        "OneNativeContainerSlot": "OneNativeContainerSlotComponentView"
       }
     }
   }

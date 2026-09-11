@@ -1,4 +1,4 @@
-import type { FormProps, HostProps, MenuProps, SectionProps, SheetProps, TabProps, TabsProps } from './types';
+import type { FormProps, HostProps, MenuProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
@@ -6,6 +6,7 @@ declare function Sheet(_props: SheetProps): never;
 declare function Host(_props: HostProps): never;
 declare function Form(_props: FormProps): never;
 declare function Section(_props: SectionProps): never;
+declare function Slot(_props: SlotProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -29,6 +30,7 @@ export declare const Swift: {
     Host: typeof Host;
     Form: typeof Form;
     Section: typeof Section;
+    Slot: typeof Slot;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

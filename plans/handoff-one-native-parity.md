@@ -151,9 +151,19 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   Toggle` and a host inside a section both work, a Toggle two containers deep emits,
   and its native AXValue follows React. A section mounted later, a section prop change,
   and a section unmount all reach SwiftUI through the published tree. A `Form` fills
-  its Yoga box (484 points in the fixture) because it has no ideal height; composed
+  its Yoga box (534 points in the fixture) because it has no ideal height; composed
   into a measured host it reports 0 and renders nothing, so `Swift.Host` rejects a
   `Swift.Form` child in JavaScript.
+- React Native inside a container (`Swift.Slot`). A slot reuses `OneNativeSlot` and the
+  shared slot shadow node: SwiftUI proposes the box from an explicit `height`, the state
+  writes it back to Yoga, and the React subtree lays out inside it. A slot row in a
+  Section and a second one in a Host composed into a later Section both render in order
+  and take taps. Three things the runtime settled: the slot's origin is local, as it is
+  for presented sheet content, and the origin is not what routes touches on iOS; an
+  HStack offers a representable no width, so a slot in a horizontal host takes an
+  explicit `width`; and the slot view must leave the SwiftUI tree in `decompose`,
+  because React Native recycles it in the transaction that unmounts it and asserts it
+  has no superview, while SwiftUI dismantles the representable later.
 
 Automation details that prevent false diagnoses:
 
@@ -190,7 +200,7 @@ Automation details that prevent false diagnoses:
 
 - `bun run test`: 19 tests in two existing package test files pass.
 - `bun run typecheck` and `bun run build` pass.
-- `generate:check`: SDK 26.4, 9,715 declarations, 115 mapped symbols, 84 generated
+- `generate:check`: SDK 26.4, 9,715 declarations, 115 mapped symbols, 85 generated
   files; assembled Swift compiles and controlled-state probes pass.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
@@ -211,13 +221,13 @@ Automation details that prevent false diagnoses:
    selected detent binding, and presentation background/interaction/sizing remain
    unimplemented, as do the `presenting:` value-bound alert overloads and
    `presentationCompactAdaptation`.
-2. Composition landed through stage 4: controls compose into one SwiftUI tree, a host
+2. Composition landed through stage 5: controls compose into one SwiftUI tree, a host
    reports the height SwiftUI measured back to Yoga, `Text` and `Label` are generated
-   leaves, and `Swift.Form`/`Swift.Section` are containers that nest. Design reviewed
-   once (r26161); `plans/one-native-layout-design.md` carries the measurement contract,
-   the review, and what each stage changed against the plan. Still open in that wave:
-   an explicit React Native slot inside a container (stage 5) and Popover (stage 6). A
-   composed child's inherited `ViewProps` land on a UIView nobody displays, which the
+   leaves, `Swift.Form`/`Swift.Section` are containers that nest, and `Swift.Slot`
+   carries a React Native subtree into any of them. Design reviewed once (r26161);
+   `plans/one-native-layout-design.md` carries the measurement contract, the review, and
+   what each stage changed against the plan. Still open in that wave: Popover (stage 6).
+   A composed child's inherited `ViewProps` land on a UIView nobody displays, which the
    catalog should eventually map or reject.
 3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.

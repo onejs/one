@@ -18,5 +18,10 @@ export interface SectionProps extends ViewProps {
   footer?: string
   children: ReactNode
 }
+export interface SlotProps extends ViewProps {
+  height: number
+  width?: number
+  children: ReactNode
+}
 export const hostAxes = ['vertical', 'horizontal'] as const
 export const hostAlignments = ['leading', 'center', 'trailing'] as const

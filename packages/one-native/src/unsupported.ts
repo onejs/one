@@ -5,6 +5,7 @@ import type {
   MenuProps,
   SectionProps,
   SheetProps,
+  SlotProps,
   TabProps,
   TabsProps,
 } from './types'
@@ -30,5 +31,18 @@ function Form(_props: FormProps): never {
 function Section(_props: SectionProps): never {
   throw new Error('Swift.Section requires an iOS native build with one-native installed')
 }
-export const Swift = { Tabs, Tab, Menu, Sheet, Host, Form, Section, ...unsupportedControls }
+function Slot(_props: SlotProps): never {
+  throw new Error('Swift.Slot requires an iOS native build with one-native installed')
+}
+export const Swift = {
+  Tabs,
+  Tab,
+  Menu,
+  Sheet,
+  Host,
+  Form,
+  Section,
+  Slot,
+  ...unsupportedControls,
+}
 export type * from './types'

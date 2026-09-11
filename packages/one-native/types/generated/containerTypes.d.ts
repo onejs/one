@@ -16,6 +16,11 @@ export interface SectionProps extends ViewProps {
     footer?: string;
     children: ReactNode;
 }
+export interface SlotProps extends ViewProps {
+    height: number;
+    width?: number;
+    children: ReactNode;
+}
 export declare const hostAxes: readonly ["vertical", "horizontal"];
 export declare const hostAlignments: readonly ["leading", "center", "trailing"];
 //# sourceMappingURL=containerTypes.d.ts.map

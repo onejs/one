@@ -1,6 +1,6 @@
 # design proposal: native layout and composition
 
-status: stages 1 to 4 landed, stage 5 next
+status: stages 1 to 5 landed, stage 6 next
 branch: `feat/one-native`
 scope: SwiftUI tree composition, intrinsic measurement, explicit RN slots, Popover
 
@@ -218,8 +218,9 @@ Each stage compiles, regenerates, and has a runtime suite before the next starts
 4. Done. `Text` and `Label` as generated leaf controls, and `Swift.Form` and
    `Swift.Section` as containers built on one shared `OneNativeContainerView`, so
    containers nest. The `containers` conformance suite covers it.
-5. Explicit RN slot inside a container, reusing `OneNativeSlot` in `fill` mode. Until
-   then a container takes One Native controls and containers only.
+5. Done. `Swift.Slot` carries a React Native subtree into a container, reusing
+   `OneNativeSlot` and the shared slot shadow node. SwiftUI proposes the box from an
+   explicit `height`, so the subtree lays out inside it.
 6. Popover.
 
 ### What stages 2 and 3 changed against the plan
@@ -271,6 +272,25 @@ from stage 1's finding that a `Form` has no ideal height, since a measured host 
 for exactly that, but the failure is silent, so `Swift.Host` throws when a direct child
 is a `Swift.Form`. A host inside a form or a section is fine and is covered by the
 suite.
+
+### What stage 5 changed against the plan
+
+The slot reports a LOCAL origin, the way presented sheet content does, rather than its
+frame in a layout host's coordinate space the way a tab page does. A composed container
+has no view in the window to convert against, so there is nothing to measure relative
+to. RAN: with the origin reported either way, a slot renders and takes taps identically,
+so on iOS the origin is not what routes the touch.
+
+A slot fills the width its container offers, and an `HStack` offers none, so a slot in a
+horizontal host takes an explicit `width` too. RAN: without one, the slot's box collapsed
+to the text's own width while the React Native content still drew, which looks correct
+and is not tappable.
+
+React Native recycles a slot's view in the same mounting transaction that unmounts it,
+and asserts the view has no superview. SwiftUI dismantles a representable later than
+that, so the slot removes its view from the SwiftUI tree in `decompose()`. RAN: without
+it, unmounting a section that held a slot aborted in
+`RCTComponentViewRegistry _enqueueComponentViewWithComponentHandle:`.
 
 ## What this does not cover
 

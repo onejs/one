@@ -1,4 +1,5 @@
-import { Children, isValidElement } from 'react'
+import { Children, createContext, isValidElement, useContext } from 'react'
+import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
@@ -8,7 +9,12 @@ import {
   type FormProps,
   type HostProps,
   type SectionProps,
+  type SlotProps,
 } from './generated/containerTypes'
+
+// a slot only works where SwiftUI proposes its box, so containers mark their children
+// and a slot marks its own React Native subtree as outside again.
+const InsideContainer = createContext(false)
 
 export function Host({
   axis = 'vertical',
@@ -38,7 +44,7 @@ export function Host({
       spacing={spacing}
       alignment={alignment}
     >
-      {children}
+      <InsideContainer value={true}>{children}</InsideContainer>
     </NativeHost>
   )
 }
@@ -48,7 +54,7 @@ export function Host({
 export function Form({ children, style, ...props }: FormProps) {
   return (
     <NativeForm {...props} style={[{ flex: 1 }, style]}>
-      {children}
+      <InsideContainer value={true}>{children}</InsideContainer>
     </NativeForm>
   )
 }
@@ -64,7 +70,27 @@ export function Section({
     throw new Error('Swift.Section title and footer must be strings')
   return (
     <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
-      {children}
+      <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
+  )
+}
+
+// a slot carries a React Native subtree into the SwiftUI tree. SwiftUI proposes the box
+// from `height` and the shared slot shadow node writes it back to Yoga, so the subtree
+// lays out inside the box SwiftUI gave it.
+export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
+  const inside = useContext(InsideContainer)
+  if (!inside)
+    throw new Error('Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section')
+  if (!Number.isFinite(height) || height <= 0)
+    throw new Error('Swift.Slot height must be a positive number')
+  // a vertical container offers its full width; a horizontal one offers none, so a slot
+  // in a horizontal host takes an explicit width.
+  if (!Number.isFinite(width) || width < 0)
+    throw new Error('Swift.Slot width must be a non-negative number')
+  return (
+    <NativeContainerSlot {...props} style={style} height={height} width={width}>
+      <InsideContainer value={false}>{children}</InsideContainer>
+    </NativeContainerSlot>
   )
 }
