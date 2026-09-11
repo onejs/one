@@ -1,4 +1,4 @@
-import { Form, Host, Section } from './Containers.native';
+import { Form, Host, Section, Slot } from './Containers.native';
 import { Menu } from './Menu.native';
 import { Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
@@ -25,6 +25,7 @@ export declare const Swift: {
     Host: typeof Host;
     Form: typeof Form;
     Section: typeof Section;
+    Slot: typeof Slot;
 };
 export type * from './types';
 //# sourceMappingURL=index.native.d.ts.map

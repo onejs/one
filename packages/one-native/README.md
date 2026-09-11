@@ -409,9 +409,8 @@ Two consequences worth knowing:
 - A child's own `height` style is ignored. The host measures, so the layout comes from
   SwiftUI.
 
-Children are One Native controls and One Native containers. A React Native subtree
-inside a container is not supported yet; it needs an explicit slot, which is the next
-piece of this work.
+Children are One Native controls, One Native containers, and `Swift.Slot`, which is how
+a React Native subtree gets into the SwiftUI tree.
 
 Horizontal hosts hold whatever fits. Several SwiftUI controls are width-greedy, so
 three of them side by side on a phone overflow, and SwiftUI then reports a much taller
@@ -445,6 +444,31 @@ gives it: give it a height or a flex parent. That is also why a `Form` cannot be
 of a `Swift.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
 the form then renders nothing at all; `Swift.Host` throws instead of rendering a blank.
 A host inside a form or a section works, and so does a section inside a host.
+
+### React Native inside the SwiftUI tree
+
+`Swift.Slot` carries a React Native subtree into a container. SwiftUI proposes the box
+and the subtree lays out inside it, so a slot takes an explicit `height`.
+
+```tsx
+<Swift.Form style={{ flex: 1 }}>
+  <Swift.Section title="Details">
+    <Swift.Toggle label="Notify" isOn={on} onIsOnChange={setOn} />
+    <Swift.Slot height={44}>
+      <Pressable onPress={save}>
+        <Text>An ordinary React Native row</Text>
+      </Pressable>
+    </Swift.Slot>
+  </Swift.Section>
+</Swift.Form>
+```
+
+A slot fills the width its container offers. A horizontal host offers none, because an
+`HStack` hands out its ideal width, so a slot in one takes an explicit `width` as well.
+
+Inside the slot everything works as it does anywhere else in React Native: touches,
+state, providers, and layout. A slot has to be a child of a container, so it throws when
+it is used anywhere else.
 
 ## Generation
 

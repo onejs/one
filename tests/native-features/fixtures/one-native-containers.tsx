@@ -5,6 +5,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 export default function OneNativeContainers() {
   const [isOn, setIsOn] = useState(false)
   const [sectionTaps, setSectionTaps] = useState(0)
+  const [slotTaps, setSlotTaps] = useState(0)
+  const [nestedTaps, setNestedTaps] = useState(0)
   const [hostTaps, setHostTaps] = useState(0)
   const [extra, setExtra] = useState(false)
   const [footer, setFooter] = useState(false)
@@ -52,6 +54,15 @@ export default function OneNativeContainers() {
           <Swift.Text text="Composed text" />
           <Swift.Label label="Composed label" systemImage="star.fill" />
           <Swift.Toggle label="Notify" isOn={isOn} onIsOnChange={setIsOn} />
+          <Swift.Slot height={44}>
+            <Pressable
+              testID="one-native-container-slot"
+              style={styles.slot}
+              onPress={() => setSlotTaps((count) => count + 1)}
+            >
+              <Text>React Native row</Text>
+            </Pressable>
+          </Swift.Slot>
         </Swift.Section>
         {extra ? (
           <Swift.Section title="More">
@@ -65,24 +76,46 @@ export default function OneNativeContainers() {
                 label="Host button"
                 onPress={() => setHostTaps((count) => count + 1)}
               />
+              <Swift.Slot height={30} width={90}>
+                <Pressable
+                  testID="one-native-container-nested-slot"
+                  style={styles.slot}
+                  onPress={() => setNestedTaps((count) => count + 1)}
+                >
+                  <Text>Nested row</Text>
+                </Pressable>
+              </Swift.Slot>
             </Swift.Host>
           </Swift.Section>
         ) : null}
       </Swift.Form>
 
-      <Text
-        testID="one-native-container-height"
-        style={styles.line}
-      >{`Form: ${height}`}</Text>
-      <Text testID="one-native-container-toggle" style={styles.line}>{`IsOn: ${isOn}`}</Text>
-      <Text
-        testID="one-native-container-section-taps"
-        style={styles.line}
-      >{`Section taps: ${sectionTaps}`}</Text>
-      <Text
-        testID="one-native-container-host-taps"
-        style={styles.line}
-      >{`Host taps: ${hostTaps}`}</Text>
+      <View style={styles.row}>
+        <Text
+          testID="one-native-container-height"
+          style={styles.line}
+        >{`Form: ${height}`}</Text>
+        <Text
+          testID="one-native-container-toggle"
+          style={styles.line}
+        >{`IsOn: ${isOn}`}</Text>
+        <Text
+          testID="one-native-container-section-taps"
+          style={styles.line}
+        >{`Section taps: ${sectionTaps}`}</Text>
+        <Text
+          testID="one-native-container-host-taps"
+          style={styles.line}
+        >{`Host taps: ${hostTaps}`}</Text>
+        <Text
+          testID="one-native-container-slot-taps"
+          style={styles.line}
+        >{`Slot taps: ${slotTaps}`}</Text>
+        <Text
+          testID="one-native-container-nested-taps"
+          style={styles.line}
+        >{`Nested taps: ${nestedTaps}`}</Text>
+      </View>
     </View>
   )
 }
@@ -94,5 +127,6 @@ const styles = StyleSheet.create({
   chipOn: { backgroundColor: '#cfe2ff' },
   leaf: { width: 150 },
   form: { flex: 1 },
+  slot: { flex: 1, justifyContent: 'center', backgroundColor: '#e8f0ff' },
   line: { fontSize: 14 },
 })

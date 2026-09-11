@@ -1143,6 +1143,32 @@
         }
       ],
       "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeContainerSlot",
+      "publicName": "Slot",
+      "props": {
+        "height": {
+          "type": "Double"
+        },
+        "width": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga"
+        }
+      ],
+      "interfaceOnly": true
     }
   ],
   "payloads": {

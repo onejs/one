@@ -1090,7 +1090,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Math.round(box(n, 'Standalone label')?.height ?? 0) === 24
     )
     // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
-    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 484))
+    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 534))
     await wait(
       'a Section renders its rows inside the Form',
       (n) =>
@@ -1099,7 +1099,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Composed label') &&
         Boolean(control(n, 'CheckBox', 'Notify'))
     )
+    // a slot carries a React Native subtree into the SwiftUI tree. SwiftUI proposes the
+    // box, the shared slot shadow node writes it back to Yoga, and the subtree lays out
+    // inside it, so the row sits under the Toggle at the height the slot asked for.
+    await wait('a React Native slot renders as a Form row', (n) => {
+      const row = id(n, 'one-native-container-slot')?.frame
+      const toggle = control(n, 'CheckBox', 'Notify')?.frame
+      return Boolean(row && toggle && row.y > toggle.y && Math.round(row.height) === 44)
+    })
     screenshot('containers-one-section.png')
+
+    // touches have to reach React Native through the SwiftUI tree that displays it.
+    tap({ id: 'one-native-container-slot' })
+    await wait('a React Native slot inside a Section takes a tap', (n) =>
+      status(n, 'Slot taps', 1)
+    )
 
     await pressSwitch()
     await wait(
@@ -1134,13 +1148,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Host button' })
     await wait('a Button inside a nested Host emits', (n) => status(n, 'Host taps', 1))
 
+    // two containers deep, the slot's box comes from a host that is itself composed.
+    tap({ id: 'one-native-container-nested-slot' })
+    await wait('a React Native slot inside a nested Host takes a tap', (n) =>
+      status(n, 'Nested taps', 1)
+    )
+
     tap({ id: 'one-native-container-extra' })
     await wait(
       'removing the Section takes its rows with it',
       (n) =>
         !labels(n).includes('More') &&
         !labels(n).includes('Section button') &&
-        !labels(n).includes('Host button')
+        !labels(n).includes('Host button') &&
+        !id(n, 'one-native-container-nested-slot')
     )
 
     for (const cycle of [1, 2]) {

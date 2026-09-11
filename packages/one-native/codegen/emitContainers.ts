@@ -40,6 +40,24 @@ export const containerComponents = [
     slots: [composedContent],
     interfaceOnly: false,
   },
+  {
+    name: 'OneNativeContainerSlot',
+    publicName: 'Slot',
+    props: { height: 'Double', width: 'Double' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'swiftui-proposal-to-yoga',
+      },
+    ],
+    // SwiftUI proposes the box and the shared slot shadow node writes it back to Yoga.
+    interfaceOnly: true,
+  },
 ] as const
 
 export const hostAxes = ['vertical', 'horizontal'] as const
@@ -79,6 +97,11 @@ export interface FormProps extends ViewProps {
 export interface SectionProps extends ViewProps {
   title?: string
   footer?: string
+  children: ReactNode
+}
+export interface SlotProps extends ViewProps {
+  height: number
+  width?: number
   children: ReactNode
 }
 export const hostAxes = [${hostAxes.map((axis) => JSON.stringify(axis)).join(', ')}] as const
