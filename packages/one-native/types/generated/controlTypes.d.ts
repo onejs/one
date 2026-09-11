@@ -5,6 +5,12 @@ export type PickerOption = Readonly<{
     value: string;
     label: string;
 }>;
+export type MapMarker = Readonly<{
+    id: string;
+    label: string;
+    latitude: number;
+    longitude: number;
+}>;
 export type DialogAction = Readonly<{
     id: string;
     label: string;
@@ -103,6 +109,13 @@ export interface GaugeProps extends OneNativeViewProps {
 export interface VideoPlayerProps extends OneNativeViewProps {
     url?: string;
     autoplay?: boolean;
+}
+export interface MapProps extends OneNativeViewProps {
+    onRegionChange?: (latitude: number, longitude: number, distance: number) => void;
+    latitude?: number;
+    longitude?: number;
+    distance?: number;
+    markers: readonly MapMarker[];
 }
 export interface TextFieldProps extends OneNativeViewProps {
     text: string;

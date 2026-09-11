@@ -654,6 +654,51 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeMap",
+      "publicName": "Map",
+      "props": {
+        "latitude": {
+          "type": "Double"
+        },
+        "longitude": {
+          "type": "Double"
+        },
+        "distance": {
+          "type": "Double"
+        },
+        "markers": {
+          "type": "ReadonlyArray<MapMarker>"
+        }
+      },
+      "events": {
+        "onNativeMapRegionChange": {
+          "latitude": {
+            "type": "Double"
+          },
+          "longitude": {
+            "type": "Double"
+          },
+          "distance": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onRegionChange",
+          "event": "onNativeMapRegionChange"
+        }
+      ],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeTextField",
       "publicName": "TextField",
       "props": {
@@ -1240,6 +1285,22 @@
         },
         "label": {
           "type": "string"
+        }
+      }
+    },
+    "MapMarker": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "Double"
+        },
+        "longitude": {
+          "type": "Double"
         }
       }
     },

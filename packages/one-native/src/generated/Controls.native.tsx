@@ -440,6 +440,56 @@ export function VideoPlayer({
 
   return <NativeVideoPlayer {...props} style={style} url={url} autoplay={autoplay} />
 }
+import NativeMap from '../specs/OneNativeMapNativeComponent'
+export function Map({
+  onRegionChange,
+  latitude = 37.7749,
+  longitude = -122.4194,
+  distance = 5000,
+  markers,
+  style,
+  ...props
+}: Types.MapProps) {
+  if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90)
+    throw new Error('Map latitude must be between -90 and 90')
+  if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180)
+    throw new Error('Map longitude must be between -180 and 180')
+  if (!Number.isFinite(distance) || distance <= 0)
+    throw new Error('Map distance must be a positive number of metres')
+  if (
+    !Array.isArray(markers) ||
+    markers.some(
+      (marker) =>
+        typeof marker?.id !== 'string' ||
+        typeof marker?.label !== 'string' ||
+        !Number.isFinite(marker?.latitude) ||
+        !Number.isFinite(marker?.longitude)
+    )
+  )
+    throw new Error(
+      'Map markers must contain string id and label fields and finite latitude and longitude'
+    )
+  if (new Set(markers.map((marker) => marker.id)).size !== markers.length)
+    throw new Error('Map marker ids must be unique')
+
+  return (
+    <NativeMap
+      {...props}
+      style={style}
+      latitude={latitude}
+      longitude={longitude}
+      distance={distance}
+      markers={markers}
+      onNativeMapRegionChange={({ nativeEvent }) =>
+        onRegionChange?.(
+          nativeEvent.latitude,
+          nativeEvent.longitude,
+          nativeEvent.distance
+        )
+      }
+    />
+  )
+}
 import NativeTextField from '../specs/OneNativeTextFieldNativeComponent'
 export function TextField({
   text,

@@ -149,11 +149,14 @@ controls live beside them in `ios/` and conform to the same protocol. No
    modules. `Swift.VideoPlayer` comes from `_AVKit_SwiftUI` and `Swift.QuickLook`
    from `_QuickLook_SwiftUI`; between them they exercise both selector paths,
    since `VideoPlayer` is picked by `selectConstructor` and `quickLookPreview` by
-   `selectModifier`. The `media` conformance suite drives both on a simulator.
-   Left from this list: `PhotosPicker` (`_PhotosUI_SwiftUI`), `Map`
-   (`_MapKit_SwiftUI`), and `WebView` (`_WebKit_SwiftUI`, which is iOS 26 while
-   the package declares `minimumVersion: 18`, so it needs a control-level
-   availability gate that does not exist yet).
+   `selectModifier`. `Swift.Map` comes from `_MapKit_SwiftUI`, and its marker
+   array is the first `objects` prop carrying anything but strings, which is how
+   it caught the generator writing TypeScript scalars into a codegen spec. The
+   `media` and `map` conformance suites drive all three on a simulator. Left from
+   this list: `PhotosPicker` (`_PhotosUI_SwiftUI`) and `WebView`
+   (`_WebKit_SwiftUI`, which is iOS 26 while the package declares
+   `minimumVersion: 18`, so it needs a control-level availability gate that does
+   not exist yet).
 2. Zoomable image view (UIKit). Directly fixes a pain point we have hit.
 3. Zoom navigation transition (UIKit, iOS 18). Completes the gallery.
 4. PDF, only if an app asks and `quickLookPreview` is not enough.

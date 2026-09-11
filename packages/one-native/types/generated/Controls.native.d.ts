@@ -11,6 +11,7 @@ export declare function Button({ onPress, label, disabled, systemImage, buttonRo
 export declare function ProgressView({ label, disabled, value, total, progressViewStyle, style, ...props }: Types.ProgressViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, style, ...props }: Types.GaugeProps): import("react/jsx-runtime").JSX.Element;
 export declare function VideoPlayer({ url, autoplay, style, ...props }: Types.VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
+export declare function Map({ onRegionChange, latitude, longitude, distance, markers, style, ...props }: Types.MapProps): import("react/jsx-runtime").JSX.Element;
 export declare function TextField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, axis, style, ...props }: Types.TextFieldProps): import("react/jsx-runtime").JSX.Element;
 export declare function SecureField({ text, onTextChange, revision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, style, ...props }: Types.SecureFieldProps): import("react/jsx-runtime").JSX.Element;
 export declare function Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, style, ...props }: Types.AlertProps): import("react/jsx-runtime").JSX.Element;

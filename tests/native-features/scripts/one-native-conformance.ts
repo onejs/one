@@ -27,6 +27,7 @@ const suites = [
   'popover',
   'accessibility',
   'media',
+  'map',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -198,6 +199,10 @@ const mediaLoaded = (nodes: Node[]) =>
   ((Boolean(id(nodes, 'one-native-media-category-player')) &&
     has(nodes, 'Video bytes: ')) ||
     Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')))
+const mapLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-map-place-ferry')) &&
+  has(nodes, 'Place: ')
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -218,6 +223,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
+  map: mapLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -231,6 +237,7 @@ const suiteHome: Record<Suite, string> = {
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
+  map: 'nav-one-native-map',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -1582,6 +1589,79 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'map') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // MapKit labels its own view 'Map' and publishes each annotation as an element carrying
+    // the marker's title, so the markers React sent are readable without a screenshot.
+    const surface = (nodes: Node[]) =>
+      nodes.find((node) => node.AXLabel === 'Map' && node.frame?.height)
+    const regions = (nodes: Node[]) =>
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('Regions: '))
+          ?.slice('Regions: '.length) ?? -1
+      )
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-map')
+    await wait(
+      'fresh map mounted',
+      (n) => status(n, 'Place', 'Ferry') && status(n, 'Pins', 2) && status(n, 'Height', 220)
+    )
+    // a fill control reports no ideal height, so the box React Native gave it is the only
+    // thing that can be deciding this size.
+    await wait(
+      'Map fills the box React Native gave it',
+      (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
+    )
+    tap({ id: 'one-native-map-height' })
+    await wait(
+      'the map follows the box when the style changes',
+      (n) => status(n, 'Height', 320) && surface(n)?.frame?.height === 320
+    )
+    tap({ id: 'one-native-map-height' })
+    await wait(
+      'the map follows the box back',
+      (n) => status(n, 'Height', 220) && surface(n)?.frame?.height === 220
+    )
+    // the markers prop is an object array, which crosses Fabric as a struct per element.
+    // asserting the third one is absent as well as the first two present is what separates
+    // "the array arrived" from "some annotation rendered".
+    await wait(
+      'the markers React sent are on the map',
+      (n) => has(n, 'Coit Tower') && has(n, 'Ballpark') && !has(n, 'Pyramid')
+    )
+    tap({ id: 'one-native-map-pins' })
+    await wait(
+      'adding a marker adds it to the map',
+      (n) => status(n, 'Pins', 3) && has(n, 'Pyramid') && has(n, 'Coit Tower')
+    )
+    tap({ id: 'one-native-map-pins' })
+    await wait(
+      'emptying the array removes every marker',
+      (n) =>
+        status(n, 'Pins', 0) &&
+        !has(n, 'Pyramid') &&
+        !has(n, 'Coit Tower') &&
+        !has(n, 'Ballpark')
+    )
+
+    // the camera the fixture seeded is what MapKit settled on, reported back through
+    // onRegionChange rather than assumed.
+    await wait('the camera reports the place it was seeded with', (n) =>
+      status(n, 'Center', '37.80,-122.39')
+    )
+    const before = regions(snapshot(config.simulatorId))
+    tap({ id: 'one-native-map-place-presidio' })
+    await wait(
+      're-centering moves the camera and reports it',
+      (n) => status(n, 'Center', '37.80,-122.47') && regions(n) > before
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

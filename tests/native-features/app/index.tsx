@@ -52,6 +52,11 @@ const testScreens = [
     label: 'One Native Media',
     testID: 'nav-one-native-media',
   },
+  {
+    href: '/one-native-map',
+    label: 'One Native Map',
+    testID: 'nav-one-native-map',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

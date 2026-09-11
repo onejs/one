@@ -1,9 +1,9 @@
 # One Native
 
-Generated SwiftUI tabs, menus, pickers, form controls, sheets, containers, and popovers
-for React Native, exposed through `Swift`. This is an initial implementation on the
-`feat/one-native` branch. It requires an iOS 18+ native build and React Native's New
-Architecture. It is not published to npm.
+Generated SwiftUI tabs, menus, pickers, form controls, sheets, containers, popovers,
+video, maps, and Quick Look for React Native, exposed through `Swift`. This is an
+initial implementation on the `feat/one-native` branch. It requires an iOS 18+ native
+build and React Native's New Architecture. It is not published to npm.
 
 ```tsx
 import { useState } from 'react'
@@ -289,6 +289,39 @@ video.
 AVKit publishes the player's own accessibility element over the control, so
 `accessibilityLabel` never reaches a screen reader here even though every other
 control honors it.
+
+## Maps
+
+`Swift.Map` is SwiftUI's `Map` from the `_MapKit_SwiftUI` overlay module. Like
+video it has no ideal height to report, so it takes the box React Native gives
+it: size it with `style`.
+
+```tsx
+<Swift.Map
+  latitude={37.7955}
+  longitude={-122.3937}
+  distance={4000}
+  markers={[
+    { id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 },
+  ]}
+  style={{ width: '100%', height: 220 }}
+  onRegionChange={(latitude, longitude, distance) => setCamera({ latitude, longitude, distance })}
+/>
+```
+
+`latitude`, `longitude` and `distance` place the camera: `distance` is metres
+from the camera to the ground, which is how `MapCamera` frames a map. They seed
+the camera and re-center it when they change, and the user is free to pan and
+zoom in between. Panning is reported one way through `onRegionChange`, which
+fires when a gesture ends rather than continuously.
+
+The camera is deliberately not a controlled value. The controlled protocol
+carries one scalar and a camera is three, and a map that could snap back to a
+prop mid-gesture would be unusable. If you need the camera to follow React,
+change the props; if you need to follow the user, read `onRegionChange`.
+
+Each marker needs a unique `id`, a `label` and a coordinate. Ids must be unique
+and coordinates must be finite, or the adapter throws.
 
 ## Alerts and confirmation dialogs
 
