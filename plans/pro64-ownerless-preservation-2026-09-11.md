@@ -13,8 +13,8 @@ Verdict a means coherent authored work or an already preserved clean commit. Ver
 | `.worktrees/one-native` | excluded, live | Left untouched; branch matched fetched origin. | None |
 | `worktrees/one-react-navigation-v8` | b | Left generated route declarations, generated Tamagui CSS, and empty emitted test declaration untouched. Existing branch matches origin. | None |
 | `worktrees/one-rolldown` | a | Clean; existing branch matches origin. | Already on `feat/native-rolldown-readiness` |
-| `worktrees/one-rolldown-minify` | a | Pushed existing commits `bb1ec0f5e` and `94456595e`, covering minification and cache-reset handling. No same-name origin branch existed before push. | `feat/native-rolldown-minify` |
-| `worktrees/one-rolldown-sourcemaps` | a, b | Pushed existing symbolication commit `215a21d89`. Left generated empty test declaration untracked. No same-name origin branch existed before push. | `feat/native-rolldown-sourcemaps` |
+| `worktrees/one-rolldown-minify` | a | Pushed original commits `bb1ec0f5e` and `94456595e`. Subsequent patch comparison confirmed these already landed on main as `afe8b8e33` (integrated with sourcemap line checks) and `8bf6ef99b` (same patch). No implementation remains to land. | `feat/native-rolldown-minify` |
+| `worktrees/one-rolldown-sourcemaps` | a, b | Pushed original symbolication commit `215a21d89`. Subsequent range-diff confirmed it already landed on main as `d450e792b`, with surrounding integration context changes. Left generated empty test declaration untracked. No implementation remains to land. | `feat/native-rolldown-sourcemaps` |
 | `.worktrees/orez-backup-immutable-r22350` | a | Committed approved snapshot-plan amendments as `915bff49`; pushed existing branch. Historical validation claims in the plan were preserved, not rerun. | `fix/backup-mutation-r22350` |
 | `orez` | a | Clean, zero local-only commits after fetch. Drift's unpublished=4 contradicted by Git; no canary-triggering main push. | None |
 | `.worktrees/orez-launch-migration-source-r22339` | a | Clean; existing branch matches origin. | Already on `fix/launch-migration-source-r22339` |
