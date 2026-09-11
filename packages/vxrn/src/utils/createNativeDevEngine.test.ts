@@ -460,18 +460,37 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         join(root, 'production.mjs'),
         `import calculate, { reads } from 'pure-math'; globalThis.calculate = calculate; globalThis.reads = reads`
       )
+      // a production bundle is minified by default, so this also covers worklet
+      // closure serialization under mangling: the worklet body is a string
+      // literal the minifier leaves alone, and __closure carries its captures
+      // by property name, which mangling does not rewrite.
       const production = await buildNativeBundle({
         root,
         platform: 'android',
         entryFile: 'production.mjs',
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
+      expect(production.code).not.toContain('__esmMin')
       const productionRN: any = { console }
       runInNewContext(production.code, productionRN)
       expect(productionRN.calculate(10)).toBe(109)
       expect(reconstruct(productionRN.calculate)(10)).toBe(109)
       expect(reconstruct(productionRN.reads)()).toBe(3)
       expect(productionRN.reads()).toBe(1)
+
+      const unminifiedProduction = await buildNativeBundle({
+        root,
+        platform: 'android',
+        entryFile: 'production.mjs',
+        minify: false,
+        plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
+      })
+      expect(unminifiedProduction.code).toContain('__esmMin')
+      const unminifiedRN: any = { console }
+      runInNewContext(unminifiedProduction.code, unminifiedRN)
+      expect(unminifiedRN.calculate(10)).toBe(109)
+      expect(reconstruct(unminifiedRN.calculate)(10)).toBe(109)
+      expect(reconstruct(unminifiedRN.reads)()).toBe(3)
 
       const sharedPlugin = workletImportsPlugin({ 'pure-math': ['default', 'reads'] })
       const parallel = await Promise.all(

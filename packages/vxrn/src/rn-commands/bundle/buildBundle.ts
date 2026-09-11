@@ -1,4 +1,5 @@
 import FSExtra from 'fs-extra'
+import { clearTransformCache } from '@vxrn/compiler'
 import {
   bundle as metroBundle,
   type BundleCommandArgs,
@@ -24,13 +25,17 @@ export async function buildBundle(
     // `--minify` overrides React Native's default of "minify unless this is a
     // dev bundle". undefined means the flag was not passed.
     minify,
+    // `--reset-cache` drops the compiler's transform cache, the only cache a
+    // rolldown production build reads.
+    resetCache,
     // `--entry-file` names the React Native root module. One generates its own
     // native entry from the route tree instead, and __vxrnNativeEntryFile is
     // the supported way to point the build somewhere else.
-    // `--reset-cache` / `--read-global-cache` / `--max-workers` / `--config` /
-    // `--transformer` / `--resolver-option` configure Metro's worker pool,
-    // transform cache and resolver. Rolldown production builds have none of
-    // them: every build transforms from source in-process.
+    // `--read-global-cache` / `--max-workers` / `--config` / `--transformer` /
+    // `--resolver-option` configure Metro's global cache, worker pool and
+    // resolver. A rolldown production build has none of them: it transforms
+    // from source in-process. React Native's own bundle command ignores
+    // `--read-global-cache` too.
     // `--unstable-transform-profile` picks a JS engine to target. This pipeline
     // always downlevels for Hermes, which is what every profile it accepts
     // ('default', 'hermes', 'hermes-canary') can run.
@@ -60,6 +65,10 @@ export async function buildBundle(
 
   if (!dev) {
     process.env.NODE_ENV = 'production'
+  }
+
+  if (resetCache) {
+    clearTransformCache()
   }
 
   console.info(`[vxrn] building native bundle for ${platform}...`)
