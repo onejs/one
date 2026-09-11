@@ -1,10 +1,12 @@
-import { existsSync } from 'node:fs'
+import { existsSync, realpathSync } from 'node:fs'
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
+import { originalPositionFor, TraceMap } from '@jridgewell/trace-mapping'
 import { rolldown, type Plugin, type RolldownOutput } from 'rolldown'
 import { dev } from 'rolldown/experimental'
+import { normalizePath } from 'vite'
 import { describe, expect, it, vi } from 'vitest'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { workletImportsPlugin } from '../plugins/workletImportsPlugin'
@@ -20,6 +22,7 @@ import {
   hmrClientNoopPlugin,
   nativeAnimatedGuardPlugin,
   normalizeNativeCommonJSInterop,
+  postProcessNativeBundle,
   vxrnCompilerPlugin,
   wrapNativeBundleModuleScope,
   type NativePluginContext,
@@ -457,18 +460,37 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         join(root, 'production.mjs'),
         `import calculate, { reads } from 'pure-math'; globalThis.calculate = calculate; globalThis.reads = reads`
       )
+      // a production bundle is minified by default, so this also covers worklet
+      // closure serialization under mangling: the worklet body is a string
+      // literal the minifier leaves alone, and __closure carries its captures
+      // by property name, which mangling does not rewrite.
       const production = await buildNativeBundle({
         root,
         platform: 'android',
         entryFile: 'production.mjs',
         plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
       })
+      expect(production.code).not.toContain('__esmMin')
       const productionRN: any = { console }
       runInNewContext(production.code, productionRN)
       expect(productionRN.calculate(10)).toBe(109)
       expect(reconstruct(productionRN.calculate)(10)).toBe(109)
       expect(reconstruct(productionRN.reads)()).toBe(3)
       expect(productionRN.reads()).toBe(1)
+
+      const unminifiedProduction = await buildNativeBundle({
+        root,
+        platform: 'android',
+        entryFile: 'production.mjs',
+        minify: false,
+        plugins: [workletImportsPlugin({ 'pure-math': ['default', 'reads'] })],
+      })
+      expect(unminifiedProduction.code).toContain('__esmMin')
+      const unminifiedRN: any = { console }
+      runInNewContext(unminifiedProduction.code, unminifiedRN)
+      expect(unminifiedRN.calculate(10)).toBe(109)
+      expect(reconstruct(unminifiedRN.calculate)(10)).toBe(109)
+      expect(reconstruct(unminifiedRN.reads)()).toBe(3)
 
       const sharedPlugin = workletImportsPlugin({ 'pure-math': ['default', 'reads'] })
       const parallel = await Promise.all(
@@ -1655,6 +1677,102 @@ export function Box() {
   })
 })
 
+describe('native production minification', () => {
+  // a cjs dependency reached through an esm module, a top-level export, and a
+  // runtime result that depends on both. minification mangles every top-level
+  // name here and drops every comment, which is what the bundle's
+  // post-processing reads, so a pass that runs on minified output stops
+  // applying — silently for the commonjs interop, and fatally for the `export`
+  // statement, which hermes cannot parse.
+  async function writeMinifyFixture() {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-minify-'))
+    const dep = join(root, 'node_modules', 'legacy-color')
+    await mkdir(dep, { recursive: true })
+    await writeFile(
+      join(dep, 'package.json'),
+      JSON.stringify({ name: 'legacy-color', main: 'index.js' })
+    )
+    await writeFile(
+      join(dep, 'index.js'),
+      `function LegacyColor(value) { this.value = value }
+LegacyColor.prototype.describe = function () { return 'legacy:' + this.value }
+module.exports = LegacyColor`
+    )
+    await writeFile(
+      join(root, 'views.js'),
+      `'use strict';
+import LegacyColor from 'legacy-color'
+import { level } from './entry.js'
+export const describeHeader = () => new LegacyColor(level()).describe()`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `import { describeHeader } from './views.js'
+export const level = () => 'header'
+globalThis.minifyProbe = describeHeader()`
+    )
+    return root
+  }
+
+  function runFixture(code: string) {
+    const context: Record<string, unknown> = { console }
+    runInNewContext(code, context)
+    return Reflect.get(context, 'minifyProbe')
+  }
+
+  it('minifies when asked, leaves the bundle alone when not, and both behave the same', async () => {
+    const root = await writeMinifyFixture()
+    try {
+      const [plain, minified] = await Promise.all(
+        [false, true].map((minify) =>
+          buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', minify })
+        )
+      )
+
+      // the unminified bundle keeps rolldown's generated names and layout
+      expect(plain.code).toContain('__toESM')
+      expect(plain.code).toContain('describeHeader')
+      expect(plain.code.split('\n').length).toBeGreaterThan(40)
+
+      // the minified one keeps neither
+      expect(minified.code).not.toContain('describeHeader')
+      expect(minified.code).not.toContain('//#region')
+      expect(minified.code.length).toBeLessThan(plain.code.length * 0.7)
+
+      // and both still run, with the same result. before the post-processing
+      // moved inside the bundle, the minified one threw on its surviving
+      // `export {}` statement.
+      expect(runFixture(minified.code)).toBe('legacy:header')
+      expect(runFixture(plain.code)).toBe('legacy:header')
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('defaults to react native\'s rule: minify a production bundle, never a dev one', async () => {
+    const root = await writeMinifyFixture()
+    try {
+      const [prod, devBundle, explicitOff] = await Promise.all([
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js' }),
+        buildNativeBundle({ root, platform: 'ios', entryFile: 'entry.js', dev: true }),
+        buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          minify: false,
+        }),
+      ])
+
+      expect(prod.code).not.toContain('describeHeader')
+      expect(devBundle.code).toContain('describeHeader')
+      expect(explicitOff.code).toContain('describeHeader')
+      expect(prod.code.length).toBeLessThan(explicitOff.code.length)
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native production assets', () => {
   it('registers scale siblings and keeps monorepo assets inside assetsDest', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
@@ -1711,7 +1829,23 @@ globalThis.__nativeAssetProbe = [icon, back]
         assetsDest,
       })
 
-      expect(result.code).toMatch(/"scales":\s*\[\s*1,\s*2,\s*3\s*\]/)
+      const registered: Array<{ name: string; scales: number[] }> = []
+      runInNewContext(result.code, {
+        console,
+        require: (id: string) =>
+          id === 'react-native/Libraries/Image/AssetRegistry'
+            ? {
+                registerAsset: (asset: { name: string; scales: number[] }) => {
+                  registered.push(asset)
+                  return asset
+                },
+              }
+            : {},
+      })
+      expect(registered.map((asset) => [asset.name, asset.scales])).toEqual([
+        ['icon', [1, 2, 3]],
+        ['back', [1, 2]],
+      ])
       for (const file of ['icon.png', 'icon@2x.png', 'icon@3x.png']) {
         expect(existsSync(join(assetsDest, 'assets/assets', file))).toBe(true)
       }
@@ -1949,5 +2083,116 @@ globalThis.__vxrnFlowProbe = new Flowy().measure({ value: 41 }) + 1
     } finally {
       await rm(testRoot, { recursive: true, force: true })
     }
+  })
+})
+
+describe('native bundle source maps', () => {
+  // the generated position of a marker in the emitted bundle is exactly what a
+  // device reports in a stack frame, so resolving it is the same question as
+  // symbolicating a crash.
+  const generatedPositionOf = (code: string, marker: string) => {
+    const index = code.indexOf(marker)
+    expect(index).toBeGreaterThan(-1)
+    const before = code.slice(0, index)
+    const lastNewline = before.lastIndexOf('\n')
+    return {
+      line: (before.match(/\n/g)?.length ?? 0) + 1,
+      column: index - lastNewline - 1,
+    }
+  }
+
+  it(
+    'resolves a frame to the authored file and line across an app file and a package file',
+    { timeout: 60_000 },
+    async () => {
+      // realpath: macOS hands out /var/folders temp dirs that resolve to
+      // /private/var, and the map records the resolved path.
+      const testRoot = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-sourcemap-')))
+      const packageRoot = join(testRoot, 'node_modules/probe-package')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ name: 'probe-package', main: 'index.js', type: 'module' })
+      )
+      // a blank line directly above an `export default` is the case that used to
+      // disappear during post-processing and shift every frame below it.
+      await writeFile(
+        join(packageRoot, 'index.js'),
+        [
+          `function packageThrow() {`, // 1
+          `  throw new Error('__probe_package__')`, // 2
+          `}`, // 3
+          ``, // 4
+          `export default packageThrow`, // 5
+        ].join('\n')
+      )
+      await writeFile(
+        join(testRoot, 'entry.js'),
+        [
+          `import packageThrow from 'probe-package'`, // 1
+          ``, // 2
+          `function appThrow() {`, // 3
+          `  throw new Error('__probe_app__')`, // 4
+          `}`, // 5
+          ``, // 6
+          `globalThis.__probe = [appThrow, packageThrow]`, // 7
+        ].join('\n')
+      )
+
+      try {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          sourcemap: true,
+        })
+        expect(result.map).toBeTruthy()
+        const traced = new TraceMap(JSON.parse(result.map!))
+
+        const app = originalPositionFor(
+          traced,
+          generatedPositionOf(result.code, '__probe_app__')
+        )
+        const pkg = originalPositionFor(
+          traced,
+          generatedPositionOf(result.code, '__probe_package__')
+        )
+
+        // the authored line, which a post-processing pass that drops a line
+        // silently moves
+        expect(app.source?.endsWith('/entry.js')).toBe(true)
+        expect(app.line).toBe(4)
+        expect(pkg.source?.endsWith('/index.js')).toBe(true)
+        expect(pkg.line).toBe(2)
+
+        // and the absolute path, which is all a crash reporter has to go on
+        expect(app.source).toBe(normalizePath(join(testRoot, 'entry.js')))
+        expect(pkg.source).toBe(normalizePath(join(packageRoot, 'index.js')))
+      } finally {
+        await rm(testRoot, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
+describe('postProcessNativeBundle', () => {
+  // rolldown emits the map before these passes run, so a line they remove moves
+  // every frame below it away from the source it maps to.
+  const lines = (code: string) => code.split('\n').length
+
+  it('keeps the blank line above an export default', () => {
+    const input = ['var a = 1;', '', 'export default a;', 'var b = 2;', ''].join('\n')
+    const out = postProcessNativeBundle(input)
+    expect(lines(out)).toBe(lines(input))
+    expect(out.split('\n')[2]).toBe('a;')
+  })
+
+  it('keeps the lines of a multi-line export statement', () => {
+    const input = ['var a = 1;', 'export {', '  a', '};', 'var b = 2;', ''].join('\n')
+    const out = postProcessNativeBundle(input)
+    expect(lines(out)).toBe(lines(input))
+    expect(out).not.toContain('export {')
+    expect(out.split('\n')[4]).toBe('var b = 2;')
   })
 })

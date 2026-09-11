@@ -754,6 +754,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
+        "@jridgewell/gen-mapping": "^0.3.5",
         "@react-native-community/cli": "^20.2.0",
         "@tamagui/build": "2.6.2",
         "@types/find-node-modules": "^2.1.2",

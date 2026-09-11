@@ -12,6 +12,7 @@ export * from './transformWorklets';
 export * from './reactNativeCodegen';
 export * from './transformHermesLoops';
 export * from './transformHermesAsync';
+export { clearTransformCache } from './cache';
 export { JS_GLOBALS } from './worklets/globals';
 export { getClosureVariables } from './worklets/scope';
 export type { GetTransform } from './types';
