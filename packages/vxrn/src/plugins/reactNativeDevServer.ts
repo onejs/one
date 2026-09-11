@@ -254,10 +254,10 @@ export function createReactNativeDevServerPlugin(
         })
       }
 
-      // a created file belongs to the dev engine now: the native entry plugin
-      // registers the route directories with addWatchFile, so rolldown's own
-      // watcher reports a route appearing and the engine rebuilds and reloads
-      // for that alone, instead of every file written anywhere in the project.
+      // a created route file: rolldown's addWatchFile on the route directories
+      // is supposed to report it, and the engine rebuilds only then. github's
+      // macos runners do not always surface that, so vite's watcher is the
+      // backup, still scoped to route files inside handleAddedFile.
       //
       // a deletion it cannot survive. rolldown's dev engine panics its worker
       // when it retires a module that left the disk ("index out of bounds" out
@@ -265,6 +265,26 @@ export function createReactNativeDevServerPlugin(
       // once the file comes back. that engine cannot be repaired, so drop it
       // and let the next bundle request build a fresh one.
       let deletionTimer: ReturnType<typeof setTimeout> | undefined
+      let addTimer: ReturnType<typeof setTimeout> | undefined
+      const addedFiles = new Set<string>()
+      server.watcher.on('add', (file) => {
+        if (file.split('/').some((segment) => segment.startsWith('.'))) return
+        addedFiles.add(file)
+        clearTimeout(addTimer)
+        addTimer = setTimeout(() => {
+          const files = [...addedFiles]
+          addedFiles.clear()
+          for (const platform of Object.keys(devEngines)) {
+            const devEngine = devEngines[platform]
+            if (!devEngine) continue
+            for (const added of files) {
+              devEngine.handleAddedFile(added).catch((error) => {
+                console.error(`[vxrn] handling added ${added} for ${platform} failed`, error)
+              })
+            }
+          }
+        }, 50)
+      })
       server.watcher.on('unlink', (file) => {
         // vite's watcher already skips node_modules and .git. keep out the rest
         // of what a dev server writes into a project while it runs: caches and

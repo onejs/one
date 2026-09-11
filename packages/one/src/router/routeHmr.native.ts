@@ -1,7 +1,10 @@
 // native Fast Refresh for One routes
 //
 // vxrn calls the global hook after committing an updated module. One evicts that
-// route and bumps this external-store epoch so mounted screens load fresh exports.
+// route from the loader cache so the next loadRoute() sees fresh exports. it
+// does not bump the epoch: ScreenComponent re-running loadRoute() would render a
+// new function identity and remount the route, which is what made
+// `generation:1` jump to `generation:2` when a route file was Fast Refreshed.
 
 declare global {
   // vxrn's native HMR runtime invokes this (when defined) with each committed
@@ -23,21 +26,14 @@ export const getRouteHmrEpoch = () => routeHmrEpoch
 
 if (process.env.NODE_ENV === 'development') {
   globalThis.__VXRN_ON_MODULE_UPDATED__ = (id: string) => {
-    // only refresh mounted screens when the updated module is a route. a leaf
-    // Fast Refresh already patches in place; bumping this epoch re-renders every
-    // ScreenComponent, and used to remount any layout that exported ErrorBoundary.
-    let shouldRefresh = true
     try {
       const routeCache =
         typeof window === 'undefined' ? undefined : (window as any).__oneRouteCache
       if (typeof routeCache?.clearFile === 'function') {
-        shouldRefresh = routeCache.clearFile(id) !== false
+        routeCache.clearFile(id)
       }
-    } finally {
-      if (shouldRefresh) {
-        routeHmrEpoch++
-        routeHmrListeners.forEach((listener) => listener())
-      }
+    } catch (error) {
+      console.error('[one] route cache eviction failed', error)
     }
   }
 }

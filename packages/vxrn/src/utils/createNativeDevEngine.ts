@@ -98,6 +98,7 @@ interface NativeDevEngineResult {
   getBundle: () => Promise<NativeDevBundle>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
+  handleAddedFile: (file: string) => Promise<void>
 }
 
 // shared resolve extensions for native builds
@@ -643,7 +644,30 @@ try {
   // the finished bundle waits on this too.
   let outputProcessed: Promise<void> = Promise.resolve()
 
-  const engine = await dev(inputOptions, outputOptions, {
+  let engine: Awaited<ReturnType<typeof dev>>
+
+  const rebuildIfNewRoute = async (files: string[]): Promise<boolean> => {
+    const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
+    const routeRootPrefix = `${normalizePath(routeRoot)}/`
+    const routeAdded = files.some((file) => {
+      const normalized = normalizePath(file)
+      if (isRouteFile(normalized)) return !knownRoutes.has(normalized)
+      return (
+        normalized.startsWith(routeRootPrefix) &&
+        statSync(file, { throwIfNoEntry: false })?.isDirectory() === true
+      )
+    })
+    if (!routeAdded) return false
+    await queueEngineWork(async () => {
+      engine.triggerFullBuild()
+      await engine.ensureLatestBuildOutput()
+      await outputProcessed
+    })
+    onHmrUpdate?.({ type: 'hmr:reload' })
+    return true
+  }
+
+  engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
       let finishOutput = () => {}
       outputProcessed = new Promise<void>((resolve) => {
@@ -668,26 +692,7 @@ try {
       // `import.meta.glob` was expanded back when it transformed the entry.
       // only a full build re-expands it, and rolldown tells no client that
       // happened, so the reload is sent from here.
-      const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
-      const routeAdded = result.changedFiles.some((file) => {
-        if (isRouteFile(file)) return !knownRoutes.has(file)
-        // a directory created under the route root is reported as the directory
-        // itself, and nothing watches inside it until the build that follows
-        // walks it, so the files it arrived with are only found by rebuilding
-        return (
-          file.startsWith(`${routeRoot}/`) &&
-          statSync(file, { throwIfNoEntry: false })?.isDirectory() === true
-        )
-      })
-      if (routeAdded) {
-        await queueEngineWork(async () => {
-          engine.triggerFullBuild()
-          await engine.ensureLatestBuildOutput()
-          await outputProcessed
-        })
-        onHmrUpdate?.({ type: 'hmr:reload' })
-        return
-      }
+      if (await rebuildIfNewRoute(result.changedFiles)) return
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -813,6 +818,14 @@ try {
 
     async close() {
       await engine.close()
+    },
+
+    // vite's watcher sees a created file even when rolldown's addWatchFile
+    // directory watches do not, which is what happens on github's macos
+    // runners. scoped to route files so a random write in the project is not
+    // a full rebuild.
+    async handleAddedFile(file: string) {
+      await rebuildIfNewRoute([file])
     },
   }
 }
@@ -1066,7 +1079,7 @@ createApp({
           for (const entry of readdirSync(dir, { withFileTypes: true })) {
             const child = resolve(dir, entry.name)
             if (entry.isDirectory()) walkRouteRoot(child)
-            else if (isRouteFile(child)) routes.files.add(child)
+            else if (isRouteFile(child)) routes.files.add(normalizePath(child))
           }
         }
         // a project can have no route root at all: `import.meta.glob` then
