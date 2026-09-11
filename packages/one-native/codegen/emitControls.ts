@@ -41,9 +41,36 @@ export function emitControls(header: string, outputs: Map<string, string>) {
       .join('; ')} }>`
   let types =
     header +
-    `import type { ViewProps } from 'react-native'
+    `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
+
+export interface OneNativeStyle {
+  fontSize?: number
+  fontWeight?: string
+  fontDesign?: string
+  textStyle?: string
+  foregroundStyle?: ColorValue
+  tint?: ColorValue
+  background?: ColorValue
+  padding?: number
+  paddingTop?: number
+  paddingLeading?: number
+  paddingBottom?: number
+  paddingTrailing?: number
+  width?: number
+  height?: number
+  minWidth?: number
+  idealWidth?: number
+  maxWidth?: number
+  minHeight?: number
+  idealHeight?: number
+  maxHeight?: number
+  cornerRadius?: number
+  opacity?: number
+  borderColor?: ColorValue
+  borderWidth?: number
+}
 
 // the React Native props a One Native control honors. a composed control renders inside its
 // parent's SwiftUI tree and its own UIView is never displayed, so the rest of ViewProps would
@@ -55,7 +82,9 @@ import type { KeyboardType, TextContentType } from '../textTypes'
 export type OneNativeViewProps = Pick<
   ViewProps,
   'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'
->
+> & {
+  swiftStyle?: OneNativeStyle
+}
 ` +
     Object.keys(payloads)
       .map((name) => `export type ${name} = ${payloadType(name, 'public')}\n`)
@@ -170,6 +199,7 @@ ${
     ]
     const codegenTypes = ['DirectEventHandler', 'Int32', 'Double'].filter((type) => {
       if (type === 'DirectEventHandler') return Object.keys(events).length > 0
+      if (type === 'Double') return true
       return [
         ...Object.values(props),
         ...Object.values(events).flatMap((fields) => Object.values(fields)),
@@ -179,14 +209,41 @@ ${
     outputs.set(
       `src/specs/${nativeName}NativeComponent.ts`,
       header +
-        `import type { ViewProps } from 'react-native'
+        `import type { ColorValue, ViewProps } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'` : ''}
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 ${usedPayloads.map((payload) => `type ${payload} = ${payloadType(payload, 'spec')}`).join('\n')}
+type OneNativeStyleNative = Readonly<{
+  fontSize?: Double
+  fontWeight?: string
+  fontDesign?: string
+  textStyle?: string
+  foregroundStyle?: ColorValue
+  tint?: ColorValue
+  background?: ColorValue
+  padding?: Double
+  paddingTop?: Double
+  paddingLeading?: Double
+  paddingBottom?: Double
+  paddingTrailing?: Double
+  width?: Double
+  height?: Double
+  minWidth?: Double
+  idealWidth?: Double
+  maxWidth?: Double
+  minHeight?: Double
+  idealHeight?: Double
+  maxHeight?: Double
+  cornerRadius?: Double
+  opacity?: Double
+  borderColor?: ColorValue
+  borderWidth?: Double
+}>
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
   .map(([key, type]) => `  ${key}: ${type}`)
   .join('\n')}
+  swiftStyle?: OneNativeStyleNative
 ${Object.entries(events)
   .map(
     ([key, fields]) =>
@@ -208,6 +265,7 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
           ? key
           : `${key} = ${field.jsDefault ?? literal(field.default)}`
       ),
+      'swiftStyle',
       'style',
       '...props',
     ]
@@ -230,6 +288,7 @@ ${
     ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
     : ''
 }  return <Native${name} {...props} ${styleProp}
+    swiftStyle={swiftStyle}
 ${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
   control.focus
     ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
@@ -288,6 +347,7 @@ ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value
   control.focus ? '  @Published var controlledFocus = OneNativeControlled<Bool>(false)\n' : ''
 }${swiftFields}
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
 ${
   value
@@ -338,6 +398,10 @@ ${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var 
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
 ${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${
@@ -417,6 +481,7 @@ ${
 `
     : ''
 }${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }
 ${control.extraSwift ?? ''}
@@ -572,6 +637,32 @@ ${objectFields.length ? `  const auto &previous = *std::static_pointer_cast<cons
     hint:RCTNSStringFromString(next.accessibilityHint)
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
+  NSMutableDictionary *style = [NSMutableDictionary new];
+  if (next.swiftStyle.fontSize > 0) style[@"fontSize"] = @(next.swiftStyle.fontSize);
+  if (!next.swiftStyle.fontWeight.empty()) style[@"fontWeight"] = RCTNSStringFromString(next.swiftStyle.fontWeight);
+  if (!next.swiftStyle.fontDesign.empty()) style[@"fontDesign"] = RCTNSStringFromString(next.swiftStyle.fontDesign);
+  if (!next.swiftStyle.textStyle.empty()) style[@"textStyle"] = RCTNSStringFromString(next.swiftStyle.textStyle);
+  if (next.swiftStyle.foregroundStyle) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.foregroundStyle); if (c) style[@"foregroundStyle"] = c; }
+  if (next.swiftStyle.tint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.tint); if (c) style[@"tint"] = c; }
+  if (next.swiftStyle.background) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.background); if (c) style[@"background"] = c; }
+  if (next.swiftStyle.padding > 0) style[@"padding"] = @(next.swiftStyle.padding);
+  if (next.swiftStyle.paddingTop > 0) style[@"paddingTop"] = @(next.swiftStyle.paddingTop);
+  if (next.swiftStyle.paddingLeading > 0) style[@"paddingLeading"] = @(next.swiftStyle.paddingLeading);
+  if (next.swiftStyle.paddingBottom > 0) style[@"paddingBottom"] = @(next.swiftStyle.paddingBottom);
+  if (next.swiftStyle.paddingTrailing > 0) style[@"paddingTrailing"] = @(next.swiftStyle.paddingTrailing);
+  if (next.swiftStyle.width > 0) style[@"width"] = @(next.swiftStyle.width);
+  if (next.swiftStyle.height > 0) style[@"height"] = @(next.swiftStyle.height);
+  if (next.swiftStyle.minWidth > 0) style[@"minWidth"] = @(next.swiftStyle.minWidth);
+  if (next.swiftStyle.idealWidth > 0) style[@"idealWidth"] = @(next.swiftStyle.idealWidth);
+  if (next.swiftStyle.maxWidth > 0) style[@"maxWidth"] = @(next.swiftStyle.maxWidth);
+  if (next.swiftStyle.minHeight > 0) style[@"minHeight"] = @(next.swiftStyle.minHeight);
+  if (next.swiftStyle.idealHeight > 0) style[@"idealHeight"] = @(next.swiftStyle.idealHeight);
+  if (next.swiftStyle.maxHeight > 0) style[@"maxHeight"] = @(next.swiftStyle.maxHeight);
+  if (next.swiftStyle.cornerRadius > 0) style[@"cornerRadius"] = @(next.swiftStyle.cornerRadius);
+  if (next.swiftStyle.opacity > 0) style[@"opacity"] = @(next.swiftStyle.opacity);
+  if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
+  if (next.swiftStyle.borderWidth > 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
+  [_nativeView configureStyle:style];
   [_nativeView configure:${call[0].expression}
     ${call
       .slice(1)

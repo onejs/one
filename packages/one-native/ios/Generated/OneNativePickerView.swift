@@ -10,6 +10,7 @@ private final class PickerModel: ObservableObject {
   @Published var options: [OneNativePickerOption] = []
   @Published var pickerStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
@@ -28,6 +29,10 @@ private final class PickerModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, pickerStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
@@ -85,5 +90,6 @@ private struct PickerContent: View {
       .oneNativePickerStyle(model.pickerStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }

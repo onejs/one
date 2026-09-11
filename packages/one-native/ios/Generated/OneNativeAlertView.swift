@@ -9,6 +9,7 @@ private final class AlertModel: ObservableObject {
   @Published var message: String = ""
   @Published var actions: [OneNativeDialogAction] = []
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
@@ -34,6 +35,10 @@ private final class AlertModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
@@ -93,5 +98,6 @@ private struct AlertContent: View {
         if !model.message.isEmpty { Text(model.message) }
       }
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }

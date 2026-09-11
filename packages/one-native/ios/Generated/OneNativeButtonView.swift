@@ -10,6 +10,7 @@ private final class ButtonModel: ObservableObject {
   @Published var buttonRole: String = ""
   @Published var buttonStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
+  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onPress: ((Int) -> Void)?
   private var pressCount = 0
@@ -29,6 +30,10 @@ private final class ButtonModel: ObservableObject {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
+  }
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String) {
     if model.label != label { model.label = label }
@@ -84,5 +89,6 @@ private struct ButtonContent: View {
       .oneNativeButtonStyle(model.buttonStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
+      .oneNativeStyle(model.swiftStyle)
   }
 }

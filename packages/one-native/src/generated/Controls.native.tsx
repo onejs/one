@@ -13,6 +13,7 @@ export function Picker({
   disabled = false,
   options,
   pickerStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.PickerProps) {
@@ -48,6 +49,7 @@ export function Picker({
     <NativePicker
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -72,6 +74,7 @@ export function DatePicker({
   maximumDate = new Date(64092211200000),
   displayedComponents = 'dateAndTime',
   datePickerStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.DatePickerProps) {
@@ -104,6 +107,7 @@ export function DatePicker({
     <NativeDatePicker
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -127,6 +131,7 @@ export function ColorPicker({
   label = '',
   disabled = false,
   supportsOpacity = true,
+  swiftStyle,
   style,
   ...props
 }: Types.ColorPickerProps) {
@@ -145,6 +150,7 @@ export function ColorPicker({
     <NativeColorPicker
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -165,6 +171,7 @@ export function Toggle({
   label = '',
   disabled = false,
   toggleStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.ToggleProps) {
@@ -183,6 +190,7 @@ export function Toggle({
     <NativeToggle
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={isOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -205,6 +213,7 @@ export function Slider({
   minimumValue = 0,
   maximumValue = 100,
   step = 1,
+  swiftStyle,
   style,
   ...props
 }: Types.SliderProps) {
@@ -227,6 +236,7 @@ export function Slider({
     <NativeSlider
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -251,6 +261,7 @@ export function Stepper({
   minimumValue = 0,
   maximumValue = 100,
   step = 1,
+  swiftStyle,
   style,
   ...props
 }: Types.StepperProps) {
@@ -273,6 +284,7 @@ export function Stepper({
     <NativeStepper
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -288,16 +300,17 @@ export function Stepper({
   )
 }
 import NativeText from '../specs/OneNativeTextNativeComponent'
-export function Text({ text = '', style, ...props }: Types.TextProps) {
+export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps) {
   if (typeof text !== 'string') throw new Error('Text text must be a string')
 
-  return <NativeText {...props} style={style} text={text} />
+  return <NativeText {...props} style={style} swiftStyle={swiftStyle} text={text} />
 }
 import NativeLabel from '../specs/OneNativeLabelNativeComponent'
 export function Label({
   label = '',
   disabled = false,
   systemImage = '',
+  swiftStyle,
   style,
   ...props
 }: Types.LabelProps) {
@@ -310,6 +323,7 @@ export function Label({
     <NativeLabel
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -324,6 +338,7 @@ export function Button({
   systemImage = '',
   buttonRole = '',
   buttonStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.ButtonProps) {
@@ -344,6 +359,7 @@ export function Button({
     <NativeButton
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -360,6 +376,7 @@ export function ProgressView({
   value = undefined,
   total = 1,
   progressViewStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.ProgressViewProps) {
@@ -378,6 +395,7 @@ export function ProgressView({
     <NativeProgressView
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -398,6 +416,7 @@ export function Gauge({
   minimumValueLabel = '',
   maximumValueLabel = '',
   gaugeStyle = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.GaugeProps) {
@@ -416,6 +435,7 @@ export function Gauge({
     <NativeGauge
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       label={label}
       disabled={disabled}
       value={value}
@@ -435,6 +455,7 @@ export function Image({
   symbolVariant = '',
   imageScale = '',
   variableValue = undefined,
+  swiftStyle,
   style,
   ...props
 }: Types.ImageProps) {
@@ -466,6 +487,7 @@ export function Image({
     <NativeImage
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       systemName={systemName}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
@@ -479,13 +501,22 @@ import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
   autoplay = false,
+  swiftStyle,
   style,
   ...props
 }: Types.VideoPlayerProps) {
   if (typeof url !== 'string' || !url)
     throw new Error('VideoPlayer url must be a non-empty string')
 
-  return <NativeVideoPlayer {...props} style={style} url={url} autoplay={autoplay} />
+  return (
+    <NativeVideoPlayer
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      url={url}
+      autoplay={autoplay}
+    />
+  )
 }
 import NativeMap from '../specs/OneNativeMapNativeComponent'
 export function Map({
@@ -494,6 +525,7 @@ export function Map({
   longitude = -122.4194,
   distance = 5000,
   markers,
+  swiftStyle,
   style,
   ...props
 }: Types.MapProps) {
@@ -523,6 +555,7 @@ export function Map({
     <NativeMap
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       latitude={latitude}
       longitude={longitude}
       distance={distance}
@@ -556,6 +589,7 @@ export function TextField({
   keyboardType = '',
   textContentType = '',
   axis = 'horizontal',
+  swiftStyle,
   style,
   ...props
 }: Types.TextFieldProps) {
@@ -592,6 +626,7 @@ export function TextField({
     <NativeTextField
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -638,6 +673,7 @@ export function SecureField({
   autocorrectionDisabled = false,
   keyboardType = '',
   textContentType = '',
+  swiftStyle,
   style,
   ...props
 }: Types.SecureFieldProps) {
@@ -673,6 +709,7 @@ export function SecureField({
     <NativeSecureField
       {...props}
       style={style}
+      swiftStyle={swiftStyle}
       value={text}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -709,6 +746,7 @@ export function Alert({
   title = '',
   message = '',
   actions,
+  swiftStyle,
   style,
   ...props
 }: Types.AlertProps) {
@@ -735,6 +773,7 @@ export function Alert({
     <NativeAlert
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      swiftStyle={swiftStyle}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -758,6 +797,7 @@ export function ConfirmationDialog({
   message = '',
   actions,
   titleVisibility = 'automatic',
+  swiftStyle,
   style,
   ...props
 }: Types.ConfirmationDialogProps) {
@@ -790,6 +830,7 @@ export function ConfirmationDialog({
     <NativeConfirmationDialog
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      swiftStyle={swiftStyle}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -810,6 +851,7 @@ export function QuickLook({
   onIsPresentedChange,
   revision = 0,
   url = '',
+  swiftStyle,
   style,
   ...props
 }: Types.QuickLookProps) {
@@ -829,6 +871,7 @@ export function QuickLook({
     <NativeQuickLook
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      swiftStyle={swiftStyle}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
