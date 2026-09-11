@@ -1,7 +1,37 @@
 import { commonFields, type Control } from './controlTypes'
 
-// leaves with no two-way value: Button signals, ProgressView and Gauge only display.
+// leaves with no two-way value: Button signals, Text/Label/ProgressView/Gauge display.
 export const leafControls: Control[] = [
+  {
+    name: 'Text',
+    fields: { text: { type: 'string', default: '' } },
+    constructors: [
+      { type: 'Text', parameters: [{ label: 'verbatim', type: 'Swift.String' }] },
+    ],
+    swift: `Text(verbatim: model.text)`,
+    validate: `  if (typeof text !== 'string') throw new Error('Text text must be a string')`,
+    height: { default: 24 },
+  },
+  {
+    name: 'Label',
+    fields: {
+      ...commonFields,
+      systemImage: { type: 'string', default: '' },
+    },
+    constructors: [
+      {
+        type: 'Label',
+        parameters: [
+          { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+          { label: 'systemImage', type: 'Swift.String' },
+        ],
+      },
+    ],
+    swift: `Label(LocalizedStringKey(model.label), systemImage: model.systemImage)`,
+    validate: `  if (typeof label !== 'string' || !label) throw new Error('Label label must be a non-empty string')
+  if (typeof systemImage !== 'string' || !systemImage) throw new Error('Label systemImage must be a non-empty SF Symbol name')`,
+    height: { default: 24 },
+  },
   {
     name: 'Button',
     actions: [{ prop: 'onPress', event: 'Press' }],

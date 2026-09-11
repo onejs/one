@@ -23,6 +23,12 @@ function Slider(_props: Types.SliderProps): never {
 function Stepper(_props: Types.StepperProps): never {
   throw new Error('Swift.Stepper requires an iOS native build with one-native installed')
 }
+function Text(_props: Types.TextProps): never {
+  throw new Error('Swift.Text requires an iOS native build with one-native installed')
+}
+function Label(_props: Types.LabelProps): never {
+  throw new Error('Swift.Label requires an iOS native build with one-native installed')
+}
 function Button(_props: Types.ButtonProps): never {
   throw new Error('Swift.Button requires an iOS native build with one-native installed')
 }
@@ -59,6 +65,8 @@ export const unsupportedControls = {
   Toggle,
   Slider,
   Stepper,
+  Text,
+  Label,
   Button,
   ProgressView,
   Gauge,

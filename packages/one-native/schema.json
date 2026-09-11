@@ -527,6 +527,50 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeText",
+      "publicName": "Text",
+      "props": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 24
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLabel",
+      "publicName": "Label",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "systemImage": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "inline",
+        "height": {
+          "default": 24
+        }
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeButton",
       "publicName": "Button",
       "props": {
@@ -1044,6 +1088,51 @@
       "actions": [],
       "layout": {
         "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeForm",
+      "publicName": "Form",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSection",
+      "publicName": "Section",
+      "props": {
+        "title": {
+          "type": "string"
+        },
+        "footer": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
       },
       "slots": [
         {

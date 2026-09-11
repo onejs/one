@@ -10,5 +10,13 @@ export interface HostProps extends ViewProps {
   alignment?: HostAlignment
   children: ReactNode
 }
+export interface FormProps extends ViewProps {
+  children: ReactNode
+}
+export interface SectionProps extends ViewProps {
+  title?: string
+  footer?: string
+  children: ReactNode
+}
 export const hostAxes = ['vertical', 'horizontal'] as const
 export const hostAlignments = ['leading', 'center', 'trailing'] as const

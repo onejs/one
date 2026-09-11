@@ -32,6 +32,11 @@ const testScreens = [
     label: 'One Native Host',
     testID: 'nav-one-native-host',
   },
+  {
+    href: '/one-native-containers',
+    label: 'One Native Containers',
+    testID: 'nav-one-native-containers',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

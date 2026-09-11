@@ -12,6 +12,7 @@ declare module 'one' {
         | `/color-test`
         | `/menu-test`
         | `/one-native`
+        | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-dialogs`
         | `/one-native-host`

@@ -28,8 +28,8 @@ work yourself and use a small squad for bounded catalog/fixture work.
 - `ios/OneNativeSlot.swift` owns RN slots with fill, passive, and presented modes.
   `cpp/OneNativeSlotShadowNode.h` shares native size/origin state and descriptors.
   Presented content has a local zero origin and its own Fabric touch handler.
-- `Picker`, `DatePicker`, `ColorPicker`, `Toggle`, `Slider`, `Stepper`, `Button`,
-  `ProgressView`, `Gauge`, `TextField`, `SecureField`, `Alert`, and
+- `Picker`, `DatePicker`, `ColorPicker`, `Toggle`, `Slider`, `Stepper`, `Text`,
+  `Label`, `Button`, `ProgressView`, `Gauge`, `TextField`, `SecureField`, `Alert`, and
   `ConfirmationDialog` come from `codegen/{picker,form,leaf,text,presentation}Catalog.ts`
   through `emitControls.ts`. Native hosts, ObjC++ adapters, TS types, Fabric specs,
   enum validation, the non-iOS throwing stubs, and schema are generated.
@@ -89,7 +89,8 @@ bun scripts/one-native-conformance.ts \
   --artifact-dir /tmp/one-native-final-sheets
 ```
 
-Run each suite separately: `tabs-menu`, `pickers`, `forms`, `sheets`. Each stops
+Run each suite separately: `tabs-menu`, `pickers`, `forms`, `sheets`, `leaves`,
+`dialogs`, `host`, `containers`. Each stops
 and relaunches the app and asserts loaded state. Do not run concurrent simulator
 operators. Do not edit application sources while testing state retention; HMR
 invalidates that test. `pod install` runs inside `tests/native-features/ios` after
@@ -143,6 +144,16 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   instead. Horizontal hosts overflow when their children are width-greedy: three
   controls side by side report 128 points for 50 points of content, while one child
   measures exactly 28. Composition survives two leave/reenter recycling cycles.
+- Containers (`Swift.Form`, `Swift.Section`). One `OneNativeContainerView` owns the
+  children, the publication into SwiftUI, and the standalone hosting controller; a
+  host, a form and a section differ only in the SwiftUI container they wrap the
+  published children in. Containers are composable themselves, so `Form > Section >
+  Toggle` and a host inside a section both work, a Toggle two containers deep emits,
+  and its native AXValue follows React. A section mounted later, a section prop change,
+  and a section unmount all reach SwiftUI through the published tree. A `Form` fills
+  its Yoga box (484 points in the fixture) because it has no ideal height; composed
+  into a measured host it reports 0 and renders nothing, so `Swift.Host` rejects a
+  `Swift.Form` child in JavaScript.
 
 Automation details that prevent false diagnoses:
 
@@ -179,13 +190,15 @@ Automation details that prevent false diagnoses:
 
 - `bun run test`: 19 tests in two existing package test files pass.
 - `bun run typecheck` and `bun run build` pass.
-- `generate:check`: SDK 26.4, 9,715 declarations, 61 mapped symbols, 42 generated
+- `generate:check`: SDK 26.4, 9,715 declarations, 115 mapped symbols, 84 generated
   files; assembled Swift compiles and controlled-state probes pass.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
   and `/tmp/one-native-final-<suite>.log`, where suites are `pickers`, `forms`,
-  `sheets`, and `tabs-menu`. Screenshots live alongside those outcomes.
+  `sheets`, and `tabs-menu`. Screenshots live alongside those outcomes. The later
+  suites (`leaves`, `dialogs`, `host`, `containers`) write to
+  `/tmp/one-native-conformance/<suite>` instead.
 - JS measurement: `/tmp/one-native-final-measure.json`; native sections:
   `/tmp/one-native-final-native-size.json`; package: `/tmp/one-native-final-pack.json`.
   The coverage plan records values and limitations.
@@ -198,13 +211,14 @@ Automation details that prevent false diagnoses:
    selected detent binding, and presentation background/interaction/sizing remain
    unimplemented, as do the `presenting:` value-bound alert overloads and
    `presentationCompactAdaptation`.
-2. `Swift.Host` landed: One Native controls compose into one SwiftUI tree and the host
-   reports the height SwiftUI measured back to Yoga. Design reviewed once (r26161);
-   `plans/one-native-layout-design.md` carries the measurement contract, the review,
-   and what the implementation changed against the plan. Still open in that wave:
-   `Text`/`Label`/`Form`/`Section` as catalog entries, an explicit React Native slot
-   inside a host, and Popover. A composed child's inherited `ViewProps` land on a
-   UIView nobody displays, which the catalog should eventually map or reject.
+2. Composition landed through stage 4: controls compose into one SwiftUI tree, a host
+   reports the height SwiftUI measured back to Yoga, `Text` and `Label` are generated
+   leaves, and `Swift.Form`/`Swift.Section` are containers that nest. Design reviewed
+   once (r26161); `plans/one-native-layout-design.md` carries the measurement contract,
+   the review, and what each stage changed against the plan. Still open in that wave:
+   an explicit React Native slot inside a container (stage 5) and Popover (stage 6). A
+   composed child's inherited `ViewProps` land on a UIView nobody displays, which the
+   catalog should eventually map or reject.
 3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map

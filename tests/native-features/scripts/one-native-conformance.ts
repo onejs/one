@@ -15,7 +15,15 @@ type Node = {
   frame?: { x: number; y: number; width: number; height: number }
   [key: string]: unknown
 }
-type Suite = 'tabs-menu' | 'pickers' | 'forms' | 'sheets' | 'leaves' | 'dialogs' | 'host'
+type Suite =
+  | 'tabs-menu'
+  | 'pickers'
+  | 'forms'
+  | 'sheets'
+  | 'leaves'
+  | 'dialogs'
+  | 'host'
+  | 'containers'
 type Config = {
   simulatorId: string
   bundleId: string
@@ -26,7 +34,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
 }
 
@@ -56,10 +64,11 @@ function parse(args: string[]): Config {
         value !== 'sheets' &&
         value !== 'leaves' &&
         value !== 'dialogs' &&
-        value !== 'host'
+        value !== 'host' &&
+        value !== 'containers'
       )
         throw new Error(
-          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, or host.'
+          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, or containers.'
         )
       suite = value
     } else throw new Error(`Unknown argument: ${arg}`)
@@ -179,21 +188,27 @@ const hostLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-host-expand')) &&
   has(nodes, 'Host: ')
+const containersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-container-extra')) &&
+  has(nodes, 'Form: ')
 const homeLoaded = (nodes: Node[], suite: Suite) =>
   Boolean(
     id(
       nodes,
-      suite === 'host'
-        ? 'nav-one-native-host'
-        : suite === 'dialogs'
-          ? 'nav-one-native-dialogs'
-          : suite === 'leaves'
-            ? 'nav-one-native-leaves'
-            : suite === 'sheets'
-              ? 'nav-one-native-sheet'
-              : suite !== 'tabs-menu'
-                ? 'nav-one-native-controls'
-                : 'nav-one-native'
+      suite === 'containers'
+        ? 'nav-one-native-containers'
+        : suite === 'host'
+          ? 'nav-one-native-host'
+          : suite === 'dialogs'
+            ? 'nav-one-native-dialogs'
+            : suite === 'leaves'
+              ? 'nav-one-native-leaves'
+              : suite === 'sheets'
+                ? 'nav-one-native-sheet'
+                : suite !== 'tabs-menu'
+                  ? 'nav-one-native-controls'
+                  : 'nav-one-native'
     )
   )
 const firstState = (nodes: Node[]) =>
@@ -228,7 +243,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
                   ? dialogsLoaded(nodes)
                   : config.suite === 'host'
                     ? hostLoaded(nodes)
-                    : fixtureLoaded(nodes)
+                    : config.suite === 'containers'
+                      ? containersLoaded(nodes)
+                      : fixtureLoaded(nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -1027,6 +1044,120 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       submit()
       await wait(`leaves recycle ${cycle}: current submit emitter`, (n) =>
         status(n, 'Submits', 1)
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'containers') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    const box = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a composed Toggle would look like it never emitted.
+    const pressSwitch = async () => {
+      const nodes = await wait('the form switch is ready', (n) =>
+        Boolean(control(n, 'CheckBox', 'Notify')?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', 'Notify')!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-containers')
+    // a standalone leaf owns its own hosting controller and takes the catalog's default
+    // height, so this is the generated Text and Label outside a container.
+    await wait(
+      'standalone Text and Label take the default leaf height',
+      (n) =>
+        Math.round(box(n, 'Standalone text')?.height ?? 0) === 24 &&
+        Math.round(box(n, 'Standalone label')?.height ?? 0) === 24
+    )
+    // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
+    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 484))
+    await wait(
+      'a Section renders its rows inside the Form',
+      (n) =>
+        labels(n).includes('Details') &&
+        labels(n).includes('Composed text') &&
+        labels(n).includes('Composed label') &&
+        Boolean(control(n, 'CheckBox', 'Notify'))
+    )
+    screenshot('containers-one-section.png')
+
+    await pressSwitch()
+    await wait(
+      'a control composed two containers deep emits',
+      (n) =>
+        status(n, 'IsOn', 'true') && String(control(n, 'CheckBox', 'Notify')?.AXValue) === '1'
+    )
+
+    // a Section prop change reaches SwiftUI through the published tree, not through any
+    // view React Native mounts.
+    tap({ id: 'one-native-container-footer' })
+    await wait('a Section footer appears', (n) => labels(n).includes('Two of two'))
+    tap({ id: 'one-native-container-footer' })
+    await wait('and goes away again', (n) => !labels(n).includes('Two of two'))
+
+    tap({ id: 'one-native-container-extra' })
+    await wait(
+      'a Section mounted later joins the Form',
+      (n) => labels(n).includes('More') && Boolean(control(n, 'Button', 'Section button'))
+    )
+    screenshot('containers-two-sections.png')
+
+    tap({ label: 'Section button' })
+    await wait('a Button composed into a Section emits', (n) => status(n, 'Section taps', 1))
+
+    // a Host inside a Section is a container composed into a container.
+    await wait('a nested Host lays its children across the row', (n) => {
+      const text = box(n, 'In host')
+      const button = box(n, 'Host button')
+      return Boolean(text && button && text.x < button.x && Math.abs(text.y - button.y) < 30)
+    })
+    tap({ label: 'Host button' })
+    await wait('a Button inside a nested Host emits', (n) => status(n, 'Host taps', 1))
+
+    tap({ id: 'one-native-container-extra' })
+    await wait(
+      'removing the Section takes its rows with it',
+      (n) =>
+        !labels(n).includes('More') &&
+        !labels(n).includes('Section button') &&
+        !labels(n).includes('Host button')
+    )
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`containers recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-containers')
+      await wait(
+        `containers recycle ${cycle}: a fresh Form rebuilds`,
+        (n) =>
+          status(n, 'IsOn', 'false') &&
+          labels(n).includes('Details') &&
+          labels(n).includes('Composed text')
+      )
+      await pressSwitch()
+      await wait(
+        `containers recycle ${cycle}: the composed Toggle still emits`,
+        (n) => status(n, 'IsOn', 'true')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')

@@ -64,6 +64,14 @@ export interface StepperProps extends Omit<ViewProps, 'children'> {
   maximumValue?: number
   step?: number
 }
+export interface TextProps extends Omit<ViewProps, 'children'> {
+  text?: string
+}
+export interface LabelProps extends Omit<ViewProps, 'children'> {
+  label?: string
+  disabled?: boolean
+  systemImage?: string
+}
 export interface ButtonProps extends Omit<ViewProps, 'children'> {
   onPress?: () => void
   label?: string

@@ -2,7 +2,6 @@
 #import "OneNativeHostComponentView.h"
 #import "OneNative-Swift.h"
 #import "OneNativeHostShadowNode.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
 using namespace facebook::react;
@@ -20,6 +19,7 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeHostProps>();
     _hostView = [OneNativeHostView new];
+    self.container = _hostView;
     self.contentView = _hostView;
     __weak OneNativeHostComponentView *weakSelf = self;
     _hostView.onMeasure = ^(CGFloat height) {
@@ -27,23 +27,6 @@ using namespace facebook::react;
     };
   }
   return self;
-}
-
-// a composed child renders inside this host's SwiftUI tree, so it is published rather
-// than added as a subview. nothing ever displays the child's own UIView. the control
-// itself is the component view's contentView, which is what conforms to the protocol.
-- (UIView *)composableFor:(UIView<RCTComponentViewProtocol> *)child {
-  UIView *content = [child isKindOfClass:RCTViewComponentView.class] ? ((RCTViewComponentView *)child).contentView : nil;
-  NSAssert(content != nil, @"Swift.Host children must be One Native controls");
-  return content;
-}
-
-- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
-  [_hostView insertChild:[self composableFor:child] at:index];
-}
-
-- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
-  [_hostView removeChild:[self composableFor:child]];
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
@@ -70,7 +53,6 @@ using namespace facebook::react;
 
 - (void)prepareForRecycle {
   [super prepareForRecycle];
-  [_hostView reset];
   _state.reset();
 }
 

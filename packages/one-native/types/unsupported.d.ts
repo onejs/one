@@ -1,9 +1,11 @@
-import type { HostProps, MenuProps, TabProps, TabsProps, SheetProps } from './types';
+import type { FormProps, HostProps, MenuProps, SectionProps, SheetProps, TabProps, TabsProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
 declare function Sheet(_props: SheetProps): never;
 declare function Host(_props: HostProps): never;
+declare function Form(_props: FormProps): never;
+declare function Section(_props: SectionProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -11,6 +13,8 @@ export declare const Swift: {
     Toggle: (_props: import("./types").ToggleProps) => never;
     Slider: (_props: import("./types").SliderProps) => never;
     Stepper: (_props: import("./types").StepperProps) => never;
+    Text: (_props: import("./types").TextProps) => never;
+    Label: (_props: import("./types").LabelProps) => never;
     Button: (_props: import("./types").ButtonProps) => never;
     ProgressView: (_props: import("./types").ProgressViewProps) => never;
     Gauge: (_props: import("./types").GaugeProps) => never;
@@ -23,6 +27,8 @@ export declare const Swift: {
     Menu: typeof Menu;
     Sheet: typeof Sheet;
     Host: typeof Host;
+    Form: typeof Form;
+    Section: typeof Section;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

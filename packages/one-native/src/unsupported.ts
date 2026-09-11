@@ -1,5 +1,13 @@
 import { unsupportedControls } from './generated/unsupportedControls'
-import type { HostProps, MenuProps, TabProps, TabsProps, SheetProps } from './types'
+import type {
+  FormProps,
+  HostProps,
+  MenuProps,
+  SectionProps,
+  SheetProps,
+  TabProps,
+  TabsProps,
+} from './types'
 
 function Tabs(_props: TabsProps): never {
   throw new Error('Swift.Tabs requires an iOS native build with one-native installed')
@@ -16,5 +24,11 @@ function Sheet(_props: SheetProps): never {
 function Host(_props: HostProps): never {
   throw new Error('Swift.Host requires an iOS native build with one-native installed')
 }
-export const Swift = { Tabs, Tab, Menu, Sheet, Host, ...unsupportedControls }
+function Form(_props: FormProps): never {
+  throw new Error('Swift.Form requires an iOS native build with one-native installed')
+}
+function Section(_props: SectionProps): never {
+  throw new Error('Swift.Section requires an iOS native build with one-native installed')
+}
+export const Swift = { Tabs, Tab, Menu, Sheet, Host, Form, Section, ...unsupportedControls }
 export type * from './types'

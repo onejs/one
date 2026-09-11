@@ -1,6 +1,6 @@
 # One Native Conformance Runner
 
-Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, or `host`.
+Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, or `containers`.
 
 ```bash
 bun tests/native-features/scripts/one-native-conformance.ts \
@@ -28,6 +28,8 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 `sheets` verifies RN button/input interaction, state retention across reopen and nested sheets, fraction and height detent changes, exact 393x300 Yoga layout for a 300-point sheet, programmatic dismissal, and the same drag with interactive dismissal blocked and allowed. It checks presentation state and dismissal callback counts, then leaves/reenters the route and verifies identical medium detents are restored after native host recycling. Hardware keyboard input is enabled in the test simulator; this does not test software keyboard avoidance.
 
 `host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (84), with 20-point spacing (124), and with a wrapping child label (107), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. Horizontal hosts are asserted by child order rather than by height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
+
+`containers` covers the container components: a `Swift.Form` holding `Swift.Section`s, a `Swift.Host` composed inside a section, and the generated `Text` and `Label`. It asserts the two standalone leaves take the catalog's 24-point default height, that the form fills its Yoga box (484 points here), and that a Toggle two containers deep still emits and its native AXValue follows React. A section mounted later, a section prop change (the footer), and unmounting a section are each asserted through the published SwiftUI tree, since React Native never displays a composed child's view. Two leave/reenter cycles verify container recycling.
 
 Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
