@@ -1948,30 +1948,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'pickers') {
+    // the segmented control is the only wide short TabGroup on the screen, and the tap has to
+    // land on the node the wait actually matched. finding a TabGroup again without the bounds
+    // would aim at whichever one came first and grade something else.
+    const segmented = (nodes: Node[]) =>
+      nodes.find(
+        (node) =>
+          node.type === 'TabGroup' &&
+          node.frame &&
+          node.frame.width > 300 &&
+          node.frame.height >= 25 &&
+          node.frame.height <= 44
+      )?.frame
     const tapSegment = async (index: number, name: string) => {
-      const nodes = await wait(name, (current) =>
-        current.some((node) => {
-          const frame = node.type === 'TabGroup' ? node.frame : undefined
-          return Boolean(
-            frame && frame.width > 300 && frame.height >= 25 && frame.height <= 44
-          )
-        })
-      )
-      const frame = nodes.find((node) => node.type === 'TabGroup')?.frame
+      const nodes = await wait(name, (current) => Boolean(segmented(current)))
+      const frame = segmented(nodes)
       if (!frame) throw new Error('Expected TabGroup bounds')
       point(
         Math.round(frame.x + (frame.width * (index + 0.5)) / 3),
         Math.round(frame.y + frame.height / 2)
       )
     }
+    // one matcher for the wheel, so a tap always lands on the node the wait matched. a bare
+    // `type === 'Slider'` lookup would take whichever slider came first and grade that instead.
     const wheel = (nodes: Node[], index: number) =>
-      nodes.some(
+      nodes.find(
         (node) =>
           node.type === 'Slider' &&
           Number(node.AXValue) === index &&
           node.frame &&
           Math.round(node.frame.height) === 216
-      )
+      )?.frame
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-controls')
@@ -2016,13 +2023,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-control-style' })
     const wheeled = await wait(
       'wheel picker mounts',
-      (nodes) => labels(nodes).includes('Style: wheel · Reject: off') && wheel(nodes, 2)
+      (nodes) =>
+        labels(nodes).includes('Style: wheel · Reject: off') && Boolean(wheel(nodes, 2))
     )
     screenshot('picker-wheel.png')
-    const slider = wheeled.find(
-      (node) =>
-        node.type === 'Slider' && node.frame && Math.round(node.frame.height) === 216
-    )?.frame
+    const slider = wheel(wheeled, 2)
     if (!slider) throw new Error('Expected wheel Slider bounds height 216')
     point(
       Math.round(slider.x + slider.width / 2),
@@ -2030,7 +2035,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'wheel native selection changes beta',
-      (nodes) => value(nodes, 'beta') && request(nodes, 'beta') && wheel(nodes, 1)
+      (nodes) => value(nodes, 'beta') && request(nodes, 'beta') && Boolean(wheel(nodes, 1))
     )
     tap({ id: 'one-native-control-style' })
     await wait(
@@ -2148,16 +2153,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-control-category-picker' })
     const recycled = await wait(
       'recycled picker restores identical options',
-      (n) => value(n, 'beta') && wheel(n, 1)
+      (n) => value(n, 'beta') && Boolean(wheel(n, 1))
     )
-    const recycledWheel = recycled.find((n) => n.type === 'Slider')!.frame!
+    const recycledWheel = wheel(recycled, 1)
+    if (!recycledWheel) throw new Error('Expected recycled wheel Slider bounds height 216')
     point(
       recycledWheel.x + recycledWheel.width / 2,
       recycledWheel.y + recycledWheel.height / 2 + 32
     )
     await wait(
       'recycled picker sends current callback',
-      (n) => value(n, 'gamma') && request(n, 'gamma') && wheel(n, 2)
+      (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
