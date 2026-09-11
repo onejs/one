@@ -182,6 +182,83 @@ greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
 
 Every control also accepts `label`, `disabled`, and `revision`.
 
+## Buttons, indicators, and text input
+
+`Button` signals; `ProgressView` and `Gauge` only display; `TextField` and
+`SecureField` carry a controlled string. They take the same flat props and the
+same default height of 44, except `Gauge` with an `accessoryCircular` style (100)
+and `TextField` with `axis="vertical"` (120).
+
+```tsx
+function Leaves() {
+  const [name, setName] = useState('')
+  const [secret, setSecret] = useState('')
+  return (
+    <View style={{ width: '100%' }}>
+      <Swift.Button
+        label="Delete"
+        systemImage="trash"
+        buttonRole="destructive"
+        buttonStyle="bordered"
+        onPress={() => remove()}
+      />
+      <Swift.ProgressView label="Uploading" value={0.4} total={1} />
+      <Swift.ProgressView label="Working" progressViewStyle="circular" />
+      <Swift.Gauge
+        label="Speed"
+        value={72}
+        minimumValue={0}
+        maximumValue={120}
+        currentValueLabel="72"
+        minimumValueLabel="0"
+        maximumValueLabel="120"
+        gaugeStyle="accessoryCircular"
+      />
+      <Swift.TextField
+        label="Name"
+        prompt="Your name"
+        text={name}
+        onTextChange={setName}
+        submitLabel="done"
+        onSubmit={() => save(name)}
+      />
+      <Swift.SecureField label="Password" text={secret} onTextChange={setSecret} />
+    </View>
+  )
+}
+```
+
+`Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
+is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
+`buttonRole` because React Native's `ViewProps` already owns `role` for the
+accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
+`bordered`, `borderedProminent`, `glass`, or `glassProminent`; the last two
+require iOS 26. `onPress` does not fire while `disabled`.
+
+`ProgressView` shows determinate progress when `value` is set and an
+indeterminate spinner when it is omitted. `total` defaults to 1 and must be
+greater than 0; `value` must sit between 0 and `total`. `progressViewStyle` is
+`automatic`, `linear`, or `circular`.
+
+`Gauge` takes finite `value`, `minimumValue` (default 0), and `maximumValue`
+(default 1), with `value` inside that range. `currentValueLabel`,
+`minimumValueLabel`, and `maximumValueLabel` are plain strings; an empty string
+renders empty text rather than omitting the label. `gaugeStyle` is `automatic`,
+`linearCapacity`, `accessoryLinear`, `accessoryLinearCapacity`,
+`accessoryCircular`, or `accessoryCircularCapacity`.
+
+`TextField` and `SecureField` take a controlled `text` string and report edits
+through `onTextChange`, using the same acknowledgement and `revision` reset as the
+other controls. `prompt` is the placeholder. `submitLabel` names the return key
+and `onSubmit` fires when it is pressed. `textInputAutocapitalization` is `never`,
+`words`, `sentences`, or `characters`; an empty value leaves the system default.
+`autocorrectionDisabled` defaults to false. `TextField` also takes `axis`:
+`vertical` makes it grow to multiple lines.
+
+Keyboard type and programmatic focus are not bound. SwiftUI exposes those through
+UIKit's `UIKeyboardType` and `@FocusState`, neither of which the current prop
+pipeline carries.
+
 ## Sheets
 
 `Swift.Sheet` presents its React Native children in a SwiftUI sheet. The host has
@@ -264,11 +341,11 @@ iOS availability from SDK declarations, then emits:
 - public TypeScript types and runtime availability validation
 - Fabric component specs, menu payload validation and Objective-C++ conversion
 - SwiftUI menu constructors, a tab constructor, and modifier dispatch
-- typed leaf Swift and Objective-C++ hosts for pickers and form controls
+- typed leaf Swift and Objective-C++ hosts for pickers, form controls, buttons,
+  indicators, and text input
 - sheet types and a presented RN content slot
 - an SDK manifest, input hashes, and unbound menu/tab modifier names
-- `one-native/schema.json`, describing native props, events, payloads, and RN slots
-  for preview adapters and conformance checks
+- `one-native/schema.json`, described below
 
 It typechecks the assembled Swift at the minimum iOS version and runs the
 controlled-state protocol probe. CI runs `generate:check`, TypeScript typecheck,
@@ -279,8 +356,33 @@ the generator.
 `codegen/Extract.swift` uses the selected toolchain's SwiftParser and SwiftSyntax
 to parse SwiftUI and SwiftUICore `.swiftinterface` files. `codegen/catalog.ts`
 defines the supported constructor recipes and React-specific mappings, including
-identity, child slots, and controlled events. Picker and form recipes live in
-`codegen/pickerCatalog.ts` and `codegen/formCatalog.ts`.
+identity, child slots, and controlled events. Control recipes live in
+`codegen/pickerCatalog.ts`, `codegen/formCatalog.ts`, `codegen/leafCatalog.ts`, and
+`codegen/textCatalog.ts`, and `codegen/emitControls.ts` turns each recipe into a
+Swift host, an Objective-C++ adapter, a Fabric spec, public types, and a schema
+entry.
+
+### schema.json
+
+`schema.json` is the machine-readable description of the native contract, at
+version 2. Each component carries its Fabric name, its public component name, its
+props and event payloads as `{ type, enum? }` entries, its controlled value and
+event when it has one, its action events with the public prop that raises them,
+its default height, and its React Native slots. Top-level `enums` lists every
+SwiftUI enum case with the iOS version that introduced it, and `eventDelivery`
+records that React Native hands each payload to the component as
+`onX({ nativeEvent: payload })`.
+
+A browser or preview runtime implements the native contract, not the public one:
+the public adapters in `src/generated/Controls.native.tsx` run unchanged on top,
+so they still validate props, apply the controlled protocol, and supply the
+default height. Soot resolves a Fabric host by its native view name through
+`registerNativeComponentImplementation`, which is the seam this schema targets.
+
+The schema does not yet carry accessibility role or label mapping, an executable
+definition of the slot `layout` values, or any imperative ref, Fabric command, or
+measurement contract. Those are real gaps for an independent implementation, not
+oversights to infer around.
 
 Change the catalog or generator, regenerate, rebuild the native app, and exercise
 the integration fixture. `generate:check` fails if any output differs. Extending

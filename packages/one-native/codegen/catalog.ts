@@ -11,6 +11,16 @@ export const modifiers = [
   },
   { name: 'controlGroupStyle', type: 'ControlGroupStyle' },
   { name: 'tabBarMinimizeBehavior', type: 'TabBarMinimizeBehavior' },
+  { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
+  { name: 'progressViewStyle', type: 'ProgressViewStyle' },
+  { name: 'gaugeStyle', type: 'GaugeStyle' },
+  { name: 'textFieldStyle', type: 'TextFieldStyle' },
+  { name: 'submitLabel', type: 'SubmitLabel' },
+  {
+    name: 'textInputAutocapitalization',
+    type: 'TextInputAutocapitalization',
+    optional: true,
+  },
 ] as const
 export const enumTypes = [
   'MenuOrder',
@@ -23,6 +33,13 @@ export const enumTypes = [
   'ButtonRole',
   'TabRole',
   'ControlGroupStyle',
+  'PrimitiveButtonStyle',
+  'ProgressViewStyle',
+  'GaugeStyle',
+  'TextFieldStyle',
+  'SubmitLabel',
+  'TextInputAutocapitalization',
+  'Axis',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -215,6 +232,11 @@ export const components = [
         ...controlledEvent,
       },
     },
+    enumProps: {
+      menuOrder: 'MenuOrder',
+      menuActionDismissBehavior: 'MenuActionDismissBehavior',
+    },
+    controlled: { event: 'onNativeMenuValueChange' },
     slots: [
       {
         name: 'trigger',
@@ -238,6 +260,8 @@ export const components = [
     events: {
       onNativeTabsSelectionChange: { selection: 'string', ...controlledEvent },
     },
+    enumProps: { tabBarMinimizeBehavior: 'TabBarMinimizeBehavior' },
+    controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
     slots: [
       {
         name: 'pages',
@@ -260,6 +284,7 @@ export const components = [
       tabRole: 'string',
     },
     events: {},
+    enumProps: { tabRole: 'TabRole' },
     slots: [
       {
         name: 'content',

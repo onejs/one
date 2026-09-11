@@ -82,6 +82,54 @@
       "navigation": 15,
       "menu": 16.4,
       "compactMenu": 16.4
+    },
+    "PrimitiveButtonStyle": {
+      "automatic": 13,
+      "glass": 26,
+      "borderless": 13,
+      "glassProminent": 26,
+      "plain": 13,
+      "bordered": 15,
+      "borderedProminent": 15
+    },
+    "ProgressViewStyle": {
+      "linear": 14,
+      "circular": 14,
+      "automatic": 14
+    },
+    "GaugeStyle": {
+      "accessoryCircularCapacity": 16,
+      "linearCapacity": 16,
+      "accessoryLinear": 16,
+      "accessoryLinearCapacity": 16,
+      "automatic": 16,
+      "accessoryCircular": 16
+    },
+    "TextFieldStyle": {
+      "automatic": 13,
+      "roundedBorder": 13,
+      "plain": 13
+    },
+    "SubmitLabel": {
+      "done": 15,
+      "go": 15,
+      "send": 15,
+      "join": 15,
+      "route": 15,
+      "search": 15,
+      "return": 15,
+      "next": 15,
+      "continue": 15
+    },
+    "TextInputAutocapitalization": {
+      "never": 15,
+      "words": 15,
+      "sentences": 15,
+      "characters": 15
+    },
+    "Axis": {
+      "horizontal": 13,
+      "vertical": 13
     }
   },
   "modifiers": [
@@ -194,6 +242,93 @@
           "label": "_",
           "name": "behavior",
           "type": "SwiftUI.TabBarMinimizeBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "buttonStyle",
+      "type": "PrimitiveButtonStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.PrimitiveButtonStyle"
+      ]
+    },
+    {
+      "name": "progressViewStyle",
+      "type": "ProgressViewStyle",
+      "ios": 14,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ProgressViewStyle"
+      ]
+    },
+    {
+      "name": "gaugeStyle",
+      "type": "GaugeStyle",
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.GaugeStyle"
+      ]
+    },
+    {
+      "name": "textFieldStyle",
+      "type": "TextFieldStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.TextFieldStyle"
+      ]
+    },
+    {
+      "name": "submitLabel",
+      "type": "SubmitLabel",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "submitLabel",
+          "type": "SwiftUI.SubmitLabel"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "textInputAutocapitalization",
+      "type": "TextInputAutocapitalization",
+      "optional": true,
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "autocapitalization",
+          "type": "SwiftUI.TextInputAutocapitalization?"
         }
       ],
       "requirements": []
@@ -523,6 +658,170 @@
         "V : Swift.Strideable"
       ],
       "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Button",
+      "parameters": [
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.ButtonRole?"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping @_Concurrency.MainActor () -> Swift.Void"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ProgressView",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "V?"
+        },
+        {
+          "defaultValue": "1.0",
+          "label": "total",
+          "name": "total",
+          "type": "V"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "CurrentValueLabel == SwiftUICore.EmptyView,",
+        "V : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ProgressView",
+      "parameters": [
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "CurrentValueLabel == SwiftUICore.EmptyView"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Gauge",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "V"
+        },
+        {
+          "defaultValue": "0...1",
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "label": "currentValueLabel",
+          "name": "currentValueLabel",
+          "type": "() -> CurrentValueLabel"
+        },
+        {
+          "label": "minimumValueLabel",
+          "name": "minimumValueLabel",
+          "type": "() -> BoundsLabel"
+        },
+        {
+          "label": "maximumValueLabel",
+          "name": "maximumValueLabel",
+          "type": "() -> BoundsLabel"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View,",
+        "CurrentValueLabel : SwiftUICore.View,",
+        "BoundsLabel : SwiftUICore.View,",
+        "MarkedValueLabels : SwiftUICore.View",
+        "MarkedValueLabels == SwiftUICore.EmptyView,",
+        "V : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "TextField",
+      "parameters": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "SwiftUICore.Binding<Swift.String>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "prompt",
+          "name": "prompt",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "axis",
+          "name": "axis",
+          "type": "SwiftUICore.Axis"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "SecureField",
+      "parameters": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "SwiftUICore.Binding<Swift.String>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "prompt",
+          "name": "prompt",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
     }
   ]
 }

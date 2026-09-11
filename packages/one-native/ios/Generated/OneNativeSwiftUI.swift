@@ -74,6 +74,51 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid TabRole: \(value)")
     }
   }
+  static func submitLabel(_ value: String) -> SubmitLabel {
+    switch value {
+    case "done":
+      return .done
+    case "go":
+      return .go
+    case "send":
+      return .send
+    case "join":
+      return .join
+    case "route":
+      return .route
+    case "search":
+      return .search
+    case "return":
+      return .return
+    case "next":
+      return .next
+    case "continue":
+      return .continue
+    default: preconditionFailure("invalid SubmitLabel: \(value)")
+    }
+  }
+  static func textInputAutocapitalization(_ value: String) -> TextInputAutocapitalization {
+    switch value {
+    case "never":
+      return .never
+    case "words":
+      return .words
+    case "sentences":
+      return .sentences
+    case "characters":
+      return .characters
+    default: preconditionFailure("invalid TextInputAutocapitalization: \(value)")
+    }
+  }
+  static func axis(_ value: String) -> Axis {
+    switch value {
+    case "horizontal":
+      return .horizontal
+    case "vertical":
+      return .vertical
+    default: preconditionFailure("invalid Axis: \(value)")
+    }
+  }
   @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
       if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
@@ -157,5 +202,69 @@ extension View {
       let _ = precondition(value.isEmpty, "tabBarMinimizeBehavior requires iOS 26")
       self
     }
+  }
+  @ViewBuilder func oneNativeButtonStyle(_ value: String) -> some View {
+    switch value {
+    case "automatic":
+      self.buttonStyle(.automatic)
+    case "glass":
+      if #available(iOS 26, *) { self.buttonStyle(.glass) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glass requires iOS 26"); self }
+    case "borderless":
+      self.buttonStyle(.borderless)
+    case "glassProminent":
+      if #available(iOS 26, *) { self.buttonStyle(.glassProminent) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glassProminent requires iOS 26"); self }
+    case "plain":
+      self.buttonStyle(.plain)
+    case "bordered":
+      self.buttonStyle(.bordered)
+    case "borderedProminent":
+      self.buttonStyle(.borderedProminent)
+    default: let _ = preconditionFailure("invalid PrimitiveButtonStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeProgressViewStyle(_ value: String) -> some View {
+    switch value {
+    case "linear":
+      self.progressViewStyle(.linear)
+    case "circular":
+      self.progressViewStyle(.circular)
+    case "automatic":
+      self.progressViewStyle(.automatic)
+    default: let _ = preconditionFailure("invalid ProgressViewStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeGaugeStyle(_ value: String) -> some View {
+    switch value {
+    case "accessoryCircularCapacity":
+      self.gaugeStyle(.accessoryCircularCapacity)
+    case "linearCapacity":
+      self.gaugeStyle(.linearCapacity)
+    case "accessoryLinear":
+      self.gaugeStyle(.accessoryLinear)
+    case "accessoryLinearCapacity":
+      self.gaugeStyle(.accessoryLinearCapacity)
+    case "automatic":
+      self.gaugeStyle(.automatic)
+    case "accessoryCircular":
+      self.gaugeStyle(.accessoryCircular)
+    default: let _ = preconditionFailure("invalid GaugeStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeTextFieldStyle(_ value: String) -> some View {
+    switch value {
+    case "automatic":
+      self.textFieldStyle(.automatic)
+    case "roundedBorder":
+      self.textFieldStyle(.roundedBorder)
+    case "plain":
+      self.textFieldStyle(.plain)
+    default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeSubmitLabel(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.submitLabel(OneNativeGenerated.submitLabel(value)) }
+  }
+  @ViewBuilder func oneNativeTextInputAutocapitalization(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.textInputAutocapitalization(OneNativeGenerated.textInputAutocapitalization(value)) }
   }
 }

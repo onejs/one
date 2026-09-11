@@ -39,6 +39,8 @@ export const sheetComponents = [
       },
       onNativeSheetDismiss: { revision: 'Int32' },
     },
+    enumProps: { presentationDragIndicator: 'Visibility' },
+    controlled: { value: 'isPresented', event: 'onNativeSheetIsPresentedChange' },
     slots: [
       {
         name: 'content',

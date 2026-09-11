@@ -5,14 +5,19 @@ import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/Cod
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 
 interface NativeProps extends ViewProps {
-  value: boolean
+  value: string
   acknowledgedEvent: Int32
   revision: Int32
   label: string
   disabled: boolean
-  toggleStyle: string
-  onNativeToggleValueChange?: DirectEventHandler<
-    Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
+  prompt: string
+  textFieldStyle: string
+  submitLabel: string
+  textInputAutocapitalization: string
+  autocorrectionDisabled: boolean
+  onNativeSecureFieldValueChange?: DirectEventHandler<
+    Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
   >
+  onNativeSecureFieldSubmit?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeToggle')
+export default codegenNativeComponent<NativeProps>('OneNativeSecureField')

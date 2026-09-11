@@ -3,23 +3,22 @@ import { commonFields, type Control } from './controlTypes'
 export const pickerControls: Control[] = [
   {
     name: 'Picker',
-    valueType: 'string',
-    valueProp: 'selection',
-    event: 'onSelectionChange',
-    initial: '',
+    value: { type: 'string', prop: 'selection', event: 'onSelectionChange', initial: '' },
     fields: {
       ...commonFields,
       options: { type: 'options', default: '' },
       pickerStyle: { type: 'string', default: 'automatic', enum: 'PickerStyle' },
     },
-    constructor: {
-      type: 'Picker',
-      parameters: [
-        { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>' },
-        { label: 'content', type: '() -> Content' },
-        { label: 'label', type: '() -> Label' },
-      ],
-    },
+    constructors: [
+      {
+        type: 'Picker',
+        parameters: [
+          { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>' },
+          { label: 'content', type: '() -> Content' },
+          { label: 'label', type: '() -> Label' },
+        ],
+      },
+    ],
     swift: `Picker(selection: Binding(
         get: { model.controlled.value },
         set: { value in model.change(value) }
@@ -36,17 +35,22 @@ export const pickerControls: Control[] = [
   if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
   if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')
   if (pickerStyle === 'navigationLink' || pickerStyle === 'palette') throw new Error('PickerStyle.' + pickerStyle + ' requires a native container context that One Native does not provide yet')`,
-    height: `pickerStyle === 'wheel' || pickerStyle === 'inline' ? 216 : 44`,
+    height: {
+      default: 44,
+      when: [{ prop: 'pickerStyle', values: ['wheel', 'inline'], height: 216 }],
+    },
   },
   {
     name: 'DatePicker',
-    valueType: 'Double',
-    valueProp: 'selection',
-    event: 'onSelectionChange',
-    initial: 0,
-    publicValueType: 'Date',
-    nativeValue: 'selection.getTime()',
-    eventValue: 'new Date(event.value)',
+    value: {
+      type: 'Double',
+      prop: 'selection',
+      event: 'onSelectionChange',
+      initial: 0,
+      publicType: 'Date',
+      nativeValue: 'selection.getTime()',
+      eventValue: 'new Date(event.value)',
+    },
     fields: {
       ...commonFields,
       minimumDate: {
@@ -70,18 +74,20 @@ export const pickerControls: Control[] = [
       },
       datePickerStyle: { type: 'string', default: 'automatic', enum: 'DatePickerStyle' },
     },
-    constructor: {
-      type: 'DatePicker',
-      parameters: [
-        { label: 'selection', type: 'SwiftUICore.Binding<Foundation.Date>' },
-        { label: 'in', type: 'Swift.ClosedRange<Foundation.Date>' },
-        {
-          label: 'displayedComponents',
-          type: 'SwiftUI.DatePicker<Label>.Components',
-        },
-        { label: 'label', type: '() -> Label' },
-      ],
-    },
+    constructors: [
+      {
+        type: 'DatePicker',
+        parameters: [
+          { label: 'selection', type: 'SwiftUICore.Binding<Foundation.Date>' },
+          { label: 'in', type: 'Swift.ClosedRange<Foundation.Date>' },
+          {
+            label: 'displayedComponents',
+            type: 'SwiftUI.DatePicker<Label>.Components',
+          },
+          { label: 'label', type: '() -> Label' },
+        ],
+      },
+    ],
     swift: `DatePicker(selection: Binding(
         get: { Date(timeIntervalSince1970: model.controlled.value / 1000) },
         set: { value in model.change(value.timeIntervalSince1970 * 1000) }
@@ -104,26 +110,36 @@ export const pickerControls: Control[] = [
   if (minimumTime > maximumTime) throw new Error('DatePicker minimumDate must not be after maximumDate')
   if (selectionTime < minimumTime || selectionTime > maximumTime) throw new Error('DatePicker selection must be within minimumDate and maximumDate')
   if (!['date', 'hourAndMinute', 'dateAndTime'].includes(displayedComponents)) throw new Error('DatePicker displayedComponents must be date, hourAndMinute, or dateAndTime')`,
-    height: `datePickerStyle === 'graphical' ? 360 : datePickerStyle === 'wheel' ? 216 : 44`,
+    height: {
+      default: 44,
+      when: [
+        { prop: 'datePickerStyle', values: ['graphical'], height: 360 },
+        { prop: 'datePickerStyle', values: ['wheel'], height: 216 },
+      ],
+    },
   },
   {
     name: 'ColorPicker',
-    valueType: 'string',
-    valueProp: 'selection',
-    event: 'onSelectionChange',
-    initial: '#000000',
+    value: {
+      type: 'string',
+      prop: 'selection',
+      event: 'onSelectionChange',
+      initial: '#000000',
+    },
     fields: {
       ...commonFields,
       supportsOpacity: { type: 'boolean', default: true },
     },
-    constructor: {
-      type: 'ColorPicker',
-      parameters: [
-        { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
-        { label: 'selection', type: 'SwiftUICore.Binding<SwiftUICore.Color>' },
-        { label: 'supportsOpacity', type: 'Swift.Bool' },
-      ],
-    },
+    constructors: [
+      {
+        type: 'ColorPicker',
+        parameters: [
+          { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+          { label: 'selection', type: 'SwiftUICore.Binding<SwiftUICore.Color>' },
+          { label: 'supportsOpacity', type: 'Swift.Bool' },
+        ],
+      },
+    ],
     swift: `ColorPicker(LocalizedStringKey(model.label), selection: Binding(
         get: { oneNativeDecodeColor(model.controlled.value) },
         set: { value in model.change(oneNativeEncodeColor(value, supportsOpacity: model.supportsOpacity)) }
@@ -150,6 +166,6 @@ private func oneNativeEncodeColor(_ color: Color, supportsOpacity: Bool) -> Stri
   return "#" + channels.map { String(format: "%02X", Int(($0 * 255).rounded())) }.joined()
 }`,
     validate: `  if (typeof selection !== 'string' || !/^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/.test(selection)) throw new Error('ColorPicker selection must be #RRGGBB or #RRGGBBAA')`,
-    height: '44',
+    height: { default: 44 },
   },
 ]

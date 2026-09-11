@@ -60,4 +60,57 @@ export interface StepperProps extends Omit<ViewProps, 'children'> {
     maximumValue?: number;
     step?: number;
 }
+export interface ButtonProps extends Omit<ViewProps, 'children'> {
+    onPress?: () => void;
+    label?: string;
+    disabled?: boolean;
+    systemImage?: string;
+    buttonRole?: Styles.ButtonRole | '';
+    buttonStyle?: Styles.PrimitiveButtonStyle;
+}
+export interface ProgressViewProps extends Omit<ViewProps, 'children'> {
+    label?: string;
+    disabled?: boolean;
+    value?: number;
+    total?: number;
+    progressViewStyle?: Styles.ProgressViewStyle;
+}
+export interface GaugeProps extends Omit<ViewProps, 'children'> {
+    label?: string;
+    disabled?: boolean;
+    value?: number;
+    minimumValue?: number;
+    maximumValue?: number;
+    currentValueLabel?: string;
+    minimumValueLabel?: string;
+    maximumValueLabel?: string;
+    gaugeStyle?: Styles.GaugeStyle;
+}
+export interface TextFieldProps extends Omit<ViewProps, 'children'> {
+    text: string;
+    onTextChange: (value: string) => void;
+    revision?: number;
+    onSubmit?: () => void;
+    label?: string;
+    disabled?: boolean;
+    prompt?: string;
+    textFieldStyle?: Styles.TextFieldStyle;
+    submitLabel?: Styles.SubmitLabel | '';
+    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
+    autocorrectionDisabled?: boolean;
+    axis?: Styles.Axis;
+}
+export interface SecureFieldProps extends Omit<ViewProps, 'children'> {
+    text: string;
+    onTextChange: (value: string) => void;
+    revision?: number;
+    onSubmit?: () => void;
+    label?: string;
+    disabled?: boolean;
+    prompt?: string;
+    textFieldStyle?: Styles.TextFieldStyle;
+    submitLabel?: Styles.SubmitLabel | '';
+    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
+    autocorrectionDisabled?: boolean;
+}
 //# sourceMappingURL=controlTypes.d.ts.map

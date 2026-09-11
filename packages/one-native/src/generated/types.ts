@@ -13,6 +13,13 @@ import type {
   ButtonRole,
   TabRole,
   ControlGroupStyle,
+  PrimitiveButtonStyle,
+  ProgressViewStyle,
+  GaugeStyle,
+  TextFieldStyle,
+  SubmitLabel,
+  TextInputAutocapitalization,
+  Axis,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -25,6 +32,13 @@ export type {
   ButtonRole,
   TabRole,
   ControlGroupStyle,
+  PrimitiveButtonStyle,
+  ProgressViewStyle,
+  GaugeStyle,
+  TextFieldStyle,
+  SubmitLabel,
+  TextInputAutocapitalization,
+  Axis,
 } from './swiftui'
 export interface MenuAction {
   type: 'action'

@@ -300,3 +300,247 @@ export function Stepper({
     />
   )
 }
+import NativeButton from '../specs/OneNativeButtonNativeComponent'
+export function Button({
+  onPress,
+  label = '',
+  disabled = false,
+  systemImage = '',
+  buttonRole = '',
+  buttonStyle = 'automatic',
+  style,
+  ...props
+}: Types.ButtonProps) {
+  if (typeof label !== 'string' || !label)
+    throw new Error('Button label must be a non-empty string')
+  if (buttonRole)
+    assertSwiftUIValue(
+      'ButtonRole',
+      buttonRole,
+      Number.parseFloat(String(Platform.Version))
+    )
+  assertSwiftUIValue(
+    'PrimitiveButtonStyle',
+    buttonStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeButton
+      {...props}
+      style={[{ height: 44 }, style]}
+      label={label}
+      disabled={disabled}
+      systemImage={systemImage}
+      buttonRole={buttonRole}
+      buttonStyle={buttonStyle}
+      onNativeButtonPress={() => onPress?.()}
+    />
+  )
+}
+import NativeProgressView from '../specs/OneNativeProgressViewNativeComponent'
+export function ProgressView({
+  label = '',
+  disabled = false,
+  value = undefined,
+  total = 1,
+  progressViewStyle = 'automatic',
+  style,
+  ...props
+}: Types.ProgressViewProps) {
+  if (value !== undefined && !Number.isFinite(value))
+    throw new Error('ProgressView value must be a finite number or undefined')
+  if (!Number.isFinite(total) || total <= 0)
+    throw new Error('ProgressView total must be a finite number greater than 0')
+  if (value !== undefined && (value < 0 || value > total))
+    throw new Error('ProgressView value must be between 0 and total')
+  assertSwiftUIValue(
+    'ProgressViewStyle',
+    progressViewStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeProgressView
+      {...props}
+      style={[{ height: 44 }, style]}
+      label={label}
+      disabled={disabled}
+      value={value ?? 0}
+      total={total}
+      indeterminate={value === undefined}
+      progressViewStyle={progressViewStyle}
+    />
+  )
+}
+import NativeGauge from '../specs/OneNativeGaugeNativeComponent'
+export function Gauge({
+  label = '',
+  disabled = false,
+  value = 0,
+  minimumValue = 0,
+  maximumValue = 1,
+  currentValueLabel = '',
+  minimumValueLabel = '',
+  maximumValueLabel = '',
+  gaugeStyle = 'automatic',
+  style,
+  ...props
+}: Types.GaugeProps) {
+  if (![value, minimumValue, maximumValue].every(Number.isFinite))
+    throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
+  if (minimumValue >= maximumValue)
+    throw new Error('Gauge minimumValue must be less than maximumValue')
+  if (value < minimumValue || value > maximumValue)
+    throw new Error('Gauge value must be within minimumValue and maximumValue')
+  assertSwiftUIValue(
+    'GaugeStyle',
+    gaugeStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeGauge
+      {...props}
+      style={[
+        {
+          height:
+            gaugeStyle === 'accessoryCircular' ||
+            gaugeStyle === 'accessoryCircularCapacity'
+              ? 100
+              : 44,
+        },
+        style,
+      ]}
+      label={label}
+      disabled={disabled}
+      value={value}
+      minimumValue={minimumValue}
+      maximumValue={maximumValue}
+      currentValueLabel={currentValueLabel}
+      minimumValueLabel={minimumValueLabel}
+      maximumValueLabel={maximumValueLabel}
+      gaugeStyle={gaugeStyle}
+    />
+  )
+}
+import NativeTextField from '../specs/OneNativeTextFieldNativeComponent'
+export function TextField({
+  text,
+  onTextChange,
+  revision = 0,
+  onSubmit,
+  label = '',
+  disabled = false,
+  prompt = '',
+  textFieldStyle = 'automatic',
+  submitLabel = '',
+  textInputAutocapitalization = '',
+  autocorrectionDisabled = false,
+  axis = 'horizontal',
+  style,
+  ...props
+}: Types.TextFieldProps) {
+  if (typeof text !== 'string') throw new Error('TextField text must be a string')
+  assertSwiftUIValue(
+    'TextFieldStyle',
+    textFieldStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  if (submitLabel)
+    assertSwiftUIValue(
+      'SubmitLabel',
+      submitLabel,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (textInputAutocapitalization)
+    assertSwiftUIValue(
+      'TextInputAutocapitalization',
+      textInputAutocapitalization,
+      Number.parseFloat(String(Platform.Version))
+    )
+  assertSwiftUIValue('Axis', axis, Number.parseFloat(String(Platform.Version)))
+  const controlled = useControlled<{
+    value: string
+    eventCount: number
+    revision: number
+  }>((event) => onTextChange(event.value), revision)
+  return (
+    <NativeTextField
+      {...props}
+      style={[{ height: axis === 'vertical' ? 120 : 44 }, style]}
+      value={text}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      label={label}
+      disabled={disabled}
+      prompt={prompt}
+      textFieldStyle={textFieldStyle}
+      submitLabel={submitLabel}
+      textInputAutocapitalization={textInputAutocapitalization}
+      autocorrectionDisabled={autocorrectionDisabled}
+      axis={axis}
+      onNativeTextFieldValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeTextFieldSubmit={() => onSubmit?.()}
+    />
+  )
+}
+import NativeSecureField from '../specs/OneNativeSecureFieldNativeComponent'
+export function SecureField({
+  text,
+  onTextChange,
+  revision = 0,
+  onSubmit,
+  label = '',
+  disabled = false,
+  prompt = '',
+  textFieldStyle = 'automatic',
+  submitLabel = '',
+  textInputAutocapitalization = '',
+  autocorrectionDisabled = false,
+  style,
+  ...props
+}: Types.SecureFieldProps) {
+  if (typeof text !== 'string') throw new Error('SecureField text must be a string')
+  assertSwiftUIValue(
+    'TextFieldStyle',
+    textFieldStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  if (submitLabel)
+    assertSwiftUIValue(
+      'SubmitLabel',
+      submitLabel,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (textInputAutocapitalization)
+    assertSwiftUIValue(
+      'TextInputAutocapitalization',
+      textInputAutocapitalization,
+      Number.parseFloat(String(Platform.Version))
+    )
+  const controlled = useControlled<{
+    value: string
+    eventCount: number
+    revision: number
+  }>((event) => onTextChange(event.value), revision)
+  return (
+    <NativeSecureField
+      {...props}
+      style={[{ height: 44 }, style]}
+      value={text}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      label={label}
+      disabled={disabled}
+      prompt={prompt}
+      textFieldStyle={textFieldStyle}
+      submitLabel={submitLabel}
+      textInputAutocapitalization={textInputAutocapitalization}
+      autocorrectionDisabled={autocorrectionDisabled}
+      onNativeSecureFieldValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeSecureFieldSubmit={() => onSubmit?.()}
+    />
+  )
+}

@@ -22,6 +22,35 @@ export type ControlGroupStyle =
   | 'navigation'
   | 'menu'
   | 'compactMenu'
+export type PrimitiveButtonStyle =
+  | 'automatic'
+  | 'glass'
+  | 'borderless'
+  | 'glassProminent'
+  | 'plain'
+  | 'bordered'
+  | 'borderedProminent'
+export type ProgressViewStyle = 'linear' | 'circular' | 'automatic'
+export type GaugeStyle =
+  | 'accessoryCircularCapacity'
+  | 'linearCapacity'
+  | 'accessoryLinear'
+  | 'accessoryLinearCapacity'
+  | 'automatic'
+  | 'accessoryCircular'
+export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'plain'
+export type SubmitLabel =
+  | 'done'
+  | 'go'
+  | 'send'
+  | 'join'
+  | 'route'
+  | 'search'
+  | 'return'
+  | 'next'
+  | 'continue'
+export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters'
+export type Axis = 'horizontal' | 'vertical'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -79,6 +108,54 @@ export const swiftUIValues = {
     navigation: 15,
     menu: 16.4,
     compactMenu: 16.4,
+  },
+  PrimitiveButtonStyle: {
+    automatic: 13,
+    glass: 26,
+    borderless: 13,
+    glassProminent: 26,
+    plain: 13,
+    bordered: 15,
+    borderedProminent: 15,
+  },
+  ProgressViewStyle: {
+    linear: 14,
+    circular: 14,
+    automatic: 14,
+  },
+  GaugeStyle: {
+    accessoryCircularCapacity: 16,
+    linearCapacity: 16,
+    accessoryLinear: 16,
+    accessoryLinearCapacity: 16,
+    automatic: 16,
+    accessoryCircular: 16,
+  },
+  TextFieldStyle: {
+    automatic: 13,
+    roundedBorder: 13,
+    plain: 13,
+  },
+  SubmitLabel: {
+    done: 15,
+    go: 15,
+    send: 15,
+    join: 15,
+    route: 15,
+    search: 15,
+    return: 15,
+    next: 15,
+    continue: 15,
+  },
+  TextInputAutocapitalization: {
+    never: 15,
+    words: 15,
+    sentences: 15,
+    characters: 15,
+  },
+  Axis: {
+    horizontal: 13,
+    vertical: 13,
   },
 } as const
 export function assertSwiftUIValue(

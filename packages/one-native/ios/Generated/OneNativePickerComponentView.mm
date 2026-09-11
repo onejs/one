@@ -37,8 +37,8 @@ using namespace facebook::react;
     _optionsDirty = NO;
   }
 
-  [_nativeView configure:RCTNSStringFromString(next.value) acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-    label:RCTNSStringFromString(next.label) disabled:next.disabled pickerStyle:RCTNSStringFromString(next.pickerStyle)];
+  [_nativeView configure:RCTNSStringFromString(next.value)
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled pickerStyle:RCTNSStringFromString(next.pickerStyle)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _optionsDirty = YES; }

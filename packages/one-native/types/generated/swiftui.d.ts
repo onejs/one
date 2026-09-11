@@ -8,6 +8,13 @@ export type TabBarMinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp'
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close';
 export type TabRole = 'search';
 export type ControlGroupStyle = 'palette' | 'automatic' | 'navigation' | 'menu' | 'compactMenu';
+export type PrimitiveButtonStyle = 'automatic' | 'glass' | 'borderless' | 'glassProminent' | 'plain' | 'bordered' | 'borderedProminent';
+export type ProgressViewStyle = 'linear' | 'circular' | 'automatic';
+export type GaugeStyle = 'accessoryCircularCapacity' | 'linearCapacity' | 'accessoryLinear' | 'accessoryLinearCapacity' | 'automatic' | 'accessoryCircular';
+export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'plain';
+export type SubmitLabel = 'done' | 'go' | 'send' | 'join' | 'route' | 'search' | 'return' | 'next' | 'continue';
+export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters';
+export type Axis = 'horizontal' | 'vertical';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -65,6 +72,54 @@ export declare const swiftUIValues: {
         readonly navigation: 15;
         readonly menu: 16.4;
         readonly compactMenu: 16.4;
+    };
+    readonly PrimitiveButtonStyle: {
+        readonly automatic: 13;
+        readonly glass: 26;
+        readonly borderless: 13;
+        readonly glassProminent: 26;
+        readonly plain: 13;
+        readonly bordered: 15;
+        readonly borderedProminent: 15;
+    };
+    readonly ProgressViewStyle: {
+        readonly linear: 14;
+        readonly circular: 14;
+        readonly automatic: 14;
+    };
+    readonly GaugeStyle: {
+        readonly accessoryCircularCapacity: 16;
+        readonly linearCapacity: 16;
+        readonly accessoryLinear: 16;
+        readonly accessoryLinearCapacity: 16;
+        readonly automatic: 16;
+        readonly accessoryCircular: 16;
+    };
+    readonly TextFieldStyle: {
+        readonly automatic: 13;
+        readonly roundedBorder: 13;
+        readonly plain: 13;
+    };
+    readonly SubmitLabel: {
+        readonly done: 15;
+        readonly go: 15;
+        readonly send: 15;
+        readonly join: 15;
+        readonly route: 15;
+        readonly search: 15;
+        readonly return: 15;
+        readonly next: 15;
+        readonly continue: 15;
+    };
+    readonly TextInputAutocapitalization: {
+        readonly never: 15;
+        readonly words: 15;
+        readonly sentences: 15;
+        readonly characters: 15;
+    };
+    readonly Axis: {
+        readonly horizontal: 13;
+        readonly vertical: 13;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;
