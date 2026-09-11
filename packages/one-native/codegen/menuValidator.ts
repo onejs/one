@@ -83,13 +83,13 @@ ${payload}
         }`
 }
 
-export function emitMenuValidator(header: string): string {
+export function emitMenuValidator(header: string, minimumIOS: number): string {
   return (
     header +
     `import type { NativeMenuItem } from './specs/OneNativeMenuNativeComponent'
 import type { MenuItem } from './types'
 import { assertSwiftUIValue } from './generated/swiftui'
-export function flattenMenuItems(items: readonly MenuItem[], iosVersion = 18): NativeMenuItem[] {
+export function flattenMenuItems(items: readonly MenuItem[], iosVersion = ${minimumIOS}): NativeMenuItem[] {
   const result: NativeMenuItem[] = []
   const ids = new Set<string>()
   const append = (items: readonly MenuItem[], parentId: string, disabled: boolean, hidden: boolean) => {

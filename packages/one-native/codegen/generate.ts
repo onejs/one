@@ -27,6 +27,11 @@ import {
   nodes,
 } from './catalog'
 
+// the floor the package targets. everything the SDK marks at or below it needs no gate, so
+// raising this deletes availability branches rather than adding them. schema.json carries it
+// forward and OneNative.podspec reads it from there, so this is the only place it is set.
+const MINIMUM_IOS = 26
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
 mkdirSync(cache, { recursive: true })
@@ -210,7 +215,7 @@ outputs.set(
     {
       version: 2,
       platform: 'ios',
-      minimumVersion: 18,
+      minimumVersion: MINIMUM_IOS,
       controlledProtocol: {
         version: 1,
         revision: 'revision',
@@ -287,20 +292,20 @@ outputs.set(
     2
   ) + '\n'
 )
-outputs.set('src/menuItems.ts', emitMenuValidator(header))
+outputs.set('src/menuItems.ts', emitMenuValidator(header, MINIMUM_IOS))
 let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   // an empty string is the SDK's own default, which these express as nil.
   const optional = ['ButtonRole', 'TabRole', 'Edge'].includes(type)
   const minimum = Math.min(...Object.values(cases))
-  if (minimum > 18) swift += `  @available(iOS ${minimum}, *)\n`
+  if (minimum > MINIMUM_IOS) swift += `  @available(iOS ${minimum}, *)\n`
   swift += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${type}${optional ? '?' : ''} {\n    switch value {\n`
   if (optional) swift += '    case "": return nil\n'
   for (const [name, version] of Object.entries(cases)) {
     swift += `    case "${name}":\n`
     swift +=
-      version > Math.max(18, minimum)
+      version > Math.max(MINIMUM_IOS, minimum)
         ? `      if #available(iOS ${version}, *) { return .${name} }\n      preconditionFailure("${type}.${name} requires iOS ${version}")\n`
         : `      return .${name}\n`
   }
@@ -320,7 +325,7 @@ for (const method of methods) {
     for (const [name, version] of Object.entries(enums[method.type])) {
       swift += `    case "${name}":\n`
       swift +=
-        version > 18
+        version > MINIMUM_IOS
           ? `      if #available(iOS ${version}, *) { self.${method.name}(.${name}) } else { let _ = preconditionFailure("${method.type}.${name} requires iOS ${version}"); self }\n`
           : `      self.${method.name}(.${name})\n`
     }
@@ -329,7 +334,7 @@ for (const method of methods) {
   }
   const apply = `self.${method.name}(OneNativeGenerated.${method.type[0].toLowerCase() + method.type.slice(1)}(value))`
   swift += `  @ViewBuilder func oneNative${method.name[0].toUpperCase() + method.name.slice(1)}(_ value: String) -> some View {\n`
-  if (method.ios > 18) {
+  if (method.ios > MINIMUM_IOS) {
     swift += `    if #available(iOS ${method.ios}, *) {\n      if value.isEmpty { self } else { ${apply} }\n    } else {\n      let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n      self\n    }\n`
   } else swift += `    if value.isEmpty { self } else { ${apply} }\n`
   swift += '  }\n'
@@ -502,7 +507,7 @@ run(swiftc, [
   '-sdk',
   sdk,
   '-target',
-  'arm64-apple-ios18.0-simulator',
+  `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
   ...['ios', 'ios/Generated'].flatMap((dir) =>
     readdirSync(join(root, dir))
       .filter((file) => file.endsWith('.swift'))

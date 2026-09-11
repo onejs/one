@@ -1,7 +1,7 @@
 {
   "version": 2,
   "platform": "ios",
-  "minimumVersion": 18,
+  "minimumVersion": 26,
   "controlledProtocol": {
     "version": 1,
     "revision": "revision",
