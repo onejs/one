@@ -79,8 +79,7 @@ async function captureIncomingAction(overrides: LinkingOverrides = {}) {
           return () => {}
         },
         ...overrides,
-      },
-      () => {}
+      }
     )
     return null
   }

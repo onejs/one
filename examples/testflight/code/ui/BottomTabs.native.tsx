@@ -1,4 +1,5 @@
-import { createNativeBottomTabNavigator } from '@bottom-tabs/react-navigation'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { withLayoutContext } from 'one'
 
-export const NativeTabs = withLayoutContext(createNativeBottomTabNavigator().Navigator)
+// v8: native bottom tabs are the default on iOS/Android via @react-navigation/bottom-tabs
+export const NativeTabs = withLayoutContext(createBottomTabNavigator().Navigator)

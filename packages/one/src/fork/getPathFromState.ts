@@ -427,14 +427,14 @@ const createConfigItem = (
       ? joinPaths(parentPattern || '', config.path || '')
       : config.path || ''
 
-  const screens = config.screens
-    ? createNormalizedConfigs(config.screens, pattern)
+  const screens = (config as any).screens
+    ? createNormalizedConfigs((config as any).screens, pattern)
     : undefined
 
   return {
     // Normalize pattern to remove any leading, trailing slashes, duplicate slashes etc.
     pattern: pattern?.split('/').filter(Boolean).join('/'),
-    stringify: config.stringify,
+    stringify: config.stringify as StringifyConfig | undefined,
     screens,
   }
 }

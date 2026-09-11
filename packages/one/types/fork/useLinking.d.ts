@@ -15,7 +15,7 @@ type ResultState = ReturnType<typeof getStateFromPathDefault>;
  */
 export declare const series: (cb: () => Promise<void>) => () => void;
 type Options = LinkingOptions<ParamListBase>;
-export declare function useLinking(ref: React.RefObject<NavigationContainerRef<ParamListBase> | null>, { enabled, config, getStateFromPath, getPathFromState, getActionFromState, }: Options, onUnhandledLinking: (lastUnhandledLining: string | undefined) => void): {
+export declare function useLinking(ref: React.RefObject<NavigationContainerRef<ParamListBase> | null>, { enabled, config, getStateFromPath, getPathFromState, getActionFromState, }: Options): {
     getInitialState: () => PromiseLike<ResultState | undefined>;
 };
 export {};

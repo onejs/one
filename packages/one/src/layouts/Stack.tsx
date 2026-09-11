@@ -138,12 +138,20 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
   }
 )
 
-export const Stack = Object.assign(StackWithComposition, {
+type StackType = ReturnType<typeof withLayoutContext> & {
+  Screen: typeof StackScreen
+  Header: typeof StackHeader
+  Protected: typeof Protected
+  SearchBar: typeof StackHeaderSearchBar
+  Toolbar: typeof StackToolbar
+}
+
+export const Stack: StackType = Object.assign(StackWithComposition, {
   Screen: StackScreen,
   Header: StackHeader,
   Protected,
   SearchBar: StackHeaderSearchBar,
   Toolbar: StackToolbar,
-})
+}) as StackType
 
 export default Stack

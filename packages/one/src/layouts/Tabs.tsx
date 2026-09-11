@@ -88,16 +88,25 @@ const RNTabs = withLayoutContext<
 
 const TabsWithRender = React.forwardRef<unknown, ComponentProps<typeof RNTabs>>(
   (props, ref) => {
-    const { tabBar, ...rest } = props as any
-    return <RNTabs {...rest} ref={ref} tabBar={tabBar ?? DefaultTabBar} />
+    const { tabBar, implementation, ...rest } = props as any
+    return (
+      <RNTabs
+        {...rest}
+        ref={ref}
+        implementation={implementation ?? 'custom'}
+        tabBar={tabBar ?? DefaultTabBar}
+      />
+    )
   }
 )
 
-export const Tabs = Object.assign(TabsWithRender, {
+type TabsType = ReturnType<typeof withLayoutContext> & { Protected: typeof Protected }
+
+export const Tabs: TabsType = Object.assign(TabsWithRender, {
   Protected,
   // Preserve withLayoutContext's static Screen so user code like
   // `<Tabs.Screen ... />` keeps working through the render wrapper.
   Screen: RNTabs.Screen,
-})
+}) as TabsType
 
 export default Tabs

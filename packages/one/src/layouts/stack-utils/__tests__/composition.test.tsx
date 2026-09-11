@@ -40,9 +40,9 @@ describe('Stack Header Composition', () => {
       expect(result.title).toBe('My Title')
     })
 
-    it('sets headerLargeTitle when large is true', () => {
+    it('sets headerLargeTitleEnabled when large is true', () => {
       const result = appendStackHeaderTitlePropsToOptions({}, { large: true })
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
     })
 
     it('sets headerTitleAlign from style.textAlign', () => {
@@ -183,14 +183,14 @@ describe('Stack Header Composition', () => {
 
     it('preserves existing options when setting headerRight', () => {
       const result = appendStackHeaderRightPropsToOptions(
-        { title: 'Existing Title', headerLargeTitle: true },
+        { title: 'Existing Title', headerLargeTitleEnabled: true },
         {
           asChild: true,
           children: <button>Action</button>,
         }
       )
       expect(result.title).toBe('Existing Title')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerRight).toBeDefined()
     })
 
@@ -295,13 +295,13 @@ describe('Stack Header Composition', () => {
 
     it('preserves existing options when setting search bar', () => {
       const result = appendStackHeaderSearchBarPropsToOptions(
-        { title: 'Articles', headerLargeTitle: true },
+        { title: 'Articles', headerLargeTitleEnabled: true },
         {
           placeholder: 'Search...',
         }
       )
       expect(result.title).toBe('Articles')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerSearchBarOptions).toMatchObject({
         placeholder: 'Search...',
       })
@@ -384,7 +384,7 @@ describe('Stack Header Composition', () => {
         }
       )
       expect(result.title).toBe('Test Title')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
     })
 
     it('processes child BackButton component', () => {
@@ -411,7 +411,7 @@ describe('Stack Header Composition', () => {
         }
       )
       expect(result.title).toBe('My Screen')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerBackVisible).toBe(false)
     })
 
@@ -477,7 +477,7 @@ describe('Stack Header Composition', () => {
         }
       )
       expect(result.title).toBe('Articles')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerLeft).toBeDefined()
       expect(result.headerRight).toBeDefined()
       expect(result.headerSearchBarOptions).toMatchObject({
@@ -510,7 +510,7 @@ describe('Stack Header Composition', () => {
       expect(result.gestureEnabled).toBe(true)
       expect(result.headerBlurEffect).toBe('regular')
       expect(result.title).toBe('Composed Title')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
     })
 
     it('works with StackHeader compound component (as used via Stack.Header)', () => {
@@ -526,7 +526,7 @@ describe('Stack Header Composition', () => {
       )
 
       expect(result.title).toBe('Large Title Test')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
     })
 
     it('works with StackHeader compound component with Left child', () => {
@@ -545,7 +545,7 @@ describe('Stack Header Composition', () => {
       )
 
       expect(result.title).toBe('Articles')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerLeft).toBeDefined()
     })
 
@@ -599,7 +599,7 @@ describe('Stack Header Composition', () => {
       )
 
       expect(result.title).toBe('Articles')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       expect(result.headerSearchBarOptions).toMatchObject({
         placeholder: 'Search articles...',
       })
@@ -629,7 +629,7 @@ describe('Stack Header Composition', () => {
       expect(result.animation).toBe('slide_from_right')
       expect(result.headerBlurEffect).toBe('regular')
       expect(result.title).toBe('My App')
-      expect(result.headerLargeTitle).toBe(true)
+      expect(result.headerLargeTitleEnabled).toBe(true)
       // headerTransparent is only auto-set on iOS, not on web/android (test runs in web mock)
       expect(result.headerTransparent).toBeUndefined()
       expect(result.headerLeft).toBeDefined()

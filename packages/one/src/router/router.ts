@@ -7,6 +7,7 @@
 import type {
   NavigationContainerRefWithCurrent,
   NavigationState,
+  ParamListBase,
 } from '@react-navigation/core'
 import { StackActions } from '@react-navigation/native'
 import {
@@ -250,7 +251,7 @@ let cachedContext: One.RouteContext | null = null
 // Initialize function
 export function initialize(
   context: One.RouteContext,
-  ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
+  ref: NavigationContainerRefWithCurrent<ParamListBase>,
   initialLocation?: URL,
   linking?: OneLinkingConfig
 ) {
@@ -443,7 +444,7 @@ export function replace(url: OneRouter.Href, options?: OneRouter.LinkToOptions) 
 export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
   assertIsReady(navigationRef)
   return navigationRef?.current?.setParams(
-    // @ts-expect-error
+    // @ts-ignore
     params
   )
 }
@@ -1350,7 +1351,7 @@ export async function linkTo(
   const currentRootState = navigationRef.getRootState()
 
   const hash = href.indexOf('#')
-  if (currentRootState.key && hash > 0) {
+  if (currentRootState?.key && hash > 0) {
     hashes[currentRootState.key] = href.slice(hash)
   }
 

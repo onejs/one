@@ -1,5 +1,5 @@
-import { type NavigationProp, type NavigationState } from '@react-navigation/native';
-type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
+import { type NavigationProp, type NavigationState, type ParamListBase } from '@react-navigation/native';
+type GenericNavigation = NavigationProp<ParamListBase> & {
     getState(): NavigationState | undefined;
 };
 /** Returns a callback which is invoked when the navigation state has loaded. */

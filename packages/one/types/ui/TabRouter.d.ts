@@ -15,35 +15,26 @@ export type ExpoTabActionType = RNTabActionType | CommonNavigationAction | {
 };
 export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<TabNavigationState<ParamListBase>, {
     type: "GO_BACK";
-    source?: string;
-    target?: string;
+    source?: string | undefined;
+    target?: string | undefined;
 } | {
     type: "NAVIGATE";
     payload: {
         name: string;
-        params?: object;
-        path?: string;
-        merge?: boolean;
-        pop?: boolean;
+        params?: object | undefined;
+        path?: string | undefined;
+        merge?: boolean | undefined;
+        pop?: boolean | undefined;
     };
-    source?: string;
-    target?: string;
-} | {
-    type: "NAVIGATE_DEPRECATED";
-    payload: {
-        name: string;
-        params?: object;
-        merge?: boolean;
-    };
-    source?: string;
-    target?: string;
+    source?: string | undefined;
+    target?: string | undefined;
 } | {
     type: "RESET";
-    payload: (Readonly<{
+    payload: Readonly<{
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
@@ -51,7 +42,7 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
@@ -59,37 +50,44 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[];
+        history?: unknown[] | undefined;
         routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
     }>, "routes"> & {
         routes: Omit<import("@react-navigation/routers").Route<string>, "key">[];
-    })) | undefined;
-    source?: string;
-    target?: string;
+    });
+    source?: string | undefined;
+    target?: string | undefined;
 } | {
     type: "SET_PARAMS";
     payload: {
-        params?: object;
+        params?: object | undefined;
     };
-    source?: string;
-    target?: string;
+    source?: string | undefined;
+    target?: string | undefined;
 } | {
     type: "REPLACE_PARAMS";
     payload: {
-        params?: object;
+        params?: object | undefined;
     };
-    source?: string;
-    target?: string;
+    source?: string | undefined;
+    target?: string | undefined;
+} | {
+    type: "PUSH_PARAMS";
+    payload: {
+        params?: object | undefined;
+    };
+    source?: string | undefined;
+    target?: string | undefined;
 } | {
     type: "PRELOAD";
     payload: {
         name: string;
-        params?: object;
+        params?: object | undefined;
     };
-    source?: string;
-    target?: string;
+    source?: string | undefined;
+    target?: string | undefined;
 } | RNTabActionType | {
     type: "JUMP_TO";
     source?: string;

@@ -1,5 +1,6 @@
 import {
   type NavigationProp,
+  type ParamListBase,
   useNavigation as useUpstreamNavigation,
 } from '@react-navigation/native'
 import React from 'react'
@@ -21,10 +22,10 @@ import { useContextKey } from './Route'
  * navigation.setOptions({ title: 'My Screen' })
  * ```
  */
-export function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>(
+export function useNavigation<T = NavigationProp<ParamListBase>>(
   parent?: string
 ): T {
-  const navigation = useUpstreamNavigation<any>()
+  const navigation = useUpstreamNavigation() as any
 
   const contextKey = useContextKey()
   const normalizedParent = React.useMemo(() => {

@@ -67,9 +67,9 @@ export function appendStackHeaderTitlePropsToOptions(
   return {
     ...options,
     title: props.children,
-    headerLargeTitle: props.large,
+    headerLargeTitleEnabled: props.large,
     // Large titles on iOS require headerTransparent for proper scroll behavior
-    // Only set on iOS since headerLargeTitle is iOS-only
+    // Only set on iOS since headerLargeTitleEnabled is iOS-only
     ...(props.large && PLATFORM === 'ios' && { headerTransparent: true }),
     headerTitleAlign: flattenedStyle?.textAlign,
     // Only set styles when explicitly configured to avoid interfering with native defaults
