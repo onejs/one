@@ -1,4 +1,4 @@
-import type { PluginObj } from '@babel/core';
+import { type PluginObj } from '@babel/core';
 type PluginOptions = {
     env?: Record<string, string | boolean | undefined>;
 };

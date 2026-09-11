@@ -73,7 +73,6 @@
     "@babel/helper-plugin-utils": "^7.27.1",
     "@jridgewell/remapping": "^2.3.0",
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@babel/types": "^7.28.5",
     "@oxc-project/runtime": "^0.112.0",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
