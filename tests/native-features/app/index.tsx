@@ -37,6 +37,11 @@ const testScreens = [
     label: 'One Native Containers',
     testID: 'nav-one-native-containers',
   },
+  {
+    href: '/one-native-popover',
+    label: 'One Native Popover',
+    testID: 'nav-one-native-popover',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

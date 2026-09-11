@@ -24,6 +24,7 @@ type Suite =
   | 'dialogs'
   | 'host'
   | 'containers'
+  | 'popover'
 type Config = {
   simulatorId: string
   bundleId: string
@@ -34,7 +35,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host|containers|popover] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
 }
 
@@ -65,10 +66,11 @@ function parse(args: string[]): Config {
         value !== 'leaves' &&
         value !== 'dialogs' &&
         value !== 'host' &&
-        value !== 'containers'
+        value !== 'containers' &&
+        value !== 'popover'
       )
         throw new Error(
-          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, or containers.'
+          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, host, containers, or popover.'
         )
       suite = value
     } else throw new Error(`Unknown argument: ${arg}`)
@@ -192,23 +194,33 @@ const containersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-container-extra')) &&
   has(nodes, 'Form: ')
+// a presented popover can take the whole accessibility tree, leaving the screen behind
+// it out, so the fixture counts as loaded from either side of the presentation.
+const popoverLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
+    Boolean(id(nodes, 'PopoverDismissRegion')) ||
+    labels(nodes).includes('Popover body') ||
+    labels(nodes).includes('Section body'))
 const homeLoaded = (nodes: Node[], suite: Suite) =>
   Boolean(
     id(
       nodes,
-      suite === 'containers'
-        ? 'nav-one-native-containers'
-        : suite === 'host'
-          ? 'nav-one-native-host'
-          : suite === 'dialogs'
-            ? 'nav-one-native-dialogs'
-            : suite === 'leaves'
-              ? 'nav-one-native-leaves'
-              : suite === 'sheets'
-                ? 'nav-one-native-sheet'
-                : suite !== 'tabs-menu'
-                  ? 'nav-one-native-controls'
-                  : 'nav-one-native'
+      suite === 'popover'
+        ? 'nav-one-native-popover'
+        : suite === 'containers'
+          ? 'nav-one-native-containers'
+          : suite === 'host'
+            ? 'nav-one-native-host'
+            : suite === 'dialogs'
+              ? 'nav-one-native-dialogs'
+              : suite === 'leaves'
+                ? 'nav-one-native-leaves'
+                : suite === 'sheets'
+                  ? 'nav-one-native-sheet'
+                  : suite !== 'tabs-menu'
+                    ? 'nav-one-native-controls'
+                    : 'nav-one-native'
     )
   )
 const firstState = (nodes: Node[]) =>
@@ -245,7 +257,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
                     ? hostLoaded(nodes)
                     : config.suite === 'containers'
                       ? containersLoaded(nodes)
-                      : fixtureLoaded(nodes)
+                      : config.suite === 'popover'
+                        ? popoverLoaded(nodes)
+                        : fixtureLoaded(nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -1119,7 +1133,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'a control composed two containers deep emits',
       (n) =>
-        status(n, 'IsOn', 'true') && String(control(n, 'CheckBox', 'Notify')?.AXValue) === '1'
+        status(n, 'IsOn', 'true') &&
+        String(control(n, 'CheckBox', 'Notify')?.AXValue) === '1'
     )
 
     // a Section prop change reaches SwiftUI through the published tree, not through any
@@ -1137,13 +1152,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('containers-two-sections.png')
 
     tap({ label: 'Section button' })
-    await wait('a Button composed into a Section emits', (n) => status(n, 'Section taps', 1))
+    await wait('a Button composed into a Section emits', (n) =>
+      status(n, 'Section taps', 1)
+    )
 
     // a Host inside a Section is a container composed into a container.
     await wait('a nested Host lays its children across the row', (n) => {
       const text = box(n, 'In host')
       const button = box(n, 'Host button')
-      return Boolean(text && button && text.x < button.x && Math.abs(text.y - button.y) < 30)
+      return Boolean(
+        text && button && text.x < button.x && Math.abs(text.y - button.y) < 30
+      )
     })
     tap({ label: 'Host button' })
     await wait('a Button inside a nested Host emits', (n) => status(n, 'Host taps', 1))
@@ -1176,9 +1195,136 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           labels(n).includes('Composed text')
       )
       await pressSwitch()
+      await wait(`containers recycle ${cycle}: the composed Toggle still emits`, (n) =>
+        status(n, 'IsOn', 'true')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'popover') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // the SwiftUI Button's own ideal height, which is what the trigger measures.
+    const triggerHeight = 24
+    // iOS dismisses a popover when you tap outside it. that is the only path where the
+    // native side changes isPresented on its own, so it is how the controlled protocol
+    // gets exercised in this direction.
+    const app = () => {
+      const frame = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (!frame) throw new Error('The application frame disappeared')
+      return frame
+    }
+    const tapOutside = () => {
+      const frame = app()
+      point(frame.width / 2, frame.height - 40)
+    }
+    // the default compact adaptation presents the body as a full-height sheet, which
+    // has no outside to tap, so it takes the drag a user would use.
+    const dragSheetDown = () => {
+      const frame = app()
+      command(
+        [
+          'ui-automation',
+          'swipe',
+          '--x1',
+          String(Math.round(frame.width / 2)),
+          '--y1',
+          String(Math.round(frame.height * 0.2)),
+          '--x2',
+          String(Math.round(frame.width / 2)),
+          '--y2',
+          String(Math.round(frame.height * 0.9)),
+          '--duration',
+          '0.3',
+        ],
+        config.simulatorId
+      )
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-popover')
+    // the trigger is inline content: it lays out with React Native and reports the
+    // height SwiftUI measured, the way a host does.
+    await wait(
+      'the trigger lays out inline and reports its measured height',
+      (n) =>
+        status(n, 'Trigger', triggerHeight) &&
+        Boolean(control(n, 'Button', 'Trigger')) &&
+        status(n, 'Open', 'false') &&
+        !labels(n).includes('Popover body')
+    )
+    screenshot('popover-closed.png')
+
+    tap({ id: 'one-native-popover-open' })
+    await wait('React presents the popover', (n) => labels(n).includes('Popover body'))
+    screenshot('popover-open.png')
+
+    // the body is a React Native subtree presented outside the surface, so its touches
+    // arrive through the popover's own touch handler rather than the surface's.
+    tap({ id: 'one-native-popover-tap' })
+    tap({ id: 'one-native-popover-close' })
+    await wait('the presented React Native subtree takes a tap', (n) =>
+      status(n, 'Taps', 1)
+    )
+    await wait(
+      'and React dismisses the popover from inside it',
+      (n) => status(n, 'Open', 'false') && !labels(n).includes('Popover body')
+    )
+
+    tap({ label: 'Trigger' })
+    await wait('the composed trigger presents it', (n) =>
+      labels(n).includes('Popover body')
+    )
+    tapOutside()
+    await wait(
+      'dismissing it natively reaches React',
+      (n) => status(n, 'Open', 'false') && !labels(n).includes('Popover body')
+    )
+    // if that event had been lost React would still hold isPresented true and this
+    // request would change nothing.
+    tap({ id: 'one-native-popover-open' })
+    await wait('so React can present it again', (n) => labels(n).includes('Popover body'))
+    tapOutside()
+    await wait('and dismiss it again', (n) => !labels(n).includes('Popover body'))
+
+    // a popover is a container, so it composes into a Section like any other. this one
+    // takes the default compact adaptation, which on an iPhone is a sheet.
+    tap({ id: 'one-native-popover-section-open' })
+    await wait('a popover composed into a Section presents', (n) =>
+      labels(n).includes('Section body')
+    )
+    screenshot('popover-section.png')
+    dragSheetDown()
+    await wait('and dismisses natively', (n) => !labels(n).includes('Section body'))
+    tap({ id: 'one-native-popover-section-open' })
+    await wait('so it too can present again', (n) => labels(n).includes('Section body'))
+    dragSheetDown()
+    await wait('and dismisses again', (n) => !labels(n).includes('Section body'))
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`popover recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-popover')
       await wait(
-        `containers recycle ${cycle}: the composed Toggle still emits`,
-        (n) => status(n, 'IsOn', 'true')
+        `popover recycle ${cycle}: a fresh trigger measures`,
+        (n) =>
+          status(n, 'Trigger', triggerHeight) &&
+          status(n, 'Open', 'false') &&
+          status(n, 'Taps', 0)
+      )
+      tap({ id: 'one-native-popover-open' })
+      await wait(`popover recycle ${cycle}: it still presents`, (n) =>
+        labels(n).includes('Popover body')
+      )
+      tapOutside()
+      await wait(`popover recycle ${cycle}: and still dismisses`, (n) =>
+        status(n, 'Open', 'false')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -1287,17 +1433,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-host-expand' })
     await wait('a single horizontal child measures the same', (n) => size(n, 361, 28))
     tap({ id: 'one-native-host-expand' })
-    await wait(
-      'horizontal children lay out across the row',
-      (n) => {
-        const toggle = control(n, 'CheckBox', 'Toggle')?.frame
-        const button = control(n, 'Button', 'Composed button')?.frame
-        const step = control(n, 'Button', 'Composed stepper, Increment')?.frame
-        return Boolean(
-          toggle && button && step && toggle.x < button.x && button.x < step.x
-        )
-      }
-    )
+    await wait('horizontal children lay out across the row', (n) => {
+      const toggle = control(n, 'CheckBox', 'Toggle')?.frame
+      const button = control(n, 'Button', 'Composed button')?.frame
+      const step = control(n, 'Button', 'Composed stepper, Increment')?.frame
+      return Boolean(toggle && button && step && toggle.x < button.x && button.x < step.x)
+    })
     screenshot('host-horizontal.png')
     tap({ id: 'one-native-host-axis-vertical' })
     tap({ id: 'one-native-host-expand' })

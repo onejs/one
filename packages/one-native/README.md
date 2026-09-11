@@ -1,7 +1,7 @@
 # One Native
 
-Generated SwiftUI tabs, menus, pickers, form controls, sheets, and containers for
-React Native, exposed through `Swift`. This is an initial implementation on the
+Generated SwiftUI tabs, menus, pickers, form controls, sheets, containers, and popovers
+for React Native, exposed through `Swift`. This is an initial implementation on the
 `feat/one-native` branch. It requires an iOS 18+ native build and React Native's New
 Architecture. It is not published to npm.
 
@@ -368,8 +368,8 @@ A `Swift.Sheet` inside presented children presents a nested sheet.
 Add `one-native: workspace:*` to the native application's dependencies and rebuild
 the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
 selection, reordered pages with local state, and nested menus. Control, sheet, and
-container fixtures live under `tests/native-features`. All eight simulator suites pass
-on iOS 26.4, including rejected native changes, retained RN state in presented content,
+container fixtures live under `tests/native-features`. All nine simulator suites pass on
+iOS 26.4, including rejected native changes, retained RN state in presented content,
 and composed controls two containers deep. The package's build, typecheck, and test
 scripts run from `packages/one-native`. See `tests/native-features/scripts/README.md`
 for the conformance commands and their device/automation constraints.
@@ -469,6 +469,52 @@ A slot fills the width its container offers. A horizontal host offers none, beca
 Inside the slot everything works as it does anywhere else in React Native: touches,
 state, providers, and layout. A slot has to be a child of a container, so it throws when
 it is used anywhere else.
+
+### Popovers
+
+`Swift.Popover` is both halves at once. Its children are the trigger, which composes
+into SwiftUI and lays out inline like a host's content, and `content` is a React Native
+subtree presented over the screen, like a sheet's.
+
+```tsx
+function ExamplePopover() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Swift.Popover
+      isPresented={open}
+      onIsPresentedChange={setOpen}
+      presentationCompactAdaptation="popover"
+      contentWidth={260}
+      contentHeight={160}
+      content={
+        <View style={{ flex: 1, padding: 12 }}>
+          <Text>Popover body</Text>
+          <Pressable onPress={() => setOpen(false)}>
+            <Text>Close</Text>
+          </Pressable>
+        </View>
+      }
+    >
+      <Swift.Button label="Trigger" onPress={() => setOpen(true)} />
+    </Swift.Popover>
+  )
+}
+```
+
+`isPresented` and `onIsPresentedChange` use the same controlled protocol as the sheet,
+so a tap outside the popover reaches React as a change. SwiftUI sizes a popover from its
+content and a React Native subtree has no ideal size, so `contentWidth` and
+`contentHeight` are required. `arrowEdge` is an `Edge`; leaving it out takes SwiftUI's
+own placement. `presentationCompactAdaptation` is a `PresentationAdaptation`, and its
+default of `automatic` shows the body as a sheet on an iPhone; pass `popover` for a
+popover there.
+
+The trigger reports the height SwiftUI measured back to Yoga, exactly as `Swift.Host`
+does, so never give a popover a height. A popover is a container, so it composes into a
+form, a section or a host, and its trigger can be any One Native content.
+
+The presented content carries its own touch handler, the same as sheet content, because
+presentation leaves the React Native surface.
 
 ## Generation
 

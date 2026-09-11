@@ -17,6 +17,7 @@ declare module 'one' {
         | `/one-native-dialogs`
         | `/one-native-host`
         | `/one-native-leaves`
+        | `/one-native-popover`
         | `/one-native-sheet`
         | `/split-view-test`
         | `/toolbar-test`

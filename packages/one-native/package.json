@@ -74,7 +74,9 @@
         "OneNativeHost": "OneNativeHostComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
-        "OneNativeContainerSlot": "OneNativeContainerSlotComponentView"
+        "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
+        "OneNativePopover": "OneNativePopoverComponentView",
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }
     }
   }

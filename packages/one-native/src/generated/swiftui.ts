@@ -51,6 +51,13 @@ export type SubmitLabel =
   | 'continue'
 export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters'
 export type Axis = 'horizontal' | 'vertical'
+export type Edge = 'top' | 'leading' | 'bottom' | 'trailing'
+export type PresentationAdaptation =
+  | 'automatic'
+  | 'none'
+  | 'popover'
+  | 'sheet'
+  | 'fullScreenCover'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -156,6 +163,19 @@ export const swiftUIValues = {
   Axis: {
     horizontal: 13,
     vertical: 13,
+  },
+  Edge: {
+    top: 13,
+    leading: 13,
+    bottom: 13,
+    trailing: 13,
+  },
+  PresentationAdaptation: {
+    automatic: 16.4,
+    none: 16.4,
+    popover: 16.4,
+    sheet: 16.4,
+    fullScreenCover: 16.4,
   },
 } as const
 export function assertSwiftUIValue(

@@ -14,7 +14,7 @@ import {
 
 // a slot only works where SwiftUI proposes its box, so containers mark their children
 // and a slot marks its own React Native subtree as outside again.
-const InsideContainer = createContext(false)
+export const InsideContainer = createContext(false)
 
 export function Host({
   axis = 'vertical',

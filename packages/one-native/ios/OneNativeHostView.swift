@@ -15,22 +15,7 @@ private struct HostContent: View {
   // answers to Yoga.
   let standalone: Bool
 
-  var body: some View {
-    if standalone {
-      stack
-        // the host takes its ideal height whatever Yoga proposed, and reports it back.
-        // measuring from SwiftUI means every content change is caught by SwiftUI's own
-        // update pass; a UIKit-side measurement would need explicit scheduling.
-        .fixedSize(horizontal: false, vertical: true)
-        .onGeometryChange(for: CGFloat.self) { proxy in
-          proxy.size.height
-        } action: { height in
-          model.onHeight?(height)
-        }
-    } else {
-      stack
-    }
-  }
+  var body: some View { stack.oneNativeMeasured(standalone, model.onHeight) }
 
   @ViewBuilder private var stack: some View {
     if model.axis == "horizontal" {

@@ -1169,6 +1169,91 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePopover",
+      "publicName": "Popover",
+      "props": {
+        "isPresented": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "arrowEdge": {
+          "type": "string",
+          "enum": "Edge"
+        },
+        "presentationCompactAdaptation": {
+          "type": "string",
+          "enum": "PresentationAdaptation"
+        },
+        "contentWidth": {
+          "type": "Double"
+        },
+        "contentHeight": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativePopoverIsPresentedChange": {
+          "isPresented": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "isPresented",
+        "event": "onNativePopoverIsPresentedChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "trigger",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        },
+        {
+          "name": "content",
+          "content": "OneNativePopoverContent",
+          "cardinality": "one",
+          "layout": "presented"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePopoverContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
     }
   ],
   "payloads": {
@@ -1471,6 +1556,19 @@
     "Axis": {
       "horizontal": 13,
       "vertical": 13
+    },
+    "Edge": {
+      "top": 13,
+      "leading": 13,
+      "bottom": 13,
+      "trailing": 13
+    },
+    "PresentationAdaptation": {
+      "automatic": 16.4,
+      "none": 16.4,
+      "popover": 16.4,
+      "sheet": 16.4,
+      "fullScreenCover": 16.4
     }
   }
 }

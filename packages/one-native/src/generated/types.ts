@@ -20,6 +20,8 @@ import type {
   SubmitLabel,
   TextInputAutocapitalization,
   Axis,
+  Edge,
+  PresentationAdaptation,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -39,6 +41,8 @@ export type {
   SubmitLabel,
   TextInputAutocapitalization,
   Axis,
+  Edge,
+  PresentationAdaptation,
 } from './swiftui'
 export interface MenuAction {
   type: 'action'

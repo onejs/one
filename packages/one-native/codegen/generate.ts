@@ -1,4 +1,5 @@
 import { containerComponents, emitContainers } from './emitContainers'
+import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
 import { emitControls } from './emitControls'
@@ -90,7 +91,10 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
 emitContainers(header, outputs)
-selected.push(...sheetMethods.map((method) => selectModifier(inventory, method)))
+emitPopover(header, outputs)
+selected.push(
+  ...[...sheetMethods, ...popoverMethods].map((method) => selectModifier(inventory, method))
+)
 outputs.set(
   'src/generated/swiftui.ts',
   header +
@@ -218,7 +222,13 @@ outputs.set(
         payloadWrapper: 'nativeEvent',
         note: 'React Native delivers each event as onX({ nativeEvent: payload }).',
       },
-      components: [...components, ...controlComponents, ...sheetComponents, ...containerComponents].map(
+      components: [
+        ...components,
+        ...controlComponents,
+        ...sheetComponents,
+        ...containerComponents,
+        ...popoverComponents,
+      ].map(
         (component) => {
           const enumProps: Record<string, string> =
             'enumProps' in component ? component.enumProps : {}
@@ -281,7 +291,8 @@ outputs.set('src/menuItems.ts', emitMenuValidator(header))
 let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
-  const optional = ['ButtonRole', 'TabRole'].includes(type)
+  // an empty string is the SDK's own default, which these express as nil.
+  const optional = ['ButtonRole', 'TabRole', 'Edge'].includes(type)
   const minimum = Math.min(...Object.values(cases))
   if (minimum > 18) swift += `  @available(iOS ${minimum}, *)\n`
   swift += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${type}${optional ? '?' : ''} {\n    switch value {\n`
@@ -455,7 +466,13 @@ outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) +
 const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
-  [...components, ...controlComponents, ...sheetComponents, ...containerComponents].map((component) => [
+  [
+    ...components,
+    ...controlComponents,
+    ...sheetComponents,
+    ...containerComponents,
+    ...popoverComponents,
+  ].map((component) => [
     component.name,
     component.name + 'ComponentView',
   ])

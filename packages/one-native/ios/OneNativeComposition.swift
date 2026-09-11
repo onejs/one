@@ -23,6 +23,28 @@ struct OneNativeStandalone<Content: View>: View {
   }
 }
 
+// a standalone container takes its ideal height whatever Yoga proposed and reports it
+// back. measuring from SwiftUI means every content change is caught by SwiftUI's own
+// update pass; a UIKit-side measurement would need explicit scheduling. composed, the
+// parent measures it instead.
+extension View {
+  @ViewBuilder func oneNativeMeasured(
+    _ standalone: Bool, _ onHeight: ((CGFloat) -> Void)?
+  ) -> some View {
+    if standalone {
+      self
+        .fixedSize(horizontal: false, vertical: true)
+        .onGeometryChange(for: CGFloat.self) { proxy in
+          proxy.size.height
+        } action: { height in
+          onHeight?(height)
+        }
+    } else {
+      self
+    }
+  }
+}
+
 // Fabric gives insertion order, not keys, so identity is the child view itself: a
 // reorder keeps it and a remount replaces it, which is what SwiftUI wants.
 struct OneNativeComposedChild: Identifiable {
@@ -55,6 +77,11 @@ final class OneNativeChildren: ObservableObject {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
+  // a container that presents something tells React about it, and must not while it is
+  // detached. composed it is active on publication, standalone once its hosting
+  // controller has a parent, which is the rule a composed control follows.
+  public func setActive(_ active: Bool) {}
+
   public func insertChild(_ child: UIView, at index: Int) {
     childViews.insert(child, at: min(index, childViews.count))
     (child as? OneNativeComposable)?.composeInto(self)
@@ -82,27 +109,36 @@ final class OneNativeChildren: ObservableObject {
     controller?.detach()
     controller = nil
     compositionParent = parent
+    setActive(true)
   }
 
-  public func decompose() { compositionParent = nil }
+  public func decompose() {
+    compositionParent = nil
+    setActive(false)
+  }
 
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
   private func updateHost() {
     guard compositionParent == nil else { return }
+    setActive(false)
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       controller = OneNativeHostingController(rootView: wrap(published, true))
     }
     controller?.attach(to: self)
+    setActive(controller?.parent != nil)
   }
 
   public func reset() {
     compositionParent = nil
+    setActive(false)
     for child in childViews { (child as? OneNativeComposable)?.decompose() }
     childViews.removeAll()
     published.items = []
+    // a container that presents (a popover) is recycled while the presentation is up.
+    controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach()
     controller = nil
   }

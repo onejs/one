@@ -90,7 +90,7 @@ bun scripts/one-native-conformance.ts \
 ```
 
 Run each suite separately: `tabs-menu`, `pickers`, `forms`, `sheets`, `leaves`,
-`dialogs`, `host`, `containers`. Each stops
+`dialogs`, `host`, `containers`, `popover`. Each stops
 and relaunches the app and asserts loaded state. Do not run concurrent simulator
 operators. Do not edit application sources while testing state retention; HMR
 invalidates that test. `pod install` runs inside `tests/native-features/ios` after
@@ -164,6 +164,17 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   explicit `width`; and the slot view must leave the SwiftUI tree in `decompose`,
   because React Native recycles it in the transaction that unmounts it and asserts it
   has no superview, while SwiftUI dismantles the representable later.
+- Popovers (`Swift.Popover`). A popover is a measured container whose children are the
+  trigger and whose `content` is a presented React Native subtree, so it is the
+  composition contract and the sheet's presented slot put together, with no mechanism of
+  its own. The trigger measures 24 points for one Button and lays out inline; the
+  presented subtree takes taps and dismisses itself; a tap outside reaches React through
+  the controlled protocol, proven by presenting it again afterwards, which a lost event
+  would make a no-op. The anchor is the trigger's own bounds, so the trigger stack hugs
+  its content and an outer frame puts it at the leading edge. SwiftUI sizes a popover
+  from its content, so `contentWidth` and `contentHeight` are required. A popover
+  composed into a Section works, and the default compact adaptation presents its body as
+  a full-height sheet on an iPhone.
 
 Automation details that prevent false diagnoses:
 
@@ -200,14 +211,14 @@ Automation details that prevent false diagnoses:
 
 - `bun run test`: 19 tests in two existing package test files pass.
 - `bun run typecheck` and `bun run build` pass.
-- `generate:check`: SDK 26.4, 9,715 declarations, 115 mapped symbols, 85 generated
+- `generate:check`: SDK 26.4, 9,715 declarations, 126 mapped symbols, 89 generated
   files; assembled Swift compiles and controlled-state probes pass.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
   and `/tmp/one-native-final-<suite>.log`, where suites are `pickers`, `forms`,
   `sheets`, and `tabs-menu`. Screenshots live alongside those outcomes. The later
-  suites (`leaves`, `dialogs`, `host`, `containers`) write to
+  suites (`leaves`, `dialogs`, `host`, `containers`, `popover`) write to
   `/tmp/one-native-conformance/<suite>` instead.
 - JS measurement: `/tmp/one-native-final-measure.json`; native sections:
   `/tmp/one-native-final-native-size.json`; package: `/tmp/one-native-final-pack.json`.
@@ -215,20 +226,18 @@ Automation details that prevent false diagnoses:
 
 ## Next work
 
-1. Add Popover. It needs both a trigger slot and a presented content slot, which is
-   a new runtime boundary, so bundle it with the layout wave below and give that
-   wave one assembled design review before implementation. Sheet sizing-to-content,
-   selected detent binding, and presentation background/interaction/sizing remain
-   unimplemented, as do the `presenting:` value-bound alert overloads and
-   `presentationCompactAdaptation`.
-2. Composition landed through stage 5: controls compose into one SwiftUI tree, a host
-   reports the height SwiftUI measured back to Yoga, `Text` and `Label` are generated
-   leaves, `Swift.Form`/`Swift.Section` are containers that nest, and `Swift.Slot`
-   carries a React Native subtree into any of them. Design reviewed once (r26161);
+1. Sheet sizing-to-content, selected detent binding, and presentation
+   background/interaction/sizing remain unimplemented, as do the `presenting:`
+   value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
+2. The layout wave is finished: controls compose into one SwiftUI tree, a host reports
+   the height SwiftUI measured back to Yoga, `Text` and `Label` are generated leaves,
+   `Swift.Form`/`Swift.Section` are containers that nest, `Swift.Slot` carries a React
+   Native subtree into any of them, and `Swift.Popover` is a composed trigger with a
+   presented body. Design reviewed once (r26161);
    `plans/one-native-layout-design.md` carries the measurement contract, the review, and
-   what each stage changed against the plan. Still open in that wave: Popover (stage 6).
-   A composed child's inherited `ViewProps` land on a UIView nobody displays, which the
-   catalog should eventually map or reject.
+   what each stage changed against the plan. What it leaves open: a composed child's
+   inherited `ViewProps` land on a UIView nobody displays, which the catalog should
+   eventually map or reject.
 3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle } from './swiftui';
-export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, } from './swiftui';
+export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, } from './swiftui';
 export interface MenuAction {
     type: 'action';
     id: string;
