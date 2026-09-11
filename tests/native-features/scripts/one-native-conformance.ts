@@ -15,7 +15,7 @@ type Node = {
   frame?: { x: number; y: number; width: number; height: number }
   [key: string]: unknown
 }
-type Suite = 'tabs-menu' | 'pickers' | 'forms' | 'sheets' | 'leaves' | 'dialogs'
+type Suite = 'tabs-menu' | 'pickers' | 'forms' | 'sheets' | 'leaves' | 'dialogs' | 'host'
 type Config = {
   simulatorId: string
   bundleId: string
@@ -26,7 +26,7 @@ type Config = {
 
 function usage() {
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite tabs-menu|pickers|forms|sheets|leaves|dialogs|host] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
 }
 
@@ -55,10 +55,11 @@ function parse(args: string[]): Config {
         value !== 'forms' &&
         value !== 'sheets' &&
         value !== 'leaves' &&
-        value !== 'dialogs'
+        value !== 'dialogs' &&
+        value !== 'host'
       )
         throw new Error(
-          'Suite must be tabs-menu, pickers, forms, sheets, leaves, or dialogs.'
+          'Suite must be tabs-menu, pickers, forms, sheets, leaves, dialogs, or host.'
         )
       suite = value
     } else throw new Error(`Unknown argument: ${arg}`)
@@ -174,19 +175,25 @@ const dialogsLoaded = (nodes: Node[]) =>
     ['Cancel alert', 'Confirm alert', 'Cancel confirmation', 'Confirm confirmation'].some(
       (label) => labels(nodes).includes(label)
     ))
+const hostLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-host-expand')) &&
+  has(nodes, 'Host: ')
 const homeLoaded = (nodes: Node[], suite: Suite) =>
   Boolean(
     id(
       nodes,
-      suite === 'dialogs'
-        ? 'nav-one-native-dialogs'
-        : suite === 'leaves'
-          ? 'nav-one-native-leaves'
-          : suite === 'sheets'
-            ? 'nav-one-native-sheet'
-            : suite !== 'tabs-menu'
-              ? 'nav-one-native-controls'
-              : 'nav-one-native'
+      suite === 'host'
+        ? 'nav-one-native-host'
+        : suite === 'dialogs'
+          ? 'nav-one-native-dialogs'
+          : suite === 'leaves'
+            ? 'nav-one-native-leaves'
+            : suite === 'sheets'
+              ? 'nav-one-native-sheet'
+              : suite !== 'tabs-menu'
+                ? 'nav-one-native-controls'
+                : 'nav-one-native'
     )
   )
 const firstState = (nodes: Node[]) =>
@@ -219,7 +226,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
                 ? leavesLoaded(nodes)
                 : config.suite === 'dialogs'
                   ? dialogsLoaded(nodes)
-                  : fixtureLoaded(nodes)
+                  : config.suite === 'host'
+                    ? hostLoaded(nodes)
+                    : fixtureLoaded(nodes)
       if (loaded && predicate(nodes)) {
         checks.push({ name, durationMs: Date.now() - started })
         console.log(`PASS ${name}`)
@@ -1018,6 +1027,144 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       submit()
       await wait(`leaves recycle ${cycle}: current submit emitter`, (n) =>
         status(n, 'Submits', 1)
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'host') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the host reports the height SwiftUI measured, so this is the whole contract in
+    // one number: a wrong measurement shows up here and nowhere else.
+    const size = (nodes: Node[], width: number, height: number) =>
+      labels(nodes).includes(`Host: ${width} x ${height}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a composed Toggle would look like it never emitted.
+    const pressSwitch = async () => {
+      const nodes = await wait('composed switch is ready', (n) =>
+        Boolean(control(n, 'CheckBox', 'Toggle')?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', 'Toggle')!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-host')
+    await wait(
+      'one composed child measures its own height',
+      (n) =>
+        size(n, 361, 28) &&
+        Boolean(control(n, 'CheckBox', 'Toggle')) &&
+        status(n, 'IsOn', 'false') &&
+        status(n, 'Changes', 0)
+    )
+    screenshot('host-one-child.png')
+
+    // the review found by reading that a composed control could render and never emit,
+    // because activation was gated on a window it will never get. this is that check.
+    await pressSwitch()
+    await wait(
+      'a composed Toggle emits and React accepts it',
+      (n) =>
+        status(n, 'IsOn', 'true') &&
+        status(n, 'Changes', 1) &&
+        String(control(n, 'CheckBox', 'Toggle')?.AXValue) === '1'
+    )
+
+    tap({ id: 'one-native-host-expand' })
+    await wait(
+      'children mounted later grow the host',
+      (n) =>
+        size(n, 361, 84) &&
+        Boolean(control(n, 'Button', 'Composed button')) &&
+        Boolean(control(n, 'Button', 'Composed stepper, Increment'))
+    )
+    screenshot('host-three-children.png')
+
+    tap({ label: 'Composed button' })
+    await wait('a composed Button emits', (n) => status(n, 'Taps', 1))
+    tap({ label: 'Composed stepper, Increment' })
+    tap({ label: 'Composed stepper, Increment' })
+    await wait(
+      'a composed Stepper emits and the native value follows',
+      (n) =>
+        status(n, 'Step', 2) &&
+        String(control(n, 'Button', 'Composed stepper, Increment')?.AXValue) === '2'
+    )
+
+    // a child prop change leaves the host's bounds alone, so nothing in UIKit would
+    // schedule a remeasure. measuring from SwiftUI is what catches it.
+    tap({ id: 'one-native-host-relabel' })
+    await wait(
+      'a wrapping label on a composed child regrows the host',
+      (n) =>
+        size(n, 361, 107) &&
+        Boolean(
+          control(
+            n,
+            'CheckBox',
+            'Toggle with a much longer label that wraps onto a second line'
+          )
+        )
+    )
+    tap({ id: 'one-native-host-relabel' })
+    await wait('the shorter label shrinks it back', (n) => size(n, 361, 84))
+
+    tap({ id: 'one-native-host-spacing-20' })
+    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 124))
+    tap({ id: 'one-native-host-spacing-0' })
+    await wait('removing spacing restores the packed height', (n) => size(n, 361, 84))
+
+    tap({ id: 'one-native-host-axis-horizontal' })
+    tap({ id: 'one-native-host-expand' })
+    await wait('a single horizontal child measures the same', (n) => size(n, 361, 28))
+    tap({ id: 'one-native-host-expand' })
+    await wait(
+      'horizontal children lay out across the row',
+      (n) => {
+        const toggle = control(n, 'CheckBox', 'Toggle')?.frame
+        const button = control(n, 'Button', 'Composed button')?.frame
+        const step = control(n, 'Button', 'Composed stepper, Increment')?.frame
+        return Boolean(
+          toggle && button && step && toggle.x < button.x && button.x < step.x
+        )
+      }
+    )
+    screenshot('host-horizontal.png')
+    tap({ id: 'one-native-host-axis-vertical' })
+    tap({ id: 'one-native-host-expand' })
+    await wait('returning to one vertical child restores the height', (n) =>
+      size(n, 361, 28)
+    )
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`host recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-host')
+      await wait(
+        `host recycle ${cycle}: fresh host measures again`,
+        (n) => size(n, 361, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
+      )
+      await pressSwitch()
+      await wait(
+        `host recycle ${cycle}: composed Toggle still emits`,
+        (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')

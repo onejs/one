@@ -1,3 +1,4 @@
+import { Host } from './Host.native';
 import { Menu } from './Menu.native';
 import { Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
@@ -19,6 +20,7 @@ export declare const Swift: {
     Tab: typeof Tab;
     Menu: typeof Menu;
     Sheet: typeof Sheet;
+    Host: typeof Host;
 };
 export type * from './types';
 //# sourceMappingURL=index.native.d.ts.map

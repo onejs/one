@@ -27,6 +27,11 @@ const testScreens = [
     label: 'One Native Dialogs',
     testID: 'nav-one-native-dialogs',
   },
+  {
+    href: '/one-native-host',
+    label: 'One Native Host',
+    testID: 'nav-one-native-host',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
 ] as const
 

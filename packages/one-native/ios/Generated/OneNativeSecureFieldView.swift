@@ -27,11 +27,11 @@ private final class SecureFieldModel: ObservableObject {
     onSubmit?(submitCount)
   }
 }
-@objcMembers public final class OneNativeSecureFieldView: UIView {
+@objcMembers public final class OneNativeSecureFieldView: UIView, OneNativeComposable {
   public var onChange: ((String, Int, Int) -> Void)?
   public var onSubmit: ((Int) -> Void)?
   private var model = SecureFieldModel()
-  private var controller: OneNativeHostingController<SecureFieldContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<SecureFieldContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool) {
@@ -46,20 +46,35 @@ private final class SecureFieldModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(SecureFieldContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+    model.onSubmit = { [weak self] submitCount in self?.onSubmit?(submitCount) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      model.onSubmit = { [weak self] submitCount in self?.onSubmit?(submitCount) }
-      controller = OneNativeHostingController(rootView: SecureFieldContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: SecureFieldContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onChange = nil; model.onSubmit = nil
     controller?.detach(); controller = nil; model = SecureFieldModel()
   }
@@ -79,6 +94,5 @@ private struct SecureFieldContent: View {
       .autocorrectionDisabled(model.autocorrectionDisabled)
       .onSubmit(of: .text) { model.submit() }
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

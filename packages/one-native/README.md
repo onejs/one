@@ -366,6 +366,50 @@ RN state in presented content. The package's build, typecheck, and test scripts 
 from `packages/one-native`. See `tests/native-features/scripts/README.md` for the
 conformance commands and their device/automation constraints.
 
+## Native composition
+
+`Swift.Host` renders One Native controls as one SwiftUI tree instead of one hosting
+controller per control, and reports the height SwiftUI measured back to Yoga. It takes
+no height of its own.
+
+```tsx
+<Swift.Host axis="vertical" spacing={12} alignment="leading">
+  <Swift.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
+  <Swift.Stepper label="Servings" value={servings} onValueChange={setServings} />
+  <Swift.Button label="Save" onPress={save} />
+</Swift.Host>
+```
+
+`axis` is `vertical` or `horizontal`, `spacing` is the gap between children in points,
+and `alignment` (`leading`, `center`, `trailing`) is the cross axis, so it places
+children horizontally down a column and vertically across a row.
+
+A composed child is still its own Fabric component, so its props, events, enum
+validation and controlled state work exactly as they do standalone. What changes is
+where it renders: the host publishes each child's SwiftUI content into its own tree and
+never adds the child's UIView to the view hierarchy. A composed control therefore
+activates when the host publishes it rather than when it gets a window, which is what
+makes its events fire at all.
+
+Two consequences worth knowing:
+
+- React Native view props on a composed child land on a UIView nobody displays. A
+  `testID`, `accessibilityLabel`, `backgroundColor` or `onLayout` on a composed
+  `Swift.Toggle` has no effect. SwiftUI supplies the accessibility element instead, so
+  the control is still reachable, under SwiftUI's own label. Put React Native props on
+  the `Swift.Host` itself.
+- A child's own `height` style is ignored. The host measures, so the layout comes from
+  SwiftUI.
+
+Only One Native controls can be children. A React Native subtree inside a host is not
+supported yet; it needs an explicit slot, which is the next piece of this work.
+
+Horizontal hosts hold whatever fits. Several SwiftUI controls are width-greedy, so
+three of them side by side on a phone overflow, and SwiftUI then reports a much taller
+ideal height. That is SwiftUI's layout for content that does not fit, not a
+measurement error, but it means a horizontal host wants few children or explicit
+widths.
+
 ## Generation
 
 From `packages/one-native`, run:
@@ -415,8 +459,9 @@ version 2. Each component carries its Fabric name, its public component name, it
 props and event payloads as `{ type, enum? }` entries, its controlled value and
 event when it has one, its action events with the public prop that raises them,
 its `layout` (`inline` with the default height the adapter
-applies, `presentation` for a zero-size host, or `container` for a host React Native
-lays out itself), and its React Native slots. Top-level `enums` lists every
+applies, `presentation` for a zero-size host, `container` for a host React Native lays
+out itself, or `measured` for a host that reports the height SwiftUI measured), and its
+React Native slots. Top-level `enums` lists every
 SwiftUI enum case with the iOS version that introduced it, and `eventDelivery`
 records that React Native hands each payload to the component as
 `onX({ nativeEvent: payload })`.

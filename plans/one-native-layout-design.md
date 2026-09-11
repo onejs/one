@@ -1,6 +1,6 @@
 # design proposal: native layout and composition
 
-status: reviewed once (r26161, held), stage 1 probe run, stage 2 contract revised
+status: stages 1 to 3 landed, stage 4 next
 branch: `feat/one-native`
 scope: SwiftUI tree composition, intrinsic measurement, explicit RN slots, Popover
 
@@ -176,10 +176,9 @@ explicit `setNeedsLayout` and async remeasure removed, leaving `layoutSubviews` 
 the only path. `layoutSubviews` then ran exactly once, at mount. A mode change, two
 row changes, and three idle seconds produced no second layout, no second measure, and
 no report. SwiftUI re-rendered its content and the Fabric host never heard about it,
-even with `sizingOptions = [.intrinsicContentSize]` set. So a composition host must
-schedule its own remeasure whenever a child publishes, updates, or unpublishes a
-model, and whenever anything else changes content without changing host bounds.
-Nothing in UIKit or SwiftUI will do it.
+even with `sizingOptions = [.intrinsicContentSize]` set. So a host that measures from
+UIKit must schedule its own remeasure on every content change. Stage 3 avoided the
+problem instead, by measuring from SwiftUI.
 
 **An empty container measures 0.** Before any child exists, `sizeThatFits` returns
 zero height, so a container that mounts before its children occupies no space and
@@ -208,21 +207,46 @@ a point. A Popover with real trigger content gets a real anchor rect for free.
 Each stage compiles, regenerates, and has a runtime suite before the next starts.
 
 1. Done. Runtime probe, results above, no catalog change, probe removed.
-2. The composition contract in the emitter: an `internal` published model type per
-   control, activation on publication rather than on window membership, the
-   height-only shadow node write, and a host that schedules its own remeasure on every
-   publication change. Carries only already-generated leaf controls, so the mounting
-   and measurement work stays separate from catalog growth.
-3. `Host` plus `VStack`/`HStack` using that contract, with intrinsic height.
+2. Done. The composition contract: `OneNativeComposable` in
+   `ios/OneNativeComposition.swift`, every generated control conforming through
+   `compositionContent()`, activation on publication rather than on window membership,
+   and the standalone fill frame moved out of the generated content so a composed
+   control takes its ideal size.
+3. Done. `Swift.Host` with `axis`, `spacing` and cross-axis `alignment`, carrying the
+   thirteen already-generated controls, with the height-only shadow node write. The
+   `host` conformance suite covers it.
 4. `Text`, `Label`, `Form`, `Section` as generated catalog entries that are containers
    or leaves within a host. `Form` takes an explicit height; it has no intrinsic one.
-5. Explicit RN slot inside a host, reusing `OneNativeSlot` in `fill` mode.
+5. Explicit RN slot inside a host, reusing `OneNativeSlot` in `fill` mode. Until then a
+   host takes One Native controls only.
 6. Popover.
 
-Stage 2 is the boundary, and it is an emitter change rather than the mechanical mode
-split the first draft assumed. Its runtime suite has to assert that a composed control
-still emits events, since that is the failure the review found by reading and the one
-a rendering screenshot would miss.
+### What stages 2 and 3 changed against the plan
+
+Measurement moved from UIKit to SwiftUI. The proposal, and stage 1, assumed the host
+would call `sizeThatFits(in:)` from `layoutSubviews` and write Fabric state. That works
+and the numbers are right, but nothing schedules the remeasure, so mounting two more
+children left the host at its old height while the content overflowed it. The fix is
+`onGeometryChange` on the host's content under `fixedSize(horizontal: false, vertical:
+true)`, so SwiftUI reports its own ideal height on its own update pass. Every case that
+needed explicit scheduling then works without any: a later child mount, a child prop
+change that leaves the host's bounds alone, spacing, and axis.
+
+The reviewer was right that the generated `private` content structs are unreachable
+from a separate host file, and wrong that this forces the emitter to publish a model
+type. Each control returns its own `AnyView` from `compositionContent()`, inside its
+own file where `private` is not a barrier, so the host never names a control's types.
+
+The standalone `.frame(maxWidth: .infinity, maxHeight: .infinity)` had to leave the
+generated content struct for a wrapper the standalone hosting controller applies.
+Composed, that frame makes a control take whatever the stack offers rather than its
+ideal size.
+
+Horizontal hosts hold whatever fits. Three width-greedy SwiftUI controls side by side
+on a phone overflow, and SwiftUI then reports a much taller ideal height (128 points
+for 50 points of content, 362 with 20-point spacing). One child measures exactly. That
+is SwiftUI's layout for content that does not fit, confirmed by measuring the same host
+with one child, so the suite asserts horizontal by child order rather than by height.
 
 ## What this does not cover
 

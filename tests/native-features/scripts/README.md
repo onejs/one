@@ -1,6 +1,6 @@
 # One Native Conformance Runner
 
-Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, or `sheets`.
+Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, or `host`.
 
 ```bash
 bun tests/native-features/scripts/one-native-conformance.ts \
@@ -26,6 +26,8 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 `forms` covers Toggle acceptance/rejection, reset revision, and external updates against the native switch value; Stepper acceptance/rejection, reset, external updates, every increment through the upper bound, a no-op increment at the bound, and decrement; and Slider drag, external values, rejection, and reset. Switches use a 150 ms press because instantaneous CLI HID taps do not start native switch tracking. Stepper's disabled increment still reports enabled in this snapshot API, so the runner tests the boundary behavior directly.
 
 `sheets` verifies RN button/input interaction, state retention across reopen and nested sheets, fraction and height detent changes, exact 393x300 Yoga layout for a 300-point sheet, programmatic dismissal, and the same drag with interactive dismissal blocked and allowed. It checks presentation state and dismissal callback counts, then leaves/reenters the route and verifies identical medium detents are restored after native host recycling. Hardware keyboard input is enabled in the test simulator; this does not test software keyboard avoidance.
+
+`host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (84), with 20-point spacing (124), and with a wrapping child label (107), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. Horizontal hosts are asserted by child order rather than by height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
 
 Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 

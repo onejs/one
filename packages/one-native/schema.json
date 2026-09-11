@@ -1025,6 +1025,35 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeHost",
+      "publicName": "Host",
+      "props": {
+        "axis": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "Double"
+        },
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
     }
   ],
   "payloads": {

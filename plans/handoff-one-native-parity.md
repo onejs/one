@@ -129,7 +129,20 @@ Its ignored AppDelegate points at that port. No probe instrumentation remains.
   the same turn as the model write returns the PREVIOUS content's height, so measure
   from `layoutSubviews`. And by negative control, with every explicit schedule removed
   `layoutSubviews` ran exactly once: SwiftUI content changes do not invalidate the
-  Fabric host's layout, so a composition host must schedule its own remeasure.
+  Fabric host's layout, so a host that measures from UIKit must schedule its own
+  remeasure. `Swift.Host` measures from SwiftUI (`onGeometryChange` under
+  `fixedSize(vertical: true)`) and sidesteps this entirely.
+
+- Native composition (`Swift.Host`). A composed control never joins the view hierarchy
+  and never gets a window, so it activates when the host publishes it. Measured heights
+  at a 361-point width: one Toggle 28, plus a Button and a Stepper 84, with 20-point
+  spacing 124, with a wrapping Toggle label 107. All three composed control kinds emit
+  and React accepts the value, and the native Stepper's AXValue follows React. A
+  composed child's React Native view props (testID, accessibility, background, layout
+  height) land on a UIView nobody displays; SwiftUI supplies the accessibility element
+  instead. Horizontal hosts overflow when their children are width-greedy: three
+  controls side by side report 128 points for 50 points of content, while one child
+  measures exactly 28. Composition survives two leave/reenter recycling cycles.
 
 Automation details that prevent false diagnoses:
 
@@ -185,14 +198,13 @@ Automation details that prevent false diagnoses:
    selected detent binding, and presentation background/interaction/sizing remain
    unimplemented, as do the `presenting:` value-bound alert overloads and
    `presentationCompactAdaptation`.
-2. Add real native layout/content composition (Host, VStack/HStack, Text/Label,
-   Form/Section, explicit RN slot). Design reviewed once (r26161) and stage 1 probed;
-   see `plans/one-native-layout-design.md` for the measurement contract and what the
-   review changed. Stage 2 is an emitter change, not a mechanical mode split: composed
-   controls need an `internal` published model type (the generated `<Name>Model` and
-   `<Name>Content` are `private`), activation on publication rather than on window
-   membership (a never-windowed child keeps `active == false` and emits nothing), and
-   a decision about the inherited `ViewProps` that land on a UIView nobody displays.
+2. `Swift.Host` landed: One Native controls compose into one SwiftUI tree and the host
+   reports the height SwiftUI measured back to Yoga. Design reviewed once (r26161);
+   `plans/one-native-layout-design.md` carries the measurement contract, the review,
+   and what the implementation changed against the plan. Still open in that wave:
+   `Text`/`Label`/`Form`/`Section` as catalog entries, an explicit React Native slot
+   inside a host, and Popover. A composed child's inherited `ViewProps` land on a
+   UIView nobody displays, which the catalog should eventually map or reject.
 3. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map

@@ -18,10 +18,10 @@ private final class SliderModel: ObservableObject {
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 }
-@objcMembers public final class OneNativeSliderView: UIView {
+@objcMembers public final class OneNativeSliderView: UIView, OneNativeComposable {
   public var onChange: ((Double, Int, Int) -> Void)?
   private var model = SliderModel()
-  private var controller: OneNativeHostingController<SliderContent>?
+  private var controller: OneNativeHostingController<OneNativeStandalone<SliderContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double) {
@@ -34,19 +34,34 @@ private final class SliderModel: ObservableObject {
   }
 
 
+  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(SliderContent(model: model)) }
+  // composed, there is no window to wait for, so publication is what activates it.
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach(); controller = nil
+    compositionParent = parent
+    bindCallbacks()
+    model.active = true
+  }
+  public func decompose() { compositionParent = nil; model.active = false }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+  private func bindCallbacks() {
+    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
+  }
   private func updateHost() {
+    guard compositionParent == nil else { return }
     model.active = false
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
-      model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-      controller = OneNativeHostingController(rootView: SliderContent(model: model))
+      bindCallbacks()
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: SliderContent(model: model)))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
   }
   public func reset() {
+    compositionParent = nil
     model.active = false; model.onChange = nil
     controller?.detach(); controller = nil; model = SliderModel()
   }
@@ -61,6 +76,5 @@ private struct SliderContent: View {
         Text(model.label)
       } onEditingChanged: { _ in }
       .disabled(model.disabled)
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   }
 }

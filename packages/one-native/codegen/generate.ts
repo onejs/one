@@ -1,3 +1,4 @@
+import { emitHost, hostComponents } from './emitHost'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
 import { emitControls } from './emitControls'
@@ -88,6 +89,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
   outputs
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
+emitHost(header, outputs)
 selected.push(...sheetMethods.map((method) => selectModifier(inventory, method)))
 outputs.set(
   'src/generated/swiftui.ts',
@@ -216,7 +218,7 @@ outputs.set(
         payloadWrapper: 'nativeEvent',
         note: 'React Native delivers each event as onX({ nativeEvent: payload }).',
       },
-      components: [...components, ...controlComponents, ...sheetComponents].map(
+      components: [...components, ...controlComponents, ...sheetComponents, ...hostComponents].map(
         (component) => {
           const enumProps: Record<string, string> =
             'enumProps' in component ? component.enumProps : {}
@@ -453,7 +455,7 @@ outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) +
 const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
-  [...components, ...controlComponents, ...sheetComponents].map((component) => [
+  [...components, ...controlComponents, ...sheetComponents, ...hostComponents].map((component) => [
     component.name,
     component.name + 'ComponentView',
   ])
