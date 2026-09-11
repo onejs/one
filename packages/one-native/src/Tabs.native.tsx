@@ -1,6 +1,7 @@
+import { useControlled } from './controlled'
 import { Platform } from 'react-native'
 import { assertSwiftUIValue } from './generated/swiftui'
-import { Children, isValidElement, useMemo, useState } from 'react'
+import { Children, isValidElement, useMemo } from 'react'
 import type { TabProps, TabsProps } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativeTabs from './specs/OneNativeTabsNativeComponent'
@@ -21,6 +22,7 @@ export function Tabs({
   children,
   selection,
   onSelectionChange,
+  revision = 0,
   sidebarAdaptable = false,
   tabBarMinimizeBehavior,
   style,
@@ -29,7 +31,11 @@ export function Tabs({
   const iosVersion = Number.parseFloat(String(Platform.Version))
   if (tabBarMinimizeBehavior)
     assertSwiftUIValue('TabBarMinimizeBehavior', tabBarMinimizeBehavior, iosVersion)
-  const [acknowledgedEvent, setAcknowledgedEvent] = useState(0)
+  const controlled = useControlled<{
+    selection: string
+    eventCount: number
+    revision: number
+  }>((event) => onSelectionChange(event.selection), revision)
   const pages = useMemo(() => {
     const ids = new Set<string>()
     return Children.toArray(children).map((child) => {
@@ -64,16 +70,13 @@ export function Tabs({
       {...props}
       style={[{ flex: 1 }, style]}
       selection={selection}
-      acknowledgedEvent={acknowledgedEvent}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
       sidebarAdaptable={sidebarAdaptable}
       tabBarMinimizeBehavior={tabBarMinimizeBehavior ?? ''}
-      onSelectionChange={({ nativeEvent }) => {
-        try {
-          onSelectionChange(nativeEvent.selection)
-        } finally {
-          setAcknowledgedEvent((prev) => Math.max(prev, nativeEvent.eventCount))
-        }
-      }}
+      onNativeTabsSelectionChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
     >
       {pages.map((page) => {
         const selected = page.id === selection

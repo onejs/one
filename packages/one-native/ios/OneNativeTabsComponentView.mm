@@ -25,11 +25,11 @@ using namespace facebook::react;
     _tabsView = [OneNativeTabsView new];
     self.contentView = _tabsView;
     __weak OneNativeTabsComponentView *weakSelf = self;
-    _tabsView.onSelection = ^(NSString *selection, NSInteger eventCount) {
+    _tabsView.onSelection = ^(NSString *selection, NSInteger eventCount, NSInteger revision) {
       OneNativeTabsComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onSelectionChange({.selection = std::string(selection.UTF8String), .eventCount = (int)eventCount});
+      emitter->onNativeTabsSelectionChange({.selection = std::string(selection.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
     };
   }
   return self;
@@ -76,7 +76,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeTabsProps>(props);
-  [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent
+  [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent revision:next.revision
          sidebarAdaptable:next.sidebarAdaptable tabBarMinimizeBehavior:RCTNSStringFromString(next.tabBarMinimizeBehavior)];
   [super updateProps:props oldProps:oldProps];
 }
@@ -156,6 +156,7 @@ using namespace facebook::react;
   [super prepareForRecycle];
   self.tabs = nil;
   _tabState.reset();
+  _tabId = @""; _title = @""; _systemImage = @""; _badge = @""; _role = @"";
 }
 
 @end

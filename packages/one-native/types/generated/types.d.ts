@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle } from './swiftui';
-export type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, } from './swiftui';
+export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, } from './swiftui';
 export interface MenuAction {
     type: 'action';
     id: string;
@@ -63,6 +63,7 @@ export interface MenuProps extends ViewProps {
     onAction: (id: string) => void;
     onValueChange?: (id: string, value: boolean, sourceIndex: number) => void;
     accessibilityLabel: string;
+    revision?: number;
     disabled?: boolean;
     menuOrder?: MenuOrder;
     menuActionDismissBehavior?: MenuActionDismissBehavior;
@@ -80,6 +81,7 @@ export interface TabProps {
 export interface TabsProps extends ViewProps {
     selection: string;
     onSelectionChange: (id: string) => void;
+    revision?: number;
     sidebarAdaptable?: boolean;
     tabBarMinimizeBehavior?: TabBarMinimizeBehavior;
 }

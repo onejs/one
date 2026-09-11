@@ -12,6 +12,8 @@ declare module 'one' {
         | `/color-test`
         | `/menu-test`
         | `/one-native`
+        | `/one-native-controls`
+        | `/one-native-sheet`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

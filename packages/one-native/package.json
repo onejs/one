@@ -16,7 +16,8 @@
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./schema.json": "./schema.json"
   },
   "files": [
     "src",
@@ -25,14 +26,16 @@
     "ios",
     "cpp",
     "OneNative.podspec",
-    "react-native.config.cjs"
+    "react-native.config.cjs",
+    "schema.json"
   ],
   "scripts": {
     "build": "tamagui-build",
     "typecheck": "tsc --noEmit --composite false",
     "test": "vitest run",
     "generate": "bun codegen/generate.ts",
-    "generate:check": "bun codegen/generate.ts --check"
+    "generate:check": "bun codegen/generate.ts --check",
+    "measure": "bun codegen/measure.ts"
   },
   "peerDependencies": {
     "react": ">=19",
@@ -50,7 +53,15 @@
       "componentProvider": {
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
-        "OneNativeTab": "OneNativeTabComponentView"
+        "OneNativeTab": "OneNativeTabComponentView",
+        "OneNativePicker": "OneNativePickerComponentView",
+        "OneNativeDatePicker": "OneNativeDatePickerComponentView",
+        "OneNativeColorPicker": "OneNativeColorPickerComponentView",
+        "OneNativeToggle": "OneNativeToggleComponentView",
+        "OneNativeSlider": "OneNativeSliderComponentView",
+        "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativeSheet": "OneNativeSheetComponentView",
+        "OneNativeSheetContent": "OneNativeSheetContentComponentView"
       }
     }
   }

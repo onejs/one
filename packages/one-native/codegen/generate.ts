@@ -1,63 +1,36 @@
+import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
+import { controls } from './controlCatalog'
+import { emitControls } from './emitControls'
+import { emitMenuValidator } from './menuValidator'
+import {
+  readInventory,
+  ios,
+  available,
+  selectConstructor,
+  selectModifier,
+  type Declaration,
+} from './inventory'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { constructors, enumTypes, fields, modifiers, nodes } from './catalog'
+import {
+  tabConstructor,
+  components,
+  modifierFamilies,
+  enumTypes,
+  fields,
+  modifiers,
+  nodes,
+} from './catalog'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
 mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
-const sdk = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'])
-const swiftc = run('xcrun', ['--find', 'swiftc'])
-const host = resolve(dirname(swiftc), '../lib/swift/host')
-const binary = join(cache, 'extract')
-run(swiftc, [
-  '-sdk',
-  run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),
-  '-I',
-  host,
-  '-L',
-  host,
-  '-Xlinker',
-  '-rpath',
-  '-Xlinker',
-  host,
-  join(root, 'codegen/Extract.swift'),
-  '-o',
-  binary,
-])
-const paths = ['SwiftUI', 'SwiftUICore'].map((module) =>
-  join(
-    sdk,
-    `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`
-  )
-)
-type Declaration = {
-  module: string
-  owner: string
-  kind: string
-  name: string
-  attributes: string[]
-  parameters: { label: string; name: string; type: string; defaultValue?: string }[]
-  type?: string
-  line: number
-}
-const inventory: Declaration[] = JSON.parse(run(binary, paths))
-const available = (d: Declaration) =>
-  !d.attributes.some((a) => /@available\((?:iOS|\*)\s*,\s*unavailable/.test(a)) &&
-  !d.attributes.some((a) => a.startsWith('@_spi'))
-const ios = (d: Declaration) =>
-  Math.max(
-    0,
-    ...d.attributes.flatMap((a) =>
-      [...a.matchAll(/\biOS\s+(?:introduced:\s*)?(\d+(?:\.\d+)?)/g)].map((m) =>
-        Number(m[1])
-      )
-    )
-  )
+const { sdk, swiftc, paths, inventory } = readInventory(root)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const selected: Declaration[] = []
 const enums = Object.fromEntries(
@@ -66,7 +39,7 @@ const enums = Object.fromEntries(
       (d) =>
         shortOwner(d) === type &&
         d.kind === 'static' &&
-        (type === 'ControlGroupStyle' || d.type?.split('.').at(-1) === type) &&
+        (type.endsWith('Style') || d.type?.split('.').at(-1) === type) &&
         available(d)
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
@@ -75,39 +48,40 @@ const enums = Object.fromEntries(
   })
 ) as Record<string, Record<string, number>>
 const methods = modifiers.map((modifier) => {
-  const method = inventory.find(
-    (d) =>
-      d.kind === 'func' &&
-      d.name === modifier.name &&
-      shortOwner(d) === 'View' &&
-      d.parameters.length === 1 &&
-      (d.parameters[0].type === `SwiftUI.${modifier.type}` ||
-        (modifier.type === 'ControlGroupStyle' && d.parameters[0].type === 'S')) &&
-      available(d)
-  )
-  if (!method) throw new Error(`SDK modifier signature changed: ${modifier.name}`)
+  const isStyle = modifier.type.endsWith('Style')
+  const method = selectModifier(inventory, {
+    name: modifier.name,
+    parameters: [
+      {
+        label: '_',
+        type: isStyle
+          ? 'S'
+          : `${'module' in modifier ? modifier.module : 'SwiftUI'}.${modifier.type}`,
+      },
+    ],
+    requirements: isStyle ? [`S: SwiftUI.${modifier.type}`] : [],
+  })
   selected.push(method)
-  return { ...modifier, ios: ios(method) }
+  return {
+    ...modifier,
+    ios: ios(method),
+    parameters: method.parameters,
+    requirements: method.requirements,
+  }
 })
-for (const constructor of constructors) {
-  const candidates = inventory.filter(
-    (d) =>
-      d.kind === 'init' &&
-      shortOwner(d) === constructor.type &&
-      available(d) &&
-      JSON.stringify(d.parameters.map((p) => p.label)) ===
-        JSON.stringify(constructor.labels)
-  )
-  const declaration = candidates.sort((a, b) => ios(a) - ios(b))[0]
-  if (!declaration)
-    throw new Error(
-      `SDK constructor signature changed: ${constructor.type}(${constructor.labels.join(':')})`
-    )
-  selected.push(declaration)
+for (const constructor of [
+  ...nodes.map((node) => node.constructor),
+  tabConstructor,
+  ...controls.map((control) => control.constructor),
+]) {
+  selected.push(selectConstructor(inventory, constructor))
 }
 const header =
   '// generated by bun run generate from the SwiftUI SDK and codegen/catalog.ts.\n// edit the generator or catalog, then regenerate.\n'
 const outputs = new Map<string, string>()
+const controlComponents = emitControls(header, outputs) ?? []
+emitSheet(header, outputs)
+selected.push(...sheetMethods.map((method) => selectModifier(inventory, method)))
 outputs.set(
   'src/generated/swiftui.ts',
   header +
@@ -150,7 +124,7 @@ export type { ${enumTypes.join(', ')} } from './swiftui'
       .map(
         (node) => `export interface ${node.name} {
   type: '${node.kind}'
-${node.fields.map((name) => `  ${name}${(node.required as readonly string[]).includes(name) ? '' : '?'}: ${fieldType(fields[name as keyof typeof fields].type, true)}`).join('\n')}
+${node.fields.map((name) => `  ${name}${(node.required as readonly string[]).includes(name) ? '' : '?'}: ${fieldType(fields[name].type, true)}`).join('\n')}
 ${node.children ? '  children: readonly MenuItem[]\n' : ''}}
 `
       )
@@ -162,6 +136,7 @@ export interface MenuProps extends ViewProps {
   onAction: (id: string) => void
   onValueChange?: (id: string, value: boolean, sourceIndex: number) => void
   accessibilityLabel: string
+  revision?: number
   disabled?: boolean
   menuOrder?: MenuOrder
   menuActionDismissBehavior?: MenuActionDismissBehavior
@@ -179,6 +154,7 @@ export interface TabProps {
 export interface TabsProps extends ViewProps {
   selection: string
   onSelectionChange: (id: string) => void
+  revision?: number
   sidebarAdaptable?: boolean
   tabBarMinimizeBehavior?: TabBarMinimizeBehavior
 }
@@ -190,123 +166,70 @@ const nativeItem = `export type NativeMenuItem = Readonly<{\n${Object.entries(
 )
   .map(([name, field]) => `  ${name}: ${fieldType(field.type)}`)
   .join('\n')}\n}>`
-outputs.set(
-  'src/specs/OneNativeMenuNativeComponent.ts',
-  header +
-    `import type { ViewProps } from 'react-native'
+for (const component of components) {
+  outputs.set(
+    `src/specs/${component.name}NativeComponent.ts`,
+    header +
+      `import type { ViewProps } from 'react-native'
 import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${nativeItem}
+${component.name === 'OneNativeMenu' ? nativeItem : ''}
 interface NativeProps extends ViewProps {
-  items: ReadonlyArray<NativeMenuItem>
-  triggerLabel: string
-  disabled: boolean
-  menuOrder: string
-  menuActionDismissBehavior: string
-  onAction?: DirectEventHandler<Readonly<{ id: string }>>
-  onValueChange?: DirectEventHandler<Readonly<{ id: string; value: boolean; sourceIndex: Int32 }>>
+${Object.entries(component.props)
+  .map(([name, type]) => `  ${name}: ${type}`)
+  .join('\n')}
+${Object.entries(component.events)
+  .map(
+    ([name, fields]) =>
+      `  ${name}?: DirectEventHandler<Readonly<{ ${Object.entries(fields)
+        .map(([name, type]) => `${name}: ${type}`)
+        .join('; ')} }>>`
+  )
+  .join('\n')}
 }
-export default codegenNativeComponent<NativeProps>('OneNativeMenu')
+export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
 `
-)
+  )
+}
 outputs.set(
-  'src/specs/OneNativeTabNativeComponent.ts',
-  header +
-    `import type { ViewProps } from 'react-native'
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-interface NativeProps extends ViewProps {
-  tabId: string
-  title: string
-  systemImage: string
-  badge: string
-  tabRole: string
-}
-export default codegenNativeComponent<NativeProps>('OneNativeTab', { interfaceOnly: true })
-`
-)
-outputs.set(
-  'src/specs/OneNativeTabsNativeComponent.ts',
-  header +
-    `import type { ViewProps } from 'react-native'
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-interface NativeProps extends ViewProps {
-  selection: string
-  acknowledgedEvent: Int32
-  sidebarAdaptable: boolean
-  tabBarMinimizeBehavior: string
-  onSelectionChange?: DirectEventHandler<Readonly<{ selection: string; eventCount: Int32 }>>
-}
-export default codegenNativeComponent<NativeProps>('OneNativeTabs')
-`
-)
-const definitions = Object.fromEntries(
-  nodes.map((node) => [
-    node.kind,
+  'schema.json',
+  JSON.stringify(
     {
-      fields: Object.fromEntries(
-        node.fields.map((name) => [
-          name,
-          {
-            ...fields[name as keyof typeof fields],
-            required: (node.required as readonly string[]).includes(name),
-          },
-        ])
-      ),
-      children: node.children,
+      version: 1,
+      platform: 'ios',
+      minimumVersion: 18,
+      controlledProtocol: {
+        version: 1,
+        revision: 'revision',
+        acknowledgement: 'acknowledgedEvent',
+        eventCount: 'eventCount',
+      },
+      components: [...components, ...controlComponents, ...sheetComponents],
+      payloads: {
+        PickerOption: {
+          fields: { value: { type: 'string' }, label: { type: 'string' } },
+        },
+        NativeSheetDetent: {
+          fields: { type: { type: 'string' }, value: { type: 'Double' } },
+        },
+        NativeMenuItem: {
+          fields: nativeFields,
+          nodes: nodes.map(({ swift, constructor, ...node }) => ({
+            ...node,
+            swiftType: constructor.type,
+          })),
+        },
+      },
+      enums,
     },
-  ])
+    null,
+    2
+  ) + '\n'
 )
-outputs.set(
-  'src/menuItems.ts',
-  header +
-    `import type { NativeMenuItem } from './specs/OneNativeMenuNativeComponent'
-import type { MenuItem } from './types'
-import { assertSwiftUIValue, swiftUIValues } from './generated/swiftui'
-const definitions: Record<string, { fields: Record<string, { type: string; default: unknown; required: boolean }>; children: boolean }> = ${JSON.stringify(definitions, null, 2)}
-const defaults = ${JSON.stringify(Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, v.default])))}
-export function flattenMenuItems(items: readonly MenuItem[], iosVersion = 18): NativeMenuItem[] {
-  const result: NativeMenuItem[] = []
-  const ids = new Set<string>()
-  const append = (items: readonly MenuItem[], parentId: string, disabled: boolean, hidden: boolean) => {
-    for (const item of items) {
-      const definition = definitions[item.type]
-      if (!definition) throw new Error('Unknown Swift.Menu item type: ' + item.type)
-      const input = item as unknown as Record<string, unknown>
-      for (const name of Object.keys(input)) {
-        if (name !== 'type' && !(name === 'children' && definition.children) && !Object.hasOwn(definition.fields, name)) throw new Error('Unsupported Swift.Menu ' + item.type + ' property: ' + name)
-      }
-      const payload: Record<string, unknown> = { ...defaults, parentId, type: item.type }
-      for (const [name, field] of Object.entries(definition.fields)) {
-        const value = input[name] ?? field.default
-        if (field.required && input[name] == null) throw new Error('Swift.Menu ' + item.type + ' requires ' + name)
-        if (field.type === 'boolean[]') {
-          if (!Array.isArray(value) || !value.length || value.some(v => typeof v !== 'boolean')) throw new Error('Swift.Menu toggle values must be a nonempty boolean array')
-        } else if (Object.hasOwn(swiftUIValues, field.type)) {
-          if (typeof value !== 'string') throw new Error('Invalid Swift.Menu ' + name)
-          if (value !== '' || field.default !== '') assertSwiftUIValue(field.type as keyof typeof swiftUIValues, value, iosVersion)
-        } else if (typeof value !== field.type) throw new Error('Invalid Swift.Menu ' + name)
-        payload[name] = value
-      }
-      if (!item.id || ids.has(item.id)) throw new Error('Swift.Menu requires unique, nonempty item ids: "' + item.id + '"')
-      ids.add(item.id)
-      payload.disabled = disabled || payload.disabled
-      payload.hidden = hidden || payload.hidden
-      result.push(payload as unknown as NativeMenuItem)
-      if (definition.children) {
-        if (!Array.isArray(input.children)) throw new Error('Swift.Menu ' + item.type + ' requires children')
-        append(input.children, item.id, Boolean(payload.disabled), Boolean(payload.hidden))
-      }
-    }
-  }
-  append(items, '', false, false)
-  return result
-}
-`
-)
+outputs.set('src/menuItems.ts', emitMenuValidator(header))
 let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
 for (const [type, cases] of Object.entries(enums)) {
-  if (type === 'ControlGroupStyle') continue
+  if (type.endsWith('Style')) continue
   const optional = ['ButtonRole', 'TabRole'].includes(type)
   const minimum = Math.min(...Object.values(cases))
   if (minimum > 18) swift += `  @available(iOS ${minimum}, *)\n`
@@ -328,28 +251,22 @@ swift += `  @MainActor @TabContentBuilder<String> static func tab<Content: View>
     .badge(badge.isEmpty ? nil : Text(badge))
   }
 `
-swift +=
-  '}\n\nenum OneNativeControlGroupStyle: String {\n' +
-  Object.keys(enums.ControlGroupStyle)
-    .map((name) => '  case ' + name)
-    .join('\n') +
-  '\n}\n\nextension View {\n'
+swift += '}\n\nextension View {\n'
 for (const method of methods) {
-  if (method.type === 'ControlGroupStyle') {
-    swift +=
-      '  @ViewBuilder func oneNativeControlGroupStyle(_ value: String) -> some View {\n    switch OneNativeControlGroupStyle(rawValue: value)! {\n'
-    for (const [name, version] of Object.entries(enums.ControlGroupStyle)) {
-      swift += `    case .${name}:\n`
+  if (method.type.endsWith('Style')) {
+    swift += `  @ViewBuilder func oneNative${method.name[0].toUpperCase() + method.name.slice(1)}(_ value: String) -> some View {\n    switch value {\n`
+    for (const [name, version] of Object.entries(enums[method.type])) {
+      swift += `    case "${name}":\n`
       swift +=
         version > 18
-          ? `      if #available(iOS ${version}, *) { self.controlGroupStyle(.${name}) } else { let _ = preconditionFailure("ControlGroupStyle.${name} requires iOS ${version}"); self }\n`
-          : `      self.controlGroupStyle(.${name})\n`
+          ? `      if #available(iOS ${version}, *) { self.${method.name}(.${name}) } else { let _ = preconditionFailure("${method.type}.${name} requires iOS ${version}"); self }\n`
+          : `      self.${method.name}(.${name})\n`
     }
-    swift += '    }\n  }\n'
+    swift += `    default: let _ = preconditionFailure("invalid ${method.type}: \\(value)"); self\n    }\n  }\n`
     continue
   }
   const apply = `self.${method.name}(OneNativeGenerated.${method.type[0].toLowerCase() + method.type.slice(1)}(value))`
-  swift += `  @ViewBuilder func oneNative${method.type}(_ value: String) -> some View {\n`
+  swift += `  @ViewBuilder func oneNative${method.name[0].toUpperCase() + method.name.slice(1)}(_ value: String) -> some View {\n`
   if (method.ios > 18) {
     swift += `    if #available(iOS ${method.ios}, *) {\n      if value.isEmpty { self } else { ${apply} }\n    } else {\n      let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n      self\n    }\n`
   } else swift += `    if value.isEmpty { self } else { ${apply} }\n`
@@ -416,7 +333,18 @@ outputs.set(
     `#ifdef __cplusplus
 #import <React/RCTConversions.h>
 #import <react/renderer/components/OneNativeSpec/Props.h>
-inline NSArray *OneNativeMenuPayload(const std::vector<facebook::react::OneNativeMenuItemsStruct> &items) {
+template <typename Item>
+inline bool OneNativeMenuItemsEqual(const std::vector<Item> &a, const std::vector<Item> &b) {
+  if (a.size() != b.size()) return false;
+  for (size_t i = 0; i < a.size(); i++) {
+    if (${Object.keys(nativeFields)
+      .map((name) => `a[i].${name} != b[i].${name}`)
+      .join(' || ')}) return false;
+  }
+  return true;
+}
+template <typename Item>
+inline NSArray *OneNativeMenuPayload(const std::vector<Item> &items) {
   NSMutableArray *result = [NSMutableArray new];
   for (const auto &item : items) {
     NSMutableArray *values = [NSMutableArray new];
@@ -454,7 +382,7 @@ const manifest = {
             d.kind === 'func' &&
             shortOwner(d) === 'View' &&
             available(d) &&
-            /^(menu|tabBar|tabView|controlGroup|palette)/.test(d.name) &&
+            modifierFamilies.some((prefix) => d.name.startsWith(prefix)) &&
             !methods.some((m) => m.name === d.name)
         )
         .map((d) => d.name)
@@ -468,15 +396,25 @@ const manifest = {
       module: d.module,
       type: shortOwner(d),
       parameters: d.parameters,
+      requirements: d.requirements,
       ios: ios(d),
     })),
 }
 outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) + '\n')
+const packagePath = join(root, 'package.json')
+const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
+packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
+  [...components, ...controlComponents, ...sheetComponents].map((component) => [
+    component.name,
+    component.name + 'ComponentView',
+  ])
+)
+outputs.set('package.json', JSON.stringify(packageMetadata, null, 2) + '\n')
 const changed: string[] = []
 for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
-  writeFileSync(temporary, source)
-  if (path.endsWith('.ts'))
+  writeFileSync(temporary, source.trimEnd() + '\n')
+  if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
   const generated = readFileSync(temporary, 'utf8')
   let existing = ''
@@ -490,6 +428,28 @@ for (const [path, source] of outputs) {
 }
 if (process.argv.includes('--check') && changed.length)
   throw new Error('Generated SwiftUI bindings differ: ' + changed.join(', '))
+// compile the assembled source so SDK provenance and emitted recipes are checked together.
+run(swiftc, [
+  '-typecheck',
+  '-sdk',
+  sdk,
+  '-target',
+  'arm64-apple-ios18.0-simulator',
+  ...['ios', 'ios/Generated'].flatMap((dir) =>
+    readdirSync(join(root, dir))
+      .filter((file) => file.endsWith('.swift'))
+      .map((file) => join(root, dir, file))
+  ),
+])
+run(swiftc, [
+  '-sdk',
+  run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),
+  join(root, 'ios/OneNativeControlled.swift'),
+  join(root, 'codegen/VerifyControlled.swift'),
+  '-o',
+  join(cache, 'verify-controlled'),
+])
+console.log(run(join(cache, 'verify-controlled'), []))
 console.log(
   `SwiftUI SDK ${manifest.sdk}: ${inventory.length} declarations, ${selected.length} mapped symbols, ${outputs.size} generated files${process.argv.includes('--check') ? ', verified' : ''}`
 )

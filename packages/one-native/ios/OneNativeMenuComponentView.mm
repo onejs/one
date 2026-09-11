@@ -10,6 +10,7 @@ using namespace facebook::react;
 
 @implementation OneNativeMenuComponentView {
   OneNativeMenuView *_menuView;
+  BOOL _itemsDirty;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider
@@ -21,6 +22,7 @@ using namespace facebook::react;
 {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeMenuProps>();
+    _itemsDirty = YES;
     _menuView = [OneNativeMenuView new];
     self.contentView = _menuView;
     __weak OneNativeMenuComponentView *weakSelf = self;
@@ -28,13 +30,13 @@ using namespace facebook::react;
       OneNativeMenuComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onAction({.id = std::string(identifier.UTF8String)});
+      emitter->onNativeMenuAction({.id = std::string(identifier.UTF8String)});
     };
-    _menuView.onValueChange = ^(NSString *identifier, BOOL value, NSInteger sourceIndex) {
+    _menuView.onValueChange = ^(NSString *identifier, BOOL value, NSInteger sourceIndex, NSInteger eventCount, NSInteger revision) {
       OneNativeMenuComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onValueChange({.id = std::string(identifier.UTF8String), .value = (bool)value, .sourceIndex = (int)sourceIndex});
+      emitter->onNativeMenuValueChange({.id = std::string(identifier.UTF8String), .value = (bool)value, .sourceIndex = (int)sourceIndex, .eventCount = (int)eventCount, .revision = (int)revision});
     };
   }
   return self;
@@ -53,10 +55,15 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
 {
   const auto &next = *std::static_pointer_cast<const OneNativeMenuProps>(props);
-  [_menuView configureItems:OneNativeMenuPayload(next.items)
-              triggerLabel:RCTNSStringFromString(next.triggerLabel) disabled:next.disabled
+  const auto &previous = *std::static_pointer_cast<const OneNativeMenuProps>(_props);
+  if (_itemsDirty || !OneNativeMenuItemsEqual(previous.items, next.items)) {
+    [_menuView configureItems:OneNativeMenuPayload(next.items)];
+    _itemsDirty = NO;
+  }
+  [_menuView configure:RCTNSStringFromString(next.triggerLabel) disabled:next.disabled
               menuOrder:RCTNSStringFromString(next.menuOrder)
-              menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)];
+              menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)
+              acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];
 }
 
@@ -71,6 +78,7 @@ using namespace facebook::react;
 {
   [super prepareForRecycle];
   [_menuView reset];
+  _itemsDirty = YES;
 }
 
 @end

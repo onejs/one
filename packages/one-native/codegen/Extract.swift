@@ -14,6 +14,7 @@ struct Declaration: Codable {
   let kind: String
   let name: String
   let attributes: [String]
+  let requirements: [String]
   let parameters: [Parameter]
   let type: String?
   let line: Int
@@ -23,6 +24,7 @@ final class Inventory: SyntaxVisitor {
   let location: SourceLocationConverter
   var owners: [String] = []
   var availability: [[String]] = []
+  var requirements: [[String]] = []
   var declarations: [Declaration] = []
 
   init(module: String, file: String, tree: SourceFileSyntax) {
@@ -33,35 +35,42 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil) {
-    declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name,
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil) {
+    declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
+      requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map { $0.trimmedDescription } ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes)
-    owners.append(node.name.text); availability.append(attributes(node.attributes)); return .visitChildren
+    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
   }
-  override func visitPost(_ node: StructDeclSyntax) { owners.removeLast(); availability.removeLast() }
+  override func visitPost(_ node: StructDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "enum", name: node.name.text, attrs: node.attributes)
-    owners.append(node.name.text); availability.append(attributes(node.attributes)); return .visitChildren
+    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
   }
-  override func visitPost(_ node: EnumDeclSyntax) { owners.removeLast(); availability.removeLast() }
+  override func visitPost(_ node: EnumDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind {
-    owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); return .visitChildren
+    owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map { $0.trimmedDescription } ?? []); return .visitChildren
   }
-  override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast() }
+  override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
+  override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {
+    for element in node.elements where element.parameterClause == nil {
+      record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last)
+    }
+    return .skipChildren
+  }
   override func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {
     if node.modifiers.contains(where: { $0.name.text == "public" }) {
-      record(node, kind: "func", name: node.name.text, attrs: node.attributes, parameters: node.signature.parameterClause.parameters, type: node.signature.returnClause?.type.trimmedDescription)
+      record(node, kind: "func", name: node.name.text, attrs: node.attributes, parameters: node.signature.parameterClause.parameters, type: node.signature.returnClause?.type.trimmedDescription, whereClause: node.genericWhereClause)
     }
     return .skipChildren
   }
   override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind {
     if node.modifiers.contains(where: { $0.name.text == "public" }) {
-      record(node, kind: "init", name: "init", attrs: node.attributes, parameters: node.signature.parameterClause.parameters)
+      record(node, kind: "init", name: "init", attrs: node.attributes, parameters: node.signature.parameterClause.parameters, whereClause: node.genericWhereClause)
     }
     return .skipChildren
   }

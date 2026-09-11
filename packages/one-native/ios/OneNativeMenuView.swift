@@ -9,10 +9,12 @@ final class OneNativeMenuModel: ObservableObject {
   @Published var disabled = false
   @Published var menuOrder = "automatic"
   @Published var menuActionDismissBehavior = "automatic"
+  @Published var controlled = OneNativeControlled<[String: [Bool]]>([:])
+  var propValues: [String: [Bool]] = [:]
   var active = false
   var items: [String: OneNativeMenuNode] = [:]
   var onAction: ((String) -> Void)?
-  var onValueChange: ((String, Bool, Int) -> Void)?
+  var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
 
   func action(_ id: String) {
     guard active, !disabled, let item = items[id], item.type == .action, !item.disabled, !item.hidden else { return }
@@ -22,16 +24,20 @@ final class OneNativeMenuModel: ObservableObject {
   func changeValue(_ id: String, index: Int, value: Bool) {
     guard active, !disabled, let item = items[id], item.type == .toggle, !item.disabled, !item.hidden,
           item.values.indices.contains(index) else { return }
-    onValueChange?(id, value, index)
+    guard var values = controlled.value[id], values.indices.contains(index), values[index] != value else { return }
+    values[index] = value
+    var next = controlled.value
+    next[id] = values
+    controlled.change(next)
+    onValueChange?(id, value, index, controlled.eventCount, controlled.revision)
   }
 }
 
 @objcMembers
 public final class OneNativeMenuView: UIView {
   public var onAction: ((String) -> Void)?
-  public var onValueChange: ((String, Bool, Int) -> Void)?
+  public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
-  private var currentItems: NSArray = []
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
 
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -47,17 +53,19 @@ public final class OneNativeMenuView: UIView {
     view.removeFromSuperview()
   }
 
-  public func configureItems(_ items: [[String: Any]], triggerLabel: String, disabled: Bool, menuOrder: String, menuActionDismissBehavior: String) {
+  public func configureItems(_ items: [[String: Any]]) {
+    let nodes = items.map(OneNativeMenuNode.init)
+    model.items = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
+    model.propValues = Dictionary(uniqueKeysWithValues: nodes.filter { $0.type == .toggle }.map { ($0.id, $0.values) })
+    model.children = Dictionary(grouping: nodes, by: \.parentId)
+  }
+
+  public func configure(_ triggerLabel: String, disabled: Bool, menuOrder: String, menuActionDismissBehavior: String, acknowledgedEvent: Int, revision: Int) {
+    if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
     if model.disabled != disabled { model.disabled = disabled }
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
-    if !currentItems.isEqual(to: items) {
-      currentItems = items as NSArray
-      let nodes = items.map(OneNativeMenuNode.init)
-      model.items = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
-      model.children = Dictionary(grouping: nodes, by: \.parentId)
-    }
   }
 
   public override func didMoveToWindow() {
@@ -76,7 +84,7 @@ public final class OneNativeMenuView: UIView {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       model.onAction = { [weak self] id in self?.onAction?(id) }
-      model.onValueChange = { [weak self] id, value, index in self?.onValueChange?(id, value, index) }
+      model.onValueChange = { [weak self] id, value, index, count, revision in self?.onValueChange?(id, value, index, count, revision) }
       controller = OneNativeHostingController(rootView: OneNativeMenuRoot(model: model))
     }
     controller?.attach(to: self)
@@ -90,7 +98,6 @@ public final class OneNativeMenuView: UIView {
     model.trigger?.removeFromSuperview()
     controller?.detach()
     controller = nil
-    currentItems = []
     model = OneNativeMenuModel()
   }
 }
@@ -102,7 +109,7 @@ private struct OneNativeMenuRoot: View {
       Menu {
         OneNativeGeneratedMenuContent(model: model, parentId: "")
       } label: {
-        OneNativeMenuTrigger(trigger: trigger)
+        OneNativeSlot(content: trigger, mode: .passive)
           .frame(width: model.size.width, height: model.size.height)
           .contentShape(Rectangle())
       }
@@ -114,28 +121,4 @@ private struct OneNativeMenuRoot: View {
       .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
     }
   }
-}
-
-private struct OneNativeMenuTrigger: UIViewRepresentable {
-  let trigger: UIView
-  func makeUIView(context: Context) -> TriggerSlot { TriggerSlot(trigger: trigger) }
-  func updateUIView(_ view: TriggerSlot, context: Context) {
-    if view.trigger !== trigger { view.trigger.removeFromSuperview(); view.trigger = trigger }
-    if trigger.superview !== view { view.addSubview(trigger) }
-    view.setNeedsLayout()
-  }
-  static func dismantleUIView(_ view: TriggerSlot, coordinator: ()) {
-    if view.trigger.superview === view { view.trigger.removeFromSuperview() }
-  }
-}
-private final class TriggerSlot: UIView {
-  var trigger: UIView
-  init(trigger: UIView) {
-    self.trigger = trigger
-    super.init(frame: .zero)
-    isUserInteractionEnabled = false
-    accessibilityElementsHidden = true
-    addSubview(trigger)
-  }
-  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 }

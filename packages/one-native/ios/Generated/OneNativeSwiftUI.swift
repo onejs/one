@@ -14,6 +14,17 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MenuOrder: \(value)")
     }
   }
+  static func visibility(_ value: String) -> Visibility {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "visible":
+      return .visible
+    case "hidden":
+      return .hidden
+    default: preconditionFailure("invalid Visibility: \(value)")
+    }
+  }
   static func menuActionDismissBehavior(_ value: String) -> MenuActionDismissBehavior {
     switch value {
     case "automatic":
@@ -71,33 +82,72 @@ enum OneNativeGenerated {
   }
 }
 
-enum OneNativeControlGroupStyle: String {
-  case palette
-  case automatic
-  case navigation
-  case menu
-  case compactMenu
-}
-
 extension View {
   @ViewBuilder func oneNativeMenuOrder(_ value: String) -> some View {
     if value.isEmpty { self } else { self.menuOrder(OneNativeGenerated.menuOrder(value)) }
+  }
+  @ViewBuilder func oneNativePresentationDragIndicator(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.presentationDragIndicator(OneNativeGenerated.visibility(value)) }
+  }
+  @ViewBuilder func oneNativePickerStyle(_ value: String) -> some View {
+    switch value {
+    case "wheel":
+      self.pickerStyle(.wheel)
+    case "inline":
+      self.pickerStyle(.inline)
+    case "automatic":
+      self.pickerStyle(.automatic)
+    case "segmented":
+      self.pickerStyle(.segmented)
+    case "palette":
+      self.pickerStyle(.palette)
+    case "navigationLink":
+      self.pickerStyle(.navigationLink)
+    case "menu":
+      self.pickerStyle(.menu)
+    default: let _ = preconditionFailure("invalid PickerStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeDatePickerStyle(_ value: String) -> some View {
+    switch value {
+    case "wheel":
+      self.datePickerStyle(.wheel)
+    case "automatic":
+      self.datePickerStyle(.automatic)
+    case "graphical":
+      self.datePickerStyle(.graphical)
+    case "compact":
+      self.datePickerStyle(.compact)
+    default: let _ = preconditionFailure("invalid DatePickerStyle: \(value)"); self
+    }
+  }
+  @ViewBuilder func oneNativeToggleStyle(_ value: String) -> some View {
+    switch value {
+    case "button":
+      self.toggleStyle(.button)
+    case "automatic":
+      self.toggleStyle(.automatic)
+    case "switch":
+      self.toggleStyle(.switch)
+    default: let _ = preconditionFailure("invalid ToggleStyle: \(value)"); self
+    }
   }
   @ViewBuilder func oneNativeMenuActionDismissBehavior(_ value: String) -> some View {
     if value.isEmpty { self } else { self.menuActionDismissBehavior(OneNativeGenerated.menuActionDismissBehavior(value)) }
   }
   @ViewBuilder func oneNativeControlGroupStyle(_ value: String) -> some View {
-    switch OneNativeControlGroupStyle(rawValue: value)! {
-    case .palette:
+    switch value {
+    case "palette":
       self.controlGroupStyle(.palette)
-    case .automatic:
+    case "automatic":
       self.controlGroupStyle(.automatic)
-    case .navigation:
+    case "navigation":
       self.controlGroupStyle(.navigation)
-    case .menu:
+    case "menu":
       self.controlGroupStyle(.menu)
-    case .compactMenu:
+    case "compactMenu":
       self.controlGroupStyle(.compactMenu)
+    default: let _ = preconditionFailure("invalid ControlGroupStyle: \(value)"); self
     }
   }
   @ViewBuilder func oneNativeTabBarMinimizeBehavior(_ value: String) -> some View {

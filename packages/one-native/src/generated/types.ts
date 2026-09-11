@@ -4,6 +4,10 @@ import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 import type {
   MenuOrder,
+  Visibility,
+  PickerStyle,
+  DatePickerStyle,
+  ToggleStyle,
   MenuActionDismissBehavior,
   TabBarMinimizeBehavior,
   ButtonRole,
@@ -12,6 +16,10 @@ import type {
 } from './swiftui'
 export type {
   MenuOrder,
+  Visibility,
+  PickerStyle,
+  DatePickerStyle,
+  ToggleStyle,
   MenuActionDismissBehavior,
   TabBarMinimizeBehavior,
   ButtonRole,
@@ -91,6 +99,7 @@ export interface MenuProps extends ViewProps {
   onAction: (id: string) => void
   onValueChange?: (id: string, value: boolean, sourceIndex: number) => void
   accessibilityLabel: string
+  revision?: number
   disabled?: boolean
   menuOrder?: MenuOrder
   menuActionDismissBehavior?: MenuActionDismissBehavior
@@ -108,6 +117,7 @@ export interface TabProps {
 export interface TabsProps extends ViewProps {
   selection: string
   onSelectionChange: (id: string) => void
+  revision?: number
   sidebarAdaptable?: boolean
   tabBarMinimizeBehavior?: TabBarMinimizeBehavior
 }

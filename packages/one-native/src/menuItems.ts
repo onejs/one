@@ -2,228 +2,7 @@
 // edit the generator or catalog, then regenerate.
 import type { NativeMenuItem } from './specs/OneNativeMenuNativeComponent'
 import type { MenuItem } from './types'
-import { assertSwiftUIValue, swiftUIValues } from './generated/swiftui'
-const definitions: Record<
-  string,
-  {
-    fields: Record<string, { type: string; default: unknown; required: boolean }>
-    children: boolean
-  }
-> = {
-  action: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      title: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      systemImage: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      role: {
-        type: 'ButtonRole',
-        default: '',
-        required: false,
-      },
-      disabled: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      hidden: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      help: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      menuActionDismissBehavior: {
-        type: 'MenuActionDismissBehavior',
-        default: '',
-        required: false,
-      },
-    },
-    children: false,
-  },
-  toggle: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      title: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      systemImage: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      values: {
-        type: 'boolean[]',
-        default: [],
-        required: true,
-      },
-      disabled: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      hidden: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      help: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      menuActionDismissBehavior: {
-        type: 'MenuActionDismissBehavior',
-        default: '',
-        required: false,
-      },
-    },
-    children: false,
-  },
-  submenu: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      title: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      systemImage: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      disabled: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      hidden: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      help: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      menuOrder: {
-        type: 'MenuOrder',
-        default: '',
-        required: false,
-      },
-      menuActionDismissBehavior: {
-        type: 'MenuActionDismissBehavior',
-        default: '',
-        required: false,
-      },
-    },
-    children: true,
-  },
-  section: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      title: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      hidden: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-    },
-    children: true,
-  },
-  controlGroup: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-      title: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      systemImage: {
-        type: 'string',
-        default: '',
-        required: false,
-      },
-      disabled: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      hidden: {
-        type: 'boolean',
-        default: false,
-        required: false,
-      },
-      controlGroupStyle: {
-        type: 'ControlGroupStyle',
-        default: 'automatic',
-        required: false,
-      },
-    },
-    children: true,
-  },
-  divider: {
-    fields: {
-      id: {
-        type: 'string',
-        default: '',
-        required: true,
-      },
-    },
-    children: false,
-  },
-}
-const defaults = {
-  id: '',
-  title: '',
-  systemImage: '',
-  role: '',
-  disabled: false,
-  hidden: false,
-  help: '',
-  controlGroupStyle: 'automatic',
-  values: [],
-  menuOrder: '',
-  menuActionDismissBehavior: '',
-}
+import { assertSwiftUIValue } from './generated/swiftui'
 export function flattenMenuItems(
   items: readonly MenuItem[],
   iosVersion = 18
@@ -237,58 +16,386 @@ export function flattenMenuItems(
     hidden: boolean
   ) => {
     for (const item of items) {
-      const definition = definitions[item.type]
-      if (!definition) throw new Error('Unknown Swift.Menu item type: ' + item.type)
       const input = item as unknown as Record<string, unknown>
-      for (const name of Object.keys(input)) {
-        if (
-          name !== 'type' &&
-          !(name === 'children' && definition.children) &&
-          !Object.hasOwn(definition.fields, name)
-        )
-          throw new Error('Unsupported Swift.Menu ' + item.type + ' property: ' + name)
-      }
-      const payload: Record<string, unknown> = { ...defaults, parentId, type: item.type }
-      for (const [name, field] of Object.entries(definition.fields)) {
-        const value = input[name] ?? field.default
-        if (field.required && input[name] == null)
-          throw new Error('Swift.Menu ' + item.type + ' requires ' + name)
-        if (field.type === 'boolean[]') {
-          if (
-            !Array.isArray(value) ||
-            !value.length ||
-            value.some((v) => typeof v !== 'boolean')
-          )
-            throw new Error('Swift.Menu toggle values must be a nonempty boolean array')
-        } else if (Object.hasOwn(swiftUIValues, field.type)) {
-          if (typeof value !== 'string') throw new Error('Invalid Swift.Menu ' + name)
-          if (value !== '' || field.default !== '')
+      switch (item.type) {
+        case 'action': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'systemImage' &&
+              name !== 'role' &&
+              name !== 'disabled' &&
+              name !== 'hidden' &&
+              name !== 'help' &&
+              name !== 'menuActionDismissBehavior'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (input.title == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires title')
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const systemImage = input.systemImage ?? ''
+          if (typeof systemImage !== 'string')
+            throw new Error('Invalid Swift.Menu systemImage')
+          const role = input.role ?? ''
+          if (typeof role !== 'string') throw new Error('Invalid Swift.Menu role')
+          if (role !== '') assertSwiftUIValue('ButtonRole', role, iosVersion)
+          const disabledValue = input.disabled ?? false
+          if (typeof disabledValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu disabled')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          const help = input.help ?? ''
+          if (typeof help !== 'string') throw new Error('Invalid Swift.Menu help')
+          const menuActionDismissBehavior = input.menuActionDismissBehavior ?? ''
+          if (typeof menuActionDismissBehavior !== 'string')
+            throw new Error('Invalid Swift.Menu menuActionDismissBehavior')
+          if (menuActionDismissBehavior !== '')
             assertSwiftUIValue(
-              field.type as keyof typeof swiftUIValues,
-              value,
+              'MenuActionDismissBehavior',
+              menuActionDismissBehavior,
               iosVersion
             )
-        } else if (typeof value !== field.type)
-          throw new Error('Invalid Swift.Menu ' + name)
-        payload[name] = value
-      }
-      if (!item.id || ids.has(item.id))
-        throw new Error(
-          'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
-        )
-      ids.add(item.id)
-      payload.disabled = disabled || payload.disabled
-      payload.hidden = hidden || payload.hidden
-      result.push(payload as unknown as NativeMenuItem)
-      if (definition.children) {
-        if (!Array.isArray(input.children))
-          throw new Error('Swift.Menu ' + item.type + ' requires children')
-        append(
-          input.children,
-          item.id,
-          Boolean(payload.disabled),
-          Boolean(payload.hidden)
-        )
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage,
+            role,
+            disabled: disabled || disabledValue,
+            hidden: hidden || hiddenValue,
+            help,
+            controlGroupStyle: 'automatic',
+            values: [],
+            menuOrder: '',
+            menuActionDismissBehavior,
+            parentId,
+            type: item.type,
+          })
+          break
+        }
+        case 'toggle': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'systemImage' &&
+              name !== 'values' &&
+              name !== 'disabled' &&
+              name !== 'hidden' &&
+              name !== 'help' &&
+              name !== 'menuActionDismissBehavior'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (input.title == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires title')
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const systemImage = input.systemImage ?? ''
+          if (typeof systemImage !== 'string')
+            throw new Error('Invalid Swift.Menu systemImage')
+          const values = input.values ?? []
+          if (input.values == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires values')
+          if (
+            !Array.isArray(values) ||
+            !values.length ||
+            values.some((v) => typeof v !== 'boolean')
+          )
+            throw new Error('Swift.Menu toggle values must be a nonempty boolean array')
+          const disabledValue = input.disabled ?? false
+          if (typeof disabledValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu disabled')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          const help = input.help ?? ''
+          if (typeof help !== 'string') throw new Error('Invalid Swift.Menu help')
+          const menuActionDismissBehavior = input.menuActionDismissBehavior ?? ''
+          if (typeof menuActionDismissBehavior !== 'string')
+            throw new Error('Invalid Swift.Menu menuActionDismissBehavior')
+          if (menuActionDismissBehavior !== '')
+            assertSwiftUIValue(
+              'MenuActionDismissBehavior',
+              menuActionDismissBehavior,
+              iosVersion
+            )
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage,
+            role: '',
+            disabled: disabled || disabledValue,
+            hidden: hidden || hiddenValue,
+            help,
+            controlGroupStyle: 'automatic',
+            values,
+            menuOrder: '',
+            menuActionDismissBehavior,
+            parentId,
+            type: item.type,
+          })
+          break
+        }
+        case 'submenu': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'systemImage' &&
+              name !== 'disabled' &&
+              name !== 'hidden' &&
+              name !== 'help' &&
+              name !== 'menuOrder' &&
+              name !== 'menuActionDismissBehavior' &&
+              name !== 'children'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (input.title == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires title')
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const systemImage = input.systemImage ?? ''
+          if (typeof systemImage !== 'string')
+            throw new Error('Invalid Swift.Menu systemImage')
+          const disabledValue = input.disabled ?? false
+          if (typeof disabledValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu disabled')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          const help = input.help ?? ''
+          if (typeof help !== 'string') throw new Error('Invalid Swift.Menu help')
+          const menuOrder = input.menuOrder ?? ''
+          if (typeof menuOrder !== 'string')
+            throw new Error('Invalid Swift.Menu menuOrder')
+          if (menuOrder !== '') assertSwiftUIValue('MenuOrder', menuOrder, iosVersion)
+          const menuActionDismissBehavior = input.menuActionDismissBehavior ?? ''
+          if (typeof menuActionDismissBehavior !== 'string')
+            throw new Error('Invalid Swift.Menu menuActionDismissBehavior')
+          if (menuActionDismissBehavior !== '')
+            assertSwiftUIValue(
+              'MenuActionDismissBehavior',
+              menuActionDismissBehavior,
+              iosVersion
+            )
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage,
+            role: '',
+            disabled: disabled || disabledValue,
+            hidden: hidden || hiddenValue,
+            help,
+            controlGroupStyle: 'automatic',
+            values: [],
+            menuOrder,
+            menuActionDismissBehavior,
+            parentId,
+            type: item.type,
+          })
+          if (!Array.isArray(input.children))
+            throw new Error('Swift.Menu ' + item.type + ' requires children')
+          append(
+            input.children,
+            item.id,
+            Boolean(disabled || disabledValue),
+            Boolean(hidden || hiddenValue)
+          )
+          break
+        }
+        case 'section': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'hidden' &&
+              name !== 'children'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage: '',
+            role: '',
+            disabled: disabled || false,
+            hidden: hidden || hiddenValue,
+            help: '',
+            controlGroupStyle: 'automatic',
+            values: [],
+            menuOrder: '',
+            menuActionDismissBehavior: '',
+            parentId,
+            type: item.type,
+          })
+          if (!Array.isArray(input.children))
+            throw new Error('Swift.Menu ' + item.type + ' requires children')
+          append(
+            input.children,
+            item.id,
+            Boolean(disabled || false),
+            Boolean(hidden || hiddenValue)
+          )
+          break
+        }
+        case 'controlGroup': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'systemImage' &&
+              name !== 'disabled' &&
+              name !== 'hidden' &&
+              name !== 'controlGroupStyle' &&
+              name !== 'children'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const systemImage = input.systemImage ?? ''
+          if (typeof systemImage !== 'string')
+            throw new Error('Invalid Swift.Menu systemImage')
+          const disabledValue = input.disabled ?? false
+          if (typeof disabledValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu disabled')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          const controlGroupStyle = input.controlGroupStyle ?? 'automatic'
+          if (typeof controlGroupStyle !== 'string')
+            throw new Error('Invalid Swift.Menu controlGroupStyle')
+          assertSwiftUIValue('ControlGroupStyle', controlGroupStyle, iosVersion)
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage,
+            role: '',
+            disabled: disabled || disabledValue,
+            hidden: hidden || hiddenValue,
+            help: '',
+            controlGroupStyle,
+            values: [],
+            menuOrder: '',
+            menuActionDismissBehavior: '',
+            parentId,
+            type: item.type,
+          })
+          if (!Array.isArray(input.children))
+            throw new Error('Swift.Menu ' + item.type + ' requires children')
+          append(
+            input.children,
+            item.id,
+            Boolean(disabled || disabledValue),
+            Boolean(hidden || hiddenValue)
+          )
+          break
+        }
+        case 'divider': {
+          for (const name of Object.keys(input)) {
+            if (name !== 'type' && name !== 'id')
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title: '',
+            systemImage: '',
+            role: '',
+            disabled: disabled || false,
+            hidden: hidden || false,
+            help: '',
+            controlGroupStyle: 'automatic',
+            values: [],
+            menuOrder: '',
+            menuActionDismissBehavior: '',
+            parentId,
+            type: item.type,
+          })
+          break
+        }
+        default:
+          throw new Error('Unknown Swift.Menu item type: ' + input.type)
       }
     }
   }
