@@ -18,6 +18,22 @@ interface JsxLocation {
 /**
  * Parse code with oxc and find all JSX opening elements.
  */
+// lowercase jsx tags are host elements. on the web only real html and svg
+// tags accept a data attribute; other lowercase tags belong to a custom
+// reconciler (react-three-fiber's <mesh>, <group>, <instancedMesh>...) which
+// applies props to plain objects and throws on the dashed attribute.
+const DOM_TAGS = new Set(
+  (
+    'a abbr address area article aside audio b base bdi bdo blockquote body br button canvas caption cite code col colgroup data datalist dd del details dfn dialog div dl dt em embed fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins kbd label legend li link main map mark menu meta meter nav noscript object ol optgroup option output p picture pre progress q rp rt ruby s samp script search section select slot small source span strong style sub summary sup table tbody td template textarea tfoot th thead time title tr track u ul var video wbr ' +
+    'svg animate animateMotion animateTransform circle clipPath defs desc ellipse feBlend feColorMatrix feComponentTransfer feComposite feConvolveMatrix feDiffuseLighting feDisplacementMap feDistantLight feDropShadow feFlood feFuncA feFuncB feFuncG feFuncR feGaussianBlur feImage feMerge feMergeNode feMorphology feOffset fePointLight feSpecularLighting feSpotLight feTile feTurbulence filter foreignObject g image line linearGradient marker mask metadata mpath path pattern polygon polyline radialGradient rect set stop switch symbol text textPath tspan use view'
+  ).split(' ')
+)
+
+function isHostTag(tagName: string): boolean {
+  const first = tagName.charCodeAt(0)
+  return first >= 97 && first <= 122 && !tagName.includes('.')
+}
+
 async function findJsxElements(code: string, filename: string): Promise<JsxLocation[]> {
   const result = await parse(filename, code)
 
@@ -52,8 +68,13 @@ async function findJsxElements(code: string, filename: string): Promise<JsxLocat
     if (node.type === 'JSXOpeningElement' && node.name) {
       const tagName = getJsxName(node.name)
 
-      // skip Fragment and already-tagged elements
-      if (tagName && tagName !== 'Fragment' && !tagName.endsWith('.Fragment')) {
+      // skip Fragment, non-dom host elements, and already-tagged elements
+      if (
+        tagName &&
+        tagName !== 'Fragment' &&
+        !tagName.endsWith('.Fragment') &&
+        (!isHostTag(tagName) || DOM_TAGS.has(tagName))
+      ) {
         const hasSourceAttr = node.attributes?.some(
           (attr: any) =>
             attr.type === 'JSXAttribute' && attr.name?.name === 'data-one-source'
@@ -123,7 +144,7 @@ export function resolveEditorFilePath(
 /**
  * Transforms JSX to inject data-one-source attributes using oxc-parser.
  */
-async function injectSourceToJsx(code: string, id: string): Promise<TransformOut> {
+export async function injectSourceToJsx(code: string, id: string): Promise<TransformOut> {
   const [filePath] = id.split('?')
   if (!filePath) return
 
