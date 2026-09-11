@@ -20,7 +20,8 @@ export function shouldStripFlow(id: string, code: string): boolean {
   }
   // scan the complete comment preamble, including license blocks before @flow.
   const header =
-    code.match(/^(?:#![^\r\n]*(?:\r?\n|$))?(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*)*/)?.[0] || ''
+    code.match(/^(?:#![^\r\n]*(?:\r?\n|$))?(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*)*/)?.[0] ||
+    ''
   return /@flow\b/.test(header) || /\b(?:import|export)\s+type\b/.test(code)
 }
 

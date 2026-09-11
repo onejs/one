@@ -173,7 +173,11 @@ function isChainedCallback(callee: any): boolean {
 }
 
 // the worklets directives, in the order the runtime expects to find them.
-export const WORKLET_DIRECTIVES = ['worklet', 'no-worklet-closure', 'limit-init-data-hoisting']
+export const WORKLET_DIRECTIVES = [
+  'worklet',
+  'no-worklet-closure',
+  'limit-init-data-hoisting',
+]
 
 function statementDirective(stmt: any): string | undefined {
   if (!stmt || stmt.type !== 'ExpressionStatement') return undefined
@@ -219,7 +223,8 @@ export function hasWorkletDirective(fnNode: any): boolean {
  */
 export function bodyStartAfterDirectives(fnNode: any, code: string): number {
   let start = fnNode.body.start + 1
-  if (fnNode.body.type !== 'BlockStatement' || !Array.isArray(fnNode.body.body)) return start
+  if (fnNode.body.type !== 'BlockStatement' || !Array.isArray(fnNode.body.body))
+    return start
   for (const stmt of fnNode.body.body) {
     const found = statementDirective(stmt)
     if (found === undefined || !WORKLET_DIRECTIVES.includes(found)) break
@@ -287,7 +292,9 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
       }
     } else if (
       node.type === 'Property' &&
-      (node.method || node.value?.type === 'FunctionExpression' || node.value?.type === 'ArrowFunctionExpression')
+      (node.method ||
+        node.value?.type === 'FunctionExpression' ||
+        node.value?.type === 'ArrowFunctionExpression')
     ) {
       const fn = node.value
       if (hasWorkletDirective(fn)) {
@@ -312,7 +319,8 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
       const argIndices = calleeName ? AUTOWORKLET_FUNCTION_ARGS[calleeName] : undefined
       const chained = !argIndices && isChainedCallback(node.callee)
       const indices =
-        argIndices ?? (chained ? node.arguments.map((_: unknown, i: number) => i) : undefined)
+        argIndices ??
+        (chained ? node.arguments.map((_: unknown, i: number) => i) : undefined)
       if (indices) {
         for (const idx of indices) {
           const arg = node.arguments[idx]

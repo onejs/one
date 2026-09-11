@@ -357,10 +357,7 @@ describe('applyDependencyPatches', () => {
           join(pkgDir, 'package.json'),
           makePkg('test-pkg', '1.0.0')
         )
-        await FSExtra.writeFile(
-          join(pkgDir, 'index.js'),
-          'export default () => <div />'
-        )
+        await FSExtra.writeFile(join(pkgDir, 'index.js'), 'export default () => <div />')
       },
     })
 

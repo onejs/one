@@ -482,9 +482,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         />
       )
     } else {
-      const page = (
-        <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
-      )
+      const page = <Component {...props} {...slotProps} {...loaderDataProps} ref={ref} />
       rendered = (
         <RouteErrorBoundary routeName={value.route}>
           {CatchBoundary ? <Try catch={CatchBoundary}>{page}</Try> : page}

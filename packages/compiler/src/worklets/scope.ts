@@ -130,7 +130,8 @@ export function getClosureVariables(fnNode: any, globals: Set<string>): string[]
         return
       case 'VariableDeclaration':
         if (node.kind === 'var') {
-          for (const d of node.declarations) addBindingsOnly(d.id, currentScope.varBindings)
+          for (const d of node.declarations)
+            addBindingsOnly(d.id, currentScope.varBindings)
         } else if (direct) {
           for (const d of node.declarations) addBindingsOnly(d.id, currentScope.bindings)
         }

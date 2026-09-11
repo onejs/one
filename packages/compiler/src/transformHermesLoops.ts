@@ -169,7 +169,12 @@ function analyzeBody(body: any, names: Set<string>): BodyFacts {
     hasLabeledJump: false,
   }
 
-  function walk(node: any, inNestedBreakable: boolean, inNestedLoop: boolean, inFunction: boolean) {
+  function walk(
+    node: any,
+    inNestedBreakable: boolean,
+    inNestedLoop: boolean,
+    inFunction: boolean
+  ) {
     if (!node || typeof node !== 'object') return
 
     if (FUNCTION_TYPES.has(node.type)) {
@@ -284,7 +289,10 @@ function transformOnce(
       // declarations are made fresh just by moving into a function body.
       const names: string[] = []
       const decl = headDeclaration(node)
-      if (decl?.type === 'VariableDeclaration' && (decl.kind === 'let' || decl.kind === 'const')) {
+      if (
+        decl?.type === 'VariableDeclaration' &&
+        (decl.kind === 'let' || decl.kind === 'const')
+      ) {
         for (const d of decl.declarations || []) collectPatternNames(d.id, names)
       }
       const shared = [...names]
@@ -366,12 +374,22 @@ function transformOnce(
  * completion and a `continue` both return undefined, which is exactly right,
  * since falling out of _loop continues the loop.
  */
-function rewriteJumps(bodyText: string, bodyNode: any, code: string, names: Set<string>): string {
+function rewriteJumps(
+  bodyText: string,
+  bodyNode: any,
+  code: string,
+  names: Set<string>
+): string {
   const offset = bodyNode.start
   const s = new MagicString(bodyText)
   const pad = bodyNode.type === 'BlockStatement' ? 0 : 2
 
-  function walk(node: any, inNestedBreakable: boolean, inNestedLoop: boolean, inFunction: boolean) {
+  function walk(
+    node: any,
+    inNestedBreakable: boolean,
+    inNestedLoop: boolean,
+    inFunction: boolean
+  ) {
     if (!node || typeof node !== 'object') return
 
     if (FUNCTION_TYPES.has(node.type)) {

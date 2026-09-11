@@ -82,7 +82,10 @@ export type MetroDependencyData = {
   key?: string
   asyncType?: 'async' | 'weak' | 'maybeSync' | null
   contextParams?: MetroContextParams
-  locs: Array<{ start: { line: number; column: number }; end: { line: number; column: number } }>
+  locs: Array<{
+    start: { line: number; column: number }
+    end: { line: number; column: number }
+  }>
   isOptional?: boolean
   isESMImportAtSource?: boolean
   isESMImport?: boolean
@@ -172,11 +175,17 @@ export type OneRouterMetroOptions = {
  * transformer reads them from, as the options of its `one-router-metro` plugin
  * entry.
  */
-export function getOneRouterMetroOptions(options: MetroWorkerOptions): OneRouterMetroOptions | undefined {
+export function getOneRouterMetroOptions(
+  options: MetroWorkerOptions
+): OneRouterMetroOptions | undefined {
   const plugins = (options.customTransformOptions as any)?.vite?.babelConfig?.plugins
   if (!Array.isArray(plugins)) return undefined
   for (const plugin of plugins) {
-    if (Array.isArray(plugin) && typeof plugin[0] === 'string' && plugin[0].includes('one-router-metro')) {
+    if (
+      Array.isArray(plugin) &&
+      typeof plugin[0] === 'string' &&
+      plugin[0].includes('one-router-metro')
+    ) {
       return plugin[1] as OneRouterMetroOptions
     }
   }
@@ -452,7 +461,12 @@ export function applyModuleResolverAliases(
 
   function rewrite(sourceNode: any) {
     if (sourceNode?.type !== 'Literal' || typeof sourceNode.value !== 'string') return
-    const resolved = resolveAliasSpecifier(sourceNode.value, filename, projectRoot, aliases)
+    const resolved = resolveAliasSpecifier(
+      sourceNode.value,
+      filename,
+      projectRoot,
+      aliases
+    )
     if (resolved === undefined) return
     ms.overwrite(sourceNode.start, sourceNode.end, JSON.stringify(resolved))
     changed = true
@@ -477,7 +491,15 @@ export function applyModuleResolverAliases(
     }
 
     for (const k of Object.keys(node)) {
-      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      if (
+        k === 'start' ||
+        k === 'end' ||
+        k === 'loc' ||
+        k === 'range' ||
+        k === 'parent' ||
+        k === 'comments'
+      )
+        continue
       const child = node[k]
       if (Array.isArray(child)) {
         for (const item of child) walk(item)
@@ -544,7 +566,11 @@ export function applyInlineEnvVars(
   }
 
   function isImportMeta(node: any): boolean {
-    return node?.type === 'MetaProperty' && node.meta?.name === 'import' && node.property?.name === 'meta'
+    return (
+      node?.type === 'MetaProperty' &&
+      node.meta?.name === 'import' &&
+      node.property?.name === 'meta'
+    )
   }
 
   function walk(node: any, parent: any) {
@@ -552,7 +578,8 @@ export function applyInlineEnvVars(
 
     if (node.type === 'MemberExpression' || node.type === 'OptionalMemberExpression') {
       const obj = node.object
-      const isMember = obj?.type === 'MemberExpression' || obj?.type === 'OptionalMemberExpression'
+      const isMember =
+        obj?.type === 'MemberExpression' || obj?.type === 'OptionalMemberExpression'
       const isProcessEnv =
         isMember &&
         obj.object?.type === 'Identifier' &&
@@ -608,7 +635,15 @@ export function applyInlineEnvVars(
     }
 
     for (const k of Object.keys(node)) {
-      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      if (
+        k === 'start' ||
+        k === 'end' ||
+        k === 'loc' ||
+        k === 'range' ||
+        k === 'parent' ||
+        k === 'comments'
+      )
+        continue
       const child = node[k]
       if (Array.isArray(child)) {
         for (const item of child) walk(item, node)
@@ -627,7 +662,10 @@ export function applyInlineEnvVars(
       const inner = testValue(node.argument)
       return inner === undefined ? undefined : !inner
     }
-    if (node?.type === 'BinaryExpression' && (node.operator === '===' || node.operator === '!==')) {
+    if (
+      node?.type === 'BinaryExpression' &&
+      (node.operator === '===' || node.operator === '!==')
+    ) {
       const left = known.has(node.left) ? known.get(node.left) : undefined
       const right = node.right?.type === 'Literal' ? node.right.value : undefined
       if (!known.has(node.left) || node.right?.type !== 'Literal') return undefined
@@ -666,7 +704,15 @@ export function applyInlineEnvVars(
       }
     }
     for (const k of Object.keys(node)) {
-      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      if (
+        k === 'start' ||
+        k === 'end' ||
+        k === 'loc' ||
+        k === 'range' ||
+        k === 'parent' ||
+        k === 'comments'
+      )
+        continue
       foldWalk(node[k])
     }
   })(parsed.program)
@@ -767,7 +813,9 @@ export function applyOneRouterMetro(
     }
     if (key === 'ONE_ROUTER_LINKING_CONFIG') {
       // gated to the entry so a user module reading this name is left alone
-      return isMetroEntry ? JSON.stringify(options.ONE_ROUTER_LINKING_CONFIG ?? null) : undefined
+      return isMetroEntry
+        ? JSON.stringify(options.ONE_ROUTER_LINKING_CONFIG ?? null)
+        : undefined
     }
     if (key === 'ONE_SETUP_FILE_NATIVE') {
       return options.ONE_SETUP_FILE_NATIVE
@@ -811,7 +859,15 @@ export function applyOneRouterMetro(
     }
 
     for (const k of Object.keys(node)) {
-      if (k === 'start' || k === 'end' || k === 'loc' || k === 'range' || k === 'parent' || k === 'comments') continue
+      if (
+        k === 'start' ||
+        k === 'end' ||
+        k === 'loc' ||
+        k === 'range' ||
+        k === 'parent' ||
+        k === 'comments'
+      )
+        continue
       const child = node[k]
       if (Array.isArray(child)) {
         for (const item of child) walk(item, node)
@@ -887,7 +943,15 @@ export function collectHoistedBindings(node: any, names: Set<string>) {
     }
 
     for (const key of Object.keys(n)) {
-      if (key === 'start' || key === 'end' || key === 'loc' || key === 'range' || key === 'parent' || key === 'comments') continue
+      if (
+        key === 'start' ||
+        key === 'end' ||
+        key === 'loc' ||
+        key === 'range' ||
+        key === 'parent' ||
+        key === 'comments'
+      )
+        continue
       const child = n[key]
       if (Array.isArray(child)) {
         for (const item of child) traverse(item)
@@ -985,18 +1049,37 @@ export function getCacheKey(config: MetroWorkerConfig = {}, opts?: any): string 
  */
 export function convertSourceMapToMetroRawMappings(
   composedMap: any
-): Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> {
+): Array<
+  | [number, number]
+  | [number, number, number, number]
+  | [number, number, number, number, string]
+> {
   if (!composedMap) return []
   const tracer = new TraceMap(composedMap)
-  const rawMappings: Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> = []
+  const rawMappings: Array<
+    | [number, number]
+    | [number, number, number, number]
+    | [number, number, number, number, string]
+  > = []
 
   eachMapping(tracer, (m) => {
     if (m.originalLine == null) {
       rawMappings.push([m.generatedLine, m.generatedColumn])
     } else if (m.name == null) {
-      rawMappings.push([m.generatedLine, m.generatedColumn, m.originalLine, m.originalColumn])
+      rawMappings.push([
+        m.generatedLine,
+        m.generatedColumn,
+        m.originalLine,
+        m.originalColumn,
+      ])
     } else {
-      rawMappings.push([m.generatedLine, m.generatedColumn, m.originalLine, m.originalColumn, m.name])
+      rawMappings.push([
+        m.generatedLine,
+        m.generatedColumn,
+        m.originalLine,
+        m.originalColumn,
+        m.name,
+      ])
     }
   })
 
@@ -1007,7 +1090,11 @@ export function convertSourceMapToMetroRawMappings(
   })
 
   // Deduplicate consecutive identical (generatedLine, generatedColumn) tuples
-  const deduped: Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> = []
+  const deduped: Array<
+    | [number, number]
+    | [number, number, number, number]
+    | [number, number, number, number, string]
+  > = []
   for (const mapping of rawMappings) {
     const prev = deduped[deduped.length - 1]
     if (prev && prev[0] === mapping[0] && prev[1] === mapping[1]) {
@@ -1024,8 +1111,19 @@ export function convertSourceMapToMetroRawMappings(
  */
 export function countLinesAndTerminateMap(
   code: string,
-  map: Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> = []
-): { lineCount: number; map: Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> } {
+  map: Array<
+    | [number, number]
+    | [number, number, number, number]
+    | [number, number, number, number, string]
+  > = []
+): {
+  lineCount: number
+  map: Array<
+    | [number, number]
+    | [number, number, number, number]
+    | [number, number, number, number, string]
+  >
+} {
   const NEWLINE = /\r\n?|\n|\u2028|\u2029/g
   let lineCount = 1
   let lastLineStart = 0
@@ -1037,7 +1135,10 @@ export function countLinesAndTerminateMap(
   const lastLineIndex1Based = lineCount
   const lastLineNextColumn0Based = lastLineLength
   const lastMapping = map[map.length - 1]
-  const terminatingMapping: [number, number] = [lastLineIndex1Based, lastLineNextColumn0Based]
+  const terminatingMapping: [number, number] = [
+    lastLineIndex1Based,
+    lastLineNextColumn0Based,
+  ]
   if (
     !lastMapping ||
     lastMapping[0] !== terminatingMapping[0] ||
@@ -1084,14 +1185,12 @@ export function wrapJson(
  * Wraps CommonJS code in Metro's standard define wrapper:
  * __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) { ... }, moduleId, [dependencyIds])
  */
-export function wrapModule(
-  code: string,
-  options?: WrapModuleOptions
-): string {
+export function wrapModule(code: string, options?: WrapModuleOptions): string {
   const globalPrefix = options?.globalPrefix || ''
   const depMap = options?.dependencyMapName || '_dependencyMap'
   const header = `function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, ${depMap}) {`
-  const requireAlias = options?.requireAlias !== false ? 'var require = _$$_REQUIRE;\n' : ''
+  const requireAlias =
+    options?.requireAlias !== false ? 'var require = _$$_REQUIRE;\n' : ''
   const footer = `}`
 
   if (options?.moduleId !== undefined) {
@@ -1287,7 +1386,11 @@ export function rewriteDependencyCalls(
           dependencies.find((d) => d.name === arg.value && d.data.asyncType == null)
         if (dep) {
           const index = dep.data.index ?? dependencies.indexOf(dep)
-          ms.overwrite(arg.start, arg.end, `${depMapName}[${index}], ${JSON.stringify(arg.value)}`)
+          ms.overwrite(
+            arg.start,
+            arg.end,
+            `${depMapName}[${index}], ${JSON.stringify(arg.value)}`
+          )
         }
       }
     } else if (
@@ -1327,7 +1430,15 @@ export function rewriteDependencyCalls(
     }
 
     for (const key of Object.keys(node)) {
-      if (key === 'start' || key === 'end' || key === 'loc' || key === 'range' || key === 'parent' || key === 'comments') continue
+      if (
+        key === 'start' ||
+        key === 'end' ||
+        key === 'loc' ||
+        key === 'range' ||
+        key === 'parent' ||
+        key === 'comments'
+      )
+        continue
       const child = node[key]
       if (Array.isArray(child)) {
         for (const item of child) walk(item)
@@ -1395,7 +1506,9 @@ export function extractDependencies(
   try {
     parseResult = parseSync(filename, code, { lang: langForFilename(filename) })
   } catch (err: any) {
-    throw new Error(`[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${err.message || err}`)
+    throw new Error(
+      `[vxrn/metro] Failed to parse ${filename} for dependency extraction: ${err.message || err}`
+    )
   }
 
   // oxc reports syntax errors on the result rather than throwing. ignoring them
@@ -1563,7 +1676,9 @@ export function extractDependencies(
         addDep(node.source.value, true, 'async', node.start, node.end)
         addDep(asyncRequirePath, false, null, node.start, node.end)
       } else {
-        throw new Error(`[vxrn/metro] Dynamic import with non-string literal is not supported by Metro in ${filename}`)
+        throw new Error(
+          `[vxrn/metro] Dynamic import with non-string literal is not supported by Metro in ${filename}`
+        )
       }
     } else if (
       node.type === 'CallExpression' &&
@@ -1582,7 +1697,8 @@ export function extractDependencies(
           node.start,
           node.end,
           undefined,
-          node.arguments[0].value !== asyncRequirePath && isOptionalHere(node.arguments[0].value)
+          node.arguments[0].value !== asyncRequirePath &&
+            isOptionalHere(node.arguments[0].value)
         )
       }
     } else if (
@@ -1653,7 +1769,15 @@ export function extractDependencies(
     }
 
     for (const key of Object.keys(node)) {
-      if (key === 'start' || key === 'end' || key === 'loc' || key === 'range' || key === 'parent' || key === 'comments') continue
+      if (
+        key === 'start' ||
+        key === 'end' ||
+        key === 'loc' ||
+        key === 'range' ||
+        key === 'parent' ||
+        key === 'comments'
+      )
+        continue
       const child = node[key]
       if (Array.isArray(child)) {
         for (const item of child) walk(item)
@@ -1672,11 +1796,13 @@ export function extractDependencies(
   return Array.from(depMap.values())
 }
 
-function checkReservedStrings(sourceCode: string, config: MetroWorkerConfig, options: MetroWorkerOptions) {
+function checkReservedStrings(
+  sourceCode: string,
+  config: MetroWorkerConfig,
+  options: MetroWorkerOptions
+) {
   const reservedStrings: string[] = []
-  if (
-    options.customTransformOptions?.unstable_staticHermesOptimizedRequire === true
-  ) {
+  if (options.customTransformOptions?.unstable_staticHermesOptimizedRequire === true) {
     reservedStrings.push('_$$_METRO_MODULE_ID')
   }
   if (config.unstable_dependencyMapReservedName != null) {
@@ -1767,7 +1893,10 @@ export async function transform(
 
   if (isClientEnvironment && /[\\/]expo[\\/]virtual[\\/]env\.js$/.test(filename)) {
     if (options.dev) {
-      const rel = path.relative(path.dirname(filename), projectRoot).split(path.sep).join('/')
+      const rel = path
+        .relative(path.dirname(filename), projectRoot)
+        .split(path.sep)
+        .join('/')
       sourceCode = `const dotEnvModules = require.context(${JSON.stringify(rel)},false,/^\\.\\/\\.env/);
 export const env = !dotEnvModules.keys().length ? process.env : { ...process.env, ...['.env', '.env.development', '.env.local', '.env.development.local'].reduce((acc, file) => {
   return { ...acc, ...(dotEnvModules(file)?.default ?? {}) };
@@ -1781,10 +1910,11 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   },
 });`
     }
-  } else if (/(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/.test(filename)) {
-    const { parseEnvFile } = await import(
-      '@expo/metro-config/build/transform-worker/dot-env-development'
-    )
+  } else if (
+    /(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/.test(filename)
+  ) {
+    const { parseEnvFile } =
+      await import('@expo/metro-config/build/transform-worker/dot-env-development')
     sourceCode = `export default ${JSON.stringify(parseEnvFile(sourceCode, isClientEnvironment))};`
   }
 
@@ -1795,7 +1925,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     try {
       JSON.parse(sourceCode)
     } catch (err: any) {
-      throw new Error(`[vxrn/metro] JSON parse error in ${filename}: ${err.message || err}`)
+      throw new Error(
+        `[vxrn/metro] JSON parse error in ${filename}: ${err.message || err}`
+      )
     }
 
     let code =
@@ -1822,7 +1954,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         })
         code = minified.code
       } catch (err: any) {
-        throw new Error(`[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`)
+        throw new Error(
+          `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`
+        )
       }
     }
 
@@ -1881,7 +2015,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
           properDescriptor = copied
         }
       } catch (err: any) {
-        throw new Error(`[vxrn/metro] Asset resolution failed for ${filename}: ${err.message || err}`)
+        throw new Error(
+          `[vxrn/metro] Asset resolution failed for ${filename}: ${err.message || err}`
+        )
       }
     }
 
@@ -1963,7 +2099,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
       // matches on paths (include/exclude lists, node_modules skips) or stamps
       // a location into the output would otherwise get a different answer here
       // than the babel plugin it replaced, which is handed an absolute path.
-      filename: path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename),
+      filename: path.isAbsolute(filename)
+        ? filename
+        : path.resolve(projectRoot, filename),
       platform: options.platform,
       dev: options.dev,
       projectRoot,
@@ -1978,7 +2116,6 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   if (oneRouterOptions) {
     code = applyOneRouterMetro(code, filename, oneRouterOptions)
   }
-
 
   // Step A0b: React Native codegen. `codegenNativeComponent('RNSScreen')` is a
   // spec that has to become a real view config registration; without it the
@@ -2020,12 +2157,16 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code = flowResult.code
         if (flowResult.map) {
           intermediateMaps.push(
-            typeof flowResult.map === 'string' ? JSON.parse(flowResult.map) : flowResult.map
+            typeof flowResult.map === 'string'
+              ? JSON.parse(flowResult.map)
+              : flowResult.map
           )
         }
       }
     } catch (err: any) {
-      throw new Error(`[vxrn/metro] Flow transform failed for ${filename}: ${err.message || err}`)
+      throw new Error(
+        `[vxrn/metro] Flow transform failed for ${filename}: ${err.message || err}`
+      )
     }
   }
 
@@ -2112,7 +2253,8 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   // asked for the compiler and silently got nothing.
   const shouldRunReactCompiler =
     Boolean(options.customTransformOptions?.reactCompiler) ||
-    (hasBabelPlugin(options, 'babel-plugin-react-compiler') && isReactCompilerCandidate(filename)) ||
+    (hasBabelPlugin(options, 'babel-plugin-react-compiler') &&
+      isReactCompilerCandidate(filename)) ||
     code.includes('"use memo"') ||
     code.includes("'use memo'")
 
@@ -2132,12 +2274,16 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code = compilerRes.code
         if (compilerRes.map) {
           intermediateMaps.push(
-            typeof compilerRes.map === 'string' ? JSON.parse(compilerRes.map) : compilerRes.map
+            typeof compilerRes.map === 'string'
+              ? JSON.parse(compilerRes.map)
+              : compilerRes.map
           )
         }
       }
     } catch (err: any) {
-      throw new Error(`[vxrn/metro] React Compiler failed for ${filename}: ${err.message || err}`)
+      throw new Error(
+        `[vxrn/metro] React Compiler failed for ${filename}: ${err.message || err}`
+      )
     }
   }
 
@@ -2155,12 +2301,16 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         code = workletRes.code
         if (workletRes.map) {
           intermediateMaps.push(
-            typeof workletRes.map === 'string' ? JSON.parse(workletRes.map) : workletRes.map
+            typeof workletRes.map === 'string'
+              ? JSON.parse(workletRes.map)
+              : workletRes.map
           )
         }
       }
     } catch (err: any) {
-      throw new Error(`[vxrn/metro] Worklets transform failed for ${filename}: ${err.message || err}`)
+      throw new Error(
+        `[vxrn/metro] Worklets transform failed for ${filename}: ${err.message || err}`
+      )
     }
   }
 
@@ -2183,7 +2333,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
       sourcemap: true,
     })
   } catch (err: any) {
-    throw new Error(`[vxrn/metro] Oxc transform failed for ${filename}: ${err.message || err}`)
+    throw new Error(
+      `[vxrn/metro] Oxc transform failed for ${filename}: ${err.message || err}`
+    )
   }
 
   // oxc reports errors on the result rather than throwing. falling back to the
@@ -2205,7 +2357,10 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   // run after worklets, including scripts; only module wrapping is conditional.
   try {
     const esbuildRes = await transformHermesAsync(
-      code, filename, true, options.type === 'script' ? undefined : 'cjs'
+      code,
+      filename,
+      true,
+      options.type === 'script' ? undefined : 'cjs'
     )
     if (esbuildRes) {
       code = esbuildRes.code
@@ -2214,7 +2369,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
       }
     }
   } catch (err: any) {
-    throw new Error(`[vxrn/metro] native async/CJS lowering failed for ${filename}: ${err.message || err}`)
+    throw new Error(
+      `[vxrn/metro] native async/CJS lowering failed for ${filename}: ${err.message || err}`
+    )
   }
 
   // Step E2: per-iteration loop bindings for Hermes.
@@ -2271,15 +2428,29 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
       `\n})(typeof globalThis !== 'undefined' ? globalThis : typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : this);`
     )
     code = msScript.toString()
-    intermediateMaps.push(msScript.generateMap({ source: filename, hires: true, includeContent: true }))
+    intermediateMaps.push(
+      msScript.generateMap({ source: filename, hires: true, includeContent: true })
+    )
   } else if (config.unstable_disableModuleWrapping === true) {
-    const rewriteRes = rewriteDependencyCalls(code, dependencies, depMapName, filename, asyncRequirePath)
+    const rewriteRes = rewriteDependencyCalls(
+      code,
+      dependencies,
+      depMapName,
+      filename,
+      asyncRequirePath
+    )
     code = rewriteRes.code
     if (rewriteRes.map) {
       intermediateMaps.push(rewriteRes.map)
     }
   } else {
-    const rewriteRes = rewriteDependencyCalls(code, dependencies, depMapName, filename, asyncRequirePath)
+    const rewriteRes = rewriteDependencyCalls(
+      code,
+      dependencies,
+      depMapName,
+      filename,
+      asyncRequirePath
+    )
     if (rewriteRes.map) {
       intermediateMaps.push(rewriteRes.map)
     }
@@ -2297,7 +2468,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     }
 
     code = msWrap.toString()
-    intermediateMaps.push(msWrap.generateMap({ source: filename, hires: true, includeContent: true }))
+    intermediateMaps.push(
+      msWrap.generateMap({ source: filename, hires: true, includeContent: true })
+    )
   }
 
   // Step G: Minification
@@ -2329,12 +2502,18 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
         intermediateMaps.length = 0
       }
     } catch (err: any) {
-      throw new Error(`[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`)
+      throw new Error(
+        `[vxrn/metro] Minifier failed for ${filename}: ${err.message || err}`
+      )
     }
   }
 
   // Step H: Compose all pipeline maps and convert to Metro raw mapping segment tuples
-  let rawMappings: Array<[number, number] | [number, number, number, number] | [number, number, number, number, string]> = []
+  let rawMappings: Array<
+    | [number, number]
+    | [number, number, number, number]
+    | [number, number, number, number, string]
+  > = []
 
   if (intermediateMaps.length > 0) {
     const cleanMaps = intermediateMaps

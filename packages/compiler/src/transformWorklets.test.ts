@@ -200,15 +200,17 @@ describe('transformWorklets', () => {
 
     // the inner worklet's init data is declared inside the outer function body,
     // not hoisted to module scope where the worklet runtime cannot see it.
-    const innerVar = result.code.match(/var (_worklet_\d+_init_data) = \{\s*code: "function _worklet/)
+    const innerVar = result.code.match(
+      /var (_worklet_\d+_init_data) = \{\s*code: "function _worklet/
+    )
     expect(innerVar, 'inner worklet init data').toBeTruthy()
     // only look past the serialized string, which mentions the same name inside
     // its escaped body.
     const emitted = result.code.slice(result.code.indexOf('export var installUnpacker'))
     expect(emitted).toContain(`var ${innerVar![1]} = {`)
-    expect(result.code.slice(0, result.code.indexOf('export var installUnpacker'))).not.toContain(
-      `\nvar ${innerVar![1]} = {`
-    )
+    expect(
+      result.code.slice(0, result.code.indexOf('export var installUnpacker'))
+    ).not.toContain(`\nvar ${innerVar![1]} = {`)
   })
 
   it('autoworkletizes hooks like useAnimatedStyle and withTiming', async () => {
@@ -555,7 +557,11 @@ describe('transformWorklets', () => {
     expect(computeFn({ x: 2 })).toBe(12) // (2 + 1 + 0) * 4 = 12
 
     const reconstructed = eval(`(${computeFn.__initData.code})`)
-    const uiRes = reconstructed.call({ __closure: computeFn.__closure }, { x: 2, y: 3 }, 5)
+    const uiRes = reconstructed.call(
+      { __closure: computeFn.__closure },
+      { x: 2, y: 3 },
+      5
+    )
     expect(uiRes).toBe(40) // (2 + 3 + 5) * 4 = 40
   })
 
@@ -691,9 +697,6 @@ describe('transformWorklets', () => {
     expect(sandbox.exports.level1()).toBe(42)
   })
 })
-
-
-
 
 describe('worklet detection gate', () => {
   it('accepts files whose only worklets come from gesture callbacks', () => {

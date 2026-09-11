@@ -29,63 +29,95 @@ import {
 } from './createNativeDevEngine'
 
 describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (platform) => {
-  it.each(['dev', 'build'] as const)('binds configured plugins to the %s bundle', async (mode) => {
-    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-plugin-adapter-'))
-    await writeFile(
-      join(root, 'entry.js'),
-      `globalThis.nativePluginResult = [__GLOBAL_PLUGIN__, __DIRECT_PLUGIN__, 'plain-plugin']`
-    )
-    const factories = ['global', 'direct'].map((name) =>
-      vi.fn((context: NativePluginContext): Plugin => ({
-        name: `${name}-native`,
-        transform(code, id) {
-          if (id.endsWith('/entry.js')) {
-            return code.replace(`__${name.toUpperCase()}_PLUGIN__`, JSON.stringify({ name, ...context }))
-          }
+  it.each(['dev', 'build'] as const)(
+    'binds configured plugins to the %s bundle',
+    async (mode) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-plugin-adapter-'))
+      await writeFile(
+        join(root, 'entry.js'),
+        `globalThis.nativePluginResult = [__GLOBAL_PLUGIN__, __DIRECT_PLUGIN__, 'plain-plugin']`
+      )
+      const factories = ['global', 'direct'].map((name) =>
+        vi.fn(
+          (context: NativePluginContext): Plugin => ({
+            name: `${name}-native`,
+            transform(code, id) {
+              if (id.endsWith('/entry.js')) {
+                return code.replace(
+                  `__${name.toUpperCase()}_PLUGIN__`,
+                  JSON.stringify({ name, ...context })
+                )
+              }
+            },
+          })
+        )
+      )
+      const plugins = factories.map(
+        (vxrnNative, index): Plugin => ({
+          name: `adapter-${index}`,
+          api: { vxrnNative },
+        })
+      )
+      const previousPlugins = globalThis.__vxrnAddNativePlugins
+      globalThis.__vxrnAddNativePlugins = [plugins[0]]
+      const configuredPlugins: Plugin[] = [
+        plugins[1],
+        {
+          name: 'plain-native-plugin',
+          transform(code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+            if (id.endsWith('/entry.js')) return code.replace('plain-plugin', 'plain')
+          },
         },
-      }))
-    )
-    const plugins = factories.map((vxrnNative, index): Plugin => ({
-      name: `adapter-${index}`,
-      api: { vxrnNative },
-    }))
-    const previousPlugins = globalThis.__vxrnAddNativePlugins
-    globalThis.__vxrnAddNativePlugins = [plugins[0]]
-    const configuredPlugins: Plugin[] = [
-      plugins[1],
-      {
-        name: 'plain-native-plugin',
-        transform(code, id) {
-          if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
-          if (id.endsWith('/entry.js')) return code.replace('plain-plugin', 'plain')
-        },
-      },
-    ]
-    let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
-    try {
-      let code: string
-      if (mode === 'dev') {
-        native = await createNativeDevEngine({ root, platform, port: 0, plugins: configuredPlugins })
-        code = (await native.getBundle()).code
-      } else {
-        code = (await buildNativeBundle({ root, platform, entryFile: 'entry.js', plugins: configuredPlugins })).code
+      ]
+      let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+      try {
+        let code: string
+        if (mode === 'dev') {
+          native = await createNativeDevEngine({
+            root,
+            platform,
+            port: 0,
+            plugins: configuredPlugins,
+          })
+          code = (await native.getBundle()).code
+        } else {
+          code = (
+            await buildNativeBundle({
+              root,
+              platform,
+              entryFile: 'entry.js',
+              plugins: configuredPlugins,
+            })
+          ).code
+        }
+        const context = {
+          console,
+          setTimeout,
+          clearTimeout,
+          __GLOBAL_PLUGIN__: 'unadapted',
+          __DIRECT_PLUGIN__: 'unadapted',
+        }
+        runInNewContext(code, context)
+        expect(Reflect.get(context, 'nativePluginResult')).toEqual([
+          { name: 'global', root, platform, dev: mode === 'dev' },
+          { name: 'direct', root, platform, dev: mode === 'dev' },
+          'plain',
+        ])
+        for (const factory of factories) {
+          expect(factory).toHaveBeenCalledExactlyOnceWith({
+            root,
+            platform,
+            dev: mode === 'dev',
+          })
+        }
+      } finally {
+        await native?.close()
+        globalThis.__vxrnAddNativePlugins = previousPlugins
+        await rm(root, { recursive: true, force: true })
       }
-      const context = { console, setTimeout, clearTimeout, __GLOBAL_PLUGIN__: 'unadapted', __DIRECT_PLUGIN__: 'unadapted' }
-      runInNewContext(code, context)
-      expect(Reflect.get(context, 'nativePluginResult')).toEqual([
-        { name: 'global', root, platform, dev: mode === 'dev' },
-        { name: 'direct', root, platform, dev: mode === 'dev' },
-        'plain',
-      ])
-      for (const factory of factories) {
-        expect(factory).toHaveBeenCalledExactlyOnceWith({ root, platform, dev: mode === 'dev' })
-      }
-    } finally {
-      await native?.close()
-      globalThis.__vxrnAddNativePlugins = previousPlugins
-      await rm(root, { recursive: true, force: true })
     }
-  })
+  )
 })
 
 const nativeTransformProbe = `
@@ -192,120 +224,155 @@ globalThis.result = (function(parentArgument) {
   }
 )
 
-describe.each(['shared', 'rolldown', 'metro'])('React Compiler worklets through %s', (pipeline) => {
-  it.each([
-    ['block', 'useDerivedValue(() => { return value + 8 }, [value])', 18],
-    ['expression', 'useDerivedValue(() => value + 8, [value])', 18],
-    ['object', 'useDerivedValue(() => ({ lift: value + 8 }), [value])', { lift: 18 }],
-    ['nested', 'useDerivedValue(() => runOnUI(() => value + 8), [value])', 18],
-    ['gesture', 'useDerivedValue(() => Gesture.Pan().onUpdate(() => value + 8), [value])', 18],
-  ])('preserves %s callbacks on the UI runtime and memoizes stable inputs', async (_name, callback, expected) => {
-    const compiler = await import('@vxrn/compiler')
-    const { parseSync } = await import('oxc-parser')
-    const { default: MagicString } = await import('magic-string')
-    const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
-    const projectRoot = await createWorkletsProject(false)
-    const sourceMaps = process.env.VXRN_ENABLE_SOURCE_MAP
-    process.env.VXRN_ENABLE_SOURCE_MAP = '1'
-    compiler.configureVXRNCompilerPlugin({
-      enableCompiler: true,
-      enableReanimated: true,
-      enableNativeWorklets: true,
-    })
-    try {
-      const id = join(projectRoot, 'useProbe.ts')
-      const source = `export function useProbe(value) {\n return ${callback};\n}\n`
-      await writeFile(id, source)
-      let result: any
-      if (pipeline === 'shared') {
-        const plugins = await compiler.createVXRNCompilerPlugin()
-        const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
-        await plugin.configResolved({ root: projectRoot, build: {} })
-        const hook = plugin.transform.handler || plugin.transform
-        result = await hook.call({ environment: { name: 'ios' } }, source, id)
-      } else if (pipeline === 'metro') {
-        const { transform } = await import('@vxrn/vite-plugin-metro/metroNativeWorker')
-        const output = await transform({}, projectRoot, id, Buffer.from(source), {
-          dev: false,
-          platform: 'ios',
-          type: 'module',
-          customTransformOptions: { reactCompiler: true, worklets: true },
+describe.each(['shared', 'rolldown', 'metro'])(
+  'React Compiler worklets through %s',
+  (pipeline) => {
+    it.each([
+      ['block', 'useDerivedValue(() => { return value + 8 }, [value])', 18],
+      ['expression', 'useDerivedValue(() => value + 8, [value])', 18],
+      ['object', 'useDerivedValue(() => ({ lift: value + 8 }), [value])', { lift: 18 }],
+      ['nested', 'useDerivedValue(() => runOnUI(() => value + 8), [value])', 18],
+      [
+        'gesture',
+        'useDerivedValue(() => Gesture.Pan().onUpdate(() => value + 8), [value])',
+        18,
+      ],
+    ])(
+      'preserves %s callbacks on the UI runtime and memoizes stable inputs',
+      async (_name, callback, expected) => {
+        const compiler = await import('@vxrn/compiler')
+        const { parseSync } = await import('oxc-parser')
+        const { default: MagicString } = await import('magic-string')
+        const { TraceMap, originalPositionFor } =
+          await import('@jridgewell/trace-mapping')
+        const projectRoot = await createWorkletsProject(false)
+        const sourceMaps = process.env.VXRN_ENABLE_SOURCE_MAP
+        process.env.VXRN_ENABLE_SOURCE_MAP = '1'
+        compiler.configureVXRNCompilerPlugin({
+          enableCompiler: true,
+          enableReanimated: true,
+          enableNativeWorklets: true,
         })
-        const data = output.output[0].data
-        const msm = await import('metro-source-map')
-        result = {
-          code: data.code,
-          map: (msm.fromRawMappings as any)([{ code: data.code, path: id, source, map: data.map }]).toMap(),
-        }
-      } else {
-        const plugin = vxrnCompilerPlugin('ios', false, projectRoot, true)
-        result = await Reflect.apply(plugin.transform as Function, undefined, [source, id])
-      }
-      const runnable = new MagicString(result.code)
-      for (const node of parseSync('probe.js', result.code).program.body) {
-        if (node.type === 'ImportDeclaration') runnable.remove(node.start, node.end)
-        if (node.type === 'ExportNamedDeclaration' && node.declaration) {
-          runnable.remove(node.start, node.declaration.start)
-        }
-      }
-      let cache: any[] | undefined
-      let cacheCalls = 0
-      const memo = (size: number) => {
-        cacheCalls++
-        return cache ??= Array(size).fill(Symbol.for('react.memo_cache_sentinel'))
-      }
-      const module = { exports: {} as any }
-      const probe = new Function('_c', 'useDerivedValue', 'runOnUI', 'Gesture', '__d', 'module',
-        `${runnable}\nreturn ${pipeline === 'metro' ? 'module.exports.useProbe' : 'useProbe'}`
-      )(
-        memo,
-        (fn: any) => fn,
-        (fn: any) => fn,
-        { Pan: () => ({ onUpdate: (fn: any) => fn }) },
-        (factory: any) => factory(globalThis, () => ({ c: memo }), () => {}, () => {}, module, module.exports, []),
-        module
-      )
-      const first = probe(10)
-      expect(first.__initData?.code).toBeTypeOf('string')
-      for (const onUI of [false, true]) {
-        let fn = first
-        let value: any
-        for (let depth = 0; depth < 2; depth++) {
-          expect(fn.__initData?.code).toBeTypeOf('string')
-          value = onUI
-            ? new Function('runOnUI', `return (${fn.__initData.code})`)((fn: any) => fn)
-                .call({ __closure: fn.__closure })
-            : fn()
-          if (typeof value !== 'function') break
-          fn = value
-        }
-        expect(value).toEqual(expected)
-      }
-      expect(probe(10)).toBe(first)
-      expect(cacheCalls).toBe(2)
-      expect(probe(20)).not.toBe(first)
+        try {
+          const id = join(projectRoot, 'useProbe.ts')
+          const source = `export function useProbe(value) {\n return ${callback};\n}\n`
+          await writeFile(id, source)
+          let result: any
+          if (pipeline === 'shared') {
+            const plugins = await compiler.createVXRNCompilerPlugin()
+            const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
+            await plugin.configResolved({ root: projectRoot, build: {} })
+            const hook = plugin.transform.handler || plugin.transform
+            result = await hook.call({ environment: { name: 'ios' } }, source, id)
+          } else if (pipeline === 'metro') {
+            const { transform } =
+              await import('@vxrn/vite-plugin-metro/metroNativeWorker')
+            const output = await transform({}, projectRoot, id, Buffer.from(source), {
+              dev: false,
+              platform: 'ios',
+              type: 'module',
+              customTransformOptions: { reactCompiler: true, worklets: true },
+            })
+            const data = output.output[0].data
+            const msm = await import('metro-source-map')
+            result = {
+              code: data.code,
+              map: (msm.fromRawMappings as any)([
+                { code: data.code, path: id, source, map: data.map },
+              ]).toMap(),
+            }
+          } else {
+            const plugin = vxrnCompilerPlugin('ios', false, projectRoot, true)
+            result = await Reflect.apply(plugin.transform as Function, undefined, [
+              source,
+              id,
+            ])
+          }
+          const runnable = new MagicString(result.code)
+          for (const node of parseSync('probe.js', result.code).program.body) {
+            if (node.type === 'ImportDeclaration') runnable.remove(node.start, node.end)
+            if (node.type === 'ExportNamedDeclaration' && node.declaration) {
+              runnable.remove(node.start, node.declaration.start)
+            }
+          }
+          let cache: any[] | undefined
+          let cacheCalls = 0
+          const memo = (size: number) => {
+            cacheCalls++
+            return (cache ??= Array(size).fill(Symbol.for('react.memo_cache_sentinel')))
+          }
+          const module = { exports: {} as any }
+          const probe = new Function(
+            '_c',
+            'useDerivedValue',
+            'runOnUI',
+            'Gesture',
+            '__d',
+            'module',
+            `${runnable}\nreturn ${pipeline === 'metro' ? 'module.exports.useProbe' : 'useProbe'}`
+          )(
+            memo,
+            (fn: any) => fn,
+            (fn: any) => fn,
+            { Pan: () => ({ onUpdate: (fn: any) => fn }) },
+            (factory: any) =>
+              factory(
+                globalThis,
+                () => ({ c: memo }),
+                () => {},
+                () => {},
+                module,
+                module.exports,
+                []
+              ),
+            module
+          )
+          const first = probe(10)
+          expect(first.__initData?.code).toBeTypeOf('string')
+          for (const onUI of [false, true]) {
+            let fn = first
+            let value: any
+            for (let depth = 0; depth < 2; depth++) {
+              expect(fn.__initData?.code).toBeTypeOf('string')
+              value = onUI
+                ? new Function('runOnUI', `return (${fn.__initData.code})`)(
+                    (fn: any) => fn
+                  ).call({ __closure: fn.__closure })
+                : fn()
+              if (typeof value !== 'function') break
+              fn = value
+            }
+            expect(value).toEqual(expected)
+          }
+          expect(probe(10)).toBe(first)
+          expect(cacheCalls).toBe(2)
+          expect(probe(20)).not.toBe(first)
 
-      const lines = result.code.split('\n')
-      const line = lines.findIndex((text: string) => text.includes('function useProbe('))
-      expect(line).toBeGreaterThanOrEqual(0)
-      const position = originalPositionFor(new TraceMap(result.map), {
-        line: line + 1,
-        column: lines[line].indexOf('function'),
-      })
-      expect(position.source).toBe(id)
-      expect(position.line).toBe(1)
-    } finally {
-      if (sourceMaps === undefined) delete process.env.VXRN_ENABLE_SOURCE_MAP
-      else process.env.VXRN_ENABLE_SOURCE_MAP = sourceMaps
-      compiler.configureVXRNCompilerPlugin({
-        enableCompiler: false,
-        enableReanimated: false,
-        enableNativeWorklets: false,
-      })
-      await rm(projectRoot, { recursive: true, force: true })
-    }
-  })
-})
+          const lines = result.code.split('\n')
+          const line = lines.findIndex((text: string) =>
+            text.includes('function useProbe(')
+          )
+          expect(line).toBeGreaterThanOrEqual(0)
+          const position = originalPositionFor(new TraceMap(result.map), {
+            line: line + 1,
+            column: lines[line].indexOf('function'),
+          })
+          expect(position.source).toBe(id)
+          expect(position.line).toBe(1)
+        } finally {
+          if (sourceMaps === undefined) delete process.env.VXRN_ENABLE_SOURCE_MAP
+          else process.env.VXRN_ENABLE_SOURCE_MAP = sourceMaps
+          compiler.configureVXRNCompilerPlugin({
+            enableCompiler: false,
+            enableReanimated: false,
+            enableNativeWorklets: false,
+          })
+          await rm(projectRoot, { recursive: true, force: true })
+        }
+      }
+    )
+  }
+)
 
 async function createWorkletsProject(throwOnTransform = true) {
   const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-transform-failure-'))
@@ -595,60 +662,70 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
 })
 
 describe('native Rolldown HMR runtime', () => {
-  it.each([true, false])('keeps CommonJS default components callable through the native HMR wire path (Babel=%s)', async (babel) => {
-    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-interop-'))
-    const entry = join(root, 'entry.mjs')
-    const packageRoot = join(root, 'node_modules/component')
-    await mkdir(packageRoot, { recursive: true })
-    await writeFile(
-      join(packageRoot, 'package.json'),
-      JSON.stringify({ main: './component(view).js' })
-    )
-    await writeFile(
-      join(packageRoot, 'component(view).js'),
-      babel
-        ? `Object.defineProperty(exports, '__esModule', { value: true }); exports.default = function Component() { return 42 }`
-        : `module.exports = function Component() { return 42 }`
-    )
-    const source = (version: number) => `
+  it.each([true, false])(
+    'keeps CommonJS default components callable through the native HMR wire path (Babel=%s)',
+    async (babel) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-interop-'))
+      const entry = join(root, 'entry.mjs')
+      const packageRoot = join(root, 'node_modules/component')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ main: './component(view).js' })
+      )
+      await writeFile(
+        join(packageRoot, 'component(view).js'),
+        babel
+          ? `Object.defineProperty(exports, '__esModule', { value: true }); exports.default = function Component() { return 42 }`
+          : `module.exports = function Component() { return 42 }`
+      )
+      const source = (version: number) => `
 import Component from 'component'
 globalThis.renderComponent = Component
 export const version = ${version}
 if (import.meta.hot) import.meta.hot.accept(() => {})
 `
-    await writeFile(entry, source(1))
-    let resolveUpdate!: (update: any) => void
-    const updateReceived = new Promise<any>((resolve) => { resolveUpdate = resolve })
-    const native = await createNativeDevEngine({
-      root,
-      port: 0,
-      platform: 'ios',
-      plugins: [{
-        name: 'native-hmr-fixture-entry',
-        transform(_code, id) {
-          if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
-        },
-      }],
-      onHmrUpdate: resolveUpdate,
-    })
-    try {
-      const initial = await native.getBundle()
-      const context: any = { console, setTimeout, clearTimeout }
-      runInNewContext(initial.code, context)
-      expect(context.renderComponent()).toBe(42)
-      const runtime = context.__rolldown_runtime__
-      await native.engine.registerClient(runtime.clientId)
-      await writeFile(entry, source(2))
-      const update = await updateReceived
-      expect(update.type).toBe('hmr:update')
-      expect(update.clientId).toBe(runtime.clientId)
-      expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(true)
-      expect(context.renderComponent()).toBe(42)
-    } finally {
-      await native.close()
-      await rm(root, { recursive: true, force: true })
+      await writeFile(entry, source(1))
+      let resolveUpdate!: (update: any) => void
+      const updateReceived = new Promise<any>((resolve) => {
+        resolveUpdate = resolve
+      })
+      const native = await createNativeDevEngine({
+        root,
+        port: 0,
+        platform: 'ios',
+        plugins: [
+          {
+            name: 'native-hmr-fixture-entry',
+            transform(_code, id) {
+              if (id.endsWith('/__virtual-native-entry.tsx'))
+                return `import './entry.mjs'`
+            },
+          },
+        ],
+        onHmrUpdate: resolveUpdate,
+      })
+      try {
+        const initial = await native.getBundle()
+        const context: any = { console, setTimeout, clearTimeout }
+        runInNewContext(initial.code, context)
+        expect(context.renderComponent()).toBe(42)
+        const runtime = context.__rolldown_runtime__
+        await native.engine.registerClient(runtime.clientId)
+        await writeFile(entry, source(2))
+        const update = await updateReceived
+        expect(update.type).toBe('hmr:update')
+        expect(update.clientId).toBe(runtime.clientId)
+        expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(
+          true
+        )
+        expect(context.renderComponent()).toBe(42)
+      } finally {
+        await native.close()
+        await rm(root, { recursive: true, force: true })
+      }
     }
-  })
+  )
 
   it(
     'registers a Rolldown 1.2 client and applies a self-accepted patch',
@@ -1749,7 +1826,7 @@ globalThis.minifyProbe = describeHeader()`
     }
   })
 
-  it('defaults to react native\'s rule: minify a production bundle, never a dev one', async () => {
+  it("defaults to react native's rule: minify a production bundle, never a dev one", async () => {
     const root = await writeMinifyFixture()
     try {
       const [prod, devBundle, explicitOff] = await Promise.all([
@@ -2030,21 +2107,23 @@ globalThis.__vxrnConditionalExportProbe = helper()
 })
 
 describe('native Flow sources', () => {
-  it.each(['', `/* ${'license text '.repeat(150)} */\n`])('strips third-party Flow following a license header (%#)', async (license) => {
-    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-flow-'))
-    // mirrors @react-native-masked-view/masked-view: a Flow `.js` component
-    // outside the react-native / @react-native scopes, which is what reached
-    // rolldown unstripped when its patch was skipped.
-    const packageRoot = join(testRoot, 'node_modules/@flowy-scope/flowy-lib')
-    await mkdir(packageRoot, { recursive: true })
-    await writeFile(
-      join(packageRoot, 'package.json'),
-      JSON.stringify({ name: '@flowy-scope/flowy-lib', main: './js/Flowy.js' })
-    )
-    await mkdir(join(packageRoot, 'js'), { recursive: true })
-    await writeFile(
-      join(packageRoot, 'js/Flowy.js'),
-      `${license}/**
+  it.each(['', `/* ${'license text '.repeat(150)} */\n`])(
+    'strips third-party Flow following a license header (%#)',
+    async (license) => {
+      const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-flow-'))
+      // mirrors @react-native-masked-view/masked-view: a Flow `.js` component
+      // outside the react-native / @react-native scopes, which is what reached
+      // rolldown unstripped when its patch was skipped.
+      const packageRoot = join(testRoot, 'node_modules/@flowy-scope/flowy-lib')
+      await mkdir(packageRoot, { recursive: true })
+      await writeFile(
+        join(packageRoot, 'package.json'),
+        JSON.stringify({ name: '@flowy-scope/flowy-lib', main: './js/Flowy.js' })
+      )
+      await mkdir(join(packageRoot, 'js'), { recursive: true })
+      await writeFile(
+        join(packageRoot, 'js/Flowy.js'),
+        `${license}/**
  * @flow
  * @format
  */
@@ -2063,27 +2142,28 @@ export default class Flowy {
   }
 }
 `
-    )
-    await writeFile(
-      join(testRoot, 'entry.js'),
-      `import Flowy from '@flowy-scope/flowy-lib'
+      )
+      await writeFile(
+        join(testRoot, 'entry.js'),
+        `import Flowy from '@flowy-scope/flowy-lib'
 globalThis.__vxrnFlowProbe = new Flowy().measure({ value: 41 }) + 1
 `
-    )
+      )
 
-    try {
-      const result = await buildNativeBundle({
-        root: testRoot,
-        platform: 'ios',
-        entryFile: 'entry.js',
-      })
-      const context = { clearTimeout, console, process: { env: {} }, setTimeout }
-      runInNewContext(result.code, context)
-      expect(Reflect.get(context, '__vxrnFlowProbe')).toBe(42)
-    } finally {
-      await rm(testRoot, { recursive: true, force: true })
+      try {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.js',
+        })
+        const context = { clearTimeout, console, process: { env: {} }, setTimeout }
+        runInNewContext(result.code, context)
+        expect(Reflect.get(context, '__vxrnFlowProbe')).toBe(42)
+      } finally {
+        await rm(testRoot, { recursive: true, force: true })
+      }
     }
-  })
+  )
 })
 
 describe('native bundle source maps', () => {
@@ -2107,7 +2187,9 @@ describe('native bundle source maps', () => {
     async () => {
       // realpath: macOS hands out /var/folders temp dirs that resolve to
       // /private/var, and the map records the resolved path.
-      const testRoot = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-sourcemap-')))
+      const testRoot = realpathSync(
+        await mkdtemp(join(tmpdir(), 'vxrn-native-sourcemap-'))
+      )
       const packageRoot = join(testRoot, 'node_modules/probe-package')
       await mkdir(packageRoot, { recursive: true })
       await writeFile(
