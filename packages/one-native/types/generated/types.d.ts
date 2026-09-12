@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle } from './swiftui';
-export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, SymbolRenderingMode, SymbolVariants, ImageScale, } from './swiftui';
+export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, SymbolRenderingMode, SymbolVariants, ImageScale, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, } from './swiftui';
 export interface MenuAction {
     type: 'action';
     id: string;
@@ -69,6 +69,9 @@ export interface MenuProps extends ViewProps {
     menuActionDismissBehavior?: MenuActionDismissBehavior;
     children: ReactNode;
 }
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+    accessibilityLabel?: string;
+};
 export interface TabProps {
     id: string;
     title: string;

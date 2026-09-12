@@ -1,37 +1,25 @@
-import type { Control, ModifierSelector } from './controlTypes'
-
-// the dialog buttons travel as data so one zero-size host renders every action.
-const dialogActions = {
-  type: 'objects',
-  default: '',
-  payload: {
-    name: 'DialogAction',
-    element: { id: 'string', label: 'string', role: 'string' },
-    publicTypes: { role: 'Styles.ButtonRole' },
-    optional: ['role'],
-  },
-} as const
+import {
+  actionButtons,
+  actionsField,
+  actionsValidate,
+  type Control,
+  type ModifierSelector,
+} from './controlTypes'
 
 const dialogFields = {
   title: { type: 'string', default: '' },
   message: { type: 'string', default: '' },
-  actions: dialogActions,
+  actions: actionsField,
 } as const
 
 // the buttons live inside the presented dialog, so the host must not carry a `disabled`
-// field: SwiftUI's .disabled propagates through the environment into the actions.
-const dialogValidate = (name: string) => `  for (const action of actions) {
-    if (typeof action?.id !== 'string' || typeof action?.label !== 'string') throw new Error('${name} actions must contain string id and label fields')
-    if (action.role) assertSwiftUIValue('ButtonRole', action.role, Number.parseFloat(String(Platform.Version)))
-  }
-  if (!actions.length) throw new Error('${name} must have at least one action')
-  if (new Set(actions.map(action => action.id)).size !== actions.length) throw new Error('${name} action ids must be unique')`
+// field: SwiftUI's .disabled propagates through the environment into the actions. a dialog
+// with no buttons cannot be dismissed, which the empty state does not share.
+const dialogValidate = (name: string) =>
+  `${actionsValidate(name)}
+  if (!actions.length) throw new Error('${name} must have at least one action')`
 
-const dialogButtons = `        ForEach(model.actions, id: \\.id) { action in
-          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id) }) {
-            Text(action.label)
-          }
-        }`
+const dialogButtons = actionButtons('        ')
 
 const viewRequirements = ['A : SwiftUICore.View', 'M : SwiftUICore.View']
 const dialogModifier = (

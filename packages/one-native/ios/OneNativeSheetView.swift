@@ -7,6 +7,7 @@ final class OneNativeSheetModel: ObservableObject {
   @Published var detents: Set<PresentationDetent> = [.large]
   @Published var presentationDragIndicator = "automatic"
   @Published var interactiveDismissDisabled = false
+  @Published var presentation = "sheet"
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   var onDismiss: ((Int) -> Void)?
@@ -47,10 +48,11 @@ final class OneNativeSheetModel: ObservableObject {
     })
     if model.detents != next { model.detents = next }
   }
-  public func configure(_ isPresented: Bool, acknowledgedEvent: Int, revision: Int, interactiveDismissDisabled: Bool, presentationDragIndicator: String) {
+  public func configure(_ isPresented: Bool, acknowledgedEvent: Int, revision: Int, interactiveDismissDisabled: Bool, presentationDragIndicator: String, presentation: String) {
     if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.interactiveDismissDisabled != interactiveDismissDisabled { model.interactiveDismissDisabled = interactiveDismissDisabled }
     if model.presentationDragIndicator != presentationDragIndicator { model.presentationDragIndicator = presentationDragIndicator }
+    if model.presentation != presentation { model.presentation = presentation }
   }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }

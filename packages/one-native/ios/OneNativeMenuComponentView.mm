@@ -63,6 +63,7 @@ using namespace facebook::react;
   [_menuView configure:RCTNSStringFromString(next.triggerLabel) disabled:next.disabled
               menuOrder:RCTNSStringFromString(next.menuOrder)
               menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)
+              presentation:RCTNSStringFromString(next.presentation)
               acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];
 }
