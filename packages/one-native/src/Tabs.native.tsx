@@ -42,9 +42,23 @@ export function Tabs({
       if (!isValidElement<TabProps>(child) || child.type !== Tab) {
         throw new Error('Swift.Tabs accepts Swift.Tab elements as direct children')
       }
-      const { id, title, systemImage, badge, role, testID, children: page } = child.props
+      const {
+        id,
+        title,
+        systemImage,
+        badge,
+        role,
+        testID,
+        onPress,
+        children: page,
+      } = child.props
       if (!id || ids.has(id)) {
         throw new Error(`Swift.Tabs requires unique, nonempty tab ids: "${id}"`)
+      }
+      if (Boolean(onPress) === (page !== undefined)) {
+        throw new Error(
+          `Swift.Tab "${id}" needs exactly one of onPress and children: a tab either runs an action or shows a page`
+        )
       }
       if (role) assertSwiftUIValue('TabRole', role, iosVersion)
       ids.add(id)
@@ -55,13 +69,20 @@ export function Tabs({
         badge: badge ?? '',
         role: role ?? '',
         testID,
+        onPress,
         children: page,
       }
     })
   }, [children, iosVersion])
-  if (!pages.some((page) => page.id === selection)) {
+  const selected = pages.find((page) => page.id === selection)
+  if (!selected) {
     throw new Error(
       `Swift.Tabs selection "${selection}" must identify a mounted Swift.Tab`
+    )
+  }
+  if (selected.onPress) {
+    throw new Error(
+      `Swift.Tabs selection "${selection}" is an action tab, which never becomes the selection`
     )
   }
 
@@ -77,9 +98,12 @@ export function Tabs({
       onNativeTabsSelectionChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
+      onNativeTabsAction={({ nativeEvent }) =>
+        pages.find((page) => page.id === nativeEvent.tabId)?.onPress?.()
+      }
     >
       {pages.map((page) => {
-        const selected = page.id === selection
+        const visible = page.id === selection
         return (
           <NativeTab
             key={page.id}
@@ -88,12 +112,13 @@ export function Tabs({
             systemImage={page.systemImage}
             badge={page.badge}
             tabRole={page.role}
+            action={Boolean(page.onPress)}
             testID={page.testID}
             style={PAGE_STYLE}
             collapsable={false}
-            pointerEvents={selected ? 'auto' : 'none'}
-            accessibilityElementsHidden={!selected}
-            importantForAccessibility={selected ? 'auto' : 'no-hide-descendants'}
+            pointerEvents={visible ? 'auto' : 'none'}
+            accessibilityElementsHidden={!visible}
+            importantForAccessibility={visible ? 'auto' : 'no-hide-descendants'}
           >
             {page.children}
           </NativeTab>

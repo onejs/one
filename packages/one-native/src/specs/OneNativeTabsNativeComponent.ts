@@ -13,5 +13,6 @@ interface NativeProps extends ViewProps {
   onNativeTabsSelectionChange?: DirectEventHandler<
     Readonly<{ selection: string; eventCount: Int32; revision: Int32 }>
   >
+  onNativeTabsAction?: DirectEventHandler<Readonly<{ tabId: string }>>
 }
 export default codegenNativeComponent<NativeProps>('OneNativeTabs')

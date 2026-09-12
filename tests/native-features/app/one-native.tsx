@@ -50,6 +50,8 @@ export default function OneNativeScreen() {
   const [lastAction, setLastAction] = useState('none')
   const [tabOrder, setTabOrder] = useState([FIRST, SECOND])
   const [searchRole, setSearchRole] = useState(false)
+  const [actionTab, setActionTab] = useState(false)
+  const [actionPresses, setActionPresses] = useState(0)
   const [toggleValues, setToggleValues] = useState<Record<string, boolean[]>>({
     checked: [true],
     mixed: [true, false],
@@ -183,6 +185,8 @@ export default function OneNativeScreen() {
           <Text testID="one-native-mixed">{toggleValues.mixed.join(',')}</Text>
           {'  '}Search:{' '}
           <Text testID="one-native-search-role">{searchRole ? 'on' : 'off'}</Text>
+          {'  '}Action presses:{' '}
+          <Text testID="one-native-action-presses">{actionPresses}</Text>
         </Text>
       </View>
 
@@ -208,6 +212,15 @@ export default function OneNativeScreen() {
         >
           <Text style={styles.buttonText}>
             {ignoreSelectionChange ? 'Accept selection' : 'Reject selection'}
+          </Text>
+        </Pressable>
+        <Pressable
+          testID="one-native-toggle-action-tab"
+          style={styles.button}
+          onPress={() => setActionTab((value) => !value)}
+        >
+          <Text style={styles.buttonText}>
+            {actionTab ? 'Hide action tab' : 'Show action tab'}
           </Text>
         </Pressable>
         <Pressable
@@ -269,6 +282,16 @@ export default function OneNativeScreen() {
             </TabPage>
           </Swift.Tab>
         ))}
+        {actionTab && !searchRole ? (
+          <Swift.Tab
+            id="compose"
+            title="Compose"
+            systemImage="plus"
+            role="search"
+            testID="one-native-tab-compose"
+            onPress={() => setActionPresses((count) => count + 1)}
+          />
+        ) : null}
       </Swift.Tabs>
     </View>
   )

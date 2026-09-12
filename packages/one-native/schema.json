@@ -116,6 +116,11 @@
           "revision": {
             "type": "Int32"
           }
+        },
+        "onNativeTabsAction": {
+          "tabId": {
+            "type": "string"
+          }
         }
       },
       "controlled": {
@@ -156,6 +161,9 @@
         "tabRole": {
           "type": "string",
           "enum": "TabRole"
+        },
+        "action": {
+          "type": "boolean"
         }
       },
       "events": {},

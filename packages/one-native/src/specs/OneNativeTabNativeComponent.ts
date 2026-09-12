@@ -10,6 +10,7 @@ interface NativeProps extends ViewProps {
   systemImage: string
   badge: string
   tabRole: string
+  action: boolean
 }
 export default codegenNativeComponent<NativeProps>('OneNativeTab', {
   interfaceOnly: true,
