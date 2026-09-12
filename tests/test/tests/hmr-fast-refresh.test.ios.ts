@@ -135,10 +135,10 @@ export default function HmrAdded() {
 `
       )
 
-      // a route-map rebuild reloads the app at its root. navigateTo waits for
-      // that fresh root to mount before entering the probe, which proves the
-      // restarted bundle contains the new route instead of reading the old
-      // screen while its reload is still pending.
+      // a route-map rebuild reloads the app at its root. wait for that root
+      // before navigating again so an interaction cannot race the reload and
+      // land on a screen from the old route map.
+      await waitForText('welcome-message', 'Welcome to One')
       await navigateTo(driver, '/hmr-probe')
       await waitForText('route-hmr-added', 'available')
       await navigateTo(driver, '/hmr-added')
