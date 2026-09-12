@@ -266,7 +266,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   const wait = async (
     name: string,
     predicate: (nodes: Node[]) => boolean,
-    home = false
+    home = false,
+    // extra context for the timeout message, so a check that folds several steps into one
+    // predicate can still say which step it was stuck on
+    diagnose?: () => string
   ) => {
     const started = Date.now()
     const deadline = started + config.timeout
@@ -292,8 +295,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const snapshotPath = path.join(config.artifactDir, `fail-${stem}.json`)
     fs.writeFileSync(snapshotPath, JSON.stringify(nodes, null, 2))
     screenshot(`fail-${stem}.png`)
+    const detail = diagnose?.()
     throw new Error(
-      `${name} timed out after ${config.timeout}ms; snapshot: ${snapshotPath}`
+      `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
   const tap = (target: { id?: string; label?: string }) => {
@@ -399,35 +403,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(x, y)
     await wait('menu dismissed', (nodes) => !has(nodes, 'Copy'))
   }
+  // exactly one check per call, whatever the environment. the dev warning overlay is only
+  // sometimes on screen, and a check that silently does not run leaves every tap after it
+  // asserting nothing about whether something is intercepting them. so the check is the
+  // POSTCONDITION, that nothing is covering the screen: true immediately when no overlay
+  // appeared, and true after the overlay has settled and been dismissed when one did. the
+  // settle and the dismissal tap are means to that, so they do not get receipts of their own.
   const dismissWarning = async (home: boolean) => {
-    const warning = snapshot(config.simulatorId).find((node) =>
-      node.AXLabel?.includes('Open debugger')
-    )
-    if (!warning) return
     let previousBounds = ''
-    const settled = await wait(
-      'warning overlay bounds settle',
-      (current) => {
-        const candidate = current.find((node) => node.AXLabel?.includes('Open debugger'))
-        if (!candidate) return true
-        const frame = candidate.frame
-        const app = current.find((node) => node.type === 'Application')?.frame
-        if (!frame || !app || frame.height <= 0 || frame.y + frame.height > app.height)
-          return false
-        const bounds = JSON.stringify(frame)
-        const stable = bounds === previousBounds
-        previousBounds = bounds
-        return stable
-      },
-      home
-    )
-    const frame = settled.find((node) => node.AXLabel?.includes('Open debugger'))?.frame
-    if (!frame) return
-    point(frame.x + frame.width - 24, frame.y + frame.height / 2)
+    let tapped = false
+    let lastSeen: Node['frame'] | undefined
     await wait(
-      'warning overlay dismissed before interaction',
-      (current) => !has(current, 'Open debugger'),
-      home
+      'no warning overlay intercepts interaction',
+      (current) => {
+        const overlay = current.find((node) => node.AXLabel?.includes('Open debugger'))
+        if (!overlay) return true
+        lastSeen = overlay.frame
+        if (tapped) return false
+        const app = current.find((node) => node.type === 'Application')?.frame
+        const frame = overlay.frame
+        if (!frame || !app || frame.height <= 0 || frame.y + frame.height > app.height) {
+          previousBounds = ''
+          return false
+        }
+        // tapping the overlay while it is still animating in misses it, so the dismissal waits
+        // for two snapshots to report the same bounds
+        const bounds = JSON.stringify(frame)
+        if (bounds !== previousBounds) {
+          previousBounds = bounds
+          return false
+        }
+        point(frame.x + frame.width - 24, frame.y + frame.height / 2)
+        tapped = true
+        return false
+      },
+      home,
+      () =>
+        lastSeen
+          ? `an overlay is still on screen at ${JSON.stringify(lastSeen)}, ${tapped ? 'after its dismissal was tapped' : 'and its bounds never settled so it was never tapped'}`
+          : 'no overlay was seen, so the fixture itself never reached its loaded state'
     )
   }
   const tapTab = async (x: number, name: string) => {
@@ -464,7 +478,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    if (!/not running/i.test(message)) throw error
+    // a freshly booted device has never run the app, and simctl words that differently
+    if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
