@@ -2,6 +2,14 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
+import {
+  clearPngCache,
+  countChangedPixels,
+  countMatchingPixels,
+  extractCrop,
+  readPng,
+} from './visual-pixel-gate'
 
 type Node = {
   AXLabel?: string
@@ -255,7 +263,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // a RedBox replaces the whole accessibility tree, so every loaded-state assertion after one
   // times out complaining about the fixture while the real error sits on screen. its own buttons
   // identify it, and everything else it publishes is the message.
-  const redBoxButtons = ['Dismiss (ESC)', 'Reload (\u2318R)', 'Copy (\u2325\u2318C)', 'Extra Info (\u2318E)']
+  const redBoxButtons = [
+    'Dismiss (ESC)',
+    'Reload (\u2318R)',
+    'Copy (\u2325\u2318C)',
+    'Extra Info (\u2318E)',
+  ]
   const redBox = (nodes: Node[]) => {
     const found = labels(nodes)
     if (!redBoxButtons.every((button) => found.includes(button))) return undefined
@@ -365,13 +378,46 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     throw new Error(`Could not bring ${testID} into view on the home list`)
   }
-  const screenshot = (name: string) => {
+  const screenshot = (name: string, nodes = snapshot(config.simulatorId)) => {
     const target = path.join(config.artifactDir, name)
+    fs.writeFileSync(
+      target.replace(/\.png$/i, '.ax.json'),
+      JSON.stringify(nodes, null, 2)
+    )
     execFileSync('xcrun', ['simctl', 'io', config.simulatorId, 'screenshot', target], {
       stdio: 'inherit',
       timeout: 30_000,
     })
     return target
+  }
+  // Every positive capture waits for the declared subject measurement inside its current
+  // accessibility frame. This is required for asynchronous MapKit and AVKit paint, and keeps the
+  // capture contract identical for every visual check. A timeout proves the subject never reached
+  // the pixel state that the offline gate claims to grade.
+  const visualScreenshot = async (name: string, checkName: string) => {
+    const declaration = VISUAL_CHECKS.find((check) => check.name === checkName)
+    if (!declaration || path.basename(declaration.positiveCapture) !== name)
+      throw new Error(`${checkName} does not declare ${name} as its positive capture`)
+    const started = Date.now()
+    const deadline = started + config.timeout
+    let reading = 0
+    do {
+      const nodes = snapshot(config.simulatorId)
+      const target = screenshot(name, nodes)
+      clearPngCache()
+      const region = resolveVisualRegion(declaration, nodes)
+      reading = declaration.measureSubject(extractCrop(readPng(target), region))
+      if (reading >= declaration.minSubjectFloor) {
+        const receipt = `${checkName} pixels are ready before capture`
+        checks.push({ name: receipt, durationMs: Date.now() - started })
+        console.log(`PASS ${receipt}`)
+        return target
+      }
+      await Bun.sleep(250)
+    } while (Date.now() < deadline)
+    throw new Error(
+      `${checkName} never reached its subject floor before capture: ${reading} < ${declaration.minSubjectFloor}`
+    )
   }
   const dismissMenu = async () => {
     const nodes = snapshot(config.simulatorId)
@@ -454,10 +500,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           node.role === 'AXApplication'
       )
       return Boolean(
-        bar?.frame &&
-        app?.frame &&
-        Math.round(app.frame.width) === 393 &&
-        Math.round(app.frame.height) === 852
+        bar?.frame && app?.frame && app.frame.width === 393 && app.frame.height === 852
       )
     })
     const app = nodes.find(
@@ -466,7 +509,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         node.AXRole === 'AXApplication' ||
         node.role === 'AXApplication'
     )!
-    if (Math.round(app.frame!.width) !== 393 || Math.round(app.frame!.height) !== 852)
+    if (app.frame!.width !== 393 || app.frame!.height !== 852)
       throw new Error(
         `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app.frame)}`
       )
@@ -484,8 +527,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'sheets') {
+    let expectedCount = 1
     const retained = (nodes: Node[]) =>
-      id(nodes, 'one-native-sheet-counter')?.AXLabel === '1' &&
+      id(nodes, 'one-native-sheet-counter')?.AXLabel === String(expectedCount) &&
       id(nodes, 'one-native-sheet-input')?.AXValue === 'Retained'
     const closed = (nodes: Node[], count: number) => {
       const text = labels(nodes)
@@ -550,14 +594,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('RN sheet content presented', (n) =>
       Boolean(id(n, 'one-native-sheet-increment'))
     )
-    screenshot('sheet-open.png')
+    await visualScreenshot('sheet-open.png', 'sheet-presentation-paints')
     tap({ id: 'one-native-sheet-increment' })
     await wait(
       'RN sheet button receives touch',
       (n) => id(n, 'one-native-sheet-counter')?.AXLabel === '1'
     )
     tap({ id: 'one-native-sheet-input' })
-    await typeInto('RN sheet input', 'retained', (n) => id(n, 'one-native-sheet-input')?.AXValue)
+    await typeInto(
+      'RN sheet input',
+      'retained',
+      (n) => id(n, 'one-native-sheet-input')?.AXValue
+    )
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
     tap({ id: 'one-native-sheet-close' })
@@ -580,21 +628,32 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('sheet-fraction.png')
     tap({ id: 'one-native-sheet-detents' })
-    await wait(
-      'height detent preserves RN state',
-      (n) => retained(n) && has(n, 'Detents: height300')
-    )
+    await wait('height detent preserves RN state', (n) => {
+      const frame = id(n, 'one-native-sheet-content')?.frame
+      return (
+        retained(n) &&
+        has(n, 'Detents: height300') &&
+        frame?.width === 393 &&
+        frame.height === 300
+      )
+    })
     screenshot('sheet-height.png')
     tap({ id: 'one-native-sheet-close' })
-    await wait(
-      'height sheet reports actual 300 point RN layout',
-      (n) => closed(n, 2) && labels(n).includes('393x300')
+    await wait('height sheet closes after its exact native frame was observed', (n) =>
+      closed(n, 2)
     )
     await blockDismiss('1')
     tap({ id: 'one-native-sheet-open' })
     await wait('blocked sheet open', retained)
     await dragSheet()
-    await wait('blocked drag preserves sheet', retained)
+    tap({ id: 'one-native-sheet-increment' })
+    await wait(
+      'blocked drag leaves the sheet present and interactive',
+      (n) =>
+        id(n, 'one-native-sheet-counter')?.AXLabel === '2' &&
+        id(n, 'one-native-sheet-input')?.AXValue === 'Retained'
+    )
+    expectedCount = 2
     tap({ id: 'one-native-sheet-close' })
     await wait('blocked sheet closes programmatically', (n) => closed(n, 3))
     await blockDismiss('0')
@@ -608,11 +667,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('medium+large')
     )
     tap({ id: 'one-native-sheet-open' })
-    await wait('medium sheet reopens with retained state', retained)
+    await wait('medium sheet reopens with retained state and exact frame', (n) => {
+      const frame = id(n, 'one-native-sheet-content')?.frame
+      return retained(n) && frame?.width === 393 && frame.height === 425
+    })
     tap({ id: 'one-native-sheet-close' })
-    await wait(
-      'medium sheet reports its native slot size',
-      (n) => closed(n, 5) && labels(n).includes('393x425')
+    await wait('medium sheet closes after its exact native frame was observed', (n) =>
+      closed(n, 5)
     )
     tap({ id: 'BackButton' })
     await wait('sheet recycle home mounted', () => true, true)
@@ -624,12 +685,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'recycled sheet presents fresh RN content',
       (n) =>
         id(n, 'one-native-sheet-counter')?.AXLabel === '0' &&
+        id(n, 'one-native-sheet-content')?.frame?.width === 393 &&
+        id(n, 'one-native-sheet-content')?.frame?.height === 425 &&
         Boolean(id(n, 'one-native-sheet-close'))
     )
     tap({ id: 'one-native-sheet-close' })
-    await wait(
-      'recycled sheet restores identical detents',
-      (n) => closed(n, 1) && labels(n).includes('393x425')
+    await wait('recycled sheet closes after restoring the exact medium frame', (n) =>
+      closed(n, 1)
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -690,7 +752,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         request(n, 'true') &&
         nativeValue(n, 'Enable notifications', '0')
     )
-    screenshot('toggle-rejected.png')
+    await visualScreenshot('toggle-rejected.png', 'toggle-control')
     tap({ id: 'one-native-control-reject' })
     tap({ id: 'one-native-control-reset' })
     await wait(
@@ -739,16 +801,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('stepper-upper-bound.png')
     // UIKit reports this AX element enabled even when the plus is disabled; verify the actual boundary behavior.
     tap({ label: 'Guests, Increment' })
+    tap({ id: 'one-native-control-reject' })
     await wait(
-      'stepper stays at upper bound',
+      'stepper stays at the upper bound through a later React action',
       (n) =>
-        value(n, '10') && request(n, '10') && nativeValue(n, 'Guests, Increment', '10')
+        value(n, '10') &&
+        request(n, '10') &&
+        has(n, 'Reject: on') &&
+        nativeValue(n, 'Guests, Increment', '10')
     )
+    tap({ id: 'one-native-control-reject' })
+    await wait('stepper rejection mode clears', (n) => has(n, 'Reject: off'))
     tap({ label: 'Guests, Decrement' })
     await wait(
       'stepper decrements from upper bound',
       (n) => value(n, '9') && request(n, '9') && nativeValue(n, 'Guests, Increment', '9')
     )
+    await visualScreenshot('stepper-enabled.png', 'stepper-control')
     tap({ id: 'one-native-control-category-slider' })
     const nodes = await wait(
       'slider mounted',
@@ -809,7 +878,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'slider reset reaches native',
       (n) => value(n, '25') && nativeValue(n, 'Volume', 0.25)
     )
-    screenshot('form-controls.png')
+    await visualScreenshot('form-controls.png', 'slider-control')
     tap({ id: 'one-native-control-category-focus' })
     await wait(
       'focus controls mounted',
@@ -861,14 +930,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
     }
     const type = (text: string, secure = false) =>
-      typeInto(secure ? 'SecureField' : 'TextField', text, (n) => field(n, secure)?.AXValue)
+      typeInto(
+        secure ? 'SecureField' : 'TextField',
+        text,
+        (n) => field(n, secure)?.AXValue
+      )
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const indicator = (nodes: Node[], label: string) =>
       nodes.filter((node) => node.AXLabel === label)
     const captureIndicator = (name: string, nodes: Node[]) => {
-      // native AX coverage has not been probed for these leaves. Save the actual snapshot
-      // with the screenshot; where AX omits values, the assertion proves fixture state only.
+      // Save the exact native values beside the screenshot. The value-step assertion now
+      // requires these values to exist and change; a fixture-only update cannot pass it.
       fs.writeFileSync(
         path.join(config.artifactDir, `${name}.json`),
         JSON.stringify(nodes, null, 2)
@@ -940,7 +1013,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           status(n, 'Style', style) &&
           n.some((x) => x.AXLabel === 'Press leaf' && x.type === 'Button')
       )
-      screenshot(`button-${style}.png`)
+      if (style === 'borderedProminent')
+        await visualScreenshot('button-borderedProminent.png', 'button-prominent-style')
+      else screenshot(`button-${style}.png`)
     }
     tap({ id: 'one-native-leaf-toggle-role' })
     await wait(
@@ -972,10 +1047,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             .map((x) => x.AXValue)
             .filter((v) => v !== undefined && v !== '')
             .map(String)
-          return (
-            before.length === 0 ||
-            (after.length > 0 && JSON.stringify(after) !== JSON.stringify(before))
-          )
+          return after.length > 0 && JSON.stringify(after) !== JSON.stringify(before)
         })
         captureIndicator(`${category.toLowerCase()}-${next}`, previous)
       }
@@ -1100,7 +1172,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         field(n, true)?.AXValue === '\u2022'.repeat(6) &&
         !JSON.stringify(n).includes('s3cr3t')
     )
-    screenshot('secure-masked.png')
+    await visualScreenshot('secure-masked.png', 'secure-field-bullets')
     submit()
     await wait(
       'SecureField emits exactly one submit',
@@ -1138,7 +1210,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // the status panel only reports what React holds, so scale is checked against the rendered
     // symbol instead: imageScale that never reached SwiftUI leaves the image the same size.
-    const imageWidth = (nodes: Node[]) => id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
+    const imageWidth = (nodes: Node[]) =>
+      id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
     const mediumWidth = imageWidth(snapshot(config.simulatorId))
     if (!mediumWidth) throw new Error('the leaf image reported no width at medium scale')
     tap({ id: 'one-native-leaf-cycle-scale' })
@@ -1153,16 +1226,74 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => status(n, 'Scale', 'small') && imageWidth(n) < mediumWidth
     )
     screenshot('image-small.png')
+    tap({ id: 'one-native-leaf-cycle-scale' })
+    await wait(
+      'Image scale returns to its exact medium width',
+      (n) => status(n, 'Scale', 'medium') && imageWidth(n) === mediumWidth
+    )
+    tap({ id: 'one-native-leaf-toggle-systemname' })
+    const speakerUnset = await wait(
+      'Image speaker symbol reaches the native frame',
+      (n) =>
+        status(n, 'SystemName', 'speaker.wave.3') &&
+        imageWidth(n) > 0 &&
+        imageWidth(n) !== mediumWidth
+    )
+    const speakerFrame = id(speakerUnset, 'one-native-leaf-image')!.frame!
+    const captureSpeakerInk = async (
+      name: string,
+      accepts: (ink: number) => boolean
+    ): Promise<{ path: string; ink: number }> => {
+      const deadline = Date.now() + config.timeout
+      let ink = 0
+      do {
+        const nodes = snapshot(config.simulatorId)
+        const target = screenshot(name, nodes)
+        clearPngCache()
+        ink = countMatchingPixels(
+          extractCrop(readPng(target), speakerFrame),
+          (r, g, b) => r < 80 && g < 80 && b < 80
+        )
+        if (accepts(ink)) return { path: target, ink }
+        await Bun.sleep(250)
+      } while (Date.now() < deadline)
+      throw new Error(`${name} never reached its required speaker ink state; last=${ink}`)
+    }
+    const speakerUnsetCapture = await captureSpeakerInk(
+      'image-speaker-unset.png',
+      (ink) => ink > 0
+    )
     tap({ id: 'one-native-leaf-step-variable-value' })
-    await wait('Image variable value stepped', (n) =>
+    await wait('fixture requests Image variable value 0.5', (n) =>
       status(n, 'VariableValue', 0.5)
     )
-    screenshot('image-variable-value.png')
-    tap({ id: 'one-native-leaf-toggle-systemname' })
-    await wait('Image systemName toggled', (n) =>
-      status(n, 'SystemName', 'speaker.wave.3')
+    const speakerHalfCapture = await captureSpeakerInk(
+      'image-speaker-variable-05.png',
+      (ink) => ink < speakerUnsetCapture.ink
     )
-    screenshot('image-speaker.png')
+    tap({ id: 'one-native-leaf-step-variable-value' })
+    await wait('fixture requests Image variable value 1', (n) =>
+      status(n, 'VariableValue', 1)
+    )
+    const speakerFullCapture = await captureSpeakerInk(
+      'image-speaker-variable-1.png',
+      (ink) => ink > speakerHalfCapture.ink
+    )
+    const variablePixels = countChangedPixels(
+      speakerHalfCapture.path,
+      speakerFullCapture.path,
+      speakerFrame,
+      8
+    ).changed
+    if (!variablePixels)
+      throw new Error(
+        `Image variable value changed ink counts without changing speaker pixels: unset=${speakerUnsetCapture.ink}, half=${speakerHalfCapture.ink}, full=${speakerFullCapture.ink}`
+      )
+    checks.push({
+      name: 'Image variable value changes native speaker pixels',
+      durationMs: 0,
+    })
+    console.log('PASS Image variable value changes native speaker pixels')
 
     for (let cycle = 1; cycle <= 2; cycle++) {
       tap({ id: 'BackButton' })
@@ -1256,12 +1387,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // narrow box while the Label carries an SF Symbol and wraps onto two, which is exactly
     // what a fixed 24pt leaf height used to clip.
     await wait('standalone Text and Label report a measured height', (n) => {
-      const text = Math.round(box(n, 'Standalone text')?.height ?? 0)
-      const label = Math.round(box(n, 'Standalone label')?.height ?? 0)
+      const text = box(n, 'Standalone text')?.height ?? 0
+      const label = box(n, 'Standalone label')?.height ?? 0
       return text > 0 && label > text && label < text * 3
     })
     // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
-    await wait('a Form fills the box React Native gave it', (n) => status(n, 'Form', 508))
+    await wait(
+      'a Form fills the exact box React Native gave it',
+      (n) => id(n, 'one-native-container-form')?.frame?.height === 508
+    )
     await wait(
       'a Section renders its rows inside the Form',
       (n) =>
@@ -1276,7 +1410,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('a React Native slot renders as a Form row', (n) => {
       const row = id(n, 'one-native-container-slot')?.frame
       const toggle = control(n, 'CheckBox', 'Notify')?.frame
-      return Boolean(row && toggle && row.y > toggle.y && Math.round(row.height) === 44)
+      return Boolean(
+        row && toggle && row.y >= toggle.y + toggle.height && row.height === 44
+      )
     })
     screenshot('containers-one-section.png')
 
@@ -1306,7 +1442,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'a Section mounted later joins the Form',
       (n) => labels(n).includes('More') && Boolean(control(n, 'Button', 'Section button'))
     )
-    screenshot('containers-two-sections.png')
+    await visualScreenshot('containers-two-sections.png', 'containers-second-section')
 
     tap({ label: 'Section button' })
     await wait('a Button composed into a Section emits', (n) =>
@@ -1318,7 +1454,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const text = box(n, 'In host')
       const button = box(n, 'Host button')
       return Boolean(
-        text && button && text.x < button.x && Math.abs(text.y - button.y) < 30
+        text &&
+        button &&
+        text.x + text.width <= button.x &&
+        text.y + text.height / 2 === button.y + button.height / 2
       )
     })
     tap({ label: 'Host button' })
@@ -1412,6 +1551,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'the trigger lays out inline and reports its measured height',
       (n) =>
         status(n, 'Trigger', triggerHeight) &&
+        id(n, 'one-native-popover-trigger')?.frame?.height === triggerHeight &&
         Boolean(control(n, 'Button', 'Trigger')) &&
         status(n, 'Open', 'false') &&
         !labels(n).includes('Popover body')
@@ -1420,7 +1560,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
     tap({ id: 'one-native-popover-open' })
     await wait('React presents the popover', (n) => labels(n).includes('Popover body'))
-    screenshot('popover-open.png')
+    await visualScreenshot('popover-open.png', 'popover-balloon')
 
     // the body is a React Native subtree presented outside the surface, so its touches
     // arrive through the popover's own touch handler rather than the surface's.
@@ -1472,6 +1612,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         `popover recycle ${cycle}: a fresh trigger measures`,
         (n) =>
           status(n, 'Trigger', triggerHeight) &&
+          id(n, 'one-native-popover-trigger')?.frame?.height === triggerHeight &&
           status(n, 'Open', 'false') &&
           status(n, 'Taps', 0)
       )
@@ -1490,16 +1631,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'accessibility') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    const measured = (nodes: Node[], label: string) => {
-      const line = labels(nodes).find((text) => text.startsWith(`${label}: `))
-      if (!line) throw new Error(`No ${label} measurement on screen`)
-      return Number(line.slice(label.length + 2))
-    }
     const control = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label)
     // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
     // tracking, so a composed Toggle would look like it never emitted.
-    const pressSwitch = (frame: { x: number; y: number; width: number; height: number }) =>
+    const pressSwitch = (frame: {
+      x: number
+      y: number
+      width: number
+      height: number
+    }) =>
       command(
         [
           'ui-automation',
@@ -1580,49 +1721,64 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // own state reaching the tree rather than anything React Native supplied.
     await wait('accessibility: a composed control reports its own value', (n) =>
       Boolean(
-        n.find((node) => node.AXUniqueId === 'one-native-a11y-composed' && node.AXValue === '1')
+        n.find(
+          (node) => node.AXUniqueId === 'one-native-a11y-composed' && node.AXValue === '1'
+        )
       )
     )
 
     // sizing: no control declares a height any more, so these are SwiftUI's own numbers.
     nodes = snapshot(config.simulatorId)
-    const shortText = measured(nodes, 'Text')
-    const toggleHeight = measured(nodes, 'Toggle')
+    const shortText = id(nodes, 'one-native-a11y-text')?.frame?.height ?? 0
+    const toggleHeight = id(nodes, 'one-native-a11y-standalone')?.frame?.height ?? 0
     if (!(shortText > 0))
       throw new Error(`A standalone Text measured ${shortText}, so nothing was reported`)
     if (!(toggleHeight > 0))
-      throw new Error(`A standalone Toggle measured ${toggleHeight}, so nothing was reported`)
-    checks.push({ name: 'accessibility: standalone leaves report a measured height', durationMs: 0 })
+      throw new Error(
+        `A standalone Toggle measured ${toggleHeight}, so nothing was reported`
+      )
+    checks.push({
+      name: 'accessibility: standalone leaves report a measured height',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: standalone leaves report a measured height')
 
     // the case a fixed height clipped: this paragraph cannot fit on one line.
     tap({ id: 'one-native-a11y-wrap' })
     const wrapped = await wait('accessibility: wrapping text grows its box', (n) => {
-      const line = labels(n).find((text) => text.startsWith('Text: '))
-      return Boolean(line) && Number(line!.slice(6)) > shortText
+      const height = id(n, 'one-native-a11y-text')?.frame?.height
+      return height !== undefined && height > shortText
     })
-    const wrappedText = measured(wrapped, 'Text')
+    const wrappedText = id(wrapped, 'one-native-a11y-text')!.frame!.height
     if (!(wrappedText > shortText * 2))
       throw new Error(
         `A paragraph that wraps onto several lines measured ${wrappedText} against ${shortText} for one line, so it is still being clipped`
       )
-    checks.push({ name: 'accessibility: a wrapped paragraph is not clipped', durationMs: 0 })
+    checks.push({
+      name: 'accessibility: a wrapped paragraph is not clipped',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: a wrapped paragraph is not clipped')
-    screenshot('a11y-wrapped-text.png')
+    await visualScreenshot('a11y-wrapped-text.png', 'a11y-wrapped-text')
 
     // the SwiftUI element has to survive a recycle, because the model is rebuilt on reset.
     tap({ label: 'index' })
     await wait('accessibility: home mounted', () => true, true)
     await tapNav('nav-one-native-accessibility')
-    await wait('accessibility: a recycled composed control still carries its label', (n) =>
-      labels(n).includes('Composed switch')
+    await wait(
+      'accessibility: a recycled composed control still carries its label',
+      (n) => labels(n).includes('Composed switch')
     )
-    await wait('accessibility: a recycled composed control still carries its testID', (n) =>
-      Boolean(id(n, 'one-native-a11y-composed'))
+    await wait(
+      'accessibility: a recycled composed control still carries its testID',
+      (n) => Boolean(id(n, 'one-native-a11y-composed'))
     )
     if (!control(snapshot(config.simulatorId), 'Form switch'))
       throw new Error('A recycled Form lost its composed control')
-    checks.push({ name: 'accessibility: a recycled Form keeps its composed control', durationMs: 0 })
+    checks.push({
+      name: 'accessibility: a recycled Form keeps its composed control',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: a recycled Form keeps its composed control')
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -1631,10 +1787,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'host') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    // the host reports the height SwiftUI measured, so this is the whole contract in
-    // one number: a wrong measurement shows up here and nowhere else.
+    // Read the native frame directly. The fixture's onLayout text rounds its values and cannot
+    // support an exact geometry claim.
     const size = (nodes: Node[], width: number, height: number) =>
-      labels(nodes).includes(`Host: ${width} x ${height}`)
+      id(nodes, 'one-native-host')?.frame?.width === width &&
+      id(nodes, 'one-native-host')?.frame?.height === height
     const control = (nodes: Node[], type: string, label: string) =>
       nodes.find((node) => node.type === type && node.AXLabel === label)
     // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
@@ -1691,7 +1848,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'Button', 'Composed button')) &&
         Boolean(control(n, 'Button', 'Composed stepper, Increment'))
     )
-    screenshot('host-three-children.png')
+    await visualScreenshot('host-three-children.png', 'host-three-children')
 
     tap({ label: 'Composed button' })
     await wait('a composed Button emits', (n) => status(n, 'Taps', 1))
@@ -1735,7 +1892,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const toggle = control(n, 'CheckBox', 'Toggle')?.frame
       const button = control(n, 'Button', 'Composed button')?.frame
       const step = control(n, 'Button', 'Composed stepper, Increment')?.frame
-      return Boolean(toggle && button && step && toggle.x < button.x && button.x < step.x)
+      return Boolean(
+        toggle &&
+        button &&
+        step &&
+        toggle.x + toggle.width <= button.x &&
+        button.x + button.width <= step.x &&
+        toggle.y + toggle.height / 2 === button.y + button.height / 2 &&
+        button.y + button.height / 2 === step.y + step.height / 2
+      )
     })
     screenshot('host-horizontal.png')
     tap({ id: 'one-native-host-axis-vertical' })
@@ -1780,7 +1945,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-map')
     await wait(
       'fresh map mounted',
-      (n) => status(n, 'Place', 'Ferry') && status(n, 'Pins', 2) && status(n, 'Height', 220)
+      (n) =>
+        status(n, 'Place', 'Ferry') && status(n, 'Pins', 2) && status(n, 'Height', 220)
     )
     // a fill control reports no ideal height, so the box React Native gave it is the only
     // thing that can be deciding this size.
@@ -1788,7 +1954,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'Map fills the box React Native gave it',
       (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
     )
-    screenshot('map-two-pins.png')
+    // MapKit publishes its surface before its annotations and tiles have painted. Marker AX
+    // presence gates the model, then the pixel gate below gates the asynchronous paint.
+    await wait(
+      'the markers React sent are on the map',
+      (n) => has(n, 'Coit Tower') && has(n, 'Ballpark') && !has(n, 'Pyramid')
+    )
+    await visualScreenshot('map-two-pins.png', 'map-markers')
     tap({ id: 'one-native-map-height' })
     await wait(
       'the map follows the box when the style changes',
@@ -1802,10 +1974,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // the markers prop is an object array, which crosses Fabric as a struct per element.
     // asserting the third one is absent as well as the first two present is what separates
     // "the array arrived" from "some annotation rendered".
-    await wait(
-      'the markers React sent are on the map',
-      (n) => has(n, 'Coit Tower') && has(n, 'Ballpark') && !has(n, 'Pyramid')
-    )
     tap({ id: 'one-native-map-pins' })
     await wait(
       'adding a marker adds it to the map',
@@ -1821,18 +1989,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         !has(n, 'Coit Tower') &&
         !has(n, 'Ballpark')
     )
-    screenshot('map-no-pins.png')
+    await visualScreenshot('map-no-pins.png', 'map-tiles')
 
     // the camera the fixture seeded is what MapKit settled on, reported back through
     // onRegionChange rather than assumed.
     await wait('the camera reports the place it was seeded with', (n) =>
-      status(n, 'Center', '37.80,-122.39')
+      status(n, 'Center', '37.7955,-122.3937')
     )
     const before = regions(snapshot(config.simulatorId))
     tap({ id: 'one-native-map-place-presidio' })
     await wait(
       're-centering moves the camera and reports it',
-      (n) => status(n, 'Center', '37.80,-122.47') && regions(n) > before
+      (n) => status(n, 'Center', '37.7989,-122.4662') && regions(n) > before
     )
     screenshot('map-presidio.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -1881,7 +2049,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'VideoPlayer fills the box React Native gave it',
       (n) => player(n)?.frame?.height === 220 && player(n)?.frame?.width === 373
     )
-    screenshot('media-player.png')
+    await visualScreenshot('media-player.png', 'media-player')
     tap({ id: 'one-native-media-height' })
     await wait(
       'the player follows the box when the style changes',
@@ -1928,7 +2096,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'QuickLook previews the file it was given',
       (n) =>
         Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
-        Boolean(id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier'))
+        Boolean(
+          id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
+        )
     )
     screenshot('media-quicklook-open.png')
     tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
@@ -1978,7 +2148,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-dialog-open' })
     await wait('Alert presents from its zero-size host', alertPresented)
-    screenshot('alert-open.png')
+    await visualScreenshot('alert-open.png', 'alert-dialog')
     tap({ label: 'Cancel alert' })
     await wait(
       'Alert cancel emits dismissal and cancel action exactly once',
@@ -2062,7 +2232,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'visible ConfirmationDialog shows its title',
       (n) => confirmationPresented(n) && labels(n).includes('One Native Confirmation')
     )
-    screenshot('confirmation-visible.png')
+    await visualScreenshot('confirmation-visible.png', 'confirmation-title')
     const popup = outside(visible)
     point(popup.x + popup.width / 2, popup.y + popup.height - 40)
     await wait(
@@ -2133,9 +2303,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (node) =>
           node.type === 'TabGroup' &&
           node.frame &&
-          node.frame.width > 300 &&
-          node.frame.height >= 25 &&
-          node.frame.height <= 44
+          node.frame.width === 373 &&
+          node.frame.height === 32
       )?.frame
     const tapSegment = async (index: number, name: string) => {
       const nodes = await wait(name, (current) => Boolean(segmented(current)))
@@ -2154,7 +2323,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           node.type === 'Slider' &&
           Number(node.AXValue) === index &&
           node.frame &&
-          Math.round(node.frame.height) === 216
+          node.frame.height === 216
       )?.frame
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -2163,7 +2332,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'segmented picker mounted',
       (nodes) => value(nodes, 'alpha') && nodes.some((node) => node.type === 'TabGroup')
     )
-    screenshot('picker-segmented.png')
+    await visualScreenshot('picker-segmented.png', 'picker-segmented')
     await tapSegment(1, 'segmented picker has three-option bounds')
     await wait(
       'segmented selection updates React',
@@ -2212,7 +2381,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'wheel native selection changes beta',
-      (nodes) => value(nodes, 'beta') && request(nodes, 'beta') && Boolean(wheel(nodes, 1))
+      (nodes) =>
+        value(nodes, 'beta') && request(nodes, 'beta') && Boolean(wheel(nodes, 1))
     )
     tap({ id: 'one-native-control-style' })
     await wait(
@@ -2220,8 +2390,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (nodes) =>
         labels(nodes).includes('Style: inline · Reject: off') &&
         nodes.some(
-          (node) =>
-            node.type === 'Slider' && node.frame && Math.round(node.frame.height) === 216
+          (node) => node.type === 'Slider' && node.frame && node.frame.height === 216
         )
     )
     screenshot('picker-inline.png')
@@ -2275,11 +2444,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const group = graphical.find(
       (n) => n.type === 'Group' && n.AXLabel === 'Date'
     )!.frame!
-    if (Math.round(group.width) !== 373 || Math.round(group.height) !== 378)
+    if (group.width !== 373 || group.height !== 378)
       throw new Error(
         'Graphical calendar geometry differs from the calibrated iOS 26.4 fixture'
       )
-    screenshot('date-graphical.png')
+    await visualScreenshot('date-graphical.png', 'date-graphical')
     // the AX snapshot omits calendar cells; this fixture uses September 2026 on the calibrated iPhone display.
     point(group.x + (group.width * 6.5) / 7, group.y + 173)
     await wait(
@@ -2333,7 +2502,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'beta') && Boolean(wheel(n, 1))
     )
     const recycledWheel = wheel(recycled, 1)
-    if (!recycledWheel) throw new Error('Expected recycled wheel Slider bounds height 216')
+    if (!recycledWheel)
+      throw new Error('Expected recycled wheel Slider bounds height 216')
     point(
       recycledWheel.x + recycledWheel.width / 2,
       recycledWheel.y + recycledWheel.height / 2 + 32
@@ -2363,14 +2533,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       trigger?.frame &&
       trigger.frame.width > 0 &&
       trigger.frame.height > 0 &&
-      Math.abs(trigger.frame.x + trigger.frame.width / 2 - 196.5) < 28
+      trigger.frame.x + trigger.frame.width / 2 === 196.5
     )
   })
   screenshot('01-centered-trigger.png')
 
   tap({ id: 'one-native-increment-first' })
   tap({ id: 'one-native-input-first' })
-  await typeInto('first tab input', 'retained', (n) => id(n, 'one-native-input-first')?.AXValue)
+  await typeInto(
+    'first tab input',
+    'retained',
+    (n) => id(n, 'one-native-input-first')?.AXValue
+  )
   await wait('counter and input retain local state', firstState)
   tap({ id: 'one-native-select-external' })
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))
@@ -2378,8 +2552,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   await wait('state survives tab switching', firstState)
   tap({ id: 'one-native-toggle-action-tab' })
   await wait(
-    'action tab mounts without disturbing the selection',
-    (n) => firstState(n) && has(n, 'Action presses: 0')
+    'fixture enables the action tab without disturbing selection',
+    (n) => firstState(n) && has(n, 'Hide action tab') && has(n, 'Action presses: 0')
   )
   screenshot('04-action-tab.png')
   // an action tab is a button wearing a tab's chrome, so the press has to run the action and
@@ -2404,10 +2578,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     (n) => has(n, 'Action presses: 2') && has(n, 'Selected: first') && has(n, 'First tab')
   )
   tap({ id: 'one-native-toggle-action-tab' })
-  await wait('action tab unmounts', (n) => firstState(n) && !has(n, 'Compose'))
+  await wait(
+    'fixture disables the action tab',
+    (n) => firstState(n) && has(n, 'Show action tab')
+  )
 
   tap({ id: 'one-native-reorder' })
-  await wait('state survives keyed reorder', firstState)
+  // The snapshot has no per-tab entries, so there is no honest immediate receipt for reorder.
+  // The rejected native tap below is the check: x=151 addresses the first visual tab position,
+  // and Request: second can only result after the keyed order has reversed.
   tap({ id: 'one-native-select-external' })
   await wait('reordered second tab mounts', (n) => has(n, 'Second tab'))
   tap({ id: 'one-native-select-external' })
@@ -2420,7 +2599,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   )
   await tapTab(151, 'rejected native')
   await wait(
-    'native selection is rejected',
+    'native tab position proves keyed reorder and rejected selection',
     (n) =>
       has(n, 'Selected: first') &&
       has(n, 'Requested: second') &&
@@ -2497,7 +2676,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   await wait('palette menu mounts', (n) => has(n, 'Bold') && has(n, 'Italic'))
   tap({ label: 'Bold' })
   await wait('palette action keeps menu open', (n) => has(n, 'Bold') && has(n, 'Italic'))
-  screenshot('04-palette-open.png')
+  await visualScreenshot('04-palette-open.png', 'palette-menu')
   await dismissMenu()
   await wait(
     'palette action reaches React',
