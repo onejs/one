@@ -98,7 +98,7 @@ interface NativeDevEngineResult {
   getBundle: () => Promise<NativeDevBundle>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
-  handleAddedFile: (file: string) => Promise<void>
+  handleRouteFileChange: (file: string) => Promise<void>
 }
 
 // shared resolve extensions for native builds
@@ -646,23 +646,29 @@ try {
 
   let engine: Awaited<ReturnType<typeof dev>>
 
-  const rebuildIfNewRoute = (files: string[]): Promise<boolean> =>
+  const rebuildIfRouteGraphChanged = (files: string[]): Promise<boolean> =>
     queueEngineWork(async () => {
       // rolldown and vite can both report the same addition. decide after all
-      // earlier engine work so only the first notification sees a new route.
+      // earlier engine work so only the first notification sees a changed
+      // route set.
       const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
       const routeRootPrefix = `${normalizePath(routeRoot)}/`
-      const routeAdded = files.some((file) => {
+      const routeSetChanged = files.some((file) => {
         const normalized = normalizePath(file)
         const entry = statSync(file, { throwIfNoEntry: false })
         if (isRouteFile(normalized)) {
-          return entry?.isFile() === true && !knownRoutes.has(normalized)
+          return entry?.isFile() === true
+            ? !knownRoutes.has(normalized)
+            : knownRoutes.has(normalized)
         }
-        return normalized.startsWith(routeRootPrefix) && entry?.isDirectory() === true
+        if (!normalized.startsWith(routeRootPrefix)) return false
+        return entry?.isDirectory() === true
+          ? true
+          : [...knownRoutes].some((route) => route.startsWith(`${normalized}/`))
       })
-      if (!routeAdded) return false
+      if (!routeSetChanged) return false
 
-      // the reload must never serve the bundle from before the route existed.
+      // the reload must never serve the bundle from before the route set changed.
       // onOutput may begin after ensureLatestBuildOutput resolves, so clear the
       // cached bundle before triggering work and let getBundle wait for it.
       currentBundle = null
@@ -693,12 +699,10 @@ try {
         return
       }
 
-      // a route file that was just created has no module, so rolldown reports
-      // the change and stops: in devMode it never re-scans, and the entry's
-      // `import.meta.glob` was expanded back when it transformed the entry.
-      // only a full build re-expands it, and rolldown tells no client that
-      // happened, so the reload is sent from here.
-      if (await rebuildIfNewRoute(result.changedFiles)) return
+      // adding or deleting a route changes a route map that was expanded when
+      // the entry transformed. only a full build re-expands it, and rolldown
+      // tells no client that happened, so the reload is sent from here.
+      if (await rebuildIfRouteGraphChanged(result.changedFiles)) return
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -826,12 +830,12 @@ try {
       await engine.close()
     },
 
-    // vite's watcher sees a created file even when rolldown's addWatchFile
-    // directory watches do not, which is what happens on github's macos
-    // runners. scoped to route files so a random write in the project is not
-    // a full rebuild.
-    async handleAddedFile(file: string) {
-      await rebuildIfNewRoute([file])
+    // vite's watcher sees route additions that rolldown's directory watches can
+    // miss, and supplies the path when a route is deleted. both change the
+    // import.meta.glob expansion and therefore require a full route-map build.
+    // ordinary edits to an existing route remain Fast Refresh patches.
+    async handleRouteFileChange(file: string) {
+      await rebuildIfRouteGraphChanged([file])
     },
   }
 }
@@ -1024,6 +1028,11 @@ Object.keys(_routes).forEach(function(key) {
   var normalizedKey = key.replace(/^\\.\\//, '');
   routes['/' + normalizedKey] = _routes[key];
 });
+
+// React Native reloads a dev bundle in the existing JS runtime. Advance One's
+// route-cache version so a full route-map build cannot reuse the previous
+// import.meta.glob context after a route is added or removed.
+globalThis.__vxrnVersion = (globalThis.__vxrnVersion || 0) + 1;
 
 createApp({
   routes: routes,

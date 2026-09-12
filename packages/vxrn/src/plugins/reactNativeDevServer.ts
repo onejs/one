@@ -84,6 +84,7 @@ export function createReactNativeDevServerPlugin(
       > = {}
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
+      const pendingReloadPlatforms = new Set<'ios' | 'android'>()
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -211,6 +212,9 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
+        if (pendingReloadPlatforms.delete(socket.vxrnPlatform)) {
+          socket.send(JSON.stringify({ type: 'hmr:reload' }))
+        }
 
         socket.on('message', (message) => {
           const value = message.toString()
@@ -245,80 +249,29 @@ export function createReactNativeDevServerPlugin(
         })
       })
 
-      const reloadNativeClients = (platform: string) => {
-        const reload = JSON.stringify({ type: 'hmr:reload' })
-        hmrWSS.clients.forEach((client) => {
-          const nativeClient = client as NativeHmrSocket
-          if (nativeClient.readyState === 1 && nativeClient.vxrnPlatform === platform) {
-            nativeClient.send(reload)
-          }
-        })
-      }
-
-      // a created route file: rolldown's addWatchFile on the route directories
-      // is supposed to report it, and the engine rebuilds only then. github's
-      // macos runners do not always surface that, so vite's watcher is the
-      // backup, still scoped to route files inside handleAddedFile.
-      //
-      // a deletion it cannot survive. rolldown's dev engine panics its worker
-      // when it retires a module that left the disk ("index out of bounds" out
-      // of oxc_index), and from then on every bundle request answers 500 even
-      // once the file comes back. that engine cannot be repaired, so drop it
-      // and let the next bundle request build a fresh one.
-      let deletionTimer: ReturnType<typeof setTimeout> | undefined
-      let addTimer: ReturnType<typeof setTimeout> | undefined
-      const addedFiles = new Set<string>()
+      // route additions and deletions change the import.meta.glob expansion.
+      // vite's watcher is the reliable path for both: rolldown's directory
+      // watches can miss additions on hosted macos, while a deleted file must
+      // be rebuilt out of the route map rather than left as a missing module.
       const hasHiddenProjectSegment = (file: string) =>
         relative(root, file)
           .split(/[/\\]/)
           .some((segment) => segment.startsWith('.'))
-      server.watcher.on('add', (file) => {
+      const handleRouteFileChange = (file: string) => {
         if (hasHiddenProjectSegment(file)) return
-        addedFiles.add(file)
-        clearTimeout(addTimer)
-        addTimer = setTimeout(() => {
-          const files = [...addedFiles]
-          addedFiles.clear()
-          for (const platform of Object.keys(devEngines)) {
-            const devEngine = devEngines[platform]
-            if (!devEngine) continue
-            for (const added of files) {
-              devEngine.handleAddedFile(added).catch((error) => {
-                console.error(
-                  `[vxrn] handling added ${added} for ${platform} failed`,
-                  error
-                )
-              })
-            }
-          }
-        }, 50)
-      })
-      server.watcher.on('unlink', (file) => {
-        // vite's watcher already skips node_modules and .git. keep out the rest
-        // of what a dev server writes into a project while it runs: caches and
-        // build output under a dot directory, editor swap files.
-        if (hasHiddenProjectSegment(file)) return
-        // one pass for a burst (a branch switch, a generator, a rename)
-        clearTimeout(deletionTimer)
-        deletionTimer = setTimeout(() => {
-          for (const platform of Object.keys(devEngines)) {
-            const devEngine = devEngines[platform]
-            if (!devEngine) continue
-            devEngines[platform] = null
-            const closing = (async () => {
-              try {
-                await devEngine.close()
-              } catch {
-                // the retiring engine is discarded even if its worker already stopped.
-              } finally {
-                devEngineCreating[platform] = null
-              }
-            })()
-            devEngineCreating[platform] = closing
-            reloadNativeClients(platform)
-          }
-        }, 500)
-      })
+        for (const platform of Object.keys(devEngines)) {
+          const devEngine = devEngines[platform]
+          if (!devEngine) continue
+          devEngine.handleRouteFileChange(file).catch((error) => {
+            console.error(
+              `[vxrn] handling route graph change ${file} for ${platform} failed`,
+              error
+            )
+          })
+        }
+      }
+      server.watcher.on('add', handleRouteFileChange)
+      server.watcher.on('unlink', handleRouteFileChange)
 
       clientWSS.on('connection', (socket) => {
         socket.on('message', (messageRaw) => {
@@ -368,6 +321,7 @@ export function createReactNativeDevServerPlugin(
                     // an update with no clientId is for every client on the
                     // platform: an error, or a reload after a full rebuild
                     const target = 'clientId' in update ? update.clientId : undefined
+                    let delivered = false
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
                       if (
@@ -376,14 +330,18 @@ export function createReactNativeDevServerPlugin(
                         (!target || nativeClient.vxrnClientId === target)
                       ) {
                         client.send(msg)
+                        delivered = true
                       }
                     })
+                    if (update.type === 'hmr:reload' && !target) {
+                      if (delivered) pendingReloadPlatforms.delete(platform)
+                      else pendingReloadPlatforms.add(platform)
+                    }
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
               } finally {
-                // clear so a failed creation can be retried and a later route
-                // deletion can install its close transition in this slot.
+                // clear so a failed creation can be retried.
                 devEngineCreating[platform] = null
               }
             })()
@@ -421,7 +379,13 @@ export function createReactNativeDevServerPlugin(
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
 
-          res.writeHead(200, { 'Content-Type': 'text/javascript' })
+          // A DevSettings reload requests this exact URL again. Native URL
+          // loading may otherwise reuse the first response and restart the app
+          // on a route map from before a file was added or removed.
+          res.writeHead(200, {
+            'Cache-Control': 'no-store',
+            'Content-Type': 'text/javascript',
+          })
           res.end(bundle.code)
         } catch (err) {
           console.error(` Error building React Native bundle`)
