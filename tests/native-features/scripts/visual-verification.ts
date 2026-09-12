@@ -1,14 +1,14 @@
 #!/usr/bin/env bun
 import fs from 'node:fs'
 import path from 'node:path'
-import {
-  countChangedPixels,
-  extractCrop,
-  readPng,
-  saveCrop,
-} from './visual-pixel-gate'
+import { countChangedPixels, extractCrop, readPng, saveCrop } from './visual-pixel-gate'
 import { evaluateGeminiOracle, type OracleVerdict } from './visual-gemini-oracle'
-import { VISUAL_CHECKS, type VisualCheckDeclaration } from './visual-declarations'
+import {
+  resolveVisualRegion,
+  VISUAL_CHECKS,
+  type VisualAccessibilityNode,
+  type VisualCheckDeclaration,
+} from './visual-declarations'
 
 export interface SubjectGateResult {
   passed: boolean
@@ -19,7 +19,7 @@ export interface SubjectGateResult {
   totalPixels: number
   changedRatio: number
   nullStateReads: string
-  crossSubstitutionMatches: number
+  crossSubstitutionMatches: number | null
   corpusSize: number
   swapTestPassed: boolean
   failureReason?: string
@@ -38,11 +38,29 @@ export interface VisualCheckResult {
   subject: string
   positivePath: string
   negativePath: string
+  region: { x: number; y: number; width: number; height: number }
   gate: SubjectGateResult
   oracle?: AdvisoryOracleResult
   passed: boolean
   durationMs: number
   error?: string
+}
+
+function accessibilitySnapshotPath(imagePath: string): string {
+  return imagePath.replace(/\.png$/i, '.ax.json')
+}
+
+function anchoredRegion(decl: VisualCheckDeclaration, options: VerifyOptions) {
+  const anchorPath = resolveImagePath(decl.anchor.capture, options)
+  const snapshotPath = accessibilitySnapshotPath(anchorPath)
+  if (!fs.existsSync(snapshotPath))
+    throw new Error(
+      `${decl.name}: accessibility snapshot '${snapshotPath}' is missing; recapture with one-native-conformance.ts`
+    )
+  const nodes = JSON.parse(
+    fs.readFileSync(snapshotPath, 'utf8')
+  ) as VisualAccessibilityNode[]
+  return resolveVisualRegion(decl, nodes)
 }
 
 export interface VerifyOptions {
@@ -117,17 +135,29 @@ export async function verifyVisualCheck(
 
   const positivePath = resolveImagePath(decl.positiveCapture, options)
   const negativePath = resolveImagePath(decl.negativeCapture, options)
+  const region = anchoredRegion(decl, options)
 
   const posImg = readPng(positivePath)
   const negImg = readPng(negativePath)
+  const scale = posImg.width / 393
+  const screenHeight = posImg.height / scale
+  if (
+    region.x < 0 ||
+    region.y < 0 ||
+    region.x + region.width > 393 ||
+    region.y + region.height > screenHeight
+  )
+    throw new Error(
+      `${decl.name}: anchored region ${JSON.stringify(region)} leaves the 393x${screenHeight} capture`
+    )
 
-  const posCrop = extractCrop(posImg, decl.region)
-  const negCrop = extractCrop(negImg, decl.region)
+  const posCrop = extractCrop(posImg, region)
+  const negCrop = extractCrop(negImg, region)
 
   // Step 1: Directional subject-specific measurements
   const posReading = decl.measureSubject(posCrop)
   const negReading = decl.measureSubject(negCrop)
-  const changed = countChangedPixels(positivePath, negativePath, decl.region, 8)
+  const changed = countChangedPixels(positivePath, negativePath, region, 8)
 
   const positivePass = posReading >= decl.minSubjectFloor
   const swapTestPass = negReading < decl.minSubjectFloor
@@ -170,8 +200,8 @@ export async function verifyVisualCheck(
 
     const posCropPath = path.join(cropDir, `${decl.name}-pos.png`)
     const negCropPath = path.join(cropDir, `${decl.name}-neg.png`)
-    saveCrop(posImg, decl.region, posCropPath)
-    saveCrop(negImg, decl.region, negCropPath)
+    saveCrop(posImg, region, posCropPath)
+    saveCrop(negImg, region, negCropPath)
 
     const posVerdict = await evaluateGeminiOracle(posCropPath, decl.prompt, {
       model: options.model,
@@ -197,6 +227,7 @@ export async function verifyVisualCheck(
     subject: decl.subject,
     positivePath,
     negativePath,
+    region,
     gate,
     oracle,
     passed: gatePassed,
@@ -245,9 +276,12 @@ export async function runAllVisualChecks(
  * measurement fails to meet the floor. Proves the deterministic gate is discriminating
  * and directional rather than symmetric.
  */
-export async function runSwapTest(
-  options: VerifyOptions = {}
-): Promise<{ passed: boolean; rejectedCount: number; totalCount: number; failures: string[] }> {
+export async function runSwapTest(options: VerifyOptions = {}): Promise<{
+  passed: boolean
+  rejectedCount: number
+  totalCount: number
+  failures: string[]
+}> {
   let rejectedCount = 0
   const failures: string[] = []
 
@@ -301,18 +335,24 @@ export async function runCrossSubstitutionTest(
     if (!fs.statSync(sPath).isDirectory()) continue
     for (const f of fs.readdirSync(sPath)) {
       if (f.endsWith('.png')) {
-        allPngs.push({ suite: s, file: f, fullPath: path.join(sPath, f), rel: `${s}/${f}` })
+        allPngs.push({
+          suite: s,
+          file: f,
+          fullPath: path.join(sPath, f),
+          rel: `${s}/${f}`,
+        })
       }
     }
   }
 
   const results: CrossSubstitutionResult[] = []
   for (const decl of VISUAL_CHECKS) {
+    const region = anchoredRegion(decl, options)
     let matches = 0
     const matchingCaptures: string[] = []
     for (const imgInfo of allPngs) {
       const img = readPng(imgInfo.fullPath)
-      const crop = extractCrop(img, decl.region)
+      const crop = extractCrop(img, region)
       const val = decl.measureSubject(crop)
       if (val >= decl.minSubjectFloor) {
         matches++
@@ -364,7 +404,9 @@ async function main() {
   }
 
   if (crossSubMode) {
-    console.log('\n=== RUNNING CROSS-SUBSTITUTION SPECIFICITY TEST (ALL 70 CORPUS CAPTURES) ===\n')
+    console.log(
+      '\n=== RUNNING CROSS-SUBSTITUTION SPECIFICITY TEST (ALL 70 CORPUS CAPTURES) ===\n'
+    )
     const crossResults = await runCrossSubstitutionTest(options)
     for (const r of crossResults) {
       console.log(

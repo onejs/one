@@ -49,7 +49,11 @@ function SheetContent({
   }
 
   return (
-    <View onLayout={handleLayout} style={styles.sheetContent}>
+    <View
+      onLayout={handleLayout}
+      style={styles.sheetContent}
+      testID="one-native-sheet-content"
+    >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 
       {/* counter and increment (kept compact for height300) */}

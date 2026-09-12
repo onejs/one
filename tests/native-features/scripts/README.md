@@ -23,7 +23,7 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `pickers` launches the same named bundle, then opens `nav-one-native-controls`. Fixture loaded is an Application node plus the controls `Value:` / `Request:` labels and control ids, or a menu overlay whose background is hidden (`Dismiss context menu`) with the Alpha / Beta / Gamma rows required. Native TabGroup has no children, so segmented taps use observed TabGroup bounds in thirds with rounded integer coordinates. It covers segmented accept, reject (controlled beta restored), revision reset, and external selection; menu options and Gamma selection; wheel `Slider` `AXValue` 2 then the row above for beta (`AXValue` 1, bounds height 216); then inline mount on the same `Slider` height 216 model. It also selects dates through compact, graphical, and wheel presentations and chooses opaque black in ColorPicker. Calendar and color popup children are missing from the snapshot API, so those taps use calibrated geometry guarded by the observed calendar bounds or 393x852 device size, with exact resulting Date/hex values asserted. Date fixtures use September 2026 and English simulator settings. Returning to Picker after the color popup verifies identical options survive native host recycling and send a fresh callback.
 
-`forms` covers Toggle acceptance/rejection, reset revision, and external updates against the native switch value; Stepper acceptance/rejection, reset, external updates, every increment through the upper bound, a no-op increment at the bound, and decrement; and Slider drag, external values, rejection, and reset. Switches use a 150 ms press because instantaneous CLI HID taps do not start native switch tracking. Stepper's disabled increment still reports enabled in this snapshot API, so the runner tests the boundary behavior directly.
+`forms` covers Toggle acceptance/rejection, reset revision, and external updates against the native switch value; Stepper acceptance/rejection, reset, external updates, every increment through the upper bound, a no-op increment at the bound, and decrement; and Slider drag, external values, rejection, and reset. Switches use a 150 ms press because instantaneous CLI HID taps do not start native switch tracking. Stepper's disabled increment still reports enabled in this snapshot API, so the runner tests the boundary behavior directly. Its visual check grades the capsule paint it measures. It does not claim the glyphs from a 188-pixel reading.
 
 `sheets` verifies RN button/input interaction, state retention across reopen and nested sheets, fraction and height detent changes, exact 393x300 Yoga layout for a 300-point sheet, programmatic dismissal, and the same drag with interactive dismissal blocked and allowed. It checks presentation state and dismissal callback counts, then leaves/reenters the route and verifies identical medium detents are restored after native host recycling. Hardware keyboard input is enabled in the test simulator; this does not test software keyboard avoidance.
 
@@ -35,11 +35,11 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `media` covers the two controls that only exist because the generator reads SwiftUI's overlay modules: `Swift.VideoPlayer` from `_AVKit_SwiftUI` and `Swift.QuickLook` from `_QuickLook_SwiftUI`. The fixture writes a six second clip and a text file into the cache directory and reads their sizes back, so the byte counts prove both files reached disk before either control was handed a `file://` url. It asserts the player takes the Yoga box exactly (373 by 220) and follows it to 320 and back, which is the whole point of the `fill` layout kind: a fill control reports no ideal height, so nothing but the React Native box can be deciding that size. Playback is read off AVKit's transport overlay, which the runner reveals from the top edge of the surface because the play button covers the middle: elapsed time stays at `0:00` without autoplay and has moved on a player mounted with autoplay on. A presented Quick Look takes the whole accessibility tree, so the fixture behind it is unreadable while it is up; presentation is asserted through the QuickLook overlay's own ids, including the text-item search button, which is QuickLook having resolved the url to a text preview rather than merely presenting. Dismissal is asserted back on the fixture, where the change count must reach 2.
 
-`map` covers `Swift.Map` from the `_MapKit_SwiftUI` overlay module. Like the player it asserts the fill layout by number: 373 by 220, following the style to 320 and back. MapKit publishes each annotation as an accessibility element carrying the marker's title, so the markers React sent are readable without a screenshot; the runner asserts the two it sent are present and the third is not, which is what separates "the object array arrived" from "some annotation rendered", then adds the third and empties the array. Every pin has to sit inside the seeded camera's region, because MapKit publishes nothing for an annotation well outside it and a distant pin would read as a lost prop. The camera is asserted through `onRegionChange` rather than assumed: the fixture reports the centre MapKit settled on, rounded to two places, and re-centring to a second place must both change that centre and raise the region count.
+`map` covers `Swift.Map` from the `_MapKit_SwiftUI` overlay module. Like the player it asserts the fill layout by number: 373 by 220, following the style to 320 and back. MapKit publishes each annotation as an accessibility element carrying the marker's title, so the markers React sent are readable without a screenshot; the runner asserts the two it sent are present and the third is not, which is what separates "the object array arrived" from "some annotation rendered", then adds the third and empties the array. Every pin has to sit inside the seeded camera's region, because MapKit publishes nothing for an annotation well outside it and a distant pin would read as a lost prop. The camera is asserted through `onRegionChange` rather than assumed: the fixture reports the centre MapKit settled on to four decimal places, and re-centring to a second place must both change that centre and raise the region count.
 
 Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
-Artifacts are written to `--artifact-dir`: key rendered screenshots and outcome.json with passed checks, durations, and `suite`, and a screenshot plus accessibility snapshot when a condition times out.
+Artifacts are written to `--artifact-dir`: key rendered screenshots, an `.ax.json` accessibility snapshot captured with every screenshot, and outcome.json with passed checks, durations, and `suite`.
 
 ## Visual verification
 
@@ -60,9 +60,16 @@ That runs the 12 suites into `<artifact-dir>/<suite>/`, then the visual pass aga
 root. The visual pass runs last and against the root rather than per suite because several checks
 take their negative capture from another suite's directory.
 
-Each check in `visual-declarations.ts` declares a crop region, a subject measurement over the
-pixels in it, a floor, and a negative capture. Three properties are enforced rather than asserted
-in prose:
+Each check in `visual-declarations.ts` declares an accessibility anchor, a crop relative to its
+at-capture frame, a subject measurement over the pixels in it, a floor, and a negative capture.
+The same resolved crop grades both images. A fixture row inserted above a control therefore moves
+the crop with the control instead of producing a false unpainted verdict. Tab-bar geometry remains
+pixel-derived because the snapshot exposes only its group node. Three properties are enforced
+rather than asserted in prose:
+
+Map markers, map tiles, and the video player layer paint asynchronously. Their runner captures
+wait on the same directional subject measurement used by the offline gate. If the pixels never
+reach the declared floor, the suite fails before saving a raced positive capture.
 
 - **The subject measurement is directional.** It reads the positive capture only. A symmetric diff
   between two captures can never discriminate them, so it cannot be the gate.
@@ -83,6 +90,7 @@ run in three, and on a pin-free map it could be flipped to pass by changing only
 status text, which it read instead of the pixels. Anything it decides is a coin flip; use it to
 author and explain checks, not to gate them.
 
-When adding a check, do not tune a crop until only the positive passes. Verify it by erasing the
-subject in place: fill the declared region with a realistic null-state colour and confirm the
-reading falls below the floor. All 18 checks do.
+When adding or changing a check, do not tune a crop until only the positive passes. Verify it by
+erasing the subject in place: fill the declared region with a realistic null-state colour and
+confirm the reading falls below the floor. Re-run `--swap-test` and `--cross-sub` after the device
+capture and record the new calibration instead of carrying numbers across a changed measurement.
