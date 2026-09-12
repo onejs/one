@@ -1,19 +1,31 @@
 import type { ReactNode } from 'react';
-import type { ViewProps } from 'react-native';
-import type { Visibility } from './swiftui';
+import type { ColorValue, ViewProps } from 'react-native';
+import type { PresentationContentInteraction, Visibility } from './swiftui';
 export type PresentationDetent = 'medium' | 'large' | {
     fraction: number;
 } | {
     height: number;
 };
+export type PresentationBackgroundInteraction = 'automatic' | 'enabled' | 'disabled' | {
+    enabledUpThrough: PresentationDetent;
+};
+export type PresentationSizing = 'automatic' | 'fitted' | 'form' | 'page';
 export interface SheetProps extends ViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     onDismiss?: () => void;
     revision?: number;
     presentationDetents?: readonly PresentationDetent[];
+    fitToContents?: boolean;
+    selectedDetent?: PresentationDetent;
+    onSelectedDetentChange?: (detent: PresentationDetent) => void;
+    detentRevision?: number;
     presentationDragIndicator?: Visibility;
     interactiveDismissDisabled?: boolean;
+    presentationBackground?: ColorValue;
+    presentationBackgroundInteraction?: PresentationBackgroundInteraction;
+    presentationContentInteraction?: PresentationContentInteraction;
+    presentationSizing?: PresentationSizing;
     children: ReactNode;
 }
 //# sourceMappingURL=sheetTypes.d.ts.map

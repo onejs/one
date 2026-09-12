@@ -58,6 +58,21 @@ export type PresentationAdaptation =
   | 'popover'
   | 'sheet'
   | 'fullScreenCover'
+export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls'
+export type ColorScheme = 'light' | 'dark'
+export type DynamicTypeSize =
+  | 'xSmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xLarge'
+  | 'xxLarge'
+  | 'xxxLarge'
+  | 'accessibility1'
+  | 'accessibility2'
+  | 'accessibility3'
+  | 'accessibility4'
+  | 'accessibility5'
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette'
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash'
 export type ImageScale = 'small' | 'medium' | 'large'
@@ -179,6 +194,29 @@ export const swiftUIValues = {
     popover: 16.4,
     sheet: 16.4,
     fullScreenCover: 16.4,
+  },
+  PresentationContentInteraction: {
+    automatic: 16.4,
+    resizes: 16.4,
+    scrolls: 16.4,
+  },
+  ColorScheme: {
+    light: 13,
+    dark: 13,
+  },
+  DynamicTypeSize: {
+    xSmall: 15,
+    small: 15,
+    medium: 15,
+    large: 15,
+    xLarge: 15,
+    xxLarge: 15,
+    xxxLarge: 15,
+    accessibility1: 15,
+    accessibility2: 15,
+    accessibility3: 15,
+    accessibility4: 15,
+    accessibility5: 15,
   },
   SymbolRenderingMode: {
     monochrome: 15,

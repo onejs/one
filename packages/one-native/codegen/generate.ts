@@ -1,4 +1,4 @@
-import { containerComponents, emitContainers } from './emitContainers'
+import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
@@ -105,7 +105,7 @@ emitContainers(header, outputs)
 emitPopover(header, outputs)
 emitStyle(header, outputs)
 selected.push(
-  ...[...sheetMethods, ...popoverMethods, ...styleModifiers].map((method) =>
+  ...[...sheetMethods, ...popoverMethods, ...environmentMethods, ...styleModifiers].map((method) =>
     selectModifier(inventory, method)
   ),
   selectConstructor(inventory, {

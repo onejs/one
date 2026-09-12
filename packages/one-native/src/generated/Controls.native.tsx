@@ -745,6 +745,7 @@ export function Alert({
   onAction,
   title = '',
   message = '',
+  presenting = undefined,
   actions,
   swiftStyle,
   style,
@@ -760,6 +761,8 @@ export function Alert({
         Number.parseFloat(String(Platform.Version))
       )
   }
+  if (presenting !== undefined && typeof presenting !== 'string')
+    throw new Error('Alert presenting must be a string')
   if (!actions.length) throw new Error('Alert must have at least one action')
   if (new Set(actions.map((action) => action.id)).size !== actions.length)
     throw new Error('Alert action ids must be unique')
@@ -779,11 +782,15 @@ export function Alert({
       revision={revision}
       title={title}
       message={message}
+      presenting={presenting ?? ''}
+      hasPresenting={presenting !== undefined}
       actions={actions}
       onNativeAlertValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
-      onNativeAlertAction={({ nativeEvent }) => onAction?.(nativeEvent.id)}
+      onNativeAlertAction={({ nativeEvent }) =>
+        onAction?.(nativeEvent.id, nativeEvent.presenting)
+      }
     />
   )
 }
@@ -795,6 +802,7 @@ export function ConfirmationDialog({
   onAction,
   title = '',
   message = '',
+  presenting = undefined,
   actions,
   titleVisibility = 'automatic',
   swiftStyle,
@@ -813,6 +821,8 @@ export function ConfirmationDialog({
         Number.parseFloat(String(Platform.Version))
       )
   }
+  if (presenting !== undefined && typeof presenting !== 'string')
+    throw new Error('ConfirmationDialog presenting must be a string')
   if (!actions.length) throw new Error('ConfirmationDialog must have at least one action')
   if (new Set(actions.map((action) => action.id)).size !== actions.length)
     throw new Error('ConfirmationDialog action ids must be unique')
@@ -836,12 +846,16 @@ export function ConfirmationDialog({
       revision={revision}
       title={title}
       message={message}
+      presenting={presenting ?? ''}
+      hasPresenting={presenting !== undefined}
       actions={actions}
       titleVisibility={titleVisibility}
       onNativeConfirmationDialogValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
-      onNativeConfirmationDialogAction={({ nativeEvent }) => onAction?.(nativeEvent.id)}
+      onNativeConfirmationDialogAction={({ nativeEvent }) =>
+        onAction?.(nativeEvent.id, nativeEvent.presenting)
+      }
     />
   )
 }

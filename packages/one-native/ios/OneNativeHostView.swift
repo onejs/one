@@ -10,12 +10,16 @@ private final class HostModel: ObservableObject {
 
 private struct HostContent: View {
   @ObservedObject var model: HostModel
+  @ObservedObject var environment: OneNativeEnvironmentModel
   @ObservedObject var children: OneNativeChildren
   // composed, the parent lays this stack out and measures it; only a standalone host
   // answers to Yoga.
   let standalone: Bool
 
-  var body: some View { stack.oneNativeMeasured(standalone, model.onHeight) }
+  var body: some View {
+    OneNativeEnvironment(model: environment, content: stack)
+      .oneNativeMeasured(standalone, model.onHeight)
+  }
 
   @ViewBuilder private var stack: some View {
     if model.axis == "horizontal" {
@@ -61,12 +65,15 @@ private struct HostContent: View {
 public final class OneNativeHostView: OneNativeContainerView {
   public var onMeasure: ((CGFloat) -> Void)?
   private let model: HostModel
+  private let environment: OneNativeEnvironmentModel
 
   public init() {
     let model = HostModel()
+    let environment = OneNativeEnvironmentModel()
     self.model = model
+    self.environment = environment
     super.init(wrap: { children, standalone in
-      AnyView(HostContent(model: model, children: children, standalone: standalone))
+      AnyView(HostContent(model: model, environment: environment, children: children, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
   }
@@ -77,5 +84,19 @@ public final class OneNativeHostView: OneNativeContainerView {
     if model.axis != axis { model.axis = axis }
     if model.spacing != spacing { model.spacing = spacing }
     if model.alignment != alignment { model.alignment = alignment }
+  }
+
+  public func configureEnvironment(
+    colorScheme: String, dynamicTypeSize: String, locale: String, tint: UIColor?,
+    isEnabled: String
+  ) {
+    environment.configure(
+      colorScheme: colorScheme, dynamicTypeSize: dynamicTypeSize, locale: locale,
+      tint: tint, isEnabled: isEnabled)
+  }
+
+  public override func reset() {
+    environment.reset()
+    super.reset()
   }
 }

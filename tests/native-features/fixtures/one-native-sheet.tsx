@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 export type DetentProfileKey = 'medium+large' | 'fraction.4' | 'height300'
+type FeatureMode = 'base' | 'controlled' | 'fit' | 'styled'
 
 const detentProfiles: Record<DetentProfileKey, readonly PresentationDetent[]> = {
   'medium+large': ['medium', 'large'],
@@ -30,6 +31,7 @@ interface SheetContentProps {
   detentProfile: DetentProfileKey
   onCycleDetents: () => void
   isParentPresented: boolean
+  fitToContents: boolean
 }
 
 function SheetContent({
@@ -38,6 +40,7 @@ function SheetContent({
   detentProfile,
   onCycleDetents,
   isParentPresented,
+  fitToContents,
 }: SheetContentProps) {
   const [count, setCount] = useState(0)
   const [text, setText] = useState('')
@@ -49,7 +52,10 @@ function SheetContent({
   }
 
   return (
-    <View onLayout={handleLayout} style={styles.sheetContent}>
+    <View
+      onLayout={handleLayout}
+      style={[styles.sheetContent, fitToContents && styles.fittedSheetContent]}
+    >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 
       {/* counter and increment (kept compact for height300) */}
@@ -144,8 +150,23 @@ export default function OneNativeSheet() {
   const [detentProfile, setDetentProfile] = useState<DetentProfileKey>('medium+large')
   const [interactiveDismissDisabled, setInteractiveDismissDisabled] = useState(false)
   const [contentLayout, setContentLayout] = useState({ width: 0, height: 0 })
+  const [featureMode, setFeatureMode] = useState<FeatureMode>('base')
+  const [selectedDetent, setSelectedDetent] = useState<PresentationDetent>('medium')
+
+  const cycleFeatureMode = () => {
+    const modes: readonly FeatureMode[] = ['base', 'controlled', 'fit', 'styled']
+    const next = modes[(modes.indexOf(featureMode) + 1) % modes.length]
+    if (next === 'controlled' || next === 'styled') setDetentProfile('medium+large')
+    if (next === 'controlled') setSelectedDetent('medium')
+    setFeatureMode(next)
+  }
 
   const cycleDetents = () => {
+    if (featureMode === 'controlled') {
+      setSelectedDetent((current) => (current === 'medium' ? 'large' : 'medium'))
+      return
+    }
+    if (featureMode === 'styled') setFeatureMode('base')
     setDetentProfile((current) => {
       const idx = detentKeys.indexOf(current)
       return detentKeys[(idx + 1) % detentKeys.length]
@@ -159,6 +180,18 @@ export default function OneNativeSheet() {
   return (
     <View style={styles.screen} testID="one-native-sheet-screen">
       <Text style={styles.title}>One Native Sheet</Text>
+      <Pressable
+        accessibilityRole="button"
+        onPress={cycleFeatureMode}
+        style={styles.featureMode}
+        testID="one-native-sheet-feature-mode"
+      >
+        <Text style={styles.featureModeText}>
+          {featureMode === 'controlled'
+            ? `controlled:${typeof selectedDetent === 'string' ? selectedDetent : 'custom'}`
+            : featureMode}
+        </Text>
+      </Pressable>
 
       {/* visible presentation status card */}
       <View style={styles.statusCard}>
@@ -219,7 +252,10 @@ export default function OneNativeSheet() {
               accessibilityRole="button"
               accessibilityState={{ selected: detentProfile === key }}
               key={key}
-              onPress={() => setDetentProfile(key)}
+              onPress={() => {
+                setFeatureMode('base')
+                setDetentProfile(key)
+              }}
               style={[
                 styles.profileButton,
                 detentProfile === key && styles.selectedProfileButton,
@@ -253,14 +289,27 @@ export default function OneNativeSheet() {
 
       {/* swift.Sheet with eager-mounted SheetContent child outside isPresented conditional */}
       <Swift.Sheet
+        {...(featureMode === 'controlled'
+          ? { selectedDetent, onSelectedDetentChange: setSelectedDetent }
+          : {})}
+        fitToContents={featureMode === 'fit'}
         interactiveDismissDisabled={interactiveDismissDisabled}
         isPresented={isPresented}
         onDismiss={() => setDismissCount((c) => c + 1)}
         onIsPresentedChange={setIsPresented}
         presentationDetents={detentProfiles[detentProfile]}
+        presentationBackground={featureMode === 'styled' ? '#FFF3C4' : undefined}
+        presentationBackgroundInteraction={
+          featureMode === 'styled' ? { enabledUpThrough: 'medium' } : 'automatic'
+        }
+        presentationContentInteraction={
+          featureMode === 'styled' ? 'resizes' : 'automatic'
+        }
+        presentationSizing={featureMode === 'styled' ? 'fitted' : 'automatic'}
       >
         <SheetContent
           detentProfile={detentProfile}
+          fitToContents={featureMode === 'fit'}
           isParentPresented={isPresented}
           onClose={() => setIsPresented(false)}
           onCycleDetents={cycleDetents}
@@ -283,6 +332,21 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1C1C1E',
     marginBottom: 12,
+  },
+  featureMode: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
+    zIndex: 1,
+    borderRadius: 7,
+    backgroundColor: '#E5E5EA',
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+  },
+  featureModeText: {
+    color: '#007AFF',
+    fontSize: 12,
+    fontWeight: '600',
   },
   statusCard: {
     backgroundColor: '#FFFFFF',
@@ -377,6 +441,10 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: '#FFFFFF',
     gap: 8,
+  },
+  fittedSheetContent: {
+    flex: 0,
+    height: 230,
   },
   sheetHeading: {
     fontSize: 16,

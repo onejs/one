@@ -37,6 +37,8 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     title: string;
     message: string;
+    presenting: string;
+    hasPresenting: boolean;
     actions: ReadonlyArray<DialogAction>;
     titleVisibility: string;
     swiftStyle?: OneNativeStyleNative;
@@ -47,6 +49,7 @@ interface NativeProps extends ViewProps {
     }>>;
     onNativeConfirmationDialogAction?: DirectEventHandler<Readonly<{
         id: string;
+        presenting: string;
         eventCount: Int32;
     }>>;
 }

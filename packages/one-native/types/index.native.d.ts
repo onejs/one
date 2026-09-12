@@ -20,8 +20,8 @@ export declare const Swift: {
     Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;
     SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
-    Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, swiftStyle, style, ...props }: import("./types").AlertProps): import("react/jsx-runtime").JSX.Element;
-    ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, actions, titleVisibility, swiftStyle, style, ...props }: import("./types").ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
+    Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, swiftStyle, style, ...props }: import("./types").AlertProps): import("react/jsx-runtime").JSX.Element;
+    ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: import("./types").ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
     QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: import("./types").QuickLookProps): import("react/jsx-runtime").JSX.Element;
     Tabs: typeof Tabs;
     Tab: typeof Tab;

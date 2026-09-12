@@ -17,6 +17,9 @@ export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'cha
 export type Axis = 'horizontal' | 'vertical';
 export type Edge = 'top' | 'leading' | 'bottom' | 'trailing';
 export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover';
+export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls';
+export type ColorScheme = 'light' | 'dark';
+export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge' | 'xxxLarge' | 'accessibility1' | 'accessibility2' | 'accessibility3' | 'accessibility4' | 'accessibility5';
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
 export type ImageScale = 'small' | 'medium' | 'large';
@@ -138,6 +141,29 @@ export declare const swiftUIValues: {
         readonly popover: 16.4;
         readonly sheet: 16.4;
         readonly fullScreenCover: 16.4;
+    };
+    readonly PresentationContentInteraction: {
+        readonly automatic: 16.4;
+        readonly resizes: 16.4;
+        readonly scrolls: 16.4;
+    };
+    readonly ColorScheme: {
+        readonly light: 13;
+        readonly dark: 13;
+    };
+    readonly DynamicTypeSize: {
+        readonly xSmall: 15;
+        readonly small: 15;
+        readonly medium: 15;
+        readonly large: 15;
+        readonly xLarge: 15;
+        readonly xxLarge: 15;
+        readonly xxxLarge: 15;
+        readonly accessibility1: 15;
+        readonly accessibility2: 15;
+        readonly accessibility3: 15;
+        readonly accessibility4: 15;
+        readonly accessibility5: 15;
     };
     readonly SymbolRenderingMode: {
         readonly monochrome: 15;

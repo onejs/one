@@ -145,6 +145,55 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid PresentationAdaptation: \(value)")
     }
   }
+  static func presentationContentInteraction(_ value: String) -> PresentationContentInteraction {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "resizes":
+      return .resizes
+    case "scrolls":
+      return .scrolls
+    default: preconditionFailure("invalid PresentationContentInteraction: \(value)")
+    }
+  }
+  static func colorScheme(_ value: String) -> ColorScheme {
+    switch value {
+    case "light":
+      return .light
+    case "dark":
+      return .dark
+    default: preconditionFailure("invalid ColorScheme: \(value)")
+    }
+  }
+  static func dynamicTypeSize(_ value: String) -> DynamicTypeSize {
+    switch value {
+    case "xSmall":
+      return .xSmall
+    case "small":
+      return .small
+    case "medium":
+      return .medium
+    case "large":
+      return .large
+    case "xLarge":
+      return .xLarge
+    case "xxLarge":
+      return .xxLarge
+    case "xxxLarge":
+      return .xxxLarge
+    case "accessibility1":
+      return .accessibility1
+    case "accessibility2":
+      return .accessibility2
+    case "accessibility3":
+      return .accessibility3
+    case "accessibility4":
+      return .accessibility4
+    case "accessibility5":
+      return .accessibility5
+    default: preconditionFailure("invalid DynamicTypeSize: \(value)")
+    }
+  }
   static func symbolRenderingMode(_ value: String) -> SymbolRenderingMode {
     switch value {
     case "monochrome":

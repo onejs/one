@@ -219,7 +219,11 @@ function Leaves() {
     <View style={{ width: '100%' }}>
       <Swift.Text text="Read only" />
       <Swift.Label label="Starred" systemImage="star.fill" />
-      <Swift.Image systemName="star.fill" symbolRenderingMode="hierarchical" imageScale="medium" />
+      <Swift.Image
+        systemName="star.fill"
+        symbolRenderingMode="hierarchical"
+        imageScale="medium"
+      />
       <Swift.Button
         label="Delete"
         systemImage="trash"
@@ -325,11 +329,11 @@ it: size it with `style`.
   latitude={37.7955}
   longitude={-122.3937}
   distance={4000}
-  markers={[
-    { id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 },
-  ]}
+  markers={[{ id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 }]}
   style={{ width: '100%', height: 220 }}
-  onRegionChange={(latitude, longitude, distance) => setCamera({ latitude, longitude, distance })}
+  onRegionChange={(latitude, longitude, distance) =>
+    setCamera({ latitude, longitude, distance })
+  }
 />
 ```
 
@@ -363,13 +367,14 @@ function DeleteButton({ item }: { item: Item }) {
       <Swift.Alert
         title="Delete item?"
         message="This cannot be undone."
+        presenting={item.id}
         isPresented={confirming}
         onIsPresentedChange={setConfirming}
         actions={[
           { id: 'cancel', label: 'Cancel', role: 'cancel' },
           { id: 'delete', label: 'Delete', role: 'destructive' },
         ]}
-        onAction={(id) => id === 'delete' && remove(item)}
+        onAction={(id, itemId) => id === 'delete' && removeById(itemId)}
       />
     </View>
   )
@@ -386,12 +391,14 @@ takes the same values as `Swift.Button`'s `buttonRole`. `title` and `message` ar
 plain strings; an empty `message` renders no message. `ConfirmationDialog` adds
 `titleVisibility`: `automatic`, `visible`, or `hidden`.
 
+Pass `presenting` when an action needs the value captured for that presentation.
+The action callback receives `(id, presenting)`, and an empty string is a valid
+presented value. Leaving the prop out uses the ordinary boolean overload and reports
+an empty second callback argument for compatibility with the shared event shape.
+
 Neither host takes a `disabled` prop. SwiftUI's `.disabled` propagates through the
 environment into the presented content, so a host-level `disabled` would silently
 disable every dialog button. Disable the control that opens the dialog instead.
-
-The `presenting:` overloads that bind a value into the dialog, and
-`presentationCompactAdaptation`, are not bound yet.
 
 ## Quick Look
 
@@ -426,6 +433,7 @@ function ExampleSheet() {
   const [open, setOpen] = useState(false)
   const [nested, setNested] = useState(false)
   const [dismisses, setDismisses] = useState(0)
+  const [detent, setDetent] = useState<PresentationDetent>('medium')
   return (
     <>
       <Text>Dismisses: {dismisses}</Text>
@@ -434,7 +442,13 @@ function ExampleSheet() {
         onIsPresentedChange={setOpen}
         onDismiss={() => setDismisses((count) => count + 1)}
         presentationDetents={['medium', 'large']}
+        selectedDetent={detent}
+        onSelectedDetentChange={setDetent}
         presentationDragIndicator="automatic"
+        presentationBackground="#FFF3C4"
+        presentationBackgroundInteraction={{ enabledUpThrough: 'medium' }}
+        presentationContentInteraction="resizes"
+        presentationSizing="automatic"
         interactiveDismissDisabled={false}
       >
         <View style={{ flex: 1, padding: 16 }}>
@@ -457,6 +471,20 @@ detent is required. Detents are `medium`, `large`, `{ fraction }` with a value i
 `(0, 1]`, or `{ height }` with a positive point height. The default is `['large']`.
 `presentationDragIndicator` is a `Visibility` value. `interactiveDismissDisabled`
 blocks the swipe-to-dismiss gesture when true.
+
+`selectedDetent` and `onSelectedDetentChange` form a controlled pair. The selection
+must be present in `presentationDetents`; native drags are acknowledged with the same
+event-count and `detentRevision` protocol used by other controlled values.
+`presentationBackground` accepts a React Native color. Background interaction is
+`automatic`, `enabled`, `disabled`, or `{ enabledUpThrough: detent }`. Content
+interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
+`automatic`, `fitted`, `form`, or `page`.
+
+`fitToContents` derives a height detent from the mounted React Native child's laid-out
+height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
+a flexible child asks to fill the provisional sheet and therefore has no smaller
+content height to fit. Fit mode owns its detent, so it cannot be combined with
+`selectedDetent` or an `enabledUpThrough` background interaction.
 
 Presented sheet content reports Fabric slot state with a local origin. The content
 host supplies a touch handler because presentation leaves the RN surface, the same
@@ -512,6 +540,15 @@ Two consequences worth knowing:
 
 Children are One Native controls, One Native containers, and `Swift.Slot`, which is how
 a React Native subtree gets into the SwiftUI tree.
+
+`Swift.Host` and `Swift.Form` can override the SwiftUI environment for their entire
+composed subtree with `colorScheme`, `dynamicTypeSize`, `locale`, `tint`, and
+`isEnabled`. Omitted props preserve values inherited from an outer SwiftUI container.
+This set covers the environment values React Native can express as stable scalar or
+color props and that directly affect appearance, text layout, localization, and
+interaction. Arbitrary environment keys are intentionally excluded because their
+value types cannot cross React Native codegen safely, and adding named keys without a
+concrete One Native consumer would create unused API surface.
 
 Horizontal hosts hold whatever fits. Several SwiftUI controls are width-greedy, so
 three of them side by side on a phone overflow, and SwiftUI then reports a much taller

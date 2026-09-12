@@ -194,18 +194,20 @@ export interface AlertProps extends OneNativeViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     revision?: number;
-    onAction?: (id: string) => void;
+    onAction?: (id: string, presenting: string) => void;
     title?: string;
     message?: string;
+    presenting?: string;
     actions: readonly DialogAction[];
 }
 export interface ConfirmationDialogProps extends OneNativeViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     revision?: number;
-    onAction?: (id: string) => void;
+    onAction?: (id: string, presenting: string) => void;
     title?: string;
     message?: string;
+    presenting?: string;
     actions: readonly DialogAction[];
     titleVisibility?: Styles.Visibility;
 }
