@@ -41,7 +41,7 @@ owns the rnx engine lane in ~/soot) is the consumer; write it for them, not for 
 Vary, and cross where it is meaningful rather than exhaustively:
   - page tab count: 1, 2, 3, 4, 5
   - detached tab: none / a `role="search"` page tab / an action tab (`onPress`, no children) with
-    `role="search"`. The action-tab combination is one `react-native-bottom-tabs` cannot express
+    `role="search"`. The action-tab combination never enters routed selection
     at all, so rnx has no model for it.
   - badge: absent / short ("5") / wide ("NEW") / overflow ("999+")
   - systemImage present vs a title-only tab

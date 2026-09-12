@@ -1820,7 +1820,7 @@
     {
       "id": "tabs1-search-action-sel0-light",
       "axis": "pageTabCount x detachedSearchAction",
-      "note": "1 page tabs plus a role=\"search\" action tab, which react-native-bottom-tabs cannot express",
+      "note": "1 page tabs plus a role=\"search\" action tab that never becomes selected",
       "spec": {
         "tabs": [
           {
@@ -1971,7 +1971,7 @@
     {
       "id": "tabs2-search-action-sel0-light",
       "axis": "pageTabCount x detachedSearchAction",
-      "note": "2 page tabs plus a role=\"search\" action tab, which react-native-bottom-tabs cannot express",
+      "note": "2 page tabs plus a role=\"search\" action tab that never becomes selected",
       "spec": {
         "tabs": [
           {
@@ -2151,7 +2151,7 @@
     {
       "id": "tabs3-search-action-sel0-light",
       "axis": "pageTabCount x detachedSearchAction",
-      "note": "3 page tabs plus a role=\"search\" action tab, which react-native-bottom-tabs cannot express",
+      "note": "3 page tabs plus a role=\"search\" action tab that never becomes selected",
       "spec": {
         "tabs": [
           {
@@ -2359,7 +2359,7 @@
     {
       "id": "tabs4-search-action-sel0-light",
       "axis": "pageTabCount x detachedSearchAction",
-      "note": "4 page tabs plus a role=\"search\" action tab, which react-native-bottom-tabs cannot express",
+      "note": "4 page tabs plus a role=\"search\" action tab that never becomes selected",
       "spec": {
         "tabs": [
           {
@@ -2595,7 +2595,7 @@
     {
       "id": "tabs5-search-action-sel0-light",
       "axis": "pageTabCount x detachedSearchAction",
-      "note": "5 page tabs plus a role=\"search\" action tab, which react-native-bottom-tabs cannot express",
+      "note": "5 page tabs plus a role=\"search\" action tab that never becomes selected",
       "spec": {
         "tabs": [
           {
