@@ -646,19 +646,22 @@ try {
 
   let engine: Awaited<ReturnType<typeof dev>>
 
-  const rebuildIfNewRoute = async (files: string[]): Promise<boolean> => {
-    const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
-    const routeRootPrefix = `${normalizePath(routeRoot)}/`
-    const routeAdded = files.some((file) => {
-      const normalized = normalizePath(file)
-      if (isRouteFile(normalized)) return !knownRoutes.has(normalized)
-      return (
-        normalized.startsWith(routeRootPrefix) &&
-        statSync(file, { throwIfNoEntry: false })?.isDirectory() === true
-      )
-    })
-    if (!routeAdded) return false
-    await queueEngineWork(async () => {
+  const rebuildIfNewRoute = (files: string[]): Promise<boolean> =>
+    queueEngineWork(async () => {
+      // rolldown and vite can both report the same addition. decide after all
+      // earlier engine work so only the first notification sees a new route.
+      const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
+      const routeRootPrefix = `${normalizePath(routeRoot)}/`
+      const routeAdded = files.some((file) => {
+        const normalized = normalizePath(file)
+        const entry = statSync(file, { throwIfNoEntry: false })
+        if (isRouteFile(normalized)) {
+          return entry?.isFile() === true && !knownRoutes.has(normalized)
+        }
+        return normalized.startsWith(routeRootPrefix) && entry?.isDirectory() === true
+      })
+      if (!routeAdded) return false
+
       // the reload must never serve the bundle from before the route existed.
       // onOutput may begin after ensureLatestBuildOutput resolves, so clear the
       // cached bundle before triggering work and let getBundle wait for it.
@@ -666,10 +669,9 @@ try {
       engine.triggerFullBuild()
       await engine.ensureLatestBuildOutput()
       await outputProcessed
+      onHmrUpdate?.({ type: 'hmr:reload' })
+      return true
     })
-    onHmrUpdate?.({ type: 'hmr:reload' })
-    return true
-  }
 
   engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
