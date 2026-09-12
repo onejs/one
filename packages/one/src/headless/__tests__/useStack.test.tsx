@@ -20,7 +20,7 @@ describe('StackStateProvider', () => {
       index: 0,
       routeNames: ['index'],
       routes: [{ key: 'index-key', name: 'index' }],
-      preloadedRoutes: [],
+      retainedRouteKeys: [],
     }
     const descriptors: HeadlessStackDescriptors = {
       'index-key': {

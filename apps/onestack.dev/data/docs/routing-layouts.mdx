@@ -273,7 +273,7 @@ Here's our file structure:
 The top level Layout will define our tabs:
 
 ```tsx fileName=app/_layout.tsx
-import { Bell, Home, User } from '@tamagui/lucide-icons-2'
+import { Platform } from 'react-native'
 
 export function RootLayout() {
   return (
@@ -286,7 +286,10 @@ export function RootLayout() {
         name="(feed)"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color }) => <Home size={20} color={color} />,
+          tabBarIcon: Platform.select({
+            ios: { type: 'sfSymbol', name: 'newspaper' },
+            android: { type: 'materialSymbol', name: 'newspaper' },
+          }),
         }}
       />
 
@@ -294,7 +297,10 @@ export function RootLayout() {
         name="notifications"
         options={{
           title: 'Notifications',
-          tabBarIcon: ({ color }) => <Bell size={20} color={color} />,
+          tabBarIcon: Platform.select({
+            ios: { type: 'sfSymbol', name: 'bell' },
+            android: { type: 'materialSymbol', name: 'notifications' },
+          }),
         }}
       />
 
@@ -302,7 +308,10 @@ export function RootLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <User size={20} color={color} />,
+          tabBarIcon: Platform.select({
+            ios: { type: 'sfSymbol', name: 'person' },
+            android: { type: 'materialSymbol', name: 'person' },
+          }),
         }}
       />
     </Tabs>

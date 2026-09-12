@@ -268,36 +268,20 @@ ${contents}
     },
   },
 
-  // fix RNGH crash on RN 0.81+ new architecture
+  // fix RNGH crash on RN 0.86+ new architecture
   // getShadowNodeFromRef crashes when findHostInstance_DEPRECATED returns null
   {
     module: 'react-native-gesture-handler',
     patchFiles: {
-      // no upper bound. this was capped at 2.30.0, but 2.32.0 still ships the
-      // exact unsafe line in all three targets, so the cap silently dropped the
-      // crash guard rather than retiring it. each replacement is a no-op when
-      // its target is absent, so an uncapped range retires itself.
-      version: '>=2.0.0',
+      version: '>=3.0.0',
 
       'lib/module/getShadowNodeFromRef.js': (contents) => {
         return contents?.replace(
-          `return getInternalInstanceHandleFromPublicInstance(findHostInstance_DEPRECATED(ref)).stateNode.node;`,
-          `const hostInstance = findHostInstance_DEPRECATED(ref);
-  if (hostInstance === null || hostInstance === undefined) {
-    return null;
-  }
-  const internalHandle = getInternalInstanceHandleFromPublicInstance(hostInstance);
-  if (internalHandle === null || internalHandle === undefined) {
-    return null;
-  }
-  return internalHandle.stateNode?.node ?? null;`
-        )
-      },
+          `const hostInstance = isAlreadyHostInstance ? ref : findHostInstance_DEPRECATED(ref);
 
-      'lib/commonjs/getShadowNodeFromRef.js': (contents) => {
-        return contents?.replace(
-          `return getInternalInstanceHandleFromPublicInstance(findHostInstance_DEPRECATED(ref)).stateNode.node;`,
-          `const hostInstance = findHostInstance_DEPRECATED(ref);
+  // @ts-ignore Fabric
+  return getInternalInstanceHandleFromPublicInstance(hostInstance).stateNode.node;`,
+          `const hostInstance = isAlreadyHostInstance ? ref : findHostInstance_DEPRECATED(ref);
   if (hostInstance === null || hostInstance === undefined) {
     return null;
   }
@@ -312,10 +296,16 @@ ${contents}
       // metro uses src/ directly via "react-native" field in package.json
       'src/getShadowNodeFromRef.ts': (contents) => {
         return contents?.replace(
-          `return getInternalInstanceHandleFromPublicInstance(
-    findHostInstance_DEPRECATED(ref)
-  ).stateNode.node;`,
-          `const hostInstance = findHostInstance_DEPRECATED(ref);
+          `const hostInstance = isAlreadyHostInstance
+    ? ref
+    : findHostInstance_DEPRECATED(ref);
+
+  // @ts-ignore Fabric
+  return getInternalInstanceHandleFromPublicInstance(hostInstance).stateNode
+    .node;`,
+          `const hostInstance = isAlreadyHostInstance
+    ? ref
+    : findHostInstance_DEPRECATED(ref);
   if (hostInstance === null || hostInstance === undefined) {
     return null;
   }
@@ -507,10 +497,6 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: 'expo-video',
     patchFiles: {
-      'build/index.js': (contents) => {
-        // bad type export that can't be auto-fixed
-        return contents?.replace(`export { VideoThumbnail } from './VideoThumbnail';`, ``)
-      },
       'build/**/*.js': ['jsx'],
     },
   },
@@ -632,17 +618,13 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
   },
 
   // a void TurboModule method that throws an Obj-C NSException crashes the app
-  // with a SIGSEGV: ObjCTurboModule::performVoidMethodInvocation converts it to
-  // a JS error (convertNSExceptionToJSError) on the TurboModule method queue,
-  // which touches the Hermes runtime off the JS thread and corrupts the
-  // single-threaded VM. only safe to build the JS error when the method runs
-  // sync (on the JS thread); otherwise log. mirrors the isSync guard added for
-  // value-returning methods in facebook/react-native#50193 (which never covered
-  // the void path). see tests/test/IOS_PROD_CRASH.md
+  // when React Native rethrows it on the TurboModule queue. there is no JS
+  // caller for an async void method to receive an error, so log it instead.
+  // see tests/test/IOS_PROD_CRASH.md
   {
     module: 'react-native',
     patchFiles: {
-      version: '>=0.81.0',
+      version: '>=0.86.0',
 
       'ReactCommon/react/nativemodule/core/platform/ios/ReactCommon/RCTTurboModule.mm': (
         contents
@@ -652,20 +634,14 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
           `    @try {
       [inv invokeWithTarget:strongModule];
     } @catch (NSException *exception) {
-      throw convertNSExceptionToJSError(runtime, exception, std::string{moduleName}, methodNameStr);
+      // Void methods are always async, re-throw instead of converting to
+      // JSError, same as the async branch in performMethodInvocation.
+      @throw exception;
     } @finally {`,
           `    @try {
       [inv invokeWithTarget:strongModule];
     } @catch (NSException *exception) {
-      if (shouldVoidMethodsExecuteSync_) {
-        // sync void methods run on the JS thread — safe to build the JS error.
-        throw convertNSExceptionToJSError(runtime, exception, std::string{moduleName}, methodNameStr);
-      } else {
-        // async void methods run on the TurboModule method queue; building a JS
-        // error here touches the Hermes runtime off the JS thread and corrupts
-        // the VM (SIGSEGV). there is no JS caller to receive it, so log instead.
-        RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);
-      }
+      RCTLogError(@"Exception in %s.%s: %@", moduleName, methodNameStr.c_str(), exception.reason);
     } @finally {`
         )
       },

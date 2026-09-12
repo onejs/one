@@ -1,13 +1,13 @@
+import { NavigationRouteContext } from '@react-navigation/core'
+import { Slot, Stack } from 'one'
 import { useContext } from 'react'
 import { isWeb, View } from 'tamagui'
-import { Slot, Stack, usePathname } from 'one'
-import { NavigationRouteContext } from '@react-navigation/core'
-import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
 import { Logo } from '~/code/brand/Logo'
+import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
 
 export default function FeedLayout() {
   const routeContext = useContext(NavigationRouteContext)
-  const { name } = routeContext || {} // Note: we can't use `usePathname()` here since its value will update every time the tab switches and will cause unnecessary re-renders
+  const { name } = routeContext || {}
 
   return (
     <View flex={1}>
@@ -42,7 +42,6 @@ export default function FeedLayout() {
                 : { headerShown: false }
             }
           />
-          <Stack.Screen name="post/[id]" />
         </Stack>
       )}
     </View>

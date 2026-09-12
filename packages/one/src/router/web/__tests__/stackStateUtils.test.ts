@@ -27,7 +27,7 @@ function makeState(
     routes,
     type: 'stack',
     stale: false,
-    preloadedRoutes: [],
+    retainedRouteKeys: [],
   } as unknown as StackNavigationState<ParamListBase>
 }
 
