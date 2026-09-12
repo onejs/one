@@ -464,10 +464,6 @@ ${Object.entries(nativeFields)
 `
 )
 const manifest = {
-  compiler: run(swiftc, ['--version'])
-    .split('\n')
-    .at(0)!
-    .replace(/\s+\(.+$/, ''),
   sdk: run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version']),
   // xcode installations can package equivalent public interfaces with different bytes and
   // source attributes. the mapped declarations below are the portable contract we publish.

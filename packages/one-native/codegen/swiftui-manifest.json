@@ -1,5 +1,4 @@
 {
-  "compiler": "Apple Swift version 6.3",
   "sdk": "26.4",
   "modules": [
     "SwiftUI",
