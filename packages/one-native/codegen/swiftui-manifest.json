@@ -1,0 +1,1207 @@
+{
+  "compiler": "Apple Swift version 6.3 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)",
+  "sdk": "26.4",
+  "inputs": [
+    {
+      "module": "SwiftUI",
+      "sha256": "566ccc1d76157d01f7c91efa8ef1d0b505ac3a417a190b3edeca30caec77d7d1"
+    },
+    {
+      "module": "SwiftUICore",
+      "sha256": "8a30eb1b2b85c0239ef0fad1f3c48a14ac954041d0bab49c6d91d79f94e5669f"
+    },
+    {
+      "module": "_AVKit_SwiftUI",
+      "sha256": "4669e92d8ee8823649dfd07ce91b94b27c99a747d13be8265dc6adeb16c19a9f"
+    },
+    {
+      "module": "_AppIntents_SwiftUI",
+      "sha256": "0d6c77ff229f1baf1a6ad5fd708489974f5d7de22f9bc625c618cfafb5bc254b"
+    },
+    {
+      "module": "_AuthenticationServices_SwiftUI",
+      "sha256": "d4a6901e4fa387d3f44f7dfcab825e94bc64c0cd7dfa7359d5755d44a4d5cbe4"
+    },
+    {
+      "module": "_CoreLocationUI_SwiftUI",
+      "sha256": "642e66b2d6e2442c3ffd32aec38aac075989a816d689473ca6048e0d4b44420d"
+    },
+    {
+      "module": "_DeviceActivity_SwiftUI",
+      "sha256": "d99c5b0053cb69259aa5b761c4530bc3ae152fa04ecf6b8dffde1a63ed45d870"
+    },
+    {
+      "module": "_DeviceDiscoveryUI_SwiftUI",
+      "sha256": "d55de7b630c4a739af8147e1072e4ad4f38b322c25c8a92e80137fa31d3d23d1"
+    },
+    {
+      "module": "_GameController_SwiftUI",
+      "sha256": "fd16100466a1d4bcdb2b6fa32cf82218ed4a313c40900c8f646ba4a0aa900e3f"
+    },
+    {
+      "module": "_HomeKit_SwiftUI",
+      "sha256": "c528dfe7b0a812c25e7fd0b9959d8884c83308cb35748a094b642d4625f09b3a"
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "sha256": "3c839de2be16b7a5bd24f68e963df0fbe5be84504b405e3970aeabaef47e8ce0"
+    },
+    {
+      "module": "_MusicKit_SwiftUI",
+      "sha256": "849a41a13f9d0e37d8a1134d6c77389185029e7aba4fdc3550d2abe5751e8dbb"
+    },
+    {
+      "module": "_PassKit_SwiftUI",
+      "sha256": "a6d0eb61f0c3868faeee693f24f65f3e89c1e46abc3bc13fd5c7b8f2b8b9e97e"
+    },
+    {
+      "module": "_PermissionKit_SwiftUI",
+      "sha256": "aa7aa88ffd8ba7dc385d0474d2f898065f1c0ba501c87ee8606c74b10322bec9"
+    },
+    {
+      "module": "_PhotosUI_SwiftUI",
+      "sha256": "c5a8412cd214b9077a9081d78a1e735600f05554e3041d35bb3c4732808acb19"
+    },
+    {
+      "module": "_QuickLook_SwiftUI",
+      "sha256": "447bed71f0b33937175aeb9ed0482978c4d7373feb10cbae7e4d287871dd5d4f"
+    },
+    {
+      "module": "_RealityKit_SwiftUI",
+      "sha256": "0a73140755b4d1b1dfd473b3f788393548bc8e7e63e095be8fdfd61b6e344eb3"
+    },
+    {
+      "module": "_SceneKit_SwiftUI",
+      "sha256": "532a5644ed9d85565a23d05c2a30d47d4754ecd7cc78a68db97da841ed8f3568"
+    },
+    {
+      "module": "_SecureElementCredential_SwiftUI",
+      "sha256": "d2d4487b5f020afd4f9dbe87ec2c4ed5c423608747c63743235f284628615a42"
+    },
+    {
+      "module": "_SpriteKit_SwiftUI",
+      "sha256": "1853c9a87b519da90be78617c1b7ef80b536ca2dbc6981c288f68b065a4c45d2"
+    },
+    {
+      "module": "_StoreKit_SwiftUI",
+      "sha256": "0873d5402a8a07ecabe78851833f349aa347fc3c2ddd765bf3f002c073125cf1"
+    },
+    {
+      "module": "_SwiftData_SwiftUI",
+      "sha256": "76c8846d952307a03d5e9367638843ffac77b54922c02b9f3e80504327a7d189"
+    },
+    {
+      "module": "_Translation_SwiftUI",
+      "sha256": "1de0c3c21516afda2e42c40912f992d08b0c76d395d4a4c969318f7626bb76d7"
+    },
+    {
+      "module": "_WebKit_SwiftUI",
+      "sha256": "734068f765ba9553a14de66197f429a62dadb1ad76187a818077af6fce800e8b"
+    },
+    {
+      "module": "_WorkoutKit_SwiftUI",
+      "sha256": "e11e54281f4b0a7f44d6c482c123d2eb6e876a05cf8fa3489244718a0efb4a0f"
+    }
+  ],
+  "extractedDeclarations": 11212,
+  "unmappedModifiers": [
+    "menuIndicator",
+    "menuStyle",
+    "paletteSelectionEffect",
+    "sliderThumbVisibility",
+    "tabViewBottomAccessory",
+    "tabViewCustomization",
+    "tabViewSearchActivation",
+    "tabViewSidebarBottomBar",
+    "tabViewSidebarFooter",
+    "tabViewSidebarHeader",
+    "tabViewStyle"
+  ],
+  "enums": {
+    "MenuOrder": {
+      "automatic": 16,
+      "priority": 16,
+      "fixed": 16
+    },
+    "Visibility": {
+      "automatic": 15,
+      "visible": 15,
+      "hidden": 15
+    },
+    "PickerStyle": {
+      "wheel": 13,
+      "inline": 14,
+      "automatic": 13,
+      "segmented": 13,
+      "palette": 17,
+      "navigationLink": 16,
+      "menu": 14
+    },
+    "DatePickerStyle": {
+      "wheel": 13,
+      "automatic": 13,
+      "graphical": 14,
+      "compact": 14
+    },
+    "ToggleStyle": {
+      "button": 15,
+      "automatic": 13,
+      "switch": 13
+    },
+    "MenuActionDismissBehavior": {
+      "automatic": 16.4,
+      "enabled": 16.4,
+      "disabled": 16.4
+    },
+    "TabBarMinimizeBehavior": {
+      "automatic": 26,
+      "onScrollDown": 26,
+      "onScrollUp": 26,
+      "never": 26
+    },
+    "ButtonRole": {
+      "destructive": 15,
+      "cancel": 15,
+      "confirm": 26,
+      "close": 26
+    },
+    "TabRole": {
+      "search": 18
+    },
+    "ControlGroupStyle": {
+      "palette": 17,
+      "automatic": 15,
+      "navigation": 15,
+      "menu": 16.4,
+      "compactMenu": 16.4
+    },
+    "PrimitiveButtonStyle": {
+      "automatic": 13,
+      "glass": 26,
+      "borderless": 13,
+      "glassProminent": 26,
+      "plain": 13,
+      "bordered": 15,
+      "borderedProminent": 15
+    },
+    "ProgressViewStyle": {
+      "linear": 14,
+      "circular": 14,
+      "automatic": 14
+    },
+    "GaugeStyle": {
+      "accessoryCircularCapacity": 16,
+      "linearCapacity": 16,
+      "accessoryLinear": 16,
+      "accessoryLinearCapacity": 16,
+      "automatic": 16,
+      "accessoryCircular": 16
+    },
+    "TextFieldStyle": {
+      "automatic": 13,
+      "roundedBorder": 13,
+      "plain": 13
+    },
+    "SubmitLabel": {
+      "done": 15,
+      "go": 15,
+      "send": 15,
+      "join": 15,
+      "route": 15,
+      "search": 15,
+      "return": 15,
+      "next": 15,
+      "continue": 15
+    },
+    "TextInputAutocapitalization": {
+      "never": 15,
+      "words": 15,
+      "sentences": 15,
+      "characters": 15
+    },
+    "Axis": {
+      "horizontal": 13,
+      "vertical": 13
+    },
+    "Edge": {
+      "top": 13,
+      "leading": 13,
+      "bottom": 13,
+      "trailing": 13
+    },
+    "PresentationAdaptation": {
+      "automatic": 16.4,
+      "none": 16.4,
+      "popover": 16.4,
+      "sheet": 16.4,
+      "fullScreenCover": 16.4
+    },
+    "SymbolRenderingMode": {
+      "monochrome": 15,
+      "multicolor": 15,
+      "hierarchical": 15,
+      "palette": 15
+    },
+    "SymbolVariants": {
+      "none": 15,
+      "circle": 15,
+      "square": 15,
+      "rectangle": 15,
+      "fill": 15,
+      "slash": 15
+    },
+    "ImageScale": {
+      "small": 13,
+      "medium": 13,
+      "large": 13
+    }
+  },
+  "modifiers": [
+    {
+      "name": "menuOrder",
+      "type": "MenuOrder",
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "order",
+          "type": "SwiftUI.MenuOrder"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "presentationCompactAdaptation",
+      "type": "PresentationAdaptation",
+      "ios": 16.4,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "adaptation",
+          "type": "SwiftUI.PresentationAdaptation"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "presentationDragIndicator",
+      "type": "Visibility",
+      "module": "SwiftUICore",
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "visibility",
+          "type": "SwiftUICore.Visibility"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "pickerStyle",
+      "type": "PickerStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.PickerStyle"
+      ]
+    },
+    {
+      "name": "datePickerStyle",
+      "type": "DatePickerStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.DatePickerStyle"
+      ]
+    },
+    {
+      "name": "toggleStyle",
+      "type": "ToggleStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ToggleStyle"
+      ]
+    },
+    {
+      "name": "menuActionDismissBehavior",
+      "type": "MenuActionDismissBehavior",
+      "ios": 16.4,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "behavior",
+          "type": "SwiftUI.MenuActionDismissBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "controlGroupStyle",
+      "type": "ControlGroupStyle",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ControlGroupStyle"
+      ]
+    },
+    {
+      "name": "tabBarMinimizeBehavior",
+      "type": "TabBarMinimizeBehavior",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "behavior",
+          "type": "SwiftUI.TabBarMinimizeBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "buttonStyle",
+      "type": "PrimitiveButtonStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.PrimitiveButtonStyle"
+      ]
+    },
+    {
+      "name": "progressViewStyle",
+      "type": "ProgressViewStyle",
+      "ios": 14,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ProgressViewStyle"
+      ]
+    },
+    {
+      "name": "gaugeStyle",
+      "type": "GaugeStyle",
+      "ios": 16,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.GaugeStyle"
+      ]
+    },
+    {
+      "name": "textFieldStyle",
+      "type": "TextFieldStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.TextFieldStyle"
+      ]
+    },
+    {
+      "name": "submitLabel",
+      "type": "SubmitLabel",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "submitLabel",
+          "type": "SwiftUI.SubmitLabel"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "textInputAutocapitalization",
+      "type": "TextInputAutocapitalization",
+      "optional": true,
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "autocapitalization",
+          "type": "SwiftUI.TextInputAutocapitalization?"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "symbolRenderingMode",
+      "type": "SymbolRenderingMode",
+      "module": "SwiftUICore",
+      "optional": true,
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "mode",
+          "type": "SwiftUICore.SymbolRenderingMode?"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "symbolVariant",
+      "type": "SymbolVariants",
+      "module": "SwiftUICore",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "variant",
+          "type": "SwiftUICore.SymbolVariants"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "imageScale",
+      "type": "ImageScale",
+      "swiftType": "Image.Scale",
+      "module": "SwiftUICore",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "scale",
+          "type": "SwiftUICore.Image.Scale"
+        }
+      ],
+      "requirements": []
+    }
+  ],
+  "constructors": [
+    {
+      "module": "SwiftUI",
+      "type": "Button",
+      "parameters": [
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.ButtonRole?"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping @_Concurrency.MainActor () -> Swift.Void"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Toggle",
+      "parameters": [
+        {
+          "label": "sources",
+          "name": "sources",
+          "type": "C"
+        },
+        {
+          "label": "isOn",
+          "name": "isOn",
+          "type": "Swift.KeyPath<C.Element, SwiftUICore.Binding<Swift.Bool>>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View",
+        "C : Swift.RandomAccessCollection"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Menu",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Section",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "header",
+          "name": "header",
+          "type": "() -> Parent"
+        }
+      ],
+      "requirements": [
+        "Parent : SwiftUICore.View",
+        "Content : SwiftUICore.View",
+        "Footer == SwiftUICore.EmptyView"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ControlGroup",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> C"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> L"
+        }
+      ],
+      "requirements": [
+        "Content == SwiftUI.LabeledControlGroupContent<C, L>",
+        "C : SwiftUICore.View",
+        "L : SwiftUICore.View"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Divider",
+      "parameters": [],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Tab",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "Value"
+        },
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.TabRole?"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Value : Swift.Hashable",
+        "Content : SwiftUICore.View",
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 18
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Picker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<SelectionValue>"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "DatePicker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<Foundation.Date>"
+        },
+        {
+          "label": "in",
+          "name": "range",
+          "type": "Swift.ClosedRange<Foundation.Date>"
+        },
+        {
+          "defaultValue": "[.hourAndMinute, .date]",
+          "label": "displayedComponents",
+          "name": "displayedComponents",
+          "type": "SwiftUI.DatePicker<Label>.Components"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ColorPicker",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<SwiftUICore.Color>"
+        },
+        {
+          "defaultValue": "true",
+          "label": "supportsOpacity",
+          "name": "supportsOpacity",
+          "type": "Swift.Bool"
+        }
+      ],
+      "requirements": [
+        "Label == SwiftUICore.Text"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Toggle",
+      "parameters": [
+        {
+          "label": "isOn",
+          "name": "isOn",
+          "type": "SwiftUICore.Binding<Swift.Bool>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Slider",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "SwiftUICore.Binding<V>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "defaultValue": "1",
+          "label": "step",
+          "name": "step",
+          "type": "V.Stride"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "defaultValue": "{ _ in }",
+          "label": "onEditingChanged",
+          "name": "onEditingChanged",
+          "type": "@escaping (Swift.Bool) -> Swift.Void"
+        }
+      ],
+      "requirements": [
+        "ValueLabel == SwiftUICore.EmptyView",
+        "V : Swift.BinaryFloatingPoint",
+        "V.Stride : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Stepper",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "SwiftUICore.Binding<V>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "defaultValue": "1",
+          "label": "step",
+          "name": "step",
+          "type": "V.Stride"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "defaultValue": "{ _ in }",
+          "label": "onEditingChanged",
+          "name": "onEditingChanged",
+          "type": "@escaping (Swift.Bool) -> Swift.Void"
+        }
+      ],
+      "requirements": [
+        "V : Swift.Strideable"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Text",
+      "parameters": [
+        {
+          "label": "verbatim",
+          "name": "content",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Label",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "systemImage",
+          "name": "name",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [
+        "Title == SwiftUICore.Text",
+        "Icon == SwiftUICore.Image"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Button",
+      "parameters": [
+        {
+          "label": "role",
+          "name": "role",
+          "type": "SwiftUI.ButtonRole?"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping @_Concurrency.MainActor () -> Swift.Void"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ProgressView",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "V?"
+        },
+        {
+          "defaultValue": "1.0",
+          "label": "total",
+          "name": "total",
+          "type": "V"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "CurrentValueLabel == SwiftUICore.EmptyView",
+        "V : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ProgressView",
+      "parameters": [
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "CurrentValueLabel == SwiftUICore.EmptyView"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Gauge",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "V"
+        },
+        {
+          "defaultValue": "0...1",
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "label": "currentValueLabel",
+          "name": "currentValueLabel",
+          "type": "() -> CurrentValueLabel"
+        },
+        {
+          "label": "minimumValueLabel",
+          "name": "minimumValueLabel",
+          "type": "() -> BoundsLabel"
+        },
+        {
+          "label": "maximumValueLabel",
+          "name": "maximumValueLabel",
+          "type": "() -> BoundsLabel"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View",
+        "CurrentValueLabel : SwiftUICore.View",
+        "BoundsLabel : SwiftUICore.View",
+        "MarkedValueLabels : SwiftUICore.View",
+        "MarkedValueLabels == SwiftUICore.EmptyView",
+        "V : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Image",
+      "parameters": [
+        {
+          "label": "systemName",
+          "name": "systemName",
+          "type": "Swift.String"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Image",
+      "parameters": [
+        {
+          "label": "systemName",
+          "name": "systemName",
+          "type": "Swift.String"
+        },
+        {
+          "label": "variableValue",
+          "name": "variableValue",
+          "type": "Swift.Double?"
+        }
+      ],
+      "requirements": [],
+      "ios": 16
+    },
+    {
+      "module": "_AVKit_SwiftUI",
+      "type": "VideoPlayer",
+      "parameters": [
+        {
+          "label": "player",
+          "name": "player",
+          "type": "AVFoundation.AVPlayer?"
+        }
+      ],
+      "requirements": [
+        "VideoOverlay == SwiftUICore.EmptyView"
+      ],
+      "ios": 14
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "Map",
+      "parameters": [
+        {
+          "label": "position",
+          "name": "position",
+          "type": "SwiftUICore.Binding<_MapKit_SwiftUI.MapCameraPosition>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "bounds",
+          "name": "bounds",
+          "type": "_MapKit_SwiftUI.MapCameraBounds?"
+        },
+        {
+          "defaultValue": ".all",
+          "label": "interactionModes",
+          "name": "interactionModes",
+          "type": "_MapKit_SwiftUI.MapInteractionModes"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> C"
+        }
+      ],
+      "requirements": [
+        "Content == _MapKit_SwiftUI.MapContentView<Swift.Never, C>",
+        "C : _MapKit_SwiftUI.MapContent"
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "Marker",
+      "parameters": [
+        {
+          "label": "coordinate",
+          "name": "coordinate",
+          "type": "_LocationEssentials.CLLocationCoordinate2D"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 17
+    },
+    {
+      "module": "SwiftUI",
+      "type": "TextField",
+      "parameters": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "SwiftUICore.Binding<Swift.String>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "prompt",
+          "name": "prompt",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "axis",
+          "name": "axis",
+          "type": "SwiftUICore.Axis"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "SecureField",
+      "parameters": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "SwiftUICore.Binding<Swift.String>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "prompt",
+          "name": "prompt",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "RoundedRectangle",
+      "parameters": [
+        {
+          "label": "cornerRadius",
+          "name": "cornerRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "EdgeInsets",
+      "parameters": [
+        {
+          "label": "top",
+          "name": "top",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "leading",
+          "name": "leading",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "bottom",
+          "name": "bottom",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "trailing",
+          "name": "trailing",
+          "type": "CoreFoundation.CGFloat"
+        }
+      ],
+      "requirements": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "Color",
+      "parameters": [
+        {
+          "label": "uiColor",
+          "name": "uiColor",
+          "type": "UIKit.UIColor"
+        }
+      ],
+      "requirements": [],
+      "ios": 15
+    }
+  ]
+}

@@ -1,10 +1,96 @@
 Build `one-native` as a generated SwiftUI component layer on Fabric, with explicit ownership of every layout boundary. Prove React Native → SwiftUI → React Native → SwiftUI composition before expanding the component catalog. The generator can reduce repetitive bindings; it cannot generate the layout, interaction, and state semantics that make this composition work.
 
-This is an engineering proposal, not an implemented or runtime-validated design. Research used the current One checkout and upstream documentation/source. The requesting session assigned `REVIEW: none`; no additional review was spawned. This document does not authorize implementation or publication.
+The first implementation focuses on independent native tabs and Apple menus. It
+lives in `packages/one-native`; `tests/native-features/app/one-native.tsx` is the
+native integration fixture. The broader generated SwiftUI engine below remains a
+proposal. This package does not yet replace the navigation, toolbar, zoom, and
+split-view integrations in `@vxrn/native`.
+
+**Implemented foundation**
+
+- `Swift.Tabs` and keyed `Swift.Tab` pages use an owned Fabric component and a
+  SwiftUI `TabView`, with no navigator or bottom-tabs package dependency.
+- A `UIViewRepresentable` slot hosts each RN page. SwiftUI allocates the bounded
+  page rectangle and updates a custom Fabric state; Yoga sizes the descendants.
+  Only changed geometry is published. This is a bounded page contract, not yet
+  general content-sized SwiftUI/RN layout negotiation.
+- Native selection is optimistic and numbered. The React adapter acknowledges
+  each callback with its current controlled selection, including rejection. Older
+  acknowledgements cannot overwrite a newer pending native selection. Accept in
+  the callback synchronously; delayed decisions retain the old selection until
+  the controlling prop changes.
+- `Swift.Menu` uses generated SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
+  `Divider`, and `ControlGroup` constructors. RN trigger content is hosted through
+  `UIViewRepresentable`. Menu order, action dismissal, control-group styles,
+  button roles, tab roles, and tab-bar minimization derive their cases and iOS
+  availability from the installed SDK.
+- The SDK generator parses every SwiftUI interface the SDK ships with SwiftSyntax:
+  SwiftUI, SwiftUICore, and the 23 `_<Framework>_SwiftUI` overlay modules that hold
+  the rest of SwiftUI's API (WebView, VideoPlayer, PhotosPicker, Map, quickLookPreview).
+  An explicit catalog describes React identity, child slots, and event mappings.
+  It generates public types, Fabric specs, payload validation/conversion, native
+  constructors, modifier dispatch, and an SDK coverage manifest. Native slot
+  ownership and controller lifecycle remain authored runtime code.
+- The SwiftUI menu owns trigger touch and accessibility.
+  RN page controls retain their existing responder path. Arbitrary simultaneous
+  RNGH/SwiftUI gesture composition is still a later engine requirement.
+- The baseline is iOS 18, React Native 0.86.2 and New Architecture. Browser and
+  Android entry points report unsupported rendering. General SwiftUI hosts,
+  arbitrary modifiers/bindings, Nitro transport evaluation, broader SDK coverage,
+  and Contrast adapters remain the next stages.
+
+The installed `react-native-bottom-tabs` was exercised first. A rejected selection
+left native and React on different tabs, including incorrect page accessibility.
+The owned host adds explicit acknowledgement. Its integration fixture also caught
+reordered Fabric pages becoming detached from their SwiftUI slots; slot updates
+now attach the current Fabric view even when its identity did not change.
+
+**Validation**
+
+Built and ran the native-features app on an iPhone 16 simulator with iOS 26.4,
+Xcode 26.4, React Native 0.86.2, and Fabric enabled. The native smoke sequence
+asserted mounted app/page content before interaction and checked:
+
+- React selection updates the visible native page; native taps update React.
+- Rejecting a native tap restores the controlled page and its accessibility.
+- Counters and text input survive switching and keyed tab reorder; both pages
+  still render after reorder.
+- Native nested menu actions reach React, disabled actions are disabled, hidden
+  actions are absent, and keep-presented actions retain the open menu.
+- Pushing another native stack screen and returning preserves page content/state.
+
+The SDK generator parsed 9,399 declarations from the SwiftUI and SwiftUICore
+26.4 interfaces and generated ten files covering the selected menu/tab bindings.
+Regeneration checks, package build, TypeScript checks, seven menu payload tests,
+and targeted lint passed. The generated constructors compiled in the native app.
+Simulator checks also verified checked and mixed toggle source updates, palette
+actions, native section headings and separators, fixed menu ordering, and search
+tab placement/selection while preserving the original page state.
+The native-features app TypeScript check also passes. Grok reviewed the assembled
+native lifecycle, event protocol, slots, and menus; runtime probes verified the
+selection and reorder fixes. iOS 18 runtime, iPad sidebar behavior, VoiceOver
+navigation, RNGH composition, performance under load, and device release builds
+have not been exercised. These checks establish the first slice, not complete
+SwiftUI/Fabric interoperability.
+
+The assembled generator review raised controlled-toggle, presentation, trigger
+layout, and controller-attachment concerns. Simulator probes retained an open
+menu across toggle prop updates. A centered, padded RN trigger exposed conflicting
+frame ownership: the SwiftUI slot replaced Yoga's alignment. The menu host now
+uses the Fabric parent's coordinate space and Yoga alone positions the trigger.
+Controller attachment retries on layout/window changes; stack reattachment was
+verified. Toggle changes remain controlled by React and incur a JS round trip.
+
+The page model mounts eagerly, so memory scales with the mounted React page trees.
+Geometry crosses no JS event channel and is published only when the allocated
+rectangle changes. Tab metadata rebuilds only after changed metadata or child
+mounts. Menu flattening and native grouping are linear in the item count; immutable
+item arrays let unchanged renders reuse their payload. No performance benchmark
+or payload-size claim is made yet.
 
 **Corrections that affect the design**
 
-- Expo already supports React Native content inside SwiftUI through `RNHostView`, including content-sized and parent-sized modes. The differentiation should be automatic boundaries, predictable semantics, generated coverage, and Tamagui integration. [Expo RNHostView](https://docs.expo.dev/versions/latest/sdk/ui/swift-ui/rnhostview/)
+- Expo already supports React Native content inside SwiftUI through `RNHostView`, including content-sized and parent-sized modes. The differentiation should be automatic boundaries, predictable semantics, and generated coverage. [Expo RNHostView](https://docs.expo.dev/versions/latest/sdk/ui/swift-ui/rnhostview/)
 - `mgcrea/react-native-swiftui` is by Olivier Louvignes. Its current implementation combines Nitro with JSON tree transport and string prop updates. Nitro does not make that transport free. Source inspected at `b2e29dbc87bab0f3ce2a985a66d87a1261f50bec`: [root component](https://github.com/mgcrea/react-native-swiftui/blob/b2e29dbc87bab0f3ce2a985a66d87a1261f50bec/src/components/SwiftUI.tsx), [native root](https://github.com/mgcrea/react-native-swiftui/blob/b2e29dbc87bab0f3ce2a985a66d87a1261f50bec/ios/HybridSwiftUIRootView.swift), [project](https://github.com/mgcrea/react-native-swiftui).
 - Apple documents that modifier order changes behavior. A flat-prop order is a One API contract, not an Apple HIG standard. [Apple view configuration](https://developer.apple.com/documentation/swiftui/configuring-views)
 - A browser adapter avoids shipping a Swift runtime. It still adds JavaScript, shaders, assets, and maintenance. Existing CanvasKit availability and incremental payload in Contrast/rnx/SootSim were not inspected in this task. Exact SwiftUI behavior and zero additional bytes are not established claims.
@@ -24,7 +110,6 @@ packages/one-native/
     generated/                public props, enums, component adapters
     specs/                    generated Nitro view contracts
     binding/                  controlled-event adapter
-    tamagui/                  optional theme/token integration
     preview/                  schema adapter entry point
   ios/
     Hosting/                  hosting-controller containment and lifecycle
@@ -44,7 +129,7 @@ packages/one-native/
 tests/one-native/             one integration app and its behavioral fixtures
 ```
 
-Use React, React Native, and Nitro as peers. Keep Tamagui integration behind a separate entry point; plain React Native consumers should not require Tamagui, One navigation, or Expo. Follow the repository's existing build/export conventions when scaffolding. The root checkout currently resolves React Native 0.86.2, so start with that exact version instead of claiming a wide support range.
+Use React and React Native as peers. Evaluate Nitro for the generated component catalog; the first tabs/menu hosts use Fabric codegen directly. One Native is its own thing. It has no styling-library integration of any kind, and no theme or token bridge: a control's appearance comes from SwiftUI and the system. Plain React Native consumers should not require One navigation or Expo either. Follow the repository's existing build/export conventions when scaffolding. The root checkout currently resolves React Native 0.86.2, so start with that exact version instead of claiming a wide support range.
 
 Propose iOS 18 as the initial general component baseline, with iOS 26 required for Liquid Glass. This is a product scope choice, not an inferred requirement of SwiftUI. Record minimum build SDK and minimum runtime OS separately. Unsupported requested native features should produce an actionable error. Do not silently substitute a blur for glass. Availability metadata should let application authors choose an explicit alternative.
 
@@ -108,7 +193,7 @@ Expo's current implementation reports geometry to shadow-node sizing and separat
 
 Acceptable repeated work is bounded proposal evaluation for a revision, including SwiftUI's legitimate layout probes. Unacceptable repeated work is an idle stream of commits with unchanged inputs. A repeated dependency cycle should generate a diagnostic containing the boundary path and sizing modes.
 
-Animations follow the same ownership rule: SwiftUI animates inside a stable host; Reanimated can animate the outer RN host. Animating a size across the boundary requires a coordinated native layout path. Do not let both engines animate the same frame independently. SwiftUI environment values also do not automatically become Tamagui tokens: explicitly bridge shared appearance/locale signals, and let Tamagui resolve its own typography and tokens.
+Animations follow the same ownership rule: SwiftUI animates inside a stable host; Reanimated can animate the outer RN host. Animating a size across the boundary requires a coordinated native layout path. Do not let both engines animate the same frame independently. SwiftUI environment values stay in SwiftUI; nothing bridges them out to a JS styling layer.
 
 **4. Touch, gesture, accessibility, and presentation integration**
 
@@ -154,7 +239,7 @@ Build an SDK inventory tool, a semantic mapping policy, and code emitters as dis
 
 The extraction pipeline should:
 
-1. Record Xcode build, Swift compiler version, target triple, SDK version, and input hashes. Read public SwiftUI and SwiftUICore interfaces plus referenced public types as required. Respect conditional compilation and platform availability.
+1. Record Xcode build, Swift compiler version, target triple, SDK version, and input hashes. Read every public SwiftUI interface the SDK ships (SwiftUI, SwiftUICore, and each `_<Framework>_SwiftUI` overlay module) plus referenced public types as required. Respect conditional compilation and platform availability.
 2. Parse declarations, extensions, argument labels, overloads, generic constraints, attributes, defaults, enum cases, actor isolation, and closure signatures. Exclude private, underscored, and SPI-only APIs.
 3. Normalize into a deterministic schema containing symbol identity, supported overload, parameters, availability, child slots, binding/event roles, modifier receiver/result types, and preview support.
 4. Apply explicit semantic mappings. Map finite primitives, strings, optional values, tagged enums, colors, lengths, alignments, shapes, and bounded collections. Lower `Binding<T>` to the controlled protocol. Lower supported `@ViewBuilder` closures to named children. Treat arbitrary closures, protocols with associated types, key paths, custom styles, resources, and generic overload families as requiring an adapter or an exclusion reason.
@@ -169,7 +254,7 @@ The native registry dispatches to compiled Swift code. It does not invoke Swift 
 
 For flat props, define one versioned lowering order. A workable initial contract is: construct content and receiver-specific options, environment defaults, padding, frame constraints, background/material, clip shape, glass treatment with an explicit shape, overlay/border, shadow, transforms/opacity, interaction/accessibility attachments. Finalize the exact sequence with visual fixtures; it is a One convention. Both native and preview consume the resulting ordered operations.
 
-Keep Yoga style separate from Swift modifiers: `style` controls the outer RN boundary, while flat Swift props describe the SwiftUI content. For nested Swift nodes, reject outer Yoga style rather than silently interpreting it as Swift layout. Tamagui tokens resolve to typed values through the optional adapter; preserve dynamic platform colors instead of prematurely converting them to static hex strings.
+Keep Yoga style separate from Swift modifiers: `style` controls the outer RN boundary, while flat Swift props describe the SwiftUI content. For nested Swift nodes, reject outer Yoga style rather than silently interpreting it as Swift layout. Preserve dynamic platform colors instead of prematurely converting them to static hex strings.
 
 Provide `chain` as an alternative to flat modifier props, enforced as mutually exclusive in TypeScript and native validation. It replaces the generated order; it does not ambiguously append duplicates. Structural props and event handlers remain usable with either form. Validate receiver-specific operations and OS availability in the chain too.
 
@@ -196,7 +281,7 @@ Navigation is a later, separately owned integration. Native adaptation depends o
 | 2. Intrinsic sizing | Width-constrained RN content, host sizing, native revision protocol | Resize/Dynamic Type/image-load traces; no mismatched parent/child frame revision and no recurring idle commits |
 | 3. Interaction and binding | Event acknowledgement, rejection/reset, gesture adapter, accessibility | Rapid toggle/rejection and JS-stall probes; RN press cancellation/scroll; VoiceOver and keyboard checks |
 | 4. Generated subset | Generate the proven components plus roughly 15–25 common modifiers | Regeneration reproducibility, native compilation, meaningful behavior fixtures and unsupported-symbol report |
-| 5. One/Tamagui dogfood | Settings/form/card screen and a reused RN content component | Physical-device checks, HMR state behavior, theme changes, rotation and background/foreground lifecycle |
+| 5. One dogfood | Settings/form/card screen and a reused RN content component | Physical-device checks, HMR state behavior, theme changes, rotation and background/foreground lifecycle |
 | 6. Preview adapter | Same supported examples in rnx/Contrast | Native/reference comparisons, interaction parity, explicit approximation labels and measured payload delta |
 | 7. Package candidate | Native autolinking, distribution, docs, version compatibility | Install packed local artifact in a clean consumer and build/run it; explicit owner approval before npm release |
 

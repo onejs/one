@@ -1,0 +1,1716 @@
+{
+  "version": 2,
+  "platform": "ios",
+  "minimumVersion": 26,
+  "controlledProtocol": {
+    "version": 1,
+    "revision": "revision",
+    "acknowledgement": "acknowledgedEvent",
+    "eventCount": "eventCount"
+  },
+  "eventDelivery": {
+    "kind": "direct",
+    "payloadWrapper": "nativeEvent",
+    "note": "React Native delivers each event as onX({ nativeEvent: payload })."
+  },
+  "components": [
+    {
+      "name": "OneNativeMenu",
+      "publicName": "Menu",
+      "props": {
+        "items": {
+          "type": "ReadonlyArray<NativeMenuItem>"
+        },
+        "triggerLabel": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "menuOrder": {
+          "type": "string",
+          "enum": "MenuOrder"
+        },
+        "menuActionDismissBehavior": {
+          "type": "string",
+          "enum": "MenuActionDismissBehavior"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeMenuAction": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "onNativeMenuValueChange": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "boolean"
+          },
+          "sourceIndex": {
+            "type": "Int32"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "event": "onNativeMenuValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "trigger",
+          "content": "react-native",
+          "cardinality": "one",
+          "layout": "yoga",
+          "interaction": "passive"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTabs",
+      "publicName": "Tabs",
+      "props": {
+        "selection": {
+          "type": "string"
+        },
+        "sidebarAdaptable": {
+          "type": "boolean"
+        },
+        "tabBarMinimizeBehavior": {
+          "type": "string",
+          "enum": "TabBarMinimizeBehavior"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeTabsSelectionChange": {
+          "selection": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "selection",
+        "event": "onNativeTabsSelectionChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "pages",
+          "content": "OneNativeTab",
+          "cardinality": "many",
+          "key": "tabId",
+          "layout": "swiftui"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTab",
+      "publicName": "Tab",
+      "props": {
+        "tabId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "badge": {
+          "type": "string"
+        },
+        "tabRole": {
+          "type": "string",
+          "enum": "TabRole"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePicker",
+      "publicName": "Picker",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "options": {
+          "type": "ReadonlyArray<PickerOption>"
+        },
+        "pickerStyle": {
+          "type": "string",
+          "enum": "PickerStyle"
+        }
+      },
+      "events": {
+        "onNativePickerValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativePickerValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeDatePicker",
+      "publicName": "DatePicker",
+      "props": {
+        "value": {
+          "type": "Double"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "minimumDate": {
+          "type": "Double"
+        },
+        "maximumDate": {
+          "type": "Double"
+        },
+        "displayedComponents": {
+          "type": "string"
+        },
+        "datePickerStyle": {
+          "type": "string",
+          "enum": "DatePickerStyle"
+        }
+      },
+      "events": {
+        "onNativeDatePickerValueChange": {
+          "value": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeDatePickerValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeColorPicker",
+      "publicName": "ColorPicker",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "supportsOpacity": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeColorPickerValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeColorPickerValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeToggle",
+      "publicName": "Toggle",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "toggleStyle": {
+          "type": "string",
+          "enum": "ToggleStyle"
+        }
+      },
+      "events": {
+        "onNativeToggleValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeToggleValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSlider",
+      "publicName": "Slider",
+      "props": {
+        "value": {
+          "type": "Double"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "minimumValue": {
+          "type": "Double"
+        },
+        "maximumValue": {
+          "type": "Double"
+        },
+        "step": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSliderValueChange": {
+          "value": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeSliderValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeStepper",
+      "publicName": "Stepper",
+      "props": {
+        "value": {
+          "type": "Double"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "minimumValue": {
+          "type": "Double"
+        },
+        "maximumValue": {
+          "type": "Double"
+        },
+        "step": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeStepperValueChange": {
+          "value": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeStepperValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeText",
+      "publicName": "Text",
+      "props": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeLabel",
+      "publicName": "Label",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "systemImage": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeButton",
+      "publicName": "Button",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "buttonRole": {
+          "type": "string",
+          "enum": "ButtonRole"
+        },
+        "buttonStyle": {
+          "type": "string",
+          "enum": "PrimitiveButtonStyle"
+        }
+      },
+      "events": {
+        "onNativeButtonPress": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPress",
+          "event": "onNativeButtonPress"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeProgressView",
+      "publicName": "ProgressView",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "Double"
+        },
+        "total": {
+          "type": "Double"
+        },
+        "indeterminate": {
+          "type": "boolean"
+        },
+        "progressViewStyle": {
+          "type": "string",
+          "enum": "ProgressViewStyle"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeGauge",
+      "publicName": "Gauge",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "Double"
+        },
+        "minimumValue": {
+          "type": "Double"
+        },
+        "maximumValue": {
+          "type": "Double"
+        },
+        "currentValueLabel": {
+          "type": "string"
+        },
+        "minimumValueLabel": {
+          "type": "string"
+        },
+        "maximumValueLabel": {
+          "type": "string"
+        },
+        "gaugeStyle": {
+          "type": "string",
+          "enum": "GaugeStyle"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeImage",
+      "publicName": "Image",
+      "props": {
+        "systemName": {
+          "type": "string"
+        },
+        "symbolRenderingMode": {
+          "type": "string",
+          "enum": "SymbolRenderingMode"
+        },
+        "symbolVariant": {
+          "type": "string",
+          "enum": "SymbolVariants"
+        },
+        "imageScale": {
+          "type": "string",
+          "enum": "ImageScale"
+        },
+        "variableValue": {
+          "type": "Double"
+        },
+        "hasVariableValue": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeVideoPlayer",
+      "publicName": "VideoPlayer",
+      "props": {
+        "url": {
+          "type": "string"
+        },
+        "autoplay": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeMap",
+      "publicName": "Map",
+      "props": {
+        "latitude": {
+          "type": "Double"
+        },
+        "longitude": {
+          "type": "Double"
+        },
+        "distance": {
+          "type": "Double"
+        },
+        "markers": {
+          "type": "ReadonlyArray<MapMarker>"
+        }
+      },
+      "events": {
+        "onNativeMapRegionChange": {
+          "latitude": {
+            "type": "Double"
+          },
+          "longitude": {
+            "type": "Double"
+          },
+          "distance": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onRegionChange",
+          "event": "onNativeMapRegionChange"
+        }
+      ],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTextField",
+      "publicName": "TextField",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "focused": {
+          "type": "boolean"
+        },
+        "acknowledgedFocusEvent": {
+          "type": "Int32"
+        },
+        "focusRevision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "textFieldStyle": {
+          "type": "string",
+          "enum": "TextFieldStyle"
+        },
+        "submitLabel": {
+          "type": "string",
+          "enum": "SubmitLabel"
+        },
+        "textInputAutocapitalization": {
+          "type": "string",
+          "enum": "TextInputAutocapitalization"
+        },
+        "autocorrectionDisabled": {
+          "type": "boolean"
+        },
+        "keyboardType": {
+          "type": "string"
+        },
+        "textContentType": {
+          "type": "string"
+        },
+        "axis": {
+          "type": "string",
+          "enum": "Axis"
+        }
+      },
+      "events": {
+        "onNativeTextFieldValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeTextFieldFocusChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeTextFieldSubmit": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeTextFieldValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onSubmit",
+          "event": "onNativeTextFieldSubmit"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSecureField",
+      "publicName": "SecureField",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "focused": {
+          "type": "boolean"
+        },
+        "acknowledgedFocusEvent": {
+          "type": "Int32"
+        },
+        "focusRevision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "textFieldStyle": {
+          "type": "string",
+          "enum": "TextFieldStyle"
+        },
+        "submitLabel": {
+          "type": "string",
+          "enum": "SubmitLabel"
+        },
+        "textInputAutocapitalization": {
+          "type": "string",
+          "enum": "TextInputAutocapitalization"
+        },
+        "autocorrectionDisabled": {
+          "type": "boolean"
+        },
+        "keyboardType": {
+          "type": "string"
+        },
+        "textContentType": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSecureFieldValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSecureFieldFocusChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSecureFieldSubmit": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeSecureFieldValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onSubmit",
+          "event": "onNativeSecureFieldSubmit"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeAlert",
+      "publicName": "Alert",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "ReadonlyArray<DialogAction>"
+        }
+      },
+      "events": {
+        "onNativeAlertValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeAlertAction": {
+          "id": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeAlertValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeAlertAction"
+        }
+      ],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeConfirmationDialog",
+      "publicName": "ConfirmationDialog",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "ReadonlyArray<DialogAction>"
+        },
+        "titleVisibility": {
+          "type": "string",
+          "enum": "Visibility"
+        }
+      },
+      "events": {
+        "onNativeConfirmationDialogValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeConfirmationDialogAction": {
+          "id": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeConfirmationDialogValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeConfirmationDialogAction"
+        }
+      ],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeQuickLook",
+      "publicName": "QuickLook",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeQuickLookValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeQuickLookValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSheet",
+      "publicName": "Sheet",
+      "props": {
+        "isPresented": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "detents": {
+          "type": "ReadonlyArray<NativeSheetDetent>"
+        },
+        "interactiveDismissDisabled": {
+          "type": "boolean"
+        },
+        "presentationDragIndicator": {
+          "type": "string",
+          "enum": "Visibility"
+        }
+      },
+      "events": {
+        "onNativeSheetIsPresentedChange": {
+          "isPresented": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSheetDismiss": {
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "isPresented",
+        "event": "onNativeSheetIsPresentedChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "OneNativeSheetContent",
+          "cardinality": "one",
+          "layout": "presented"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSheetContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeHost",
+      "publicName": "Host",
+      "props": {
+        "axis": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "Double"
+        },
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeForm",
+      "publicName": "Form",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSection",
+      "publicName": "Section",
+      "props": {
+        "title": {
+          "type": "string"
+        },
+        "footer": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeContainerSlot",
+      "publicName": "Slot",
+      "props": {
+        "height": {
+          "type": "Double"
+        },
+        "width": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePopover",
+      "publicName": "Popover",
+      "props": {
+        "isPresented": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "arrowEdge": {
+          "type": "string",
+          "enum": "Edge"
+        },
+        "presentationCompactAdaptation": {
+          "type": "string",
+          "enum": "PresentationAdaptation"
+        },
+        "contentWidth": {
+          "type": "Double"
+        },
+        "contentHeight": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativePopoverIsPresentedChange": {
+          "isPresented": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "isPresented",
+        "event": "onNativePopoverIsPresentedChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "trigger",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        },
+        {
+          "name": "content",
+          "content": "OneNativePopoverContent",
+          "cardinality": "one",
+          "layout": "presented"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePopoverContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
+    }
+  ],
+  "payloads": {
+    "PickerOption": {
+      "fields": {
+        "value": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "MapMarker": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "Double"
+        },
+        "longitude": {
+          "type": "Double"
+        }
+      }
+    },
+    "DialogAction": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "NativeSheetDetent": {
+      "fields": {
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "Double"
+        }
+      }
+    },
+    "NativeMenuItem": {
+      "fields": {
+        "parentId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "default": ""
+        },
+        "title": {
+          "type": "string",
+          "default": ""
+        },
+        "systemImage": {
+          "type": "string",
+          "default": ""
+        },
+        "role": {
+          "type": "ButtonRole",
+          "default": ""
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
+        "help": {
+          "type": "string",
+          "default": ""
+        },
+        "controlGroupStyle": {
+          "type": "ControlGroupStyle",
+          "default": "automatic"
+        },
+        "values": {
+          "type": "boolean[]",
+          "default": []
+        },
+        "menuOrder": {
+          "type": "MenuOrder",
+          "default": ""
+        },
+        "menuActionDismissBehavior": {
+          "type": "MenuActionDismissBehavior",
+          "default": ""
+        }
+      },
+      "nodes": [
+        {
+          "kind": "action",
+          "name": "MenuAction",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "role",
+            "disabled",
+            "hidden",
+            "help",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title"
+          ],
+          "children": false,
+          "swiftType": "Button"
+        },
+        {
+          "kind": "toggle",
+          "name": "MenuToggle",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "values",
+            "disabled",
+            "hidden",
+            "help",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title",
+            "values"
+          ],
+          "children": false,
+          "swiftType": "Toggle"
+        },
+        {
+          "kind": "submenu",
+          "name": "MenuSubmenu",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "disabled",
+            "hidden",
+            "help",
+            "menuOrder",
+            "menuActionDismissBehavior"
+          ],
+          "required": [
+            "id",
+            "title"
+          ],
+          "children": true,
+          "swiftType": "Menu"
+        },
+        {
+          "kind": "section",
+          "name": "MenuSection",
+          "fields": [
+            "id",
+            "title",
+            "hidden"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": true,
+          "swiftType": "Section"
+        },
+        {
+          "kind": "controlGroup",
+          "name": "MenuControlGroup",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "disabled",
+            "hidden",
+            "controlGroupStyle"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": true,
+          "swiftType": "ControlGroup"
+        },
+        {
+          "kind": "divider",
+          "name": "MenuDivider",
+          "fields": [
+            "id"
+          ],
+          "required": [
+            "id"
+          ],
+          "children": false,
+          "swiftType": "Divider"
+        }
+      ]
+    }
+  },
+  "enums": {
+    "MenuOrder": {
+      "automatic": 16,
+      "priority": 16,
+      "fixed": 16
+    },
+    "Visibility": {
+      "automatic": 15,
+      "visible": 15,
+      "hidden": 15
+    },
+    "PickerStyle": {
+      "wheel": 13,
+      "inline": 14,
+      "automatic": 13,
+      "segmented": 13,
+      "palette": 17,
+      "navigationLink": 16,
+      "menu": 14
+    },
+    "DatePickerStyle": {
+      "wheel": 13,
+      "automatic": 13,
+      "graphical": 14,
+      "compact": 14
+    },
+    "ToggleStyle": {
+      "button": 15,
+      "automatic": 13,
+      "switch": 13
+    },
+    "MenuActionDismissBehavior": {
+      "automatic": 16.4,
+      "enabled": 16.4,
+      "disabled": 16.4
+    },
+    "TabBarMinimizeBehavior": {
+      "automatic": 26,
+      "onScrollDown": 26,
+      "onScrollUp": 26,
+      "never": 26
+    },
+    "ButtonRole": {
+      "destructive": 15,
+      "cancel": 15,
+      "confirm": 26,
+      "close": 26
+    },
+    "TabRole": {
+      "search": 18
+    },
+    "ControlGroupStyle": {
+      "palette": 17,
+      "automatic": 15,
+      "navigation": 15,
+      "menu": 16.4,
+      "compactMenu": 16.4
+    },
+    "PrimitiveButtonStyle": {
+      "automatic": 13,
+      "glass": 26,
+      "borderless": 13,
+      "glassProminent": 26,
+      "plain": 13,
+      "bordered": 15,
+      "borderedProminent": 15
+    },
+    "ProgressViewStyle": {
+      "linear": 14,
+      "circular": 14,
+      "automatic": 14
+    },
+    "GaugeStyle": {
+      "accessoryCircularCapacity": 16,
+      "linearCapacity": 16,
+      "accessoryLinear": 16,
+      "accessoryLinearCapacity": 16,
+      "automatic": 16,
+      "accessoryCircular": 16
+    },
+    "TextFieldStyle": {
+      "automatic": 13,
+      "roundedBorder": 13,
+      "plain": 13
+    },
+    "SubmitLabel": {
+      "done": 15,
+      "go": 15,
+      "send": 15,
+      "join": 15,
+      "route": 15,
+      "search": 15,
+      "return": 15,
+      "next": 15,
+      "continue": 15
+    },
+    "TextInputAutocapitalization": {
+      "never": 15,
+      "words": 15,
+      "sentences": 15,
+      "characters": 15
+    },
+    "Axis": {
+      "horizontal": 13,
+      "vertical": 13
+    },
+    "Edge": {
+      "top": 13,
+      "leading": 13,
+      "bottom": 13,
+      "trailing": 13
+    },
+    "PresentationAdaptation": {
+      "automatic": 16.4,
+      "none": 16.4,
+      "popover": 16.4,
+      "sheet": 16.4,
+      "fullScreenCover": 16.4
+    },
+    "SymbolRenderingMode": {
+      "monochrome": 15,
+      "multicolor": 15,
+      "hierarchical": 15,
+      "palette": 15
+    },
+    "SymbolVariants": {
+      "none": 15,
+      "circle": 15,
+      "square": 15,
+      "rectangle": 15,
+      "fill": 15,
+      "slash": 15
+    },
+    "ImageScale": {
+      "small": 13,
+      "medium": 13,
+      "large": 13
+    }
+  }
+}

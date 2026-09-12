@@ -1,0 +1,63 @@
+import type { ColorValue, ViewProps } from 'react-native';
+import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+type OneNativeStyleNative = Readonly<{
+    fontSize?: WithDefault<Double, -1>;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ColorValue;
+    tint?: ColorValue;
+    background?: ColorValue;
+    padding?: WithDefault<Double, -1>;
+    paddingTop?: WithDefault<Double, -1>;
+    paddingLeading?: WithDefault<Double, -1>;
+    paddingBottom?: WithDefault<Double, -1>;
+    paddingTrailing?: WithDefault<Double, -1>;
+    width?: WithDefault<Double, -1>;
+    height?: WithDefault<Double, -1>;
+    minWidth?: WithDefault<Double, -1>;
+    idealWidth?: WithDefault<Double, -1>;
+    maxWidth?: WithDefault<Double, -1>;
+    minHeight?: WithDefault<Double, -1>;
+    idealHeight?: WithDefault<Double, -1>;
+    maxHeight?: WithDefault<Double, -1>;
+    cornerRadius?: WithDefault<Double, -1>;
+    opacity?: WithDefault<Double, -1>;
+    borderColor?: ColorValue;
+    borderWidth?: WithDefault<Double, -1>;
+}>;
+interface NativeProps extends ViewProps {
+    value: string;
+    acknowledgedEvent: Int32;
+    revision: Int32;
+    focused: boolean;
+    acknowledgedFocusEvent: Int32;
+    focusRevision: Int32;
+    label: string;
+    disabled: boolean;
+    prompt: string;
+    textFieldStyle: string;
+    submitLabel: string;
+    textInputAutocapitalization: string;
+    autocorrectionDisabled: boolean;
+    keyboardType: string;
+    textContentType: string;
+    axis: string;
+    swiftStyle?: OneNativeStyleNative;
+    onNativeTextFieldValueChange?: DirectEventHandler<Readonly<{
+        value: string;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeTextFieldFocusChange?: DirectEventHandler<Readonly<{
+        value: boolean;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeTextFieldSubmit?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
+    }>>;
+}
+declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
+export default _default;
+//# sourceMappingURL=OneNativeTextFieldNativeComponent.d.ts.map
