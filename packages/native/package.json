@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/native",
-  "version": "1.26.0",
+  "version": "1.26.1",
   "type": "module",
   "description": "UIKit and Android extras: zoom, bottom toolbar, toolbar menus, split view, and platform colors.",
   "license": "MIT",
