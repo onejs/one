@@ -1,7 +1,12 @@
 import { readFile, rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { createSession, navigateTo } from '@vxrn/test/utils/appium'
+import {
+  assertAppRunning,
+  closeSession,
+  createSession,
+  navigateTo,
+} from '@vxrn/test/utils/appium'
 import { expect, test } from 'vitest'
 
 const routePath = resolve('app/hmr-probe.tsx')
@@ -29,6 +34,7 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
         try {
           return (await getText(testId)) === expected
         } catch {
+          await assertAppRunning(driver)
           return false
         }
       },
@@ -55,6 +61,7 @@ testRolldownDev(
     try {
       await navigateTo(driver, '/hmr-probe')
       await waitForText('route-hmr-version', 'route-v1')
+      await waitForText('route-hmr-added', 'missing')
       await waitForText('component-hmr-version', 'component-v1')
       await waitForText('workspace-hmr-version', 'workspace-v1')
 
@@ -86,7 +93,7 @@ testRolldownDev(
         writeFile(childPath, originalChild),
         writeFile(workspacePath, originalWorkspace),
       ])
-      await driver.deleteSession()
+      await closeSession(driver)
     }
   }
 )
@@ -119,27 +126,15 @@ export default function HmrAdded() {
 `
       )
 
-      // the app reloads onto the rebuilt bundle, so re-issue the navigation
-      // until the new route answers
-      await driver.waitUntil(
-        async () => {
-          try {
-            await navigateTo(driver, '/hmr-added')
-            await waitForText('added-route-version', 'added-v1')
-            return true
-          } catch {
-            return false
-          }
-        },
-        {
-          timeout: 120_000,
-          interval: 2_000,
-          timeoutMsg: '/hmr-added never became reachable',
-        }
-      )
+      // the app reloads onto the rebuilt bundle. wait until that bundle's
+      // route map contains the new file before asking the router to enter it;
+      // navigating earlier would intentionally select the catch-all route.
+      await waitForText('route-hmr-added', 'available')
+      await navigateTo(driver, '/hmr-added')
+      await waitForText('added-route-version', 'added-v1')
     } finally {
       await rm(addedRoutePath, { force: true })
-      await driver.deleteSession()
+      await closeSession(driver)
     }
   }
 )

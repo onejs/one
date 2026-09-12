@@ -13,11 +13,17 @@ globalThis.__ONE_HMR_ROUTE_GENERATION__ = routeGeneration
 export default function HmrProbe() {
   const [generation] = useState(routeGeneration)
   const [count, setCount] = useState(0)
+  const addedRouteAvailable = Object.keys(
+    (globalThis as any).__importMetaGlobbed ?? {}
+  ).some((path) => path.endsWith('/app/hmr-added.tsx'))
 
   return (
     <View>
       <Text testID="route-hmr-version">route-v1</Text>
       <Text testID="route-hmr-generation">generation:{generation}</Text>
+      <Text testID="route-hmr-added">
+        {addedRouteAvailable ? 'available' : 'missing'}
+      </Text>
       <Text testID="route-hmr-count">count:{count}</Text>
       <Pressable testID="route-hmr-bump" onPress={() => setCount((c) => c + 1)}>
         <Text>bump</Text>
