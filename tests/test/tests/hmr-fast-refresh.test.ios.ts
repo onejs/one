@@ -50,7 +50,7 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
 
 testRolldownDev(
   'applies route, component and workspace Fast Refresh updates without re-running the route module',
-  { timeout: 5 * 60 * 1000, retry: 1 },
+  { timeout: 5 * 60 * 1000, retry: 0 },
   async () => {
     const originalRoute = await readFile(routePath, 'utf8')
     const originalChild = await readFile(childPath, 'utf8')
@@ -100,7 +100,7 @@ testRolldownDev(
 
 testRolldownDev(
   'a route file created while the app runs becomes reachable',
-  { timeout: 5 * 60 * 1000, retry: 1 },
+  { timeout: 5 * 60 * 1000, retry: 0 },
   async () => {
     const driver = await createSession(getWebDriverConfig())
     const { waitForText } = createTextReaders(driver)

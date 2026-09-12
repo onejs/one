@@ -113,26 +113,36 @@ export async function setValueSlowly(
   text: string,
   { delay = 10, initialDelay = 300 }: { delay?: number; initialDelay?: number } = {}
 ) {
-  // Re-select every time to avoid stale element
   const parent = await element.parent
   const selector = await element.selector
   function getElement() {
     return parent.$(selector)
   }
 
-  await getElement().clearValue()
-  await getElement().click()
+  await driver.waitUntil(
+    async () => {
+      try {
+        await getElement().clearValue()
+        await getElement().click()
+        await driver.pause(initialDelay)
 
-  await driver.pause(initialDelay)
+        for (const char of text) {
+          await getElement().addValue(char)
+          await driver.pause(delay)
+        }
 
-  const e = await getElement()
-  for (const char of text) {
-    // await getElement().addValue(char)
-    // Faster but might be unstable
-    await e.addValue(char)
-
-    await driver.pause(delay)
-  }
+        return (await getElement().getValue()) === text
+      } catch {
+        await assertAppRunning(driver)
+        return false
+      }
+    },
+    {
+      timeout: 2 * 60 * 1000,
+      interval: 100,
+      timeoutMsg: `Element "${selector}" never held the requested value`,
+    }
+  )
 }
 
 export async function navigateTo(driver: Browser, path: string) {
