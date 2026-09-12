@@ -1,105 +1,66 @@
 # Keep @vxrn/native separate from one-native
 
-**Recommendation: keep the two packages separate.** Absorbing `@vxrn/native` into
-`packages/one-native` would give a package that today has zero dependencies a hard peer
-dependency on `one` itself, on react-navigation, and on react-native-screens, and would move
-Paper view managers and an Android module into a Fabric, iOS-26, iOS-only package. Migrate
-feature by feature later if it is ever justified, and only by caller behavior.
+Keep the packages separate. They have different renderers, platform reach,
+deployment floors, and capability owners. The V2 integration removes overlapping
+route-navigation surfaces without deleting independent SwiftUI primitives.
 
-Written for the v2-beta owner integrating `feat/one-native` with
-`feat/react-navigation-v8-main`. No branches merged, nothing published or tagged.
+This conclusion was verified on the handed-off `feat/one-native` commit
+`a45ff3ac48d137c48a3077ba16c8a161762dd620` and then reconciled with the
+React Navigation 8 integration.
 
-## The evidence
+## Current ownership
 
-**RAN** - every claim below is a file I read in this checkout, cited by path.
+| Capability                                             | Owner                          | Reason                                                                    |
+| ------------------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------- |
+| Application route tabs and stacks                      | React Navigation 8 through One | Owns routes, links, history, back behavior, and route selection            |
+| Explicit SwiftUI TabView and Tab primitives            | `one-native`                   | Local non-router composition and controlled selection                     |
+| UIKit zoom transitions                                 | `@vxrn/native`                 | Uses the navigation controller and supports the older iOS floor           |
+| Bottom toolbar and toolbar menu items                  | `@vxrn/native`                 | Uses `UINavigationController` and Paper view managers                     |
+| Split view                                             | `@vxrn/native`                 | Uses react-native-screens and preserves its Android/web fallback behavior |
+| Platform colors                                        | `@vxrn/native`                 | Resolves iOS and Android system colors and stays safe on web              |
+| Other SwiftUI controls, containers, and presentations  | `one-native`                   | Generated Fabric components with an iOS 26 floor                          |
 
-1. **Different renderer generation.** `@vxrn/native` is Paper. `ios/Toolbar/VxrnToolbarHostManager.m`
-   is an `RCTViewManager` with `RCT_EXPORT_MODULE`, and a search for `codegenNativeComponent`,
-   `RCTViewComponentView` and `ComponentDescriptor` across `packages/native/src` and
-   `packages/native/ios` returns nothing. `one-native` is Fabric throughout: codegen specs in
-   `src/specs/`, `RCTViewComponentView` subclasses, generated component descriptors.
-   Absorbing means rewriting all six feature areas on Fabric, not moving files.
+`Swift.Menu` and `@vxrn/native`'s `MenuAction` are not duplicate
+implementations. The former renders a standalone SwiftUI menu. The latter
+describes children of the navigation controller's bottom toolbar menu.
 
-2. **Different iOS floors.** `VxrnNative.podspec` sets `:ios => '15.1'` and depends only on
-   `React-Core`. `OneNative.podspec` reads its floor from `schema.json`, which `codegen/generate.ts`
-   sets to 26. The floor was raised to 26 specifically so availability branches could be deleted.
-   Hosting a 15.1 Paper surface inside it undoes that.
+Likewise, One's React Navigation tabs and `Swift.Tabs` do not share route state.
+React Navigation is the only application navigator. `Swift.Tabs` exposes a
+low-level SwiftUI `TabView` for explicit non-router composition, with local
+controlled selection. It does not register with One, wrap React Navigation, or
+mirror route history. A childless action `Swift.Tab` emits an application callback
+without entering the selection protocol; the application decides what to present.
 
-3. **Different platform reach.** `@vxrn/native` ships an Android module
-   (`android/src/main/java/dev/vxrn/nativebridge/VxrnNativeModule.kt`, Material 3 color
-   resolution) and web-safe fallbacks (`src/color/index.ts` returns null through a Proxy on
-   web/SSR). `one-native` is iOS-only and its web entry throws on render. `Color` in particular
-   is a cross-platform token API with no SwiftUI involvement at all; moving it into an iOS-only
-   package makes it unusable on the two platforms it already serves.
+## Evidence
 
-4. **Dependency direction is the opposite.** `packages/one-native/package.json` has
-   `dependencies: {}` and peers only `react` and `react-native`.
-   `packages/native/package.json` peers on `@react-navigation/native` ~7.3.16,
-   `@react-navigation/native-stack` ~7.18.8, `one` 1.26.0, `react-native-screens` >=4.0.0 and
-   `react-native-safe-area-context` >=5.4.0. Merging them makes `one-native` depend on `one`,
-   which is circular, and pins a standalone bindings package to a navigation library.
+- `@vxrn/native` uses `RCTViewManager` Paper components for toolbar and zoom.
+  It also ships an Android Material color module and web-safe JavaScript entries.
+- `one-native` uses generated Fabric specs, component descriptors, and
+  `RCTViewComponentView` subclasses. It ships no Android implementation.
+- `packages/native/VxrnNative.podspec` targets iOS 15.1.
+  `packages/one-native/OneNative.podspec` reads iOS 26 from the generated schema.
+- `one-native` has no runtime dependencies and peers only on React and React
+  Native. Its tab primitive therefore cannot introduce a second One or React
+  Navigation route model. `@vxrn/native` retains the screens and safe-area peers
+  required by SplitView.
+- `Color` has Android behavior and a web-safe proxy, so an iOS-only SwiftUI
+  package cannot own it without dropping supported platforms.
+- ToolbarHost, ToolbarItem, MenuAction, SplitView, and the zoom components have
+  no equivalent in React Navigation 8 or `one-native`.
 
-5. **One already owns the StackToolbar API; `@vxrn/native` is only its iOS backend.**
-   `packages/one/src/stack-toolbar-implementation.ts` and
-   `packages/one/src/layouts/stack-utils/StackToolbarImplementation.tsx` define the public
-   components and a registry. `packages/native/src/StackToolbarImplementation.tsx` maps those
-   children onto native components and calls `registerStackToolbarImplementation`, and
-   `packages/native/src/index.ts` fires that registration as an import side effect. The owner of
-   this API is One. Neither package should take it from One, and
-   `plans/one-native-navigation-design.md` independently recommends One's native stack stay the
-   sole navigation owner.
+## V2 resolution
 
-6. **Soot integrates `@vxrn/native` by package name.**
-   `~/soot/packages/compat/src/native-seam-loaders.ts:37` maps the specifier `'@vxrn/native'` to
-   a register stub, and `~/soot/packages/compat/src/registry.ts:4479` records it as a supported
-   native package. Renaming or folding the package breaks that seam by name.
+- Removed One's StackToolbar registry, public API, adapter, tests, declarations,
+  and documentation.
+- Kept ToolbarHost, ToolbarItem, and MenuAction as direct `@vxrn/native`
+  capabilities. They no longer depend on One or React Navigation.
+- Kept zoom, SplitView, and Color in `@vxrn/native`.
+- Kept `Swift.Tabs` and `Swift.Tab` as explicit SwiftUI primitives, including the
+  detached childless action path. They are not One layout exports and do not own
+  application routes.
+- Kept `Swift.Menu` as a standalone SwiftUI control rather than a navigation
+  adapter.
 
-7. **react-navigation coupling lives entirely on the `@vxrn/native` side.**
-   `packages/native/src/stack-toolbar/StackToolbar.tsx` imports `NativeStackHeaderItem`,
-   `NativeStackNavigationOptions` and friends from `@react-navigation/native-stack` and
-   `useNavigation` from `@react-navigation/native`. `one-native` imports neither. This matters
-   most for the v8 integration: `@vxrn/native` is precisely the package that has to move with
-   react-navigation, and `one-native` is precisely the one that must not be dragged along.
-
-## What overlaps, honestly
-
-Almost nothing at the implementation level. The overlap people see is export-name similarity.
-
-| `@vxrn/native` | `one-native` | Real relationship |
-| --- | --- | --- |
-| `StackToolbar` | `Swift.Menu`, `Swift.Tabs` | None. StackToolbar writes react-navigation header options; one-native renders SwiftUI inside a Fabric view. |
-| `MenuAction` | `Swift.Menu` | Same idea, different host. MenuAction feeds native-stack header menus; `Swift.Menu` is a standalone SwiftUI menu with a generated validator. |
-| `ToolbarHost`, `ToolbarItem` | no equivalent | None. These are StackToolbar's internal building blocks. |
-| `SplitView` | no equivalent | None. `NavigationSplitView` is explicitly excluded by the navigation design. |
-| `ZoomTransition*` | no equivalent | None. UIKit `preferredTransition = .zoom` against a navigation controller. |
-| `Color` | `swiftStyle` colors | Adjacent, not overlapping. `Color` resolves platform tokens on iOS and Android; `swiftStyle` sets SwiftUI colors on a generated control. |
-
-## What can change now
-
-- **Delete three public exports, keep the code.** `ToolbarHost`, `ToolbarItem` and
-  `ZoomTransitionAlignmentRectDetector` have no importer in this repo outside
-  `packages/native` itself, and `StackToolbar.tsx` uses `ToolbarHost`/`ToolbarItem`/`MenuAction`
-  internally (`packages/native/src/stack-toolbar/StackToolbar.tsx:26-27`). So the exports are
-  surface with no callers, and the modules stay. `ZoomTransitionAlignmentRectDetector` has no
-  caller at all, internal or external.
-  Check downstream consumers before cutting: this is a published package, and absence of a
-  caller in this checkout does not prove absence in someone's app.
-- **Nothing to move into `one-native`.** Every feature is either navigation-owned, Android and
-  web bearing, or Paper.
-- **Leave `Color` where it is.** It is the one piece that is genuinely portable, and it is the
-  one piece `one-native` could never host.
-
-## What a later migration would actually cost
-
-Only worth doing per feature, when that feature has a reason to become SwiftUI.
-
-- `MenuAction` to `Swift.Menu`: the mechanism exists. The blocker is that native-stack header
-  menus are positioned by react-navigation, so this is a navigation question, not a binding one.
-- `SplitView` and `ZoomTransition`: a SwiftUI rewrite drops iOS 15.1 through 25 for those
-  features and gains nothing until the app's floor is 26 too.
-- `StackToolbar`: do not migrate. One owns the API, and the navigation design says binding
-  SwiftUI navigation is gated behind a runtime experiment that has not been run.
-- `Color`: never. It is cross-platform and would lose Android and web.
-
-The migration cost is therefore not a file move. It is one Fabric rewrite per feature plus the
-platform support each rewrite drops.
+Move a capability later only when runtime evidence shows that its existing
+platform behavior can be preserved by the new owner. Similar export names are
+not enough.

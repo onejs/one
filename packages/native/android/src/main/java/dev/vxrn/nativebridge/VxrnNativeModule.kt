@@ -10,7 +10,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import com.google.android.material.color.MaterialColors
 
 class VxrnNativeModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
-    override fun getName(): String = "VxrnNative"
+    override fun getName(): String = NAME
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     fun Material3Color(name: String, scheme: String): String? {
@@ -60,6 +60,8 @@ class VxrnNativeModule(reactContext: ReactApplicationContext) : ReactContextBase
     }
 
     companion object {
+        const val NAME = "VxrnNative"
+
         fun colorToHex(color: Int): String {
             return String.format("#%02x%02x%02x", Color.red(color), Color.green(color), Color.blue(color))
         }

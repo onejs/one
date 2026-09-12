@@ -385,6 +385,13 @@ function removeExpoDefaultsFromAppBuildGradle(appBuildGradleContents) {
 // TODO: Get the content of this block from @react-native-community/template (for example, get https://registry.npmjs.org/@react-native-community/template/0.76.6, find the tarball, download it into a tmp dir, extract it, read template/android/app/build.gradle, parse out the react block) to ensure it stays up to date.
 // Note that we need to add patches marked with [vxrn/one], not just copy the block from the template as is.
 const ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = `
+def resolveNodePackage = { packageName ->
+    providers.exec {
+        workingDir(rootDir)
+        commandLine("node", "--print", "require.resolve('" + packageName + "')")
+    }.standardOutput.asText.get().trim()
+}
+
 react {
     // [vxrn/one] the bundle command should find the entry file automatically,
     // we are setting this to a file that will definitely exist to avoid
@@ -397,12 +404,11 @@ react {
     /* Folders */
     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
     // root = file("../../")
-    //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
-    // reactNativeDir = file("../../node_modules/react-native")
-    //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
-    // codegenDir = file("../../node_modules/@react-native/codegen")
-    //   The cli.js file which is the React Native CLI entrypoint. Default is ../../node_modules/react-native/cli.js
-    // cliFile = file("../../node_modules/react-native/cli.js")
+    // [vxrn/one] resolve hoisted packages from the generated project instead of assuming
+    // the application has its own node_modules directory.
+    reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
+    codegenDir = file(resolveNodePackage("@react-native/codegen/package.json")).parentFile
+    cliFile = file(resolveNodePackage("react-native/cli.js"))
 
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to

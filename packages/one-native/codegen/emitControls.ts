@@ -151,7 +151,7 @@ ${
       ...Object.fromEntries(
         actions.map((action) => [
           `onNative${name}${action.event}`,
-          { ...(action.payload ?? {}), eventCount: 'Int32' },
+          { ...action.payload, eventCount: 'Int32' },
         ])
       ),
     }

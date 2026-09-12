@@ -19,7 +19,7 @@
     "android"
   ],
   "android": {
-    "package": "dev.vxrn.native.tests"
+    "package": "dev.vxrn.nativefeatures.tests"
   },
   "ios": {
     "bundleIdentifier": "dev.vxrn.native.tests"
