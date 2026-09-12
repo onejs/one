@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/lucide-icons-2": "2.6.2",

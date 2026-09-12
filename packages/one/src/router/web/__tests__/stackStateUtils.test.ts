@@ -131,6 +131,18 @@ describe('convertStackStateToNonOverlayState', () => {
     expect(out.routes).toHaveLength(0)
     expect(out.index).toBe(0)
   })
+
+  it('ignores preloaded routes after the focused index', () => {
+    const state = makeState(['home', 'sheet', 'preloaded'], 1)
+    const descriptors = makeDescriptors(['home', 'sheet', 'preloaded'], {
+      home: 'card',
+      sheet: 'formSheet',
+      preloaded: 'card',
+    })
+    const out = convertStackStateToNonOverlayState(state, descriptors)
+    expect(out.routes.map((route) => route.name)).toEqual(['home'])
+    expect(out.index).toBe(0)
+  })
 })
 
 describe('findLastNonOverlayIndex', () => {
@@ -149,5 +161,15 @@ describe('findLastNonOverlayIndex', () => {
     const state = makeState(['sheet'], 0)
     const descriptors = makeDescriptors(['sheet'], { sheet: 'formSheet' })
     expect(findLastNonOverlayIndex(state, descriptors)).toBe(-1)
+  })
+
+  it('does not treat a preloaded card as focused', () => {
+    const state = makeState(['home', 'sheet', 'preloaded'], 1)
+    const descriptors = makeDescriptors(['home', 'sheet', 'preloaded'], {
+      home: 'card',
+      sheet: 'formSheet',
+      preloaded: 'card',
+    })
+    expect(findLastNonOverlayIndex(state, descriptors)).toBe(0)
   })
 })

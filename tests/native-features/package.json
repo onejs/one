@@ -13,6 +13,7 @@
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run"
   },
   "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/native": "workspace:*",
     "expo": "~57.0.11",

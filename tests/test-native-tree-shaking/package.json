@@ -12,6 +12,7 @@
     "test:native-bundle": "tsx scripts/test-native-bundle.ts"
   },
   "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/mdx": "workspace:*",
     "expo": "~57.0.11",

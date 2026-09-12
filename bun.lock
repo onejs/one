@@ -41,6 +41,7 @@
       "name": "site",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@docsearch/react": "^3.9.0",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@supabase/supabase-js": "^2.44.4",
@@ -131,6 +132,7 @@
       "name": "example-basic",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -153,6 +155,7 @@
       "name": "example-testflight",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@dotenvx/dotenvx": "^1.12.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
@@ -429,9 +432,10 @@
         "xxhashjs": "^0.2.2",
       },
       "devDependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/core": "~8.0.0-alpha.34",
         "@react-navigation/drawer": "~8.0.0-alpha.51",
-        "@react-navigation/native": "~8.0.0-alpha.44",
+        "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/build": "2.6.2",
         "@types/node": "^24.10.0",
         "@types/react-dom": "^19.2.2",
@@ -453,8 +457,9 @@
         "vitest": "^4.1.0",
       },
       "peerDependencies": {
+        "@callstack/liquid-glass": ">=0.6.0",
         "@react-navigation/drawer": "~8.0.0-alpha.51",
-        "@react-navigation/native": "~8.0.0-alpha.44",
+        "@react-navigation/native": "8.0.0-alpha.44",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-native": "^0.86.0",
@@ -765,6 +770,7 @@
       "name": "test-hmr",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -785,6 +791,7 @@
       "name": "test-native-features",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@vxrn/native": "workspace:*",
         "expo": "~57.0.11",
@@ -809,6 +816,7 @@
       "name": "rn-test-container",
       "version": "0.0.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@vxrn/native": "workspace:*",
         "expo": "~57.0.11",
@@ -836,6 +844,7 @@
       "name": "test-sandbox",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
         "@tamagui/lucide-icons-2": "2.6.2",
@@ -862,6 +871,7 @@
       "name": "test-test",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
         "@tamagui/lucide-icons-2": "2.6.2",
@@ -903,6 +913,7 @@
       "name": "test-app-cases",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
         "@vxrn/color-scheme": "workspace:*",
@@ -1019,6 +1030,7 @@
       "name": "test-deploy-flash",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1070,6 +1082,7 @@
       "name": "test-hydration-id",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1089,6 +1102,7 @@
       "name": "test-id-remount",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1106,6 +1120,7 @@
       "name": "test-layout-flicker",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1142,6 +1157,7 @@
       "name": "test-loaders",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
         "@vxrn/color-scheme": "workspace:*",
@@ -1169,6 +1185,7 @@
       "name": "test-native-tree-shaking",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@vxrn/mdx": "workspace:*",
         "expo": "~57.0.11",
@@ -1191,6 +1208,7 @@
       "name": "test-not-found",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1211,6 +1229,7 @@
       "name": "test-params-stability",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1231,6 +1250,7 @@
       "name": "test-redirect-flash",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1265,6 +1285,7 @@
       "name": "test-route-file-watching",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1285,6 +1306,7 @@
       "name": "test-routing-flicker",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "@tamagui/config": "2.6.2",
         "@vxrn/color-scheme": "workspace:*",
@@ -1326,6 +1348,7 @@
       "name": "test-skew-protection",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1346,6 +1369,7 @@
       "name": "test-sootsim-back",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1382,6 +1406,7 @@
       "name": "test-use-dom",
       "version": "1.26.0",
       "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
         "@react-navigation/native": "8.0.0-alpha.44",
         "expo": "~57.0.11",
         "one": "workspace:*",
@@ -1454,6 +1479,7 @@
   "overrides": {
     "@babel/core": "7.29.7",
     "@babel/plugin-transform-modules-systemjs": "7.29.4",
+    "@callstack/liquid-glass": "^0.8.1",
     "@cloudflare/vite-plugin": "1.41.0",
     "@isaacs/brace-expansion": "5.0.1",
     "@react-navigation/native": "8.0.0-alpha.44",

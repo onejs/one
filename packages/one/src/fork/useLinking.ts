@@ -78,8 +78,9 @@ function getFocusedRouteDepth(state: NavigationState): number {
 }
 
 const getTotalHistoryLength = (state: NavigationState): number => {
-  const baseHistoryLength = state.history ? state.history.length : state.routes.length
-  const routeHistoryLength = state.routes.reduce((acc, r) => {
+  const activeRoutes = state.routes.slice(0, state.index + 1)
+  const baseHistoryLength = state.history ? state.history.length : activeRoutes.length
+  const routeHistoryLength = activeRoutes.reduce((acc, r) => {
     return acc + (r.history ? r.history.length : 0)
   }, 0)
   return baseHistoryLength + routeHistoryLength

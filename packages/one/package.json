@@ -223,8 +223,9 @@
     "xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
+    "@callstack/liquid-glass": ">=0.6.0",
     "@react-navigation/drawer": "~8.0.0-alpha.51",
-    "@react-navigation/native": "~8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-native": "^0.86.0",
@@ -256,9 +257,10 @@
     }
   },
   "devDependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/core": "~8.0.0-alpha.34",
     "@react-navigation/drawer": "~8.0.0-alpha.51",
-    "@react-navigation/native": "~8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "@tamagui/build": "2.6.2",
     "react-native-gesture-handler": "~3.3.0",
     "react-native-reanimated": "~4.5.1",

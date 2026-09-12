@@ -1,4 +1,5 @@
 import type { OneRouter } from '../interfaces/router'
+import { getReactNavigationRouteName } from '../getReactNavigationConfig'
 import type { RouteNode } from './Route'
 
 type PartialState = {
@@ -46,7 +47,9 @@ export function isStateAwaitingNavigatorMount(
     // direct children only: a directory with no `_layout` is flattened into the
     // parent navigator under a multi-segment route name, and that name is what
     // the state carries, so a recursive search would match the wrong depth
-    const child = node.children.find((candidate) => candidate.route === route.name)
+    const child = node.children.find(
+      (candidate) => getReactNavigationRouteName(candidate) === route.name
+    )
     if (!child) return false
 
     if (route.state) {

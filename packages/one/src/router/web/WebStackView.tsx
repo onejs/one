@@ -103,7 +103,7 @@ function HeadlessStackView({
     state.routes.slice(0, lastBaseIndex + 1).map((route) => route.key)
   )
   const baseFocusedKey = state.routes[lastBaseIndex]?.key
-  const overlayRoutes = state.routes.slice(lastBaseIndex + 1)
+  const overlayRoutes = state.routes.slice(lastBaseIndex + 1, state.index + 1)
 
   return (
     <Fragment>
