@@ -408,45 +408,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(x, y)
     await wait('menu dismissed', (nodes) => !has(nodes, 'Copy'))
   }
-  // exactly one check per call, whatever the environment. the dev warning overlay is only
-  // sometimes on screen, and a check that silently does not run leaves every tap after it
-  // asserting nothing about whether something is intercepting them. so the check is the
-  // POSTCONDITION, that nothing is covering the screen: true immediately when no overlay
-  // appeared, and true after the overlay has settled and been dismissed when one did. the
-  // settle and the dismissal tap are means to that, so they do not get receipts of their own.
+  // exactly one check per call. the app filters react native's debugger migration notice, so
+  // seeing it here means startup configuration did not take effect and interaction is blocked.
   const dismissWarning = async (home: boolean) => {
-    let previousBounds = ''
-    let tapped = false
-    let lastSeen: Node['frame'] | undefined
     await wait(
       'no warning overlay intercepts interaction',
-      (current) => {
-        const overlay = current.find((node) => node.AXLabel?.includes('Open debugger'))
-        if (!overlay) return true
-        lastSeen = overlay.frame
-        if (tapped) return false
-        const app = current.find((node) => node.type === 'Application')?.frame
-        const frame = overlay.frame
-        if (!frame || !app || frame.height <= 0 || frame.y + frame.height > app.height) {
-          previousBounds = ''
-          return false
-        }
-        // tapping the overlay while it is still animating in misses it, so the dismissal waits
-        // for two snapshots to report the same bounds
-        const bounds = JSON.stringify(frame)
-        if (bounds !== previousBounds) {
-          previousBounds = bounds
-          return false
-        }
-        point(frame.x + frame.width - 24, frame.y + frame.height / 2)
-        tapped = true
-        return false
-      },
-      home,
-      () =>
-        lastSeen
-          ? `an overlay is still on screen at ${JSON.stringify(lastSeen)}, ${tapped ? 'after its dismissal was tapped' : 'and its bounds never settled so it was never tapped'}`
-          : 'no overlay was seen, so the fixture itself never reached its loaded state'
+      (current) =>
+        !current.some((node) => node.AXLabel?.includes('Open debugger to view warnings')),
+      home
     )
   }
   const tapTab = async (x: number, name: string) => {
@@ -2417,12 +2386,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))
   tap({ id: 'one-native-select-external' })
   await wait('state survives tab switching', firstState)
+  await tapTab(244, 'second before action topology')
+  await wait(
+    'native second selection precedes topology change',
+    (n) =>
+      has(n, 'Selected: second') &&
+      has(n, 'Requested: second') &&
+      has(n, 'Second tab')
+  )
   tap({ id: 'one-native-toggle-action-tab' })
   await wait(
-    'action tab mounts without disturbing the selection',
-    (n) => firstState(n) && has(n, 'Action presses: 0')
+    'action tab mounts without changing nonzero selection',
+    (n) =>
+      has(n, 'Action presses: 0') &&
+      has(n, 'Selected: second') &&
+      has(n, 'Requested: second') &&
+      has(n, 'Second tab')
   )
   screenshot('04-action-tab.png')
+  await tapTab(84, 'first after action topology')
+  await wait(
+    'first tab remains selectable after topology change',
+    (n) => has(n, 'Selected: first') && has(n, 'Requested: first') && firstState(n)
+  )
   // an action tab is a button wearing a tab's chrome, so the press has to run the action and
   // leave the selection where it was. asserting only the counter would pass even if the tab
   // behaved like an ordinary tab and switched pages.

@@ -114,6 +114,7 @@ export default function OneNativeSystem() {
             itemType={shareAsUrl ? 'url' : 'text'}
             label="Share"
             message="sent by the one-native fixture"
+            style={styles.swiftButton}
             subject="One Native"
             systemImage="square.and.arrow.up"
             testID="one-native-system-share"
@@ -138,6 +139,7 @@ export default function OneNativeSystem() {
             label="Choose photos"
             maxSelectionCount={multiSelect ? 3 : 1}
             selectionBehavior="ordered"
+            style={styles.swiftButton}
             systemImage="photo.on.rectangle"
             testID="one-native-system-photos"
             onPick={(url, _index, count) => {
@@ -248,6 +250,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: 5 },
   actions: { marginTop: 8, flexDirection: 'row', flexWrap: 'wrap', gap: 5 },
   surface: { marginTop: 8, alignItems: 'flex-start', gap: 8 },
+  swiftButton: { width: 160 },
   action: {
     minHeight: 34,
     paddingHorizontal: 8,
