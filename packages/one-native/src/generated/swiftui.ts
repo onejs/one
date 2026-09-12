@@ -76,6 +76,16 @@ export type DynamicTypeSize =
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette'
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash'
 export type ImageScale = 'small' | 'medium' | 'large'
+export type PhotosPickerSelectionBehavior =
+  | 'default'
+  | 'ordered'
+  | 'continuous'
+  | 'continuousAndOrdered'
+export type EncodingDisambiguationPolicy = 'automatic' | 'current' | 'compatible'
+export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'disabled'
+export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled'
+export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled'
+export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -236,6 +246,37 @@ export const swiftUIValues = {
     small: 13,
     medium: 13,
     large: 13,
+  },
+  PhotosPickerSelectionBehavior: {
+    default: 16,
+    ordered: 16,
+    continuous: 17,
+    continuousAndOrdered: 17,
+  },
+  EncodingDisambiguationPolicy: {
+    automatic: 16,
+    current: 16,
+    compatible: 16,
+  },
+  BackForwardNavigationGesturesBehavior: {
+    automatic: 26,
+    enabled: 26,
+    disabled: 26,
+  },
+  MagnificationGesturesBehavior: {
+    automatic: 26,
+    enabled: 26,
+    disabled: 26,
+  },
+  LinkPreviewBehavior: {
+    automatic: 26,
+    enabled: 26,
+    disabled: 26,
+  },
+  ElementFullscreenBehavior: {
+    automatic: 26,
+    enabled: 26,
+    disabled: 26,
   },
 } as const
 export function assertSwiftUIValue(

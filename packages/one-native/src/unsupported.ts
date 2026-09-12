@@ -1,6 +1,8 @@
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
+  ContextMenuProps,
   FormProps,
+  FullScreenCoverProps,
   HostProps,
   MenuProps,
   PopoverProps,
@@ -20,8 +22,18 @@ function Tab(_props: TabProps): never {
 function Menu(_props: MenuProps): never {
   throw new Error('Swift.Menu requires an iOS native build with one-native installed')
 }
+function ContextMenu(_props: ContextMenuProps): never {
+  throw new Error(
+    'Swift.ContextMenu requires an iOS native build with one-native installed'
+  )
+}
 function Sheet(_props: SheetProps): never {
   throw new Error('Swift.Sheet requires an iOS native build with one-native installed')
+}
+function FullScreenCover(_props: FullScreenCoverProps): never {
+  throw new Error(
+    'Swift.FullScreenCover requires an iOS native build with one-native installed'
+  )
 }
 function Popover(_props: PopoverProps): never {
   throw new Error('Swift.Popover requires an iOS native build with one-native installed')
@@ -42,7 +54,9 @@ export const Swift = {
   Tabs,
   Tab,
   Menu,
+  ContextMenu,
   Sheet,
+  FullScreenCover,
   Popover,
   Host,
   Form,

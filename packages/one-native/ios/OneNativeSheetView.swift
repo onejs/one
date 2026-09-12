@@ -19,6 +19,7 @@ final class OneNativeSheetModel: ObservableObject {
     ("large:0", "large", 0, .large)
   ]
   var controlsSelectedDetent = false
+  @Published var presentation = "sheet"
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
   var onDetentChange: ((String, Double, Int, Int) -> Void)?
@@ -108,7 +109,7 @@ final class OneNativeSheetModel: ObservableObject {
     presentationBackground: UIColor?, presentationBackgroundInteraction: String,
     presentationBackgroundInteractionDetentType: String,
     presentationBackgroundInteractionDetentValue: Double,
-    presentationContentInteraction: String, presentationSizing: String
+    presentationContentInteraction: String, presentationSizing: String, presentation: String
   ) {
     if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     let controlsSelectedDetent = !selectedDetentType.isEmpty
@@ -130,6 +131,7 @@ final class OneNativeSheetModel: ObservableObject {
     }
     if model.interactiveDismissDisabled != interactiveDismissDisabled { model.interactiveDismissDisabled = interactiveDismissDisabled }
     if model.presentationDragIndicator != presentationDragIndicator { model.presentationDragIndicator = presentationDragIndicator }
+    if model.presentation != presentation { model.presentation = presentation }
     if model.presentationBackground != presentationBackground { model.presentationBackground = presentationBackground }
     if model.presentationBackgroundInteraction != presentationBackgroundInteraction {
       model.presentationBackgroundInteraction = presentationBackgroundInteraction

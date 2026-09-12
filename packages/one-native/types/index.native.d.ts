@@ -1,7 +1,7 @@
 import { Form, Host, Section, Slot } from './Containers.native';
-import { Menu } from './Menu.native';
+import { ContextMenu, Menu } from './Menu.native';
 import { Popover } from './Popover.native';
-import { Sheet } from './Sheet.native';
+import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
@@ -16,7 +16,11 @@ export declare const Swift: {
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
     Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
+    ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react/jsx-runtime").JSX.Element;
+    ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
+    PhotosPicker({ onPick, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
+    WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;
     Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;
     SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
@@ -26,7 +30,9 @@ export declare const Swift: {
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;
+    ContextMenu: typeof ContextMenu;
     Sheet: typeof Sheet;
+    FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
     Host: typeof Host;
     Form: typeof Form;

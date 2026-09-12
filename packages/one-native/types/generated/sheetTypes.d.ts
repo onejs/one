@@ -28,4 +28,11 @@ export interface SheetProps extends ViewProps {
     presentationSizing?: PresentationSizing;
     children: ReactNode;
 }
+export interface FullScreenCoverProps extends ViewProps {
+    isPresented: boolean;
+    onIsPresentedChange: (value: boolean) => void;
+    onDismiss?: () => void;
+    revision?: number;
+    children: ReactNode;
+}
 //# sourceMappingURL=sheetTypes.d.ts.map

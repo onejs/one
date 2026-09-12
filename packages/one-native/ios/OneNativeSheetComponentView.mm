@@ -76,7 +76,8 @@ using namespace facebook::react;
     presentationBackgroundInteractionDetentType:RCTNSStringFromString(next.presentationBackgroundInteractionDetentType)
     presentationBackgroundInteractionDetentValue:next.presentationBackgroundInteractionDetentValue
     presentationContentInteraction:RCTNSStringFromString(next.presentationContentInteraction)
-    presentationSizing:RCTNSStringFromString(next.presentationSizing)];
+    presentationSizing:RCTNSStringFromString(next.presentationSizing)
+    presentation:RCTNSStringFromString(next.presentation)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_sheet reset]; _detentsDirty = YES; }

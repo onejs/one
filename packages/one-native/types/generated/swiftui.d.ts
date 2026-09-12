@@ -23,6 +23,12 @@ export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge'
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
 export type ImageScale = 'small' | 'medium' | 'large';
+export type PhotosPickerSelectionBehavior = 'default' | 'ordered' | 'continuous' | 'continuousAndOrdered';
+export type EncodingDisambiguationPolicy = 'automatic' | 'current' | 'compatible';
+export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
+export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
+export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled';
+export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -183,6 +189,37 @@ export declare const swiftUIValues: {
         readonly small: 13;
         readonly medium: 13;
         readonly large: 13;
+    };
+    readonly PhotosPickerSelectionBehavior: {
+        readonly default: 16;
+        readonly ordered: 16;
+        readonly continuous: 17;
+        readonly continuousAndOrdered: 17;
+    };
+    readonly EncodingDisambiguationPolicy: {
+        readonly automatic: 16;
+        readonly current: 16;
+        readonly compatible: 16;
+    };
+    readonly BackForwardNavigationGesturesBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly MagnificationGesturesBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly LinkPreviewBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly ElementFullscreenBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

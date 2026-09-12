@@ -277,6 +277,37 @@
       "small": 13,
       "medium": 13,
       "large": 13
+    },
+    "PhotosPickerSelectionBehavior": {
+      "default": 16,
+      "ordered": 16,
+      "continuous": 17,
+      "continuousAndOrdered": 17
+    },
+    "EncodingDisambiguationPolicy": {
+      "automatic": 16,
+      "current": 16,
+      "compatible": 16
+    },
+    "BackForwardNavigationGesturesBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "MagnificationGesturesBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "LinkPreviewBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "ElementFullscreenBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
     }
   },
   "modifiers": [
@@ -533,6 +564,80 @@
           "label": "_",
           "name": "scale",
           "type": "SwiftUICore.Image.Scale"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "webViewBackForwardNavigationGestures",
+      "type": "BackForwardNavigationGesturesBehavior",
+      "swiftType": "WebView.BackForwardNavigationGesturesBehavior",
+      "module": "_WebKit_SwiftUI",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "value",
+          "type": "_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "webViewMagnificationGestures",
+      "type": "MagnificationGesturesBehavior",
+      "swiftType": "WebView.MagnificationGesturesBehavior",
+      "module": "_WebKit_SwiftUI",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "value",
+          "type": "_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "webViewLinkPreviews",
+      "type": "LinkPreviewBehavior",
+      "swiftType": "WebView.LinkPreviewBehavior",
+      "module": "_WebKit_SwiftUI",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "value",
+          "type": "_WebKit_SwiftUI.WebView.LinkPreviewBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "webViewElementFullscreenBehavior",
+      "type": "ElementFullscreenBehavior",
+      "swiftType": "WebView.ElementFullscreenBehavior",
+      "module": "_WebKit_SwiftUI",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "value",
+          "type": "_WebKit_SwiftUI.WebView.ElementFullscreenBehavior"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "webViewContentBackground",
+      "type": "Visibility",
+      "module": "SwiftUICore",
+      "ios": 26,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "visibility",
+          "type": "SwiftUICore.Visibility"
         }
       ],
       "requirements": []
@@ -1040,6 +1145,103 @@
       "ios": 16
     },
     {
+      "module": "SwiftUI",
+      "type": "ShareLink",
+      "parameters": [
+        {
+          "label": "item",
+          "name": "item",
+          "type": "Foundation.URL"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "subject",
+          "name": "subject",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "message",
+          "name": "message",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "PreviewImage == Swift.Never",
+        "PreviewIcon == Swift.Never",
+        "Data == Swift.CollectionOfOne<Foundation.URL>"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ShareLink",
+      "parameters": [
+        {
+          "label": "item",
+          "name": "item",
+          "type": "Swift.String"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "subject",
+          "name": "subject",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "message",
+          "name": "message",
+          "type": "SwiftUICore.Text?"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "requirements": [
+        "PreviewImage == Swift.Never",
+        "PreviewIcon == Swift.Never",
+        "Data == Swift.CollectionOfOne<Swift.String>"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
+      "type": "ContentUnavailableView",
+      "parameters": [
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "defaultValue": "{ EmptyView() }",
+          "label": "description",
+          "name": "description",
+          "type": "() -> Description"
+        },
+        {
+          "defaultValue": "{ EmptyView() }",
+          "label": "actions",
+          "name": "actions",
+          "type": "() -> Actions"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View",
+        "Description : SwiftUICore.View",
+        "Actions : SwiftUICore.View"
+      ],
+      "ios": 17
+    },
+    {
       "module": "_AVKit_SwiftUI",
       "type": "VideoPlayer",
       "parameters": [
@@ -1053,6 +1255,63 @@
         "VideoOverlay == SwiftUICore.EmptyView"
       ],
       "ios": 14
+    },
+    {
+      "module": "_PhotosUI_SwiftUI",
+      "type": "PhotosPicker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<[_PhotosUI_SwiftUI.PhotosPickerItem]>"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "maxSelectionCount",
+          "name": "maxSelectionCount",
+          "type": "Swift.Int?"
+        },
+        {
+          "defaultValue": ".default",
+          "label": "selectionBehavior",
+          "name": "selectionBehavior",
+          "type": "_PhotosUI_SwiftUI.PhotosPickerSelectionBehavior"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "matching",
+          "name": "filter",
+          "type": "PhotosUI.PHPickerFilter?"
+        },
+        {
+          "defaultValue": ".automatic",
+          "label": "preferredItemEncoding",
+          "name": "preferredItemEncoding",
+          "type": "_PhotosUI_SwiftUI.PhotosPickerItem.EncodingDisambiguationPolicy"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "@Sendable () -> Label"
+        }
+      ],
+      "requirements": [
+        "Label : SwiftUICore.View"
+      ],
+      "ios": 16
+    },
+    {
+      "module": "_WebKit_SwiftUI",
+      "type": "WebView",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "page",
+          "type": "WebKit.WebPage"
+        }
+      ],
+      "requirements": [],
+      "ios": 26
     },
     {
       "module": "_MapKit_SwiftUI",
