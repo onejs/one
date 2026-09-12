@@ -280,21 +280,30 @@ export async function setupTestServers({
   const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
   const shouldStartProdServer = !ONLY_TEST_DEV
 
-  // get available ports in a high range to avoid conflicts with common dev servers
-  // use wider random offset to reduce race conditions when multiple tests start simultaneously
-  // range: 10000-60000 gives 50000 ports, much less likely to collide than the previous 200
-  const portRangeStart = 10000 + Math.floor(Math.random() * 50000)
+  // concurrent vitest processes start close enough together that their pids occupy
+  // distinct slots. keep prod and dev in separate ranges so neither process can
+  // choose another process's not-yet-bound companion port.
+  const portSlot = process.pid % 20000
+  const prodPortRangeStart = 10000 + portSlot
+  const devPortRangeStart = 40000 + portSlot
   // native tests use a fixed prod port so ONE_SERVER_URL in .env.production matches
   const prodPort = process.env.IS_NATIVE_TEST
     ? 3456
-    : await getPort({ port: portNumbers(portRangeStart, 65000) })
+    : await getPort({ port: portNumbers(prodPortRangeStart, 30000) })
   const devPort =
     (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) ||
-    (await getPort({ port: portNumbers(prodPort + 100, 65000) }))
+    (await getPort({ port: portNumbers(devPortRangeStart, 60000) }))
 
-  // ensure ports are clear before starting servers
-  await killProcessOnPort(prodPort)
-  await killProcessOnPort(devPort)
+  // only fixed ports may belong to a stale run. dynamically allocated ports can race
+  // another test process between discovery and bind; killing here would terminate
+  // that process's live server. the server can instead fail or rebind without
+  // disturbing its peer.
+  if (process.env.IS_NATIVE_TEST) {
+    await killProcessOnPort(prodPort)
+  }
+  if (process.env.DEV_PORT) {
+    await killProcessOnPort(devPort)
+  }
 
   let devServerGetOutput = () => ''
   let devServerExited: Promise<number | null> | undefined
