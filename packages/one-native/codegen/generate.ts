@@ -14,7 +14,6 @@ import {
   type Declaration,
 } from './inventory'
 import { execFileSync } from 'node:child_process'
-import { createHash } from 'node:crypto'
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -470,22 +469,9 @@ const manifest = {
     .at(0)!
     .replace(/\s+\(.+$/, ''),
   sdk: run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version']),
-  // xcode installations can package semantically identical interfaces with different bytes.
-  // fingerprint parsed declarations without source lines so the check stays portable.
-  inputs: modules.map((module) => ({
-    module,
-    declarationsSha256: createHash('sha256')
-      .update(
-        JSON.stringify(
-          inventory
-            .filter((declaration) => declaration.module === module)
-            .map(({ line: _, ...declaration }) => JSON.stringify(declaration))
-            .sort()
-        )
-      )
-      .digest('hex'),
-  })),
-  extractedDeclarations: inventory.length,
+  // xcode installations can package equivalent public interfaces with different bytes and
+  // source attributes. the mapped declarations below are the portable contract we publish.
+  modules,
   unmappedModifiers: [
     ...new Set(
       inventory
@@ -538,7 +524,19 @@ for (const [path, source] of outputs) {
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error
   }
-  if (existing !== generated) changed.push(path)
+  if (existing !== generated) {
+    changed.push(path)
+    if (process.argv.includes('--check') && path === 'codegen/swiftui-manifest.json') {
+      const previous = JSON.parse(existing)
+      const next = JSON.parse(generated)
+      console.error(
+        'SwiftUI manifest fields differ: ' +
+          [...new Set([...Object.keys(previous), ...Object.keys(next)])]
+            .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
+            .join(', ')
+      )
+    }
+  }
   if (!process.argv.includes('--check')) writeFileSync(join(root, path), generated)
 }
 if (process.argv.includes('--check') && changed.length)
