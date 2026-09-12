@@ -249,16 +249,19 @@ Automation details that prevent false diagnoses:
 - `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: 18/18 visual checks, every visual check still rejecting its negative
-  capture. The accessibility check total is AWAITING RE-VERIFICATION and the numbers below are
-  stale. They were measured before `ff1f968cc`, when `dismissWarning` had three exit paths
+- Conformance end to end: 433 accessibility checks across twelve suites plus 18/18 visual
+  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 71,
+  pickers 28, forms 42, sheets 35, leaves 94, dialogs 33, host 26, containers 28, popover 25,
+  accessibility 25, media 14, map 12. Measured under `ff1f968cc`, which made the warning-overlay
+  dismissal one check per call by asserting the postcondition. Before that the same suite
+  reported 430 on one machine and 432 on another, because `dismissWarning` had three exit paths
   contributing 0, 1 or 2 checks depending on whether the dev warning overlay happened to be on
-  screen, which is why the same suite reported 430 on one machine and 432 on another. That commit
-  makes the dismissal one check per call by asserting the postcondition, that nothing is
-  intercepting interaction, so the total is now deterministic but not yet measured. Do not quote
-  a number from this line until a full twelve-suite run under `ff1f968cc` replaces it. The stale
-  reading was 432 total: tabs-menu 65, pickers 29, forms 43, sheets 35, leaves 93, dialogs 32,
-  host 27, containers 29, popover 26, accessibility 25, media 15, map 13.
+  screen. The count is now environment-independent, which is why it is quotable.
+- The appearance key is set and changes nothing in light. `app.json` sets
+  `ios.userInterfaceStyle: "automatic"`; the 12 suites re-run after the rebuild returned
+  byte-identical results, 433 and 18/18 with every per-suite count unchanged. Before the key,
+  Expo wrote `UIUserInterfaceStyle=Light` into Info.plist, so the app rendered light under a
+  device set to dark and any "dark" measurement was a light one wearing a dark id.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
@@ -362,6 +365,16 @@ and restarting it. Not diagnosed at the source: this is Metro/vxrn territory, ou
 branch's scope. `wait` in the conformance script now detects the RedBox by its own buttons and
 throws with the error text, so a wedged server no longer looks like a fixture that failed to
 mount.
+
+A prebuild would silently change the app's bundle id. `tests/native-features/ios/` is entirely
+untracked (zero files in `git ls-files`), and the checked-out Xcode project sets
+`PRODUCT_BUNDLE_IDENTIFIER = dev.one.native.tests` while `app.json` sets
+`bundleIdentifier: dev.vxrn.native.tests`. Every documented command uses the first, including
+`tests/native-features/scripts/README.md`, `oracle/README.md`, the oracle driver's default, and
+this file. So regenerating the native project would rewrite the id out from under all of them,
+and because `ios/` is untracked the change would leave no diff to notice. The appearance key was
+therefore set by hand in both `app.json` and the local `Info.plist` rather than by running a
+prebuild. Reconcile the two ids before anyone regenerates the project.
 
 ## Longer horizon
 
