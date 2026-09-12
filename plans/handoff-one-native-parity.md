@@ -335,6 +335,31 @@ run before the reorder, where the selected tab is still index 0, so that they te
 rather than this. Fixing it means working out why replacing `model.pages` loses the
 selection-to-content association in `TabsContent`, which is untouched.
 
+## Known limitation: `tabBarMinimizeBehavior` cannot fire
+
+`Swift.Tabs` accepts `tabBarMinimizeBehavior`, the modifier is applied, and nothing can trigger
+it. Measured across 8 sweep cells (`tabs3` crossed with `never`/`automatic`/`onScrollDown`/
+`onScrollUp` and light/dark), 19 settled frames each, 152 frames total, each tagged with the
+offset the accessibility tree reported at capture and each sweep covering a real 2744pt. The bar
+does not move at any offset, in any direction, for any value, in either appearance. Capsule
+{59.8, 769, 274, 62} and centres [110.7, 196.7, 282.7] are identical across all 152 frames.
+
+The control separating "inert API" from "unreachable in this architecture" was run, and the
+answer is the second. A bogus value raises `Unknown SwiftUI TabBarMinimizeBehavior` out of
+`assertSwiftUIValue`, so the value reaches SwiftUI; the device is iOS 26, so nothing is version
+gated; and `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`. What is
+missing is the thing the modifier observes. Each tab hosts `OneNativeSlot(content: page.view)`
+where `page.view` is an opaque UIView, and one-native exposes no SwiftUI scroll container at all:
+zero `ScrollView` or `UIScrollView` across its Swift and TSX sources. SwiftUI's minimize
+behaviour reacts to a SwiftUI scroll view's offset, and the thing that actually scrolls here is a
+React Native scroll view SwiftUI never sees. The scroll indicator visible in the sweep frames is
+React Native's own, which is the same evidence from the other side.
+
+So the prop is accepted and has no effect until a native scroll container is bridged into the
+SwiftUI hierarchy. Bridge one, or say plainly in the README that the prop is inert here. Do not
+build a minimize curve in any simulator against it: the signal cannot arrive, so the curve would
+be fitted to nothing.
+
 ## Known weak spots in the checks
 
 - **Visual regions are absolute fixture coordinates.** Adding a seventh category to the
