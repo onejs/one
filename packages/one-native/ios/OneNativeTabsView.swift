@@ -8,15 +8,17 @@ public final class OneNativeTabItem: NSObject, Identifiable {
   public let systemImage: String
   public let badge: String
   public let role: String
+  public let action: Bool
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
-  public init(id: String, title: String, systemImage: String, badge: String, role: String, view: UIView, onLayout: @escaping (CGRect) -> Void) {
+  public init(id: String, title: String, systemImage: String, badge: String, role: String, action: Bool, view: UIView, onLayout: @escaping (CGRect) -> Void) {
     self.id = id
     self.title = title
     self.systemImage = systemImage
     self.badge = badge
     self.role = role
+    self.action = action
     self.view = view
     self.onLayout = onLayout
   }
@@ -29,9 +31,19 @@ private final class TabsModel: ObservableObject {
   @Published var tabBarMinimizeBehavior = ""
   var active = false
   var onSelection: ((String, Int, Int) -> Void)?
+  var onAction: ((String) -> Void)?
 
   func select(_ id: String) {
-    guard active, controlled.value != id, pages.contains(where: { $0.id == id }) else { return }
+    guard active, let page = pages.first(where: { $0.id == id }) else { return }
+    if page.action {
+      // an action tab is a button wearing a tab's chrome, so the press fires and the selection
+      // stays put. TabView has already moved its own selection by the time this setter runs, so
+      // republishing the unchanged value is what makes it read the binding again and snap back.
+      onAction?(id)
+      objectWillChange.send()
+      return
+    }
+    guard controlled.value != id else { return }
     controlled.change(id)
     onSelection?(id, controlled.eventCount, controlled.revision)
   }
@@ -40,6 +52,7 @@ private final class TabsModel: ObservableObject {
 @objcMembers
 public final class OneNativeTabsView: UIView {
   public var onSelection: ((String, Int, Int) -> Void)?
+  public var onAction: ((String) -> Void)?
   private var model = TabsModel()
   private var controller: OneNativeHostingController<TabsContent>?
 
@@ -75,6 +88,7 @@ public final class OneNativeTabsView: UIView {
     guard window != nil else { return }
     if controller == nil {
       model.onSelection = { [weak self] id, count, revision in self?.onSelection?(id, count, revision) }
+      model.onAction = { [weak self] id in self?.onAction?(id) }
       controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self))
     }
     controller?.attach(to: self)
@@ -89,6 +103,7 @@ public final class OneNativeTabsView: UIView {
   public func reset() {
     model.active = false
     model.onSelection = nil
+    model.onAction = nil
     detachController()
     controller = nil
     model = TabsModel()

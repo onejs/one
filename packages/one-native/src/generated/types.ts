@@ -136,7 +136,9 @@ export interface TabProps {
   badge?: string
   role?: TabRole
   testID?: string
-  children: ReactNode
+  // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
+  onPress?: () => void
+  children?: ReactNode
 }
 export interface TabsProps extends ViewProps {
   selection: string

@@ -68,6 +68,27 @@ direct `Swift.Tab` children (arrays and conditional children are supported).
 Pages mount eagerly and keep their React state when switching tabs. Give the tabs
 container bounded space, normally using `flex: 1` in a bounded parent.
 
+A `Swift.Tab` with `onPress` and no children is an action tab: pressing it runs the action
+and the selection does not move. It never reaches the controlled protocol, so there is no
+optimistic selection to undo and no flash of an empty page. Every tab needs exactly one of
+`onPress` and `children`, and the selection may not name an action tab.
+
+Add `role="search"` to detach it from the main tab bar pill. On iOS 26 the search role is
+what moves a tab into its own capsule on the trailing side, which is the placement an action
+like Compose usually wants; without it the tab sits inside the pill alongside the pages.
+`search` is the only role SwiftUI 26 defines, so a non-search action borrows its placement,
+and only one tab can hold it.
+
+```tsx
+<Swift.Tab
+  id="compose"
+  title="Compose"
+  systemImage="plus"
+  role="search"
+  onPress={openComposer}
+/>
+```
+
 `Swift.Menu` renders actual SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
 `Divider`, and `ControlGroup` views. Every node has a unique nonempty `id`.
 Use `type: 'submenu'` for nested menus, `type: 'section'` for groups with optional
