@@ -2361,6 +2361,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))
   tap({ id: 'one-native-select-external' })
   await wait('state survives tab switching', firstState)
+  tap({ id: 'one-native-toggle-action-tab' })
+  await wait(
+    'action tab mounts without disturbing the selection',
+    (n) => firstState(n) && has(n, 'Action presses: 0')
+  )
+  screenshot('04-action-tab.png')
+  // an action tab is a button wearing a tab's chrome, so the press has to run the action and
+  // leave the selection where it was. asserting only the counter would pass even if the tab
+  // behaved like an ordinary tab and switched pages.
+  //
+  // 325 is the centre of the "+" glyph in its own capsule, measured off 04-action-tab.png: the
+  // ink spans px x 947..1002 at 3x, so pt 324.8. The search role detaches that capsule from the
+  // main pill, which is why this is not the 277 a combined tab bar would put it at.
+  await tapTab(325, 'action')
+  await wait(
+    'action tab press runs the action and never becomes the selection',
+    (n) =>
+      has(n, 'Action presses: 1') &&
+      has(n, 'Selected: first') &&
+      has(n, 'Requested: first') &&
+      has(n, 'First tab')
+  )
+  await tapTab(325, 'action')
+  await wait(
+    'action tab press is repeatable',
+    (n) => has(n, 'Action presses: 2') && has(n, 'Selected: first') && has(n, 'First tab')
+  )
+  tap({ id: 'one-native-toggle-action-tab' })
+  await wait('action tab unmounts', (n) => firstState(n) && !has(n, 'Compose'))
+
   tap({ id: 'one-native-reorder' })
   await wait('state survives keyed reorder', firstState)
   tap({ id: 'one-native-select-external' })

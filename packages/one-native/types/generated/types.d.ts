@@ -76,7 +76,8 @@ export interface TabProps {
     badge?: string;
     role?: TabRole;
     testID?: string;
-    children: ReactNode;
+    onPress?: () => void;
+    children?: ReactNode;
 }
 export interface TabsProps extends ViewProps {
     selection: string;

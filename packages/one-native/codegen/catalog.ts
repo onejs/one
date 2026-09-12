@@ -380,6 +380,8 @@ export const components = [
     },
     events: {
       onNativeTabsSelectionChange: { selection: 'string', ...controlledEvent },
+      // pressing an action tab is not a state change, so it carries no controlled event.
+      onNativeTabsAction: { tabId: 'string' },
     },
     enumProps: { tabBarMinimizeBehavior: 'TabBarMinimizeBehavior' },
     controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
@@ -404,6 +406,8 @@ export const components = [
       systemImage: 'string',
       badge: 'string',
       tabRole: 'string',
+      // an action tab reports presses and never becomes the selection.
+      action: 'boolean',
     },
     events: {},
     enumProps: { tabRole: 'TabRole' },

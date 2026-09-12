@@ -31,6 +31,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeTabsSelectionChange({.selection = std::string(selection.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
     };
+    _tabsView.onAction = ^(NSString *tabId) {
+      OneNativeTabsComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeTabsAction({.tabId = std::string(tabId.UTF8String)});
+    };
   }
   return self;
 }
@@ -65,7 +71,7 @@ using namespace facebook::react;
     __weak OneNativeTabComponentView *weakPage = page;
     OneNativeTabItem *item = [[OneNativeTabItem alloc]
       initWithId:page.tabId title:page.title systemImage:page.systemImage badge:page.badge role:page.role
-      view:page onLayout:^(CGRect frame) {
+      action:page.action view:page onLayout:^(CGRect frame) {
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
       }];
@@ -107,6 +113,7 @@ using namespace facebook::react;
     _systemImage = @"";
     _badge = @"";
     _role = @"";
+    _action = NO;
   }
   return self;
 }
@@ -119,12 +126,14 @@ using namespace facebook::react;
   NSString *badge = RCTNSStringFromString(next.badge);
   NSString *role = RCTNSStringFromString(next.tabRole);
   BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.title isEqualToString:title] ||
-    ![self.systemImage isEqualToString:systemImage] || ![self.badge isEqualToString:badge] || ![self.role isEqualToString:role];
+    ![self.systemImage isEqualToString:systemImage] || ![self.badge isEqualToString:badge] ||
+    ![self.role isEqualToString:role] || self.action != next.action;
   self.tabId = tabId;
   self.title = title;
   self.systemImage = systemImage;
   self.badge = badge;
   self.role = role;
+  self.action = next.action;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
 }
