@@ -21,6 +21,15 @@ const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// keep app build output and volatile caches out of Metro's fallback watcher.
+// package dist directories remain visible because Metro resolves modules from them.
+const metroWatchExclusions = [
+  /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+  /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+  /[/\\]\.docker(?:[/\\]|$)/,
+  /[/\\]\.vite(?:[/\\]|$)/,
+  /[/\\]node_modules[/\\]\.vxrn(?:[/\\]|$)/,
+]
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
   const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
@@ -156,19 +165,13 @@ export async function buildMetroConfigInputFromViteConfig(
   }
 
   const existingBlockList = _defaultConfig?.resolver?.blockList
-  const buildOutputExclusions = [
-    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
-    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
-    /[/\\]\.docker(?:[/\\]|$)/,
-    /[/\\]\.vite(?:[/\\]|$)/,
-  ]
   const blockList: RegExp[] = [
     ...(existingBlockList
       ? Array.isArray(existingBlockList)
         ? existingBlockList
         : [existingBlockList]
       : []),
-    ...buildOutputExclusions,
+    ...metroWatchExclusions,
   ]
 
   // no babel by default. the worker throws on a babel plugin it has no port
@@ -328,24 +331,14 @@ export async function getMetroConfigFromViteConfig(
     }
   }
 
-  // exclude app-level build output directories from Metro's watcher to prevent
-  // FallbackWatcher from crashing on volatile dirs during parallel CI runs.
-  // block test app dist dirs and one's web build outputs, but not package
-  // dist/ dirs which Metro needs for module resolution.
   const existingBlockList = _defaultConfig?.resolver?.blockList
-  const buildOutputExclusions = [
-    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
-    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
-    /[/\\]\.docker(?:[/\\]|$)/,
-    /[/\\]\.vite(?:[/\\]|$)/,
-  ]
   const blockList: RegExp[] = [
     ...(existingBlockList
       ? Array.isArray(existingBlockList)
         ? existingBlockList
         : [existingBlockList]
       : []),
-    ...buildOutputExclusions,
+    ...metroWatchExclusions,
   ]
 
   // no babel by default. the worker throws on a babel plugin it has no port
