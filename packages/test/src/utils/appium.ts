@@ -13,6 +13,9 @@ export class AppCrashedError extends Error {
   }
 }
 
+const TERMINATED_SESSION_PATTERN =
+  /invalid session id|session does not exist|a session is either terminated or not started/i
+
 /**
  * circuit breaker for a deterministic crash-on-launch.
  *
@@ -62,6 +65,9 @@ export async function assertAppRunning(driver: Browser): Promise<void> {
     const msg = e instanceof Error ? e.message : String(e)
     if (msg.includes('is not running') || msg.includes('possibly crashed')) {
       throw new AppCrashedError(`App has crashed: ${msg}`)
+    }
+    if (TERMINATED_SESSION_PATTERN.test(msg)) {
+      throw e instanceof Error ? e : new Error(msg)
     }
     // other errors (e.g. transient WDA issues) - don't throw
   }
@@ -243,6 +249,29 @@ export async function createSession(
   }
 
   throw lastError
+}
+
+export async function withSession<T>(
+  config: WebdriverIOConfig | Promise<WebdriverIOConfig>,
+  run: (driver: Browser) => Promise<T>
+): Promise<T> {
+  const driver = await createSession(config)
+  try {
+    return await run(driver)
+  } finally {
+    await closeSession(driver)
+  }
+}
+
+export async function closeSession(driver: Browser): Promise<void> {
+  try {
+    await driver.deleteSession()
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    if (!TERMINATED_SESSION_PATTERN.test(message)) {
+      throw error
+    }
+  }
 }
 
 /** dump diagnostics around an app crash so the failure is self-explaining. */
