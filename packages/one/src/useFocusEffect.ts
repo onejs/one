@@ -1,7 +1,7 @@
 // A fork of `useFocusEffect` that waits for the navigation state to load before
 // running the effect. This is especially useful for native redirects.
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useOptionalNavigation } from './link/useLoadedNavigation'
 
 type EffectCallback = () => undefined | void | (() => void)
@@ -29,6 +29,18 @@ type EffectCallback = () => undefined | void | (() => void)
  */
 export function useFocusEffect(effect: EffectCallback, deps: any[] = []) {
   const navigation = useOptionalNavigation()
+
+  const prevDepsRef = useRef(deps)
+  const depsCountRef = useRef(0)
+  if (
+    !Array.isArray(deps) ||
+    !Array.isArray(prevDepsRef.current) ||
+    prevDepsRef.current.length !== deps.length ||
+    prevDepsRef.current.some((d, i) => !Object.is(d, deps[i]))
+  ) {
+    prevDepsRef.current = deps
+    depsCountRef.current++
+  }
 
   useEffect(() => {
     if (!navigation) {
@@ -102,7 +114,5 @@ export function useFocusEffect(effect: EffectCallback, deps: any[] = []) {
       unsubscribeFocus()
       unsubscribeBlur()
     }
-    // guard the spread: a caller passing `undefined` (or a non-array) for `deps`
-    // would otherwise throw "deps is not iterable" and crash the screen.
-  }, [navigation, ...(Array.isArray(deps) ? deps : [])])
+  }, [navigation, depsCountRef.current])
 }
