@@ -492,6 +492,29 @@ describe('metroNativeWorker', () => {
     delete process.env.ONE_METRO_NATIVE_TRANSFORMS
   })
 
+  it('excludes volatile compiler caches from Metro without hiding package output', async () => {
+    const config = await buildMetroConfigInputFromViteConfig(
+      { root: process.cwd() } as any,
+      { watchman: false }
+    )
+    const blockList = config.defaultConfig.resolver.blockList as RegExp[]
+    const isBlocked = (file: string) => blockList.some((pattern) => pattern.test(file))
+
+    expect(
+      isBlocked(
+        '/home/runner/work/one/one/tests/test-app-cases/node_modules/.vxrn/compiler-cache'
+      )
+    ).toBe(true)
+    expect(
+      isBlocked(
+        'C:\\workspace\\tests\\test-app-cases\\node_modules\\.vxrn\\compiler-cache'
+      )
+    ).toBe(true)
+    expect(isBlocked('/home/runner/work/one/one/packages/one/dist/esm/index.mjs')).toBe(
+      false
+    )
+  })
+
   it('transforms and executes a real 2-module Metro bundle through metro-runtime require polyfill', async () => {
     // Probe 1 verification:
     // Module 2 (dep.js): exports a value
