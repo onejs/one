@@ -16,6 +16,7 @@ import {
   capsules,
   Capture,
   membershipSeeds,
+  indicatorEdgesByStep,
   rimTrace,
   selectionIndicator,
   tabsInCapsule,
@@ -111,4 +112,36 @@ test('negative control: the capsule corners are masked by shape, not by colour',
   const centres = tabs.map((tab) => tab.glyphCenterX ?? tab.labelCenterX)
   expect(centres[0]).toBeCloseTo(61.7, 0)
   expect(centres[4]).toBeCloseTo(331.5, 0)
+})
+
+test('negative control: a translucent indicator read by its own colour moves when nothing does', () => {
+  // the sweep frames are committed as bar bands, so their coordinates are the screen's less the
+  // 700pt band origin. these four are two pairs: a resting frame and a scrolling frame from the
+  // same sweep, in each appearance.
+  const captures = path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'oracle', 'captures')
+  const band = { x: 59.8, y: 69, width: 274, height: 62 }
+  const pairs = [
+    ['tabs3-minautomatic-scroll-sweep-sel0-dark-00-rest', 'tabs3-minautomatic-scroll-sweep-sel0-dark-03-down'],
+    ['tabs3-minonScrollDown-scroll-sweep-sel0-light-00-rest', 'tabs3-minonScrollDown-scroll-sweep-sel0-light-10-up'],
+  ]
+  for (const pair of pairs) {
+    const readings = pair.map((name) => {
+      const capture = new Capture(path.join(captures, name + '.png'))
+      // the capsule interior, sampled in the gap between two tabs rather than found, because
+      // capsules() reads absolute screen rows and these fixtures are bands
+      const interior = capture.px(Math.round(170 * capture.scale), Math.round(100 * capture.scale))
+      return {
+        byColour: selectionIndicator(capture, band, interior)!.rect.height,
+        byStep: indicatorEdgesByStep(capture, band, 110.7, 170)!,
+      }
+    })
+
+    // the page passing behind tints the indicator's lower rows through the glass, so the colour
+    // reading loses about a point off the bottom. nothing moved: this is the reading moving.
+    expect(readings[0].byColour).not.toBeCloseTo(readings[1].byColour, 1)
+    expect(Math.abs(readings[0].byColour - readings[1].byColour)).toBeLessThan(2)
+
+    // the step to the capsule interior shares no part of that, and does not move
+    expect(readings[0].byStep).toEqual(readings[1].byStep)
+  }
 })

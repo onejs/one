@@ -699,6 +699,38 @@ export function selectionIndicator(
   }
 }
 
+/**
+ * The indicator's vertical extent read as the step away from the capsule interior, sampled in one
+ * column through the indicator and compared against the interior colour taken from the gap between
+ * two tabs.
+ *
+ * This exists because `selectionIndicator` follows the indicator's OWN colour, and the indicator is
+ * translucent: page content passing behind it tints its lower rows and moves that boundary by about
+ * a point without anything having moved. The capsule interior is opaque enough that the page does
+ * not shift it, so this reading is stable where the colour reading is not. The two share no step.
+ */
+export function indicatorEdgesByStep(
+  capture: Capture,
+  capsule: Box,
+  throughXPt: number,
+  gapXPt: number
+): { topPt: number; bottomPt: number } | null {
+  const sc = capture.scale
+  const at = (xPt: number, yPt: number) =>
+    capture.px(Math.round(xPt * sc), Math.round(yPt * sc))
+  // far enough inside the capsule that the rim's antialiasing is not in the sample
+  const gap = at(gapXPt, capsule.y + capsule.height / 2)
+  let topPt: number | null = null
+  let bottomPt: number | null = null
+  for (let yPt = capsule.y + 3; yPt < capsule.y + capsule.height - 2; yPt += 1 / sc) {
+    if (dist(at(throughXPt, yPt), gap) <= 12) continue
+    if (topPt === null) topPt = yPt
+    bottomPt = yPt
+  }
+  if (topPt === null || bottomPt === null) return null
+  return { topPt: Number(topPt.toFixed(1)), bottomPt: Number(bottomPt.toFixed(1)) }
+}
+
 export type OverflowRow = {
   /** the row's own band, from its top separator to the top of the next one */
   rect: Box
