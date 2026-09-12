@@ -203,7 +203,11 @@ jobs:
       - name: Boot Simulator
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-        run: xcrun simctl boot $SIMULATOR_UDID
+        run: |
+          xcrun simctl boot "$SIMULATOR_UDID"
+          open -Fn /Applications/Xcode_26.4.app/Contents/Developer/Applications/Simulator.app \
+            --args -CurrentDeviceUDID "$SIMULATOR_UDID"
+          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
 
       - name: Install Appium
         env:
