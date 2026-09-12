@@ -9,6 +9,7 @@ export default function FeedLayout() {
   const routeContext = useContext(NavigationRouteContext)
   const { name } = routeContext || {}
   const isFeed = name === 'index' || name?.startsWith('__one_layout:')
+  const hasPostRoute = isFeed || name === 'notifications' || name === 'profile'
 
   return (
     <View flex={1}>
@@ -43,7 +44,7 @@ export default function FeedLayout() {
                 : { headerShown: false }
             }
           />
-          {isFeed ? <Stack.Screen name="post/[id]" /> : null}
+          {hasPostRoute ? <Stack.Screen name="post/[id]" /> : null}
         </Stack>
       )}
     </View>
