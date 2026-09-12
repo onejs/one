@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.26.0",
+  "version": "1.26.1",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -45,7 +45,7 @@
     "marked": "^14.1.2",
     "playwright": "^1.58.2",
     "satori": "^0.19.1",
-    "sharp": "^0.35.3",
+    "sharp": "^0.35.4",
     "subset-font": "^2.4.0",
     "tsx": "^4.20.6",
     "vitest": "^4.1.0"
