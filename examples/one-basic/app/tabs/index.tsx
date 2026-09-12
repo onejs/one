@@ -5,7 +5,7 @@ export default function HomeTab() {
     <View style={styles.container}>
       <Text style={styles.title}>Home Tab</Text>
       <Text style={styles.description}>
-        This is a custom headless tab implementation using One's UI primitives.
+        This route uses One's headless tabs on web and React Navigation tabs on native.
       </Text>
     </View>
   )

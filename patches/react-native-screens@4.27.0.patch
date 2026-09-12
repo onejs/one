@@ -1,0 +1,22 @@
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
+index c9294f8..1d79778 100644
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
+@@ -1,6 +1,5 @@
+ package com.swmansion.rnscreens
+
+-import android.util.Log
+ import com.facebook.react.bridge.JSApplicationIllegalArgumentException
+ import com.facebook.react.module.annotations.ReactModule
+ import com.facebook.react.uimanager.ReactStylesDiffMap
+@@ -43,9 +42,7 @@ class ScreenStackHeaderSubviewManager :
+     override fun setHidesSharedBackground(
+         view: ScreenStackHeaderSubview,
+         hidesSharedBackground: Boolean,
+-    ) {
+-        Log.w("[RNScreens]", "hidesSharedBackground prop is not available on Android")
+-    }
++    ) = Unit
+
+     // synchronousShadowStateUpdatesEnabled is not available on Android atm,
+     // however we must override their setters

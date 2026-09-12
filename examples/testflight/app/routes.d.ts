@@ -11,10 +11,12 @@ declare module 'one' {
         | `/_sitemap`
         | `/action`
         | `/action/`
+        | `/native`
         | `/notifications`
         | `/notifications/`
         | `/profile`
         | `/profile/`
+        | `/split`
       DynamicRoutes:
         | `/notifications/post/${OneRouter.SingleRoutePart<T>}`
         | `/post/${OneRouter.SingleRoutePart<T>}`

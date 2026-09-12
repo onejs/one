@@ -6,7 +6,7 @@ This component should only be rendered inside a `_layout.tsx` file, where it wil
 
 Tabs is a [React Navigation Bottom Tabs view](https://reactnavigation.org/docs/bottom-tab-navigator) and accepts the same props as React Navigation. On iOS and Android it uses React Navigation 8's native tab implementation. On web it uses One's headless implementation.
 
-For now, you do need to set the `href` option on each Tabs.Screen to match the route file name. The plan is to automate this in the future.
+The screen `name` matches the route file name. One derives the link from the route tree.
 
 ```tsx
 import { Tabs } from 'one'
@@ -18,7 +18,6 @@ export default function Layout() {
         name="explore"
         options={{
           title: 'Explore',
-          href: '/explore',
         }}
       />
     </Tabs>
@@ -54,6 +53,8 @@ React Navigation owns the native tab bar on iOS and Android. Use its native tab 
 />
 ```
 
+The `href` screen option belongs to One's web headless implementation. Native layouts reject it so a hidden or redirected tab cannot silently become an ordinary native tab. Put screens that should not appear as tabs in a parent `Stack`. If a web tab needs a custom target, define that option in the route layout's `.web.tsx` sibling.
+
 ### On web
 
 <New />
@@ -63,6 +64,7 @@ On web, `<Tabs>` renders headless: only the focused tab's screen, no tab bar. Yo
 To build one, place a component as a child of `<Tabs>` - it replaces the headless default on web and is ignored on native. Use [useTabs](/docs/hooks-useTabs) to get the tab list and the focused tab:
 
 ```tsx
+// app/(tabs)/_layout.web.tsx
 import { Link, Tabs, useTabs } from 'one'
 
 function WebTabBar() {

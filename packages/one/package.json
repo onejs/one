@@ -21,7 +21,10 @@
       "require": "./dist/cjs/index.cjs"
     },
     "./ui": {
-      "react-native": "./dist/esm/ui/index.native.js",
+      "react-native": {
+        "types": "./types/ui/index.native.d.ts",
+        "default": "./dist/esm/ui/index.native.js"
+      },
       "types": "./types/ui/index.d.ts",
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"

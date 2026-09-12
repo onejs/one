@@ -7,6 +7,7 @@ import {
 import { NavigationRouteContext } from '@react-navigation/core'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { resolveInitialRouteNameFromState } from '../getReactNavigationConfig'
 import {
   useFilterScreenChildren,
   useResolvedGuardedRedirects,
@@ -56,25 +57,10 @@ function resolveInitialRouteFromLinking(
   const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
 
-  let current = linking.getStateFromPath(browserPath, linking.config)
-  const segments = contextKey.split('/').filter(Boolean)
-
-  let i = 0
-  while (i < segments.length) {
-    if (!current?.routes?.length) return undefined
-    const idx = current.index ?? current.routes.length - 1
-    const focused = current.routes[idx]
-    if (!focused?.name || !focused.state) return undefined
-    const nameSegments = focused.name.split('/').filter(Boolean)
-    const expected = segments.slice(i, i + nameSegments.length).join('/')
-    if (focused.name !== expected) return undefined
-    current = focused.state as typeof current
-    i += nameSegments.length
-  }
-
-  if (!current?.routes?.length) return undefined
-  const idx = current.index ?? current.routes.length - 1
-  return current.routes[idx]?.name
+  return resolveInitialRouteNameFromState(
+    contextKey,
+    linking.getStateFromPath(browserPath, linking.config)
+  )
 }
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>

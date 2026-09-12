@@ -37,6 +37,27 @@ export function HomeLayout() {
         }}
       />
 
+      {Platform.OS === 'ios' ? (
+        <Tabs.Screen
+          name="native/index"
+          options={{
+            title: 'Native',
+            tabBarIcon: { type: 'sfSymbol', name: 'wrench.and.screwdriver' },
+            tabBarStyle: { display: 'none' },
+          }}
+        />
+      ) : null}
+
+      {Platform.OS === 'ios' && Platform.isPad ? (
+        <Tabs.Screen
+          name="split/index"
+          options={{
+            title: 'Split',
+            tabBarIcon: { type: 'sfSymbol', name: 'sidebar.left' },
+          }}
+        />
+      ) : null}
+
       <Tabs.Screen
         name="action"
         listeners={{

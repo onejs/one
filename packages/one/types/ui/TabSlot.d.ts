@@ -1,15 +1,10 @@
-import { type ComponentProps, type ReactElement } from 'react';
-import { ScreenContainer } from 'react-native-screens';
+import { type ReactElement } from 'react';
 import { type TabsDescriptor } from './TabContext';
 import type { TabListProps } from './TabList';
-export type TabSlotProps = ComponentProps<typeof ScreenContainer> & {
-    /**
-     * Remove inactive screens.
-     */
+export type TabSlotProps = {
+    /** Remove inactive screens from the visible DOM tree. */
     detachInactiveScreens?: boolean;
-    /**
-     * Override how the `Screen` component is rendered.
-     */
+    /** Override how each screen is rendered. */
     renderFn?: typeof defaultTabsSlotRender;
 };
 /**
@@ -45,7 +40,7 @@ export type TabsSlotRenderOptions = {
  * }
  * ```
  */
-export declare function useTabSlot({ detachInactiveScreens, style, renderFn, }?: TabSlotProps): import("react/jsx-runtime").JSX.Element;
+export declare function useTabSlot({ detachInactiveScreens, renderFn, }?: TabSlotProps): import("react/jsx-runtime").JSX.Element;
 /**
  * Renders the current tab.
  *
