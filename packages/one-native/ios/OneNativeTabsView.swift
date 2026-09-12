@@ -4,11 +4,11 @@ import UIKit
 @objcMembers
 public final class OneNativeTabItem: NSObject, Identifiable {
   public let id: String
-  public let title: String
-  public let systemImage: String
-  public let badge: String
-  public let role: String
-  public let action: Bool
+  public var title: String
+  public var systemImage: String
+  public var badge: String
+  public var role: String
+  public var action: Bool
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
@@ -29,23 +29,32 @@ private final class TabsModel: ObservableObject {
   @Published var controlled = OneNativeControlled("")
   @Published var sidebarAdaptable = false
   @Published var tabBarMinimizeBehavior = ""
+  @Published var tabViewRevision = 0
   var active = false
   var onSelection: ((String, Int, Int) -> Void)?
   var onAction: ((String) -> Void)?
+  private var pendingAction: String?
 
   func select(_ id: String) {
     guard active, let page = pages.first(where: { $0.id == id }) else { return }
     if page.action {
       // an action tab is a button wearing a tab's chrome, so the press fires and the selection
       // stays put. TabView has already moved its own selection by the time this setter runs, so
-      // republishing the unchanged value is what makes it read the binding again and snap back.
-      onAction?(id)
-      objectWillChange.send()
+      // rebuild it before publishing the action so observers only see a press after the binding
+      // has snapped back to the controlled value.
+      pendingAction = id
+      tabViewRevision += 1
       return
     }
     guard controlled.value != id else { return }
     controlled.change(id)
     onSelection?(id, controlled.eventCount, controlled.revision)
+  }
+
+  func publishPendingAction() {
+    guard let id = pendingAction else { return }
+    pendingAction = nil
+    onAction?(id)
   }
 }
 
@@ -63,7 +72,20 @@ public final class OneNativeTabsView: UIView {
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   public func setPages(_ pages: [OneNativeTabItem]) {
-    model.pages = pages
+    let topologyChanged = model.pages.map(\.id) != pages.map(\.id)
+    // keep keyed page identities stable so swiftUI reconciles inserted and reordered tabs
+    // against their content instead of reusing the page at the same array position.
+    let mounted = Dictionary(uniqueKeysWithValues: model.pages.map { ($0.id, $0) })
+    model.pages = pages.map { page in
+      guard let current = mounted[page.id], current.view === page.view else { return page }
+      current.title = page.title
+      current.systemImage = page.systemImage
+      current.badge = page.badge
+      current.role = page.role
+      current.action = page.action
+      return current
+    }
+    if topologyChanged { model.tabViewRevision += 1 }
   }
 
   public func setSelection(_ selection: String, acknowledgedEvent: Int, revision: Int, sidebarAdaptable: Bool, tabBarMinimizeBehavior: String) {
@@ -130,9 +152,7 @@ private struct TabsContent: View {
         }
       }
     }
-    // swiftUI updates the tab bar when dynamic TabContent changes, but keeps the old
-    // positional content association. a topology change must rebuild TabView so its
-    // controlled selection resolves against the new ordered IDs.
-    .id(model.pages.map(\.id))
+    .onAppear { model.publishPendingAction() }
+    .id(model.tabViewRevision)
   }
 }
