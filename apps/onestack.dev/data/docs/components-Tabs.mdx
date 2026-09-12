@@ -1,5 +1,5 @@
 ---
-title: "<Tabs />"
+title: '<Tabs />'
 ---
 
 This component should only be rendered inside a `_layout.tsx` file, where it will serve as the location that children will render for routes below the layout.
@@ -27,19 +27,19 @@ export default function Layout() {
 ```
 
 <Notice>
-  Adding a new tab route has a bug currently that can cause it to not show up until you re-run your app with `--clean`.
+  Adding a new tab route has a bug currently that can cause it to not show up until you
+  re-run your app with `--clean`.
 </Notice>
 
 ### Native tabs
 
-React Navigation owns the native tab bar on iOS and Android. Use its native tab options directly, including `tabBarIcon`, `tabBarSystemItem`, `tabBarMinimizeBehavior`, and `tabBarSelectionEnabled`. An action that should not select a route can prevent navigation through `tabPress` and disable selection:
+React Navigation owns the native tab bar on iOS and Android. Use its native tab options directly, including `tabBarIcon`, `tabBarSystemItem`, `tabBarMinimizeBehavior`, and `tabBarSelectionEnabled`. An action tab listens for `tabPress` and disables route selection:
 
 ```tsx
 <Tabs.Screen
   name="new"
   listeners={{
-    tabPress(event) {
-      event.preventDefault()
+    tabPress() {
       openComposer()
     },
   }}

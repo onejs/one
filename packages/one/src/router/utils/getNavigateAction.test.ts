@@ -24,7 +24,7 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -61,7 +61,7 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -115,7 +115,7 @@ describe('getNavigateAction', () => {
             key: 'index-Kyz4PdQ7ZAvE0XFhBWydM',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -184,7 +184,7 @@ describe('getNavigateAction', () => {
             key: 'index-Kyz4PdQ7ZAvE0XFhBWydM',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -276,7 +276,7 @@ describe('getNavigateAction', () => {
             },
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -315,7 +315,7 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState, 'PUSH')
