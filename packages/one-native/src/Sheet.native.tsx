@@ -3,8 +3,7 @@ import { useControlled } from './controlled'
 import NativeSheet from './specs/OneNativeSheetNativeComponent'
 import NativeContent from './specs/OneNativeSheetContentNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
-import type { SheetProps } from './generated/sheetTypes'
-import type { PresentationDetent } from './generated/sheetTypes'
+import type { FullScreenCoverProps, PresentationDetent, SheetProps } from './generated/sheetTypes'
 
 const DEFAULT_DETENTS = ['large'] as const
 type NativeDetent = { type: string; value: number }
@@ -149,6 +148,7 @@ export function Sheet({
       presentationBackgroundInteractionDetentValue={backgroundInteraction.detent.value}
       presentationContentInteraction={presentationContentInteraction}
       presentationSizing={presentationSizing}
+      presentation="sheet"
       onNativeSheetIsPresentedChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -158,6 +158,63 @@ export function Sheet({
       onNativeSheetDetentChange={({ nativeEvent }) =>
         controlledDetent.onNativeChange(nativeEvent)
       }
+    >
+      <NativeContent
+        collapsable={false}
+        style={{ position: 'absolute', left: 0, top: 0 }}
+      >
+        {children}
+      </NativeContent>
+    </NativeSheet>
+  )
+}
+
+// a cover reads no detents and no drag indicator; the native root applies neither on this
+// presentation, so these carry the shape the spec requires and nothing more.
+const COVER_DETENTS = [] as const
+export function FullScreenCover({
+  isPresented,
+  onIsPresentedChange,
+  onDismiss,
+  revision = 0,
+  children,
+  style,
+  ...props
+}: FullScreenCoverProps) {
+  if (typeof isPresented !== 'boolean')
+    throw new Error('Swift.FullScreenCover isPresented must be a boolean')
+  const controlled = useControlled<{
+    isPresented: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsPresentedChange(event.isPresented), revision)
+  return (
+    <NativeSheet
+      {...props}
+      style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      isPresented={isPresented}
+      revision={revision}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      detents={COVER_DETENTS}
+      fitToContents={false}
+      selectedDetentType=""
+      selectedDetentValue={0}
+      acknowledgedDetentEvent={0}
+      detentRevision={0}
+      presentationBackgroundInteraction="automatic"
+      presentationBackgroundInteractionDetentType="large"
+      presentationBackgroundInteractionDetentValue={0}
+      presentationContentInteraction="automatic"
+      presentationSizing="automatic"
+      interactiveDismissDisabled={false}
+      presentationDragIndicator="automatic"
+      presentation="fullScreenCover"
+      onNativeSheetIsPresentedChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeSheetDismiss={({ nativeEvent }) => {
+        if (nativeEvent.revision === revision) onDismiss?.()
+      }}
     >
       <NativeContent
         collapsable={false}

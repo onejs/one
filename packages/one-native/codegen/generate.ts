@@ -21,6 +21,8 @@ import { fileURLToPath } from 'node:url'
 import {
   tabConstructor,
   components,
+  frameworks,
+  menuMethods,
   modifierFamilies,
   enumTypes,
   fields,
@@ -52,7 +54,9 @@ const enums = Object.fromEntries(
       (d) =>
         ownerMatches(d, type) &&
         d.kind === 'static' &&
-        (type.endsWith('Style') || d.type === 'Scale' || d.type?.split('.').at(-1) === type) &&
+        (type.endsWith('Style') ||
+          d.type === 'Scale' ||
+          d.type?.split('.').at(-1) === type) &&
         available(d)
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
@@ -105,9 +109,13 @@ emitContainers(header, outputs)
 emitPopover(header, outputs)
 emitStyle(header, outputs)
 selected.push(
-  ...[...sheetMethods, ...popoverMethods, ...environmentMethods, ...styleModifiers].map((method) =>
-    selectModifier(inventory, method)
-  ),
+  ...[
+    ...sheetMethods,
+    ...popoverMethods,
+    ...environmentMethods,
+    ...menuMethods,
+    ...styleModifiers,
+  ].map((method) => selectModifier(inventory, method)),
   selectConstructor(inventory, {
     type: 'RoundedRectangle',
     parameters: [
@@ -189,6 +197,11 @@ export interface MenuProps extends ViewProps {
   menuActionDismissBehavior?: MenuActionDismissBehavior
   children: ReactNode
 }
+// a context menu leaves its trigger interactive and visible to accessibility, so React
+// Native's own label on that subtree stands and the menu takes none of its own.
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+  accessibilityLabel?: string
+}
 export interface TabProps {
   id: string
   title: string
@@ -264,37 +277,36 @@ outputs.set(
         ...sheetComponents,
         ...containerComponents,
         ...popoverComponents,
-      ].map(
-        (component) => {
-          const enumProps: Record<string, string> =
-            'enumProps' in component ? component.enumProps : {}
-          return {
-            name: component.name,
-            publicName: component.publicName,
-            props: Object.fromEntries(
-              Object.entries(component.props).map(([key, type]) => [
-                key,
-                enumProps[key] ? { type, enum: enumProps[key] } : { type },
-              ])
-            ),
-            events: Object.fromEntries(
-              Object.entries(component.events).map(([key, payload]) => [
-                key,
-                Object.fromEntries(
-                  Object.entries(payload as Record<string, string>).map(
-                    ([field, type]) => [field, { type }]
-                  )
-                ),
-              ])
-            ),
-            controlled: 'controlled' in component ? component.controlled : undefined,
-            actions: 'actions' in component ? component.actions : [],
-            layout: 'layout' in component ? component.layout : undefined,
-            slots: component.slots,
-            interfaceOnly: component.interfaceOnly,
-          }
+      ].map((component) => {
+        const enumProps: Record<string, string> =
+          'enumProps' in component ? component.enumProps : {}
+        return {
+          name: component.name,
+          publicName: component.publicName,
+          props: Object.fromEntries(
+            Object.entries(component.props).map(([key, type]) => [
+              key,
+              enumProps[key] ? { type, enum: enumProps[key] } : { type },
+            ])
+          ),
+          events: Object.fromEntries(
+            Object.entries(component.events).map(([key, payload]) => [
+              key,
+              Object.fromEntries(
+                Object.entries(payload as Record<string, string>).map(([field, type]) => [
+                  field,
+                  { type },
+                ])
+              ),
+            ])
+          ),
+          controlled: 'controlled' in component ? component.controlled : undefined,
+          actions: 'actions' in component ? component.actions : [],
+          layout: 'layout' in component ? component.layout : undefined,
+          slots: component.slots,
+          interfaceOnly: component.interfaceOnly,
         }
-      ),
+      }),
       payloads: {
         ...Object.fromEntries(
           Object.entries(controlPayloads).map(([name, payload]) => [
@@ -324,8 +336,20 @@ outputs.set(
   ) + '\n'
 )
 outputs.set('src/menuItems.ts', emitMenuValidator(header, MINIMUM_IOS))
-let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
-const swiftTypeNames: Record<string, string> = { ImageScale: 'Image.Scale' }
+let swift =
+  header +
+  ['SwiftUI', ...frameworks].map((framework) => `import ${framework}\n`).join('') +
+  '\nenum OneNativeGenerated {\n'
+// a case list that lives on a nested type spells its Swift return type differently from the
+// name the inventory indexes it under.
+const swiftTypeNames: Record<string, string> = {
+  ImageScale: 'Image.Scale',
+  EncodingDisambiguationPolicy: 'PhotosPickerItem.EncodingDisambiguationPolicy',
+  BackForwardNavigationGesturesBehavior: 'WebView.BackForwardNavigationGesturesBehavior',
+  MagnificationGesturesBehavior: 'WebView.MagnificationGesturesBehavior',
+  LinkPreviewBehavior: 'WebView.LinkPreviewBehavior',
+  ElementFullscreenBehavior: 'WebView.ElementFullscreenBehavior',
+}
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   const swiftReturnType = swiftTypeNames[type] ?? type
@@ -510,10 +534,7 @@ packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
     ...sheetComponents,
     ...containerComponents,
     ...popoverComponents,
-  ].map((component) => [
-    component.name,
-    component.name + 'ComponentView',
-  ])
+  ].map((component) => [component.name, component.name + 'ComponentView'])
 )
 outputs.set('package.json', JSON.stringify(packageMetadata, null, 2) + '\n')
 const changed: string[] = []

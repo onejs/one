@@ -1,4 +1,10 @@
 // semantic mappings that the Swift declarations alone cannot determine.
+
+// frameworks whose SwiftUI overlay declares modifiers or enum cases emitted below.
+// importing the framework is what loads its _<Framework>_SwiftUI overlay, the same way a
+// control declares `imports`.
+export const frameworks = ['PhotosUI', 'WebKit'] as const
+
 export const modifiers = [
   { name: 'menuOrder', type: 'MenuOrder' },
   { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation' },
@@ -38,6 +44,41 @@ export const modifiers = [
     type: 'ImageScale',
     swiftType: 'Image.Scale',
     module: 'SwiftUICore',
+  },
+  {
+    name: 'webViewBackForwardNavigationGestures',
+    type: 'BackForwardNavigationGesturesBehavior',
+    swiftType: 'WebView.BackForwardNavigationGesturesBehavior',
+    module: '_WebKit_SwiftUI',
+  },
+  {
+    name: 'webViewMagnificationGestures',
+    type: 'MagnificationGesturesBehavior',
+    swiftType: 'WebView.MagnificationGesturesBehavior',
+    module: '_WebKit_SwiftUI',
+  },
+  {
+    name: 'webViewLinkPreviews',
+    type: 'LinkPreviewBehavior',
+    swiftType: 'WebView.LinkPreviewBehavior',
+    module: '_WebKit_SwiftUI',
+  },
+  {
+    name: 'webViewElementFullscreenBehavior',
+    type: 'ElementFullscreenBehavior',
+    swiftType: 'WebView.ElementFullscreenBehavior',
+    module: '_WebKit_SwiftUI',
+  },
+  { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
+] as const
+
+// a context menu is the same menu content on a different presentation, so Swift.Menu and
+// Swift.ContextMenu are one component with one trigger slot.
+export const menuMethods = [
+  {
+    name: 'contextMenu',
+    parameters: [{ label: 'menuItems', type: '() -> MenuItems' }],
+    requirements: ['MenuItems : SwiftUICore.View'],
   },
 ] as const
 export const styleModifiers = [
@@ -163,6 +204,12 @@ export const enumTypes = [
   'SymbolRenderingMode',
   'SymbolVariants',
   'ImageScale',
+  'PhotosPickerSelectionBehavior',
+  'EncodingDisambiguationPolicy',
+  'BackForwardNavigationGesturesBehavior',
+  'MagnificationGesturesBehavior',
+  'LinkPreviewBehavior',
+  'ElementFullscreenBehavior',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -344,6 +391,9 @@ export const components = [
       disabled: 'boolean',
       menuOrder: 'string',
       menuActionDismissBehavior: 'string',
+      // menu opens on tap and owns the trigger; contextMenu opens on long press and
+      // leaves the trigger interactive.
+      presentation: 'string',
       ...controlledProps,
     },
     events: {

@@ -497,6 +497,84 @@ export function Image({
     />
   )
 }
+import NativeShareLink from '../specs/OneNativeShareLinkNativeComponent'
+export function ShareLink({
+  label = '',
+  disabled = false,
+  systemImage = '',
+  item = '',
+  itemType = 'text',
+  subject = '',
+  message = '',
+  swiftStyle,
+  style,
+  ...props
+}: Types.ShareLinkProps) {
+  if (typeof label !== 'string' || !label)
+    throw new Error('ShareLink label must be a non-empty string')
+  if (typeof item !== 'string' || !item)
+    throw new Error('ShareLink item must be a non-empty string')
+  if (itemType !== 'text' && itemType !== 'url')
+    throw new Error("ShareLink itemType must be 'text' or 'url'")
+
+  return (
+    <NativeShareLink
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      label={label}
+      disabled={disabled}
+      systemImage={systemImage}
+      item={item}
+      itemType={itemType}
+      subject={subject}
+      message={message}
+    />
+  )
+}
+import NativeContentUnavailableView from '../specs/OneNativeContentUnavailableViewNativeComponent'
+export function ContentUnavailableView({
+  onAction,
+  title = '',
+  systemImage = '',
+  description = '',
+  actions,
+  swiftStyle,
+  style,
+  ...props
+}: Types.ContentUnavailableViewProps) {
+  if (typeof title !== 'string' || !title)
+    throw new Error('ContentUnavailableView title must be a non-empty string')
+  for (const action of actions) {
+    if (typeof action?.id !== 'string' || typeof action?.label !== 'string')
+      throw new Error(
+        'ContentUnavailableView actions must contain string id and label fields'
+      )
+    if (action.role)
+      assertSwiftUIValue(
+        'ButtonRole',
+        action.role,
+        Number.parseFloat(String(Platform.Version))
+      )
+  }
+  if (new Set(actions.map((action) => action.id)).size !== actions.length)
+    throw new Error('ContentUnavailableView action ids must be unique')
+
+  return (
+    <NativeContentUnavailableView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      title={title}
+      systemImage={systemImage}
+      description={description}
+      actions={actions}
+      onNativeContentUnavailableViewAction={({ nativeEvent }) =>
+        onAction?.(nativeEvent.id)
+      }
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
@@ -515,6 +593,142 @@ export function VideoPlayer({
       swiftStyle={swiftStyle}
       url={url}
       autoplay={autoplay}
+    />
+  )
+}
+import NativePhotosPicker from '../specs/OneNativePhotosPickerNativeComponent'
+export function PhotosPicker({
+  onPick,
+  onPickError,
+  label = '',
+  disabled = false,
+  systemImage = '',
+  maxSelectionCount = 1,
+  selectionBehavior = 'default',
+  filter = 'any',
+  preferredItemEncoding = 'automatic',
+  swiftStyle,
+  style,
+  ...props
+}: Types.PhotosPickerProps) {
+  if (typeof label !== 'string' || !label)
+    throw new Error('PhotosPicker label must be a non-empty string')
+  if (!Number.isInteger(maxSelectionCount) || maxSelectionCount < 0)
+    throw new Error(
+      'PhotosPicker maxSelectionCount must be a nonnegative integer; 0 is unlimited'
+    )
+  if (
+    ![
+      'any',
+      'images',
+      'videos',
+      'livePhotos',
+      'screenshots',
+      'screenRecordings',
+      'slomoVideos',
+      'timelapseVideos',
+      'cinematicVideos',
+      'depthEffectPhotos',
+      'bursts',
+      'panoramas',
+    ].includes(filter)
+  )
+    throw new Error('Unknown PhotosPicker filter: ' + filter)
+  assertSwiftUIValue(
+    'PhotosPickerSelectionBehavior',
+    selectionBehavior,
+    Number.parseFloat(String(Platform.Version))
+  )
+  assertSwiftUIValue(
+    'EncodingDisambiguationPolicy',
+    preferredItemEncoding,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativePhotosPicker
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      label={label}
+      disabled={disabled}
+      systemImage={systemImage}
+      maxSelectionCount={maxSelectionCount}
+      selectionBehavior={selectionBehavior}
+      filter={filter}
+      preferredItemEncoding={preferredItemEncoding}
+      onNativePhotosPickerPick={({ nativeEvent }) =>
+        onPick?.(nativeEvent.url, nativeEvent.index, nativeEvent.count)
+      }
+      onNativePhotosPickerPickError={({ nativeEvent }) =>
+        onPickError?.(nativeEvent.message)
+      }
+    />
+  )
+}
+import NativeWebView from '../specs/OneNativeWebViewNativeComponent'
+export function WebView({
+  onNavigate,
+  onTitleChange,
+  onLoadingChange,
+  url = '',
+  html = '',
+  backForwardNavigationGestures = '',
+  magnificationGestures = '',
+  linkPreviews = '',
+  elementFullscreen = '',
+  contentBackground = '',
+  swiftStyle,
+  style,
+  ...props
+}: Types.WebViewProps) {
+  if (!url === !html) throw new Error('WebView takes exactly one of url and html')
+  if (backForwardNavigationGestures)
+    assertSwiftUIValue(
+      'BackForwardNavigationGesturesBehavior',
+      backForwardNavigationGestures,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (magnificationGestures)
+    assertSwiftUIValue(
+      'MagnificationGesturesBehavior',
+      magnificationGestures,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (linkPreviews)
+    assertSwiftUIValue(
+      'LinkPreviewBehavior',
+      linkPreviews,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (elementFullscreen)
+    assertSwiftUIValue(
+      'ElementFullscreenBehavior',
+      elementFullscreen,
+      Number.parseFloat(String(Platform.Version))
+    )
+  if (contentBackground)
+    assertSwiftUIValue(
+      'Visibility',
+      contentBackground,
+      Number.parseFloat(String(Platform.Version))
+    )
+  return (
+    <NativeWebView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      url={url}
+      html={html}
+      backForwardNavigationGestures={backForwardNavigationGestures}
+      magnificationGestures={magnificationGestures}
+      linkPreviews={linkPreviews}
+      elementFullscreen={elementFullscreen}
+      contentBackground={contentBackground}
+      onNativeWebViewNavigate={({ nativeEvent }) => onNavigate?.(nativeEvent.url)}
+      onNativeWebViewTitleChange={({ nativeEvent }) => onTitleChange?.(nativeEvent.title)}
+      onNativeWebViewLoadingChange={({ nativeEvent }) =>
+        onLoadingChange?.(nativeEvent.loading, nativeEvent.progress)
+      }
     />
   )
 }
@@ -761,11 +975,11 @@ export function Alert({
         Number.parseFloat(String(Platform.Version))
       )
   }
+  if (new Set(actions.map((action) => action.id)).size !== actions.length)
+    throw new Error('Alert action ids must be unique')
   if (presenting !== undefined && typeof presenting !== 'string')
     throw new Error('Alert presenting must be a string')
   if (!actions.length) throw new Error('Alert must have at least one action')
-  if (new Set(actions.map((action) => action.id)).size !== actions.length)
-    throw new Error('Alert action ids must be unique')
 
   const controlled = useControlled<{
     value: boolean
@@ -821,11 +1035,11 @@ export function ConfirmationDialog({
         Number.parseFloat(String(Platform.Version))
       )
   }
+  if (new Set(actions.map((action) => action.id)).size !== actions.length)
+    throw new Error('ConfirmationDialog action ids must be unique')
   if (presenting !== undefined && typeof presenting !== 'string')
     throw new Error('ConfirmationDialog presenting must be a string')
   if (!actions.length) throw new Error('ConfirmationDialog must have at least one action')
-  if (new Set(actions.map((action) => action.id)).size !== actions.length)
-    throw new Error('ConfirmationDialog action ids must be unique')
   assertSwiftUIValue(
     'Visibility',
     titleVisibility,

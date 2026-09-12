@@ -32,3 +32,12 @@ export interface SheetProps extends ViewProps {
   presentationSizing?: PresentationSizing
   children: ReactNode
 }
+// a full screen cover has no detents and no drag indicator, so it takes neither. it is
+// dismissed from React, or from a control the presented content supplies.
+export interface FullScreenCoverProps extends ViewProps {
+  isPresented: boolean
+  onIsPresentedChange: (value: boolean) => void
+  onDismiss?: () => void
+  revision?: number
+  children: ReactNode
+}

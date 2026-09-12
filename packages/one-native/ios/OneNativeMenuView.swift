@@ -9,6 +9,7 @@ final class OneNativeMenuModel: ObservableObject {
   @Published var disabled = false
   @Published var menuOrder = "automatic"
   @Published var menuActionDismissBehavior = "automatic"
+  @Published var presentation = "menu"
   @Published var controlled = OneNativeControlled<[String: [Bool]]>([:])
   var propValues: [String: [Bool]] = [:]
   var active = false
@@ -60,12 +61,13 @@ public final class OneNativeMenuView: UIView {
     model.children = Dictionary(grouping: nodes, by: \.parentId)
   }
 
-  public func configure(_ triggerLabel: String, disabled: Bool, menuOrder: String, menuActionDismissBehavior: String, acknowledgedEvent: Int, revision: Int) {
+  public func configure(_ triggerLabel: String, disabled: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, revision: Int) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
     if model.disabled != disabled { model.disabled = disabled }
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
+    if model.presentation != presentation { model.presentation = presentation }
   }
 
   public override func didMoveToWindow() {
@@ -106,19 +108,34 @@ private struct OneNativeMenuRoot: View {
   @ObservedObject var model: OneNativeMenuModel
   var body: some View {
     if let trigger = model.trigger {
-      Menu {
-        OneNativeGeneratedMenuContent(model: model, parentId: "")
-      } label: {
-        OneNativeSlot(content: trigger, mode: .passive)
+      // a context menu opens on long press and leaves its subject alone the rest of the
+      // time, so the React Native subtree keeps its own touches and its own accessibility.
+      // a menu owns the tap instead, which is why its trigger is passive.
+      if model.presentation == "contextMenu" {
+        OneNativeSlot(content: trigger, mode: .fill)
           .frame(width: model.size.width, height: model.size.height)
           .contentShape(Rectangle())
+          .contextMenu {
+            OneNativeGeneratedMenuContent(model: model, parentId: "")
+          }
+          .disabled(model.disabled)
+          .oneNativeMenuOrder(model.menuOrder)
+          .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
+      } else {
+        Menu {
+          OneNativeGeneratedMenuContent(model: model, parentId: "")
+        } label: {
+          OneNativeSlot(content: trigger, mode: .passive)
+            .frame(width: model.size.width, height: model.size.height)
+            .contentShape(Rectangle())
+        }
+        .menuStyle(.button)
+        .buttonStyle(.plain)
+        .disabled(model.disabled)
+        .accessibilityLabel(model.label)
+        .oneNativeMenuOrder(model.menuOrder)
+        .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
       }
-      .menuStyle(.button)
-      .buttonStyle(.plain)
-      .disabled(model.disabled)
-      .accessibilityLabel(model.label)
-      .oneNativeMenuOrder(model.menuOrder)
-      .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
     }
   }
 }

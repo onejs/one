@@ -43,10 +43,28 @@ function Gauge(_props: Types.GaugeProps): never {
 function Image(_props: Types.ImageProps): never {
   throw new Error('Swift.Image requires an iOS native build with one-native installed')
 }
+function ShareLink(_props: Types.ShareLinkProps): never {
+  throw new Error(
+    'Swift.ShareLink requires an iOS native build with one-native installed'
+  )
+}
+function ContentUnavailableView(_props: Types.ContentUnavailableViewProps): never {
+  throw new Error(
+    'Swift.ContentUnavailableView requires an iOS native build with one-native installed'
+  )
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error(
     'Swift.VideoPlayer requires an iOS native build with one-native installed'
   )
+}
+function PhotosPicker(_props: Types.PhotosPickerProps): never {
+  throw new Error(
+    'Swift.PhotosPicker requires an iOS native build with one-native installed'
+  )
+}
+function WebView(_props: Types.WebViewProps): never {
+  throw new Error('Swift.WebView requires an iOS native build with one-native installed')
 }
 function Map(_props: Types.MapProps): never {
   throw new Error('Swift.Map requires an iOS native build with one-native installed')
@@ -87,7 +105,11 @@ export const unsupportedControls = {
   ProgressView,
   Gauge,
   Image,
+  ShareLink,
+  ContentUnavailableView,
   VideoPlayer,
+  PhotosPicker,
+  WebView,
   Map,
   TextField,
   SecureField,

@@ -26,6 +26,7 @@ interface NativeProps extends ViewProps {
   presentationBackgroundInteractionDetentValue: Double
   presentationContentInteraction: string
   presentationSizing: string
+  presentation: string
   onNativeSheetIsPresentedChange?: DirectEventHandler<
     Readonly<{ isPresented: boolean; eventCount: Int32; revision: Int32 }>
   >

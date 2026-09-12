@@ -72,3 +72,32 @@ export const commonFields = {
   label: { type: 'string', default: '' },
   disabled: { type: 'boolean', default: false },
 } as const
+
+// a list of buttons that report an id back, shared by the dialogs and by the empty state.
+// the buttons travel as data so one host renders every action.
+export const actionsField = {
+  type: 'objects',
+  default: '',
+  payload: {
+    name: 'DialogAction',
+    element: { id: 'string', label: 'string', role: 'string' },
+    publicTypes: { role: 'Styles.ButtonRole' },
+    optional: ['role'],
+  },
+} as const
+
+export const actionsValidate = (name: string) => `  for (const action of actions) {
+    if (typeof action?.id !== 'string' || typeof action?.label !== 'string') throw new Error('${name} actions must contain string id and label fields')
+    if (action.role) assertSwiftUIValue('ButtonRole', action.role, Number.parseFloat(String(Platform.Version)))
+  }
+  if (new Set(actions.map(action => action.id)).size !== actions.length) throw new Error('${name} action ids must be unique')`
+
+// action lists share buttons, with an optional extra event argument.
+export const actionButtons = (
+  indent: string,
+  extraArg = ''
+) => `${indent}ForEach(model.actions, id: \\.id) { action in
+${indent}  Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id${extraArg}) }) {
+${indent}    Text(action.label)
+${indent}  }
+${indent}}`
