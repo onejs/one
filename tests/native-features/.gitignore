@@ -10,3 +10,7 @@ dist/
 *.jpg
 *.webp
 outcome.json
+
+# the tab bar oracle's captures are evidence, not run output: every number in
+# oracle/tab-bar-geometry.json was measured off them, so they are committed beside it.
+!oracle/captures/*.png
