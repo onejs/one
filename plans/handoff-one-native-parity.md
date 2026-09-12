@@ -360,6 +360,27 @@ SwiftUI hierarchy. Bridge one, or say plainly in the README that the prop is ine
 build a minimize curve in any simulator against it: the signal cannot arrive, so the curve would
 be fitted to nothing.
 
+## Known limitation: `testID` on a `Swift.*` container never reaches the accessibility tree
+
+Measured on device while verifying the checks audit. `Swift.Form` publishes an unlabelled
+`Group`. `Swift.Host`, `Swift.Popover`, and the sheet's `View` publish nothing at all. Leaf
+components do publish, which is why the same pattern works everywhere else and why this is easy
+to walk into: you write a lookup that works against `Swift.Toggle`, move it up one level to the
+container, and it silently matches nothing.
+
+The consequence for anyone writing checks here: you cannot locate a `Swift.*` container by
+`testID`, so a check that tries is not a strict check, it is a check that cannot pass. Four
+assertions in the audit pass were written that way and had never run. Locate containers by
+geometry from a leaf you can see, or assert on the leaves directly.
+
+Where a container's exact box is genuinely not observable, a rounded value read from the
+fixture's own `onLayout` text is the ceiling, not a weakness to fix later. This applies to the
+`Swift.Host` box and to sheet detent sizes. Do not replace those rounded assertions with exact
+ones: the exact value does not exist anywhere in the tree, so the replacement can only ever fail.
+Related, and the same mistake from the other direction: layout here is fractional, so the
+segmented picker is 373x31, the calendar 377.666..., the popover trigger 24.333..., and the Form
+507.666.... Assertions that round these were rounded deliberately.
+
 ## Known weak spots in the checks
 
 - **Visual regions are absolute fixture coordinates.** Adding a seventh category to the
