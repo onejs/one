@@ -50,16 +50,16 @@ export type OneNativeViewProps = Pick<
   swiftStyle?: OneNativeStyle
 }
 export type PickerOption = Readonly<{ value: string; label: string }>
+export type DialogAction = Readonly<{
+  id: string
+  label: string
+  role?: Styles.ButtonRole
+}>
 export type MapMarker = Readonly<{
   id: string
   label: string
   latitude: number
   longitude: number
-}>
-export type DialogAction = Readonly<{
-  id: string
-  label: string
-  role?: Styles.ButtonRole
 }>
 export interface PickerProps extends OneNativeViewProps {
   selection: string
@@ -158,9 +158,60 @@ export interface ImageProps extends OneNativeViewProps {
   imageScale?: Styles.ImageScale | ''
   variableValue?: number
 }
+export interface ShareLinkProps extends OneNativeViewProps {
+  label?: string
+  disabled?: boolean
+  systemImage?: string
+  item?: string
+  itemType?: 'text' | 'url'
+  subject?: string
+  message?: string
+}
+export interface ContentUnavailableViewProps extends OneNativeViewProps {
+  onAction?: (id: string) => void
+  title?: string
+  systemImage?: string
+  description?: string
+  actions: readonly DialogAction[]
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string
   autoplay?: boolean
+}
+export interface PhotosPickerProps extends OneNativeViewProps {
+  onPick?: (url: string, index: number, count: number) => void
+  onPickError?: (message: string) => void
+  label?: string
+  disabled?: boolean
+  systemImage?: string
+  maxSelectionCount?: number
+  selectionBehavior?: Styles.PhotosPickerSelectionBehavior
+  filter?:
+    | 'any'
+    | 'images'
+    | 'videos'
+    | 'livePhotos'
+    | 'screenshots'
+    | 'screenRecordings'
+    | 'slomoVideos'
+    | 'timelapseVideos'
+    | 'cinematicVideos'
+    | 'depthEffectPhotos'
+    | 'bursts'
+    | 'panoramas'
+  preferredItemEncoding?: Styles.EncodingDisambiguationPolicy
+}
+export interface WebViewProps extends OneNativeViewProps {
+  onNavigate?: (url: string) => void
+  onTitleChange?: (title: string) => void
+  onLoadingChange?: (loading: boolean, progress: number) => void
+  url?: string
+  html?: string
+  backForwardNavigationGestures?: Styles.BackForwardNavigationGesturesBehavior | ''
+  magnificationGestures?: Styles.MagnificationGesturesBehavior | ''
+  linkPreviews?: Styles.LinkPreviewBehavior | ''
+  elementFullscreen?: Styles.ElementFullscreenBehavior | ''
+  contentBackground?: Styles.Visibility | ''
 }
 export interface MapProps extends OneNativeViewProps {
   onRegionChange?: (latitude: number, longitude: number, distance: number) => void
@@ -210,18 +261,20 @@ export interface AlertProps extends OneNativeViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
-  onAction?: (id: string) => void
+  onAction?: (id: string, presenting: string) => void
   title?: string
   message?: string
+  presenting?: string
   actions: readonly DialogAction[]
 }
 export interface ConfirmationDialogProps extends OneNativeViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
-  onAction?: (id: string) => void
+  onAction?: (id: string, presenting: string) => void
   title?: string
   message?: string
+  presenting?: string
   actions: readonly DialogAction[]
   titleVisibility?: Styles.Visibility
 }

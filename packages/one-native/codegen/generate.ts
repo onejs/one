@@ -1,4 +1,4 @@
-import { containerComponents, emitContainers } from './emitContainers'
+import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
@@ -20,6 +20,8 @@ import { fileURLToPath } from 'node:url'
 import {
   tabConstructor,
   components,
+  frameworks,
+  menuMethods,
   modifierFamilies,
   enumTypes,
   fields,
@@ -106,9 +108,13 @@ emitContainers(header, outputs)
 emitPopover(header, outputs)
 emitStyle(header, outputs)
 selected.push(
-  ...[...sheetMethods, ...popoverMethods, ...styleModifiers].map((method) =>
-    selectModifier(inventory, method)
-  ),
+  ...[
+    ...sheetMethods,
+    ...popoverMethods,
+    ...environmentMethods,
+    ...menuMethods,
+    ...styleModifiers,
+  ].map((method) => selectModifier(inventory, method)),
   selectConstructor(inventory, {
     type: 'RoundedRectangle',
     parameters: [
@@ -189,6 +195,11 @@ export interface MenuProps extends ViewProps {
   menuOrder?: MenuOrder
   menuActionDismissBehavior?: MenuActionDismissBehavior
   children: ReactNode
+}
+// a context menu leaves its trigger interactive and visible to accessibility, so React
+// Native's own label on that subtree stands and the menu takes none of its own.
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+  accessibilityLabel?: string
 }
 export interface TabProps {
   id: string
@@ -324,8 +335,20 @@ outputs.set(
   ) + '\n'
 )
 outputs.set('src/menuItems.ts', emitMenuValidator(header, MINIMUM_IOS))
-let swift = header + 'import SwiftUI\n\nenum OneNativeGenerated {\n'
-const swiftTypeNames: Record<string, string> = { ImageScale: 'Image.Scale' }
+let swift =
+  header +
+  ['SwiftUI', ...frameworks].map((framework) => `import ${framework}\n`).join('') +
+  '\nenum OneNativeGenerated {\n'
+// a case list that lives on a nested type spells its Swift return type differently from the
+// name the inventory indexes it under.
+const swiftTypeNames: Record<string, string> = {
+  ImageScale: 'Image.Scale',
+  EncodingDisambiguationPolicy: 'PhotosPickerItem.EncodingDisambiguationPolicy',
+  BackForwardNavigationGesturesBehavior: 'WebView.BackForwardNavigationGesturesBehavior',
+  MagnificationGesturesBehavior: 'WebView.MagnificationGesturesBehavior',
+  LinkPreviewBehavior: 'WebView.LinkPreviewBehavior',
+  ElementFullscreenBehavior: 'WebView.ElementFullscreenBehavior',
+}
 for (const [type, cases] of Object.entries(enums)) {
   if (type.endsWith('Style')) continue
   const swiftReturnType = swiftTypeNames[type] ?? type

@@ -1,14 +1,22 @@
 import type { ReactNode } from 'react';
-import type { ViewProps } from 'react-native';
+import type { ColorValue, ViewProps } from 'react-native';
+import type { ColorScheme, DynamicTypeSize } from './swiftui';
 export type HostAxis = 'vertical' | 'horizontal';
 export type HostAlignment = 'leading' | 'center' | 'trailing';
-export interface HostProps extends ViewProps {
+export interface EnvironmentProps {
+    colorScheme?: ColorScheme;
+    dynamicTypeSize?: DynamicTypeSize;
+    locale?: string;
+    tint?: ColorValue;
+    isEnabled?: boolean;
+}
+export interface HostProps extends ViewProps, EnvironmentProps {
     axis?: HostAxis;
     spacing?: number;
     alignment?: HostAlignment;
     children: ReactNode;
 }
-export interface FormProps extends ViewProps {
+export interface FormProps extends ViewProps, EnvironmentProps {
     children: ReactNode;
 }
 export interface SectionProps extends ViewProps {

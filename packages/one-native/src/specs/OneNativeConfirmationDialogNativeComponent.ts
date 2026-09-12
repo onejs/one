@@ -41,6 +41,8 @@ interface NativeProps extends ViewProps {
   revision: Int32
   title: string
   message: string
+  presenting: string
+  hasPresenting: boolean
   actions: ReadonlyArray<DialogAction>
   titleVisibility: string
   swiftStyle?: OneNativeStyleNative
@@ -48,7 +50,7 @@ interface NativeProps extends ViewProps {
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
   onNativeConfirmationDialogAction?: DirectEventHandler<
-    Readonly<{ id: string; eventCount: Int32 }>
+    Readonly<{ id: string; presenting: string; eventCount: Int32 }>
   >
 }
 export default codegenNativeComponent<NativeProps>('OneNativeConfirmationDialog')

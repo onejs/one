@@ -20,11 +20,11 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeAlertEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeAlertValueChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
     };
-    _nativeView.onAction = ^(NSString *id, NSInteger eventCount) {
+    _nativeView.onAction = ^(NSString *id, NSString *presenting, NSInteger eventCount) {
       OneNativeAlertComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeAlertEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeAlertAction({.id = std::string(id.UTF8String), .eventCount = (int)eventCount});
+      emitter->onNativeAlertAction({.id = std::string(id.UTF8String), .presenting = std::string(presenting.UTF8String), .eventCount = (int)eventCount});
     };
   }
   return self;
@@ -74,7 +74,7 @@ using namespace facebook::react;
   if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
   [_nativeView configureStyle:style];
   [_nativeView configure:next.value
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision title:RCTNSStringFromString(next.title) message:RCTNSStringFromString(next.message)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision title:RCTNSStringFromString(next.title) message:RCTNSStringFromString(next.message) presenting:RCTNSStringFromString(next.presenting) hasPresenting:next.hasPresenting];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _actionsDirty = YES; }

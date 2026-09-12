@@ -1,4 +1,10 @@
-import { commonFields, type Control } from './controlTypes'
+import {
+  actionButtons,
+  actionsField,
+  actionsValidate,
+  commonFields,
+  type Control,
+} from './controlTypes'
 
 // leaves with no two-way value: Button signals, Text/Label/ProgressView/Gauge display.
 export const leafControls: Control[] = [
@@ -214,5 +220,100 @@ export const leafControls: Control[] = [
     validate: `  if (typeof systemName !== 'string' || !systemName) throw new Error('Image systemName must be a non-empty SF Symbol name')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')`,
+  },
+  {
+    // the share sheet is UIActivityViewController, which React Native has no equivalent for.
+    // one item travels as a string and `itemType` says whether to share it as a link or as
+    // text, because the SDK takes those through two different initializers.
+    name: 'ShareLink',
+    fields: {
+      ...commonFields,
+      systemImage: { type: 'string', default: '' },
+      item: { type: 'string', default: '' },
+      itemType: { type: 'string', default: 'text', publicType: "'text' | 'url'" },
+      subject: { type: 'string', default: '' },
+      message: { type: 'string', default: '' },
+    },
+    constructors: [
+      {
+        type: 'ShareLink',
+        parameters: [
+          { label: 'item', type: 'Foundation.URL' },
+          { label: 'subject', type: 'SwiftUICore.Text?' },
+          { label: 'message', type: 'SwiftUICore.Text?' },
+          { label: 'label', type: '() -> Label' },
+        ],
+      },
+      {
+        type: 'ShareLink',
+        parameters: [
+          { label: 'item', type: 'Swift.String' },
+          { label: 'subject', type: 'SwiftUICore.Text?' },
+          { label: 'message', type: 'SwiftUICore.Text?' },
+          { label: 'label', type: '() -> Label' },
+        ],
+      },
+    ],
+    swift: `ShareLinkSurface(model: model)`,
+    extraSwift: `private struct ShareLinkSurface: View {
+  @ObservedObject var model: ShareLinkModel
+  // an empty string is no subject and no message, which the SDK spells as nil.
+  private var subject: Text? { model.subject.isEmpty ? nil : Text(model.subject) }
+  private var message: Text? { model.message.isEmpty ? nil : Text(model.message) }
+  @ViewBuilder private var label: some View {
+    if model.systemImage.isEmpty { Text(model.label) }
+    else { Label(model.label, systemImage: model.systemImage) }
+  }
+  var body: some View {
+    // a url that does not parse falls through to sharing the text, which is what it is.
+    if model.itemType == "url", let url = URL(string: model.item) {
+      ShareLink(item: url, subject: subject, message: message) { label }
+    } else {
+      ShareLink(item: model.item, subject: subject, message: message) { label }
+    }
+  }
+}
+`,
+    validate: `  if (typeof label !== 'string' || !label) throw new Error('ShareLink label must be a non-empty string')
+  if (typeof item !== 'string' || !item) throw new Error('ShareLink item must be a non-empty string')
+  if (itemType !== 'text' && itemType !== 'url') throw new Error("ShareLink itemType must be 'text' or 'url'")`,
+  },
+  {
+    // the empty state Apple ships, including the search variant's look. its buttons are the
+    // same id-reporting action list the dialogs carry.
+    name: 'ContentUnavailableView',
+    // an empty state is given an area to fill, the way a video or a map is; it has no row
+    // height of its own.
+    layout: 'fill',
+    actions: [{ prop: 'onAction', event: 'Action', payload: { id: 'string' } }],
+    fields: {
+      title: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '' },
+      description: { type: 'string', default: '' },
+      actions: actionsField,
+    },
+    constructors: [
+      {
+        type: 'ContentUnavailableView',
+        parameters: [
+          { label: 'label', type: '() -> Label' },
+          { label: 'description', type: '() -> Description' },
+          { label: 'actions', type: '() -> Actions' },
+        ],
+      },
+    ],
+    swift: `ContentUnavailableView {
+        if model.systemImage.isEmpty {
+          Text(model.title)
+        } else {
+          Label(model.title, systemImage: model.systemImage)
+        }
+      } description: {
+        if !model.description.isEmpty { Text(model.description) }
+      } actions: {
+${actionButtons('        ')}
+      }`,
+    validate: `  if (typeof title !== 'string' || !title) throw new Error('ContentUnavailableView title must be a non-empty string')
+${actionsValidate('ContentUnavailableView')}`,
   },
 ]

@@ -32,6 +32,11 @@ using namespace facebook::react;
   [_hostView configureWithAxis:RCTNSStringFromString(next.axis)
                        spacing:next.spacing
                      alignment:RCTNSStringFromString(next.alignment)];
+  [_hostView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
+                                 dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
+                                          locale:RCTNSStringFromString(next.locale)
+                                            tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
+                                       isEnabled:RCTNSStringFromString(next.isEnabled)];
   [super updateProps:props oldProps:oldProps];
 }
 

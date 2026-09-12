@@ -41,11 +41,15 @@ interface NativeProps extends ViewProps {
   revision: Int32
   title: string
   message: string
+  presenting: string
+  hasPresenting: boolean
   actions: ReadonlyArray<DialogAction>
   swiftStyle?: OneNativeStyleNative
   onNativeAlertValueChange?: DirectEventHandler<
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
-  onNativeAlertAction?: DirectEventHandler<Readonly<{ id: string; eventCount: Int32 }>>
+  onNativeAlertAction?: DirectEventHandler<
+    Readonly<{ id: string; presenting: string; eventCount: Int32 }>
+  >
 }
 export default codegenNativeComponent<NativeProps>('OneNativeAlert')

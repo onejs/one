@@ -63,6 +63,11 @@ const testScreens = [
     label: 'One Native Tab Bar Oracle',
     testID: 'nav-one-native-tab-oracle',
   },
+  {
+    href: '/one-native-system',
+    label: 'One Native System',
+    testID: 'nav-one-native-system',
+  },
 ] as const
 
 export default function HomeScreen() {

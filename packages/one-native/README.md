@@ -1,7 +1,8 @@
 # One Native
 
-Generated SwiftUI tabs, menus, pickers, form controls, sheets, containers, popovers,
-video, maps, and Quick Look for React Native, exposed through `Swift`. This is an
+Generated SwiftUI tabs, menus, pickers, form controls, sheets, full screen covers,
+containers, popovers, video, maps, web views, sharing, the photo library, empty states,
+and Quick Look for React Native, exposed through `Swift`. This is an
 initial implementation on the `feat/one-native` branch. It requires an iOS 26+ native
 build and React Native's New Architecture. It is not published to npm.
 
@@ -114,6 +115,25 @@ The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
 as its content. Put independent interactive controls outside the trigger.
 
+`Swift.ContextMenu` takes the same `items` and the same callbacks, and presents them on
+SwiftUI's other menu presentation: a long press on its children rather than a tap. Menu
+and context menu are one native component, so everything the menu supports, including
+toggles, submenus, sections and `menuActionDismissBehavior`, works identically here.
+
+```tsx
+<Swift.ContextMenu items={actions} onAction={setLastAction}>
+  <Pressable onPress={open}>
+    <Text>Long press for actions</Text>
+  </Pressable>
+</Swift.ContextMenu>
+```
+
+The difference is the trigger. A menu owns the tap, so its trigger is passive and
+SwiftUI supplies its accessibility label. A context menu only claims the long press, so
+its children keep their own touches and their own accessibility, which is why
+`accessibilityLabel` is optional here and is not applied to the subject. `preview:` is
+not bound: a context menu renders its subject as its own preview.
+
 ## Pickers and form controls
 
 Standalone pickers and form controls take flat props. They do not take option or
@@ -219,7 +239,11 @@ function Leaves() {
     <View style={{ width: '100%' }}>
       <Swift.Text text="Read only" />
       <Swift.Label label="Starred" systemImage="star.fill" />
-      <Swift.Image systemName="star.fill" symbolRenderingMode="hierarchical" imageScale="medium" />
+      <Swift.Image
+        systemName="star.fill"
+        symbolRenderingMode="hierarchical"
+        imageScale="medium"
+      />
       <Swift.Button
         label="Delete"
         systemImage="trash"
@@ -325,11 +349,11 @@ it: size it with `style`.
   latitude={37.7955}
   longitude={-122.3937}
   distance={4000}
-  markers={[
-    { id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 },
-  ]}
+  markers={[{ id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 }]}
   style={{ width: '100%', height: 220 }}
-  onRegionChange={(latitude, longitude, distance) => setCamera({ latitude, longitude, distance })}
+  onRegionChange={(latitude, longitude, distance) =>
+    setCamera({ latitude, longitude, distance })
+  }
 />
 ```
 
@@ -347,6 +371,115 @@ change the props; if you need to follow the user, read `onRegionChange`.
 Each marker needs a unique `id`, a `label` and a coordinate. Ids must be unique
 and coordinates must be finite, or the adapter throws.
 
+## Web content
+
+`Swift.WebView` is SwiftUI's `WebView` from the `_WebKit_SwiftUI` overlay module. It is
+iOS 26 API, which is the package floor, so it needs no availability gate. Like video and
+maps it has no ideal height, so it takes the box React Native gives it.
+
+```tsx
+<Swift.WebView
+  url="https://onestack.dev"
+  style={{ width: '100%', height: 320 }}
+  onNavigate={setAddress}
+  onTitleChange={setTitle}
+  onLoadingChange={(loading, progress) => setProgress(loading ? progress : 1)}
+/>
+```
+
+Behind it is a `WebPage`, WebKit's observable page state, which is what makes the current
+url, the title and the load progress readable from React. `onNavigate` fires whenever the
+page's url changes, including redirects and in-page navigation, so it is where an OAuth
+redirect is caught. `onLoadingChange` carries both the loading flag and
+`estimatedProgress`; WebKit coalesces its own progress reporting, so it is not a
+per-frame event.
+
+Pass `html` instead of `url` to render markup the app already holds rather than something
+it fetches. Exactly one of the two is required; passing both, or neither, throws.
+
+The source is loaded once per value, whichever of the two it is. Changing any other prop
+does not reload, because a reload would throw away the scroll position and the
+back-forward list.
+
+`backForwardNavigationGestures`, `magnificationGestures`, `linkPreviews`,
+`elementFullscreen` and `contentBackground` are the SDK's own `webView*` modifiers; each
+is `automatic`, `enabled` or `disabled` (`contentBackground` is a `Visibility`), and an
+omitted value leaves SwiftUI's default in place.
+
+There is no imperative surface: no `goBack`, `reload`, `stopLoading` or JavaScript
+evaluation. Those are commands rather than props, and this package has no command
+mechanism. Text selection (`webViewTextSelection`) and the scroll modifiers are not bound
+either.
+
+## Sharing and the photo library
+
+`Swift.ShareLink` is the system share sheet, which is `UIActivityViewController` and has
+no React Native equivalent that looks right. It renders as a button you label yourself.
+
+```tsx
+<Swift.ShareLink
+  label="Share"
+  systemImage="square.and.arrow.up"
+  item="https://onestack.dev"
+  itemType="url"
+  subject="One"
+  message="Worth a look"
+/>
+```
+
+`item` is one string and `itemType` says how to share it, because the SDK takes a link
+and a piece of text through different initializers. `subject` and `message` are optional
+and empty means unset. A url that does not parse falls back to sharing the text.
+
+`Swift.PhotosPicker` is SwiftUI's `PhotosPicker` from the `_PhotosUI_SwiftUI` overlay
+module. It renders as a button and presents Apple's photo picker, which runs out of
+process and needs no photo library permission prompt.
+
+```tsx
+<Swift.PhotosPicker
+  label="Choose photos"
+  systemImage="photo.on.rectangle"
+  filter="images"
+  maxSelectionCount={3}
+  onPick={(url, index, count) => addPicked(url, index, count)}
+  onPickError={setPickError}
+/>
+```
+
+The picker hands back a `PhotosPickerItem`, which is a promise of data rather than a
+file, so each item is loaded asynchronously and written into the temporary directory.
+`onPick` fires once per item with the `file://` url, the index that item held in the
+selection, and how many were picked; loads finish out of order, which is why the index is
+in the payload. Collect a multiple selection from those three values. `onPickError`
+reports a load that failed. Nothing deletes the written files; the system clears the
+temporary directory.
+
+`maxSelectionCount` defaults to 1 and 0 means unlimited. `filter` restricts what the
+picker offers (`images`, `videos`, `livePhotos`, `screenshots`, `screenRecordings`,
+`slomoVideos`, `timelapseVideos`, `cinematicVideos`, `depthEffectPhotos`, `bursts`,
+`panoramas`, or `any`). `selectionBehavior` and `preferredItemEncoding` are the SDK's own
+enums.
+
+## Empty states
+
+`Swift.ContentUnavailableView` is Apple's empty state, the view a search with no results
+or an empty inbox uses. Like video and maps it fills the box React Native gives it,
+because an empty state is given an area rather than a row height.
+
+```tsx
+<Swift.ContentUnavailableView
+  title="No messages"
+  systemImage="tray"
+  description="New messages will appear here."
+  actions={[{ id: 'refresh', label: 'Refresh' }]}
+  onAction={refresh}
+  style={{ flex: 1 }}
+/>
+```
+
+`actions` is the same id-reporting button list the dialogs carry, and it may be empty.
+Ids must be unique. `description` and `systemImage` are optional.
+
 ## Alerts and confirmation dialogs
 
 `Swift.Alert` and `Swift.ConfirmationDialog` are zero-size presentation hosts, like
@@ -363,13 +496,14 @@ function DeleteButton({ item }: { item: Item }) {
       <Swift.Alert
         title="Delete item?"
         message="This cannot be undone."
+        presenting={item.id}
         isPresented={confirming}
         onIsPresentedChange={setConfirming}
         actions={[
           { id: 'cancel', label: 'Cancel', role: 'cancel' },
           { id: 'delete', label: 'Delete', role: 'destructive' },
         ]}
-        onAction={(id) => id === 'delete' && remove(item)}
+        onAction={(id, itemId) => id === 'delete' && removeById(itemId)}
       />
     </View>
   )
@@ -386,12 +520,14 @@ takes the same values as `Swift.Button`'s `buttonRole`. `title` and `message` ar
 plain strings; an empty `message` renders no message. `ConfirmationDialog` adds
 `titleVisibility`: `automatic`, `visible`, or `hidden`.
 
+Pass `presenting` when an action needs the value captured for that presentation.
+The action callback receives `(id, presenting)`, and an empty string is a valid
+presented value. Leaving the prop out uses the ordinary boolean overload and reports
+an empty second callback argument for compatibility with the shared event shape.
+
 Neither host takes a `disabled` prop. SwiftUI's `.disabled` propagates through the
 environment into the presented content, so a host-level `disabled` would silently
 disable every dialog button. Disable the control that opens the dialog instead.
-
-The `presenting:` overloads that bind a value into the dialog, and
-`presentationCompactAdaptation`, are not bound yet.
 
 ## Quick Look
 
@@ -426,6 +562,7 @@ function ExampleSheet() {
   const [open, setOpen] = useState(false)
   const [nested, setNested] = useState(false)
   const [dismisses, setDismisses] = useState(0)
+  const [detent, setDetent] = useState<PresentationDetent>('medium')
   return (
     <>
       <Text>Dismisses: {dismisses}</Text>
@@ -434,7 +571,13 @@ function ExampleSheet() {
         onIsPresentedChange={setOpen}
         onDismiss={() => setDismisses((count) => count + 1)}
         presentationDetents={['medium', 'large']}
+        selectedDetent={detent}
+        onSelectedDetentChange={setDetent}
         presentationDragIndicator="automatic"
+        presentationBackground="#FFF3C4"
+        presentationBackgroundInteraction={{ enabledUpThrough: 'medium' }}
+        presentationContentInteraction="resizes"
+        presentationSizing="automatic"
         interactiveDismissDisabled={false}
       >
         <View style={{ flex: 1, padding: 16 }}>
@@ -458,6 +601,20 @@ detent is required. Detents are `medium`, `large`, `{ fraction }` with a value i
 `presentationDragIndicator` is a `Visibility` value. `interactiveDismissDisabled`
 blocks the swipe-to-dismiss gesture when true.
 
+`selectedDetent` and `onSelectedDetentChange` form a controlled pair. The selection
+must be present in `presentationDetents`; native drags are acknowledged with the same
+event-count and `detentRevision` protocol used by other controlled values.
+`presentationBackground` accepts a React Native color. Background interaction is
+`automatic`, `enabled`, `disabled`, or `{ enabledUpThrough: detent }`. Content
+interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
+`automatic`, `fitted`, `form`, or `page`.
+
+`fitToContents` derives a height detent from the mounted React Native child's laid-out
+height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
+a flexible child asks to fill the provisional sheet and therefore has no smaller
+content height to fit. Fit mode owns its detent, so it cannot be combined with
+`selectedDetent` or an `enabledUpThrough` background interaction.
+
 Presented sheet content reports Fabric slot state with a local origin. The content
 host supplies a touch handler because presentation leaves the RN surface, the same
 situation as React Native's `Modal`. If that content uses
@@ -465,6 +622,23 @@ situation as React Native's `Modal`. If that content uses
 inside `Modal`. one-native does not add that package.
 
 A `Swift.Sheet` inside presented children presents a nested sheet.
+
+`Swift.FullScreenCover` is the same presentation with different chrome: it covers the
+screen, has no detents and no drag indicator, and is not dismissed by a swipe. It is the
+same native component as `Swift.Sheet`, so the presented slot, the controlled protocol
+and `onDismiss` behave identically; only the presenting modifier differs.
+
+```tsx
+<Swift.FullScreenCover isPresented={open} onIsPresentedChange={setOpen}>
+  <View style={{ flex: 1, padding: 16 }}>
+    <Text>Covering content</Text>
+    <Button title="Close" onPress={() => setOpen(false)} />
+  </View>
+</Swift.FullScreenCover>
+```
+
+Because nothing dismisses a cover from the outside, the presented content must supply its
+own way out, or React must set `isPresented` back to false.
 
 Add `one-native: workspace:*` to the native application's dependencies and rebuild
 the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
@@ -512,6 +686,15 @@ Two consequences worth knowing:
 
 Children are One Native controls, One Native containers, and `Swift.Slot`, which is how
 a React Native subtree gets into the SwiftUI tree.
+
+`Swift.Host` and `Swift.Form` can override the SwiftUI environment for their entire
+composed subtree with `colorScheme`, `dynamicTypeSize`, `locale`, `tint`, and
+`isEnabled`. Omitted props preserve values inherited from an outer SwiftUI container.
+This set covers the environment values React Native can express as stable scalar or
+color props and that directly affect appearance, text layout, localization, and
+interaction. Arbitrary environment keys are intentionally excluded because their
+value types cannot cross React Native codegen safely, and adding named keys without a
+concrete One Native consumer would create unused API surface.
 
 Horizontal hosts hold whatever fits. Several SwiftUI controls are width-greedy, so
 three of them side by side on a phone overflow, and SwiftUI then reports a much taller
@@ -656,9 +839,12 @@ interface in the SDK: SwiftUI, SwiftUICore, and each `_<Framework>_SwiftUI`
 overlay module, which is where WebView, VideoPlayer, PhotosPicker, Map and
 quickLookPreview live. `codegen/catalog.ts`
 defines the supported constructor recipes and React-specific mappings, including
-identity, child slots, and controlled events. Control recipes live in
+identity, child slots, and controlled events. Its `frameworks` list names the overlays whose
+modifiers and enum cases reach the shared generated Swift, which is what imports
+PhotosUI and WebKit there. Control recipes live in
 `codegen/pickerCatalog.ts`, `codegen/formCatalog.ts`, `codegen/leafCatalog.ts`,
-`codegen/mediaCatalog.ts`, and `codegen/textCatalog.ts`, and `codegen/emitControls.ts` turns each recipe into a
+`codegen/mediaCatalog.ts`, `codegen/mapCatalog.ts`, `codegen/textCatalog.ts`, and
+`codegen/presentationCatalog.ts`, and `codegen/emitControls.ts` turns each recipe into a
 Swift host, an Objective-C++ adapter, a Fabric spec, public types, and a schema
 entry.
 
