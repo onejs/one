@@ -11,6 +11,9 @@ interface NativeProps extends ViewProps {
         eventCount: Int32;
         revision: Int32;
     }>>;
+    onNativeTabsAction?: DirectEventHandler<Readonly<{
+        tabId: string;
+    }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

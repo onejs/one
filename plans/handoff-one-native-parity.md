@@ -18,6 +18,12 @@ bounded catalog, fixture and conformance work. Every worker goes through `tm run
 - Exact SDK constructor signatures, generic modifier requirements, both Swift
   availability syntaxes, and normalized escaped identifiers. Ambiguity is an
   error. `codegen/Extract.swift`, `inventory.ts`, `generate.ts` own this pipeline.
+- `Swift.Tab` takes an `onPress` for action tabs: press runs the action, the selection stays.
+  With `role="search"` the tab detaches into its own capsule on the trailing side, which is the
+  placement a Compose-style action wants. The conformance tap point is 325pt, the centre of the
+  "+" glyph measured off `04-action-tab.png`, rather than the 277pt a combined tab bar puts it at.
+  It rides its own `onNativeTabsAction` event rather than the controlled protocol, because a
+  press is not a state change, so nothing moves optimistically and there is no page flash.
 - The package floor is iOS 26. `MINIMUM_IOS` in `codegen/generate.ts` is the only place it is set;
   `schema.json` carries it forward and `OneNative.podspec` reads it from there. Raising it deleted
   every `@available` and `if #available` branch from the generated Swift, and it is what makes
@@ -243,8 +249,8 @@ Automation details that prevent false diagnoses:
 - `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: 426 accessibility checks across twelve suites plus 18/18 visual
-  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 59,
+- Conformance end to end: 432 accessibility checks across twelve suites plus 18/18 visual
+  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 65,
   pickers 29, forms 43, sheets 35, leaves 93, dialogs 32, host 27, containers 29, popover 26,
   accessibility 25, media 15, map 13.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
@@ -287,6 +293,24 @@ cancel iOS 26 interactive back navigation while cancelling RN touches and retain
 lifetime. So the next navigation work is that experiment, not bindings. The document also lists
 what not to build, including a second app back stack, automatic parent navigation-item sharing,
 and freestanding `navigationTitle`/`searchable` props on leaf controls.
+
+## Known defect: mounting a tab moves the displayed page
+
+`Swift.Tabs` shows the page of the tab at index 0 when the page list changes while the
+selection is not index 0. The tab bar highlight stays correct, so the bar says one thing and
+the content says another, and the mounted page drops out of the accessibility tree entirely.
+
+Reproduced on the simulator, and the control is exact: with tabs `[second, first]` and
+`selection: 'first'`, mounting a third tab paints "Second tab" while the bar highlights First.
+Tapping the fixture's reorder button to restore `[first, second]` brings the correct page back
+with nothing else changed. It is not about the new tab's role or its `onPress`: the same thing
+happens with an ordinary tab, and it does not happen when the selected tab is already index 0.
+
+This is pre-existing rather than new. Nothing else in the suite adds or removes a tab at
+runtime, so the action tab is the first thing to exercise it. The action tab checks therefore
+run before the reorder, where the selected tab is still index 0, so that they test `onPress`
+rather than this. Fixing it means working out why replacing `model.pages` loses the
+selection-to-content association in `TabsContent`, which is untouched.
 
 ## Known weak spots in the checks
 
