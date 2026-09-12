@@ -2,7 +2,15 @@ import { useState } from 'react'
 import { Swift } from 'one-native'
 import { Button, Pressable, StyleSheet, Switch, Text, View } from 'react-native'
 
-const categories = ['Picker', 'Date', 'Color', 'Toggle', 'Slider', 'Stepper', 'Focus'] as const
+const categories = [
+  'Picker',
+  'Date',
+  'Color',
+  'Toggle',
+  'Slider',
+  'Stepper',
+  'Focus',
+] as const
 type Category = (typeof categories)[number]
 
 type ControlState = {
@@ -104,7 +112,11 @@ export default function OneNativeControls() {
       <View style={styles.status}>
         {category === 'Focus' ? (
           <>
-            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-active">
+            <Text
+              numberOfLines={1}
+              style={styles.statusText}
+              testID="one-native-focus-active"
+            >
               Focus:{' '}
               {field1Focused
                 ? 'field1'
@@ -114,16 +126,32 @@ export default function OneNativeControls() {
                     ? 'numeric'
                     : 'none'}
             </Text>
-            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-field-1-val">
+            <Text
+              numberOfLines={1}
+              style={styles.statusText}
+              testID="one-native-focus-field-1-val"
+            >
               Field 1: {field1Text}
             </Text>
-            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-field-2-val">
+            <Text
+              numberOfLines={1}
+              style={styles.statusText}
+              testID="one-native-focus-field-2-val"
+            >
               Field 2: {field2Text}
             </Text>
-            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-numeric-val">
+            <Text
+              numberOfLines={1}
+              style={styles.statusText}
+              testID="one-native-focus-numeric-val"
+            >
               Numeric: {numericText}
             </Text>
-            <Text numberOfLines={1} style={styles.statusText} testID="one-native-focus-submits">
+            <Text
+              numberOfLines={1}
+              style={styles.statusText}
+              testID="one-native-focus-submits"
+            >
               Submits: {chainSubmits}
             </Text>
           </>
@@ -367,7 +395,9 @@ export default function OneNativeControls() {
                       value = ['alpha', 'beta', 'gamma'][updates % 3]
                       break
                     case 'Date':
-                      value = new Date(initialDate.getTime() + (updates % 113) * 86_400_000)
+                      value = new Date(
+                        initialDate.getTime() + (updates % 113) * 86_400_000
+                      )
                       break
                     case 'Color':
                       value = ['#3366FF', '#FF6633', '#33AA66'][updates % 3]

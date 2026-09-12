@@ -35,9 +35,7 @@ export default function OneNativePopover() {
         presentationCompactAdaptation="popover"
         contentWidth={260}
         contentHeight={160}
-        onLayout={({ nativeEvent }) =>
-          setHeight(Math.round(nativeEvent.layout.height))
-        }
+        onLayout={({ nativeEvent }) => setHeight(Math.round(nativeEvent.layout.height))}
         content={
           <View style={styles.body}>
             <Text testID="one-native-popover-body">Popover body</Text>
@@ -72,16 +70,11 @@ export default function OneNativePopover() {
             contentHeight={120}
             content={
               <View style={styles.body}>
-                <Text testID="one-native-popover-section-body">
-                  Section body
-                </Text>
+                <Text testID="one-native-popover-section-body">Section body</Text>
               </View>
             }
           >
-            <Swift.Button
-              label="Section trigger"
-              onPress={() => setSectionOpen(true)}
-            />
+            <Swift.Button label="Section trigger" onPress={() => setSectionOpen(true)} />
           </Swift.Popover>
         </Swift.Section>
       </Swift.Form>

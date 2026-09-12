@@ -32,7 +32,9 @@ export default function OneNativeAccessibility() {
         testID="one-native-a11y-text"
         text={wrapped ? long : short}
         accessibilityLabel="Standalone paragraph"
-        onLayout={({ nativeEvent }) => setTextHeight(Math.round(nativeEvent.layout.height))}
+        onLayout={({ nativeEvent }) =>
+          setTextHeight(Math.round(nativeEvent.layout.height))
+        }
       />
       <Swift.Toggle
         testID="one-native-a11y-standalone"
@@ -42,7 +44,9 @@ export default function OneNativeAccessibility() {
         accessibilityValue={{ text: standaloneOn ? 'on' : 'off' }}
         isOn={standaloneOn}
         onIsOnChange={setStandaloneOn}
-        onLayout={({ nativeEvent }) => setToggleHeight(Math.round(nativeEvent.layout.height))}
+        onLayout={({ nativeEvent }) =>
+          setToggleHeight(Math.round(nativeEvent.layout.height))
+        }
       />
 
       {/* composed: these controls never join the view hierarchy, so their accessibility can
@@ -101,11 +105,23 @@ export default function OneNativeAccessibility() {
         }}
       />
 
-      <Text testID="one-native-a11y-text-height" style={styles.line}>{`Text: ${textHeight}`}</Text>
-      <Text testID="one-native-a11y-toggle-height" style={styles.line}>{`Toggle: ${toggleHeight}`}</Text>
+      <Text
+        testID="one-native-a11y-text-height"
+        style={styles.line}
+      >{`Text: ${textHeight}`}</Text>
+      <Text
+        testID="one-native-a11y-toggle-height"
+        style={styles.line}
+      >{`Toggle: ${toggleHeight}`}</Text>
       <Text testID="one-native-a11y-taps" style={styles.line}>{`Taps: ${taps}`}</Text>
-      <Text testID="one-native-a11y-host-on" style={styles.line}>{`Host: ${hostOn}`}</Text>
-      <Text testID="one-native-a11y-form-on" style={styles.line}>{`Form: ${formOn}`}</Text>
+      <Text
+        testID="one-native-a11y-host-on"
+        style={styles.line}
+      >{`Host: ${hostOn}`}</Text>
+      <Text
+        testID="one-native-a11y-form-on"
+        style={styles.line}
+      >{`Form: ${formOn}`}</Text>
     </View>
   )
 }
@@ -113,7 +129,12 @@ export default function OneNativeAccessibility() {
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8, backgroundColor: '#fff' },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
-  chip: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 8, backgroundColor: '#eee' },
+  chip: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: '#eee',
+  },
   chipOn: { backgroundColor: '#cfe2ff' },
   host: { backgroundColor: '#f2f5ff' },
   form: { height: 140 },

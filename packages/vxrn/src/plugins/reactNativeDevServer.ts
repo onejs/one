@@ -279,7 +279,10 @@ export function createReactNativeDevServerPlugin(
             if (!devEngine) continue
             for (const added of files) {
               devEngine.handleAddedFile(added).catch((error) => {
-                console.error(`[vxrn] handling added ${added} for ${platform} failed`, error)
+                console.error(
+                  `[vxrn] handling added ${added} for ${platform} failed`,
+                  error
+                )
               })
             }
           }

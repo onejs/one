@@ -123,7 +123,12 @@ export default function OneNativeContainers() {
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8, backgroundColor: '#fff' },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
-  chip: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 8, backgroundColor: '#eee' },
+  chip: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: '#eee',
+  },
   chipOn: { backgroundColor: '#cfe2ff' },
   leaf: { width: 150 },
   form: { flex: 1 },

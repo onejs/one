@@ -52,7 +52,13 @@ export default function OneNativeHost() {
         <Pressable
           testID="one-native-host-relabel"
           style={styles.chip}
-          onPress={() => setLabel((value) => (value === 'Toggle' ? 'Toggle with a much longer label that wraps onto a second line' : 'Toggle'))}
+          onPress={() =>
+            setLabel((value) =>
+              value === 'Toggle'
+                ? 'Toggle with a much longer label that wraps onto a second line'
+                : 'Toggle'
+            )
+          }
         >
           <Text>Relabel</Text>
         </Pressable>
@@ -78,7 +84,10 @@ export default function OneNativeHost() {
           }}
         />
         {expanded ? (
-          <Swift.Button label="Composed button" onPress={() => setTaps((count) => count + 1)} />
+          <Swift.Button
+            label="Composed button"
+            onPress={() => setTaps((count) => count + 1)}
+          />
         ) : null}
         {expanded ? (
           <Swift.Stepper
@@ -91,9 +100,15 @@ export default function OneNativeHost() {
         ) : null}
       </Swift.Host>
 
-      <Text testID="one-native-host-size" style={styles.line}>{`Host: ${width} x ${height}`}</Text>
+      <Text
+        testID="one-native-host-size"
+        style={styles.line}
+      >{`Host: ${width} x ${height}`}</Text>
       <Text testID="one-native-host-toggle" style={styles.line}>{`IsOn: ${isOn}`}</Text>
-      <Text testID="one-native-host-changes" style={styles.line}>{`Changes: ${changes}`}</Text>
+      <Text
+        testID="one-native-host-changes"
+        style={styles.line}
+      >{`Changes: ${changes}`}</Text>
       <Text testID="one-native-host-taps" style={styles.line}>{`Taps: ${taps}`}</Text>
       <Text testID="one-native-host-step" style={styles.line}>{`Step: ${step}`}</Text>
     </View>
@@ -103,7 +118,12 @@ export default function OneNativeHost() {
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8, backgroundColor: '#fff' },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
-  chip: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 8, backgroundColor: '#eee' },
+  chip: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: '#eee',
+  },
   chipOn: { backgroundColor: '#cfe2ff' },
   host: { backgroundColor: '#f2f5ff' },
   line: { fontSize: 14 },

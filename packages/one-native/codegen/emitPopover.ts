@@ -32,7 +32,10 @@ export const popoverComponents = [
         revision: 'Int32',
       },
     },
-    enumProps: { arrowEdge: 'Edge', presentationCompactAdaptation: 'PresentationAdaptation' },
+    enumProps: {
+      arrowEdge: 'Edge',
+      presentationCompactAdaptation: 'PresentationAdaptation',
+    },
     controlled: { value: 'isPresented', event: 'onNativePopoverIsPresentedChange' },
     layout: { kind: 'measured' },
     slots: [

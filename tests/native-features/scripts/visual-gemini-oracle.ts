@@ -31,7 +31,8 @@ export async function evaluateGeminiOracle(
     throw new Error(`Oracle target image does not exist: ${imageOrCropPath}`)
   }
 
-  const agyPath = options.agyPath ?? (fs.existsSync(DEFAULT_AGY_PATH) ? DEFAULT_AGY_PATH : 'agy')
+  const agyPath =
+    options.agyPath ?? (fs.existsSync(DEFAULT_AGY_PATH) ? DEFAULT_AGY_PATH : 'agy')
   const model = options.model ?? DEFAULT_MODEL
   const effort = options.effort ?? DEFAULT_EFFORT
   const timeout = options.timeoutMs ?? DEFAULT_TIMEOUT_MS
@@ -97,7 +98,9 @@ export function parseOracleResponse(raw: string): OracleVerdict {
   } catch (parseErr) {
     // Fallback heuristic if LLM produced plain text
     const lower = raw.toLowerCase()
-    const passed = lower.includes('"passed": true') || (lower.includes('passed: true') && !lower.includes('not passed'))
+    const passed =
+      lower.includes('"passed": true') ||
+      (lower.includes('passed: true') && !lower.includes('not passed'))
     return {
       passed,
       reason: `Parsed with fallback: ${raw.slice(0, 200)}`,

@@ -54,7 +54,10 @@ export function Popover({
       }
     >
       <InsideContainer value={true}>{children}</InsideContainer>
-      <NativeContent collapsable={false} style={{ position: 'absolute', left: 0, top: 0 }}>
+      <NativeContent
+        collapsable={false}
+        style={{ position: 'absolute', left: 0, top: 0 }}
+      >
         <InsideContainer value={false}>{content}</InsideContainer>
       </NativeContent>
     </NativePopover>
