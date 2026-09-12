@@ -104,7 +104,7 @@ The `TabBarMinimizeBehavior` list is the generated enum's, read from
 `packages/one-native/src/generated/swiftui.ts`, not guessed.
 
 `tabBarMinimizeBehavior` and `sidebarAdaptable` have **no consumer in rnx**: neither prop exists
-there, and both are listed as missing for react-native-bottom-tabs. Their cells are measured and
+there, and both are listed as missing from the old routed-tab path. Their cells are measured and
 kept, because the enum's full value list was asked for and the cells cost one capture each, but
 nothing downstream can use them until rnx grows the props. Their `axis` field says so.
 
@@ -116,7 +116,7 @@ sidebar, light, first tab selected. Each axis is varied off that baseline, plus 
 - **tab count x detached tab**, all five counts against both detached kinds. This is the crossing
   the table exists for: rnx drops its `tabCount` term entirely once a search tab exists, so a
   constant track width and a shrink-to-fit pill are indistinguishable at one tab count. The
-  action-tab variant is crossed too because `react-native-bottom-tabs` cannot express it at all,
+  action-tab variant is crossed too because it never enters routed selection,
   so rnx has no model to fall back on.
 - **badge width x tab count**, the overflow badge at every count. A badge that widened its tab
   would show up as a pitch change here and nowhere else.

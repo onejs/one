@@ -201,7 +201,7 @@ const specs: Spec[] = [
     count,
     detached: 'action' as const,
     axis: 'pageTabCount x detachedSearchAction',
-    note: `${count} page tabs plus a role="search" action tab, which react-native-bottom-tabs cannot express`,
+    note: `${count} page tabs plus a role="search" action tab that never becomes selected`,
   })),
 
   // badge width off the baseline, then badge width x tab count
