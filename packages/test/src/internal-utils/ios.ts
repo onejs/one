@@ -469,7 +469,9 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       udid,
       bundleId,
       wdaLocalPort,
-      // always cache WDA builds so subsequent sessions skip the rebuild
+      // keep one port for this serial test run so appium can reuse the running
+      // WDA process after each session instead of launching xcodebuild again.
+      useNewWDA: false,
       derivedDataPath: wdaDerivedDataPath,
       ...(wdaIsPrebuilt && { usePrebuiltWDA: true }),
     },

@@ -182,53 +182,6 @@ function sanitizeFileName(input: string): string {
     .slice(0, 100)
 }
 
-async function getAvailablePort() {
-  const net = await import('node:net')
-
-  return await new Promise<number>((resolve, reject) => {
-    const server = net.createServer()
-    server.unref()
-    server.on('error', reject)
-    server.listen(0, '127.0.0.1', () => {
-      const address = server.address()
-      if (!address || typeof address === 'string') {
-        reject(new Error(`Failed to allocate a TCP port: ${String(address)}`))
-        return
-      }
-      const { port } = address
-      server.close((error) => {
-        if (error) {
-          reject(error)
-          return
-        }
-        resolve(port)
-      })
-    })
-  })
-}
-
-async function withFreshWdaLocalPort(
-  config: WebdriverIOConfig
-): Promise<WebdriverIOConfig> {
-  const capabilities = config.capabilities as any
-  const appiumOptions = capabilities?.['appium:options']
-
-  if (!appiumOptions || appiumOptions.webDriverAgentUrl) {
-    return config
-  }
-
-  return {
-    ...config,
-    capabilities: {
-      ...capabilities,
-      'appium:options': {
-        ...appiumOptions,
-        wdaLocalPort: await getAvailablePort(),
-      },
-    },
-  }
-}
-
 /**
  * create a webdriver session with retry and recovery logic.
  * when WDA fails (ECONNREFUSED, app unknown to FrontBoard, etc),
@@ -259,8 +212,7 @@ export async function createSession(
         await recoverSimulator(resolvedConfig)
       }
 
-      const sessionConfig = await withFreshWdaLocalPort(resolvedConfig)
-      const driver = await remote(sessionConfig)
+      const driver = await remote(resolvedConfig)
 
       // verify the app actually launched successfully
       await assertAppRunning(driver)
