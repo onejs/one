@@ -7595,6 +7595,11 @@
         },
         "capture": "captures/tabs6-more-sel0-light-rest.png",
         "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [
+          "left",
+          "right",
+          "top"
+        ],
         "captureOriginPt": {
           "x": 0,
           "y": 700
@@ -7612,6 +7617,12 @@
             "height": 62
           },
           "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "seeding": "rim",
+          "crossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "crossCheckPt": {
             "rimLeft": 20.7,
             "rimRight": 372.3,
@@ -7821,6 +7832,11 @@
           },
           "capture": "captures/tabs6-more-sel0-light-more.png",
           "barMeasurementTrusted": false,
+          "barMeasurementCrossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "captureOriginPt": {
             "x": 0,
             "y": 700
@@ -7838,6 +7854,12 @@
               "height": 35.7
             },
             "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "seeding": "rim",
+            "crossCheckedEdges": [
+              "left",
+              "right",
+              "top"
+            ],
             "crossCheckPt": {
               "rimLeft": 20.7,
               "rimRight": 372.3,
@@ -8274,6 +8296,11 @@
         },
         "capture": "captures/tabs7-more-sel0-light-rest.png",
         "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [
+          "left",
+          "right",
+          "top"
+        ],
         "captureOriginPt": {
           "x": 0,
           "y": 700
@@ -8291,6 +8318,12 @@
             "height": 62
           },
           "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "seeding": "rim",
+          "crossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "crossCheckPt": {
             "rimLeft": 20.7,
             "rimRight": 372.3,
@@ -8505,6 +8538,11 @@
           },
           "capture": "captures/tabs7-more-sel0-light-more.png",
           "barMeasurementTrusted": false,
+          "barMeasurementCrossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "captureOriginPt": {
             "x": 0,
             "y": 700
@@ -8522,6 +8560,12 @@
               "height": 35.7
             },
             "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "seeding": "rim",
+            "crossCheckedEdges": [
+              "left",
+              "right",
+              "top"
+            ],
             "crossCheckPt": {
               "rimLeft": 20.7,
               "rimRight": 372.3,
@@ -8999,6 +9043,11 @@
         },
         "capture": "captures/tabs5-search-more-sel0-light-rest.png",
         "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [
+          "left",
+          "right",
+          "top"
+        ],
         "captureOriginPt": {
           "x": 0,
           "y": 700
@@ -9016,6 +9065,12 @@
             "height": 62
           },
           "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "seeding": "rim",
+          "crossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "crossCheckPt": {
             "rimLeft": 20.7,
             "rimRight": 372.3,
@@ -9226,6 +9281,11 @@
           },
           "capture": "captures/tabs5-search-more-sel0-light-more.png",
           "barMeasurementTrusted": false,
+          "barMeasurementCrossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "captureOriginPt": {
             "x": 0,
             "y": 700
@@ -9243,6 +9303,12 @@
               "height": 35.7
             },
             "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "seeding": "rim",
+            "crossCheckedEdges": [
+              "left",
+              "right",
+              "top"
+            ],
             "crossCheckPt": {
               "rimLeft": 20.7,
               "rimRight": 372.3,
@@ -9672,6 +9738,11 @@
         },
         "capture": "captures/tabs5-search-morerow0-sel0-light-rest.png",
         "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [
+          "left",
+          "right",
+          "top"
+        ],
         "captureOriginPt": {
           "x": 0,
           "y": 700
@@ -9689,6 +9760,12 @@
             "height": 62
           },
           "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "seeding": "rim",
+          "crossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "crossCheckPt": {
             "rimLeft": 20.7,
             "rimRight": 372.3,
@@ -9899,6 +9976,11 @@
           },
           "capture": "captures/tabs5-search-morerow0-sel0-light-more.png",
           "barMeasurementTrusted": false,
+          "barMeasurementCrossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "captureOriginPt": {
             "x": 0,
             "y": 700
@@ -9916,6 +9998,12 @@
               "height": 35.7
             },
             "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "seeding": "rim",
+            "crossCheckedEdges": [
+              "left",
+              "right",
+              "top"
+            ],
             "crossCheckPt": {
               "rimLeft": 20.7,
               "rimRight": 372.3,
@@ -10297,6 +10385,11 @@
           },
           "capture": "captures/tabs5-search-morerow0-sel0-light-selected.png",
           "barMeasurementTrusted": true,
+          "barMeasurementCrossCheckedEdges": [
+            "left",
+            "right",
+            "top"
+          ],
           "captureOriginPt": {
             "x": 0,
             "y": 700
@@ -10314,6 +10407,12 @@
               "height": 62
             },
             "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "seeding": "rim",
+            "crossCheckedEdges": [
+              "left",
+              "right",
+              "top"
+            ],
             "crossCheckPt": {
               "rimLeft": 20.7,
               "rimRight": 372.3,
@@ -10452,6 +10551,1713 @@
               "glyphCenterX": 263.3,
               "glyphCenterY": 792.9,
               "labelCenterX": 264,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": {
+                "x": 318.7,
+                "y": 810.7,
+                "width": 24.3,
+                "height": 7.3
+              },
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": 330.8,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": null,
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "More",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 123,
+              "width": 44,
+              "height": 44
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": true
+    },
+    {
+      "id": "tabs5-search-more-sel0-dark",
+      "axis": "overflow contents x appearance",
+      "note": "dark twin of the opened overflow list, where the list background flips and the row geometry should not",
+      "spec": {
+        "tabs": [
+          {
+            "id": "p1",
+            "title": "First",
+            "systemImage": "1.circle"
+          },
+          {
+            "id": "p2",
+            "title": "Second",
+            "systemImage": "2.circle"
+          },
+          {
+            "id": "p3",
+            "title": "Third",
+            "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "search",
+            "title": "Search",
+            "systemImage": "magnifyingglass",
+            "role": "search"
+          }
+        ],
+        "selectedIndex": 0,
+        "appearance": "dark",
+        "tabBarMinimizeBehavior": "never",
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "more"
+        }
+      },
+      "atRest": {
+        "id": "tabs5-search-more-sel0-dark",
+        "axis": "overflow contents x appearance",
+        "note": "dark twin of the opened overflow list, where the list background flips and the row geometry should not",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "search",
+              "title": "Search",
+              "systemImage": "magnifyingglass",
+              "role": "search"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "dark",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs5-search-more-sel0-dark-rest.png",
+        "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [],
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
+          },
+          "method": "interior-plateau throughout; the rim trace has no valid signature on this capture",
+          "seeding": "membership",
+          "crossCheckedEdges": [],
+          "crossCheckPt": {
+            "rimLeft": null,
+            "rimRight": null,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": null,
+            "right": null,
+            "top": 0
+          },
+          "interiorColor": [
+            18,
+            18,
+            18
+          ],
+          "interiorOverBackground": 54
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774.3,
+            "width": 70.3,
+            "height": 50
+          },
+          "color": [
+            52,
+            52,
+            52
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          129,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.3,
+          67.2,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.4,
+          0.2,
+          0.5,
+          0.9
+        ],
+        "mainTabs": [
+          {
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 117.3,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 129,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 24.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31,
+              "height": 7.3
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 263.8,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
+          }
+        ],
+        "detachedTabs": []
+      },
+      "moreOpen": {
+        "capture": "captures/tabs5-search-more-sel0-dark-more.png",
+        "bar": {
+          "id": "tabs5-search-more-sel0-dark",
+          "axis": "overflow contents x appearance",
+          "note": "dark twin of the opened overflow list, where the list background flips and the row geometry should not",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "dark",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs5-search-more-sel0-dark-more.png",
+          "barMeasurementTrusted": true,
+          "barMeasurementCrossCheckedEdges": [],
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 852,
+          "mainCapsule": {
+            "rect": {
+              "x": 20.8,
+              "y": 769,
+              "width": 351,
+              "height": 62
+            },
+            "method": "interior-plateau throughout; the rim trace has no valid signature on this capture",
+            "seeding": "membership",
+            "crossCheckedEdges": [],
+            "crossCheckPt": {
+              "rimLeft": null,
+              "rimRight": null,
+              "membershipTop": 769
+            },
+            "disagreementPt": {
+              "left": null,
+              "right": null,
+              "top": 0
+            },
+            "interiorColor": [
+              25,
+              25,
+              25
+            ],
+            "interiorOverBackground": 75
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 21.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774.3,
+              "width": 72,
+              "height": 51.3
+            },
+            "color": [
+              58,
+              58,
+              58
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            129,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 800,
+          "glyphOffsetFromCapsuleCenterPt": [
+            -7.1,
+            -7.1,
+            -7.1,
+            -7.1,
+            -6.8
+          ],
+          "tabPitchPt": [
+            67.3,
+            67.2,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            0.4,
+            0.4,
+            0.2,
+            0.5,
+            0.7
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 51.7,
+                "y": 810,
+                "width": 20.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 62.1,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117.3,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 110.7,
+                "y": 810.3,
+                "width": 35.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 129,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 128.6,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 23.3
+              },
+              "label": {
+                "x": 183.7,
+                "y": 810,
+                "width": 24.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 196,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 248.3,
+                "y": 810.3,
+                "width": 31,
+                "height": 7.3
+              },
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 263.8,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": {
+                "x": 318.7,
+                "y": 810.7,
+                "width": 24.3,
+                "height": 7.3
+              },
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": 330.8,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            0,
+            0,
+            0
+          ],
+          "separators": [
+            {
+              "x": 50.3,
+              "y": 177,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 232,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 288,
+              "width": 322.7,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 0,
+              "y": 110,
+              "width": 393,
+              "height": 3.3
+            }
+          ],
+          "separatorInsetLeftPt": 50.3,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.7,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51.7,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51.7,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 17,
+                "y": 253,
+                "width": 16.3,
+                "height": 16.3
+              },
+              "label": {
+                "x": 51.3,
+                "y": 254.7,
+                "width": 51.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 261.2,
+              "labelLeftPt": 51.3,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            }
+          ],
+          "rowPitchPt": [
+            55
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Search",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "afterSelectingRow": null,
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": null
+    },
+    {
+      "id": "tabs5-search-morerow0-sel0-dark",
+      "axis": "overflow selection x appearance",
+      "note": "dark twin of the row selection, so the promotion answer is not read off one appearance",
+      "spec": {
+        "tabs": [
+          {
+            "id": "p1",
+            "title": "First",
+            "systemImage": "1.circle"
+          },
+          {
+            "id": "p2",
+            "title": "Second",
+            "systemImage": "2.circle"
+          },
+          {
+            "id": "p3",
+            "title": "Third",
+            "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "search",
+            "title": "Search",
+            "systemImage": "magnifyingglass",
+            "role": "search"
+          }
+        ],
+        "selectedIndex": 0,
+        "appearance": "dark",
+        "tabBarMinimizeBehavior": "never",
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "moreRow",
+          "row": 0
+        }
+      },
+      "atRest": {
+        "id": "tabs5-search-morerow0-sel0-dark",
+        "axis": "overflow selection x appearance",
+        "note": "dark twin of the row selection, so the promotion answer is not read off one appearance",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "search",
+              "title": "Search",
+              "systemImage": "magnifyingglass",
+              "role": "search"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "dark",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs5-search-morerow0-sel0-dark-rest.png",
+        "barMeasurementTrusted": true,
+        "barMeasurementCrossCheckedEdges": [],
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
+          },
+          "method": "interior-plateau throughout; the rim trace has no valid signature on this capture",
+          "seeding": "membership",
+          "crossCheckedEdges": [],
+          "crossCheckPt": {
+            "rimLeft": null,
+            "rimRight": null,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": null,
+            "right": null,
+            "top": 0
+          },
+          "interiorColor": [
+            18,
+            18,
+            18
+          ],
+          "interiorOverBackground": 54
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774.3,
+            "width": 70.3,
+            "height": 50
+          },
+          "color": [
+            52,
+            52,
+            52
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          129,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.3,
+          67.2,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.4,
+          0.2,
+          0.5,
+          0.9
+        ],
+        "mainTabs": [
+          {
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 117.3,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 129,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 24.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31,
+              "height": 7.3
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 263.8,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
+          }
+        ],
+        "detachedTabs": []
+      },
+      "moreOpen": {
+        "capture": "captures/tabs5-search-morerow0-sel0-dark-more.png",
+        "bar": {
+          "id": "tabs5-search-morerow0-sel0-dark",
+          "axis": "overflow selection x appearance",
+          "note": "dark twin of the row selection, so the promotion answer is not read off one appearance",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "dark",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs5-search-morerow0-sel0-dark-more.png",
+          "barMeasurementTrusted": true,
+          "barMeasurementCrossCheckedEdges": [],
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 852,
+          "mainCapsule": {
+            "rect": {
+              "x": 20.8,
+              "y": 769,
+              "width": 351,
+              "height": 62
+            },
+            "method": "interior-plateau throughout; the rim trace has no valid signature on this capture",
+            "seeding": "membership",
+            "crossCheckedEdges": [],
+            "crossCheckPt": {
+              "rimLeft": null,
+              "rimRight": null,
+              "membershipTop": 769
+            },
+            "disagreementPt": {
+              "left": null,
+              "right": null,
+              "top": 0
+            },
+            "interiorColor": [
+              25,
+              25,
+              25
+            ],
+            "interiorOverBackground": 75
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 21.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774.3,
+              "width": 72,
+              "height": 51.3
+            },
+            "color": [
+              58,
+              58,
+              58
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            129,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 800,
+          "glyphOffsetFromCapsuleCenterPt": [
+            -7.1,
+            -7.1,
+            -7.1,
+            -7.1,
+            -6.8
+          ],
+          "tabPitchPt": [
+            67.3,
+            67.2,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            0.4,
+            0.4,
+            0.2,
+            0.5,
+            0.7
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 51.7,
+                "y": 810,
+                "width": 20.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 62.1,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117.3,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 110.7,
+                "y": 810.3,
+                "width": 35.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 129,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 128.6,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 23.3
+              },
+              "label": {
+                "x": 183.7,
+                "y": 810,
+                "width": 24.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 196,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 248.3,
+                "y": 810.3,
+                "width": 31,
+                "height": 7.3
+              },
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 263.8,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": {
+                "x": 318.7,
+                "y": 810.7,
+                "width": 24.3,
+                "height": 7.3
+              },
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": 330.8,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            0,
+            0,
+            0
+          ],
+          "separators": [
+            {
+              "x": 50.3,
+              "y": 177,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 232,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 288,
+              "width": 322.7,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 0,
+              "y": 110,
+              "width": 393,
+              "height": 3.3
+            }
+          ],
+          "separatorInsetLeftPt": 50.3,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.7,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51.7,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51.7,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 17,
+                "y": 253,
+                "width": 16.3,
+                "height": 16.3
+              },
+              "label": {
+                "x": 51.3,
+                "y": 254.7,
+                "width": 51.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 261.2,
+              "labelLeftPt": 51.3,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            }
+          ],
+          "rowPitchPt": [
+            55
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Search",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "afterSelectingRow": {
+        "row": 0,
+        "capture": "captures/tabs5-search-morerow0-sel0-dark-selected.png",
+        "bar": {
+          "id": "tabs5-search-morerow0-sel0-dark",
+          "axis": "overflow selection x appearance",
+          "note": "dark twin of the row selection, so the promotion answer is not read off one appearance",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "dark",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs5-search-morerow0-sel0-dark-selected.png",
+          "barMeasurementTrusted": true,
+          "barMeasurementCrossCheckedEdges": [],
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 769,
+          "mainCapsule": {
+            "rect": {
+              "x": 20.8,
+              "y": 769,
+              "width": 351,
+              "height": 62
+            },
+            "method": "interior-plateau throughout; the rim trace has no valid signature on this capture",
+            "seeding": "membership",
+            "crossCheckedEdges": [],
+            "crossCheckPt": {
+              "rimLeft": null,
+              "rimRight": null,
+              "membershipTop": 769
+            },
+            "disagreementPt": {
+              "left": null,
+              "right": null,
+              "top": 0
+            },
+            "interiorColor": [
+              18,
+              18,
+              18
+            ],
+            "interiorOverBackground": 54
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 21.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774.3,
+              "width": 72,
+              "height": 51.7
+            },
+            "color": [
+              52,
+              52,
+              52
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            129,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 800,
+          "glyphOffsetFromCapsuleCenterPt": [
+            -7.1,
+            -7.1,
+            -7.1,
+            -7.1,
+            -6.8
+          ],
+          "tabPitchPt": [
+            67.3,
+            67.2,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            0.4,
+            0.4,
+            0.2,
+            0.5,
+            0.7
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 51.7,
+                "y": 810,
+                "width": 20.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 62.1,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117.3,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 110.7,
+                "y": 810.3,
+                "width": 35.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 129,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 128.6,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 23.3
+              },
+              "label": {
+                "x": 183.7,
+                "y": 810,
+                "width": 24.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 196,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 248.3,
+                "y": 810.3,
+                "width": 31,
+                "height": 7.3
+              },
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 263.8,
               "labelsTouch": false,
               "badge": null
             },
