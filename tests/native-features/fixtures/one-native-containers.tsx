@@ -11,7 +11,7 @@ export default function OneNativeContainers() {
   const [extra, setExtra] = useState(false)
   const [footer, setFooter] = useState(false)
   const [environment, setEnvironment] = useState(false)
-  const [height, setHeight] = useState(0)
+  const [formSize, setFormSize] = useState({ width: 0, height: 0 })
 
   const environmentProps = environment
     ? ({
@@ -72,9 +72,13 @@ export default function OneNativeContainers() {
 
       <Swift.Form
         {...environmentProps}
-        testID="one-native-container-form"
         style={styles.form}
-        onLayout={({ nativeEvent }) => setHeight(Math.round(nativeEvent.layout.height))}
+        onLayout={({ nativeEvent }) =>
+          setFormSize({
+            width: Math.round(nativeEvent.layout.width),
+            height: Math.round(nativeEvent.layout.height),
+          })
+        }
       >
         <Swift.Section title="Details" footer={footer ? 'Two of two' : ''}>
           <Swift.Text text="Composed text" />
@@ -120,7 +124,7 @@ export default function OneNativeContainers() {
         <Text
           testID="one-native-container-height"
           style={styles.line}
-        >{`Form: ${height}`}</Text>
+        >{`Form: ${formSize.width} x ${formSize.height}`}</Text>
         <Text
           testID="one-native-container-toggle"
           style={styles.line}

@@ -54,8 +54,7 @@ function SheetContent({
   return (
     <View
       onLayout={handleLayout}
-      style={styles.sheetContent}
-      testID="one-native-sheet-content"
+      style={[styles.sheetContent, fitToContents && styles.fittedSheetContent]}
     >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 

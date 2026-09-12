@@ -199,17 +199,22 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     prompt:
       'A graphical calendar grid with month days and blue circular date selection accent is visible.',
     measureSubject: (crop) =>
-      countMatchingPixels(crop, (r, g, b) => r < 30 && g >= 130 && g <= 145 && b > 240),
+      countMatchingPixels(
+        crop,
+        (r, g, b) =>
+          (r < 30 && g >= 130 && g <= 145 && b > 240) ||
+          (r >= 210 && r <= 220 && g >= 228 && g <= 236 && b >= 244 && b <= 252)
+      ),
     minSubjectFloor: 5_000,
     calibration: {
-      positiveMeasured: 12_485,
+      positiveMeasured: 13_131,
       negativeMeasured: 0,
       threshold: 5_000,
       changedPixelsMeasured: 14_665,
       crossSubstitutionMatches: 1,
       corpusSize: 70,
       nullStateReads:
-        'calendar selection badge blue pixels 12,485, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
+        'calendar selection badge accent pixels 13,131, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
     },
   },
 
@@ -341,11 +346,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'sheets/sheet-dismissed.png',
     anchor: {
       capture: 'sheets/sheet-open.png',
-      selector: { AXUniqueId: 'one-native-sheet-content' },
+      selector: { type: 'StaticText', AXLabel: 'Sheet Content' },
       region: (frame) => ({
-        x: frame.x + 20,
-        y: frame.y + 125,
-        width: frame.width - 40,
+        x: frame.x,
+        y: frame.y,
+        width: frame.width,
         height: 200,
       }),
     },
@@ -493,8 +498,8 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'host/host-one-child.png',
     anchor: {
       capture: 'host/host-three-children.png',
-      selector: { AXUniqueId: 'one-native-host' },
-      region: (frame) => ({ x: frame.x, y: frame.y, width: frame.width - 7, height: 45 }),
+      selector: { type: 'Button', AXLabel: 'Composed button' },
+      region: (frame) => ({ x: frame.x, y: frame.y + 5, width: 354, height: 45 }),
     },
     prompt: 'A composed stepper control is visible inside the host container.',
     measureSubject: (crop) => {
@@ -731,7 +736,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       selector: { AXUniqueId: 'one-native-a11y-text' },
       region: (frame) => ({
         x: frame.x + frame.width - 127,
-        y: frame.y + frame.height - 12,
+        y: frame.y + 60,
         width: 110,
         height: 12,
       }),

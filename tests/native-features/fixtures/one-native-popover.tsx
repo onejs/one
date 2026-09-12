@@ -28,7 +28,6 @@ export default function OneNativePopover() {
       </View>
 
       <Swift.Popover
-        testID="one-native-popover-trigger"
         isPresented={open}
         onIsPresentedChange={setOpen}
         arrowEdge="top"
@@ -63,7 +62,6 @@ export default function OneNativePopover() {
         <Swift.Section title="Row">
           <Swift.Text text="Section row" />
           <Swift.Popover
-            testID="one-native-popover-section"
             isPresented={sectionOpen}
             onIsPresentedChange={setSectionOpen}
             contentWidth={240}
