@@ -70,7 +70,9 @@ describe('sourceInspectorPlugin helpers', () => {
       expect(code).toContain('<boxGeometry />')
       expect(code).toContain('<meshStandardMaterial color=')
       expect(code).toContain('<instancedMesh args=')
-      expect(code).not.toMatch(/<(mesh|boxGeometry|meshStandardMaterial|instancedMesh) data-one-source/)
+      expect(code).not.toMatch(
+        /<(mesh|boxGeometry|meshStandardMaterial|instancedMesh) data-one-source/
+      )
     })
   })
 })

@@ -8,5 +8,7 @@ import * as Controls from './generated/Controls.native'
 import { Tab, Tabs } from './Tabs.native'
 
 export const Swift =
-  Platform.OS === 'ios' ? { Tabs, Tab, Menu, Sheet, Popover, Host, Form, Section, Slot, ...Controls } : UnsupportedSwift
+  Platform.OS === 'ios'
+    ? { Tabs, Tab, Menu, Sheet, Popover, Host, Form, Section, Slot, ...Controls }
+    : UnsupportedSwift
 export type * from './types'

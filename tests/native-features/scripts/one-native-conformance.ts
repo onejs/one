@@ -255,7 +255,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // a RedBox replaces the whole accessibility tree, so every loaded-state assertion after one
   // times out complaining about the fixture while the real error sits on screen. its own buttons
   // identify it, and everything else it publishes is the message.
-  const redBoxButtons = ['Dismiss (ESC)', 'Reload (\u2318R)', 'Copy (\u2325\u2318C)', 'Extra Info (\u2318E)']
+  const redBoxButtons = [
+    'Dismiss (ESC)',
+    'Reload (\u2318R)',
+    'Copy (\u2325\u2318C)',
+    'Extra Info (\u2318E)',
+  ]
   const redBox = (nodes: Node[]) => {
     const found = labels(nodes)
     if (!redBoxButtons.every((button) => found.includes(button))) return undefined
@@ -542,7 +547,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => id(n, 'one-native-sheet-counter')?.AXLabel === '1'
     )
     tap({ id: 'one-native-sheet-input' })
-    await typeInto('RN sheet input', 'retained', (n) => id(n, 'one-native-sheet-input')?.AXValue)
+    await typeInto(
+      'RN sheet input',
+      'retained',
+      (n) => id(n, 'one-native-sheet-input')?.AXValue
+    )
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
     tap({ id: 'one-native-sheet-close' })
@@ -846,7 +855,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
     }
     const type = (text: string, secure = false) =>
-      typeInto(secure ? 'SecureField' : 'TextField', text, (n) => field(n, secure)?.AXValue)
+      typeInto(
+        secure ? 'SecureField' : 'TextField',
+        text,
+        (n) => field(n, secure)?.AXValue
+      )
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
     const indicator = (nodes: Node[], label: string) =>
@@ -1123,7 +1136,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // the status panel only reports what React holds, so scale is checked against the rendered
     // symbol instead: imageScale that never reached SwiftUI leaves the image the same size.
-    const imageWidth = (nodes: Node[]) => id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
+    const imageWidth = (nodes: Node[]) =>
+      id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
     const mediumWidth = imageWidth(snapshot(config.simulatorId))
     if (!mediumWidth) throw new Error('the leaf image reported no width at medium scale')
     tap({ id: 'one-native-leaf-cycle-scale' })
@@ -1139,9 +1153,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('image-small.png')
     tap({ id: 'one-native-leaf-step-variable-value' })
-    await wait('Image variable value stepped', (n) =>
-      status(n, 'VariableValue', 0.5)
-    )
+    await wait('Image variable value stepped', (n) => status(n, 'VariableValue', 0.5))
     screenshot('image-variable-value.png')
     tap({ id: 'one-native-leaf-toggle-systemname' })
     await wait('Image systemName toggled', (n) =>
@@ -1484,7 +1496,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       nodes.find((node) => node.AXLabel === label)
     // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
     // tracking, so a composed Toggle would look like it never emitted.
-    const pressSwitch = (frame: { x: number; y: number; width: number; height: number }) =>
+    const pressSwitch = (frame: {
+      x: number
+      y: number
+      width: number
+      height: number
+    }) =>
       command(
         [
           'ui-automation',
@@ -1565,7 +1582,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // own state reaching the tree rather than anything React Native supplied.
     await wait('accessibility: a composed control reports its own value', (n) =>
       Boolean(
-        n.find((node) => node.AXUniqueId === 'one-native-a11y-composed' && node.AXValue === '1')
+        n.find(
+          (node) => node.AXUniqueId === 'one-native-a11y-composed' && node.AXValue === '1'
+        )
       )
     )
 
@@ -1576,8 +1595,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!(shortText > 0))
       throw new Error(`A standalone Text measured ${shortText}, so nothing was reported`)
     if (!(toggleHeight > 0))
-      throw new Error(`A standalone Toggle measured ${toggleHeight}, so nothing was reported`)
-    checks.push({ name: 'accessibility: standalone leaves report a measured height', durationMs: 0 })
+      throw new Error(
+        `A standalone Toggle measured ${toggleHeight}, so nothing was reported`
+      )
+    checks.push({
+      name: 'accessibility: standalone leaves report a measured height',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: standalone leaves report a measured height')
 
     // the case a fixed height clipped: this paragraph cannot fit on one line.
@@ -1591,7 +1615,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error(
         `A paragraph that wraps onto several lines measured ${wrappedText} against ${shortText} for one line, so it is still being clipped`
       )
-    checks.push({ name: 'accessibility: a wrapped paragraph is not clipped', durationMs: 0 })
+    checks.push({
+      name: 'accessibility: a wrapped paragraph is not clipped',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: a wrapped paragraph is not clipped')
     screenshot('a11y-wrapped-text.png')
 
@@ -1599,15 +1626,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'index' })
     await wait('accessibility: home mounted', () => true, true)
     await tapNav('nav-one-native-accessibility')
-    await wait('accessibility: a recycled composed control still carries its label', (n) =>
-      labels(n).includes('Composed switch')
+    await wait(
+      'accessibility: a recycled composed control still carries its label',
+      (n) => labels(n).includes('Composed switch')
     )
-    await wait('accessibility: a recycled composed control still carries its testID', (n) =>
-      Boolean(id(n, 'one-native-a11y-composed'))
+    await wait(
+      'accessibility: a recycled composed control still carries its testID',
+      (n) => Boolean(id(n, 'one-native-a11y-composed'))
     )
     if (!control(snapshot(config.simulatorId), 'Form switch'))
       throw new Error('A recycled Form lost its composed control')
-    checks.push({ name: 'accessibility: a recycled Form keeps its composed control', durationMs: 0 })
+    checks.push({
+      name: 'accessibility: a recycled Form keeps its composed control',
+      durationMs: 0,
+    })
     console.log('PASS accessibility: a recycled Form keeps its composed control')
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -1765,7 +1797,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-map')
     await wait(
       'fresh map mounted',
-      (n) => status(n, 'Place', 'Ferry') && status(n, 'Pins', 2) && status(n, 'Height', 220)
+      (n) =>
+        status(n, 'Place', 'Ferry') && status(n, 'Pins', 2) && status(n, 'Height', 220)
     )
     // a fill control reports no ideal height, so the box React Native gave it is the only
     // thing that can be deciding this size.
@@ -1913,7 +1946,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'QuickLook previews the file it was given',
       (n) =>
         Boolean(id(n, 'QLOverlayDoneButtonAccessibilityIdentifier')) &&
-        Boolean(id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier'))
+        Boolean(
+          id(n, 'QLTextItemViewControllerBarSearchRightButtonAccessibilityIdentifier')
+        )
     )
     screenshot('media-quicklook-open.png')
     tap({ id: 'QLOverlayDoneButtonAccessibilityIdentifier' })
@@ -2197,7 +2232,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'wheel native selection changes beta',
-      (nodes) => value(nodes, 'beta') && request(nodes, 'beta') && Boolean(wheel(nodes, 1))
+      (nodes) =>
+        value(nodes, 'beta') && request(nodes, 'beta') && Boolean(wheel(nodes, 1))
     )
     tap({ id: 'one-native-control-style' })
     await wait(
@@ -2318,7 +2354,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'beta') && Boolean(wheel(n, 1))
     )
     const recycledWheel = wheel(recycled, 1)
-    if (!recycledWheel) throw new Error('Expected recycled wheel Slider bounds height 216')
+    if (!recycledWheel)
+      throw new Error('Expected recycled wheel Slider bounds height 216')
     point(
       recycledWheel.x + recycledWheel.width / 2,
       recycledWheel.y + recycledWheel.height / 2 + 32
@@ -2355,7 +2392,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
   tap({ id: 'one-native-increment-first' })
   tap({ id: 'one-native-input-first' })
-  await typeInto('first tab input', 'retained', (n) => id(n, 'one-native-input-first')?.AXValue)
+  await typeInto(
+    'first tab input',
+    'retained',
+    (n) => id(n, 'one-native-input-first')?.AXValue
+  )
   await wait('counter and input retain local state', firstState)
   tap({ id: 'one-native-select-external' })
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))

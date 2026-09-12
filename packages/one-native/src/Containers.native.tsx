@@ -34,7 +34,9 @@ export function Host({
   // nothing at all. that failure is silent, so reject it where it is written.
   for (const child of Children.toArray(children))
     if (isValidElement(child) && child.type === Form)
-      throw new Error('Swift.Form cannot be a child of Swift.Host; give the Form its own box')
+      throw new Error(
+        'Swift.Form cannot be a child of Swift.Host; give the Form its own box'
+      )
   // the host reports the height SwiftUI measured, so Yoga must not be given one.
   return (
     <NativeHost
@@ -81,7 +83,9 @@ export function Section({
 export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
   if (!inside)
-    throw new Error('Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section')
+    throw new Error(
+      'Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section'
+    )
   if (!Number.isFinite(height) || height <= 0)
     throw new Error('Swift.Slot height must be a positive number')
   // a vertical container offers its full width; a horizontal one offers none, so a slot

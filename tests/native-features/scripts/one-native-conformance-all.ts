@@ -8,8 +8,18 @@ import { join } from 'node:path'
 import { runAllVisualChecks } from './visual-verification'
 
 const suites = [
-  'tabs-menu', 'pickers', 'forms', 'sheets', 'leaves', 'dialogs',
-  'host', 'containers', 'popover', 'accessibility', 'media', 'map',
+  'tabs-menu',
+  'pickers',
+  'forms',
+  'sheets',
+  'leaves',
+  'dialogs',
+  'host',
+  'containers',
+  'popover',
+  'accessibility',
+  'media',
+  'map',
 ] as const
 
 const args = process.argv.slice(2)
@@ -35,9 +45,19 @@ for (const suite of suites) {
   try {
     const out = execFileSync(
       'bun',
-      [new URL('./one-native-conformance.ts', import.meta.url).pathname,
-       '--suite', suite, '--simulator-id', simulatorId, '--bundle-id', bundleId,
-       '--artifact-dir', dir, '--timeout', timeout],
+      [
+        new URL('./one-native-conformance.ts', import.meta.url).pathname,
+        '--suite',
+        suite,
+        '--simulator-id',
+        simulatorId,
+        '--bundle-id',
+        bundleId,
+        '--artifact-dir',
+        dir,
+        '--timeout',
+        timeout,
+      ],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
     )
     const passed = out.split('\n').filter((line) => line.startsWith('PASS')).length

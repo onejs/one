@@ -52,7 +52,9 @@ const enums = Object.fromEntries(
       (d) =>
         ownerMatches(d, type) &&
         d.kind === 'static' &&
-        (type.endsWith('Style') || d.type === 'Scale' || d.type?.split('.').at(-1) === type) &&
+        (type.endsWith('Style') ||
+          d.type === 'Scale' ||
+          d.type?.split('.').at(-1) === type) &&
         available(d)
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
@@ -264,37 +266,36 @@ outputs.set(
         ...sheetComponents,
         ...containerComponents,
         ...popoverComponents,
-      ].map(
-        (component) => {
-          const enumProps: Record<string, string> =
-            'enumProps' in component ? component.enumProps : {}
-          return {
-            name: component.name,
-            publicName: component.publicName,
-            props: Object.fromEntries(
-              Object.entries(component.props).map(([key, type]) => [
-                key,
-                enumProps[key] ? { type, enum: enumProps[key] } : { type },
-              ])
-            ),
-            events: Object.fromEntries(
-              Object.entries(component.events).map(([key, payload]) => [
-                key,
-                Object.fromEntries(
-                  Object.entries(payload as Record<string, string>).map(
-                    ([field, type]) => [field, { type }]
-                  )
-                ),
-              ])
-            ),
-            controlled: 'controlled' in component ? component.controlled : undefined,
-            actions: 'actions' in component ? component.actions : [],
-            layout: 'layout' in component ? component.layout : undefined,
-            slots: component.slots,
-            interfaceOnly: component.interfaceOnly,
-          }
+      ].map((component) => {
+        const enumProps: Record<string, string> =
+          'enumProps' in component ? component.enumProps : {}
+        return {
+          name: component.name,
+          publicName: component.publicName,
+          props: Object.fromEntries(
+            Object.entries(component.props).map(([key, type]) => [
+              key,
+              enumProps[key] ? { type, enum: enumProps[key] } : { type },
+            ])
+          ),
+          events: Object.fromEntries(
+            Object.entries(component.events).map(([key, payload]) => [
+              key,
+              Object.fromEntries(
+                Object.entries(payload as Record<string, string>).map(([field, type]) => [
+                  field,
+                  { type },
+                ])
+              ),
+            ])
+          ),
+          controlled: 'controlled' in component ? component.controlled : undefined,
+          actions: 'actions' in component ? component.actions : [],
+          layout: 'layout' in component ? component.layout : undefined,
+          slots: component.slots,
+          interfaceOnly: component.interfaceOnly,
         }
-      ),
+      }),
       payloads: {
         ...Object.fromEntries(
           Object.entries(controlPayloads).map(([name, payload]) => [
@@ -510,10 +511,7 @@ packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
     ...sheetComponents,
     ...containerComponents,
     ...popoverComponents,
-  ].map((component) => [
-    component.name,
-    component.name + 'ComponentView',
-  ])
+  ].map((component) => [component.name, component.name + 'ComponentView'])
 )
 outputs.set('package.json', JSON.stringify(packageMetadata, null, 2) + '\n')
 const changed: string[] = []

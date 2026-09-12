@@ -1,12 +1,7 @@
 #!/usr/bin/env bun
 import fs from 'node:fs'
 import path from 'node:path'
-import {
-  countChangedPixels,
-  extractCrop,
-  readPng,
-  saveCrop,
-} from './visual-pixel-gate'
+import { countChangedPixels, extractCrop, readPng, saveCrop } from './visual-pixel-gate'
 import { evaluateGeminiOracle, type OracleVerdict } from './visual-gemini-oracle'
 import { VISUAL_CHECKS, type VisualCheckDeclaration } from './visual-declarations'
 
@@ -245,9 +240,12 @@ export async function runAllVisualChecks(
  * measurement fails to meet the floor. Proves the deterministic gate is discriminating
  * and directional rather than symmetric.
  */
-export async function runSwapTest(
-  options: VerifyOptions = {}
-): Promise<{ passed: boolean; rejectedCount: number; totalCount: number; failures: string[] }> {
+export async function runSwapTest(options: VerifyOptions = {}): Promise<{
+  passed: boolean
+  rejectedCount: number
+  totalCount: number
+  failures: string[]
+}> {
   let rejectedCount = 0
   const failures: string[] = []
 
@@ -301,7 +299,12 @@ export async function runCrossSubstitutionTest(
     if (!fs.statSync(sPath).isDirectory()) continue
     for (const f of fs.readdirSync(sPath)) {
       if (f.endsWith('.png')) {
-        allPngs.push({ suite: s, file: f, fullPath: path.join(sPath, f), rel: `${s}/${f}` })
+        allPngs.push({
+          suite: s,
+          file: f,
+          fullPath: path.join(sPath, f),
+          rel: `${s}/${f}`,
+        })
       }
     }
   }
@@ -364,7 +367,9 @@ async function main() {
   }
 
   if (crossSubMode) {
-    console.log('\n=== RUNNING CROSS-SUBSTITUTION SPECIFICITY TEST (ALL 70 CORPUS CAPTURES) ===\n')
+    console.log(
+      '\n=== RUNNING CROSS-SUBSTITUTION SPECIFICITY TEST (ALL 70 CORPUS CAPTURES) ===\n'
+    )
     const crossResults = await runCrossSubstitutionTest(options)
     for (const r of crossResults) {
       console.log(

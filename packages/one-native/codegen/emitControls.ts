@@ -108,13 +108,13 @@ ${
 `
     : ''
 }${
-  control.focus
-    ? `  focused?: boolean
+      control.focus
+        ? `  focused?: boolean
   onFocusChange?: (focused: boolean) => void
   focusRevision?: number
 `
-    : ''
-}${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : (field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field))}`).join('\n')}
+        : ''
+    }${actions.map((action) => `  ${action.prop}?: ${callbackType(action)}\n`).join('')}${publicFields.map(([key, field]) => `  ${key}${field.type === 'objects' ? '' : '?'}: ${field.publicType ? `${field.publicType}${field.default === '' ? " | ''" : ''}` : field.enum ? `Styles.${field.enum}${optionalEnum(field) ? " | ''" : ''}` : tsType(field)}`).join('\n')}
 }\n`
     const props = {
       ...(value
@@ -180,15 +180,17 @@ ${
     const usedPayloads = [
       ...new Set(objectFields.map(([, field]) => payloadOf(field).name)),
     ]
-    const codegenTypes = ['DirectEventHandler', 'Int32', 'Double', 'WithDefault'].filter((type) => {
-      if (type === 'DirectEventHandler') return Object.keys(events).length > 0
-      if (type === 'Double' || type === 'WithDefault') return true
-      return [
-        ...Object.values(props),
-        ...Object.values(events).flatMap((fields) => Object.values(fields)),
-        ...usedPayloads.flatMap((payload) => Object.values(payloads[payload].element)),
-      ].includes(type)
-    })
+    const codegenTypes = ['DirectEventHandler', 'Int32', 'Double', 'WithDefault'].filter(
+      (type) => {
+        if (type === 'DirectEventHandler') return Object.keys(events).length > 0
+        if (type === 'Double' || type === 'WithDefault') return true
+        return [
+          ...Object.values(props),
+          ...Object.values(events).flatMap((fields) => Object.values(fields)),
+          ...usedPayloads.flatMap((payload) => Object.values(payloads[payload].element)),
+        ].includes(type)
+      }
+    )
     outputs.set(
       `src/specs/${nativeName}NativeComponent.ts`,
       header +
@@ -249,21 +251,21 @@ ${
     ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
     : ''
 }${
-  control.focus
-    ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
-    : ''
-}  return <Native${name} {...props} ${styleProp}
+      control.focus
+        ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
+        : ''
+    }  return <Native${name} {...props} ${styleProp}
     swiftStyle={swiftStyle}
 ${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
-  control.focus
-    ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
-    : ''
-}${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
+      control.focus
+        ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
+        : ''
+    }${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
 ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${
-  control.focus
-    ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
-    : ''
-}${actions
+      control.focus
+        ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
+        : ''
+    }${actions
       .map(
         (action) =>
           `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${Object.keys(
@@ -309,8 +311,10 @@ import UIKit${(control.imports ?? []).map((framework) => `\nimport ${framework}`
 
 private final class ${name}Model: ObservableObject {
 ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value.type)}>(${literal(value.initial)})\n` : ''}${
-  control.focus ? '  @Published var controlledFocus = OneNativeControlled<Bool>(false)\n' : ''
-}${swiftFields}
+          control.focus
+            ? '  @Published var controlledFocus = OneNativeControlled<Bool>(false)\n'
+            : ''
+        }${swiftFields}
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -325,16 +329,16 @@ ${
 `
     : ''
 }${
-  control.focus
-    ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
+          control.focus
+            ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
     guard ${[...guards, 'controlledFocus.value != value'].join(', ')} else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
 `
-    : ''
-}${actions
+            : ''
+        }${actions
           .map((action) => {
             const entries = Object.entries(action.payload ?? {})
             const types = [...entries.map(([, type]) => swiftScalar(type)), 'Int']
@@ -350,8 +354,8 @@ ${
           .join('')}}
 @objcMembers public final class ${nativeName}View: UIView, OneNativeComposable {
 ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${
-  control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
-}${actions
+          control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
+        }${actions
           .map(
             (action) =>
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
@@ -370,8 +374,10 @@ ${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var 
   }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
 ${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${
-  control.focus ? '    if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }\n' : ''
-}${plainFields
+          control.focus
+            ? '    if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }\n'
+            : ''
+        }${plainFields
           .map(([key]) => `    if model.${key} != ${key} { model.${key} = ${key} }`)
           .join('\n')}
   }
@@ -400,8 +406,10 @@ ${objectFields
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
 ${value ? '    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${
-  control.focus ? '    model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }\n' : ''
-}${actions
+          control.focus
+            ? '    model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }\n'
+            : ''
+        }${actions
           .map((action) => {
             const names = [
               ...Object.keys(action.payload ?? {}),
@@ -511,7 +519,10 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
       ...(control.focus
         ? [
             { label: 'focused', expression: 'next.focused' },
-            { label: 'acknowledgedFocusEvent', expression: 'next.acknowledgedFocusEvent' },
+            {
+              label: 'acknowledgedFocusEvent',
+              expression: 'next.acknowledgedFocusEvent',
+            },
             { label: 'focusRevision', expression: 'next.focusRevision' },
           ]
         : []),
@@ -530,36 +541,44 @@ ${measured ? `#import "${nativeName}ShadowNode.h"\n#import "OneNativeMeasuredHei
 #import <React/RCTConversions.h>
 using namespace facebook::react;
 @implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')} }
-+ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${measured ? `
-- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }` : ''}
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${
+          measured
+            ? `
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }`
+            : ''
+        }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const ${nativeName}Props>();
 ${objectFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
-${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}${measured ? `    _nativeView.onHeight = ^(CGFloat height) {
+${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}${
+          measured
+            ? `    _nativeView.onHeight = ^(CGFloat height) {
       ${nativeName}ComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
-    };\n` : ''}${
-  value
-    ? `    _nativeView.onChange = ^(${objcScalar(value.type)}value, NSInteger eventCount, NSInteger revision) {
+    };\n`
+            : ''
+        }${
+          value
+            ? `    _nativeView.onChange = ^(${objcScalar(value.type)}value, NSInteger eventCount, NSInteger revision) {
       ${nativeName}ComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
       emitter->onNative${name}ValueChange({.value = ${cppScalar(value.type, 'value')}, .eventCount = (int)eventCount, .revision = (int)revision});
     };
 `
-    : ''
-}${
-  control.focus
-    ? `    _nativeView.onFocusChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
+            : ''
+        }${
+          control.focus
+            ? `    _nativeView.onFocusChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       ${nativeName}ComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
       emitter->onNative${name}FocusChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
     };
 `
-    : ''
-}${actions
+            : ''
+        }${actions
           .map((action) => {
             const entries = Object.entries(action.payload ?? {})
             return `    _nativeView.on${action.event} = ^(${[...entries.map(([key, type]) => `${objcScalar(type)}${key}`), 'NSInteger eventCount'].join(', ')}) {
