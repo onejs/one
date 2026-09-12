@@ -14,6 +14,11 @@
 //                   columns carrying that pair are capsule columns. independent variable: the
 //                   vertical luminance gradient. a null result (no run wide enough) proves there
 //                   is no lit rim, which is what an unrendered or fully minimized bar looks like.
+//                   this signature is real only where the capsule is brighter than the surface
+//                   it sits on. it must not be run otherwise: where the capsule is darker, the
+//                   only trough-then-spike in a column is the capsule interior followed by the
+//                   selected tab's indicator, and the trace reports the indicator's ~64pt extent
+//                   as the capsule, collapsing segmentation to a single slot.
 //   interior plateau  the capsule's glass interior is one exact flat value, distinct from both
 //                   the page above it and the shadow beside it. an edge is where a row leaves
 //                   that plateau. independent variable: absolute colour membership, no gradient
@@ -28,6 +33,20 @@
 // the rim trace owns the top edge, because the rim IS the topmost painted row. the interior
 // plateau owns the left, right and bottom edges, because the rim fades out around the rounded
 // corners and under-reports width. disagreements between them are reported, never averaged.
+//
+// which method finds the capsule's columns in the first place is decided by measurement, not by
+// an appearance flag: `bandSurfaces` reads the capsule interior and the background it is drawn
+// on and returns the distance between them. that distance is about 1 level where the bar is
+// light glass on a light background, which no membership test can resolve, so the rim trace
+// seeds there. it is tens of levels where the bar is dark on black, so membership seeds there
+// and the rim trace is not run at all. an appearance flag would have been the wrong control
+// surface: the thing that decides whether a method works is contrast, and a capture can be dark
+// with light chrome or light with a dark sheet behind it.
+//
+// what this costs, recorded per capsule rather than hidden: where membership seeds, the left and
+// right edges have ONE method, because the rim that would have checked them is the thing that
+// does not exist. `crossCheckedEdges` says which edges two methods agreed on, and it is shorter
+// in that case.
 import { readPng } from './visual-pixel-gate'
 
 export const SCREEN_PT = { width: 393, height: 852 }
@@ -123,19 +142,68 @@ function crossing(
 export type CapsuleMeasurement = {
   /** points, screen coordinates. top from the rim trace, the other three from the plateau */
   rect: Box
+  /** how the capsule's columns were found. chosen by measured contrast, never by appearance. */
+  seeding: 'rim' | 'membership'
   crossCheck: {
-    /** the rim trace's own horizontal extent, which fades out around the rounded corners */
-    rimLeft: number
-    rimRight: number
+    /**
+     * the rim trace's own horizontal extent, which fades out around the rounded corners. null
+     * where membership seeded, because the rim trace was not run: it has no valid signature on a
+     * capsule darker than its background and would have returned the selection indicator.
+     */
+    rimLeft: number | null
+    rimRight: number | null
     /** the topmost row that is neither page nor background, found without any gradient */
     membershipTop: number
   }
   /** absolute difference between the two methods on each edge they both produce, points */
-  disagreement: { left: number; right: number; top: number }
+  disagreement: { left: number | null; right: number | null; top: number }
+  /** the edges two independent methods both produced, so a reader can see what was checked */
+  crossCheckedEdges: ('left' | 'right' | 'top')[]
   interior: RGB
   /** how far the interior sits off the background it is drawn on, summed over channels */
   interiorOverBackground: number
 }
+
+/**
+ * the two flat surfaces the bar band is built from: the capsule's interior and the background
+ * SwiftUI draws the bar on. the distance between them is what decides which method can find the
+ * capsule's edges at all, so it is measured per capture rather than assumed per appearance.
+ *
+ * the interior is the most common colour in a thin strip just below the capsule's top edge,
+ * sampled across the middle third of the width only. the main capsule is centred and always
+ * covers that third, a selected tab's indicator is at most half of it, and no glyph reaches so
+ * close to the top edge. the background is read at the bottom-left corner, below the capsule and
+ * outside it, which is the one place a bar reaching within 20pt of the screen edge cannot cover.
+ *
+ * the strip is deliberately NOT filtered against the page colour. over the list that `More`
+ * presents the page is white and the capsule's glass interior is 253, two levels apart, so a
+ * page filter deletes the interior and leaves the selected tab's indicator as the most common
+ * colour. that reads as high contrast against the background and sends a light capture down the
+ * membership path, which then measures the indicator and calls it the capsule.
+ */
+export function bandSurfaces(capture: Capture) {
+  const sc = capture.scale
+  const page = capture.px(Math.round(3 * sc), Math.round(735 * sc))
+  const background = capture.px(Math.round(4 * sc), Math.round(849 * sc))
+  const counts = new Map<string, { color: RGB; n: number }>()
+  for (let y = Math.round(773 * sc); y < Math.round(777 * sc); y++)
+    for (let x = Math.round(capture.width / 3); x < Math.round((capture.width * 2) / 3); x++) {
+      const color = capture.px(x, y)
+      const key = `${color[0]},${color[1]},${color[2]}`
+      const seen = counts.get(key)
+      if (seen) seen.n++
+      else counts.set(key, { color, n: 1 })
+    }
+  const interior = [...counts.values()].sort((a, b) => b.n - a.n)[0]?.color ?? background
+  return { interior, background, page, separation: dist(interior, background) }
+}
+
+/**
+ * the separation at which membership can find a capsule edge on its own. below it the interior
+ * and the background are the same colour to within antialiasing and only the rim distinguishes
+ * them; the light bar measures about 1 and the dark bar about 54.
+ */
+const MEMBERSHIP_SEPARATION = 20
 
 /**
  * every capsule in the bar band, left to right. the main capsule is the first, a detached
@@ -146,32 +214,76 @@ export type CapsuleMeasurement = {
  * belongs to the capsule when it either matches the interior's exact flat value or is far enough
  * from the page to be content (an indicator, a glyph, a label). the shadow satisfies neither.
  */
+/**
+ * capsule column runs, found by colour alone. usable only where the interior stands far enough
+ * off the background to be told apart, which `bandSurfaces` measures before this is called.
+ *
+ * the strip is read a few points below the capsule's top edge, where the rounded ends inset the
+ * capsule slightly; that is deliberate, because these runs only have to land inside a capsule.
+ * the caller walks outward from them to find the true edges at half height.
+ */
+export function membershipSeeds(
+  capture: Capture,
+  surfaces: ReturnType<typeof bandSurfaces>
+): { left: number; right: number; top: number }[] {
+  const sc = capture.scale
+  const stripY = Math.round(775 * sc)
+  // a capsule pixel is far from the background AND is not the page. the page has to be excluded
+  // by name: it is further from the background than the capsule is, so a strip that fell above
+  // the capsule's top edge would otherwise read as one capsule spanning the whole screen.
+  const capsulePixel = (x: number, y: number) => {
+    const color = capture.px(x, y)
+    return (
+      dist(color, surfaces.page) > 6 && dist(color, surfaces.background) > MEMBERSHIP_SEPARATION
+    )
+  }
+  const inside: boolean[] = []
+  for (let x = 0; x < capture.width; x++) inside.push(capsulePixel(x, stripY))
+  return runs(inside, Math.round(20 * sc)).map((run) => {
+    // the top edge, walked up the run's own centre where the rounded ends cannot cut it short
+    const centre = Math.round((run.from + run.to) / 2)
+    let top = stripY
+    while (top > capture.band.top && capsulePixel(centre, top - 1)) top--
+    return { left: capture.pt(run.from), right: capture.pt(run.to + 1), top: capture.pt(top) }
+  })
+}
+
 export function capsules(capture: Capture): CapsuleMeasurement[] {
   const sc = capture.scale
   const { bottom } = capture.band
+  const surfaces = bandSurfaces(capture)
+  const seeding: 'rim' | 'membership' =
+    surfaces.separation >= MEMBERSHIP_SEPARATION ? 'membership' : 'rim'
+  const seeds = seeding === 'membership' ? membershipSeeds(capture, surfaces) : null
   const found: CapsuleMeasurement[] = []
   let cursor = 0
+  let seedIndex = 0
   while (cursor < capture.width) {
-    const rim = rimTrace(capture, cursor, capture.width)
-    if (!rim) break
-    const rimLeft = Math.round(rim.left * sc)
-    const rimRight = Math.round(rim.right * sc)
-    const rimTopPx = Math.round(rim.top * sc)
+    const seed = seeds ? seeds[seedIndex++] : rimTrace(capture, cursor, capture.width)
+    if (!seed) break
+    const rim = seeding === 'rim' ? seed : null
+    const rimLeft = Math.round(seed.left * sc)
+    const rimRight = Math.round(seed.right * sc)
+    const rimTopPx = Math.round(seed.top * sc)
     cursor = rimRight + Math.round(4 * sc)
 
-    // the interior, read 2.5pt inside the rim's left end at roughly half the capsule's height.
-    // the selection indicator is inset about 5pt from the capsule's ends even when it is as wide
-    // as a single-tab bar, so that strip is the one place inside the capsule it cannot reach.
+    // the interior is the colour that covers most of the strip below the capsule's top edge, not
+    // a single probed pixel. it used to be read 2.5pt inside the capsule's left end, on the
+    // reasoning that the selection indicator is inset far enough never to reach there. the
+    // margin was about 3pt in light and the dark indicator is inset less, so the probe landed
+    // inside the selected tab's pill and returned it as the capsule interior. everything
+    // downstream then inverted: the real interior became the "second flat colour", and the
+    // indicator was reported as spanning the whole capsule.
     const probeX = rimLeft + Math.round(2.5 * sc)
     const firstMidY = rimTopPx + Math.round(30 * sc)
-    const interior = capture.px(probeX, firstMidY)
+    const interior = surfaces.interior
     // the background the bar is drawn on, read at the bottom-left corner of the screen. beside
     // the capsule it cannot be read at all: a five-tab bar reaches within 20pt of the screen
     // edge and its drop shadow covers the rest, which reads as the interior's own value.
-    const background = capture.px(Math.round(4 * sc), Math.round(849 * sc))
+    const background = surfaces.background
     // the fixture's page colour is far from the background too, so it has to be excluded by
     // name; without this the upward walk runs straight out of the bar and into the page.
-    const page = capture.px(Math.round(3 * sc), Math.round(735 * sc))
+    const page = surfaces.page
     const inCapsule = (x: number, y: number) => {
       const c = capture.px(x, y)
       if (dist(c, page) <= 6) return false
@@ -208,16 +320,22 @@ export function capsules(capture: Capture): CapsuleMeasurement[] {
     }
     found.push({
       rect,
+      seeding,
       crossCheck: {
-        rimLeft: rim.left,
-        rimRight: rim.right,
-            membershipTop: capture.pt(plateauTopPx),
+        rimLeft: rim ? rim.left : null,
+        rimRight: rim ? rim.right : null,
+        membershipTop: capture.pt(plateauTopPx),
       },
       disagreement: {
-        left: round1(Math.abs(rim.left - rect.x)),
-        right: round1(Math.abs(rim.right - (rect.x + rect.width))),
+        left: rim ? round1(Math.abs(rim.left - rect.x)) : null,
+        right: rim ? round1(Math.abs(rim.right - (rect.x + rect.width))) : null,
         top: round1(Math.abs(capture.pt(plateauTopPx) - rect.y)),
       },
+      // where membership seeded, NO edge here has two methods. the seed's top and the plateau
+      // walk's top are both colour membership, so agreeing with each other proves only that the
+      // same test was run twice. the independent check on that top edge is the accessibility
+      // tree's Tab Bar frame, which the driver records beside this and which is not a pixel.
+      crossCheckedEdges: rim ? ['left', 'right', 'top'] : [],
       interior,
       interiorOverBackground: dist(interior, background),
     })
@@ -491,6 +609,14 @@ export function tabsInCapsule(
  * is neither the capsule interior nor ink. independent variable: area of the second colour
  * mode. a null result proves the bar drew no indicator, which is what an unselected or
  * minimized bar looks like.
+ *
+ * "not ink" is measured against the capture's own range rather than a fixed number of levels.
+ * the indicator sits near the interior and ink sits far from it, but how far depends on which
+ * way round the bar is painted: a light bar has a 237 indicator and black ink 759 away, a dark
+ * bar an 18 interior with the indicator 102 away and white ink at 711. a fixed cutoff tuned on
+ * the light bar rejected the dark indicator as ink, which left the dark capsule with no second
+ * flat colour, and without it every tab's indicator counted as ink and segmentation collapsed
+ * to one slot.
  */
 export function selectionIndicator(
   capture: Capture,
@@ -502,12 +628,19 @@ export function selectionIndicator(
   const right = Math.round((capsule.x + capsule.width) * sc)
   const top = Math.round(capsule.y * sc)
   const bottom = Math.round((capsule.y + capsule.height) * sc)
+  // the furthest anything inside the capsule gets from the interior is ink, by definition. a
+  // second flat surface has to sit well inside that range, not merely somewhere in it.
+  let inkReach = 0
+  for (let y = top; y < bottom; y++)
+    for (let x = left; x < right; x++)
+      inkReach = Math.max(inkReach, dist(capture.px(x, y), interior))
+  const surfaceReach = inkReach * 0.25
   const counts = new Map<number, number>()
   for (let y = top; y < bottom; y++)
     for (let x = left; x < right; x++) {
       const c = capture.px(x, y)
       if (dist(c, interior) <= 8) continue
-      if (dist(c, interior) > 90) continue // ink, not a second flat surface
+      if (dist(c, interior) > surfaceReach) continue // ink, not a second flat surface
       if (!eroded(capture, x, y, c, Math.max(1, Math.round(sc)))) continue
       const key = (c[0] << 16) | (c[1] << 8) | c[2]
       counts.set(key, (counts.get(key) ?? 0) + 1)
