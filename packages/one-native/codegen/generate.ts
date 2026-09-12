@@ -39,7 +39,7 @@ const cache = join(root, '.codegen-cache')
 mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
-const { sdk, swiftc, modules, paths, inventory } = readInventory(root)
+const { sdk, swiftc, modules, inventory } = readInventory(root)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const ownerMatches = (d: Declaration, type: string) => {
   const parts = d.owner.split('.')
@@ -467,12 +467,23 @@ ${Object.entries(nativeFields)
 const manifest = {
   compiler: run(swiftc, ['--version'])
     .split('\n')
-    .filter((line) => !line.startsWith('Target:'))
-    .join('\n'),
+    .at(0)!
+    .replace(/\s+\(.+$/, ''),
   sdk: run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version']),
-  inputs: paths.map((path, index) => ({
-    module: modules[index],
-    sha256: createHash('sha256').update(readFileSync(path)).digest('hex'),
+  // xcode installations can package semantically identical interfaces with different bytes.
+  // fingerprint parsed declarations without source lines so the check stays portable.
+  inputs: modules.map((module) => ({
+    module,
+    declarationsSha256: createHash('sha256')
+      .update(
+        JSON.stringify(
+          inventory
+            .filter((declaration) => declaration.module === module)
+            .map(({ line: _, ...declaration }) => JSON.stringify(declaration))
+            .sort()
+        )
+      )
+      .digest('hex'),
   })),
   extractedDeclarations: inventory.length,
   unmappedModifiers: [

@@ -249,10 +249,11 @@ Automation details that prevent false diagnoses:
 - `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: 432 accessibility checks across twelve suites plus 18/18 visual
-  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 65,
-  pickers 29, forms 43, sheets 35, leaves 93, dialogs 32, host 27, containers 29, popover 26,
-  accessibility 25, media 15, map 13.
+- Conformance end to end: all twelve suites pass plus 18/18 visual checks, every visual check
+  still rejecting its negative capture. The suites are tabs-menu, pickers, forms, sheets,
+  leaves, dialogs, host, containers, popover, accessibility, media, and map. Do not quote a
+  combined accessibility-check count from this commit: warning-overlay dismissal can add zero,
+  one, or two checks without changing the asserted postcondition.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
