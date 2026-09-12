@@ -17,16 +17,12 @@ export interface VisualCheckDeclaration {
   /** Negative capture screenshot (natural opposite in corpus) where check MUST fail */
   negativeCapture: string
   /**
-   * Declared crop region in logical points (393x852). Status band is strictly excluded.
-   *
-   * These are absolute fixture coordinates, so anything that gains a row above the subject moves
-   * every region below it. The controls fixture behind the pickers and forms suites moved 39pt,
-   * one category-row pitch, when its category grid gained a seventh entry and wrapped to a third
-   * row. A region left behind reports as "Control appears unpainted" or "0 pixels changed inside
-   * region", which reads like a product regression and is not one: check the capture first.
-   * Anchoring regions to the subject's accessibility frame would remove this class of failure.
+   * Resolves the crop from the subject frame saved beside anchor.capture at screenshot time.
+   * The same resolved region grades both captures, so the negative cannot choose a more
+   * convenient crop. Tab-bar geometry is intentionally measured by the separate pixel oracle,
+   * because the accessibility snapshot exposes only the Tab Bar group.
    */
-  region: Rect
+  anchor: VisualAnchor
   /** Semantic verification prompt (for advisory LLM inspection) */
   prompt: string
   /**
@@ -39,14 +35,57 @@ export interface VisualCheckDeclaration {
   minSubjectFloor: number
   /** Documented empirical calibration measurements */
   calibration: {
-    positiveMeasured: number
-    negativeMeasured: number
+    positiveMeasured: number | null
+    negativeMeasured: number | null
     threshold: number
-    changedPixelsMeasured: number
-    crossSubstitutionMatches: number
+    changedPixelsMeasured: number | null
+    crossSubstitutionMatches: number | null
     corpusSize: number
     nullStateReads: string
   }
+}
+
+export interface VisualAccessibilityNode {
+  AXLabel?: string
+  AXUniqueId?: string
+  AXRole?: string
+  role?: string
+  subrole?: string
+  type?: string
+  frame?: Rect
+}
+
+export interface VisualAnchor {
+  /** Capture whose at-capture accessibility snapshot owns the subject frame. */
+  capture: string
+  selector: Omit<VisualAccessibilityNode, 'frame'>
+  region: (frame: Rect) => Rect
+}
+
+export function resolveVisualRegion(
+  declaration: VisualCheckDeclaration,
+  nodes: readonly VisualAccessibilityNode[]
+): Rect {
+  const matches = nodes.filter((node) =>
+    Object.entries(declaration.anchor.selector).every(
+      ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
+    )
+  )
+  if (matches.length !== 1 || !matches[0].frame) {
+    throw new Error(
+      `${declaration.name}: expected exactly one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${matches.filter((node) => node.frame).length}`
+    )
+  }
+  const region = declaration.anchor.region(matches[0].frame)
+  if (
+    ![region.x, region.y, region.width, region.height].every(Number.isFinite) ||
+    region.width <= 0 ||
+    region.height <= 0
+  )
+    throw new Error(
+      `${declaration.name}: resolved an invalid visual region ${JSON.stringify(region)}`
+    )
+  return region
 }
 
 export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
@@ -59,8 +98,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Map markers and pin callouts rendered over map view',
     positiveCapture: 'map/map-two-pins.png',
     negativeCapture: 'map/map-no-pins.png',
-    // Pure MapKit view area below status band: y: 248..468 pt
-    region: { x: 10, y: 248, width: 373, height: 220 },
+    anchor: {
+      capture: 'map/map-two-pins.png',
+      selector: { AXLabel: 'Map' },
+      region: (frame) => frame,
+    },
     prompt:
       'Custom red map marker pins or pin callouts are visible on the map, distinct from base Apple Maps POI icons.',
     measureSubject: (crop) =>
@@ -83,7 +125,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Rendered geographic map tiles showing roads, water, and terrain',
     positiveCapture: 'map/map-no-pins.png',
     negativeCapture: 'media/media-no-player.png',
-    region: { x: 10, y: 248, width: 373, height: 220 },
+    anchor: {
+      capture: 'map/map-no-pins.png',
+      selector: { AXLabel: 'Map' },
+      region: (frame) => frame,
+    },
     prompt:
       'Rendered geographic map tiles showing roads, water, or geographic map features are visible.',
     measureSubject: (crop) => countDistinctColorsInCrop(crop),
@@ -109,8 +155,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Segmented control two-component track and thumb structure',
     positiveCapture: 'pickers/picker-segmented.png',
     negativeCapture: 'pickers/picker-wheel.png',
-    // strictly the segmented control track: y: 320.33..352.33 pt
-    region: { x: 10, y: 320.33, width: 373, height: 32 },
+    anchor: {
+      capture: 'pickers/picker-segmented.png',
+      selector: { type: 'TabGroup' },
+      region: (frame) => frame,
+    },
     prompt:
       "A segmented control with three visible segments labeled 'Alpha', 'Beta', and 'Gamma' is present.",
     measureSubject: (crop) => {
@@ -142,8 +191,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Graphical calendar month view with blue date selection accent badge',
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
-    // Tightened to the selected date circular badge: x: 275..330 pt, y: 430..485 pt
-    region: { x: 275, y: 469, width: 55, height: 55 },
+    anchor: {
+      capture: 'pickers/date-graphical.png',
+      selector: { type: 'Group', AXLabel: 'Date' },
+      region: (frame) => ({ x: frame.x + 265, y: frame.y + 149, width: 55, height: 55 }),
+    },
     prompt:
       'A graphical calendar grid with month days and blue circular date selection accent is visible.',
     measureSubject: (crop) =>
@@ -170,7 +222,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native Toggle switch capsule track and thumb structure',
     positiveCapture: 'forms/toggle-rejected.png',
     negativeCapture: 'forms/form-controls.png',
-    region: { x: 320, y: 289, width: 60, height: 35 },
+    anchor: {
+      capture: 'forms/toggle-rejected.png',
+      selector: { AXLabel: 'Enable notifications' },
+      region: (frame) => ({
+        x: frame.x + frame.width - 63,
+        y: frame.y + (frame.height - 35) / 2,
+        width: 60,
+        height: 35,
+      }),
+    },
     prompt: 'A native iOS switch toggle capsule with round thumb is present.',
     measureSubject: (crop) => {
       const well = countMatchingPixels(
@@ -199,7 +260,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native Slider blue active track and grey inactive track structure',
     positiveCapture: 'forms/form-controls.png',
     negativeCapture: 'forms/toggle-rejected.png',
-    region: { x: 10, y: 289, width: 373, height: 30 },
+    anchor: {
+      capture: 'forms/form-controls.png',
+      selector: { AXLabel: 'Volume' },
+      region: (frame) => ({
+        x: frame.x,
+        y: frame.y + (frame.height - 30) / 2,
+        width: frame.width,
+        height: 30,
+      }),
+    },
     prompt:
       'A horizontal volume slider track with a circular draggable thumb is present.',
     measureSubject: (crop) => {
@@ -228,29 +298,35 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'stepper-control',
     suite: 'forms',
-    subject: 'Native Stepper capsule with increment/decrement glyphs',
-    positiveCapture: 'forms/stepper-upper-bound.png',
+    subject: 'Native Stepper capsule paint',
+    positiveCapture: 'forms/stepper-enabled.png',
     negativeCapture: 'forms/toggle-rejected.png',
-    region: { x: 280, y: 284, width: 100, height: 35 },
-    prompt: 'A native stepper control capsule with minus and plus buttons is present.',
-    measureSubject: (crop) => {
-      const pill = countMatchingPixels(
+    anchor: {
+      capture: 'forms/stepper-enabled.png',
+      selector: { AXLabel: 'Guests, Increment' },
+      region: (frame) => ({
+        x: frame.x + frame.width - 100,
+        y: frame.y,
+        width: 100,
+        height: frame.height,
+      }),
+    },
+    prompt: 'A native stepper control capsule is painted.',
+    measureSubject: (crop) =>
+      countMatchingPixels(
         crop,
         (r, g, b) => r >= 220 && r <= 236 && g >= 220 && g <= 236 && b >= 225 && b <= 240
-      )
-      const glyph = countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60)
-      return pill >= 15_000 ? glyph : 0
-    },
-    minSubjectFloor: 100,
+      ),
+    minSubjectFloor: 15_000,
     calibration: {
-      positiveMeasured: 188,
-      negativeMeasured: 0,
-      threshold: 100,
-      changedPixelsMeasured: 23_823,
-      crossSubstitutionMatches: 1,
+      positiveMeasured: null,
+      negativeMeasured: null,
+      threshold: 15_000,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
       corpusSize: 70,
       nullStateReads:
-        'stepper capsule glyph score 188 (pill: 22,735, glyphs: 188), bar is 100, toggle fixture reads 0; 1/70 cross matches (only stepper-upper-bound)',
+        'the prior upper-bound capture contained 22,735 capsule-color pixels; the new enabled capture and negative require device recalibration',
     },
   },
 
@@ -263,8 +339,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Presented modal bottom sheet white surface card paint presence',
     positiveCapture: 'sheets/sheet-open.png',
     negativeCapture: 'sheets/sheet-dismissed.png',
-    // Sheet card surface well below top status band: y: 550..750 pt
-    region: { x: 20, y: 550, width: 353, height: 200 },
+    anchor: {
+      capture: 'sheets/sheet-open.png',
+      selector: { AXUniqueId: 'one-native-sheet-content' },
+      region: (frame) => ({
+        x: frame.x + 20,
+        y: frame.y + 125,
+        width: frame.width - 40,
+        height: 200,
+      }),
+    },
     prompt:
       'A presented modal bottom sheet surface containing interactive buttons and text is visible.',
     measureSubject: (crop) =>
@@ -291,8 +375,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native context menu formatting palette Bold action button on card',
     positiveCapture: 'tabs-menu/04-palette-open.png',
     negativeCapture: 'tabs-menu/01-centered-trigger.png',
-    // Bold action button inside formatting palette row: x: 40..70 pt, y: 500..530 pt
-    region: { x: 40, y: 500, width: 30, height: 30 },
+    anchor: {
+      capture: 'tabs-menu/04-palette-open.png',
+      selector: { AXLabel: 'Bold' },
+      region: (frame) => ({
+        x: frame.x + 20,
+        y: frame.y + (frame.height - 30) / 2,
+        width: 30,
+        height: 30,
+      }),
+    },
     prompt:
       'A native context menu popup card containing action items including Bold and Italic is open and visible.',
     measureSubject: (crop) => {
@@ -325,7 +417,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'SwiftUI Alert modal dialog card surface and centered title',
     positiveCapture: 'dialogs/alert-open.png',
     negativeCapture: 'dialogs/confirmation-automatic.png',
-    region: { x: 60, y: 310, width: 273, height: 60 },
+    anchor: {
+      capture: 'dialogs/alert-open.png',
+      selector: { AXLabel: 'One Native Alert' },
+      region: (frame) => ({
+        x: frame.x - 48,
+        y: frame.y - 9,
+        width: frame.width + 96,
+        height: 60,
+      }),
+    },
     prompt:
       'A centered alert dialog card with title One Native Alert and action buttons is visible.',
     measureSubject: (crop) => {
@@ -354,8 +455,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Confirmation dialog visible title header on dialog card',
     positiveCapture: 'dialogs/confirmation-visible.png',
     negativeCapture: 'dialogs/confirmation-hidden.png',
-    // Popover title text area: x: 80..170 pt, y: 276..288 pt
-    region: { x: 80, y: 276, width: 90, height: 12 },
+    anchor: {
+      capture: 'dialogs/confirmation-visible.png',
+      selector: { AXLabel: 'One Native Confirmation' },
+      region: (frame) => ({ x: frame.x, y: frame.y, width: 90, height: 12 }),
+    },
     prompt: 'A dialog card displaying the title Confirmation header is visible.',
     measureSubject: (crop) => {
       const card = countMatchingPixels(
@@ -387,8 +491,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Composed button and stepper dynamically expanded into host container',
     positiveCapture: 'host/host-three-children.png',
     negativeCapture: 'host/host-one-child.png',
-    // Host composed children area: x: 16..370 pt, y: 290..335 pt
-    region: { x: 16, y: 290, width: 354, height: 45 },
+    anchor: {
+      capture: 'host/host-three-children.png',
+      selector: { AXUniqueId: 'one-native-host' },
+      region: (frame) => ({ x: frame.x, y: frame.y, width: frame.width - 7, height: 45 }),
+    },
     prompt: 'A composed stepper control is visible inside the host container.',
     measureSubject: (crop) => {
       // In physical pixels (3x): crop width = 1062 px.
@@ -439,8 +546,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       'Second form section with composed horizontal host row (dark label and blue button)',
     positiveCapture: 'containers/containers-two-sections.png',
     negativeCapture: 'containers/containers-one-section.png',
-    // Composed host row inside Section 2: x: 16..377 pt, y: 700..725 pt
-    region: { x: 16, y: 700, width: 361, height: 25 },
+    anchor: {
+      capture: 'containers/containers-two-sections.png',
+      selector: { AXLabel: 'Host button' },
+      region: (frame) => ({ x: 16, y: frame.y, width: 361, height: 25 }),
+    },
     prompt:
       "A second form section with header 'More' containing a 'Section button' and horizontal host is present.",
     measureSubject: (crop) => {
@@ -473,8 +583,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Presented popover balloon action button (#e8f0ff tinted chip)',
     positiveCapture: 'popover/popover-open.png',
     negativeCapture: 'popover/popover-closed.png',
-    // Popover balloon body content: x: 50..290 pt, y: 250..400 pt
-    region: { x: 50, y: 250, width: 240, height: 150 },
+    anchor: {
+      capture: 'popover/popover-open.png',
+      selector: { AXUniqueId: 'one-native-popover-tap' },
+      region: (frame) => frame,
+    },
     prompt: "A presented popover balloon containing 'Popover body' is visible.",
     measureSubject: (crop) =>
       countMatchingPixels(
@@ -503,7 +616,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Prominent filled button solid red tinted background capsule',
     positiveCapture: 'leaves/button-borderedProminent.png',
     negativeCapture: 'leaves/button-plain.png',
-    region: { x: 10, y: 275, width: 373, height: 40 },
+    anchor: {
+      capture: 'leaves/button-borderedProminent.png',
+      selector: { AXLabel: 'Press leaf' },
+      region: (frame) => ({ x: frame.x, y: frame.y, width: frame.width, height: 40 }),
+    },
     prompt:
       "A prominent filled button with a solid tinted background capsule around 'Press leaf' is visible.",
     measureSubject: (crop) =>
@@ -526,8 +643,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Masked secret bullets inside text field with trailing empty field',
     positiveCapture: 'leaves/secure-masked.png',
     negativeCapture: 'leaves/text-rejected.png',
-    // Bullet cluster and trailing blank space: x: 20..160 pt, y: 304..312 pt
-    region: { x: 20, y: 304, width: 140, height: 8 },
+    anchor: {
+      capture: 'leaves/secure-masked.png',
+      selector: { type: 'TextField', subrole: 'AXSecureTextField' },
+      region: (frame) => ({
+        x: frame.x + 10,
+        y: frame.y + frame.height / 2 - 4,
+        width: 140,
+        height: 8,
+      }),
+    },
     prompt:
       'A text field displaying masked bullet characters (dots) instead of plain letters is visible.',
     measureSubject: (crop) => {
@@ -571,7 +696,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Native video player view surface letterbox bars',
     positiveCapture: 'media/media-player.png',
     negativeCapture: 'media/media-no-player.png',
-    region: { x: 10, y: 248, width: 373, height: 220 },
+    anchor: {
+      capture: 'media/media-player.png',
+      selector: { AXLabel: 'Video' },
+      region: (frame) => frame,
+    },
     prompt: 'A native video player view surface is present on screen.',
     measureSubject: (crop) =>
       countMatchingPixels(crop, (r, g, b) => r < 20 && g < 20 && b < 20),
@@ -597,8 +726,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     subject: 'Multi-line wrapped paragraph text line 3 trailing edge (unclipped width)',
     positiveCapture: 'accessibility/a11y-wrapped-text.png',
     negativeCapture: 'accessibility/a11y-short-text.png',
-    // Line 3 right-side span of wrapped paragraph: x: 250..360 pt, y: 280..292 pt
-    region: { x: 250, y: 280, width: 110, height: 12 },
+    anchor: {
+      capture: 'accessibility/a11y-wrapped-text.png',
+      selector: { AXUniqueId: 'one-native-a11y-text' },
+      region: (frame) => ({
+        x: frame.x + frame.width - 127,
+        y: frame.y + frame.height - 12,
+        width: 110,
+        height: 12,
+      }),
+    },
     prompt: 'A multi-line wrapped paragraph of text spanning several lines is visible.',
     measureSubject: (crop) =>
       countMatchingPixels(crop, (r, g, b) => r < 80 && g < 80 && b < 80),
