@@ -11,6 +11,7 @@
     "prebuild:native": "one prebuild"
   },
   "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/native": "workspace:*",
     "expo": "~57.0.11",

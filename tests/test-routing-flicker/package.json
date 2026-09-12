@@ -20,6 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@tamagui/config": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",

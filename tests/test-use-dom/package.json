@@ -12,6 +12,7 @@
     "serve": "one serve"
   },
   "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "expo": "~57.0.11",
     "one": "workspace:*",
