@@ -249,11 +249,19 @@ Automation details that prevent false diagnoses:
 - `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: all twelve suites pass plus 18/18 visual checks, every visual check
-  still rejecting its negative capture. The suites are tabs-menu, pickers, forms, sheets,
-  leaves, dialogs, host, containers, popover, accessibility, media, and map. Do not quote a
-  combined accessibility-check count from this commit: warning-overlay dismissal can add zero,
-  one, or two checks without changing the asserted postcondition.
+- Conformance end to end: 433 accessibility checks across twelve suites plus 18/18 visual
+  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 71,
+  pickers 28, forms 42, sheets 35, leaves 94, dialogs 33, host 26, containers 28, popover 25,
+  accessibility 25, media 14, map 12. Measured under `ff1f968cc`, which made the warning-overlay
+  dismissal one check per call by asserting the postcondition. Before that the same suite
+  reported 430 on one machine and 432 on another, because `dismissWarning` had three exit paths
+  contributing 0, 1 or 2 checks depending on whether the dev warning overlay happened to be on
+  screen. The count is now environment-independent, which is why it is quotable.
+- The appearance key is set and changes nothing in light. `app.json` sets
+  `ios.userInterfaceStyle: "automatic"`; the 12 suites re-run after the rebuild returned
+  byte-identical results, 433 and 18/18 with every per-suite count unchanged. Before the key,
+  Expo wrote `UIUserInterfaceStyle=Light` into Info.plist, so the app rendered light under a
+  device set to dark and any "dark" measurement was a light one wearing a dark id.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
@@ -282,6 +290,20 @@ items on the previous list landed: a `swiftStyle` object prop applied by one gen
 4. Sheet sizing-to-content, selected detent binding, and presentation
    background/interaction/sizing remain unimplemented, as do the `presenting:`
    value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
+
+Items 1 through 4 are being implemented now, in worktrees off this branch so the generated output
+does not collide: `feat/one-native-leaves` carries items 2 and 3, `feat/one-native-hosting` carries
+items 1 and 4 plus the tab-mounting defect below. Neither lane runs the device suite, because one
+simulator is serving pixel-oracle captures and the suite is load-sensitive. They validate with
+`generate:check`, and the assembled branch gets one device run at integration.
+
+`sidebarAdaptable` is implemented and is deliberately not covered by rnx conformance, so do not log
+it as a gap. `Tabs.native.tsx` passes the prop through the spec and the component view, and
+`OneNativeTabsView.swift:119` applies `.tabViewStyle(.sidebarAdaptable)` with `.tabBarOnly` as the
+else. rnx cannot grade it: its device catalog runs iPhone SE through iPhone 17 Pro Max with no iPad,
+it has no size-class model anywhere in the engine, and its one non-phone profile is flagged
+experimental with no native device behind it. There is no surface for the style to adapt into and no
+oracle could ever exist, which is a fact about the simulator rather than about the API.
 
 Navigation is decided, and the decision is not to bind it.
 `plans/one-native-navigation-design.md` is the design pass (branch `feat/one-native-nav`,
@@ -313,6 +335,52 @@ run before the reorder, where the selected tab is still index 0, so that they te
 rather than this. Fixing it means working out why replacing `model.pages` loses the
 selection-to-content association in `TabsContent`, which is untouched.
 
+## Known limitation: `tabBarMinimizeBehavior` cannot fire
+
+`Swift.Tabs` accepts `tabBarMinimizeBehavior`, the modifier is applied, and nothing can trigger
+it. Measured across 8 sweep cells (`tabs3` crossed with `never`/`automatic`/`onScrollDown`/
+`onScrollUp` and light/dark), 19 settled frames each, 152 frames total, each tagged with the
+offset the accessibility tree reported at capture and each sweep covering a real 2744pt. The bar
+does not move at any offset, in any direction, for any value, in either appearance. Capsule
+{59.8, 769, 274, 62} and centres [110.7, 196.7, 282.7] are identical across all 152 frames.
+
+The control separating "inert API" from "unreachable in this architecture" was run, and the
+answer is the second. A bogus value raises `Unknown SwiftUI TabBarMinimizeBehavior` out of
+`assertSwiftUIValue`, so the value reaches SwiftUI; the device is iOS 26, so nothing is version
+gated; and `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`. What is
+missing is the thing the modifier observes. Each tab hosts `OneNativeSlot(content: page.view)`
+where `page.view` is an opaque UIView, and one-native exposes no SwiftUI scroll container at all:
+zero `ScrollView` or `UIScrollView` across its Swift and TSX sources. SwiftUI's minimize
+behaviour reacts to a SwiftUI scroll view's offset, and the thing that actually scrolls here is a
+React Native scroll view SwiftUI never sees. The scroll indicator visible in the sweep frames is
+React Native's own, which is the same evidence from the other side.
+
+So the prop is accepted and has no effect until a native scroll container is bridged into the
+SwiftUI hierarchy. Bridge one, or say plainly in the README that the prop is inert here. Do not
+build a minimize curve in any simulator against it: the signal cannot arrive, so the curve would
+be fitted to nothing.
+
+## Known limitation: `testID` on a `Swift.*` container never reaches the accessibility tree
+
+Measured on device while verifying the checks audit. `Swift.Form` publishes an unlabelled
+`Group`. `Swift.Host`, `Swift.Popover`, and the sheet's `View` publish nothing at all. Leaf
+components do publish, which is why the same pattern works everywhere else and why this is easy
+to walk into: you write a lookup that works against `Swift.Toggle`, move it up one level to the
+container, and it silently matches nothing.
+
+The consequence for anyone writing checks here: you cannot locate a `Swift.*` container by
+`testID`, so a check that tries is not a strict check, it is a check that cannot pass. Four
+assertions in the audit pass were written that way and had never run. Locate containers by
+geometry from a leaf you can see, or assert on the leaves directly.
+
+Where a container's exact box is genuinely not observable, a rounded value read from the
+fixture's own `onLayout` text is the ceiling, not a weakness to fix later. This applies to the
+`Swift.Host` box and to sheet detent sizes. Do not replace those rounded assertions with exact
+ones: the exact value does not exist anywhere in the tree, so the replacement can only ever fail.
+Related, and the same mistake from the other direction: layout here is fractional, so the
+segmented picker is 373x31, the calendar 377.666..., the popover trigger 24.333..., and the Form
+507.666.... Assertions that round these were rounded deliberately.
+
 ## Known weak spots in the checks
 
 - **Visual regions are absolute fixture coordinates.** Adding a seventh category to the
@@ -343,6 +411,16 @@ and restarting it. Not diagnosed at the source: this is Metro/vxrn territory, ou
 branch's scope. `wait` in the conformance script now detects the RedBox by its own buttons and
 throws with the error text, so a wedged server no longer looks like a fixture that failed to
 mount.
+
+A prebuild would silently change the app's bundle id. `tests/native-features/ios/` is entirely
+untracked (zero files in `git ls-files`), and the checked-out Xcode project sets
+`PRODUCT_BUNDLE_IDENTIFIER = dev.one.native.tests` while `app.json` sets
+`bundleIdentifier: dev.vxrn.native.tests`. Every documented command uses the first, including
+`tests/native-features/scripts/README.md`, `oracle/README.md`, the oracle driver's default, and
+this file. So regenerating the native project would rewrite the id out from under all of them,
+and because `ios/` is untracked the change would leave no diff to notice. The appearance key was
+therefore set by hand in both `app.json` and the local `Info.plist` rather than by running a
+prebuild. Reconcile the two ids before anyone regenerates the project.
 
 ## Longer horizon
 

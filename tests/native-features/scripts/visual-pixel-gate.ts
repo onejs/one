@@ -29,13 +29,17 @@ export function clearPngCache(): void {
 }
 
 export function readPng(imagePath: string): PNG {
-  let image = decodedPngCache.get(imagePath)
+  // keyed on file identity rather than path alone. a settle loop screenshots to the same two
+  // paths on every attempt, so a path-keyed cache hands back the first attempt's pixels forever:
+  // the comparison can never change, a screen that has come to rest still reads as moving, and
+  // more patience cannot help. stat is far cheaper than decoding, so this stays a real cache.
+  const stat = fs.statSync(imagePath, { throwIfNoEntry: false })
+  if (!stat) throw new Error(`Screenshot not found at ${imagePath}`)
+  const key = `${imagePath}:${stat.mtimeMs}:${stat.size}`
+  let image = decodedPngCache.get(key)
   if (!image) {
-    if (!fs.existsSync(imagePath)) {
-      throw new Error(`Screenshot not found at ${imagePath}`)
-    }
     image = PNG.sync.read(fs.readFileSync(imagePath))
-    decodedPngCache.set(imagePath, image)
+    decodedPngCache.set(key, image)
   }
   return image
 }
