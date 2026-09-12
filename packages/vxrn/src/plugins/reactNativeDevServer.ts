@@ -8,6 +8,7 @@ import {
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
 import { readFile } from 'node:fs/promises'
+import { relative } from 'node:path'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 import { getBoundPort } from '../utils/getBoundPort'
@@ -267,8 +268,12 @@ export function createReactNativeDevServerPlugin(
       let deletionTimer: ReturnType<typeof setTimeout> | undefined
       let addTimer: ReturnType<typeof setTimeout> | undefined
       const addedFiles = new Set<string>()
+      const hasHiddenProjectSegment = (file: string) =>
+        relative(root, file)
+          .split(/[/\\]/)
+          .some((segment) => segment.startsWith('.'))
       server.watcher.on('add', (file) => {
-        if (file.split('/').some((segment) => segment.startsWith('.'))) return
+        if (hasHiddenProjectSegment(file)) return
         addedFiles.add(file)
         clearTimeout(addTimer)
         addTimer = setTimeout(() => {
@@ -292,7 +297,7 @@ export function createReactNativeDevServerPlugin(
         // vite's watcher already skips node_modules and .git. keep out the rest
         // of what a dev server writes into a project while it runs: caches and
         // build output under a dot directory, editor swap files.
-        if (file.split('/').some((segment) => segment.startsWith('.'))) return
+        if (hasHiddenProjectSegment(file)) return
         // one pass for a burst (a branch switch, a generator, a rename)
         clearTimeout(deletionTimer)
         deletionTimer = setTimeout(() => {
@@ -300,8 +305,16 @@ export function createReactNativeDevServerPlugin(
             const devEngine = devEngines[platform]
             if (!devEngine) continue
             devEngines[platform] = null
-            devEngineCreating[platform] = null
-            devEngine.close().catch(() => {})
+            const closing = (async () => {
+              try {
+                await devEngine.close()
+              } catch {
+                // the retiring engine is discarded even if its worker already stopped.
+              } finally {
+                devEngineCreating[platform] = null
+              }
+            })()
+            devEngineCreating[platform] = closing
             reloadNativeClients(platform)
           }
         }, 500)
@@ -338,10 +351,10 @@ export function createReactNativeDevServerPlugin(
       })
 
       const getDevEngine = async (platform: 'ios' | 'android') => {
-        if (!devEngines[platform]) {
+        while (!devEngines[platform]) {
           // prevent duplicate creation from concurrent requests
           if (!devEngineCreating[platform]) {
-            devEngineCreating[platform] = (async () => {
+            const creating = (async () => {
               try {
                 console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
                 devEngines[platform] = await createNativeDevEngine({
@@ -368,12 +381,13 @@ export function createReactNativeDevServerPlugin(
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
-              } catch (err) {
-                // clear so next request retries instead of permanently failing
+              } finally {
+                // clear so a failed creation can be retried and a later route
+                // deletion can install its close transition in this slot.
                 devEngineCreating[platform] = null
-                throw err
               }
             })()
+            devEngineCreating[platform] = creating
           }
           await devEngineCreating[platform]
         }

@@ -134,7 +134,16 @@ export default function HmrAdded() {
       await waitForText('added-route-version', 'added-v1')
     } finally {
       await rm(addedRoutePath, { force: true })
-      await closeSession(driver)
+      try {
+        // deleting a route replaces the rolldown engine. prove the replacement
+        // bundle mounted before ending this session so no later test inherits a
+        // half-finished rebuild.
+        await navigateTo(driver, '/hmr-probe')
+        await waitForText('route-hmr-version', 'route-v1')
+        await waitForText('route-hmr-added', 'missing')
+      } finally {
+        await closeSession(driver)
+      }
     }
   }
 )

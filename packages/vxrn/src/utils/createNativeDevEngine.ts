@@ -659,6 +659,10 @@ try {
     })
     if (!routeAdded) return false
     await queueEngineWork(async () => {
+      // the reload must never serve the bundle from before the route existed.
+      // onOutput may begin after ensureLatestBuildOutput resolves, so clear the
+      // cached bundle before triggering work and let getBundle wait for it.
+      currentBundle = null
       engine.triggerFullBuild()
       await engine.ensureLatestBuildOutput()
       await outputProcessed
