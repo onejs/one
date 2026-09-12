@@ -12,6 +12,7 @@ on:
   push:
     branches:
       - main
+      - v2-beta
       - ci/native-tests-free-runners
       - ci/rolldown-native-tests
       - ci/test-native-ios-matrix-split

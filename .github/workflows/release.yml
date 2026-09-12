@@ -4,7 +4,7 @@ on:
   # workflow_run listeners are read from the default branch. This branch copy
   # stays inert until the beta job is explicitly enabled and synced to main.
   workflow_run:
-    workflows: [Checks]
+    workflows: [Checks and Tests]
     types: [completed]
     branches: [v2-beta]
   workflow_dispatch:

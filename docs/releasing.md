@@ -83,7 +83,7 @@ permission:
 3. Remove the same literal `false` condition on `v2-beta` so the trigger and job
    remain identical on both branches.
 4. Bring `v2-beta` current with `origin/main`, then push the explicitly approved
-   beta-cut commit. A successful `Checks` run for that exact latest branch SHA
+   beta-cut commit. A successful `Checks and Tests` run for that exact latest branch SHA
    publishes one beta.
 
 Do not dispatch the release workflow or create a tag for this beta path.
