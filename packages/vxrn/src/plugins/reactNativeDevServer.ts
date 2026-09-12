@@ -212,7 +212,7 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
-        if (pendingReloadPlatforms.delete(socket.vxrnPlatform)) {
+        if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
           socket.send(JSON.stringify({ type: 'hmr:reload' }))
         }
 
@@ -321,7 +321,12 @@ export function createReactNativeDevServerPlugin(
                     // an update with no clientId is for every client on the
                     // platform: an error, or a reload after a full rebuild
                     const target = 'clientId' in update ? update.clientId : undefined
-                    let delivered = false
+                    if (update.type === 'hmr:reload' && !target) {
+                      // keep this pending until the rebuilt bundle is served.
+                      // a previous app instance can leave a live socket while
+                      // its replacement is still mounting and connecting.
+                      pendingReloadPlatforms.add(platform)
+                    }
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
                       if (
@@ -330,13 +335,8 @@ export function createReactNativeDevServerPlugin(
                         (!target || nativeClient.vxrnClientId === target)
                       ) {
                         client.send(msg)
-                        delivered = true
                       }
                     })
-                    if (update.type === 'hmr:reload' && !target) {
-                      if (delivered) pendingReloadPlatforms.delete(platform)
-                      else pendingReloadPlatforms.add(platform)
-                    }
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
@@ -378,8 +378,12 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
+          // a client that connects after this response starts from the current
+          // route map and does not need the pending reload intended for the
+          // previous runtime.
+          res.once('finish', () => pendingReloadPlatforms.delete(platform))
 
-          // A DevSettings reload requests this exact URL again. Native URL
+          // a DevSettings reload requests this exact URL again. native URL
           // loading may otherwise reuse the first response and restart the app
           // on a route map from before a file was added or removed.
           res.writeHead(200, {
