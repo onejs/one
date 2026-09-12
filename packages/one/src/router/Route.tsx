@@ -124,7 +124,7 @@ export const RouteParamsContext = createContext<
   Record<string, string | undefined> | undefined
 >({})
 
-const CurrentRouteContext = React.createContext<RouteNode | null>(null)
+const CurrentRouteContext = React.createContext<RouteNode[]>([])
 
 /** Allows a layout to provide a Suspense fallback for its child routes. */
 export const SuspenseFallbackContext = createContext<
@@ -138,6 +138,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 /** Return the RouteNode at the current contextual boundary. */
 export function useRouteNode(): RouteNode | null {
+  const nodes = useContext(CurrentRouteContext)
+  return nodes[nodes.length - 1] ?? null
+}
+
+export function useRouteNodes(): RouteNode[] {
   return useContext(CurrentRouteContext)
 }
 
@@ -189,6 +194,11 @@ export function Route({
   }
 }) {
   const parentParams = useContext(RouteParamsContext)
+  const parentRouteNodes = useContext(CurrentRouteContext)
+  const routeNodes = React.useMemo(
+    () => [...parentRouteNodes, node],
+    [node, parentRouteNodes]
+  )
 
   // url is the source of truth for path params. react navigation can provide
   // a `route` whose `params` are missing or stale for the dynamic segments
@@ -211,7 +221,7 @@ export function Route({
 
   return (
     <RouteParamsContext.Provider value={resolvedParams}>
-      <CurrentRouteContext.Provider value={node}>
+      <CurrentRouteContext.Provider value={routeNodes}>
         <RouteInfoContextProvider>{children}</RouteInfoContextProvider>
       </CurrentRouteContext.Provider>
     </RouteParamsContext.Provider>

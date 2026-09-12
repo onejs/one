@@ -5,8 +5,9 @@ import {
 } from '@react-navigation/native'
 import React from 'react'
 
-import { getNameFromFilePath } from './matchers'
-import { useContextKey } from './Route'
+import { getReactNavigationRouteName } from '../getReactNavigationConfig'
+import { getContextKey, getNameFromFilePath } from './matchers'
+import { type RouteNode, useContextKey, useRouteNodes } from './Route'
 
 /**
  * Returns the React Navigation navigation object for the current route.
@@ -26,19 +27,32 @@ export function useNavigation<T = NavigationProp<ParamListBase>>(parent?: string
   const navigation = useUpstreamNavigation() as any
 
   const contextKey = useContextKey()
+  const routeNodes = useRouteNodes()
   const normalizedParent = React.useMemo(() => {
     if (!parent) {
       return null
     }
-    const normalized = getNameFromFilePath(parent)
+    return resolveParentRouteName(routeNodes, contextKey, parent)
+  }, [contextKey, parent, routeNodes])
 
-    if (parent.startsWith('.')) {
-      return relativePaths(contextKey, parent)
-    }
-    return normalized
-  }, [contextKey, parent])
+  if (parent && normalizedParent === undefined) {
+    throw new Error(
+      `Could not find parent navigation with route "${parent}".` +
+        ` (normalized context: ${resolveParentId(contextKey, parent)})`
+    )
+  }
 
   if (normalizedParent != null) {
+    if (normalizedParent === '') {
+      let rootNavigation = navigation
+      let nextNavigation = rootNavigation.getParent()
+      while (nextNavigation) {
+        rootNavigation = nextNavigation
+        nextNavigation = rootNavigation.getParent()
+      }
+      return rootNavigation
+    }
+
     const parentNavigation = navigation.getParent(normalizedParent)
 
     if (!parentNavigation) {
@@ -61,9 +75,31 @@ export function resolveParentId(
   }
 
   if (parentId.startsWith('.')) {
-    return getNameFromFilePath(relativePaths(contextKey, parentId))
+    return normalizeContextPath(relativePaths(contextKey, parentId))
   }
-  return getNameFromFilePath(parentId)
+  return normalizeContextPath(parentId)
+}
+
+export function resolveParentRouteName(
+  routeNodes: RouteNode[],
+  contextKey: string,
+  parentId?: string | null
+): string | null | undefined {
+  const parentContextKey = resolveParentId(contextKey, parentId)
+  if (parentContextKey == null) return null
+  if (parentContextKey === '/') return ''
+
+  const parentRoute = routeNodes.find(
+    (node) => getContextKey(node.contextKey) === parentContextKey
+  )
+  return parentRoute ? getReactNavigationRouteName(parentRoute) : undefined
+}
+
+function normalizeContextPath(path: string): string {
+  const normalized = getNameFromFilePath(path)
+    .replace(/^\/+|\/+$/g, '')
+    .replace(/\/_layout$/, '')
+  return normalized ? `/${normalized}` : '/'
 }
 
 // Resolve a path like `../` relative to a path like `/foo/bar`

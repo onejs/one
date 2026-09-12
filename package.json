@@ -188,6 +188,8 @@
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
-    "image-size@1.2.1": "patches/image-size@1.2.1.patch"
+    "image-size@1.2.1": "patches/image-size@1.2.1.patch",
+    "@react-navigation/bottom-tabs@8.0.0-alpha.50": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.50.patch",
+    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch"
   }
 }

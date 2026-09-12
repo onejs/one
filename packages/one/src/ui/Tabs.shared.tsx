@@ -12,6 +12,7 @@ import {
   Children,
   type ComponentProps,
   Fragment,
+  type HTMLAttributes,
   isValidElement,
   type MutableRefObject,
   type PropsWithChildren,
@@ -21,7 +22,6 @@ import {
   useMemo,
   useRef,
 } from 'react'
-import type { ViewProps } from 'react-native'
 
 import { useRouteInfo } from '../hooks'
 import { resolveHref } from '../link/href'
@@ -62,7 +62,7 @@ export type UseTabsOptions = Omit<
   backBehavior?: TabRouterOptions['backBehavior']
 }
 
-export type TabsProps = ViewProps & {
+export type TabsProps = HTMLAttributes<HTMLDivElement> & {
   asChild?: boolean
   options?: UseTabsOptions
 }

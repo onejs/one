@@ -4,12 +4,24 @@ import '~/code/styles/tamagui.css'
 import './_layout.css'
 
 import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar } from 'one'
+import { LoadProgressBar, usePathname } from 'one'
+import { useEffect, useState } from 'react'
+import { Platform } from 'react-native'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { HomeLayout } from '~/code/home/HomeLayout'
+import { NativeSplitView } from '~/code/home/NativeSplitView'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
+  const pathname = usePathname()
+  const [isSplitDismissed, setIsSplitDismissed] = useState(false)
+
+  useEffect(() => {
+    if (!pathname.startsWith('/split')) {
+      setIsSplitDismissed(false)
+    }
+  }, [pathname])
+
   return (
     <>
       {isWeb && (
@@ -28,7 +40,11 @@ export default function Layout() {
 
       <SchemeProvider>
         <TamaguiRootProvider>
-          <HomeLayout />
+          {Platform.OS === 'ios' && pathname.startsWith('/split') && !isSplitDismissed ? (
+            <NativeSplitView onExit={() => setIsSplitDismissed(true)} />
+          ) : (
+            <HomeLayout />
+          )}
         </TamaguiRootProvider>
       </SchemeProvider>
     </>

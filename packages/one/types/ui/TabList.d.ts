@@ -1,7 +1,6 @@
-import type { ComponentProps, ReactElement } from 'react';
-import { type ViewProps } from 'react-native';
-export type TabListProps = ViewProps & {
-    /** Forward props to child component and removes the extra `<View>`. Useful for custom wrappers. */
+import type { ComponentProps, HTMLAttributes, ReactElement } from 'react';
+export type TabListProps = HTMLAttributes<HTMLElement> & {
+    /** Forward props to child component and removes the extra `<nav>`. Useful for custom wrappers. */
     asChild?: boolean;
 };
 /**
@@ -17,7 +16,7 @@ export type TabListProps = ViewProps & {
  * </Tabs>
  * ```
  */
-export declare function TabList({ asChild, style, ...props }: TabListProps): import("react/jsx-runtime").JSX.Element;
+export declare function TabList({ asChild, ...props }: TabListProps): import("react/jsx-runtime").JSX.Element;
 /**
  * @hidden
  */

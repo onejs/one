@@ -106,6 +106,7 @@ export declare const RouteParamsContext: React.Context<Record<string, string | u
 export declare const SuspenseFallbackContext: React.Context<React.ComponentType<SuspenseFallbackProps> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;
+export declare function useRouteNodes(): RouteNode[];
 export declare function useContextKey(): string;
 /** Provides the matching routes and filename to the children. */
 export declare function Route({ children, node, route, }: {

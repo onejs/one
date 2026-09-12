@@ -1,14 +1,14 @@
 # One Headless UI Components
 
-Headless UI components for the One framework.
+Web-only headless UI components for the One framework.
 
 ## Overview
 
-The headless tabs system provides complete control over tab navigation UI while maintaining full integration with One's file-based routing system. Unlike traditional tabs that use `@react-navigation/bottom-tabs` with opinionated styling, these components are completely unstyled.
+The headless tabs system provides complete control over browser tab navigation UI while maintaining full integration with One's file-based routing system. These components render DOM elements and are completely unstyled. Use `Tabs` from `one` for React Navigation 8 tabs on iOS and Android.
 
 ## Installation
 
-The UI components are available through the `one/ui` submodule:
+The web UI components are available through the `one/ui` submodule. Put a React Navigation `Tabs` layout in the route's `.native.tsx` sibling when the same route runs on native.
 
 ```tsx
 import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
@@ -100,22 +100,14 @@ function CustomTabBar() {
   const profile = useTabTrigger({ name: 'profile' })
 
   return (
-    <View style={styles.customBar}>
-      <Pressable {...home.triggerProps}>
-        <Text style={home.trigger?.isFocused && styles.active}>
-          Home
-        </Text>
-      </Pressable>
-      <Pressable {...profile.triggerProps}>
-        <Text style={profile.trigger?.isFocused && styles.active}>
-          Profile
-        </Text>
-      </Pressable>
-    </View>
+    <nav>
+      <button {...home.triggerProps}>Home</button>
+      <button {...profile.triggerProps}>Profile</button>
+    </nav>
   )
 }
 ```
 
 ## Example
 
-See `/examples/one-basic/app/tabs/` for a working example with custom-styled tabs.
+See `/examples/one-basic/app/tabs/` for a working example with custom web tabs and an RN8 native sibling.

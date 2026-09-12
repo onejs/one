@@ -1,11 +1,19 @@
+// @ts-expect-error the universal typecheck resolves native conditions; this file is web-only
 import { Tabs, TabList, TabSlot, TabTrigger } from 'one/ui'
-import { View, Text, StyleSheet } from 'react-native'
+import { Text } from 'react-native'
 
 export default function TabsLayout() {
   return (
-    <Tabs style={styles.container}>
+    <Tabs style={{ display: 'flex', flex: 1 }}>
       <TabSlot />
-      <TabList style={styles.tabList}>
+      <TabList
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          padding: 10,
+        }}
+      >
         <TabTrigger name="home" href="/tabs">
           <Text>Home</Text>
         </TabTrigger>
@@ -16,14 +24,3 @@ export default function TabsLayout() {
     </Tabs>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  tabList: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-  },
-})

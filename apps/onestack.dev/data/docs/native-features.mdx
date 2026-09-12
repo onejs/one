@@ -185,7 +185,9 @@ Native `UISplitViewController` for iPad multi-column layouts.
   ENV['RNS_GAMMA_ENABLED'] ||= '1'
   ```
 
-  Then run `pod install`. Currently blocked on a react-native-screens upstream issue with Fabric — tracking for a fix.
+  Then run `pod install`. The `SplitView.Column` markers must be direct children of
+  `SplitView`; One maps them to the native screen columns and supplies the routed
+  detail through `slot`.
 </Notice>
 
 ```tsx
@@ -193,7 +195,7 @@ import { SplitView } from '@vxrn/native'
 
 function Layout() {
   return (
-    <SplitView>
+    <SplitView slot={Detail}>
       <SplitView.Column>
         <SidebarContent />
       </SplitView.Column>
@@ -211,9 +213,11 @@ On iPhone, SplitView collapses to a single column automatically.
 | Feature | iOS | Android | Web |
 |---------|-----|---------|-----|
 | Color API | system colors via PlatformColor | Material 3 dynamic/static | returns null |
-| Zoom Transitions | iOS 18+ | — | — |
-| Toolbar | UIToolbar + SF Symbols | — | — |
-| Menu Actions | UIMenu / UIAction | — | — |
-| SplitView | iPad (gamma required) | — | — |
+| Zoom Transitions | iOS 18+ | unsupported | unsupported |
+| Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
+| Menu Actions | UIMenu / UIAction | unsupported | unsupported |
+| SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 
-All components return `null` on unsupported platforms — safe to use in cross-platform code.
+Unsupported toolbar and zoom components return `null`, so they are safe to keep in
+cross-platform component trees. SplitView renders its routed `slot` without native
+columns on Android and web.

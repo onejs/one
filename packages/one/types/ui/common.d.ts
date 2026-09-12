@@ -4,7 +4,7 @@ import type { UrlObject } from '../router/getNormalizedStatePath';
 import type { RouteNode } from '../router/Route';
 import { Slot } from './Slot';
 import type { ExpoTabActionType } from './TabRouter';
-export declare const ViewSlot: Slot<import("react-native").ViewProps, import("react").Component<import("react-native").ViewProps, {}, any>>;
+export declare const ViewSlot: Slot<import("react").HTMLAttributes<HTMLElement>, HTMLElement>;
 export type ScreenTrigger = {
     type: 'internal';
     href: OneRouter.Href;
