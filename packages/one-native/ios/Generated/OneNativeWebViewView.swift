@@ -111,42 +111,35 @@ private struct WebViewContent: View {
       .oneNativeStyle(model.swiftStyle)
   }
 }
-// WebPage owns the loaded page and its back-forward list. it is built on appear rather
-// than in a State initializer, which SwiftUI re-runs every time this view is rebuilt, and
-// it is told to load only when the url actually changes: reloading on any other prop would
-// throw away the scroll position and the history.
+// webpage owns the loaded page and its back-forward list. state preserves this
+// instance for the view identity, while load only runs when the url actually changes:
+// reloading on any other prop would throw away the scroll position and the history.
 @MainActor private struct WebViewSurface: View {
   @ObservedObject var model: WebViewModel
-  @State private var page: WebPage?
+  @State private var page = WebPage()
   @State private var loaded: String?
   // url and html are one source with two spellings, so the prefix keeps a url and a piece
   // of markup that happen to be the same string from counting as the same load.
   private var source: String { model.html.isEmpty ? "url:" + model.url : "html:" + model.html }
   var body: some View {
-    Group {
-      if let page {
-        WebView(page)
-          // reading these here is what subscribes to WebPage's observation. WebKit
-          // coalesces its own progress reporting, so this is not a per-frame event.
-          .onChange(of: page.url) { _, url in model.navigate(url?.absoluteString ?? "") }
-          .onChange(of: page.title) { _, title in model.titleChange(title) }
-          .onChange(of: page.isLoading) { _, loading in
-            model.loadingChange(loading, page.estimatedProgress)
-          }
-          .onChange(of: page.estimatedProgress) { _, progress in
-            model.loadingChange(page.isLoading, progress)
-          }
+    WebView(page)
+      // reading these here is what subscribes to WebPage's observation. WebKit
+      // coalesces its own progress reporting, so this is not a per-frame event.
+      .onChange(of: page.url) { _, url in model.navigate(url?.absoluteString ?? "") }
+      .onChange(of: page.title) { _, title in model.titleChange(title) }
+      .onChange(of: page.isLoading) { _, loading in
+        model.loadingChange(loading, page.estimatedProgress)
       }
-    }
-    .onAppear { load() }
-    .onChange(of: model.url) { load() }
-    .onChange(of: model.html) { load() }
+      .onChange(of: page.estimatedProgress) { _, progress in
+        model.loadingChange(page.isLoading, progress)
+      }
+      .onAppear { load() }
+      .onChange(of: model.url) { load() }
+      .onChange(of: model.html) { load() }
   }
   private func load() {
-    if page == nil { page = WebPage() }
     guard loaded != source else { return }
     loaded = source
-    guard let page else { return }
     if model.html.isEmpty {
       guard let url = URL(string: model.url) else { return }
       page.load(url)
