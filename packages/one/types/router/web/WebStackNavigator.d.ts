@@ -1,4 +1,2 @@
-export declare const createWebStackNavigator: import('@react-navigation/core').TypedNavigatorFactory<
-  import('@react-navigation/core').NavigatorTypeBagBase
->
+export declare const createWebStackNavigator: import("@react-navigation/core").TypedNavigatorFactory<import("@react-navigation/core").NavigatorTypeBagBase>;
 //# sourceMappingURL=WebStackNavigator.d.ts.map

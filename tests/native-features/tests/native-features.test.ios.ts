@@ -2,14 +2,10 @@ import { execFileSync } from 'node:child_process'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo } from '@vxrn/test/utils/appium'
-import {
-  captureScreenshot,
-  captureErrorScreenshot,
-  waitForElement,
-} from '../utils/screenshot'
+import { captureScreenshot, waitForElement } from '../utils/screenshot'
 import type { Browser } from 'webdriverio'
 
-const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
+const sharedTestOptions = { timeout: 10 * 60 * 1000 }
 
 function getSimulatorUdid(driver: Browser) {
   const capabilities = driver.capabilities as Record<string, any>
@@ -230,9 +226,9 @@ describe('@vxrn/native integration tests', () => {
     })
   })
 
-  // -- zoom transitions (skipped: VxrnZoomSource not registered yet) --
+  // -- zoom transitions --
 
-  describe.skip('Zoom Transitions', () => {
+  describe('Zoom Transitions', () => {
     test('zoom source list renders correctly', sharedTestOptions, async () => {
       await navigateTo(driver, '/zoom-test')
       await waitForElement(driver, 'zoom-test-screen', { timeout: 30_000 })
@@ -372,7 +368,7 @@ describe('@vxrn/native integration tests', () => {
 
   // -- menu actions --
 
-  describe.skip('Menu Actions', () => {
+  describe('Menu Actions', () => {
     test('menu action screen renders', sharedTestOptions, async () => {
       await navigateTo(driver, '/menu-test')
       await waitForElement(driver, 'menu-test-screen', { timeout: 30_000 })
@@ -417,7 +413,7 @@ describe('@vxrn/native integration tests', () => {
 
   // -- split view --
 
-  describe.skip('SplitView', () => {
+  describe('SplitView', () => {
     test('split view screen renders', sharedTestOptions, async () => {
       await navigateTo(driver, '/split-view-test')
       await waitForElement(driver, 'split-view-test-screen', { timeout: 30_000 })
@@ -466,12 +462,14 @@ describe('@vxrn/native integration tests', () => {
       }
       await draftsItem.click()
 
-      // wait a moment for state update
-      await driver.pause(500)
-
-      // verify selected id updated
       const selectedId = await waitForElement(driver, 'split-view-selected-id')
-      expect(await selectedId.getText()).toContain('drafts')
+      await selectedId.waitUntil(
+        async () => (await selectedId.getText()).includes('drafts'),
+        {
+          timeout: 5000,
+          timeoutMsg: 'split view did not select drafts',
+        }
+      )
 
       await captureScreenshot(driver, 'split-view-drafts-selected')
     })

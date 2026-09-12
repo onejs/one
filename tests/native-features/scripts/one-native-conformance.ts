@@ -286,7 +286,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         screenshot(`fail-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`)
         throw new Error(`${name}: the app is showing a RedBox: ${error}`)
       }
-      await Bun.sleep(250)
+      await new Promise((resolve) => setTimeout(resolve, 250))
     } while (Date.now() < deadline)
     const stem = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
     const snapshotPath = path.join(config.artifactDir, `fail-${stem}.json`)
@@ -978,7 +978,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         // a determinate ProgressView reports a percentage here; the indeterminate
         // spinner reports a plain animating value instead, so the percentage must go.
         const percentage = (n: Node[]) =>
-          indicator(n, nativeLabel).filter((x) => /%$/.test(String(x.AXValue ?? '')))
+          indicator(n, nativeLabel).filter((x) => String(x.AXValue ?? '').endsWith('%'))
         await wait('Progress determinate reports a percentage', (n) =>
           Boolean(percentage(n).length)
         )

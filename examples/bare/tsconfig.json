@@ -13,7 +13,7 @@
     "preserveSymlinks": true,
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "noEmit": false,
     "noEmitOnError": false,
     "noImplicitAny": false,
