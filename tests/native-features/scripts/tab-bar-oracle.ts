@@ -324,7 +324,12 @@ function measure(
   if (!found.length) throw new Error(`${cell.id}: no capsule found in ${file}`)
   const record = (m: (typeof found)[number]) => ({
     rect: m.rect,
-    method: 'rim-trace top edge, interior-plateau left/right/bottom edges',
+    method:
+      m.seeding === 'rim'
+        ? 'rim-trace top edge, interior-plateau left/right/bottom edges'
+        : 'interior-plateau throughout; the rim trace has no valid signature on this capture',
+    seeding: m.seeding,
+    crossCheckedEdges: m.crossCheckedEdges,
     crossCheckPt: m.crossCheck,
     disagreementPt: m.disagreement,
     interiorColor: m.interior,
@@ -350,8 +355,12 @@ function measure(
     throw new Error(
       `${cell.id}: the capsule interior is only ${main.interiorOverBackground} off the background it is drawn on, so its plateau edges cannot be trusted`
     )
+  // a null disagreement is not an agreement. it means that edge had one method, so there was
+  // nothing to disagree with, and `crossCheckedEdges` is what says so.
   const disagrees = (capsule: (typeof found)[number]) =>
-    capsule.disagreement.left > 3 || capsule.disagreement.right > 3 || capsule.disagreement.top > 4
+    (capsule.disagreement.left ?? 0) > 3 ||
+    (capsule.disagreement.right ?? 0) > 3 ||
+    capsule.disagreement.top > 4
   for (const [index, capsule] of found.entries())
     if (disagrees(capsule))
       console.warn(
@@ -362,6 +371,11 @@ function measure(
   // capsule is white glass on white and neither holds, so the rect from that capture must not
   // be read even though the ink inside it still can be.
   const barMeasurementTrusted = separated && !disagrees(main)
+  // trust and corroboration are different things, and collapsing them would let a capture with
+  // one method read exactly like a capture where two agreed. this says how many pixel methods
+  // actually produced each edge, so a dark row cannot be quoted as if it were as checked as a
+  // light one.
+  const barMeasurementCrossCheckedEdges = main.crossCheckedEdges
 
   // r27161 fits a per-tab width off these, so they are lifted out of mainTabs rather than left
   // to be recomputed. a centre is the glyph ink centre, falling back to the label ink centre
@@ -404,6 +418,7 @@ function measure(
     },
     capture: `captures/${captureName}.png`,
     barMeasurementTrusted,
+    barMeasurementCrossCheckedEdges,
     captureOriginPt: { x: 0, y: 700 },
     screenPt: SCREEN_PT,
     pageContentBottomPt: pageContentBottom(capture),
