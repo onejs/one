@@ -467,9 +467,26 @@ export function tabsInCapsule(
   const bottom = Math.round((capsule.y + capsule.height) * sc)
   // stay off the rounded ends and the rim, which are chrome rather than content
   const inset = Math.round(3 * sc)
+  // the capsule is a pill, so an inset RECTANGLE is not inside it. near the top and bottom rows
+  // the rounded end curves away and a rectangular inset reaches past it onto whatever the bar is
+  // drawn on. that background is not ink by colour either, until it is: over the page it sits 54
+  // levels off the glass interior and over the list `More` presents it sits 75, and the ink test
+  // is 70. so the corners leaked in on exactly one capture and segmentation reported seven tabs
+  // in a five tab bar. mask to the pill instead, which cannot depend on what is behind it.
+  const radius = (bottom - top) / 2 - inset
+  const midY = (top + bottom) / 2
+  const capLeft = left + inset + radius
+  const capRight = right - inset - radius
+  const insidePill = (x: number, y: number) => {
+    const nearestX = Math.min(Math.max(x, capLeft), capRight)
+    const dx = x - nearestX
+    const dy = y - midY
+    return dx * dx + dy * dy <= radius * radius
+  }
   const ink: { x: number; y: number; badge: boolean }[] = []
   for (let y = top + inset; y < bottom - inset; y++) {
     for (let x = left + inset; x < right - inset; x++) {
+      if (!insidePill(x, y)) continue
       const c = capture.px(x, y)
       if (flats.every((flat) => dist(c, flat) > 70)) ink.push({ x, y, badge: isBadge(c) })
     }

@@ -276,8 +276,8 @@ minimize values and both sidebar cells match the baseline exactly. These have no
 
 ### Inside `More`
 
-Measured light, at four cells: `tabs6-more`, `tabs7-more`, `tabs5-search-more` and
-`tabs5-search-morerow0`. iOS draws the first four page tabs plus a More tab once a `Tabs` holds
+Measured at six cells: `tabs6-more`, `tabs7-more`, `tabs5-search-more` and
+`tabs5-search-morerow0` in light, and the last two in dark as well. iOS draws the first four page tabs plus a More tab once a `Tabs` holds
 more than five; everything from the fifth onward goes inside.
 
 `More` is a pushed navigation destination, not a sheet. It is a full-screen list with its own
@@ -307,7 +307,16 @@ pitch as every other row, with no search field, no magnifier affordance and no s
 then selecting a row both leave the bar's five slots byte-identical: tab centres
 `[61.7, 128.9, 196.2, 263.3, 331.5]` and capsule `{x: 20.8, y: 769, width: 351, height: 62}` are
 the same at rest, with `More` open, and after a row is chosen. The selected tab is not promoted
-into a visible slot; the selection is shown inside `More`.
+into a visible slot; the selection is shown inside `More`. This holds in dark too, where the
+centres read `[61.7, 129, 196.2, 263.3, 331.5]`, within 0.1pt of light.
+
+The comparison reports `null` rather than a verdict unless both sides found all five slots. Two
+failed segmentations agree with each other, and an earlier run did exactly that: it reported
+"unchanged" from a capture where `More` had never opened.
+
+Appearance does not move the list either. Row pitch, separator insets, glyph centre, label left
+and chevron box are identical in dark to the numbers in the table above. What changes is material
+and tint: a dark capsule with white glyphs and a blue selected label.
 
 One number in the table is deliberately untrusted: the capsule recorded while `More` is open reads
 35.7pt tall against 62pt at rest, and that is a measurement artifact, not a collapsing bar. The

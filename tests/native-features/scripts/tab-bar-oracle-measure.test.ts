@@ -1,13 +1,13 @@
 // controls for the capsule measurement methods. these are not a unit test of the arithmetic:
-// they are the two cases where a method MUST fail, pinned so that a later change cannot quietly
-// make it look like it works everywhere.
+// they are the cases where a method MUST fail, pinned so that a later change cannot quietly make
+// it look like it works everywhere.
 //
 // the oracle has two ways to find the capsule's columns and neither works on both bars. which
 // one runs is decided by measured contrast between the capsule interior and the background it is
 // drawn on, never by an appearance flag, so these controls check the mechanism that decides as
 // well as the methods themselves.
 //
-// run with `bun test scripts/tab-bar-oracle-measure.test.ts`. no simulator involved; the two
+// run with `bun test scripts/tab-bar-oracle-measure.test.ts`. no simulator involved; the
 // fixtures in oracle/controls are committed captures.
 import { expect, test } from 'bun:test'
 import path from 'node:path'
@@ -24,6 +24,9 @@ import {
 const controls = path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'oracle', 'controls')
 const light = () => new Capture(path.join(controls, 'bar-light.png'))
 const dark = () => new Capture(path.join(controls, 'bar-dark.png'))
+// the dark bar floating over the list `More` presents, rather than over the fixture's page. the
+// glass reads a few levels different over it, which is what the corner control below turns on.
+const darkOverList = () => new Capture(path.join(controls, 'bar-dark-over-list.png'))
 
 // the same bar, measured off both fixtures. the whole point of having a dark method is that this
 // rect comes out the same, so it is what the controls are protecting.
@@ -89,4 +92,23 @@ test('the selection indicator is found in both, and is one tab wide', () => {
     const tabs = tabsInCapsule(capture, capsule.rect, [capsule.interior, indicator!.color])
     expect(tabs.length).toBe(5)
   }
+})
+
+test('negative control: the capsule corners are masked by shape, not by colour', () => {
+  // a rectangular inset is not inside a pill. near the top and bottom rows the rounded end curves
+  // away and the inset reaches past it onto whatever the bar is drawn on, and whether that
+  // background then counts as ink depends on how far it happens to sit from the glass: 54 levels
+  // over the fixture's page, 75 over the list, against an ink test of 70. so this capture, and
+  // only this capture, reported seven tabs in a five tab bar.
+  const capture = darkOverList()
+  const capsule = capsules(capture)[0]
+  const indicator = selectionIndicator(capture, capsule.rect, capsule.interior)
+  const tabs = tabsInCapsule(capture, capsule.rect, [capsule.interior, indicator!.color])
+  expect(tabs.length).toBe(5)
+
+  // and the five are the same five the bar shows at rest, which is the thing a spurious cluster
+  // at the capsule's end would move
+  const centres = tabs.map((tab) => tab.glyphCenterX ?? tab.labelCenterX)
+  expect(centres[0]).toBeCloseTo(61.7, 0)
+  expect(centres[4]).toBeCloseTo(331.5, 0)
 })
