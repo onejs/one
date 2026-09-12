@@ -236,6 +236,29 @@
       "sheet": 16.4,
       "fullScreenCover": 16.4
     },
+    "PresentationContentInteraction": {
+      "automatic": 16.4,
+      "resizes": 16.4,
+      "scrolls": 16.4
+    },
+    "ColorScheme": {
+      "light": 13,
+      "dark": 13
+    },
+    "DynamicTypeSize": {
+      "xSmall": 15,
+      "small": 15,
+      "medium": 15,
+      "large": 15,
+      "xLarge": 15,
+      "xxLarge": 15,
+      "xxxLarge": 15,
+      "accessibility1": 15,
+      "accessibility2": 15,
+      "accessibility3": 15,
+      "accessibility4": 15,
+      "accessibility5": 15
+    },
     "SymbolRenderingMode": {
       "monochrome": 15,
       "multicolor": 15,

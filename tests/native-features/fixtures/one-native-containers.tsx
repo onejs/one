@@ -10,7 +10,18 @@ export default function OneNativeContainers() {
   const [hostTaps, setHostTaps] = useState(0)
   const [extra, setExtra] = useState(false)
   const [footer, setFooter] = useState(false)
+  const [environment, setEnvironment] = useState(false)
   const [height, setHeight] = useState(0)
+
+  const environmentProps = environment
+    ? ({
+        colorScheme: 'dark',
+        dynamicTypeSize: 'accessibility1',
+        locale: 'fr-FR',
+        tint: '#FF9500',
+        isEnabled: false,
+      } as const)
+    : {}
 
   return (
     <View style={styles.screen} testID="one-native-containers-screen">
@@ -29,6 +40,13 @@ export default function OneNativeContainers() {
         >
           <Text>Footer</Text>
         </Pressable>
+        <Pressable
+          testID="one-native-container-environment"
+          style={[styles.chip, environment && styles.chipOn]}
+          onPress={() => setEnvironment((value) => !value)}
+        >
+          <Text>{environment ? 'Environment on' : 'Environment off'}</Text>
+        </Pressable>
       </View>
 
       <View style={styles.row}>
@@ -45,7 +63,15 @@ export default function OneNativeContainers() {
         />
       </View>
 
+      {environment ? (
+        <Swift.Host {...environmentProps} axis="horizontal" spacing={8}>
+          <Swift.Text text="Host environment" />
+          <Swift.Button label="Host disabled" />
+        </Swift.Host>
+      ) : null}
+
       <Swift.Form
+        {...environmentProps}
         testID="one-native-container-form"
         style={styles.form}
         onLayout={({ nativeEvent }) => setHeight(Math.round(nativeEvent.layout.height))}
@@ -123,7 +149,12 @@ export default function OneNativeContainers() {
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8, backgroundColor: '#fff' },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
-  chip: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 8, backgroundColor: '#eee' },
+  chip: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: '#eee',
+  },
   chipOn: { backgroundColor: '#cfe2ff' },
   leaf: { width: 150 },
   form: { flex: 1 },

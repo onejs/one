@@ -4,5 +4,6 @@
 @end
 @interface OneNativeSheetContentComponentView : RCTViewComponentView
 - (void)updateNativeFrame:(CGRect)frame;
+- (void)setFittedHeightCallback:(void (^)(CGFloat height))callback;
 @end
 #endif

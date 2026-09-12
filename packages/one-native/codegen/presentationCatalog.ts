@@ -15,6 +15,18 @@ const dialogActions = {
 const dialogFields = {
   title: { type: 'string', default: '' },
   message: { type: 'string', default: '' },
+  presenting: {
+    type: 'string',
+    default: '',
+    jsDefault: 'undefined',
+    nativeValue: 'presenting ?? ""',
+  },
+  hasPresenting: {
+    type: 'boolean',
+    default: false,
+    derived: true,
+    nativeValue: 'presenting !== undefined',
+  },
   actions: dialogActions,
 } as const
 
@@ -24,11 +36,14 @@ const dialogValidate = (name: string) => `  for (const action of actions) {
     if (typeof action?.id !== 'string' || typeof action?.label !== 'string') throw new Error('${name} actions must contain string id and label fields')
     if (action.role) assertSwiftUIValue('ButtonRole', action.role, Number.parseFloat(String(Platform.Version)))
   }
+  if (presenting !== undefined && typeof presenting !== 'string') throw new Error('${name} presenting must be a string')
   if (!actions.length) throw new Error('${name} must have at least one action')
   if (new Set(actions.map(action => action.id)).size !== actions.length) throw new Error('${name} action ids must be unique')`
 
-const dialogButtons = `        ForEach(model.actions, id: \\.id) { action in
-          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id) }) {
+const dialogButtons = (
+  presenting: string
+) => `        ForEach(model.actions, id: \\.id) { action in
+          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id, ${presenting}) }) {
             Text(action.label)
           }
         }`
@@ -36,15 +51,17 @@ const dialogButtons = `        ForEach(model.actions, id: \\.id) { action in
 const viewRequirements = ['A : SwiftUICore.View', 'M : SwiftUICore.View']
 const dialogModifier = (
   name: string,
-  extra: readonly { label: string; type: string }[]
+  extra: readonly { label: string; type: string }[],
+  presenting = false
 ): ModifierSelector => ({
   name,
   parameters: [
     { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
     { label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
     ...extra,
-    { label: 'actions', type: '() -> A' },
-    { label: 'message', type: '() -> M' },
+    ...(presenting ? [{ label: 'presenting', type: 'T?' }] : []),
+    { label: 'actions', type: presenting ? '(T) -> A' : '() -> A' },
+    { label: 'message', type: presenting ? '(T) -> M' : '() -> M' },
   ],
   requirements: viewRequirements,
 })
@@ -58,19 +75,39 @@ export const presentationControls: Control[] = [
       event: 'onIsPresentedChange',
       initial: false,
     },
-    actions: [{ prop: 'onAction', event: 'Action', payload: { id: 'string' } }],
+    actions: [
+      {
+        prop: 'onAction',
+        event: 'Action',
+        payload: { id: 'string', presenting: 'string' },
+      },
+    ],
     fields: dialogFields,
     constructors: [],
-    methods: [dialogModifier('alert', [])],
-    swift: `Color.clear
-      .alert(LocalizedStringKey(model.title), isPresented: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      )) {
-${dialogButtons}
-      } message: {
-        if !model.message.isEmpty { Text(model.message) }
-      }`,
+    methods: [dialogModifier('alert', []), dialogModifier('alert', [], true)],
+    swift: `Group {
+      if !model.hasPresenting {
+      Color.clear
+        .alert(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        )) {
+${dialogButtons('""')}
+        } message: {
+          if !model.message.isEmpty { Text(model.message) }
+        }
+    } else {
+      Color.clear
+        .alert(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ), presenting: model.presenting) { presenting in
+${dialogButtons('presenting')}
+        } message: { _ in
+          if !model.message.isEmpty { Text(model.message) }
+        }
+      }
+    }`,
     validate: dialogValidate('Alert'),
     layout: 'presentation',
   },
@@ -82,7 +119,13 @@ ${dialogButtons}
       event: 'onIsPresentedChange',
       initial: false,
     },
-    actions: [{ prop: 'onAction', event: 'Action', payload: { id: 'string' } }],
+    actions: [
+      {
+        prop: 'onAction',
+        event: 'Action',
+        payload: { id: 'string', presenting: 'string' },
+      },
+    ],
     fields: {
       ...dialogFields,
       titleVisibility: { type: 'string', default: 'automatic', enum: 'Visibility' },
@@ -92,16 +135,36 @@ ${dialogButtons}
       dialogModifier('confirmationDialog', [
         { label: 'titleVisibility', type: 'SwiftUICore.Visibility' },
       ]),
+      dialogModifier(
+        'confirmationDialog',
+        [{ label: 'titleVisibility', type: 'SwiftUICore.Visibility' }],
+        true
+      ),
     ],
-    swift: `Color.clear
-      .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility)) {
-${dialogButtons}
-      } message: {
-        if !model.message.isEmpty { Text(model.message) }
-      }`,
+    swift: `Group {
+      if !model.hasPresenting {
+      Color.clear
+        .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility)) {
+${dialogButtons('""')}
+        } message: {
+          if !model.message.isEmpty { Text(model.message) }
+        }
+    } else {
+      Color.clear
+        .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility),
+          presenting: model.presenting) { presenting in
+${dialogButtons('presenting')}
+        } message: { _ in
+          if !model.message.isEmpty { Text(model.message) }
+        }
+      }
+    }`,
     validate: dialogValidate('ConfirmationDialog'),
     layout: 'presentation',
   },

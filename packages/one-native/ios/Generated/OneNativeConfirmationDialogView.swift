@@ -7,6 +7,8 @@ private final class ConfirmationDialogModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var title: String = ""
   @Published var message: String = ""
+  @Published var presenting: String = ""
+  @Published var hasPresenting: Bool = false
   @Published var actions: [OneNativeDialogAction] = []
   @Published var titleVisibility: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
@@ -18,17 +20,17 @@ private final class ConfirmationDialogModel: ObservableObject {
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
-  var onAction: ((String, Int) -> Void)?
+  var onAction: ((String, String, Int) -> Void)?
   private var actionCount = 0
-  func action(_ id: String) {
+  func action(_ id: String, _ presenting: String) {
     guard active else { return }
     actionCount += 1
-    onAction?(id, actionCount)
+    onAction?(id, presenting, actionCount)
   }
 }
 @objcMembers public final class OneNativeConfirmationDialogView: UIView, OneNativeComposable {
   public var onChange: ((Bool, Int, Int) -> Void)?
-  public var onAction: ((String, Int) -> Void)?
+  public var onAction: ((String, String, Int) -> Void)?
   private var model = ConfirmationDialogModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<ConfirmationDialogContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -41,10 +43,12 @@ private final class ConfirmationDialogModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String, titleVisibility: String) {
+  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String, presenting: String, hasPresenting: Bool, titleVisibility: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.title != title { model.title = title }
     if model.message != message { model.message = message }
+    if model.presenting != presenting { model.presenting = presenting }
+    if model.hasPresenting != hasPresenting { model.hasPresenting = hasPresenting }
     if model.titleVisibility != titleVisibility { model.titleVisibility = titleVisibility }
   }
   public func setActions(_ items: [[String: Any]]) { model.actions = items.map { OneNativeDialogAction(id: $0["id"] as! String, label: $0["label"] as! String, role: $0["role"] as! String) } }
@@ -63,7 +67,7 @@ private final class ConfirmationDialogModel: ObservableObject {
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-    model.onAction = { [weak self] id, actionCount in self?.onAction?(id, actionCount) }
+    model.onAction = { [weak self] id, presenting, actionCount in self?.onAction?(id, presenting, actionCount) }
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -86,19 +90,38 @@ private final class ConfirmationDialogModel: ObservableObject {
 private struct ConfirmationDialogContent: View {
   @ObservedObject var model: ConfirmationDialogModel
   var body: some View {
-    Color.clear
-      .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility)) {
+    Group {
+      if !model.hasPresenting {
+      Color.clear
+        .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility)) {
         ForEach(model.actions, id: \.id) { action in
-          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id) }) {
+          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id, "") }) {
             Text(action.label)
           }
         }
-      } message: {
-        if !model.message.isEmpty { Text(model.message) }
+        } message: {
+          if !model.message.isEmpty { Text(model.message) }
+        }
+    } else {
+      Color.clear
+        .confirmationDialog(LocalizedStringKey(model.title), isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ), titleVisibility: OneNativeGenerated.visibility(model.titleVisibility),
+          presenting: model.presenting) { presenting in
+        ForEach(model.actions, id: \.id) { action in
+          Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id, presenting) }) {
+            Text(action.label)
+          }
+        }
+        } message: { _ in
+          if !model.message.isEmpty { Text(model.message) }
+        }
       }
+    }
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
   }

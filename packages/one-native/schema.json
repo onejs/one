@@ -959,6 +959,12 @@
         "message": {
           "type": "string"
         },
+        "presenting": {
+          "type": "string"
+        },
+        "hasPresenting": {
+          "type": "boolean"
+        },
         "actions": {
           "type": "ReadonlyArray<DialogAction>"
         }
@@ -977,6 +983,9 @@
         },
         "onNativeAlertAction": {
           "id": {
+            "type": "string"
+          },
+          "presenting": {
             "type": "string"
           },
           "eventCount": {
@@ -1019,6 +1028,12 @@
         "message": {
           "type": "string"
         },
+        "presenting": {
+          "type": "string"
+        },
+        "hasPresenting": {
+          "type": "boolean"
+        },
         "actions": {
           "type": "ReadonlyArray<DialogAction>"
         },
@@ -1041,6 +1056,9 @@
         },
         "onNativeConfirmationDialogAction": {
           "id": {
+            "type": "string"
+          },
+          "presenting": {
             "type": "string"
           },
           "eventCount": {
@@ -1121,12 +1139,45 @@
         "detents": {
           "type": "ReadonlyArray<NativeSheetDetent>"
         },
+        "fitToContents": {
+          "type": "boolean"
+        },
+        "selectedDetentType": {
+          "type": "string"
+        },
+        "selectedDetentValue": {
+          "type": "Double"
+        },
+        "acknowledgedDetentEvent": {
+          "type": "Int32"
+        },
+        "detentRevision": {
+          "type": "Int32"
+        },
         "interactiveDismissDisabled": {
           "type": "boolean"
         },
         "presentationDragIndicator": {
           "type": "string",
           "enum": "Visibility"
+        },
+        "presentationBackground": {
+          "type": "ColorValue"
+        },
+        "presentationBackgroundInteraction": {
+          "type": "string"
+        },
+        "presentationBackgroundInteractionDetentType": {
+          "type": "string"
+        },
+        "presentationBackgroundInteractionDetentValue": {
+          "type": "Double"
+        },
+        "presentationContentInteraction": {
+          "type": "string"
+        },
+        "presentationSizing": {
+          "type": "string"
         }
       },
       "events": {
@@ -1142,6 +1193,20 @@
           }
         },
         "onNativeSheetDismiss": {
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSheetDetentChange": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
           "revision": {
             "type": "Int32"
           }
@@ -1197,6 +1262,21 @@
         },
         "alignment": {
           "type": "string"
+        },
+        "colorScheme": {
+          "type": "string"
+        },
+        "dynamicTypeSize": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "tint": {
+          "type": "ColorValue"
+        },
+        "isEnabled": {
+          "type": "string"
         }
       },
       "events": {},
@@ -1217,7 +1297,23 @@
     {
       "name": "OneNativeForm",
       "publicName": "Form",
-      "props": {},
+      "props": {
+        "colorScheme": {
+          "type": "string"
+        },
+        "dynamicTypeSize": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "tint": {
+          "type": "ColorValue"
+        },
+        "isEnabled": {
+          "type": "string"
+        }
+      },
       "events": {},
       "actions": [],
       "layout": {
@@ -1700,6 +1796,29 @@
       "popover": 16.4,
       "sheet": 16.4,
       "fullScreenCover": 16.4
+    },
+    "PresentationContentInteraction": {
+      "automatic": 16.4,
+      "resizes": 16.4,
+      "scrolls": 16.4
+    },
+    "ColorScheme": {
+      "light": 13,
+      "dark": 13
+    },
+    "DynamicTypeSize": {
+      "xSmall": 15,
+      "small": 15,
+      "medium": 15,
+      "large": 15,
+      "xLarge": 15,
+      "xxLarge": 15,
+      "xxxLarge": 15,
+      "accessibility1": 15,
+      "accessibility2": 15,
+      "accessibility3": 15,
+      "accessibility4": 15,
+      "accessibility5": 15
     },
     "SymbolRenderingMode": {
       "monochrome": 15,

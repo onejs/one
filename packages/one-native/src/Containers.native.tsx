@@ -8,18 +8,47 @@ import {
   hostAxes,
   type FormProps,
   type HostProps,
+  type EnvironmentProps,
   type SectionProps,
   type SlotProps,
 } from './generated/containerTypes'
+import { Platform } from 'react-native'
+import { assertSwiftUIValue } from './generated/swiftui'
 
 // a slot only works where SwiftUI proposes its box, so containers mark their children
 // and a slot marks its own React Native subtree as outside again.
 export const InsideContainer = createContext(false)
 
+function nativeEnvironmentProps({
+  colorScheme,
+  dynamicTypeSize,
+  locale,
+  tint,
+  isEnabled,
+}: EnvironmentProps) {
+  const iosVersion = Number.parseFloat(String(Platform.Version))
+  if (colorScheme) assertSwiftUIValue('ColorScheme', colorScheme, iosVersion)
+  if (dynamicTypeSize) assertSwiftUIValue('DynamicTypeSize', dynamicTypeSize, iosVersion)
+  if (locale !== undefined && (typeof locale !== 'string' || !locale.trim()))
+    throw new Error('Swift.Host and Swift.Form locale must be a non-empty identifier')
+  return {
+    colorScheme: colorScheme ?? '',
+    dynamicTypeSize: dynamicTypeSize ?? '',
+    locale: locale ?? '',
+    tint,
+    isEnabled: isEnabled === undefined ? '' : isEnabled ? 'enabled' : 'disabled',
+  }
+}
+
 export function Host({
   axis = 'vertical',
   spacing = 0,
   alignment = 'leading',
+  colorScheme,
+  dynamicTypeSize,
+  locale,
+  tint,
+  isEnabled,
   children,
   style,
   ...props
@@ -34,7 +63,9 @@ export function Host({
   // nothing at all. that failure is silent, so reject it where it is written.
   for (const child of Children.toArray(children))
     if (isValidElement(child) && child.type === Form)
-      throw new Error('Swift.Form cannot be a child of Swift.Host; give the Form its own box')
+      throw new Error(
+        'Swift.Form cannot be a child of Swift.Host; give the Form its own box'
+      )
   // the host reports the height SwiftUI measured, so Yoga must not be given one.
   return (
     <NativeHost
@@ -43,6 +74,13 @@ export function Host({
       axis={axis}
       spacing={spacing}
       alignment={alignment}
+      {...nativeEnvironmentProps({
+        colorScheme,
+        dynamicTypeSize,
+        locale,
+        tint,
+        isEnabled,
+      })}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeHost>
@@ -51,9 +89,28 @@ export function Host({
 
 // a SwiftUI Form is height-greedy and has no ideal height, so it fills the box React
 // Native gives it. Give it a height or put it in a flex parent.
-export function Form({ children, style, ...props }: FormProps) {
+export function Form({
+  children,
+  style,
+  colorScheme,
+  dynamicTypeSize,
+  locale,
+  tint,
+  isEnabled,
+  ...props
+}: FormProps) {
   return (
-    <NativeForm {...props} style={[{ flex: 1 }, style]}>
+    <NativeForm
+      {...props}
+      {...nativeEnvironmentProps({
+        colorScheme,
+        dynamicTypeSize,
+        locale,
+        tint,
+        isEnabled,
+      })}
+      style={[{ flex: 1 }, style]}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeForm>
   )
@@ -81,7 +138,9 @@ export function Section({
 export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
   if (!inside)
-    throw new Error('Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section')
+    throw new Error(
+      'Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section'
+    )
   if (!Number.isFinite(height) || height <= 0)
     throw new Error('Swift.Slot height must be a positive number')
   // a vertical container offers its full width; a horizontal one offers none, so a slot
