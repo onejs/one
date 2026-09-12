@@ -11,6 +11,17 @@ declare module 'one' {
         | `/_sitemap`
         | `/color-test`
         | `/menu-test`
+        | `/one-native`
+        | `/one-native-accessibility`
+        | `/one-native-containers`
+        | `/one-native-controls`
+        | `/one-native-dialogs`
+        | `/one-native-host`
+        | `/one-native-leaves`
+        | `/one-native-map`
+        | `/one-native-media`
+        | `/one-native-popover`
+        | `/one-native-sheet`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

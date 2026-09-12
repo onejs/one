@@ -474,6 +474,18 @@
         "sharp",
       ],
     },
+    "packages/one-native": {
+      "name": "one-native",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@tamagui/build": "2.6.2",
+        "vitest": "^4.1.0",
+      },
+      "peerDependencies": {
+        "react": ">=19",
+        "react-native": "~0.86.2",
+      },
+    },
     "packages/one-vscode": {
       "name": "one-vscode",
       "version": "1.26.0",
@@ -778,8 +790,10 @@
         "expo": "~57.0.11",
         "expo-build-properties": "~57.0.9",
         "expo-clipboard": "~57.0.1",
+        "expo-file-system": "~57.0.2",
         "expo-modules-core": "~57.0.10",
         "one": "workspace:*",
+        "one-native": "workspace:*",
         "react": "19.2.3",
         "react-native": "0.86.2",
         "react-native-safe-area-context": "~5.7.0",
@@ -4359,6 +4373,8 @@
     "once": ["once@1.4.0", "", { "dependencies": { "wrappy": "1" } }, "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w=="],
 
     "one": ["one@workspace:packages/one"],
+
+    "one-native": ["one-native@workspace:packages/one-native"],
 
     "one-tray": ["one-tray@workspace:apps/one-tray"],
 
