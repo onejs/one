@@ -1,109 +1,33 @@
 {
   "compiler": "Apple Swift version 6.3",
   "sdk": "26.4",
-  "inputs": [
-    {
-      "module": "SwiftUI",
-      "declarationsSha256": "de091165a3800065e0b87d6cd2fb6dae4e86a53647112e2508fe9521497e0101"
-    },
-    {
-      "module": "SwiftUICore",
-      "declarationsSha256": "baa2ef2136f0c8eb0d62292913c8a5621b12161f6ca961b8e0413734233638b1"
-    },
-    {
-      "module": "_AVKit_SwiftUI",
-      "declarationsSha256": "51ee4cb4bfaa18bf33cead855b3cbfbe3a30a58b29bb7f33d0cc3235bdd916a7"
-    },
-    {
-      "module": "_AppIntents_SwiftUI",
-      "declarationsSha256": "b9e00f305e843f65f8948ac0eb517f4004e10d2056c1abb0d19bd02ca9fad7fd"
-    },
-    {
-      "module": "_AuthenticationServices_SwiftUI",
-      "declarationsSha256": "4214ee34cd9cd1899d248b864a4d83719c9e17c67c0f794534115ba5cb2ec0bb"
-    },
-    {
-      "module": "_CoreLocationUI_SwiftUI",
-      "declarationsSha256": "f70845bf4533b1d69fef06d7b6b4645301c764019a337b5a7c668232e5927c8d"
-    },
-    {
-      "module": "_DeviceActivity_SwiftUI",
-      "declarationsSha256": "e554983fd6222c133558a733ad79ea4c8bb8cb84e6915451a2317c7e58509e79"
-    },
-    {
-      "module": "_DeviceDiscoveryUI_SwiftUI",
-      "declarationsSha256": "c1d3dd28acf2fcc440528f2eec204f13ca0d37b474add9bc392b4fd2bf9c3eb8"
-    },
-    {
-      "module": "_GameController_SwiftUI",
-      "declarationsSha256": "c4f4d083ba2003c14825856a686e3138f93b4903142c863ddf8be5f6f1b50320"
-    },
-    {
-      "module": "_HomeKit_SwiftUI",
-      "declarationsSha256": "145d70cc93cf99cfc20c9128c1f730fadd2b7bda05201adaf3a7b7b6b3daaf42"
-    },
-    {
-      "module": "_MapKit_SwiftUI",
-      "declarationsSha256": "f9a152c66b2b65041137105e2dfe00dfe502162c9f8a669038416504afd7045c"
-    },
-    {
-      "module": "_MusicKit_SwiftUI",
-      "declarationsSha256": "be989d61566c2446f562eec776069d55627dc50b805a84db8eea4e72d7d163c1"
-    },
-    {
-      "module": "_PassKit_SwiftUI",
-      "declarationsSha256": "da5de4b0bbeb8d28d5734c28d7cffe204e21bc683ed3d98ec519707c9fb292e0"
-    },
-    {
-      "module": "_PermissionKit_SwiftUI",
-      "declarationsSha256": "bc6a7734e3b99459bb71a9c4b5973e354f5321460edeb03688e852d4fe4dbcd7"
-    },
-    {
-      "module": "_PhotosUI_SwiftUI",
-      "declarationsSha256": "7a6448fd1a8c0be7fb692b983981f5ca360a38047786b3c50fd51288a0ea1caa"
-    },
-    {
-      "module": "_QuickLook_SwiftUI",
-      "declarationsSha256": "10a51c7000992efc8d6fc990f5ad5ee24d119235dcd0e843797b4ae83b8b8326"
-    },
-    {
-      "module": "_RealityKit_SwiftUI",
-      "declarationsSha256": "1e6491d139591f19e9b04b2114cac6e47233608f72345a4258cd898ea70a7877"
-    },
-    {
-      "module": "_SceneKit_SwiftUI",
-      "declarationsSha256": "48d60fb2d1f37ea4e1b550726c2813ed05031680cffcdfe56f199b30ea8e0e81"
-    },
-    {
-      "module": "_SecureElementCredential_SwiftUI",
-      "declarationsSha256": "478678f91d3d0fd284f50dab5ba7d5709a22e85b5d7fbf672f4057ef045336a5"
-    },
-    {
-      "module": "_SpriteKit_SwiftUI",
-      "declarationsSha256": "049af42e96c1023cc64a3a08c02725163437d10be0617835a51eeaa8444e6d6a"
-    },
-    {
-      "module": "_StoreKit_SwiftUI",
-      "declarationsSha256": "9e5412e98a7a7c4e3a0cbc4837d0b6e46f57d0a198e977a5f3734f90a8e2b5c3"
-    },
-    {
-      "module": "_SwiftData_SwiftUI",
-      "declarationsSha256": "7b7125e5309c3904268ae976f02e713b0e023b95e661399b450573ad2389de8b"
-    },
-    {
-      "module": "_Translation_SwiftUI",
-      "declarationsSha256": "282ba6f255c6f4bd03bd562cc0b0a838e715c7efe8288b08acf9ebe8255fb0a9"
-    },
-    {
-      "module": "_WebKit_SwiftUI",
-      "declarationsSha256": "8eb0675c452f724c202e017c30a62b1c3e676aa5463fef3b0e183f599b3072a8"
-    },
-    {
-      "module": "_WorkoutKit_SwiftUI",
-      "declarationsSha256": "e1e8b5156711efff7dc5ece01e28eb2e607c294701da93537d7497df0564c288"
-    }
+  "modules": [
+    "SwiftUI",
+    "SwiftUICore",
+    "_AVKit_SwiftUI",
+    "_AppIntents_SwiftUI",
+    "_AuthenticationServices_SwiftUI",
+    "_CoreLocationUI_SwiftUI",
+    "_DeviceActivity_SwiftUI",
+    "_DeviceDiscoveryUI_SwiftUI",
+    "_GameController_SwiftUI",
+    "_HomeKit_SwiftUI",
+    "_MapKit_SwiftUI",
+    "_MusicKit_SwiftUI",
+    "_PassKit_SwiftUI",
+    "_PermissionKit_SwiftUI",
+    "_PhotosUI_SwiftUI",
+    "_QuickLook_SwiftUI",
+    "_RealityKit_SwiftUI",
+    "_SceneKit_SwiftUI",
+    "_SecureElementCredential_SwiftUI",
+    "_SpriteKit_SwiftUI",
+    "_StoreKit_SwiftUI",
+    "_SwiftData_SwiftUI",
+    "_Translation_SwiftUI",
+    "_WebKit_SwiftUI",
+    "_WorkoutKit_SwiftUI"
   ],
-  "extractedDeclarations": 11212,
   "unmappedModifiers": [
     "menuIndicator",
     "menuStyle",
