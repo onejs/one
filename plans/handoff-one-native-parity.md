@@ -282,6 +282,20 @@ items on the previous list landed: a `swiftStyle` object prop applied by one gen
    background/interaction/sizing remain unimplemented, as do the `presenting:`
    value-bound alert overloads. `presentationCompactAdaptation` landed with Popover.
 
+Items 1 through 4 are being implemented now, in worktrees off this branch so the generated output
+does not collide: `feat/one-native-leaves` carries items 2 and 3, `feat/one-native-hosting` carries
+items 1 and 4 plus the tab-mounting defect below. Neither lane runs the device suite, because one
+simulator is serving pixel-oracle captures and the suite is load-sensitive. They validate with
+`generate:check`, and the assembled branch gets one device run at integration.
+
+`sidebarAdaptable` is implemented and is deliberately not covered by rnx conformance, so do not log
+it as a gap. `Tabs.native.tsx` passes the prop through the spec and the component view, and
+`OneNativeTabsView.swift:119` applies `.tabViewStyle(.sidebarAdaptable)` with `.tabBarOnly` as the
+else. rnx cannot grade it: its device catalog runs iPhone SE through iPhone 17 Pro Max with no iPad,
+it has no size-class model anywhere in the engine, and its one non-phone profile is flagged
+experimental with no native device behind it. There is no surface for the style to adapt into and no
+oracle could ever exist, which is a fact about the simulator rather than about the API.
+
 Navigation is decided, and the decision is not to bind it.
 `plans/one-native-navigation-design.md` is the design pass (branch `feat/one-native-nav`,
 design-only). Its recommendation: One's native stack stays the sole navigation owner, and the
