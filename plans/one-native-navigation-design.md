@@ -156,10 +156,10 @@ One's integration layer. It is not a new set of freestanding SwiftUI modifiers:
 
 | Surface | Recommendation and evidence |
 |---|---|
-| Title and display mode | **INFERRED:** use the existing header-title option mapping first (`packages/one/src/layouts/stack-utils/StackHeaderTitle.tsx:67-81`). Actual SwiftUI `navigationTitle` exists at `S:17596-17622`, but no child-item propagation contract follows from its signature. |
-| Toolbar actions and menus | **INFERRED:** extend the existing toolbar registration/configuration seam if a caller needs more (`packages/one/src/layouts/stack-utils/StackToolbarImplementation.tsx:21-38`). SwiftUI toolbar content is a separate builder contract (`S:17352-17356`, `S:6574`, `S:2777`). |
+| Title and display mode | **INFERRED:** use React Navigation's native-stack header title options. Actual SwiftUI `navigationTitle` exists at `S:17596-17622`, but no child-item propagation contract follows from its signature. |
+| Toolbar actions and menus | **INFERRED:** use React Navigation 8's header item options for routed stack chrome, or direct `@vxrn/native` ToolbarHost/ToolbarItem/MenuAction for the retained bottom-toolbar capability. SwiftUI toolbar content is a separate builder contract (`S:17352-17356`, `S:6574`, `S:2777`). |
 | Bar background, visibility, color | **INFERRED:** keep these with the same screen-header owner. Do not advertise full `ShapeStyle` or SwiftUI placement semantics as UIKit option aliases (`S:9546-9573` declares the genuine modifier surface). |
-| Search text and submission | **INFERRED:** start with `Stack.HeaderSearchBar`'s existing `headerSearchBarOptions` mapping (`packages/one/src/layouts/stack-utils/StackHeaderSearchBar.tsx:6-24`). An exact controlled-text contract needs its own assessment; this mapping alone does not establish one. |
+| Search text and submission | **INFERRED:** use React Navigation's `headerSearchBarOptions`. An exact controlled-text contract needs its own assessment; this mapping alone does not establish one. |
 | SwiftUI `searchable` | **INFERRED:** defer as a genuine binding until there is an explicit SwiftUI navigation context. Its text binding exists at `S:5528`; Apple's [search-interface guide](https://developer.apple.com/documentation/swiftui/adding-a-search-interface-to-your-app) places it on or inside a SwiftUI navigation container. A naked child host is not a verified substitute. |
 
 **INFERRED:** the smallest useful navigation work may add zero Fabric components.

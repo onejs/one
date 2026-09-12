@@ -34,14 +34,14 @@ split-view integrations in `@vxrn/native`.
 - The SwiftUI menu owns trigger touch and accessibility.
   RN page controls retain their existing responder path. Arbitrary simultaneous
   RNGH/SwiftUI gesture composition is still a later engine requirement.
-- The baseline is iOS 18, React Native 0.86.2 and New Architecture. Browser and
+- The baseline is iOS 26, React Native 0.86.2 and New Architecture. Browser and
   Android entry points report unsupported rendering. General SwiftUI hosts,
   arbitrary modifiers/bindings, Nitro transport evaluation, broader SDK coverage,
   and Contrast adapters remain the next stages.
 
-The installed `react-native-bottom-tabs` was exercised first. A rejected selection
-left native and React on different tabs, including incorrect page accessibility.
-The owned host adds explicit acknowledgement. Its integration fixture also caught
+An earlier routed-tab prototype left native and React selection out of sync after
+a rejected selection, including incorrect page accessibility. The owned primitive
+adds explicit acknowledgement. Its integration fixture also caught
 reordered Fabric pages becoming detached from their SwiftUI slots; slot updates
 now attach the current Fabric view even when its identity did not change.
 

@@ -61,13 +61,13 @@ tab/menu suite also passes native selection, reordered RN state retention, kept-
 checked/mixed controls, nested actions, and two accessible remounts with identical
 menu data.
 
-## Replacing @vxrn/native
+## `@vxrn/native` boundary
 
 | Existing surface | Migration requirement |
 | --- | --- |
 | Color | preserve/rehome iOS and Android system-token APIs; unrelated to a SwiftUI view wrapper |
 | ToolbarHost / ToolbarItem / MenuAction | support existing native bar ownership and callbacks or adapt callers to an explicit replacement |
-| StackToolbar | retain One registration and native-stack header/bottom-bar integration |
+| One StackToolbar adapter | removed in V2; React Navigation owns routed stack chrome |
 | SplitView | preserve react-native-screens column/navigation behavior |
 | ZoomTransitionSource / Enabler / AlignmentRectDetector | preserve native-stack transition identity, source geometry and dismissal behavior |
 
