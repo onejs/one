@@ -22,6 +22,7 @@
     "package": "dev.vxrn.nativefeatures.tests"
   },
   "ios": {
-    "bundleIdentifier": "dev.vxrn.native.tests"
+    "bundleIdentifier": "dev.vxrn.native.tests",
+    "userInterfaceStyle": "automatic"
   }
 }
