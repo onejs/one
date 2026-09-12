@@ -5,7 +5,7 @@ deployment floors, and capability owners. The V2 integration removes overlapping
 route-navigation surfaces without deleting independent SwiftUI primitives.
 
 This conclusion was verified on the handed-off `feat/one-native` commit
-`a45ff3ac48d137c48a3077ba16c8a161762dd620` and then reconciled with the
+`2a517c93255c914c305e564b0fcbca2e84c16f32` and then reconciled with the
 React Navigation 8 integration.
 
 ## Current ownership

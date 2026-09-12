@@ -8,6 +8,7 @@ import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
 export default function FeedLayout() {
   const routeContext = useContext(NavigationRouteContext)
   const { name } = routeContext || {}
+  const isFeed = name === 'index' || name?.startsWith('__one_layout:')
 
   return (
     <View flex={1}>
@@ -31,7 +32,7 @@ export default function FeedLayout() {
           <Stack.Screen
             name="index"
             options={
-              name === 'index'
+              isFeed
                 ? {
                     title: 'Feed',
                     gestureEnabled: true,
@@ -42,6 +43,7 @@ export default function FeedLayout() {
                 : { headerShown: false }
             }
           />
+          {isFeed ? <Stack.Screen name="post/[id]" /> : null}
         </Stack>
       )}
     </View>
