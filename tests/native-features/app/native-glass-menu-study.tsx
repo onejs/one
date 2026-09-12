@@ -74,9 +74,8 @@ export default function NativeGlassMenuStudyScreen() {
       <View style={styles.tint} />
       {wallpaperLoaded ? (
         <View style={styles.scene} testID="native-glass-menu-study-loaded">
-          <View style={styles.status}>
-            <Text style={styles.statusKicker}>STYLE</Text>
-            <Text style={styles.statusValue} testID="native-glass-menu-selection">
+          <View style={styles.receiptGroup}>
+            <Text style={styles.receipt} testID="native-glass-menu-selection">
               {selection}
             </Text>
             <Text style={styles.receipt} testID="native-glass-menu-selection-count">
@@ -97,13 +96,15 @@ export default function NativeGlassMenuStudyScreen() {
               <Swift.Button
                 accessibilityLabel="Customize style"
                 buttonStyle="glassProminent"
-                label="Customize"
+                label={'\u200B'}
                 onPress={() => undefined}
                 style={styles.glassButton}
                 swiftStyle={{
                   fontWeight: 'semibold',
+                  height: 48,
                   padding: 8,
                   tint: '#AAB8FF',
+                  width: 48,
                 }}
                 systemImage="wand.and.sparkles"
                 testID="native-glass-menu-button"
@@ -131,25 +132,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: 184,
   },
-  status: {
-    alignItems: 'center',
-    marginBottom: 18,
-    minHeight: 60,
-  },
-  statusKicker: {
-    color: 'rgba(255, 255, 255, 0.72)',
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 2.2,
-  },
-  statusValue: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: '700',
-    marginTop: 4,
-    textShadowColor: 'rgba(7, 8, 30, 0.62)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 8,
+  receiptGroup: {
+    height: 2,
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: 1,
   },
   receipt: {
     color: 'transparent',
@@ -158,11 +146,12 @@ const styles = StyleSheet.create({
   },
   menuTrigger: {
     alignItems: 'center',
-    height: 62,
+    height: 64,
     justifyContent: 'center',
-    width: 190,
+    width: 64,
   },
   glassButton: {
-    width: 180,
+    height: 56,
+    width: 56,
   },
 })
