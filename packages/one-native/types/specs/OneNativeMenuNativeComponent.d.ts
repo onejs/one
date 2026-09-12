@@ -21,6 +21,7 @@ interface NativeProps extends ViewProps {
     disabled: boolean;
     menuOrder: string;
     menuActionDismissBehavior: string;
+    presentation: string;
     acknowledgedEvent: Int32;
     revision: Int32;
     onNativeMenuAction?: DirectEventHandler<Readonly<{

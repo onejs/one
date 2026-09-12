@@ -130,5 +130,9 @@ private struct TabsContent: View {
         }
       }
     }
+    // swiftUI updates the tab bar when dynamic TabContent changes, but keeps the old
+    // positional content association. a topology change must rebuild TabView so its
+    // controlled selection resolves against the new ordered IDs.
+    .id(model.pages.map(\.id))
   }
 }

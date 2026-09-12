@@ -17,9 +17,18 @@ export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'cha
 export type Axis = 'horizontal' | 'vertical';
 export type Edge = 'top' | 'leading' | 'bottom' | 'trailing';
 export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover';
+export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls';
+export type ColorScheme = 'light' | 'dark';
+export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge' | 'xxxLarge' | 'accessibility1' | 'accessibility2' | 'accessibility3' | 'accessibility4' | 'accessibility5';
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
 export type ImageScale = 'small' | 'medium' | 'large';
+export type PhotosPickerSelectionBehavior = 'default' | 'ordered' | 'continuous' | 'continuousAndOrdered';
+export type EncodingDisambiguationPolicy = 'automatic' | 'current' | 'compatible';
+export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
+export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
+export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled';
+export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -139,6 +148,29 @@ export declare const swiftUIValues: {
         readonly sheet: 16.4;
         readonly fullScreenCover: 16.4;
     };
+    readonly PresentationContentInteraction: {
+        readonly automatic: 16.4;
+        readonly resizes: 16.4;
+        readonly scrolls: 16.4;
+    };
+    readonly ColorScheme: {
+        readonly light: 13;
+        readonly dark: 13;
+    };
+    readonly DynamicTypeSize: {
+        readonly xSmall: 15;
+        readonly small: 15;
+        readonly medium: 15;
+        readonly large: 15;
+        readonly xLarge: 15;
+        readonly xxLarge: 15;
+        readonly xxxLarge: 15;
+        readonly accessibility1: 15;
+        readonly accessibility2: 15;
+        readonly accessibility3: 15;
+        readonly accessibility4: 15;
+        readonly accessibility5: 15;
+    };
     readonly SymbolRenderingMode: {
         readonly monochrome: 15;
         readonly multicolor: 15;
@@ -157,6 +189,37 @@ export declare const swiftUIValues: {
         readonly small: 13;
         readonly medium: 13;
         readonly large: 13;
+    };
+    readonly PhotosPickerSelectionBehavior: {
+        readonly default: 16;
+        readonly ordered: 16;
+        readonly continuous: 17;
+        readonly continuousAndOrdered: 17;
+    };
+    readonly EncodingDisambiguationPolicy: {
+        readonly automatic: 16;
+        readonly current: 16;
+        readonly compatible: 16;
+    };
+    readonly BackForwardNavigationGesturesBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly MagnificationGesturesBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly LinkPreviewBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
+    };
+    readonly ElementFullscreenBehavior: {
+        readonly automatic: 26;
+        readonly enabled: 26;
+        readonly disabled: 26;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

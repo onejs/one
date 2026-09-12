@@ -20,6 +20,7 @@ export default function OneNativeDialogs() {
   const [changes, setChanges] = useState(0)
   const [actions, setActions] = useState(0)
   const [last, setLast] = useState('none')
+  const [lastPresenting, setLastPresenting] = useState('none')
   const [rejectClose, setRejectClose] = useState(false)
   const [revision, setRevision] = useState(0)
   const [titleVisibilityIndex, setTitleVisibilityIndex] = useState(0)
@@ -31,9 +32,10 @@ export default function OneNativeDialogs() {
     // refusing the native dismissal must roll the native state back and re-present.
     if (!(rejectClose && !value)) setIsPresented(value)
   }
-  const handleAction = (id: string) => {
+  const handleAction = (id: string, presenting = '') => {
     setActions((count) => count + 1)
     setLast(id)
+    setLastPresenting(presenting)
     if (id === 'reset') {
       setRejectClose(false)
       setIsPresented(false)
@@ -69,6 +71,7 @@ export default function OneNativeDialogs() {
               setChanges(0)
               setActions(0)
               setLast('none')
+              setLastPresenting('none')
               setRejectClose(false)
               setRevision(0)
               setTitleVisibilityIndex(0)
@@ -81,6 +84,9 @@ export default function OneNativeDialogs() {
       <View style={styles.status}>
         {status.map(([label, value]) => (
           <Text
+            accessibilityHint={
+              label === 'Last' ? `Presenting: ${lastPresenting}` : undefined
+            }
             key={label}
             style={styles.statusText}
             testID={`one-native-dialog-${label.toLowerCase().replace(' ', '-')}`}
@@ -120,6 +126,7 @@ export default function OneNativeDialogs() {
           actions={alertActions}
           isPresented={isPresented}
           message="Alert actions report their ids separately from dismissal."
+          presenting="alert-item"
           revision={revision}
           title="One Native Alert"
           onAction={handleAction}
@@ -130,6 +137,7 @@ export default function OneNativeDialogs() {
           actions={confirmationActions}
           isPresented={isPresented}
           message="Confirmation actions report their ids separately from dismissal."
+          presenting="confirmation-item"
           revision={revision}
           title="One Native Confirmation"
           // iOS anchors the popover adaptation to the host's own position in RN layout.
