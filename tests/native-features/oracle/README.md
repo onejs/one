@@ -129,9 +129,10 @@ Skipped, with the reason each cannot interact:
   width, and an iPhone 16 in portrait is compact. Two tab counts are enough to show no effect;
   one would not be, since a single cell cannot distinguish "no effect" from "an effect that
   happens to cancel at three tabs".
-- **appearance, entirely.** The dark cells this table used to carry were light captures; see the
-  retraction below. Until the app stops forcing `UIUserInterfaceStyle = Light`, no cell here
-  measures appearance and none should be added.
+- **appearance x anything beyond the dark cells named in the matrix.** Appearance changes
+  materials and tints. Whether it moves layout is now a real question again, because the app no
+  longer forces `UIUserInterfaceStyle = Light`; see the retraction below for what it used to
+  answer and why that answer was worthless.
 - **icon-only and label-only x tab count.** These change what ink exists inside a tab, which the
   tab count axis already measures. If glyph presence changed the track, the count cells would
   show it as a pitch change.
@@ -224,10 +225,51 @@ refuses to record an appearance switch it cannot see: `setAppearance` reads the 
 mode, skips a no-op, and then requires more than 20% of the screen to repaint, which the app in
 its shipped configuration cannot do. Nothing in this table currently measures appearance.
 
-Removing the key from a copy of the installed bundle does make native chrome honour dark (RAN:
-the tab bar renders a dark capsule with white glyphs and a blue selected label). Making that
-permanent means changing `app.json` and rebuilding, which changes the app every other conformance
-suite runs against, so it is not this lane's call to make.
+`app.json` now sets `ios.userInterfaceStyle: "automatic"` and the app has been rebuilt, so dark is
+real: the bar renders a dark capsule with white glyphs and a blue selected label. `automatic` only
+changes behaviour when something switches the device, so a suite that never touches appearance
+sees the app it always saw.
+
+A trap for whoever regenerates the native project: `ios/` is not tracked, and the checked-out
+Xcode project builds `dev.one.native.tests` while `app.json` says `dev.vxrn.native.tests`. A
+prebuild would therefore change the bundle id that this README, `scripts/README.md` and every
+documented command use. The appearance key was set in both places by hand for that reason.
+
+### Measuring a bar that is darker than its background
+
+The capsule has two ways to be found and neither works on both bars, so the method is chosen by
+measured contrast rather than by an appearance flag. `bandSurfaces` returns the distance between
+the capsule interior and the background it is drawn on: about 3 where the bar is light glass on a
+light background, about 54 where it is dark on black. Below 20 the rim trace seeds, above it
+colour membership seeds. Contrast is the thing that decides whether a method works, and a capture
+can be dark with light chrome, so the flag would have been the wrong control surface.
+
+Three assumptions in the original method were light-only, and each one mismeasured dark on its
+own:
+
+- the rim trace looks for a luminance trough followed by a spike, which exists only where the
+  capsule is brighter than what it sits on. On a dark bar the only match in a column is the
+  interior followed by the selected tab's indicator, so it returned a 64pt extent as the bar.
+- the cutoff separating a second flat surface from ink was a fixed number of levels tuned on the
+  light bar. The dark indicator sits further from its interior than that, so it was rejected as
+  ink; with no indicator colour to exclude, every tab's pill counted as ink and segmentation
+  collapsed to one slot. It is now scaled to each capture's own ink range.
+- the interior was read 2.5pt inside the capsule's left end, on the reasoning that the indicator
+  is inset further. The margin is about 3pt in light and the dark indicator is inset less, so the
+  probe landed inside the pill and interior and indicator came out swapped.
+
+Dark measures the same capsule as light, `{20.8, 769, 351, 62}`, and the same five slots, matching
+to 0.1pt. What it costs is corroboration, recorded per row rather than hidden: where membership
+seeds, **no** edge has two pixel methods, because the seed's top and the plateau walk's top are
+both colour membership and agreeing with each other only proves the same test ran twice.
+`crossCheckedEdges` is `[]` on those rows and `["left","right","top"]` on light ones. The
+independent check on a dark top edge is the accessibility tree's `Tab Bar` frame, which is not a
+pixel.
+
+Both methods are pinned by controls in `../scripts/tab-bar-oracle-measure.test.ts`, which run
+against two committed captures in `controls/` and need no simulator. Each names the case its
+method must fail on: the rim trace must return less than half the capsule's width on the dark
+fixture, and membership must fail to find the capsule on the light one.
 
 **Minimize behavior and sidebarAdaptable do not move anything either**, at rest: all four
 minimize values and both sidebar cells match the baseline exactly. These have no rnx consumer.
@@ -279,7 +321,6 @@ open, identical to rest. Those rows carry `barMeasurementTrusted: false`.
 - Anything off the resting state. The oracle never scrolls, so it says nothing about what
   `onScrollDown` or `onScrollUp` do while scrolling, or about the minimized bar.
 - A frame for any glyph or label. Ink boxes only.
-- The overflow destination in dark. The tap that opens it is aimed from the resting bar
-  measurement, and in dark that measurement fails: the rim trace locks onto the selected tab's
-  pill, which has a visible edge in dark and none in light, so segmentation collapses to a single
-  slot. Light is measured; dark is not.
+- The overflow destination in dark. The measurement that blocked it is fixed and controlled, but
+  the cells have not been captured against the simulator yet, so the `Inside More` numbers below
+  are light only.
