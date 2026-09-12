@@ -4,7 +4,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
-  clearPngCache,
   countChangedPixels,
   countMatchingPixels,
   extractCrop,
@@ -404,7 +403,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     do {
       const nodes = snapshot(config.simulatorId)
       const target = screenshot(name, nodes)
-      clearPngCache()
       const region = resolveVisualRegion(declaration, nodes)
       reading = declaration.measureSubject(extractCrop(readPng(target), region))
       if (reading >= declaration.minSubjectFloor) {
@@ -1249,7 +1247,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       do {
         const nodes = snapshot(config.simulatorId)
         const target = screenshot(name, nodes)
-        clearPngCache()
         ink = countMatchingPixels(
           extractCrop(readPng(target), speakerFrame),
           (r, g, b) => r < 80 && g < 80 && b < 80
