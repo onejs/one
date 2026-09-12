@@ -12,7 +12,7 @@
 //  - one cell renders at a time, named on screen, advanced by one button.
 import { useState } from 'react'
 import { Swift } from 'one-native'
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 import { cells, type OracleCell } from './tab-bar-oracle-cells'
 
 export const ORACLE_BACKDROP = '#00A03C'
@@ -22,14 +22,18 @@ function Panel({
   index,
   onNext,
   presses,
+  scrollOffset,
 }: {
   cell: OracleCell
   index: number
   onNext: () => void
   presses: number
+  scrollOffset: number | null
 }) {
   return (
-    <View style={styles.panel}>
+    // box-none so the swipe the driver uses to scroll passes straight through the panel to the
+    // ScrollView underneath it, while the Next cell button stays tappable
+    <View style={styles.panel} pointerEvents="box-none">
       <Text testID="tab-oracle-cell" style={styles.cellLabel}>
         Cell: {cell.id}
       </Text>
@@ -37,6 +41,11 @@ function Panel({
         {index + 1} of {cells.length}  axis: {cell.axis}  appearance: {cell.appearance}
       </Text>
       <Text style={styles.meta}>Action presses: {presses}</Text>
+      {scrollOffset !== null && (
+        <Text testID="tab-oracle-scroll" style={styles.meta}>
+          Scroll offset: {Math.round(scrollOffset)}
+        </Text>
+      )}
       <Pressable testID="tab-oracle-next" style={styles.button} onPress={onNext}>
         <Text style={styles.buttonText}>Next cell</Text>
       </Pressable>
@@ -53,13 +62,13 @@ function Cell({
   index: number
   onNext: () => void
 }) {
-  const pageTabs = cell.tabs.filter((tab) => !tab.action)
   const initial = cell.tabs[cell.selectedIndex]
   if (!initial || initial.action) {
     throw new Error(`oracle cell ${cell.id} selects a tab that cannot hold the selection`)
   }
   const [selection, setSelection] = useState(initial.id)
   const [presses, setPresses] = useState(0)
+  const [scrollOffset, setScrollOffset] = useState(0)
 
   return (
     <Swift.Tabs
@@ -91,7 +100,30 @@ function Cell({
             testID={`tab-oracle-tab-${tab.id}`}
           >
             <View style={styles.page}>
-              <Panel cell={cell} index={index} onNext={onNext} presses={presses} />
+              {cell.scrollablePage && (
+                // tabBarMinimizeBehavior only does anything while a scroll view under the bar is
+                // moving, so a minimize cell needs something to scroll. that something is a tall
+                // block of the backdrop colour and nothing else: any ink scrolled under the
+                // capsule would show through the glass and break the flat interior every capsule
+                // edge is measured against, so a scrolled cell would stop being measurable at
+                // exactly the offsets it exists to capture. the panel is pinned above the scroll
+                // view instead of riding inside it, which also keeps `Cell: <id>` on screen at
+                // every offset, so a capture can still prove which bundle it came from.
+                <ScrollView
+                  style={StyleSheet.absoluteFill}
+                  onScroll={(event) => setScrollOffset(event.nativeEvent.contentOffset.y)}
+                  scrollEventThrottle={16}
+                >
+                  <View style={styles.scrollBlock} />
+                </ScrollView>
+              )}
+              <Panel
+                cell={cell}
+                index={index}
+                onNext={onNext}
+                presses={presses}
+                scrollOffset={cell.scrollablePage ? scrollOffset : null}
+              />
             </View>
           </Swift.Tab>
         )
@@ -123,6 +155,8 @@ const styles = StyleSheet.create({
   // the panel stops well above the bar band the driver measures (y >= 700pt), so no fixture
   // ink can be mistaken for tab bar chrome.
   panel: { paddingTop: 80, paddingHorizontal: 20, gap: 8 },
+  // four screens tall, so a swipe has somewhere to go and the bar cannot run out of scroll
+  scrollBlock: { height: 3400, backgroundColor: ORACLE_BACKDROP },
   cellLabel: { fontSize: 20, fontWeight: '700', color: '#fff' },
   meta: { fontSize: 13, color: '#fff' },
   button: {
