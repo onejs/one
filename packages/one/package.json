@@ -279,7 +279,7 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.2",
     "react-test-renderer": "^19.2.0",
-    "rolldown": "^1.2.4",
+    "rolldown": "^1.2.8",
     "sharp": "^0.35.4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.0"

@@ -52,7 +52,7 @@
     "@jridgewell/trace-mapping": "^0.3.25",
     "@tamagui/build": "2.6.2",
     "depcheck": "^1.4.7",
-    "rolldown": "^1.2.4",
+    "rolldown": "^1.2.8",
     "vite": "^8.2.2",
     "vitest": "^4.1.0"
   },

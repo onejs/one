@@ -28,7 +28,7 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
     if (elementEnd === -1) return
     return source.slice(elementStart, elementEnd).match(/\bvalue="([^"]*)"/)?.[1]
   }
-  const waitForText = async (testId: string, expected: string) => {
+  const waitForText = async (testId: string, expected: string | undefined) => {
     await driver.waitUntil(
       async () => {
         try {
@@ -41,7 +41,10 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
       {
         timeout: 30_000,
         interval: 500,
-        timeoutMsg: `${testId} did not update to ${expected}`,
+        timeoutMsg:
+          expected === undefined
+            ? `${testId} did not leave the mounted tree`
+            : `${testId} did not update to ${expected}`,
       }
     )
   }
@@ -93,7 +96,13 @@ testRolldownDev(
         writeFile(childPath, originalChild),
         writeFile(workspacePath, originalWorkspace),
       ])
-      await closeSession(driver)
+      try {
+        await waitForText('route-hmr-version', 'route-v1')
+        await waitForText('component-hmr-version', 'component-v1')
+        await waitForText('workspace-hmr-version', 'workspace-v1')
+      } finally {
+        await closeSession(driver)
+      }
     }
   }
 )
@@ -126,18 +135,21 @@ export default function HmrAdded() {
 `
       )
 
-      // the app reloads onto the rebuilt bundle. wait until that bundle's
-      // route map contains the new file before asking the router to enter it;
-      // navigating earlier would intentionally select the catch-all route.
+      // a route-map rebuild reloads the app at its root. navigateTo waits for
+      // that fresh root to mount before entering the probe, which proves the
+      // restarted bundle contains the new route instead of reading the old
+      // screen while its reload is still pending.
+      await navigateTo(driver, '/hmr-probe')
       await waitForText('route-hmr-added', 'available')
       await navigateTo(driver, '/hmr-added')
       await waitForText('added-route-version', 'added-v1')
     } finally {
       await rm(addedRoutePath, { force: true })
       try {
-        // deleting a route replaces the rolldown engine. prove the replacement
-        // bundle mounted before ending this session so no later test inherits a
+        // deleting a route rebuilds the route map. prove the updated bundle
+        // mounted before ending this session so no later test inherits a
         // half-finished rebuild.
+        await waitForText('added-route-version', undefined)
         await navigateTo(driver, '/hmr-probe')
         await waitForText('route-hmr-version', 'route-v1')
         await waitForText('route-hmr-added', 'missing')
