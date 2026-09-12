@@ -21,10 +21,12 @@ per-tab entries, so there is nothing tree-side to read.
 Keyed the way rnx's own fixtures key, so the two tables diff with no mapping layer:
 
     tabs<N>[-search][-action][-badges<T>][-icononly][-labelonly<all|mid>][-longlabels]
-           [-min<behavior>][-sidebar]-sel<i>-<light|dark>
+           [-min<behavior>][-sidebar][-scroll][-more|-morerow<i>][-sweep]-sel<i>-<light|dark>
 
 `tabs<N>` counts page tabs in the main capsule and never counts a detached search tab.
-`-action`, `-icononly`, `-labelonly<all|mid>`, `-min<behavior>` and `-sidebar` are segments
+`-more` taps the More tab and measures what it presents; `-morerow<i>` goes on to select row `i`
+of that list. `-scroll` gives the page something to scroll and `-sweep` records a frame sequence
+through it. `-action`, `-icononly`, `-labelonly<all|mid>`, `-min<behavior>` and `-sidebar` are segments
 invented here for axes rnx's scheme does not cover; every other segment keeps rnx's meaning,
 order and position. Full definitions are in the header of `../fixtures/tab-bar-oracle-cells.ts`.
 
@@ -127,9 +129,9 @@ Skipped, with the reason each cannot interact:
   width, and an iPhone 16 in portrait is compact. Two tab counts are enough to show no effect;
   one would not be, since a single cell cannot distinguish "no effect" from "an effect that
   happens to cancel at three tabs".
-- **appearance x anything beyond the five dark twins.** Appearance changes materials and tints,
-  not layout. The dark twins are the check: each is compared against its light cell and any
-  geometric difference is reported.
+- **appearance, entirely.** The dark cells this table used to carry were light captures; see the
+  retraction below. Until the app stops forcing `UIUserInterfaceStyle = Light`, no cell here
+  measures appearance and none should be added.
 - **icon-only and label-only x tab count.** These change what ink exists inside a tab, which the
   tab count axis already measures. If glyph presence changed the track, the count cells would
   show it as a pitch change.
@@ -213,15 +215,71 @@ with the pill, the tab pitch and the glyph boxes byte-identical to the unbadged 
 tab count. The badge's left edge sits 8.6pt right of its glyph's ink centre;
 `BADGE_LEFT_FROM_ICON_CENTER` is 13.5.
 
-**Appearance does not move anything.** All five dark twins match their light cells to 0.0pt on
-every capsule edge.
+**RETRACTED: "appearance does not move anything".** That claim came from five dark cells that
+were never dark. Expo writes `UIUserInterfaceStyle = Light` into `Info.plist` unless `app.json`
+sets `ios.userInterfaceStyle: "automatic"`, and it does not, so the app rendered light under a
+device set to dark and each "dark twin" was its own light cell wearing a dark id. The five rows
+and their captures have been dropped rather than left in place with a caveat. The driver now
+refuses to record an appearance switch it cannot see: `setAppearance` reads the device's current
+mode, skips a no-op, and then requires more than 20% of the screen to repaint, which the app in
+its shipped configuration cannot do. Nothing in this table currently measures appearance.
+
+Removing the key from a copy of the installed bundle does make native chrome honour dark (RAN:
+the tab bar renders a dark capsule with white glyphs and a blue selected label). Making that
+permanent means changing `app.json` and rebuilding, which changes the app every other conformance
+suite runs against, so it is not this lane's call to make.
 
 **Minimize behavior and sidebarAdaptable do not move anything either**, at rest: all four
 minimize values and both sidebar cells match the baseline exactly. These have no rnx consumer.
+
+### Inside `More`
+
+Measured light, at four cells: `tabs6-more`, `tabs7-more`, `tabs5-search-more` and
+`tabs5-search-morerow0`. iOS draws the first four page tabs plus a More tab once a `Tabs` holds
+more than five; everything from the fifth onward goes inside.
+
+`More` is a pushed navigation destination, not a sheet. It is a full-screen list with its own
+inline "More" title and a per-row disclosure chevron, and selecting a row pushes a second level
+whose back button is titled "More". The bar stays visible underneath it the whole time.
+
+Row geometry, from the hairlines, cross-checked against the accessibility tree (the list
+publishes one node per row, so unlike the bar it has a genuine independent second method):
+
+| number | pixels | accessibility |
+| --- | --- | --- |
+| first row top | 177pt | 177pt |
+| row pitch | 55 / 56pt | 56pt |
+| separator inset, left | 49.7pt | - |
+| separator inset, right | 20pt | - |
+| glyph ink | 17x17pt, centre x 24.8pt | - |
+| label left | 51pt | - |
+| chevron | 7x12pt at x 365.3pt | - |
+
+The 1pt spread in the pixel pitch is the hairline sitting on the row's bottom edge, so a row
+measured hairline-to-hairline is one pixel short of the row the accessibility frame reports.
+
+A `role="search"` tab inside `More` appears as an ordinary row, labelled "Search", at the same
+pitch as every other row, with no search field, no magnifier affordance and no special position.
+
+**The overflow model is display-only. r27161 does not need a promotion rule.** Opening `More` and
+then selecting a row both leave the bar's five slots byte-identical: tab centres
+`[61.7, 128.9, 196.2, 263.3, 331.5]` and capsule `{x: 20.8, y: 769, width: 351, height: 62}` are
+the same at rest, with `More` open, and after a row is chosen. The selected tab is not promoted
+into a visible slot; the selection is shown inside `More`.
+
+One number in the table is deliberately untrusted: the capsule recorded while `More` is open reads
+35.7pt tall against 62pt at rest, and that is a measurement artifact, not a collapsing bar. The
+interior-plateau method needs the capsule to differ from what is behind it, and over the white
+list it does not. The rim trace still finds the same left and right edges as at rest (20.7 /
+372.3), and the accessibility tree reports the `Tab Bar` frame as `0, 769, 393, 83` with `More`
+open, identical to rest. Those rows carry `barMeasurementTrusted: false`.
 
 ### Numbers this table does not contain
 
 - Anything off the resting state. The oracle never scrolls, so it says nothing about what
   `onScrollDown` or `onScrollUp` do while scrolling, or about the minimized bar.
 - A frame for any glyph or label. Ink boxes only.
-- What is inside the `More` tab, or how its overflow list is laid out.
+- The overflow destination in dark. The tap that opens it is aimed from the resting bar
+  measurement, and in dark that measurement fails: the rim trace locks onto the selected tab's
+  pill, which has a visible edge in dark and none in light, so segmentation collapses to a single
+  slot. Light is measured; dark is not.

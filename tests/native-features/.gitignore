@@ -10,6 +10,8 @@ dist/
 *.jpg
 *.webp
 outcome.json
+# the oracle driver writes this beside its table when a wait times out, for debugging a run
+fail-snapshot.json
 
 # the tab bar oracle's captures are evidence, not run output: every number in
 # oracle/tab-bar-geometry.json was measured off them, so they are committed beside it.

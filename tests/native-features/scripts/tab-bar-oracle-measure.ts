@@ -548,3 +548,182 @@ export function selectionIndicator(
     color,
   }
 }
+
+export type OverflowRow = {
+  /** the row's own band, from its top separator to the top of the next one */
+  rect: Box
+  /** ink left of the separator inset: the row's leading symbol */
+  glyph: Box | null
+  /** ink between the separator inset and the disclosure chevron */
+  label: Box | null
+  /** the trailing disclosure chevron, found by position rather than by ordinal */
+  chevron: Box | null
+  glyphCenterXPt: number | null
+  glyphCenterYPt: number | null
+  labelLeftPt: number | null
+  labelCenterYPt: number | null
+  rowCenterYPt: number
+}
+
+export type OverflowList = {
+  /** the flat colour the list is drawn on */
+  background: RGB
+  /** the list's own hairlines, top-most first; height is the hairline's own thickness */
+  separators: Box[]
+  /** hairlines in the band that are not the list's, such as a navigation bar's bottom rule */
+  otherRules: Box[]
+  separatorInsetLeftPt: number | null
+  separatorInsetRightPt: number | null
+  rows: OverflowRow[]
+  rowPitchPt: (number | null)[]
+}
+
+/**
+ * the list the More tab presents. independent variable: the separator hairlines, which are the
+ * only thing in a plain iOS list that marks a row boundary in pixels. a null result (no
+ * hairline anywhere in the search band) proves More presented no list at all, which is what a
+ * sheet or a plain page would look like and is worth telling apart from an empty list.
+ *
+ * rows are bounded by hairlines rather than by ink, so a row with no glyph still has a rect.
+ * within a row the separator's own left inset splits leading symbol from label, so neither
+ * boundary comes from guessing which cluster is which.
+ */
+export function overflowList(
+  capture: Capture,
+  fromPt: number,
+  toPt: number
+): OverflowList | null {
+  const sc = capture.scale
+  const from = Math.round(fromPt * sc)
+  const to = Math.min(capture.height, Math.round(toPt * sc))
+
+  // the list background is the most common colour in the band, which a hairline a single point
+  // tall cannot outvote
+  const tally = new Map<string, number>()
+  for (let y = from; y < to; y += 2)
+    for (let x = 0; x < capture.width; x += 2) {
+      const key = capture.px(x, y).join(',')
+      tally.set(key, (tally.get(key) ?? 0) + 1)
+    }
+  const background = [...tally.entries()].sort((a, b) => b[1] - a[1])[0][0]
+    .split(',')
+    .map(Number) as RGB
+
+  // a hairline row is one long run of a single colour that is not the background. requiring the
+  // run rather than just a count is what keeps a row of text from passing as a separator.
+  type Line = { y: number; from: number; to: number; color: RGB }
+  const lines: Line[] = []
+  for (let y = from; y < to; y++) {
+    const counts = new Map<string, number>()
+    for (let x = 0; x < capture.width; x++) {
+      const c = capture.px(x, y)
+      if (dist(c, background) <= 10) continue
+      const key = c.join(',')
+      counts.set(key, (counts.get(key) ?? 0) + 1)
+    }
+    const best = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]
+    if (!best || best[1] < capture.width * 0.5) continue
+    const color = best[0].split(',').map(Number) as RGB
+    const flags = new Array(capture.width)
+    for (let x = 0; x < capture.width; x++) flags[x] = dist(capture.px(x, y), color) <= 10
+    const run = runs(flags, Math.round(capture.width * 0.5)).sort(
+      (a, b) => b.to - b.from - (a.to - a.from)
+    )[0]
+    if (run) lines.push({ y, from: run.from, to: run.to, color })
+  }
+  if (!lines.length) return null
+
+  // consecutive hairline rows are one hairline; its thickness is how many rows it spans
+  const merged: Box[] = []
+  for (const line of lines) {
+    const last = merged[merged.length - 1]
+    if (last && Math.abs(line.y / sc - (last.y + last.height)) < 0.5) {
+      last.height = round1(line.y / sc + 1 / sc - last.y)
+      continue
+    }
+    merged.push({
+      x: capture.pt(line.from),
+      y: capture.pt(line.y),
+      width: capture.pt(line.to + 1 - line.from),
+      height: round1(1 / sc),
+    })
+  }
+  // every hairline belonging to one list shares that list's inset, and the hairlines that do
+  // not belong to it do not: the navigation bar's own bottom rule spans a different width. so
+  // the list is the largest group of hairlines that agree on inset, and a lone rule of some
+  // other width is excluded by measurement rather than by a hardcoded y to start below.
+  const groups = new Map<string, Box[]>()
+  for (const line of merged) {
+    const key = `${Math.round(line.x)}:${Math.round(line.width)}`
+    groups.set(key, [...(groups.get(key) ?? []), line])
+  }
+  const separators = [...groups.values()].sort((a, b) => b.length - a.length)[0] ?? []
+  if (separators.length < 2) return null
+  const separatorInsetLeftPt = separators[0].x
+  const separatorInsetRightPt = round1(
+    SCREEN_PT.width - (separators[0].x + separators[0].width)
+  )
+
+  const box = (points: { x: number; y: number }[]): Box | null => {
+    if (!points.length) return null
+    const xs = points.map((p) => p.x)
+    const ys = points.map((p) => p.y)
+    const x0 = Math.min(...xs)
+    const y0 = Math.min(...ys)
+    return {
+      x: capture.pt(x0),
+      y: capture.pt(y0),
+      width: capture.pt(Math.max(...xs) + 1 - x0),
+      height: capture.pt(Math.max(...ys) + 1 - y0),
+    }
+  }
+
+  const rows: OverflowRow[] = []
+  for (let index = 0; index + 1 < separators.length; index++) {
+    const topSep = separators[index]
+    const nextSep = separators[index + 1]
+    const rect: Box = {
+      x: 0,
+      y: topSep.y,
+      width: SCREEN_PT.width,
+      height: round1(nextSep.y - topSep.y),
+    }
+    // stay clear of both hairlines and of their antialiasing
+    const top = Math.round((topSep.y + topSep.height) * sc) + 1
+    const bottom = Math.round(nextSep.y * sc) - 1
+    const ink: { x: number; y: number }[] = []
+    for (let y = top; y < bottom; y++)
+      for (let x = 0; x < capture.width; x++)
+        if (dist(capture.px(x, y), background) > 40) ink.push({ x, y })
+
+    const insetX = separatorInsetLeftPt === null ? 0 : separatorInsetLeftPt * sc
+    const glyph = box(ink.filter((p) => p.x < insetX - 1))
+    // the chevron is the ink nearest the trailing content edge, which the separator gives
+    // independently of how wide the label happens to be
+    const trailing = (separatorInsetRightPt ?? 0) * sc
+    const chevronFrom = capture.width - trailing - Math.round(16 * sc)
+    const chevron = box(ink.filter((p) => p.x >= chevronFrom))
+    const label = box(ink.filter((p) => p.x >= insetX - 1 && p.x < chevronFrom))
+    rows.push({
+      rect,
+      glyph,
+      label,
+      chevron,
+      glyphCenterXPt: glyph ? round1(glyph.x + glyph.width / 2) : null,
+      glyphCenterYPt: glyph ? round1(glyph.y + glyph.height / 2) : null,
+      labelLeftPt: label ? label.x : null,
+      labelCenterYPt: label ? round1(label.y + label.height / 2) : null,
+      rowCenterYPt: round1(rect.y + rect.height / 2),
+    })
+  }
+
+  return {
+    background,
+    separators,
+    otherRules: merged.filter((line) => !separators.includes(line)),
+    separatorInsetLeftPt,
+    separatorInsetRightPt,
+    rows,
+    rowPitchPt: rows.slice(1).map((row, index) => round1(row.rect.y - rows[index].rect.y)),
+  }
+}

@@ -2,13 +2,15 @@
   "generatedBy": "tests/native-features/scripts/tab-bar-oracle.ts",
   "device": "iPhone 16, 393x852pt, 3x",
   "units": "points, origin top-left of the screen",
-  "captures": "captures/<id>.png is the bar band of the full capture, cropped at captureOriginPt; every number in the cell is in full-screen coordinates",
+  "captures": "captures/<id>.png is the bar band of the full capture, cropped at captureOriginPt; an overflow capture is the whole screen. every number in the cell is in full-screen coordinates",
   "fixture": "tests/native-features/app/one-native-tab-oracle.tsx (full screen, no container inset)",
   "methods": {
     "rim-trace": "a capsule top edge is a luminance trough followed by a spike; owns rect.y and cross-checks left/right",
     "interior-plateau": "the capsule interior is one exact flat value; an edge is where a row leaves it. owns rect.x, width and height",
     "ink": "glyph and label pixels, which measure each tab centre twice from two independent inks",
-    "second-flat-colour": "the selection indicator is the largest non-interior, non-ink flat colour inside the capsule"
+    "second-flat-colour": "the selection indicator is the largest non-interior, non-ink flat colour inside the capsule",
+    "hairline-trace": "the overflow list's row boundaries are its separator hairlines, grouped by the inset they share so a navigation bar's own rule cannot join them",
+    "accessibility": "the overflow list publishes a node per row, so its row frames are a second reading of the same rows that shares no step with the hairline trace. the bar publishes one opaque Tab Bar group and nothing per tab, which is why no bar number comes from it"
   },
   "cells": [
     {
@@ -7052,171 +7054,9 @@
       ]
     },
     {
-      "id": "tabs3-sel0-dark",
-      "axis": "appearance",
-      "note": "dark twin of the baseline",
-      "spec": {
-        "tabs": [
-          {
-            "id": "p1",
-            "title": "First",
-            "systemImage": "1.circle"
-          },
-          {
-            "id": "p2",
-            "title": "Second",
-            "systemImage": "2.circle"
-          },
-          {
-            "id": "p3",
-            "title": "Third",
-            "systemImage": "3.circle"
-          }
-        ],
-        "selectedIndex": 0,
-        "appearance": "dark",
-        "tabBarMinimizeBehavior": "never",
-        "sidebarAdaptable": false
-      },
-      "capture": "captures/tabs3-sel0-dark.png",
-      "captureOriginPt": {
-        "x": 0,
-        "y": 700
-      },
-      "screenPt": {
-        "width": 393,
-        "height": 852
-      },
-      "pageContentBottomPt": 769,
-      "mainCapsule": {
-        "rect": {
-          "x": 59.8,
-          "y": 769,
-          "width": 274,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 59.7,
-          "rimRight": 334.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 6
-      },
-      "detachedCapsule": null,
-      "detachedGapPt": null,
-      "detachedTrailingMarginPt": null,
-      "mainTrailingMarginPt": 59.2,
-      "selectionIndicator": {
-        "rect": {
-          "x": 65,
-          "y": 774,
-          "width": 89.3,
-          "height": 49.7
-        },
-        "color": [
-          235,
-          235,
-          235
-        ],
-        "method": "second-flat-colour"
-      },
-      "detachedSelectionIndicator": null,
-      "tabCentersPt": [
-        110.7,
-        196.7,
-        282.7
-      ],
-      "mainCapsuleCenterYPt": 800,
-      "glyphOffsetFromCapsuleCenterPt": [
-        -7.1,
-        -7.1,
-        -7.1
-      ],
-      "tabPitchPt": [
-        86,
-        86
-      ],
-      "tabCenterGlyphVsLabelPt": [
-        0.7,
-        0.5,
-        0
-      ],
-      "mainTabs": [
-        {
-          "glyph": {
-            "x": 99,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 100.7,
-            "y": 810,
-            "width": 21.3,
-            "height": 8
-          },
-          "glyphCenterX": 110.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 111.4,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 185,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 178.3,
-            "y": 810.3,
-            "width": 35.7,
-            "height": 7.7
-          },
-          "glyphCenterX": 196.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 196.2,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 271,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 270.3,
-            "y": 810,
-            "width": 24.7,
-            "height": 8
-          },
-          "glyphCenterX": 282.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 282.7,
-          "labelsTouch": false,
-          "badge": null
-        }
-      ],
-      "detachedTabs": []
-    },
-    {
-      "id": "tabs5-sel0-dark",
-      "axis": "appearance",
-      "note": "dark twin of 5 page tabs",
+      "id": "tabs6-sel0-light",
+      "axis": "pageTabCount past the overflow threshold",
+      "note": "6 page tabs, nothing detached, at rest. more tabs than slots, so a More tab appears",
       "spec": {
         "tabs": [
           {
@@ -7243,14 +7083,20 @@
             "id": "p5",
             "title": "Fifth",
             "systemImage": "5.circle"
+          },
+          {
+            "id": "p6",
+            "title": "Sixth",
+            "systemImage": "6.circle"
           }
         ],
         "selectedIndex": 0,
-        "appearance": "dark",
+        "appearance": "light",
         "tabBarMinimizeBehavior": "never",
         "sidebarAdaptable": false
       },
-      "capture": "captures/tabs5-sel0-dark.png",
+      "capture": "captures/tabs6-sel0-light.png",
+      "barMeasurementTrusted": true,
       "captureOriginPt": {
         "x": 0,
         "y": 700
@@ -7309,7 +7155,7 @@
         128.9,
         196.2,
         263.3,
-        330.7
+        331.5
       ],
       "mainCapsuleCenterYPt": 800,
       "glyphOffsetFromCapsuleCenterPt": [
@@ -7317,20 +7163,20 @@
         -7.1,
         -7.1,
         -7.1,
-        -7.1
+        -6.8
       ],
       "tabPitchPt": [
         67.2,
         67.3,
         67.1,
-        67.4
+        68.2
       ],
       "tabCenterGlyphVsLabelPt": [
         0.7,
         0.3,
         0,
         0.7,
-        0.6
+        0.9
       ],
       "mainTabs": [
         {
@@ -7411,20 +7257,20 @@
         },
         {
           "glyph": {
-            "x": 319,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
+            "x": 321,
+            "y": 791,
+            "width": 21,
+            "height": 4.3
           },
           "label": {
-            "x": 320.7,
-            "y": 810,
-            "width": 21.3,
-            "height": 7.7
+            "x": 318.7,
+            "y": 810.7,
+            "width": 23.7,
+            "height": 7.3
           },
-          "glyphCenterX": 330.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 331.3,
+          "glyphCenterX": 331.5,
+          "glyphCenterY": 793.2,
+          "labelCenterX": 330.6,
           "labelsTouch": false,
           "badge": null
         }
@@ -7432,9 +7278,9 @@
       "detachedTabs": []
     },
     {
-      "id": "tabs3-search-sel0-dark",
-      "axis": "appearance",
-      "note": "dark twin of the search page tab cell",
+      "id": "tabs7-sel0-light",
+      "axis": "pageTabCount past the overflow threshold",
+      "note": "7 page tabs, nothing detached, at rest. more tabs than slots, so a More tab appears",
       "spec": {
         "tabs": [
           {
@@ -7451,6 +7297,1647 @@
             "id": "p3",
             "title": "Third",
             "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "p6",
+            "title": "Sixth",
+            "systemImage": "6.circle"
+          },
+          {
+            "id": "p7",
+            "title": "Seventh",
+            "systemImage": "7.circle"
+          }
+        ],
+        "selectedIndex": 0,
+        "appearance": "light",
+        "tabBarMinimizeBehavior": "never",
+        "sidebarAdaptable": false
+      },
+      "capture": "captures/tabs7-sel0-light.png",
+      "barMeasurementTrusted": true,
+      "captureOriginPt": {
+        "x": 0,
+        "y": 700
+      },
+      "screenPt": {
+        "width": 393,
+        "height": 852
+      },
+      "pageContentBottomPt": 769,
+      "mainCapsule": {
+        "rect": {
+          "x": 20.8,
+          "y": 769,
+          "width": 351,
+          "height": 62
+        },
+        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+        "crossCheckPt": {
+          "rimLeft": 20.7,
+          "rimRight": 372.3,
+          "membershipTop": 769
+        },
+        "disagreementPt": {
+          "left": 0.1,
+          "right": 0.5,
+          "top": 0
+        },
+        "interiorColor": [
+          253,
+          253,
+          253
+        ],
+        "interiorOverBackground": 3
+      },
+      "detachedCapsule": null,
+      "detachedGapPt": null,
+      "detachedTrailingMarginPt": null,
+      "mainTrailingMarginPt": 21.2,
+      "selectionIndicator": {
+        "rect": {
+          "x": 26,
+          "y": 774,
+          "width": 69.7,
+          "height": 49.7
+        },
+        "color": [
+          235,
+          235,
+          235
+        ],
+        "method": "second-flat-colour"
+      },
+      "detachedSelectionIndicator": null,
+      "tabCentersPt": [
+        61.7,
+        128.9,
+        196.2,
+        263.3,
+        331.5
+      ],
+      "mainCapsuleCenterYPt": 800,
+      "glyphOffsetFromCapsuleCenterPt": [
+        -7.1,
+        -7.1,
+        -7.1,
+        -7.1,
+        -6.8
+      ],
+      "tabPitchPt": [
+        67.2,
+        67.3,
+        67.1,
+        68.2
+      ],
+      "tabCenterGlyphVsLabelPt": [
+        0.7,
+        0.3,
+        0,
+        0.7,
+        0.9
+      ],
+      "mainTabs": [
+        {
+          "glyph": {
+            "x": 50,
+            "y": 781.3,
+            "width": 23.3,
+            "height": 23.3
+          },
+          "label": {
+            "x": 51.7,
+            "y": 810,
+            "width": 21.3,
+            "height": 8
+          },
+          "glyphCenterX": 61.7,
+          "glyphCenterY": 792.9,
+          "labelCenterX": 62.4,
+          "labelsTouch": false,
+          "badge": null
+        },
+        {
+          "glyph": {
+            "x": 117,
+            "y": 781.3,
+            "width": 23.7,
+            "height": 23.3
+          },
+          "label": {
+            "x": 110.7,
+            "y": 810.3,
+            "width": 35.7,
+            "height": 7.7
+          },
+          "glyphCenterX": 128.9,
+          "glyphCenterY": 792.9,
+          "labelCenterX": 128.6,
+          "labelsTouch": false,
+          "badge": null
+        },
+        {
+          "glyph": {
+            "x": 184.3,
+            "y": 781.3,
+            "width": 23.7,
+            "height": 23.3
+          },
+          "label": {
+            "x": 183.7,
+            "y": 810,
+            "width": 25,
+            "height": 8
+          },
+          "glyphCenterX": 196.2,
+          "glyphCenterY": 792.9,
+          "labelCenterX": 196.2,
+          "labelsTouch": false,
+          "badge": null
+        },
+        {
+          "glyph": {
+            "x": 251.7,
+            "y": 781.3,
+            "width": 23.3,
+            "height": 23.3
+          },
+          "label": {
+            "x": 248.3,
+            "y": 810.3,
+            "width": 31.3,
+            "height": 7.7
+          },
+          "glyphCenterX": 263.3,
+          "glyphCenterY": 792.9,
+          "labelCenterX": 264,
+          "labelsTouch": false,
+          "badge": null
+        },
+        {
+          "glyph": {
+            "x": 321,
+            "y": 791,
+            "width": 21,
+            "height": 4.3
+          },
+          "label": {
+            "x": 318.7,
+            "y": 810.7,
+            "width": 23.7,
+            "height": 7.3
+          },
+          "glyphCenterX": 331.5,
+          "glyphCenterY": 793.2,
+          "labelCenterX": 330.6,
+          "labelsTouch": false,
+          "badge": null
+        }
+      ],
+      "detachedTabs": []
+    },
+    {
+      "id": "tabs6-more-sel0-light",
+      "axis": "overflow contents",
+      "note": "6 page tabs, the More tab tapped. which tabs kept a slot and which went into the list",
+      "spec": {
+        "tabs": [
+          {
+            "id": "p1",
+            "title": "First",
+            "systemImage": "1.circle"
+          },
+          {
+            "id": "p2",
+            "title": "Second",
+            "systemImage": "2.circle"
+          },
+          {
+            "id": "p3",
+            "title": "Third",
+            "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "p6",
+            "title": "Sixth",
+            "systemImage": "6.circle"
+          }
+        ],
+        "selectedIndex": 0,
+        "appearance": "light",
+        "tabBarMinimizeBehavior": "never",
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "more"
+        }
+      },
+      "atRest": {
+        "id": "tabs6-more-sel0-light",
+        "axis": "overflow contents",
+        "note": "6 page tabs, the More tab tapped. which tabs kept a slot and which went into the list",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "p6",
+              "title": "Sixth",
+              "systemImage": "6.circle"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "light",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs6-more-sel0-light-rest.png",
+        "barMeasurementTrusted": true,
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
+          },
+          "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "crossCheckPt": {
+            "rimLeft": 20.7,
+            "rimRight": 372.3,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": 0.1,
+            "right": 0.5,
+            "top": 0
+          },
+          "interiorColor": [
+            253,
+            253,
+            253
+          ],
+          "interiorOverBackground": 3
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774,
+            "width": 69.7,
+            "height": 49.7
+          },
+          "color": [
+            235,
+            235,
+            235
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          128.9,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.2,
+          67.3,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.3,
+          0,
+          0.7,
+          0.9
+        ],
+        "mainTabs": [
+          {
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 117,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 128.9,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 25,
+              "height": 8
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196.2,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31.3,
+              "height": 7.7
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 264,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
+          }
+        ],
+        "detachedTabs": []
+      },
+      "moreOpen": {
+        "capture": "captures/tabs6-more-sel0-light-more.png",
+        "bar": {
+          "id": "tabs6-more-sel0-light",
+          "axis": "overflow contents",
+          "note": "6 page tabs, the More tab tapped. which tabs kept a slot and which went into the list",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "p6",
+                "title": "Sixth",
+                "systemImage": "6.circle"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "light",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs6-more-sel0-light-more.png",
+          "barMeasurementTrusted": false,
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 785.7,
+          "mainCapsule": {
+            "rect": {
+              "x": 23.2,
+              "y": 769,
+              "width": 346.6,
+              "height": 35.7
+            },
+            "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "crossCheckPt": {
+              "rimLeft": 20.7,
+              "rimRight": 372.3,
+              "membershipTop": 798.3
+            },
+            "disagreementPt": {
+              "left": 2.5,
+              "right": 2.5,
+              "top": 29.3
+            },
+            "interiorColor": [
+              255,
+              255,
+              255
+            ],
+            "interiorOverBackground": 3
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 23.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774,
+              "width": 72,
+              "height": 30.7
+            },
+            "color": [
+              237,
+              237,
+              237
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            128.9,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 786.9,
+          "glyphOffsetFromCapsuleCenterPt": [
+            4.5,
+            4.5,
+            4.5,
+            4.5,
+            6.4
+          ],
+          "tabPitchPt": [
+            67.2,
+            67.3,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 128.9,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": null,
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "separators": [
+            {
+              "x": 49.7,
+              "y": 177,
+              "width": 323.3,
+              "height": 1
+            },
+            {
+              "x": 49.7,
+              "y": 232,
+              "width": 323.3,
+              "height": 1
+            },
+            {
+              "x": 49.7,
+              "y": 288,
+              "width": 323.3,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 106.3,
+              "y": 113,
+              "width": 286.7,
+              "height": 0.3
+            }
+          ],
+          "separatorInsetLeftPt": 49.7,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.3,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 24.8,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 16.3,
+                "y": 252.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 50.7,
+                "y": 254.7,
+                "width": 36.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 24.8,
+              "glyphCenterYPt": 260.8,
+              "labelLeftPt": 50.7,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            }
+          ],
+          "rowPitchPt": [
+            55
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Sixth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "afterSelectingRow": null,
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": null
+    },
+    {
+      "id": "tabs7-more-sel0-light",
+      "axis": "overflow contents",
+      "note": "7 page tabs, the More tab tapped. a third row is what gives the row pitch a second gap",
+      "spec": {
+        "tabs": [
+          {
+            "id": "p1",
+            "title": "First",
+            "systemImage": "1.circle"
+          },
+          {
+            "id": "p2",
+            "title": "Second",
+            "systemImage": "2.circle"
+          },
+          {
+            "id": "p3",
+            "title": "Third",
+            "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "p6",
+            "title": "Sixth",
+            "systemImage": "6.circle"
+          },
+          {
+            "id": "p7",
+            "title": "Seventh",
+            "systemImage": "7.circle"
+          }
+        ],
+        "selectedIndex": 0,
+        "appearance": "light",
+        "tabBarMinimizeBehavior": "never",
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "more"
+        }
+      },
+      "atRest": {
+        "id": "tabs7-more-sel0-light",
+        "axis": "overflow contents",
+        "note": "7 page tabs, the More tab tapped. a third row is what gives the row pitch a second gap",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "p6",
+              "title": "Sixth",
+              "systemImage": "6.circle"
+            },
+            {
+              "id": "p7",
+              "title": "Seventh",
+              "systemImage": "7.circle"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "light",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs7-more-sel0-light-rest.png",
+        "barMeasurementTrusted": true,
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
+          },
+          "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "crossCheckPt": {
+            "rimLeft": 20.7,
+            "rimRight": 372.3,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": 0.1,
+            "right": 0.5,
+            "top": 0
+          },
+          "interiorColor": [
+            253,
+            253,
+            253
+          ],
+          "interiorOverBackground": 3
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774,
+            "width": 69.7,
+            "height": 49.7
+          },
+          "color": [
+            235,
+            235,
+            235
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          128.9,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.2,
+          67.3,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.3,
+          0,
+          0.7,
+          0.9
+        ],
+        "mainTabs": [
+          {
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 117,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 128.9,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 25,
+              "height": 8
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196.2,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31.3,
+              "height": 7.7
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 264,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
+          }
+        ],
+        "detachedTabs": []
+      },
+      "moreOpen": {
+        "capture": "captures/tabs7-more-sel0-light-more.png",
+        "bar": {
+          "id": "tabs7-more-sel0-light",
+          "axis": "overflow contents",
+          "note": "7 page tabs, the More tab tapped. a third row is what gives the row pitch a second gap",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "p6",
+                "title": "Sixth",
+                "systemImage": "6.circle"
+              },
+              {
+                "id": "p7",
+                "title": "Seventh",
+                "systemImage": "7.circle"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "light",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs7-more-sel0-light-more.png",
+          "barMeasurementTrusted": false,
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 785.7,
+          "mainCapsule": {
+            "rect": {
+              "x": 23.2,
+              "y": 769,
+              "width": 346.6,
+              "height": 35.7
+            },
+            "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "crossCheckPt": {
+              "rimLeft": 20.7,
+              "rimRight": 372.3,
+              "membershipTop": 798.3
+            },
+            "disagreementPt": {
+              "left": 2.5,
+              "right": 2.5,
+              "top": 29.3
+            },
+            "interiorColor": [
+              255,
+              255,
+              255
+            ],
+            "interiorOverBackground": 3
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 23.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774,
+              "width": 72,
+              "height": 30.7
+            },
+            "color": [
+              237,
+              237,
+              237
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            128.9,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 786.9,
+          "glyphOffsetFromCapsuleCenterPt": [
+            4.5,
+            4.5,
+            4.5,
+            4.5,
+            6.4
+          ],
+          "tabPitchPt": [
+            67.2,
+            67.3,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 128.9,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": null,
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "separators": [
+            {
+              "x": 49.7,
+              "y": 177,
+              "width": 323.3,
+              "height": 1
+            },
+            {
+              "x": 49.7,
+              "y": 232,
+              "width": 323.3,
+              "height": 1
+            },
+            {
+              "x": 49.7,
+              "y": 288,
+              "width": 323.3,
+              "height": 1
+            },
+            {
+              "x": 49.7,
+              "y": 344,
+              "width": 323.3,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 106.3,
+              "y": 113,
+              "width": 286.7,
+              "height": 0.3
+            }
+          ],
+          "separatorInsetLeftPt": 49.7,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.3,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 24.8,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 16.3,
+                "y": 252.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 50.7,
+                "y": 254.7,
+                "width": 36.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 24.8,
+              "glyphCenterYPt": 260.8,
+              "labelLeftPt": 50.7,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 288,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 16.3,
+                "y": 308.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 50.7,
+                "y": 310.7,
+                "width": 60.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 311,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 24.8,
+              "glyphCenterYPt": 316.8,
+              "labelLeftPt": 50.7,
+              "labelCenterYPt": 317.2,
+              "rowCenterYPt": 316
+            }
+          ],
+          "rowPitchPt": [
+            55,
+            56
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Sixth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Seventh",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 289,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "afterSelectingRow": null,
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": null
+    },
+    {
+      "id": "tabs5-search-more-sel0-light",
+      "axis": "overflow contents x detachedSearchPage",
+      "note": "5 page tabs plus a search page tab, the More tab tapped. whether the search tab keeps any search affordance in the list or becomes an ordinary row",
+      "spec": {
+        "tabs": [
+          {
+            "id": "p1",
+            "title": "First",
+            "systemImage": "1.circle"
+          },
+          {
+            "id": "p2",
+            "title": "Second",
+            "systemImage": "2.circle"
+          },
+          {
+            "id": "p3",
+            "title": "Third",
+            "systemImage": "3.circle"
+          },
+          {
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
           },
           {
             "id": "search",
@@ -7460,188 +8947,643 @@
           }
         ],
         "selectedIndex": 0,
-        "appearance": "dark",
+        "appearance": "light",
         "tabBarMinimizeBehavior": "never",
-        "sidebarAdaptable": false
-      },
-      "capture": "captures/tabs3-search-sel0-dark.png",
-      "captureOriginPt": {
-        "x": 0,
-        "y": 700
-      },
-      "screenPt": {
-        "width": 393,
-        "height": 852
-      },
-      "pageContentBottomPt": 769,
-      "mainCapsule": {
-        "rect": {
-          "x": 20.8,
-          "y": 769,
-          "width": 281,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 20.7,
-          "rimRight": 302.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 3
-      },
-      "detachedCapsule": {
-        "rect": {
-          "x": 309.8,
-          "y": 769,
-          "width": 62,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 309.7,
-          "rimRight": 372.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 3
-      },
-      "detachedGapPt": 8,
-      "detachedTrailingMarginPt": 21.2,
-      "mainTrailingMarginPt": 91.2,
-      "selectionIndicator": {
-        "rect": {
-          "x": 26,
-          "y": 774,
-          "width": 93.7,
-          "height": 49.7
-        },
-        "color": [
-          235,
-          235,
-          235
-        ],
-        "method": "second-flat-colour"
-      },
-      "detachedSelectionIndicator": null,
-      "tabCentersPt": [
-        73.7,
-        161.4,
-        249
-      ],
-      "mainCapsuleCenterYPt": 800,
-      "glyphOffsetFromCapsuleCenterPt": [
-        -7.1,
-        -7.1,
-        -7.1
-      ],
-      "tabPitchPt": [
-        87.7,
-        87.6
-      ],
-      "tabCenterGlyphVsLabelPt": [
-        0.7,
-        0.5,
-        0.1
-      ],
-      "mainTabs": [
-        {
-          "glyph": {
-            "x": 62,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 63.7,
-            "y": 810,
-            "width": 21.3,
-            "height": 8
-          },
-          "glyphCenterX": 73.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 74.4,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 149.7,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 143,
-            "y": 810.3,
-            "width": 35.7,
-            "height": 7.7
-          },
-          "glyphCenterX": 161.4,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 160.9,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 237.3,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 236.7,
-            "y": 810,
-            "width": 24.7,
-            "height": 8
-          },
-          "glyphCenterX": 249,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 249.1,
-          "labelsTouch": false,
-          "badge": null
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "more"
         }
-      ],
-      "detachedTabs": [
-        {
-          "glyph": {
-            "x": 329.7,
-            "y": 788.7,
-            "width": 22.7,
-            "height": 22.7
+      },
+      "atRest": {
+        "id": "tabs5-search-more-sel0-light",
+        "axis": "overflow contents x detachedSearchPage",
+        "note": "5 page tabs plus a search page tab, the More tab tapped. whether the search tab keeps any search affordance in the list or becomes an ordinary row",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "search",
+              "title": "Search",
+              "systemImage": "magnifyingglass",
+              "role": "search"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "light",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs5-search-more-sel0-light-rest.png",
+        "barMeasurementTrusted": true,
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
           },
-          "label": null,
-          "glyphCenterX": 341.1,
-          "glyphCenterY": 800.1,
-          "labelCenterX": null,
-          "labelsTouch": false,
-          "badge": null
-        }
-      ]
+          "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "crossCheckPt": {
+            "rimLeft": 20.7,
+            "rimRight": 372.3,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": 0.1,
+            "right": 0.5,
+            "top": 0
+          },
+          "interiorColor": [
+            253,
+            253,
+            253
+          ],
+          "interiorOverBackground": 3
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774,
+            "width": 69.7,
+            "height": 49.7
+          },
+          "color": [
+            235,
+            235,
+            235
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          128.9,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.2,
+          67.3,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.3,
+          0,
+          0.7,
+          0.9
+        ],
+        "mainTabs": [
+          {
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 117,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 128.9,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 25,
+              "height": 8
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196.2,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31.3,
+              "height": 7.7
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 264,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
+          }
+        ],
+        "detachedTabs": []
+      },
+      "moreOpen": {
+        "capture": "captures/tabs5-search-more-sel0-light-more.png",
+        "bar": {
+          "id": "tabs5-search-more-sel0-light",
+          "axis": "overflow contents x detachedSearchPage",
+          "note": "5 page tabs plus a search page tab, the More tab tapped. whether the search tab keeps any search affordance in the list or becomes an ordinary row",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "light",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs5-search-more-sel0-light-more.png",
+          "barMeasurementTrusted": false,
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 785.7,
+          "mainCapsule": {
+            "rect": {
+              "x": 23.2,
+              "y": 769,
+              "width": 346.6,
+              "height": 35.7
+            },
+            "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "crossCheckPt": {
+              "rimLeft": 20.7,
+              "rimRight": 372.3,
+              "membershipTop": 798.3
+            },
+            "disagreementPt": {
+              "left": 2.5,
+              "right": 2.5,
+              "top": 29.3
+            },
+            "interiorColor": [
+              255,
+              255,
+              255
+            ],
+            "interiorOverBackground": 3
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 23.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774,
+              "width": 72,
+              "height": 30.7
+            },
+            "color": [
+              237,
+              237,
+              237
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            128.9,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 786.9,
+          "glyphOffsetFromCapsuleCenterPt": [
+            4.5,
+            4.5,
+            4.5,
+            4.5,
+            6.4
+          ],
+          "tabPitchPt": [
+            67.2,
+            67.3,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 128.9,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": null,
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "separators": [
+            {
+              "x": 50.3,
+              "y": 177,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 232,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 288,
+              "width": 322.7,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 106.3,
+              "y": 113,
+              "width": 286.7,
+              "height": 0.3
+            }
+          ],
+          "separatorInsetLeftPt": 50.3,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.7,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51.7,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51.7,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 17,
+                "y": 253,
+                "width": 16.3,
+                "height": 16.3
+              },
+              "label": {
+                "x": 51.3,
+                "y": 254.7,
+                "width": 51.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 261.2,
+              "labelLeftPt": 51.3,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            }
+          ],
+          "rowPitchPt": [
+            55
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Search",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "afterSelectingRow": null,
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": null
     },
     {
-      "id": "tabs3-search-action-sel0-dark",
-      "axis": "appearance",
-      "note": "dark twin of the search action tab cell",
+      "id": "tabs5-search-morerow0-sel0-light",
+      "axis": "overflow selection",
+      "note": "the first row of the overflow list tapped. whether the chosen tab swaps into a visible slot, or the bar keeps its slots with the selection shown inside More",
       "spec": {
         "tabs": [
           {
@@ -7660,359 +9602,953 @@
             "systemImage": "3.circle"
           },
           {
-            "id": "compose",
-            "title": "Compose",
-            "systemImage": "plus",
-            "role": "search",
-            "action": true
+            "id": "p4",
+            "title": "Fourth",
+            "systemImage": "4.circle"
+          },
+          {
+            "id": "p5",
+            "title": "Fifth",
+            "systemImage": "5.circle"
+          },
+          {
+            "id": "search",
+            "title": "Search",
+            "systemImage": "magnifyingglass",
+            "role": "search"
           }
         ],
         "selectedIndex": 0,
-        "appearance": "dark",
+        "appearance": "light",
         "tabBarMinimizeBehavior": "never",
-        "sidebarAdaptable": false
-      },
-      "capture": "captures/tabs3-search-action-sel0-dark.png",
-      "captureOriginPt": {
-        "x": 0,
-        "y": 700
-      },
-      "screenPt": {
-        "width": 393,
-        "height": 852
-      },
-      "pageContentBottomPt": 769,
-      "mainCapsule": {
-        "rect": {
-          "x": 20.8,
-          "y": 769,
-          "width": 281,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 20.7,
-          "rimRight": 302.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 3
-      },
-      "detachedCapsule": {
-        "rect": {
-          "x": 309.8,
-          "y": 769,
-          "width": 62,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 309.7,
-          "rimRight": 372.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 3
-      },
-      "detachedGapPt": 8,
-      "detachedTrailingMarginPt": 21.2,
-      "mainTrailingMarginPt": 91.2,
-      "selectionIndicator": {
-        "rect": {
-          "x": 26,
-          "y": 774,
-          "width": 93.7,
-          "height": 49.7
-        },
-        "color": [
-          235,
-          235,
-          235
-        ],
-        "method": "second-flat-colour"
-      },
-      "detachedSelectionIndicator": null,
-      "tabCentersPt": [
-        73.7,
-        161.4,
-        249
-      ],
-      "mainCapsuleCenterYPt": 800,
-      "glyphOffsetFromCapsuleCenterPt": [
-        -7.1,
-        -7.1,
-        -7.1
-      ],
-      "tabPitchPt": [
-        87.7,
-        87.6
-      ],
-      "tabCenterGlyphVsLabelPt": [
-        0.7,
-        0.5,
-        0.1
-      ],
-      "mainTabs": [
-        {
-          "glyph": {
-            "x": 62,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 63.7,
-            "y": 810,
-            "width": 21.3,
-            "height": 8
-          },
-          "glyphCenterX": 73.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 74.4,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 149.7,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 143,
-            "y": 810.3,
-            "width": 35.7,
-            "height": 7.7
-          },
-          "glyphCenterX": 161.4,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 160.9,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 237.3,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
-          },
-          "label": {
-            "x": 236.7,
-            "y": 810,
-            "width": 24.7,
-            "height": 8
-          },
-          "glyphCenterX": 249,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 249.1,
-          "labelsTouch": false,
-          "badge": null
+        "sidebarAdaptable": false,
+        "interaction": {
+          "kind": "moreRow",
+          "row": 0
         }
-      ],
-      "detachedTabs": [
-        {
-          "glyph": {
-            "x": 331.7,
-            "y": 790.3,
-            "width": 19,
-            "height": 19
+      },
+      "atRest": {
+        "id": "tabs5-search-morerow0-sel0-light",
+        "axis": "overflow selection",
+        "note": "the first row of the overflow list tapped. whether the chosen tab swaps into a visible slot, or the bar keeps its slots with the selection shown inside More",
+        "spec": {
+          "tabs": [
+            {
+              "id": "p1",
+              "title": "First",
+              "systemImage": "1.circle"
+            },
+            {
+              "id": "p2",
+              "title": "Second",
+              "systemImage": "2.circle"
+            },
+            {
+              "id": "p3",
+              "title": "Third",
+              "systemImage": "3.circle"
+            },
+            {
+              "id": "p4",
+              "title": "Fourth",
+              "systemImage": "4.circle"
+            },
+            {
+              "id": "p5",
+              "title": "Fifth",
+              "systemImage": "5.circle"
+            },
+            {
+              "id": "search",
+              "title": "Search",
+              "systemImage": "magnifyingglass",
+              "role": "search"
+            }
+          ],
+          "selectedIndex": 0,
+          "appearance": "light",
+          "tabBarMinimizeBehavior": "never",
+          "sidebarAdaptable": false
+        },
+        "capture": "captures/tabs5-search-morerow0-sel0-light-rest.png",
+        "barMeasurementTrusted": true,
+        "captureOriginPt": {
+          "x": 0,
+          "y": 700
+        },
+        "screenPt": {
+          "width": 393,
+          "height": 852
+        },
+        "pageContentBottomPt": 769,
+        "mainCapsule": {
+          "rect": {
+            "x": 20.8,
+            "y": 769,
+            "width": 351,
+            "height": 62
           },
-          "label": null,
-          "glyphCenterX": 341.2,
-          "glyphCenterY": 799.8,
-          "labelCenterX": null,
-          "labelsTouch": false,
-          "badge": null
-        }
-      ]
-    },
-    {
-      "id": "tabs3-badges999-sel0-dark",
-      "axis": "appearance",
-      "note": "dark twin of the overflow badge cell",
-      "spec": {
-        "tabs": [
+          "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+          "crossCheckPt": {
+            "rimLeft": 20.7,
+            "rimRight": 372.3,
+            "membershipTop": 769
+          },
+          "disagreementPt": {
+            "left": 0.1,
+            "right": 0.5,
+            "top": 0
+          },
+          "interiorColor": [
+            253,
+            253,
+            253
+          ],
+          "interiorOverBackground": 3
+        },
+        "detachedCapsule": null,
+        "detachedGapPt": null,
+        "detachedTrailingMarginPt": null,
+        "mainTrailingMarginPt": 21.2,
+        "selectionIndicator": {
+          "rect": {
+            "x": 26,
+            "y": 774,
+            "width": 69.7,
+            "height": 49.7
+          },
+          "color": [
+            235,
+            235,
+            235
+          ],
+          "method": "second-flat-colour"
+        },
+        "detachedSelectionIndicator": null,
+        "tabCentersPt": [
+          61.7,
+          128.9,
+          196.2,
+          263.3,
+          331.5
+        ],
+        "mainCapsuleCenterYPt": 800,
+        "glyphOffsetFromCapsuleCenterPt": [
+          -7.1,
+          -7.1,
+          -7.1,
+          -7.1,
+          -6.8
+        ],
+        "tabPitchPt": [
+          67.2,
+          67.3,
+          67.1,
+          68.2
+        ],
+        "tabCenterGlyphVsLabelPt": [
+          0.7,
+          0.3,
+          0,
+          0.7,
+          0.9
+        ],
+        "mainTabs": [
           {
-            "id": "p1",
-            "title": "First",
-            "systemImage": "1.circle",
-            "badge": "999+"
+            "glyph": {
+              "x": 50,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 51.7,
+              "y": 810,
+              "width": 21.3,
+              "height": 8
+            },
+            "glyphCenterX": 61.7,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 62.4,
+            "labelsTouch": false,
+            "badge": null
           },
           {
-            "id": "p2",
-            "title": "Second",
-            "systemImage": "2.circle"
+            "glyph": {
+              "x": 117,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 110.7,
+              "y": 810.3,
+              "width": 35.7,
+              "height": 7.7
+            },
+            "glyphCenterX": 128.9,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 128.6,
+            "labelsTouch": false,
+            "badge": null
           },
           {
-            "id": "p3",
-            "title": "Third",
-            "systemImage": "3.circle"
+            "glyph": {
+              "x": 184.3,
+              "y": 781.3,
+              "width": 23.7,
+              "height": 23.3
+            },
+            "label": {
+              "x": 183.7,
+              "y": 810,
+              "width": 25,
+              "height": 8
+            },
+            "glyphCenterX": 196.2,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 196.2,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 251.7,
+              "y": 781.3,
+              "width": 23.3,
+              "height": 23.3
+            },
+            "label": {
+              "x": 248.3,
+              "y": 810.3,
+              "width": 31.3,
+              "height": 7.7
+            },
+            "glyphCenterX": 263.3,
+            "glyphCenterY": 792.9,
+            "labelCenterX": 264,
+            "labelsTouch": false,
+            "badge": null
+          },
+          {
+            "glyph": {
+              "x": 321,
+              "y": 791,
+              "width": 21,
+              "height": 4.3
+            },
+            "label": {
+              "x": 318.7,
+              "y": 810.7,
+              "width": 23.7,
+              "height": 7.3
+            },
+            "glyphCenterX": 331.5,
+            "glyphCenterY": 793.2,
+            "labelCenterX": 330.6,
+            "labelsTouch": false,
+            "badge": null
           }
         ],
-        "selectedIndex": 0,
-        "appearance": "dark",
-        "tabBarMinimizeBehavior": "never",
-        "sidebarAdaptable": false
+        "detachedTabs": []
       },
-      "capture": "captures/tabs3-badges999-sel0-dark.png",
-      "captureOriginPt": {
-        "x": 0,
-        "y": 700
-      },
-      "screenPt": {
-        "width": 393,
-        "height": 852
-      },
-      "pageContentBottomPt": 769,
-      "mainCapsule": {
-        "rect": {
-          "x": 59.8,
-          "y": 769,
-          "width": 274,
-          "height": 62
-        },
-        "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
-        "crossCheckPt": {
-          "rimLeft": 59.7,
-          "rimRight": 334.3,
-          "membershipTop": 769
-        },
-        "disagreementPt": {
-          "left": 0.1,
-          "right": 0.5,
-          "top": 0
-        },
-        "interiorColor": [
-          253,
-          253,
-          253
-        ],
-        "interiorOverBackground": 6
-      },
-      "detachedCapsule": null,
-      "detachedGapPt": null,
-      "detachedTrailingMarginPt": null,
-      "mainTrailingMarginPt": 59.2,
-      "selectionIndicator": {
-        "rect": {
-          "x": 65,
-          "y": 774,
-          "width": 89.3,
-          "height": 49.7
-        },
-        "color": [
-          235,
-          235,
-          235
-        ],
-        "method": "second-flat-colour"
-      },
-      "detachedSelectionIndicator": null,
-      "tabCentersPt": [
-        110.7,
-        196.7,
-        282.7
-      ],
-      "mainCapsuleCenterYPt": 800,
-      "glyphOffsetFromCapsuleCenterPt": [
-        -7.1,
-        -7.1,
-        -7.1
-      ],
-      "tabPitchPt": [
-        86,
-        86
-      ],
-      "tabCenterGlyphVsLabelPt": [
-        0.7,
-        0.5,
-        0
-      ],
-      "mainTabs": [
-        {
-          "glyph": {
-            "x": 99,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
+      "moreOpen": {
+        "capture": "captures/tabs5-search-morerow0-sel0-light-more.png",
+        "bar": {
+          "id": "tabs5-search-morerow0-sel0-light",
+          "axis": "overflow selection",
+          "note": "the first row of the overflow list tapped. whether the chosen tab swaps into a visible slot, or the bar keeps its slots with the selection shown inside More",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "light",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
           },
-          "label": {
-            "x": 100.7,
-            "y": 810,
-            "width": 21.3,
-            "height": 8
+          "capture": "captures/tabs5-search-morerow0-sel0-light-more.png",
+          "barMeasurementTrusted": false,
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
           },
-          "glyphCenterX": 110.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 111.4,
-          "labelsTouch": false,
-          "badge": {
-            "x": 119.3,
-            "y": 775,
-            "width": 39.3,
-            "height": 21.3
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 785.7,
+          "mainCapsule": {
+            "rect": {
+              "x": 23.2,
+              "y": 769,
+              "width": 346.6,
+              "height": 35.7
+            },
+            "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "crossCheckPt": {
+              "rimLeft": 20.7,
+              "rimRight": 372.3,
+              "membershipTop": 798.3
+            },
+            "disagreementPt": {
+              "left": 2.5,
+              "right": 2.5,
+              "top": 29.3
+            },
+            "interiorColor": [
+              255,
+              255,
+              255
+            ],
+            "interiorOverBackground": 3
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 23.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774,
+              "width": 72,
+              "height": 30.7
+            },
+            "color": [
+              237,
+              237,
+              237
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            128.9,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 786.9,
+          "glyphOffsetFromCapsuleCenterPt": [
+            4.5,
+            4.5,
+            4.5,
+            4.5,
+            6.4
+          ],
+          "tabPitchPt": [
+            67.2,
+            67.3,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 128.9,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 20.3
+              },
+              "label": null,
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 791.4,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": null,
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": null,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
+        },
+        "list": {
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "separators": [
+            {
+              "x": 50.3,
+              "y": 177,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 232,
+              "width": 322.7,
+              "height": 1
+            },
+            {
+              "x": 50.3,
+              "y": 288,
+              "width": 322.7,
+              "height": 1
+            }
+          ],
+          "otherRules": [
+            {
+              "x": 106.3,
+              "y": 113,
+              "width": 286.7,
+              "height": 0.3
+            }
+          ],
+          "separatorInsetLeftPt": 50.3,
+          "separatorInsetRightPt": 20,
+          "rows": [
+            {
+              "rect": {
+                "x": 0,
+                "y": 177,
+                "width": 393,
+                "height": 55
+              },
+              "glyph": {
+                "x": 16.7,
+                "y": 196.3,
+                "width": 17,
+                "height": 17
+              },
+              "label": {
+                "x": 51.7,
+                "y": 198.7,
+                "width": 32,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 199,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 204.8,
+              "labelLeftPt": 51.7,
+              "labelCenterYPt": 205.2,
+              "rowCenterYPt": 204.5
+            },
+            {
+              "rect": {
+                "x": 0,
+                "y": 232,
+                "width": 393,
+                "height": 56
+              },
+              "glyph": {
+                "x": 17,
+                "y": 253,
+                "width": 16.3,
+                "height": 16.3
+              },
+              "label": {
+                "x": 51.3,
+                "y": 254.7,
+                "width": 51.3,
+                "height": 13
+              },
+              "chevron": {
+                "x": 365.3,
+                "y": 255,
+                "width": 7,
+                "height": 12
+              },
+              "glyphCenterXPt": 25.2,
+              "glyphCenterYPt": 261.2,
+              "labelLeftPt": 51.3,
+              "labelCenterYPt": 261.2,
+              "rowCenterYPt": 260
+            }
+          ],
+          "rowPitchPt": [
+            55
+          ]
+        },
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
+          },
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
+          },
+          {
+            "type": "Heading",
+            "label": "More",
+            "id": null,
+            "frame": {
+              "x": 176,
+              "y": 132.7,
+              "width": 41,
+              "height": 24.7
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Fifth",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 177,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Button",
+            "label": "Search",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 233,
+              "width": 393,
+              "height": 56
+            }
+          },
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
           }
+        ]
+      },
+      "afterSelectingRow": {
+        "row": 0,
+        "capture": "captures/tabs5-search-morerow0-sel0-light-selected.png",
+        "bar": {
+          "id": "tabs5-search-morerow0-sel0-light",
+          "axis": "overflow selection",
+          "note": "the first row of the overflow list tapped. whether the chosen tab swaps into a visible slot, or the bar keeps its slots with the selection shown inside More",
+          "spec": {
+            "tabs": [
+              {
+                "id": "p1",
+                "title": "First",
+                "systemImage": "1.circle"
+              },
+              {
+                "id": "p2",
+                "title": "Second",
+                "systemImage": "2.circle"
+              },
+              {
+                "id": "p3",
+                "title": "Third",
+                "systemImage": "3.circle"
+              },
+              {
+                "id": "p4",
+                "title": "Fourth",
+                "systemImage": "4.circle"
+              },
+              {
+                "id": "p5",
+                "title": "Fifth",
+                "systemImage": "5.circle"
+              },
+              {
+                "id": "search",
+                "title": "Search",
+                "systemImage": "magnifyingglass",
+                "role": "search"
+              }
+            ],
+            "selectedIndex": 0,
+            "appearance": "light",
+            "tabBarMinimizeBehavior": "never",
+            "sidebarAdaptable": false
+          },
+          "capture": "captures/tabs5-search-morerow0-sel0-light-selected.png",
+          "barMeasurementTrusted": true,
+          "captureOriginPt": {
+            "x": 0,
+            "y": 700
+          },
+          "screenPt": {
+            "width": 393,
+            "height": 852
+          },
+          "pageContentBottomPt": 769,
+          "mainCapsule": {
+            "rect": {
+              "x": 20.8,
+              "y": 769,
+              "width": 351,
+              "height": 62
+            },
+            "method": "rim-trace top edge, interior-plateau left/right/bottom edges",
+            "crossCheckPt": {
+              "rimLeft": 20.7,
+              "rimRight": 372.3,
+              "membershipTop": 769
+            },
+            "disagreementPt": {
+              "left": 0.1,
+              "right": 0.5,
+              "top": 0
+            },
+            "interiorColor": [
+              253,
+              253,
+              253
+            ],
+            "interiorOverBackground": 3
+          },
+          "detachedCapsule": null,
+          "detachedGapPt": null,
+          "detachedTrailingMarginPt": null,
+          "mainTrailingMarginPt": 21.2,
+          "selectionIndicator": {
+            "rect": {
+              "x": 295,
+              "y": 774,
+              "width": 72,
+              "height": 52
+            },
+            "color": [
+              235,
+              235,
+              235
+            ],
+            "method": "second-flat-colour"
+          },
+          "detachedSelectionIndicator": null,
+          "tabCentersPt": [
+            61.7,
+            128.9,
+            196.2,
+            263.3,
+            331.5
+          ],
+          "mainCapsuleCenterYPt": 800,
+          "glyphOffsetFromCapsuleCenterPt": [
+            -7.1,
+            -7.1,
+            -7.1,
+            -7.1,
+            -6.8
+          ],
+          "tabPitchPt": [
+            67.2,
+            67.3,
+            67.1,
+            68.2
+          ],
+          "tabCenterGlyphVsLabelPt": [
+            0.4,
+            0.3,
+            0,
+            0.7,
+            0.7
+          ],
+          "mainTabs": [
+            {
+              "glyph": {
+                "x": 50,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 51.7,
+                "y": 810,
+                "width": 20.7,
+                "height": 8
+              },
+              "glyphCenterX": 61.7,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 62.1,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 117,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 23.3
+              },
+              "label": {
+                "x": 110.7,
+                "y": 810.3,
+                "width": 35.7,
+                "height": 7.7
+              },
+              "glyphCenterX": 128.9,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 128.6,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 184.3,
+                "y": 781.3,
+                "width": 23.7,
+                "height": 23.3
+              },
+              "label": {
+                "x": 183.7,
+                "y": 810,
+                "width": 25,
+                "height": 8
+              },
+              "glyphCenterX": 196.2,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 196.2,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 251.7,
+                "y": 781.3,
+                "width": 23.3,
+                "height": 23.3
+              },
+              "label": {
+                "x": 248.3,
+                "y": 810.3,
+                "width": 31.3,
+                "height": 7.7
+              },
+              "glyphCenterX": 263.3,
+              "glyphCenterY": 792.9,
+              "labelCenterX": 264,
+              "labelsTouch": false,
+              "badge": null
+            },
+            {
+              "glyph": {
+                "x": 321,
+                "y": 791,
+                "width": 21,
+                "height": 4.3
+              },
+              "label": {
+                "x": 318.7,
+                "y": 810.7,
+                "width": 24.3,
+                "height": 7.3
+              },
+              "glyphCenterX": 331.5,
+              "glyphCenterY": 793.2,
+              "labelCenterX": 330.8,
+              "labelsTouch": false,
+              "badge": null
+            }
+          ],
+          "detachedTabs": []
         },
-        {
-          "glyph": {
-            "x": 185,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
+        "list": null,
+        "accessibility": [
+          {
+            "type": "Application",
+            "label": "OneNativeTests",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 0,
+              "width": 393,
+              "height": 852
+            }
           },
-          "label": {
-            "x": 178.3,
-            "y": 810.3,
-            "width": 35.7,
-            "height": 7.7
+          {
+            "type": "Button",
+            "label": "index",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 59,
+              "width": 93.3,
+              "height": 44
+            }
           },
-          "glyphCenterX": 196.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 196.2,
-          "labelsTouch": false,
-          "badge": null
-        },
-        {
-          "glyph": {
-            "x": 271,
-            "y": 781.3,
-            "width": 23.3,
-            "height": 23.3
+          {
+            "type": "Heading",
+            "label": "one-native-tab-oracle",
+            "id": null,
+            "frame": {
+              "x": 121.3,
+              "y": 70.7,
+              "width": 176,
+              "height": 20.7
+            }
           },
-          "label": {
-            "x": 270.3,
-            "y": 810,
-            "width": 24.7,
-            "height": 8
+          {
+            "type": "Button",
+            "label": "More",
+            "id": "BackButton",
+            "frame": {
+              "x": 16,
+              "y": 123,
+              "width": 44,
+              "height": 44
+            }
           },
-          "glyphCenterX": 282.7,
-          "glyphCenterY": 792.9,
-          "labelCenterX": 282.7,
-          "labelsTouch": false,
-          "badge": null
-        }
-      ],
-      "detachedTabs": []
+          {
+            "type": "Group",
+            "label": "Tab Bar",
+            "id": null,
+            "frame": {
+              "x": 0,
+              "y": 769,
+              "width": 393,
+              "height": 83
+            }
+          },
+          {
+            "type": "GenericElement",
+            "label": null,
+            "id": "quick-navigate-pixel",
+            "frame": {
+              "x": 387,
+              "y": 812,
+              "width": 5,
+              "height": 5
+            }
+          }
+        ]
+      },
+      "barSlotsUnchangedByOpeningMore": true,
+      "barSlotsUnchangedBySelectingRow": true
     }
   ]
 }

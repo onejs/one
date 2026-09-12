@@ -5,7 +5,7 @@
 // cell ids follow rnx's own fixture keying so the two tables diff with no mapping layer:
 //
 //   tabs<N>[-search][-action][-badges<T>][-icononly][-labelonly<all|mid>][-longlabels]
-//          [-min<behavior>][-sidebar]-sel<i>-<light|dark>
+//          [-min<behavior>][-sidebar][-scroll][-more|-morerow<i>][-<down|up|rest>]-sel<i>-<light|dark>
 //
 //   tabs<N>      N page tabs in the main capsule. a detached search tab is NOT counted in N.
 //   -search      a role="search" tab is present, which detaches into its own trailing capsule
@@ -22,6 +22,16 @@
 //   -min<X>      tabBarMinimizeBehavior, omitted when it is the baseline "never"
 //   -sidebar     sidebarAdaptable
 //   -sel<i>      index of the selected tab in the full tab list, detached search tab included
+//   -scroll      the page is a tall ScrollView, which is what tabBarMinimizeBehavior needs in
+//                order to do anything
+//   -sweep       the cell is a SEQUENCE rather than a single capture: at rest, down through a
+//                scroll, then back up, one settled frame per step tagged with the scroll offset
+//   -more        the driver tapped the last visible slot, which is the More tab, and the capture
+//                is the overflow screen More presents
+//   -morerow<i>  ... and then tapped row i of that overflow list
+//
+// -more and -sweep cells are the only ones the driver interacts with. every other cell is
+// mounted by the fixture and photographed without a touch.
 //
 // cells are ordered light first then dark, because switching simulator appearance is the
 // slowest step in a run.
@@ -39,6 +49,25 @@ export type OracleTab = {
 
 export type MinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never'
 
+/**
+ * what the driver does to the cell before capturing it. 'rest' is a no-op that exists so a
+ * scrolled cell has a same-fixture twin to subtract against: the unscrolled capture of a tall
+ * ScrollView page is not the same as the baseline cell, whose page does not scroll at all.
+ */
+export type OracleInteraction =
+  | { kind: 'none' }
+  /**
+   * a whole scroll sweep captured as a sequence: at rest, then settled frames on the way down,
+   * then settled frames on the way back up, each tagged with the scroll offset the fixture
+   * reported when it was taken. one still cannot tell a progress-driven collapse from a
+   * threshold plus a fixed animation, because those two are identical at rest and identical
+   * fully minimized. they differ only in what the bar looks like at the offsets in between,
+   * and in whether the down and up sweeps disagree at the same offset.
+   */
+  | { kind: 'scrollSweep' }
+  | { kind: 'more' }
+  | { kind: 'moreRow'; row: number }
+
 export type OracleCell = {
   id: string
   /** the axis this cell moves off the baseline; 'baseline' for the reference cell */
@@ -49,10 +78,13 @@ export type OracleCell = {
   appearance: 'light' | 'dark'
   minimizeBehavior: MinimizeBehavior
   sidebarAdaptable: boolean
+  /** a tall ScrollView page instead of the static panel, so a scroll has somewhere to go */
+  scrollablePage: boolean
+  interaction: OracleInteraction
 }
 
-const SHORT = ['First', 'Second', 'Third', 'Fourth', 'Fifth']
-const GLYPH = ['1.circle', '2.circle', '3.circle', '4.circle', '5.circle']
+const SHORT = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh']
+const GLYPH = ['1.circle', '2.circle', '3.circle', '4.circle', '5.circle', '6.circle', '7.circle']
 const LONG = 'Notifications And Alerts'
 
 const pageTabs = (count: number): OracleTab[] =>
@@ -81,6 +113,8 @@ type Spec = {
   sidebar?: boolean
   selectedIndex?: number
   appearance?: 'light' | 'dark'
+  scroll?: boolean
+  interaction?: OracleInteraction
   axis: string
   note: string
 }
@@ -102,6 +136,17 @@ function build(spec: Spec): OracleCell {
 
   const selectedIndex = spec.selectedIndex ?? 0
   const appearance = spec.appearance ?? 'light'
+  const interaction: OracleInteraction = spec.interaction ?? { kind: 'none' }
+  // new segments keep the existing ones in their existing order and positions, so an id that
+  // carries none of them is byte-identical to what it was before these axes existed
+  const interactionSegment =
+    interaction.kind === 'scrollSweep'
+      ? 'sweep'
+      : interaction.kind === 'more'
+        ? 'more'
+        : interaction.kind === 'moreRow'
+          ? `morerow${interaction.row}`
+          : ''
   const id = [
     `tabs${spec.count}`,
     spec.detached ? 'search' : '',
@@ -112,6 +157,8 @@ function build(spec: Spec): OracleCell {
     spec.longlabels ? 'longlabels' : '',
     spec.minimize ? `min${spec.minimize}` : '',
     spec.sidebar ? 'sidebar' : '',
+    spec.scroll ? 'scroll' : '',
+    interactionSegment,
     `sel${selectedIndex}`,
     appearance,
   ]
@@ -127,6 +174,8 @@ function build(spec: Spec): OracleCell {
     appearance,
     minimizeBehavior: spec.minimize ?? 'never',
     sidebarAdaptable: spec.sidebar ?? false,
+    scrollablePage: spec.scroll ?? false,
+    interaction,
   }
 }
 
@@ -227,6 +276,80 @@ const specs: Spec[] = [
     { count: 3, detached: 'action' as const, axis: 'appearance', note: 'dark twin of the search action tab cell' },
     { count: 3, badge: '999+', axis: 'appearance', note: 'dark twin of the overflow badge cell' },
   ] as Spec[]).map((spec) => ({ ...spec, appearance: 'dark' as const })),
+
+  // ---- overflow: what is inside More ----------------------------------------------------
+  // six tabs is where SwiftUI stops giving every tab a slot. the resting cells come first so
+  // the opened-More cells have a same-fixture bar to subtract against; without them a slot
+  // that moved when More opened could not be told from a slot that was never there.
+  ...[6, 7].map((count) => ({
+    count,
+    axis: 'pageTabCount past the overflow threshold',
+    note: `${count} page tabs, nothing detached, at rest. more tabs than slots, so a More tab appears`,
+  })),
+  {
+    count: 6,
+    interaction: { kind: 'more' as const },
+    axis: 'overflow contents',
+    note: '6 page tabs, the More tab tapped. which tabs kept a slot and which went into the list',
+  },
+  {
+    count: 7,
+    interaction: { kind: 'more' as const },
+    axis: 'overflow contents',
+    note: '7 page tabs, the More tab tapped. a third row is what gives the row pitch a second gap',
+  },
+  {
+    count: 5,
+    detached: 'page' as const,
+    interaction: { kind: 'more' as const },
+    axis: 'overflow contents x detachedSearchPage',
+    note: '5 page tabs plus a search page tab, the More tab tapped. whether the search tab keeps any search affordance in the list or becomes an ordinary row',
+  },
+  {
+    count: 5,
+    detached: 'page' as const,
+    interaction: { kind: 'moreRow' as const, row: 0 },
+    axis: 'overflow selection',
+    note: 'the first row of the overflow list tapped. whether the chosen tab swaps into a visible slot, or the bar keeps its slots with the selection shown inside More',
+  },
+  {
+    count: 5,
+    detached: 'page' as const,
+    interaction: { kind: 'more' as const },
+    appearance: 'dark' as const,
+    axis: 'overflow contents x appearance',
+    note: 'dark twin of the opened overflow list, where the list background flips and the row geometry should not',
+  },
+  {
+    count: 5,
+    detached: 'page' as const,
+    interaction: { kind: 'moreRow' as const, row: 0 },
+    appearance: 'dark' as const,
+    axis: 'overflow selection x appearance',
+    note: 'dark twin of the row selection, so the promotion answer is not read off one appearance',
+  },
+
+  // ---- tabBarMinimizeBehavior in motion --------------------------------------------------
+  // the four values are identical at rest, which is why the resting cells above say nothing.
+  // each value gets three captures of the same scrollable fixture: unscrolled, after scrolling
+  // down, and after scrolling back up. -rest is the subtraction baseline, and it is NOT the
+  // plain baseline cell, whose page is not a ScrollView at all.
+  // light block then dark block, because switching simulator appearance is the slowest step in
+  // a run and a sweep is already twenty-odd settled captures
+  ...(['light', 'dark'] as const).flatMap((appearance) =>
+    (['never', 'automatic', 'onScrollDown', 'onScrollUp'] as MinimizeBehavior[]).map(
+      (minimize) => ({
+        count: 3,
+        // 'never' is the baseline value and carries no -min segment, exactly as at rest
+        minimize: minimize === 'never' ? undefined : minimize,
+        scroll: true,
+        interaction: { kind: 'scrollSweep' as const },
+        appearance,
+        axis: 'tabBarMinimizeBehavior in motion',
+        note: `3 page tabs over a tall ScrollView, tabBarMinimizeBehavior="${minimize}", swept down and back up in ${appearance} appearance`,
+      })
+    )
+  ),
 ]
 
 export const cells: OracleCell[] = specs.map(build)
