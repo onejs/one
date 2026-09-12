@@ -42,7 +42,7 @@ The fixture paints its page one flat colour, but that colour never reaches behin
 SwiftUI insets tab content above the floating capsule, so the page stops at the inset and the bar
 is drawn on SwiftUI's own background. That boundary is itself measured, as `pageContentBottomPt`.
 
-## Three methods, all reported
+## Four methods, all reported
 
 In light mode the glass interior sits ONE level off the background behind it (253 against 254)
 while the drop shadow beside it sits ten levels off, so brightness alone finds the background,
@@ -63,6 +63,15 @@ brighter rim, interior.
 - **ink** measures each tab's centre twice, once from its glyph ink and once from its label ink.
   `tabCenterGlyphVsLabelPt` is the disagreement between those two independent inks; a tab above
   about a point there is a tab whose segmentation went wrong and should not be trusted.
+
+- **step to the interior** owns the selection indicator's top and bottom edge whenever the page
+  behind is moving. The indicator is translucent, so reading it by its own colour follows the
+  tint the page puts through it and loses about a point off the bottom while nothing has moved.
+  The capsule interior is opaque enough that the page does not shift it, so a scan for the step
+  away from the interior sampled in the gap between two tabs is stable where the colour reading
+  is not. Independent variable: the step between two surfaces rather than one surface's value.
+  A null result proves the indicator does not differ from the interior it sits on. Reported by
+  `indicatorEdgesByStep`; the control that pins the disagreement is in the test file.
 
 `disagreementPt` per capsule is the absolute difference between the rim trace and membership on
 each edge both produce. It is reported, never averaged away. The driver refuses to record a cell
@@ -122,9 +131,10 @@ sidebar, light, first tab selected. Each axis is varied off that baseline, plus 
 Skipped, with the reason each cannot interact:
 
 - **minimize behavior x anything.** All four values describe what the bar does while the page
-  scrolls. The oracle never scrolls, so a value can only change the resting geometry or nothing.
-  Four cells at the baseline settle that; crossing them with tab count could only repeat the
-  same null.
+  scrolls, so at rest a value can only change the resting geometry or nothing, and four resting
+  cells at the baseline settle that. What they do in motion is measured separately, by the eight
+  `-sweep` cells; see `tabBarMinimizeBehavior in motion` below. Crossing either set with tab count
+  could only repeat the same null.
 - **sidebarAdaptable x anything beyond tab count.** It selects a sidebar presentation at regular
   width, and an iPhone 16 in portrait is compact. Two tab counts are enough to show no effect;
   one would not be, since a single cell cannot distinguish "no effect" from "an effect that
@@ -325,11 +335,54 @@ list it does not. The rim trace still finds the same left and right edges as at 
 372.3), and the accessibility tree reports the `Tab Bar` frame as `0, 769, 393, 83` with `More`
 open, identical to rest. Those rows carry `barMeasurementTrusted: false`.
 
+### `tabBarMinimizeBehavior` in motion
+
+Eight sweep cells, `tabs3` with the four behaviour values in both appearances, 19 settled frames
+each. Each sweep drags from y=620 to y=420 over 0.9s in nine steps, nine frames down, nine up, and
+tags every frame with the scroll offset the accessibility tree reports at capture time. Every sweep
+covered a real 2744pt of content, so the null below is a null about a bar that was given something
+to react to.
+
+**The bar does not move at any offset, in any direction, for any of the four values, in either
+appearance.** The capsule is `{59.8, 769, 274, 62}` and the tab centres are `[110.7, 196.7, 282.7]`
+in all 152 frames. The rest frames of the four behaviour values are byte-identical to each other
+below the bar's top edge, in both appearances.
+
+Frames are NOT byte-identical to rest, and all of the difference is outside the bar or is the page
+seen through it:
+
+- **The scroll indicator**, x 380..390pt, y 700..769pt. Present while scrolling, absent at rest,
+  and it stops at the bar's top edge. About 1780 px per frame, which is most of the count.
+- **The page tinting the glass.** The capsule and the selection indicator are translucent, so the
+  fixture's green backdrop passing behind changes their colour without moving them. Mean shift
+  between a resting and a scrolling frame is r -13.5, g +0.1, b -7.7: a hue change at fixed
+  geometry.
+
+That second effect is also a measurement trap, and it is pinned as a control. `selectionIndicator`
+finds the indicator by its own colour, so the tint eats about a point off the bottom rows and the
+reading shrinks from 50.0 to 51.3pt in dark and 49.7 to 50.7pt in light while nothing has moved. It
+reads as a step that never returns, which is what a collapse curve would not look like, but it is
+not one. `indicatorEdgesByStep` reads the same edge as the step to the capsule interior, which is
+opaque enough that the page does not shift it, and returns 773.0 / 826.7 for every one of the 152
+frames. The two methods share no step; where they disagree, the step reading is the one that holds.
+
+**The conclusion, and its labels.** RAN: no measured geometry changes at any offset for any value.
+TESTED: a positive control proves the prop is threaded and read, since a bogus value raises
+`Unknown SwiftUI TabBarMinimizeBehavior` out of `assertSwiftUIValue` in
+`packages/one-native/src/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
+gated. READ: `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`, and each tab
+hosts `OneNativeSlot(content: page.view)` where `page.view` is a `UIView`. There is no SwiftUI
+`ScrollView` anywhere in the hierarchy, and one-native exposes no native scroll container.
+
+So this is not "the value is inert". The modifier is applied and accepted, and the thing that
+scrolls is a React Native scroll view that SwiftUI never sees, which is why the scroll indicator in
+those frames is React Native's. The behaviour is **unreachable in this architecture**: a consumer
+implementing a collapse curve today would be building against a signal that cannot arrive until a
+native scroll container is bridged. The null does not say the API is broken, and this table does not
+claim it is.
+
 ### Numbers this table does not contain
 
-- Anything off the resting state. The oracle never scrolls, so it says nothing about what
-  `onScrollDown` or `onScrollUp` do while scrolling, or about the minimized bar.
+- The minimized bar's ink. Nothing ever minimized, so there is no pill rect, no surviving contents,
+  and no threshold or progress range to report. See the section above for why.
 - A frame for any glyph or label. Ink boxes only.
-- The overflow destination in dark. The measurement that blocked it is fixed and controlled, but
-  the cells have not been captured against the simulator yet, so the `Inside More` numbers below
-  are light only.
