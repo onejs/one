@@ -249,10 +249,16 @@ Automation details that prevent false diagnoses:
 - `generate:check`: `SwiftUI SDK 26.4: 11212 declarations, 161 mapped symbols, 134 generated
   files, verified`; assembled Swift compiles and the controlled-state probe passes acceptance,
   rejection, stale acknowledgments, reset and mixed sources.
-- Conformance end to end: 432 accessibility checks across twelve suites plus 18/18 visual
-  checks, every visual check still rejecting its negative capture. Per suite: tabs-menu 65,
-  pickers 29, forms 43, sheets 35, leaves 93, dialogs 32, host 27, containers 29, popover 26,
-  accessibility 25, media 15, map 13.
+- Conformance end to end: 18/18 visual checks, every visual check still rejecting its negative
+  capture. The accessibility check total is AWAITING RE-VERIFICATION and the numbers below are
+  stale. They were measured before `ff1f968cc`, when `dismissWarning` had three exit paths
+  contributing 0, 1 or 2 checks depending on whether the dev warning overlay happened to be on
+  screen, which is why the same suite reported 430 on one machine and 432 on another. That commit
+  makes the dismissal one check per call by asserting the postcondition, that nothing is
+  intercepting interaction, so the total is now deterministic but not yet measured. Do not quote
+  a number from this line until a full twelve-suite run under `ff1f968cc` replaces it. The stale
+  reading was 432 total: tabs-menu 65, pickers 29, forms 43, sheets 35, leaves 93, dialogs 32,
+  host 27, containers 29, popover 26, accessibility 25, media 15, map 13.
 - Consumer Debug build: `/tmp/one-native-final-build.log`.
 - Arm64 simulator Release pod build: `/tmp/one-native-final-release.log`.
 - Each final runtime suite writes `/tmp/one-native-final-<suite>/outcome.json`
