@@ -369,20 +369,12 @@ mount.
    The schema's honest gaps for an independent implementation are accessibility role
    and label mapping, an executable definition of the slot `layout` values, and any
    imperative ref/command/`setNativeProps`/measurement contract.
-3. Migrate @vxrn/native by caller behavior, not export-name similarity. Color tokens,
-   StackToolbar/ToolbarHost header ownership, SplitView, and ZoomTransition are One/
-   react-native-screens integration. SwiftUI NavigationStack/Toolbar are not their
-   drop-in replacements. `one-native-coverage.md` records the actual remaining work.
-   A read-only worker inventoried the real callers: almost everything is test
-   fixtures under `tests/native-features/app/*` (color-test, toolbar-test, menu-test,
-   split-view-test, zoom-test, zoom-detail), the docs page
-   `apps/onestack.dev/data/docs/native-features.mdx`, one Soot fixture using
-   `StackToolbar` (`~/soot/packages/sootsim-engine/src/test-fixtures/VxrnNativeToolbarTest.tsx`),
-   and a side-effect import in `~/soot/packages/contrast-native/src/index.ts`.
-   `ToolbarHost`, `ToolbarItem`, `ZoomTransitionAlignmentRectDetector`, and every type
-   export have zero direct callers. Migration cost is therefore mostly behavior
-   preservation for Color, StackToolbar, SplitView, and ZoomTransition, not a wide
-   call-site sweep.
+3. The V2 integration resolved the `@vxrn/native` boundary by caller behavior,
+   not export-name similarity. One's stack-toolbar adapter and registry were
+   removed. Direct ToolbarHost/ToolbarItem/MenuAction, Color, SplitView, and zoom
+   capabilities remain in `@vxrn/native`; generated SwiftUI components remain in
+   `one-native`. `plans/one-native-vxrn-native-boundary.md` records the final
+   ownership and evidence.
 
 ## Measurement and delivery
 
