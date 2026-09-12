@@ -11,6 +11,7 @@ interface NativeProps extends ViewProps {
     detents: ReadonlyArray<NativeSheetDetent>;
     interactiveDismissDisabled: boolean;
     presentationDragIndicator: string;
+    presentation: string;
     onNativeSheetIsPresentedChange?: DirectEventHandler<Readonly<{
         isPresented: boolean;
         eventCount: Int32;

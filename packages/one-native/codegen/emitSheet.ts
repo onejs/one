@@ -9,6 +9,17 @@ export const sheetMethods = [
     requirements: ['Content: SwiftUICore.View'],
   },
   {
+    // the same presentation with a different chrome: no detents, no drag indicator, and it
+    // covers the screen. everything else, down to the presented slot, is the sheet's.
+    name: 'fullScreenCover',
+    parameters: [
+      { label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      { label: 'onDismiss', type: '(() -> Swift.Void)?' },
+      { label: 'content', type: '@escaping () -> Content' },
+    ],
+    requirements: ['Content: SwiftUICore.View'],
+  },
+  {
     name: 'presentationDetents',
     parameters: [{ label: '_', type: 'Swift.Set<SwiftUI.PresentationDetent>' }],
     requirements: [],
@@ -30,6 +41,9 @@ export const sheetComponents = [
       detents: 'ReadonlyArray<NativeSheetDetent>',
       interactiveDismissDisabled: 'boolean',
       presentationDragIndicator: 'string',
+      // 'sheet' or 'fullScreenCover'; Swift.Sheet and Swift.FullScreenCover are one
+      // component because only the presenting modifier differs.
+      presentation: 'string',
     },
     events: {
       onNativeSheetIsPresentedChange: {
@@ -114,6 +128,15 @@ export interface SheetProps extends ViewProps {
   interactiveDismissDisabled?: boolean
   children: ReactNode
 }
+// a full screen cover has no detents and no drag indicator, so it takes neither. it is
+// dismissed from React, or from a control the presented content supplies.
+export interface FullScreenCoverProps extends ViewProps {
+  isPresented: boolean
+  onIsPresentedChange: (value: boolean) => void
+  onDismiss?: () => void
+  revision?: number
+  children: ReactNode
+}
 `
   )
   outputs.set(
@@ -122,19 +145,32 @@ export interface SheetProps extends ViewProps {
       `import SwiftUI
 struct OneNativeSheetRoot: View {
   @ObservedObject var model: OneNativeSheetModel
+  private var presented: Binding<Bool> {
+    Binding(get: { model.controlled.value && model.content != nil }, set: { model.change($0) })
+  }
+  @ViewBuilder private var content: some View {
+    if let content = model.content {
+      OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
+        if model.active && model.controlled.value { model.onLayout?(frame) }
+      })
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+  }
   var body: some View {
-    Color.clear
-      .sheet(isPresented: Binding(get: { model.controlled.value && model.content != nil }, set: { model.change($0) }), onDismiss: { model.dismissed() }) {
-        if let content = model.content {
-          OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
-            if model.active && model.controlled.value { model.onLayout?(frame) }
-          })
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-          .presentationDetents(model.detents)
-          .oneNativePresentationDragIndicator(model.presentationDragIndicator)
-          .interactiveDismissDisabled(model.interactiveDismissDisabled)
+    if model.presentation == "fullScreenCover" {
+      Color.clear
+        .fullScreenCover(isPresented: presented, onDismiss: { model.dismissed() }) {
+          content
         }
-      }
+    } else {
+      Color.clear
+        .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
+          content
+            .presentationDetents(model.detents)
+            .oneNativePresentationDragIndicator(model.presentationDragIndicator)
+            .interactiveDismissDisabled(model.interactiveDismissDisabled)
+        }
+    }
   }
 }
 `

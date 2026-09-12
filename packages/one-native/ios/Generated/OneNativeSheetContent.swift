@@ -3,18 +3,31 @@
 import SwiftUI
 struct OneNativeSheetRoot: View {
   @ObservedObject var model: OneNativeSheetModel
+  private var presented: Binding<Bool> {
+    Binding(get: { model.controlled.value && model.content != nil }, set: { model.change($0) })
+  }
+  @ViewBuilder private var content: some View {
+    if let content = model.content {
+      OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
+        if model.active && model.controlled.value { model.onLayout?(frame) }
+      })
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+  }
   var body: some View {
-    Color.clear
-      .sheet(isPresented: Binding(get: { model.controlled.value && model.content != nil }, set: { model.change($0) }), onDismiss: { model.dismissed() }) {
-        if let content = model.content {
-          OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
-            if model.active && model.controlled.value { model.onLayout?(frame) }
-          })
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-          .presentationDetents(model.detents)
-          .oneNativePresentationDragIndicator(model.presentationDragIndicator)
-          .interactiveDismissDisabled(model.interactiveDismissDisabled)
+    if model.presentation == "fullScreenCover" {
+      Color.clear
+        .fullScreenCover(isPresented: presented, onDismiss: { model.dismissed() }) {
+          content
         }
-      }
+    } else {
+      Color.clear
+        .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
+          content
+            .presentationDetents(model.detents)
+            .oneNativePresentationDragIndicator(model.presentationDragIndicator)
+            .interactiveDismissDisabled(model.interactiveDismissDisabled)
+        }
+    }
   }
 }

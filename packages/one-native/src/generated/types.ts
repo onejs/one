@@ -25,6 +25,12 @@ import type {
   SymbolRenderingMode,
   SymbolVariants,
   ImageScale,
+  PhotosPickerSelectionBehavior,
+  EncodingDisambiguationPolicy,
+  BackForwardNavigationGesturesBehavior,
+  MagnificationGesturesBehavior,
+  LinkPreviewBehavior,
+  ElementFullscreenBehavior,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -49,6 +55,12 @@ export type {
   SymbolRenderingMode,
   SymbolVariants,
   ImageScale,
+  PhotosPickerSelectionBehavior,
+  EncodingDisambiguationPolicy,
+  BackForwardNavigationGesturesBehavior,
+  MagnificationGesturesBehavior,
+  LinkPreviewBehavior,
+  ElementFullscreenBehavior,
 } from './swiftui'
 export interface MenuAction {
   type: 'action'
@@ -128,6 +140,11 @@ export interface MenuProps extends ViewProps {
   menuOrder?: MenuOrder
   menuActionDismissBehavior?: MenuActionDismissBehavior
   children: ReactNode
+}
+// a context menu leaves its trigger interactive and visible to accessibility, so React
+// Native's own label on that subtree stands and the menu takes none of its own.
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+  accessibilityLabel?: string
 }
 export interface TabProps {
   id: string

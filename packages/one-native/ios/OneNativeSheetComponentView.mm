@@ -50,7 +50,8 @@ using namespace facebook::react;
     _detentsDirty = NO;
   }
   [_sheet configure:next.isPresented acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-    interactiveDismissDisabled:next.interactiveDismissDisabled presentationDragIndicator:RCTNSStringFromString(next.presentationDragIndicator)];
+    interactiveDismissDisabled:next.interactiveDismissDisabled presentationDragIndicator:RCTNSStringFromString(next.presentationDragIndicator)
+    presentation:RCTNSStringFromString(next.presentation)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_sheet reset]; _detentsDirty = YES; }

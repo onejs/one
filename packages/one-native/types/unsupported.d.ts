@@ -1,8 +1,10 @@
-import type { FormProps, HostProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
+import type { ContextMenuProps, FormProps, FullScreenCoverProps, HostProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
+declare function ContextMenu(_props: ContextMenuProps): never;
 declare function Sheet(_props: SheetProps): never;
+declare function FullScreenCover(_props: FullScreenCoverProps): never;
 declare function Popover(_props: PopoverProps): never;
 declare function Host(_props: HostProps): never;
 declare function Form(_props: FormProps): never;
@@ -21,7 +23,11 @@ export declare const Swift: {
     ProgressView: (_props: import("./types").ProgressViewProps) => never;
     Gauge: (_props: import("./types").GaugeProps) => never;
     Image: (_props: import("./types").ImageProps) => never;
+    ShareLink: (_props: import("./types").ShareLinkProps) => never;
+    ContentUnavailableView: (_props: import("./types").ContentUnavailableViewProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
+    PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
+    WebView: (_props: import("./types").WebViewProps) => never;
     Map: (_props: import("./types").MapProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
@@ -31,7 +37,9 @@ export declare const Swift: {
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;
+    ContextMenu: typeof ContextMenu;
     Sheet: typeof Sheet;
+    FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
     Host: typeof Host;
     Form: typeof Form;

@@ -35,6 +35,9 @@
           "type": "string",
           "enum": "MenuActionDismissBehavior"
         },
+        "presentation": {
+          "type": "string"
+        },
         "acknowledgedEvent": {
           "type": "Int32"
         },
@@ -677,6 +680,79 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeShareLink",
+      "publicName": "ShareLink",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "item": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeContentUnavailableView",
+      "publicName": "ContentUnavailableView",
+      "props": {
+        "title": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "actions": {
+          "type": "ReadonlyArray<DialogAction>"
+        }
+      },
+      "events": {
+        "onNativeContentUnavailableViewAction": {
+          "id": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeContentUnavailableViewAction"
+        }
+      ],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
@@ -689,6 +765,154 @@
       },
       "events": {},
       "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativePhotosPicker",
+      "publicName": "PhotosPicker",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "maxSelectionCount": {
+          "type": "Double"
+        },
+        "selectionBehavior": {
+          "type": "string",
+          "enum": "PhotosPickerSelectionBehavior"
+        },
+        "filter": {
+          "type": "string"
+        },
+        "preferredItemEncoding": {
+          "type": "string",
+          "enum": "EncodingDisambiguationPolicy"
+        }
+      },
+      "events": {
+        "onNativePhotosPickerPick": {
+          "url": {
+            "type": "string"
+          },
+          "index": {
+            "type": "Double"
+          },
+          "count": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativePhotosPickerPickError": {
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPick",
+          "event": "onNativePhotosPickerPick"
+        },
+        {
+          "publicProp": "onPickError",
+          "event": "onNativePhotosPickerPickError"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeWebView",
+      "publicName": "WebView",
+      "props": {
+        "url": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        },
+        "backForwardNavigationGestures": {
+          "type": "string",
+          "enum": "BackForwardNavigationGesturesBehavior"
+        },
+        "magnificationGestures": {
+          "type": "string",
+          "enum": "MagnificationGesturesBehavior"
+        },
+        "linkPreviews": {
+          "type": "string",
+          "enum": "LinkPreviewBehavior"
+        },
+        "elementFullscreen": {
+          "type": "string",
+          "enum": "ElementFullscreenBehavior"
+        },
+        "contentBackground": {
+          "type": "string",
+          "enum": "Visibility"
+        }
+      },
+      "events": {
+        "onNativeWebViewNavigate": {
+          "url": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewTitleChange": {
+          "title": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewLoadingChange": {
+          "loading": {
+            "type": "boolean"
+          },
+          "progress": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onNavigate",
+          "event": "onNativeWebViewNavigate"
+        },
+        {
+          "publicProp": "onTitleChange",
+          "event": "onNativeWebViewTitleChange"
+        },
+        {
+          "publicProp": "onLoadingChange",
+          "event": "onNativeWebViewLoadingChange"
+        }
+      ],
       "layout": {
         "kind": "fill"
       },
@@ -1127,6 +1351,9 @@
         "presentationDragIndicator": {
           "type": "string",
           "enum": "Visibility"
+        },
+        "presentation": {
+          "type": "string"
         }
       },
       "events": {
@@ -1382,6 +1609,19 @@
         }
       }
     },
+    "DialogAction": {
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
     "MapMarker": {
       "fields": {
         "id": {
@@ -1395,19 +1635,6 @@
         },
         "longitude": {
           "type": "Double"
-        }
-      }
-    },
-    "DialogAction": {
-      "fields": {
-        "id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
         }
       }
     },
@@ -1719,6 +1946,37 @@
       "small": 13,
       "medium": 13,
       "large": 13
+    },
+    "PhotosPickerSelectionBehavior": {
+      "default": 16,
+      "ordered": 16,
+      "continuous": 17,
+      "continuousAndOrdered": 17
+    },
+    "EncodingDisambiguationPolicy": {
+      "automatic": 16,
+      "current": 16,
+      "compatible": 16
+    },
+    "BackForwardNavigationGesturesBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "MagnificationGesturesBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "LinkPreviewBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
+    },
+    "ElementFullscreenBehavior": {
+      "automatic": 26,
+      "enabled": 26,
+      "disabled": 26
     }
   }
 }

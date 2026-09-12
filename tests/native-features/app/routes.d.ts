@@ -22,6 +22,7 @@ declare module 'one' {
         | `/one-native-media`
         | `/one-native-popover`
         | `/one-native-sheet`
+        | `/one-native-system`
         | `/one-native-tab-oracle`
         | `/split-view-test`
         | `/toolbar-test`
