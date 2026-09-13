@@ -8,7 +8,6 @@ import {
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
 import { readFile } from 'node:fs/promises'
-import { relative } from 'node:path'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
 import { getBoundPort } from '../utils/getBoundPort'
@@ -248,30 +247,6 @@ export function createReactNativeDevServerPlugin(
           console.error('[hmr] error', error)
         })
       })
-
-      // route additions and deletions change the import.meta.glob expansion.
-      // vite's watcher is the reliable path for both: rolldown's directory
-      // watches can miss additions on hosted macos, while a deleted file must
-      // be rebuilt out of the route map rather than left as a missing module.
-      const hasHiddenProjectSegment = (file: string) =>
-        relative(root, file)
-          .split(/[/\\]/)
-          .some((segment) => segment.startsWith('.'))
-      const handleRouteFileChange = (file: string) => {
-        if (hasHiddenProjectSegment(file)) return
-        for (const platform of Object.keys(devEngines)) {
-          const devEngine = devEngines[platform]
-          if (!devEngine) continue
-          devEngine.handleRouteFileChange(file).catch((error) => {
-            console.error(
-              `[vxrn] handling route graph change ${file} for ${platform} failed`,
-              error
-            )
-          })
-        }
-      }
-      server.watcher.on('add', handleRouteFileChange)
-      server.watcher.on('unlink', handleRouteFileChange)
 
       clientWSS.on('connection', (socket) => {
         socket.on('message', (messageRaw) => {

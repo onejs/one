@@ -16,6 +16,8 @@ import {
   readdirSync,
   statSync,
   readFileSync,
+  watch,
+  type FSWatcher,
 } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import micromatch from 'micromatch'
@@ -98,7 +100,6 @@ interface NativeDevEngineResult {
   getBundle: () => Promise<NativeDevBundle>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
-  handleRouteFileChange: (file: string) => Promise<void>
 }
 
 // shared resolve extensions for native builds
@@ -645,27 +646,31 @@ try {
   let outputProcessed: Promise<void> = Promise.resolve()
 
   let engine: Awaited<ReturnType<typeof dev>>
+  let routeWatcher: FSWatcher | undefined
 
-  const rebuildIfRouteGraphChanged = (files: string[]): Promise<boolean> =>
+  const rebuildIfRouteGraphChanged = (): Promise<boolean> =>
     queueEngineWork(async () => {
-      // rolldown and vite can both report the same addition. decide after all
-      // earlier engine work so only the first notification sees a changed
-      // route set.
+      // decide from the complete route set after all earlier engine work. a
+      // watcher can report a directory, a rename, or several events for one
+      // write, and none of those event shapes are the source of truth.
       const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
-      const routeRootPrefix = `${normalizePath(routeRoot)}/`
-      const routeSetChanged = files.some((file) => {
-        const normalized = normalizePath(file)
-        const entry = statSync(file, { throwIfNoEntry: false })
-        if (isRouteFile(normalized)) {
-          return entry?.isFile() === true
-            ? !knownRoutes.has(normalized)
-            : knownRoutes.has(normalized)
+      const currentRoutes = new Set<string>()
+      const walkRouteRoot = (dir: string) => {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+          const child = resolve(dir, entry.name)
+          if (entry.isDirectory()) {
+            walkRouteRoot(child)
+          } else if (isRouteFile(child)) {
+            currentRoutes.add(normalizePath(child))
+          }
         }
-        if (!normalized.startsWith(routeRootPrefix)) return false
-        return entry?.isDirectory() === true
-          ? true
-          : [...knownRoutes].some((route) => route.startsWith(`${normalized}/`))
-      })
+      }
+      if (statSync(routeRoot, { throwIfNoEntry: false })?.isDirectory()) {
+        walkRouteRoot(routeRoot)
+      }
+      const routeSetChanged =
+        currentRoutes.size !== knownRoutes.size ||
+        [...currentRoutes].some((route) => !knownRoutes.has(route))
       if (!routeSetChanged) return false
 
       // the reload must never serve the bundle from before the route set changed.
@@ -702,7 +707,7 @@ try {
       // adding or deleting a route changes a route map that was expanded when
       // the entry transformed. only a full build re-expands it, and rolldown
       // tells no client that happened, so the reload is sent from here.
-      if (await rebuildIfRouteGraphChanged(result.changedFiles)) return
+      if (await rebuildIfRouteGraphChanged()) return
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -788,6 +793,35 @@ try {
 
   await engine.run()
 
+  // import.meta.glob records the files it matched, not the directory whose
+  // membership defines the route map. own that directory watch next to the
+  // engine and compare complete route sets on every event. this also covers a
+  // router root created after the dev server starts.
+  let routeWatchTarget = virtualEntry.routes.routeRoot
+  while (!statSync(routeWatchTarget, { throwIfNoEntry: false })?.isDirectory()) {
+    const parent = dirname(routeWatchTarget)
+    if (parent === routeWatchTarget) break
+    routeWatchTarget = parent
+  }
+  const normalizedRouteRoot = normalizePath(virtualEntry.routes.routeRoot)
+  routeWatcher = watch(routeWatchTarget, { recursive: true }, (_eventType, file) => {
+    if (file === null) return
+    const changed = normalizePath(resolve(routeWatchTarget, file.toString()))
+    if (
+      changed !== normalizedRouteRoot &&
+      !changed.startsWith(`${normalizedRouteRoot}/`)
+    ) {
+      return
+    }
+    rebuildIfRouteGraphChanged().catch((error) => {
+      console.error(`[vxrn] rebuilding the native route map failed`, error)
+    })
+  })
+  routeWatcher.on('error', (error) => {
+    console.error(`[vxrn] watching the native route map failed`, error)
+  })
+  await rebuildIfRouteGraphChanged()
+
   return {
     engine,
 
@@ -827,15 +861,8 @@ try {
     },
 
     async close() {
+      routeWatcher?.close()
       await engine.close()
-    },
-
-    // vite's watcher sees route additions that rolldown's directory watches can
-    // miss, and supplies the path when a route is deleted. both change the
-    // import.meta.glob expansion and therefore require a full route-map build.
-    // ordinary edits to an existing route remain Fast Refresh patches.
-    async handleRouteFileChange(file: string) {
-      await rebuildIfRouteGraphChanged([file])
     },
   }
 }
