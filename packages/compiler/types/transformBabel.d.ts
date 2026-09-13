@@ -13,7 +13,9 @@ export declare function getBabelOptions(props: Props): babel.TransformOptions | 
  * still applies the project's jsxImportSource and dev-mode settings, exactly
  * as it did when babel only stripped types here.
  */
-export declare function transformOxcReactCompiler(id: string, code: string, target: '18' | '19', sourceMap?: boolean): Promise<{
+export declare function transformOxcReactCompiler(id: string, code: string, optionsOrTarget?: '18' | '19' | (Record<string, any> & {
+    target?: '18' | '19';
+}), sourceMap?: boolean): Promise<{
     code: string;
     map: any;
 }>;

@@ -130,6 +130,29 @@ describe('transformOxcReactCompiler', () => {
 
     expect(result.code).toContain('_c(')
   })
+
+  it('supports mutating useSharedValue in useEffect via Reanimated environment defaults', async () => {
+    const reanimatedCode = `
+      import { useEffect } from 'react'
+      import { useSharedValue } from 'react-native-reanimated'
+
+      export function ReanimatedComponent() {
+        const val = useSharedValue(0)
+        useEffect(() => {
+          val.value = 1
+        }, [val])
+        return <div>{val.value}</div>
+      }
+    `
+    const result = await transformOxcReactCompiler(
+      '/project/ReanimatedComponent.tsx',
+      reanimatedCode,
+      { target: '19' },
+      false
+    )
+
+    expect(result.code).toContain('_c(')
+  })
 })
 
 describe('compiler plugin multi-stage source map composition', () => {

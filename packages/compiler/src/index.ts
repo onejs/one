@@ -214,25 +214,32 @@ async function performBabelTransform({
         ) ?? -1
 
       if (compilerPluginIndex !== -1) {
-        // mark callbacks before react compiler moves them into memoized bindings.
-        if (useWorklets) {
-          workletPreparation = prepareWorkletsForReactCompiler(
+        const compilerPluginConfig = babelOptions.plugins![compilerPluginIndex] as any[]
+        const compilerPluginOptions = compilerPluginConfig[1] || {}
+        const useBabelCompiler =
+          compilerPluginOptions.compiler === 'babel' ||
+          process.env.ONE_REACT_COMPILER === 'babel' ||
+          process.env.VXRN_REACT_COMPILER === 'babel'
+
+        if (!useBabelCompiler) {
+          // mark callbacks before react compiler moves them into memoized bindings.
+          if (useWorklets) {
+            workletPreparation = prepareWorkletsForReactCompiler(
+              id,
+              curCode,
+              shouldSourceMap()
+            )
+            if (workletPreparation) curCode = workletPreparation.code
+          }
+          compilerOut = await transformOxcReactCompiler(
             id,
             curCode,
+            compilerPluginOptions,
             shouldSourceMap()
           )
-          if (workletPreparation) curCode = workletPreparation.code
+          if (compilerOut) curCode = compilerOut.code
+          babelOptions.plugins!.splice(compilerPluginIndex, 1)
         }
-        const compilerTarget =
-          (babelOptions.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
-        compilerOut = await transformOxcReactCompiler(
-          id,
-          curCode,
-          compilerTarget,
-          shouldSourceMap()
-        )
-        if (compilerOut) curCode = compilerOut.code
-        babelOptions.plugins!.splice(compilerPluginIndex, 1)
       }
 
       let workletsOut: { code: string; map?: any } | null = null
