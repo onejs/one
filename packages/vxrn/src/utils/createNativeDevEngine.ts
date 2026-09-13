@@ -673,6 +673,10 @@ try {
         [...currentRoutes].some((route) => !knownRoutes.has(route))
       if (!routeSetChanged) return false
 
+      console.info(
+        `[vxrn] native route map changed (${knownRoutes.size} -> ${currentRoutes.size})`
+      )
+
       // the reload must never serve the bundle from before the route set changed.
       // onOutput may begin after ensureLatestBuildOutput resolves, so clear the
       // cached bundle before triggering work and let getBundle wait for it.
@@ -680,6 +684,7 @@ try {
       engine.triggerFullBuild()
       await engine.ensureLatestBuildOutput()
       await outputProcessed
+      console.info(`[vxrn] native route map rebuild finished`)
       onHmrUpdate?.({ type: 'hmr:reload' })
       return true
     })

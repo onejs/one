@@ -126,6 +126,9 @@ function spawnServer(
   )
 
   const appendOutput = (data: Buffer) => {
+    if (process.env.VXRN_TEST_FORWARD_SERVER_OUTPUT === 'true') {
+      process.stdout.write(data)
+    }
     const lines = data.toString().split('\n')
     for (const line of lines) {
       if (line) {
