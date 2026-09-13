@@ -211,13 +211,7 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
-        console.info(
-          `[vxrn] native HMR client connected (${socket.vxrnPlatform}, ${socket.vxrnClientId})`
-        )
         if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
-          console.info(
-            `[vxrn] delivering pending native reload to ${socket.vxrnPlatform}`
-          )
           socket.send(JSON.stringify({ type: 'hmr:reload' }))
         }
 
@@ -307,7 +301,6 @@ export function createReactNativeDevServerPlugin(
                       // a previous app instance can leave a live socket while
                       // its replacement is still mounting and connecting.
                       pendingReloadPlatforms.add(platform)
-                      console.info(`[vxrn] broadcasting native reload to ${platform}`)
                     }
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
