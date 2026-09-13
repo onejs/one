@@ -7,7 +7,7 @@ export function useControlled<T extends ControlledEvent>(
   revision = 0
 ) {
   if (!Number.isInteger(revision) || revision < 0 || revision > 2147483647) {
-    throw new Error('Swift control revision must be a nonnegative Int32')
+    throw new Error('Control revision must be a nonnegative Int32')
   }
   const received = useRef<ControlledEvent>({ eventCount: 0, revision })
   const [acknowledged, setAcknowledged] = useState<ControlledEvent>(received.current)
