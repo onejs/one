@@ -54,7 +54,7 @@ export default function OneNativeAndroid() {
         label="Mutate text prop"
         onPress={() => setPropExpanded((value) => !value)}
         testID="one-native-android-prop-mutate"
-        enabled
+        disabled={false}
       />
 
       <Compose.Text
@@ -68,7 +68,7 @@ export default function OneNativeAndroid() {
           label="Tap real button"
           onPress={() => setButtonTaps((count) => count + 1)}
           testID="one-native-android-real-button"
-          enabled
+          disabled={false}
         />
         <Compose.Button
           accessibilityRole="button"
@@ -76,7 +76,7 @@ export default function OneNativeAndroid() {
           label={reordered ? 'Restore keyed order' : 'Reorder keyed rows'}
           onPress={() => setReordered((value) => !value)}
           testID="one-native-android-reorder"
-          enabled
+          disabled={false}
         />
       </Compose.Row>
 
@@ -89,10 +89,10 @@ export default function OneNativeAndroid() {
           accessibilityLabel="Controlled switch"
           accessibilityRole="switch"
           accessibilityState={{ checked: switchValue, disabled: false }}
-          checked={switchValue}
-          enabled
+          isOn={switchValue}
+          disabled={false}
           label="Controlled switch"
-          onCheckedChange={(value) => {
+          onIsOnChange={(value) => {
             setSwitchRequest(value)
             if (!rejectSwitch) setSwitchValue(value)
           }}
@@ -105,7 +105,7 @@ export default function OneNativeAndroid() {
           label={rejectSwitch ? 'Accept switch' : 'Reject switch'}
           onPress={() => setRejectSwitch((value) => !value)}
           testID="one-native-android-switch-policy"
-          enabled
+          disabled={false}
         />
         <Compose.Button
           accessibilityRole="button"
@@ -117,7 +117,7 @@ export default function OneNativeAndroid() {
             setSwitchRevision((value) => value + 1)
           }}
           testID="one-native-android-switch-reset"
-          enabled
+          disabled={false}
         />
       </Compose.Row>
 
@@ -131,7 +131,7 @@ export default function OneNativeAndroid() {
         label={showOptional ? 'Unmount optional' : 'Remount optional'}
         onPress={() => setShowOptional((value) => !value)}
         testID="one-native-android-toggle-optional"
-        enabled
+        disabled={false}
       />
       {showOptional ? (
         <Compose.Box key="optional" testID="one-native-android-optional" style={boxStyle}>
@@ -151,7 +151,7 @@ export default function OneNativeAndroid() {
         <Compose.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}
-          enabled={false}
+          disabled
           label="Disabled button"
           onPress={() => setDisabledButtonTaps((count) => count + 1)}
           testID="one-native-android-disabled-button"
@@ -160,10 +160,10 @@ export default function OneNativeAndroid() {
           accessibilityLabel="Disabled switch"
           accessibilityRole="switch"
           accessibilityState={{ checked: false, disabled: true }}
-          checked={false}
-          enabled={false}
+          isOn={false}
+          disabled
           label="Disabled switch"
-          onCheckedChange={() => setDisabledSwitchTaps((count) => count + 1)}
+          onIsOnChange={() => setDisabledSwitchTaps((count) => count + 1)}
           testID="one-native-android-disabled-switch"
         />
       </Compose.Row>
