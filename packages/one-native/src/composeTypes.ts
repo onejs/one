@@ -70,11 +70,14 @@ export type ComposeFontWeight =
   | 'extraBold'
   | 'black'
 
+export type ComposeAccessibilityRole = 'button' | 'switch' | 'header' | 'text'
+
 export interface ComposeNodeProps extends Pick<
   ViewProps,
-  'accessibilityLabel' | 'accessibilityRole' | 'accessibilityState' | 'testID'
+  'accessibilityLabel' | 'accessibilityState' | 'accessibilityValue' | 'testID'
 > {
   children?: ReactNode
+  accessibilityRole?: ComposeAccessibilityRole
   style?: StyleProp<ViewStyle>
   composeStyle?: ComposeStyle
 }
@@ -82,18 +85,22 @@ export interface ComposeNodeProps extends Pick<
 export interface ComposeColumnProps extends ComposeNodeProps {
   horizontalAlignment?: ComposeHorizontalAlignment
   verticalArrangement?: ComposeVerticalArrangement
+  spacing?: number
 }
 
 export interface ComposeRowProps extends ComposeNodeProps {
   verticalAlignment?: ComposeVerticalAlignment
   horizontalArrangement?: ComposeHorizontalArrangement
+  spacing?: number
 }
 
 export interface ComposeBoxProps extends ComposeNodeProps {
   contentAlignment?: ComposeContentAlignment
 }
 
-export interface ComposeTextProps extends ComposeNodeProps {
+type ComposeLeafProps = Omit<ComposeNodeProps, 'children'>
+
+export interface ComposeTextProps extends ComposeLeafProps {
   text: string
   fontSize?: number
   fontWeight?: ComposeFontWeight
@@ -104,7 +111,7 @@ export interface ComposeTextProps extends ComposeNodeProps {
 export type ComposeButtonVariant = 'filled' | 'outlined' | 'text'
 export type ComposeButtonTone = 'default' | 'danger'
 
-export interface ComposeButtonProps extends ComposeNodeProps {
+export interface ComposeButtonProps extends ComposeLeafProps {
   label: string
   disabled?: boolean
   variant?: ComposeButtonVariant
@@ -112,7 +119,7 @@ export interface ComposeButtonProps extends ComposeNodeProps {
   onPress?: () => void
 }
 
-export interface ComposeSwitchProps extends ComposeNodeProps {
+export interface ComposeSwitchProps extends ComposeLeafProps {
   isOn: boolean
   disabled?: boolean
   label?: string

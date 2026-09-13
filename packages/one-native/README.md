@@ -1,8 +1,9 @@
 # One Native
 
-Generated SwiftUI tabs, menus, pickers, form controls, sheets, full screen covers,
+Native SwiftUI and Jetpack Compose interfaces for React Native. The iOS surface
+exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
 containers, popovers, video, maps, web views, sharing, the photo library, empty states,
-and Quick Look for React Native, exposed through `Swift`. This is an
+and Quick Look through `Swift`. This is an
 initial implementation on the `feat/one-native` branch. It requires an iOS 26+ native
 build and React Native's New Architecture. It is not published to npm.
 
@@ -42,12 +43,18 @@ function Settings() {
 }
 ```
 
-The root Compose node uses its React Native `style` for the finite Yoga bounds.
+The root Compose node uses its React Native `style` for finite Yoga bounds. A root
+without a finite width and height measures to zero because Compose descendants do not
+participate in Yoga measurement.
+
 Descendants are laid out by Compose, so a nested node must use `composeStyle` instead
 of `style`. `composeStyle` is limited to colors, padding, width and height, fill flags,
 corner radius, opacity, and border color and width. `Column` accepts
-`horizontalAlignment` and `verticalArrangement`; `Row` accepts
-`verticalAlignment` and `horizontalArrangement`; `Box` accepts `contentAlignment`.
+`horizontalAlignment`, `verticalArrangement`, and `spacing`; `Row` accepts
+`verticalAlignment`, `horizontalArrangement`, and `spacing`. Explicit spacing
+cannot be combined with a `spaceBetween`, `spaceAround`, or `spaceEvenly`
+arrangement. `Box` accepts `contentAlignment`.
+
 `Text` takes `text`, optional typography props and `maxLines`. `Button` takes `label`,
 `disabled`, `variant` (`filled`, `outlined`, or `text`), and `tone` (`default` or
 `danger`). `Switch` is controlled with `isOn`, `onIsOnChange`, and optional `revision`.

@@ -1,10 +1,8 @@
 package dev.onejs.onenative
 
 import android.content.Context
-import com.facebook.react.bridge.Dynamic
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.uimanager.LayoutShadowNode
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.ViewManagerDelegate
@@ -26,10 +24,6 @@ class OneNativeComposeNodeManager :
     }
 
     override fun getName(): String = REACT_CLASS
-
-    override fun createShadowNodeInstance(): LayoutShadowNode = LayoutShadowNode()
-
-    override fun getShadowNodeClass(): Class<LayoutShadowNode> = LayoutShadowNode::class.java
 
     override fun createViewInstance(reactContext: ThemedReactContext): OneNativeComposeNodeView =
         OneNativeComposeNodeView(reactContext)
@@ -152,6 +146,10 @@ class OneNativeComposeNodeManager :
         view.stageArrangement(value)
     }
 
+    override fun setSpacing(view: OneNativeComposeNodeView, value: Double) {
+        view.stageSpacing(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }
@@ -163,11 +161,6 @@ class OneNativeComposeNodeManager :
 
     override fun setAccessibilityLabel(view: OneNativeComposeNodeView, label: String?) {
         super.setAccessibilityLabel(view, label)
-        view.invalidateComposeSemantics()
-    }
-
-    override fun setAccessibilityHint(view: OneNativeComposeNodeView, hint: String?) {
-        super.setAccessibilityHint(view, hint)
         view.invalidateComposeSemantics()
     }
 
@@ -191,24 +184,6 @@ class OneNativeComposeNodeManager :
         view.invalidateComposeSemantics()
     }
 
-    override fun setImportantForAccessibility(
-        view: OneNativeComposeNodeView,
-        value: String?,
-    ) {
-        super.setImportantForAccessibility(view, value)
-        view.invalidateComposeSemantics()
-    }
-
-    override fun setScreenReaderFocusable(view: OneNativeComposeNodeView, value: Boolean) {
-        super.setScreenReaderFocusable(view, value)
-        view.invalidateComposeSemantics()
-    }
-
-    override fun setAccessibilityLabelledBy(view: OneNativeComposeNodeView, value: Dynamic?) {
-        super.setAccessibilityLabelledBy(view, value)
-        view.invalidateComposeSemantics()
-    }
-
     override fun measure(
         context: Context,
         localData: ReadableMap?,
@@ -221,59 +196,23 @@ class OneNativeComposeNodeManager :
         attachmentsPositions: FloatArray?,
     ): Long {
         val style = OneNativeComposeStyle.fromMap(props?.getMap("composeStyle"), context)
-        val density = context.resources.displayMetrics.density.toDouble().takeIf { it.isFinite() && it > 0 } ?: 1.0
-        val maxDimension = 4096.0 * density
-        val kind =
-            props?.let {
-                if (it.hasKey("nodeType") && !it.isNull("nodeType")) it.getString("nodeType")
-                else null
-            }?.trim()?.lowercase()
-        val text =
-            props?.let {
-                if (kind == "button" || kind == "switch") {
-                    if (it.hasKey("label") && !it.isNull("label")) it.getString("label") else null
-                } else if (it.hasKey("text") && !it.isNull("text")) it.getString("text") else null
-            }
-        val fontSize =
-            props?.let {
-                if (it.hasKey("fontSize") && !it.isNull("fontSize")) it.getDouble("fontSize")
-                else 16.0
-            }?.takeIf { it.isFinite() && it > 0 } ?: 16.0
-        val textWidth = text?.length?.times(fontSize * 0.55) ?: 0.0
-        val intrinsicWidthDp =
-            when (kind) {
-                "switch" -> textWidth + 56.0
-                "button" -> textWidth + 32.0
-                "text" -> textWidth
-                else -> 0.0
-            } + style.horizontalPadding
-        val intrinsicHeightDp =
-            when (kind) {
-                "switch", "button" -> 48.0
-                "text" -> fontSize * 1.25
-                else -> 0.0
-            } + style.verticalPadding
-        val intrinsicWidth = intrinsicWidthDp * density
-        val intrinsicHeight = intrinsicHeightDp * density
         val widthResult: Double =
             when {
                 widthMode == YogaMeasureMode.EXACTLY -> width.toDouble()
-                style.width >= 0 -> style.width * density
+                style.width >= 0 -> style.width
                 style.fillMaxWidth && widthMode == YogaMeasureMode.AT_MOST -> width.toDouble()
-                widthMode == YogaMeasureMode.AT_MOST -> intrinsicWidth.coerceAtMost(width.toDouble())
-                else -> intrinsicWidth
+                else -> 0.0
             }
         val heightResult: Double =
             when {
                 heightMode == YogaMeasureMode.EXACTLY -> height.toDouble()
-                style.height >= 0 -> style.height * density
+                style.height >= 0 -> style.height
                 style.fillMaxHeight && heightMode == YogaMeasureMode.AT_MOST -> height.toDouble()
-                heightMode == YogaMeasureMode.AT_MOST -> intrinsicHeight.coerceAtMost(height.toDouble())
-                else -> intrinsicHeight
+                else -> 0.0
             }
         return YogaMeasureOutput.make(
-            widthResult.finiteNonNegative(if (widthMode == YogaMeasureMode.EXACTLY) null else maxDimension),
-            heightResult.finiteNonNegative(if (heightMode == YogaMeasureMode.EXACTLY) null else maxDimension),
+            widthResult.finiteNonNegative(),
+            heightResult.finiteNonNegative(),
         )
     }
 
@@ -289,9 +228,8 @@ class OneNativeComposeNodeManager :
     }
 }
 
-private fun Double.finiteNonNegative(maxDimension: Double?): Float {
+private fun Double.finiteNonNegative(): Float {
     if (isNaN() || this == Double.NEGATIVE_INFINITY) return 0f
     val nonNegative = coerceAtLeast(0.0)
-    val bounded = maxDimension?.let(nonNegative::coerceAtMost) ?: nonNegative
-    return bounded.takeIf { it.isFinite() }?.toFloat() ?: 0f
+    return nonNegative.coerceAtMost(Float.MAX_VALUE.toDouble()).toFloat()
 }

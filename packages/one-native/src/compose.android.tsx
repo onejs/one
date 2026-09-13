@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { useControlled } from './controlled'
 import type {
@@ -30,6 +30,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     | ComposeVerticalAlignment
     | ComposeContentAlignment
   arrangement?: ComposeHorizontalArrangement | ComposeVerticalArrangement
+  spacing?: number
   text?: string
   fontSize?: number
   fontWeight?: ComposeFontWeight
@@ -104,9 +105,19 @@ function assertComposeStyle(style: ComposeStyle | undefined) {
       continue
     }
     if (composeStyleColorKeys.has(key)) {
+      const colorValue = value as unknown
+      const resourcePaths =
+        colorValue &&
+        typeof colorValue === 'object' &&
+        'resource_paths' in colorValue
+          ? colorValue.resource_paths
+          : undefined
       if (
         (typeof value !== 'string' || !value.trim()) &&
-        (typeof value !== 'number' || !Number.isFinite(value))
+        (typeof value !== 'number' || !Number.isFinite(value)) &&
+        (!Array.isArray(resourcePaths) ||
+          resourcePaths.length === 0 ||
+          resourcePaths.some((path) => typeof path !== 'string' || !path))
       )
         throw new Error(`Compose composeStyle ${key} must be a color value`)
       continue
@@ -208,6 +219,14 @@ function ComposeNode({
       'Compose nodes nested in a Compose tree must use composeStyle instead of style'
     )
   assertComposeStyle(composeStyle)
+  if (
+    (props.nodeType === 'text' ||
+      props.nodeType === 'button' ||
+      props.nodeType === 'switch') &&
+    Children.count(children) > 0
+  ) {
+    throw new Error(`Compose ${props.nodeType} does not accept children`)
+  }
   return (
     <NativeComposeNode
       {...props}
@@ -224,16 +243,24 @@ function Column({
   children,
   horizontalAlignment = 'start',
   verticalArrangement = 'top',
+  spacing,
   ...props
 }: ComposeColumnProps) {
   assertOneOf(horizontalAlignment, 'Column horizontalAlignment', horizontalAlignments)
   assertOneOf(verticalArrangement, 'Column verticalArrangement', verticalArrangements)
+  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
+    throw new Error('Compose Column spacing must be a nonnegative finite number')
+  if (spacing !== undefined && verticalArrangement.startsWith('space'))
+    throw new Error(
+      'Compose Column spacing cannot be combined with a space-distribution arrangement'
+    )
   return (
     <ComposeNode
       {...props}
       nodeType="column"
       alignment={horizontalAlignment}
       arrangement={verticalArrangement}
+      spacing={spacing}
     >
       {children}
     </ComposeNode>
@@ -244,16 +271,24 @@ function Row({
   children,
   verticalAlignment = 'top',
   horizontalArrangement = 'start',
+  spacing,
   ...props
 }: ComposeRowProps) {
   assertOneOf(verticalAlignment, 'Row verticalAlignment', verticalAlignments)
   assertOneOf(horizontalArrangement, 'Row horizontalArrangement', horizontalArrangements)
+  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
+    throw new Error('Compose Row spacing must be a nonnegative finite number')
+  if (spacing !== undefined && horizontalArrangement.startsWith('space'))
+    throw new Error(
+      'Compose Row spacing cannot be combined with a space-distribution arrangement'
+    )
   return (
     <ComposeNode
       {...props}
       nodeType="row"
       alignment={verticalAlignment}
       arrangement={horizontalArrangement}
+      spacing={spacing}
     >
       {children}
     </ComposeNode>
@@ -270,7 +305,6 @@ function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxPr
 }
 
 function Text({
-  children,
   text,
   fontSize,
   fontWeight,
@@ -294,14 +328,11 @@ function Text({
       fontWeight={fontWeight}
       textAlign={textAlign}
       maxLines={maxLines}
-    >
-      {children}
-    </ComposeNode>
+    />
   )
 }
 
 function Button({
-  children,
   label,
   disabled = false,
   variant = 'filled',
@@ -324,14 +355,11 @@ function Button({
       variant={variant}
       tone={tone}
       onNativeComposeNodeButtonPress={onPress ? () => onPress() : undefined}
-    >
-      {children}
-    </ComposeNode>
+    />
   )
 }
 
 function Switch({
-  children,
   isOn,
   disabled = false,
   label = '',
@@ -361,9 +389,7 @@ function Switch({
       onNativeComposeNodeSwitchValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
       }
-    >
-      {children}
-    </ComposeNode>
+    />
   )
 }
 

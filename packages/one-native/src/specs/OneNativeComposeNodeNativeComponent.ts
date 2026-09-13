@@ -41,6 +41,7 @@ interface NativeProps extends ViewProps {
   revision?: Int32
   alignment?: string
   arrangement?: string
+  spacing?: WithDefault<Double, -1>
   composeStyle?: ComposeStyleNative
   onNativeComposeNodeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeSwitchValueChange?: DirectEventHandler<
