@@ -1,4 +1,4 @@
-import type { ColorValue, StyleProp, ViewStyle } from 'react-native'
+import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native'
 import type { ReactNode } from 'react'
 
 export type ComposeStyle = Readonly<{
@@ -70,7 +70,10 @@ export type ComposeFontWeight =
   | 'extraBold'
   | 'black'
 
-export interface ComposeNodeProps {
+export interface ComposeNodeProps extends Pick<
+  ViewProps,
+  'accessibilityLabel' | 'accessibilityRole' | 'accessibilityState' | 'testID'
+> {
   children?: ReactNode
   style?: StyleProp<ViewStyle>
   composeStyle?: ComposeStyle
