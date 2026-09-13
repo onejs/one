@@ -91,14 +91,27 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 export async function transformOxcReactCompiler(
   id: string,
   code: string,
-  target: '18' | '19',
+  optionsOrTarget: '18' | '19' | (Record<string, any> & { target?: '18' | '19' }) = '19',
   sourceMap = false
 ) {
   const { transform } = await import('oxc-transform-react')
+  const compilerOptions =
+    typeof optionsOrTarget === 'string'
+      ? { target: optionsOrTarget }
+      : optionsOrTarget || {}
+
+  const target = compilerOptions.target ?? '19'
   const result = await transform(id, code, {
     jsx: 'preserve',
     sourcemap: sourceMap,
-    reactCompiler: { target },
+    reactCompiler: {
+      target,
+      ...compilerOptions,
+      environment: {
+        enableCustomTypeDefinitionForReanimated: true,
+        ...compilerOptions.environment,
+      },
+    },
   })
 
   // `errors` with fatal:false are react compiler BAILOUTS ("Cannot access refs
