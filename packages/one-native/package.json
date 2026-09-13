@@ -1,0 +1,18 @@
+{
+  "name": "one-native",
+  "version": "0.1.0",
+  "description": "Main-Thread React Native Runtime for iOS",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "bundle": "bun build ./src/demo/index.tsx --outfile=./ios/OneNativeApp/main.bundle.js --target=browser"
+  },
+  "dependencies": {
+    "react": "19.2.3",
+    "react-reconciler": "^0.32.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-reconciler": "^0.28.8"
+  }
+}
