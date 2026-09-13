@@ -279,7 +279,6 @@ jobs:
           IOS_TEST_CONTAINER_PATH_DEV: ${{ matrix.env == 'dev' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.built-app-path) || '' }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ matrix.env == 'prod' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.built-app-path) || '' }}
           HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
-          VXRN_TEST_FORWARD_SERVER_OUTPUT: ${{ matrix.env == 'dev' && matrix.bundler == 'rolldown' && 'true' || 'false' }}
         run: |
           bun run --filter test-test ${{ matrix.test-script }}
 
