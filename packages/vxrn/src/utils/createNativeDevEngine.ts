@@ -16,6 +16,9 @@ import {
   readdirSync,
   statSync,
   readFileSync,
+  writeFileSync,
+  watch,
+  type FSWatcher,
 } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import micromatch from 'micromatch'
@@ -23,6 +26,7 @@ import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldo
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
+import { resolvePath } from '@vxrn/resolve'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -98,7 +102,6 @@ interface NativeDevEngineResult {
   getBundle: () => Promise<NativeDevBundle>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
-  handleAddedFile: (file: string) => Promise<void>
 }
 
 // shared resolve extensions for native builds
@@ -262,6 +265,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    ...(dev ? [reactNativeDedupePlugin(root)] : []),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -556,7 +560,11 @@ export async function createNativeDevEngine(
   let bundlePromise: Promise<NativeDevBundle> | null = null
 
   const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
-  const virtualEntry = nativeVirtualEntryPlugin(root, { dev: true })
+  const virtualEntry = nativeVirtualEntryPlugin(root, {
+    dev: true,
+    platform,
+    dynamicRoutes: true,
+  })
 
   // one build at a time: a bundle request and a full rebuild can arrive
   // together (a reload lands on the bundle route while a new route file is
@@ -645,27 +653,26 @@ try {
   let outputProcessed: Promise<void> = Promise.resolve()
 
   let engine: Awaited<ReturnType<typeof dev>>
+  let routeWatcher: FSWatcher | undefined
 
-  const rebuildIfNewRoute = async (files: string[]): Promise<boolean> => {
-    const { routeRoot, files: knownRoutes, isRouteFile } = virtualEntry.routes
-    const routeRootPrefix = `${normalizePath(routeRoot)}/`
-    const routeAdded = files.some((file) => {
-      const normalized = normalizePath(file)
-      if (isRouteFile(normalized)) return !knownRoutes.has(normalized)
-      return (
-        normalized.startsWith(routeRootPrefix) &&
-        statSync(file, { throwIfNoEntry: false })?.isDirectory() === true
-      )
+  const rebuildIfRouteGraphChanged = (): Promise<boolean> =>
+    queueEngineWork(async () => {
+      // decide from the complete route set after all earlier engine work. a
+      // watcher can report a directory, a rename, or several events for one
+      // write, and none of those event shapes are the source of truth.
+      const { files: knownRoutes, scanFiles, updateFiles } = virtualEntry.routes
+      const currentRoutes = scanFiles()
+      const routeSetChanged =
+        currentRoutes.size !== knownRoutes.size ||
+        [...currentRoutes].some((route) => !knownRoutes.has(route))
+      if (!routeSetChanged) return false
+
+      // changing this small imported module lets Rolldown compile only the new
+      // route and the registry delta. rebuilding a multi-megabyte native bundle
+      // makes route creation scale with the entire app.
+      updateFiles(currentRoutes)
+      return true
     })
-    if (!routeAdded) return false
-    await queueEngineWork(async () => {
-      engine.triggerFullBuild()
-      await engine.ensureLatestBuildOutput()
-      await outputProcessed
-    })
-    onHmrUpdate?.({ type: 'hmr:reload' })
-    return true
-  }
 
   engine = await dev(inputOptions, outputOptions, {
     onOutput: async (result) => {
@@ -687,12 +694,10 @@ try {
         return
       }
 
-      // a route file that was just created has no module, so rolldown reports
-      // the change and stops: in devMode it never re-scans, and the entry's
-      // `import.meta.glob` was expanded back when it transformed the entry.
-      // only a full build re-expands it, and rolldown tells no client that
-      // happened, so the reload is sent from here.
-      if (await rebuildIfNewRoute(result.changedFiles)) return
+      // adding or deleting a route changes a route map that was expanded when
+      // the entry transformed. only a full build re-expands it, and rolldown
+      // tells no client that happened, so the reload is sent from here.
+      if (await rebuildIfRouteGraphChanged()) return
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -778,6 +783,35 @@ try {
 
   await engine.run()
 
+  // import.meta.glob records the files it matched, not the directory whose
+  // membership defines the route map. own that directory watch next to the
+  // engine and compare complete route sets on every event. this also covers a
+  // router root created after the dev server starts.
+  let routeWatchTarget = virtualEntry.routes.routeRoot
+  while (!statSync(routeWatchTarget, { throwIfNoEntry: false })?.isDirectory()) {
+    const parent = dirname(routeWatchTarget)
+    if (parent === routeWatchTarget) break
+    routeWatchTarget = parent
+  }
+  const normalizedRouteRoot = normalizePath(virtualEntry.routes.routeRoot)
+  routeWatcher = watch(routeWatchTarget, { recursive: true }, (_eventType, file) => {
+    if (file === null) return
+    const changed = normalizePath(resolve(routeWatchTarget, file.toString()))
+    if (
+      changed !== normalizedRouteRoot &&
+      !changed.startsWith(`${normalizedRouteRoot}/`)
+    ) {
+      return
+    }
+    rebuildIfRouteGraphChanged().catch((error) => {
+      console.error(`[vxrn] rebuilding the native route map failed`, error)
+    })
+  })
+  routeWatcher.on('error', (error) => {
+    console.error(`[vxrn] watching the native route map failed`, error)
+  })
+  await rebuildIfRouteGraphChanged()
+
   return {
     engine,
 
@@ -817,15 +851,8 @@ try {
     },
 
     async close() {
+      routeWatcher?.close()
       await engine.close()
-    },
-
-    // vite's watcher sees a created file even when rolldown's addWatchFile
-    // directory watches do not, which is what happens on github's macos
-    // runners. scoped to route files so a random write in the project is not
-    // a full rebuild.
-    async handleAddedFile(file: string) {
-      await rebuildIfNewRoute([file])
     },
   }
 }
@@ -894,7 +921,7 @@ export async function buildNativeBundle(
     shimMissingExports: true,
     moduleTypes: { '.js': 'jsx' },
     plugins: [
-      ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev }).plugin]),
+      ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev, platform }).plugin]),
       ...getNativePlugins(
         root,
         platform,
@@ -942,13 +969,20 @@ interface NativeRouteRegistry {
   routeRoot: string
   files: Set<string>
   isRouteFile: (file: string) => boolean
+  scanFiles: () => Set<string>
+  updateFiles: (files: Set<string>) => void
 }
 
 function nativeVirtualEntryPlugin(
   root: string,
-  opts?: { dev?: boolean }
+  opts: {
+    dev?: boolean
+    platform: 'ios' | 'android'
+    dynamicRoutes?: boolean
+  }
 ): { plugin: Plugin; routes: NativeRouteRegistry } {
   const isDev = opts?.dev !== false
+  const useDynamicRouteRegistry = opts.dynamicRoutes === true
   // absolute for import.meta.glob resolution; forward-slash for module-graph convention
   const resolvedId = normalizePath(resolve(root, '__virtual-native-entry.tsx'))
 
@@ -1001,23 +1035,24 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 `
     : ''
 
-  const entryCode = `
+  const entryCode = () => `
 ${refreshSetup}
 import * as ReactNativeInitializeCore from 'react-native/Libraries/Core/InitializeCore';
 import NativeWebSocket from 'react-native/Libraries/WebSocket/WebSocket';
+import DevSettings from 'react-native/Libraries/Utilities/DevSettings';
 ${setupFileImport}
+${routeImports}
 import { createApp } from 'one';
 
 void ReactNativeInitializeCore;
 globalThis.WebSocket = NativeWebSocket;
+globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = function(reason) {
+  DevSettings.reload(reason);
+};
 
-var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true });
-// fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
-var routes = {};
-Object.keys(_routes).forEach(function(key) {
-  var normalizedKey = key.replace(/^\\.\\//, '');
-  routes['/' + normalizedKey] = _routes[key];
-});
+// React Native reloads a dev bundle in the existing JS runtime. Advance One's
+// route-cache version so a full reload cannot reuse the previous context.
+globalThis.__vxrnVersion = (globalThis.__vxrnVersion || 0) + 1;
 
 createApp({
   routes: routes,
@@ -1025,6 +1060,8 @@ createApp({
   flags: ${JSON.stringify(flags)},
   linking: ${JSON.stringify(linking)},
 });
+
+${routeHmr}
 `
 
   const routeRoot = resolve(root, routerRoot)
@@ -1045,11 +1082,66 @@ createApp({
       !micromatch.isMatch(relativeToRoot, excludeGlobs)
     )
   }
+  const scanFiles = () => {
+    const files = new Set<string>()
+    const walkRouteRoot = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const child = resolve(dir, entry.name)
+        if (entry.isDirectory()) walkRouteRoot(child)
+        else if (isRouteFile(child)) files.add(normalizePath(child))
+      }
+    }
+    if (statSync(routeRoot, { throwIfNoEntry: false })?.isDirectory()) {
+      walkRouteRoot(routeRoot)
+    }
+    return files
+  }
+  const registrySpecifier = `./node_modules/.vxrn/native-routes-${opts.platform}.mjs`
+  const registryPath = resolve(root, registrySpecifier)
   const routes: NativeRouteRegistry = {
     routeRoot,
     files: new Set(),
     isRouteFile,
+    scanFiles,
+    updateFiles(files) {
+      routes.files = files
+      if (!useDynamicRouteRegistry) return
+
+      const source = `export const routes = {\n${[...files]
+        .sort()
+        .map((file) => {
+          const routeKey = `/${normalizePath(relative(root, file))}`
+          let importPath = normalizePath(relative(dirname(registryPath), file))
+          if (!importPath.startsWith('.')) importPath = `./${importPath}`
+          return `  ${JSON.stringify(routeKey)}: () => import(${JSON.stringify(importPath)})`
+        })
+        .join(',\n')}\n}\n`
+      mkdirSync(dirname(registryPath), { recursive: true })
+      if (!existsSync(registryPath) || readFileSync(registryPath, 'utf8') !== source) {
+        writeFileSync(registryPath, source)
+      }
+    },
   }
+  routes.updateFiles(routes.scanFiles())
+
+  const routeImports = useDynamicRouteRegistry
+    ? `import { routes } from ${JSON.stringify(registrySpecifier)};`
+    : `var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true });
+// fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
+var routes = {};
+Object.keys(_routes).forEach(function(key) {
+  var normalizedKey = key.replace(/^\\.\\//, '');
+  routes['/' + normalizedKey] = _routes[key];
+});`
+  const routeHmr = useDynamicRouteRegistry
+    ? `if (import.meta.hot) {
+  import.meta.hot.accept(${JSON.stringify(registrySpecifier)}, function(next) {
+    if (globalThis.__VXRN_UPDATE_NATIVE_ROUTES__) {
+      globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(next.routes);
+    }
+  });
+}`
+    : ''
 
   return {
     routes,
@@ -1062,35 +1154,7 @@ createApp({
       },
       load(id) {
         if (id !== resolvedId) return
-        // rolldown expands `import.meta.glob` during transform and records a
-        // dependency on the files it matched, never on the directories it
-        // searched. registering those directories is what makes its own watcher
-        // report a route file appearing, and walking them is what lets the
-        // engine tell that report apart from an edit.
-        //
-        // watching a directory is not recursive, so every directory under the
-        // route root is registered. a new subdirectory is itself a change to
-        // its watched parent, and the full build that follows re-runs this
-        // hook, so the build that picks up `app/foo/index.tsx` is also what
-        // starts watching `app/foo`.
-        routes.files.clear()
-        const walkRouteRoot = (dir: string) => {
-          this.addWatchFile(dir)
-          for (const entry of readdirSync(dir, { withFileTypes: true })) {
-            const child = resolve(dir, entry.name)
-            if (entry.isDirectory()) walkRouteRoot(child)
-            else if (isRouteFile(child)) routes.files.add(normalizePath(child))
-          }
-        }
-        // a project can have no route root at all: `import.meta.glob` then
-        // expands to nothing and the app builds fine. watch the directory that
-        // would hold it, so creating it is the change that starts the walk.
-        if (statSync(routeRoot, { throwIfNoEntry: false })?.isDirectory()) {
-          walkRouteRoot(routeRoot)
-        } else {
-          this.addWatchFile(dirname(routeRoot))
-        }
-        return entryCode
+        return entryCode()
       },
     },
   }
@@ -1222,6 +1286,29 @@ export function hmrClientNoopPlugin(): Plugin {
           moduleType: 'js',
         }
       }
+    },
+  }
+}
+
+function reactNativeDedupePlugin(root: string): Plugin {
+  // package managers can install the same react native version at multiple
+  // physical paths. rolldown assigns each path a module identity, so resolving
+  // every entry through the app's instance prevents initializeCore from running twice.
+  let reactNativeRoot: string | undefined
+
+  return {
+    name: 'vxrn:react-native-dedupe',
+    async resolveId(source, importer) {
+      if (source !== 'react-native' && !source.startsWith('react-native/')) return
+
+      reactNativeRoot ||= realpathSync(
+        dirname(resolvePath('react-native/package.json', root))
+      )
+      const subpath =
+        source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
+      return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
+        skipSelf: true,
+      })
     },
   }
 }
@@ -2069,11 +2156,13 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     }
   }
 
-  reload() {
-    var proxy = globalThis.__turboModuleProxy
-      ? globalThis.__turboModuleProxy('DevSettings')
-      : globalThis.nativeModuleProxy && globalThis.nativeModuleProxy.DevSettings;
-    if (proxy && proxy.reload) proxy.reload();
+  reload(reason) {
+    var reloadNativeBundle = globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__;
+    if (typeof reloadNativeBundle === 'function') {
+      reloadNativeBundle(reason);
+      return;
+    }
+    console.error('[vxrn HMR]: DevSettings.reload is unavailable');
   }
 
   setup(socket) {
@@ -2095,10 +2184,10 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
         if (message.type === 'hmr:update') {
           // a patch that cannot be applied in place is the reload signal
           if (!runtime.applyHmrUpdate(message.code, message.changedIds, message.seq)) {
-            runtime.reload();
+            runtime.reload('native HMR update could not be applied');
           }
         } else if (message.type === 'hmr:reload') {
-          runtime.reload();
+          runtime.reload('native route map changed');
         }
       } catch (error) {
         console.error('[vxrn HMR]: failed to apply update', error);

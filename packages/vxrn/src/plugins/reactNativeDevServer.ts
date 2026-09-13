@@ -83,6 +83,7 @@ export function createReactNativeDevServerPlugin(
       > = {}
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
+      const pendingReloadPlatforms = new Set<'ios' | 'android'>()
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -210,6 +211,9 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
+        if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
+          socket.send(JSON.stringify({ type: 'hmr:reload' }))
+        }
 
         socket.on('message', (message) => {
           const value = message.toString()
@@ -244,66 +248,6 @@ export function createReactNativeDevServerPlugin(
         })
       })
 
-      const reloadNativeClients = (platform: string) => {
-        const reload = JSON.stringify({ type: 'hmr:reload' })
-        hmrWSS.clients.forEach((client) => {
-          const nativeClient = client as NativeHmrSocket
-          if (nativeClient.readyState === 1 && nativeClient.vxrnPlatform === platform) {
-            nativeClient.send(reload)
-          }
-        })
-      }
-
-      // a created route file: rolldown's addWatchFile on the route directories
-      // is supposed to report it, and the engine rebuilds only then. github's
-      // macos runners do not always surface that, so vite's watcher is the
-      // backup, still scoped to route files inside handleAddedFile.
-      //
-      // a deletion it cannot survive. rolldown's dev engine panics its worker
-      // when it retires a module that left the disk ("index out of bounds" out
-      // of oxc_index), and from then on every bundle request answers 500 even
-      // once the file comes back. that engine cannot be repaired, so drop it
-      // and let the next bundle request build a fresh one.
-      let deletionTimer: ReturnType<typeof setTimeout> | undefined
-      let addTimer: ReturnType<typeof setTimeout> | undefined
-      const addedFiles = new Set<string>()
-      server.watcher.on('add', (file) => {
-        if (file.split('/').some((segment) => segment.startsWith('.'))) return
-        addedFiles.add(file)
-        clearTimeout(addTimer)
-        addTimer = setTimeout(() => {
-          const files = [...addedFiles]
-          addedFiles.clear()
-          for (const platform of Object.keys(devEngines)) {
-            const devEngine = devEngines[platform]
-            if (!devEngine) continue
-            for (const added of files) {
-              devEngine.handleAddedFile(added).catch((error) => {
-                console.error(`[vxrn] handling added ${added} for ${platform} failed`, error)
-              })
-            }
-          }
-        }, 50)
-      })
-      server.watcher.on('unlink', (file) => {
-        // vite's watcher already skips node_modules and .git. keep out the rest
-        // of what a dev server writes into a project while it runs: caches and
-        // build output under a dot directory, editor swap files.
-        if (file.split('/').some((segment) => segment.startsWith('.'))) return
-        // one pass for a burst (a branch switch, a generator, a rename)
-        clearTimeout(deletionTimer)
-        deletionTimer = setTimeout(() => {
-          for (const platform of Object.keys(devEngines)) {
-            const devEngine = devEngines[platform]
-            if (!devEngine) continue
-            devEngines[platform] = null
-            devEngineCreating[platform] = null
-            devEngine.close().catch(() => {})
-            reloadNativeClients(platform)
-          }
-        }, 500)
-      })
-
       clientWSS.on('connection', (socket) => {
         socket.on('message', (messageRaw) => {
           const message = JSON.parse(messageRaw.toString()) as any as ClientMessage
@@ -335,10 +279,10 @@ export function createReactNativeDevServerPlugin(
       })
 
       const getDevEngine = async (platform: 'ios' | 'android') => {
-        if (!devEngines[platform]) {
+        while (!devEngines[platform]) {
           // prevent duplicate creation from concurrent requests
           if (!devEngineCreating[platform]) {
-            devEngineCreating[platform] = (async () => {
+            const creating = (async () => {
               try {
                 console.info(`[vxrn] creating rolldown DevEngine for ${platform}...`)
                 devEngines[platform] = await createNativeDevEngine({
@@ -352,6 +296,12 @@ export function createReactNativeDevServerPlugin(
                     // an update with no clientId is for every client on the
                     // platform: an error, or a reload after a full rebuild
                     const target = 'clientId' in update ? update.clientId : undefined
+                    if (update.type === 'hmr:reload' && !target) {
+                      // keep this pending until the rebuilt bundle is served.
+                      // a previous app instance can leave a live socket while
+                      // its replacement is still mounting and connecting.
+                      pendingReloadPlatforms.add(platform)
+                    }
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
                       if (
@@ -365,12 +315,12 @@ export function createReactNativeDevServerPlugin(
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
-              } catch (err) {
-                // clear so next request retries instead of permanently failing
+              } finally {
+                // clear so a failed creation can be retried.
                 devEngineCreating[platform] = null
-                throw err
               }
             })()
+            devEngineCreating[platform] = creating
           }
           await devEngineCreating[platform]
         }
@@ -403,8 +353,18 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
+          // a client that connects after this response starts from the current
+          // route map and does not need the pending reload intended for the
+          // previous runtime.
+          res.once('finish', () => pendingReloadPlatforms.delete(platform))
 
-          res.writeHead(200, { 'Content-Type': 'text/javascript' })
+          // a DevSettings reload requests this exact URL again. native URL
+          // loading may otherwise reuse the first response and restart the app
+          // on a route map from before a file was added or removed.
+          res.writeHead(200, {
+            'Cache-Control': 'no-store',
+            'Content-Type': 'text/javascript',
+          })
           res.end(bundle.code)
         } catch (err) {
           console.error(` Error building React Native bundle`)
