@@ -6,6 +6,52 @@ and Quick Look for React Native, exposed through `Swift`. This is an
 initial implementation on the `feat/one-native` branch. It requires an iOS 26+ native
 build and React Native's New Architecture. It is not published to npm.
 
+## Android Compose
+
+Android builds expose a small Jetpack Compose namespace beside `Swift`:
+`Compose.Column`, `Compose.Row`, `Compose.Box`, `Compose.Text`, `Compose.Button`,
+and `Compose.Switch`. It requires an Android native build with one-native installed.
+
+```tsx
+import { useState } from 'react'
+import { Compose } from 'one-native'
+
+function Settings() {
+  const [enabled, setEnabled] = useState(true)
+  return (
+    <Compose.Column
+      style={{ flex: 1, width: '100%' }}
+      horizontalAlignment="start"
+      verticalArrangement="top"
+      composeStyle={{ padding: 24, backgroundColor: '#FFFFFF' }}
+    >
+      <Compose.Text
+        text="Notifications"
+        fontSize={20}
+        fontWeight="bold"
+        composeStyle={{ paddingBottom: 12 }}
+      />
+      <Compose.Switch
+        label="Allow notifications"
+        isOn={enabled}
+        onIsOnChange={setEnabled}
+      />
+      <Compose.Button label="Save" onPress={() => save()} variant="filled" />
+    </Compose.Column>
+  )
+}
+```
+
+The root Compose node uses its React Native `style` for the finite Yoga bounds.
+Descendants are laid out by Compose, so a nested node must use `composeStyle` instead
+of `style`. `composeStyle` is limited to colors, padding, width and height, fill flags,
+corner radius, opacity, and border color and width. `Column` accepts
+`horizontalAlignment` and `verticalArrangement`; `Row` accepts
+`verticalAlignment` and `horizontalArrangement`; `Box` accepts `contentAlignment`.
+`Text` takes `text`, optional typography props and `maxLines`. `Button` takes `label`,
+`disabled`, `variant` (`filled`, `outlined`, or `text`), and `tone` (`default` or
+`danger`). `Switch` is controlled with `isOn`, `onIsOnChange`, and optional `revision`.
+
 ```tsx
 import { useState } from 'react'
 import { Text, View } from 'react-native'

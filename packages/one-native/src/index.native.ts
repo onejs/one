@@ -6,6 +6,7 @@ import { Popover } from './Popover.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs } from './Tabs.native'
+import { Compose } from './compose'
 
 export const Swift =
   Platform.OS === 'ios'
@@ -24,4 +25,6 @@ export const Swift =
         ...Controls,
       }
     : UnsupportedSwift
+export { Compose }
 export type * from './types'
+export type * from './composeTypes'
