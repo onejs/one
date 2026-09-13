@@ -4,8 +4,9 @@ Native SwiftUI and Jetpack Compose interfaces for React Native. The iOS surface
 exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
 containers, popovers, video, maps, web views, sharing, the photo library, empty states,
 and Quick Look through `Swift`. This is an
-initial implementation on the `feat/one-native` branch. It requires an iOS 26+ native
-build and React Native's New Architecture. It is not published to npm.
+initial implementation on the `v2-beta` branch. The Swift surface requires an iOS 26+
+native build, and both native surfaces require React Native's New Architecture. Beta
+releases are published to npm on the `beta` dist-tag.
 
 ## Android Compose
 
