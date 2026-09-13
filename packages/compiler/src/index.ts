@@ -258,7 +258,11 @@ async function performBabelTransform({
       const startTime = Date.now()
       let babelOut: { code?: string | null; map?: any } | null = null
 
-      if (babelOptions.plugins?.length === 0) {
+      if (
+        babelOptions.plugins?.length === 0 &&
+        !babelOptions.configFile &&
+        !babelOptions.babelrc
+      ) {
         let finalMap: any = undefined
         if (shouldSourceMap()) {
           const intermediateMaps = [

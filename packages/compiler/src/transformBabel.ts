@@ -1,4 +1,5 @@
-import { extname, relative } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
+import { extname, join, relative } from 'node:path'
 // type-only, so that importing this module does not drag babel in. every metro
 // worker loads it through the package index, and on the native transform path
 // babel is never called at all: loading it there is pure startup cost.
@@ -13,6 +14,37 @@ type Props = GetTransformProps & {
   userSetting?: GetTransformResponse
 }
 
+const USER_BABEL_CONFIG_FILES = [
+  'babel.config.js',
+  'babel.config.cjs',
+  'babel.config.mjs',
+  'babel.config.json',
+  '.babelrc',
+  '.babelrc.js',
+  '.babelrc.json',
+] as const
+
+const ONE_GENERATED_MARKER = '@one-generated'
+
+export function findUserBabelConfig(projectRoot?: string): string | null {
+  if (!projectRoot) return null
+  for (const name of USER_BABEL_CONFIG_FILES) {
+    const fullPath = join(projectRoot, name)
+    if (existsSync(fullPath)) {
+      try {
+        const content = readFileSync(fullPath, 'utf8')
+        if (content.includes(ONE_GENERATED_MARKER)) {
+          continue
+        }
+      } catch {
+        continue
+      }
+      return fullPath
+    }
+  }
+  return null
+}
+
 export function getBabelOptions(props: Props): babel.TransformOptions | null {
   // unify caller contracts (the Vite plugin hands POSIX ids; the native/patches
   // path hands OS-native ids) so every path matcher below can assume forward
@@ -20,22 +52,40 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
   // reason. without it, RN's own files aren't matched on Windows.
   props = { ...props, id: normalizePath(props.id.split('?')[0]) }
 
+  const isProjectFile = !props.id.includes('node_modules')
+  const userBabelConfig =
+    isProjectFile && props.projectRoot
+      ? findUserBabelConfig(props.projectRoot)
+      : null
+
   if (props.userSetting === 'babel') {
-    return getOptions(props, true)
+    return getOptions(props, true, userBabelConfig)
   }
   if (
     typeof props.userSetting === 'undefined' ||
     (typeof props.userSetting === 'object' && props.userSetting.transform === 'babel')
   ) {
     if (props.userSetting?.excludeDefaultPlugins) {
-      return props.userSetting
+      return {
+        ...props.userSetting,
+        ...(userBabelConfig
+          ? { configFile: userBabelConfig, babelrc: true }
+          : {}),
+      }
     }
-    return getOptions(props)
+    return getOptions(props, false, userBabelConfig)
+  }
+  if (userBabelConfig) {
+    return getOptions(props, false, userBabelConfig)
   }
   return null
 }
 
-const getOptions = (props: Props, force = false): babel.TransformOptions | null => {
+const getOptions = (
+  props: Props,
+  force = false,
+  userBabelConfig: string | null = null
+): babel.TransformOptions | null => {
   let plugins: babel.PluginItem[] = []
 
   if (force || shouldBabelGenerators(props)) {
@@ -72,8 +122,13 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
     plugins.push(getBabelReactCompilerPlugin(props))
   }
 
-  if (plugins.length) {
-    return { plugins }
+  if (plugins.length || userBabelConfig) {
+    return {
+      plugins,
+      ...(userBabelConfig
+        ? { configFile: userBabelConfig, babelrc: true }
+        : {}),
+    }
   }
 
   return null
@@ -153,8 +208,8 @@ export async function transformBabel(
   const babelOptions = {
     filename: id,
     compact: false,
-    babelrc: false,
-    configFile: false,
+    babelrc: options.babelrc ?? false,
+    configFile: options.configFile ?? false,
     sourceMaps: false,
     minified: false,
     ...options,

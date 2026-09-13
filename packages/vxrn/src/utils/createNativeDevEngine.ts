@@ -1411,20 +1411,33 @@ export function vxrnCompilerPlugin(
             if (prepared.map) intermediateMaps.push(prepared.map)
           }
         }
-        const compilerTarget =
-          (babelOptions!.plugins![compilerPluginIndex] as any[])[1]?.target ?? '19'
-        const compilerOut = await compiler.transformOxcReactCompiler(
-          id,
-          curCode,
-          compilerTarget,
-          sourceMaps
-        )
-        if (compilerOut?.code) {
-          curCode = compilerOut.code
-          if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
+        const compilerPluginConfig = babelOptions!.plugins![compilerPluginIndex] as any[]
+        const compilerPluginOptions = compilerPluginConfig[1] || {}
+        const useBabelCompiler =
+          compilerPluginOptions.compiler === 'babel' ||
+          process.env.ONE_REACT_COMPILER === 'babel' ||
+          process.env.VXRN_REACT_COMPILER === 'babel'
+
+        if (!useBabelCompiler) {
+          const compilerOut = await compiler.transformOxcReactCompiler(
+            id,
+            curCode,
+            compilerPluginOptions,
+            sourceMaps
+          )
+          if (compilerOut?.code) {
+            curCode = compilerOut.code
+            if (sourceMaps && compilerOut.map) intermediateMaps.push(compilerOut.map)
+          }
+          babelOptions!.plugins!.splice(compilerPluginIndex, 1)
+          if (
+            babelOptions!.plugins!.length === 0 &&
+            !babelOptions!.configFile &&
+            !babelOptions!.babelrc
+          ) {
+            babelOptions = null
+          }
         }
-        babelOptions!.plugins!.splice(compilerPluginIndex, 1)
-        if (babelOptions!.plugins!.length === 0) babelOptions = null
       }
 
       if (useWorklets) {
@@ -1440,7 +1453,13 @@ export function vxrnCompilerPlugin(
           babelOptions.plugins = babelOptions.plugins.filter(
             (entry) => !isWorkletPlugin(entry)
           )
-          if (babelOptions.plugins.length === 0) babelOptions = null
+          if (
+            babelOptions.plugins.length === 0 &&
+            !babelOptions.configFile &&
+            !babelOptions.babelrc
+          ) {
+            babelOptions = null
+          }
         }
       }
 
