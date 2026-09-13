@@ -59,6 +59,11 @@ const testScreens = [
   },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
+    href: '/one-native-android',
+    label: 'One Native Android Proof',
+    testID: 'nav-one-native-android',
+  },
+  {
     href: '/one-native-tab-oracle',
     label: 'One Native Tab Bar Oracle',
     testID: 'nav-one-native-tab-oracle',
