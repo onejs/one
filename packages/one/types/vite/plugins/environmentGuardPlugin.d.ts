@@ -19,7 +19,7 @@
  * platform, not by consumer type.
  */
 import type { Plugin } from 'vite';
-declare const GUARD_SPECIFIERS: readonly ["server-only", "client-only", "native-only", "web-only"];
+declare const GUARD_SPECIFIERS: readonly ['server-only', 'client-only', 'native-only', 'web-only'];
 type GuardSpecifier = (typeof GUARD_SPECIFIERS)[number];
 export type EnvironmentGuardOptions = {
     /**

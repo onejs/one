@@ -5,5 +5,5 @@ export declare function prepareCacheForVersion({ root, cacheDir, versionHash, fo
     versionHash: string;
     forceClean?: boolean;
 }): Promise<boolean>;
-export declare const clean: (rest: VXRNOptions, only?: "vite") => Promise<void>;
+export declare const clean: (rest: VXRNOptions, only?: 'vite') => Promise<void>;
 //# sourceMappingURL=clean.d.ts.map

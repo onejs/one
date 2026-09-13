@@ -6,7 +6,7 @@ export declare function useLinkTo(props: {
     mask?: string;
 }): {
     href: string;
-    role: "link";
+    role: 'link';
     onPress: (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void;
 };
 //# sourceMappingURL=useLinkTo.d.ts.map

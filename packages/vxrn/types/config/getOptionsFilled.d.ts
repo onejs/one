@@ -31,18 +31,25 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
 export declare function fillOptions(options: VXRNOptions, { mode }?: {
     mode?: Mode;
 }): Promise<{
+    readonly skipEnv?: boolean;
+    readonly build?: {
+        server?: boolean | import("..").VXRNBuildOptions;
+        analyze?: boolean;
+    };
+    readonly debugBundle?: string;
+    readonly debug?: string;
     readonly debugBundlePaths: {
         readonly ios: string;
         readonly android: string;
     };
     readonly mode: "development" | "production";
-    readonly clean: false | "vite";
+    readonly clean: "vite" | false;
     readonly root: string;
     readonly server: import("..").VXRNServeOptionsFilled;
     readonly entries: {
-        native: string;
         readonly web?: string;
-        readonly server: "./src/entry-server.tsx";
+        native: string;
+        readonly server: './src/entry-server.tsx';
     };
     readonly packageJSON: import("pkg-types").PackageJson;
     readonly packageVersions: {
@@ -55,27 +62,27 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
     readonly packageRootDir: string;
     readonly cacheDir: string;
     readonly versionHash: string;
-    readonly skipEnv?: boolean;
-    readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
-        analyze?: boolean;
-    };
-    readonly debugBundle?: string;
-    readonly debug?: string;
 }>;
 export declare function getOptionsFilled(): {
+    readonly skipEnv?: boolean;
+    readonly build?: {
+        server?: boolean | import("..").VXRNBuildOptions;
+        analyze?: boolean;
+    };
+    readonly debugBundle?: string;
+    readonly debug?: string;
     readonly debugBundlePaths: {
         readonly ios: string;
         readonly android: string;
     };
     readonly mode: "development" | "production";
-    readonly clean: false | "vite";
+    readonly clean: "vite" | false;
     readonly root: string;
     readonly server: import("..").VXRNServeOptionsFilled;
     readonly entries: {
-        native: string;
         readonly web?: string;
-        readonly server: "./src/entry-server.tsx";
+        native: string;
+        readonly server: './src/entry-server.tsx';
     };
     readonly packageJSON: import("pkg-types").PackageJson;
     readonly packageVersions: {
@@ -88,12 +95,5 @@ export declare function getOptionsFilled(): {
     readonly packageRootDir: string;
     readonly cacheDir: string;
     readonly versionHash: string;
-    readonly skipEnv?: boolean;
-    readonly build?: {
-        server?: boolean | import("..").VXRNBuildOptions;
-        analyze?: boolean;
-    };
-    readonly debugBundle?: string;
-    readonly debug?: string;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map

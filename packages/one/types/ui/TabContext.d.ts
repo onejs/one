@@ -77,13 +77,7 @@ export declare const TabsNavigatorContext: import("react").Context<({
     }>>) => Readonly<{
         type: string;
         payload?: object | undefined;
-        source
-        /**
-         * The React Navigation custom navigator.
-         *
-         * @see [`useNavigationBuilder`](https://reactnavigation.org/docs/custom-navigators/#usenavigationbuilder) hook from React Navigation for more information.
-         */
-        ?: string | undefined;
+        source?: string | undefined;
         target?: string | undefined;
     }>)): void;
     navigate<RouteName extends string>(...args: RouteName extends unknown ? [screen: RouteName, params?: object | undefined, options?: {

@@ -14,11 +14,11 @@ export type ExpoTabActionType = RNTabActionType | CommonNavigationAction | {
     };
 };
 export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<TabNavigationState<ParamListBase>, {
-    type: "GO_BACK";
+    type: 'GO_BACK';
     source?: string | undefined;
     target?: string | undefined;
 } | {
-    type: "NAVIGATE";
+    type: 'NAVIGATE';
     payload: {
         name: string;
         params?: object | undefined;
@@ -29,7 +29,29 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
     source?: string | undefined;
     target?: string | undefined;
 } | {
-    type: "RESET";
+    type: 'PRELOAD';
+    payload: {
+        name: string;
+        params?: object | undefined;
+    };
+    source?: string | undefined;
+    target?: string | undefined;
+} | {
+    type: 'PUSH_PARAMS';
+    payload: {
+        params?: object | undefined;
+    };
+    source?: string | undefined;
+    target?: string | undefined;
+} | {
+    type: 'REPLACE_PARAMS';
+    payload: {
+        params?: object | undefined;
+    };
+    source?: string | undefined;
+    target?: string | undefined;
+} | {
+    type: 'RESET';
     payload: Readonly<{
         key: string;
         index: number;
@@ -55,41 +77,19 @@ export declare function ExpoTabRouter(options: ExpoTabRouterOptions): Router<Tab
         type: string;
         stale: false;
     }>, "routes"> & {
-        routes: Omit<import("@react-navigation/routers").Route<string>, "key">[];
+        routes: Omit<import("@react-navigation/routers").Route<string>, 'key'>[];
     });
     source?: string | undefined;
     target?: string | undefined;
 } | {
-    type: "SET_PARAMS";
+    type: 'SET_PARAMS';
     payload: {
-        params?: object | undefined;
-    };
-    source?: string | undefined;
-    target?: string | undefined;
-} | {
-    type: "REPLACE_PARAMS";
-    payload: {
-        params?: object | undefined;
-    };
-    source?: string | undefined;
-    target?: string | undefined;
-} | {
-    type: "PUSH_PARAMS";
-    payload: {
-        params?: object | undefined;
-    };
-    source?: string | undefined;
-    target?: string | undefined;
-} | {
-    type: "PRELOAD";
-    payload: {
-        name: string;
         params?: object | undefined;
     };
     source?: string | undefined;
     target?: string | undefined;
 } | RNTabActionType | {
-    type: "JUMP_TO";
+    type: 'JUMP_TO';
     source?: string;
     target?: string;
     payload: {

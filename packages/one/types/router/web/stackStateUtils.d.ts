@@ -1,6 +1,6 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-declare const OVERLAY_PRESENTATIONS: readonly ["modal", "transparentModal", "fullScreenModal", "formSheet", "pageSheet", "containedModal", "containedTransparentModal"];
+declare const OVERLAY_PRESENTATIONS: readonly ['modal', 'transparentModal', 'fullScreenModal', 'formSheet', 'pageSheet', 'containedModal', 'containedTransparentModal'];
 type OverlayPresentation = (typeof OVERLAY_PRESENTATIONS)[number];
 type DescriptorMap = Record<string, {
     options: Record<string, any>;
