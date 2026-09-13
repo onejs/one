@@ -19,20 +19,33 @@ const testRolldownDev =
     : test.skip
 
 function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
-  const getText = async (testId: string) => {
+  const getTexts = async (...testIds: string[]) => {
     const source = await driver.getPageSource()
-    const nameIndex = source.indexOf(`name="${testId}"`)
-    if (nameIndex === -1) return
-    const elementStart = source.lastIndexOf('<', nameIndex)
-    const elementEnd = source.indexOf('>', nameIndex)
-    if (elementEnd === -1) return
-    return source.slice(elementStart, elementEnd).match(/\bvalue="([^"]*)"/)?.[1]
+    return Object.fromEntries(
+      testIds.map((testId) => {
+        const nameIndex = source.indexOf(`name="${testId}"`)
+        if (nameIndex === -1) return [testId, undefined]
+        const elementStart = source.lastIndexOf('<', nameIndex)
+        const elementEnd = source.indexOf('>', nameIndex)
+        const value =
+          elementEnd === -1
+            ? undefined
+            : source.slice(elementStart, elementEnd).match(/\bvalue="([^"]*)"/)?.[1]
+        return [testId, value]
+      })
+    ) as Record<string, string | undefined>
   }
-  const waitForText = async (testId: string, expected: string | undefined) => {
+  const waitForTexts = async (expected: Record<string, string | RegExp | undefined>) => {
+    let texts: Record<string, string | undefined> = {}
     await driver.waitUntil(
       async () => {
         try {
-          return (await getText(testId)) === expected
+          texts = await getTexts(...Object.keys(expected))
+          return Object.entries(expected).every(([testId, expectedText]) =>
+            expectedText instanceof RegExp
+              ? expectedText.test(texts[testId] ?? '')
+              : texts[testId] === expectedText
+          )
         } catch {
           await assertAppRunning(driver)
           return false
@@ -41,14 +54,14 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
       {
         timeout: 30_000,
         interval: 500,
-        timeoutMsg:
-          expected === undefined
-            ? `${testId} did not leave the mounted tree`
-            : `${testId} did not update to ${expected}`,
+        timeoutMsg: `Text did not update: ${Object.entries(expected)
+          .map(([testId, expectedText]) => `${testId}=${String(expectedText)}`)
+          .join(', ')}`,
       }
     )
+    return texts
   }
-  return { getText, waitForText }
+  return { waitForTexts }
 }
 
 testRolldownDev(
@@ -59,37 +72,46 @@ testRolldownDev(
     const originalChild = await readFile(childPath, 'utf8')
     const originalWorkspace = await readFile(workspacePath, 'utf8')
     const driver = await createSession(getWebDriverConfig())
-    const { getText, waitForText } = createTextReaders(driver)
+    const { waitForTexts } = createTextReaders(driver)
 
     try {
       await navigateTo(driver, '/hmr-probe')
-      await waitForText('route-hmr-version', 'route-v1')
-      await waitForText('route-hmr-added', 'missing')
-      await waitForText('component-hmr-version', 'component-v1')
-      await waitForText('workspace-hmr-version', 'workspace-v1')
+      const initialTexts = await waitForTexts({
+        'route-hmr-version': 'route-v1',
+        'route-hmr-added': 'missing',
+        'component-hmr-version': 'component-v1',
+        'workspace-hmr-version': 'workspace-v1',
+        'route-hmr-generation': /^generation:\d+$/,
+      })
 
       // the route module bumps this on every evaluation, so holding it steady
       // across each edit is what says the update was patched into the running
       // module graph rather than delivered by restarting the app. the route's
       // own useState would reset with it.
-      const generation = await getText('route-hmr-generation')
+      const generation = initialTexts['route-hmr-generation']
       expect(generation).toMatch(/^generation:\d+$/)
       await driver.pause(2_000)
 
       await writeFile(childPath, originalChild.replace('component-v1', 'component-v2'))
-      await waitForText('component-hmr-version', 'component-v2')
-      expect(await getText('route-hmr-generation')).toBe(generation)
+      await waitForTexts({
+        'component-hmr-version': 'component-v2',
+        'route-hmr-generation': generation,
+      })
 
       await writeFile(routePath, originalRoute.replace('route-v1', 'route-v2'))
-      await waitForText('route-hmr-version', 'route-v2')
-      expect(await getText('route-hmr-generation')).toBe(generation)
+      await waitForTexts({
+        'route-hmr-version': 'route-v2',
+        'route-hmr-generation': generation,
+      })
 
       await writeFile(
         workspacePath,
         originalWorkspace.replace('workspace-v1', 'workspace-v2')
       )
-      await waitForText('workspace-hmr-version', 'workspace-v2')
-      expect(await getText('route-hmr-generation')).toBe(generation)
+      await waitForTexts({
+        'workspace-hmr-version': 'workspace-v2',
+        'route-hmr-generation': generation,
+      })
     } finally {
       await Promise.all([
         writeFile(routePath, originalRoute),
@@ -97,9 +119,11 @@ testRolldownDev(
         writeFile(workspacePath, originalWorkspace),
       ])
       try {
-        await waitForText('route-hmr-version', 'route-v1')
-        await waitForText('component-hmr-version', 'component-v1')
-        await waitForText('workspace-hmr-version', 'workspace-v1')
+        await waitForTexts({
+          'route-hmr-version': 'route-v1',
+          'component-hmr-version': 'component-v1',
+          'workspace-hmr-version': 'workspace-v1',
+        })
       } finally {
         await closeSession(driver)
       }
@@ -113,11 +137,11 @@ testRolldownDev(
   async () => {
     const originalChild = await readFile(childPath, 'utf8')
     const driver = await createSession(getWebDriverConfig())
-    const { waitForText } = createTextReaders(driver)
+    const { waitForTexts } = createTextReaders(driver)
 
     try {
       await navigateTo(driver, '/hmr-probe')
-      await waitForText('route-hmr-version', 'route-v1')
+      await waitForTexts({ 'route-hmr-version': 'route-v1' })
 
       // the app can paint before its HMR socket finishes connecting. prove this
       // session is registered before changing route membership, so the route
@@ -126,9 +150,9 @@ testRolldownDev(
         childPath,
         originalChild.replace('component-v1', 'route-session-ready')
       )
-      await waitForText('component-hmr-version', 'route-session-ready')
+      await waitForTexts({ 'component-hmr-version': 'route-session-ready' })
       await writeFile(childPath, originalChild)
-      await waitForText('component-hmr-version', 'component-v1')
+      await waitForTexts({ 'component-hmr-version': 'component-v1' })
 
       // rolldown expands `import.meta.glob` when it transforms the module and
       // records no dependency on the globbed directories, so without the dev
@@ -150,11 +174,11 @@ export default function HmrAdded() {
       // a route-map rebuild reloads the app at its root. wait for that root
       // before navigating again so an interaction cannot race the reload and
       // land on a screen from the old route map.
-      await waitForText('welcome-message', 'Welcome to One')
+      await waitForTexts({ 'welcome-message': 'Welcome to One' })
       await navigateTo(driver, '/hmr-probe')
-      await waitForText('route-hmr-added', 'available')
+      await waitForTexts({ 'route-hmr-added': 'available' })
       await navigateTo(driver, '/hmr-added')
-      await waitForText('added-route-version', 'added-v1')
+      await waitForTexts({ 'added-route-version': 'added-v1' })
     } finally {
       await Promise.all([
         rm(addedRoutePath, { force: true }),
@@ -164,10 +188,12 @@ export default function HmrAdded() {
         // deleting a route rebuilds the route map. prove the updated bundle
         // mounted before ending this session so no later test inherits a
         // half-finished rebuild.
-        await waitForText('added-route-version', undefined)
+        await waitForTexts({ 'added-route-version': undefined })
         await navigateTo(driver, '/hmr-probe')
-        await waitForText('route-hmr-version', 'route-v1')
-        await waitForText('route-hmr-added', 'missing')
+        await waitForTexts({
+          'route-hmr-version': 'route-v1',
+          'route-hmr-added': 'missing',
+        })
       } finally {
         await closeSession(driver)
       }

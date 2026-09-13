@@ -272,7 +272,6 @@ export async function withSession<T>(
     await closeSession(driver)
   }
 }
-
 export async function closeSession(driver: Browser): Promise<void> {
   try {
     await driver.deleteSession()
