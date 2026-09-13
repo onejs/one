@@ -1042,11 +1042,15 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 ${refreshSetup}
 import * as ReactNativeInitializeCore from 'react-native/Libraries/Core/InitializeCore';
 import NativeWebSocket from 'react-native/Libraries/WebSocket/WebSocket';
+import DevSettings from 'react-native/Libraries/Utilities/DevSettings';
 ${setupFileImport}
 import { createApp } from 'one';
 
 void ReactNativeInitializeCore;
 globalThis.WebSocket = NativeWebSocket;
+globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = function(reason) {
+  DevSettings.reload(reason);
+};
 
 var _routes = import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true });
 // fix route keys: One expects '/${routerRoot}/...' prefix but import.meta.glob returns './${routerRoot}/...'
@@ -2111,11 +2115,13 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
     }
   }
 
-  reload() {
-    var proxy = globalThis.__turboModuleProxy
-      ? globalThis.__turboModuleProxy('DevSettings')
-      : globalThis.nativeModuleProxy && globalThis.nativeModuleProxy.DevSettings;
-    if (proxy && proxy.reload) proxy.reload();
+  reload(reason) {
+    var reloadNativeBundle = globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__;
+    if (typeof reloadNativeBundle === 'function') {
+      reloadNativeBundle(reason);
+      return;
+    }
+    console.error('[vxrn HMR]: DevSettings.reload is unavailable');
   }
 
   setup(socket) {
@@ -2137,10 +2143,10 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
         if (message.type === 'hmr:update') {
           // a patch that cannot be applied in place is the reload signal
           if (!runtime.applyHmrUpdate(message.code, message.changedIds, message.seq)) {
-            runtime.reload();
+            runtime.reload('native HMR update could not be applied');
           }
         } else if (message.type === 'hmr:reload') {
-          runtime.reload();
+          runtime.reload('native route map changed');
         }
       } catch (error) {
         console.error('[vxrn HMR]: failed to apply update', error);
