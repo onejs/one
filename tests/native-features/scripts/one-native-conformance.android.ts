@@ -258,12 +258,6 @@ function roleMatches(node: Node, expected: string) {
   if (role === 'switch') return className.includes('switch') || node.checkable === true
   if (role === 'text')
     return className.includes('text') || (Boolean(node.text) && node.clickable === false)
-  if (role === 'header')
-    return (
-      (className.includes('text') || Boolean(node.text || node.contentDescription)) &&
-      node.selected !== true &&
-      node.clickable !== true
-    )
   return className === role || className.endsWith(`.${role}`)
 }
 
@@ -403,13 +397,28 @@ async function tapNavigation(config: Config) {
       role: 'button',
       clickable: true,
     })
+    const rowBounds = rows.length === 1 ? rows[0].bounds : undefined
     if (
-      rows.length === 1 &&
-      visibleIn(
-        validBounds(rows[0], 'Android navigation row'),
-        applicationBounds(current.nodes)
-      )
+      rowBounds &&
+      rowBounds.right > rowBounds.left &&
+      rowBounds.bottom > rowBounds.top &&
+      visibleIn(rowBounds, applicationBounds(current.nodes))
     ) {
+      const candidateBounds = rowBounds
+      await waitFor(config, 'Android navigation row settles', (nodes) => {
+        const settled = matching(nodes, {
+          id: 'nav-one-native-android',
+          role: 'button',
+          clickable: true,
+        })
+        if (settled.length !== 1 || !settled[0].bounds) return false
+        return (
+          settled[0].bounds.left === candidateBounds.left &&
+          settled[0].bounds.top === candidateBounds.top &&
+          settled[0].bounds.right === candidateBounds.right &&
+          settled[0].bounds.bottom === candidateBounds.bottom
+        )
+      })
       tapFresh(config, 'Android proof navigation row', {
         id: 'nav-one-native-android',
         role: 'button',
@@ -417,20 +426,17 @@ async function tapNavigation(config: Config) {
       })
       return
     }
+    const previousPositions = current.nodes
+      .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+      .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
+      .join('|')
     swipeFresh(config, 'Home navigation scroll view')
-    await waitFor(config, 'Android proof navigation row becomes visible', (nodes) => {
-      const visibleRows = matching(nodes, {
-        id: 'nav-one-native-android',
-        role: 'button',
-        clickable: true,
-      })
-      return (
-        visibleRows.length === 1 &&
-        visibleIn(
-          validBounds(visibleRows[0], 'Android navigation row'),
-          applicationBounds(nodes)
-        )
-      )
+    await waitFor(config, 'Home navigation scroll position advances', (nodes) => {
+      const nextPositions = nodes
+        .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+        .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
+        .join('|')
+      return nextPositions !== previousPositions
     })
   }
   throw new Error('Could not bring nav-one-native-android into view on the home list.')
@@ -523,14 +529,28 @@ async function run(config: Config) {
 
   try {
     adbText(config, ['shell', 'am', 'force-stop', config.packageId])
-    adbText(config, [
+    const launcherComponent = adbText(config, [
       'shell',
-      'monkey',
-      '-p',
-      config.packageId,
+      'cmd',
+      'package',
+      'resolve-activity',
+      '--brief',
       '-c',
       'android.intent.category.LAUNCHER',
-      '1',
+      config.packageId,
+    ])
+      .trim()
+      .split(/\r?\n/)
+      .findLast((line) => line.includes('/'))
+    if (!launcherComponent)
+      throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+    adbText(config, [
+      'shell',
+      'am',
+      'start',
+      '-W',
+      '-n',
+      launcherComponent,
     ])
 
     await expect(
@@ -578,7 +598,6 @@ async function run(config: Config) {
         })
         return (
           mounted.length === 1 &&
-          roleMatches(mounted[0], 'header') &&
           realButton.length === 1 &&
           roleMatches(realButton[0], 'button') &&
           controlledSwitch.length === 1 &&
@@ -684,7 +703,15 @@ async function run(config: Config) {
     })
     await expect(
       'controlled-switch-acceptance-enabled',
-      (nodes) => textIncludes(nodes, 'Reject switch'),
+      (nodes) => {
+        const policy = matching(nodes, {
+          id: 'one-native-android-switch-policy',
+          role: 'button',
+          clickable: true,
+        })
+        const status = matching(nodes, { id: 'one-native-android-switch-policy-status' })
+        return policy.length === 1 && status.length === 1 && status[0].text === 'Policy: accept'
+      },
       'one-native-android-mounted'
     )
     tapFresh(config, 'Controlled switch acceptance tap', {

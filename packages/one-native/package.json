@@ -1,7 +1,7 @@
 {
   "name": "one-native",
   "version": "0.0.0",
-  "description": "Apple native interfaces for One and React Native",
+  "description": "Native platform interfaces for One and React Native",
   "skipPublish": true,
   "license": "MIT",
   "type": "module",

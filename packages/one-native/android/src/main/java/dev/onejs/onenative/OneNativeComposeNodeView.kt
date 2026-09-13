@@ -2,6 +2,7 @@ package dev.onejs.onenative
 
 import android.content.Context
 import android.graphics.Color as AndroidColor
+import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -44,6 +46,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.disabled
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -77,15 +80,6 @@ internal data class OneNativeComposeStyle(
     val borderColor: Int? = null,
     val borderWidth: Double = -1.0,
 ) {
-    val horizontalPadding: Double
-        get() = edgePadding(paddingLeft) + edgePadding(paddingRight)
-
-    val verticalPadding: Double
-        get() = edgePadding(paddingTop) + edgePadding(paddingBottom)
-
-    private fun edgePadding(value: Double): Double =
-        if (value >= 0) paddingValue(value) else paddingValue(padding)
-
     companion object {
         fun fromMap(map: ReadableMap?, context: Context): OneNativeComposeStyle {
             if (map == null) return OneNativeComposeStyle()
@@ -102,17 +96,16 @@ internal data class OneNativeComposeStyle(
 
             fun color(name: String): Int? {
                 if (!map.hasKey(name) || map.isNull(name)) return null
-                val raw: Any? =
-                    when (map.getType(name)) {
-                        ReadableType.Number -> map.getDouble(name)
-                        ReadableType.Map -> map.getMap(name)
-                        ReadableType.String -> map.getString(name)?.let { value ->
+                return when (map.getType(name)) {
+                    ReadableType.Number -> ColorPropConverter.getColor(map.getDouble(name), context)
+                    ReadableType.Map -> ColorPropConverter.getColor(map.getMap(name), context)
+                    ReadableType.String ->
+                        map.getString(name)?.let { value ->
                             ColorPropConverter.resolveResourcePath(context, value)
                                 ?: runCatching { AndroidColor.parseColor(value) }.getOrNull()
                         }
-                        else -> null
-                    }
-                return ColorPropConverter.getColor(raw, context)
+                    else -> null
+                }
             }
 
             return OneNativeComposeStyle(
@@ -152,6 +145,7 @@ internal data class OneNativeComposeNodeProps(
     val revision: Int = 0,
     val alignment: String? = null,
     val arrangement: String? = null,
+    val spacing: Double = -1.0,
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -192,6 +186,7 @@ private class OneNativeControlledSwitch {
 class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private val composeView =
         ComposeView(context).apply {
+            id = View.generateViewId()
             layoutParams =
                 ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -212,6 +207,16 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     init {
         clipChildren = false
         super.addView(composeView)
+        composeView.setContent {
+            MaterialTheme {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    RenderComposeNode(
+                        this@OneNativeComposeNodeView,
+                        Modifier.fillMaxSize(),
+                    )
+                }
+            }
+        }
     }
 
     internal val renderedProps: OneNativeComposeNodeProps
@@ -337,6 +342,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(arrangement = value)
     }
 
+    internal fun stageSpacing(value: Double) {
+        pendingProps = pendingProps.copy(spacing = value)
+    }
+
     internal fun stageComposeStyle(value: ReadableMap?) {
         pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
     }
@@ -370,82 +379,61 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val maxDimension =
             (4096f * resources.displayMetrics.density).toInt().coerceAtLeast(1)
-        val childWidthSpec =
-            when (MeasureSpec.getMode(widthMeasureSpec)) {
-                MeasureSpec.EXACTLY -> widthMeasureSpec
-                MeasureSpec.AT_MOST ->
-                    MeasureSpec.makeMeasureSpec(
-                        MeasureSpec.getSize(widthMeasureSpec).coerceAtMost(maxDimension),
-                        MeasureSpec.AT_MOST,
-                    )
-                else -> MeasureSpec.makeMeasureSpec(maxDimension, MeasureSpec.AT_MOST)
-            }
-        val childHeightSpec =
-            when (MeasureSpec.getMode(heightMeasureSpec)) {
-                MeasureSpec.EXACTLY -> heightMeasureSpec
-                MeasureSpec.AT_MOST ->
-                    MeasureSpec.makeMeasureSpec(
-                        MeasureSpec.getSize(heightMeasureSpec).coerceAtMost(maxDimension),
-                        MeasureSpec.AT_MOST,
-                    )
-                else -> MeasureSpec.makeMeasureSpec(maxDimension, MeasureSpec.AT_MOST)
-            }
-        val hasComposition = composeView.hasComposition
-        if (hasComposition) composeView.measure(childWidthSpec, childHeightSpec)
-
         val density = resources.displayMetrics.density.toDouble().takeIf { it.isFinite() && it > 0 } ?: 1.0
-        val fallbackWidth =
+        val styleWidth =
             committedProps.composeStyle.width.takeIf { it >= 0 }?.times(density) ?: 0.0
-        val fallbackHeight =
+        val styleHeight =
             committedProps.composeStyle.height.takeIf { it >= 0 }?.times(density) ?: 0.0
 
         val measuredWidth =
             when (MeasureSpec.getMode(widthMeasureSpec)) {
                 MeasureSpec.EXACTLY -> MeasureSpec.getSize(widthMeasureSpec)
                 MeasureSpec.AT_MOST ->
-                    (if (hasComposition) composeView.measuredWidth.toDouble() else fallbackWidth)
-                        .toInt()
-                        .coerceAtMost(MeasureSpec.getSize(widthMeasureSpec))
-                else ->
-                    (if (hasComposition) composeView.measuredWidth else fallbackWidth.toInt())
-                        .coerceAtMost(maxDimension)
+                    (if (committedProps.composeStyle.fillMaxWidth) {
+                        MeasureSpec.getSize(widthMeasureSpec)
+                    } else {
+                        styleWidth.toInt()
+                    }).coerceAtMost(MeasureSpec.getSize(widthMeasureSpec))
+                else -> styleWidth.toInt().coerceAtMost(maxDimension)
             }
         val measuredHeight =
             when (MeasureSpec.getMode(heightMeasureSpec)) {
                 MeasureSpec.EXACTLY -> MeasureSpec.getSize(heightMeasureSpec)
                 MeasureSpec.AT_MOST ->
-                    (if (hasComposition) composeView.measuredHeight.toDouble() else fallbackHeight)
-                        .toInt()
-                        .coerceAtMost(MeasureSpec.getSize(heightMeasureSpec))
-                else ->
-                    (if (hasComposition) composeView.measuredHeight else fallbackHeight.toInt())
-                        .coerceAtMost(maxDimension)
+                    (if (committedProps.composeStyle.fillMaxHeight) {
+                        MeasureSpec.getSize(heightMeasureSpec)
+                    } else {
+                        styleHeight.toInt()
+                    }).coerceAtMost(MeasureSpec.getSize(heightMeasureSpec))
+                else -> styleHeight.toInt().coerceAtMost(maxDimension)
             }
         setMeasuredDimension(measuredWidth, measuredHeight)
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        composeView.layout(0, 0, right - left, bottom - top)
+        layoutComposeContent()
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (!composeView.hasComposition) {
-            composeView.setContent {
-                MaterialTheme {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        RenderComposeNode(this@OneNativeComposeNodeView)
-                    }
-                }
-            }
-        }
         setCompositionActive(true)
+        post {
+            layoutComposeContent()
+        }
+    }
+
+    private fun layoutComposeContent() {
+        if (!composeView.isAttachedToWindow || width <= 0 || height <= 0) return
+        composeView.measure(
+            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+        )
+        composeView.layout(0, 0, width, height)
     }
 
     override fun onDetachedFromWindow() {
         setCompositionActive(false)
         super.onDetachedFromWindow()
-        if (composeView.hasComposition) composeView.disposeComposition()
     }
 
     internal fun resetForReuse() {
@@ -472,10 +460,13 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 }
 
 @Composable
-private fun RenderComposeNode(node: OneNativeComposeNodeView) {
+private fun RenderComposeNode(
+    node: OneNativeComposeNodeView,
+    outerModifier: Modifier = Modifier,
+) {
     val props = node.renderedProps
     val style = props.composeStyle
-    val modifier = Modifier.applyComposeStyle(style).applyReactSemantics(node, props)
+    val modifier = outerModifier.applyComposeStyle(style).applyReactSemantics(node, props)
     val foregroundColor = style.foregroundColor?.let(::Color)
 
     if (foregroundColor != null) {
@@ -497,7 +488,7 @@ private fun RenderComposeNodeBody(
         "column" ->
             Column(
                 modifier = modifier,
-                verticalArrangement = columnArrangement(props.arrangement),
+                verticalArrangement = columnArrangement(props.arrangement, props.spacing),
                 horizontalAlignment = columnAlignment(props.alignment),
             ) {
                 RenderComposeChildren(node)
@@ -505,7 +496,7 @@ private fun RenderComposeNodeBody(
         "row" ->
             Row(
                 modifier = modifier,
-                horizontalArrangement = rowArrangement(props.arrangement),
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
                 verticalAlignment = rowAlignment(props.alignment),
             ) {
                 RenderComposeChildren(node)
@@ -617,14 +608,20 @@ private fun RenderComposeSwitch(
         )
     } else {
         Row(
-            modifier = modifier,
+            modifier =
+                modifier.toggleable(
+                    value = node.renderedSwitchValue,
+                    enabled = enabled,
+                    role = Role.Switch,
+                    onValueChange = node::handleSwitchChanged,
+                ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(props.label, modifier = Modifier.weight(1f))
             Switch(
                 checked = node.renderedSwitchValue,
-                onCheckedChange = node::handleSwitchChanged,
+                onCheckedChange = null,
                 enabled = enabled,
             )
         }
@@ -665,7 +662,6 @@ private fun Modifier.applyReactSemantics(
 ): Modifier {
     node.observeComposeSemantics()
     val label = node.getTag(R.id.accessibility_label) as? String
-    val hint = node.getTag(R.id.accessibility_hint) as? String
     val testId = node.getTag(R.id.react_test_id) as? String
     val accessibilityValue = node.getTag(R.id.accessibility_value) as? ReadableMap
     val valueText =
@@ -682,15 +678,17 @@ private fun Modifier.applyReactSemantics(
                 "switch" -> Role.Switch
                 else -> null
             }
+    val isHeading = explicitRole?.lowercase()?.substringAfterLast('.') == "header"
 
     var result = this
     if (!testId.isNullOrEmpty()) result = result.testTag(testId)
-    return result.semantics {
+    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch"
+    return result.semantics(mergeDescendants = mergeDescendants) {
         if (!label.isNullOrEmpty()) contentDescription = label
-        if (!hint.isNullOrEmpty()) stateDescription = hint
         if (!valueText.isNullOrEmpty()) stateDescription = valueText
         if (props.disabled || stateDisabled || !node.isEnabled) disabled()
         if (semanticRole != null) role = semanticRole
+        if (isHeading) heading()
         if (!testId.isNullOrEmpty()) testTagsAsResourceId = true
     }
 }
@@ -716,8 +714,18 @@ private fun rowAlignment(value: String?): Alignment.Vertical =
         else -> Alignment.Top
     }
 
-private fun columnArrangement(value: String?): Arrangement.Vertical =
-    when (value?.trim()?.lowercase()) {
+private fun columnArrangement(value: String?, spacing: Double): Arrangement.Vertical {
+    val normalized = value?.trim()?.lowercase()
+    if (spacing >= 0) {
+        val alignment =
+            when (normalized) {
+                "center" -> Alignment.CenterVertically
+                "bottom" -> Alignment.Bottom
+                else -> Alignment.Top
+            }
+        return Arrangement.spacedBy(spacing.nonNegativeDp(), alignment)
+    }
+    return when (normalized) {
         "center" -> Arrangement.Center
         "bottom" -> Arrangement.Bottom
         "spacebetween" -> Arrangement.SpaceBetween
@@ -725,9 +733,20 @@ private fun columnArrangement(value: String?): Arrangement.Vertical =
         "spaceevenly" -> Arrangement.SpaceEvenly
         else -> Arrangement.Top
     }
+}
 
-private fun rowArrangement(value: String?): Arrangement.Horizontal =
-    when (value?.trim()?.lowercase()) {
+private fun rowArrangement(value: String?, spacing: Double): Arrangement.Horizontal {
+    val normalized = value?.trim()?.lowercase()
+    if (spacing >= 0) {
+        val alignment =
+            when (normalized) {
+                "center" -> Alignment.CenterHorizontally
+                "end" -> Alignment.End
+                else -> Alignment.Start
+            }
+        return Arrangement.spacedBy(spacing.nonNegativeDp(), alignment)
+    }
+    return when (normalized) {
         "center" -> Arrangement.Center
         "end" -> Arrangement.End
         "spacebetween" -> Arrangement.SpaceBetween
@@ -735,6 +754,7 @@ private fun rowArrangement(value: String?): Arrangement.Horizontal =
         "spaceevenly" -> Arrangement.SpaceEvenly
         else -> Arrangement.Start
     }
+}
 
 private fun boxAlignment(value: String?): Alignment =
     when (value?.trim()?.lowercase()) {

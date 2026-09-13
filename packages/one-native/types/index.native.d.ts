@@ -3,6 +3,7 @@ import { ContextMenu, Menu } from './Menu.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
+import { Compose } from './compose';
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
@@ -39,5 +40,7 @@ export declare const Swift: {
     Section: typeof Section;
     Slot: typeof Slot;
 };
+export { Compose };
 export type * from './types';
+export type * from './composeTypes';
 //# sourceMappingURL=index.native.d.ts.map
