@@ -1,0 +1,70 @@
+buildscript {
+    def composeKotlinVersion =
+        rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : "2.1.20"
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$composeKotlinVersion"
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+apply plugin: 'com.facebook.react'
+
+group = 'dev.onejs'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+    namespace "dev.onejs.onenative"
+    compileSdkVersion safeExtGet("compileSdkVersion", 35)
+
+    defaultConfig {
+        minSdkVersion safeExtGet("minSdkVersion", 23)
+        targetSdkVersion safeExtGet("targetSdkVersion", 35)
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+react {
+    jsRootDir = file("../src")
+    libraryName = "OneNativeSpec"
+    codegenJavaPackageName = "dev.onejs.onenative"
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+def composeUiVersion = "1.11.0-beta02"
+def materialVersion = "1.5.0-alpha17"
+def kotlinVersion = safeExtGet("kotlinVersion", "2.1.20")
+
+dependencies {
+    implementation "com.facebook.react:react-android"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "androidx.compose.ui:ui:$composeUiVersion"
+    implementation "androidx.compose.foundation:foundation:$composeUiVersion"
+    implementation "androidx.compose.material3:material3:$materialVersion"
+}
