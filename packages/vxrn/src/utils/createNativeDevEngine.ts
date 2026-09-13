@@ -644,6 +644,13 @@ try {
   // `currentBundle` still holds the previous build. anything that has to see
   // the finished bundle waits on this too.
   let outputProcessed: Promise<void> = Promise.resolve()
+  let pendingRouteOutput:
+    | {
+        routes: Set<string>
+        resolve: () => void
+        reject: (reason?: unknown) => void
+      }
+    | undefined
 
   let engine: Awaited<ReturnType<typeof dev>>
   let routeWatcher: FSWatcher | undefined
@@ -678,12 +685,33 @@ try {
       )
 
       // the reload must never serve the bundle from before the route set changed.
-      // onOutput may begin after ensureLatestBuildOutput resolves, so clear the
-      // cached bundle before triggering work and let getBundle wait for it.
+      // wait for the output callback itself: ensureLatestBuildOutput resolves
+      // several seconds after that callback has already finished on a loaded
+      // runner, which needlessly delays the reload users are waiting for.
       currentBundle = null
-      engine.triggerFullBuild()
-      await engine.ensureLatestBuildOutput()
-      await outputProcessed
+      let finishRouteOutput!: () => void
+      let failRouteOutput!: (reason?: unknown) => void
+      const routeOutput = new Promise<void>((resolve, reject) => {
+        finishRouteOutput = resolve
+        failRouteOutput = reject
+      })
+      const expectedOutput = {
+        routes: currentRoutes,
+        resolve: finishRouteOutput,
+        reject: failRouteOutput,
+      }
+      pendingRouteOutput = expectedOutput
+      const routeOutputTimeout = setTimeout(
+        () => failRouteOutput(new Error('[vxrn] native route-map build timed out')),
+        120_000
+      )
+      try {
+        engine.triggerFullBuild()
+        await routeOutput
+      } finally {
+        clearTimeout(routeOutputTimeout)
+        if (pendingRouteOutput === expectedOutput) pendingRouteOutput = undefined
+      }
       console.info(`[vxrn] native route map rebuild finished`)
       onHmrUpdate?.({ type: 'hmr:reload' })
       return true
@@ -695,8 +723,20 @@ try {
       outputProcessed = new Promise<void>((resolve) => {
         finishOutput = resolve
       })
+      const routeOutput = pendingRouteOutput
       try {
         await handleOutput(result)
+        if (result instanceof Error) routeOutput?.reject(result)
+        else if (
+          routeOutput &&
+          virtualEntry.routes.files.size === routeOutput.routes.size &&
+          [...routeOutput.routes].every((route) => virtualEntry.routes.files.has(route))
+        ) {
+          routeOutput.resolve()
+        }
+      } catch (error) {
+        routeOutput?.reject(error)
+        throw error
       } finally {
         finishOutput()
       }
