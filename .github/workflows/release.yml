@@ -1,8 +1,8 @@
 name: Release
 
 on:
-  # workflow_run listeners are read from the default branch. This branch copy
-  # stays inert until the beta job is explicitly enabled and synced to main.
+  # workflow_run listeners are read from the default branch. Keep this branch
+  # copy synchronized with main so the tested v2-beta head is published.
   workflow_run:
     workflows: [Checks and Tests]
     types: [completed]
@@ -38,8 +38,7 @@ jobs:
   beta:
     name: Publish V2 beta
     if: >-
-      ${{ false &&
-      github.event_name == 'workflow_run' &&
+      ${{ github.event_name == 'workflow_run' &&
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_branch == 'v2-beta' }}
