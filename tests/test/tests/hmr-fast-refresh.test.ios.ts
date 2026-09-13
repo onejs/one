@@ -111,12 +111,24 @@ testRolldownDev(
   'a route file created while the app runs becomes reachable',
   { timeout: 5 * 60 * 1000, retry: 0 },
   async () => {
+    const originalChild = await readFile(childPath, 'utf8')
     const driver = await createSession(getWebDriverConfig())
     const { waitForText } = createTextReaders(driver)
 
     try {
       await navigateTo(driver, '/hmr-probe')
       await waitForText('route-hmr-version', 'route-v1')
+
+      // the app can paint before its HMR socket finishes connecting. prove this
+      // session is registered before changing route membership, so the route
+      // rebuild tests reload delivery instead of racing connection startup.
+      await writeFile(
+        childPath,
+        originalChild.replace('component-v1', 'route-session-ready')
+      )
+      await waitForText('component-hmr-version', 'route-session-ready')
+      await writeFile(childPath, originalChild)
+      await waitForText('component-hmr-version', 'component-v1')
 
       // rolldown expands `import.meta.glob` when it transforms the module and
       // records no dependency on the globbed directories, so without the dev
@@ -144,7 +156,10 @@ export default function HmrAdded() {
       await navigateTo(driver, '/hmr-added')
       await waitForText('added-route-version', 'added-v1')
     } finally {
-      await rm(addedRoutePath, { force: true })
+      await Promise.all([
+        rm(addedRoutePath, { force: true }),
+        writeFile(childPath, originalChild),
+      ])
       try {
         // deleting a route rebuilds the route map. prove the updated bundle
         // mounted before ending this session so no later test inherits a
