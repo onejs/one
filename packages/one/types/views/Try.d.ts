@@ -41,7 +41,7 @@ export declare class Try extends React.Component<TryProps, TryState> {
     };
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void;
     retry: () => Promise<void>;
-    render(): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | import("react/jsx-runtime").JSX.Element | null | undefined;
+    render(): string | number | bigint | boolean | import("react/jsx-runtime").JSX.Element | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | Iterable<React.ReactNode> | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | React.ReactPortal | null | undefined> | null | undefined;
 }
 export {};
 //# sourceMappingURL=Try.d.ts.map

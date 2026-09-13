@@ -13,7 +13,7 @@ export declare function findFocusedRoute(state: InitialState): (Omit<Readonly<{
     name: string;
     path?: string | undefined;
     history?: {
-        type: "params";
+        type: 'params';
         params: Readonly<object | undefined>;
     }[] | undefined;
 } & {

@@ -62,7 +62,7 @@ export declare function canGoBack(): boolean;
 export declare function canDismiss(): boolean;
 export declare function getSortedRoutes(): RouteNode[];
 export declare function updateState(state: OneRouter.ResultState, nextStateParam?: OneRouter.ResultState): void;
-export declare function consumePendingNavigationAction(): "REPLACE" | "NAVIGATE" | "PUSH" | undefined;
+export declare function consumePendingNavigationAction(): "NAVIGATE" | "PUSH" | "REPLACE" | undefined;
 export declare function subscribeToRootState(subscriber: OneRouter.RootStateListener): () => void;
 export declare function subscribeToStore(subscriber: () => void): () => void;
 export declare function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListener): () => void;

@@ -29,6 +29,6 @@ export interface SlotProps extends ViewProps {
     width?: number;
     children: ReactNode;
 }
-export declare const hostAxes: readonly ["vertical", "horizontal"];
-export declare const hostAlignments: readonly ["leading", "center", "trailing"];
+export declare const hostAxes: readonly ['vertical', 'horizontal'];
+export declare const hostAlignments: readonly ['leading', 'center', 'trailing'];
 //# sourceMappingURL=containerTypes.d.ts.map

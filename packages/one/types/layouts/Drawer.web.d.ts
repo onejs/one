@@ -1,6 +1,6 @@
 import type { DrawerNavigationEventMap, DrawerNavigationOptions } from '@react-navigation/drawer';
 import { type DrawerNavigationState, type ParamListBase } from '@react-navigation/routers';
-export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("../types").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "screenOptions" | "router" | "screenListeners" | "screenLayout" | "routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("../types").PickPartial<Omit<any, "children" | "initialRouteName" | "layout" | "routeNamesChangeBehavior" | "router" | "screenLayout" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: Readonly<{
@@ -26,7 +26,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
             name: string;
             path?: string | undefined;
             history?: {
-                type: "params";
+                type: 'params';
                 params: Readonly<object | undefined>;
             }[] | undefined;
         } & {
@@ -77,7 +77,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
             name: string;
             path?: string | undefined;
             history?: {
-                type: "params";
+                type: 'params';
                 params: Readonly<object | undefined>;
             }[] | undefined;
         } & {
@@ -130,13 +130,13 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
             stale: false;
         }>>, "beforeRemove", true>;
     }>) | undefined;
-    screenOptions?: {} | ((props: {
+    screenOptions?: ((props: {
         route: Readonly<{
             key: string;
             name: string;
             path?: string | undefined;
             history?: {
-                type: "params";
+                type: 'params';
                 params: Readonly<object | undefined>;
             }[] | undefined;
         } & {
@@ -152,7 +152,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
             stale: false;
         }>, {}, {}, {}>;
         theme: import("@react-navigation/core").Theme;
-    }) => {}) | undefined;
+    }) => {}) | {} | undefined;
     screenLayout?: ((props: import("@react-navigation/core").ScreenLayoutArgs<ParamListBase, string, {}, import("@react-navigation/core").NavigationProp<ParamListBase, string, Readonly<{
         key: string;
         index: number;
@@ -162,12 +162,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         type: string;
         stale: false;
     }>, {}, {}, {}>>) => React.ReactElement) | undefined;
-    router?: (<Action extends Readonly<{
-        type: string;
-        payload?: object | undefined;
-        source?: string | undefined;
-        target?: string | undefined;
-    }>>(original: import("@react-navigation/routers").Router<Readonly<{
+    router?: (<Action extends import("@react-navigation/routers").NavigationAction>(original: import("@react-navigation/routers").Router<Readonly<{
         key: string;
         index: number;
         routeNames: string[];
@@ -184,7 +179,7 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         type: string;
         stale: false;
     }>, Action>>) | undefined;
-    routeNamesChangeBehavior?: ("firstMatch" | "lastUnhandled") | undefined;
+    routeNamesChangeBehavior?: ('firstMatch' | 'lastUnhandled') | undefined;
 }, "children">, "ref"> & import("react").RefAttributes<unknown>, "ref"> & import("react").RefAttributes<unknown>> & {
     Screen: import("react").ComponentType<import("../router/useScreens").ScreenProps<DrawerNavigationOptions, DrawerNavigationState<ParamListBase>, DrawerNavigationEventMap>>;
 };
