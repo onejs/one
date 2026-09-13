@@ -26,6 +26,7 @@ import type { InputOptions, OutputOptions, Plugin, RolldownOutput } from 'rolldo
 import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
+import { resolvePath } from '@vxrn/resolve'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -264,6 +265,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    ...(dev ? [reactNativeDedupePlugin(root)] : []),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -1284,6 +1286,29 @@ export function hmrClientNoopPlugin(): Plugin {
           moduleType: 'js',
         }
       }
+    },
+  }
+}
+
+function reactNativeDedupePlugin(root: string): Plugin {
+  // package managers can install the same react native version at multiple
+  // physical paths. rolldown assigns each path a module identity, so resolving
+  // every entry through the app's instance prevents initializeCore from running twice.
+  let reactNativeRoot: string | undefined
+
+  return {
+    name: 'vxrn:react-native-dedupe',
+    async resolveId(source, importer) {
+      if (source !== 'react-native' && !source.startsWith('react-native/')) return
+
+      reactNativeRoot ||= realpathSync(
+        dirname(resolvePath('react-native/package.json', root))
+      )
+      const subpath =
+        source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
+      return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
+        skipSelf: true,
+      })
     },
   }
 }
