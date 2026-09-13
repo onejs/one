@@ -3,6 +3,7 @@ import type { GetTransformProps, GetTransformResponse } from './types';
 type Props = GetTransformProps & {
     userSetting?: GetTransformResponse;
 };
+export declare function findUserBabelConfig(projectRoot?: string): string | null;
 export declare function getBabelOptions(props: Props): babel.TransformOptions | null;
 /**
  * Run the react compiler through oxc's rust port instead of babel.

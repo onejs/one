@@ -9,6 +9,7 @@ import micromatch from 'micromatch'
 import type { loadConfig as loadConfigT } from 'metro'
 import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
 
+import { findUserBabelConfig } from '@vxrn/compiler'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
 import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
@@ -173,11 +174,22 @@ export async function buildMetroConfigInputFromViteConfig(
 
   // no babel by default. the worker throws on a babel plugin it has no port
   // for, so opting back in is explicit rather than something you drift into.
+  // When a user adds a custom babel config, respect it rather than forcing native transforms.
+  const hasUserBabelConfig =
+    Boolean(projectRoot) && Boolean(findUserBabelConfig(projectRoot))
+
   const isNativeTransforms =
     process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
       ? false
-      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
-        metroPluginOptions.nativeTransforms !== false
+      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1'
+        ? true
+        : metroPluginOptions.nativeTransforms === false
+          ? false
+          : metroPluginOptions.nativeTransforms === true
+            ? true
+            : hasUserBabelConfig
+              ? false
+              : true
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
@@ -350,11 +362,22 @@ export async function getMetroConfigFromViteConfig(
 
   // no babel by default. the worker throws on a babel plugin it has no port
   // for, so opting back in is explicit rather than something you drift into.
+  // When a user adds a custom babel config, respect it rather than forcing native transforms.
+  const hasUserBabelConfig =
+    Boolean(projectRoot) && Boolean(findUserBabelConfig(projectRoot))
+
   const isNativeTransforms =
     process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
       ? false
-      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1' ||
-        metroPluginOptions.nativeTransforms !== false
+      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1'
+        ? true
+        : metroPluginOptions.nativeTransforms === false
+          ? false
+          : metroPluginOptions.nativeTransforms === true
+            ? true
+            : hasUserBabelConfig
+              ? false
+              : true
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
