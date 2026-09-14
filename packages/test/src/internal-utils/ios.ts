@@ -469,6 +469,8 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       udid,
       bundleId,
       wdaLocalPort,
+      // ci boots with simctl, so keep the simulator headless instead of restarting it
+      isHeadless: true,
       // keep one port for this serial test run so appium can reuse the running
       // WDA process after each session instead of launching xcodebuild again.
       useNewWDA: false,
