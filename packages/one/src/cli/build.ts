@@ -1426,6 +1426,13 @@ export default {
               replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root),
             },
             {
+              find: 'react-native/asset-registry',
+              replacement: resolvePath(
+                'react-native-web/dist/modules/AssetRegistry',
+                options.root
+              ),
+            },
+            {
               find: 'react-native/package.json',
               replacement: resolvePath('react-native-web/package.json', options.root),
             },

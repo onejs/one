@@ -1612,14 +1612,8 @@ function flowStripPlugin(): Plugin {
       async handler(code, id) {
         if (!shouldStripFlow(id, code)) return
 
-        const fft = await import('fast-flow-transform')
-        const result = await fft.default({
-          filename: id,
-          source: code,
-          sourcemap: true,
-          dialect: 'flow',
-          format: 'pretty',
-        })
+        const { stripFlowTypes } = await import('@vxrn/compiler')
+        const result = await stripFlowTypes(id, code)
         // don't set moduleType - let rolldown's global moduleTypes config handle it
         return { code: result.code, map: result.map }
       },
@@ -1652,7 +1646,7 @@ function assetPlugin(opts: {
           copyNativeAssetFiles(assetData, opts.assetsDest, opts.platform)
         }
 
-        const code = `module.exports = require('react-native/Libraries/Image/AssetRegistry').registerAsset(${JSON.stringify(assetData)});`
+        const code = `module.exports = require('react-native/asset-registry').registerAsset(${JSON.stringify(assetData)});`
 
         return { code, moduleType: 'js' as any }
       },

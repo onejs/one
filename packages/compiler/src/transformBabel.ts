@@ -249,7 +249,10 @@ export async function transformBabel(
     plugins: [
       ...(isTS
         ? []
-        : [[hermesParserPlugin, { parseLangTypes: 'flow', reactRuntimeTarget: '19' }]]),
+        : [
+            [hermesParserPlugin, { parseLangTypes: 'flow', reactRuntimeTarget: '19' }],
+            'babel-plugin-transform-flow-enums',
+          ]),
       ...(options.plugins || []),
       ...(isTS ? [] : ['@babel/plugin-transform-flow-strip-types']),
     ],
@@ -263,6 +266,14 @@ export async function transformBabel(
       res(result)
     })
   })
+}
+
+export async function stripFlowTypes(id: string, code: string, sourceMaps = true) {
+  const result = await transformBabel(id, code, { sourceMaps })
+  return {
+    code: result.code!,
+    map: result.map,
+  }
 }
 
 const getBasePlugins = ({ development }: Props) =>

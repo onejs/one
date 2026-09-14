@@ -31,9 +31,9 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "one": "workspace:*",
     "react": "19.2.3",
-    "react-native": "0.86.2",
+    "react-native": "0.87.1",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0",
+    "react-native-screens": "~4.27.0",
     "tamagui": "2.6.2"
   },
   "devDependencies": {
