@@ -24,6 +24,11 @@ on:
           # an ordinary pull request through the queue, then dispatch this to
           # publish it. see docs/releasing.md.
           - republish
+      force:
+        description: Skip the CI gate for an owner-authorized emergency release
+        required: false
+        default: false
+        type: boolean
 
 permissions: {}
 
@@ -68,7 +73,7 @@ jobs:
       # it, which is most of the wall clock of publishing a one-line fix. a
       # stable release still cannot publish without green CI below.
       - name: Require successful full CI
-        if: inputs.release != 'canary'
+        if: inputs.release != 'canary' && inputs.force != true
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_REF: ${{ github.ref_name }}
