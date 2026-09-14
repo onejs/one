@@ -7,5 +7,7 @@ ignores:
   - "@vxrn/vite-native-client"
   # required by string id in reactNativeViewConfig, so depcheck cannot see it
   - "hermes-parser"
+  # required by string id in transformBabel, so depcheck cannot see it
+  - "babel-plugin-transform-flow-enums"
   # kept as export for vxrn native HMR consumers, dep provided by workspace
   - "@swc/core"

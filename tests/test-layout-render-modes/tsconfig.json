@@ -41,5 +41,5 @@
   "references": [
     { "path": "../../packages/one" }
   ],
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base.json"
 }
