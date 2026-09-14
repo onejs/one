@@ -198,7 +198,7 @@
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react": "19.2.3",
         "react-native": "0.86.2",
         "vitest": "^4.1.0",
@@ -232,7 +232,7 @@
       },
       "devDependencies": {
         "@jridgewell/trace-mapping": "^0.3.25",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "depcheck": "^1.4.7",
         "rolldown": "^1.2.8",
         "vite": "^8.2.2",
@@ -265,7 +265,7 @@
         "yocto-spinner": "^0.1.0",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/prompts": "^2.4.9",
         "typescript": "7.0.2",
       },
@@ -277,7 +277,7 @@
         "debug": "^4.3.7",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/debug": "^4",
       },
     },
@@ -285,7 +285,7 @@
       "name": "@vxrn/emitter",
       "version": "1.26.1",
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react": "19.2.3",
       },
       "peerDependencies": {
@@ -300,7 +300,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
     },
     "packages/mdx": {
@@ -329,7 +329,7 @@
         "unist-util-visit": "^2.0.3",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
       "optionalDependencies": {
         "sharp": "^0.35.4",
@@ -348,7 +348,7 @@
         "satteri-expressive-code": "^0.1.17",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react": "19.2.3",
       },
       "optionalDependencies": {
@@ -362,7 +362,7 @@
       "name": "@vxrn/native",
       "version": "1.26.1",
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react-native-web": "^0.21.2",
       },
       "peerDependencies": {
@@ -438,7 +438,7 @@
         "@react-navigation/core": "~8.0.0-alpha.34",
         "@react-navigation/drawer": "~8.0.0-alpha.51",
         "@react-navigation/native": "8.0.0-alpha.44",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/node": "^24.10.0",
         "@types/react-dom": "^19.2.2",
         "@types/xxhashjs": "^0.2.4",
@@ -485,7 +485,7 @@
       "name": "one-native",
       "version": "0.0.0",
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "vitest": "^4.1.0",
       },
       "peerDependencies": {
@@ -513,7 +513,7 @@
         "query-string": "^9.1.0",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
     },
     "packages/react-native-prebuilt": {
@@ -528,7 +528,7 @@
         "import-meta-resolve": "^4.1.0",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.86.2",
@@ -544,7 +544,7 @@
       "name": "@vxrn/resolve",
       "version": "1.26.1",
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "vitest": "^4.1.0",
       },
     },
@@ -557,7 +557,7 @@
       "version": "1.26.1",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
     },
     "packages/test": {
@@ -589,14 +589,14 @@
         "url-parse": "^1.5.10",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
     },
     "packages/use-isomorphic-layout-effect": {
       "name": "@vxrn/use-isomorphic-layout-effect",
       "version": "1.26.1",
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react": "19.2.3",
       },
       "peerDependencies": {
@@ -612,7 +612,7 @@
         "ws": "^8.21.0",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/ws": "^8.18.1",
       },
     },
@@ -630,7 +630,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
       },
     },
     "packages/vite-native-client": {
@@ -638,7 +638,7 @@
       "version": "1.26.1",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react-native": "0.86.2",
       },
       "peerDependencies": {
@@ -653,7 +653,7 @@
         "pretty-format": "^28.1.0",
       },
       "devDependencies": {
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "react-native": "0.86.2",
       },
       "peerDependencies": {
@@ -686,7 +686,7 @@
         "@biomejs/biome": "2.3.3",
         "@expo/metro-config": "~57.0.7",
         "@react-native/dev-middleware": "^0.86.2",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/babel__helper-plugin-utils": "^7",
         "@types/node": "^24.10.0",
         "depcheck": "^1.4.7",
@@ -758,7 +758,7 @@
         "@biomejs/biome": "2.3.3",
         "@jridgewell/gen-mapping": "^0.3.5",
         "@react-native-community/cli": "^20.2.0",
-        "@tamagui/build": "3.0.0-beta.1216.1",
+        "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/find-node-modules": "^2.1.2",
         "@types/node": "^24.10.0",
         "@types/qrcode-terminal": "^0",
@@ -2613,7 +2613,7 @@
 
     "@tamagui/avatar": ["@tamagui/avatar@2.6.2", "", { "dependencies": { "@tamagui/core": "2.6.2", "@tamagui/create-context": "2.6.2", "@tamagui/helpers": "2.6.2", "@tamagui/image": "2.6.2", "@tamagui/shapes": "2.6.2", "@tamagui/stacks": "2.6.2", "@tamagui/text": "2.6.2" }, "peerDependencies": { "react": ">=19" } }, "sha512-TAC5BhQ951XhcBzjzkGOAumcQa4tBkWhhNDlrrkO56ve7WbvGi/SB24+HM7qWiRY1onNUHS/h9lk8/vrLajRKQ=="],
 
-    "@tamagui/build": ["@tamagui/build@3.0.0-beta.1216.1", "", { "dependencies": { "@babel/core": "^7.25.2", "@babel/preset-typescript": "^7.26.0", "@swc/core": "^1.14.0", "@types/fs-extra": "^9.0.13", "baseline-browser-mapping": "^2.9.15", "chokidar": "^3.5.2", "esbuild": "0.28.1", "esbuild-register": "^3.6.0", "execa": "^5.0.0", "fast-glob": "^3.2.11", "fs-extra": "^11.2.0", "get-tsconfig": "^4.14.0", "lodash.debounce": "^4.0.8", "oxc-transform": "^0.112.0", "picomatch": "4.0.4", "rolldown": "1.2.4" }, "optionalDependencies": { "@typescript/typescript-darwin-arm64": "7.1.0-dev.20260722.1", "@typescript/typescript-darwin-x64": "7.1.0-dev.20260722.1", "@typescript/typescript-linux-arm": "7.1.0-dev.20260722.1", "@typescript/typescript-linux-arm64": "7.1.0-dev.20260722.1", "@typescript/typescript-linux-x64": "7.1.0-dev.20260722.1", "@typescript/typescript-win32-arm64": "7.1.0-dev.20260722.1", "@typescript/typescript-win32-x64": "7.1.0-dev.20260722.1" }, "peerDependencies": { "babel-plugin-react-compiler": ">=1" }, "optionalPeers": ["babel-plugin-react-compiler"], "bin": { "tamagui-build": "tamagui-build.js", "tamagui-build-workspace": "tamagui-build-workspace.js", "tamagui-tsgo": "tamagui-tsgo.js", "teesx": "teesx.sh" } }, "sha512-Tf5p1GQzFTnheyJyoghxojreWxYnbb+dE+oFbAqtDQFqoffdtkYBL+uGOwUvCvKLoEHi4Z2cG1S0gVvvJF4rSg=="],
+    "@tamagui/build": ["@tamagui/build@3.0.0-beta.1309.1", "", { "dependencies": { "@babel/core": "^7.25.2", "@babel/preset-typescript": "^7.26.0", "@swc/core": "^1.14.0", "@types/fs-extra": "^9.0.13", "baseline-browser-mapping": "^2.9.15", "chokidar": "^3.5.2", "esbuild": "0.28.1", "esbuild-register": "^3.6.0", "execa": "^5.0.0", "fast-glob": "^3.2.11", "fs-extra": "^11.2.0", "get-tsconfig": "^4.14.0", "lodash.debounce": "^4.0.8", "oxc-transform": "^0.112.0", "picomatch": "4.0.4", "rolldown": "1.2.4", "typescript": "7.0.2" }, "peerDependencies": { "babel-plugin-react-compiler": ">=1" }, "optionalPeers": ["babel-plugin-react-compiler"], "bin": { "tamagui-build": "tamagui-build.js", "tamagui-build-workspace": "tamagui-build-workspace.js", "tamagui-tsgo": "tamagui-tsgo.js", "teesx": "teesx.sh" } }, "sha512-gIBLBbjX2LX1wagH2ze3VN6WsA4Fek+KmXC1GlLN/fSfc53Jq3Jf1VPywJqwtmNEidEvSLf4XvhStuJ7BVVXTw=="],
 
     "@tamagui/button": ["@tamagui/button@2.6.2", "", { "dependencies": { "@tamagui/config-default": "2.6.2", "@tamagui/core": "2.6.2", "@tamagui/font-size": "2.6.2", "@tamagui/get-button-sized": "2.6.2", "@tamagui/helpers": "2.6.2", "@tamagui/helpers-tamagui": "2.6.2", "@tamagui/spacer": "2.6.2", "@tamagui/stacks": "2.6.2", "@tamagui/text": "2.6.2", "@tamagui/web": "2.6.2" }, "peerDependencies": { "react": ">=19" } }, "sha512-levsIyG7ryEXyUhi+mAdY3j+TySOe1QR3tLzu/saAmZwafmZWee8dGHRwtnFCCgqWypK06SFF4qbbnopcMCUZQ=="],
 
