@@ -31,9 +31,11 @@ export const loadBabelConfig = (() => {
       const possibleBabelRCPaths = [
         '.babelrc',
         '.babelrc.js',
+        '.babelrc.json',
         'babel.config.js',
         'babel.config.cjs',
         'babel.config.mjs',
+        'babel.config.json',
       ]
 
       const foundBabelRCPath = possibleBabelRCPaths.find((configFileName) =>

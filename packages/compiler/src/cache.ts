@@ -50,7 +50,7 @@ function getCacheDir(): string {
 }
 
 // hash config state so cache invalidates when compiler/reanimated/nativewind toggles change
-function getConfigFingerprint(): string {
+function getConfigFingerprint(userBabelConfigPath?: string | null): string {
   return createHash('sha1')
     .update(
       JSON.stringify({
@@ -59,6 +59,10 @@ function getConfigFingerprint(): string {
         nativeWorklets: isNativeWorkletsEnabled(),
         nativewind: configuration.enableNativewind,
         nativeCSS: configuration.enableNativeCSS,
+        // transform output depends on the user babel config when one applies,
+        // so its identity joins the fingerprint. adding, removing, or editing
+        // babel.config.* must miss entries written without that change.
+        babelConfig: getBabelConfigIdentity(userBabelConfigPath),
         // bump when the transform engine changes, so entries written by a
         // previous engine aren't served for the same source
         engine: 'oxc-worklets-hermes-async',
@@ -68,9 +72,33 @@ function getConfigFingerprint(): string {
     .slice(0, 8)
 }
 
-function getCacheKey(filePath: string, environment: string): string {
+// identity of the user babel config influencing a transform: path plus mtime
+// and content hash, or null when none applies. mtime alone misses edits that
+// preserve it, content alone misses same-byte swaps across paths. cheap: the
+// file is tiny and its path is already resolved by the caller.
+function getBabelConfigIdentity(configPath?: string | null): string | null {
+  if (!configPath) return null
+  try {
+    const mtime = statSync(configPath).mtimeMs
+    const hash = createHash('sha1')
+      .update(readFileSync(configPath))
+      .digest('hex')
+      .slice(0, 16)
+    return `${configPath}:${mtime}:${hash}`
+  } catch {
+    // deleted or unreadable between resolve and hash: the path alone still
+    // distinguishes this entry from the no-config one.
+    return configPath
+  }
+}
+
+function getCacheKey(
+  filePath: string,
+  environment: string,
+  userBabelConfigPath?: string | null
+): string {
   const hash = createHash('sha1')
-    .update(`${environment}:${filePath}:${getConfigFingerprint()}`)
+    .update(`${environment}:${filePath}:${getConfigFingerprint(userBabelConfigPath)}`)
     .digest('hex')
   return hash
 }
@@ -83,13 +111,14 @@ function getContentHash(code: string): string {
 export function getCachedTransform(
   filePath: string,
   code: string,
-  environment: string
+  environment: string,
+  userBabelConfigPath?: string | null
 ): { code: string; map?: any } | null {
   try {
     // Strip leading null byte (Vite virtual module prefix) if present
     const cleanPath = filePath.startsWith('\0') ? filePath.slice(1) : filePath
     const cacheDir = getCacheDir()
-    const cacheKey = getCacheKey(cleanPath, environment)
+    const cacheKey = getCacheKey(cleanPath, environment, userBabelConfigPath)
     const cachePath = join(cacheDir, `${cacheKey}.json`)
 
     if (!existsSync(cachePath)) {
@@ -126,13 +155,14 @@ export function setCachedTransform(
   filePath: string,
   code: string,
   result: { code: string; map?: any },
-  environment: string
+  environment: string,
+  userBabelConfigPath?: string | null
 ): void {
   try {
     // Strip leading null byte (Vite virtual module prefix) if present
     const cleanPath = filePath.startsWith('\0') ? filePath.slice(1) : filePath
     const cacheDir = getCacheDir()
-    const cacheKey = getCacheKey(cleanPath, environment)
+    const cacheKey = getCacheKey(cleanPath, environment, userBabelConfigPath)
     const cachePath = join(cacheDir, `${cacheKey}.json`)
 
     const mtime = statSync(cleanPath).mtimeMs

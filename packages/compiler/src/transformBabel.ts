@@ -75,6 +75,19 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
     }
     return getOptions(props, false, userBabelConfig)
   }
+  // an explicit per-file opt-out of babel survives a user config. without
+  // this, merely adding babel.config.js flips swc/oxc files to babel.
+  const userSetting = props.userSetting
+  if (
+    userSetting === 'swc' ||
+    userSetting === 'oxc' ||
+    userSetting === false ||
+    (typeof userSetting === 'object' &&
+      userSetting !== null &&
+      (userSetting.transform === 'swc' || userSetting.transform === 'oxc'))
+  ) {
+    return null
+  }
   if (userBabelConfig) {
     return getOptions(props, false, userBabelConfig)
   }

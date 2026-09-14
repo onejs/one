@@ -172,8 +172,12 @@ async function performBabelTransform({
         (x) => Array.isArray(x) && x[0] === 'babel-plugin-react-compiler'
       )
 
-      // Check cache first
-      const cached = getCachedTransform(id, code, environment)
+      // Check cache first. the user babel config feeds the transform output,
+      // so its identity joins the key: adding or editing babel.config.* must
+      // miss entries cached without that change.
+      const userBabelConfigPath =
+        typeof babelOptions.configFile === 'string' ? babelOptions.configFile : null
+      const cached = getCachedTransform(id, code, environment, userBabelConfigPath)
       if (cached) {
         perfStats.babel.byEnvironment[environment].transforms++
         if (
@@ -322,7 +326,7 @@ async function performBabelTransform({
         const result = { code: outCode, map: babelOut.map }
 
         // Cache the result
-        setCachedTransform(id, code, result, environment)
+        setCachedTransform(id, code, result, environment, userBabelConfigPath)
 
         return result
       }
