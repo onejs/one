@@ -272,10 +272,12 @@ outputs.set(
             name: component.name,
             publicName: component.publicName,
             props: Object.fromEntries(
-              Object.entries(component.props).map(([key, type]) => [
-                key,
-                enumProps[key] ? { type, enum: enumProps[key] } : { type },
-              ])
+              // a container marks an omittable prop with a trailing ?, which the spec needs
+              // and the schema does not carry: no other prop there records optionality.
+              Object.entries(component.props).map(([key, declared]) => {
+                const type = declared.replace('?', '')
+                return [key, enumProps[key] ? { type, enum: enumProps[key] } : { type }]
+              })
             ),
             events: Object.fromEntries(
               Object.entries(component.events).map(([key, payload]) => [

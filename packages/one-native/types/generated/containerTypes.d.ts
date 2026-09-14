@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import type { ViewProps } from 'react-native';
+import type { ColorValue, ViewProps } from 'react-native';
+import type { GlassEffect, Material } from './controlTypes';
 export type HostAxis = 'vertical' | 'horizontal';
 export type HostAlignment = 'leading' | 'center' | 'trailing';
 export interface HostProps extends ViewProps {
@@ -14,6 +15,13 @@ export interface FormProps extends ViewProps {
 export interface SectionProps extends ViewProps {
     title?: string;
     footer?: string;
+    children: ReactNode;
+}
+export interface GlassProps extends ViewProps {
+    material?: Material;
+    glassEffect?: GlassEffect;
+    cornerRadius?: number;
+    tint?: ColorValue;
     children: ReactNode;
 }
 export interface SlotProps extends ViewProps {

@@ -571,6 +571,40 @@ Inside the slot everything works as it does anywhere else in React Native: touch
 state, providers, and layout. A slot has to be a child of a container, so it throws when
 it is used anywhere else.
 
+### Glass and materials
+
+`Swift.Glass` draws a Liquid Glass surface with the composed children laid out on top of
+it. It composes children the way a host does, and it takes the box React Native gives it,
+so give it a height or a flex parent.
+
+```tsx
+<Swift.Glass style={{ margin: 16, height: 180 }} glassEffect="regular" cornerRadius={24}>
+  <Swift.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
+  <Swift.Button label="Save" onPress={save} />
+</Swift.Glass>
+```
+
+`glassEffect` is the iOS 26 Liquid Glass surface: `regular`, `clear`, or `interactive`,
+where `interactive` is the one that reacts to touch. `material` is the iOS 15 material
+surface: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins when both
+are set. Every value is drawn with the matching SwiftUI API, so the surface is the real
+one rather than an approximation.
+
+`cornerRadius` shapes the surface. Left out, glass keeps the shape SwiftUI picks for the
+size it was given, and a material fills the box squarely. `tint` colors the glass and
+sets the accent color for the controls inside it.
+
+The same two names work on any control through `swiftStyle`, where they apply to that
+control alone:
+
+```tsx
+<Swift.Button
+  label="Save"
+  onPress={save}
+  swiftStyle={{ glassEffect: 'interactive', tint: '#0A84FF' }}
+/>
+```
+
 ### Popovers
 
 `Swift.Popover` is both halves at once. Its children are the trigger, which composes

@@ -78,6 +78,7 @@
         "OneNativeHost": "OneNativeHostComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
+        "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"
