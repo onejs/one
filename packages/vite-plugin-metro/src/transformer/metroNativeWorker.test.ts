@@ -19,7 +19,10 @@ import {
   applyEnvironmentGuard,
   getRemoveServerCodeRouterRoot,
 } from './metroNativeWorker'
-import { buildMetroConfigInputFromViteConfig } from '../metro-config/getMetroConfigFromViteConfig'
+import {
+  buildMetroConfigInputFromViteConfig,
+  getMetroConfigFromViteConfig,
+} from '../metro-config/getMetroConfigFromViteConfig'
 
 const babelCalls = {
   transform: 0,
@@ -527,6 +530,117 @@ describe('metroNativeWorker', () => {
         nativeTransforms: true,
       })
       expect(config5.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    } finally {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
+  })
+
+  it('warns naming the ignored user babel config when native transforms are forced', async () => {
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(process.cwd(), '.tmp-metro-test-'))
+    )
+    fs.writeFileSync(path.join(tempDir, 'package.json'), '{}')
+    const babelConfigPath = path.join(tempDir, 'babel.config.js')
+    fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: [] }')
+    try {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      const mockViteConfig = { root: tempDir } as any
+      const warnsWithConfig = (spy: any) =>
+        spy.mock.calls.some((args: any[]) =>
+          args.join(' ').includes(babelConfigPath)
+        )
+
+      // explicit option force still uses the worker, but names the dropped config
+      const optionWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const forced = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        expect(forced.defaultConfig.transformerPath).toContain('metroNativeWorker')
+        expect(warnsWithConfig(optionWarn)).toBe(true)
+      } finally {
+        optionWarn.mockRestore()
+      }
+
+      // env var force warns the same way
+      const envWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+        const envForced = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+        expect(envForced.defaultConfig.transformerPath).toContain('metroNativeWorker')
+        expect(warnsWithConfig(envWarn)).toBe(true)
+      } finally {
+        envWarn.mockRestore()
+        delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      }
+
+      // default (no force) respects the config silently: babel fallback, no warning
+      const respectedWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const respected = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+        expect(respected.defaultConfig.transformerPath).not.toContain(
+          'metroNativeWorker'
+        )
+        expect(warnsWithConfig(respectedWarn)).toBe(false)
+      } finally {
+        respectedWarn.mockRestore()
+      }
+    } finally {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
+  })
+
+  it('selects the same transformer in both metro config builders', async () => {
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(process.cwd(), '.tmp-metro-test-'))
+    )
+    fs.writeFileSync(path.join(tempDir, 'package.json'), '{}')
+    try {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      const mockViteConfig = { root: tempDir } as any
+
+      // no user config: both builders default to the native worker
+      const nativeInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      const nativeFull = await getMetroConfigFromViteConfig(mockViteConfig, {})
+      expect(nativeInput.defaultConfig.transformerPath).toContain('metroNativeWorker')
+      expect((nativeFull as any).transformerPath).toContain('metroNativeWorker')
+
+      // user config: both builders fall back to the babel transformer
+      const babelConfigPath = path.join(tempDir, 'babel.config.js')
+      fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: [] }')
+      const fallbackInput = await buildMetroConfigInputFromViteConfig(
+        mockViteConfig,
+        {}
+      )
+      const fallbackFull = await getMetroConfigFromViteConfig(mockViteConfig, {})
+      expect(fallbackInput.defaultConfig.transformerPath).not.toContain(
+        'metroNativeWorker'
+      )
+      expect((fallbackFull as any).transformerPath).not.toContain('metroNativeWorker')
+
+      // forced with a user config: both builders warn naming the ignored file
+      const forcedWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const forcedInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        const forcedFull = await getMetroConfigFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        expect(forcedInput.defaultConfig.transformerPath).toContain(
+          'metroNativeWorker'
+        )
+        expect((forcedFull as any).transformerPath).toContain('metroNativeWorker')
+        expect(
+          forcedWarn.mock.calls.some((args: any[]) =>
+            args.join(' ').includes(babelConfigPath)
+          )
+        ).toBe(true)
+      } finally {
+        forcedWarn.mockRestore()
+      }
     } finally {
       delete process.env.ONE_METRO_NATIVE_TRANSFORMS
       fs.rmSync(tempDir, { recursive: true, force: true })
@@ -1300,5 +1414,44 @@ export const all = { ...import.meta.env };`,
     expect(getRemoveServerCodeRouterRoot({ customTransformOptions: {} } as any)).toBe(
       undefined
     )
+  })
+})
+
+describe('metro babel fallback config names', () => {
+  it('extends json babel configs just like the compiler detection does', async () => {
+    // loadBabelConfig memoizes a singleton, so each case gets a fresh module
+    for (const name of ['babel.config.json', '.babelrc.json']) {
+      vi.resetModules()
+      const { loadBabelConfig } = await import('./loadBabelConfig')
+      const tempDir = fs.realpathSync(
+        fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-json-'))
+      )
+      try {
+        fs.writeFileSync(path.join(tempDir, name), JSON.stringify({ plugins: [] }))
+        expect(loadBabelConfig({ projectRoot: tempDir })).toEqual({
+          extends: path.join(tempDir, name),
+        })
+      } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true })
+      }
+    }
+
+    // control: js configs keep loading
+    vi.resetModules()
+    const { loadBabelConfig } = await import('./loadBabelConfig')
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-json-'))
+    )
+    try {
+      fs.writeFileSync(
+        path.join(tempDir, 'babel.config.js'),
+        'module.exports = { plugins: [] }'
+      )
+      expect(loadBabelConfig({ projectRoot: tempDir })).toEqual({
+        extends: path.join(tempDir, 'babel.config.js'),
+      })
+    } finally {
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
   })
 })
