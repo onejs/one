@@ -1,5 +1,39 @@
 # One Native Conformance Runner
 
+## Android Compose in RNX
+
+The RNX lane uses Maestro for interaction and a thin runner for independent tree, layout,
+accessibility, console error, failed request, and screenshot evidence. It requires one connected
+`pixel-8` simulator and runs the full flow three times by default.
+
+```bash
+RNX_NO_OPEN=1 bun run dev
+
+bun run test-rnx:one-native-android -- \
+  --sim <RNX_SIM_ID> \
+  --url http://localhost:8081 \
+  --artifact-dir /tmp/one-native-rnx-conformance
+```
+
+| Surface | Behavior | Gate |
+| --- | --- | --- |
+| Column and Text | mount, exact text, full bounds, 8-point padding, 4-point spacing | tree, boxes, layout, a11y |
+| Row | full inner width and 8-point child spacing | boxes |
+| Box and nested `composeStyle` | 96 to 248 width revision, fixed height, padding, radius, border, background, contained Text | boxes, layout |
+| Button | two accepted taps | exact status and pressable tree state |
+| Switch | rejected request, accepted request, revision reset | exact request/value/revision status and final a11y state |
+| keyed children | alpha/beta becomes beta/alpha | ordered tree |
+| mount lifecycle | unmount then remount once | condition waits and unique test ID |
+| disabled controls | Button and Switch callbacks remain at zero | exact status and disabled a11y state |
+| negative control | same-label Box cannot increment the real Button | non-pressable tree role and unchanged status |
+
+Every run sweeps console errors and failed requests. The one final screenshot per run is supporting
+evidence only. Machine-readable artifacts and the aggregate outcome are written below
+`--artifact-dir`.
+
+All waits are selector or state conditions in the Maestro flows. Keep the app source unchanged for
+the repeated run because Fast Refresh invalidates remount and flake evidence.
+
 Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, `containers`, `popover`, `accessibility`, `media`, or `map`.
 
 ```bash
