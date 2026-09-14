@@ -9,6 +9,7 @@ private final class ButtonModel: ObservableObject {
   @Published var systemImage: String = ""
   @Published var buttonRole: String = ""
   @Published var buttonStyle: String = "automatic"
+  @Published var disclosureIndicator: Bool = false
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -35,12 +36,13 @@ private final class ButtonModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String) {
+  public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String, disclosureIndicator: Bool) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.systemImage != systemImage { model.systemImage = systemImage }
     if model.buttonRole != buttonRole { model.buttonRole = buttonRole }
     if model.buttonStyle != buttonStyle { model.buttonStyle = buttonStyle }
+    if model.disclosureIndicator != disclosureIndicator { model.disclosureIndicator = disclosureIndicator }
   }
 
 
@@ -80,15 +82,27 @@ private struct ButtonContent: View {
   @ObservedObject var model: ButtonModel
   var body: some View {
     Button(role: OneNativeGenerated.buttonRole(model.buttonRole), action: { model.press() }) {
-        if model.systemImage.isEmpty {
-          Text(model.label)
+        if model.disclosureIndicator {
+          HStack {
+            model.oneNativeLabel
+            Spacer()
+            Image(systemName: "chevron.right").foregroundStyle(.secondary)
+          }
+          .frame(maxWidth: .infinity)
         } else {
-          Label(model.label, systemImage: model.systemImage)
+          model.oneNativeLabel
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
+  }
+}
+private extension ButtonModel {
+  // the label is the same whether or not a disclosure indicator follows it, so the
+  // image-or-text rule is written once.
+  @ViewBuilder var oneNativeLabel: some View {
+    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
   }
 }

@@ -4,11 +4,31 @@ import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 export type HostAxis = 'vertical' | 'horizontal'
 export type HostAlignment = 'leading' | 'center' | 'trailing'
+export type ZStackAlignment =
+  | 'topLeading'
+  | 'top'
+  | 'topTrailing'
+  | 'leading'
+  | 'center'
+  | 'trailing'
+  | 'bottomLeading'
+  | 'bottom'
+  | 'bottomTrailing'
 export interface HostProps extends ViewProps {
   axis?: HostAxis
   spacing?: number
   alignment?: HostAlignment
   children: ReactNode
+}
+// Swift.HStack and Swift.VStack are Swift.Host with the axis fixed, so their props are a
+// host's without it.
+export type StackProps = Omit<HostProps, 'axis'>
+export interface ZStackProps extends ViewProps {
+  alignment?: ZStackAlignment
+  children: ReactNode
+}
+export interface SpacerProps extends ViewProps {
+  minLength?: number
 }
 export interface FormProps extends ViewProps {
   children: ReactNode
@@ -25,3 +45,14 @@ export interface SlotProps extends ViewProps {
 }
 export const hostAxes = ['vertical', 'horizontal'] as const
 export const hostAlignments = ['leading', 'center', 'trailing'] as const
+export const zStackAlignments = [
+  'topLeading',
+  'top',
+  'topTrailing',
+  'leading',
+  'center',
+  'trailing',
+  'bottomLeading',
+  'bottom',
+  'bottomTrailing',
+] as const

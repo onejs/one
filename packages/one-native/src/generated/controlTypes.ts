@@ -132,6 +132,7 @@ export interface ButtonProps extends OneNativeViewProps {
   systemImage?: string
   buttonRole?: Styles.ButtonRole | ''
   buttonStyle?: Styles.PrimitiveButtonStyle
+  disclosureIndicator?: boolean
 }
 export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
