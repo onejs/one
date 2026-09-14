@@ -90,6 +90,10 @@ export interface SliderProps extends OneNativeViewProps {
     minimumValue?: number;
     maximumValue?: number;
     step?: number;
+    minimumValueLabel?: string;
+    maximumValueLabel?: string;
+    minimumValueImage?: string;
+    maximumValueImage?: string;
 }
 export interface StepperProps extends OneNativeViewProps {
     value: number;
