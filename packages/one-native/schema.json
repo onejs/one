@@ -1343,6 +1343,38 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeGlass",
+      "publicName": "Glass",
+      "props": {
+        "material": {
+          "type": "string"
+        },
+        "glassEffect": {
+          "type": "string"
+        },
+        "cornerRadius": {
+          "type": "Double"
+        },
+        "tint": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeContainerSlot",
       "publicName": "Slot",
       "props": {

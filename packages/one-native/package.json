@@ -81,6 +81,7 @@
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
         "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
+        "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"

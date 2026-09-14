@@ -52,6 +52,7 @@ extension View {
       .oneNativePadding(style)
       .oneNativeFrame(style)
       .oneNativeBackground(style.background)
+      .oneNativeGlassEffect(style)
       .oneNativeCornerRadius(style.cornerRadius)
       .oneNativeOpacity(style.opacity)
       .oneNativeBorder(color: style.borderColor, width: style.borderWidth)
@@ -138,6 +139,27 @@ extension View {
     }
   }
 
+  // liquid glass on iOS 26, and a material surface below it. glass wins when both are set:
+  // it is the newer surface, and a caller that named one asked for the glass.
+  @ViewBuilder func oneNativeGlassEffect(_ style: OneNativeStyle) -> some View {
+    #if os(iOS)
+    if #available(iOS 26.0, *), let name = style.glassEffect {
+      let glass = OneNativeStyle.resolveGlassEffect(name).tint(style.tint.map { Color(uiColor: $0) })
+      if let radius = style.cornerRadius {
+        self.glassEffect(glass, in: RoundedRectangle(cornerRadius: radius))
+      } else {
+        self.glassEffect(glass)
+      }
+    } else if let material = style.material {
+      self.background(OneNativeStyle.resolveMaterial(material))
+    } else {
+      self
+    }
+    #else
+    self
+    #endif
+  }
+
   @ViewBuilder fileprivate func oneNativeCornerRadius(_ radius: CGFloat?) -> some View {
     if let radius = radius {
       if radius < 0 {
@@ -211,6 +233,26 @@ extension OneNativeStyle {
     case "heavy": return .heavy
     case "black": return .black
     default: preconditionFailure("invalid FontWeight: \\(string)")
+    }
+  }
+
+  static func resolveGlassEffect(_ string: String) -> Glass {
+    switch string.lowercased() {
+    case "regular": return .regular
+    case "clear": return .clear
+    case "interactive": return .regular.interactive()
+    default: preconditionFailure("invalid GlassEffect: \\(string)")
+    }
+  }
+
+  static func resolveMaterial(_ string: String) -> Material {
+    switch string.lowercased() {
+    case "ultrathin": return .ultraThin
+    case "thin": return .thin
+    case "regular": return .regular
+    case "thick": return .thick
+    case "ultrathick": return .ultraThick
+    default: preconditionFailure("invalid Material: \\(string)")
     }
   }
 

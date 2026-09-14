@@ -75,6 +75,23 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeGlass',
+    publicName: 'Glass',
+    // a glass surface is a box, not a measurement: it takes the size React Native gave it
+    // and draws the surface behind whatever is composed into it.
+    props: {
+      material: 'string',
+      glassEffect: 'string',
+      cornerRadius: 'Double',
+      tint: 'ColorValue?',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeContainerSlot',
     publicName: 'Slot',
     props: { height: 'Double', width: 'Double' },
@@ -112,14 +129,21 @@ export const zStackAlignments = [
 
 export function emitContainers(header: string, outputs: Map<string, string>) {
   for (const component of containerComponents) {
-    const props = Object.entries(component.props)
+    // a trailing ? marks a prop a caller may omit. React Native sends the null its absence
+    // means, and the container reads that as unset.
+    const props = Object.entries(component.props).map(([key, declared]) => ({
+      key,
+      optional: declared.endsWith('?'),
+      type: declared.replace('?', ''),
+    }))
+    const used = (type: string) => props.some((prop) => prop.type === type)
     outputs.set(
       `src/specs/${component.name}NativeComponent.ts`,
       header +
-        `import type { ViewProps } from 'react-native'
-${props.some(([, type]) => type === 'Double') ? `import type { Double } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+        `import type { ${used('ColorValue') ? 'ColorValue, ' : ''}ViewProps } from 'react-native'
+${used('Double') ? `import type { Double } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 interface NativeProps extends ViewProps {
-${props.map(([key, type]) => `  ${key}: ${type}`).join('\n')}
+${props.map((prop) => `  ${prop.key}${prop.optional ? '?' : ''}: ${prop.type}`).join('\n')}
 }
 export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
 `
@@ -129,7 +153,8 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
     'src/generated/containerTypes.ts',
     header +
       `import type { ReactNode } from 'react'
-import type { ViewProps } from 'react-native'
+import type { ColorValue, ViewProps } from 'react-native'
+import type { GlassEffect, Material } from './controlTypes'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
@@ -163,6 +188,13 @@ export interface LabeledContentProps extends ViewProps {
   value?: string
   systemImage?: string
   children?: ReactNode
+}
+export interface GlassProps extends ViewProps {
+  material?: Material
+  glassEffect?: GlassEffect
+  cornerRadius?: number
+  tint?: ColorValue
+  children: ReactNode
 }
 export interface SlotProps extends ViewProps {
   height: number

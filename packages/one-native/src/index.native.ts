@@ -2,6 +2,7 @@ import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
 import {
   Form,
+  Glass,
   HStack,
   Host,
   LabeledContent,
@@ -31,6 +32,7 @@ export const Swift =
         ZStack,
         Form,
         Section,
+        Glass,
         LabeledContent,
         Spacer,
         Slot,

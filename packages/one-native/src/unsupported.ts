@@ -1,6 +1,7 @@
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
   FormProps,
+  GlassProps,
   HostProps,
   LabeledContentProps,
   MenuProps,
@@ -56,6 +57,9 @@ function LabeledContent(_props: LabeledContentProps): never {
     'Swift.LabeledContent requires an iOS native build with one-native installed'
   )
 }
+function Glass(_props: GlassProps): never {
+  throw new Error('Swift.Glass requires an iOS native build with one-native installed')
+}
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build with one-native installed')
 }
@@ -71,6 +75,7 @@ export const Swift = {
   ZStack,
   Form,
   Section,
+  Glass,
   LabeledContent,
   Spacer,
   Slot,

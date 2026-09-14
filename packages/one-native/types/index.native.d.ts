@@ -1,4 +1,4 @@
-import { Form, Host, Section, Slot } from './Containers.native';
+import { Form, Glass, Host, Section, Slot } from './Containers.native';
 import { Menu } from './Menu.native';
 import { Popover } from './Popover.native';
 import { Sheet } from './Sheet.native';
@@ -31,6 +31,7 @@ export declare const Swift: {
     Host: typeof Host;
     Form: typeof Form;
     Section: typeof Section;
+    Glass: typeof Glass;
     Slot: typeof Slot;
 };
 export type * from './types';
