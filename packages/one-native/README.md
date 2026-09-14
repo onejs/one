@@ -60,6 +60,71 @@ arrangement. `Box` accepts `contentAlignment`.
 `disabled`, `variant` (`filled`, `outlined`, or `text`), and `tone` (`default` or
 `danger`). `Switch` is controlled with `isOn`, `onIsOnChange`, and optional `revision`.
 
+### Android toolchain pins and device proof
+
+`android/build.gradle` pins the Compose toolchain with exact versions, not ranges:
+
+| Artifact | Pinned | Resolved in `:app:assembleDebug` |
+| --- | --- | --- |
+| Compose UI / foundation | 1.11.4 | 1.11.4 (RN 0.86 transitives at 1.8.x/1.7.x/1.0.1 all resolve up to the pin) |
+| Material 3 | 1.4.0 | 1.4.0 (`material3-android`) |
+| Kotlin Gradle plugin | 2.1.20 | 2.1.20 (stdlib floats to 2.2.20 via RN alignment) |
+| AGP | expo SDK 57 template | 8.12.0 |
+| Gradle | wrapper | 9.3.1 on Java 17 |
+| compileSdk / targetSdk / minSdk | expo and RN 0.86 defaults | 36 / 36 / 24 (target and min read from the built APK) |
+| react-native / react | workspace | 0.86.2 / 19.2.3 |
+
+Compose UI 1.12.x stays rejected until compileSdk 37 and AGP 9.1 are adopted:
+1.12 requires the newer SDK and build toolchain, and the pins above are exact
+strings, so Gradle cannot silently select 1.12.1 through a transitive range.
+The `:app:dependencies` output above is the gate: every `androidx.compose`
+line must resolve to the pinned version.
+
+To reproduce, from a clean checkout in `tests/native-features`:
+
+```sh
+bun install
+bunx turbo run build --filter=one --filter=@vxrn/native
+bun run prebuild:native --platform android --no-install
+cd android && ./gradlew :app:assembleDebug
+```
+
+The debug APK loads its bundle from Metro, so start `bun run dev`,
+`adb reverse tcp:8081 tcp:8081`, install the APK, and run the proof:
+
+```sh
+bun tests/native-features/scripts/one-native-conformance.android.ts \
+  --device-id <serial> --package-id dev.vxrn.nativefeatures.tests \
+  --artifact-dir /tmp/one-native-android-proof
+```
+
+The suite drives `tests/native-features/app/one-native-android.tsx` through
+`uiautomator` dumps and coordinate taps: mount marker, accessibility and order,
+prop mutation with fresh bounds, two button taps, controlled Switch reject,
+accept, and revision reset, keyed reorder, optional unmount and remount,
+disabled controls rejecting taps, and a decoy negative control. It then runs
+a bounded stress block: six rapid unmount/remount toggles plus four rapid
+reorders with a duplicate-node sweep over every proof testID, single-handler
+taps proving no duplicate event delivery, and a configuration-change block
+that sets `wm density 560` (density is not in the activity's `configChanges`,
+so the activity recreates), re-navigates from the reloaded home screen, proves
+a single remount with default state, proves a single post-recreation button
+event, proves the expanded bounds width scales with the density ratio
+(619px at 420dpi to 826px at 560dpi, ratio 1.334 against 1.333 expected),
+then resets the density and proves the remount once more. 24 checks pass on
+the standard emulator.
+
+Two behaviors are worth knowing when reading the artifacts. A non-scrollable
+`Column` taller than the window keeps composing its tail, but at 560dpi the
+309x686dp window leaves the order row and decoy box out of the uiautomator
+tree, so the post-rotation checks assert the observable subset and the full
+duplicate sweep runs again after the density reset. And process memory across
+24 optional-child remount cycles drifts up about 1.6% total (310.1MB to
+315.3MB PSS, roughly 190KB per cycle with Native Heap holding two thirds of
+the process); the run-to-run slope is unchanged, which is consistent with GC
+laziness on a debug process and proves no rapid leak, but a short sample
+cannot prove leak freedom.
+
 ```tsx
 import { useState } from 'react'
 import { Text, View } from 'react-native'
