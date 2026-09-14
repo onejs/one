@@ -5,4 +5,6 @@
 export declare function hasUrlProtocolPrefix(href: string): boolean;
 export declare function isWellKnownUri(href: string): boolean;
 export declare function shouldLinkExternally(href: string): boolean;
+export declare function hasFileExtension(href: string): boolean;
+export declare function shouldPreloadRoute(href: string): boolean;
 //# sourceMappingURL=url.d.ts.map
