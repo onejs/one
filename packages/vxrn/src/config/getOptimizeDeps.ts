@@ -1,9 +1,17 @@
+import { existsSync, readFileSync } from 'node:fs'
+import { dirname, join, resolve } from 'node:path'
 import type { UserConfig } from 'vite'
 import { webExtensions } from '../constants'
 
 // TODO we need to traverse to get sub-deps...
 
-export function getOptimizeDeps(mode: 'build' | 'serve') {
+export function getOptimizeDeps(mode: 'build' | 'serve', root = process.cwd()) {
+  // callers hand us a vite/vxrn root that may be relative, and the node_modules walk needs
+  // an absolute path or it stops at the cwd instead of continuing to the filesystem root
+  const rootDir = resolve(root)
+  const packageJsonCache = new Map<string, PackageManifest | null>()
+  const isIncludable = (dep: string) => subpathIsDeclared(dep, rootDir, packageJsonCache)
+
   const needsInterop = [
     'nativewind',
 
@@ -52,7 +60,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@algolia/autocomplete-plugin-algolia-insights',
     '@algolia/autocomplete-shared',
     'moti',
-  ]
+  ].filter(isIncludable)
 
   const depsToOptimize = [
     ...needsInterop,
@@ -117,7 +125,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@floating-ui/react-dom',
     'tamagui',
     'reforest',
-  ]
+  ].filter(isIncludable)
 
   if (mode === 'build') {
     // breaks in serve mode
@@ -161,4 +169,97 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       },
     } satisfies UserConfig['optimizeDeps'],
   }
+}
+
+type PackageManifest = { exports?: unknown }
+
+/**
+ * vite resolves every `optimizeDeps.include` entry eagerly. an entry whose package is
+ * installed but no longer declares that subpath in `exports` is a hard resolve error, not a
+ * warning, so listing one kills dev server startup. nativewind v5 dropping ./jsx-runtime and
+ * ./jsx-dev-runtime is the case that hit us; guard the whole list so the next drop is a no-op.
+ */
+function subpathIsDeclared(
+  dep: string,
+  root: string,
+  cache: Map<string, PackageManifest | null>
+): boolean {
+  const packageName = getPackageName(dep)
+  if (dep === packageName) {
+    // bare package entry, there is no subpath to check
+    return true
+  }
+  const packageJson = readInstalledPackageJson(packageName, root, cache)
+  // not installed at all is only a vite warning, and a package with no `exports` map still
+  // resolves subpaths off the filesystem. neither case is ours to drop.
+  if (!packageJson?.exports) {
+    return true
+  }
+  return exportsDeclaresSubpath(packageJson.exports, `.${dep.slice(packageName.length)}`)
+}
+
+function getPackageName(dep: string): string {
+  const parts = dep.split('/')
+  return dep[0] === '@' ? parts.slice(0, 2).join('/') : parts[0]
+}
+
+function readInstalledPackageJson(
+  packageName: string,
+  root: string,
+  cache: Map<string, PackageManifest | null>
+): PackageManifest | null {
+  const cached = cache.get(packageName)
+  if (cached !== undefined) {
+    return cached
+  }
+
+  let found: PackageManifest | null = null
+  let dir = root
+  while (true) {
+    const file = join(dir, 'node_modules', packageName, 'package.json')
+    if (existsSync(file)) {
+      try {
+        found = JSON.parse(readFileSync(file, 'utf-8'))
+      } catch {
+        // unreadable manifest, treat it as unknown and keep the entry
+      }
+      break
+    }
+    const parent = dirname(dir)
+    if (parent === dir) {
+      break
+    }
+    dir = parent
+  }
+
+  cache.set(packageName, found)
+  return found
+}
+
+function exportsDeclaresSubpath(exports: unknown, subpath: string): boolean {
+  if (!exports || typeof exports !== 'object' || Array.isArray(exports)) {
+    // a string or array `exports` declares the root entry only
+    return false
+  }
+  // a `null` target is an explicit "not exported", so key presence alone proves nothing, and
+  // keys not starting with `.` are a conditions-only map, again the root entry only. this is
+  // the same walk vite does in `expandGlobIds`.
+  return Object.entries(exports as Record<string, unknown>).some(
+    ([key, target]) => target != null && key[0] === '.' && exportKeyMatches(key, subpath)
+  )
+}
+
+function exportKeyMatches(key: string, subpath: string): boolean {
+  const star = key.indexOf('*')
+  if (star === -1) {
+    return key === subpath
+  }
+  // only the first `*` is a wildcard per the node exports spec
+  const prefix = key.slice(0, star)
+  const suffix = key.slice(star + 1)
+  return (
+    subpath.length >= prefix.length + suffix.length &&
+    subpath.startsWith(prefix) &&
+    subpath.endsWith(suffix)
+  )
 }
