@@ -35,33 +35,25 @@ const babelCalls = {
 
 vi.mock('@babel/core', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@babel/core')>()
-  return {
-    ...actual,
-    transform: vi.fn((...args: any[]) => {
-      babelCalls.transform++
-      return (actual.transform as any)(...args)
-    }),
-    transformSync: vi.fn((...args: any[]) => {
-      babelCalls.transformSync++
-      return (actual.transformSync as any)(...args)
-    }),
-    transformAsync: vi.fn((...args: any[]) => {
-      babelCalls.transformAsync++
-      return (actual.transformAsync as any)(...args)
-    }),
-    transformFromAstSync: vi.fn((...args: any[]) => {
-      babelCalls.transformFromAstSync++
-      return (actual.transformFromAstSync as any)(...args)
-    }),
-    parse: vi.fn((...args: any[]) => {
-      babelCalls.parse++
-      return (actual.parse as any)(...args)
-    }),
-    parseSync: vi.fn((...args: any[]) => {
-      babelCalls.parseSync++
-      return (actual.parseSync as any)(...args)
-    }),
-  }
+  const names = [
+    'transform',
+    'transformSync',
+    'transformAsync',
+    'transformFromAstSync',
+    'parse',
+    'parseSync',
+  ] as const
+  const counted = Object.fromEntries(
+    names.map((name) => [
+      name,
+      vi.fn((...args: any[]) => {
+        babelCalls[name]++
+        return (actual[name] as any)(...args)
+      }),
+    ])
+  )
+  // @vxrn/compiler reaches babel through the default export, so count that too
+  return { ...actual, ...counted, default: { ...actual, ...counted } }
 })
 
 // module scope so every describe in this file can assert it, not just the first
@@ -73,6 +65,20 @@ beforeEach(() => {
   babelCalls.parse = 0
   babelCalls.parseSync = 0
 })
+
+// flow stripping is the one place the worker runs babel: react-native's flow
+// syntax (readonly properties, enums) is beyond fast-flow-transform, so the
+// hermes-parser pass in @vxrn/compiler strips it in a single transform call
+function assertOnlyFlowStripBabelCall() {
+  expect(babelCalls).toEqual({
+    transform: 1,
+    transformSync: 0,
+    transformAsync: 0,
+    transformFromAstSync: 0,
+    parse: 0,
+    parseSync: 0,
+  })
+}
 
 function assertZeroBabelCalls() {
   expect(babelCalls.transform).toBe(0)
@@ -421,7 +427,7 @@ describe('metroNativeWorker', () => {
     expect(depNames).toContain('react-native/asset-registry')
   })
 
-  it('handles Flow files by stripping types without Babel', async () => {
+  it('strips Flow types with a single hermes-parser Babel pass', async () => {
     const flowSource = `
       // @flow
       function add(a: number, b: number): number {
@@ -438,9 +444,39 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertZeroBabelCalls()
+    assertOnlyFlowStripBabelCall()
     expect(result.output[0].data.code).not.toContain(': number')
     expect(result.output[0].data.code).toContain('function add(a, b)')
+  })
+
+  it('lowers React Native Flow enums and readonly properties', async () => {
+    // react-native 0.87 ships VirtualView.js with exported Flow enums, and
+    // readonly object properties throughout its type declarations
+    const flowSource = `
+      // @flow strict-local
+      type Props = { readonly state: VirtualViewRenderState };
+      export enum VirtualViewRenderState {
+        Unknown = 0,
+        Rendered = 1,
+        None = 2,
+      }
+      export function isRendered(state: VirtualViewRenderState): boolean {
+        return state === VirtualViewRenderState.Rendered;
+      }
+    `
+
+    const result = await transform(
+      {},
+      '/project',
+      'node_modules/react-native/src/private/components/virtualview/VirtualView.js',
+      Buffer.from(flowSource, 'utf8'),
+      { dev: false, platform: 'ios', type: 'module' }
+    )
+
+    assertOnlyFlowStripBabelCall()
+    expect(result.output[0].data.code).not.toContain('enum VirtualViewRenderState')
+    expect(result.output[0].data.code).not.toContain('readonly')
+    expect(result.dependencies.map((d) => d.name)).toContain('flow-enums-runtime')
   })
 
   it('generates a deterministic cache key without Babel', () => {
