@@ -29,7 +29,7 @@ import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/clean
 import { dynamicImport } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
-import { shouldLinkExternally } from '../utils/url'
+import { hasFileExtension, shouldLinkExternally, shouldPreloadRoute } from '../utils/url'
 import {
   ParamValidationError,
   RouteValidationError,
@@ -966,6 +966,10 @@ export function getPreloadHistory(): PreloadEntry[] {
 
 export function preloadRoute(href: string, injectCSS = false): Promise<any> | undefined {
   if (process.env.TAMAGUI_TARGET !== 'native') {
+    if (!shouldPreloadRoute(href)) {
+      return
+    }
+
     // in dev mode, use a simpler preload that just fetches the loader directly
     // this avoids issues with production-only preload paths while still ensuring
     // loader data is available before navigation completes
@@ -1102,6 +1106,11 @@ export async function linkTo(
 
   if (shouldLinkExternally(href)) {
     openExternalURL(href)
+    return
+  }
+
+  if (process.env.TAMAGUI_TARGET !== 'native' && hasFileExtension(href)) {
+    window.location.href = href
     return
   }
 
