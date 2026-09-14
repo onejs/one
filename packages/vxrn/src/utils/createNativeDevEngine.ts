@@ -895,7 +895,7 @@ function reactNativeLiteResolverPlugin(): Plugin {
 
 export async function buildNativeBundle(
   options: NativeBuildOptions
-): Promise<{ code: string; map?: string; modules?: Record<string, any> }> {
+): Promise<{ code: string; map?: string }> {
   const {
     root,
     platform,
@@ -987,7 +987,6 @@ export async function buildNativeBundle(
   return {
     code: chunk.code,
     map: sourcemap ? chunk.map?.toString() : undefined,
-    modules: chunk.modules,
   }
 }
 

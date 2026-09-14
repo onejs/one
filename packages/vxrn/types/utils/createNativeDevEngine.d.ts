@@ -114,7 +114,6 @@ export interface NativeBuildOptions {
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
     code: string;
     map?: string;
-    modules?: Record<string, any>;
 }>;
 /**
  * Guard NativeAnimatedHelper's createNativeOperations against undefined methods.
