@@ -346,6 +346,7 @@ export function Button({
   systemImage = '',
   buttonRole = '',
   buttonStyle = 'automatic',
+  disclosureIndicator = false,
   swiftStyle,
   style,
   ...props
@@ -373,6 +374,7 @@ export function Button({
       systemImage={systemImage}
       buttonRole={buttonRole}
       buttonStyle={buttonStyle}
+      disclosureIndicator={disclosureIndicator}
       onNativeButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )

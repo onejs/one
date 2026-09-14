@@ -269,7 +269,10 @@ is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
 accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
 `bordered`, `borderedProminent`, `glass`, or `glassProminent`. `onPress` does
-not fire while `disabled`.
+not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
+for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
+filling the width the button is given. It is what makes a `Button` inside a `Swift.Form`
+read as "Change flight >".
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be
@@ -498,6 +501,10 @@ no height of its own.
 and `alignment` (`leading`, `center`, `trailing`) is the cross axis, so it places
 children horizontally down a column and vertically across a row.
 
+`Swift.HStack` and `Swift.VStack` are that host with the axis fixed, so a row is
+`<Swift.HStack spacing={8} alignment="center">` and a column is
+`<Swift.VStack spacing={8} alignment="leading">`. Neither takes an `axis`.
+
 A composed child is still its own Fabric component, so its props, events, enum
 validation and controlled state work exactly as they do standalone. What changes is
 where it renders: the host publishes each child's SwiftUI content into its own tree and
@@ -523,6 +530,37 @@ three of them side by side on a phone overflow, and SwiftUI then reports a much 
 ideal height. That is SwiftUI's layout for content that does not fit, not a
 measurement error, but it means a horizontal host wants few children or explicit
 widths.
+
+### Overlays and spacers
+
+`Swift.ZStack` lays its children over one another instead of in a line, and sizes itself
+to the largest of them. `alignment` says where the smaller ones sit: `center` by
+default, or `topLeading`, `top`, `topTrailing`, `leading`, `trailing`, `bottomLeading`,
+`bottom`, `bottomTrailing`.
+
+```tsx
+<Swift.ZStack alignment="bottomTrailing">
+  <Swift.Image systemName="photo" />
+  <Swift.Label label="Draft" systemImage="pencil" />
+</Swift.ZStack>
+```
+
+Like a host, a ZStack reports the height SwiftUI measured back to Yoga, so it works
+standalone or composed into a form, a section, a stack, or another ZStack.
+
+`Swift.Spacer` takes the free space its stack offers, which pushes its siblings apart.
+It has to be inside a container, and it only has space to take where the stack is given
+more than its content asks for: across a `Swift.HStack` that is the width of the row,
+while a vertical stack reports its own ideal height and leaves a spacer at `minLength`,
+0 by default.
+
+```tsx
+<Swift.HStack>
+  <Swift.Label label="Change flight" systemImage="airplane" />
+  <Swift.Spacer />
+  <Swift.Button label="Edit" onPress={edit} />
+</Swift.HStack>
+```
 
 ### Forms and sections
 

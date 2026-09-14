@@ -64,7 +64,7 @@ using namespace facebook::react;
   if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle)];
+    disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle) disclosureIndicator:next.disclosureIndicator];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
