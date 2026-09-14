@@ -3,7 +3,7 @@ export declare function Picker({ selection, onSelectionChange, revision, label, 
 export declare function DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: Types.DatePickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: Types.ColorPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function Toggle({ isOn, onIsOnChange, revision, label, disabled, toggleStyle, swiftStyle, style, ...props }: Types.ToggleProps): import("react/jsx-runtime").JSX.Element;
-export declare function Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: Types.SliderProps): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: Types.SliderProps): import("react/jsx-runtime").JSX.Element;
 export declare function Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: Types.StepperProps): import("react/jsx-runtime").JSX.Element;
 export declare function Text({ text, swiftStyle, style, ...props }: Types.TextProps): import("react/jsx-runtime").JSX.Element;
 export declare function Label({ label, disabled, systemImage, swiftStyle, style, ...props }: Types.LabelProps): import("react/jsx-runtime").JSX.Element;

@@ -8,7 +8,7 @@ export declare const Swift: {
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
     ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react/jsx-runtime").JSX.Element;
     Toggle({ isOn, onIsOnChange, revision, label, disabled, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
-    Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
+    Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
     Text({ text, swiftStyle, style, ...props }: import("./types").TextProps): import("react/jsx-runtime").JSX.Element;
     Label({ label, disabled, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react/jsx-runtime").JSX.Element;
