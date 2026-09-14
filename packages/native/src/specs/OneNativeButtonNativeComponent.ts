@@ -34,6 +34,8 @@ type OneNativeStyleNative = Readonly<{
   opacity?: WithDefault<Double, -1>
   borderColor?: ColorValue
   borderWidth?: WithDefault<Double, -1>
+  glassEffect?: string
+  material?: string
 }>
 interface NativeProps extends ViewProps {
   label: string
@@ -41,6 +43,7 @@ interface NativeProps extends ViewProps {
   systemImage: string
   buttonRole: string
   buttonStyle: string
+  disclosureIndicator: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }

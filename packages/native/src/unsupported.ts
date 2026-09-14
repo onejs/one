@@ -3,14 +3,19 @@ import type {
   ContextMenuProps,
   FormProps,
   FullScreenCoverProps,
+  GlassProps,
   HostProps,
+  LabeledContentProps,
   MenuProps,
   PopoverProps,
   SectionProps,
   SheetProps,
   SlotProps,
+  SpacerProps,
+  StackProps,
   TabProps,
   TabsProps,
+  ZStackProps,
 } from './types'
 
 function Tabs(_props: TabsProps): never {
@@ -41,11 +46,31 @@ function Popover(_props: PopoverProps): never {
 function Host(_props: HostProps): never {
   throw new Error('Swift.Host requires an iOS native build with @vxrn/native installed')
 }
+function HStack(_props: StackProps): never {
+  throw new Error('Swift.HStack requires an iOS native build with @vxrn/native installed')
+}
+function VStack(_props: StackProps): never {
+  throw new Error('Swift.VStack requires an iOS native build with @vxrn/native installed')
+}
+function ZStack(_props: ZStackProps): never {
+  throw new Error('Swift.ZStack requires an iOS native build with @vxrn/native installed')
+}
+function Spacer(_props: SpacerProps): never {
+  throw new Error('Swift.Spacer requires an iOS native build with @vxrn/native installed')
+}
 function Form(_props: FormProps): never {
   throw new Error('Swift.Form requires an iOS native build with @vxrn/native installed')
 }
 function Section(_props: SectionProps): never {
   throw new Error('Swift.Section requires an iOS native build with @vxrn/native installed')
+}
+function LabeledContent(_props: LabeledContentProps): never {
+  throw new Error(
+    'Swift.LabeledContent requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Glass(_props: GlassProps): never {
+  throw new Error('Swift.Glass requires an iOS native build with @vxrn/native installed')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build with @vxrn/native installed')
@@ -59,8 +84,14 @@ export const Swift = {
   FullScreenCover,
   Popover,
   Host,
+  HStack,
+  VStack,
+  ZStack,
   Form,
   Section,
+  Glass,
+  LabeledContent,
+  Spacer,
   Slot,
   ...unsupportedControls,
 }

@@ -1,23 +1,44 @@
-import { Children, createContext, isValidElement, useContext } from 'react'
+import {
+  Children,
+  createContext,
+  isValidElement,
+  useContext,
+  type ReactNode,
+} from 'react'
+import { Platform } from 'react-native'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
+import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
+import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
+import NativeSpacer from './specs/OneNativeSpacerNativeComponent'
+import NativeZStack from './specs/OneNativeZStackNativeComponent'
+import { assertSwiftUIValue } from './generated/swiftui'
+import { labeledContentProps } from './labeledContent'
 import {
   hostAlignments,
   hostAxes,
-  type FormProps,
-  type HostProps,
+  zStackAlignments,
   type EnvironmentProps,
+  type FormProps,
+  type GlassProps,
+  type HostAxis,
+  type HostProps,
+  type LabeledContentProps,
   type SectionProps,
   type SlotProps,
+  type SpacerProps,
+  type StackProps,
+  type ZStackProps,
 } from './generated/containerTypes'
-import { Platform } from 'react-native'
-import { assertSwiftUIValue } from './generated/swiftui'
 
 // a slot only works where SwiftUI proposes its box, so containers mark their children
 // and a slot marks its own React Native subtree as outside again.
 export const InsideContainer = createContext(false)
+
+const containers =
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, or Swift.Glass'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -40,8 +61,19 @@ function nativeEnvironmentProps({
   }
 }
 
-export function Host({
-  axis = 'vertical',
+function assertNoForm(children: ReactNode, owner: string) {
+  for (const child of Children.toArray(children))
+    if (isValidElement(child) && child.type === Form)
+      throw new Error(
+        `Swift.Form cannot be a child of ${owner}; give the Form its own box`
+      )
+}
+
+type HostStackProps = HostProps & { name: string; axis: HostAxis }
+
+function HostStack({
+  name,
+  axis,
   spacing = 0,
   alignment = 'leading',
   colorScheme,
@@ -52,21 +84,14 @@ export function Host({
   children,
   style,
   ...props
-}: HostProps) {
+}: HostStackProps) {
   if (!hostAxes.includes(axis))
-    throw new Error(`Swift.Host axis must be one of ${hostAxes.join(', ')}`)
+    throw new Error(`${name} axis must be one of ${hostAxes.join(', ')}`)
   if (!hostAlignments.includes(alignment))
-    throw new Error(`Swift.Host alignment must be one of ${hostAlignments.join(', ')}`)
+    throw new Error(`${name} alignment must be one of ${hostAlignments.join(', ')}`)
   if (!Number.isFinite(spacing) || spacing < 0)
-    throw new Error('Swift.Host spacing must be a non-negative number')
-  // a SwiftUI Form has no ideal height, so a host measures one as zero and it renders
-  // nothing at all. that failure is silent, so reject it where it is written.
-  for (const child of Children.toArray(children))
-    if (isValidElement(child) && child.type === Form)
-      throw new Error(
-        'Swift.Form cannot be a child of Swift.Host; give the Form its own box'
-      )
-  // the host reports the height SwiftUI measured, so Yoga must not be given one.
+    throw new Error(`${name} spacing must be a non-negative number`)
+  assertNoForm(children, name)
   return (
     <NativeHost
       {...props}
@@ -87,8 +112,43 @@ export function Host({
   )
 }
 
-// a SwiftUI Form is height-greedy and has no ideal height, so it fills the box React
-// Native gives it. Give it a height or put it in a flex parent.
+export function Host({ axis = 'vertical', ...props }: HostProps) {
+  return <HostStack {...props} name="Swift.Host" axis={axis} />
+}
+
+export function HStack(props: StackProps) {
+  return <HostStack {...props} name="Swift.HStack" axis="horizontal" />
+}
+
+export function VStack(props: StackProps) {
+  return <HostStack {...props} name="Swift.VStack" axis="vertical" />
+}
+
+export function ZStack({ alignment = 'center', children, style, ...props }: ZStackProps) {
+  if (!zStackAlignments.includes(alignment))
+    throw new Error(
+      `Swift.ZStack alignment must be one of ${zStackAlignments.join(', ')}`
+    )
+  assertNoForm(children, 'Swift.ZStack')
+  return (
+    <NativeZStack
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeZStack>
+  )
+}
+
+export function Spacer({ minLength = 0, style, ...props }: SpacerProps) {
+  const inside = useContext(InsideContainer)
+  if (!inside) throw new Error(`Swift.Spacer must be a child of ${containers}`)
+  if (!Number.isFinite(minLength) || minLength < 0)
+    throw new Error('Swift.Spacer minLength must be a non-negative number')
+  return <NativeSpacer {...props} style={style} minLength={minLength} />
+}
+
 export function Form({
   children,
   style,
@@ -132,19 +192,61 @@ export function Section({
   )
 }
 
-// a slot carries a React Native subtree into the SwiftUI tree. SwiftUI proposes the box
-// from `height` and the shared slot shadow node writes it back to Yoga, so the subtree
-// lays out inside the box SwiftUI gave it.
+export function LabeledContent({
+  label,
+  value,
+  systemImage,
+  children,
+  style,
+  ...props
+}: LabeledContentProps) {
+  const content = labeledContentProps({
+    label,
+    value,
+    systemImage,
+    hasChildren: Children.toArray(children).length > 0,
+  })
+  return (
+    <NativeLabeledContent
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      label={content.label}
+      value={content.value}
+      systemImage={content.systemImage}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLabeledContent>
+  )
+}
+
+export function Glass({
+  material,
+  glassEffect,
+  cornerRadius,
+  tint,
+  children,
+  style,
+  ...props
+}: GlassProps) {
+  return (
+    <NativeGlass
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      material={material ?? ''}
+      glassEffect={glassEffect ?? ''}
+      cornerRadius={cornerRadius ?? -1}
+      tint={tint}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGlass>
+  )
+}
+
 export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
-  if (!inside)
-    throw new Error(
-      'Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section'
-    )
+  if (!inside) throw new Error(`Swift.Slot must be a child of ${containers}`)
   if (!Number.isFinite(height) || height <= 0)
     throw new Error('Swift.Slot height must be a positive number')
-  // a vertical container offers its full width; a horizontal one offers none, so a slot
-  // in a horizontal host takes an explicit width.
   if (!Number.isFinite(width) || width < 0)
     throw new Error('Swift.Slot width must be a non-negative number')
   return (

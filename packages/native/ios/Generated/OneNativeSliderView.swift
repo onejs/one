@@ -10,6 +10,10 @@ private final class SliderModel: ObservableObject {
   @Published var minimumValue: Double = 0
   @Published var maximumValue: Double = 100
   @Published var step: Double = 1
+  @Published var minimumValueLabel: String = ""
+  @Published var maximumValueLabel: String = ""
+  @Published var minimumValueImage: String = ""
+  @Published var maximumValueImage: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -35,13 +39,17 @@ private final class SliderModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double) {
+  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double, minimumValueLabel: String, maximumValueLabel: String, minimumValueImage: String, maximumValueImage: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.minimumValue != minimumValue { model.minimumValue = minimumValue }
     if model.maximumValue != maximumValue { model.maximumValue = maximumValue }
     if model.step != step { model.step = step }
+    if model.minimumValueLabel != minimumValueLabel { model.minimumValueLabel = minimumValueLabel }
+    if model.maximumValueLabel != maximumValueLabel { model.maximumValueLabel = maximumValueLabel }
+    if model.minimumValueImage != minimumValueImage { model.minimumValueImage = minimumValueImage }
+    if model.maximumValueImage != maximumValueImage { model.maximumValueImage = maximumValueImage }
   }
 
 
@@ -80,14 +88,34 @@ private final class SliderModel: ObservableObject {
 private struct SliderContent: View {
   @ObservedObject var model: SliderModel
   var body: some View {
-    Slider(value: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      ), in: model.minimumValue...model.maximumValue, step: model.step) {
-        Text(model.label)
-      } onEditingChanged: { _ in }
+    Group {
+        if model.minimumValueImage.isEmpty, model.minimumValueLabel.isEmpty,
+          model.maximumValueImage.isEmpty, model.maximumValueLabel.isEmpty {
+          Slider(value: oneNativeSliderBinding(model), in: model.minimumValue...model.maximumValue, step: model.step) {
+            Text(model.label)
+          } onEditingChanged: { _ in }
+        } else {
+          Slider(value: oneNativeSliderBinding(model), in: model.minimumValue...model.maximumValue, step: model.step) {
+            Text(model.label)
+          } minimumValueLabel: {
+            oneNativeSliderValueLabel(image: model.minimumValueImage, label: model.minimumValueLabel)
+          } maximumValueLabel: {
+            oneNativeSliderValueLabel(image: model.maximumValueImage, label: model.maximumValueLabel)
+          } onEditingChanged: { _ in }
+        }
+      }
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
   }
+}
+private func oneNativeSliderBinding(_ model: SliderModel) -> Binding<Double> {
+  Binding(get: { model.controlled.value }, set: { value in model.change(value) })
+}
+
+// an image wins over a label on the same side; neither one set draws nothing there.
+@ViewBuilder private func oneNativeSliderValueLabel(image: String, label: String) -> some View {
+  if !image.isEmpty { Image(systemName: image) }
+  else if !label.isEmpty { Text(label) }
+  else { EmptyView() }
 }

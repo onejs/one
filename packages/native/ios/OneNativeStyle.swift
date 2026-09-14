@@ -28,6 +28,8 @@ public struct OneNativeStyle: Equatable {
   public var opacity: CGFloat?
   public var borderColor: UIColor?
   public var borderWidth: CGFloat?
+  public var glassEffect: String?
+  public var material: String?
 
   public init() {}
 
@@ -56,6 +58,8 @@ public struct OneNativeStyle: Equatable {
     if let v = dictionary["opacity"] as? Double { self.opacity = CGFloat(v) }
     if let v = dictionary["borderColor"] as? UIColor { self.borderColor = v }
     if let v = dictionary["borderWidth"] as? Double { self.borderWidth = CGFloat(v) }
+    if let v = dictionary["glassEffect"] as? String, !v.isEmpty { self.glassEffect = v }
+    if let v = dictionary["material"] as? String, !v.isEmpty { self.material = v }
   }
 }
 
@@ -68,6 +72,7 @@ extension View {
       .oneNativePadding(style)
       .oneNativeFrame(style)
       .oneNativeBackground(style.background)
+      .oneNativeGlassEffect(style)
       .oneNativeCornerRadius(style.cornerRadius)
       .oneNativeOpacity(style.opacity)
       .oneNativeBorder(color: style.borderColor, width: style.borderWidth)

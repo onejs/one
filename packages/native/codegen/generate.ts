@@ -283,10 +283,10 @@ outputs.set(
           name: component.name,
           publicName: component.publicName,
           props: Object.fromEntries(
-            Object.entries(component.props).map(([key, type]) => [
-              key,
-              enumProps[key] ? { type, enum: enumProps[key] } : { type },
-            ])
+            Object.entries(component.props).map(([key, declared]) => {
+              const type = declared.replace('?', '')
+              return [key, enumProps[key] ? { type, enum: enumProps[key] } : { type }]
+            })
           ),
           events: Object.fromEntries(
             Object.entries(component.events).map(([key, payload]) => [

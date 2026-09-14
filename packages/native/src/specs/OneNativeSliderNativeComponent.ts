@@ -34,6 +34,8 @@ type OneNativeStyleNative = Readonly<{
   opacity?: WithDefault<Double, -1>
   borderColor?: ColorValue
   borderWidth?: WithDefault<Double, -1>
+  glassEffect?: string
+  material?: string
 }>
 interface NativeProps extends ViewProps {
   value: Double
@@ -44,6 +46,10 @@ interface NativeProps extends ViewProps {
   minimumValue: Double
   maximumValue: Double
   step: Double
+  minimumValueLabel: string
+  maximumValueLabel: string
+  minimumValueImage: string
+  maximumValueImage: string
   swiftStyle?: OneNativeStyleNative
   onNativeSliderValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>

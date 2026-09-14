@@ -3,11 +3,11 @@ export declare function Picker({ selection, onSelectionChange, revision, label, 
 export declare function DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: Types.DatePickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: Types.ColorPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function Toggle({ isOn, onIsOnChange, revision, label, disabled, toggleStyle, swiftStyle, style, ...props }: Types.ToggleProps): import("react/jsx-runtime").JSX.Element;
-export declare function Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: Types.SliderProps): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: Types.SliderProps): import("react/jsx-runtime").JSX.Element;
 export declare function Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: Types.StepperProps): import("react/jsx-runtime").JSX.Element;
 export declare function Text({ text, swiftStyle, style, ...props }: Types.TextProps): import("react/jsx-runtime").JSX.Element;
 export declare function Label({ label, disabled, systemImage, swiftStyle, style, ...props }: Types.LabelProps): import("react/jsx-runtime").JSX.Element;
-export declare function Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, swiftStyle, style, ...props }: Types.ButtonProps): import("react/jsx-runtime").JSX.Element;
+export declare function Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: Types.ButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: Types.ProgressViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: Types.GaugeProps): import("react/jsx-runtime").JSX.Element;
 export declare function Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: Types.ImageProps): import("react/jsx-runtime").JSX.Element;
