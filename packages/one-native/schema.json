@@ -411,6 +411,18 @@
         },
         "step": {
           "type": "Double"
+        },
+        "minimumValueLabel": {
+          "type": "string"
+        },
+        "maximumValueLabel": {
+          "type": "string"
+        },
+        "minimumValueImage": {
+          "type": "string"
+        },
+        "maximumValueImage": {
+          "type": "string"
         }
       },
       "events": {
