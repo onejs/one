@@ -1,4 +1,4 @@
-Build the styling surface for packages/one-native. This is the largest gap in the package: there is
+Build the styling surface for packages/native. This is the largest gap in the package: there is
 none at all today, so every generated control renders at system defaults and no tint means a whole app
 is stuck on system blue.
 
@@ -6,19 +6,19 @@ Worktree. From /Users/n8/.worktrees/one-native run
   git worktree add ~/.worktrees/one-native-style -b feat/one-native-style feat/one-native
 Work only in ~/.worktrees/one-native-style.
 
-Prove the gap for yourself first, it takes a minute: grep the catalogs in packages/one-native/codegen
+Prove the gap for yourself first, it takes a minute: grep the catalogs in packages/native/codegen
 for font, tint, foregroundStyle, padding, frame, background. None exist. plans/one-native-swiftui-gap.md
 has the counts: 54 decoration and effects modifiers unbound, 28 box and layout, 33 text appearance,
 7 colour.
 
 The trap to avoid. React Native's `style` prop already exists and already reaches the Fabric UIView
-behind the SwiftUI content, not the content itself. See packages/one-native/codegen/emitControls.ts
+behind the SwiftUI content, not the content itself. See packages/native/codegen/emitControls.ts
 around line 56, where 'style' is listed among the props the view side handles. Do not reuse that name
 and do not change what it does today. Name the new prop `swiftStyle`.
 
 The shape, and there is an exact precedent to copy. Accessibility is already a per-control object
 payload applied once by a generated modifier:
-  packages/one-native/ios/OneNativeAccessibility.swift   a struct plus `extension View { func oneNativeAccessibility(_:) }`
+  packages/native/ios/OneNativeAccessibility.swift   a struct plus `extension View { func oneNativeAccessibility(_:) }`
   codegen/emitControls.ts:241                            `@Published var accessibility = OneNativeAccessibility()`
   codegen/emitControls.ts:279                            updated in updateProps
   codegen/emitControls.ts:340                            `.oneNativeAccessibility(model.accessibility)` applied once in the generated body
@@ -40,7 +40,7 @@ Fixture and test, without the simulator:
 - Do NOT run the simulator, the conformance script, or a dev server. I own the simulator and run the
   accessibility and visual pass at integration. Styling is exactly what the visual pass exists for.
 
-The bar. From packages/one-native:
+The bar. From packages/native:
   bun run generate:check && bun run test && bun run typecheck && bun run build
 generate:check compiles the assembled Swift with swiftc, so a Swift mistake fails there. All four
 green or it is not done.

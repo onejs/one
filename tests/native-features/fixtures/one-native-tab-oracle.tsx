@@ -11,7 +11,7 @@
 //    fifty-level step, which lets the driver measure it a second, independent way.
 //  - one cell renders at a time, named on screen, advanced by one button.
 import { useState } from 'react'
-import { Swift } from 'one-native'
+import { Swift } from '@vxrn/native'
 import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 import { cells, type OracleCell } from './tab-bar-oracle-cells'
 

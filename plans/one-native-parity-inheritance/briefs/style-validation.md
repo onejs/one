@@ -27,7 +27,7 @@ Work only in ~/.worktrees/one-native-style2. Your old worktree and branch are do
    typo fails at the call site rather than rendering system defaults and looking like the feature is
    broken. Match that. A zero corner radius is a real value, not an unknown one, so treat it as one.
 
-The bar, from packages/one-native, all four green:
+The bar, from packages/native, all four green:
   bun run generate:check && bun run test && bun run typecheck && bun run build
 generate:check compiles the assembled Swift with swiftc, so a Swift mistake fails there.
 

@@ -5,7 +5,7 @@ its existing title, toolbar, and search configuration. Bind actual SwiftUI navig
 only for an explicitly isolated flow after a runtime experiment establishes its boundaries.
 
 Scope: written design, based on `4ea2cabda`. The assigned package floor is iOS 26.
-The older iOS 18 statements in `packages/one-native/README.md:5` and
+The older iOS 18 statements in `packages/native/README.md:5` and
 `plans/handoff-one-native-parity.md:22` are superseded by that instruction. No
 availability-gating project is proposed. No iOS app was built or run.
 
@@ -24,7 +24,7 @@ availability-gating project is proposed. No iOS app was built or run.
   components and zero bindings for the 22 navigation and eight search modifier
   families (`plans/one-native-swiftui-gap.md:8,73-78`). These are the prior inventory's
   counts, not a fresh coverage measurement. The generator discovers SDK interfaces
-  and records declaration line numbers (`packages/one-native/codegen/inventory.ts:5-15,20-57`);
+  and records declaration line numbers (`packages/native/codegen/inventory.ts:5-15,20-57`);
   exact constructor and modifier selection lives at `:101-142` of that file.
 
 SDK references below use these explicit aliases. All were read from the installed
@@ -57,7 +57,7 @@ iPhoneSimulator26.4 SDK, not recalled API signatures:
   child controller ([UIHostingController documentation](https://developer.apple.com/documentation/swiftui/uihostingcontroller)).
   One Native already attaches a hosting controller to the nearest controller in
   the responder chain, adds its view, and sizes it to the Fabric host's bounds
-  (`packages/one-native/ios/OneNativeHostingController.swift:4-19`).
+  (`packages/native/ios/OneNativeHostingController.swift:4-19`).
 
 **INFERRED:** a bounded Fabric region is a viable construction shape for a local
   SwiftUI stack. There is no whole-screen requirement in those declarations or
@@ -65,7 +65,7 @@ iPhoneSimulator26.4 SDK, not recalled API signatures:
   feasibility, not tested gesture or transition correctness. Make a navigation
   host fill a bounded region; do not place it in the measured `Host` path, which
   asks for fixed vertical ideal size
-  (`packages/one-native/ios/OneNativeComposition.swift:43-54`). Whole-screen sizing
+  (`packages/native/ios/OneNativeComposition.swift:43-54`). Whole-screen sizing
   alone would still leave the same parent navigation controller above it.
 
 **RAN:** One selects `createNativeStackNavigator`
@@ -93,26 +93,26 @@ iPhoneSimulator26.4 SDK, not recalled API signatures:
   or add simultaneous-recognition overrides based on this hypothesis.
 
 **RAN:** slots reparent the RN UIView and report native bounds to Fabric
-  (`packages/one-native/ios/OneNativeSlot.swift:11-24,38-43`). Container slots use
+  (`packages/native/ios/OneNativeSlot.swift:11-24,38-43`). Container slots use
   local coordinates and explicit height (`ios/OneNativeContainerSlotView.swift:18-30`
-  under `packages/one-native`). Unlike popover content, their Fabric component
+  under `packages/native`). Unlike popover content, their Fabric component
   does not install a surface touch handler
-  (`packages/one-native/ios/OneNativeContainerSlotComponentView.mm:16-26`;
-  `packages/one-native/ios/OneNativePopoverComponentView.mm:72-86`).
+  (`packages/native/ios/OneNativeContainerSlotComponentView.mm:16-26`;
+  `packages/native/ios/OneNativePopoverComponentView.mm:72-86`).
 
 **INFERRED:** slot reuse preserves a transport and layout mechanism, not a promise
   that a pushed destination or search overlay retains the RN surface ancestry.
   Where a new presentation leaves that surface, use an explicit presented-content
   boundary with the existing touch-handler pattern. Do not attach extra handlers
   to every slot. RN Gesture Handler roots in presented content are an application
-  boundary already documented in `packages/one-native/README.md:439-444`.
+  boundary already documented in `packages/native/README.md:439-444`.
 
 **RAN:** hosting supports public `safeAreaRegions` (`S:289-295`); container and
   keyboard regions are separate (`C:18249-18253`). The current attachment code
   sets frames but no explicit safe-area policy
-  (`packages/one-native/ios/OneNativeHostingController.swift:12-19`). Fabric's slot
+  (`packages/native/ios/OneNativeHostingController.swift:12-19`). Fabric's slot
   state carries size/origin, not safe-area insets
-  (`packages/one-native/cpp/OneNativeSlotShadowNode.h:9-12,29-34`).
+  (`packages/native/cpp/OneNativeSlotShadowNode.h:9-12,29-34`).
 
 **INFERRED:** define one inset owner per region. In the retained One stack,
   preserve the screen's existing header/inset contract. In an isolated full-flow
@@ -138,7 +138,7 @@ iPhoneSimulator26.4 SDK, not recalled API signatures:
   every SwiftUI modifier always does nothing on every OS: incidental forwarding
   or explicit UIKit wiring is a separate behavior requiring its own experiment.
   Evidence: the unique-item contract above and
-  `packages/one-native/ios/OneNativeHostingController.swift:7-17`.
+  `packages/native/ios/OneNativeHostingController.swift:7-17`.
 
 **RAN:** screens selects the screen controller's `navigationItem`, installs its
   search controller, and explicitly clears search when its header configuration
@@ -171,12 +171,12 @@ One's integration layer. It is not a new set of freestanding SwiftUI modifiers:
 ## 3. If a stack is bound, its path needs an explicit router adapter
 
 **RAN:** the reconciliation primitive is generic over `Equatable`, not scalar-only
-  (`packages/one-native/ios/OneNativeControlled.swift:2-26`). The JS hook accepts
+  (`packages/native/ios/OneNativeControlled.swift:2-26`). The JS hook accepts
   any event extending `{eventCount, revision}` and acknowledges in `finally`
-  (`packages/one-native/src/controlled.ts:3-29`). The leaf catalog limits controlled
+  (`packages/native/src/controlled.ts:3-29`). The leaf catalog limits controlled
   values to scalars, and each leaf has one value channel
-  (`packages/one-native/codegen/controlTypes.ts:2,24-31,46-49`;
-  `packages/one-native/codegen/emitControls.ts:198-202,240-249`).
+  (`packages/native/codegen/controlTypes.ts:2,24-31,46-49`;
+  `packages/native/codegen/emitControls.ts:198-202,240-249`).
 
 **RAN:** a host-only Swift probe compiled/executed the unchanged controlled struct
   with `[String]`. Independent variables: proposed path, acknowledged event count,
@@ -214,7 +214,7 @@ Proposed transaction mechanism:
    not win. Revision resets invalidate earlier JS events. Do not re-emit native
    events for a prop application; separate binding setters from reconciliation,
    as the existing TextField model does
-   (`packages/one-native/ios/Generated/OneNativeTextFieldView.swift:19-22,44-45,93-95`).
+   (`packages/native/ios/Generated/OneNativeTextFieldView.swift:19-22,44-45,93-95`).
 4. **INFERRED:** keep destination slots alive until transition completion, including
    cancelled back gestures. The controlled protocol has no transition phase, mount
    readiness, or completion signal (`OneNativeControlled.swift:2-26`). Those need
@@ -254,8 +254,8 @@ Proposed transaction mechanism:
 
 | Part | Already supported | Still required |
 |---|---|---|
-| Text binding | **RAN:** the String controlled model and binding setter exist (`packages/one-native/ios/Generated/OneNativeTextFieldView.swift:7-22,93-95`). SDK `searchable` takes `Binding<String>` (`S:5528`). | **INFERRED:** reusable as a search channel, once the search context is owned. `isPresented` is another binding (`S:5546`), so simultaneous text and presentation need independent acknowledgements or a deliberately defined aggregate value. The one-value leaf recipe does not supply that automatically. |
-| Suggestions slot | **RAN:** `searchSuggestions` takes ordinary `ViewBuilder` content (`S:10270`). The emitter describes one composed content slot and an RN content slot (`packages/one-native/codegen/emitContainers.ts:4-9,43-60`); composition publishes `AnyView` children with native identity (`packages/one-native/ios/OneNativeComposition.swift:63-71`). | **INFERRED:** reuse composition and `OneNativeSlot` for content, but add explicit body-versus-suggestions routing, bounded suggestion layout, and a presentation touch boundary if needed. Existing `Slot` requires height (`packages/one-native/src/Containers.native.tsx:81-94`). A React subtree is not automatically a native search suggestion with completion semantics. Apply typed completion to native suggestion rows (`S:13891`), or send an explicit selection event from RN. |
+| Text binding | **RAN:** the String controlled model and binding setter exist (`packages/native/ios/Generated/OneNativeTextFieldView.swift:7-22,93-95`). SDK `searchable` takes `Binding<String>` (`S:5528`). | **INFERRED:** reusable as a search channel, once the search context is owned. `isPresented` is another binding (`S:5546`), so simultaneous text and presentation need independent acknowledgements or a deliberately defined aggregate value. The one-value leaf recipe does not supply that automatically. |
+| Suggestions slot | **RAN:** `searchSuggestions` takes ordinary `ViewBuilder` content (`S:10270`). The emitter describes one composed content slot and an RN content slot (`packages/native/codegen/emitContainers.ts:4-9,43-60`); composition publishes `AnyView` children with native identity (`packages/native/ios/OneNativeComposition.swift:63-71`). | **INFERRED:** reuse composition and `OneNativeSlot` for content, but add explicit body-versus-suggestions routing, bounded suggestion layout, and a presentation touch boundary if needed. Existing `Slot` requires height (`packages/native/src/Containers.native.tsx:81-94`). A React subtree is not automatically a native search suggestion with completion semantics. Apply typed completion to native suggestion rows (`S:13891`), or send an explicit selection event from RN. |
 | Scope bar | **RAN:** `searchScopes` needs a hashable selection binding and builder content (`S:2326,2349`); typed tags are declared at `C:11498`. Current container metadata has height/width and content, but no scope IDs, tags, or selected scope (`emitContainers.ts:43-60`). | **INFERRED:** the transport is reusable, the scope semantics are missing. Prefer finite `{id, label}` data mapped to tagged native labels plus a separate controlled selected ID. An opaque RN slot cannot stand in for multiple typed scope choices. Validate IDs and selection before native submission. |
 
 **INFERRED:** begin with text only and a concrete search caller. Add native,
