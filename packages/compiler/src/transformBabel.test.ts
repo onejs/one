@@ -4,6 +4,7 @@ import path from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import { configureVXRNCompilerPlugin } from './configure'
 import {
+  findUserBabelConfig,
   getBabelOptions,
   transformBabel,
   transformOxcReactCompiler,
@@ -12,7 +13,6 @@ import {
 afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false })
 })
-
 describe('getBabelOptions Worklets resolution', () => {
   it('uses the app-installed Worklets Babel plugin', () => {
     const projectRoot = fs.realpathSync(
@@ -125,6 +125,29 @@ describe('transformOxcReactCompiler', () => {
       '/project/Counter.tsx',
       componentCode,
       '18',
+      false
+    )
+
+    expect(result.code).toContain('_c(')
+  })
+
+  it('supports mutating useSharedValue in useEffect via Reanimated environment defaults', async () => {
+    const reanimatedCode = `
+      import { useEffect } from 'react'
+      import { useSharedValue } from 'react-native-reanimated'
+
+      export function ReanimatedComponent() {
+        const val = useSharedValue(0)
+        useEffect(() => {
+          val.value = 1
+        }, [val])
+        return <div>{val.value}</div>
+      }
+    `
+    const result = await transformOxcReactCompiler(
+      '/project/ReanimatedComponent.tsx',
+      reanimatedCode,
+      { target: '19' },
       false
     )
 
@@ -343,6 +366,91 @@ describe('shared compiler worklets backend selection', () => {
         enableNativeWorklets: false,
       })
       fs.rmSync(tempFile, { force: true })
+    }
+  })
+})
+
+describe('findUserBabelConfig and user Babel config respect', () => {
+  it('finds user babel config and ignores generated configs', () => {
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    try {
+      expect(findUserBabelConfig(projectRoot)).toBeNull()
+
+      // Created with @one-generated marker -> ignored
+      const generatedFile = path.join(projectRoot, 'babel.config.js')
+      fs.writeFileSync(generatedFile, '// @one-generated\nmodule.exports = {}')
+      expect(findUserBabelConfig(projectRoot)).toBeNull()
+
+      // Overwritten with user config -> detected
+      fs.writeFileSync(generatedFile, 'module.exports = { plugins: [] }')
+      expect(findUserBabelConfig(projectRoot)).toBe(generatedFile)
+    } finally {
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('includes user configFile and babelrc in getBabelOptions for project files', () => {
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    const userConfig = path.join(projectRoot, 'babel.config.json')
+    fs.writeFileSync(userConfig, '{"plugins": []}')
+    try {
+      // For project file:
+      const projectFileOptions = getBabelOptions({
+        id: path.join(projectRoot, 'src', 'index.tsx'),
+        code: `export const hello = () => 123`,
+        projectRoot,
+        development: true,
+        environment: 'client',
+        reactForRNVersion: '19',
+      })
+      expect(projectFileOptions?.configFile).toBe(userConfig)
+      expect(projectFileOptions?.babelrc).toBe(true)
+
+      // For node_modules file: should not attach user configFile
+      const nodeModulesOptions = getBabelOptions({
+        id: path.join(projectRoot, 'node_modules', 'foo', 'index.js'),
+        code: `export const foo = 1`,
+        projectRoot,
+        development: true,
+        environment: 'client',
+        reactForRNVersion: '19',
+      })
+      expect(nodeModulesOptions).toBeNull()
+    } finally {
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('runs user babel config transforms via transformBabel', async () => {
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    const userConfig = path.join(projectRoot, 'babel.config.json')
+    // A babel config that injects a banner/plugin or standard babel syntax
+    fs.writeFileSync(
+      userConfig,
+      JSON.stringify({
+        comments: false,
+      })
+    )
+    try {
+      const code = '/* remove me */ export const x = 1'
+      const res = await transformBabel(
+        path.join(projectRoot, 'src', 'index.ts'),
+        code,
+        {
+          configFile: userConfig,
+          babelrc: true,
+        }
+      )
+      expect(res.code).not.toContain('remove me')
+      expect(res.code).toContain('export const x = 1')
+    } finally {
+      fs.rmSync(projectRoot, { recursive: true, force: true })
     }
   })
 })

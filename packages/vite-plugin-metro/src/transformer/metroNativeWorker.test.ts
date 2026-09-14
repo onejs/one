@@ -515,6 +515,46 @@ describe('metroNativeWorker', () => {
     )
   })
 
+  it('falls back to default Metro babel transformer when a user babel config exists', async () => {
+    const tempDir = path.join(process.cwd(), `.tmp-metro-test-${Date.now()}`)
+    fs.mkdirSync(tempDir, { recursive: true })
+    fs.writeFileSync(path.join(tempDir, 'package.json'), '{}')
+    try {
+      const mockViteConfig = { root: tempDir } as any
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+
+      // With no config, defaults to metroNativeWorker
+      const config1 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      expect(config1.defaultConfig.transformerPath).toContain('metroNativeWorker')
+
+      // Generated @one-generated config is ignored, still uses metroNativeWorker
+      const babelConfigPath = path.join(tempDir, 'babel.config.js')
+      fs.writeFileSync(babelConfigPath, '// @one-generated\nmodule.exports = {}')
+      const config2 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      expect(config2.defaultConfig.transformerPath).toContain('metroNativeWorker')
+
+      // User config: falls back to metro default transformer (not metroNativeWorker)
+      fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: ["my-plugin"] }')
+      const config3 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      expect(config3.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
+
+      // Explicit env var ONE_METRO_NATIVE_TRANSFORMS=1 forces native worker even with user babel config
+      process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+      const config4 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      expect(config4.defaultConfig.transformerPath).toContain('metroNativeWorker')
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+
+      // Explicit nativeTransforms: true also forces native worker
+      const config5 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+        nativeTransforms: true,
+      })
+      expect(config5.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    } finally {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
+  })
+
   it('transforms and executes a real 2-module Metro bundle through metro-runtime require polyfill', async () => {
     // Probe 1 verification:
     // Module 2 (dep.js): exports a value

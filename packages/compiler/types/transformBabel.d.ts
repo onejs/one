@@ -3,6 +3,7 @@ import type { GetTransformProps, GetTransformResponse } from './types';
 type Props = GetTransformProps & {
     userSetting?: GetTransformResponse;
 };
+export declare function findUserBabelConfig(projectRoot?: string): string | null;
 export declare function getBabelOptions(props: Props): babel.TransformOptions | null;
 /**
  * Run the react compiler through oxc's rust port instead of babel.
@@ -13,7 +14,9 @@ export declare function getBabelOptions(props: Props): babel.TransformOptions | 
  * still applies the project's jsxImportSource and dev-mode settings, exactly
  * as it did when babel only stripped types here.
  */
-export declare function transformOxcReactCompiler(id: string, code: string, target: '18' | '19', sourceMap?: boolean): Promise<{
+export declare function transformOxcReactCompiler(id: string, code: string, optionsOrTarget?: '18' | '19' | (Record<string, any> & {
+    target?: '18' | '19';
+}), sourceMap?: boolean): Promise<{
     code: string;
     map: any;
 }>;
