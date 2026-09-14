@@ -1,6 +1,16 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
-import { Form, Host, LabeledContent, Section, Slot } from './Containers.native'
+import {
+  Form,
+  HStack,
+  Host,
+  LabeledContent,
+  Section,
+  Slot,
+  Spacer,
+  VStack,
+  ZStack,
+} from './Containers.native'
 import { Menu } from './Menu.native'
 import { Popover } from './Popover.native'
 import { Sheet } from './Sheet.native'
@@ -16,9 +26,13 @@ export const Swift =
         Sheet,
         Popover,
         Host,
+        HStack,
+        VStack,
+        ZStack,
         Form,
         Section,
         LabeledContent,
+        Spacer,
         Slot,
         ...Controls,
       }

@@ -41,6 +41,7 @@ interface NativeProps extends ViewProps {
   systemImage: string
   buttonRole: string
   buttonStyle: string
+  disclosureIndicator: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
