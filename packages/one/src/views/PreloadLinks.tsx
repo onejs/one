@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import { getURL } from '../getURL'
 import { preloadRoute } from '../router/router'
 
+import { shouldPreloadRoute } from '../utils/url'
+
 /**
  * Resolved at build time via vite define - enables tree-shaking of unused modes.
  * Defaults to 'intent' for smart trajectory-based prefetching.
@@ -21,16 +23,25 @@ const PREFETCH_MODE = (process.env.ONE_LINK_PREFETCH || 'intent') as
  * - 'hover': Prefetches on mouseover
  * - 'false': Disabled
  */
+export function getPrefetchableHref(anchor: HTMLAnchorElement, url: string): string | null {
+  if (anchor.target && anchor.target !== '_self') return null
+  if (anchor.hasAttribute('download')) return null
+  if (anchor.getAttribute('rel')?.includes('external')) return null
+  const href = anchor.getAttribute('href')
+  if (!href) return null
+  if (href[0] === '/' || href.startsWith(url)) {
+    const cleanHref = href.replace(url, '')
+    if (!shouldPreloadRoute(cleanHref)) return null
+    return cleanHref
+  }
+  return null
+}
+
 function getHrefFromTarget(url: string, target: EventTarget | null): string | null {
   if (!(target instanceof HTMLElement)) return null
   const anchor = target instanceof HTMLAnchorElement ? target : target.closest('a')
   if (!(anchor instanceof HTMLAnchorElement)) return null
-  const href = anchor.getAttribute('href')
-  if (!href) return null
-  if (href[0] === '/' || href.startsWith(url)) {
-    return href.replace(url, '')
-  }
-  return null
+  return getPrefetchableHref(anchor, url)
 }
 
 export function PreloadLinks() {
@@ -92,16 +103,16 @@ export function PreloadLinks() {
           const seen = new WeakSet<Element>()
 
           const observeLinks = () => {
-            const links = document.querySelectorAll(
+            const links = document.querySelectorAll<HTMLAnchorElement>(
               'a[href^="/"], a[href^="' + url + '"]'
             )
             links.forEach((link) => {
               if (seen.has(link)) return
               seen.add(link)
-              const href = link.getAttribute('href')
+              const href = getPrefetchableHref(link, url)
               if (href) {
                 cleanups.push(
-                  observePrefetchViewport(link as HTMLElement, href.replace(url, ''))
+                  observePrefetchViewport(link, href)
                 )
               }
             })
@@ -139,16 +150,16 @@ export function PreloadLinks() {
           const seen = new WeakSet<Element>()
 
           const observeLinks = () => {
-            const links = document.querySelectorAll(
+            const links = document.querySelectorAll<HTMLAnchorElement>(
               'a[href^="/"], a[href^="' + url + '"]'
             )
             links.forEach((link) => {
               if (seen.has(link)) return
               seen.add(link)
-              const href = link.getAttribute('href')
+              const href = getPrefetchableHref(link, url)
               if (href) {
                 cleanups.push(
-                  observePrefetchIntent(link as HTMLElement, href.replace(url, ''))
+                  observePrefetchIntent(link, href)
                 )
               }
             })
