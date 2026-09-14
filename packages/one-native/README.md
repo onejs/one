@@ -201,6 +201,11 @@ to true.
 `step` numbers. `minimumValue` must be less than `maximumValue`, `step` must be
 greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
 
+`Slider` takes text at each end of the track with `minimumValueLabel` and
+`maximumValueLabel`, and SF Symbol names there with `minimumValueImage` and
+`maximumValueImage`. An image wins over a label on the same side. A slider that
+sets none of the four keeps SwiftUI's label-free slider.
+
 Every control also accepts `label`, `disabled`, and `revision`.
 
 ## Buttons, indicators, and text input

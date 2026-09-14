@@ -213,6 +213,10 @@ export function Slider({
   minimumValue = 0,
   maximumValue = 100,
   step = 1,
+  minimumValueLabel = '',
+  maximumValueLabel = '',
+  minimumValueImage = '',
+  maximumValueImage = '',
   swiftStyle,
   style,
   ...props
@@ -245,6 +249,10 @@ export function Slider({
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}
+      minimumValueLabel={minimumValueLabel}
+      maximumValueLabel={maximumValueLabel}
+      minimumValueImage={minimumValueImage}
+      maximumValueImage={maximumValueImage}
       onNativeSliderValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
