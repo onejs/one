@@ -332,12 +332,18 @@ export function createWorkerdDevPlugins(
     // worker aliases with a worker-only resolveId (rolldown cannot parse RN Flow)
     resolveId: {
       filter: {
-        id: /^(react-native(\/|$)|react-native-safe-area-context$)/,
+        id: /^(react-native(\/|$)|react-native-safe-area-context$|@react-native\/assets-registry\/registry$)/,
       },
       handler(source) {
         if (this.environment.name !== 'worker') return
         if (/^react-native\/Libraries\//.test(source)) return empty
-        if (source === 'react-native/asset-registry') return rnWebAssetRegistry
+        // react native 0.87 removed @react-native/assets-registry, but libraries
+        // like react-native-svg still import its registry
+        if (
+          source === 'react-native/asset-registry' ||
+          source === '@react-native/assets-registry/registry'
+        )
+          return rnWebAssetRegistry
         if (source === 'react-native/package.json') return rnWebPkg
         if (source === 'react-native') return rnWeb
         if (source === 'react-native-safe-area-context') return safeArea
