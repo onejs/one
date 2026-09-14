@@ -101,6 +101,10 @@ export async function getBaseViteConfig(
           replacement: resolvePath('@vxrn/vite-plugin-metro/empty', import.meta.dirname),
         },
         {
+          find: 'react-native/asset-registry',
+          replacement: resolvePath('react-native-web/dist/modules/AssetRegistry', root),
+        },
+        {
           find: 'react-native/package.json',
           replacement: resolvePath('react-native-web/package.json', root),
         },

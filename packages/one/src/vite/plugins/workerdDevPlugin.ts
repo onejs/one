@@ -285,6 +285,10 @@ export function createWorkerdDevPlugins(
     : ['/@vite/client', virtalEntryIdClient]
 
   const empty = resolvePath('@vxrn/vite-plugin-metro/empty', root)
+  const rnWebAssetRegistry = resolvePath(
+    'react-native-web/dist/modules/AssetRegistry',
+    root
+  )
   const rnWebPkg = resolvePath('react-native-web/package.json', root)
   const rnWeb = resolvePath('react-native-web', root)
   const safeArea = resolvePath('@vxrn/safe-area', root)
@@ -333,6 +337,7 @@ export function createWorkerdDevPlugins(
       handler(source) {
         if (this.environment.name !== 'worker') return
         if (/^react-native\/Libraries\//.test(source)) return empty
+        if (source === 'react-native/asset-registry') return rnWebAssetRegistry
         if (source === 'react-native/package.json') return rnWebPkg
         if (source === 'react-native') return rnWeb
         if (source === 'react-native-safe-area-context') return safeArea

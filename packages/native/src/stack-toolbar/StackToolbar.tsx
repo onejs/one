@@ -361,6 +361,7 @@ export function StackToolbarButton(props: StackToolbarButtonProps) {
 
   const content = getToolbarContent(props.children, props.icon, props.iconRenderingMode)
   const badgeStyle = StyleSheet.flatten(content.badge?.style)
+  const titleStyle = StyleSheet.flatten(props.style)
   return (
     <ToolbarItem
       identifier={identifier}
@@ -391,7 +392,16 @@ export function StackToolbarButton(props: StackToolbarButtonProps) {
             }
           : undefined
       }
-      titleStyle={StyleSheet.flatten(props.style)}
+      titleStyle={
+        titleStyle
+          ? {
+              color: titleStyle.color,
+              fontFamily: titleStyle.fontFamily,
+              fontSize: titleStyle.fontSize,
+              fontWeight: titleStyle.fontWeight,
+            }
+          : undefined
+      }
       accessibilityLabel={props.accessibilityLabel ?? content.label}
       accessibilityHint={props.accessibilityHint}
       disabled={props.disabled}
@@ -407,6 +417,7 @@ export function StackToolbarMenu(props: StackToolbarMenuProps) {
   if (!placement) throw new Error('StackToolbar.Menu must be used inside StackToolbar.')
 
   const content = getToolbarContent(props.children, props.icon, props.iconRenderingMode)
+  const titleStyle = StyleSheet.flatten(props.style)
   const actions = Children.toArray(props.children).filter(
     (child) =>
       isChildOfType(child, StackToolbarMenu) ||
@@ -438,7 +449,16 @@ export function StackToolbarMenu(props: StackToolbarMenuProps) {
       barButtonItemStyle={props.variant === 'done' ? 'prominent' : props.variant}
       sharesBackground={!props.separateBackground}
       hidesSharedBackground={props.hidesSharedBackground}
-      titleStyle={StyleSheet.flatten(props.style)}
+      titleStyle={
+        titleStyle
+          ? {
+              color: titleStyle.color,
+              fontFamily: titleStyle.fontFamily,
+              fontSize: titleStyle.fontSize,
+              fontWeight: titleStyle.fontWeight,
+            }
+          : undefined
+      }
     >
       {actions}
     </MenuAction>

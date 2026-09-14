@@ -403,7 +403,7 @@ describe('metroNativeWorker', () => {
   it('handles Asset files without Babel', async () => {
     const result = await transform(
       {
-        assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
+        assetRegistryPath: 'react-native/asset-registry',
         publicPath: '/assets',
       },
       '/project',
@@ -418,7 +418,7 @@ describe('metroNativeWorker', () => {
     expect(result.output[0].data.code).toContain('__d(function')
 
     const depNames = result.dependencies.map((d) => d.name)
-    expect(depNames).toContain('react-native/Libraries/Image/AssetRegistry')
+    expect(depNames).toContain('react-native/asset-registry')
   })
 
   it('handles Flow files by stripping types without Babel', async () => {

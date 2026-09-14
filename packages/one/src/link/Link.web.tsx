@@ -51,11 +51,12 @@ export const Link = React.forwardRef(function Link(
   }, [style])
 
   const Element = asChild ? Slot : 'a'
+  const anchorProps = rest as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>
 
   return (
     <Element
       ref={ref}
-      {...rest}
+      {...anchorProps}
       href={link.href}
       role={link.role}
       className={className}

@@ -59,12 +59,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@expo/config-plugins": "~57.0.6",
+    "@expo/config-plugins": "58.0.0-canary-20260909-ea7a89a",
     "@hono/node-server": "^1.19.14",
     "@jridgewell/remapping": "^2.3.0",
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@react-native/codegen": "^0.86.2",
-    "@react-native/dev-middleware": "^0.86.2",
+    "@react-native/codegen": "^0.87.1",
+    "@react-native/dev-middleware": "^0.87.1",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/query-string": "workspace:*",
@@ -83,7 +83,6 @@
     "oxc-parser": "^0.112.0",
     "oxc-transform": "^0.148.0",
     "oxc-transform-react": "^0.145.0",
-    "fast-flow-transform": "^0.0.3",
     "fast-glob": "^3.3.3",
     "image-size": "^1.2.1",
     "magic-string": "^0.30.21",

@@ -4,6 +4,7 @@ import {
   type ForwardRefExoticComponent,
   forwardRef,
   type RefAttributes,
+  type CSSProperties,
   useMemo,
 } from 'react'
 import { StyleSheet, type ViewProps } from 'react-native'
@@ -30,8 +31,17 @@ function ShimSlotForReactNative(Component: typeof RUISlot): typeof RUISlot {
         )
       }
     }
-    style = useMemo(() => StyleSheet.flatten(style), [style])
-    return <Component ref={ref} {...props} style={style} />
+    const flattenedStyle = useMemo(
+      () => StyleSheet.flatten(style as unknown as ViewProps['style']),
+      [style]
+    )
+    return (
+      <Component
+        ref={ref}
+        {...props}
+        style={flattenedStyle as unknown as CSSProperties | undefined}
+      />
+    )
   })
 }
 
