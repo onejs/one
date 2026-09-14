@@ -1,12 +1,14 @@
 import { Children, createContext, isValidElement, useContext } from 'react'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
+import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
 import {
   hostAlignments,
   hostAxes,
   type FormProps,
+  type GlassProps,
   type HostProps,
   type SectionProps,
   type SlotProps,
@@ -75,13 +77,41 @@ export function Section({
   )
 }
 
+// a glass surface takes the box React Native gave it, so give it a height or a flex parent.
+// the radius is optional: left out, the glass keeps the shape the system picks for its size.
+export function Glass({
+  material,
+  glassEffect,
+  cornerRadius,
+  tint,
+  children,
+  style,
+  ...props
+}: GlassProps) {
+  return (
+    <NativeGlass
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      // an empty surface name and a negative radius are how the native side hears "unset".
+      material={material ?? ''}
+      glassEffect={glassEffect ?? ''}
+      cornerRadius={cornerRadius ?? -1}
+      tint={tint}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGlass>
+  )
+}
+
 // a slot carries a React Native subtree into the SwiftUI tree. SwiftUI proposes the box
 // from `height` and the shared slot shadow node writes it back to Yoga, so the subtree
 // lays out inside the box SwiftUI gave it.
 export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
   if (!inside)
-    throw new Error('Swift.Slot must be a child of Swift.Host, Swift.Form, or Swift.Section')
+    throw new Error(
+      'Swift.Slot must be a child of Swift.Host, Swift.Form, Swift.Section, or Swift.Glass'
+    )
   if (!Number.isFinite(height) || height <= 0)
     throw new Error('Swift.Slot height must be a positive number')
   // a vertical container offers its full width; a horizontal one offers none, so a slot
