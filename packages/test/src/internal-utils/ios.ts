@@ -469,6 +469,8 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       udid,
       bundleId,
       wdaLocalPort,
+      // CI boots with simctl, so keep the simulator headless instead of restarting it.
+      isHeadless: true,
       // always cache WDA builds so subsequent sessions skip the rebuild
       derivedDataPath: wdaDerivedDataPath,
       ...(wdaIsPrebuilt && { usePrebuiltWDA: true }),
