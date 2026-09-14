@@ -7,8 +7,11 @@ import type {
   SectionProps,
   SheetProps,
   SlotProps,
+  SpacerProps,
+  StackProps,
   TabProps,
   TabsProps,
+  ZStackProps,
 } from './types'
 
 function Tabs(_props: TabsProps): never {
@@ -29,6 +32,18 @@ function Popover(_props: PopoverProps): never {
 function Host(_props: HostProps): never {
   throw new Error('Swift.Host requires an iOS native build with one-native installed')
 }
+function HStack(_props: StackProps): never {
+  throw new Error('Swift.HStack requires an iOS native build with one-native installed')
+}
+function VStack(_props: StackProps): never {
+  throw new Error('Swift.VStack requires an iOS native build with one-native installed')
+}
+function ZStack(_props: ZStackProps): never {
+  throw new Error('Swift.ZStack requires an iOS native build with one-native installed')
+}
+function Spacer(_props: SpacerProps): never {
+  throw new Error('Swift.Spacer requires an iOS native build with one-native installed')
+}
 function Form(_props: FormProps): never {
   throw new Error('Swift.Form requires an iOS native build with one-native installed')
 }
@@ -45,8 +60,12 @@ export const Swift = {
   Sheet,
   Popover,
   Host,
+  HStack,
+  VStack,
+  ZStack,
   Form,
   Section,
+  Spacer,
   Slot,
   ...unsupportedControls,
 }

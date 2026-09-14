@@ -21,6 +21,28 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeZStack',
+    publicName: 'ZStack',
+    props: { alignment: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    // measured like a host, so it owns a hand-written shadow node too.
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeSpacer',
+    publicName: 'Spacer',
+    props: { minLength: 'Double' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    // a spacer holds nothing; it takes the free space its parent stack offers.
+    slots: [],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeForm',
     publicName: 'Form',
     props: {},
@@ -62,6 +84,19 @@ export const containerComponents = [
 
 export const hostAxes = ['vertical', 'horizontal'] as const
 export const hostAlignments = ['leading', 'center', 'trailing'] as const
+// SwiftUI's own Alignment statics, in the order the SDK declares them. each one needs a
+// case in the ZStack view's switch, so add a value here and there together.
+export const zStackAlignments = [
+  'topLeading',
+  'top',
+  'topTrailing',
+  'leading',
+  'center',
+  'trailing',
+  'bottomLeading',
+  'bottom',
+  'bottomTrailing',
+] as const
 
 export function emitContainers(header: string, outputs: Map<string, string>) {
   for (const component of containerComponents) {
@@ -85,11 +120,22 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
 import type { ViewProps } from 'react-native'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
+export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export interface HostProps extends ViewProps {
   axis?: HostAxis
   spacing?: number
   alignment?: HostAlignment
   children: ReactNode
+}
+// Swift.HStack and Swift.VStack are Swift.Host with the axis fixed, so their props are a
+// host's without it.
+export type StackProps = Omit<HostProps, 'axis'>
+export interface ZStackProps extends ViewProps {
+  alignment?: ZStackAlignment
+  children: ReactNode
+}
+export interface SpacerProps extends ViewProps {
+  minLength?: number
 }
 export interface FormProps extends ViewProps {
   children: ReactNode
@@ -106,6 +152,7 @@ export interface SlotProps extends ViewProps {
 }
 export const hostAxes = [${hostAxes.map((axis) => JSON.stringify(axis)).join(', ')}] as const
 export const hostAlignments = [${hostAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
+export const zStackAlignments = [${zStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
 `
   )
 }

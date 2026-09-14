@@ -43,6 +43,9 @@ export const leafControls: Control[] = [
         default: 'automatic',
         enum: 'PrimitiveButtonStyle',
       },
+      // turns the row into the "Change flight >" shape a form uses for a row that opens
+      // something, by pushing a secondary chevron to the trailing edge.
+      disclosureIndicator: { type: 'boolean', default: false },
     },
     constructors: [
       {
@@ -58,14 +61,26 @@ export const leafControls: Control[] = [
       },
     ],
     swift: `Button(role: OneNativeGenerated.buttonRole(model.buttonRole), action: { model.press() }) {
-        if model.systemImage.isEmpty {
-          Text(model.label)
+        if model.disclosureIndicator {
+          HStack {
+            model.oneNativeLabel
+            Spacer()
+            Image(systemName: "chevron.right").foregroundStyle(.secondary)
+          }
+          .frame(maxWidth: .infinity)
         } else {
-          Label(model.label, systemImage: model.systemImage)
+          model.oneNativeLabel
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)`,
     validate: `  if (typeof label !== 'string' || !label) throw new Error('Button label must be a non-empty string')`,
+    extraSwift: `private extension ButtonModel {
+  // the label is the same whether or not a disclosure indicator follows it, so the
+  // image-or-text rule is written once.
+  @ViewBuilder var oneNativeLabel: some View {
+    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
+  }
+}`,
   },
   {
     name: 'ProgressView',

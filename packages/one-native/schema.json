@@ -548,6 +548,9 @@
         "buttonStyle": {
           "type": "string",
           "enum": "PrimitiveButtonStyle"
+        },
+        "disclosureIndicator": {
+          "type": "boolean"
         }
       },
       "events": {
@@ -1213,6 +1216,45 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeZStack",
+      "publicName": "ZStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSpacer",
+      "publicName": "Spacer",
+      "props": {
+        "minLength": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
     },
     {
       "name": "OneNativeForm",
