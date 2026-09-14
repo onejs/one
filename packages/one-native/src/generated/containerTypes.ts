@@ -18,6 +18,13 @@ export interface SectionProps extends ViewProps {
   footer?: string
   children: ReactNode
 }
+// the content is either the string value or the children, never both.
+export interface LabeledContentProps extends ViewProps {
+  label: string
+  value?: string
+  systemImage?: string
+  children?: ReactNode
+}
 export interface SlotProps extends ViewProps {
   height: number
   width?: number

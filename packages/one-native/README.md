@@ -540,6 +540,28 @@ describes the SwiftUI tree.
 
 An empty `title` or `footer` omits that header or footer.
 
+### Labeled content
+
+`Swift.LabeledContent` is the key-value row a form, a section, or a host holds. The
+`label` names the row and is required. The content is either a `value` string or
+composed children, never both, and one of the two is required.
+
+```tsx
+<Swift.Form style={{ flex: 1 }}>
+  <Swift.Section title="Trip">
+    <Swift.LabeledContent label="Destination" value="Lisbon, Portugal" systemImage="airplane" />
+    <Swift.LabeledContent label="Per night">
+      <Swift.Text text="$410" swiftStyle={{ fontWeight: 'bold' }} />
+    </Swift.LabeledContent>
+  </Swift.Section>
+</Swift.Form>
+```
+
+`systemImage` adds an SF Symbol beside the label. A row with neither a value nor
+children throws where it is written. Compose a row out of controls rather than a plain
+`View`: the children are One Native controls, and React Native content goes in a
+`Swift.Slot`.
+
 A `Form` is height-greedy and reports no ideal height, so it fills the box React Native
 gives it: give it a height or a flex parent. That is also why a `Form` cannot be a child
 of a `Swift.Host`. A host measures what it holds, SwiftUI answers zero for a form, and

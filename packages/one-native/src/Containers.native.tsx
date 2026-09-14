@@ -2,12 +2,15 @@ import { Children, createContext, isValidElement, useContext } from 'react'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
+import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
+import { labeledContentProps } from './labeledContent'
 import {
   hostAlignments,
   hostAxes,
   type FormProps,
   type HostProps,
+  type LabeledContentProps,
   type SectionProps,
   type SlotProps,
 } from './generated/containerTypes'
@@ -72,6 +75,36 @@ export function Section({
     <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
+  )
+}
+
+// a row of a form, a section, or a host. the content is the `value` string or composed
+// children, so the row carries a plain value without a wrapper and still takes controls.
+export function LabeledContent({
+  label,
+  value,
+  systemImage,
+  children,
+  style,
+  ...props
+}: LabeledContentProps) {
+  const content = labeledContentProps({
+    label,
+    value,
+    systemImage,
+    hasChildren: Children.toArray(children).length > 0,
+  })
+  // the row reports the height SwiftUI measured, so Yoga must not be given one.
+  return (
+    <NativeLabeledContent
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      label={content.label}
+      value={content.value}
+      systemImage={content.systemImage}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLabeledContent>
   )
 }
 
