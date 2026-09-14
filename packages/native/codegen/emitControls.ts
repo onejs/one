@@ -1,5 +1,6 @@
 import { controls } from './controlCatalog'
 import { styleFields } from './catalog'
+import type { StyleField } from './catalog'
 import type { Control, ControlField, ScalarType } from './controlTypes'
 
 const swiftScalar = (type: ScalarType) =>
@@ -23,6 +24,18 @@ const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
 // an enum field defaulting to the empty string means unset; the Swift helper passes self through.
 const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.default === ''
+// a style field that lists its values gets a named alias, so Swift.Glass can take the same
+// names swiftStyle does. the spec keeps the plain string: React Native's codegen would turn
+// a literal union into a C++ enum, and the Objective-C side reads a string.
+const styleAlias = (field: StyleField) => upper(field.name)
+const styleFieldType = (field: StyleField) =>
+  field.kind === 'number'
+    ? 'number'
+    : field.kind === 'color'
+      ? 'ColorValue'
+      : field.values
+        ? styleAlias(field)
+        : 'string'
 
 export function emitControls(header: string, outputs: Map<string, string>) {
   if (!controls.length) return
@@ -46,12 +59,17 @@ export function emitControls(header: string, outputs: Map<string, string>) {
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 
-export interface OneNativeStyle {
 ${styleFields
+  .filter((field) => field.values)
   .map(
     (field) =>
-      `  ${field.name}?: ${field.kind === 'number' ? 'number' : field.kind === 'color' ? 'ColorValue' : 'string'}`
+      `export type ${styleAlias(field)} = ${field.values!.map((value) => JSON.stringify(value)).join(' | ')}`
   )
+  .join('\n')}
+
+export interface OneNativeStyle {
+${styleFields
+  .map((field) => `  ${field.name}?: ${styleFieldType(field)}`)
   .join('\n')}
 }
 

@@ -1,4 +1,4 @@
-import type { ContextMenuProps, FormProps, FullScreenCoverProps, HostProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, TabProps, TabsProps } from './types';
+import type { ContextMenuProps, FormProps, FullScreenCoverProps, GlassProps, HostProps, LabeledContentProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, TabProps, TabsProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
@@ -7,8 +7,14 @@ declare function Sheet(_props: SheetProps): never;
 declare function FullScreenCover(_props: FullScreenCoverProps): never;
 declare function Popover(_props: PopoverProps): never;
 declare function Host(_props: HostProps): never;
+declare function HStack(_props: StackProps): never;
+declare function VStack(_props: StackProps): never;
+declare function ZStack(_props: ZStackProps): never;
+declare function Spacer(_props: SpacerProps): never;
 declare function Form(_props: FormProps): never;
 declare function Section(_props: SectionProps): never;
+declare function LabeledContent(_props: LabeledContentProps): never;
+declare function Glass(_props: GlassProps): never;
 declare function Slot(_props: SlotProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
@@ -42,8 +48,14 @@ export declare const Swift: {
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
     Host: typeof Host;
+    HStack: typeof HStack;
+    VStack: typeof VStack;
+    ZStack: typeof ZStack;
     Form: typeof Form;
     Section: typeof Section;
+    Glass: typeof Glass;
+    LabeledContent: typeof LabeledContent;
+    Spacer: typeof Spacer;
     Slot: typeof Slot;
 };
 export type * from './types';

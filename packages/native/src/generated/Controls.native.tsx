@@ -213,6 +213,10 @@ export function Slider({
   minimumValue = 0,
   maximumValue = 100,
   step = 1,
+  minimumValueLabel = '',
+  maximumValueLabel = '',
+  minimumValueImage = '',
+  maximumValueImage = '',
   swiftStyle,
   style,
   ...props
@@ -245,6 +249,10 @@ export function Slider({
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}
+      minimumValueLabel={minimumValueLabel}
+      maximumValueLabel={maximumValueLabel}
+      minimumValueImage={minimumValueImage}
+      maximumValueImage={maximumValueImage}
       onNativeSliderValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -338,6 +346,7 @@ export function Button({
   systemImage = '',
   buttonRole = '',
   buttonStyle = 'automatic',
+  disclosureIndicator = false,
   swiftStyle,
   style,
   ...props
@@ -365,6 +374,7 @@ export function Button({
       systemImage={systemImage}
       buttonRole={buttonRole}
       buttonStyle={buttonStyle}
+      disclosureIndicator={disclosureIndicator}
       onNativeButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )

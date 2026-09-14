@@ -63,6 +63,8 @@ using namespace facebook::react;
   if (next.swiftStyle.opacity >= 0) style[@"opacity"] = @(next.swiftStyle.opacity);
   if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
   if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
+  if (!next.swiftStyle.glassEffect.empty()) style[@"glassEffect"] = RCTNSStringFromString(next.swiftStyle.glassEffect);
+  if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:next.value
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled minimumDate:next.minimumDate maximumDate:next.maximumDate displayedComponents:RCTNSStringFromString(next.displayedComponents) datePickerStyle:RCTNSStringFromString(next.datePickerStyle)];

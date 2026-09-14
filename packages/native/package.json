@@ -126,8 +126,12 @@
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeZStack": "OneNativeZStackComponentView",
+        "OneNativeSpacer": "OneNativeSpacerComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
+        "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
+        "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"

@@ -856,6 +856,54 @@
     },
     {
       "module": "SwiftUI",
+      "type": "Slider",
+      "parameters": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "SwiftUICore.Binding<V>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.ClosedRange<V>"
+        },
+        {
+          "defaultValue": "1",
+          "label": "step",
+          "name": "step",
+          "type": "V.Stride"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        },
+        {
+          "label": "minimumValueLabel",
+          "name": "minimumValueLabel",
+          "type": "() -> ValueLabel"
+        },
+        {
+          "label": "maximumValueLabel",
+          "name": "maximumValueLabel",
+          "type": "() -> ValueLabel"
+        },
+        {
+          "defaultValue": "{ _ in }",
+          "label": "onEditingChanged",
+          "name": "onEditingChanged",
+          "type": "@escaping (Swift.Bool) -> Swift.Void"
+        }
+      ],
+      "requirements": [
+        "V : Swift.BinaryFloatingPoint",
+        "V.Stride : Swift.BinaryFloatingPoint"
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
       "type": "Stepper",
       "parameters": [
         {

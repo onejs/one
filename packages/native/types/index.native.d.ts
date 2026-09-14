@@ -1,4 +1,4 @@
-import { Form, Host, Section, Slot } from './Containers.native';
+import { Form, Glass, HStack, Host, LabeledContent, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu, Menu } from './Menu.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
@@ -10,11 +10,11 @@ export declare const Swift: {
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
     ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react/jsx-runtime").JSX.Element;
     Toggle({ isOn, onIsOnChange, revision, label, disabled, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
-    Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
+    Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
     Text({ text, swiftStyle, style, ...props }: import("./types").TextProps): import("react/jsx-runtime").JSX.Element;
     Label({ label, disabled, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react/jsx-runtime").JSX.Element;
-    Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
+    Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
     Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
@@ -37,8 +37,14 @@ export declare const Swift: {
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
     Host: typeof Host;
+    HStack: typeof HStack;
+    VStack: typeof VStack;
+    ZStack: typeof ZStack;
     Form: typeof Form;
     Section: typeof Section;
+    Glass: typeof Glass;
+    LabeledContent: typeof LabeledContent;
+    Spacer: typeof Spacer;
     Slot: typeof Slot;
 };
 export { Compose };

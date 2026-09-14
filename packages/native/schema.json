@@ -414,6 +414,18 @@
         },
         "step": {
           "type": "Double"
+        },
+        "minimumValueLabel": {
+          "type": "string"
+        },
+        "maximumValueLabel": {
+          "type": "string"
+        },
+        "minimumValueImage": {
+          "type": "string"
+        },
+        "maximumValueImage": {
+          "type": "string"
         }
       },
       "events": {
@@ -551,6 +563,9 @@
         "buttonStyle": {
           "type": "string",
           "enum": "PrimitiveButtonStyle"
+        },
+        "disclosureIndicator": {
+          "type": "boolean"
         }
       },
       "events": {
@@ -1522,6 +1537,45 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeZStack",
+      "publicName": "ZStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSpacer",
+      "publicName": "Spacer",
+      "props": {
+        "minLength": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeForm",
       "publicName": "Form",
       "props": {
@@ -1565,6 +1619,67 @@
         },
         "footer": {
           "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLabeledContent",
+      "publicName": "LabeledContent",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeGlass",
+      "publicName": "Glass",
+      "props": {
+        "material": {
+          "type": "string"
+        },
+        "glassEffect": {
+          "type": "string"
+        },
+        "cornerRadius": {
+          "type": "Double"
+        },
+        "tint": {
+          "type": "ColorValue"
         }
       },
       "events": {},

@@ -52,6 +52,7 @@ extension View {
       .oneNativePadding(style)
       .oneNativeFrame(style)
       .oneNativeBackground(style.background)
+      .oneNativeGlassEffect(style)
       .oneNativeCornerRadius(style.cornerRadius)
       .oneNativeOpacity(style.opacity)
       .oneNativeBorder(color: style.borderColor, width: style.borderWidth)

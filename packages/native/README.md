@@ -341,6 +341,11 @@ to true.
 `step` numbers. `minimumValue` must be less than `maximumValue`, `step` must be
 greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
 
+`Slider` takes text at each end of the track with `minimumValueLabel` and
+`maximumValueLabel`, and SF Symbol names there with `minimumValueImage` and
+`maximumValueImage`. An image wins over a label on the same side. A slider that
+sets none of the four keeps SwiftUI's label-free slider.
+
 Every control also accepts `label`, `disabled`, and `revision`.
 
 ## Buttons, indicators, and text input
@@ -408,7 +413,10 @@ is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
 accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
 `bordered`, `borderedProminent`, `glass`, or `glassProminent`. `onPress` does
-not fire while `disabled`.
+not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
+for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
+filling the width the button is given. It is what makes a `Button` inside a `Swift.Form`
+read as "Change flight >".
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be
@@ -787,6 +795,10 @@ no height of its own.
 and `alignment` (`leading`, `center`, `trailing`) is the cross axis, so it places
 children horizontally down a column and vertically across a row.
 
+`Swift.HStack` and `Swift.VStack` are that host with the axis fixed, so a row is
+`<Swift.HStack spacing={8} alignment="center">` and a column is
+`<Swift.VStack spacing={8} alignment="leading">`. Neither takes an `axis`.
+
 A composed child is still its own Fabric component, so its props, events, enum
 validation and controlled state work exactly as they do standalone. What changes is
 where it renders: the host publishes each child's SwiftUI content into its own tree and
@@ -822,6 +834,37 @@ ideal height. That is SwiftUI's layout for content that does not fit, not a
 measurement error, but it means a horizontal host wants few children or explicit
 widths.
 
+### Overlays and spacers
+
+`Swift.ZStack` lays its children over one another instead of in a line, and sizes itself
+to the largest of them. `alignment` says where the smaller ones sit: `center` by
+default, or `topLeading`, `top`, `topTrailing`, `leading`, `trailing`, `bottomLeading`,
+`bottom`, `bottomTrailing`.
+
+```tsx
+<Swift.ZStack alignment="bottomTrailing">
+  <Swift.Image systemName="photo" />
+  <Swift.Label label="Draft" systemImage="pencil" />
+</Swift.ZStack>
+```
+
+Like a host, a ZStack reports the height SwiftUI measured back to Yoga, so it works
+standalone or composed into a form, a section, a stack, or another ZStack.
+
+`Swift.Spacer` takes the free space its stack offers, which pushes its siblings apart.
+It has to be inside a container, and it only has space to take where the stack is given
+more than its content asks for: across a `Swift.HStack` that is the width of the row,
+while a vertical stack reports its own ideal height and leaves a spacer at `minLength`,
+0 by default.
+
+```tsx
+<Swift.HStack>
+  <Swift.Label label="Change flight" systemImage="airplane" />
+  <Swift.Spacer />
+  <Swift.Button label="Edit" onPress={edit} />
+</Swift.HStack>
+```
+
 ### Forms and sections
 
 `Swift.Form` is a SwiftUI `Form` and `Swift.Section` is a section inside one. They
@@ -842,6 +885,28 @@ describes the SwiftUI tree.
 ```
 
 An empty `title` or `footer` omits that header or footer.
+
+### Labeled content
+
+`Swift.LabeledContent` is the key-value row a form, a section, or a host holds. The
+`label` names the row and is required. The content is either a `value` string or
+composed children, never both, and one of the two is required.
+
+```tsx
+<Swift.Form style={{ flex: 1 }}>
+  <Swift.Section title="Trip">
+    <Swift.LabeledContent label="Destination" value="Lisbon, Portugal" systemImage="airplane" />
+    <Swift.LabeledContent label="Per night">
+      <Swift.Text text="$410" swiftStyle={{ fontWeight: 'bold' }} />
+    </Swift.LabeledContent>
+  </Swift.Section>
+</Swift.Form>
+```
+
+`systemImage` adds an SF Symbol beside the label. A row with neither a value nor
+children throws where it is written. Compose a row out of controls rather than a plain
+`View`: the children are One Native controls, and React Native content goes in a
+`Swift.Slot`.
 
 A `Form` is height-greedy and reports no ideal height, so it fills the box React Native
 gives it: give it a height or a flex parent. That is also why a `Form` cannot be a child
@@ -873,6 +938,40 @@ A slot fills the width its container offers. A horizontal host offers none, beca
 Inside the slot everything works as it does anywhere else in React Native: touches,
 state, providers, and layout. A slot has to be a child of a container, so it throws when
 it is used anywhere else.
+
+### Glass and materials
+
+`Swift.Glass` draws a Liquid Glass surface with the composed children laid out on top of
+it. It composes children the way a host does, and it takes the box React Native gives it,
+so give it a height or a flex parent.
+
+```tsx
+<Swift.Glass style={{ margin: 16, height: 180 }} glassEffect="regular" cornerRadius={24}>
+  <Swift.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
+  <Swift.Button label="Save" onPress={save} />
+</Swift.Glass>
+```
+
+`glassEffect` is the iOS 26 Liquid Glass surface: `regular`, `clear`, or `interactive`,
+where `interactive` is the one that reacts to touch. `material` is the iOS 15 material
+surface: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins when both
+are set. Every value is drawn with the matching SwiftUI API, so the surface is the real
+one rather than an approximation.
+
+`cornerRadius` shapes the surface. Left out, glass keeps the shape SwiftUI picks for the
+size it was given, and a material fills the box squarely. `tint` colors the glass and
+sets the accent color for the controls inside it.
+
+The same two names work on any control through `swiftStyle`, where they apply to that
+control alone:
+
+```tsx
+<Swift.Button
+  label="Save"
+  onPress={save}
+  swiftStyle={{ glassEffect: 'interactive', tint: '#0A84FF' }}
+/>
+```
 
 ### Popovers
 
