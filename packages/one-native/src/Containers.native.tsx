@@ -7,6 +7,7 @@ import {
 } from 'react'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
+import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
@@ -18,6 +19,7 @@ import {
   hostAxes,
   zStackAlignments,
   type FormProps,
+  type GlassProps,
   type HostAxis,
   type HostProps,
   type LabeledContentProps,
@@ -34,7 +36,7 @@ export const InsideContainer = createContext(false)
 
 // a slot and a spacer both need a container to sit in, so both name the same set.
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, or Swift.Section'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, or Swift.Glass'
 
 // a SwiftUI Form has no ideal height, so a container that measures what it holds reads
 // zero for one and it renders nothing at all. that failure is silent, so reject it where
@@ -175,6 +177,32 @@ export function LabeledContent({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLabeledContent>
+  )
+}
+
+// a glass surface takes the box React Native gave it, so give it a height or a flex parent.
+// the radius is optional: left out, the glass keeps the shape the system picks for its size.
+export function Glass({
+  material,
+  glassEffect,
+  cornerRadius,
+  tint,
+  children,
+  style,
+  ...props
+}: GlassProps) {
+  return (
+    <NativeGlass
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      // an empty surface name and a negative radius are how the native side hears "unset".
+      material={material ?? ''}
+      glassEffect={glassEffect ?? ''}
+      cornerRadius={cornerRadius ?? -1}
+      tint={tint}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGlass>
   )
 }
 

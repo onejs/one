@@ -34,6 +34,8 @@ type OneNativeStyleNative = Readonly<{
   opacity?: WithDefault<Double, -1>
   borderColor?: ColorValue
   borderWidth?: WithDefault<Double, -1>
+  glassEffect?: string
+  material?: string
 }>
 interface NativeProps extends ViewProps {
   value: boolean

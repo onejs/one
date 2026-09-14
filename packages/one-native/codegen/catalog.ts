@@ -109,6 +109,9 @@ export type StyleFieldKind = 'number' | 'string' | 'color'
 export interface StyleField {
   name: string
   kind: StyleFieldKind
+  // the accepted values of a string field. the generated TypeScript alias and the Swift
+  // resolver are built from this one list, so a value cannot exist in one and not the other.
+  values?: readonly string[]
 }
 
 export const styleFields: readonly StyleField[] = [
@@ -136,6 +139,14 @@ export const styleFields: readonly StyleField[] = [
   { name: 'opacity', kind: 'number' },
   { name: 'borderColor', kind: 'color' },
   { name: 'borderWidth', kind: 'number' },
+  // liquid glass and the material surfaces underneath it. these names are the wire values
+  // Swift.Glass takes too, so a glass surface reads the same in a style and in a container.
+  { name: 'glassEffect', kind: 'string', values: ['regular', 'clear', 'interactive'] },
+  {
+    name: 'material',
+    kind: 'string',
+    values: ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'],
+  },
 ] as const
 export const enumTypes = [
   'MenuOrder',

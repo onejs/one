@@ -74,6 +74,8 @@ using namespace facebook::react;
   if (next.swiftStyle.opacity >= 0) style[@"opacity"] = @(next.swiftStyle.opacity);
   if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
   if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
+  if (!next.swiftStyle.glassEffect.empty()) style[@"glassEffect"] = RCTNSStringFromString(next.swiftStyle.glassEffect);
+  if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.value)
     acknowledgedEvent:next.acknowledgedEvent revision:next.revision focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled keyboardType:RCTNSStringFromString(next.keyboardType) textContentType:RCTNSStringFromString(next.textContentType)];

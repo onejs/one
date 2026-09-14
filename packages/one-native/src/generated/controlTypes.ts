@@ -4,6 +4,9 @@ import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 
+export type GlassEffect = 'regular' | 'clear' | 'interactive'
+export type Material = 'ultraThin' | 'thin' | 'regular' | 'thick' | 'ultraThick'
+
 export interface OneNativeStyle {
   fontSize?: number
   fontWeight?: string
@@ -29,6 +32,8 @@ export interface OneNativeStyle {
   opacity?: number
   borderColor?: ColorValue
   borderWidth?: number
+  glassEffect?: GlassEffect
+  material?: Material
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
