@@ -103,19 +103,27 @@ function mountSubtree(instance: NativeInstance) {
 }
 
 function teardownSubtree(instance: NativeInstance) {
+  if (!instance.isMounted) return
+
   for (const child of instance.children) {
     teardownSubtree(child)
   }
 
   Bridge.unregisterAllHandlers(instance.id)
-
-  if (Bridge.bridge.destroyView) {
-    Bridge.bridge.destroyView(instance.id)
-  }
+  Bridge.bridge.destroyView(instance.id)
 
   instance.isMounted = false
   instance.parent = undefined
   instance.children = []
+}
+
+function removeChildFromCurrentParent(child: NativeInstance) {
+  if (child.parent) {
+    const idx = child.parent.children.indexOf(child)
+    if (idx !== -1) {
+      child.parent.children.splice(idx, 1)
+    }
+  }
 }
 
 let currentUpdatePriority = 0
@@ -185,6 +193,7 @@ export const hostConfig: any = {
 
   // Commit phase: mount / mutate native views and handlers
   appendChildToContainer(container: NativeContainer, child: NativeInstance) {
+    removeChildFromCurrentParent(child)
     container.children.push(child)
     child.parent = container
     mountSubtree(child)
@@ -196,6 +205,8 @@ export const hostConfig: any = {
     child: NativeInstance,
     beforeChild: NativeInstance
   ) {
+    if (child === beforeChild) return
+    removeChildFromCurrentParent(child)
     const idx = container.children.indexOf(beforeChild)
     if (idx !== -1) {
       container.children.splice(idx, 0, child)
@@ -208,6 +219,7 @@ export const hostConfig: any = {
   },
 
   appendChild(parent: NativeInstance, child: NativeInstance) {
+    removeChildFromCurrentParent(child)
     parent.children.push(child)
     child.parent = parent
     if (parent.isMounted) {
@@ -221,6 +233,8 @@ export const hostConfig: any = {
     child: NativeInstance,
     beforeChild: NativeInstance
   ) {
+    if (child === beforeChild) return
+    removeChildFromCurrentParent(child)
     const idx = parent.children.indexOf(beforeChild)
     if (idx !== -1) {
       parent.children.splice(idx, 0, child)
@@ -283,8 +297,9 @@ export const hostConfig: any = {
     }
   },
 
-  detachDeletedInstance(instance: NativeInstance) {
-    teardownSubtree(instance)
+  detachDeletedInstance(_instance: NativeInstance) {
+    // Native view destruction and unregistration are owned by removal operations:
+    // removeChild, removeChildFromContainer, and clearContainer.
   },
 
   scheduleTimeout: setTimeout,

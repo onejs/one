@@ -5,7 +5,7 @@ export interface NativeBridgeInterface {
   removeChild(parentId: number, childId: number): void
   insertBefore(parentId: number, childId: number, beforeId: number): void
   calculateLayout(rootId: number, width: number, height: number): void
-  destroyView?(id: number): void
+  destroyView(id: number): void
 }
 
 export type EventHandler = (payload: any) => void

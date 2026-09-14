@@ -39,7 +39,11 @@ function createFakeBridge() {
     appendChild(parentId: number, childId: number) {
       calls.push({ method: 'appendChild', args: [parentId, childId] })
       const p = views.get(parentId)
-      if (p && !p.children.includes(childId)) {
+      if (p) {
+        const existingIdx = p.children.indexOf(childId)
+        if (existingIdx !== -1) {
+          p.children.splice(existingIdx, 1)
+        }
         p.children.push(childId)
       }
     },
@@ -68,6 +72,11 @@ function createFakeBridge() {
     },
     destroyView(id: number) {
       calls.push({ method: 'destroyView', args: [id] })
+      if (!views.has(id)) {
+        throw new Error(
+          `destroyView called for view ${id} that does not exist or was already destroyed`
+        )
+      }
       views.delete(id)
     },
   }
@@ -296,6 +305,8 @@ describe('React Native Lite Renderer', () => {
       expect(Bridge.shouldChangeText(inputId, 0, 1, 'x')).toBe(true)
       expect(Bridge.hasRegisteredHandlers(buttonId)).toBe(false)
       expect(Bridge.hasRegisteredHandlers(inputId)).toBe(false)
+      expect(fake.views.has(buttonId)).toBe(false)
+      expect(fake.views.has(inputId)).toBe(false)
     })
 
     it('clears container and tears down all children on unmount', async () => {
@@ -311,12 +322,14 @@ describe('React Native Lite Renderer', () => {
       })
 
       expect(Bridge.getRegisteredHandlerCount()).toBeGreaterThan(0)
+      expect(fake.views.size).toBeGreaterThan(0)
 
       await React.act(async () => {
         unmount(1)
       })
 
       expect(Bridge.getRegisteredHandlerCount()).toBe(0)
+      expect(fake.views.size).toBe(0)
       const removeCalls = fake.calls.filter((c) => c.method === 'removeChild')
       expect(removeCalls.length).toBeGreaterThan(0)
     })
@@ -364,6 +377,131 @@ describe('React Native Lite Renderer', () => {
       expect(bridgeAppends).toEqual([])
       expect(bridgeProps).toEqual([])
       expect(Bridge.getRegisteredHandlerCount()).toBe(0)
+    })
+  })
+
+  describe('Lifecycle Teardown and Keyed Moves Contract', () => {
+    it('destroys each native view exactly once on unmount and leaves zero retained views', async () => {
+      await React.act(async () => {
+        render(
+          <View>
+            <Button title="Child" />
+          </View>,
+          1
+        )
+      })
+
+      const createCalls = fake.calls.filter((c) => c.method === 'createView')
+      expect(createCalls).toHaveLength(2)
+      const [viewId, buttonId] = createCalls.map((c) => c.args[1])
+      expect(fake.views.size).toBe(2)
+
+      await React.act(async () => {
+        unmount(1)
+      })
+
+      const destroyCalls = fake.calls.filter((c) => c.method === 'destroyView')
+      expect(destroyCalls.map((c) => c.args[0]).sort()).toEqual([viewId, buttonId].sort())
+      expect(destroyCalls).toHaveLength(2)
+      expect(fake.views.size).toBe(0)
+    })
+
+    it('retains exact children in requested order without duplicates on keyed reorder', async () => {
+      let setOrder: (items: string[]) => void = () => {}
+
+      function ReorderList() {
+        const [items, setItems] = useState(['a', 'b', 'c'])
+        setOrder = setItems
+        return (
+          <View>
+            {items.map((key) => (
+              <Button key={key} title={key} />
+            ))}
+          </View>
+        )
+      }
+
+      let root: any
+      await React.act(async () => {
+        root = render(<ReorderList />, 1)
+      })
+
+      const container = root.containerInfo
+      const parentInstance = container.children[0]
+      expect(parentInstance.children).toHaveLength(3)
+      expect(parentInstance.children.map((c: any) => c.props.title)).toEqual([
+        'a',
+        'b',
+        'c',
+      ])
+
+      const parentNative = fake.views.get(parentInstance.id)!
+      expect(parentNative.children).toHaveLength(3)
+
+      // Reorder [a, b, c] -> [c, a, b]
+      await React.act(async () => {
+        setOrder(['c', 'a', 'b'])
+      })
+
+      // Internal children must have length 3 in [c, a, b] order without duplicates
+      expect(parentInstance.children).toHaveLength(3)
+      expect(parentInstance.children.map((c: any) => c.props.title)).toEqual([
+        'c',
+        'a',
+        'b',
+      ])
+
+      // Native bridge hierarchy must also have length 3 in [c, a, b] order without duplicates
+      expect(parentNative.children).toHaveLength(3)
+      expect(parentNative.children.map((id) => fake.views.get(id)!.props.title)).toEqual([
+        'c',
+        'a',
+        'b',
+      ])
+
+      await React.act(async () => {
+        unmount(1)
+      })
+      expect(fake.views.size).toBe(0)
+    })
+
+    it('retains exact container children in requested order without duplicates on keyed reorder', async () => {
+      let setOrder: (items: string[]) => void = () => {}
+
+      function ContainerReorderList() {
+        const [items, setItems] = useState(['a', 'b', 'c'])
+        setOrder = setItems
+        return (
+          <>
+            {items.map((key) => (
+              <Button key={key} title={key} />
+            ))}
+          </>
+        )
+      }
+
+      let root: any
+      await React.act(async () => {
+        root = render(<ContainerReorderList />, 1)
+      })
+
+      const container = root.containerInfo
+      expect(container.children).toHaveLength(3)
+      expect(container.children.map((c: any) => c.props.title)).toEqual(['a', 'b', 'c'])
+
+      // Reorder [a, b, c] -> [c, a, b]
+      await React.act(async () => {
+        setOrder(['c', 'a', 'b'])
+      })
+
+      // Container children must have length 3 in [c, a, b] order without duplicates
+      expect(container.children).toHaveLength(3)
+      expect(container.children.map((c: any) => c.props.title)).toEqual(['c', 'a', 'b'])
+
+      await React.act(async () => {
+        unmount(1)
+      })
+      expect(fake.views.size).toBe(0)
     })
   })
 })
