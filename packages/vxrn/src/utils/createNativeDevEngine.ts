@@ -265,6 +265,18 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    // react native 0.87 removed @react-native/assets-registry. libraries like
+    // react-native-svg still import its registry, which is now the same
+    // singleton at react-native/asset-registry. unresolved, rolldown would
+    // leave it as an external import that throws when the module runs.
+    {
+      name: 'vxrn:legacy-asset-registry',
+      resolveId(source, importer) {
+        if (source === '@react-native/assets-registry/registry') {
+          return this.resolve('react-native/asset-registry', importer, { skipSelf: true })
+        }
+      },
+    } satisfies Plugin,
     ...(dev ? [reactNativeDedupePlugin(root)] : []),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),

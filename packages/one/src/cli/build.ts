@@ -1426,7 +1426,9 @@ export default {
               replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root),
             },
             {
-              find: 'react-native/asset-registry',
+              // react native 0.87 removed @react-native/assets-registry, but libraries
+              // like react-native-svg still import its registry
+              find: /^(react-native\/asset-registry|@react-native\/assets-registry\/registry)$/,
               replacement: resolvePath(
                 'react-native-web/dist/modules/AssetRegistry',
                 options.root
