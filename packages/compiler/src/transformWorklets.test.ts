@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import os from 'node:os'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import { configureVXRNCompilerPlugin } from './configure'
@@ -381,7 +382,12 @@ describe('transformWorklets', () => {
     expect(typeof scaleFn).toBe('function')
     expect(scaleFn.__workletHash).toBeDefined()
     expect(typeof scaleFn.__workletHash).toBe('number')
-    expect(scaleFn.__pluginVersion).toBe('0.10.1')
+    // /app has no package.json, so the stamp comes from the worklets runtime
+    // this workspace actually installs
+    const installedWorklets = createRequire(path.resolve(process.cwd(), 'package.json'))(
+      'react-native-worklets/package.json'
+    ).version
+    expect(scaleFn.__pluginVersion).toBe(installedWorklets)
     expect(scaleFn.__closure).toEqual({ multiplier: 5 })
     expect(scaleFn.__initData).toBeDefined()
     expect(scaleFn.__initData.code).toContain('__closure')
