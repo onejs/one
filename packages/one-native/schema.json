@@ -1260,6 +1260,35 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeLabeledContent",
+      "publicName": "LabeledContent",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeContainerSlot",
       "publicName": "Slot",
       "props": {

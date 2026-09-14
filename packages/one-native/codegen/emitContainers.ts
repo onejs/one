@@ -41,6 +41,18 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeLabeledContent',
+    publicName: 'LabeledContent',
+    props: { label: 'string', value: 'string', systemImage: 'string' },
+    events: {},
+    enumProps: {},
+    // a row has an ideal height SwiftUI knows, so standalone it measures like a host.
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeContainerSlot',
     publicName: 'Slot',
     props: { height: 'Double', width: 'Double' },
@@ -98,6 +110,13 @@ export interface SectionProps extends ViewProps {
   title?: string
   footer?: string
   children: ReactNode
+}
+// the content is either the string value or the children, never both.
+export interface LabeledContentProps extends ViewProps {
+  label: string
+  value?: string
+  systemImage?: string
+  children?: ReactNode
 }
 export interface SlotProps extends ViewProps {
   height: number

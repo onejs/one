@@ -2,6 +2,7 @@ import { unsupportedControls } from './generated/unsupportedControls'
 import type {
   FormProps,
   HostProps,
+  LabeledContentProps,
   MenuProps,
   PopoverProps,
   SectionProps,
@@ -35,6 +36,11 @@ function Form(_props: FormProps): never {
 function Section(_props: SectionProps): never {
   throw new Error('Swift.Section requires an iOS native build with one-native installed')
 }
+function LabeledContent(_props: LabeledContentProps): never {
+  throw new Error(
+    'Swift.LabeledContent requires an iOS native build with one-native installed'
+  )
+}
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build with one-native installed')
 }
@@ -47,6 +53,7 @@ export const Swift = {
   Host,
   Form,
   Section,
+  LabeledContent,
   Slot,
   ...unsupportedControls,
 }
