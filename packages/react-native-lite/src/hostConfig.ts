@@ -298,8 +298,8 @@ export const hostConfig: any = {
   },
 
   detachDeletedInstance(_instance: NativeInstance) {
-    // Native view destruction and unregistration are owned by removal operations:
-    // removeChild, removeChildFromContainer, and clearContainer.
+    // native view destruction and unregistration are owned by removal operations:
+    // removeChild, removeChildFromContainer, and clearContainer
   },
 
   scheduleTimeout: setTimeout,

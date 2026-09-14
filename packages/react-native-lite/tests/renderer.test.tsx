@@ -438,12 +438,12 @@ describe('React Native Lite Renderer', () => {
       const parentNative = fake.views.get(parentInstance.id)!
       expect(parentNative.children).toHaveLength(3)
 
-      // Reorder [a, b, c] -> [c, a, b]
+      // reorder [a, b, c] -> [c, a, b]
       await React.act(async () => {
         setOrder(['c', 'a', 'b'])
       })
 
-      // Internal children must have length 3 in [c, a, b] order without duplicates
+      // internal children must have length 3 in [c, a, b] order without duplicates
       expect(parentInstance.children).toHaveLength(3)
       expect(parentInstance.children.map((c: any) => c.props.title)).toEqual([
         'c',
@@ -451,7 +451,7 @@ describe('React Native Lite Renderer', () => {
         'b',
       ])
 
-      // Native bridge hierarchy must also have length 3 in [c, a, b] order without duplicates
+      // native bridge hierarchy must also have length 3 in [c, a, b] order without duplicates
       expect(parentNative.children).toHaveLength(3)
       expect(parentNative.children.map((id) => fake.views.get(id)!.props.title)).toEqual([
         'c',
@@ -489,12 +489,12 @@ describe('React Native Lite Renderer', () => {
       expect(container.children).toHaveLength(3)
       expect(container.children.map((c: any) => c.props.title)).toEqual(['a', 'b', 'c'])
 
-      // Reorder [a, b, c] -> [c, a, b]
+      // reorder [a, b, c] -> [c, a, b]
       await React.act(async () => {
         setOrder(['c', 'a', 'b'])
       })
 
-      // Container children must have length 3 in [c, a, b] order without duplicates
+      // container children must have length 3 in [c, a, b] order without duplicates
       expect(container.children).toHaveLength(3)
       expect(container.children.map((c: any) => c.props.title)).toEqual(['c', 'a', 'b'])
 
