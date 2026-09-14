@@ -1,7 +1,7 @@
 Bounded read-only investigation. Report findings to your parent session and stop. Do not edit any file, do not commit, do not spawn.
 
 CONTEXT
-`one-native` is a new package at /Users/n8/.worktrees/one-native/packages/one-native. It generates SwiftUI bindings for React Native Fabric components (OneNativeMenu, OneNativeTabs, OneNativePicker, OneNativeToggle, OneNativeSheet, etc.) and exports a machine-readable description of every component at packages/one-native/schema.json (components with props/events/slots, payload shapes, enums, and a controlledProtocol block).
+`@vxrn/native` at /Users/n8/.worktrees/one-native/packages/native contains generated SwiftUI bindings for React Native Fabric components (OneNativeMenu, OneNativeTabs, OneNativePicker, OneNativeToggle, OneNativeSheet, etc.) and exports a machine-readable description of every component at packages/native/schema.json (components with props/events/slots, payload shapes, enums, and a controlledProtocol block).
 
 The goal I am evaluating is: let Soot (the browser runtime at ~/soot) render these same components on the web by consuming schema.json, rather than hand-writing a parallel implementation.
 
@@ -13,7 +13,7 @@ WHAT TO READ (start here, do not crawl the whole repo)
 2. ~/soot/packages/compat/src/stubs/native-seams/_native-seam-helpers.ts
 3. Whatever registry/index file maps a module specifier or component name to those seam files (find it by grepping for "native-seams" in ~/soot/packages, pruning node_modules).
 4. One or two seams that wrap a real Fabric/codegen component with props+events, for the shape (react-native-picker.tsx and react-native-segmented-control.ts look relevant).
-5. /Users/n8/.worktrees/one-native/packages/one-native/schema.json (read it fully; it is ~12KB).
+5. /Users/n8/.worktrees/one-native/packages/native/schema.json (read it fully; it is ~12KB).
 
 REPORT BACK, with file:line for every claim
 A. The seam mechanism: is interception keyed on the npm module specifier, the Fabric native component name registered via codegenNativeComponent, or something else? Show the code that does it.

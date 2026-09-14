@@ -34,7 +34,7 @@ on:
       - 'packages/one/src/metro-config/**'
       - 'packages/vite-plugin-metro/**'
       - 'packages/vxrn/**'
-      - 'packages/one-native/**'
+      - 'packages/native/**'
       - 'tests/native-features/**'
       - 'tests/rn-test-container/app.json'
       - 'tests/rn-test-container/e2e/**'
@@ -62,7 +62,7 @@ jobs:
         with:
           install-playwright: 'false'
       - name: Verify SDK generation, Swift compilation, and contracts
-        working-directory: packages/one-native
+        working-directory: packages/native
         run: |
           bun run generate:check
           bun run typecheck

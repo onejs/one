@@ -2,7 +2,7 @@
   "name": "@vxrn/native",
   "version": "1.27.0",
   "type": "module",
-  "description": "UIKit and Android extras: zoom, bottom toolbar, toolbar menus, split view, and platform colors.",
+  "description": "Native SwiftUI, Jetpack Compose, navigation, and platform interfaces for One and React Native.",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
@@ -13,13 +13,21 @@
     "types",
     "dist",
     "ios",
-    "android",
+    "android/build.gradle",
+    "android/src",
+    "cpp",
     "VxrnNative.podspec",
-    "react-native.config.cjs"
+    "react-native.config.cjs",
+    "schema.json"
   ],
   "scripts": {
     "build": "tamagui-build",
-    "clean": "tamagui-build clean"
+    "clean": "tamagui-build clean",
+    "typecheck": "tsc --noEmit --composite false",
+    "test": "vitest run",
+    "generate": "bun codegen/generate.ts",
+    "generate:check": "bun codegen/generate.ts --check",
+    "measure": "bun codegen/measure.ts"
   },
   "exports": {
     ".": {
@@ -57,14 +65,16 @@
       "react-native": "./dist/esm/split-view/index.native.js",
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
-    }
+    },
+    "./package.json": "./package.json",
+    "./schema.json": "./schema.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
+    "react": ">=19",
+    "react-native": "~0.86.2",
     "react-native-screens": ">=4.25.0",
     "react-native-safe-area-context": ">=5.5.0"
   },
@@ -75,6 +85,53 @@
   },
   "devDependencies": {
     "@tamagui/build": "3.0.0-beta.1309.1",
-    "react-native-web": "^0.21.2"
+    "react-native-web": "^0.21.2",
+    "vitest": "^4.1.0"
+  },
+  "codegenConfig": {
+    "name": "OneNativeSpec",
+    "type": "components",
+    "jsSrcsDir": "src/specs",
+    "android": {
+      "javaPackageName": "dev.onejs.onenative"
+    },
+    "ios": {
+      "componentProvider": {
+        "OneNativeMenu": "OneNativeMenuComponentView",
+        "OneNativeTabs": "OneNativeTabsComponentView",
+        "OneNativeTab": "OneNativeTabComponentView",
+        "OneNativePicker": "OneNativePickerComponentView",
+        "OneNativeDatePicker": "OneNativeDatePickerComponentView",
+        "OneNativeColorPicker": "OneNativeColorPickerComponentView",
+        "OneNativeToggle": "OneNativeToggleComponentView",
+        "OneNativeSlider": "OneNativeSliderComponentView",
+        "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativeText": "OneNativeTextComponentView",
+        "OneNativeLabel": "OneNativeLabelComponentView",
+        "OneNativeButton": "OneNativeButtonComponentView",
+        "OneNativeProgressView": "OneNativeProgressViewComponentView",
+        "OneNativeGauge": "OneNativeGaugeComponentView",
+        "OneNativeImage": "OneNativeImageComponentView",
+        "OneNativeShareLink": "OneNativeShareLinkComponentView",
+        "OneNativeContentUnavailableView": "OneNativeContentUnavailableViewComponentView",
+        "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
+        "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
+        "OneNativeWebView": "OneNativeWebViewComponentView",
+        "OneNativeMap": "OneNativeMapComponentView",
+        "OneNativeTextField": "OneNativeTextFieldComponentView",
+        "OneNativeSecureField": "OneNativeSecureFieldComponentView",
+        "OneNativeAlert": "OneNativeAlertComponentView",
+        "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
+        "OneNativeQuickLook": "OneNativeQuickLookComponentView",
+        "OneNativeSheet": "OneNativeSheetComponentView",
+        "OneNativeSheetContent": "OneNativeSheetContentComponentView",
+        "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeForm": "OneNativeFormComponentView",
+        "OneNativeSection": "OneNativeSectionComponentView",
+        "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
+        "OneNativePopover": "OneNativePopoverComponentView",
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+      }
+    }
   }
 }

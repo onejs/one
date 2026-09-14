@@ -1,6 +1,6 @@
 import { File, Paths } from 'expo-file-system'
 import { useState } from 'react'
-import { Swift } from 'one-native'
+import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 const categories = ['Player', 'Preview'] as const

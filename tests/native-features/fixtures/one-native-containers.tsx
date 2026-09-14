@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Swift } from 'one-native'
+import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 export default function OneNativeContainers() {

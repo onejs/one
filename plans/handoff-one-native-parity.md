@@ -25,7 +25,7 @@ bounded catalog, fixture and conformance work. Every worker goes through `tm run
   It rides its own `onNativeTabsAction` event rather than the controlled protocol, because a
   press is not a state change, so nothing moves optimistically and there is no page flash.
 - The package floor is iOS 26. `MINIMUM_IOS` in `codegen/generate.ts` is the only place it is set;
-  `schema.json` carries it forward and `OneNative.podspec` reads it from there. Raising it deleted
+  `schema.json` carries it forward and `VxrnNative.podspec` reads it from there. Raising it deleted
   every `@available` and `if #available` branch from the generated Swift, and it is what makes
   `WebView` an ordinary leaf instead of a design problem.
 - Generated Swift is typechecked against the simulator SDK at an iOS 26 target.
@@ -92,7 +92,7 @@ scheme `OneNativeTests`. A fresh prebuild uses the checked-in app config's
 those names when installing or running automation.
 
 ```sh
-cd /Users/n8/.worktrees/one-native/packages/one-native
+cd /Users/n8/.worktrees/one-native/packages/native
 bun run generate:check
 bun run typecheck
 bun run test
@@ -349,7 +349,7 @@ answer is the second. A bogus value raises `Unknown SwiftUI TabBarMinimizeBehavi
 `assertSwiftUIValue`, so the value reaches SwiftUI; the device is iOS 26, so nothing is version
 gated; and `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`. What is
 missing is the thing the modifier observes. Each tab hosts `OneNativeSlot(content: page.view)`
-where `page.view` is an opaque UIView, and one-native exposes no SwiftUI scroll container at all:
+where `page.view` is an opaque UIView, and `@vxrn/native` exposes no SwiftUI scroll container at all:
 zero `ScrollView` or `UIScrollView` across its Swift and TSX sources. SwiftUI's minimize
 behaviour reacts to a SwiftUI scroll view's offset, and the thing that actually scrolls here is a
 React Native scroll view SwiftUI never sees. The scroll indicator visible in the sweep frames is
@@ -448,16 +448,16 @@ prebuild. Reconcile the two ids before anyone regenerates the project.
    The schema's honest gaps for an independent implementation are accessibility role
    and label mapping, an executable definition of the slot `layout` values, and any
    imperative ref/command/`setNativeProps`/measurement contract.
-3. The V2 integration resolved the `@vxrn/native` boundary by caller behavior,
-   not export-name similarity. One's stack-toolbar adapter and registry were
-   removed. Direct ToolbarHost/ToolbarItem/MenuAction, Color, SplitView, and zoom
-   capabilities remain in `@vxrn/native`; generated SwiftUI components remain in
-   `one-native`. `plans/one-native-vxrn-native-boundary.md` records the final
-   ownership and evidence.
+3. The V2 integration resolved the runtime boundary by caller behavior. One's
+   stack-toolbar adapter and registry were removed. Direct
+   ToolbarHost/ToolbarItem/MenuAction, Color, SplitView, and zoom capabilities now
+   ship beside the generated SwiftUI and Compose surfaces in `@vxrn/native`.
+   `plans/one-native-vxrn-native-boundary.md` records the package consolidation and
+   the remaining capability boundaries.
 
 ## Measurement and delivery
 
-`bun packages/one-native/codegen/measure.ts` reports minified/gzip JS and Bun-side
+`bun packages/native/codegen/measure.ts` reports minified/gzip JS and Bun-side
 menu flattening. `npm pack --dry-run --json --ignore-scripts` reports distribution
 size. Release native size comes from the arm64 archive under
 `tests/native-features/ios/build/Pods.build/Release-iphonesimulator/OneNative.build/Objects-normal/arm64/Binary/libOneNative.a`.

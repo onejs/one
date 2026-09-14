@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Swift, type DialogAction } from 'one-native'
+import { Swift, type DialogAction } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 const categories = ['Alert', 'Confirmation'] as const

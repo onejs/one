@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Compose } from 'one-native'
+import { Compose } from '@vxrn/native'
 
 const rootStyle = { flex: 1 } as const
 const rowStyle = { fillMaxWidth: true } as const

@@ -1,66 +1,61 @@
-# Keep @vxrn/native separate from one-native
+# Consolidate One Native in @vxrn/native
 
-Keep the packages separate. They have different renderers, platform reach,
-deployment floors, and capability owners. The V2 integration removes overlapping
-route-navigation surfaces without deleting independent SwiftUI primitives.
+Ship the generated SwiftUI and Jetpack Compose surfaces from the existing
+`@vxrn/native` package. There is no technical boundary that requires a second npm
+package. Both implementations already use React Native autolinking, and one pod and
+one Android package can register the existing platform interfaces beside the new
+Fabric components.
 
-This conclusion was verified on the handed-off `feat/one-native` commit
-`2a517c93255c914c305e564b0fcbca2e84c16f32` and then reconciled with the
-React Navigation 8 integration.
+The former package split protected two compatibility differences: `@vxrn/native`
+supported older React Native releases and an iOS 15.1 deployment target, while the
+generated SwiftUI surface requires React Native 0.86.2, New Architecture, and iOS 26.
+Consolidation deliberately makes those requirements apply to the whole package.
 
-## Current ownership
+## Capability ownership
 
-| Capability                                             | Owner                          | Reason                                                                    |
-| ------------------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------- |
-| Application route tabs and stacks                      | React Navigation 8 through One | Owns routes, links, history, back behavior, and route selection            |
-| Explicit SwiftUI TabView and Tab primitives            | `one-native`                   | Local non-router composition and controlled selection                     |
-| UIKit zoom transitions                                 | `@vxrn/native`                 | Uses the navigation controller and supports the older iOS floor           |
-| Bottom toolbar and toolbar menu items                  | `@vxrn/native`                 | Uses `UINavigationController` and Paper view managers                     |
-| Split view                                             | `@vxrn/native`                 | Uses react-native-screens and preserves its Android/web fallback behavior |
-| Platform colors                                        | `@vxrn/native`                 | Resolves iOS and Android system colors and stays safe on web              |
-| Other SwiftUI controls, containers, and presentations  | `one-native`                   | Generated Fabric components with an iOS 26 floor                          |
+| Capability | Runtime owner | Public surface |
+| --- | --- | --- |
+| Application route tabs and stacks | One through React Navigation | One router APIs |
+| Explicit SwiftUI controls, containers, tabs, and presentations | Generated Fabric components | `@vxrn/native`'s `Swift` export |
+| Jetpack Compose controls and containers | `OneNativeComposeNodeManager` | `@vxrn/native`'s `Compose` export |
+| UIKit zoom, toolbar, and toolbar menu items | Existing `VxrnNative` managers | `@vxrn/native` direct and subpath exports |
+| Split view | Existing `VxrnNative` implementation | `@vxrn/native/split-view` |
+| Platform colors | Existing iOS and Android modules | `@vxrn/native/color` |
 
-`Swift.Menu` and `@vxrn/native`'s `MenuAction` are not duplicate
-implementations. The former renders a standalone SwiftUI menu. The latter
-describes children of the navigation controller's bottom toolbar menu.
+`Swift.Menu` and `MenuAction` remain different controls. `Swift.Menu` renders a
+standalone SwiftUI menu. `MenuAction` describes a child of the navigation
+controller's bottom toolbar menu.
 
-Likewise, One's React Navigation tabs and `Swift.Tabs` do not share route state.
-React Navigation is the only application navigator. `Swift.Tabs` exposes a
-low-level SwiftUI `TabView` for explicit non-router composition, with local
-controlled selection. It does not register with One, wrap React Navigation, or
-mirror route history. A childless action `Swift.Tab` emits an application callback
-without entering the selection protocol; the application decides what to present.
+One's routed tabs and `Swift.Tabs` also keep separate state. React Navigation is the
+application navigator. `Swift.Tabs` is a low-level SwiftUI `TabView` for explicit
+composition and controlled local selection. It does not register routes, mirror
+history, or replace back behavior.
 
-## Evidence
+## Package shape
 
-- `@vxrn/native` uses `RCTViewManager` Paper components for toolbar and zoom.
-  It also ships an Android Material color module and web-safe JavaScript entries.
-- `one-native` uses generated Fabric specs, component descriptors, and
-  `RCTViewComponentView` subclasses. It ships no Android implementation.
-- `packages/native/VxrnNative.podspec` targets iOS 15.1.
-  `packages/one-native/OneNative.podspec` reads iOS 26 from the generated schema.
-- `one-native` has no runtime dependencies and peers only on React and React
-  Native. Its tab primitive therefore cannot introduce a second One or React
-  Navigation route model. `@vxrn/native` retains the screens and safe-area peers
-  required by SplitView.
-- `Color` has Android behavior and a web-safe proxy, so an iOS-only SwiftUI
-  package cannot own it without dropping supported platforms.
-- ToolbarHost, ToolbarItem, MenuAction, SplitView, and the zoom components have
-  no equivalent in React Navigation 8 or `one-native`.
+- `packages/native/package.json` owns the single `OneNativeSpec` codegen config and
+  exports the platform-safe JavaScript entry points.
+- `VxrnNative.podspec` compiles the existing UIKit sources, generated Fabric
+  component views, authored SwiftUI runtime, and C++ shadow nodes in one static
+  framework. Its deployment target comes from `schema.json`.
+- `VxrnNativePackage` keeps the existing Android module and registers
+  `OneNativeComposeNodeManager` from the same autolinked package.
+- The browser entry preserves the existing web-safe extras and exposes unsupported
+  `Swift` and `Compose` implementations that fail when rendered.
+- `react-native-screens` and `react-native-safe-area-context` remain peers for
+  SplitView. React and React Native use the stricter generated-surface versions.
 
-## V2 resolution
+## Consequences
 
-- Removed One's StackToolbar registry, public API, adapter, tests, declarations,
-  and documentation.
-- Kept ToolbarHost, ToolbarItem, and MenuAction as direct `@vxrn/native`
-  capabilities. They no longer depend on One or React Navigation.
-- Kept zoom, SplitView, and Color in `@vxrn/native`.
-- Kept `Swift.Tabs` and `Swift.Tab` as explicit SwiftUI primitives, including the
-  detached childless action path. They are not One layout exports and do not own
-  application routes.
-- Kept `Swift.Menu` as a standalone SwiftUI control rather than a navigation
-  adapter.
+- Consumers install and import only `@vxrn/native`; the `one-native` workspace and
+  npm package no longer exist.
+- The package's iOS deployment floor is 26 and its React Native peer is 0.86.2.
+- Native ABI names such as `OneNativeSpec`, `OneNativeTabs`, and
+  `OneNativeComposeNode` stay unchanged. The fold changes package ownership, not
+  component identity.
+- One's removed stack-toolbar adapter stays removed. Consolidating packages does not
+  move route state into the native component library.
 
-Move a capability later only when runtime evidence shows that its existing
-platform behavior can be preserved by the new owner. Similar export names are
-not enough.
+The fold must be validated as one artifact: generated SDK checks, TypeScript, unit
+tests, package build, package contents, Android registration/build, and an iOS
+consumer build all need to cover the combined package.
