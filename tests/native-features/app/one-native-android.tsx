@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Compose } from 'one-native'
+import { Compose } from '@vxrn/native'
 
 const rootStyle = { flex: 1 } as const
 const rowStyle = { fillMaxWidth: true } as const
@@ -67,7 +67,11 @@ export default function OneNativeAndroid() {
         testID="one-native-android-button-status"
         text={`Button taps: ${buttonTaps}`}
       />
-      <Compose.Row composeStyle={rowStyle} spacing={8}>
+      <Compose.Row
+        testID="one-native-android-button-row"
+        composeStyle={rowStyle}
+        spacing={8}
+      >
         <Compose.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: false }}
@@ -95,7 +99,11 @@ export default function OneNativeAndroid() {
         testID="one-native-android-switch-policy-status"
         text={`Policy: ${rejectSwitch ? 'reject' : 'accept'}`}
       />
-      <Compose.Row composeStyle={rowStyle} spacing={8}>
+      <Compose.Row
+        testID="one-native-android-switch-row"
+        composeStyle={rowStyle}
+        spacing={8}
+      >
         <Compose.Switch
           accessibilityLabel="Controlled switch"
           accessibilityRole="switch"
@@ -163,7 +171,11 @@ export default function OneNativeAndroid() {
         testID="one-native-android-disabled-status"
         text={`Disabled button taps: ${disabledButtonTaps} · Disabled switch taps: ${disabledSwitchTaps}`}
       />
-      <Compose.Row composeStyle={rowStyle} spacing={8}>
+      <Compose.Row
+        testID="one-native-android-disabled-row"
+        composeStyle={rowStyle}
+        spacing={8}
+      >
         <Compose.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}

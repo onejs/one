@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Swift, type MenuItem } from 'one-native'
+import { Swift, type MenuItem } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 const categories = ['Share', 'Photos', 'Web', 'Empty', 'Cover', 'Context'] as const

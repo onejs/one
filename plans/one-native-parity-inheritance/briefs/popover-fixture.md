@@ -3,7 +3,7 @@ Write one fixture page for the One Native test app in the worktree /Users/n8/.wo
 
 REVIEW: none - reviewed as part of the assembled one-native foundation.
 
-You do NOT own: anything under packages/one-native, anything under
+You do NOT own: anything under packages/native, anything under
 tests/native-features/scripts, the iOS project, pods, the simulator, or git. Do not
 build, do not run pod install, do not run any simulator or xcodebuild command, do not
 commit, do not push. Another agent (me) owns all of that and is working in the same
@@ -26,8 +26,8 @@ no extra abstractions, no helper components.
 
 ## The API you are using
 
-`Swift.Popover` is new in `one-native` (already generated and typed, import
-`{ Swift } from 'one-native'`). Props:
+`Swift.Popover` is part of the One Native surface (already generated and typed, import
+`{ Swift } from '@vxrn/native'`). Props:
 
 - `isPresented: boolean` and `onIsPresentedChange: (value: boolean) => void` (controlled)
 - `contentWidth: number`, `contentHeight: number` (both required, positive)

@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { Swift, type MenuItem } from 'one-native'
+import { Swift, type MenuItem } from '@vxrn/native'
 import { Platform, View, Text, Pressable, TextInput, StyleSheet } from 'react-native'
 
 const FIRST = 'first'

@@ -112,7 +112,7 @@ The transport is Fabric props/events plus direct native Fabric state updates for
 tab geometry. There is no Nitro dependency. Review whether any new operation
 actually needs synchronous non-view transport before adding one.
 
-Reproduce the JS baseline with `bun packages/one-native/codegen/measure.ts`.
+Reproduce the JS baseline with `bun packages/native/codegen/measure.ts`.
 Native baseline command: `xcodebuildmcp simulator build --project-path
 tests/native-features/ios/Pods/Pods.xcodeproj --scheme OneNative --configuration
 Release --simulator-id <uuid>`. Inspect the arm64 archive under

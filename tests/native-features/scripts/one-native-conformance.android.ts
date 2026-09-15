@@ -461,6 +461,86 @@ function runDetail(nodes: Node[], ids: string[]) {
   return Object.fromEntries(ids.map((id) => [id, shortNode(matching(nodes, { id })[0])]))
 }
 
+const proofIds = [
+  'one-native-android-mounted',
+  'one-native-android-prop-status',
+  'one-native-android-bounds-box',
+  'one-native-android-prop-value',
+  'one-native-android-prop-mutate',
+  'one-native-android-button-status',
+  'one-native-android-real-button',
+  'one-native-android-reorder',
+  'one-native-android-switch-status',
+  'one-native-android-switch-policy-status',
+  'one-native-android-switch',
+  'one-native-android-switch-policy',
+  'one-native-android-switch-reset',
+  'one-native-android-lifecycle-status',
+  'one-native-android-toggle-optional',
+  'one-native-android-optional',
+  'one-native-android-optional-text',
+  'one-native-android-disabled-status',
+  'one-native-android-disabled-button',
+  'one-native-android-disabled-switch',
+  'one-native-android-order-status',
+  'one-native-android-order-row',
+  'one-native-android-order-alpha',
+  'one-native-android-order-beta',
+  'one-native-android-decoy',
+  'one-native-android-decoy-label',
+]
+
+function duplicateIds(nodes: Node[]) {
+  return duplicateIdsIn(nodes, proofIds)
+}
+
+function duplicateIdsIn(nodes: Node[], ids: string[]) {
+  return ids.filter((id) => matching(nodes, { id }).length !== 1)
+}
+
+// At 560dpi the 309x686dp window clips the Column tail: the order row and the
+// decoy box are composed but absent from the uiautomator tree. Assert the
+// observable subset there and the full set at the default density.
+const proofIdsVisibleSmall = [
+  'one-native-android-mounted',
+  'one-native-android-prop-status',
+  'one-native-android-bounds-box',
+  'one-native-android-prop-value',
+  'one-native-android-prop-mutate',
+  'one-native-android-button-status',
+  'one-native-android-real-button',
+  'one-native-android-reorder',
+  'one-native-android-switch-status',
+  'one-native-android-switch-policy-status',
+  'one-native-android-switch',
+  'one-native-android-switch-policy',
+  'one-native-android-switch-reset',
+  'one-native-android-lifecycle-status',
+  'one-native-android-toggle-optional',
+  'one-native-android-optional',
+  'one-native-android-optional-text',
+  'one-native-android-disabled-status',
+  'one-native-android-disabled-button',
+  'one-native-android-disabled-switch',
+  'one-native-android-order-status',
+]
+
+function nodeWidth(node: Node) {
+  if (!node.bounds) return 0
+  return node.bounds.right - node.bounds.left
+}
+
+function readDensity(config: Config) {
+  const output = adbText(config, ['shell', 'wm', 'density']).trim()
+  const match = output.match(/density:\s*(\d+)\s*$/m)
+  if (!match) throw new Error(`Could not parse wm density output: ${output}`)
+  return Number(match[1])
+}
+
+function writeDensity(config: Config, value: string) {
+  adbText(config, ['shell', 'wm', 'density', value])
+}
+
 async function run(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   const checks: Check[] = []
@@ -839,6 +919,164 @@ async function run(config: Config) {
           1 &&
         textIncludes(nodes, 'Tap real button'),
       'one-native-android-mounted'
+    )
+
+    for (let cycle = 0; cycle < 6; cycle++)
+      tapFresh(config, `Rapid recycle toggle ${cycle + 1}`, {
+        id: 'one-native-android-toggle-optional',
+        role: 'button',
+        clickable: true,
+      })
+    for (let cycle = 0; cycle < 4; cycle++)
+      tapFresh(config, `Rapid recycle reorder ${cycle + 1}`, {
+        id: 'one-native-android-reorder',
+        role: 'button',
+        clickable: true,
+      })
+    await expect(
+      'rapid-recycle-stress',
+      (nodes) =>
+        textIncludes(nodes, 'Optional: mounted') &&
+        exactlyOneId(nodes, 'one-native-android-optional') &&
+        orderIds(nodes).join(',') === 'beta,alpha' &&
+        duplicateIds(nodes).length === 0,
+      'one-native-android-mounted',
+      (nodes) => ({
+        order: orderIds(nodes),
+        duplicates: duplicateIds(nodes),
+        optional: shortNode(nodeById(nodes, 'one-native-android-optional')),
+      })
+    )
+
+    tapFresh(config, 'Post-stress real button tap', {
+      id: 'one-native-android-real-button',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'post-stress-single-handler',
+      (nodes) =>
+        textIncludes(nodes, 'Button taps: 3') &&
+        textIncludes(nodes, 'Disabled button taps: 0 · Disabled switch taps: 0') &&
+        duplicateIds(nodes).length === 0,
+      'one-native-android-mounted',
+      (nodes) => ({ duplicates: duplicateIds(nodes) })
+    )
+
+    tapFresh(config, 'Post-stress switch tap', {
+      id: 'one-native-android-switch',
+      role: 'switch',
+      clickable: true,
+    })
+    await expect(
+      'post-stress-switch-accept',
+      (nodes) => {
+        const control = matching(nodes, {
+          id: 'one-native-android-switch',
+          role: 'switch',
+          checked: true,
+        })
+        return (
+          control.length === 1 &&
+          textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
+          duplicateIds(nodes).length === 0
+        )
+      },
+      'one-native-android-mounted',
+      (nodes) => ({ duplicates: duplicateIds(nodes) })
+    )
+
+    const expandedBefore = nodeWidth(nodeById(snapshot(config).nodes, 'one-native-android-bounds-box'))
+    if (expandedBefore <= 0)
+      throw new Error('Pre-rotation bounds box has no usable width.')
+    const densityBefore = readDensity(config)
+    const densityAfter = 560
+    try {
+      writeDensity(config, String(densityAfter))
+      await expect(
+        'configuration-change-home-reload',
+        (nodes) =>
+          exactlyOneId(nodes, 'home-screen') &&
+          textIncludes(nodes, '@vxrn/native Test Suite'),
+        'home-screen'
+      )
+      await tapNavigation(config)
+      await expect(
+        'configuration-change-remount',
+        (nodes) =>
+          exactlyOneId(nodes, 'one-native-android-mounted') &&
+          textIncludes(nodes, 'Android proof mounted') &&
+          textIncludes(nodes, 'Button taps: 0') &&
+          textIncludes(nodes, 'Switch: off · Request: off · Revision: 0') &&
+          textIncludes(nodes, 'Optional: mounted') &&
+          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+        'one-native-android-mounted',
+        (nodes) => ({
+          duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall),
+        })
+      )
+      tapFresh(config, 'Post-rotation real button tap', {
+        id: 'one-native-android-real-button',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        'post-rotation-single-handler',
+        (nodes) =>
+          textIncludes(nodes, 'Button taps: 1') &&
+          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+        'one-native-android-mounted',
+        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall) })
+      )
+      tapFresh(config, 'Post-rotation prop mutation', {
+        id: 'one-native-android-prop-mutate',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        'post-rotation-density-bounds',
+        (nodes) => {
+          const box = nodeById(nodes, 'one-native-android-bounds-box')
+          const width = nodeWidth(box)
+          const expectedRatio = densityAfter / densityBefore
+          const ratio = width / expandedBefore
+          return (
+            textIncludes(nodes, 'Prop: expanded') &&
+            width > expandedBefore &&
+            ratio > expectedRatio * 0.9 &&
+            ratio < expectedRatio * 1.1 &&
+            duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0
+          )
+        },
+        'one-native-android-mounted',
+        (nodes) => ({
+          densityBefore,
+          densityAfter,
+          expandedBefore,
+          expandedAfter: nodeWidth(
+            nodeById(nodes, 'one-native-android-bounds-box')
+          ),
+        })
+      )
+    } finally {
+      writeDensity(config, 'reset')
+    }
+    await expect(
+      'configuration-change-density-reset',
+      (nodes) =>
+        exactlyOneId(nodes, 'home-screen') &&
+        textIncludes(nodes, '@vxrn/native Test Suite'),
+      'home-screen'
+    )
+    await tapNavigation(config)
+    await expect(
+      'density-reset-remount',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-android-mounted') &&
+        textIncludes(nodes, 'Android proof mounted') &&
+        duplicateIds(nodes).length === 0,
+      'one-native-android-mounted',
+      (nodes) => ({ duplicates: duplicateIds(nodes) })
     )
 
     writeFileSync(

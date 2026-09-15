@@ -1,13 +1,13 @@
-Bind focus and keyboardType in packages/one-native. All 11 SwiftUI focus modifiers are unbound and
+Bind focus and keyboardType in packages/native. All 11 SwiftUI focus modifiers are unbound and
 keyboardType with them, so there is no programmatic focus, no next-field chain, and no numeric
 keyboard. For form controls that is a functional blocker, not polish.
-packages/one-native/codegen/textCatalog.ts already admits it in a comment around line 37.
+packages/native/codegen/textCatalog.ts already admits it in a comment around line 37.
 
 Worktree. From /Users/n8/.worktrees/one-native run
   git worktree add ~/.worktrees/one-native-focus -b feat/one-native-focus feat/one-native
 Work only in ~/.worktrees/one-native-focus.
 
-Read first: packages/one-native/README.md; src/controlled.ts and ios/OneNativeControlled.swift, which
+Read first: packages/native/README.md; src/controlled.ts and ios/OneNativeControlled.swift, which
 are the shared two-way protocol (optimistic native value, numbered events, acknowledgement and reset
 revisions); codegen/textCatalog.ts, where TextField's `text` uses that protocol; codegen/emitControls.ts
 for how a `value` becomes a Binding in the generated body.
@@ -34,7 +34,7 @@ Fixture and test, without the simulator:
 - Do NOT run the simulator, the conformance script, or a dev server. I own the simulator and run the
   accessibility and visual pass at integration.
 
-The bar. From packages/one-native:
+The bar. From packages/native:
   bun run generate:check && bun run test && bun run typecheck && bun run build
 generate:check compiles the assembled Swift with swiftc and runs the controlled-state probe, so both a
 Swift mistake and a protocol mistake fail there. All four green or it is not done.
