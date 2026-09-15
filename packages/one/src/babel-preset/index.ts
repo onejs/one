@@ -70,6 +70,16 @@ export default function oneBabelPreset(
       ? api.caller((caller) => !!(caller as any)?.oneViteMetroBabelConfig)
       : false
 
+  // @vxrn/compiler applies a user babel config inside the vite and rolldown
+  // pipeline, which already runs the One chain and handles what babel-preset-expo does for metro
+  const isVxrnCompiler =
+    typeof api?.caller === 'function'
+      ? api.caller((caller) => (caller as { name?: string } | undefined)?.name === 'vxrn')
+      : false
+  if (isVxrnCompiler) {
+    return { presets: [], plugins: [] }
+  }
+
   if (!api?.caller && typeof api?.cache === 'function') {
     api.cache(true)
   }
@@ -136,7 +146,9 @@ export function buildOneBabelPlugins({
   }
 
   const require = module.createRequire(projectRoot + '/')
-  const metroEntryPath = require.resolve('one/metro-entry', { paths: [projectRoot] })
+  const metroEntryPath = require.resolve('one/metro-entry', {
+    paths: [projectRoot],
+  })
 
   const setupFileRelativeToMetroEntry = (() => {
     if (!setupFile) return undefined
