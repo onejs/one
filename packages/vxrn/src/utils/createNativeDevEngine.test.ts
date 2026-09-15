@@ -1,5 +1,5 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -2276,5 +2276,106 @@ describe('postProcessNativeBundle', () => {
     expect(lines(out)).toBe(lines(input))
     expect(out).not.toContain('export {')
     expect(out.split('\n')[4]).toBe('var b = 2;')
+  })
+})
+
+describe('buildNativeBundle static renderer option', () => {
+  it('rejects unknown renderer before Rolldown can produce output', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-renderer-invalid-'))
+    await writeFile(join(testRoot, 'entry.js'), 'export default 1;')
+    try {
+      await expect(
+        Reflect.apply(buildNativeBundle, undefined, [
+          {
+            root: testRoot,
+            platform: 'ios',
+            entryFile: 'entry.js',
+            renderer: 'unknown-renderer',
+          },
+        ])
+      ).rejects.toThrow(
+        '[vxrn] Unknown renderer "unknown-renderer". Expected "react-native" or "react-native-lite".'
+      )
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('resolves bare react-native to @vxrn/react-native-lite and executes against distinctive Lite export', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-renderer-lite-'))
+    await symlink(
+      join(process.cwd(), 'node_modules'),
+      join(testRoot, 'node_modules'),
+      'dir'
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import { View } from 'react-native'; const rendered = View({ children: 'hello-lite' }); globalThis.__renderedType = rendered.type; globalThis.__renderedChildren = rendered.props.children;`
+    )
+    try {
+      const liteResult = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        renderer: 'react-native-lite',
+        minify: false,
+      })
+
+      // lite marker exists at runtime after evaluating the emitted bundle
+      const context: Record<string, unknown> = {
+        console,
+        setTimeout,
+        clearTimeout,
+        queueMicrotask,
+      }
+      runInNewContext(liteResult.code, context)
+      expect(context.__VXRN_NATIVE_RENDERER__).toBe('react-native-lite')
+
+      // executes against a distinctive lite export
+      expect(context.__renderedType).toBe('view')
+      expect(context.__renderedChildren).toBe('hello-lite')
+
+      // the same fixture with omitted renderer resolves ordinary React Native
+      const omittedResult = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        minify: false,
+      })
+
+      // compare omitted and explicit react-native output byte-for-byte unminified
+      const explicitResult = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+        renderer: 'react-native',
+        minify: false,
+      })
+      expect(omittedResult.code).toBe(explicitResult.code)
+      expect(
+        Buffer.from(omittedResult.code).equals(Buffer.from(explicitResult.code))
+      ).toBe(true)
+
+      // compare omitted and explicit react-native output byte-for-byte minified
+      const [omittedProd, explicitProd] = await Promise.all([
+        buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.js',
+        }),
+        buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          renderer: 'react-native',
+        }),
+      ])
+      expect(omittedProd.code).toBe(explicitProd.code)
+      expect(Buffer.from(omittedProd.code).equals(Buffer.from(explicitProd.code))).toBe(
+        true
+      )
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
   })
 })

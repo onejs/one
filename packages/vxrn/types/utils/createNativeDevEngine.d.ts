@@ -93,7 +93,8 @@ export declare function postProcessNativeBundle(code: string): string;
  */
 export declare function wrapNativeBundleModuleScope(code: string): string;
 export declare function createNativeDevEngine(options: NativeDevEngineOptions): Promise<NativeDevEngineResult>;
-interface NativeBuildOptions {
+export type NativeRenderer = 'react-native' | 'react-native-lite';
+export interface NativeBuildOptions {
     root: string;
     platform: 'ios' | 'android';
     dev?: boolean;
@@ -108,6 +109,7 @@ interface NativeBuildOptions {
      * bundle: on unless the build is a dev build.
      */
     minify?: boolean;
+    renderer?: NativeRenderer;
 }
 export declare function buildNativeBundle(options: NativeBuildOptions): Promise<{
     code: string;

@@ -871,7 +871,9 @@ try {
 
 // --- production build ---
 
-interface NativeBuildOptions {
+export type NativeRenderer = 'react-native' | 'react-native-lite'
+
+export interface NativeBuildOptions {
   root: string
   platform: 'ios' | 'android'
   dev?: boolean
@@ -886,6 +888,21 @@ interface NativeBuildOptions {
    * bundle: on unless the build is a dev build.
    */
   minify?: boolean
+  renderer?: NativeRenderer
+}
+
+function reactNativeLiteResolverPlugin(): Plugin {
+  return {
+    name: 'vxrn:react-native-lite-resolver',
+    async resolveId(source, importer, options) {
+      if (source === 'react-native') {
+        return this.resolve('@vxrn/react-native-lite', importer, {
+          skipSelf: true,
+          ...options,
+        })
+      }
+    },
+  }
 }
 
 export async function buildNativeBundle(
@@ -901,16 +918,31 @@ export async function buildNativeBundle(
     plugins: userPlugins = [],
     sourcemap = false,
     minify = !dev,
+    renderer,
   } = options
+
+  if (
+    renderer !== undefined &&
+    renderer !== 'react-native' &&
+    renderer !== 'react-native-lite'
+  ) {
+    throw new Error(
+      `[vxrn] Unknown renderer "${renderer}". Expected "react-native" or "react-native-lite".`
+    )
+  }
 
   const { build } = await import('rolldown')
   const { viteImportGlobPlugin } = await import('rolldown/experimental')
 
-  const prelude = getNativePrelude({
+  const basePrelude = getNativePrelude({
     dev,
     platform,
     serverUrl,
   })
+  const prelude =
+    renderer === 'react-native-lite'
+      ? `globalThis.__VXRN_NATIVE_RENDERER__ = "react-native-lite";\n${basePrelude}`
+      : basePrelude
   const buildEntry = entryFile
     ? normalizePath(resolve(root, entryFile))
     : VIRTUAL_NATIVE_ENTRY
@@ -934,6 +966,7 @@ export async function buildNativeBundle(
     moduleTypes: { '.js': 'jsx' },
     plugins: [
       ...(entryFile ? [] : [nativeVirtualEntryPlugin(root, { dev, platform }).plugin]),
+      ...(renderer === 'react-native-lite' ? [reactNativeLiteResolverPlugin()] : []),
       ...getNativePlugins(
         root,
         platform,
