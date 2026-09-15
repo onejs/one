@@ -67,6 +67,27 @@ describe('transformBabel Flow parsing', () => {
     expect(result?.code).not.toContain('HostComponent')
   })
 
+  it('preserves React Native Flow enums as runtime values', async () => {
+    const result = await transformBabel(
+      '/project/VirtualView.js',
+      `
+        // @flow strict-local
+        export enum VirtualViewRenderState {
+          Unknown = 0,
+          Rendered = 1,
+          None = 2,
+        }
+
+        export const rendered = VirtualViewRenderState.Rendered
+      `,
+      { plugins: [] }
+    )
+
+    expect(result?.code).toContain('const VirtualViewRenderState =')
+    expect(result?.code).toContain('Rendered: 1')
+    expect(result?.code).toContain('VirtualViewRenderState.Rendered')
+  })
+
   it('rejects a required transform error instead of returning untransformed source', async () => {
     const negativeControl = () => ({
       visitor: {

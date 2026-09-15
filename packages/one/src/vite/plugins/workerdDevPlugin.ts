@@ -285,6 +285,10 @@ export function createWorkerdDevPlugins(
     : ['/@vite/client', virtalEntryIdClient]
 
   const empty = resolvePath('@vxrn/vite-plugin-metro/empty', root)
+  const rnWebAssetRegistry = resolvePath(
+    'react-native-web/dist/modules/AssetRegistry',
+    root
+  )
   const rnWebPkg = resolvePath('react-native-web/package.json', root)
   const rnWeb = resolvePath('react-native-web', root)
   const safeArea = resolvePath('@vxrn/safe-area', root)
@@ -328,11 +332,18 @@ export function createWorkerdDevPlugins(
     // worker aliases with a worker-only resolveId (rolldown cannot parse RN Flow)
     resolveId: {
       filter: {
-        id: /^(react-native(\/|$)|react-native-safe-area-context$)/,
+        id: /^(react-native(\/|$)|react-native-safe-area-context$|@react-native\/assets-registry\/registry$)/,
       },
       handler(source) {
         if (this.environment.name !== 'worker') return
         if (/^react-native\/Libraries\//.test(source)) return empty
+        // react native 0.87 removed @react-native/assets-registry, but libraries
+        // like react-native-svg still import its registry
+        if (
+          source === 'react-native/asset-registry' ||
+          source === '@react-native/assets-registry/registry'
+        )
+          return rnWebAssetRegistry
         if (source === 'react-native/package.json') return rnWebPkg
         if (source === 'react-native') return rnWeb
         if (source === 'react-native-safe-area-context') return safeArea
