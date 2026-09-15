@@ -8,6 +8,7 @@ import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import type { UrlObject } from '../router/getNormalizedStatePath'
 import type { RouteNode } from '../router/Route'
+import { getReactNavigationRouteName } from '../getReactNavigationConfig'
 import { sortRoutesWithInitial } from '../router/sortRoutes'
 import {
   createGetIdForRoute,
@@ -136,7 +137,7 @@ export function triggersToScreens(
       continue
     }
 
-    const targetStateName = layoutRouteNode.route || '__root'
+    const targetStateName = getReactNavigationRouteName(layoutRouteNode) || '__root'
 
     // The state object is the current state from the rootNavigator
     // We need to work out the state for just this trigger
@@ -210,8 +211,8 @@ export function triggersToScreens(
       children.push(
         <Screen
           getId={createGetIdForRoute(route)}
-          name={route.route}
-          key={route.route}
+          name={getReactNavigationRouteName(route)}
+          key={getReactNavigationRouteName(route)}
           options={(args) => {
             const staticOptions = route.generated
               ? route.loadRoute()?.getNavOptions
@@ -260,7 +261,7 @@ export function stateToAction(
       }
       payload.params = state.params ? { ...state.params } : {}
 
-      state = state.state?.routes[state.state?.routes.length - 1]
+      state = state.state?.routes[state.state.index ?? state.state.routes.length - 1]
 
       if (state) {
         payload.params ??= {}
@@ -270,7 +271,8 @@ export function stateToAction(
       if (state.name === startAtRoute) {
         foundStartingPoint = true
       }
-      const nextState = state.state?.routes[state.state?.routes.length - 1]
+      const nextState =
+        state.state?.routes[state.state.index ?? state.state.routes.length - 1]
       if (nextState) {
         state = nextState
       }

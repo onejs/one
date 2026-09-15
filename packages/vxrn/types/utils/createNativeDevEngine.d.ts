@@ -52,7 +52,7 @@ interface NativeDevEngineResult {
 }
 export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
     jsx: {
-        runtime: "classic";
+        runtime: 'classic';
     };
     define: any;
     inject: {

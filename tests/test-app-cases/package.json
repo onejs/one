@@ -20,7 +20,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.3.16",
+    "@callstack/liquid-glass": "^0.8.1",
+    "@react-navigation/native": "8.0.0-alpha.44",
     "@tamagui/config": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
@@ -34,7 +35,7 @@
   },
   "devDependencies": {
     "playwright": "^1.58.2",
-    "typescript": "^5.7.3",
+    "typescript": "7.0.2",
     "vite": "^8.2.2",
     "vitest": "^4.1.0"
   }

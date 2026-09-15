@@ -13,8 +13,5 @@ export declare const transformSWCStripJSX: (id: string, code: string) => Promise
     code: string;
     map: any;
 } | undefined>;
-export declare const transformOxcStripJSX: (id: string, code: string) => Promise<{
-    code: string;
-    map: any;
-} | undefined>;
+export declare const transformOxcStripJSX: typeof transformSWCStripJSX;
 //# sourceMappingURL=transformSWC.d.ts.map

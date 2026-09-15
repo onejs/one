@@ -3,6 +3,7 @@ import TestRenderer, { act } from 'react-test-renderer'
 import { describe, expect, it } from 'vitest'
 import { Protected } from '../views/Protected'
 import { Screen } from '../views/Screen'
+import { processNativeTabsScreens } from './nativeTabsOptions'
 import { useFilterScreenChildren } from './withLayoutContext'
 
 function readGuardedRedirects(children: React.ReactNode) {
@@ -70,5 +71,20 @@ describe('Protected redirectTo', () => {
 
     expect(redirects.has('account')).toBe(true)
     expect(redirects.get('account')).toBeUndefined()
+  })
+})
+
+describe('native Tabs options', () => {
+  it('rejects web-only href options instead of silently dropping them', () => {
+    expect(() =>
+      processNativeTabsScreens([{ name: 'hidden', options: { href: null } } as any])
+    ).toThrow('Tabs.Screen "hidden" uses the web-only href option')
+
+    const [screen] = processNativeTabsScreens([
+      { name: 'dynamic', options: () => ({ href: '/elsewhere' }) } as any,
+    ])
+    expect(() => (screen.options as any)({})).toThrow(
+      'Tabs.Screen "dynamic" uses the web-only href option'
+    )
   })
 })

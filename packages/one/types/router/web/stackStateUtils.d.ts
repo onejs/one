@@ -1,6 +1,6 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-declare const OVERLAY_PRESENTATIONS: readonly ["modal", "transparentModal", "fullScreenModal", "formSheet", "pageSheet", "containedModal", "containedTransparentModal"];
+declare const OVERLAY_PRESENTATIONS: readonly ['modal', 'transparentModal', 'fullScreenModal', 'formSheet', 'pageSheet', 'containedModal', 'containedTransparentModal'];
 type OverlayPresentation = (typeof OVERLAY_PRESENTATIONS)[number];
 type DescriptorMap = Record<string, {
     options: Record<string, any>;
@@ -9,7 +9,8 @@ export declare function isOverlayPresentation(options: NativeStackNavigationOpti
 export declare function isTransparentOverlay(options: NativeStackNavigationOptions | undefined | null): boolean;
 /**
  * Returns the underlying navigation state for NativeStackView with the
- * trailing overlay suffix removed.
+ * trailing overlay suffix removed. Routes after `state.index` are preloaded
+ * routes in React Navigation 8, so they are not part of the visible stack.
  *
  * Important: we only strip the suffix of overlay routes at the top of the
  * stack. Overlay routes that are SANDWICHED between cards (e.g. user

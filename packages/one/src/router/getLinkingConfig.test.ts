@@ -27,6 +27,19 @@ describe('getLinkingConfig', () => {
       'threepunchconvo://app',
     ])
   })
+
+  it('assigns distinct navigation names to nested routes with the same file name', () => {
+    const routes = getRoutes(
+      getMockContext(['_layout.tsx', 'index/_layout.tsx', 'index/index.tsx'])
+    )!
+    const linking = getLinkingConfig(routes, true)
+    const state = linking.getStateFromPath!('/', linking.config as never)!
+    const parent = state.routes[0]!
+    const child = parent.state!.routes[0]!
+
+    expect(parent.name).not.toBe(child.name)
+    expect(linking.getPathFromState!(state, linking.config as never)).toBe('/')
+  })
 })
 
 describe('normalizeLinkingConfig', () => {

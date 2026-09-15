@@ -1,14 +1,10 @@
 import { useRef, type ElementRef } from 'react'
 import { useScrollToTop } from '@react-navigation/native'
-import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
-import { getURL, type LoaderProps, useLoader } from 'one'
+import { ScrollView, YStack, Text, XStack } from 'tamagui'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { Image } from '~/code/ui/Image'
 import { PageContainer } from '~/code/ui/PageContainer'
 import { Repeat2 } from '@tamagui/lucide-icons-2'
-import { db } from '~/code/db/connection'
-import { posts, reposts, users, likes, replies } from '~/code/db/schema'
-import { eq, sql, desc } from 'drizzle-orm'
 import { profileFeed, userData } from '~/code/data'
 
 export default function ProfilePage() {

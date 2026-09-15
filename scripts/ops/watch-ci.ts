@@ -20,16 +20,27 @@ if (!shaArg) {
 }
 
 // `gh run list --commit` only matches the full 40-char sha
-const sha = shaArg.length === 40 ? shaArg : Bun.spawnSync(['git', 'rev-parse', '--verify', `${shaArg}^{commit}`], {
-  stdout: 'pipe',
-  stderr: 'pipe',
-}).stdout.toString().trim()
+const sha =
+  shaArg.length === 40
+    ? shaArg
+    : Bun.spawnSync(['git', 'rev-parse', '--verify', `${shaArg}^{commit}`], {
+        stdout: 'pipe',
+        stderr: 'pipe',
+      })
+        .stdout.toString()
+        .trim()
 if (!/^[0-9a-f]{40}$/.test(sha)) {
   console.error(`could not expand --sha ${shaArg} to a full commit`)
   process.exit(2)
 }
 
-const bad = new Set(['failure', 'cancelled', 'timed_out', 'startup_failure', 'action_required'])
+const bad = new Set([
+  'failure',
+  'cancelled',
+  'timed_out',
+  'startup_failure',
+  'action_required',
+])
 const ok = new Set(['success', 'skipped', 'neutral'])
 
 let consecutiveFetchFailures = 0

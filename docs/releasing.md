@@ -64,3 +64,23 @@ bun release --into ~/<downstream>
 Verify a canary by its content, never its version string: a local `--into`
 build and a published npm canary have carried the same version with different
 code. `npm pack <pkg>@<version>` and grep the built output.
+
+## V2 beta branch
+
+Pushing `v2-beta` cannot publish a package. Publish a V2 beta with a manual
+workflow dispatch:
+
+```sh
+gh workflow run release.yml --repo onejs/one --ref v2-beta -f release=beta
+```
+
+The workflow requires successful full CI for the exact current `v2-beta` SHA,
+then publishes versions named `2.0.0-beta.<workflow-run>.<attempt>` on the npm
+`beta` dist-tag. It does not push a version commit, create a tag, or create a
+GitHub release. Packages marked `skipPublish` remain excluded.
+
+Verify a beta by its content after publication:
+
+```sh
+npm pack one@2.0.0-beta.<workflow-run>.<attempt> one-native@2.0.0-beta.<workflow-run>.<attempt>
+```

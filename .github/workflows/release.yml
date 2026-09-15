@@ -10,6 +10,9 @@ on:
         type: choice
         options:
           - canary
+          # Keep beta publishing manual so pushing v2-beta cannot publish by
+          # itself.
+          - beta
           - patch
           - minor
           - major
@@ -54,7 +57,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "$RELEASE_KIND" != "canary" ]]; then
+          if [[ "$RELEASE_KIND" == "beta" ]]; then
+            [[ "$GITHUB_REF" == "refs/heads/v2-beta" ]]
+          elif [[ "$RELEASE_KIND" != "canary" ]]; then
             [[ "$GITHUB_REF" == "refs/heads/main" ]]
           fi
 
@@ -157,7 +162,9 @@ jobs:
           git fetch --no-tags origin "$TARGET_REF"
           [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
           [[ "$(git rev-parse FETCH_HEAD)" == "$TARGET_SHA" ]]
-          if [[ "$RELEASE_KIND" != "canary" ]]; then
+          if [[ "$RELEASE_KIND" == "beta" ]]; then
+            [[ "$TARGET_REF" == "v2-beta" ]]
+          elif [[ "$RELEASE_KIND" != "canary" ]]; then
             [[ "$TARGET_REF" == "main" ]]
           fi
 
@@ -179,10 +186,24 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Publish V2 beta
+        if: inputs.release == 'beta'
+        env:
+          BETA_VERSION: 2.0.0-beta.${{ github.run_number }}.${{ github.run_attempt }}
+        run: >-
+          bun scripts/release.ts
+          --beta
+          --version "$BETA_VERSION"
+          --ci
+          --dirty
+          --skip-finish
+          --skip-tests
+          --skip-native-tests
+
       # republish takes the version exactly as main already has it, so there is
       # nothing to prepare and nothing to push.
       - name: Prepare release commit
-        if: inputs.release != 'republish'
+        if: inputs.release != 'republish' && inputs.release != 'beta'
         env:
           RELEASE_KIND: ${{ inputs.release }}
         shell: bash
@@ -204,7 +225,7 @@ jobs:
       # this repo's history failed here. use `republish` instead, which expects
       # the version commit to already be on main via a normal pull request.
       - name: Push release commit
-        if: inputs.release != 'canary' && inputs.release != 'republish'
+        if: inputs.release != 'canary' && inputs.release != 'beta' && inputs.release != 'republish'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
@@ -219,6 +240,7 @@ jobs:
           git push origin HEAD:main
 
       - name: Publish prepared version
+        if: inputs.release != 'beta'
         shell: bash
         run: |
           set -euo pipefail
@@ -230,7 +252,7 @@ jobs:
           bun scripts/release.ts "${flags[@]}"
 
       - name: Push stable tag
-        if: inputs.release != 'canary'
+        if: inputs.release != 'canary' && inputs.release != 'beta'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash

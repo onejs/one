@@ -1,8 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
-  "exclude": ["vitest.config.ts", "tests", "dist", "types"],
+  "include": ["src"],
+  "exclude": ["dist", "types", "tests"],
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "rootDir": "src"
   },
   "references": [
     {

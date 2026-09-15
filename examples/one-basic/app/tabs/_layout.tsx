@@ -1,11 +1,20 @@
+// @ts-expect-error the universal typecheck resolves native conditions; this file is web-only
 import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { Text, Pressable, StyleSheet } from 'react-native'
 
 export default function TabsLayout() {
   return (
-    <Tabs style={styles.container}>
+    <Tabs style={{ display: 'flex', flex: 1 }}>
       <TabSlot />
-      <TabList style={styles.tabBar}>
+      <TabList
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          backgroundColor: '#f0f0f0',
+          borderTop: '1px solid #e0e0e0',
+          paddingBlock: 8,
+        }}
+      >
         <TabTrigger name="home" href="/tabs" asChild>
           <CustomTab>Home</CustomTab>
         </TabTrigger>
@@ -29,16 +38,6 @@ function CustomTab({ children, isFocused, ...props }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  tabBar: {
-    flexDirection: 'row',
-    backgroundColor: '#f0f0f0',
-    borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
-    paddingVertical: 8,
-  },
   tab: {
     flex: 1,
     alignItems: 'center',

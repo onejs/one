@@ -1,17 +1,15 @@
-import { Slot } from '@radix-ui/react-slot'
-import type { ComponentProps, ForwardRefExoticComponent, ReactElement } from 'react'
-import { Pressable, StyleSheet } from 'react-native'
+import type { ComponentProps, ReactElement } from 'react'
 
+import { Link } from '../link/Link'
 import {
+  shouldHandleMouseEvent,
   useTabTrigger,
-  type TabTriggerProps,
-  type TabTriggerSlotProps,
+  type TabTriggerProps as SharedTabTriggerProps,
 } from './useTabTrigger'
 
 export type {
   SwitchToOptions,
   TabTriggerOptions,
-  TabTriggerProps,
   TabTriggerSlotProps,
   Trigger,
   TriggerProps,
@@ -19,7 +17,7 @@ export type {
 } from './useTabTrigger'
 export { useTabTrigger } from './useTabTrigger'
 
-const TabTriggerSlot = Slot as ForwardRefExoticComponent<TabTriggerSlotProps>
+export type TabTriggerProps = Omit<SharedTabTriggerProps, 'style'>
 
 /**
  * Creates a trigger to navigate to a tab. When used as child of `TabList`, its
@@ -40,31 +38,32 @@ export function TabTrigger({
     resetOnFocus,
     ...props,
   })
+  const resolvedHref = trigger?.resolvedHref ?? href
 
-  if (asChild) {
+  if (!resolvedHref) {
     return (
-      <TabTriggerSlot
-        style={styles.tabTrigger}
-        {...props}
-        {...triggerProps}
-        href={trigger?.resolvedHref}
-      >
+      <button type="button" onClick={(event) => triggerProps.onPress?.(event as any)}>
         {props.children}
-      </TabTriggerSlot>
+      </button>
     )
   }
 
-  const reactNativeWebProps = { href: trigger?.resolvedHref }
-
   return (
-    <Pressable
-      style={styles.tabTrigger}
-      {...reactNativeWebProps}
-      {...props}
-      {...triggerProps}
+    <Link
+      {...(props as any)}
+      href={resolvedHref}
+      asChild={asChild}
+      onPress={(event) => {
+        if (!shouldHandleMouseEvent(event as any)) return
+        event.preventDefault()
+        triggerProps.onPress?.(event as any)
+      }}
+      onLongPress={triggerProps.onLongPress}
+      aria-current={trigger?.isFocused ? 'page' : undefined}
+      {...(asChild ? { isFocused: Boolean(trigger?.isFocused) } : null)}
     >
       {props.children}
-    </Pressable>
+    </Link>
   )
 }
 
@@ -76,10 +75,3 @@ export function isTabTrigger(
 ): child is ReactElement<ComponentProps<typeof TabTrigger>> {
   return child.type === TabTrigger
 }
-
-const styles = StyleSheet.create({
-  tabTrigger: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-})
