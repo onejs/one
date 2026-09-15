@@ -246,7 +246,9 @@ describe('metroNativeWorker', () => {
       off.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional
     ).toBeUndefined()
 
-    const on = extractDependencies(code, 'setup.js', { allowOptionalDependencies: true })
+    const on = extractDependencies(code, 'setup.js', {
+      allowOptionalDependencies: true,
+    })
     expect(on.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBe(
       true
     )
@@ -567,9 +569,12 @@ describe('metroNativeWorker', () => {
       const config1 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
       expect(config1.defaultConfig.transformerPath).toContain('metroNativeWorker')
 
-      // Generated @one-generated config is ignored, still uses metroNativeWorker
+      // a config written by `one patch` is ignored, still uses metroNativeWorker
       const babelConfigPath = path.join(tempDir, 'babel.config.js')
-      fs.writeFileSync(babelConfigPath, '// @one-generated\nmodule.exports = {}')
+      fs.writeFileSync(
+        babelConfigPath,
+        '// @one/generated bundler-config\nmodule.exports = {}'
+      )
       const config2 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
       expect(config2.defaultConfig.transformerPath).toContain('metroNativeWorker')
 
@@ -606,9 +611,7 @@ describe('metroNativeWorker', () => {
       delete process.env.ONE_METRO_NATIVE_TRANSFORMS
       const mockViteConfig = { root: tempDir } as any
       const warnsWithConfig = (spy: any) =>
-        spy.mock.calls.some((args: any[]) =>
-          args.join(' ').includes(babelConfigPath)
-        )
+        spy.mock.calls.some((args: any[]) => args.join(' ').includes(babelConfigPath))
 
       // explicit option force still uses the worker, but names the dropped config
       const optionWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
@@ -638,9 +641,7 @@ describe('metroNativeWorker', () => {
       const respectedWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
       try {
         const respected = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
-        expect(respected.defaultConfig.transformerPath).not.toContain(
-          'metroNativeWorker'
-        )
+        expect(respected.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
         expect(warnsWithConfig(respectedWarn)).toBe(false)
       } finally {
         respectedWarn.mockRestore()
@@ -669,10 +670,7 @@ describe('metroNativeWorker', () => {
       // user config: both builders fall back to the babel transformer
       const babelConfigPath = path.join(tempDir, 'babel.config.js')
       fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: [] }')
-      const fallbackInput = await buildMetroConfigInputFromViteConfig(
-        mockViteConfig,
-        {}
-      )
+      const fallbackInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
       const fallbackFull = await getMetroConfigFromViteConfig(mockViteConfig, {})
       expect(fallbackInput.defaultConfig.transformerPath).not.toContain(
         'metroNativeWorker'
@@ -688,9 +686,7 @@ describe('metroNativeWorker', () => {
         const forcedFull = await getMetroConfigFromViteConfig(mockViteConfig, {
           nativeTransforms: true,
         })
-        expect(forcedInput.defaultConfig.transformerPath).toContain(
-          'metroNativeWorker'
-        )
+        expect(forcedInput.defaultConfig.transformerPath).toContain('metroNativeWorker')
         expect((forcedFull as any).transformerPath).toContain('metroNativeWorker')
         expect(
           forcedWarn.mock.calls.some((args: any[]) =>
@@ -1321,7 +1317,11 @@ describe('one native transform ports', () => {
   it('inlines import.meta.env reads, which oxc otherwise lowers to an empty object', () => {
     // oxc's CJS lowering emits `var import_meta = {}`, so an untouched
     // `import.meta.env.X` silently reads undefined in every native bundle.
-    const env = { DEV: false, VITE_POSTHOG_API_KEY: 'pk_live', TAMAGUI_TARGET: 'native' }
+    const env = {
+      DEV: false,
+      VITE_POSTHOG_API_KEY: 'pk_live',
+      TAMAGUI_TARGET: 'native',
+    }
     const out = applyInlineEnvVars(
       `export const key = import.meta.env.VITE_POSTHOG_API_KEY;
 export const target = import.meta.env?.TAMAGUI_TARGET;
@@ -1416,7 +1416,9 @@ export const all = { ...import.meta.env };`,
     // takeout adds `hot-updater/babel-plugin` for OTA; dropping it silently
     // would ship a build whose updates never apply.
     const withPlugins = (plugins: any[]) =>
-      ({ customTransformOptions: { vite: { babelConfig: { plugins } } } }) as any
+      ({
+        customTransformOptions: { vite: { babelConfig: { plugins } } },
+      }) as any
 
     expect(() =>
       assertNoUnportedBabelPlugins(
