@@ -13,6 +13,7 @@ import {
   EXPO_UPDATES_METRO_SKIP_MARKER,
   FMT_CXX17_MARKER,
   HERMES_MINIFY_PATCH_MARKER,
+  SET_CLI_PATH_MARKER,
 } from './expo-plugin.cjs'
 
 // a minimal stand-in for the default Expo/RN "Bundle React Native code and
@@ -26,6 +27,24 @@ const sampleBundleScript = [
   '`"$NODE_BINARY" "$REACT_NATIVE_DIR/scripts/react-native-xcode.sh"`',
   '',
 ].join('\n')
+
+// Expo SDK 58 wraps that same invocation in double quotes. The anchor used to
+// require a bare backtick, so every bundle-phase patch silently stopped
+// applying and Release builds fell back to React Native's own bundle command
+// ("No Metro config found in <project>") instead of One's.
+const sampleBundleScriptExpoSdk58 = [
+  'if [[ -f "$SRCROOT/.xcode.env" ]]; then',
+  '  source "$SRCROOT/.xcode.env"',
+  'fi',
+  '',
+  '"`"$NODE_BINARY" --print "require(\'path\').dirname(require.resolve(\'react-native/package.json\')) + \'/scripts/react-native-xcode.sh\'"`"',
+  '',
+].join('\n')
+
+const bundleScriptTemplates = {
+  'expo sdk 57 (bare backtick)': sampleBundleScript,
+  'expo sdk 58 (quoted)': sampleBundleScriptExpoSdk58,
+}
 
 const samplePodfile = `
 require_relative '../node_modules/react-native/scripts/react_native_pods'
@@ -188,6 +207,31 @@ describe('injectFmtCxx17FixIntoPodfile', () => {
     expect(all).toContain('SWIFT_STRICT_CONCURRENCY')
     expect(all).toContain(HERMES_MINIFY_PATCH_MARKER)
     expect(all).toContain(FMT_CXX17_MARKER)
+  })
+})
+
+describe('addSetCliPathToBundleReactNativeShellScript', () => {
+  it.each(Object.entries(bundleScriptTemplates))(
+    'sets CLI_PATH with the %s bundle phase',
+    (_template, script) => {
+      const out = addSetCliPathToBundleReactNativeShellScript(script)
+
+      expect(out).toContain(SET_CLI_PATH_MARKER)
+      expect(out).toContain(`export CLI_PATH="$("$NODE_BINARY" --print`)
+      expect(out).toContain("+ '/cli.js'")
+      // inserted before the runner, not after it
+      expect(out.indexOf('CLI_PATH=')).toBeLessThan(
+        out.indexOf('scripts/react-native-xcode.sh')
+      )
+      // the runner line itself is untouched, quoting included
+      expect(out).toContain(script.split('\n').at(-2))
+    }
+  )
+
+  it('is idempotent', () => {
+    const once = addSetCliPathToBundleReactNativeShellScript(sampleBundleScriptExpoSdk58)
+    const twice = addSetCliPathToBundleReactNativeShellScript(once)
+    expect(twice).toBe(once)
   })
 })
 
