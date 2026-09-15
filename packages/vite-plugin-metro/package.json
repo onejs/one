@@ -79,7 +79,6 @@
     "@vxrn/utils": "workspace:*",
     "babel-preset-expo": "~57.0.5",
     "esbuild": "^0.25.12",
-    "fast-flow-transform": "^0.0.3",
     "launch-editor": "^2.10.0",
     "magic-string": "^0.30.21",
     "micromatch": "^4.0.8",
