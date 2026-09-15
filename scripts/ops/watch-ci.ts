@@ -81,7 +81,8 @@ while (true) {
     (run) =>
       run.event === 'push' ||
       run.event === 'workflow_dispatch' ||
-      run.event === 'pull_request'
+      run.event === 'pull_request' ||
+      run.event === 'merge_group'
   )
   const failed = direct.filter((run) => run.conclusion && bad.has(run.conclusion))
   const pending = direct.filter((run) => run.status !== 'completed')
