@@ -1910,7 +1910,7 @@ globalThis.__nativeAssetProbe = [icon, back]
       runInNewContext(result.code, {
         console,
         require: (id: string) =>
-          id === 'react-native/Libraries/Image/AssetRegistry'
+          id === 'react-native/asset-registry'
             ? {
                 registerAsset: (asset: { name: string; scales: number[] }) => {
                   registered.push(asset)

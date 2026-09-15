@@ -25,6 +25,11 @@ export const prebuild = async ({
 
   const doesIOSExist = FSExtra.existsSync(path.resolve('ios'))
   const doesAndroidExist = FSExtra.existsSync(path.resolve('android'))
+  const isMetro =
+    process.env.ONE_METRO_MODE ||
+    globalThis['__vxrnMetroOptions__'] ||
+    globalThis['__vxrnPluginConfig__']?.native?.bundler === 'metro'
+  const useRolldownIOS = (!platform || platform === 'ios') && !isMetro
 
   if (expo) {
     try {
@@ -32,12 +37,35 @@ export const prebuild = async ({
       const importPath = resolvePath('@expo/cli/build/src/prebuild/index.js', root)
       const expoPrebuild = (await import(pathToFileURL(importPath).href)).default
         .expoPrebuild
-      await expoPrebuild([
-        ...(platform ? ['--platform', platform] : []),
-        ...(noInstall ? ['--no-install'] : []),
-        '--skip-dependency-update',
-        'react,react-native,expo',
-      ])
+      const previousNativeBuildEnvironment = useRolldownIOS
+        ? {
+            EXPO_USE_PRECOMPILED_MODULES: process.env.EXPO_USE_PRECOMPILED_MODULES,
+            RCT_HERMES_V1_ENABLED: process.env.RCT_HERMES_V1_ENABLED,
+            RCT_USE_PREBUILT_RNCORE: process.env.RCT_USE_PREBUILT_RNCORE,
+            RCT_USE_RN_DEP: process.env.RCT_USE_RN_DEP,
+          }
+        : null
+      if (useRolldownIOS) {
+        process.env.EXPO_USE_PRECOMPILED_MODULES = '0'
+        process.env.RCT_HERMES_V1_ENABLED = '1'
+        process.env.RCT_USE_PREBUILT_RNCORE = '0'
+        process.env.RCT_USE_RN_DEP = '0'
+      }
+      try {
+        await expoPrebuild([
+          ...(platform ? ['--platform', platform] : []),
+          ...(noInstall ? ['--no-install'] : []),
+          '--skip-dependency-update',
+          'react,react-native,expo',
+        ])
+      } finally {
+        if (previousNativeBuildEnvironment) {
+          for (const [name, value] of Object.entries(previousNativeBuildEnvironment)) {
+            if (value === undefined) delete process.env[name]
+            else process.env[name] = value
+          }
+        }
+      }
       try {
         const packageJsonPath = path.join(root, 'package.json')
         let packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
@@ -67,11 +95,6 @@ export const prebuild = async ({
     // in rolldown mode (not metro), ensure Podfile.properties.json has the
     // settings needed for hermes v1 with source-built react native
     if (!platform || platform === 'ios') {
-      const isMetro =
-        process.env.ONE_METRO_MODE ||
-        globalThis['__vxrnMetroOptions__'] ||
-        globalThis['__vxrnPluginConfig__']?.native?.bundler === 'metro'
-
       if (!isMetro) {
         ensureRolldownPodfileProperties(root)
       }
@@ -335,11 +358,16 @@ function ensureRolldownPodfileProperties(root: string) {
     changed = true
   }
 
+  if (props['EXPO_USE_PRECOMPILED_MODULES'] !== 'false') {
+    props['EXPO_USE_PRECOMPILED_MODULES'] = 'false'
+    changed = true
+  }
+
   if (changed) {
     FSExtra.writeFileSync(propsPath, JSON.stringify(props, null, 2) + '\n', 'utf8')
     console.info(
       colors.cyan(
-        `[vxrn] Updated ios/Podfile.properties.json for rolldown mode (hermes v1 + build from source)`
+        `[vxrn] Updated ios/Podfile.properties.json for rolldown mode (hermes v1 + React Native and Expo modules from source)`
       )
     )
   }

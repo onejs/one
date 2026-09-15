@@ -28,8 +28,8 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
+    "@vxrn/compiler": "workspace:*",
     "@vxrn/resolve": "workspace:*",
-    "fast-flow-transform": "^0.0.3",
     "vite": "^8.2.2"
   },
   "devDependencies": {
