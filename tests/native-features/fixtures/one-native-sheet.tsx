@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Swift, type PresentationDetent } from 'one-native'
+import { Swift, type PresentationDetent } from '@vxrn/native'
 import {
   type LayoutChangeEvent,
   Pressable,

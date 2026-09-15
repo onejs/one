@@ -19,3 +19,25 @@ export function shouldLinkExternally(href: string): boolean {
   // Cheap check first to avoid regex if the href is not a path fragment.
   return !/^[./]/.test(href) && (hasUrlProtocolPrefix(href) || isWellKnownUri(href))
 }
+
+const staticFileExtensionRegex = /\.(?:[a-z0-9]{2,5}|webmanifest|wasm|woff2)$/i
+
+export function hasFileExtension(href: string): boolean {
+  if (!href) return false
+  try {
+    const url = new URL(href, 'http://localhost')
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      return true
+    }
+    return staticFileExtensionRegex.test(url.pathname)
+  } catch {
+    return false
+  }
+}
+
+export function shouldPreloadRoute(href: string): boolean {
+  if (!href || href[0] === '#') return false
+  if (shouldLinkExternally(href)) return false
+  if (hasFileExtension(href)) return false
+  return true
+}

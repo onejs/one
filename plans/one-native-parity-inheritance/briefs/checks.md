@@ -21,7 +21,7 @@ Constraints:
 - Do NOT boot a simulator and do NOT run the device conformance suite. Simulator 36CB8903-C59C-4438-BA29-E7A3C8876C37 is serving pixel-oracle captures for another agent and the suite is load-sensitive. Your fixes ride along in a device re-run I schedule at integration. So for each fix, tell me exactly what you want run and what observation would falsify it.
 - Avoid editing fixtures under tests/native-features/app/. If a fix requires it, say so explicitly, because a fixture layout change shifts every absolute visual region below it.
 - Do not push. Commit to your branch and report the SHA to me.
-- Nothing outside tests/native-features and packages/one-native.
+- Nothing outside tests/native-features and packages/native.
 
 Evidence discipline: label every causal claim RAN / TESTED / INFERRED / GUESSED, including to me. Absence proves nothing, so do not report "I found no other instances" as if it were coverage; say how you looked.
 

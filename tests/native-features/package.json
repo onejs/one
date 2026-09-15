@@ -8,6 +8,7 @@
     "dev": "one dev",
     "ios": "EXPO_NO_TELEMETRY=true one run:ios",
     "prebuild:native": "one prebuild",
+    "test-rnx:one-native-android": "bun scripts/one-native-conformance.rnx.ts",
     "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run"
@@ -26,8 +27,7 @@
     "react-native": "0.86.2",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
-    "vite": "^8.2.2",
-    "one-native": "workspace:*"
+    "vite": "^8.2.2"
   },
   "devDependencies": {
     "vitest": "^4.1.0",
