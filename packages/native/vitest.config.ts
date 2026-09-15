@@ -24,11 +24,14 @@ export default defineConfig({
       '.tsx',
       '.json',
     ],
-    alias: {
-      'react-native': resolve(
-        __dirname,
-        '../../node_modules/react-native-web/dist/index.js'
-      ),
-    },
+    alias: [
+      {
+        find: /^react-native$/,
+        replacement: resolve(
+          __dirname,
+          '../../node_modules/react-native-web/dist/index.js'
+        ),
+      },
+    ],
   },
 })

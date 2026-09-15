@@ -10,8 +10,8 @@
     },
     "platforms": ["ios", "android"],
     "plugins": [
+      "./config/with-react-native-screens-gamma.cjs",
       "one/expo-plugin",
-      "react-native-bottom-tabs",
       [
         "expo-build-properties",
         {
@@ -28,6 +28,7 @@
     },
     "ios": {
       "bundleIdentifier": "dev.onestack.demo.social",
+      "supportsTablet": true,
       "icon": "./assets/app-icon.png",
       "config": {
         "usesNonExemptEncryption": false

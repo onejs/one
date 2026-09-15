@@ -35,7 +35,8 @@ export function isTransparentOverlay(
 
 /**
  * Returns the underlying navigation state for NativeStackView with the
- * trailing overlay suffix removed.
+ * trailing overlay suffix removed. Routes after `state.index` are preloaded
+ * routes in React Navigation 8, so they are not part of the visible stack.
  *
  * Important: we only strip the suffix of overlay routes at the top of the
  * stack. Overlay routes that are SANDWICHED between cards (e.g. user
@@ -79,7 +80,7 @@ export function findLastNonOverlayIndex(
     options: NativeStackNavigationOptions | undefined | null
   ) => boolean = isOverlayPresentation
 ): number {
-  for (let i = state.routes.length - 1; i >= 0; i--) {
+  for (let i = state.index; i >= 0; i--) {
     if (!isOverlay(descriptors[state.routes[i]!.key]?.options)) {
       return i
     }

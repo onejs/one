@@ -13,7 +13,6 @@ import {
 afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false })
 })
-
 describe('getBabelOptions Worklets resolution', () => {
   it('uses the app-installed Worklets Babel plugin', () => {
     const projectRoot = fs.realpathSync(
@@ -476,7 +475,6 @@ describe('findUserBabelConfig and user Babel config respect', () => {
     }
   })
 })
-
 describe('explicit swc/oxc per-file choice with a user babel config', () => {
   it('returns null for swc/oxc string and object forms', () => {
     const projectRoot = fs.realpathSync(

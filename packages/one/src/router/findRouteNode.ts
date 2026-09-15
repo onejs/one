@@ -1,11 +1,12 @@
 import type { RouteNode } from './Route'
+import { getReactNavigationRouteName } from '../getReactNavigationConfig'
 
 /**
  * Find a RouteNode from the route tree based on the navigation state.
  * Walks through the state's routes recursively to find the deepest matching route.
  */
 export function findRouteNodeFromState(
-  state: { routes: Array<{ name: string; state?: any }> } | undefined,
+  state: { index?: number; routes: Array<{ name: string; state?: any }> } | undefined,
   rootNode: RouteNode | null
 ): RouteNode | null {
   if (!state || !state.routes || !rootNode) {
@@ -13,7 +14,7 @@ export function findRouteNodeFromState(
   }
 
   // Get the current route from state (the active one based on index)
-  const currentRoute = state.routes[state.routes.length - 1]
+  const currentRoute = state.routes[state.index ?? state.routes.length - 1]
   if (!currentRoute) {
     return null
   }
@@ -41,7 +42,7 @@ export function findRouteNodeFromState(
  */
 function findNodeByRouteName(node: RouteNode, routeName: string): RouteNode | null {
   // Check if this node matches
-  if (node.route === routeName) {
+  if (getReactNavigationRouteName(node) === routeName) {
     return node
   }
 
@@ -58,11 +59,14 @@ function findNodeByRouteName(node: RouteNode, routeName: string): RouteNode | nu
 
 /**
  * Extract params from navigation state.
- * Collects params from all routes in the state hierarchy.
+ * Collects params from the focused route chain in the state hierarchy.
  */
 export function extractParamsFromState(
   state:
-    | { routes: Array<{ name: string; params?: Record<string, any>; state?: any }> }
+    | {
+        index?: number
+        routes: Array<{ name: string; params?: Record<string, any>; state?: any }>
+      }
     | undefined
 ): Record<string, string | string[]> {
   if (!state || !state.routes) {
@@ -71,15 +75,12 @@ export function extractParamsFromState(
 
   const params: Record<string, string | string[]> = {}
 
-  // Collect params from all routes in the state
-  for (const route of state.routes) {
-    if (route.params) {
-      Object.assign(params, route.params)
-    }
-    // Recurse into nested state
-    if (route.state) {
-      Object.assign(params, extractParamsFromState(route.state))
-    }
+  const route = state.routes[state.index ?? state.routes.length - 1]
+  if (route?.params) {
+    Object.assign(params, route.params)
+  }
+  if (route?.state) {
+    Object.assign(params, extractParamsFromState(route.state))
   }
 
   return params
@@ -132,7 +133,7 @@ export function extractPathnameFromHref(href: string): string {
  * This is used on native to build the full matches array including layouts.
  */
 export function findAllRouteNodesFromState(
-  state: { routes: Array<{ name: string; state?: any }> } | undefined,
+  state: { index?: number; routes: Array<{ name: string; state?: any }> } | undefined,
   rootNode: RouteNode | null
 ): RouteNode[] {
   if (!state || !state.routes || !rootNode) {
@@ -143,7 +144,10 @@ export function findAllRouteNodesFromState(
 
   function collectNodes(
     currentState:
-      | { routes: Array<{ name: string; state?: any; params?: Record<string, any> }> }
+      | {
+          index?: number
+          routes: Array<{ name: string; state?: any; params?: Record<string, any> }>
+        }
       | undefined,
     parentNode: RouteNode | null
   ) {
@@ -152,7 +156,8 @@ export function findAllRouteNodesFromState(
     }
 
     // get the current route from state (the active one based on index)
-    const currentRoute = currentState.routes[currentState.routes.length - 1]
+    const currentRoute =
+      currentState.routes[currentState.index ?? currentState.routes.length - 1]
     if (!currentRoute) {
       return
     }

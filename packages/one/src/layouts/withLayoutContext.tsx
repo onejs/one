@@ -213,14 +213,14 @@ export function withLayoutContext<
         }
 
         return (
-          <Nav {...options?.props} {...props} id={contextKey} ref={ref}>
+          <Nav {...options?.props} {...props} ref={ref}>
             {sorted}
           </Nav>
         )
       }
     ),
     {
-      Screen,
+      Screen: Screen as React.ComponentType<ScreenProps<TOptions, State, EventMap>>,
     }
   )
 }

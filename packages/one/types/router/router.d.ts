@@ -3,7 +3,7 @@
  * We need to treat exports as an API and not change them, maybe not
  * the best decision.
  */
-import type { NavigationContainerRefWithCurrent, NavigationState } from '@react-navigation/core';
+import type { NavigationContainerRefWithCurrent, NavigationState, ParamListBase } from '@react-navigation/core';
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router';
 import type { OneLinkingConfig } from '../link/getLinking';
@@ -43,7 +43,7 @@ export declare function subscribeToValidationState(subscriber: (state: Validatio
 export declare function setValidationState(state: ValidationState): void;
 export declare function getValidationState(): ValidationState;
 export declare function useValidationState(): ValidationState;
-export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL, linking?: OneLinkingConfig): void;
+export declare function initialize(context: One.RouteContext, ref: NavigationContainerRefWithCurrent<ParamListBase>, initialLocation?: URL, linking?: OneLinkingConfig): void;
 /**
  * called by NavigationContainer's onStateChange callback
  * uses onStateChange instead of addListener('state') because onStateChange
@@ -62,7 +62,7 @@ export declare function canGoBack(): boolean;
 export declare function canDismiss(): boolean;
 export declare function getSortedRoutes(): RouteNode[];
 export declare function updateState(state: OneRouter.ResultState, nextStateParam?: OneRouter.ResultState): void;
-export declare function consumePendingNavigationAction(): "REPLACE" | "NAVIGATE" | "PUSH" | undefined;
+export declare function consumePendingNavigationAction(): "NAVIGATE" | "PUSH" | "REPLACE" | undefined;
 export declare function subscribeToRootState(subscriber: OneRouter.RootStateListener): () => void;
 export declare function subscribeToStore(subscriber: () => void): () => void;
 export declare function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListener): () => void;

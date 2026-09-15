@@ -97,6 +97,7 @@ class ToolbarHostView: RCTView, MenuUpdatable {
     } else if let menu = subview as? MenuActionView {
       if menu.menuIdentifier.isEmpty { return }
       removeItemWithId(menu.menuIdentifier)
+      menu.parentMenuUpdatable = nil
     }
     updateToolbarItems()
   }

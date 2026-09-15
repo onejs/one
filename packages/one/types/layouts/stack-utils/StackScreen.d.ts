@@ -1,6 +1,5 @@
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { type PropsWithChildren } from 'react';
-import { type StackToolbarImplementation } from './StackToolbarImplementation';
 export type StackScreenOptions = Omit<NativeStackNavigationOptions, 'presentation'> & {
     presentation?: NativeStackNavigationOptions['presentation'] | 'sheet' | (string & {});
     /**
@@ -36,5 +35,5 @@ export interface StackScreenProps extends PropsWithChildren {
 export declare function StackScreen({ children, options, ...rest }: StackScreenProps): import("react/jsx-runtime").JSX.Element;
 export declare function validateStackPresentation(options: StackScreenOptions): StackScreenOptions;
 export declare function validateStackPresentation<F extends (...args: never[]) => StackScreenOptions>(options: F): F;
-export declare function appendScreenStackPropsToOptions(options: StackScreenOptions, props: StackScreenProps, toolbarImplementation?: StackToolbarImplementation | null): StackScreenOptions;
+export declare function appendScreenStackPropsToOptions(options: StackScreenOptions, props: StackScreenProps): StackScreenOptions;
 //# sourceMappingURL=StackScreen.d.ts.map

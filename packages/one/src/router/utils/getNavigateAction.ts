@@ -34,7 +34,8 @@ export function getNavigateAction(
   while (actionState && navigationState) {
     const stateRoute = navigationState.routes[navigationState.index]
 
-    actionStateRoute = actionState.routes[actionState.routes.length - 1]
+    actionStateRoute =
+      actionState.routes[actionState.index ?? actionState.routes.length - 1]
 
     const childState = actionStateRoute.state
     const nextNavigationState = stateRoute.state
@@ -54,7 +55,7 @@ export function getNavigateAction(
       break
     }
 
-    actionState = childState
+    actionState = childState as OneRouter.ResultState
     navigationState = nextNavigationState as NavigationState
   }
 
@@ -73,7 +74,9 @@ export function getNavigateAction(
     payload.params = { ...actionStateRoute.params }
 
     actionStateRoute =
-      actionStateRoute.state?.routes[actionStateRoute.state?.routes.length - 1]
+      actionStateRoute.state?.routes[
+        actionStateRoute.state.index ?? actionStateRoute.state.routes.length - 1
+      ]
 
     payload.params ??= {}
     payload = payload.params

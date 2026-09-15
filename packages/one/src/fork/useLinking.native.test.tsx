@@ -66,22 +66,18 @@ async function captureIncomingAction(overrides: LinkingOverrides = {}) {
   const ref = { current: navigation }
 
   function Harness() {
-    useLinking(
-      ref as any,
-      {
-        ...linking,
-        enabled: true,
-        prefixes: ['contrast:///'],
-        getInitialURL: () => null,
-        getStateFromPath: () => linkedState,
-        subscribe: (nextListener) => {
-          listener = nextListener
-          return () => {}
-        },
-        ...overrides,
+    useLinking(ref as any, {
+      ...linking,
+      enabled: true,
+      prefixes: ['contrast:///'],
+      getInitialURL: () => null,
+      getStateFromPath: () => linkedState,
+      subscribe: (nextListener) => {
+        listener = nextListener
+        return () => {}
       },
-      () => {}
-    )
+      ...overrides,
+    })
     return null
   }
 

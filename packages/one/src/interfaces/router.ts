@@ -1,6 +1,7 @@
 import type {
   NavigationContainerRefWithCurrent,
   NavigationState,
+  ParamListBase,
   PartialState,
 } from '@react-navigation/core'
 import type { JSX, ReactNode } from 'react'
@@ -54,8 +55,7 @@ export namespace OneRouter {
     ? __routes['DynamicRouteTemplate']
     : string
 
-  export type NavigationRef =
-    NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>
+  export type NavigationRef = NavigationContainerRefWithCurrent<ParamListBase>
 
   export type RelativePathString = `./${string}` | `../${string}` | '..'
   export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes

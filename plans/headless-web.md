@@ -20,9 +20,7 @@ Researched 2026-07-20 against One @ main, the Expo monorepo clone
   (`src/react-navigation/` + deeper `src/fork/`). RNW is now an optional peer
   dep for them. Evan Bacon (Jan 2026): next step is making RNW optional in
   expo-router so web renders react-strict-dom `<html.div>` instead of
-  `<View>`. Their `NativeTabs` web view is already pure DOM
-  (`NativeTabsView.web.tsx` imports only @radix-ui/react-tabs + a CSS
-  module); their web modals use vaul. Default Stack/Tabs/Drawer still render
+  `<View>`. Their web modals use vaul. Default Stack/Tabs/Drawer still render
   RNW on web.
 - react-navigation upstream treats web as the legacy fallback path. The
   web-specific work now happens inside Expo's fork. Waiting on upstream is

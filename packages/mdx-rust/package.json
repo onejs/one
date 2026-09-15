@@ -48,7 +48,7 @@
     "react": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "2.6.2",
+    "@tamagui/build": "3.0.0-beta.1309.1",
     "react": "19.2.3"
   },
   "publishConfig": {

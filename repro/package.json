@@ -24,7 +24,8 @@
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "react-native-web": "^0.21.2",
-    "@react-navigation/native": "~7.3.16"
+    "@callstack/liquid-glass": "^0.8.1",
+    "@react-navigation/native": "8.0.0-alpha.44"
   },
   "devDependencies": {
     "@react-native-community/cli": "^20.2.0",

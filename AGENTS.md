@@ -20,10 +20,10 @@ To understand more about One, you should search for documentation (`apps/onestac
 - `tests/` - Test suite and some test related stuff for the framework
 - `packages/create-vxrn/` - CLI scaffolding tool (`npx one`)
 
-## Worktrees: create in one place, leave none behind
+## Operations
 
-- Create worktrees only under `~/.worktrees/one-<slug>`, from a freshly fetched
-  `origin/main`. Never in `/tmp`, a scratchpad, or inside the repo.
+- Publish beta versions from branches without asking. Require explicit user permission for stable releases.
+- Create worktrees only under `~/.worktrees/one-<slug>`, from a freshly fetched `origin/main`. Never in `/tmp`, a scratchpad, or inside the repo.
 - The session that creates a worktree owns it. When the task ends, either
   `git worktree remove <path>` from the primary checkout, or leave it clean with
   every commit pushed to its branch, and say which in your final report.

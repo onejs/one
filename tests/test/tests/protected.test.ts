@@ -16,7 +16,7 @@ afterAll(async () => {
   await browser.close()
 })
 
-describe('Protected Routes', { retry: 1 }, () => {
+describe('Protected Routes', { retry: 0 }, () => {
   it('should render the public page', async () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/protected-test`)
@@ -53,9 +53,11 @@ describe('Protected Routes', { retry: 1 }, () => {
     const page = await context.newPage()
     await page.goto(`${serverUrl}/protected-test`)
 
-    await page.getByTestId('link-settings').click()
+    await Promise.all([
+      page.waitForURL(`${serverUrl}/protected-test/login`),
+      page.getByTestId('link-settings').click(),
+    ])
     expect(await page.getByTestId('login-page').textContent()).toContain('Login Page')
-    expect(page.url()).toContain('/protected-test/login')
 
     await page.goBack()
     expect(page.url()).not.toContain('/settings')
@@ -98,10 +100,10 @@ describe('Protected Routes', { retry: 1 }, () => {
     expect(authStatus).toContain('Auth: true')
 
     // Now navigate to dashboard
-    await page.getByTestId('link-dashboard').click()
-
-    // Wait for navigation
-    await page.waitForTimeout(500)
+    await Promise.all([
+      page.waitForURL(`${serverUrl}/protected-test/dashboard`),
+      page.getByTestId('link-dashboard').click(),
+    ])
 
     // Should be on dashboard
     const dashboardPage = await page.getByTestId('dashboard-page').textContent()
@@ -138,8 +140,10 @@ describe('Protected Routes', { retry: 1 }, () => {
     expect(authStatus).toContain('Auth: true')
 
     // Navigate to dashboard
-    await page.getByTestId('link-dashboard').click()
-    await page.waitForTimeout(500)
+    await Promise.all([
+      page.waitForURL(`${serverUrl}/protected-test/dashboard`),
+      page.getByTestId('link-dashboard').click(),
+    ])
 
     const dashboardPage = await page.getByTestId('dashboard-page').textContent()
     expect(dashboardPage).toContain('Dashboard Page')
@@ -165,7 +169,7 @@ describe('Protected Routes', { retry: 1 }, () => {
     expect(authStatus).toContain('Auth: false')
 
     // Should be redirected back to public page (route filtered out)
-    await page.waitForTimeout(500)
+    await page.waitForURL(`${serverUrl}/protected-test`)
     const publicPage = await page.getByTestId('public-page').textContent()
     expect(publicPage).toContain('Public Page')
 

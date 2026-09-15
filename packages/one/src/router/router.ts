@@ -7,6 +7,7 @@
 import type {
   NavigationContainerRefWithCurrent,
   NavigationState,
+  ParamListBase,
 } from '@react-navigation/core'
 import { StackActions } from '@react-navigation/native'
 import {
@@ -250,7 +251,7 @@ let cachedContext: One.RouteContext | null = null
 // Initialize function
 export function initialize(
   context: One.RouteContext,
-  ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
+  ref: NavigationContainerRefWithCurrent<ParamListBase>,
   initialLocation?: URL,
   linking?: OneLinkingConfig
 ) {
@@ -443,7 +444,7 @@ export function replace(url: OneRouter.Href, options?: OneRouter.LinkToOptions) 
 export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
   assertIsReady(navigationRef)
   return navigationRef?.current?.setParams(
-    // @ts-expect-error
+    // @ts-ignore
     params
   )
 }
@@ -1359,7 +1360,7 @@ export async function linkTo(
   const currentRootState = navigationRef.getRootState()
 
   const hash = href.indexOf('#')
-  if (currentRootState.key && hash > 0) {
+  if (currentRootState?.key && hash > 0) {
     hashes[currentRootState.key] = href.slice(hash)
   }
 
@@ -1377,13 +1378,13 @@ export async function linkTo(
   // compute target at dispatch time to avoid stale state during first render/effects
   const freshRootState = navigationRef.getRootState() as NavigationState
   const currentRouteBeforeDispatch = navigationRef.getCurrentRoute()
+  const targetPathname = pendingNavigationPathname
+  const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
+  updateState(optimisticState)
+  pendingNavigationPathname = targetPathname
+  notifyRootStateSubscribers(optimisticState)
 
   if (event === 'REPLACE') {
-    const targetPathname = pendingNavigationPathname
-    const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
-    updateState(optimisticState)
-    pendingNavigationPathname = targetPathname
-    notifyRootStateSubscribers(optimisticState)
     navigationRef.resetRoot(state)
   } else {
     const action = getNavigateAction(state, freshRootState, event)
@@ -1402,7 +1403,7 @@ export async function linkTo(
     const currentFocusedName = currentFocusedRoute?.name
 
     if (isRootTarget && isGroupTarget && hasFreshRootState) {
-      const targetRoute = state.routes[state.routes.length - 1]
+      const targetRoute = state.routes[state.index ?? state.routes.length - 1]
       const targetRootName = targetRoute.name
 
       if (currentFocusedName === targetRootName) {
