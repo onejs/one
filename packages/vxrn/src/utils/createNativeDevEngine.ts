@@ -894,12 +894,11 @@ export interface NativeBuildOptions {
 function reactNativeLiteResolverPlugin(): Plugin {
   return {
     name: 'vxrn:react-native-lite-resolver',
-    async resolveId(source, importer, options) {
+    resolveId(source) {
       if (source === 'react-native') {
-        return this.resolve('@vxrn/react-native-lite', importer, {
-          skipSelf: true,
-          ...options,
-        })
+        // the lite runtime ships with vxrn, so it resolves from vxrn's own
+        // install and not from the app being bundled, which never depends on it
+        return resolvePath('@vxrn/react-native-lite', import.meta.dirname)
       }
     },
   }
