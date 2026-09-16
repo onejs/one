@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { getLoaderPath } from '../utils/cleanUrl'
 import type { One } from '../vite/types'
 import { createWorkerHandler, type LazyRoutes } from './workerHandler'
 
@@ -150,4 +151,89 @@ describe('createWorkerHandler', () => {
     await handleRequest(new Request('https://example.com/some-page'))
     expect(imports).toBeGreaterThan(1)
   })
+
+  it('ssg dynamic route answers 404 when routeMap is present and route is missing', async () => {
+    const ssgPageRoute = {
+      file: './docs/[slug].tsx',
+      page: '/docs/[slug]',
+      namedRegex: '^/docs/(?<slug>[^/]+?)(?:/)?$',
+      urlPath: '/docs/[slug]',
+      urlCleanPath: '/docs/[slug]',
+      routeKeys: { slug: 'slug' },
+      type: 'ssg' as const,
+      middlewares: [],
+    } satisfies One.BuildInfo['manifest']['pageRoutes'][number]
+
+    const ssgBuildInfo = {
+      ...buildInfo,
+      routeMap: { '/docs/intro': 'docs/intro.html' },
+      manifest: {
+        ...buildInfo.manifest,
+        pageRoutes: [ssgPageRoute],
+      },
+    }
+
+    const handleRequest = createWorkerHandler({
+      oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssg' } },
+      buildInfo: ssgBuildInfo,
+      lazyRoutes,
+    }).handleRequest
+
+    const loaderPath = getLoaderPath('/docs/missing', false)
+    const res = await handleRequest(new Request(`https://example.com${loaderPath}`))
+    expect(res?.status).toBe(200)
+    const text = await res?.text()
+    expect(text).toContain('__oneError:404')
+  })
+
+  it('ssg dynamic route runs loader on demand when routeMap is omitted', async () => {
+    const ssgPageRoute = {
+      file: './docs/[slug].tsx',
+      page: '/docs/[slug]',
+      namedRegex: '^/docs/(?<slug>[^/]+?)(?:/)?$',
+      urlPath: '/docs/[slug]',
+      urlCleanPath: '/docs/[slug]',
+      routeKeys: { slug: 'slug' },
+      type: 'ssg' as const,
+      middlewares: [],
+    } satisfies One.BuildInfo['manifest']['pageRoutes'][number]
+
+    const ssgBuildInfo = {
+      ...buildInfo,
+      routeMap: undefined,
+      manifest: {
+        ...buildInfo.manifest,
+        pageRoutes: [ssgPageRoute],
+      },
+    }
+
+    const ssgRouteKey = `/app/${ssgPageRoute.file.slice(2)}`
+    const handleRequest = createWorkerHandler({
+      oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssg' } },
+      buildInfo: ssgBuildInfo,
+      lazyRoutes: {
+        ...lazyRoutes,
+        serverEntry: async () => ({
+          default: {
+            render: () => '<html></html>',
+            options: {
+              routes: {
+                [ssgRouteKey]: async () => ({
+                  loader: async ({ params }: any) => ({ slug: params.slug }),
+                }),
+              },
+            },
+          },
+        }),
+      },
+    }).handleRequest
+
+    const loaderPath = getLoaderPath('/docs/getting-started', false)
+    const res = await handleRequest(new Request(`https://example.com${loaderPath}`))
+    expect(res?.status).toBe(200)
+    const text = await res?.text()
+    expect(text).not.toContain('ssg route not in routeMap')
+    expect(text).toContain('"slug":"getting-started"')
+  })
 })
+

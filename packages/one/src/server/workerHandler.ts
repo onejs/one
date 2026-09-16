@@ -125,7 +125,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     let cur = urlPath
     while (cur) {
       const parent = cur.lastIndexOf('/') > 0 ? cur.slice(0, cur.lastIndexOf('/')) : ''
-      if (routeMap[`${parent}/+not-found`]) return `${parent}/+not-found`
+      if (routeMap?.[`${parent}/+not-found`]) return `${parent}/+not-found`
       if (!parent) break
       cur = parent
     }
@@ -375,7 +375,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           // loader ENOENT → serve nearest +not-found page
           if (pageResult.isEnoent) {
             const nfPath = findNearestNotFoundPath(loaderProps?.path || '/')
-            const nfHtml = routeMap[nfPath]
+            const nfHtml = routeMap?.[nfPath]
             if (nfHtml) {
               const html = await readStaticHtml(nfHtml)
               if (html) {
@@ -520,10 +520,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           : null
 
         const htmlPath = notFoundKey
-          ? routeMap[notFoundKey]
+          ? routeMap?.[notFoundKey]
           : isDynamicRoute
-            ? routeMap[routeCleanPath] || routeMap[url.pathname]
-            : routeMap[url.pathname] || routeMap[routeBuildInfo?.cleanPath]
+            ? routeMap?.[routeCleanPath] || routeMap?.[url.pathname]
+            : routeMap?.[url.pathname] || routeMap?.[routeBuildInfo?.cleanPath]
 
         if (htmlPath) {
           const html = await readStaticHtml(htmlPath)
@@ -538,7 +538,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
         // dynamic route with no static HTML → 404
         if (isDynamicRoute) {
           const notFoundRoute = findNearestNotFoundPath(url.pathname)
-          const notFoundHtmlPath = routeMap[notFoundRoute]
+          const notFoundHtmlPath = routeMap?.[notFoundRoute]
 
           if (notFoundHtmlPath) {
             const notFoundHtml = await readStaticHtml(notFoundHtmlPath)
@@ -655,10 +655,11 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
         if (route.file === '') continue
         if (!route.compiledRegex.test(originalUrl)) continue
 
-        // ssg dynamic route not in routeMap → 404
+        // ssg dynamic route not in routeMap → 404 (only when a routeMap is present)
         if (
           route.type === 'ssg' &&
           Object.keys(route.routeKeys).length > 0 &&
+          routeMap &&
           !routeMap[originalUrl]
         ) {
           return new Response(make404LoaderJs(originalUrl, 'ssg route not in routeMap'), {

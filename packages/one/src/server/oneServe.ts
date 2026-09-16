@@ -121,7 +121,8 @@ export async function oneServe(
     throw new Error(`No build info found, have you run build?`)
   }
 
-  const { routeToBuildInfo, routeMap } = buildInfo as One.BuildInfo
+  const { routeToBuildInfo } = buildInfo as One.BuildInfo
+  const routeMap = buildInfo.routeMap ?? {}
 
   // find nearest +not-found path by walking up from a url path
   function findNearestNotFoundPath(urlPath: string): string {
@@ -845,7 +846,7 @@ url: ${url}`)
             // for ssg routes with dynamic params, check if this path was statically generated
             // if not in routeMap, the slug wasn't in generateStaticParams - return 404
             if (route.type === 'ssg' && Object.keys(route.routeKeys).length > 0) {
-              if (!routeMap[originalUrl]) {
+              if (buildInfo.routeMap && !routeMap[originalUrl]) {
                 return new Response(
                   make404LoaderJs(originalUrl, 'ssg route not in routeMap'),
                   {
@@ -1018,6 +1019,7 @@ url: ${url}`)
         if (
           route.type === 'ssg' &&
           Object.keys(route.routeKeys).length > 0 &&
+          buildInfo.routeMap &&
           !routeMap[originalUrl]
         ) {
           c.header('Content-Type', 'text/javascript')
