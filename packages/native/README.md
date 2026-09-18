@@ -926,6 +926,51 @@ describes the SwiftUI tree.
 
 An empty `title` or `footer` omits that header or footer.
 
+### Lists and scroll views
+
+`Swift.List` is a SwiftUI `List`. It holds rows directly or in `Swift.Section`
+groups, takes the box React Native gives it, and styles itself with the
+SDK-derived `listStyle`: `automatic` (the default), `plain`, `grouped`,
+`inset`, `insetGrouped`, or `sidebar`.
+
+```tsx
+<Swift.List listStyle="insetGrouped" style={{ flex: 1 }}>
+  <Swift.Section title="Fruits">
+    <Swift.Text text="Apple" />
+    <Swift.Toggle label="Ripe" isOn={ripe} onIsOnChange={setRipe} />
+  </Swift.Section>
+  <Swift.Section title="Vegetables">
+    <Swift.Text text="Carrot" />
+  </Swift.Section>
+</Swift.List>
+```
+
+Like a form, a list is greedy: it fills its box rather than reporting an ideal
+height, so it cannot be a child of a `Swift.Host` or `Swift.ZStack` either.
+
+`Swift.ScrollView` scrolls One Native content vertically by default,
+horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
+`showsIndicators` hides the scroll bars when false. It is greedy the same way
+a list is, so it also needs its own box.
+
+```tsx
+<Swift.ScrollView style={{ height: 200 }}>
+  <Swift.LazyVStack>
+    {items.map((item) => (
+      <Swift.Text key={item.id} text={item.title} />
+    ))}
+  </Swift.LazyVStack>
+</Swift.ScrollView>
+```
+
+`Swift.LazyVStack` and `Swift.LazyHStack` only build the rows that are on
+screen, so a long list inside a scroll view mounts fast. `alignment` is
+`leading`, `center`, or `trailing` down a column and `top`, `center`,
+`bottom`, `firstTextBaseline`, or `lastTextBaseline` across a row, `center` by
+default; spacing is the SwiftUI platform default. They belong inside a scroll
+view: outside one there is nothing to be lazy about, and a standalone lazy
+stack takes the box it is given instead of measuring.
+
 ### Labeled content
 
 `Swift.LabeledContent` is the key-value row a form, a section, or a host holds. The
