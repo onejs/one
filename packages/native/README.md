@@ -5,9 +5,18 @@ The One Native iOS surface
 exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
 containers, popovers, video, maps, web views, sharing, the photo library, empty states,
 and Quick Look through `Swift`. The package also retains its platform colors, zoom,
-toolbar, menu action, and split view exports. The Swift surface requires an iOS 26+
+toolbar, menu action, and split view exports. The Swift surface requires an iOS 17+
 native build, and the Swift and Compose surfaces require React Native's New
 Architecture. Beta releases are published to npm on the `beta` dist-tag.
+
+The iOS floor is 17. API introduced later is availability-gated, never the
+deployment target: modern tabs need iOS 18 (a legacy `TabView` renders below
+it), `presentationSizing` needs iOS 18 and is ignored below it, and Liquid
+Glass surfaces, `WebView`, `tabBarMinimizeBehavior`, the `glass` button
+styles, and the `confirm`/`close` button roles need iOS 26. Enum values above
+the runtime version throw a clear error from the adapter before reaching
+native code; `WebView` renders empty below 26 and glass falls back to the
+`material` surface, then to nothing.
 
 ## Android Compose
 
@@ -194,11 +203,13 @@ and the selection does not move. It never reaches the controlled protocol, so th
 optimistic selection to undo and no flash of an empty page. Every tab needs exactly one of
 `onPress` and `children`, and the selection may not name an action tab.
 
-Add `role="search"` to detach it from the main tab bar pill. On iOS 26 the search role is
+Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
 what moves a tab into its own capsule on the trailing side, which is the placement an action
 like Compose usually wants; without it the tab sits inside the pill alongside the pages.
-`search` is the only role SwiftUI 26 defines, so a non-search action borrows its placement,
-and only one tab can hold it.
+`search` (iOS 18) and `prominent` (iOS 27) are the roles SwiftUI defines, so a non-search
+action borrows the search placement, and only one tab can hold it. A role below its
+runtime version throws from the adapter; on iOS 17 tabs render through the legacy
+`TabView`, which has no roles.
 
 ```tsx
 <Swift.Tab
@@ -227,9 +238,10 @@ for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and upd
 that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
 
-`Swift.Tab` accepts `role="search"`. `Swift.Tabs` accepts the SDK-derived
-`tabBarMinimizeBehavior` values. Unsupported enum values are rejected before
-submitting native props.
+`Swift.Tab` accepts `role="search"` (iOS 18+) and `role="prominent"` (iOS 27+).
+`Swift.Tabs` accepts the SDK-derived `tabBarMinimizeBehavior` values (iOS 26+).
+Unsupported enum values, and values above the runtime iOS version, are rejected
+before submitting native props.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
@@ -411,8 +423,10 @@ and no controlled value, and they are most useful as rows inside a container.
 `Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
-accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
-`bordered`, `borderedProminent`, `glass`, or `glassProminent`. `onPress` does
+accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
+`automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
+or `glassProminent`; the two `glass` styles need iOS 26. Values above the
+runtime version throw from the adapter. `onPress` does
 not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
 for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
 filling the width the button is given. It is what makes a `Button` inside a `Swift.Form`
@@ -502,8 +516,8 @@ and coordinates must be finite, or the adapter throws.
 ## Web content
 
 `Swift.WebView` is SwiftUI's `WebView` from the `_WebKit_SwiftUI` overlay module. It is
-iOS 26 API, which is the package floor, so it needs no availability gate. Like video and
-maps it has no ideal height, so it takes the box React Native gives it.
+iOS 26 API, so below 26 it renders empty rather than raising the package floor. Like video
+and maps it has no ideal height, so it takes the box React Native gives it.
 
 ```tsx
 <Swift.WebView
@@ -735,7 +749,7 @@ event-count and `detentRevision` protocol used by other controlled values.
 `presentationBackground` accepts a React Native color. Background interaction is
 `automatic`, `enabled`, `disabled`, or `{ enabledUpThrough: detent }`. Content
 interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
-`automatic`, `fitted`, `form`, or `page`.
+`automatic`, `fitted`, `form`, or `page`; it needs iOS 18 and is ignored below it.
 
 `fitToContents` derives a height detent from the mounted React Native child's laid-out
 height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
@@ -955,8 +969,9 @@ so give it a height or a flex parent.
 `glassEffect` is the iOS 26 Liquid Glass surface: `regular`, `clear`, or `interactive`,
 where `interactive` is the one that reacts to touch. `material` is the iOS 15 material
 surface: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins when both
-are set. Every value is drawn with the matching SwiftUI API, so the surface is the real
-one rather than an approximation.
+are set. Below iOS 26 glass falls back to the `material` surface, or to no surface when
+none is set. Every value is drawn with the matching SwiftUI API, so the surface is the
+real one rather than an approximation.
 
 `cornerRadius` shapes the surface. Left out, glass keeps the shape SwiftUI picks for the
 size it was given, and a material fills the box squarely. `tint` colors the glass and
