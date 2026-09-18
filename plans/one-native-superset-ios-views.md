@@ -2,9 +2,8 @@
 
 ## Now
 
-Frozen per audit mail: will not run `bun run generate` until the audit
-confirms origin/v2-beta is merged into feat/one-native-superset. Next after
-unfreeze: regen, then native views + JS + tests for M1a.
+Milestone 2: ControlGroup, DisclosureGroup, Divider, Link, Group, Overlay,
+SwipeActions, pager-style tabs.
 
 ## Done
 
@@ -19,16 +18,42 @@ unfreeze: regen, then native views + JS + tests for M1a.
   schema, provider, and swiftui.ts entries. generate:check is expected-red
   until then (catalog ahead of regen).
 - Never touched generate.ts; MAXIMUM_IOS untouched.
+- COMMITTED f9f52070a (regen leftovers: 4 specs, package.json provider,
+  types.ts ListStyle). Post-merge `bun run generate` + `generate:check`
+  clean: SDK 27.1 toolchain, target 26, 224 mapped symbols, 163 files,
+  iOS 17 swiftc typecheck + VerifyControlled passed.
+- M1a shipped: COMMITTED cdebd0595 (12 native view files),
+  52b59a64a (JS wrappers + 14 vitest), 27a671620 (lists fixture + suite
+  + nav), 0f6490b47 (README). Gates: generate:check clean (covers the
+  new Swift), tsc clean, vitest 72/72.
 
 ## NEEDS-BUILD
 
-(none yet)
+- cdebd0595: xcodebuild the 4 new ComponentViews (.mm is pattern-mirrored
+  but uncompiled here) and run the new lists suite
+  (`--suite lists`). The suite is unverified: swipe-anchoring and
+  lazy-materialization assertions were written blind. Fixture rows use
+  composed Text/Button/Toggle/Section only.
 
 ## Blocked
 
-- Audit merge of origin/v2-beta (SDK 26 ceiling) into
-  feat/one-native-superset. Resume M1a native/JS work only after the
-  all-clear; regen first.
+(none)
+
+## Queued
+
+- M1 remainder: List selection/edit/delete/move (Expo `selection`,
+  `List.ForEach` onDelete/onMove, edit mode). Needs a row-tagging
+  protocol our view-driven composition lacks: children arrive as views,
+  not tagged data. Cleanest after milestone 4 lands the `tag` plumbing;
+  index-based selection is the fallback subset. Not started.
+- Rnx lane finding, slot into milestone 2/3:
+
+- Icon-only Button: today `label` is required non-empty and `systemImage`
+  only renders inside the Label branch, so Expo-compatible icon-only usage
+  renders an empty capsule (their workaround is `label=""`). Add a path
+  that renders `Image` rather than Label-with-empty-title (sidesteps the
+  open question of whether Label reserves icon-to-title spacing for empty
+  titles) and prove symbol centering in conformance.
 
 ## Emitter features needed (codegen worker)
 
