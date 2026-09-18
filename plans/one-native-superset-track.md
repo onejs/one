@@ -10,6 +10,8 @@ steps, not one shot.
 - Worktree: `/Users/n8/.worktrees/one-native-superset` (all workers share it).
 - iOS floor: 17. iOS 26-only API (glassEffect, tab roles, badges) must be
   availability-gated, never the deployment target.
+- Scope is native iOS + Android only. One-native never does web/canvas;
+  rnx/Contrast icons go lucide (per-app icon consts), not through us.
 - SDK ceiling: MAXIMUM_IOS=26 (CI lane commit 7cc558e69; CI pins Xcode 26.4).
   Never bump it or commit post-26 symbols without a CI Xcode bump, or the
   branch re-reds. Regen output must be identical on any newer toolchain.
