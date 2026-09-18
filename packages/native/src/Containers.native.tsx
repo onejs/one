@@ -11,11 +11,24 @@ import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
+import NativeLazyHStack from './specs/OneNativeLazyHStackNativeComponent'
+import NativeLazyVStack from './specs/OneNativeLazyVStackNativeComponent'
+import NativeList from './specs/OneNativeListNativeComponent'
+import NativeScrollView from './specs/OneNativeScrollViewNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
 import NativeSpacer from './specs/OneNativeSpacerNativeComponent'
 import NativeZStack from './specs/OneNativeZStackNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
 import { labeledContentProps } from './labeledContent'
+import {
+  lazyHStackAlignments,
+  lazyVStackAlignments,
+  scrollViewAxes,
+  type LazyHStackProps,
+  type LazyVStackProps,
+  type ListProps,
+  type ScrollViewProps,
+} from './listTypes'
 import {
   hostAlignments,
   hostAxes,
@@ -38,7 +51,7 @@ import {
 export const InsideContainer = createContext(false)
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, or Swift.Glass'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, or Swift.LazyHStack'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -61,12 +74,25 @@ function nativeEnvironmentProps({
   }
 }
 
-function assertNoForm(children: ReactNode, owner: string) {
-  for (const child of Children.toArray(children))
-    if (isValidElement(child) && child.type === Form)
+function assertNoGreedyContainer(children: ReactNode, owner: string) {
+  for (const child of Children.toArray(children)) {
+    if (!isValidElement(child)) continue
+    const name =
+      child.type === Form
+        ? 'Swift.Form'
+        : child.type === List
+          ? 'Swift.List'
+          : child.type === ScrollView
+            ? 'Swift.ScrollView'
+            : null
+    // a form, a list, and a scroll view all take the box they are given instead of
+    // reporting an ideal height, so a measured parent reads zero for one and renders
+    // nothing at all.
+    if (name)
       throw new Error(
-        `Swift.Form cannot be a child of ${owner}; give the Form its own box`
+        `${name} cannot be a child of ${owner}; give the ${name.slice('Swift.'.length)} its own box`
       )
+  }
 }
 
 type HostStackProps = HostProps & { name: string; axis: HostAxis }
@@ -91,7 +117,7 @@ function HostStack({
     throw new Error(`${name} alignment must be one of ${hostAlignments.join(', ')}`)
   if (!Number.isFinite(spacing) || spacing < 0)
     throw new Error(`${name} spacing must be a non-negative number`)
-  assertNoForm(children, name)
+  assertNoGreedyContainer(children, name)
   return (
     <NativeHost
       {...props}
@@ -129,7 +155,7 @@ export function ZStack({ alignment = 'center', children, style, ...props }: ZSta
     throw new Error(
       `Swift.ZStack alignment must be one of ${zStackAlignments.join(', ')}`
     )
-  assertNoForm(children, 'Swift.ZStack')
+  assertNoGreedyContainer(children, 'Swift.ZStack')
   return (
     <NativeZStack
       {...props}
@@ -189,6 +215,84 @@ export function Section({
     <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
+  )
+}
+
+export function List({ listStyle = 'automatic', children, style, ...props }: ListProps) {
+  assertSwiftUIValue(
+    'ListStyle',
+    listStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeList {...props} style={[{ flex: 1 }, style]} listStyle={listStyle}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeList>
+  )
+}
+
+export function ScrollView({
+  axes = 'vertical',
+  showsIndicators = true,
+  children,
+  style,
+  ...props
+}: ScrollViewProps) {
+  if (!scrollViewAxes.includes(axes))
+    throw new Error(
+      `Swift.ScrollView axes must be one of ${scrollViewAxes.join(', ')}`
+    )
+  return (
+    <NativeScrollView
+      {...props}
+      style={[{ flex: 1 }, style]}
+      axes={axes}
+      showsIndicators={showsIndicators}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeScrollView>
+  )
+}
+
+export function LazyVStack({
+  alignment = 'center',
+  children,
+  style,
+  ...props
+}: LazyVStackProps) {
+  if (!lazyVStackAlignments.includes(alignment))
+    throw new Error(
+      `Swift.LazyVStack alignment must be one of ${lazyVStackAlignments.join(', ')}`
+    )
+  return (
+    <NativeLazyVStack
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLazyVStack>
+  )
+}
+
+export function LazyHStack({
+  alignment = 'center',
+  children,
+  style,
+  ...props
+}: LazyHStackProps) {
+  if (!lazyHStackAlignments.includes(alignment))
+    throw new Error(
+      `Swift.LazyHStack alignment must be one of ${lazyHStackAlignments.join(', ')}`
+    )
+  return (
+    <NativeLazyHStack
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLazyHStack>
   )
 }
 

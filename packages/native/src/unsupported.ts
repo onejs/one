@@ -6,8 +6,12 @@ import type {
   GlassProps,
   HostProps,
   LabeledContentProps,
+  LazyHStackProps,
+  LazyVStackProps,
+  ListProps,
   MenuProps,
   PopoverProps,
+  ScrollViewProps,
   SectionProps,
   SheetProps,
   SlotProps,
@@ -75,6 +79,24 @@ function Glass(_props: GlassProps): never {
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build with @vxrn/native installed')
 }
+function List(_props: ListProps): never {
+  throw new Error('Swift.List requires an iOS native build with @vxrn/native installed')
+}
+function ScrollView(_props: ScrollViewProps): never {
+  throw new Error(
+    'Swift.ScrollView requires an iOS native build with @vxrn/native installed'
+  )
+}
+function LazyVStack(_props: LazyVStackProps): never {
+  throw new Error(
+    'Swift.LazyVStack requires an iOS native build with @vxrn/native installed'
+  )
+}
+function LazyHStack(_props: LazyHStackProps): never {
+  throw new Error(
+    'Swift.LazyHStack requires an iOS native build with @vxrn/native installed'
+  )
+}
 export const Swift = {
   Tabs,
   Tab,
@@ -93,6 +115,10 @@ export const Swift = {
   LabeledContent,
   Spacer,
   Slot,
+  List,
+  ScrollView,
+  LazyVStack,
+  LazyHStack,
   ...unsupportedControls,
 }
 export type * from './types'
