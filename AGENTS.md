@@ -31,3 +31,9 @@ To understand more about One, you should search for documentation (`apps/onestac
   branch and push, as a `wip:` commit if unfinished, before you stop.
 - Managers prune without asking: any worktree with no live owner, a clean tree,
   and a HEAD reachable from `origin` is removed. `tm drift` is the audit.
+
+## Commit Messages
+
+- Keep commit messages short and simple
+- NO attribution lines (no "Generated with Claude Code", no "Co-Authored-By")
+- NO wordy descriptions - just state what was changed
