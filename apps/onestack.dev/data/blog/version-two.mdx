@@ -1,19 +1,18 @@
 ---
 title: 'One v2 Beta'
 publishedAt: '2026-09-17'
-description: 'Native SwiftUI and Compose interfaces, React Navigation 8, and a year of framework work since the v1 beta.'
+description: 'Native SwiftUI and Compose interfaces, React Navigation 8, and the framework work since the v1 beta.'
 by: nate
 draft: true
 ---
 
-{/* draft: covers the v1 line through 1.27.1 plus the v2 beta cut, versions verified against the tree */}
+{/* draft: range origin/v1-rc1..v2-beta, 1834 commits; v1 line through 1.27.1 plus the v2 beta cut, versions verified against the tree */}
 
 <IntroParagraph>
   The v2 beta line is available on the npm `beta` dist-tag. It collects
   everything since the v1 beta: the v1 stable line through 1.27.1, a new native
-  interface library, React Navigation 8, and a reworked native bundling
-  pipeline. This post summarizes the changes as recorded in git history and the
-  per-release notes.
+  interface library, the React Navigation 8 alpha, and a reworked native
+  bundling pipeline.
 </IntroParagraph>
 
 Install the beta with:
@@ -55,6 +54,11 @@ and an iOS 17 deployment target. Newer surfaces degrade gracefully below
 their version: WebView and Liquid Glass need iOS 26 (glass falls back to the
 material), and the modern tab bar and sheet sizing need iOS 18.
 
+The package also carries a UIKit surface: a type-safe Color API, iOS zoom
+transitions, a bottom `UIToolbar` with SF Symbols and badges, toolbar menu
+actions, and an iPad `SplitView`. All of it is experimental alongside the
+rest of the package.
+
 See [native features](/docs/native-features) and the
 [iOS native guide](/docs/guides-ios-native).
 
@@ -83,7 +87,9 @@ One moved to the React Navigation 8 alpha. `Presentations` replaces
 `NavigationRender`, and Stack, Tabs, and Drawer render through pluggable web
 rendering with headless web navigators, so `react-native` stays out of the
 web module graph. The drawer ships as a separate `one/drawer` import so apps
-that don't use it skip the weight. The Stack gained a header composition API
+that don't use it skip the weight. Custom layouts read navigator state
+through [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs),
+and [useDrawer](/docs/hooks-useDrawer). The Stack gained a header composition API
 with child processing, and the router added toolbar support, suspense,
 protected redirects, `Tabs.Protected`, an option to suspend on route load for
 native and web, deep linking config with a `getLinking` helper and
@@ -105,8 +111,9 @@ Rendering and build work since the v1 beta:
   `web.renderRootLayout` to fix the root layout to SSG or SSR regardless of
   the child page mode, and `.server.ts` platform extension support.
 - [Skew protection](/docs/guides-skew-protection) with an optional proactive
-  mode, CDN edge caching for SSG and SPA pages, and retry of transient
-  dynamic-import failures before reloading.
+  mode, CDN edge caching for SSG and SPA pages (the mechanism behind
+  [ISR](/docs/guides-isr)), and retry of transient dynamic-import failures
+  before reloading.
 - Startup and dev speed: `optimization.warmRoutes` with passive dependency
   tracking, `native: false` for web-only projects, an experimental bundled dev
   mode behind a flag (Vite 8.1 FullBundleDev), multicore static builds through
@@ -119,7 +126,9 @@ Rendering and build work since the v1 beta:
   first paint.
 - Framework depth: flexible React Compiler options, `.server.ts` support,
   subdomain on loader props, API middleware fixes with a unified server build
-  mode, and a daemon for multi-app development.
+  mode, streaming SSR responses by default, a per-environment
+  [`alias`](/docs/configuration#alias) option the dep optimizer respects,
+  and a daemon for multi-app development.
 
 ## Deployment, updates, and data
 
@@ -142,8 +151,10 @@ hot-updater with the generated EXUpdates manifest. Data loading keeps
 [middleware](/docs/routing-middlewares),
 [typed API routes](/docs/routing-api-routes) with `createAPIRoute`,
 [layout loaders](/docs/routing-layouts) readable anywhere through
-[useMatches](/docs/hooks-useMatches), and sitemaps with per-route
-overrides.
+[useMatches](/docs/hooks-useMatches),
+[loaderCache](/docs/routing-loader#loader-cache) for deduping concurrent
+SSR loader calls, a 60s default loader timeout (`ONE_LOADER_TIMEOUT_MS`),
+and sitemaps with per-route overrides.
 
 ## Developer experience
 
@@ -152,8 +163,11 @@ timing, error tracking, quick actions, and a source inspector with picker
 UI, input recording, component enter and leave events, and an Under tab. Editor
 detection and configuration improved, MDX gained smart typography and
 automatic loader HMR, `EXPO_PUBLIC_` joined the default env prefix for Expo
-compatibility, and `--skip-env` skips env loading. See
-[DevTools](/docs/dev-tools) and [environment](/docs/environment).
+compatibility, and `--skip-env` skips env loading. A
+[`patches`](/docs/configuration#patches) option applies package patches
+during dev and build, with [`one patch`](/docs/cli#one-patch) for manual
+application. See [DevTools](/docs/dev-tools) and
+[environment](/docs/environment).
 
 The site itself added build-time open graph images for posts and an RSS feed
 for this blog.

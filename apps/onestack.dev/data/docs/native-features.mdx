@@ -106,7 +106,11 @@ no height style, but their parent must provide a width. Content with no ideal
 height (video, maps, web views, empty states, glass, forms) takes the box
 React Native gives it, so give it a height or a flex parent. Sheets, covers,
 alerts, dialogs, and Quick Look are zero-size hosts that take no layout
-space; keep them mounted while they can present.
+space; keep them mounted while they can present. React Native props on a
+composed child (`testID`, `accessibilityLabel`, `backgroundColor`,
+`onLayout`) land on a view SwiftUI never displays, so they have no effect;
+SwiftUI supplies the accessibility element instead. Put React Native props
+on the `Swift.Host` itself.
 
 ### iOS version behavior
 
