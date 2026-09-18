@@ -7,7 +7,6 @@ export type PickerStyle =
   | 'inline'
   | 'automatic'
   | 'segmented'
-  | 'tabs'
   | 'palette'
   | 'navigationLink'
   | 'menu'
@@ -16,7 +15,7 @@ export type ToggleStyle = 'button' | 'automatic' | 'switch'
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled'
 export type TabBarMinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never'
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close'
-export type TabRole = 'search' | 'prominent'
+export type TabRole = 'search'
 export type ControlGroupStyle =
   | 'palette'
   | 'automatic'
@@ -39,7 +38,7 @@ export type GaugeStyle =
   | 'accessoryLinearCapacity'
   | 'automatic'
   | 'accessoryCircular'
-export type TextFieldStyle = 'automatic' | 'bordered' | 'plain'
+export type TextFieldStyle = 'automatic' | 'plain'
 export type SubmitLabel =
   | 'done'
   | 'go'
@@ -87,6 +86,13 @@ export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'd
 export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled'
 export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled'
 export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled'
+export type ListStyle =
+  | 'automatic'
+  | 'sidebar'
+  | 'inset'
+  | 'grouped'
+  | 'insetGrouped'
+  | 'plain'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -103,7 +109,6 @@ export const swiftUIValues = {
     inline: 14,
     automatic: 13,
     segmented: 13,
-    tabs: 27,
     palette: 17,
     navigationLink: 16,
     menu: 14,
@@ -138,7 +143,6 @@ export const swiftUIValues = {
   },
   TabRole: {
     search: 18,
-    prominent: 27,
   },
   ControlGroupStyle: {
     palette: 17,
@@ -171,7 +175,6 @@ export const swiftUIValues = {
   },
   TextFieldStyle: {
     automatic: 13,
-    bordered: 27,
     plain: 13,
   },
   SubmitLabel: {
@@ -280,6 +283,14 @@ export const swiftUIValues = {
     automatic: 26,
     enabled: 26,
     disabled: 26,
+  },
+  ListStyle: {
+    automatic: 13,
+    sidebar: 14,
+    inset: 14,
+    grouped: 13,
+    insetGrouped: 14,
+    plain: 13,
   },
 } as const
 export function assertSwiftUIValue(

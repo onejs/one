@@ -185,6 +185,102 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeList",
+      "publicName": "List",
+      "props": {
+        "listStyle": {
+          "type": "string",
+          "enum": "ListStyle"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeScrollView",
+      "publicName": "ScrollView",
+      "props": {
+        "axes": {
+          "type": "string"
+        },
+        "showsIndicators": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLazyVStack",
+      "publicName": "LazyVStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLazyHStack",
+      "publicName": "LazyHStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
@@ -2036,7 +2132,6 @@
       "inline": 14,
       "automatic": 13,
       "segmented": 13,
-      "tabs": 27,
       "palette": 17,
       "navigationLink": 16,
       "menu": 14
@@ -2070,8 +2165,7 @@
       "close": 26
     },
     "TabRole": {
-      "search": 18,
-      "prominent": 27
+      "search": 18
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -2104,7 +2198,6 @@
     },
     "TextFieldStyle": {
       "automatic": 13,
-      "bordered": 27,
       "plain": 13
     },
     "SubmitLabel": {
@@ -2213,6 +2306,14 @@
       "automatic": 26,
       "enabled": 26,
       "disabled": 26
+    },
+    "ListStyle": {
+      "automatic": 13,
+      "sidebar": 14,
+      "inset": 14,
+      "grouped": 13,
+      "insetGrouped": 14,
+      "plain": 13
     }
   }
 }
