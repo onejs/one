@@ -4,7 +4,8 @@
   "exclude": ["dist", "types", "tests"],
   "compilerOptions": {
     "composite": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "customConditions": ["react-native-legacy-deep-imports"]
   },
   "references": [
     {
