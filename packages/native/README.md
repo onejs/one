@@ -231,10 +231,11 @@ optimistic selection to undo and no flash of an empty page. Every tab needs exac
 Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
 what moves a tab into its own capsule on the trailing side, which is the placement an action
 like Compose usually wants; without it the tab sits inside the pill alongside the pages.
-`search` (iOS 18) and `prominent` (iOS 27) are the roles SwiftUI defines, so a non-search
-action borrows the search placement, and only one tab can hold it. A role below its
-runtime version throws from the adapter; on iOS 17 tabs render through the legacy
-`TabView`, which has no roles.
+`search` is the only role the bindings carry (SDK symbols above iOS 26 are
+excluded until CI moves to a newer Xcode), so a non-search action borrows its
+placement, and only one tab can hold it. A role below its runtime version throws
+from the adapter; on iOS 17 tabs render through the legacy `TabView`, which has
+no roles.
 
 ```tsx
 <Swift.Tab
@@ -263,7 +264,7 @@ for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and upd
 that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
 
-`Swift.Tab` accepts `role="search"` (iOS 18+) and `role="prominent"` (iOS 27+).
+`Swift.Tab` accepts `role="search"` (iOS 18+).
 `Swift.Tabs` accepts the SDK-derived `tabBarMinimizeBehavior` values (iOS 26+).
 Unsupported enum values, and values above the runtime iOS version, are rejected
 before submitting native props.
