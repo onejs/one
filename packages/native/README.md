@@ -5,9 +5,10 @@ The One Native iOS surface
 exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
 containers, popovers, video, maps, web views, sharing, the photo library, empty states,
 and Quick Look through `Swift`. The package also retains its platform colors, zoom,
-toolbar, menu action, and split view exports. The Swift surface requires an iOS 26+
-native build, and the Swift and Compose surfaces require React Native's New
-Architecture. Beta releases are published to npm on the `beta` dist-tag.
+toolbar, menu action, and split view exports. The Swift surface builds for iOS 17+,
+with the iOS 26 surfaces (WebView, Liquid Glass) and the iOS 18 tab bar falling back
+gracefully on older versions, and the Swift and Compose surfaces require React Native's
+New Architecture. Beta releases are published to npm on the `beta` dist-tag.
 
 ## Android Compose
 
@@ -502,8 +503,9 @@ and coordinates must be finite, or the adapter throws.
 ## Web content
 
 `Swift.WebView` is SwiftUI's `WebView` from the `_WebKit_SwiftUI` overlay module. It is
-iOS 26 API, which is the package floor, so it needs no availability gate. Like video and
-maps it has no ideal height, so it takes the box React Native gives it.
+iOS 26 API, above the iOS 17 package floor, so below 26 the availability gate renders
+a clear color instead. Like video and maps it has no ideal height, so it takes the box
+React Native gives it.
 
 ```tsx
 <Swift.WebView
