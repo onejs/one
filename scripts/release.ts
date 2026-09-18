@@ -491,7 +491,10 @@ async function run() {
         try {
           const { stdout } = await execFile(
             'npm',
-            ['view', `${name}@${version}`, 'version', '--json'],
+            // --prefer-online so this revalidates rather than answering from a
+            // negative response npm cached seconds earlier, which matters most
+            // for the post-publish check that polls the same version repeatedly
+            ['view', `${name}@${version}`, 'version', '--json', '--prefer-online'],
             { cwd: tmpDir }
           )
           return JSON.parse(stdout.trim()) === version
@@ -542,7 +545,7 @@ async function run() {
 
       if (publishResult.failed.length > 0) {
         throw new Error(
-          `Failed to publish ${publishResult.failed.length} packages:\n${publishResult.failed.join('\n')}\n\nRe-run with --republish to retry.`
+          `npm reported success but ${publishResult.failed.length} of ${publishResult.published.length + publishResult.failed.length} packages are not on the registry at ${version}:\n${publishResult.failed.join('\n')}\n\nRe-run with --republish to retry.`
         )
       }
 
