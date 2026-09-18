@@ -2,13 +2,24 @@
 
 ## Now
 
-M2 done, committing. Next: M3 generic emitters (generic leaf emitter +
-generic enum-modifier emitter driven by inventory).
+M3 V1 done, committing. Emitter machinery + proof landed; catalog migration
+is sequenced by the coordinator (proposal below). Nothing further in flight.
 
 ## Done
 
 - MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
   Merge a95cd0206 landed with MAXIMUM_IOS=26; freeze over.
+- M3 V1 generic emitters done: codegen/derive.ts (deriveLeafSwift from SDK
+  signature + LeafArg descriptors; unconsumed enum fields auto-chain as
+  modifiers) and selectEnumModifier in inventory.ts (style enums via generic
+  constraint, value enums via single `_:` parameter, nested types via
+  flattened name; throws on ambiguity/absence). Proof: tests/derive.test.ts
+  (13 tests) shows derivation reproduces the hand-written bodies of Text,
+  Label, Gauge, Toggle, Stepper byte for byte; a local real-SDK probe
+  confirmed the same plus 21/21 unambiguous enum resolutions (Visibility is
+  genuinely 13-way ambiguous; roles/Axis/Edge/Photos enums are ctor args,
+  not modifiers). No regen output changed: generate:check verified,
+  tsc + vitest 84/84 pass.
 - M2 coverage dashboard done: `bun run coverage` prints per-module
   mapped/total views and modifiers (26/750 views, 50/467 modifiers at
   target SDK 26; 47 views + 52 modifiers above the ceiling counted
@@ -43,6 +54,27 @@ generic enum-modifier emitter driven by inventory).
 - 5f87b5782 (M1 floor fixes): app.json deploymentTarget 26.0 -> 17.0 wants a
   coordinator xcodebuild + conformance run.
 
+## Catalog proposal (needs coordinator sequencing; not editable by me)
+
+1. Add `leaf: LeafRecipe` to the five proven recipes (Text, Label, Gauge,
+   Toggle, Stepper). The exact descriptors are the `leafArgs` fixtures in
+   tests/derive.test.ts; controlTypes.ts already carries the optional field.
+2. Ambiguous-enum override for migration wave 2: extend the derivation input
+   with `{ field, enum, modifier }` so Visibility-typed fields (sheet drag
+   indicator, web content background, list row visibility) name their
+   modifier explicitly instead of resolving. I will add the override to
+   derive.ts when the first recipe needs it.
+3. V2 descriptor gaps (my follow-ups, in order): conditional constructors
+   (ProgressView, Image, Slider), bool-field modifiers + action modifiers
+   (TextField/SecureField chain), converted bindings (DatePicker epoch ms,
+   ColorPicker hex). Presentation hosts, Map, Video, Photos, WebView, Share,
+   dialogs, Button disclosure stay hand-written: custom surfaces and
+   branching no descriptor set earns yet.
+4. Emitter wiring (mine, after recipe adoption): emitControls takes the
+   inventory and uses deriveLeafSwift when `control.leaf` is present, keeping
+   `swift` as a byte-equality oracle during transition; delete hand-written
+   bodies only after generate:check stays green.
+
 ## Blocked
 
 - Stale comment in ios-views territory, not edited per ownership:
@@ -53,7 +85,5 @@ generic enum-modifier emitter driven by inventory).
   apps/onestack.dev/data/blog/version-two.mdx:148 says apps using
   @vxrn/native "build for iOS 26". Coordinator call whether to touch a
   release-history post.
-- tests/containers.test.ts "implements a view for every registered
-  component" fails on OneNativeListComponentView: ios-views registered
-  List/ScrollView/Lazy components (dirty package.json) before the native
-  views exist. Their WIP, not mine; my area's tests pass.
+- (resolved) the containers.test.ts OneNativeListComponentView failure cleared
+  when ios-views landed the native views; suite is 84/84 green.
