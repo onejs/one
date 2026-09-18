@@ -570,6 +570,110 @@
       "requirements": []
     }
   ],
+  "coverage": {
+    "views": {
+      "SwiftUI": [
+        "Button",
+        "ColorPicker",
+        "ContentUnavailableView",
+        "ControlGroup",
+        "DatePicker",
+        "Divider",
+        "Gauge",
+        "Label",
+        "Menu",
+        "Picker",
+        "ProgressView",
+        "Section",
+        "SecureField",
+        "ShareLink",
+        "Slider",
+        "Stepper",
+        "Tab",
+        "TextField",
+        "Toggle"
+      ],
+      "SwiftUICore": [
+        "Image",
+        "Text"
+      ],
+      "_AVKit_SwiftUI": [
+        "VideoPlayer"
+      ],
+      "_PhotosUI_SwiftUI": [
+        "PhotosPicker"
+      ],
+      "_WebKit_SwiftUI": [
+        "WebView"
+      ],
+      "_MapKit_SwiftUI": [
+        "Map",
+        "Marker"
+      ]
+    },
+    "modifiers": {
+      "SwiftUI": [
+        "alert",
+        "autocorrectionDisabled",
+        "buttonStyle",
+        "confirmationDialog",
+        "contextMenu",
+        "controlGroupStyle",
+        "datePickerStyle",
+        "fullScreenCover",
+        "gaugeStyle",
+        "interactiveDismissDisabled",
+        "listStyle",
+        "menuActionDismissBehavior",
+        "menuOrder",
+        "onSubmit",
+        "pickerStyle",
+        "popover",
+        "presentationBackground",
+        "presentationBackgroundInteraction",
+        "presentationCompactAdaptation",
+        "presentationContentInteraction",
+        "presentationDetents",
+        "presentationDragIndicator",
+        "presentationSizing",
+        "progressViewStyle",
+        "sheet",
+        "submitLabel",
+        "tabBarMinimizeBehavior",
+        "textFieldStyle",
+        "textInputAutocapitalization",
+        "toggleStyle"
+      ],
+      "SwiftUICore": [
+        "background",
+        "border",
+        "clipShape",
+        "environment",
+        "font",
+        "foregroundStyle",
+        "frame",
+        "imageScale",
+        "opacity",
+        "padding",
+        "symbolRenderingMode",
+        "symbolVariant",
+        "tint"
+      ],
+      "_WebKit_SwiftUI": [
+        "webViewBackForwardNavigationGestures",
+        "webViewContentBackground",
+        "webViewElementFullscreenBehavior",
+        "webViewLinkPreviews",
+        "webViewMagnificationGestures"
+      ],
+      "_MapKit_SwiftUI": [
+        "onMapCameraChange"
+      ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
+      ]
+    }
+  },
   "constructors": [
     {
       "module": "SwiftUI",
