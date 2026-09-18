@@ -82,5 +82,5 @@ GitHub release. Packages marked `skipPublish` remain excluded.
 Verify a beta by its content after publication:
 
 ```sh
-npm pack one@2.0.0-beta.<workflow-run>.<attempt> one-native@2.0.0-beta.<workflow-run>.<attempt>
+npm pack one@2.0.0-beta.<workflow-run>.<attempt> @vxrn/native@2.0.0-beta.<workflow-run>.<attempt>
 ```
