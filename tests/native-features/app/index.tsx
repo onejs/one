@@ -64,6 +64,11 @@ const testScreens = [
     testID: 'nav-one-native-android',
   },
   {
+    href: '/one-native-android-inputs',
+    label: 'One Native Android Inputs',
+    testID: 'nav-one-native-android-inputs',
+  },
+  {
     href: '/one-native-tab-oracle',
     label: 'One Native Tab Bar Oracle',
     testID: 'nav-one-native-tab-oracle',
