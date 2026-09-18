@@ -19,14 +19,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -52,10 +59,14 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.facebook.react.R
 import com.facebook.react.bridge.ColorPropConverter
 import com.facebook.react.bridge.ReadableMap
@@ -146,11 +157,26 @@ internal data class OneNativeComposeNodeProps(
     val alignment: String? = null,
     val arrangement: String? = null,
     val spacing: Double = -1.0,
+    val textValue: String? = null,
+    val placeholder: String? = null,
+    val keyboardType: String? = null,
+    val secureText: Boolean = false,
+    val numberValue: Double = 0.0,
+    val minimumValue: Double = 0.0,
+    val maximumValue: Double = 1.0,
+    val step: Double = 0.0,
+    val visible: Boolean = false,
+    val title: String? = null,
+    val message: String? = null,
+    val confirmLabel: String? = null,
+    val dismissLabel: String? = null,
+    val progress: Double = -1.0,
+    val progressVariant: String? = null,
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
-private class OneNativeControlledSwitch {
-    var value by mutableStateOf(false)
+private class OneNativeControlledValue<T>(initial: T) {
+    var value by mutableStateOf(initial)
         private set
 
     var eventCount: Int = 0
@@ -159,7 +185,7 @@ private class OneNativeControlledSwitch {
     var revision: Int = 0
         private set
 
-    fun applyProps(suppliedValue: Boolean, acknowledgedEvent: Int, suppliedRevision: Int) {
+    fun applyProps(suppliedValue: T, acknowledgedEvent: Int, suppliedRevision: Int) {
         if (suppliedRevision != revision) {
             revision = suppliedRevision
             eventCount = 0
@@ -169,15 +195,15 @@ private class OneNativeControlledSwitch {
         }
     }
 
-    fun change(nextValue: Boolean): Int? {
+    fun change(nextValue: T): Int? {
         if (nextValue == value) return null
         value = nextValue
         eventCount += 1
         return eventCount
     }
 
-    fun reset() {
-        value = false
+    fun reset(to: T) {
+        value = to
         eventCount = 0
         revision = 0
     }
@@ -196,12 +222,15 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         }
 
     private val logicalChildren = mutableStateListOf<OneNativeComposeNodeView>()
-    private val controlledSwitch = OneNativeControlledSwitch()
+    private val controlledSwitch = OneNativeControlledValue(false)
+    private val controlledText = OneNativeControlledValue("")
+    private val controlledNumber = OneNativeControlledValue(0.0)
     private var pendingProps = OneNativeComposeNodeProps()
     private var committedProps by mutableStateOf(OneNativeComposeNodeProps())
     private var semanticsVersion by mutableIntStateOf(0)
     private var compositionActive = false
     private var pressEventCount = 0
+    private var dialogEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
 
     init {
@@ -227,6 +256,12 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal val renderedSwitchValue: Boolean
         get() = controlledSwitch.value
+
+    internal val renderedTextValue: String
+        get() = controlledText.value
+
+    internal val renderedNumberValue: Double
+        get() = controlledNumber.value
 
     internal val renderedNodeKind: String
         get() = committedProps.nodeType
@@ -269,6 +304,16 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         committedProps = next
         controlledSwitch.applyProps(
             suppliedValue = next.value,
+            acknowledgedEvent = next.acknowledgedEvent,
+            suppliedRevision = next.revision,
+        )
+        controlledText.applyProps(
+            suppliedValue = next.textValue.orEmpty(),
+            acknowledgedEvent = next.acknowledgedEvent,
+            suppliedRevision = next.revision,
+        )
+        controlledNumber.applyProps(
+            suppliedValue = next.numberValue.takeIf { it.isFinite() } ?: 0.0,
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
         )
@@ -346,6 +391,66 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(spacing = value)
     }
 
+    internal fun stageTextValue(value: String?) {
+        pendingProps = pendingProps.copy(textValue = value)
+    }
+
+    internal fun stagePlaceholder(value: String?) {
+        pendingProps = pendingProps.copy(placeholder = value)
+    }
+
+    internal fun stageKeyboardType(value: String?) {
+        pendingProps = pendingProps.copy(keyboardType = value)
+    }
+
+    internal fun stageSecureText(value: Boolean) {
+        pendingProps = pendingProps.copy(secureText = value)
+    }
+
+    internal fun stageNumberValue(value: Double) {
+        pendingProps = pendingProps.copy(numberValue = value)
+    }
+
+    internal fun stageMinimumValue(value: Double) {
+        pendingProps = pendingProps.copy(minimumValue = value)
+    }
+
+    internal fun stageMaximumValue(value: Double) {
+        pendingProps = pendingProps.copy(maximumValue = value)
+    }
+
+    internal fun stageStep(value: Double) {
+        pendingProps = pendingProps.copy(step = value)
+    }
+
+    internal fun stageVisible(value: Boolean) {
+        pendingProps = pendingProps.copy(visible = value)
+    }
+
+    internal fun stageTitle(value: String?) {
+        pendingProps = pendingProps.copy(title = value)
+    }
+
+    internal fun stageMessage(value: String?) {
+        pendingProps = pendingProps.copy(message = value)
+    }
+
+    internal fun stageConfirmLabel(value: String?) {
+        pendingProps = pendingProps.copy(confirmLabel = value)
+    }
+
+    internal fun stageDismissLabel(value: String?) {
+        pendingProps = pendingProps.copy(dismissLabel = value)
+    }
+
+    internal fun stageProgress(value: Double) {
+        pendingProps = pendingProps.copy(progress = value)
+    }
+
+    internal fun stageProgressVariant(value: String?) {
+        pendingProps = pendingProps.copy(progressVariant = value)
+    }
+
     internal fun stageComposeStyle(value: ReadableMap?) {
         pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
     }
@@ -372,6 +477,58 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
                 value = nextValue,
                 eventCount = eventCount,
                 revision = controlledSwitch.revision,
+            )
+        )
+    }
+
+    internal fun handleTextChanged(nextValue: String) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledText.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                text = nextValue,
+                eventCount = eventCount,
+                revision = controlledText.revision,
+            )
+        )
+    }
+
+    internal fun handleNumberChanged(nextValue: Double) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledNumber.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeNumberValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledNumber.revision,
+            )
+        )
+    }
+
+    internal fun handleDialogConfirm() {
+        if (!compositionActive) return
+        dialogEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDialogConfirmEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = dialogEventCount,
+            )
+        )
+    }
+
+    internal fun handleDialogDismiss() {
+        if (!compositionActive) return
+        dialogEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDialogDismissEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = dialogEventCount,
             )
         )
     }
@@ -447,8 +604,11 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         if (composeView.hasComposition) composeView.disposeComposition()
         pendingProps = OneNativeComposeNodeProps()
         committedProps = OneNativeComposeNodeProps()
-        controlledSwitch.reset()
+        controlledSwitch.reset(false)
+        controlledText.reset("")
+        controlledNumber.reset(0.0)
         pressEventCount = 0
+        dialogEventCount = 0
         semanticsVersion = 0
     }
 
@@ -519,6 +679,18 @@ private fun RenderComposeNodeBody(
             )
         "button" -> RenderComposeButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
+        "textfield" -> RenderComposeTextField(node, props, modifier)
+        "slider" -> RenderComposeSlider(node, props, modifier)
+        "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
+        "dialog" ->
+            if (props.visible) {
+                Dialog(onDismissRequest = { node.handleDialogDismiss() }) {
+                    Box(modifier = modifier) {
+                        RenderComposeChildren(node)
+                    }
+                }
+            }
+        "progressindicator" -> RenderComposeProgressIndicator(props, modifier)
         else ->
             Box(modifier = modifier) {
                 RenderComposeChildren(node)
@@ -628,6 +800,156 @@ private fun RenderComposeSwitch(
     }
 }
 
+@Composable
+private fun RenderComposeTextField(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val label = props.label?.takeIf { it.isNotEmpty() }
+    val placeholder = props.placeholder?.takeIf { it.isNotEmpty() }
+    val labelContent: (@Composable () -> Unit)? =
+        if (label == null) null else ({ Text(label) })
+    val placeholderContent: (@Composable () -> Unit)? =
+        if (placeholder == null) null else ({ Text(placeholder) })
+    val keyboardOptions = KeyboardOptions(keyboardType = composeKeyboardType(props.keyboardType))
+    val visualTransformation =
+        if (props.secureText || props.keyboardType.equals("password", ignoreCase = true)) {
+            PasswordVisualTransformation()
+        } else {
+            VisualTransformation.None
+        }
+    if (props.variant.equals("outlined", ignoreCase = true)) {
+        OutlinedTextField(
+            value = node.renderedTextValue,
+            onValueChange = node::handleTextChanged,
+            modifier = modifier,
+            enabled = enabled,
+            label = labelContent,
+            placeholder = placeholderContent,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            singleLine = true,
+        )
+    } else {
+        TextField(
+            value = node.renderedTextValue,
+            onValueChange = node::handleTextChanged,
+            modifier = modifier,
+            enabled = enabled,
+            label = labelContent,
+            placeholder = placeholderContent,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            singleLine = true,
+        )
+    }
+}
+
+@Composable
+private fun RenderComposeSlider(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val minimum =
+        props.minimumValue.takeIf { it.isFinite() }?.toFloat() ?: 0f
+    val maximum =
+        props.maximumValue.takeIf { it.isFinite() }?.toFloat() ?: 1f
+    val range = if (minimum < maximum) minimum..maximum else 0f..1f
+    val coerced = node.renderedNumberValue.toFloat().coerceIn(range)
+    val step = props.step.takeIf { it.isFinite() } ?: 0.0
+    val steps =
+        if (step > 0) {
+            (((range.endInclusive - range.start) / step).coerceIn(0.0, 1001.0).toInt())
+                .minus(1)
+                .coerceAtLeast(0)
+        } else {
+            0
+        }
+    Slider(
+        value = coerced,
+        onValueChange = { node.handleNumberChanged(it.toDouble()) },
+        modifier = modifier,
+        enabled = enabled,
+        valueRange = range,
+        steps = steps,
+    )
+}
+
+@Composable
+private fun RenderComposeAlertDialog(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    if (!props.visible) return
+    val title = props.title?.takeIf { it.isNotEmpty() }
+    val message = props.message?.takeIf { it.isNotEmpty() }
+    val dismissLabel = props.dismissLabel?.takeIf { it.isNotEmpty() }
+    val titleContent: (@Composable () -> Unit)? =
+        if (title == null) null else ({ Text(title) })
+    val messageContent: (@Composable () -> Unit)? =
+        if (message == null) null else ({ Text(message) })
+    val dismissContent: (@Composable () -> Unit)? =
+        if (dismissLabel == null) {
+            null
+        } else {
+            ({
+                TextButton(onClick = { node.handleDialogDismiss() }) {
+                    Text(dismissLabel)
+                }
+            })
+        }
+    AlertDialog(
+        onDismissRequest = { node.handleDialogDismiss() },
+        confirmButton = {
+            TextButton(onClick = { node.handleDialogConfirm() }) {
+                Text(props.confirmLabel.orEmpty())
+            }
+        },
+        modifier = modifier,
+        dismissButton = dismissContent,
+        title = titleContent,
+        text = messageContent,
+    )
+}
+
+@Composable
+private fun RenderComposeProgressIndicator(
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val determinate = props.progress.isFinite() && props.progress >= 0
+    val coerced = props.progress.coerceIn(0.0, 1.0).toFloat()
+    if (props.progressVariant.equals("linear", ignoreCase = true)) {
+        if (determinate) {
+            LinearProgressIndicator(progress = { coerced }, modifier = modifier)
+        } else {
+            LinearProgressIndicator(modifier = modifier)
+        }
+    } else {
+        if (determinate) {
+            CircularProgressIndicator(progress = { coerced }, modifier = modifier)
+        } else {
+            CircularProgressIndicator(modifier = modifier)
+        }
+    }
+}
+
+private fun composeKeyboardType(value: String?): KeyboardType =
+    when (value?.trim()?.lowercase()) {
+        "number" -> KeyboardType.Number
+        "decimal" -> KeyboardType.Decimal
+        "email" -> KeyboardType.Email
+        "password" -> KeyboardType.Password
+        "phone" -> KeyboardType.Phone
+        "url" -> KeyboardType.Uri
+        else -> KeyboardType.Text
+    }
+
 private fun Modifier.applyComposeStyle(style: OneNativeComposeStyle): Modifier {
     var result = this
     if (style.opacity >= 0) result = result.alpha(style.opacity.coerceIn(0.0, 1.0).toFloat())
@@ -676,6 +998,8 @@ private fun Modifier.applyReactSemantics(
             ?: when (node.renderedNodeKind) {
                 "button" -> Role.Button
                 "switch" -> Role.Switch
+                "alertdialog", "dialog" -> Role.Dialog
+                "progressindicator" -> Role.ProgressBar
                 else -> null
             }
     val isHeading = explicitRole?.lowercase()?.substringAfterLast('.') == "header"
@@ -697,6 +1021,8 @@ private fun composeRole(value: String?): Role? =
     when (value?.lowercase()?.substringAfterLast('.')) {
         "button", "link" -> Role.Button
         "switch", "checkbox" -> Role.Switch
+        "dialog", "alert" -> Role.Dialog
+        "progressbar" -> Role.ProgressBar
         else -> null
     }
 

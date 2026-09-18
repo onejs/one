@@ -22,7 +22,9 @@ native code; `WebView` renders empty below 26 and glass falls back to the
 
 Android builds expose a small Jetpack Compose namespace beside `Swift`:
 `Compose.Column`, `Compose.Row`, `Compose.Box`, `Compose.Text`, `Compose.Button`,
-and `Compose.Switch`. It requires an Android native build with @vxrn/native installed.
+`Compose.Switch`, `Compose.TextField`, `Compose.Slider`, `Compose.AlertDialog`,
+`Compose.Dialog`, and `Compose.ProgressIndicator`. It requires an Android native
+build with @vxrn/native installed.
 
 ```tsx
 import { useState } from 'react'
@@ -69,6 +71,29 @@ arrangement. `Box` accepts `contentAlignment`.
 `Text` takes `text`, optional typography props and `maxLines`. `Button` takes `label`,
 `disabled`, `variant` (`filled`, `outlined`, or `text`), and `tone` (`default` or
 `danger`). `Switch` is controlled with `isOn`, `onIsOnChange`, and optional `revision`.
+
+`TextField` is controlled with `text`, `onTextChange`, and optional `revision`,
+using the same acknowledgement protocol as `Switch`: keep the old text to reject
+an edit, update it synchronously to accept. It takes `label`, `placeholder`,
+`disabled`, `variant` (`filled` or `outlined`), `keyboardType` (`default`,
+`number`, `decimal`, `email`, `password`, `phone`, or `url`), and `secureText`
+for password masking.
+
+`Slider` is controlled with `value`, `onValueChange`, and optional `revision`.
+`minimumValue` and `maximumValue` default to 0 and 1; `step` defaults to 0 for a
+continuous slider, otherwise it snaps to that increment. `value` must sit inside
+the bounds.
+
+`AlertDialog` shows a Material alert while `visible` is true. `title` and
+`message` are optional, `confirmLabel` is required, `dismissLabel` adds a second
+button. `onConfirm` fires from the confirm button; `onDismiss` fires from the
+dismiss button, an outside tap, or the system back button. React owns `visible`,
+so both callbacks should usually hide the dialog. `Dialog` is the custom-content
+form: while `visible`, its Compose children render inside a Material dialog
+window, and `onDismiss` fires on outside tap or back press.
+
+`ProgressIndicator` takes `variant` (`linear` or `circular`, default `circular`)
+and optional `progress` from 0 to 1. Omit `progress` for an indeterminate spinner.
 
 ### Android toolchain pins and device proof
 

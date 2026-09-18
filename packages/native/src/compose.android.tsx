@@ -2,26 +2,58 @@ import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { useControlled } from './controlled'
 import type {
+  ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeButtonTone,
   ComposeButtonVariant,
   ComposeColumnProps,
   ComposeContentAlignment,
+  ComposeDialogProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
   ComposeNodeProps,
+  ComposeProgressIndicatorProps,
+  ComposeProgressVariant,
   ComposeRowProps,
-  ComposeStyle,
+  ComposeSliderProps,
   ComposeSwitchProps,
   ComposeTextAlign,
+  ComposeTextFieldKeyboardType,
+  ComposeTextFieldProps,
+  ComposeTextFieldVariant,
   ComposeTextProps,
   ComposeVerticalAlignment,
   ComposeVerticalArrangement,
 } from './composeTypes'
+import {
+  assertComposeStyle,
+  validateAlertDialogProps,
+  validateBoxProps,
+  validateButtonProps,
+  validateColumnProps,
+  validateDialogProps,
+  validateProgressIndicatorProps,
+  validateRowProps,
+  validateSliderProps,
+  validateSwitchProps,
+  validateTextFieldProps,
+  validateTextProps,
+} from './composeValidation'
 
-type ComposeNodeType = 'column' | 'row' | 'box' | 'text' | 'button' | 'switch'
+type ComposeNodeType =
+  | 'column'
+  | 'row'
+  | 'box'
+  | 'text'
+  | 'button'
+  | 'switch'
+  | 'textfield'
+  | 'slider'
+  | 'alertdialog'
+  | 'dialog'
+  | 'progressindicator'
 
 type ComposeNativeNodeProps = ComposeNodeProps & {
   nodeType: ComposeNodeType
@@ -38,174 +70,51 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   maxLines?: number
   label?: string
   disabled?: boolean
-  variant?: ComposeButtonVariant
+  variant?: ComposeButtonVariant | ComposeTextFieldVariant
   tone?: ComposeButtonTone
   value?: boolean
   acknowledgedEvent?: number
   revision?: number
+  textValue?: string
+  placeholder?: string
+  keyboardType?: ComposeTextFieldKeyboardType
+  secureText?: boolean
+  numberValue?: number
+  minimumValue?: number
+  maximumValue?: number
+  step?: number
+  visible?: boolean
+  title?: string
+  message?: string
+  confirmLabel?: string
+  dismissLabel?: string
+  progress?: number
+  progressVariant?: ComposeProgressVariant
   onNativeComposeNodeButtonPress?: (event: unknown) => void
   onNativeComposeNodeSwitchValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
   }) => void
+  onNativeComposeNodeTextValueChange?: (event: {
+    nativeEvent: { text: string; eventCount: number; revision: number }
+  }) => void
+  onNativeComposeNodeNumberValueChange?: (event: {
+    nativeEvent: { value: number; eventCount: number; revision: number }
+  }) => void
+  onNativeComposeNodeDialogConfirm?: (event: unknown) => void
+  onNativeComposeNodeDialogDismiss?: (event: unknown) => void
 }
-
-const composeStyleKeys = new Set([
-  'backgroundColor',
-  'foregroundColor',
-  'padding',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-  'width',
-  'height',
-  'fillMaxWidth',
-  'fillMaxHeight',
-  'cornerRadius',
-  'opacity',
-  'borderColor',
-  'borderWidth',
-])
-
-const composeStyleNumberKeys = new Set([
-  'padding',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-  'width',
-  'height',
-  'cornerRadius',
-  'borderWidth',
-])
-
-const composeStyleColorKeys = new Set([
-  'backgroundColor',
-  'foregroundColor',
-  'borderColor',
-])
-
-function assertComposeStyle(style: ComposeStyle | undefined) {
-  if (style === undefined) return
-  if (!style || typeof style !== 'object' || Array.isArray(style))
-    throw new Error('Compose composeStyle must be an object')
-  for (const key of Object.keys(style)) {
-    if (!composeStyleKeys.has(key))
-      throw new Error(`Compose composeStyle does not support ${key}`)
-    const value = style[key as keyof ComposeStyle]
-    if (value === undefined) continue
-    if (composeStyleNumberKeys.has(key)) {
-      if (typeof value !== 'number' || !Number.isFinite(value) || value < 0)
-        throw new Error(`Compose composeStyle ${key} must be a nonnegative finite number`)
-      continue
-    }
-    if (key === 'opacity') {
-      if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1)
-        throw new Error('Compose composeStyle opacity must be a number from 0 to 1')
-      continue
-    }
-    if (composeStyleColorKeys.has(key)) {
-      const colorValue = value as unknown
-      const resourcePaths =
-        colorValue &&
-        typeof colorValue === 'object' &&
-        'resource_paths' in colorValue
-          ? colorValue.resource_paths
-          : undefined
-      if (
-        (typeof value !== 'string' || !value.trim()) &&
-        (typeof value !== 'number' || !Number.isFinite(value)) &&
-        (!Array.isArray(resourcePaths) ||
-          resourcePaths.length === 0 ||
-          resourcePaths.some((path) => typeof path !== 'string' || !path))
-      )
-        throw new Error(`Compose composeStyle ${key} must be a color value`)
-      continue
-    }
-    if (typeof value !== 'boolean')
-      throw new Error(`Compose composeStyle ${key} must be a boolean`)
-  }
-}
-
-function assertString(
-  value: unknown,
-  name: string,
-  nonEmpty = false
-): asserts value is string {
-  if (typeof value !== 'string' || (nonEmpty && !value.trim()))
-    throw new Error(`Compose ${name} must be${nonEmpty ? ' a non-empty' : ''} string`)
-}
-
-function assertBoolean(value: unknown, name: string) {
-  if (typeof value !== 'boolean') throw new Error(`Compose ${name} must be a boolean`)
-}
-
-function assertOneOf<T extends string>(
-  value: unknown,
-  name: string,
-  values: readonly T[]
-) {
-  if (!values.includes(value as T))
-    throw new Error(`Compose ${name} must be one of ${values.join(', ')}`)
-}
-
-const horizontalAlignments = ['start', 'centerHorizontally', 'end'] as const
-const verticalAlignments = ['top', 'centerVertically', 'bottom'] as const
-const contentAlignments = [
-  'topStart',
-  'topCenter',
-  'topEnd',
-  'centerStart',
-  'center',
-  'centerEnd',
-  'bottomStart',
-  'bottomCenter',
-  'bottomEnd',
-  'top',
-  'bottom',
-  'start',
-  'end',
-] as const
-const verticalArrangements = [
-  'top',
-  'center',
-  'bottom',
-  'spaceBetween',
-  'spaceAround',
-  'spaceEvenly',
-] as const
-const horizontalArrangements = [
-  'start',
-  'center',
-  'end',
-  'spaceBetween',
-  'spaceAround',
-  'spaceEvenly',
-] as const
-const textAlignments = [
-  'unspecified',
-  'left',
-  'right',
-  'center',
-  'justify',
-  'start',
-  'end',
-] as const
-const fontWeights = [
-  'thin',
-  'extraLight',
-  'light',
-  'normal',
-  'medium',
-  'semiBold',
-  'bold',
-  'extraBold',
-  'black',
-] as const
-const buttonVariants = ['filled', 'outlined', 'text'] as const
-const buttonTones = ['default', 'danger'] as const
 
 const ComposeContext = createContext(false)
+
+const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
+  'text',
+  'button',
+  'switch',
+  'textfield',
+  'slider',
+  'alertdialog',
+  'progressindicator',
+])
 
 function ComposeNode({
   children,
@@ -219,12 +128,7 @@ function ComposeNode({
       'Compose nodes nested in a Compose tree must use composeStyle instead of style'
     )
   assertComposeStyle(composeStyle)
-  if (
-    (props.nodeType === 'text' ||
-      props.nodeType === 'button' ||
-      props.nodeType === 'switch') &&
-    Children.count(children) > 0
-  ) {
+  if (leafNodeTypes.has(props.nodeType) && Children.count(children) > 0) {
     throw new Error(`Compose ${props.nodeType} does not accept children`)
   }
   return (
@@ -246,14 +150,7 @@ function Column({
   spacing,
   ...props
 }: ComposeColumnProps) {
-  assertOneOf(horizontalAlignment, 'Column horizontalAlignment', horizontalAlignments)
-  assertOneOf(verticalArrangement, 'Column verticalArrangement', verticalArrangements)
-  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
-    throw new Error('Compose Column spacing must be a nonnegative finite number')
-  if (spacing !== undefined && verticalArrangement.startsWith('space'))
-    throw new Error(
-      'Compose Column spacing cannot be combined with a space-distribution arrangement'
-    )
+  validateColumnProps({ horizontalAlignment, verticalArrangement, spacing })
   return (
     <ComposeNode
       {...props}
@@ -274,14 +171,7 @@ function Row({
   spacing,
   ...props
 }: ComposeRowProps) {
-  assertOneOf(verticalAlignment, 'Row verticalAlignment', verticalAlignments)
-  assertOneOf(horizontalArrangement, 'Row horizontalArrangement', horizontalArrangements)
-  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
-    throw new Error('Compose Row spacing must be a nonnegative finite number')
-  if (spacing !== undefined && horizontalArrangement.startsWith('space'))
-    throw new Error(
-      'Compose Row spacing cannot be combined with a space-distribution arrangement'
-    )
+  validateRowProps({ verticalAlignment, horizontalArrangement, spacing })
   return (
     <ComposeNode
       {...props}
@@ -296,7 +186,7 @@ function Row({
 }
 
 function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxProps) {
-  assertOneOf(contentAlignment, 'Box contentAlignment', contentAlignments)
+  validateBoxProps({ contentAlignment })
   return (
     <ComposeNode {...props} nodeType="box" alignment={contentAlignment}>
       {children}
@@ -312,13 +202,7 @@ function Text({
   maxLines,
   ...props
 }: ComposeTextProps) {
-  assertString(text, 'Text text')
-  if (fontSize !== undefined && (!Number.isFinite(fontSize) || fontSize <= 0))
-    throw new Error('Compose Text fontSize must be a positive finite number')
-  if (fontWeight !== undefined) assertOneOf(fontWeight, 'Text fontWeight', fontWeights)
-  if (textAlign !== undefined) assertOneOf(textAlign, 'Text textAlign', textAlignments)
-  if (maxLines !== undefined && (!Number.isInteger(maxLines) || maxLines <= 0))
-    throw new Error('Compose Text maxLines must be a positive integer')
+  validateTextProps({ text, fontSize, fontWeight, textAlign, maxLines })
   return (
     <ComposeNode
       {...props}
@@ -340,12 +224,7 @@ function Button({
   onPress,
   ...props
 }: ComposeButtonProps) {
-  assertString(label, 'Button label', true)
-  assertBoolean(disabled, 'Button disabled')
-  assertOneOf(variant, 'Button variant', buttonVariants)
-  assertOneOf(tone, 'Button tone', buttonTones)
-  if (onPress !== undefined && typeof onPress !== 'function')
-    throw new Error('Compose Button onPress must be a function')
+  validateButtonProps({ label, disabled, variant, tone, onPress })
   return (
     <ComposeNode
       {...props}
@@ -367,11 +246,7 @@ function Switch({
   revision = 0,
   ...props
 }: ComposeSwitchProps) {
-  assertBoolean(isOn, 'Switch isOn')
-  assertBoolean(disabled, 'Switch disabled')
-  assertString(label, 'Switch label')
-  if (typeof onIsOnChange !== 'function')
-    throw new Error('Compose Switch onIsOnChange must be a function')
+  validateSwitchProps({ isOn, disabled, label, onIsOnChange, revision })
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -393,4 +268,170 @@ function Switch({
   )
 }
 
-export const Compose = { Column, Row, Box, Text, Button, Switch }
+function TextField({
+  text,
+  onTextChange,
+  revision = 0,
+  label,
+  placeholder,
+  disabled = false,
+  variant = 'filled',
+  keyboardType = 'default',
+  secureText = false,
+  ...props
+}: ComposeTextFieldProps) {
+  validateTextFieldProps({
+    text,
+    onTextChange,
+    revision,
+    label,
+    placeholder,
+    disabled,
+    variant,
+    keyboardType,
+    secureText,
+  })
+  const controlled = useControlled<{
+    text: string
+    eventCount: number
+    revision: number
+  }>((event) => onTextChange(event.text), revision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="textfield"
+      textValue={text}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      label={label}
+      placeholder={placeholder}
+      disabled={disabled}
+      variant={variant}
+      keyboardType={keyboardType}
+      secureText={secureText}
+      onNativeComposeNodeTextValueChange={(event) =>
+        controlled.onNativeChange(event.nativeEvent)
+      }
+    />
+  )
+}
+
+function Slider({
+  value,
+  onValueChange,
+  revision = 0,
+  minimumValue = 0,
+  maximumValue = 1,
+  step = 0,
+  disabled = false,
+  ...props
+}: ComposeSliderProps) {
+  validateSliderProps({
+    value,
+    onValueChange,
+    revision,
+    minimumValue,
+    maximumValue,
+    step,
+    disabled,
+  })
+  const controlled = useControlled<{
+    value: number
+    eventCount: number
+    revision: number
+  }>((event) => onValueChange(event.value), revision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="slider"
+      numberValue={value}
+      minimumValue={minimumValue}
+      maximumValue={maximumValue}
+      step={step}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      disabled={disabled}
+      onNativeComposeNodeNumberValueChange={(event) =>
+        controlled.onNativeChange(event.nativeEvent)
+      }
+    />
+  )
+}
+
+function AlertDialog({
+  visible,
+  title,
+  message,
+  confirmLabel,
+  dismissLabel,
+  onConfirm,
+  onDismiss,
+  ...props
+}: ComposeAlertDialogProps) {
+  validateAlertDialogProps({
+    visible,
+    title,
+    message,
+    confirmLabel,
+    dismissLabel,
+    onConfirm,
+    onDismiss,
+  })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="alertdialog"
+      visible={visible}
+      title={title}
+      message={message}
+      confirmLabel={confirmLabel}
+      dismissLabel={dismissLabel}
+      onNativeComposeNodeDialogConfirm={() => onConfirm()}
+      onNativeComposeNodeDialogDismiss={() => onDismiss()}
+    />
+  )
+}
+
+function Dialog({ children, visible, onDismiss, ...props }: ComposeDialogProps) {
+  validateDialogProps({ visible, onDismiss })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="dialog"
+      visible={visible}
+      onNativeComposeNodeDialogDismiss={() => onDismiss()}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function ProgressIndicator({
+  variant = 'circular',
+  progress,
+  ...props
+}: ComposeProgressIndicatorProps) {
+  validateProgressIndicatorProps({ variant, progress })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="progressindicator"
+      progressVariant={variant}
+      progress={progress}
+    />
+  )
+}
+
+export const Compose = {
+  Column,
+  Row,
+  Box,
+  Text,
+  Button,
+  Switch,
+  TextField,
+  Slider,
+  AlertDialog,
+  Dialog,
+  ProgressIndicator,
+}
