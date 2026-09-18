@@ -38,7 +38,7 @@ export type GaugeStyle =
   | 'accessoryLinearCapacity'
   | 'automatic'
   | 'accessoryCircular'
-export type TextFieldStyle = 'automatic' | 'plain'
+export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'plain'
 export type SubmitLabel =
   | 'done'
   | 'go'
@@ -168,6 +168,7 @@ export const swiftUIValues = {
   },
   TextFieldStyle: {
     automatic: 13,
+    roundedBorder: 13,
     plain: 13,
   },
   SubmitLabel: {

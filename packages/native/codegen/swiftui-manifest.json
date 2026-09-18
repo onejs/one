@@ -1,34 +1,5 @@
 {
   "sdk": "26",
-  "modules": [
-    "SwiftUI",
-    "SwiftUICore",
-    "_AVKit_SwiftUI",
-    "_AppIntents_SwiftUI",
-    "_AuthenticationServices_SwiftUI",
-    "_CoreLocationUI_SwiftUI",
-    "_DataDetection_SwiftUI",
-    "_DeviceActivity_SwiftUI",
-    "_DeviceDiscoveryUI_SwiftUI",
-    "_FoundationModels_SwiftUI",
-    "_GameController_SwiftUI",
-    "_HomeKit_SwiftUI",
-    "_MapKit_SwiftUI",
-    "_MusicKit_SwiftUI",
-    "_PassKit_SwiftUI",
-    "_PermissionKit_SwiftUI",
-    "_PhotosUI_SwiftUI",
-    "_QuickLook_SwiftUI",
-    "_RealityKit_SwiftUI",
-    "_SceneKit_SwiftUI",
-    "_SecureElementCredential_SwiftUI",
-    "_SpriteKit_SwiftUI",
-    "_StoreKit_SwiftUI",
-    "_SwiftData_SwiftUI",
-    "_Translation_SwiftUI",
-    "_WebKit_SwiftUI",
-    "_WorkoutKit_SwiftUI"
-  ],
   "unmappedModifiers": [
     "menuIndicator",
     "menuStyle",
@@ -124,6 +95,7 @@
     },
     "TextFieldStyle": {
       "automatic": 13,
+      "roundedBorder": 13,
       "plain": 13
     },
     "SubmitLabel": {
@@ -588,7 +560,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 15
     },
     {
@@ -611,10 +582,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [
-        "Label : SwiftUICore.View",
-        "C : Swift.RandomAccessCollection"
-      ],
       "ios": 16
     },
     {
@@ -632,7 +599,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 14
     },
     {
@@ -649,9 +615,6 @@
           "name": "header",
           "type": "() -> Parent"
         }
-      ],
-      "requirements": [
-        "Footer == SwiftUICore.EmptyView"
       ],
       "ios": 13
     },
@@ -670,18 +633,12 @@
           "type": "() -> L"
         }
       ],
-      "requirements": [
-        "Content == SwiftUI.LabeledControlGroupContent<C, L>",
-        "C : SwiftUICore.View",
-        "L : SwiftUICore.View"
-      ],
       "ios": 16
     },
     {
       "module": "SwiftUI",
       "type": "Divider",
       "parameters": [],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -709,11 +666,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [
-        "Value : Swift.Hashable",
-        "Content : SwiftUICore.View",
-        "Label : SwiftUICore.View"
-      ],
       "ios": 18
     },
     {
@@ -736,7 +688,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -765,7 +716,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -789,9 +739,6 @@
           "type": "Swift.Bool"
         }
       ],
-      "requirements": [
-        "Label == SwiftUICore.Text"
-      ],
       "ios": 14
     },
     {
@@ -808,9 +755,6 @@
           "name": "label",
           "type": "() -> Label"
         }
-      ],
-      "requirements": [
-        "Label : SwiftUICore.View"
       ],
       "ios": 13
     },
@@ -845,11 +789,6 @@
           "name": "onEditingChanged",
           "type": "@escaping (Swift.Bool) -> Swift.Void"
         }
-      ],
-      "requirements": [
-        "ValueLabel == SwiftUICore.EmptyView",
-        "V : Swift.BinaryFloatingPoint",
-        "V.Stride : Swift.BinaryFloatingPoint"
       ],
       "ios": 13
     },
@@ -895,10 +834,6 @@
           "type": "@escaping (Swift.Bool) -> Swift.Void"
         }
       ],
-      "requirements": [
-        "V : Swift.BinaryFloatingPoint",
-        "V.Stride : Swift.BinaryFloatingPoint"
-      ],
       "ios": 13
     },
     {
@@ -933,9 +868,6 @@
           "type": "@escaping (Swift.Bool) -> Swift.Void"
         }
       ],
-      "requirements": [
-        "V : Swift.Strideable"
-      ],
       "ios": 13
     },
     {
@@ -948,7 +880,6 @@
           "type": "Swift.String"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -965,10 +896,6 @@
           "name": "name",
           "type": "Swift.String"
         }
-      ],
-      "requirements": [
-        "Title == SwiftUICore.Text",
-        "Icon == SwiftUICore.Image"
       ],
       "ios": 14
     },
@@ -992,7 +919,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 15
     },
     {
@@ -1016,10 +942,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [
-        "CurrentValueLabel == SwiftUICore.EmptyView",
-        "V : Swift.BinaryFloatingPoint"
-      ],
       "ios": 14
     },
     {
@@ -1031,9 +953,6 @@
           "name": "label",
           "type": "() -> Label"
         }
-      ],
-      "requirements": [
-        "CurrentValueLabel == SwiftUICore.EmptyView"
       ],
       "ios": 14
     },
@@ -1073,14 +992,6 @@
           "type": "() -> BoundsLabel"
         }
       ],
-      "requirements": [
-        "Label : SwiftUICore.View",
-        "CurrentValueLabel : SwiftUICore.View",
-        "BoundsLabel : SwiftUICore.View",
-        "MarkedValueLabels : SwiftUICore.View",
-        "MarkedValueLabels == SwiftUICore.EmptyView",
-        "V : Swift.BinaryFloatingPoint"
-      ],
       "ios": 16
     },
     {
@@ -1093,7 +1004,6 @@
           "type": "Swift.String"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -1111,7 +1021,6 @@
           "type": "Swift.Double?"
         }
       ],
-      "requirements": [],
       "ios": 16
     },
     {
@@ -1141,11 +1050,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [
-        "PreviewImage == Swift.Never",
-        "PreviewIcon == Swift.Never",
-        "Data == Swift.CollectionOfOne<Foundation.URL>"
-      ],
       "ios": 16
     },
     {
@@ -1175,11 +1079,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [
-        "PreviewImage == Swift.Never",
-        "PreviewIcon == Swift.Never",
-        "Data == Swift.CollectionOfOne<Swift.String>"
-      ],
       "ios": 16
     },
     {
@@ -1204,11 +1103,6 @@
           "type": "() -> Actions"
         }
       ],
-      "requirements": [
-        "Label : SwiftUICore.View",
-        "Description : SwiftUICore.View",
-        "Actions : SwiftUICore.View"
-      ],
       "ios": 17
     },
     {
@@ -1220,9 +1114,6 @@
           "name": "player",
           "type": "AVFoundation.AVPlayer?"
         }
-      ],
-      "requirements": [
-        "VideoOverlay == SwiftUICore.EmptyView"
       ],
       "ios": 14
     },
@@ -1265,9 +1156,6 @@
           "type": "@Sendable () -> Label"
         }
       ],
-      "requirements": [
-        "Label : SwiftUICore.View"
-      ],
       "ios": 16
     },
     {
@@ -1280,7 +1168,6 @@
           "type": "WebKit.WebPage"
         }
       ],
-      "requirements": [],
       "ios": 26
     },
     {
@@ -1316,10 +1203,6 @@
           "type": "() -> C"
         }
       ],
-      "requirements": [
-        "Content == _MapKit_SwiftUI.MapContentView<Swift.Never, C>",
-        "C : _MapKit_SwiftUI.MapContent"
-      ],
       "ios": 17
     },
     {
@@ -1336,9 +1219,6 @@
           "name": "label",
           "type": "() -> Label"
         }
-      ],
-      "requirements": [
-        "Label : SwiftUICore.View"
       ],
       "ios": 17
     },
@@ -1368,7 +1248,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 16
     },
     {
@@ -1392,7 +1271,6 @@
           "type": "() -> Label"
         }
       ],
-      "requirements": [],
       "ios": 15
     },
     {
@@ -1411,7 +1289,6 @@
           "type": "SwiftUICore.RoundedCornerStyle"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -1439,7 +1316,6 @@
           "type": "CoreFoundation.CGFloat"
         }
       ],
-      "requirements": [],
       "ios": 13
     },
     {
@@ -1452,7 +1328,6 @@
           "type": "UIKit.UIColor"
         }
       ],
-      "requirements": [],
       "ios": 15
     }
   ]

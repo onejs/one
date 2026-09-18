@@ -8,7 +8,7 @@ import { emitMenuValidator } from './menuValidator'
 import {
   readInventory,
   ios,
-  available,
+  present,
   selectConstructor,
   selectModifier,
   type Declaration,
@@ -44,7 +44,7 @@ const cache = join(root, '.codegen-cache')
 mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
-const { sdk, swiftc, modules, inventory } = readInventory(root)
+const { sdk, swiftc, inventory } = readInventory(root)
 const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
 if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
   throw new Error(
@@ -65,7 +65,7 @@ const enums = Object.fromEntries(
         (type.endsWith('Style') ||
           d.type === 'Scale' ||
           d.type?.split('.').at(-1) === type) &&
-        available(d) &&
+        present(d) &&
         ios(d) <= MAXIMUM_IOS
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
@@ -502,7 +502,7 @@ const manifest = {
   sdk: String(MAXIMUM_IOS),
   // xcode installations can package equivalent public interfaces with different bytes and
   // source attributes. the mapped declarations below are the portable contract we publish.
-  modules,
+  // the scanned module list is not recorded: SDK revisions add and rename overlay modules.
   unmappedModifiers: [
     ...new Set(
       inventory
@@ -510,7 +510,7 @@ const manifest = {
           (d) =>
             d.kind === 'func' &&
             shortOwner(d) === 'View' &&
-            available(d) &&
+            present(d) &&
             ios(d) <= MAXIMUM_IOS &&
             modifierFamilies.some((prefix) => d.name.startsWith(prefix)) &&
             !methods.some((m) => m.name === d.name)
@@ -520,13 +520,14 @@ const manifest = {
   ].sort(),
   enums,
   modifiers: methods,
+  // constructor requirements omitted: SDK revisions restate equivalent generic
+  // constraints with different spelling, so they are matching input, not contract.
   constructors: selected
     .filter((d) => d.kind === 'init')
     .map((d) => ({
       module: d.module,
       type: shortOwner(d),
       parameters: d.parameters,
-      requirements: d.requirements,
       ios: ios(d),
     })),
 }
@@ -558,15 +559,24 @@ for (const [path, source] of outputs) {
   }
   if (existing !== generated) {
     changed.push(path)
-    if (process.argv.includes('--check') && path === 'codegen/swiftui-manifest.json') {
-      const previous = JSON.parse(existing)
-      const next = JSON.parse(generated)
-      console.error(
-        'SwiftUI manifest fields differ: ' +
-          [...new Set([...Object.keys(previous), ...Object.keys(next)])]
-            .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
-            .join(', ')
-      )
+    if (process.argv.includes('--check')) {
+      if (path === 'codegen/swiftui-manifest.json' && existing) {
+        const previous = JSON.parse(existing)
+        const next = JSON.parse(generated)
+        console.error(
+          'SwiftUI manifest fields differ: ' +
+            [...new Set([...Object.keys(previous), ...Object.keys(next)])]
+              .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
+              .join(', ')
+        )
+      }
+      if (!existing) console.error(`new generated file: ${path}`)
+      else
+        try {
+          run('diff', ['-u', join(root, path), temporary])
+        } catch (error) {
+          console.error((error as { stdout?: string }).stdout)
+        }
     }
   }
   if (!process.argv.includes('--check')) writeFileSync(join(root, path), generated)
