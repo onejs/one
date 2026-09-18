@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { deriveLeafSwift } from '../codegen/derive'
 import { selectEnumModifier, type Declaration } from '../codegen/inventory'
-import type { Control, LeafArg } from '../codegen/controlTypes'
+import type { Control } from '../codegen/controlTypes'
 import { leafControls } from '../codegen/leafCatalog'
 import { formControls } from '../codegen/formCatalog'
 
@@ -37,35 +37,6 @@ const byName = (controls: Control[], name: string) => {
   return control
 }
 
-// the migration preview: the declarative args each simple leaf would carry. the
-// byte-equality tests below prove derivation reproduces the hand-written body.
-const leafArgs: Record<string, LeafArg[]> = {
-  Text: [{ label: 'verbatim', field: 'text' }],
-  Label: [
-    { label: '_', localizedKey: 'label' },
-    { label: 'systemImage', field: 'systemImage' },
-  ],
-  Gauge: [
-    { label: 'value', field: 'value' },
-    { label: 'in', range: ['minimumValue', 'maximumValue'] },
-    { label: 'label', text: 'label' },
-    { label: 'currentValueLabel', text: 'currentValueLabel' },
-    { label: 'minimumValueLabel', text: 'minimumValueLabel' },
-    { label: 'maximumValueLabel', text: 'maximumValueLabel' },
-  ],
-  Toggle: [
-    { label: 'isOn', binding: 'controlled' },
-    { label: 'label', text: 'label' },
-  ],
-  Stepper: [
-    { label: 'value', binding: 'controlled' },
-    { label: 'in', range: ['minimumValue', 'maximumValue'] },
-    { label: 'step', field: 'step' },
-    { label: 'label', text: 'label' },
-    { label: 'onEditingChanged', discard: true },
-  ],
-}
-
 const enumFieldsOf = (control: Control) =>
   Object.entries(control.fields).flatMap(([field, spec]) =>
     spec.enum ? [{ field, enum: spec.enum }] : []
@@ -93,10 +64,11 @@ describe('generic leaf emitter', () => {
     ['Stepper', formControls, []],
   ] as const)('reproduces the hand-written %s body byte for byte', (name, catalog, modifiers) => {
     const control = byName([...catalog], name)
+    if (!control.leaf) throw new Error(`missing leaf recipe for ${name}`)
     expect(
       deriveLeafSwift(
         inventoryFor(control, [...modifiers]),
-        { constructor: control.constructors[0], args: leafArgs[name] },
+        control.leaf,
         enumFieldsOf(control)
       )
     ).toBe(control.swift)
