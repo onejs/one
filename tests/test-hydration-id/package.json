@@ -1,6 +1,6 @@
 {
   "name": "test-hydration-id",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-native": "0.86.2",
+    "react-native": "0.87.1",
     "react-native-web": "^0.21.2"
   },
   "devDependencies": {

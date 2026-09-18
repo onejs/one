@@ -1,4 +1,5 @@
 // import '@vite/env'
+// @ts-ignore
 import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
 import type { InferCustomEventPayload } from './customEvent'
 import type { ErrorPayload, HMRPayload, Update } from './hmrPayload'

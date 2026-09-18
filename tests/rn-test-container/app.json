@@ -8,7 +8,7 @@
       "expo-build-properties",
       {
         "ios": {
-          "deploymentTarget": "16.4",
+          "deploymentTarget": "26.0",
           "ccacheEnabled": true,
           "buildReactNativeFromSource": true
         }

@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -36,12 +36,12 @@
   "devDependencies": {
     "@tamagui/build": "3.0.0-beta.1309.1",
     "react": "19.2.3",
-    "react-native": "0.86.2",
+    "react-native": "0.87.1",
     "vitest": "^4.1.0"
   },
   "peerDependencies": {
     "react": "19.2.3",
-    "react-native": "0.86.2"
+    "react-native": "^0.87.0"
   },
   "publishConfig": {
     "access": "public"

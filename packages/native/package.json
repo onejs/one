@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/native",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "type": "module",
   "description": "Native SwiftUI, Jetpack Compose, navigation, and platform interfaces for One and React Native.",
   "license": "MIT",
@@ -74,7 +74,7 @@
   },
   "peerDependencies": {
     "react": ">=19",
-    "react-native": "~0.86.2",
+    "react-native": "~0.87.1",
     "react-native-screens": ">=4.25.0",
     "react-native-safe-area-context": ">=5.5.0"
   },

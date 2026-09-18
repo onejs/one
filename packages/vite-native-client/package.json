@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-client",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "sideEffects": [
     "*"
   ],
@@ -30,10 +30,10 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@tamagui/build": "3.0.0-beta.1309.1",
-    "react-native": "0.86.2"
+    "react-native": "0.87.1"
   },
   "peerDependencies": {
-    "react-native": "0.86.2"
+    "react-native": "^0.87.0"
   },
   "publishConfig": {
     "access": "public"

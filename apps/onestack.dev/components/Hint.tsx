@@ -1,5 +1,5 @@
 import { ColorTokens, Paragraph, Text, Tooltip } from 'tamagui'
-import type { KeyboardEvent } from 'react'
+import type { KeyDownEvent } from 'react-native'
 
 export const Hint = ({
   children,
@@ -10,8 +10,8 @@ export const Hint = ({
   hintContents: React.ReactNode
   tint?: 'green' | 'pink' | 'blue' | 'red' | 'purple'
 }) => {
-  const handleKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+  const handleKeyDown = (event: KeyDownEvent) => {
+    if (event.nativeEvent.key === 'Enter' || event.nativeEvent.key === ' ') {
       event.preventDefault()
       // Trigger the tooltip (this depends on how Tamagui's Tooltip handles this)
       // You might need to use a ref or other method to programmatically show the tooltip
