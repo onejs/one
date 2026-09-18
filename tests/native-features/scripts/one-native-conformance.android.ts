@@ -365,6 +365,45 @@ function tapFresh(
   adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
 }
 
+function tapByText(config: Config, name: string, text: string) {
+  const current = snapshot(config)
+  const found = current.nodes.filter(
+    (node) => node.text === text && node.clickable === true
+  )
+  if (found.length !== 1)
+    throw new Error(
+      `${name} resolved ${found.length} clickable nodes with text "${text}"; exactly one is required.`
+    )
+  const bounds = validBounds(found[0], name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function tapFraction(
+  config: Config,
+  name: string,
+  selector: Selector,
+  fractionX: number
+) {
+  const current = snapshot(config)
+  const node = uniqueNode(current.nodes, selector, name)
+  const bounds = validBounds(node, name)
+  const x = Math.round(bounds.left + (bounds.right - bounds.left) * fractionX)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function adbType(config: Config, text: string) {
+  if (!/^[a-z0-9]+$/i.test(text))
+    throw new Error(`adbType only supports ASCII letters and digits, got "${text}".`)
+  adbText(config, ['shell', 'input', 'text', text])
+}
+
+function pressBack(config: Config) {
+  adbText(config, ['shell', 'input', 'keyevent', '4'])
+}
+
 function swipeFresh(config: Config, name: string) {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
@@ -389,11 +428,11 @@ function swipeFresh(config: Config, name: string) {
   ])
 }
 
-async function tapNavigation(config: Config) {
+async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
   for (let attempt = 0; attempt < 8; attempt++) {
     const current = snapshot(config)
     const rows = matching(current.nodes, {
-      id: 'nav-one-native-android',
+      id: navId,
       role: 'button',
       clickable: true,
     })
@@ -407,7 +446,7 @@ async function tapNavigation(config: Config) {
       const candidateBounds = rowBounds
       await waitFor(config, 'Android navigation row settles', (nodes) => {
         const settled = matching(nodes, {
-          id: 'nav-one-native-android',
+          id: navId,
           role: 'button',
           clickable: true,
         })
@@ -420,7 +459,7 @@ async function tapNavigation(config: Config) {
         )
       })
       tapFresh(config, 'Android proof navigation row', {
-        id: 'nav-one-native-android',
+        id: navId,
         role: 'button',
         clickable: true,
       })
@@ -439,7 +478,7 @@ async function tapNavigation(config: Config) {
       return nextPositions !== previousPositions
     })
   }
-  throw new Error('Could not bring nav-one-native-android into view on the home list.')
+  throw new Error(`Could not bring ${navId} into view on the home list.`)
 }
 
 function shortNode(node: Node | undefined) {
@@ -1076,6 +1115,237 @@ async function run(config: Config) {
         textIncludes(nodes, 'Android proof mounted') &&
         duplicateIds(nodes).length === 0,
       'one-native-android-mounted',
+      (nodes) => ({ duplicates: duplicateIds(nodes) })
+    )
+
+    pressBack(config)
+    await expect(
+      'inputs-navigate-home',
+      (nodes) =>
+        exactlyOneId(nodes, 'home-screen') &&
+        textIncludes(nodes, '@vxrn/native Test Suite'),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-android-inputs')
+    await expect(
+      'inputs-proof-mounted',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-android-inputs-mounted') &&
+        textIncludes(nodes, 'Android inputs proof mounted'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs textfield focus', {
+      id: 'one-native-android-inputs-textfield',
+    })
+    adbType(config, 'hello')
+    await expect(
+      'inputs-textfield-reject',
+      (nodes) =>
+        textIncludes(nodes, 'Request: hello · Revision: 0') &&
+        !textIncludes(nodes, 'Text: hello'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs text acceptance policy button', {
+      id: 'one-native-android-inputs-text-policy',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'Inputs textfield refocus', {
+      id: 'one-native-android-inputs-textfield',
+    })
+    adbType(config, 'hi')
+    await expect(
+      'inputs-textfield-accept',
+      (nodes) => textIncludes(nodes, 'Text: hi · Request: hi · Revision: 0'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs text revision reset button', {
+      id: 'one-native-android-inputs-text-reset',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-textfield-revision-reset',
+      (nodes) => textIncludes(nodes, 'Text:  · Request:  · Revision: 1'),
+      'one-native-android-inputs-mounted'
+    )
+
+    pressBack(config)
+    if (
+      !exactlyOneId(
+        snapshot(config).nodes,
+        'one-native-android-inputs-mounted'
+      )
+    ) {
+      await expect(
+        'inputs-renavigate-home',
+        (nodes) =>
+          exactlyOneId(nodes, 'home-screen') &&
+          textIncludes(nodes, '@vxrn/native Test Suite'),
+        'home-screen'
+      )
+      await tapNavigation(config, 'nav-one-native-android-inputs')
+      await expect(
+        'inputs-proof-remounted',
+        (nodes) =>
+          exactlyOneId(nodes, 'one-native-android-inputs-mounted') &&
+          textIncludes(nodes, 'Android inputs proof mounted'),
+        'one-native-android-inputs-mounted'
+      )
+    }
+
+    tapFresh(config, 'Inputs slider step up button', {
+      id: 'one-native-android-inputs-slider-up',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-slider-js-step',
+      (nodes) => textIncludes(nodes, 'Slider: 30 · Request: 25'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFraction(config, 'Inputs slider track tap', {
+      id: 'one-native-android-inputs-slider',
+    }, 0.8)
+    await expect(
+      'inputs-slider-track-tap',
+      (nodes) => {
+        const status =
+          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
+            ?.text ?? ''
+        const match = /Slider: (-?\d+) · Request: (-?\d+)/.exec(status)
+        if (!match) return false
+        const value = Number(match[1])
+        const request = Number(match[2])
+        return value === request && value !== 30 && value % 5 === 0
+      },
+      'one-native-android-inputs-mounted',
+      (nodes) => ({
+        slider: shortNode(
+          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
+        ),
+      })
+    )
+
+    tapFresh(config, 'Inputs show dialog button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-shown',
+      (nodes) =>
+        textIncludes(nodes, 'Delete item?') &&
+        textIncludes(nodes, 'This cannot be undone.') &&
+        textIncludes(nodes, 'Delete') &&
+        textIncludes(nodes, 'Cancel'),
+      'one-native-android-inputs-mounted'
+    )
+    tapByText(config, 'Inputs dialog confirm button', 'Delete')
+    await expect(
+      'inputs-dialog-confirm',
+      (nodes) =>
+        textIncludes(nodes, 'Dialog: confirmed') &&
+        !textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show dialog again button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-reshown',
+      (nodes) => textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+    tapByText(config, 'Inputs dialog dismiss button', 'Cancel')
+    await expect(
+      'inputs-dialog-dismiss-button',
+      (nodes) =>
+        textIncludes(nodes, 'Dialog: dismissed') &&
+        !textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show dialog third button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-reshown-again',
+      (nodes) => textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+    pressBack(config)
+    await expect(
+      'inputs-dialog-back-dismiss',
+      (nodes) =>
+        textIncludes(nodes, 'Dialog: dismissed') &&
+        !textIncludes(nodes, 'Delete item?') &&
+        exactlyOneId(nodes, 'one-native-android-inputs-mounted'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show custom dialog button', {
+      id: 'one-native-android-inputs-custom-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-shown',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-android-inputs-custom-body') &&
+        textIncludes(nodes, 'Custom dialog body'),
+      'one-native-android-inputs-mounted'
+    )
+    tapFresh(config, 'Inputs custom dialog close button', {
+      id: 'one-native-android-inputs-custom-close',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-closed',
+      (nodes) =>
+        textIncludes(nodes, 'Custom dialog: closed') &&
+        !textIncludes(nodes, 'Custom dialog body'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show custom dialog again button', {
+      id: 'one-native-android-inputs-custom-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-reshown',
+      (nodes) => textIncludes(nodes, 'Custom dialog body'),
+      'one-native-android-inputs-mounted'
+    )
+    pressBack(config)
+    await expect(
+      'inputs-custom-dialog-back-dismiss',
+      (nodes) =>
+        textIncludes(nodes, 'Custom dialog: dismissed') &&
+        !textIncludes(nodes, 'Custom dialog body') &&
+        exactlyOneId(nodes, 'one-native-android-inputs-mounted'),
+      'one-native-android-inputs-mounted'
+    )
+
+    await expect(
+      'inputs-progress-and-duplicate-sweep',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-android-inputs-progress-linear') &&
+        exactlyOneId(nodes, 'one-native-android-inputs-progress-circular') &&
+        textIncludes(nodes, 'Progress mounted') &&
+        duplicateIds(nodes).length === 0,
+      'one-native-android-inputs-mounted',
       (nodes) => ({ duplicates: duplicateIds(nodes) })
     )
 
