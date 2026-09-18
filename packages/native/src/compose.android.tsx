@@ -1,6 +1,7 @@
 import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { useControlled } from './controlled'
+import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
 import type {
   ComposeBoxProps,
   ComposeButtonProps,
@@ -11,6 +12,7 @@ import type {
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
+  ComposeIconProps,
   ComposeNodeProps,
   ComposeRowProps,
   ComposeStyle,
@@ -21,7 +23,7 @@ import type {
   ComposeVerticalArrangement,
 } from './composeTypes'
 
-type ComposeNodeType = 'column' | 'row' | 'box' | 'text' | 'button' | 'switch'
+type ComposeNodeType = 'column' | 'row' | 'box' | 'text' | 'button' | 'switch' | 'icon'
 
 type ComposeNativeNodeProps = ComposeNodeProps & {
   nodeType: ComposeNodeType
@@ -40,6 +42,8 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   disabled?: boolean
   variant?: ComposeButtonVariant
   tone?: ComposeButtonTone
+  icon?: string
+  iconFilled?: boolean
   value?: boolean
   acknowledgedEvent?: number
   revision?: number
@@ -207,6 +211,15 @@ const buttonTones = ['default', 'danger'] as const
 
 const ComposeContext = createContext(false)
 
+function materialSymbolGlyph(owner: string, name: string) {
+  const codepoint = composeIconCodepoints[name as ComposeIconName]
+  if (codepoint === undefined)
+    throw new Error(
+      `Compose ${owner} must be a Material Symbols name, got ${JSON.stringify(name)}`
+    )
+  return String.fromCharCode(codepoint)
+}
+
 function ComposeNode({
   children,
   style,
@@ -222,7 +235,8 @@ function ComposeNode({
   if (
     (props.nodeType === 'text' ||
       props.nodeType === 'button' ||
-      props.nodeType === 'switch') &&
+      props.nodeType === 'switch' ||
+      props.nodeType === 'icon') &&
     Children.count(children) > 0
   ) {
     throw new Error(`Compose ${props.nodeType} does not accept children`)
@@ -332,11 +346,29 @@ function Text({
   )
 }
 
+function Icon({ name, size = 24, filled = false, ...props }: ComposeIconProps) {
+  assertString(name, 'Icon name', true)
+  if (!Number.isFinite(size) || size <= 0)
+    throw new Error('Compose Icon size must be a positive finite number')
+  assertBoolean(filled, 'Icon filled')
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="icon"
+      text={materialSymbolGlyph('Icon name', name)}
+      fontSize={size}
+      iconFilled={filled}
+    />
+  )
+}
+
 function Button({
   label,
   disabled = false,
   variant = 'filled',
   tone = 'default',
+  icon,
+  iconFilled = false,
   onPress,
   ...props
 }: ComposeButtonProps) {
@@ -344,6 +376,9 @@ function Button({
   assertBoolean(disabled, 'Button disabled')
   assertOneOf(variant, 'Button variant', buttonVariants)
   assertOneOf(tone, 'Button tone', buttonTones)
+  assertBoolean(iconFilled, 'Button iconFilled')
+  if (icon !== undefined && (typeof icon !== 'string' || !icon.trim()))
+    throw new Error('Compose Button icon must be a Material Symbols name')
   if (onPress !== undefined && typeof onPress !== 'function')
     throw new Error('Compose Button onPress must be a function')
   return (
@@ -354,6 +389,8 @@ function Button({
       disabled={disabled}
       variant={variant}
       tone={tone}
+      icon={icon === undefined ? undefined : materialSymbolGlyph('Button icon', icon)}
+      iconFilled={iconFilled}
       onNativeComposeNodeButtonPress={onPress ? () => onPress() : undefined}
     />
   )
@@ -393,4 +430,4 @@ function Switch({
   )
 }
 
-export const Compose = { Column, Row, Box, Text, Button, Switch }
+export const Compose = { Column, Row, Box, Text, Icon, Button, Switch }

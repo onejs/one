@@ -1,8 +1,9 @@
-import type { ComposeBoxProps, ComposeButtonProps, ComposeColumnProps, ComposeRowProps, ComposeSwitchProps, ComposeTextProps } from './composeTypes';
+import type { ComposeBoxProps, ComposeButtonProps, ComposeColumnProps, ComposeIconProps, ComposeRowProps, ComposeSwitchProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
 declare function Text(_props: ComposeTextProps): never;
+declare function Icon(_props: ComposeIconProps): never;
 declare function Button(_props: ComposeButtonProps): never;
 declare function Switch(_props: ComposeSwitchProps): never;
 export declare const Compose: {
@@ -10,6 +11,7 @@ export declare const Compose: {
     Row: typeof Row;
     Box: typeof Box;
     Text: typeof Text;
+    Icon: typeof Icon;
     Button: typeof Button;
     Switch: typeof Switch;
 };

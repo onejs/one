@@ -1,5 +1,7 @@
 import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 import type { ReactNode } from 'react';
+import type { ComposeIconName } from './generated/composeIcons';
+export type { ComposeIconName } from './generated/composeIcons';
 export type ComposeStyle = Readonly<{
     backgroundColor?: ColorValue;
     foregroundColor?: ColorValue;
@@ -52,6 +54,11 @@ export interface ComposeTextProps extends ComposeLeafProps {
     textAlign?: ComposeTextAlign;
     maxLines?: number;
 }
+export interface ComposeIconProps extends ComposeLeafProps {
+    name: ComposeIconName;
+    size?: number;
+    filled?: boolean;
+}
 export type ComposeButtonVariant = 'filled' | 'outlined' | 'text';
 export type ComposeButtonTone = 'default' | 'danger';
 export interface ComposeButtonProps extends ComposeLeafProps {
@@ -59,6 +66,8 @@ export interface ComposeButtonProps extends ComposeLeafProps {
     disabled?: boolean;
     variant?: ComposeButtonVariant;
     tone?: ComposeButtonTone;
+    icon?: ComposeIconName;
+    iconFilled?: boolean;
     onPress?: () => void;
 }
 export interface ComposeSwitchProps extends ComposeLeafProps {
@@ -68,5 +77,4 @@ export interface ComposeSwitchProps extends ComposeLeafProps {
     onIsOnChange: (value: boolean) => void;
     revision?: number;
 }
-export {};
 //# sourceMappingURL=composeTypes.d.ts.map
