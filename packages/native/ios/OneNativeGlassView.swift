@@ -74,6 +74,7 @@ extension View {
 }
 
 extension OneNativeStyle {
+  @available(iOS 26.0, *)
   static func resolveGlassEffect(_ string: String) -> Glass {
     switch string.lowercased() {
     case "regular": return .regular

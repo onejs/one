@@ -1,5 +1,5 @@
 {
-  "sdk": "26.4",
+  "sdk": "27.0",
   "modules": [
     "SwiftUI",
     "SwiftUICore",
@@ -7,8 +7,10 @@
     "_AppIntents_SwiftUI",
     "_AuthenticationServices_SwiftUI",
     "_CoreLocationUI_SwiftUI",
+    "_DataDetection_SwiftUI",
     "_DeviceActivity_SwiftUI",
     "_DeviceDiscoveryUI_SwiftUI",
+    "_FoundationModels_SwiftUI",
     "_GameController_SwiftUI",
     "_HomeKit_SwiftUI",
     "_MapKit_SwiftUI",
@@ -56,6 +58,7 @@
       "inline": 14,
       "automatic": 13,
       "segmented": 13,
+      "tabs": 27,
       "palette": 17,
       "navigationLink": 16,
       "menu": 14
@@ -89,7 +92,8 @@
       "close": 26
     },
     "TabRole": {
-      "search": 18
+      "search": 18,
+      "prominent": 27
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -122,7 +126,7 @@
     },
     "TextFieldStyle": {
       "automatic": 13,
-      "roundedBorder": 13,
+      "bordered": 27,
       "plain": 13
     },
     "SubmitLabel": {
@@ -650,8 +654,6 @@
         }
       ],
       "requirements": [
-        "Parent : SwiftUICore.View",
-        "Content : SwiftUICore.View",
         "Footer == SwiftUICore.EmptyView"
       ],
       "ios": 13

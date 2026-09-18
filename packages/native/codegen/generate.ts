@@ -33,7 +33,7 @@ import {
 // the floor the package targets. everything the SDK marks at or below it needs no gate, so
 // raising this deletes availability branches rather than adding them. schema.json carries it
 // forward and VxrnNative.podspec reads it from there, so this is the only place it is set.
-const MINIMUM_IOS = 26
+const MINIMUM_IOS = 17
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
@@ -367,7 +367,8 @@ for (const [type, cases] of Object.entries(enums)) {
   }
   swift += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }\n`
 }
-swift += `  @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
+swift += `  @available(iOS 18.0, *)
+  @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
       if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
     }

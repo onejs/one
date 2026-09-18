@@ -246,10 +246,16 @@ describe('native menu payload', () => {
 
   it('gates ButtonRole.confirm and tabBarMinimizeBehavior by OS via assertSwiftUIValue', () => {
     // the default version is the package floor, so a case introduced at the floor passes with no
-    // explicit version. anything below the floor still throws, which is what keeps the generated
+    // explicit version. anything above the floor still throws, which is what keeps the generated
     // version data honest once the SDK starts carrying cases above it.
     expect(
-      flattenMenuItems([{ type: 'action', id: 'ok', title: 'OK', role: 'confirm' }])[0]
+      flattenMenuItems([{ type: 'action', id: 'del', title: 'Delete', role: 'destructive' }])[0]
+    ).toMatchObject({ role: 'destructive' })
+    expect(() =>
+      flattenMenuItems([{ type: 'action', id: 'ok', title: 'OK', role: 'confirm' }])
+    ).toThrow('ButtonRole.confirm requires iOS 26')
+    expect(
+      flattenMenuItems([{ type: 'action', id: 'ok', title: 'OK', role: 'confirm' }], 26)[0]
     ).toMatchObject({ role: 'confirm' })
     expect(() =>
       flattenMenuItems([{ type: 'action', id: 'ok', title: 'OK', role: 'confirm' }], 18)

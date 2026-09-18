@@ -287,11 +287,15 @@ extension View {
   }
 
   @ViewBuilder func oneNativePresentationSizing(_ value: String) -> some View {
-    switch value {
-    case "fitted": self.presentationSizing(.fitted)
-    case "form": self.presentationSizing(.form)
-    case "page": self.presentationSizing(.page)
-    default: self.presentationSizing(.automatic)
+    if #available(iOS 18.0, *) {
+      switch value {
+      case "fitted": self.presentationSizing(.fitted)
+      case "form": self.presentationSizing(.form)
+      case "page": self.presentationSizing(.page)
+      default: self.presentationSizing(.automatic)
+      }
+    } else {
+      self
     }
   }
 }
