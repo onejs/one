@@ -8,7 +8,11 @@ import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
-import { ensureNpmAuthentication, publishPackagesWithAuthProbe } from './release-publish'
+import {
+  createNpmVersionProbe,
+  ensureNpmAuthentication,
+  publishPackagesWithAuthProbe,
+} from './release-publish'
 import {
   resolveBetaVersion,
   resolveCanaryVersion,
@@ -44,7 +48,6 @@ function skipBlockedVersions(
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
 const exec = promisify(proc.exec)
-const execFile = promisify(proc.execFile)
 export const spawn = proc.spawn
 
 // for failed publishes that need to re-run
@@ -487,25 +490,7 @@ async function run() {
         return path.relative(tmpDir, tmpPackageDir)
       }
 
-      const isPublished = async ({ name }: { name: string }) => {
-        try {
-          const { stdout } = await execFile(
-            'npm',
-            // --prefer-online so this revalidates rather than answering from a
-            // negative response npm cached seconds earlier, which matters most
-            // for the post-publish check that polls the same version repeatedly
-            ['view', `${name}@${version}`, 'version', '--json', '--prefer-online'],
-            { cwd: tmpDir }
-          )
-          return JSON.parse(stdout.trim()) === version
-        } catch (error) {
-          const message = String(error)
-          if (/E404|404 Not Found|is not in this registry/i.test(message)) {
-            return false
-          }
-          throw new Error(`Could not verify ${name}@${version} on npm:\n${message}`)
-        }
-      }
+      const isPublished = createNpmVersionProbe(version)
 
       const publishResult = await publishPackagesWithAuthProbe({
         packages: packageJsons,
