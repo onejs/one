@@ -31,6 +31,7 @@ const suites = [
   'dialogs',
   'host',
   'containers',
+  'lists',
   'popover',
   'accessibility',
   'media',
@@ -198,6 +199,10 @@ const containersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-container-extra')) &&
   has(nodes, 'Form: ')
+const listsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-style')) &&
+  has(nodes, 'List style: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -231,6 +236,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   dialogs: dialogsLoaded,
   host: hostLoaded,
   containers: containersLoaded,
+  lists: listsLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -245,6 +251,7 @@ const suiteHome: Record<Suite, string> = {
   dialogs: 'nav-one-native-dialogs',
   host: 'nav-one-native-host',
   containers: 'nav-one-native-containers',
+  lists: 'nav-one-native-lists',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1467,6 +1474,142 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
       await pressSwitch()
       await wait(`containers recycle ${cycle}: the composed Toggle still emits`, (n) =>
+        status(n, 'IsOn', 'true')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'lists') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a composed Toggle would look like it never emitted.
+    const pressSwitch = async (label: string) => {
+      const nodes = await wait(`the ${label} switch is ready`, (n) =>
+        Boolean(control(n, 'CheckBox', label)?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', label)!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+    // a swipe anchored to a visible row stays inside its own scroll view: starting one
+    // on a neighboring list would scroll that instead.
+    const swipeRows = async (prefix: string, target: string, horizontal: boolean) => {
+      for (let attempt = 0; attempt < 10; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        if (labels(nodes).includes(target)) return
+        const frame = nodes.find(
+          (node) => node.AXLabel?.startsWith(prefix) && node.frame
+        )?.frame
+        if (!frame) throw new Error(`no ${prefix}row to swipe over`)
+        const x = Math.round(frame.x + frame.width / 2)
+        const y = Math.round(frame.y + frame.height / 2)
+        command(
+          [
+            'ui-automation',
+            'swipe',
+            '--x1',
+            String(horizontal ? x + 40 : x),
+            '--y1',
+            String(horizontal ? y : y + 40),
+            '--x2',
+            String(horizontal ? x - 40 : x),
+            '--y2',
+            String(horizontal ? y : y - 40),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`${target} never appeared while swiping`)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-lists')
+    await wait(
+      'a List renders rows from both sections',
+      (n) =>
+        labels(n).includes('Apple') &&
+        labels(n).includes('Banana') &&
+        labels(n).includes('Carrot') &&
+        Boolean(control(n, 'CheckBox', 'Ripe'))
+    )
+    tap({ label: 'List button' })
+    await wait('a Button composed into a List emits', (n) =>
+      status(n, 'List taps', 1)
+    )
+    await pressSwitch('Ripe')
+    await wait('a Toggle composed into a List emits', (n) => status(n, 'IsOn', 'true'))
+
+    // each style change re-resolves the list style natively; the rows surviving it is
+    // what proves the prop flowed without dropping the content.
+    tap({ id: 'one-native-list-style' })
+    await wait('a List takes the plain style', (n) =>
+      status(n, 'List style', 'plain') &&
+      labels(n).includes('Apple') &&
+      labels(n).includes('Carrot')
+    )
+    tap({ id: 'one-native-list-style' })
+    await wait('a List takes the grouped style', (n) =>
+      status(n, 'List style', 'grouped') &&
+      labels(n).includes('Apple') &&
+      labels(n).includes('Carrot')
+    )
+    screenshot('lists-grouped.png')
+
+    // the first lazy rows mount; the last ones must not, because a LazyVStack that
+    // built all thirty up front would be a VStack with extra steps.
+    await wait('a LazyVStack mounts its first rows', (n) =>
+      labels(n).includes('Row 1')
+    )
+    if (labels(snapshot(config.simulatorId)).includes('Row 30'))
+      throw new Error('a LazyVStack mounted rows it cannot show yet')
+    await swipeRows('Row ', 'Row 30', false)
+    await wait('scrolling a LazyVStack materializes its last rows', (n) =>
+      labels(n).includes('Row 30')
+    )
+
+    await wait('a LazyHStack mounts its first chips', (n) =>
+      labels(n).includes('Chip 1')
+    )
+    if (labels(snapshot(config.simulatorId)).includes('Chip 20'))
+      throw new Error('a LazyHStack mounted chips it cannot show yet')
+    await swipeRows('Chip ', 'Chip 20', true)
+    await wait('scrolling a LazyHStack materializes its last chips', (n) =>
+      labels(n).includes('Chip 20')
+    )
+    screenshot('lists-scrolled.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`lists recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-lists')
+      await wait(
+        `lists recycle ${cycle}: a fresh List rebuilds`,
+        (n) =>
+          status(n, 'IsOn', 'false') &&
+          status(n, 'List taps', 0) &&
+          labels(n).includes('Apple')
+      )
+      await pressSwitch('Ripe')
+      await wait(`lists recycle ${cycle}: the composed Toggle still emits`, (n) =>
         status(n, 'IsOn', 'true')
       )
     }
