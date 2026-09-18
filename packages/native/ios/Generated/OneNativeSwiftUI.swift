@@ -74,9 +74,6 @@ enum OneNativeGenerated {
     case "": return nil
     case "search":
       return .search
-    case "prominent":
-      if #available(iOS 27, *) { return .prominent }
-      preconditionFailure("TabRole.prominent requires iOS 27")
     default: preconditionFailure("invalid TabRole: \(value)")
     }
   }
@@ -345,8 +342,6 @@ extension View {
       self.pickerStyle(.automatic)
     case "segmented":
       self.pickerStyle(.segmented)
-    case "tabs":
-      if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self }
     case "palette":
       self.pickerStyle(.palette)
     case "navigationLink":
@@ -457,8 +452,6 @@ extension View {
     switch value {
     case "automatic":
       self.textFieldStyle(.automatic)
-    case "bordered":
-      if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self }
     case "plain":
       self.textFieldStyle(.plain)
     default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self

@@ -34,6 +34,10 @@ import {
 // raising this deletes availability branches rather than adding them. schema.json carries it
 // forward and VxrnNative.podspec reads it from there, so this is the only place it is set.
 const MINIMUM_IOS = 17
+// the ceiling the checked-in bindings must compile against. CI pins an Xcode on this SDK
+// major, so symbols introduced above it are skipped and every newer toolchain produces
+// identical output. bump this when CI moves to a newer Xcode, then regenerate.
+const MAXIMUM_IOS = 26
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
@@ -41,6 +45,11 @@ mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
 const { sdk, swiftc, modules, inventory } = readInventory(root)
+const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
+if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
+  throw new Error(
+    `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
+  )
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const ownerMatches = (d: Declaration, type: string) => {
   const parts = d.owner.split('.')
@@ -56,7 +65,8 @@ const enums = Object.fromEntries(
         (type.endsWith('Style') ||
           d.type === 'Scale' ||
           d.type?.split('.').at(-1) === type) &&
-        available(d)
+        available(d) &&
+        ios(d) <= MAXIMUM_IOS
     )
     if (!cases.length) throw new Error(`no SDK cases for ${type}`)
     selected.push(...cases)
@@ -488,7 +498,8 @@ ${Object.entries(nativeFields)
 `
 )
 const manifest = {
-  sdk: run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version']),
+  // the ceiling, not the local toolchain: output must be identical on every SDK at or above it.
+  sdk: String(MAXIMUM_IOS),
   // xcode installations can package equivalent public interfaces with different bytes and
   // source attributes. the mapped declarations below are the portable contract we publish.
   modules,
@@ -500,6 +511,7 @@ const manifest = {
             d.kind === 'func' &&
             shortOwner(d) === 'View' &&
             available(d) &&
+            ios(d) <= MAXIMUM_IOS &&
             modifierFamilies.some((prefix) => d.name.startsWith(prefix)) &&
             !methods.some((m) => m.name === d.name)
         )
@@ -584,5 +596,5 @@ run(swiftc, [
 ])
 console.log(run(join(cache, 'verify-controlled'), []))
 console.log(
-  `SwiftUI SDK ${manifest.sdk}: ${inventory.length} declarations, ${selected.length} mapped symbols, ${outputs.size} generated files${process.argv.includes('--check') ? ', verified' : ''}`
+  `SwiftUI SDK ${sdkVersion}, target ${MAXIMUM_IOS}: ${inventory.length} declarations, ${selected.length} mapped symbols, ${outputs.size} generated files${process.argv.includes('--check') ? ', verified' : ''}`
 )
