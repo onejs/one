@@ -2,13 +2,21 @@
 
 ## Now
 
-Milestone 1 done, committed. Next: Milestone 2 coverage dashboard (extend
-codegen/measure.ts with a mapped-vs-unmapped per-module report).
+M2 done, committing. Next: M3 generic emitters (generic leaf emitter +
+generic enum-modifier emitter driven by inventory).
 
 ## Done
 
 - MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
-  Frozen on everything under packages/native until merge confirmed.
+  Merge a95cd0206 landed with MAXIMUM_IOS=26; freeze over.
+- M2 coverage dashboard done: `bun run coverage` prints per-module
+  mapped/total views and modifiers (26/750 views, 50/467 modifiers at
+  target SDK 26; 47 views + 52 modifiers above the ceiling counted
+  separately), `--json` for machine use. Manifest carries the covered
+  sets (collected at generate.ts selection sites); report filters the
+  universe to the ceiling. Ceiling fallout fixed: TabRole.prominent@27
+  dropped from bindings, README mentions removed. Gates: generate:check
+  pass, tsc pass, coverage/inventory/menuItems tests pass (24/24).
 - COMMITTED 460b29911 (generate.ts coverage sets) + 0f29c8ea8 (coverage.ts +
   coverage.test.ts). README has no uncommitted changes (M1 README work already
   in 5f87b5782). generate:check is expected-red until post-merge regen:
@@ -45,3 +53,7 @@ codegen/measure.ts with a mapped-vs-unmapped per-module report).
   apps/onestack.dev/data/blog/version-two.mdx:148 says apps using
   @vxrn/native "build for iOS 26". Coordinator call whether to touch a
   release-history post.
+- tests/containers.test.ts "implements a view for every registered
+  component" fails on OneNativeListComponentView: ios-views registered
+  List/ScrollView/Lazy components (dirty package.json) before the native
+  views exist. Their WIP, not mine; my area's tests pass.

@@ -41,7 +41,8 @@ describe('computeCoverage', () => {
         views: { SwiftUI: ['Button'] },
         modifiers: { SwiftUI: ['padding'], _WebKit_SwiftUI: ['webViewMagnificationGestures'] },
       },
-      ['SwiftUI', '_MapKit_SwiftUI', '_WebKit_SwiftUI']
+      ['SwiftUI', '_MapKit_SwiftUI', '_WebKit_SwiftUI'],
+      26
     )
     expect(modules.SwiftUI.views).toMatchObject({
       mapped: 1,
@@ -70,11 +71,7 @@ describe('computeCoverage', () => {
       modifier('SwiftUI', 'padding'),
       modifier('SwiftUI', '_spy'),
     ]
-    const { modules } = computeCoverage(
-      inventory,
-      { views: {}, modifiers: {} },
-      ['SwiftUI']
-    )
+    const { modules } = computeCoverage(inventory, { views: {}, modifiers: {} }, ['SwiftUI'], 26)
     expect(modules.SwiftUI.views).toMatchObject({
       total: 1,
       unmappedNames: ['Button'],
@@ -85,11 +82,43 @@ describe('computeCoverage', () => {
     })
   })
 
+  it('counts above-ceiling names separately instead of as unmapped', () => {
+    const inventory = [
+      view('SwiftUI', 'Button'),
+      view('SwiftUI', 'FutureView', { attributes: ['@available(iOS 27.0, *)'] }),
+      modifier('SwiftUI', 'padding'),
+      modifier('SwiftUI', 'futureModifier', { attributes: ['@available(iOS 27.0, *)'] }),
+    ]
+    const { modules, totals } = computeCoverage(
+      inventory,
+      { views: {}, modifiers: {} },
+      ['SwiftUI'],
+      26
+    )
+    expect(modules.SwiftUI.views).toMatchObject({
+      total: 1,
+      aboveCeiling: 1,
+      unmappedNames: ['Button'],
+    })
+    expect(modules.SwiftUI.modifiers).toMatchObject({
+      total: 1,
+      aboveCeiling: 1,
+      unmappedNames: ['padding'],
+    })
+    expect(totals.views.aboveCeiling).toBe(1)
+    expect(totals.modifiers.aboveCeiling).toBe(1)
+  })
+
   it('keeps a covered name that left the universe instead of dropping it', () => {
-    const { modules } = computeCoverage([view('SwiftUI', 'Button')], {
-      views: { SwiftUI: ['Button', 'Renamed'] },
-      modifiers: {},
-    }, ['SwiftUI'])
+    const { modules } = computeCoverage(
+      [view('SwiftUI', 'Button')],
+      {
+        views: { SwiftUI: ['Button', 'Renamed'] },
+        modifiers: {},
+      },
+      ['SwiftUI'],
+      26
+    )
     expect(modules.SwiftUI.views).toMatchObject({
       mapped: 2,
       total: 2,
