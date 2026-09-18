@@ -5,7 +5,7 @@ import type { MenuItem } from './types'
 import { assertSwiftUIValue } from './generated/swiftui'
 export function flattenMenuItems(
   items: readonly MenuItem[],
-  iosVersion = 26
+  iosVersion = 17
 ): NativeMenuItem[] {
   const result: NativeMenuItem[] = []
   const ids = new Set<string>()

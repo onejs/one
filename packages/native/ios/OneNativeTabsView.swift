@@ -138,18 +138,49 @@ private struct TabsContent: View {
 
   var body: some View {
     Group {
-      if model.sidebarAdaptable { tabs.tabViewStyle(.sidebarAdaptable) }
-      else { tabs.tabViewStyle(.tabBarOnly) }
+      if #available(iOS 18.0, *) {
+        modernTabs
+      } else {
+        legacyTabs
+      }
     }
     .oneNativeTabBarMinimizeBehavior(model.tabBarMinimizeBehavior)
   }
 
+  @available(iOS 18.0, *)
+  private var modernTabs: some View {
+    Group {
+      if model.sidebarAdaptable { tabs.tabViewStyle(.sidebarAdaptable) }
+      else { tabs.tabViewStyle(.tabBarOnly) }
+    }
+  }
+
+  @available(iOS 18.0, *)
   private var tabs: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(model.pages) { page in
         OneNativeGenerated.tab(id: page.id, title: page.title, systemImage: page.systemImage, badge: page.badge, role: page.role) {
           OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
         }
+      }
+    }
+    .onAppear { model.publishPendingAction() }
+    .id(model.tabViewRevision)
+  }
+
+  private var legacyTabs: some View {
+    TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
+      ForEach(model.pages) { page in
+        OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
+          .tabItem {
+            if page.systemImage.isEmpty {
+              Text(page.title)
+            } else {
+              Label(page.title, systemImage: page.systemImage)
+            }
+          }
+          .badge(page.badge.isEmpty ? nil : Text(page.badge))
+          .tag(page.id)
       }
     }
     .onAppear { model.publishPendingAction() }
