@@ -21,6 +21,7 @@ export const modifiers = [
   { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
   { name: 'progressViewStyle', type: 'ProgressViewStyle' },
   { name: 'gaugeStyle', type: 'GaugeStyle' },
+  { name: 'listStyle', type: 'ListStyle' },
   { name: 'textFieldStyle', type: 'TextFieldStyle' },
   { name: 'submitLabel', type: 'SubmitLabel' },
   {
@@ -221,6 +222,7 @@ export const enumTypes = [
   'MagnificationGesturesBehavior',
   'LinkPreviewBehavior',
   'ElementFullscreenBehavior',
+  'ListStyle',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -485,5 +487,82 @@ export const components = [
       },
     ],
     interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeList',
+    publicName: 'List',
+    props: {
+      listStyle: 'string',
+    },
+    events: {},
+    enumProps: { listStyle: 'ListStyle' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeScrollView',
+    publicName: 'ScrollView',
+    props: {
+      axes: 'string',
+      showsIndicators: 'boolean',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLazyVStack',
+    publicName: 'LazyVStack',
+    props: {
+      alignment: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLazyHStack',
+    publicName: 'LazyHStack',
+    props: {
+      alignment: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
   },
 ] as const
