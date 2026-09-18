@@ -52,12 +52,29 @@ type PublishPackagesOptions<T extends PublishPackage> = {
   packages: T[]
   isPublished: (pkg: T) => Promise<boolean>
   publish: (packages: T[]) => Promise<void>
+  verifyTimeoutMs?: number
+  verifyIntervalMs?: number
+  wait?: (ms: number) => Promise<void>
 }
+
+// npm publish returns as soon as the registry accepts a tarball, but the
+// version document becomes readable on the registry's own schedule afterwards.
+// in run 35299936912 all 26 packages took at least 54 seconds to appear and two
+// took over five minutes, well after the publish step had already exited, so a
+// single check straight after publishing would fail a release that worked. poll
+// instead, with enough headroom that only a real miss reaches the deadline.
+const VERIFY_TIMEOUT_MS = 15 * 60_000
+const VERIFY_INTERVAL_MS = 15_000
+
+const defaultWait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
   packages,
   isPublished,
   publish,
+  verifyTimeoutMs = VERIFY_TIMEOUT_MS,
+  verifyIntervalMs = VERIFY_INTERVAL_MS,
+  wait = defaultWait,
 }: PublishPackagesOptions<T>) {
   const skipped: string[] = []
   const pending: T[] = []
@@ -90,5 +107,47 @@ export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
 
   await publish(pending)
 
-  return { skipped, published: pending.map((pkg) => pkg.name), failed: [] }
+  // npm exits 0 for a workspace publish whose per-package result never reached
+  // the registry, so the run is not green until the registry says every version
+  // is there. this is the gate: anything still missing at the deadline is a
+  // failed publish, and the caller turns that into a non-zero exit.
+  const missing = new Map(pending.map((pkg) => [pkg.name, pkg]))
+  const deadline = Date.now() + verifyTimeoutMs
+
+  console.info(`Verifying ${pending.length} package versions on npm...`)
+
+  while (true) {
+    const checks = await pMap(
+      [...missing.values()],
+      async (pkg) => ({
+        pkg,
+        // a registry hiccup mid-poll is not a verdict, only the deadline is
+        published: await isPublished(pkg).catch(() => false),
+      }),
+      { concurrency: 8 }
+    )
+
+    for (const { pkg, published } of checks) {
+      if (published) {
+        missing.delete(pkg.name)
+      }
+    }
+
+    if (missing.size === 0) {
+      return { skipped, published: pending.map((pkg) => pkg.name), failed: [] }
+    }
+
+    if (Date.now() >= deadline) {
+      return {
+        skipped,
+        published: pending.filter((pkg) => !missing.has(pkg.name)).map((pkg) => pkg.name),
+        failed: [...missing.keys()],
+      }
+    }
+
+    console.info(
+      `Waiting for ${missing.size} of ${pending.length} on npm: ${[...missing.keys()].join(', ')}`
+    )
+    await wait(verifyIntervalMs)
+  }
 }
