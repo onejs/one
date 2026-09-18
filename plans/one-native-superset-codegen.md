@@ -2,8 +2,8 @@
 
 ## Now
 
-M3 V1 done, committing. Emitter machinery + proof landed; catalog migration
-is sequenced by the coordinator (proposal below). Nothing further in flight.
+Spec-template numeric imports done, committing. Emitter wiring waits on the
+ios-views leaf-adoption commit, then I wire emitControls to deriveLeafSwift.
 
 ## Done
 
@@ -20,6 +20,11 @@ is sequenced by the coordinator (proposal below). Nothing further in flight.
   genuinely 13-way ambiguous; roles/Axis/Edge/Photos enums are ctor args,
   not modifiers). No regen output changed: generate:check verified,
   tsc + vitest 84/84 pass.
+- Spec template numeric imports: the generate.ts components-loop spec template
+  now imports Double/Float from CodegenTypes when a recipe's props or events
+  use them (Lazy-stack spacing); existing specs render byte-identical.
+  generate:check verified no-op, tsc + vitest 84/84 pass. End-to-end positive
+  case lands with the ios-views spacing-prop regen.
 - M2 coverage dashboard done: `bun run coverage` prints per-module
   mapped/total views and modifiers (26/750 views, 50/467 modifiers at
   target SDK 26; 47 views + 52 modifiers above the ceiling counted
@@ -81,9 +86,6 @@ is sequenced by the coordinator (proposal below). Nothing further in flight.
   packages/native/codegen/mediaCatalog.ts:185 still says WebView "is the
   package floor, so it needs no availability gate". The code below it does
   gate. Needs a comment fix by native-ios-views.
-- Possible stale docs claim (out of scope, flagging only):
-  apps/onestack.dev/data/blog/version-two.mdx:148 says apps using
-  @vxrn/native "build for iOS 26". Coordinator call whether to touch a
-  release-history post.
+- (dropped per coordinator: release-history posts are not touched.)
 - (resolved) the containers.test.ts OneNativeListComponentView failure cleared
   when ios-views landed the native views; suite is 84/84 green.

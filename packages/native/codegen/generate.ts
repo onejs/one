@@ -262,11 +262,20 @@ const nativeItem = `export type NativeMenuItem = Readonly<{\n${Object.entries(
   .map(([name, field]) => `  ${name}: ${fieldType(field.type)}`)
   .join('\n')}\n}>`
 for (const component of components) {
+  // numeric props arrive as CodegenTypes scalars, so the spec imports the ones the
+  // recipe uses. components without them keep the historical import byte for byte.
+  const usedTypes = [
+    ...Object.values(component.props),
+    ...Object.values(component.events).flatMap((fields) =>
+      Object.values(fields as Record<string, string>)
+    ),
+  ].join(' ')
+  const numeric = ['Double', 'Float'].filter((type) => new RegExp(`\\b${type}\\b`).test(usedTypes))
   outputs.set(
     `src/specs/${component.name}NativeComponent.ts`,
     header +
       `import type { ViewProps } from 'react-native'
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes'
+import type { ${['DirectEventHandler', 'Int32', ...numeric].join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 ${component.name === 'OneNativeMenu' ? nativeItem : ''}
 interface NativeProps extends ViewProps {
