@@ -7,6 +7,8 @@ codegen/measure.ts with a mapped-vs-unmapped per-module report).
 
 ## Done
 
+- MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
+  Frozen on everything under packages/native until merge confirmed.
 - COMMITTED 460b29911 (generate.ts coverage sets) + 0f29c8ea8 (coverage.ts +
   coverage.test.ts). README has no uncommitted changes (M1 README work already
   in 5f87b5782). generate:check is expected-red until post-merge regen:

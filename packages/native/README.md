@@ -1072,7 +1072,8 @@ bun run test
 ```
 
 Generation requires Xcode and its macOS/iPhoneSimulator SDKs. The checked-in
-manifest records the SDK and Swift compiler versions used for the current output.
+manifest records the target SDK ceiling, which tracks the Xcode CI pins; any
+newer toolchain produces identical output.
 The generator matches constructors by full parameter labels and types, and matches
 modifiers by those signatures plus generic constraints. It derives enum cases and
 iOS availability from SDK declarations, then emits:

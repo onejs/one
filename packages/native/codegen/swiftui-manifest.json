@@ -1,5 +1,5 @@
 {
-  "sdk": "27.1",
+  "sdk": "26",
   "modules": [
     "SwiftUI",
     "SwiftUICore",
@@ -58,7 +58,6 @@
       "inline": 14,
       "automatic": 13,
       "segmented": 13,
-      "tabs": 27,
       "palette": 17,
       "navigationLink": 16,
       "menu": 14
@@ -92,8 +91,7 @@
       "close": 26
     },
     "TabRole": {
-      "search": 18,
-      "prominent": 27
+      "search": 18
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -126,7 +124,6 @@
     },
     "TextFieldStyle": {
       "automatic": 13,
-      "bordered": 27,
       "plain": 13
     },
     "SubmitLabel": {
@@ -235,6 +232,14 @@
       "automatic": 26,
       "enabled": 26,
       "disabled": 26
+    },
+    "ListStyle": {
+      "automatic": 13,
+      "sidebar": 14,
+      "inset": 14,
+      "grouped": 13,
+      "insetGrouped": 14,
+      "plain": 13
     }
   },
   "modifiers": [
@@ -407,6 +412,21 @@
       ],
       "requirements": [
         "S : SwiftUI.GaugeStyle"
+      ]
+    },
+    {
+      "name": "listStyle",
+      "type": "ListStyle",
+      "ios": 13,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "style",
+          "type": "S"
+        }
+      ],
+      "requirements": [
+        "S : SwiftUI.ListStyle"
       ]
     },
     {
