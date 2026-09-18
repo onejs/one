@@ -193,6 +193,16 @@ export async function scanDepsToOptimize(
           hasReanimated = true
         }
 
+        // A package declaring `codegenConfig` is a native Fabric component or
+        // TurboModule library. Its codegen entry points import from
+        // `react-native/Libraries/...`, which do not exist under SSR where
+        // react-native is aliased to a web implementation, so it can never be
+        // pre-bundled. Exclude the whole class instead of naming packages.
+        if (depPkgJson.codegenConfig != null) {
+          debug?.(`${dep} skipped: declares codegenConfig (native codegen package)`)
+          return []
+        }
+
         const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
           parentDepNames: [...parentDepNames, dep],
           pkgJsonContent: depPkgJson,
