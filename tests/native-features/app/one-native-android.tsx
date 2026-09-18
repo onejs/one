@@ -16,6 +16,7 @@ export default function OneNativeAndroid() {
   const [showOptional, setShowOptional] = useState(true)
   const [disabledButtonTaps, setDisabledButtonTaps] = useState(0)
   const [disabledSwitchTaps, setDisabledSwitchTaps] = useState(0)
+  const [iconTaps, setIconTaps] = useState(0)
 
   const propText = propExpanded ? 'Expanded Android Compose text prop' : 'Compact prop'
   const order = reordered ? ['beta', 'alpha'] : ['alpha', 'beta']
@@ -87,6 +88,37 @@ export default function OneNativeAndroid() {
           label={reordered ? 'Restore order' : 'Reorder'}
           onPress={() => setReordered((value) => !value)}
           testID="one-native-android-reorder"
+          disabled={false}
+        />
+      </Compose.Row>
+
+      <Compose.Row
+        accessibilityLabel="Material Symbols row"
+        testID="one-native-android-icon-row"
+        composeStyle={rowStyle}
+        spacing={8}
+      >
+        <Compose.Icon
+          accessibilityLabel="Star outline"
+          testID="one-native-android-icon"
+          name="star"
+          size={24}
+        />
+        <Compose.Icon
+          accessibilityLabel="Star filled"
+          testID="one-native-android-icon-filled"
+          name="star"
+          filled
+          size={24}
+        />
+        <Compose.Button
+          accessibilityRole="button"
+          accessibilityLabel={iconTaps > 0 ? 'Icon tapped' : 'Add icon'}
+          accessibilityState={{ disabled: false }}
+          label={iconTaps > 0 ? 'Icon tapped' : 'Add icon'}
+          icon="add"
+          onPress={() => setIconTaps((count) => count + 1)}
+          testID="one-native-android-icon-button"
           disabled={false}
         />
       </Compose.Row>

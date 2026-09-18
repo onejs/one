@@ -470,6 +470,10 @@ const proofIds = [
   'one-native-android-button-status',
   'one-native-android-real-button',
   'one-native-android-reorder',
+  'one-native-android-icon-row',
+  'one-native-android-icon',
+  'one-native-android-icon-filled',
+  'one-native-android-icon-button',
   'one-native-android-switch-status',
   'one-native-android-switch-policy-status',
   'one-native-android-switch',
@@ -494,13 +498,17 @@ function duplicateIds(nodes: Node[]) {
   return duplicateIdsIn(nodes, proofIds)
 }
 
+// Material Symbols star (f09a) is what the app map resolves `name="star"` to.
+const MaterialSymbolsStar = String.fromCharCode(0xf09a)
+
 function duplicateIdsIn(nodes: Node[], ids: string[]) {
   return ids.filter((id) => matching(nodes, { id }).length !== 1)
 }
 
-// At 560dpi the 309x686dp window clips the Column tail: the order row and the
-// decoy box are composed but absent from the uiautomator tree. Assert the
-// observable subset there and the full set at the default density.
+// At 560dpi the 309x686dp window clips the Column tail: the order status, the
+// order row, and the decoy box sit at or past the window edge and duplicate or
+// vanish as the tree settles, so the post-rotation sweep covers the reliably
+// visible subset and the full set is asserted at the default density.
 const proofIdsVisibleSmall = [
   'one-native-android-mounted',
   'one-native-android-prop-status',
@@ -522,7 +530,6 @@ const proofIdsVisibleSmall = [
   'one-native-android-disabled-status',
   'one-native-android-disabled-button',
   'one-native-android-disabled-switch',
-  'one-native-android-order-status',
 ]
 
 function nodeWidth(node: Node) {
@@ -919,6 +926,36 @@ async function run(config: Config) {
           1 &&
         textIncludes(nodes, 'Tap real button'),
       'one-native-android-mounted'
+    )
+
+    await expect(
+      'material-symbols-icons',
+      (nodes) => {
+        const outlined = nodeById(nodes, 'one-native-android-icon')
+        const filled = nodeById(nodes, 'one-native-android-icon-filled')
+        return (
+          outlined.text === MaterialSymbolsStar &&
+          filled.text === MaterialSymbolsStar &&
+          outlined.contentDescription === 'Star outline' &&
+          filled.contentDescription === 'Star filled' &&
+          nodeWidth(outlined) > 0 &&
+          nodeWidth(filled) > 0
+        )
+      },
+      'one-native-android-mounted',
+      (nodes) =>
+        runDetail(nodes, ['one-native-android-icon', 'one-native-android-icon-filled'])
+    )
+    tapFresh(config, 'Icon button tap', {
+      id: 'one-native-android-icon-button',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'material-symbols-icon-button-tap',
+      (nodes) => textIncludes(nodes, 'Icon tapped'),
+      'one-native-android-mounted',
+      (nodes) => runDetail(nodes, ['one-native-android-icon-button'])
     )
 
     for (let cycle = 0; cycle < 6; cycle++)
