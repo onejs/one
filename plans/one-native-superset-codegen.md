@@ -7,6 +7,14 @@ codegen/measure.ts with a mapped-vs-unmapped per-module report).
 
 ## Done
 
+- COMMITTED 460b29911 (generate.ts coverage sets) + 0f29c8ea8 (coverage.ts +
+  coverage.test.ts). README has no uncommitted changes (M1 README work already
+  in 5f87b5782). generate:check is expected-red until post-merge regen:
+  manifest lacks the new coverage key. Frozen per coordinator mail: will not
+  touch generate.ts, README, or regen output until merge confirmed. New
+  constraint recorded: never bump MAXIMUM_IOS or commit post-26 symbols
+  without a CI Xcode bump. Left uncommitted: 1-line coverage script in
+  packages/native/package.json (file is mixed with ios-views regen lines).
 - M1 floor at 17: audited every 26-only API use; all are gated with fallback.
   - native gates (pre-existing from the v2-beta floor merge, verified not
     re-broken): tabs legacy TabView below 18, tabBarMinimizeBehavior and
