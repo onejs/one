@@ -1,19 +1,18 @@
 ---
 title: 'One v2 Beta'
 publishedAt: '2026-09-17'
-description: 'Native SwiftUI and Compose interfaces, React Navigation 8, and a year of framework work since the v1 beta.'
+description: 'Native SwiftUI and Compose interfaces, React Navigation 8, and the framework work since the v1 beta.'
 by: nate
 draft: true
 ---
 
-{/* draft: covers v1.2 through the v2 beta cut, confirm version numbers before publish */}
+{/* draft: range origin/v1-rc1..v2-beta, 1834 commits; v1 line through 1.27.1 plus the v2 beta cut, versions verified against the tree */}
 
 <IntroParagraph>
   The v2 beta line is available on the npm `beta` dist-tag. It collects
-  everything since the v1 beta: the v1 stable line through 1.27, a new native
-  interface library, React Navigation 8, and a reworked native bundling
-  pipeline. This post summarizes the changes as recorded in git history and the
-  per-release notes.
+  everything since the v1 beta: the v1 stable line through 1.27.1, a new native
+  interface library, the React Navigation 8 alpha, and a reworked native
+  bundling pipeline.
 </IntroParagraph>
 
 Install the beta with:
@@ -50,8 +49,15 @@ separate state, with React Navigation remaining the application navigator and
 During development the library lived in a separate `one-native` workspace
 package. It was folded into `@vxrn/native`, so consumers install and import
 one package. There is no `one-native` package on npm. The fold also raised the
-floors for the whole package: React Native 0.86.2 with the New Architecture,
-and an iOS 26 deployment target.
+floors for the whole package: React Native 0.87 with the New Architecture,
+and an iOS 17 deployment target. Newer surfaces degrade gracefully below
+their version: WebView and Liquid Glass need iOS 26 (glass falls back to the
+material), and the modern tab bar and sheet sizing need iOS 18.
+
+The package also carries a UIKit surface: a type-safe Color API, iOS zoom
+transitions, a bottom `UIToolbar` with SF Symbols and badges, toolbar menu
+actions, and an iPad `SplitView`. All of it is experimental alongside the
+rest of the package.
 
 See [native features](/docs/native-features) and the
 [iOS native guide](/docs/guides-ios-native).
@@ -71,23 +77,28 @@ served with an mtime guard, and static asset cache headers through
 `server.cacheControl`. Metro mode stays available with shared config through
 `one/babel-preset` and `one/metro-config`, `one metro-eject` for opting out of
 CI auto-generation, automatic cache clearing on config and lockfile changes,
-and `process.env` support in the babel plugin. See
-[Metro mode](/docs/metro-mode).
+`startup: 'lazy'` to defer Metro until a native client connects,
+`process.env` support in the babel plugin, and user babel configs honored
+across the compiler and Metro. See [Metro mode](/docs/metro-mode).
 
 ## Navigation
 
-One moved to React Navigation 8. `Presentations` replaces `NavigationRender`,
-and Stack, Tabs, and Drawer render through pluggable web rendering with
-headless web navigators, so `react-native` stays out of the web module graph.
-The Stack gained a header composition API with child processing, and the
-router added toolbar support, suspense, protected redirects, `Tabs.Protected`,
-an option to suspend on route load for native and web, deep linking config
-with a `getLinking` helper and `useSitemap` hook, and redirects through
-loaders.
+One moved to the React Navigation 8 alpha. `Presentations` replaces
+`NavigationRender`, and Stack, Tabs, and Drawer render through pluggable web
+rendering with headless web navigators, so `react-native` stays out of the
+web module graph. The drawer ships as a separate `one/drawer` import so apps
+that don't use it skip the weight. Custom layouts read navigator state
+through [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs),
+and [useDrawer](/docs/hooks-useDrawer). The Stack gained a header composition API
+with child processing, and the router added toolbar support, suspense,
+protected redirects, `Tabs.Protected`, an option to suspend on route load for
+native and web, deep linking config with a `getLinking` helper and
+`useSitemap` hook, and redirects through loaders.
 
 From the v1 line, also included: [route masks](/docs/hooks-useRouter),
 [scroll position groups](/docs/hooks-useScrollGroup),
 [route validation](/docs/routing-loader), [useBlocker](/docs/hooks-useBlocker),
+[useSearchParams](/docs/hooks-useSearchParams),
 and the [Protected](/docs/components-Protected) component. Environment guard
 imports (`server-only`, `client-only`, `native-only`, `web-only`) with an
 `environmentGuards` config option keep platform code out of the wrong bundle.
@@ -100,8 +111,9 @@ Rendering and build work since the v1 beta:
   `web.renderRootLayout` to fix the root layout to SSG or SSR regardless of
   the child page mode, and `.server.ts` platform extension support.
 - [Skew protection](/docs/guides-skew-protection) with an optional proactive
-  mode, CDN edge caching for SSG and SPA pages, and retry of transient
-  dynamic-import failures before reloading.
+  mode, CDN edge caching for SSG and SPA pages (the mechanism behind
+  [ISR](/docs/guides-isr)), and retry of transient dynamic-import failures
+  before reloading.
 - Startup and dev speed: `optimization.warmRoutes` with passive dependency
   tracking, `native: false` for web-only projects, an experimental bundled dev
   mode behind a flag (Vite 8.1 FullBundleDev), multicore static builds through
@@ -109,43 +121,61 @@ Rendering and build work since the v1 beta:
 - Loading and images: [loader HMR](/docs/routing-loader) with `watchFile`,
   [`?imagedata` imports](/docs/guides-images) for dimensions and blur
   placeholders, intent-based [link prefetching](/docs/configuration), cached
-  route sync dispatch, and automatic layout CSS inlining.
+  route sync dispatch, automatic layout CSS inlining, and the
+  [`.inline.css`](/docs/guides-css) convention for CSS that must load before
+  first paint.
 - Framework depth: flexible React Compiler options, `.server.ts` support,
   subdomain on loader props, API middleware fixes with a unified server build
-  mode, and a daemon for multi-app development.
+  mode, streaming SSR responses by default, a per-environment
+  [`alias`](/docs/configuration#alias) option the dep optimizer respects,
+  and a daemon for multi-app development.
 
 ## Deployment, updates, and data
 
 Cloudflare Workers support arrived with lazy module loading, adoption of the
 Cloudflare Vite plugin worker build, merged user `wrangler.jsonc`, and worker
-env and `executionCtx` exposed to API handlers. Vercel deploys warn when
-`vercel.json` is missing `cleanUrls`. See
-[deployment](/docs/guides-deployment).
+env and `executionCtx` exposed to API handlers. Underneath,
+`one/headless-server` runs the same request handling (API routes, loaders,
+SSR, middleware, redirects) as a pure Request to Response handler in any
+environment, and `ONE_EXPERIMENTAL_WORKER_DEV=1` serves dev through workerd.
+Vercel deploys warn when `vercel.json` is missing `cleanUrls`, and middleware
+runs with full support on both Vercel and Cloudflare Workers. `one serve
+--cluster` forks worker processes across CPU cores for production SSR under
+load. See [deployment](/docs/guides-deployment) and
+[`one serve`](/docs/one-serve).
 
 Over-the-air updates are documented in the
 [OTA updates guide](/docs/guides-ota-updates), covering expo-updates and
 hot-updater with the generated EXUpdates manifest. Data loading keeps
 [typed loaders](/docs/routing-loader) with refetching,
-[middleware](/docs/routing-middlewares), and sitemaps with per-route
-overrides.
+[middleware](/docs/routing-middlewares),
+[typed API routes](/docs/routing-api-routes) with `createAPIRoute`,
+[layout loaders](/docs/routing-layouts) readable anywhere through
+[useMatches](/docs/hooks-useMatches),
+[loaderCache](/docs/routing-loader#loader-cache) for deduping concurrent
+SSR loader calls, a 60s default loader timeout (`ONE_LOADER_TIMEOUT_MS`),
+and sitemaps with per-route overrides.
 
 ## Developer experience
 
 DevTools became a unified panel with SEO preview, route debugging, loader
-timing, error tracking, and a source inspector with picker UI, input
-recording, component enter and leave events, and an Under tab. Editor
+timing, error tracking, quick actions, and a source inspector with picker
+UI, input recording, component enter and leave events, and an Under tab. Editor
 detection and configuration improved, MDX gained smart typography and
 automatic loader HMR, `EXPO_PUBLIC_` joined the default env prefix for Expo
-compatibility, and `--skip-env` skips env loading. See
-[DevTools](/docs/dev-tools) and [environment](/docs/environment).
+compatibility, and `--skip-env` skips env loading. A
+[`patches`](/docs/configuration#patches) option applies package patches
+during dev and build, with [`one patch`](/docs/cli#one-patch) for manual
+application. See [DevTools](/docs/dev-tools) and
+[environment](/docs/environment).
 
 The site itself added build-time open graph images for posts and an RSS feed
 for this blog.
 
 ## Requirements
 
-The v2 line requires React 19.2 or later and React Native 0.86 or later, with
-0.86.2 for `@vxrn/native`. Apps using `@vxrn/native` build for iOS 26 and
-must use the New Architecture on native. Navigation peers moved to React
-Navigation 8. Metro mode remains the compatibility path for apps that need
+The v2 line requires React 19.2 or later and React Native 0.87 or later, with
+0.87.1 for `@vxrn/native`. Apps using `@vxrn/native` build for iOS 17 and
+must use the New Architecture on native. Navigation peers moved to the React
+Navigation 8 alpha. Metro mode remains the compatibility path for apps that need
 it.

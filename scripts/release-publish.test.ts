@@ -3,6 +3,7 @@ import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
+  createNpmVersionProbe,
   ensureNpmAuthentication,
   isGitHubTrustedPublishingEnvironment,
   publishPackagesWithAuthProbe,
@@ -342,5 +343,93 @@ module.exports.webAuthOpener = async () => ({ token: String(++calls) })
     } finally {
       await rm(root, { recursive: true, force: true })
     }
+  })
+})
+
+describe('createNpmVersionProbe', () => {
+  const version = '2.0.0-beta.99.1'
+
+  const docResponse = (body: unknown, status = 200) =>
+    ({
+      ok: status >= 200 && status < 300,
+      status,
+      json: async () => body,
+    }) as Response
+
+  test('reports a version the registry serves', async () => {
+    const seen: string[] = []
+    const isPublished = createNpmVersionProbe(version, {
+      fetchImpl: (async (url: string) => {
+        seen.push(url)
+        return docResponse({ version })
+      }) as typeof fetch,
+    })
+
+    await expect(isPublished({ name: 'one', cwd: '/packages/one' })).resolves.toBe(true)
+    expect(seen).toEqual([`https://registry.npmjs.org/one/${version}`])
+  })
+
+  test('encodes scoped package names', async () => {
+    let seen = ''
+    const isPublished = createNpmVersionProbe(version, {
+      fetchImpl: (async (url: string) => {
+        seen = url
+        return docResponse({ version })
+      }) as typeof fetch,
+    })
+
+    await expect(
+      isPublished({ name: '@vxrn/native', cwd: '/packages/native' })
+    ).resolves.toBe(true)
+    expect(seen).toBe(`https://registry.npmjs.org/%40vxrn%2Fnative/${version}`)
+  })
+
+  test('reports a missing version as unpublished on 404', async () => {
+    const isPublished = createNpmVersionProbe(version, {
+      fetchImpl: (async () => docResponse('version not found', 404)) as typeof fetch,
+    })
+
+    await expect(isPublished({ name: 'one', cwd: '/packages/one' })).resolves.toBe(false)
+  })
+
+  test('rejects a version document for a different version', async () => {
+    const isPublished = createNpmVersionProbe(version, {
+      fetchImpl: (async () =>
+        docResponse({ version: '2.0.0-beta.98.1' })) as typeof fetch,
+    })
+
+    await expect(isPublished({ name: 'one', cwd: '/packages/one' })).resolves.toBe(false)
+  })
+
+  test('throws a verify error on registry failures and network errors', async () => {
+    const failing = createNpmVersionProbe(version, {
+      fetchImpl: (async () => docResponse('boom', 500)) as typeof fetch,
+    })
+    await expect(failing({ name: 'one', cwd: '/packages/one' })).rejects.toThrow(
+      `Could not verify one@${version} on npm`
+    )
+
+    const broken = createNpmVersionProbe(version, {
+      fetchImpl: (async () => {
+        throw new Error('socket hangup')
+      }) as typeof fetch,
+    })
+    await expect(broken({ name: 'one', cwd: '/packages/one' })).rejects.toThrow(
+      `Could not verify one@${version} on npm`
+    )
+  })
+
+  test('honors a registry override', async () => {
+    let seen = ''
+    const isPublished = createNpmVersionProbe(version, {
+      registry: 'https://example.test/',
+      fetchImpl: (async (url: string) => {
+        seen = url
+        return docResponse({ version })
+      }) as typeof fetch,
+    })
+
+    await expect(isPublished({ name: 'one', cwd: '/packages/one' })).resolves.toBe(true)
+    expect(seen).toBe(`https://example.test/one/${version}`)
   })
 })

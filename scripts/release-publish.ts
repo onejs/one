@@ -48,6 +48,51 @@ export type PublishPackage = {
   cwd: string
 }
 
+// reads the version document straight from the registry instead of `npm view`.
+// `npm view <name>@<version>` fetches the whole packument, which npm caches
+// locally and cloudflare caches with a five minute ttl, so a just-published
+// version can stay invisible to the poll loop long after the registry accepted
+// it: in run 35336058187 all 26 packages missed the 15 minute deadline even
+// though the registry had timestamped them minutes earlier. the version
+// document endpoint is served dynamic (uncached), so it reflects an accepted
+// publish as soon as the registry's own read path does.
+export function createNpmVersionProbe(
+  version: string,
+  options: {
+    registry?: string
+    fetchImpl?: typeof fetch
+  } = {}
+): (pkg: PublishPackage) => Promise<boolean> {
+  const registry = (
+    options.registry ??
+    process.env.npm_config_registry ??
+    'https://registry.npmjs.org'
+  ).replace(/\/+$/, '')
+  const fetchImpl = options.fetchImpl ?? fetch
+
+  return async ({ name }) => {
+    const url = `${registry}/${encodeURIComponent(name)}/${encodeURIComponent(version)}`
+    let res: Response
+    try {
+      res = await fetchImpl(url, {
+        headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' },
+      })
+    } catch (error) {
+      throw new Error(`Could not verify ${name}@${version} on npm:\n${String(error)}`)
+    }
+    if (res.status === 404) {
+      return false
+    }
+    if (!res.ok) {
+      throw new Error(
+        `Could not verify ${name}@${version} on npm:\nregistry responded ${res.status}`
+      )
+    }
+    const doc = (await res.json()) as { version?: unknown }
+    return doc?.version === version
+  }
+}
+
 type PublishPackagesOptions<T extends PublishPackage> = {
   packages: T[]
   isPublished: (pkg: T) => Promise<boolean>
@@ -66,7 +111,8 @@ type PublishPackagesOptions<T extends PublishPackage> = {
 const VERIFY_TIMEOUT_MS = 15 * 60_000
 const VERIFY_INTERVAL_MS = 15_000
 
-const defaultWait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
+const defaultWait = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
   packages,

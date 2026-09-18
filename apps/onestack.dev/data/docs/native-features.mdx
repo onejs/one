@@ -1,6 +1,6 @@
 ---
 title: Native Features (Alpha)
-description: Experimental native navigation features for iOS and Android
+description: One native SwiftUI and Compose interfaces, plus experimental native navigation features for iOS and Android
 ---
 
 One ships `@vxrn/native`, a package of native primitives for capabilities outside React Navigation. These are experimental and the API may change.
@@ -15,7 +15,163 @@ One ships `@vxrn/native`, a package of native primitives for capabilities outsid
 npm install @vxrn/native
 ```
 
+For the v2 beta line, install the `beta` dist-tag instead:
+
+```bash
+npm install @vxrn/native@beta
+```
+
 `@vxrn/native` links automatically during the native build.
+
+---
+
+## One native
+
+One native is the generated interface library inside `@vxrn/native`: real
+SwiftUI on iOS through a `Swift` export, and Jetpack Compose on Android
+through a `Compose` export. The bindings are generated from the platform SDKs
+rather than handwritten, with shared native state behind every control.
+
+<Notice theme="yellow">
+  The Swift surface builds for iOS 17 and needs React Native's New
+  Architecture. Unlike the components below it, `Swift` and `Compose` throw
+  on platforms without their native build instead of rendering nothing, so
+  keep them out of shared cross-platform trees or behind platform checks.
+</Notice>
+
+### Swift catalog
+
+Navigation: `Swift.Tabs` with keyed `Swift.Tab` pages (tabs mount eagerly and
+keep their React state), action tabs with `onPress` instead of children, and
+`role="search"` for the trailing capsule. Menus: `Swift.Menu` and
+`Swift.ContextMenu` with `MenuItem` data (actions, submenus, sections,
+dividers, toggles, control groups).
+
+Pickers and form controls take flat props, no option children:
+`Swift.Picker`, `Swift.DatePicker`, `Swift.ColorPicker`, `Swift.Toggle`,
+`Swift.Slider` (with leading and trailing labels), and `Swift.Stepper`.
+
+Display and input: `Swift.Text`, `Swift.Label`, `Swift.Image` (SF Symbols),
+`Swift.Button`, `Swift.ProgressView`, `Swift.Gauge`, `Swift.TextField` (with
+programmatic focus, keyboard type, and content type), and `Swift.SecureField`.
+
+Media and system: `Swift.VideoPlayer`, `Swift.Map` (camera plus markers),
+`Swift.WebView` (url or html, navigation and progress events),
+`Swift.ShareLink`, `Swift.PhotosPicker`, `Swift.ContentUnavailableView` for
+empty states, and `Swift.QuickLook` for local file previews.
+
+Presentation: `Swift.Sheet` (detents, controlled selection, nesting),
+`Swift.FullScreenCover`, `Swift.Popover` with a composed trigger and a
+presented body, and zero-size `Swift.Alert` and `Swift.ConfirmationDialog`
+hosts whose buttons are data.
+
+Composition: `Swift.Host` (or `Swift.HStack` / `Swift.VStack` /
+`Swift.ZStack`) renders controls as one SwiftUI tree, with `Swift.Spacer`,
+`Swift.Form`, `Swift.Section`, `Swift.LabeledContent` rows, `Swift.Slot` for
+carrying a React Native subtree into the tree, and `Swift.Glass` for Liquid
+Glass and material surfaces.
+
+### Controlled state
+
+Controls with a value share one protocol: update React state synchronously
+in the callback to accept an interaction, and keep the old value to reject
+it. Bump `revision` to force a new value while earlier events are pending;
+events from a previous revision are ignored.
+
+```tsx
+import { useState } from 'react'
+import { View } from 'react-native'
+import { Swift } from '@vxrn/native'
+
+function Notifications({ canToggle }: { canToggle: boolean }) {
+  const [enabled, setEnabled] = useState(true)
+  return (
+    <View style={{ width: '100%' }}>
+      <Swift.Toggle
+        label="Notifications"
+        isOn={enabled}
+        onIsOnChange={(next) => {
+          if (canToggle) setEnabled(next)
+        }}
+      />
+    </View>
+  )
+}
+```
+
+### Layout rules
+
+Most controls report the height SwiftUI measured back to Yoga, so they need
+no height style, but their parent must provide a width. Content with no ideal
+height (video, maps, web views, empty states, glass, forms) takes the box
+React Native gives it, so give it a height or a flex parent. Sheets, covers,
+alerts, dialogs, and Quick Look are zero-size hosts that take no layout
+space; keep them mounted while they can present. React Native props on a
+composed child (`testID`, `accessibilityLabel`, `backgroundColor`,
+`onLayout`) land on a view SwiftUI never displays, so they have no effect;
+SwiftUI supplies the accessibility element instead. Put React Native props
+on the `Swift.Host` itself.
+
+### iOS version behavior
+
+The package floor is iOS 17. Above it, newer surfaces degrade gracefully:
+`Swift.WebView` and `glassEffect` need iOS 26 (below that the web view
+renders nothing and glass falls back to the material), and the modern tab
+bar and sheet sizing need iOS 18 (below that tabs use a legacy `TabView`
+and the sizing modifier is ignored).
+
+### Styling with swiftStyle
+
+Any control takes a `swiftStyle` prop for the SwiftUI modifiers that apply
+to it alone, including `glassEffect`, `material`, and `tint`:
+
+```tsx
+<Swift.Button
+  label="Save"
+  onPress={save}
+  swiftStyle={{ glassEffect: 'interactive', tint: '#0A84FF' }}
+/>
+```
+
+### Android Compose
+
+Android builds expose `Compose.Column`, `Compose.Row`, `Compose.Box`,
+`Compose.Text`, `Compose.Button`, and `Compose.Switch` beside `Swift`:
+
+```tsx
+import { useState } from 'react'
+import { Compose } from '@vxrn/native'
+
+function Settings() {
+  const [enabled, setEnabled] = useState(true)
+  return (
+    <Compose.Column style={{ flex: 1, width: '100%' }}>
+      <Compose.Text text="Notifications" fontSize={20} />
+      <Compose.Switch
+        label="Allow notifications"
+        isOn={enabled}
+        onIsOnChange={setEnabled}
+      />
+    </Compose.Column>
+  )
+}
+```
+
+The root Compose node uses its React Native `style` for finite Yoga bounds;
+without a finite width and height it measures to zero. Descendants are laid
+out by Compose, so a nested node must use `composeStyle` instead of `style`.
+`Column` accepts `horizontalAlignment`, `verticalArrangement`, and `spacing`;
+`Row` accepts `verticalAlignment`, `horizontalArrangement`, and `spacing`;
+`Box` accepts `contentAlignment`. `Button` takes `label`, `disabled`,
+`variant`, and `tone`; `Switch` is controlled with `isOn`,
+`onIsOnChange`, and optional `revision`.
+
+### Full reference
+
+The
+[`@vxrn/native` package README](https://github.com/onejs/one/blob/v2-beta/packages/native/README.md)
+documents every component and prop, the SDK-derived enum values, the
+generation pipeline, and the machine-readable `schema.json` contract.
 
 ---
 
@@ -217,7 +373,10 @@ On iPhone, SplitView collapses to a single column automatically.
 | Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
 | Menu Actions | UIMenu / UIAction | unsupported | unsupported |
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
+| One native SwiftUI | iOS 17+ (New Architecture) | throws | throws |
+| One native Compose | throws | Android native build | throws |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native
-columns on Android and web.
+columns on Android and web. `Swift` and `Compose` throw on platforms without
+their native build, so they must stay behind platform checks.
