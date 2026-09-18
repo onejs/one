@@ -117,8 +117,23 @@ function restricted(attribute: string) {
   return /\bunavailable\b/.test(body) || /\bdeprecated\b/.test(body)
 }
 
+function withdrawn(attribute: string) {
+  if (attribute.startsWith('@_spi')) return true
+  if (!/^@available\(\s*(?:iOS|anyAppleOS|\*)\s*,/.test(attribute)) return false
+  const body = attribute.replace(/"(?:\\.|[^"\\])*"/g, '""')
+  return /\bunavailable\b/.test(body)
+}
+
 export function available(declaration: Declaration) {
   return !declaration.attributes.some(restricted)
+}
+
+// enum cases stay mapped while the SDK ships them, even soft-deprecated: deprecation
+// lands in newer SDKs first, so filtering on it makes output depend on the toolchain.
+// exact selectors keep available(): each has a human-authored recipe, so a deprecation
+// there throws one precise error instead of silently rebinding.
+export function present(declaration: Declaration) {
+  return !declaration.attributes.some(withdrawn)
 }
 
 const ownerName = (declaration: Declaration) => declaration.owner.split('.').at(-1)
