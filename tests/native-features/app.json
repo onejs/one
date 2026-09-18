@@ -8,7 +8,7 @@
       "expo-build-properties",
       {
         "ios": {
-          "deploymentTarget": "26.0",
+          "deploymentTarget": "17.0",
           "ccacheEnabled": true
         }
       }
