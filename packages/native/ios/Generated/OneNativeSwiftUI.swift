@@ -38,6 +38,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MenuActionDismissBehavior: \(value)")
     }
   }
+  @available(iOS 26, *)
   static func tabBarMinimizeBehavior(_ value: String) -> TabBarMinimizeBehavior {
     switch value {
     case "automatic":
@@ -59,17 +60,23 @@ enum OneNativeGenerated {
     case "cancel":
       return .cancel
     case "confirm":
-      return .confirm
+      if #available(iOS 26, *) { return .confirm }
+      preconditionFailure("ButtonRole.confirm requires iOS 26")
     case "close":
-      return .close
+      if #available(iOS 26, *) { return .close }
+      preconditionFailure("ButtonRole.close requires iOS 26")
     default: preconditionFailure("invalid ButtonRole: \(value)")
     }
   }
+  @available(iOS 18, *)
   static func tabRole(_ value: String) -> TabRole? {
     switch value {
     case "": return nil
     case "search":
       return .search
+    case "prominent":
+      if #available(iOS 27, *) { return .prominent }
+      preconditionFailure("TabRole.prominent requires iOS 27")
     default: preconditionFailure("invalid TabRole: \(value)")
     }
   }
@@ -261,6 +268,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid EncodingDisambiguationPolicy: \(value)")
     }
   }
+  @available(iOS 26, *)
   static func backForwardNavigationGesturesBehavior(_ value: String) -> WebView.BackForwardNavigationGesturesBehavior {
     switch value {
     case "automatic":
@@ -272,6 +280,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid BackForwardNavigationGesturesBehavior: \(value)")
     }
   }
+  @available(iOS 26, *)
   static func magnificationGesturesBehavior(_ value: String) -> WebView.MagnificationGesturesBehavior {
     switch value {
     case "automatic":
@@ -283,6 +292,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MagnificationGesturesBehavior: \(value)")
     }
   }
+  @available(iOS 26, *)
   static func linkPreviewBehavior(_ value: String) -> WebView.LinkPreviewBehavior {
     switch value {
     case "automatic":
@@ -294,6 +304,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid LinkPreviewBehavior: \(value)")
     }
   }
+  @available(iOS 26, *)
   static func elementFullscreenBehavior(_ value: String) -> WebView.ElementFullscreenBehavior {
     switch value {
     case "automatic":
@@ -305,6 +316,7 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid ElementFullscreenBehavior: \(value)")
     }
   }
+  @available(iOS 18.0, *)
   @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
       if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
@@ -333,6 +345,8 @@ extension View {
       self.pickerStyle(.automatic)
     case "segmented":
       self.pickerStyle(.segmented)
+    case "tabs":
+      if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self }
     case "palette":
       self.pickerStyle(.palette)
     case "navigationLink":
@@ -385,18 +399,23 @@ extension View {
     }
   }
   @ViewBuilder func oneNativeTabBarMinimizeBehavior(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.tabBarMinimizeBehavior(OneNativeGenerated.tabBarMinimizeBehavior(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.tabBarMinimizeBehavior(OneNativeGenerated.tabBarMinimizeBehavior(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "tabBarMinimizeBehavior requires iOS 26")
+      self
+    }
   }
   @ViewBuilder func oneNativeButtonStyle(_ value: String) -> some View {
     switch value {
     case "automatic":
       self.buttonStyle(.automatic)
     case "glass":
-      self.buttonStyle(.glass)
+      if #available(iOS 26, *) { self.buttonStyle(.glass) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glass requires iOS 26"); self }
     case "borderless":
       self.buttonStyle(.borderless)
     case "glassProminent":
-      self.buttonStyle(.glassProminent)
+      if #available(iOS 26, *) { self.buttonStyle(.glassProminent) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glassProminent requires iOS 26"); self }
     case "plain":
       self.buttonStyle(.plain)
     case "bordered":
@@ -438,8 +457,8 @@ extension View {
     switch value {
     case "automatic":
       self.textFieldStyle(.automatic)
-    case "roundedBorder":
-      self.textFieldStyle(.roundedBorder)
+    case "bordered":
+      if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self }
     case "plain":
       self.textFieldStyle(.plain)
     default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self
@@ -461,18 +480,43 @@ extension View {
     if value.isEmpty { self } else { self.imageScale(OneNativeGenerated.imageScale(value)) }
   }
   @ViewBuilder func oneNativeWebViewBackForwardNavigationGestures(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.webViewBackForwardNavigationGestures(OneNativeGenerated.backForwardNavigationGesturesBehavior(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.webViewBackForwardNavigationGestures(OneNativeGenerated.backForwardNavigationGesturesBehavior(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "webViewBackForwardNavigationGestures requires iOS 26")
+      self
+    }
   }
   @ViewBuilder func oneNativeWebViewMagnificationGestures(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.webViewMagnificationGestures(OneNativeGenerated.magnificationGesturesBehavior(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.webViewMagnificationGestures(OneNativeGenerated.magnificationGesturesBehavior(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "webViewMagnificationGestures requires iOS 26")
+      self
+    }
   }
   @ViewBuilder func oneNativeWebViewLinkPreviews(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.webViewLinkPreviews(OneNativeGenerated.linkPreviewBehavior(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.webViewLinkPreviews(OneNativeGenerated.linkPreviewBehavior(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "webViewLinkPreviews requires iOS 26")
+      self
+    }
   }
   @ViewBuilder func oneNativeWebViewElementFullscreenBehavior(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.webViewElementFullscreenBehavior(OneNativeGenerated.elementFullscreenBehavior(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.webViewElementFullscreenBehavior(OneNativeGenerated.elementFullscreenBehavior(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "webViewElementFullscreenBehavior requires iOS 26")
+      self
+    }
   }
   @ViewBuilder func oneNativeWebViewContentBackground(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.webViewContentBackground(OneNativeGenerated.visibility(value)) }
+    if #available(iOS 26, *) {
+      if value.isEmpty { self } else { self.webViewContentBackground(OneNativeGenerated.visibility(value)) }
+    } else {
+      let _ = precondition(value.isEmpty, "webViewContentBackground requires iOS 26")
+      self
+    }
   }
 }

@@ -53,15 +53,43 @@ export function readInventory(root: string) {
       `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`
     )
   )
-  const inventory: Declaration[] = JSON.parse(run(binary, paths))
+  const rawInventory: Declaration[] = JSON.parse(run(binary, paths))
+  const norm = (str?: string) =>
+    str ? str.replace(/\.\w+::/g, '.').replaceAll('::', '.') : str
+  const signature = (parameters: readonly { label: string; type: string }[]) =>
+    JSON.stringify(parameters.map((p) => [p.label, p.type]))
+  const normalizeReqs = (requirements?: readonly string[]) =>
+    JSON.stringify((requirements ?? []).map((value) => value.replace(/\s+/g, '')).sort())
+
+  const seen = new Set<string>()
+  const inventory: Declaration[] = []
+  for (const d of rawInventory) {
+    const normOwner = norm(d.owner) ?? ''
+    const normType = norm(d.type)
+    const normParams = d.parameters.map((p) => ({ ...p, type: norm(p.type) ?? '' }))
+    const normReqs = (d.requirements ?? []).map((r) => norm(r) ?? '')
+    const key = `${d.module}|${normOwner}|${d.kind}|${d.name}|${signature(normParams)}|${normalizeReqs(normReqs)}`
+    if (!seen.has(key)) {
+      seen.add(key)
+      inventory.push({
+        ...d,
+        owner: normOwner,
+        type: normType,
+        parameters: normParams,
+        requirements: normReqs,
+      })
+    }
+  }
   return { sdk, swiftc, modules, paths, inventory }
 }
 
 function iosVersion(attribute: string): number | undefined {
   if (!attribute.startsWith('@available(')) return
+  const anyApple = attribute.match(/\banyAppleOS\s+(\d+(?:\.\d+)?)\b/)
+  if (anyApple) return Number(anyApple[1])
   const short = attribute.match(/\biOS\s+(\d+(?:\.\d+)?)\b/)
   if (short) return Number(short[1])
-  if (/^@available\(\s*iOS\s*,/.test(attribute)) {
+  if (/^@available\(\s*(?:iOS|anyAppleOS)\s*,/.test(attribute)) {
     const introduced = attribute.match(/\bintroduced:\s*(\d+(?:\.\d+)?)/)
     if (introduced) return Number(introduced[1])
     if (/\bintroduced:/.test(attribute)) {
@@ -84,7 +112,7 @@ export function ios(declaration: Declaration) {
 
 function restricted(attribute: string) {
   if (attribute.startsWith('@_spi')) return true
-  if (!/^@available\(\s*(?:iOS|\*)\s*,/.test(attribute)) return false
+  if (!/^@available\(\s*(?:iOS|anyAppleOS|\*)\s*,/.test(attribute)) return false
   const body = attribute.replace(/"(?:\\.|[^"\\])*"/g, '""')
   return /\bunavailable\b/.test(body) || /\bdeprecated\b/.test(body)
 }

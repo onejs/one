@@ -224,15 +224,22 @@ private struct PhotosPickerSurface: View {
     constructors: [
       { type: 'WebView', parameters: [{ label: '_', type: 'WebKit.WebPage' }] },
     ],
-    swift: `WebViewSurface(model: model)
-      .oneNativeWebViewBackForwardNavigationGestures(model.backForwardNavigationGestures)
-      .oneNativeWebViewMagnificationGestures(model.magnificationGestures)
-      .oneNativeWebViewLinkPreviews(model.linkPreviews)
-      .oneNativeWebViewElementFullscreenBehavior(model.elementFullscreen)
-      .oneNativeWebViewContentBackground(model.contentBackground)`,
+    swift: `Group {
+      if #available(iOS 26.0, *) {
+        WebViewSurface(model: model)
+          .oneNativeWebViewBackForwardNavigationGestures(model.backForwardNavigationGestures)
+          .oneNativeWebViewMagnificationGestures(model.magnificationGestures)
+          .oneNativeWebViewLinkPreviews(model.linkPreviews)
+          .oneNativeWebViewElementFullscreenBehavior(model.elementFullscreen)
+          .oneNativeWebViewContentBackground(model.contentBackground)
+      } else {
+        Color.clear
+      }
+    }`,
     extraSwift: `// webpage owns the loaded page and its back-forward list. state preserves this
 // instance for the view identity, while load only runs when the url actually changes:
 // reloading on any other prop would throw away the scroll position and the history.
+@available(iOS 26.0, *)
 @MainActor private struct WebViewSurface: View {
   @ObservedObject var model: WebViewModel
   @State private var page = WebPage()

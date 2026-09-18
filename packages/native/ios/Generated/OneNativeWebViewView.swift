@@ -101,12 +101,18 @@ private final class WebViewModel: ObservableObject {
 private struct WebViewContent: View {
   @ObservedObject var model: WebViewModel
   var body: some View {
-    WebViewSurface(model: model)
-      .oneNativeWebViewBackForwardNavigationGestures(model.backForwardNavigationGestures)
-      .oneNativeWebViewMagnificationGestures(model.magnificationGestures)
-      .oneNativeWebViewLinkPreviews(model.linkPreviews)
-      .oneNativeWebViewElementFullscreenBehavior(model.elementFullscreen)
-      .oneNativeWebViewContentBackground(model.contentBackground)
+    Group {
+      if #available(iOS 26.0, *) {
+        WebViewSurface(model: model)
+          .oneNativeWebViewBackForwardNavigationGestures(model.backForwardNavigationGestures)
+          .oneNativeWebViewMagnificationGestures(model.magnificationGestures)
+          .oneNativeWebViewLinkPreviews(model.linkPreviews)
+          .oneNativeWebViewElementFullscreenBehavior(model.elementFullscreen)
+          .oneNativeWebViewContentBackground(model.contentBackground)
+      } else {
+        Color.clear
+      }
+    }
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
   }
@@ -114,6 +120,7 @@ private struct WebViewContent: View {
 // webpage owns the loaded page and its back-forward list. state preserves this
 // instance for the view identity, while load only runs when the url actually changes:
 // reloading on any other prop would throw away the scroll position and the history.
+@available(iOS 26.0, *)
 @MainActor private struct WebViewSurface: View {
   @ObservedObject var model: WebViewModel
   @State private var page = WebPage()
