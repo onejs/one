@@ -30,4 +30,25 @@ describe('getRouteInfoFromState', () => {
     expect(info.pathname).toBe('/dev')
     expect(info.segments).toEqual(['dev'])
   })
+
+  it('uses the focused nested route when later routes are preloaded', () => {
+    const stateWithPreload = {
+      index: 0,
+      routes: [
+        {
+          name: '(site)',
+          state: {
+            index: 0,
+            routes: [{ name: 'index' }, { name: 'detail' }],
+          },
+        },
+      ],
+    } as any
+    const info = getRouteInfoFromState(
+      (_state, asPath) => ({ path: asPath ? '/(site)' : '/', params: {} }),
+      stateWithPreload
+    )
+
+    expect(info.isIndex).toBe(true)
+  })
 })

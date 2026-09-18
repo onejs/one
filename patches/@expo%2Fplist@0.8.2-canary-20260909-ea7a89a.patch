@@ -1,0 +1,12 @@
+diff --git a/build/parse.js b/build/parse.js
+index 5735f525cfc4a253c8713d305dd38c06ac22e90d..1b83c79cc6ad3ce1040e7c437334451593c30348 100644
+--- a/build/parse.js
++++ b/build/parse.js
+@@ -80,6 +80,6 @@ function parse(xml) {
+     const doc = new (_xmldom()).DOMParser({
+         errorHandler () {}
+-    }).parseFromString(xml);
++    }).parseFromString(xml.replace(/^\uFEFF/, '').trimStart(), 'text/xml');
+     (0, _assert().default)(doc.documentElement.nodeName === 'plist', 'malformed document. First element should be <plist>');
+     let plist = parsePlistXML(doc.documentElement);
+     // the root <plist> node gets interpreted as an Array,

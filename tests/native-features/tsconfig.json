@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
@@ -32,5 +31,5 @@
     "lib": ["dom", "esnext"]
   },
   "exclude": ["node_modules", ".expo", "**/dist", "**/types"],
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base.json"
 }

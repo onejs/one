@@ -1,6 +1,6 @@
 {
   "name": "test-route-chunking",
-  "version": "1.26.1",
+  "version": "1.27.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "typescript": "^5.7.3",
+    "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "@vxrn/test": "workspace:*"
   }

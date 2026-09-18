@@ -22,6 +22,14 @@ interface UrlWithReactNavigationConcessions {
 }
 export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): UrlWithReactNavigationConcessions;
 export declare function matchForEmptyPath(configs: RouteConfig[]): {
+    type: 'static' | 'dynamic' | 'layout';
+    userReadableName: string;
+    isIndex: boolean;
+    isInitial?: boolean;
+    hasChildren: boolean;
+    expandedRouteNames: string[];
+    parts: string[];
+    staticPartCount: number;
     path: string;
     screen: string;
     regex?: RegExp;
@@ -30,14 +38,6 @@ export declare function matchForEmptyPath(configs: RouteConfig[]): {
     parse?: {
         [x: string]: (value: string) => any;
     };
-    type: "static" | "dynamic" | "layout";
-    userReadableName: string;
-    isIndex: boolean;
-    isInitial?: boolean;
-    hasChildren: boolean;
-    expandedRouteNames: string[];
-    parts: string[];
-    staticPartCount: number;
 } | undefined;
 export declare function appendIsInitial(initialRoutes: InitialRouteConfig[]): (config: RouteConfig) => RouteConfig;
 export declare function getRouteConfigSorter(previousSegments?: string[]): (a: RouteConfig, b: RouteConfig) => number;

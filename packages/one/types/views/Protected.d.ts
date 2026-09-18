@@ -1,6 +1,14 @@
 import { type FunctionComponent, type ReactElement, type ReactNode } from 'react';
 import type { OneRouter } from '../interfaces/router';
-declare const Group: any;
+declare const Group: import("react").ComponentType<import("@react-navigation/core").RouteGroupConfig<import("@react-navigation/routers").ParamListBase, {}, import("@react-navigation/core").NavigationProp<import("@react-navigation/routers").ParamListBase, string, Readonly<{
+    key: string;
+    index: number;
+    routeNames: string[];
+    history?: unknown[] | undefined;
+    routes: import("@react-navigation/routers").NavigationRoute<import("@react-navigation/routers").ParamListBase, string>[];
+    type: string;
+    stale: false;
+}>, {}, {}, {}>>>;
 export type ProtectedProps = {
     guard: boolean;
     /** where to redirect when `guard` is false. defaults to the navigator's first available route. */

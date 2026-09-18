@@ -24,12 +24,34 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
 
       expect(action).toStrictEqual({
+        type: 'NAVIGATE',
+        target: 'stack-pWRo04',
+        payload: { key: undefined, name: 'page-2', params: {} },
+      })
+    })
+
+    it('uses the focused route when the desired state includes a preloaded route', () => {
+      const actionState = {
+        index: 0,
+        routes: [{ name: 'page-2' }, { name: 'preloaded-page' }],
+      }
+      const navigationState = {
+        stale: false as const,
+        type: 'stack',
+        key: 'stack-pWRo04',
+        index: 0,
+        routeNames: ['page-1', 'page-2', 'preloaded-page'],
+        routes: [{ name: 'page-1', key: 'page-1-key' }],
+        retainedRouteKeys: [],
+      }
+
+      expect(getNavigateAction(actionState, navigationState)).toStrictEqual({
         type: 'NAVIGATE',
         target: 'stack-pWRo04',
         payload: { key: undefined, name: 'page-2', params: {} },
@@ -61,7 +83,7 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -115,7 +137,7 @@ describe('getNavigateAction', () => {
             key: 'index-Kyz4PdQ7ZAvE0XFhBWydM',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -184,7 +206,7 @@ describe('getNavigateAction', () => {
             key: 'index-Kyz4PdQ7ZAvE0XFhBWydM',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -276,7 +298,7 @@ describe('getNavigateAction', () => {
             },
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState)
@@ -315,7 +337,7 @@ describe('getNavigateAction', () => {
             key: 'page-1-Gc-TeIdZmx_jAcRD-SGcs',
           },
         ],
-        preloadedRoutes: [],
+        retainedRouteKeys: [],
       }
 
       const action = getNavigateAction(actionState, navigationState, 'PUSH')

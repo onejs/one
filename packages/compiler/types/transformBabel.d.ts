@@ -24,5 +24,17 @@ export declare function transformOxcReactCompiler(id: string, code: string, opti
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
 export declare function transformBabel(id: string, code: string, options: babel.TransformOptions): Promise<babel.BabelFileResult>;
+export declare function stripFlowTypes(id: string, code: string, sourceMaps?: boolean): Promise<{
+    code: string;
+    map: {
+        version: number;
+        sources: string[];
+        names: string[];
+        sourceRoot?: string | undefined;
+        sourcesContent?: string[] | undefined;
+        mappings: string;
+        file: string;
+    } | null | undefined;
+}>;
 export {};
 //# sourceMappingURL=transformBabel.d.ts.map

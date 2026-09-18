@@ -11,7 +11,7 @@ today.
 
 1. The API today is the API. `<Stack>`, `<Tabs>`, `<Drawer>`, `<Slot>`,
    `Screen` config children, `screenOptions`, and the composable
-   `Stack.Header` / `Stack.Toolbar` work. Native behavior unchanged:
+   `Stack.Header` work. Native behavior unchanged:
    react-navigation renders it all, exactly as now.
 
 2. On web the same navigators are headless by default. They render the
@@ -229,11 +229,9 @@ nothing changes; remove the line when ready to go headless.
 
 1. State and lifecycle (`initialRouteName`, back behavior, `keepMounted`,
    guards): core, renderer-independent, same meaning everywhere.
-2. Semantic presentation (`title`, `presentation`, compiled
-   Header/Toolbar config): core vocabulary. Native maps it to real chrome;
-   on web it is data any custom layout can honor (a custom web layout can
-   read `screen.options.toolbar` and render its own toolbar from the same
-   declarative config).
+2. Semantic presentation (`title`, `presentation`, compiled Header config):
+   core vocabulary. Native maps it to real chrome; on web it is data any
+   custom layout can honor.
 3. react-navigation styling (`headerLargeTitleStyle`, `tabBarActiveTintColor`,
    animation curves, ...): stays react-navigation vocabulary, typed as
    today, meaningful on native and under the web preset. Never abstracted;
@@ -246,9 +244,8 @@ nothing changes; remove the line when ready to go headless.
 - Slot: identity everywhere. Unchanged.
 - Stack: native native-stack as today. Web default: focused screen +
   presentation overlays via `Presentations`. Custom: `useStack()`.
-- Tabs: native bottom-tabs as today (`react-native-bottom-tabs` remains a
-  native alternative). Web default: focused screen, no bar. Custom:
-  `useTabs()`.
+- Tabs: React Navigation 8 native tabs on iOS and Android. Web default:
+  focused screen, no bar. Custom: `useTabs()`.
 - Drawer: native drawer as today. Web default: focused screen; `isOpen` +
   actions via `useDrawer()` for your own chrome.
 - Protected, groups, dynamic routes: below this layer entirely, unaffected.

@@ -21,10 +21,12 @@ const DrawerWithRender = React.forwardRef<unknown, ComponentProps<typeof RNDrawe
   (props, ref) => <RNDrawer {...(props as any)} ref={ref} />
 )
 
+type DrawerType = ReturnType<typeof withLayoutContext>
+
 // Preserve withLayoutContext's static Screen so user code like
 // `<Drawer.Screen ... />` keeps working through the render wrapper.
-export const Drawer = Object.assign(DrawerWithRender, {
+export const Drawer: DrawerType = Object.assign(DrawerWithRender, {
   Screen: RNDrawer.Screen,
-})
+}) as DrawerType
 
 export default Drawer

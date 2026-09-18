@@ -5,19 +5,19 @@ description: Create your own layouts.
 
 Today there are a few built-in navigators: [Slot](/docs/components-Slot), [Stack](/docs/components-Stack), etc. But you may want to create your own.
 
-A good example of this is the new [`react-native-bottom-tabs`](https://github.com/okwasniewski/react-native-bottom-tabs) library, that exports a React Navigation compatible navigator.
+A React Navigation navigator can become a One layout through `withLayoutContext`. For example, an app can wrap a native stack with shared route sorting and protected-route support:
 
 To make any React Navigation navigator work inside a One layout, use `withLayoutContext`:
 
 ```tsx
-import { createNativeBottomTabNavigator } from '@bottom-tabs/react-navigation'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { withLayoutContext } from 'one'
 
-const NativeTabsNavigator = createNativeBottomTabNavigator().Navigator
+const ModalNavigator = createNativeStackNavigator().Navigator
 
-export const NativeTabs = withLayoutContext(
-  NativeTabsNavigator
+export const ModalStack = withLayoutContext(
+  ModalNavigator
 )
 ```
 
-Now you can use `NativeTabs` in any `_layout.tsx` file.
+Now you can use `ModalStack` in any `_layout.tsx` file.

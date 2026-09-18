@@ -23,6 +23,7 @@ export function validatePathConfig(config: unknown, root = true) {
     ...(root
       ? null
       : {
+          alias: 'array',
           exact: 'boolean',
           stringify: 'object',
           parse: 'object',
@@ -39,11 +40,17 @@ export function validatePathConfig(config: unknown, root = true) {
     Object.keys(config)
       .map((key) => {
         if (key in validation) {
-          const type = validation[key as keyof typeof validation] as string
-          const value: string = config[key]
+          const type = validation[key as keyof typeof validation]
+          const value = (config as any)[key]
 
-          if (value !== undefined && typeof value !== type) {
-            return [key, `expected '${type}', got '${typeof value}'`]
+          if (value !== undefined) {
+            if (type === 'array') {
+              if (!Array.isArray(value)) {
+                return [key, `expected 'Array', got '${typeof value}'`]
+              }
+            } else if (typeof value !== type) {
+              return [key, `expected '${type}', got '${typeof value}'`]
+            }
           }
         } else {
           return [key, 'extraneous']

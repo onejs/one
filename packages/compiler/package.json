@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.26.1",
+  "version": "1.27.1",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -39,9 +39,10 @@
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
-    "babel-plugin-syntax-hermes-parser": "^0.32.0",
+    "babel-plugin-syntax-hermes-parser": "^0.36.1",
+    "babel-plugin-transform-flow-enums": "^0.0.2",
     "esbuild": "^0.25.12",
-    "hermes-parser": "^0.32.0",
+    "hermes-parser": "^0.36.1",
     "magic-string": "^0.30.21",
     "oxc-parser": "^0.112.0",
     "oxc-transform": "^0.148.0",
@@ -50,7 +51,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "2.6.2",
+    "@tamagui/build": "3.0.0-beta.1309.1",
     "depcheck": "^1.4.7",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",

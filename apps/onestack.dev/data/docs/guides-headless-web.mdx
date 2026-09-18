@@ -80,7 +80,7 @@ export default function Layout() {
 }
 ```
 
-The mechanical rule: **a navigator child that is not config (`Screen`, `Protected`, `Stack.Header`, `Stack.Toolbar`) replaces the headless default on web, and is ignored on native.** The same layout file works on both platforms - native keeps rendering its usual chrome from the `Screen` config, web renders `WebTabBar` instead. If a custom layout ever needs a different native version too, split it into a `.web.tsx` file the same way you would any other platform-specific component.
+The mechanical rule: **a navigator child that is not config (`Screen`, `Protected`, `Stack.Header`) replaces the headless default on web, and is ignored on native.** The same layout file works on both platforms. Native keeps rendering its usual chrome from the `Screen` config, while web renders `WebTabBar` instead. If a custom layout ever needs a different native version too, split it into a `.web.tsx` file the same way you would any other platform-specific component.
 
 Each navigator has its own hook returning its full state: [useStack](/docs/hooks-useStack), [useTabs](/docs/hooks-useTabs), [useDrawer](/docs/hooks-useDrawer).
 
@@ -145,7 +145,7 @@ Longer term the recommendation is to drop react-native-web on web. It's in maint
 
 ## Native
 
-Native is unaffected by any of this. `<Stack>`, `<Tabs>`, and `<Drawer>` still render through react-navigation exactly as before - real headers, a real bottom tab bar, a real drawer. Nothing about your `Screen` config, `screenOptions`, or `Stack.Header`/`Stack.Toolbar` composition changes.
+Native is unaffected by any of this. `<Stack>`, `<Tabs>`, and `<Drawer>` still render through React Navigation with real headers, a real bottom tab bar, and a real drawer. Nothing about your `Screen` config, `screenOptions`, or `Stack.Header` composition changes.
 
 ## Related
 

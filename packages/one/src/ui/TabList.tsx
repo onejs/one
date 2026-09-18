@@ -1,10 +1,9 @@
-import type { ComponentProps, ReactElement } from 'react'
-import { StyleSheet, View, type ViewProps } from 'react-native'
+import type { ComponentProps, HTMLAttributes, ReactElement } from 'react'
 
-import { ViewSlot } from './common'
+import { Slot } from './Slot'
 
-export type TabListProps = ViewProps & {
-  /** Forward props to child component and removes the extra `<View>`. Useful for custom wrappers. */
+export type TabListProps = HTMLAttributes<HTMLElement> & {
+  /** Forward props to child component and removes the extra `<nav>`. Useful for custom wrappers. */
   asChild?: boolean
 }
 
@@ -21,9 +20,9 @@ export type TabListProps = ViewProps & {
  * </Tabs>
  * ```
  */
-export function TabList({ asChild, style, ...props }: TabListProps) {
-  const Comp = asChild ? ViewSlot : View
-  return <Comp style={[styles.tabList, style]} {...props} />
+export function TabList({ asChild, ...props }: TabListProps) {
+  const Comp = asChild ? Slot : 'nav'
+  return <Comp {...props} />
 }
 
 /**
@@ -34,14 +33,3 @@ export function isTabList(
 ): child is ReactElement<ComponentProps<typeof TabList>> {
   return child.type === TabList
 }
-
-const styles = StyleSheet.create({
-  tabList: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  tabTrigger: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-})

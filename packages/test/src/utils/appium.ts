@@ -113,26 +113,36 @@ export async function setValueSlowly(
   text: string,
   { delay = 10, initialDelay = 300 }: { delay?: number; initialDelay?: number } = {}
 ) {
-  // Re-select every time to avoid stale element
   const parent = await element.parent
   const selector = await element.selector
   function getElement() {
     return parent.$(selector)
   }
 
-  await getElement().clearValue()
-  await getElement().click()
+  await driver.waitUntil(
+    async () => {
+      try {
+        await getElement().clearValue()
+        await getElement().click()
+        await driver.pause(initialDelay)
 
-  await driver.pause(initialDelay)
+        for (const char of text) {
+          await getElement().addValue(char)
+          await driver.pause(delay)
+        }
 
-  const e = await getElement()
-  for (const char of text) {
-    // await getElement().addValue(char)
-    // Faster but might be unstable
-    await e.addValue(char)
-
-    await driver.pause(delay)
-  }
+        return (await getElement().getValue()) === text
+      } catch {
+        await assertAppRunning(driver)
+        return false
+      }
+    },
+    {
+      timeout: 2 * 60 * 1000,
+      interval: 100,
+      timeoutMsg: `Element "${selector}" never held the requested value`,
+    }
+  )
 }
 
 export async function navigateTo(driver: Browser, path: string) {
@@ -188,53 +198,6 @@ function sanitizeFileName(input: string): string {
     .slice(0, 100)
 }
 
-async function getAvailablePort() {
-  const net = await import('node:net')
-
-  return await new Promise<number>((resolve, reject) => {
-    const server = net.createServer()
-    server.unref()
-    server.on('error', reject)
-    server.listen(0, '127.0.0.1', () => {
-      const address = server.address()
-      if (!address || typeof address === 'string') {
-        reject(new Error(`Failed to allocate a TCP port: ${String(address)}`))
-        return
-      }
-      const { port } = address
-      server.close((error) => {
-        if (error) {
-          reject(error)
-          return
-        }
-        resolve(port)
-      })
-    })
-  })
-}
-
-async function withFreshWdaLocalPort(
-  config: WebdriverIOConfig
-): Promise<WebdriverIOConfig> {
-  const capabilities = config.capabilities as any
-  const appiumOptions = capabilities?.['appium:options']
-
-  if (!appiumOptions || appiumOptions.webDriverAgentUrl) {
-    return config
-  }
-
-  return {
-    ...config,
-    capabilities: {
-      ...capabilities,
-      'appium:options': {
-        ...appiumOptions,
-        wdaLocalPort: await getAvailablePort(),
-      },
-    },
-  }
-}
-
 /**
  * create a webdriver session with retry and recovery logic.
  * when WDA fails (ECONNREFUSED, app unknown to FrontBoard, etc),
@@ -265,8 +228,7 @@ export async function createSession(
         await recoverSimulator(resolvedConfig)
       }
 
-      const sessionConfig = await withFreshWdaLocalPort(resolvedConfig)
-      const driver = await remote(sessionConfig)
+      const driver = await remote(resolvedConfig)
 
       // verify the app actually launched successfully
       await assertAppRunning(driver)
@@ -299,6 +261,17 @@ export async function createSession(
   throw lastError
 }
 
+export async function withSession<T>(
+  config: WebdriverIOConfig | Promise<WebdriverIOConfig>,
+  run: (driver: Browser) => Promise<T>
+): Promise<T> {
+  const driver = await createSession(config)
+  try {
+    return await run(driver)
+  } finally {
+    await closeSession(driver)
+  }
+}
 export async function closeSession(driver: Browser): Promise<void> {
   try {
     await driver.deleteSession()

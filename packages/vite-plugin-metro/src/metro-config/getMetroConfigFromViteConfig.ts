@@ -22,6 +22,15 @@ const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// keep app build output and volatile caches out of Metro's fallback watcher.
+// package dist directories remain visible because Metro resolves modules from them.
+const metroWatchExclusions = [
+  /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+  /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
+  /[/\\]\.docker(?:[/\\]|$)/,
+  /[/\\]\.vite(?:[/\\]|$)/,
+  /[/\\]node_modules[/\\]\.vxrn(?:[/\\]|$)/,
+]
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
   const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
@@ -79,6 +88,47 @@ async function isWatchmanResponsive(projectRoot: string) {
 
   watchmanResponsivePromises.set(projectRoot, probe)
   return probe
+}
+
+/**
+ * Decides whether Metro runs the native worker or the babel transformer.
+ * No babel by default: the worker throws on a babel plugin it has no port
+ * for, so opting back in is explicit rather than something you drift into.
+ * When a user adds a custom babel config, respect it rather than forcing
+ * native transforms, unless explicitly overridden. Shared by both config
+ * builders so the two never drift apart.
+ */
+function resolveNativeTransforms(
+  projectRoot: string,
+  metroPluginOptions: MetroPluginOptions
+): { isNativeTransforms: boolean; userBabelConfigPath: string | null } {
+  const userBabelConfigPath = projectRoot ? findUserBabelConfig(projectRoot) : null
+  const hasUserBabelConfig = Boolean(userBabelConfigPath)
+
+  const isNativeTransforms =
+    process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
+      ? false
+      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1'
+        ? true
+        : metroPluginOptions.nativeTransforms === false
+          ? false
+          : metroPluginOptions.nativeTransforms === true
+            ? true
+            : hasUserBabelConfig
+              ? false
+              : true
+
+  // the native worker runs no babel at all, so reaching it here means an
+  // explicit override is about to silently drop the user's plugins. name the
+  // ignored file rather than swallowing it.
+  if (userBabelConfigPath && isNativeTransforms) {
+    console.warn(
+      `[vxrn/metro] Ignoring user babel config at ${userBabelConfigPath} because native transforms are explicitly enabled (nativeTransforms: true or ONE_METRO_NATIVE_TRANSFORMS=1). ` +
+        `Port its plugins to nativeTransformModules, or set nativeTransforms: false (or ONE_METRO_NATIVE_TRANSFORMS=0) to use the babel transformer.`
+    )
+  }
+
+  return { isNativeTransforms, userBabelConfigPath }
 }
 
 /**
@@ -157,39 +207,19 @@ export async function buildMetroConfigInputFromViteConfig(
   }
 
   const existingBlockList = _defaultConfig?.resolver?.blockList
-  const buildOutputExclusions = [
-    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
-    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
-    /[/\\]\.docker(?:[/\\]|$)/,
-    /[/\\]\.vite(?:[/\\]|$)/,
-  ]
   const blockList: RegExp[] = [
     ...(existingBlockList
       ? Array.isArray(existingBlockList)
         ? existingBlockList
         : [existingBlockList]
       : []),
-    ...buildOutputExclusions,
+    ...metroWatchExclusions,
   ]
 
   // no babel by default. the worker throws on a babel plugin it has no port
   // for, so opting back in is explicit rather than something you drift into.
   // When a user adds a custom babel config, respect it rather than forcing native transforms.
-  const hasUserBabelConfig =
-    Boolean(projectRoot) && Boolean(findUserBabelConfig(projectRoot))
-
-  const isNativeTransforms =
-    process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
-      ? false
-      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1'
-        ? true
-        : metroPluginOptions.nativeTransforms === false
-          ? false
-          : metroPluginOptions.nativeTransforms === true
-            ? true
-            : hasUserBabelConfig
-              ? false
-              : true
+  const { isNativeTransforms } = resolveNativeTransforms(projectRoot, metroPluginOptions)
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {
@@ -340,44 +370,20 @@ export async function getMetroConfigFromViteConfig(
     }
   }
 
-  // exclude app-level build output directories from Metro's watcher to prevent
-  // FallbackWatcher from crashing on volatile dirs during parallel CI runs.
-  // block test app dist dirs and one's web build outputs, but not package
-  // dist/ dirs which Metro needs for module resolution.
   const existingBlockList = _defaultConfig?.resolver?.blockList
-  const buildOutputExclusions = [
-    /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
-    /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
-    /[/\\]\.docker(?:[/\\]|$)/,
-    /[/\\]\.vite(?:[/\\]|$)/,
-  ]
   const blockList: RegExp[] = [
     ...(existingBlockList
       ? Array.isArray(existingBlockList)
         ? existingBlockList
         : [existingBlockList]
       : []),
-    ...buildOutputExclusions,
+    ...metroWatchExclusions,
   ]
 
   // no babel by default. the worker throws on a babel plugin it has no port
   // for, so opting back in is explicit rather than something you drift into.
   // When a user adds a custom babel config, respect it rather than forcing native transforms.
-  const hasUserBabelConfig =
-    Boolean(projectRoot) && Boolean(findUserBabelConfig(projectRoot))
-
-  const isNativeTransforms =
-    process.env.ONE_METRO_NATIVE_TRANSFORMS === '0'
-      ? false
-      : process.env.ONE_METRO_NATIVE_TRANSFORMS === '1'
-        ? true
-        : metroPluginOptions.nativeTransforms === false
-          ? false
-          : metroPluginOptions.nativeTransforms === true
-            ? true
-            : hasUserBabelConfig
-              ? false
-              : true
+  const { isNativeTransforms } = resolveNativeTransforms(projectRoot, metroPluginOptions)
 
   let nativeWorkerPath: string | undefined
   if (isNativeTransforms) {

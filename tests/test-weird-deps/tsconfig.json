@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
@@ -13,7 +12,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "downlevelIteration": true,
     "strict": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,
@@ -53,7 +51,7 @@
   "typeAcquisition": {
     "enable": true
   },
-  "extends": "expo/tsconfig.base",
+  "extends": "expo/tsconfig.base.json",
   "references": [
     {
       "path": "../../packages/one"

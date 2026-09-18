@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
     "importHelpers": true,
@@ -8,14 +7,13 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "downlevelIteration": true,
     "strict": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,
     "preserveSymlinks": true,
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "noEmit": false,
     "noEmitOnError": false,
     "noImplicitAny": false,

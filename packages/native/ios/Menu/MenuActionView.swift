@@ -328,12 +328,15 @@ class MenuActionView: RCTView, MenuUpdatable {
     if let childActionView = subview as? MenuActionView {
       subActions.insert(childActionView, at: atIndex)
       childActionView.parentMenuUpdatable = self
+      updateMenu()
     }
   }
 
   public override func removeReactSubview(_ subview: UIView!) {
     if let childActionView = subview as? MenuActionView {
       subActions.removeAll(where: { $0 === childActionView })
+      childActionView.parentMenuUpdatable = nil
+      updateMenu()
     }
   }
 }

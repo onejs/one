@@ -4,6 +4,7 @@ import type { RouteNode } from './Route';
  * Walks through the state's routes recursively to find the deepest matching route.
  */
 export declare function findRouteNodeFromState(state: {
+    index?: number;
     routes: Array<{
         name: string;
         state?: any;
@@ -11,9 +12,10 @@ export declare function findRouteNodeFromState(state: {
 } | undefined, rootNode: RouteNode | null): RouteNode | null;
 /**
  * Extract params from navigation state.
- * Collects params from all routes in the state hierarchy.
+ * Collects params from the focused route chain in the state hierarchy.
  */
 export declare function extractParamsFromState(state: {
+    index?: number;
     routes: Array<{
         name: string;
         params?: Record<string, any>;
@@ -34,6 +36,7 @@ export declare function extractPathnameFromHref(href: string): string;
  * This is used on native to build the full matches array including layouts.
  */
 export declare function findAllRouteNodesFromState(state: {
+    index?: number;
     routes: Array<{
         name: string;
         state?: any;
