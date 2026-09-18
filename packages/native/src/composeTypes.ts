@@ -70,7 +70,14 @@ export type ComposeFontWeight =
   | 'extraBold'
   | 'black'
 
-export type ComposeAccessibilityRole = 'button' | 'switch' | 'header' | 'text'
+export type ComposeAccessibilityRole =
+  | 'button'
+  | 'switch'
+  | 'header'
+  | 'text'
+  | 'adjustable'
+  | 'alert'
+  | 'progressbar'
 
 export interface ComposeNodeProps extends Pick<
   ViewProps,
@@ -125,4 +132,58 @@ export interface ComposeSwitchProps extends ComposeLeafProps {
   label?: string
   onIsOnChange: (value: boolean) => void
   revision?: number
+}
+
+export type ComposeTextFieldVariant = 'filled' | 'outlined'
+export type ComposeTextFieldKeyboardType =
+  | 'default'
+  | 'number'
+  | 'decimal'
+  | 'email'
+  | 'password'
+  | 'phone'
+  | 'url'
+
+export interface ComposeTextFieldProps extends ComposeLeafProps {
+  text: string
+  onTextChange: (value: string) => void
+  revision?: number
+  label?: string
+  placeholder?: string
+  disabled?: boolean
+  variant?: ComposeTextFieldVariant
+  keyboardType?: ComposeTextFieldKeyboardType
+  secureText?: boolean
+}
+
+export interface ComposeSliderProps extends ComposeLeafProps {
+  value: number
+  onValueChange: (value: number) => void
+  revision?: number
+  minimumValue?: number
+  maximumValue?: number
+  step?: number
+  disabled?: boolean
+}
+
+export interface ComposeAlertDialogProps extends ComposeLeafProps {
+  visible: boolean
+  title?: string
+  message?: string
+  confirmLabel: string
+  dismissLabel?: string
+  onConfirm: () => void
+  onDismiss: () => void
+}
+
+export interface ComposeDialogProps extends ComposeNodeProps {
+  visible: boolean
+  onDismiss: () => void
+}
+
+export type ComposeProgressVariant = 'linear' | 'circular'
+
+export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
+  variant?: ComposeProgressVariant
+  progress?: number
 }
