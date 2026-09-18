@@ -6,18 +6,25 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         [k: string]: string;
     };
     options: {
+        readonly skipEnv?: boolean;
+        readonly build?: {
+            server?: boolean | import("..").VXRNBuildOptions;
+            analyze?: boolean;
+        };
+        readonly debugBundle?: string;
+        readonly debug?: string;
         readonly debugBundlePaths: {
             readonly ios: string;
             readonly android: string;
         };
         readonly mode: "development" | "production";
-        readonly clean: false | "vite";
+        readonly clean: "vite" | false;
         readonly root: string;
         readonly server: import("..").VXRNServeOptionsFilled;
         readonly entries: {
-            native: string;
             readonly web?: string;
-            readonly server: "./src/entry-server.tsx";
+            native: string;
+            readonly server: './src/entry-server.tsx';
         };
         readonly packageJSON: import("pkg-types").PackageJson;
         readonly packageVersions: {
@@ -30,18 +37,11 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         readonly packageRootDir: string;
         readonly cacheDir: string;
         readonly versionHash: string;
-        readonly skipEnv?: boolean;
-        readonly build?: {
-            server?: boolean | import("..").VXRNBuildOptions;
-            analyze?: boolean;
-        };
-        readonly debugBundle?: string;
-        readonly debug?: string;
     };
     buildArgs: BuildArgs;
     serverEntry: string;
     clientOutput: any;
-    serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined;
+    serverOutput: [OutputChunk, ...(OutputAsset | OutputChunk)[]] | undefined;
     serverBuildConfig: Record<string, any>;
     webBuildConfig: Record<string, any>;
     clientManifest: any;

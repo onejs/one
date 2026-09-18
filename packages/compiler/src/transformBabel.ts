@@ -24,7 +24,8 @@ const USER_BABEL_CONFIG_FILES = [
   '.babelrc.json',
 ] as const
 
-const ONE_GENERATED_MARKER = '@one-generated'
+// matches ONE_GENERATED_MARKER in one/src/cli/generateBundlerConfig.ts
+const ONE_GENERATED_MARKER = '@one/generated bundler-config'
 
 export function findUserBabelConfig(projectRoot?: string): string | null {
   if (!projectRoot) return null
@@ -54,9 +55,7 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
 
   const isProjectFile = !props.id.includes('node_modules')
   const userBabelConfig =
-    isProjectFile && props.projectRoot
-      ? findUserBabelConfig(props.projectRoot)
-      : null
+    isProjectFile && props.projectRoot ? findUserBabelConfig(props.projectRoot) : null
 
   if (props.userSetting === 'babel') {
     return getOptions(props, true, userBabelConfig)
@@ -68,12 +67,23 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
     if (props.userSetting?.excludeDefaultPlugins) {
       return {
         ...props.userSetting,
-        ...(userBabelConfig
-          ? { configFile: userBabelConfig, babelrc: true }
-          : {}),
+        ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
       }
     }
     return getOptions(props, false, userBabelConfig)
+  }
+  // an explicit per-file opt-out of babel survives a user config. without
+  // this, merely adding babel.config.js flips swc/oxc files to babel.
+  const userSetting = props.userSetting
+  if (
+    userSetting === 'swc' ||
+    userSetting === 'oxc' ||
+    userSetting === false ||
+    (typeof userSetting === 'object' &&
+      userSetting !== null &&
+      (userSetting.transform === 'swc' || userSetting.transform === 'oxc'))
+  ) {
+    return null
   }
   if (userBabelConfig) {
     return getOptions(props, false, userBabelConfig)
@@ -125,9 +135,7 @@ const getOptions = (
   if (plugins.length || userBabelConfig) {
     return {
       plugins,
-      ...(userBabelConfig
-        ? { configFile: userBabelConfig, babelrc: true }
-        : {}),
+      ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
     }
   }
 
@@ -187,7 +195,10 @@ export async function transformOxcReactCompiler(
     )
   }
 
-  return { code: result.code, map: sourceMap ? (result.map as any) : undefined }
+  return {
+    code: result.code,
+    map: sourceMap ? (result.map as any) : undefined,
+  }
 }
 
 /**
@@ -213,6 +224,13 @@ export async function transformBabel(
     sourceMaps: false,
     minified: false,
     ...options,
+    // vite and rolldown own module syntax and import.meta, so presets written for
+    // metro (babel-preset-expo) must keep esm instead of rewriting it for metro's runtime
+    caller: {
+      name: 'vxrn',
+      supportsStaticESM: true,
+      supportsDynamicImport: true,
+    },
     presets: [
       isTS
         ? [
@@ -236,7 +254,10 @@ export async function transformBabel(
     plugins: [
       ...(isTS
         ? []
-        : [[hermesParserPlugin, { parseLangTypes: 'flow', reactRuntimeTarget: '19' }]]),
+        : [
+            [hermesParserPlugin, { parseLangTypes: 'flow', reactRuntimeTarget: '19' }],
+            'babel-plugin-transform-flow-enums',
+          ]),
       ...(options.plugins || []),
       ...(isTS ? [] : ['@babel/plugin-transform-flow-strip-types']),
     ],
@@ -250,6 +271,14 @@ export async function transformBabel(
       res(result)
     })
   })
+}
+
+export async function stripFlowTypes(id: string, code: string, sourceMaps = true) {
+  const result = await transformBabel(id, code, { sourceMaps })
+  return {
+    code: result.code!,
+    map: result.map,
+  }
 }
 
 const getBasePlugins = ({ development }: Props) =>

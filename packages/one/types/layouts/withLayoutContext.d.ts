@@ -3,7 +3,6 @@ import React from 'react';
 import type { OneRouter } from '../interfaces/router';
 import { type ScreenProps } from '../router/useScreens';
 import type { PickPartial } from '../types';
-import { Screen } from '../views/Screen';
 export declare function useFilterScreenChildren(children: React.ReactNode, { isCustomNavigator, contextKey, }?: {
     isCustomNavigator?: boolean;
     /** Used for sending developer hints */
@@ -23,6 +22,6 @@ export declare function useResolvedGuardedRedirects(guardedRedirects: Map<string
 export declare function withLayoutContext<TOptions extends object, T extends React.ComponentType<any>, State extends NavigationState, EventMap extends EventMapBase>(Nav: T, processor?: (options: ScreenProps<TOptions, State, EventMap>[]) => ScreenProps<TOptions, State, EventMap>[], options?: {
     props: any;
 }): React.ForwardRefExoticComponent<React.PropsWithoutRef<PickPartial<React.ComponentProps<T>, "children">> & React.RefAttributes<unknown>> & {
-    Screen: typeof Screen;
+    Screen: React.ComponentType<ScreenProps<TOptions, State, EventMap>>;
 };
 //# sourceMappingURL=withLayoutContext.d.ts.map

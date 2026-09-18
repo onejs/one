@@ -2,6 +2,7 @@
 
 examples/*/ios/**
 examples/*/android/**
+packages/*/android/build/**
 
 apps/*/ios/**
 apps/*/android/**

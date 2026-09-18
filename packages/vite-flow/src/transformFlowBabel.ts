@@ -9,14 +9,7 @@ export async function transformFlow(
   options?: { development?: boolean; path?: string }
 ): Promise<TransformFlowResult> {
   const path = options?.path
-  const fft = await import('fast-flow-transform')
-  const result = await fft.default({
-    filename: path || 'file.js',
-    source: input,
-    sourcemap: true,
-    dialect: 'flow',
-    format: 'pretty',
-  })
+  const result = await stripFlowTypes(path || 'file.js', input)
   return {
     code: result.code,
     map: result.map,
@@ -33,3 +26,4 @@ export async function transformFlowBabel(
   const res = await transformFlow(input, options)
   return res.code
 }
+import { stripFlowTypes } from '@vxrn/compiler'

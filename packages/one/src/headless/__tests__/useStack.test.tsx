@@ -2,11 +2,10 @@ import React from 'react'
 import TestRenderer, { act } from 'react-test-renderer'
 import { describe, expect, it } from 'vitest'
 
-import { appendStackToolbarConfig } from '../../layouts/stack-utils/StackToolbar.shared'
 import { StackStateProvider, useStack, type HeadlessStackDescriptors } from '../useStack'
 
 describe('StackStateProvider', () => {
-  it('hands toolbar config to headless implementations', () => {
+  it('hands screen options to headless implementations', () => {
     let options: Record<string, any> | undefined
 
     function Capture() {
@@ -21,14 +20,11 @@ describe('StackStateProvider', () => {
       index: 0,
       routeNames: ['index'],
       routes: [{ key: 'index-key', name: 'index' }],
-      preloadedRoutes: [],
+      retainedRouteKeys: [],
     }
     const descriptors: HeadlessStackDescriptors = {
       'index-key': {
-        options: appendStackToolbarConfig(
-          { title: 'Inbox' },
-          { placement: 'right', children: 'Share' }
-        ),
+        options: { title: 'Inbox', keepMounted: true },
         render: () => <div>Inbox</div>,
       },
     }
@@ -43,12 +39,7 @@ describe('StackStateProvider', () => {
 
     expect(options).toMatchObject({
       title: 'Inbox',
-      toolbar: {
-        right: {
-          placement: 'right',
-          children: 'Share',
-        },
-      },
+      keepMounted: true,
     })
   })
 })

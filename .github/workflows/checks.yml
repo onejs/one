@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - v2-beta
     paths-ignore:
       - '**/*.md'
       - '**/CHANGELOG.md'

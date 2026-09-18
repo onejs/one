@@ -1,5 +1,4 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react';
-import type { StackToolbarConfig } from '../layouts/stack-utils/StackToolbar.types';
 export type ScreenEntry = {
     key: string;
     name: string;
@@ -7,9 +6,7 @@ export type ScreenEntry = {
     href: string;
     isFocused: boolean;
     keepMounted: boolean;
-    options: Record<string, any> & {
-        toolbar?: StackToolbarConfig;
-    };
+    options: Record<string, any>;
     element: ReactElement;
 };
 export type UseStackResult = {

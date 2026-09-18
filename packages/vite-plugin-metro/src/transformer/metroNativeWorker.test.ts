@@ -19,7 +19,10 @@ import {
   applyEnvironmentGuard,
   getRemoveServerCodeRouterRoot,
 } from './metroNativeWorker'
-import { buildMetroConfigInputFromViteConfig } from '../metro-config/getMetroConfigFromViteConfig'
+import {
+  buildMetroConfigInputFromViteConfig,
+  getMetroConfigFromViteConfig,
+} from '../metro-config/getMetroConfigFromViteConfig'
 
 const babelCalls = {
   transform: 0,
@@ -32,33 +35,25 @@ const babelCalls = {
 
 vi.mock('@babel/core', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@babel/core')>()
-  return {
-    ...actual,
-    transform: vi.fn((...args: any[]) => {
-      babelCalls.transform++
-      return (actual.transform as any)(...args)
-    }),
-    transformSync: vi.fn((...args: any[]) => {
-      babelCalls.transformSync++
-      return (actual.transformSync as any)(...args)
-    }),
-    transformAsync: vi.fn((...args: any[]) => {
-      babelCalls.transformAsync++
-      return (actual.transformAsync as any)(...args)
-    }),
-    transformFromAstSync: vi.fn((...args: any[]) => {
-      babelCalls.transformFromAstSync++
-      return (actual.transformFromAstSync as any)(...args)
-    }),
-    parse: vi.fn((...args: any[]) => {
-      babelCalls.parse++
-      return (actual.parse as any)(...args)
-    }),
-    parseSync: vi.fn((...args: any[]) => {
-      babelCalls.parseSync++
-      return (actual.parseSync as any)(...args)
-    }),
-  }
+  const names = [
+    'transform',
+    'transformSync',
+    'transformAsync',
+    'transformFromAstSync',
+    'parse',
+    'parseSync',
+  ] as const
+  const counted = Object.fromEntries(
+    names.map((name) => [
+      name,
+      vi.fn((...args: any[]) => {
+        babelCalls[name]++
+        return (actual[name] as any)(...args)
+      }),
+    ])
+  )
+  // @vxrn/compiler reaches babel through the default export, so count that too
+  return { ...actual, ...counted, default: { ...actual, ...counted } }
 })
 
 // module scope so every describe in this file can assert it, not just the first
@@ -70,6 +65,20 @@ beforeEach(() => {
   babelCalls.parse = 0
   babelCalls.parseSync = 0
 })
+
+// flow stripping is the one place the worker runs babel: react-native's flow
+// syntax (readonly properties, enums) is beyond fast-flow-transform, so the
+// hermes-parser pass in @vxrn/compiler strips it in a single transform call
+function assertOnlyFlowStripBabelCall() {
+  expect(babelCalls).toEqual({
+    transform: 1,
+    transformSync: 0,
+    transformAsync: 0,
+    transformFromAstSync: 0,
+    parse: 0,
+    parseSync: 0,
+  })
+}
 
 function assertZeroBabelCalls() {
   expect(babelCalls.transform).toBe(0)
@@ -237,7 +246,9 @@ describe('metroNativeWorker', () => {
       off.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional
     ).toBeUndefined()
 
-    const on = extractDependencies(code, 'setup.js', { allowOptionalDependencies: true })
+    const on = extractDependencies(code, 'setup.js', {
+      allowOptionalDependencies: true,
+    })
     expect(on.find((d) => d.name === 'react-native-worklets-core')!.data.isOptional).toBe(
       true
     )
@@ -400,7 +411,7 @@ describe('metroNativeWorker', () => {
   it('handles Asset files without Babel', async () => {
     const result = await transform(
       {
-        assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
+        assetRegistryPath: 'react-native/asset-registry',
         publicPath: '/assets',
       },
       '/project',
@@ -415,10 +426,10 @@ describe('metroNativeWorker', () => {
     expect(result.output[0].data.code).toContain('__d(function')
 
     const depNames = result.dependencies.map((d) => d.name)
-    expect(depNames).toContain('react-native/Libraries/Image/AssetRegistry')
+    expect(depNames).toContain('react-native/asset-registry')
   })
 
-  it('handles Flow files by stripping types without Babel', async () => {
+  it('strips Flow types with a single hermes-parser Babel pass', async () => {
     const flowSource = `
       // @flow
       function add(a: number, b: number): number {
@@ -435,9 +446,39 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertZeroBabelCalls()
+    assertOnlyFlowStripBabelCall()
     expect(result.output[0].data.code).not.toContain(': number')
     expect(result.output[0].data.code).toContain('function add(a, b)')
+  })
+
+  it('lowers React Native Flow enums and readonly properties', async () => {
+    // react-native 0.87 ships VirtualView.js with exported Flow enums, and
+    // readonly object properties throughout its type declarations
+    const flowSource = `
+      // @flow strict-local
+      type Props = { readonly state: VirtualViewRenderState };
+      export enum VirtualViewRenderState {
+        Unknown = 0,
+        Rendered = 1,
+        None = 2,
+      }
+      export function isRendered(state: VirtualViewRenderState): boolean {
+        return state === VirtualViewRenderState.Rendered;
+      }
+    `
+
+    const result = await transform(
+      {},
+      '/project',
+      'node_modules/react-native/src/private/components/virtualview/VirtualView.js',
+      Buffer.from(flowSource, 'utf8'),
+      { dev: false, platform: 'ios', type: 'module' }
+    )
+
+    assertOnlyFlowStripBabelCall()
+    expect(result.output[0].data.code).not.toContain('enum VirtualViewRenderState')
+    expect(result.output[0].data.code).not.toContain('readonly')
+    expect(result.dependencies.map((d) => d.name)).toContain('flow-enums-runtime')
   })
 
   it('generates a deterministic cache key without Babel', () => {
@@ -493,6 +534,29 @@ describe('metroNativeWorker', () => {
     delete process.env.ONE_METRO_NATIVE_TRANSFORMS
   })
 
+  it('excludes volatile compiler caches from Metro without hiding package output', async () => {
+    const config = await buildMetroConfigInputFromViteConfig(
+      { root: process.cwd() } as any,
+      { watchman: false }
+    )
+    const blockList = config.defaultConfig.resolver.blockList as RegExp[]
+    const isBlocked = (file: string) => blockList.some((pattern) => pattern.test(file))
+
+    expect(
+      isBlocked(
+        '/home/runner/work/one/one/tests/test-app-cases/node_modules/.vxrn/compiler-cache'
+      )
+    ).toBe(true)
+    expect(
+      isBlocked(
+        'C:\\workspace\\tests\\test-app-cases\\node_modules\\.vxrn\\compiler-cache'
+      )
+    ).toBe(true)
+    expect(isBlocked('/home/runner/work/one/one/packages/one/dist/esm/index.mjs')).toBe(
+      false
+    )
+  })
+
   it('falls back to default Metro babel transformer when a user babel config exists', async () => {
     const tempDir = path.join(process.cwd(), `.tmp-metro-test-${Date.now()}`)
     fs.mkdirSync(tempDir, { recursive: true })
@@ -505,9 +569,12 @@ describe('metroNativeWorker', () => {
       const config1 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
       expect(config1.defaultConfig.transformerPath).toContain('metroNativeWorker')
 
-      // Generated @one-generated config is ignored, still uses metroNativeWorker
+      // a config written by `one patch` is ignored, still uses metroNativeWorker
       const babelConfigPath = path.join(tempDir, 'babel.config.js')
-      fs.writeFileSync(babelConfigPath, '// @one-generated\nmodule.exports = {}')
+      fs.writeFileSync(
+        babelConfigPath,
+        '// @one/generated bundler-config\nmodule.exports = {}'
+      )
       const config2 = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
       expect(config2.defaultConfig.transformerPath).toContain('metroNativeWorker')
 
@@ -527,6 +594,108 @@ describe('metroNativeWorker', () => {
         nativeTransforms: true,
       })
       expect(config5.defaultConfig.transformerPath).toContain('metroNativeWorker')
+    } finally {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
+  })
+
+  it('warns naming the ignored user babel config when native transforms are forced', async () => {
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(process.cwd(), '.tmp-metro-test-'))
+    )
+    fs.writeFileSync(path.join(tempDir, 'package.json'), '{}')
+    const babelConfigPath = path.join(tempDir, 'babel.config.js')
+    fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: [] }')
+    try {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      const mockViteConfig = { root: tempDir } as any
+      const warnsWithConfig = (spy: any) =>
+        spy.mock.calls.some((args: any[]) => args.join(' ').includes(babelConfigPath))
+
+      // explicit option force still uses the worker, but names the dropped config
+      const optionWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const forced = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        expect(forced.defaultConfig.transformerPath).toContain('metroNativeWorker')
+        expect(warnsWithConfig(optionWarn)).toBe(true)
+      } finally {
+        optionWarn.mockRestore()
+      }
+
+      // env var force warns the same way
+      const envWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        process.env.ONE_METRO_NATIVE_TRANSFORMS = '1'
+        const envForced = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+        expect(envForced.defaultConfig.transformerPath).toContain('metroNativeWorker')
+        expect(warnsWithConfig(envWarn)).toBe(true)
+      } finally {
+        envWarn.mockRestore()
+        delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      }
+
+      // default (no force) respects the config silently: babel fallback, no warning
+      const respectedWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const respected = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+        expect(respected.defaultConfig.transformerPath).not.toContain('metroNativeWorker')
+        expect(warnsWithConfig(respectedWarn)).toBe(false)
+      } finally {
+        respectedWarn.mockRestore()
+      }
+    } finally {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
+  })
+
+  it('selects the same transformer in both metro config builders', async () => {
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(process.cwd(), '.tmp-metro-test-'))
+    )
+    fs.writeFileSync(path.join(tempDir, 'package.json'), '{}')
+    try {
+      delete process.env.ONE_METRO_NATIVE_TRANSFORMS
+      const mockViteConfig = { root: tempDir } as any
+
+      // no user config: both builders default to the native worker
+      const nativeInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      const nativeFull = await getMetroConfigFromViteConfig(mockViteConfig, {})
+      expect(nativeInput.defaultConfig.transformerPath).toContain('metroNativeWorker')
+      expect((nativeFull as any).transformerPath).toContain('metroNativeWorker')
+
+      // user config: both builders fall back to the babel transformer
+      const babelConfigPath = path.join(tempDir, 'babel.config.js')
+      fs.writeFileSync(babelConfigPath, 'module.exports = { plugins: [] }')
+      const fallbackInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {})
+      const fallbackFull = await getMetroConfigFromViteConfig(mockViteConfig, {})
+      expect(fallbackInput.defaultConfig.transformerPath).not.toContain(
+        'metroNativeWorker'
+      )
+      expect((fallbackFull as any).transformerPath).not.toContain('metroNativeWorker')
+
+      // forced with a user config: both builders warn naming the ignored file
+      const forcedWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      try {
+        const forcedInput = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        const forcedFull = await getMetroConfigFromViteConfig(mockViteConfig, {
+          nativeTransforms: true,
+        })
+        expect(forcedInput.defaultConfig.transformerPath).toContain('metroNativeWorker')
+        expect((forcedFull as any).transformerPath).toContain('metroNativeWorker')
+        expect(
+          forcedWarn.mock.calls.some((args: any[]) =>
+            args.join(' ').includes(babelConfigPath)
+          )
+        ).toBe(true)
+      } finally {
+        forcedWarn.mockRestore()
+      }
     } finally {
       delete process.env.ONE_METRO_NATIVE_TRANSFORMS
       fs.rmSync(tempDir, { recursive: true, force: true })
@@ -1148,7 +1317,11 @@ describe('one native transform ports', () => {
   it('inlines import.meta.env reads, which oxc otherwise lowers to an empty object', () => {
     // oxc's CJS lowering emits `var import_meta = {}`, so an untouched
     // `import.meta.env.X` silently reads undefined in every native bundle.
-    const env = { DEV: false, VITE_POSTHOG_API_KEY: 'pk_live', TAMAGUI_TARGET: 'native' }
+    const env = {
+      DEV: false,
+      VITE_POSTHOG_API_KEY: 'pk_live',
+      TAMAGUI_TARGET: 'native',
+    }
     const out = applyInlineEnvVars(
       `export const key = import.meta.env.VITE_POSTHOG_API_KEY;
 export const target = import.meta.env?.TAMAGUI_TARGET;
@@ -1243,7 +1416,9 @@ export const all = { ...import.meta.env };`,
     // takeout adds `hot-updater/babel-plugin` for OTA; dropping it silently
     // would ship a build whose updates never apply.
     const withPlugins = (plugins: any[]) =>
-      ({ customTransformOptions: { vite: { babelConfig: { plugins } } } }) as any
+      ({
+        customTransformOptions: { vite: { babelConfig: { plugins } } },
+      }) as any
 
     expect(() =>
       assertNoUnportedBabelPlugins(
@@ -1300,5 +1475,44 @@ export const all = { ...import.meta.env };`,
     expect(getRemoveServerCodeRouterRoot({ customTransformOptions: {} } as any)).toBe(
       undefined
     )
+  })
+})
+
+describe('metro babel fallback config names', () => {
+  it('extends json babel configs just like the compiler detection does', async () => {
+    // loadBabelConfig memoizes a singleton, so each case gets a fresh module
+    for (const name of ['babel.config.json', '.babelrc.json']) {
+      vi.resetModules()
+      const { loadBabelConfig } = await import('./loadBabelConfig')
+      const tempDir = fs.realpathSync(
+        fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-json-'))
+      )
+      try {
+        fs.writeFileSync(path.join(tempDir, name), JSON.stringify({ plugins: [] }))
+        expect(loadBabelConfig({ projectRoot: tempDir })).toEqual({
+          extends: path.join(tempDir, name),
+        })
+      } finally {
+        fs.rmSync(tempDir, { recursive: true, force: true })
+      }
+    }
+
+    // control: js configs keep loading
+    vi.resetModules()
+    const { loadBabelConfig } = await import('./loadBabelConfig')
+    const tempDir = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-json-'))
+    )
+    try {
+      fs.writeFileSync(
+        path.join(tempDir, 'babel.config.js'),
+        'module.exports = { plugins: [] }'
+      )
+      expect(loadBabelConfig({ projectRoot: tempDir })).toEqual({
+        extends: path.join(tempDir, 'babel.config.js'),
+      })
+    } finally {
+      fs.rmSync(tempDir, { recursive: true, force: true })
+    }
   })
 })

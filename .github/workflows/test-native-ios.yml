@@ -12,6 +12,7 @@ on:
   push:
     branches:
       - main
+      - v2-beta
       - ci/native-tests-free-runners
       - ci/rolldown-native-tests
       - ci/test-native-ios-matrix-split
@@ -33,6 +34,8 @@ on:
       - 'packages/one/src/metro-config/**'
       - 'packages/vite-plugin-metro/**'
       - 'packages/vxrn/**'
+      - 'packages/native/**'
+      - 'tests/native-features/**'
       - 'tests/rn-test-container/app.json'
       - 'tests/rn-test-container/e2e/**'
       - 'tests/rn-test-container/ios/**'
@@ -48,6 +51,37 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  generated-swiftui:
+    name: Generated SwiftUI bindings
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_26.4.app
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+      - name: Verify SDK generation, Swift compilation, and contracts
+        working-directory: packages/native
+        run: |
+          bun run generate:check
+          bun run typecheck
+          bun run test
+      - name: Generate the One Native consumer project
+        working-directory: tests/native-features
+        env:
+          EXPO_NO_TELEMETRY: '1'
+        run: bun run prebuild:native --platform ios --no-install
+      - name: Install consumer pods
+        working-directory: tests/native-features/ios
+        run: pod install
+      - name: Compile One Native and generated Fabric code
+        working-directory: tests/native-features/ios
+        run: >-
+          xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
+          -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
+          CODE_SIGNING_ALLOWED=NO build
+
   build-ios-test-container-dev:
     name: Build iOS RN Test App (Dev)
     uses: ./.github/workflows/build-ios-test-container-app.yml
@@ -169,7 +203,11 @@ jobs:
       - name: Boot Simulator
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-        run: xcrun simctl boot $SIMULATOR_UDID
+        run: |
+          xcrun simctl boot "$SIMULATOR_UDID"
+          open -Fn /Applications/Xcode_26.4.app/Contents/Developer/Applications/Simulator.app \
+            --args -CurrentDeviceUDID "$SIMULATOR_UDID"
+          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
 
       - name: Install Appium
         env:

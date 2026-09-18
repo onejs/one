@@ -43,7 +43,6 @@ export const docsRoutes = [
       { title: 'Tabs', route: '/docs/components-Tabs' },
       { title: 'Drawer', route: '/docs/components-Drawer' },
       { title: 'Protected', route: '/docs/components-Protected' },
-      { title: 'NativeTabs', route: '/docs/components-NativeTabs' },
       { title: 'withLayoutContext', route: '/docs/exports-withLayoutContext' },
     ],
   },

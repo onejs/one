@@ -86,6 +86,19 @@ describe('one/babel-preset', () => {
 
     expect(result.plugins).toEqual([])
   })
+
+  it('adds nothing when @vxrn/compiler applies it inside the vite and rolldown pipeline', () => {
+    const result = oneBabelPreset(
+      {
+        cache: () => {},
+        cwd: () => projectRoot,
+        caller: <T>(cb: (caller: unknown) => T): T => cb({ name: 'vxrn' }),
+      },
+      { projectRoot }
+    )
+
+    expect(result).toEqual({ presets: [], plugins: [] })
+  })
 })
 
 describe('buildOneBabelPlugins', () => {

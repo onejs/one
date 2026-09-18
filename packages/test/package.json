@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/test",
   "private": true,
-  "version": "1.26.1",
+  "version": "1.27.1",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@vxrn/utils": "workspace:*",
     "get-port": "^7.1.0",
-    "typescript": "^5.7.3",
+    "typescript": "7.0.2",
     "vitest": "^4.1.0"
   }
 }

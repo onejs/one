@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-app",
-  "version": "1.26.1",
+  "version": "1.27.1",
   "private": true,
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -10,11 +10,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~57.0.11",
-    "expo-status-bar": "~57.0.1",
+    "expo": "58.0.0-canary-20260909-ea7a89a",
+    "expo-status-bar": "58.0.0-canary-20260909-ea7a89a",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-native": "0.86.2",
+    "react-native": "0.87.1",
     "vxrn": "workspace:*"
   }
 }

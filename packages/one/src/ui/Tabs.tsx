@@ -1,7 +1,6 @@
 import { isValidElement, type ReactNode } from 'react'
-import { StyleSheet, View } from 'react-native'
 
-import { ViewSlot } from './common'
+import { Slot } from './Slot'
 import { useTabsWithChildren, type TabsProps } from './Tabs.shared'
 
 export * from './TabContext'
@@ -12,7 +11,7 @@ export * from './Tabs.shared'
 
 export function Tabs(props: TabsProps) {
   const { children, asChild, options, ...rest } = props
-  const Comp = asChild ? ViewSlot : View
+  const Comp = asChild ? Slot : 'div'
 
   const { NavigationContent } = useTabsWithChildren({
     children:
@@ -27,14 +26,8 @@ export function Tabs(props: TabsProps) {
   })
 
   return (
-    <Comp style={styles.tabsRoot} {...rest}>
+    <Comp {...rest}>
       <NavigationContent>{children}</NavigationContent>
     </Comp>
   )
 }
-
-const styles = StyleSheet.create({
-  tabsRoot: {
-    flex: 1,
-  },
-})

@@ -1,4 +1,4 @@
-import '@docsearch/css'
+import '@docsearch/css/dist/style.css'
 import type { DocSearchModalProps } from '@docsearch/react'
 import { DocSearchModal } from '@docsearch/react'
 

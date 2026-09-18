@@ -5,21 +5,20 @@ import { NAVIGATOR_CONFIG } from '../../headless/children'
 import { PLATFORM } from '../../utils/platform'
 import { convertFontWeightToStringFontWeight, flattenStyle } from '../../utils/style'
 
+type StackHeaderTitleStyle = {
+  fontFamily?: TextStyle['fontFamily']
+  fontSize?: TextStyle['fontSize']
+  fontWeight?: Exclude<TextStyle['fontWeight'], number>
+  color?: string
+  textAlign?: 'left' | 'center'
+}
+
+type StackHeaderLargeTitleStyle = Omit<StackHeaderTitleStyle, 'textAlign'>
+
 export type StackHeaderTitleProps = {
   children?: string
-  style?: StyleProp<{
-    fontFamily?: TextStyle['fontFamily']
-    fontSize?: TextStyle['fontSize']
-    fontWeight?: Exclude<TextStyle['fontWeight'], number>
-    color?: string
-    textAlign?: 'left' | 'center'
-  }>
-  largeStyle?: StyleProp<{
-    fontFamily?: TextStyle['fontFamily']
-    fontSize?: TextStyle['fontSize']
-    fontWeight?: Exclude<TextStyle['fontWeight'], number>
-    color?: string
-  }>
+  style?: StyleProp<StackHeaderTitleStyle>
+  largeStyle?: StyleProp<StackHeaderLargeTitleStyle>
   large?: boolean
 }
 
@@ -37,8 +36,8 @@ export function appendStackHeaderTitlePropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackHeaderTitleProps
 ): NativeStackNavigationOptions {
-  const flattenedStyle = flattenStyle(props.style)
-  const flattenedLargeStyle = flattenStyle(props.largeStyle)
+  const flattenedStyle = flattenStyle<StackHeaderTitleStyle>(props.style)
+  const flattenedLargeStyle = flattenStyle<StackHeaderLargeTitleStyle>(props.largeStyle)
 
   // Build title style only if there are actual style properties
   const titleStyle = flattenedStyle
@@ -67,9 +66,9 @@ export function appendStackHeaderTitlePropsToOptions(
   return {
     ...options,
     title: props.children,
-    headerLargeTitle: props.large,
+    headerLargeTitleEnabled: props.large,
     // Large titles on iOS require headerTransparent for proper scroll behavior
-    // Only set on iOS since headerLargeTitle is iOS-only
+    // Only set on iOS since headerLargeTitleEnabled is iOS-only
     ...(props.large && PLATFORM === 'ios' && { headerTransparent: true }),
     headerTitleAlign: flattenedStyle?.textAlign,
     // Only set styles when explicitly configured to avoid interfering with native defaults

@@ -14,7 +14,7 @@ export declare class RootErrorBoundary extends React.Component<{
     };
     componentDidCatch(error: Error, info: React.ErrorInfo): void;
     handleRetry: () => void;
-    render(): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | import("react/jsx-runtime").JSX.Element | null | undefined;
+    render(): string | number | bigint | boolean | import("react/jsx-runtime").JSX.Element | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | Iterable<React.ReactNode> | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | React.ReactPortal | null | undefined> | null | undefined;
 }
 export {};
 //# sourceMappingURL=RootErrorBoundary.web.d.ts.map

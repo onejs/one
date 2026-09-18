@@ -1,11 +1,9 @@
 import React from 'react'
 import { View, Text, TextInput } from 'react-native'
-import { TestComponent } from 'components/TestComponent'
-import { TestComponentContainingRelativeImport } from 'components/TestComponentContainingRelativeImport'
-import { TestComponentUsingHookThatHasNativeVersion } from 'components/TestComponentUsingHookThatHasNativeVersion'
-import { TestCSSComponent } from 'components/TestCSSComponent'
-// TODO
-// import { TestComponentWithFlatList } from 'components/TestComponentWithFlatList'
+import { TestComponent } from '../components/TestComponent'
+import { TestComponentContainingRelativeImport } from '../components/TestComponentContainingRelativeImport'
+import { TestComponentUsingHookThatHasNativeVersion } from '../components/TestComponentUsingHookThatHasNativeVersion'
+import { TestCSSComponent } from '../components/TestCSSComponent'
 
 const text = 'Some text'
 
@@ -18,7 +16,6 @@ export default function Page() {
       <TestComponentContainingRelativeImport />
       <TestComponentUsingHookThatHasNativeVersion />
       <TestCSSComponent />
-      {/* <TestComponentWithFlatList /> */}
     </View>
   )
 }

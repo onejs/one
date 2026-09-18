@@ -2,13 +2,13 @@
 
 export type NativeStackNavigationOptions = {
   title?: string
-  headerLargeTitle?: boolean
+  headerLargeTitleEnabled?: boolean
   headerTitleAlign?: 'left' | 'center'
   headerTitleStyle?: any
   headerLargeTitleStyle?: any
   headerBackTitle?: string
   headerBackTitleStyle?: any
-  headerBackImageSource?: any
+  headerBackIcon?: any
   headerBackButtonDisplayMode?: string
   headerBackButtonMenuEnabled?: boolean
   headerBackVisible?: boolean

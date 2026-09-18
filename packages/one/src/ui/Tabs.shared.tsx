@@ -12,6 +12,7 @@ import {
   Children,
   type ComponentProps,
   Fragment,
+  type HTMLAttributes,
   isValidElement,
   type MutableRefObject,
   type PropsWithChildren,
@@ -21,7 +22,6 @@ import {
   useMemo,
   useRef,
 } from 'react'
-import type { ViewProps } from 'react-native'
 
 import { useRouteInfo } from '../hooks'
 import { resolveHref } from '../link/href'
@@ -52,7 +52,6 @@ type NavigatorContextValue = {
 export type UseTabsOptions = Omit<
   DefaultNavigatorOptions<
     ParamListBase,
-    any,
     TabNavigationState<any>,
     ExpoTabsScreenOptions,
     TabNavigationEventMap,
@@ -63,7 +62,7 @@ export type UseTabsOptions = Omit<
   backBehavior?: TabRouterOptions['backBehavior']
 }
 
-export type TabsProps = ViewProps & {
+export type TabsProps = HTMLAttributes<HTMLDivElement> & {
   asChild?: boolean
   options?: UseTabsOptions
 }
@@ -116,7 +115,6 @@ export function useTabsWithTriggers(
     children,
     ...rest,
     triggerMap,
-    id: contextKey,
     initialRouteName: routeNode.initialRouteName,
   })
 
@@ -124,7 +122,6 @@ export function useTabsWithTriggers(
     state,
     descriptors,
     navigation,
-    describe,
     NavigationContent: RNNavigationContent,
   } = navigatorContext
   const descriptorsRef = useRef(descriptors)
@@ -149,7 +146,7 @@ export function useTabsWithTriggers(
     </TabTriggerMapContext.Provider>
   )) as TabsContextValue['NavigationContent']
 
-  return { state, descriptors, navigation, NavigationContent, describe }
+  return { state, descriptors, navigation, NavigationContent }
 }
 
 function parseTriggersFromChildren(

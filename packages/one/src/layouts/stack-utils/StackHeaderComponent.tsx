@@ -24,20 +24,24 @@ import {
 import { isChildOfType } from '../../utils/children'
 import { flattenStyle } from '../../utils/style'
 
+type StackHeaderStyle = {
+  color?: ColorValue
+  backgroundColor?: ScreenStackHeaderConfigProps['backgroundColor']
+  shadowColor?: undefined | 'transparent'
+}
+
+type StackHeaderLargeStyle = {
+  backgroundColor?: ScreenStackHeaderConfigProps['largeTitleBackgroundColor']
+  shadowColor?: undefined | 'transparent'
+}
+
 export interface StackHeaderProps {
   children?: ReactNode
   hidden?: boolean
   asChild?: boolean
   blurEffect?: ScreenStackHeaderConfigProps['blurEffect']
-  style?: StyleProp<{
-    color?: ColorValue
-    backgroundColor?: ScreenStackHeaderConfigProps['backgroundColor']
-    shadowColor?: undefined | 'transparent'
-  }>
-  largeStyle?: StyleProp<{
-    backgroundColor?: ScreenStackHeaderConfigProps['largeTitleBackgroundColor']
-    shadowColor?: undefined | 'transparent'
-  }>
+  style?: StyleProp<StackHeaderStyle>
+  largeStyle?: StyleProp<StackHeaderLargeStyle>
 }
 
 /**
@@ -64,8 +68,8 @@ export function appendStackHeaderPropsToOptions(
   options: NativeStackNavigationOptions,
   props: StackHeaderProps
 ): NativeStackNavigationOptions {
-  const flattenedStyle = flattenStyle(props.style)
-  const flattenedLargeStyle = flattenStyle(props.largeStyle)
+  const flattenedStyle = flattenStyle<StackHeaderStyle>(props.style)
+  const flattenedLargeStyle = flattenStyle<StackHeaderLargeStyle>(props.largeStyle)
 
   if (props.hidden) {
     return { ...options, headerShown: false }

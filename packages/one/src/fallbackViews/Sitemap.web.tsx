@@ -13,7 +13,7 @@ export function getNavOptions(): NativeStackNavigationOptions {
     headerShown: false,
     presentation: 'modal',
     animation: 'default',
-    headerLargeTitle: false,
+    headerLargeTitleEnabled: false,
     headerTitleStyle: { color: 'white' },
     headerTintColor: 'white',
     headerLargeTitleStyle: { color: 'white' },

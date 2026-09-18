@@ -1,0 +1,33 @@
+appId: dev.vxrn.nativefeatures.tests
+---
+- launchApp:
+    clearState: true
+- openLink:
+    link: nativefeatures://app/one-native-android
+- waitFor:
+    id: one-native-android-mounted
+    timeout: 15000
+- assertVisible:
+    id: one-native-android-mounted
+    text: Android proof mounted
+- assertVisible:
+    id: one-native-android-prop-value
+    text: Compact prop
+- assertVisible:
+    id: one-native-android-real-button
+    text: Tap button
+- assertVisible:
+    id: one-native-android-switch
+- assertTreeContains: one-native-android-disabled-button
+- assertTreeContains: one-native-android-disabled-switch
+- assertTreeContains: one-native-android-order-alpha
+- assertTreeContains: one-native-android-order-beta
+- assertTreeContains: one-native-android-decoy
+- tapOn:
+    id: one-native-android-decoy
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible:
+    id: one-native-android-button-status
+    text: 'Button taps: 0'
+- dumpTree: 20

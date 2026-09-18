@@ -1,34 +1,33 @@
 {
   "name": "@vxrn/native",
-  "version": "1.26.1",
+  "version": "1.27.1",
   "type": "module",
-  "description": "Native navigation features for One - zoom transitions, toolbar, color API, split view",
+  "description": "Native SwiftUI, Jetpack Compose, navigation, and platform interfaces for One and React Native.",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "types/index.d.ts",
-  "sideEffects": [
-    "./src/index.ts",
-    "./dist/esm/index.native.js",
-    "./dist/esm/index.mjs",
-    "./dist/cjs/index.cjs"
-  ],
+  "sideEffects": false,
   "files": [
     "src",
     "types",
     "dist",
     "ios",
-    "android",
+    "android/build.gradle",
+    "android/src",
+    "cpp",
     "VxrnNative.podspec",
-    "react-native.config.cjs"
+    "react-native.config.cjs",
+    "schema.json"
   ],
   "scripts": {
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
-    "test": "vitest run --dir tests"
-  },
-  "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "workspace:*"
+    "typecheck": "tsc --noEmit --composite false",
+    "test": "vitest run",
+    "generate": "bun codegen/generate.ts",
+    "generate:check": "bun codegen/generate.ts --check",
+    "measure": "bun codegen/measure.ts"
   },
   "exports": {
     ".": {
@@ -66,19 +65,18 @@
       "react-native": "./dist/esm/split-view/index.native.js",
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
-    }
+    },
+    "./package.json": "./package.json",
+    "./schema.json": "./schema.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "@react-navigation/native": "~7.3.16",
-    "@react-navigation/native-stack": "~7.18.8",
-    "one": "1.26.1",
-    "react": "*",
-    "react-native": "*",
-    "react-native-screens": ">=4.0.0",
-    "react-native-safe-area-context": ">=5.4.0"
+    "react": ">=19",
+    "react-native": "~0.87.1",
+    "react-native-screens": ">=4.25.0",
+    "react-native-safe-area-context": ">=5.5.0"
   },
   "peerDependenciesMeta": {
     "react-native-safe-area-context": {
@@ -86,11 +84,58 @@
     }
   },
   "devDependencies": {
-    "@react-navigation/native": "~7.3.16",
-    "@react-navigation/native-stack": "~7.18.8",
-    "@tamagui/build": "2.6.2",
-    "one": "workspace:*",
+    "@tamagui/build": "3.0.0-beta.1309.1",
     "react-native-web": "^0.21.2",
     "vitest": "^4.1.0"
+  },
+  "codegenConfig": {
+    "name": "OneNativeSpec",
+    "type": "components",
+    "jsSrcsDir": "src/specs",
+    "android": {
+      "javaPackageName": "dev.onejs.onenative"
+    },
+    "ios": {
+      "componentProvider": {
+        "OneNativeMenu": "OneNativeMenuComponentView",
+        "OneNativeTabs": "OneNativeTabsComponentView",
+        "OneNativeTab": "OneNativeTabComponentView",
+        "OneNativePicker": "OneNativePickerComponentView",
+        "OneNativeDatePicker": "OneNativeDatePickerComponentView",
+        "OneNativeColorPicker": "OneNativeColorPickerComponentView",
+        "OneNativeToggle": "OneNativeToggleComponentView",
+        "OneNativeSlider": "OneNativeSliderComponentView",
+        "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativeText": "OneNativeTextComponentView",
+        "OneNativeLabel": "OneNativeLabelComponentView",
+        "OneNativeButton": "OneNativeButtonComponentView",
+        "OneNativeProgressView": "OneNativeProgressViewComponentView",
+        "OneNativeGauge": "OneNativeGaugeComponentView",
+        "OneNativeImage": "OneNativeImageComponentView",
+        "OneNativeShareLink": "OneNativeShareLinkComponentView",
+        "OneNativeContentUnavailableView": "OneNativeContentUnavailableViewComponentView",
+        "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
+        "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
+        "OneNativeWebView": "OneNativeWebViewComponentView",
+        "OneNativeMap": "OneNativeMapComponentView",
+        "OneNativeTextField": "OneNativeTextFieldComponentView",
+        "OneNativeSecureField": "OneNativeSecureFieldComponentView",
+        "OneNativeAlert": "OneNativeAlertComponentView",
+        "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
+        "OneNativeQuickLook": "OneNativeQuickLookComponentView",
+        "OneNativeSheet": "OneNativeSheetComponentView",
+        "OneNativeSheetContent": "OneNativeSheetContentComponentView",
+        "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeZStack": "OneNativeZStackComponentView",
+        "OneNativeSpacer": "OneNativeSpacerComponentView",
+        "OneNativeForm": "OneNativeFormComponentView",
+        "OneNativeSection": "OneNativeSectionComponentView",
+        "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
+        "OneNativeGlass": "OneNativeGlassComponentView",
+        "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
+        "OneNativePopover": "OneNativePopoverComponentView",
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+      }
+    }
   }
 }

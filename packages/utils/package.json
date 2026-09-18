@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.26.1",
+  "version": "1.27.1",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
@@ -35,7 +35,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@tamagui/build": "2.6.2",
+    "@tamagui/build": "3.0.0-beta.1309.1",
     "@types/ws": "^8.18.1"
   },
   "publishConfig": {

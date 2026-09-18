@@ -1,7 +1,31 @@
 import type { EventMapBase, NavigationState, ParamListBase, RouteProp, ScreenListeners } from '@react-navigation/native';
 import React from 'react';
 import { type RouteNode } from './Route';
-export declare const Screen: any, Group: any;
+export declare const Screen: <RouteName extends string>(_: import("@react-navigation/core").RouteConfig<ParamListBase, RouteName, Readonly<{
+    key: string;
+    index: number;
+    routeNames: string[];
+    history?: unknown[] | undefined;
+    routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+    type: string;
+    stale: false;
+}>, {}, {}, import("@react-navigation/core").NavigationProp<ParamListBase, string, Readonly<{
+    key: string;
+    index: number;
+    routeNames: string[];
+    history?: unknown[] | undefined;
+    routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+    type: string;
+    stale: false;
+}>, {}, {}, {}>>) => null, Group: React.ComponentType<import("@react-navigation/core").RouteGroupConfig<ParamListBase, {}, import("@react-navigation/core").NavigationProp<ParamListBase, string, Readonly<{
+    key: string;
+    index: number;
+    routeNames: string[];
+    history?: unknown[] | undefined;
+    routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+    type: string;
+    stale: false;
+}>, {}, {}, {}>>>;
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>, State extends NavigationState = NavigationState, EventMap extends EventMapBase = EventMapBase> = {
     /** Name is required when used inside a Layout component. */
     name?: string;
@@ -29,7 +53,7 @@ export declare function useSortedScreens(order: ScreenProps[], options?: {
     protectedScreens?: Set<string>;
 }): React.ReactNode[];
 /** Wrap the component with various enhancements and add access to child routes. */
-export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.NamedExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
+export declare function getQualifiedRouteComponent(value: RouteNode): React.NamedExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>> | React.ComponentType<any>;
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
 export declare function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>): ({ params }?: {
     params?: Record<string, any>;

@@ -13,7 +13,6 @@ import {
 afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false })
 })
-
 describe('getBabelOptions Worklets resolution', () => {
   it('uses the app-installed Worklets Babel plugin', () => {
     const projectRoot = fs.realpathSync(
@@ -66,6 +65,27 @@ describe('transformBabel Flow parsing', () => {
 
     expect(result?.code).toContain("codegenNativeComponent('VirtualView')")
     expect(result?.code).not.toContain('HostComponent')
+  })
+
+  it('preserves React Native Flow enums as runtime values', async () => {
+    const result = await transformBabel(
+      '/project/VirtualView.js',
+      `
+        // @flow strict-local
+        export enum VirtualViewRenderState {
+          Unknown = 0,
+          Rendered = 1,
+          None = 2,
+        }
+
+        export const rendered = VirtualViewRenderState.Rendered
+      `,
+      { plugins: [] }
+    )
+
+    expect(result?.code).toContain('const VirtualViewRenderState =')
+    expect(result?.code).toContain('Rendered: 1')
+    expect(result?.code).toContain('VirtualViewRenderState.Rendered')
   })
 
   it('rejects a required transform error instead of returning untransformed source', async () => {
@@ -379,9 +399,12 @@ describe('findUserBabelConfig and user Babel config respect', () => {
     try {
       expect(findUserBabelConfig(projectRoot)).toBeNull()
 
-      // Created with @one-generated marker -> ignored
+      // written by `one patch` with the generated marker -> ignored
       const generatedFile = path.join(projectRoot, 'babel.config.js')
-      fs.writeFileSync(generatedFile, '// @one-generated\nmodule.exports = {}')
+      fs.writeFileSync(
+        generatedFile,
+        '// @one/generated bundler-config\nmodule.exports = {}'
+      )
       expect(findUserBabelConfig(projectRoot)).toBeNull()
 
       // Overwritten with user config -> detected
@@ -440,19 +463,196 @@ describe('findUserBabelConfig and user Babel config respect', () => {
     )
     try {
       const code = '/* remove me */ export const x = 1'
-      const res = await transformBabel(
-        path.join(projectRoot, 'src', 'index.ts'),
-        code,
-        {
-          configFile: userConfig,
-          babelrc: true,
-        }
-      )
+      const res = await transformBabel(path.join(projectRoot, 'src', 'index.ts'), code, {
+        configFile: userConfig,
+        babelrc: true,
+      })
       expect(res.code).not.toContain('remove me')
       expect(res.code).toContain('export const x = 1')
     } finally {
       fs.rmSync(projectRoot, { recursive: true, force: true })
     }
   })
+
+  it('tells user babel config it runs in a bundler that keeps static esm', async () => {
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    const userConfig = path.join(projectRoot, 'babel.config.js')
+    // presets such as babel-preset-expo read this caller to decide whether to
+    // rewrite esm to commonjs and import.meta to a metro runtime global
+    fs.writeFileSync(
+      userConfig,
+      `module.exports = (api) => ({
+        comments: !api.caller((c) => c?.name === 'vxrn' && c?.supportsStaticESM === true),
+      })`
+    )
+    try {
+      const res = await transformBabel(
+        path.join(projectRoot, 'src', 'index.ts'),
+        '/* remove me */ export const x = 1',
+        { configFile: userConfig, babelrc: true }
+      )
+      expect(res.code).not.toContain('remove me')
+    } finally {
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+})
+describe('explicit swc/oxc per-file choice with a user babel config', () => {
+  it('returns null for swc/oxc string and object forms', () => {
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    const userConfig = path.join(projectRoot, 'babel.config.js')
+    fs.writeFileSync(userConfig, 'module.exports = { plugins: [] }')
+    try {
+      const base = {
+        id: path.join(projectRoot, 'src', 'index.tsx'),
+        code: `export const x = 1`,
+        projectRoot,
+        development: true,
+        environment: 'client' as const,
+        reactForRNVersion: '19' as const,
+      }
+      // merely adding babel.config.js must not flip an explicit non-babel choice
+      expect(getBabelOptions({ ...base, userSetting: 'swc' })).toBeNull()
+      expect(getBabelOptions({ ...base, userSetting: 'oxc' })).toBeNull()
+      expect(getBabelOptions({ ...base, userSetting: { transform: 'swc' } })).toBeNull()
+      expect(getBabelOptions({ ...base, userSetting: { transform: 'oxc' } })).toBeNull()
+      // controls: babel choices still resolve through the user config
+      expect(getBabelOptions({ ...base, userSetting: 'babel' })?.configFile).toBe(
+        userConfig
+      )
+      expect(
+        getBabelOptions({ ...base, userSetting: { transform: 'babel' } })?.configFile
+      ).toBe(userConfig)
+      expect(getBabelOptions(base)?.configFile).toBe(userConfig)
+    } finally {
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('skips the transform end-to-end for object-form swc', async () => {
+    const { createVXRNCompilerPlugin } = await import('./index')
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
+    )
+    const srcDir = path.join(projectRoot, 'src')
+    fs.mkdirSync(srcDir, { recursive: true })
+    const file = path.join(srcDir, 'index.ts')
+    const code = `export const x = 1`
+    fs.writeFileSync(file, code)
+    fs.writeFileSync(
+      path.join(projectRoot, 'babel.config.js'),
+      'module.exports = { plugins: [] }'
+    )
+    configureVXRNCompilerPlugin({
+      enableCompiler: false,
+      enableReanimated: false,
+    })
+    try {
+      const plugins = await createVXRNCompilerPlugin({
+        transform: () => ({ transform: 'swc' }) as any,
+      })
+      const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
+      await plugin.configResolved({ root: projectRoot, build: {} })
+      const hook = plugin.transform.handler || plugin.transform
+      const result = await hook.call({ environment: { name: 'client' } }, code, file)
+      expect(result == null).toBe(true)
+    } finally {
+      configureVXRNCompilerPlugin({
+        enableCompiler: false,
+        enableReanimated: false,
+      })
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
 })
 
+describe('user babel config end-to-end through the compiler plugin', () => {
+  it('runs the user config when default plugins are empty', async () => {
+    const { createVXRNCompilerPlugin } = await import('./index')
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-e2e-'))
+    )
+    const srcDir = path.join(projectRoot, 'src')
+    fs.mkdirSync(srcDir, { recursive: true })
+    const file = path.join(srcDir, 'index.ts')
+    const marker = 'babel-e2e-probe'
+    const code = `/* ${marker} */ export const x = 1`
+    fs.writeFileSync(file, code)
+    fs.writeFileSync(
+      path.join(projectRoot, 'babel.config.json'),
+      JSON.stringify({ comments: false })
+    )
+    configureVXRNCompilerPlugin({
+      enableCompiler: false,
+      enableReanimated: false,
+    })
+    try {
+      const plugins = await createVXRNCompilerPlugin()
+      const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
+      await plugin.configResolved({ root: projectRoot, build: {} })
+      const hook = plugin.transform.handler || plugin.transform
+      const result = await hook.call({ environment: { name: 'client' } }, code, file)
+      // default plugins are empty here, but the user configFile must still
+      // route through transformBabel instead of taking the skip fast-path
+      expect(result).toBeDefined()
+      expect(result.code).toContain('export const x = 1')
+      expect(result.code).not.toContain(marker)
+    } finally {
+      configureVXRNCompilerPlugin({
+        enableCompiler: false,
+        enableReanimated: false,
+      })
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+
+  it('invalidates the cache when the user babel config is added or edited', async () => {
+    const { createVXRNCompilerPlugin } = await import('./index')
+    const projectRoot = fs.realpathSync(
+      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-cache-'))
+    )
+    const srcDir = path.join(projectRoot, 'src')
+    fs.mkdirSync(srcDir, { recursive: true })
+    const file = path.join(srcDir, 'index.ts')
+    const marker = 'babel-cache-probe'
+    const code = `/* ${marker} */ export const x = 1`
+    fs.writeFileSync(file, code)
+    const userConfig = path.join(projectRoot, 'babel.config.json')
+    configureVXRNCompilerPlugin({
+      enableCompiler: false,
+      enableReanimated: false,
+    })
+    try {
+      const plugins = await createVXRNCompilerPlugin({
+        transform: () => 'babel' as const,
+      })
+      const plugin = plugins.find((p: any) => p.name === 'one:compiler') as any
+      await plugin.configResolved({ root: projectRoot, build: {} })
+      const hook = plugin.transform.handler || plugin.transform
+      const context = { environment: { name: 'client' } }
+
+      const res1 = await hook.call(context, code, file)
+      expect(res1.code).toContain(marker)
+
+      // adding a config without touching the source must miss the cache
+      fs.writeFileSync(userConfig, JSON.stringify({ comments: false }))
+      const res2 = await hook.call(context, code, file)
+      expect(res2.code).not.toContain(marker)
+
+      // editing the config contents must miss again
+      fs.writeFileSync(userConfig, JSON.stringify({ comments: true }))
+      const res3 = await hook.call(context, code, file)
+      expect(res3.code).toContain(marker)
+    } finally {
+      configureVXRNCompilerPlugin({
+        enableCompiler: false,
+        enableReanimated: false,
+      })
+      fs.rmSync(projectRoot, { recursive: true, force: true })
+    }
+  })
+})

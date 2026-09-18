@@ -8,6 +8,7 @@ import remapping from '@jridgewell/remapping'
 import { TraceMap, eachMapping } from '@jridgewell/trace-mapping'
 import {
   shouldStripFlow,
+  stripFlowTypes,
   transformHermesAsync,
   transformHermesLoops,
   transformReactNativeCodegen,
@@ -1986,8 +1987,7 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
 
   // 2. Asset files
   if (options.type === 'asset') {
-    const assetRegistryPath =
-      config.assetRegistryPath || 'react-native/Libraries/Image/AssetRegistry'
+    const assetRegistryPath = config.assetRegistryPath || 'react-native/asset-registry'
     let properDescriptor: any = null
 
     const absolutePath = path.resolve(projectRoot, filename)
@@ -2144,15 +2144,7 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
   // Step A: Flow stripping
   if (shouldStripFlow(filename, code)) {
     try {
-      const fft = await import('fast-flow-transform')
-      const flowTransform = fft.default || fft
-      const flowResult = await flowTransform({
-        filename,
-        source: code,
-        sourcemap: true,
-        dialect: 'flow',
-        format: 'pretty',
-      })
+      const flowResult = await stripFlowTypes(filename, code)
       if (flowResult?.code) {
         code = flowResult.code
         if (flowResult.map) {
