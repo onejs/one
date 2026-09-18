@@ -62,3 +62,13 @@ status file; the coordinator resolves.
   polls status files and transcripts.
 - REVIEW: none per slice. Coordinator validates assembled work with builds +
   conformance before anything merges anywhere.
+
+## Design findings (from rnx lane)
+
+- Icon-only Button must be expressible directly. Expo renders an empty capsule
+  for icon-only (systemImage is read only in the Label branch) and the
+  workaround is `label=""`, which may leave Label's icon-to-title spacing
+  applied and the symbol off-center (unmeasured). Our Button takes `systemImage`
+  with a required non-empty `label` today; add an icon-only path that renders
+  `Image` (not `Label` with an empty title) and prove symbol centering in
+  conformance. Owner: native-ios-views.
