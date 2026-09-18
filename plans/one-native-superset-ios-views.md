@@ -26,6 +26,11 @@ SwipeActions, pager-style tabs.
   52b59a64a (JS wrappers + 14 vitest), 27a671620 (lists fixture + suite
   + nav), 0f6490b47 (README). Gates: generate:check clean (covers the
   new Swift), tsc clean, vitest 72/72.
+- COMMITTED af62ca94f (leaf recipes on Text/Label/Gauge/Toggle/Stepper;
+  derive.test.ts byte-equality now proves the catalog recipes, fixture
+  removed) + 7bffa1186 (WebView comment fix). generate:check green,
+  vitest 84/84. Note: derive.test.ts edit is shared-test upkeep for the
+  adoption, not a codegen behavior change.
 
 ## NEEDS-BUILD
 
