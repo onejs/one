@@ -27,6 +27,7 @@
     "test": "vitest run",
     "generate": "bun codegen/generate.ts",
     "generate:check": "bun codegen/generate.ts --check",
+    "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
   "exports": {
