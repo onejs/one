@@ -22,7 +22,8 @@ codegen/measure.ts with a mapped-vs-unmapped per-module report).
 
 ## NEEDS-BUILD
 
-(none yet; the app.json deploymentTarget change wants a coordinator xcodebuild)
+- 5f87b5782 (M1 floor fixes): app.json deploymentTarget 26.0 -> 17.0 wants a
+  coordinator xcodebuild + conformance run.
 
 ## Blocked
 
