@@ -34,6 +34,7 @@ const suites = [
   'lists',
   'groups',
   'state',
+  'safe-area',
   'popover',
   'accessibility',
   'media',
@@ -213,6 +214,10 @@ const stateLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-state-set')) &&
   has(nodes, 'Flag: ')
+const safeAreaLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-safe-area-edges')) &&
+  has(nodes, 'Insets: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -249,6 +254,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   lists: listsLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
+  'safe-area': safeAreaLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -266,6 +272,7 @@ const suiteHome: Record<Suite, string> = {
   lists: 'nav-one-native-lists',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
+  'safe-area': 'nav-one-native-safe-area',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1908,6 +1915,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         `state recycle ${cycle}: a fresh handle starts over`,
         (n) => status(n, 'Flag', 'false') && labels(n).includes('Mirror: empty')
       )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'safe-area') {
+    const numbers = (label: string | undefined, prefix: string) => {
+      if (!label?.startsWith(prefix)) return null
+      const values = label
+        .slice(prefix.length)
+        .split(/[\sx]+/)
+        .map(Number)
+      if (values.some((value) => !Number.isFinite(value))) return null
+      return values
+    }
+    const labelStarting = (nodes: Node[], prefix: string) =>
+      labels(nodes).find((label) => label.startsWith(prefix))
+    const insetsOf = (nodes: Node[]) =>
+      numbers(labelStarting(nodes, 'Insets: '), 'Insets: ')
+    const frameOf = (nodes: Node[]) => numbers(labelStarting(nodes, 'Frame: '), 'Frame: ')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-safe-area')
+
+    // a live notch inset is the money assertion: it is unreachable from the
+    // zero fallback, so a positive top proves the native provider emitted.
+    await wait('the provider publishes live insets', (n) => {
+      const insets = insetsOf(n)
+      return Boolean(
+        insets && insets.length === 4 && insets[0] > 0 && insets.every((v) => v >= 0)
+      )
+    })
+    await wait('frame and initial metrics are published', (n) => {
+      const frame = frameOf(n)
+      return (
+        Boolean(frame && frame.length === 2 && frame.every((v) => v > 0)) &&
+        labels(n).includes('Initial: set')
+      )
+    })
+
+    // the edges toggle reaches the view and back.
+    tap({ id: 'one-native-safe-area-edges' })
+    await wait('the edges toggle reaches the view', (n) =>
+      labels(n).includes('Edges: top')
+    )
+    tap({ id: 'one-native-safe-area-edges' })
+    await wait('toggling back restores all edges', (n) =>
+      labels(n).includes('Edges: all')
+    )
+    screenshot('safe-area-insets.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`safe-area recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-safe-area')
+      await wait(`safe-area recycle ${cycle}: insets publish again`, (n) => {
+        const insets = insetsOf(n)
+        return Boolean(insets && insets[0] > 0) && labels(n).includes('Initial: set')
+      })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
