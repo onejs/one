@@ -8,9 +8,6 @@ export default defineConfig({
     'process.env.EXPO_OS': JSON.stringify('web'),
   },
   resolve: {
-    // a workspace package can carry its own nested react copy, which breaks hooks in tests
-    // that render through react-test-renderer, so both resolve to a single instance.
-    dedupe: ['react'],
     conditions: ['module', 'browser', 'development|production'],
     extensions: [
       '.web.mjs',
@@ -28,6 +25,12 @@ export default defineConfig({
       '.json',
     ],
     alias: [
+      {
+        // a workspace package can carry its own nested react copy, which breaks hooks in tests
+        // that render through react-test-renderer, so both resolve to a single instance.
+        find: /^react$/,
+        replacement: resolve(__dirname, '../../node_modules/react/index.js'),
+      },
       {
         find: /^react-native$/,
         replacement: resolve(
