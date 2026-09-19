@@ -1506,6 +1506,7 @@ async function run(config: Config) {
           ['linear indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-linear')],
           ['circular indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-circular')],
           ['progress text', (n) => textIncludes(n, 'Progress mounted')],
+          ['screen root', (n) => exactlyOneId(n, 'one-native-android-inputs-screen')],
           ['no duplicates', (n) => hasDuplicates(n, inputsIds).length === 0],
         ]),
       'one-native-android-inputs-mounted',
