@@ -63,6 +63,23 @@ the shape lands.
   undefined-symbol link error is Pods membership only: new .cpp files
   enter the Xcode project on pod-install, which the coordinator runs
   before rebuilding.
+- LISTSFIX 1e3d37bb6 (finding 1: ScrollView wrapper default flex:1 set
+  flex-basis 0, which Yoga honors over an explicit height, so both
+  fixture ScrollViews ignored height 170/56 and all three containers
+  split 594/3 = 198 each; default is now alignSelf stretch and the
+  List keeps greedy flex:1, restoring its 368 allotment) + scheme
+  bridge (finding 2: hosting controllers inherit dark traits from a
+  dark parent VC while the app window is light, so transparent
+  containers painted white-on-white; standalone List/ScrollView/Lazy
+  roots now carry the host view's scheme via OneNativeSchemeBridge,
+  standalone-gated so composed content still inherits). M2 same-root
+  preventive: 008e8761b bridges Group/Link/ControlGroup/
+  DisclosureGroup/Overlay/SwipeActions parents (markers inherit via
+  capture). Gates: generate:check clean (swiftc typecheck covers the
+  new Swift), tsc clean, vitest 108/108. Margin note: post-fix List
+  viewport ends ~591 with Carrot starting ~577-579 (Orange precedent:
+  partial rows appear in AX); if Carrot still misses, trim the
+  fixture vertical height (170->150) as the known fallback.
 
 ## NEEDS-BUILD
 
@@ -180,3 +197,11 @@ shape. No implementation until the shape is agreed.
    `call[0].expression` on an empty array and crashes generate. Divider
    wants to be that Control (measured leaf); shipped the container route
    instead, same names, so it migrates cleanly once the emitter guards it.
+3. Scheme bridge for Generated containers (emitContainers): the lists
+   verdict proved hosting traits can disagree with the app window, and
+   hand-written containers now carry OneNativeSchemeBridge
+   (1e3d37bb6/008e8761b). Generated Pager has the same latent
+   white-on-white; the emitter should wire the bridge (or an env
+   colorScheme prop like Host/Form) for it and future Generated
+   containers. Pre-existing transparent containers (ZStack/HStack/
+   VStack/Glass) share the latent bug; coordinator/audit call.
