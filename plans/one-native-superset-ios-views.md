@@ -106,6 +106,12 @@ the shape lands.
   drag lands on a neighbor and the attempt is wasted. both seeks
   share the helper, so Row 30 and Chip 20 are covered together;
   the loop exits early on success. gate: bun build clean).
+- LISTSFIX5 01dcf997b (my median anchor was wrong: measured, it
+  starts the drag below the viewport where the gesture captures
+  nothing, so the list never moved. back to the first match, which
+  sits reliably at the viewport's leading edge, with the 24 attempts
+  kept and a mid-length drag (half-length 60). gate: bun build
+  clean).
 
 ## NEEDS-BUILD
 
