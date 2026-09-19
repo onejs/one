@@ -1,5 +1,6 @@
 export { createApp } from './createApp';
-export type { One, OneRouter } from './interfaces/router';
+export { One } from './one';
+export type { OneRouter } from './interfaces/router';
 /**
  * Image data returned by ?imagedata imports.
  * Install `sharp` to enable this feature: `npm install sharp`
