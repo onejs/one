@@ -1522,42 +1522,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // a swipe anchored to a visible row stays inside its own scroll view: starting one
     // on a neighboring list would scroll that instead.
-    // thirty rows need more than ten short swipes to reach. the anchor is the
-    // first materialized row, which sits reliably at the viewport's leading
-    // edge, and the drag is mid-length so it starts inside the viewport: a
-    // mid-content anchor starts the drag below the viewport, where the gesture
-    // captures nothing. the loop exits as soon as the target materializes.
-    const swipeRows = async (prefix: string | string[], target: string, horizontal: boolean) => {
-      const prefixes = Array.isArray(prefix) ? prefix : [prefix]
+    // seeks swipe at fixed coordinates inside measured viewport bands. row-anchored
+    // seeks are flaky because buffer rows above/below the viewport poison anchor
+    // selection: first-match drags start in a neighbor, mid-content drags exit the
+    // viewport. every band below was verified by hand: one swipe observably moves
+    // its container and nothing else. the loop exits when the target materializes.
+    const swipeBand = async (
+      band: { x1: number; y1: number; x2: number; y2: number },
+      target: string
+    ) => {
       for (let attempt = 0; attempt < 24; attempt++) {
-        const nodes = snapshot(config.simulatorId)
-        if (labels(nodes).includes(target)) return
-        const frame = nodes.find(
-          (node) =>
-            node.AXLabel &&
-            prefixes.some((candidate) => node.AXLabel!.startsWith(candidate)) &&
-            node.frame
-        )?.frame
-        if (!frame)
-          throw new Error(
-            Array.isArray(prefix)
-              ? 'no list row to swipe over'
-              : `no ${prefix}row to swipe over`
-          )
-        const x = Math.round(frame.x + frame.width / 2)
-        const y = Math.round(frame.y + frame.height / 2)
+        if (labels(snapshot(config.simulatorId)).includes(target)) return
         command(
           [
             'ui-automation',
             'swipe',
             '--x1',
-            String(horizontal ? x + 60 : x),
+            String(band.x1),
             '--y1',
-            String(horizontal ? y : y + 60),
+            String(band.y1),
             '--x2',
-            String(horizontal ? x - 60 : x),
+            String(band.x2),
             '--y2',
-            String(horizontal ? y : y - 60),
+            String(band.y2),
             '--duration',
             '0.3',
           ],
@@ -1567,6 +1554,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       }
       throw new Error(`${target} never appeared while swiping`)
     }
+    const listBand = { x1: 200, y1: 550, x2: 200, y2: 450 }
+    const rowsBand = { x1: 200, y1: 740, x2: 200, y2: 640 }
+    const chipsBand = { x1: 280, y1: 805, x2: 120, y2: 805 }
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -1590,23 +1580,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // what proves the prop flowed without dropping the content. a style relayout can
     // shift section 2 below the fold, so section 2 is asserted after swiping it in;
     // the list is lazy, so section 1 is only asserted before that swipe.
-    const listRow = [
-      'Fruits',
-      'Apple',
-      'Banana',
-      'Orange',
-      'List button',
-      'Ripe',
-      'Vegetables',
-      'Carrot',
-      'Broccoli',
-    ]
     tap({ id: 'one-native-list-style' })
     await wait(
       'a List takes the plain style',
       (n) => status(n, 'List style', 'plain') && labels(n).includes('Apple')
     )
-    await swipeRows(listRow, 'Carrot', false)
+    await swipeBand(listBand, 'Carrot')
     await wait('a plain List keeps its second section', (n) =>
       labels(n).includes('Carrot')
     )
@@ -1614,7 +1593,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('a List takes the grouped style', (n) =>
       status(n, 'List style', 'grouped')
     )
-    await swipeRows(listRow, 'Carrot', false)
+    await swipeBand(listBand, 'Carrot')
     await wait('a grouped List keeps its second section', (n) =>
       labels(n).includes('Carrot')
     )
@@ -1627,7 +1606,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     if (labels(snapshot(config.simulatorId)).includes('Row 30'))
       throw new Error('a LazyVStack mounted rows it cannot show yet')
-    await swipeRows('Row ', 'Row 30', false)
+    await swipeBand(rowsBand, 'Row 30')
     await wait('scrolling a LazyVStack materializes its last rows', (n) =>
       labels(n).includes('Row 30')
     )
@@ -1637,7 +1616,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     if (labels(snapshot(config.simulatorId)).includes('Chip 20'))
       throw new Error('a LazyHStack mounted chips it cannot show yet')
-    await swipeRows('Chip ', 'Chip 20', true)
+    await swipeBand(chipsBand, 'Chip 20')
     await wait('scrolling a LazyHStack materializes its last chips', (n) =>
       labels(n).includes('Chip 20')
     )
