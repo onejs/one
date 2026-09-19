@@ -46,8 +46,6 @@ type Check = {
   detail?: Record<string, unknown>
 }
 
-let mostRecentSnapshot: Snapshot | undefined
-
 const usage = () =>
   console.log(
     'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>]'
@@ -182,15 +180,18 @@ function parseXml(xml: string): Node[] {
   return nodes
 }
 
-function snapshot(config: Config): Snapshot {
+function dumpNodes(config: Config): Snapshot {
   const remote = `/sdcard/one-native-android-proof-${process.pid}.xml`
   adbText(config, ['shell', 'uiautomator', 'dump', remote])
   const xml = adbText(config, ['exec-out', 'cat', remote])
-  const nodes = parseXml(xml)
-  const current = { xml, nodes }
-  mostRecentSnapshot = current
-  assertNoRedBox(nodes)
-  if (!nodes.length) throw new Error('Android accessibility XML contained no nodes.')
+  return { xml, nodes: parseXml(xml) }
+}
+
+function snapshot(config: Config): Snapshot {
+  const current = dumpNodes(config)
+  assertNoRedBox(current.nodes)
+  if (!current.nodes.length)
+    throw new Error('Android accessibility XML contained no nodes.')
   return current
 }
 
@@ -585,7 +586,6 @@ async function run(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   const checks: Check[] = []
   let captureNumber = 0
-  let lastSnapshot: Snapshot | undefined
 
   const capture = (
     name: string,
@@ -632,7 +632,6 @@ async function run(config: Config) {
     detail?: (nodes: Node[]) => Record<string, unknown>
   ) => {
     const result = await waitFor(config, name, predicate, missingMarker)
-    lastSnapshot = result.snapshot
     const observed = detail?.(result.snapshot.nodes)
     const artifacts = capture(name, result.snapshot, 'passed', undefined, observed)
     const check: Check = {
@@ -675,6 +674,40 @@ async function run(config: Config) {
 
     await expect(
       'app-mounted',
+      (nodes) =>
+        exactlyOneId(nodes, 'home-screen') &&
+        textIncludes(nodes, '@vxrn/native Test Suite'),
+      'home-screen'
+    )
+    const homeDensityAfter = 560
+    try {
+      writeDensity(config, String(homeDensityAfter))
+      await waitFor(
+        config,
+        'Home rotation marker returns',
+        (nodes) => exactlyOneId(nodes, 'home-screen'),
+        'home-screen',
+        60_000
+      )
+      await expect(
+        'home-rotation-stays-mounted',
+        (nodes) =>
+          exactlyOneId(nodes, 'home-screen') &&
+          textIncludes(nodes, '@vxrn/native Test Suite'),
+        'home-screen'
+      )
+    } finally {
+      writeDensity(config, 'reset')
+    }
+    await waitFor(
+      config,
+      'Home rotation reset marker returns',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      60_000
+    )
+    await expect(
+      'home-rotation-reset-stays-mounted',
       (nodes) =>
         exactlyOneId(nodes, 'home-screen') &&
         textIncludes(nodes, '@vxrn/native Test Suite'),
@@ -1389,10 +1422,23 @@ async function run(config: Config) {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     let failureArtifacts: Check['artifacts'] | undefined
-    const failureSnapshot = lastSnapshot || mostRecentSnapshot
+    let failureSnapshot: Snapshot | undefined
+    try {
+      failureSnapshot = dumpNodes(config)
+    } catch (snapshotError) {
+      console.error(
+        `FAIL one-native-android failure snapshot: ${
+          snapshotError instanceof Error ? snapshotError.message : String(snapshotError)
+        }`
+      )
+    }
+    const redbox = failureSnapshot ? redBoxMessage(failureSnapshot.nodes) : undefined
+    const failureMessage = redbox
+      ? `${message} | RedBox: ${redbox.slice(0, 500)}`
+      : message
     if (failureSnapshot) {
       try {
-        failureArtifacts = capture('failure', failureSnapshot, 'failed', message)
+        failureArtifacts = capture('failure', failureSnapshot, 'failed', failureMessage)
       } catch (captureError) {
         console.error(
           `FAIL one-native-android failure capture: ${
@@ -1409,7 +1455,7 @@ async function run(config: Config) {
           result: 'failed',
           deviceId: config.deviceId,
           packageId: config.packageId,
-          error: message,
+          error: failureMessage,
           checks,
           failureArtifacts,
           completedAt: new Date().toISOString(),
