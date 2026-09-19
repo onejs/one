@@ -40,14 +40,16 @@ private final class ProgressViewModel: ObservableObject {
 
   private weak var compositionParent: OneNativeCompositionParent?
   public func compositionContent() -> AnyView { AnyView(ProgressViewContent(model: model)) }
-  // composed, there is no window to wait for, so publication is what activates it.
+  // composed, activation follows the parent: a subtree mounted before root attachment
+  // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
     controller?.detach(); controller = nil
     compositionParent = parent
     bindCallbacks()
-    model.active = true
+    model.active = parent.compositionActive
   }
   public func decompose() { compositionParent = nil; model.active = false }
+  public func propagateActive(_ active: Bool) { model.active = active }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
