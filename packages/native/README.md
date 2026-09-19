@@ -1270,6 +1270,33 @@ event is acknowledged. Increment `revision` to force a new value while earlier
 events are pending. Events from the previous revision are ignored. Revision is a
 nonnegative Int32 scoped to that component.
 
+`useNativeState` shares one value across any number of controlled props, in the
+shape of Expo's hook: the handle carries the current `value` plus `set` and
+`get`, has stable identity, and reads live, so a bound view re-renders over
+the value it spreads rather than the handle itself. Each view keeps its own
+acknowledgement stream, which stays coherent under sharing because an
+acknowledgement only ever advances its own view's event count.
+
+```tsx
+function NameForm() {
+  const name = useNativeState('')
+  const notify = useNativeState(false)
+  return (
+    <>
+      <Swift.TextField label="Name" text={name.value} onTextChange={name.set} />
+      <Swift.Text text={`Hello, ${name.value}`} />
+      <Swift.Toggle label="Notify" isOn={notify.value} onIsOnChange={notify.set} />
+      <Swift.Toggle label="Notify copy" isOn={notify.value} onIsOnChange={notify.set} />
+    </>
+  )
+}
+```
+
+Writes travel through the React render cycle: there is no worklets runtime here,
+so synchronous UI-thread updates are out of scope. The handle also does not pass
+as a prop itself yet (`text={name}`); spread the pair until the generated
+adapters learn the object shape.
+
 The shared RN slot has three policies. SwiftUI allocates tab bounds and reports
 them to Fabric for Yoga. Passive menu triggers retain Yoga's coordinates and
 leave interaction to the enclosing SwiftUI menu. Presented sheet content uses a
