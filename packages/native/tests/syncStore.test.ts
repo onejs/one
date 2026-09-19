@@ -1,16 +1,14 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
-  __resetSyncStoreForTests,
   createSyncState,
   getSyncStateId,
   isSyncState,
 } from '../src/syncStore'
 
-afterEach(() => {
-  __resetSyncStoreForTests()
-})
-
+// react-native-worklets resolves to tests/mockWorklets.ts under vitest (see
+// vitest.config.ts): the real module needs the Metro runtime. the double honors
+// the Synchronizable contract, so these tests pin the store against it.
 describe('sync store write path', () => {
   it('writes synchronously with no React involvement', () => {
     const state = createSyncState('')
@@ -55,6 +53,17 @@ describe('sync store write path', () => {
     state.value = 42
     expect(state.get()).toBe(42)
     expect(seen).toEqual([42])
+  })
+
+  it('bails out on identical writes', () => {
+    const state = createSyncState('same')
+    const listener = vi.fn()
+    state.subscribe(listener)
+    state.onChange = vi.fn()
+    state.set('same')
+    state.value = 'same'
+    expect(listener).not.toHaveBeenCalled()
+    expect(state.onChange).not.toHaveBeenCalled()
   })
 
   it('fires onChange synchronously before subscribers, never for the initial value', () => {
@@ -151,39 +160,16 @@ describe('sync state identity', () => {
   })
 })
 
-describe('worklets backing', () => {
-  it('writes through to the SharedValue when worklets is installed', () => {
-    const backing = { value: 'initial' }
-    const makeMutable = vi.fn(() => backing)
-    vi.stubGlobal('require', () => ({ makeMutable }))
-    __resetSyncStoreForTests()
-    try {
-      const state = createSyncState('initial')
-      expect(makeMutable).toHaveBeenCalledWith('initial')
-      state.set('from-js')
-      // the write lands on shared memory synchronously: a UI worklet holding
-      // the handle reads it without waiting for any bridge round trip.
-      expect(backing.value).toBe('from-js')
-      backing.value = 'from-ui'
-      expect(state.get()).toBe('from-ui')
-      expect(state.value).toBe('from-ui')
-    } finally {
-      vi.unstubAllGlobals()
-    }
-  })
-
-  it('falls back to the JS cell when worklets is missing or broken', () => {
-    vi.stubGlobal('require', () => {
-      throw new Error('no such module')
-    })
-    __resetSyncStoreForTests()
-    try {
-      const state = createSyncState('a')
-      state.set('b')
-      expect(state.get()).toBe('b')
-    } finally {
-      vi.unstubAllGlobals()
-    }
-    __resetSyncStoreForTests()
+describe('worklets source of truth', () => {
+  it('stores the value in the Synchronizable, not in React', async () => {
+    const worklets = await import('react-native-worklets')
+    const spy = vi.spyOn(worklets, 'createSynchronizable')
+    const state = createSyncState('initial')
+    expect(spy).toHaveBeenCalledWith('initial')
+    state.set('written')
+    // the store reads straight from shared memory: no JS cell, no fallback.
+    expect(state.get()).toBe('written')
+    expect(state.getSnapshot()).toBe('written')
+    spy.mockRestore()
   })
 })

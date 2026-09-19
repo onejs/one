@@ -32,6 +32,12 @@ export default defineConfig({
           '../../node_modules/react-native-web/dist/index.js'
         ),
       },
+      // the real worklets module needs the Metro runtime; tests run against the
+      // contract double. devices resolve the real required peer.
+      {
+        find: /^react-native-worklets$/,
+        replacement: resolve(__dirname, 'tests/mockWorklets.ts'),
+      },
     ],
   },
 })
