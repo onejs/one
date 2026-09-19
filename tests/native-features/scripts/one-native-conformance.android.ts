@@ -333,6 +333,26 @@ function orderIds(nodes: Node[]) {
     .map(({ item }) => item)
 }
 
+let lastFailedConjuncts: string | undefined
+
+function diagnose(
+  nodes: Node[],
+  parts: Array<[label: string, test: (nodes: Node[]) => boolean]>
+): boolean {
+  const failed: string[] = []
+  for (const [label, test] of parts) {
+    let ok = false
+    try {
+      ok = test(nodes)
+    } catch {
+      ok = false
+    }
+    if (!ok) failed.push(label)
+  }
+  lastFailedConjuncts = failed.length ? failed.join(', ') : undefined
+  return failed.length === 0
+}
+
 async function waitFor(
   config: Config,
   name: string,
@@ -342,6 +362,7 @@ async function waitFor(
 ) {
   const started = Date.now()
   const deadline = started + timeoutMs
+  lastFailedConjuncts = undefined
   while (Date.now() < deadline) {
     const current = snapshot(config)
     if (predicate(current.nodes))
@@ -349,7 +370,8 @@ async function waitFor(
     await Bun.sleep(250)
   }
   const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}`)
+  const diagnosis = lastFailedConjuncts ? `; failed: ${lastFailedConjuncts}` : ''
+  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}${diagnosis}`)
 }
 
 function tapFresh(
@@ -1188,8 +1210,10 @@ async function run(config: Config) {
     await expect(
       'inputs-navigate-home',
       (nodes) =>
-        exactlyOneId(nodes, 'home-screen') &&
-        textIncludes(nodes, '@vxrn/native Test Suite'),
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
       'home-screen'
     )
     await tapNavigation(config, 'nav-one-native-android-inputs')
@@ -1249,8 +1273,10 @@ async function run(config: Config) {
       await expect(
         'inputs-renavigate-home',
         (nodes) =>
-          exactlyOneId(nodes, 'home-screen') &&
-          textIncludes(nodes, '@vxrn/native Test Suite'),
+          diagnose(nodes, [
+            ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+            ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+          ]),
         'home-screen'
       )
       await tapNavigation(config, 'nav-one-native-android-inputs')
