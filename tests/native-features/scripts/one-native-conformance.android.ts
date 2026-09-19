@@ -336,10 +336,11 @@ async function waitFor(
   config: Config,
   name: string,
   predicate: (nodes: Node[]) => boolean,
-  missingMarker?: string
+  missingMarker?: string,
+  timeoutMs: number = config.timeout
 ) {
   const started = Date.now()
-  const deadline = started + config.timeout
+  const deadline = started + timeoutMs
   while (Date.now() < deadline) {
     const current = snapshot(config)
     if (predicate(current.nodes))
@@ -347,7 +348,7 @@ async function waitFor(
     await Bun.sleep(250)
   }
   const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  throw new Error(`${name} timed out after ${config.timeout}ms${marker}`)
+  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}`)
 }
 
 function tapFresh(
@@ -1032,6 +1033,13 @@ async function run(config: Config) {
     const densityAfter = 560
     try {
       writeDensity(config, String(densityAfter))
+      await waitFor(
+        config,
+        'Post-density mount marker returns',
+        (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
+        'one-native-android-mounted',
+        60_000
+      )
       await expect(
         'configuration-change-stays-mounted',
         (nodes) =>
@@ -1088,6 +1096,13 @@ async function run(config: Config) {
     } finally {
       writeDensity(config, 'reset')
     }
+    await waitFor(
+      config,
+      'Post-reset mount marker returns',
+      (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
+      'one-native-android-mounted',
+      60_000
+    )
     await expect(
       'density-reset-stays-mounted',
       (nodes) =>
