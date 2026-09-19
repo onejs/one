@@ -1,4 +1,5 @@
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -10,11 +11,14 @@ import {
   injectFmtCxx17FixIntoPodfile,
   injectHermesMinificationPatchIntoPodfile,
   injectSwift6WorkaroundIntoPodfile,
+  ANDROID_APP_BUILD_GRADLE_REACT_BLOCK,
   EXPO_UPDATES_METRO_SKIP_MARKER,
   FMT_CXX17_MARKER,
   HERMES_MINIFY_PATCH_MARKER,
   SET_CLI_PATH_MARKER,
 } from './expo-plugin.cjs'
+
+const require = createRequire(import.meta.url)
 
 // a minimal stand-in for the default Expo/RN "Bundle React Native code and
 // images" phase: a backtick-wrapped `"$NODE_BINARY" ...` invocation, the anchor
@@ -232,6 +236,39 @@ describe('addSetCliPathToBundleReactNativeShellScript', () => {
     const once = addSetCliPathToBundleReactNativeShellScript(sampleBundleScriptExpoSdk58)
     const twice = addSetCliPathToBundleReactNativeShellScript(once)
     expect(twice).toBe(once)
+  })
+})
+
+describe('ANDROID_APP_BUILD_GRADLE_REACT_BLOCK', () => {
+  it('never resolves react-native/cli.js (not in the RN 0.87 exports map)', () => {
+    // gradle evaluates `node --print require.resolve('<spec>')` for every
+    // resolveNodePackage call at configuration time. On RN 0.87
+    // require.resolve('react-native/cli.js') throws
+    // ERR_PACKAGE_PATH_NOT_EXPORTED and every prebuilt :app build dies.
+    expect(ANDROID_APP_BUILD_GRADLE_REACT_BLOCK).not.toContain('react-native/cli.js')
+  })
+
+  it('derives cliFile from the react-native package root', () => {
+    const cliFileLine = ANDROID_APP_BUILD_GRADLE_REACT_BLOCK.split('\n').find((l) =>
+      l.trimStart().startsWith('cliFile =')
+    )
+    expect(cliFileLine).toBeDefined()
+    // hoisted-package resolution stays: go through the exported
+    // react-native/package.json, then step to the sibling cli.js on disk
+    expect(cliFileLine).toContain('react-native/package.json')
+    expect(cliFileLine).toContain('cli.js')
+  })
+
+  it('every resolveNodePackage specifier require.resolves', () => {
+    const specifiers = [
+      ...ANDROID_APP_BUILD_GRADLE_REACT_BLOCK.matchAll(
+        /resolveNodePackage\("([^"]+)"\)/g
+      ),
+    ].map((m) => m[1])
+    expect(specifiers.length).toBeGreaterThan(0)
+    for (const specifier of specifiers) {
+      expect(() => require.resolve(specifier)).not.toThrow()
+    }
   })
 })
 
