@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Swift } from '@vxrn/native'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native'
 
 const listStyles = ['automatic', 'plain', 'grouped'] as const
 
@@ -9,16 +9,25 @@ export default function OneNativeLists() {
   const [isOn, setIsOn] = useState(false)
   const [listTaps, setListTaps] = useState(0)
   const listStyle = listStyles[styleIndex]
+  // swiftui content adapts to the scheme, so the react chrome around it must too:
+  // a hardcoded white screen leaves dark-mode rows as white text on white.
+  const dark = useColorScheme() === 'dark'
+  const screenColor = dark ? '#000' : '#fff'
+  const textColor = dark ? '#fff' : '#000'
+  const chipColor = dark ? '#1c1c1e' : '#eee'
 
   return (
-    <View style={styles.screen} testID="one-native-lists-screen">
+    <View
+      style={[styles.screen, { backgroundColor: screenColor }]}
+      testID="one-native-lists-screen"
+    >
       <View style={styles.row}>
         <Pressable
           testID="one-native-list-style"
-          style={styles.chip}
+          style={[styles.chip, { backgroundColor: chipColor }]}
           onPress={() => setStyleIndex((index) => (index + 1) % listStyles.length)}
         >
-          <Text>{`Style: ${listStyle}`}</Text>
+          <Text style={{ color: textColor }}>{`Style: ${listStyle}`}</Text>
         </Pressable>
       </View>
 
@@ -58,15 +67,15 @@ export default function OneNativeLists() {
       <View style={styles.row}>
         <Text
           testID="one-native-list-taps"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`List taps: ${listTaps}`}</Text>
         <Text
           testID="one-native-list-toggle"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`IsOn: ${isOn}`}</Text>
         <Text
           testID="one-native-list-style-status"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`List style: ${listStyle}`}</Text>
       </View>
     </View>
@@ -74,16 +83,15 @@ export default function OneNativeLists() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8, backgroundColor: '#fff' },
+  screen: { flex: 1, padding: 16, paddingTop: 70, gap: 8 },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
   chip: {
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 8,
-    backgroundColor: '#eee',
   },
   list: { flex: 1 },
-  vertical: { height: 170 },
+  vertical: { height: 150 },
   horizontal: { height: 56 },
   line: { fontSize: 14 },
 })
