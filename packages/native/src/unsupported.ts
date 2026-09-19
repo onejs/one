@@ -1,15 +1,24 @@
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
   ContextMenuProps,
+  ControlGroupProps,
+  DisclosureGroupProps,
+  DividerProps,
   FormProps,
   FullScreenCoverProps,
   GlassProps,
+  GroupProps,
   HostProps,
   LabeledContentProps,
   LazyHStackProps,
   LazyVStackProps,
+  LinkProps,
   ListProps,
   MenuProps,
+  OverlayContentProps,
+  OverlayProps,
+  PageProps,
+  PagerProps,
   PopoverProps,
   ScrollViewProps,
   SectionProps,
@@ -17,6 +26,8 @@ import type {
   SlotProps,
   SpacerProps,
   StackProps,
+  SwipeActionsActionsProps,
+  SwipeActionsProps,
   TabProps,
   TabsProps,
   ZStackProps,
@@ -97,6 +108,51 @@ function LazyHStack(_props: LazyHStackProps): never {
     'Swift.LazyHStack requires an iOS native build with @vxrn/native installed'
   )
 }
+function ControlGroup(_props: ControlGroupProps): never {
+  throw new Error(
+    'Swift.ControlGroup requires an iOS native build with @vxrn/native installed'
+  )
+}
+function DisclosureGroup(_props: DisclosureGroupProps): never {
+  throw new Error(
+    'Swift.DisclosureGroup requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Divider(_props: DividerProps): never {
+  throw new Error('Swift.Divider requires an iOS native build with @vxrn/native installed')
+}
+function Link(_props: LinkProps): never {
+  throw new Error('Swift.Link requires an iOS native build with @vxrn/native installed')
+}
+function Group(_props: GroupProps): never {
+  throw new Error('Swift.Group requires an iOS native build with @vxrn/native installed')
+}
+function OverlayContent(_props: OverlayContentProps): never {
+  throw new Error(
+    'Swift.Overlay.Content requires an iOS native build with @vxrn/native installed'
+  )
+}
+function OverlayFn(_props: OverlayProps): never {
+  throw new Error('Swift.Overlay requires an iOS native build with @vxrn/native installed')
+}
+const Overlay = Object.assign(OverlayFn, { Content: OverlayContent })
+function SwipeActionsActions(_props: SwipeActionsActionsProps): never {
+  throw new Error(
+    'Swift.SwipeActions.Actions requires an iOS native build with @vxrn/native installed'
+  )
+}
+function SwipeActionsFn(_props: SwipeActionsProps): never {
+  throw new Error(
+    'Swift.SwipeActions requires an iOS native build with @vxrn/native installed'
+  )
+}
+const SwipeActions = Object.assign(SwipeActionsFn, { Actions: SwipeActionsActions })
+function Page(_props: PageProps): never {
+  throw new Error('Swift.Page requires an iOS native build with @vxrn/native installed')
+}
+function Pager(_props: PagerProps): never {
+  throw new Error('Swift.Pager requires an iOS native build with @vxrn/native installed')
+}
 export const Swift = {
   Tabs,
   Tab,
@@ -119,6 +175,15 @@ export const Swift = {
   ScrollView,
   LazyVStack,
   LazyHStack,
+  ControlGroup,
+  DisclosureGroup,
+  Divider,
+  Link,
+  Group,
+  Overlay,
+  SwipeActions,
+  Pager,
+  Page,
   ...unsupportedControls,
 }
 export type * from './types'
