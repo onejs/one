@@ -1522,23 +1522,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // a swipe anchored to a visible row stays inside its own scroll view: starting one
     // on a neighboring list would scroll that instead.
+    // thirty rows need more than ten short swipes to reach, and the anchor must
+    // start inside the viewport: the first materialized row can sit in the buffer
+    // above it, where the drag lands on a neighbor instead. the median match sits
+    // mid-viewport, and the loop exits as soon as the target materializes.
     const swipeRows = async (prefix: string | string[], target: string, horizontal: boolean) => {
       const prefixes = Array.isArray(prefix) ? prefix : [prefix]
-      for (let attempt = 0; attempt < 10; attempt++) {
+      for (let attempt = 0; attempt < 24; attempt++) {
         const nodes = snapshot(config.simulatorId)
         if (labels(nodes).includes(target)) return
-        const frame = nodes.find(
-          (node) =>
-            node.AXLabel &&
-            prefixes.some((candidate) => node.AXLabel!.startsWith(candidate)) &&
-            node.frame
-        )?.frame
-        if (!frame)
+        const frames = nodes
+          .filter(
+            (node) =>
+              node.AXLabel &&
+              prefixes.some((candidate) => node.AXLabel!.startsWith(candidate)) &&
+              node.frame
+          )
+          .map((node) => node.frame!)
+        if (frames.length === 0)
           throw new Error(
             Array.isArray(prefix)
               ? 'no list row to swipe over'
               : `no ${prefix}row to swipe over`
           )
+        const frame = frames[Math.floor(frames.length / 2)]
         const x = Math.round(frame.x + frame.width / 2)
         const y = Math.round(frame.y + frame.height / 2)
         command(
@@ -1546,13 +1553,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             'ui-automation',
             'swipe',
             '--x1',
-            String(horizontal ? x + 40 : x),
+            String(horizontal ? x + 80 : x),
             '--y1',
-            String(horizontal ? y : y + 40),
+            String(horizontal ? y : y + 80),
             '--x2',
-            String(horizontal ? x - 40 : x),
+            String(horizontal ? x - 80 : x),
             '--y2',
-            String(horizontal ? y : y - 40),
+            String(horizontal ? y : y - 80),
             '--duration',
             '0.3',
           ],
