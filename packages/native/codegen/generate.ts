@@ -131,7 +131,8 @@ const header =
 const outputs = new Map<string, string>()
 const { schema: controlComponents, payloads: controlPayloads } = emitControls(
   header,
-  outputs
+  outputs,
+  inventory
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
 emitContainers(header, outputs)
