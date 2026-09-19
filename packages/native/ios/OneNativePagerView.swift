@@ -21,10 +21,16 @@ private final class PagerModel: ObservableObject {
 public final class OneNativePagerView: UIView {
   public var onSelection: ((String, Int, Int) -> Void)?
   private var model = PagerModel()
+  private let bridge = OneNativeSchemeBridge()
+  private var traitRegistration: NSObjectProtocol?
   private var controller: OneNativeHostingController<PagerContent>?
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativePagerView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -47,6 +53,7 @@ public final class OneNativePagerView: UIView {
 
   public override func didMoveToWindow() {
     super.didMoveToWindow()
+    bridge.sync(traitCollection)
     if window == nil { detachController() }
     else { attachController() }
   }
@@ -61,7 +68,7 @@ public final class OneNativePagerView: UIView {
     guard window != nil else { return }
     if controller == nil {
       model.onSelection = { [weak self] id, count, revision in self?.onSelection?(id, count, revision) }
-      controller = OneNativeHostingController(rootView: PagerContent(model: model, host: self))
+      controller = OneNativeHostingController(rootView: PagerContent(model: model, host: self, bridge: bridge))
     }
     controller?.attach(to: self)
     model.active = controller?.parent != nil
@@ -84,9 +91,11 @@ public final class OneNativePagerView: UIView {
 private struct PagerContent: View {
   @ObservedObject var model: PagerModel
   weak var host: OneNativePagerView?
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   // tag-based pages and the page style are both old API, so a pager needs none of
-  // the Tab builder availability splits a tab bar carries.
+  // the Tab builder availability splits a tab bar carries. a pager always owns its
+  // hosting controller, so the scheme applies unconditionally.
   var body: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(model.pages) { page in
@@ -96,5 +105,6 @@ private struct PagerContent: View {
     }
     .tabViewStyle(.page)
     .id(model.pagerRevision)
+    .environment(\.colorScheme, bridge.scheme)
   }
 }
