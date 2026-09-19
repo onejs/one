@@ -536,10 +536,11 @@ for (const line of readFileSync(join(root, 'codegen/material-symbols.codepoints'
   .trim()
   .split('\n')) {
   const [name, codepoint] = line.trim().split(/\s+/)
-  const value = Number.parseInt(codepoint, 16)
-  if (!name || !Number.isInteger(value))
+  if (!/^[a-z0-9_]+$/.test(name) || !/^[0-9a-f]{4,5}$/.test(codepoint))
     throw new Error(`Invalid Material Symbols codepoint line: ${line}`)
-  composeIconCodepoints[name] = value
+  if (Object.hasOwn(composeIconCodepoints, name))
+    throw new Error(`Duplicate Material Symbols name: ${name}`)
+  composeIconCodepoints[name] = Number.parseInt(codepoint, 16)
 }
 outputs.set(
   'src/generated/composeIcons.ts',

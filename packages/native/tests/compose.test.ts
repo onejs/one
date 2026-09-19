@@ -21,7 +21,7 @@ beforeAll(async () => {
   codepoints = (await import('../src/generated/composeIcons')).composeIconCodepoints
 })
 
-const glyph = (name: string) => String.fromCharCode(codepoints[name as never])
+const glyph = (name: string) => String.fromCodePoint(codepoints[name as never])
 
 const render = (component: (props: any) => any, props: object): any => {
   let renderer: TestRenderer.ReactTestRenderer | undefined
@@ -50,6 +50,13 @@ describe('icon', () => {
     })
   })
 
+  it('keeps supplementary-plane names as surrogate pairs', () => {
+    expect(render(Compose.Icon, { name: 'wb_twilight_2' })).toMatchObject({
+      props: { text: '\u{fff1f}' },
+    })
+    expect(glyph('wb_twilight_2')).toHaveLength(2)
+  })
+
   it('rejects a name that is not a Material Symbols name', () => {
     expect(() => render(Compose.Icon, { name: 'not-an-icon' })).toThrow(
       'Compose Icon name must be a Material Symbols name, got "not-an-icon"'
@@ -61,6 +68,9 @@ describe('icon', () => {
 
   it('rejects a size that is not positive', () => {
     expect(() => render(Compose.Icon, { name: 'star', size: 0 })).toThrow(
+      'Compose Icon size must be a positive finite number'
+    )
+    expect(() => render(Compose.Icon, { name: 'star', size: Number.NaN })).toThrow(
       'Compose Icon size must be a positive finite number'
     )
   })
@@ -82,6 +92,14 @@ describe('button', () => {
         icon: glyph('add'),
         iconFilled: false,
       },
+    })
+  })
+
+  it('carries a filled leading icon to the native props', () => {
+    expect(
+      render(Compose.Button, { label: 'Add', icon: 'add', iconFilled: true })
+    ).toMatchObject({
+      props: { icon: glyph('add'), iconFilled: true },
     })
   })
 

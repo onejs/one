@@ -217,7 +217,7 @@ function materialSymbolGlyph(owner: string, name: string) {
     throw new Error(
       `Compose ${owner} must be a Material Symbols name, got ${JSON.stringify(name)}`
     )
-  return String.fromCharCode(codepoint)
+  return String.fromCodePoint(codepoint)
 }
 
 function ComposeNode({
@@ -378,7 +378,9 @@ function Button({
   assertOneOf(tone, 'Button tone', buttonTones)
   assertBoolean(iconFilled, 'Button iconFilled')
   if (icon !== undefined && (typeof icon !== 'string' || !icon.trim()))
-    throw new Error('Compose Button icon must be a Material Symbols name')
+    throw new Error(
+      `Compose Button icon must be a Material Symbols name, got ${JSON.stringify(icon)}`
+    )
   if (onPress !== undefined && typeof onPress !== 'function')
     throw new Error('Compose Button onPress must be a function')
   return (
