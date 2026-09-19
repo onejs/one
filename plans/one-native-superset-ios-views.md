@@ -45,11 +45,11 @@ moment the shape lands.
 
 ## NEEDS-BUILD
 
-- cdebd0595: xcodebuild the 4 new ComponentViews (.mm is pattern-mirrored
-  but uncompiled here) and run the new lists suite
-  (`--suite lists`). The suite is unverified: swipe-anchoring and
-  lazy-materialization assertions were written blind. Fixture rows use
-  composed Text/Button/Toggle/Section only.
+- cdebd0595: ComponentViews compile under CI (branch run 35414353719
+  green); `--suite lists` now running on coordinator simulator, verdict
+  pending. Suite was an unverified blind write: swipe-anchoring and
+  lazy-materialization assertions. Fixture rows use composed
+  Text/Button/Toggle/Section only.
 - e9db157a5 + 40d930a15: xcodebuild the M2 views (Overlay/SwipeActions
   marker intercept, DisclosureGroup controlled events, Pager Tab reuse
   + host protocol, Tabs header protocol) and run `--suite groups`
