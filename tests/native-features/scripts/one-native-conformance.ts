@@ -33,6 +33,7 @@ const suites = [
   'containers',
   'lists',
   'groups',
+  'state',
   'popover',
   'accessibility',
   'media',
@@ -208,6 +209,10 @@ const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
   has(nodes, 'Expanded: ')
+const stateLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-state-set')) &&
+  has(nodes, 'Flag: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -243,6 +248,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   containers: containersLoaded,
   lists: listsLoaded,
   groups: groupsLoaded,
+  state: stateLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -259,6 +265,7 @@ const suiteHome: Record<Suite, string> = {
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
   groups: 'nav-one-native-groups',
+  state: 'nav-one-native-state',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1801,6 +1808,94 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           status(n, 'Group taps', 0) &&
           status(n, 'Pager', 'a') &&
           labels(n).includes('Swipe me')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'state') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a shared Toggle would look like it never emitted.
+    const pressSwitch = async (label: string) => {
+      const nodes = await wait(`the ${label} switch is ready`, (n) =>
+        Boolean(control(n, 'CheckBox', label)?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', label)!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+    const fieldValue = (nodes: Node[]) =>
+      id(nodes, 'one-native-state-field')?.AXValue
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-state')
+    await wait(
+      'a shared handle feeds a field, a mirror, and two toggles',
+      (n) =>
+        labels(n).includes('Mirror: empty') &&
+        Boolean(control(n, 'CheckBox', 'First')) &&
+        Boolean(control(n, 'CheckBox', 'Second')) &&
+        status(n, 'Flag', 'false')
+    )
+
+    // typing in the field updates the mirror through the one handle, with no other
+    // state in the fixture.
+    {
+      const nodes = await wait('the shared field is ready', (n) =>
+        Boolean(id(n, 'one-native-state-field')?.frame)
+      )
+      const bounds = id(nodes, 'one-native-state-field')!.frame!
+      point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+    }
+    await typeInto('shared TextField', 'ada', fieldValue)
+    await wait('field edits reach every view on the handle', (n) =>
+      fieldValue(n) === 'ada' && labels(n).includes('Mirror: ada')
+    )
+
+    // writing from JavaScript lands in the native field and the mirror together.
+    tap({ id: 'one-native-state-set' })
+    await wait('a handle write reaches the native field', (n) =>
+      fieldValue(n) === 'grace' &&
+      labels(n).includes('Mirror: grace') &&
+      status(n, 'Flag', 'true')
+    )
+
+    // each flip proves the tapped toggle had converged on the shared value: turning
+    // Second off proves it followed First on, and turning First on proves it
+    // followed Second off.
+    await pressSwitch('Second')
+    await wait('the second toggle followed the shared value on', (n) =>
+      status(n, 'Flag', 'false')
+    )
+    await pressSwitch('First')
+    await wait('the first toggle followed the shared value off', (n) =>
+      status(n, 'Flag', 'true')
+    )
+    screenshot('state-shared.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`state recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-state')
+      await wait(
+        `state recycle ${cycle}: a fresh handle starts over`,
+        (n) => status(n, 'Flag', 'false') && labels(n).includes('Mirror: empty')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
