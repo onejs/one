@@ -9,15 +9,20 @@ private final class LinkModel: ObservableObject {
 private struct LinkContent: View {
   @ObservedObject var model: LinkModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     // the destination parsed in TypeScript, so this unwraps; a string Foundation
     // rejects anyway degrades to plain content rather than crashing.
-    if let url = URL(string: model.destination) {
-      Link(destination: url) { labelContent }
-    } else {
-      labelContent
+    Group {
+      if let url = URL(string: model.destination) {
+        Link(destination: url) { labelContent }
+      } else {
+        labelContent
+      }
     }
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 
   @ViewBuilder private var labelContent: some View {
@@ -29,16 +34,29 @@ private struct LinkContent: View {
 @objcMembers
 public final class OneNativeLinkView: OneNativeContainerView {
   private let model: LinkModel
+  private let bridge: OneNativeSchemeBridge
+  private var traitRegistration: NSObjectProtocol?
 
   public init() {
     let model = LinkModel()
+    let bridge = OneNativeSchemeBridge()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(LinkContent(model: model, children: children))
+    self.bridge = bridge
+    super.init(wrap: { children, standalone in
+      AnyView(LinkContent(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativeLinkView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public override func didMoveToWindow() {
+    bridge.sync(traitCollection)
+    super.didMoveToWindow()
+  }
 
   public func configure(destination: String, label: String) {
     if model.destination != destination { model.destination = destination }

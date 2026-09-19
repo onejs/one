@@ -9,6 +9,8 @@ private final class OverlayModel: ObservableObject {
 private struct OverlayRoot: View {
   @ObservedObject var model: OverlayModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     Group {
@@ -17,6 +19,7 @@ private struct OverlayRoot: View {
     .overlay(alignment: alignment) {
       if let overlay = model.overlay { overlay }
     }
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 
   // every value the TypeScript side accepts has a case here, so an unknown one cannot
@@ -59,17 +62,30 @@ public final class OneNativeOverlayContentView: OneNativeContainerView {
 @objcMembers
 public final class OneNativeOverlayView: OneNativeContainerView {
   private let model: OverlayModel
+  private let bridge: OneNativeSchemeBridge
+  private var traitRegistration: NSObjectProtocol?
   private var markers: [UIView] = []
 
   public init() {
     let model = OverlayModel()
+    let bridge = OneNativeSchemeBridge()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(OverlayRoot(model: model, children: children))
+    self.bridge = bridge
+    super.init(wrap: { children, standalone in
+      AnyView(OverlayRoot(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativeOverlayView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public override func didMoveToWindow() {
+    bridge.sync(traitCollection)
+    super.didMoveToWindow()
+  }
 
   public func configure(alignment: String) {
     if model.alignment != alignment { model.alignment = alignment }
