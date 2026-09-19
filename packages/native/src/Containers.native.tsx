@@ -272,7 +272,9 @@ export function ScrollView({
   return (
     <NativeScrollView
       {...props}
-      style={[{ flex: 1 }, style]}
+      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, so a
+      // scroll view stretches by default and takes its viewport from the style.
+      style={[{ alignSelf: 'stretch' }, style]}
       axes={axes}
       showsIndicators={showsIndicators}
     >
