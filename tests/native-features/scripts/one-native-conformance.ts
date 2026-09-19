@@ -1939,18 +1939,27 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-safe-area')
 
-    // a live notch inset is the money assertion: it is unreachable from the
-    // zero fallback, so a positive top proves the native provider emitted.
+    // below the Stack header the provider overlaps no status bar, so the
+    // correct reading is top 0 with the live home indicator at the bottom.
+    // top 0 is the money assertion: a window reading would report 59, so 0
+    // proves provider-relative measurement, and 34 proves a live inset
+    // rather than the zero fallback. frame is the full width below the
+    // header on the pinned iPhone 16.
     await wait('the provider publishes live insets', (n) => {
       const insets = insetsOf(n)
       return Boolean(
-        insets && insets.length === 4 && insets[0] > 0 && insets.every((v) => v >= 0)
+        insets &&
+        insets.length === 4 &&
+        insets[0] === 0 &&
+        insets[1] === 0 &&
+        insets[2] === 34 &&
+        insets[3] === 0
       )
     })
     await wait('frame and initial metrics are published', (n) => {
       const frame = frameOf(n)
       return (
-        Boolean(frame && frame.length === 2 && frame.every((v) => v > 0)) &&
+        Boolean(frame && frame.length === 2 && frame[0] === 393 && frame[1] === 739) &&
         labels(n).includes('Initial: set')
       )
     })
@@ -1972,7 +1981,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-safe-area')
       await wait(`safe-area recycle ${cycle}: insets publish again`, (n) => {
         const insets = insetsOf(n)
-        return Boolean(insets && insets[0] > 0) && labels(n).includes('Initial: set')
+        const frame = frameOf(n)
+        return (
+          Boolean(
+            insets && insets[0] === 0 && insets[2] === 34 && frame && frame[0] === 393
+          ) && labels(n).includes('Initial: set')
+        )
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')

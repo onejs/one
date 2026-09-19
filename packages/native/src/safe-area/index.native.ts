@@ -6,7 +6,9 @@ export { NativeSafeAreaProviderHost as NativeSafeAreaProvider }
 export type * from './types'
 export {
   buildSafeAreaInsetStyle,
+  keyboardSafeBottom,
   providerEventToMetrics,
+  resolveOverlappingInsets,
   resolveSafeAreaEdgeModes,
 } from './insets'
 

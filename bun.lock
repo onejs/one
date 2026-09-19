@@ -405,6 +405,7 @@
         "@vxrn/color-scheme": "workspace:*",
         "@vxrn/compiler": "workspace:*",
         "@vxrn/resolve": "workspace:*",
+        "@vxrn/safe-area": "workspace:*",
         "@vxrn/tslib-lite": "workspace:*",
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
         "@vxrn/vite-plugin-metro": "workspace:*",

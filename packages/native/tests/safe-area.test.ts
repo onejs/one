@@ -4,7 +4,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   buildSafeAreaInsetStyle,
+  keyboardSafeBottom,
   providerEventToMetrics,
+  resolveOverlappingInsets,
   resolveSafeAreaEdgeModes,
 } from '../src/safe-area/insets'
 
@@ -94,6 +96,93 @@ describe('buildSafeAreaInsetStyle', () => {
       paddingBottom: 34,
       paddingLeft: 0,
     })
+  })
+
+  it('resolves registered numeric style IDs through resolveStyle', () => {
+    const resolveStyle = (style: unknown) =>
+      style === 7 ? { padding: 10, paddingBottom: 4 } : style
+    expect(buildSafeAreaInsetStyle({ insets, style: 7, resolveStyle })).toEqual({
+      paddingTop: 69,
+      paddingRight: 10,
+      paddingBottom: 38,
+      paddingLeft: 10,
+    })
+  })
+
+  it('throws on a numeric style ID without a resolver instead of dropping the base', () => {
+    expect(() => buildSafeAreaInsetStyle({ insets, style: 7 })).toThrow(
+      'without resolveStyle'
+    )
+  })
+})
+
+describe('keyboardSafeBottom', () => {
+  it('caps an IME-inflated system bottom at the stable inset', () => {
+    expect(keyboardSafeBottom(500, 34)).toBe(34)
+  })
+
+  it('passes through a stable bottom with no keyboard', () => {
+    expect(keyboardSafeBottom(34, 34)).toBe(34)
+  })
+})
+
+describe('resolveOverlappingInsets', () => {
+  const windowInsets = { top: 59, right: 0, bottom: 34, left: 0 }
+
+  it('forwards the full window insets to a covering provider', () => {
+    expect(
+      resolveOverlappingInsets({
+        windowInsets,
+        windowWidth: 393,
+        windowHeight: 852,
+        visibleLeft: 0,
+        visibleTop: 0,
+        viewWidth: 393,
+        viewHeight: 852,
+      })
+    ).toEqual({ top: 59, right: 0, bottom: 34, left: 0 })
+  })
+
+  it('reports top 0 for a provider below the status bar', () => {
+    expect(
+      resolveOverlappingInsets({
+        windowInsets,
+        windowWidth: 393,
+        windowHeight: 852,
+        visibleLeft: 0,
+        visibleTop: 113,
+        viewWidth: 393,
+        viewHeight: 739,
+      })
+    ).toEqual({ top: 0, right: 0, bottom: 34, left: 0 })
+  })
+
+  it('reports bottom 0 for a floating box that reaches neither bar', () => {
+    expect(
+      resolveOverlappingInsets({
+        windowInsets,
+        windowWidth: 393,
+        windowHeight: 852,
+        visibleLeft: 0,
+        visibleTop: 200,
+        viewWidth: 393,
+        viewHeight: 100,
+      })
+    ).toEqual({ top: 0, right: 0, bottom: 0, left: 0 })
+  })
+
+  it('reports a partial edge when the view half-overlaps an inset', () => {
+    expect(
+      resolveOverlappingInsets({
+        windowInsets: { top: 0, right: 47, bottom: 0, left: 0 },
+        windowWidth: 844,
+        windowHeight: 390,
+        visibleLeft: 0,
+        visibleTop: 0,
+        viewWidth: 800,
+        viewHeight: 390,
+      })
+    ).toEqual({ top: 0, right: 3, bottom: 0, left: 0 })
   })
 })
 

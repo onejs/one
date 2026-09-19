@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { StyleSheet } from 'react-native'
 import {
   NativeSafeAreaProvider as NativeSafeAreaProviderHost,
   providerEventToMetrics,
@@ -7,8 +8,10 @@ import type { InsetChangedEvent, NativeSafeAreaProviderProps } from './SafeArea-
 
 // native provider: the OneNativeSafeAreaProvider host measures insets on the
 // UI thread and the adapter reshapes its flat event into context Metrics.
-// a bare passthrough like upstream, with no forced style: the reported
-// insets are relative to this view, exactly as with RNCSafeAreaProvider.
+// fills like upstream so the measured view covers its parent; the reported
+// insets stay relative to this view, exactly as with RNCSafeAreaProvider.
+// the fill lives here rather than the shared context so web keeps its
+// display:contents provider and sticky positioning keeps working there.
 export function NativeSafeAreaProvider({
   children,
   style,
@@ -24,8 +27,15 @@ export function NativeSafeAreaProvider({
   )
 
   return (
-    <NativeSafeAreaProviderHost style={style} onNativeInsetsChange={handleInsetsChange}>
+    <NativeSafeAreaProviderHost
+      style={[styles.fill, style]}
+      onNativeInsetsChange={handleInsetsChange}
+    >
       {children}
     </NativeSafeAreaProviderHost>
   )
 }
+
+const styles = StyleSheet.create({
+  fill: { flex: 1 },
+})

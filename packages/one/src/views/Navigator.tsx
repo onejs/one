@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native'
 import { NavigationRouteContext } from '@react-navigation/core'
 import * as React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaView } from '@vxrn/safe-area'
 import { resolveInitialRouteNameFromState } from '../getReactNavigationConfig'
 import {
   useFilterScreenChildren,

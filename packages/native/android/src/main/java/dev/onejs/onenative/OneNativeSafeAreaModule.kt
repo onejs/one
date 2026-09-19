@@ -1,7 +1,5 @@
 package dev.onejs.onenative
 
-import android.os.Build
-import android.view.WindowInsets
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 
@@ -14,27 +12,29 @@ class OneNativeSafeAreaModule(reactContext: ReactApplicationContext) :
     override fun getName(): String = NAME
 
     override fun getConstants(): Map<String, Any?> {
-        val decorView = reactApplicationContext.currentActivity?.window?.decorView
-        val root = decorView?.rootView
-        val windowInsets = root?.rootWindowInsets
-        if (decorView == null || root == null || windowInsets == null) {
-            return mapOf("initialWindowMetrics" to null)
-        }
+        val root =
+            reactApplicationContext.currentActivity?.window?.decorView?.rootView
+                ?: return mapOf("initialWindowMetrics" to null)
+        // window-level reading, so no overlap subtraction: the whole window
+        // is the subject. the shared root helper still applies the
+        // keyboard-safe bottom.
+        val window =
+            OneNativeSafeAreaInsets.rootWindowInsetsPx(root)
+                ?: return mapOf("initialWindowMetrics" to null)
         val density = root.resources.displayMetrics.density.toDouble()
         val width = root.width / density
         val height = root.height / density
         if (width <= 0 || height <= 0) {
             return mapOf("initialWindowMetrics" to null)
         }
-        val (top, right, bottom, left) = readSystemInsets(windowInsets)
         val metrics =
             mapOf(
                 "insets" to
                     mapOf(
-                        "top" to top / density,
-                        "right" to right / density,
-                        "bottom" to bottom / density,
-                        "left" to left / density
+                        "top" to window[0] / density,
+                        "right" to window[1] / density,
+                        "bottom" to window[2] / density,
+                        "left" to window[3] / density
                     ),
                 "frame" to
                     mapOf(
@@ -45,22 +45,6 @@ class OneNativeSafeAreaModule(reactContext: ReactApplicationContext) :
                     )
             )
         return mapOf("initialWindowMetrics" to metrics)
-    }
-
-    private fun readSystemInsets(insets: WindowInsets): IntArray {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val types = WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout()
-            val bars = insets.getInsets(types)
-            intArrayOf(bars.top, bars.right, bars.bottom, bars.left)
-        } else {
-            @Suppress("DEPRECATION")
-            intArrayOf(
-                insets.systemWindowInsetTop,
-                insets.systemWindowInsetRight,
-                insets.systemWindowInsetBottom,
-                insets.systemWindowInsetLeft
-            )
-        }
     }
 
     companion object {
