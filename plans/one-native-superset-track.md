@@ -57,6 +57,11 @@ status file; the coordinator resolves.
    (document picker, Safari view, StoreKit flows, haptics...). Later milestone.
    Sequenced by the Expo top-50 + soot-template survey (worker
    expo-supersede-survey, doc lives in the soot repo, never here).
+   Nate direction (via Sol verification): hand-curated coverage is intentional.
+   The catalog chooses which official APIs/components One exposes; generation
+   enforces alignment (names, types, signatures, availability, behavior) for
+   that selected surface only. Never pursue full SDK coverage. Cohesive One.*
+   and One.UI.* stay authored above the generated platform bindings.
 
 ## Protocols
 
