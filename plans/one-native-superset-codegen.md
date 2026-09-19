@@ -2,8 +2,195 @@
 
 ## Now
 
-Spec-template numeric imports done, committing. Emitter wiring waits on the
-ios-views leaf-adoption commit, then I wire emitControls to deriveLeafSwift.
+Closed-world generation design written below; BLOCKED on CI-lane review.
+No implementation until the coordinator signals approval. Emitter wiring
+stays queued behind this milestone.
+
+## Design: closed-world generation (pending CI-lane review)
+
+### Goal
+
+Cross-SDK deterministic generation: `generate:check` green with byte-identical
+output on SDK 26.4 (CI) and SDK 27.1+ (local), so an SDK removal or addition on
+one SDK can never red another SDK's check again.
+
+### Success criteria
+
+- `generate:check` green on 26.4 and 27.1 with identical output.
+- Regen with no catalog change is a no-op on both SDKs.
+- ListStyle keeps its 6 cases; roundedBorder stays out (removal by design,
+  documented below).
+- Any future SDK-side addition, removal, or signature change surfaces as a
+  loud contract error naming the declaration, never as silent output drift.
+
+### Context and current facts
+
+- CI run 35407302490: `generate:check` red on SDK 26.4, green on local 27.1.
+- RAN `git diff origin/v2-beta HEAD -- codegen/swiftui-manifest.json`: the only
+  SDK-caused change is `- "roundedBorder": 13`. v2-beta has
+  TextFieldStyle=[automatic, plain, roundedBorder]@13; HEAD has
+  [automatic, plain] with ListStyle at 6 cases.
+- RAN grep: zero `roundedBorder` occurrences in packages/native; HEAD is a
+  consistent SDK 27.1 state, which is exactly why 26.4 (which still ships the
+  case) regenerates a different manifest.
+- MAXIMUM_IOS=26 filters by iOS version only (symbols above 26); it cannot see
+  removals, so it cannot fix this class of drift.
+- Manifest readers today: generate.ts (writes it) and coverage.ts (reads `.sdk`
+  as the ceiling and `.coverage` only). Nothing else consumes it.
+- Emission sites consuming SDK-derived VALUES: the enum scan (cases + iOS
+  versions into swiftui.ts, OneNativeSwiftUI.swift, schema enums) and the
+  catalog-method selection (iOS gate + params + requirements into modifier
+  helpers). Constructor and recipe-method selections otherwise feed only the
+  manifest's own `constructors` block and the mapped-symbols log count
+  (generate.ts ~566, ~642).
+
+### Constraints and non-goals
+
+- Keep the `SDK >= MAXIMUM_IOS` guard.
+- My ownership only: generate.ts, inventory.ts, new codegen modules, tests,
+  status. No catalog, ios/, android/, or src/*.native.tsx changes.
+- Emitter wiring stays queued behind this milestone.
+- coverage.ts needs no changes (`.sdk` stays the ceiling, `.coverage` is
+  carried forward). Accepted limitation, not fixed here: dashboard TOTALS
+  derive from the local inventory so they stay SDK-local; the MAPPED counts
+  (the hill-climb numbers) are contract-stable.
+- No timestamps or toolchain fingerprints in the manifest (determinism).
+
+### Key decisions
+
+1. The checked-in manifest is the contract. Normal `generate` / `--check`
+   derives every SDK-sourced output value from (manifest + catalog) only.
+2. Assert, never silently carry: each contracted declaration must resolve in
+   the local inventory; a miss is a hard error naming the declaration. Reason:
+   emitting a locally-absent symbol (e.g. `.roundedBorder` on SDK 27)
+   produces Swift that fails swiftc with a confusing error; the assertion
+   converts that into a clear contract error.
+3. New catalog selectors not in the contract are hard errors directing to
+   refresh, not silent open-world fallbacks (a fallback would reintroduce
+   drift through the side door).
+4. Stale contract entries (catalog removed something) are carried forward
+   verbatim in normal mode and pruned only by refresh, so no-op regen stays
+   green and deletions show up reviewably in the refresh diff.
+5. Normal-mode inventory is restricted to contracted modules: extra local
+   overlay modules are never parsed, so they can neither leak in nor cause
+   ambiguity. A contracted module missing locally is a hard error.
+6. Refresh mode is `--refresh-contract` (script `generate:refresh-contract`):
+   exactly today's open-world behavior (full local inventory, recompute
+   everything including modules/unmapped/coverage) plus writing `refreshedOn`
+   (local SDK version, audit trail only). The manifest diff gets human review;
+   CI validates it on the ceiling toolchain.
+7. Refresh runs on the NEWEST supported SDK (documented rule). Removals drop
+   from the contract by design; ceiling CI then proves backward containment.
+   Escape hatch: if a refresh reds ceiling CI (a back-available newest-only
+   declaration), a human prunes that entry in a reviewed commit.
+8. `manifest.sdk` stays the ceiling (`"26"`); `refreshedOn` is additive.
+   Old manifests without it keep working (it is informational only).
+9. New import-safe module `codegen/contract.ts` holds the lookup/assertion
+   logic with unit tests; generate.ts stays a thin script (it is not
+   import-safe, so its logic cannot be unit-tested in place).
+10. Lookup keys: enums by type then case; methods by name + stable signature
+    JSON (params + requirements); constructors by type + stable params JSON.
+    Keys exclude the module, so a declaration moving between two contracted
+    modules still resolves instead of erroring.
+
+Rejected alternatives:
+
+- Ghost entries (emit contracted-but-locally-absent symbols without
+  asserting): produces uncompilable Swift on the newer SDK and violates the
+  assert directive.
+- Excluding the manifest from `--check` (old foundation-review opinion):
+  destroys contract enforcement; the manifest diff is the review surface.
+- Multi-SDK intersection refresh: needs several toolchains for what
+  refresh-on-newest plus ceiling validation already proves.
+- Per-SDK conditional contracts: machinery for a theoretical case; module
+  moves inside the contracted set already resolve (decision 10).
+
+### Recommended approach
+
+Normal mode becomes a pure function of (contract, catalog):
+
+1. Load `codegen/swiftui-manifest.json`; missing file is a hard error
+   directing to refresh. Keep the `SDK >= MAXIMUM_IOS` guard.
+2. Parse only contracted modules (readInventory allowlist); a contracted
+   module absent locally is a hard error.
+3. Flip the enum loop: iterate CONTRACT cases per catalog enum type, assert
+   each resolves locally (same owner/kind/type predicate plus name match),
+   emit contracted names + iOS versions. Local-only cases are ignored.
+4. Method/constructor sites: look up the contract entry by the decision-10
+   key; absent entry is a hard error directing to refresh. Assert the catalog
+   selector still resolves locally; emit contracted values.
+5. Provenance-only selections (recipe methods, helper ctors) keep today's
+   select* calls unchanged; they already throw on drift.
+6. `unmappedModifiers`, `coverage`, and contract entries unreferenced by the
+   current catalog are carried forward verbatim (catalog-matched output in
+   catalog order, orphans appended in contract order; fixed key order always).
+7. Write outputs (or `--check` compare, unchanged).
+
+Refresh mode (`--refresh-contract`) runs today's open-world logic over the
+full local inventory, writes `refreshedOn`, and rewrites the manifest
+completely (additions and prunings alike land in the reviewed diff).
+
+Error formats (exact, unit-tested):
+
+- `contract <Kind> <id> is not in codegen/swiftui-manifest.json: run bun run
+  generate:refresh-contract to update the contract`
+- `contract <Kind> <id> does not resolve in the local SDK (<version>): the
+  contract needs a refresh (bun run generate:refresh-contract)`
+
+### Work plan
+
+Unit 1 (additive, zero behavior change): `codegen/contract.ts` (pure lookup /
+assert / carry-forward helpers) + `tests/contract.test.ts` (fixture manifest
++ fixture inventory: hits, misses, stale carry-forward, error strings).
+
+Unit 2 (semantic switch): generate.ts (contract load, restriction, flipped
+loops, `--refresh-contract`, `refreshedOn`), inventory.ts (readInventory
+module allowlist), package.json (`generate:refresh-contract` script), README
+generation paragraph (contract/refresh flow). Then regenerate: expect the
+manifest diff to show ONLY `+refreshedOn` (same SDK 27.1, same catalog; any
+further diff is reviewable signal, e.g. unmapped churn if the merge regen ran
+elsewhere).
+
+Unit 1 then unit 2, in that order; two commits. No catalog, ios/, android/,
+or adapter changes in either unit.
+
+### Validation plan
+
+- Local (27.1): `generate:check` green; `--refresh-contract` run twice with
+  the second a no-op; `ListStyle` still 6 cases in the manifest;
+  `roundedBorder` still absent everywhere; `tsc --noEmit`; `vitest run`.
+- CI (26.4, coordinator's lane): `generate:check` green. This is the money
+  proof and cannot run locally (single Xcode here).
+- Negative paths (missing-locally, not-in-contract errors) are covered by
+  unit tests with fixture inventories; there is no local E2E for them by
+  construction (it would require a contracted declaration absent locally,
+  which is exactly the state the new flow refuses to persist).
+- Highest-risk validation: the ceiling-CI green run after refresh, since it
+  is the only step that exercises a second real SDK.
+
+### Risks / rollback
+
+- Refresh run on a stale SDK bakes removals back in (roundedBorder returns)
+  and newer SDKs red with the clear contract error. Mitigation: the
+  refresh-newest rule plus the `refreshedOn` audit trail.
+- A back-available newest-only declaration could red ceiling CI after a
+  refresh. Mitigation: documented escape hatch (human prunes in a reviewed
+  commit). Never observed; the selected set is small.
+- Rollback: revert the unit-2 commit. The manifest stays valid for the old
+  generator (it rewrites the file wholesale, dropping `refreshedOn`).
+
+### Open questions
+
+1. Refresh discipline: confirm refresh runs on the newest supported SDK
+   (currently local 27.1) rather than the ceiling, per decision 7. If the CI
+   lane prefers ceiling-side refresh, the removal case needs a different
+   answer and the design changes.
+2. Should CI also run `generate:check` on a latest-Xcode lane to catch
+   newest-side reds early, or is ceiling-only validation plus local newest
+   runs sufficient?
+3. Dashboard totals stay SDK-local while mapped counts are contract-stable
+   (constraints). Acceptable for the hill-climb, or should a follow-up pin
+   totals to the contract too?
 
 ## Done
 
