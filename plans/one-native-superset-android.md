@@ -46,6 +46,11 @@ TextField, ToggleButton, Tooltip, useNativeState.
     expandedBefore, one live tap, bounds revert after reset; try/finally
     kept). README proof paragraph + count refreshed (40 checks + 2
     conditional). Script typechecks; coordinator reruns the full suite.
+  - ANDROIDFIX3 `aeb26105a`: `waitFor` takes a per-call timeout; rotation
+    block waits 60s for the mount marker to return (phase 1, no check
+    recorded) before each stays-mounted state assert, covering both the
+    density-560 and the density-reset recreations. No product change,
+    check count unchanged, script typechecks.
 
 ## NEEDS-BUILD
 
