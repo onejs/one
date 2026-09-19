@@ -7,6 +7,7 @@ type Bounds = { left: number; top: number; right: number; bottom: number }
 
 type Node = {
   index: number
+  parent: number
   attrs: Record<string, string>
   text: string
   contentDescription: string
@@ -28,6 +29,7 @@ type Config = {
   packageId: string
   artifactDir: string
   timeout: number
+  metroPort: number
 }
 
 type Selector = {
@@ -48,7 +50,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>]'
   )
 
 function parse(args: string[]): Config {
@@ -56,6 +58,12 @@ function parse(args: string[]): Config {
   let packageId = ''
   let artifactDir = '/tmp/one-native-android-proof'
   let timeout = 15_000
+  let metroPort = 8081
+  if (
+    process.env.RCT_METRO_PORT !== undefined &&
+    process.env.RCT_METRO_PORT !== ''
+  )
+    metroPort = Number(process.env.RCT_METRO_PORT)
 
   for (let index = 0; index < args.length; index++) {
     const arg = args[index]
@@ -69,6 +77,7 @@ function parse(args: string[]): Config {
       packageId = args[++index] || ''
     else if (arg === '--artifact-dir') artifactDir = args[++index] || ''
     else if (arg === '--timeout') timeout = Number(args[++index])
+    else if (arg === '--metro-port') metroPort = Number(args[++index])
     else throw new Error(`Unknown argument: ${arg}`)
   }
 
@@ -83,7 +92,67 @@ function parse(args: string[]): Config {
       'A device id, package id, artifact directory, and positive integer timeout are required.'
     )
   }
-  return { deviceId, packageId, artifactDir, timeout }
+  if (!Number.isInteger(metroPort) || metroPort <= 0 || metroPort > 65535) {
+    throw new Error(
+      'A valid Metro port is required: --metro-port <PORT> or RCT_METRO_PORT.'
+    )
+  }
+  return { deviceId, packageId, artifactDir, timeout, metroPort }
+}
+
+function adbRaw(args: string[]): string {
+  return execFileSync('adb', args, {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: 30_000,
+  })
+}
+
+function preflight(config: Config) {
+  try {
+    adbRaw(['version'])
+  } catch {
+    throw new Error(
+      'Android preflight: adb is not runnable. Install the platform tools and add them to PATH, e.g. export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH".'
+    )
+  }
+  let devices = ''
+  try {
+    devices = adbRaw(['devices'])
+  } catch (error) {
+    throw new Error(
+      `Android preflight: 'adb devices' failed (${error instanceof Error ? error.message : String(error)}). Start the adb server with 'adb start-server' and retry.`
+    )
+  }
+  const line = devices
+    .split(/\r?\n/)
+    .find((entry) => entry.split(/\s+/)[0] === config.deviceId)
+  if (!line)
+    throw new Error(
+      `Android preflight: device '${config.deviceId}' is not attached. Boot one, e.g.: emulator -avd sootsim_pixel_8_android_17_api_37_r06 -no-window &   (list AVDs: emulator -list-avds; verify: adb devices)`
+    )
+  const state = line.split(/\s+/)[1]
+  if (state !== 'device')
+    throw new Error(
+      `Android preflight: device '${config.deviceId}' is '${state}', not ready. Reconnect it (offline), accept the RSA prompt (unauthorized), or cold-boot the emulator, then retry.`
+    )
+  const wantDevice = 'tcp:8081'
+  const wantHost = `tcp:${config.metroPort}`
+  let reverses = ''
+  try {
+    reverses = adbRaw(['-s', config.deviceId, 'reverse', '--list'])
+  } catch (error) {
+    throw new Error(
+      `Android preflight: 'adb reverse --list' failed (${error instanceof Error ? error.message : String(error)}). Reconnect the device and retry.`
+    )
+  }
+  const mapped = reverses
+    .split(/\r?\n/)
+    .some((entry) => entry.includes(wantDevice) && entry.includes(wantHost))
+  if (!mapped)
+    throw new Error(
+      `Android preflight: no adb reverse mapping device ${wantDevice} to host ${wantHost} (Metro port ${config.metroPort} from --metro-port or RCT_METRO_PORT). Run: adb -s ${config.deviceId} reverse ${wantDevice} ${wantHost}`
+    )
 }
 
 function commandError(command: string, args: string[], error: unknown) {
@@ -158,11 +227,18 @@ function parseBounds(value: string | undefined): Bounds | undefined {
 
 function parseXml(xml: string): Node[] {
   const nodes: Node[] = []
-  const pattern = /<node\b([\s\S]*?)(?:\/>|>)/g
-  for (const [index, match] of [...xml.matchAll(pattern)].entries()) {
+  const stack: number[] = []
+  const pattern = /<node\b([\s\S]*?)(\/)?>|<\/node>/g
+  for (const match of xml.matchAll(pattern)) {
+    if (match[0] === '</node>') {
+      stack.pop()
+      continue
+    }
     const attrs = attributes(match[1])
+    const index = nodes.length
     nodes.push({
       index,
+      parent: stack.length ? stack[stack.length - 1] : -1,
       attrs,
       text: attrs.text || '',
       contentDescription: attrs['content-desc'] || '',
@@ -176,8 +252,18 @@ function parseXml(xml: string): Node[] {
       scrollable: booleanAttribute(attrs, 'scrollable'),
       bounds: parseBounds(attrs.bounds),
     })
+    if (!match[2]) stack.push(index)
   }
   return nodes
+}
+
+function clickableTarget(nodes: Node[], node: Node): Node | undefined {
+  let current: Node | undefined = node
+  while (current) {
+    if (current.clickable === true) return current
+    current = current.parent >= 0 ? nodes[current.parent] : undefined
+  }
+  return undefined
 }
 
 function dumpNodes(config: Config): Snapshot {
@@ -391,14 +477,15 @@ function tapFresh(
 
 function tapByText(config: Config, name: string, text: string) {
   const current = snapshot(config)
-  const found = current.nodes.filter(
-    (node) => node.text === text && node.clickable === true
-  )
-  if (found.length !== 1)
+  const labeled = current.nodes.filter((node) => node.text === text)
+  if (labeled.length !== 1)
     throw new Error(
-      `${name} resolved ${found.length} clickable nodes with text "${text}"; exactly one is required.`
+      `${name} resolved ${labeled.length} nodes with text "${text}"; exactly one is required.`
     )
-  const bounds = validBounds(found[0], name)
+  const target = clickableTarget(current.nodes, labeled[0])
+  if (!target)
+    throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
+  const bounds = validBounds(labeled[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
   adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
@@ -704,6 +791,7 @@ async function run(config: Config) {
   }> = []
 
   try {
+    preflight(config)
     relaunchApp(config)
 
     await expect(
