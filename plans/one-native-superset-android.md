@@ -23,6 +23,10 @@ TextField, ToggleButton, Tooltip, useNativeState.
   children (`requireComposeChild` throws naming the host rule). The iOS
   parity half (`insertChild` silent omission) belongs to native-ios-views;
   flagging here, no Android change to make.
+- Review gate: the out-of-scope density recreate diagnostic and its soft
+  quarantine were removed from native conformance. The orientation block
+  remains the hard configuration and layout gate, and every wait uses the
+  suite timeout.
 
 ## Done
 

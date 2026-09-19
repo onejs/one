@@ -443,11 +443,10 @@ async function waitFor(
   config: Config,
   name: string,
   predicate: (nodes: Node[]) => boolean,
-  missingMarker?: string,
-  timeoutMs: number = config.timeout
+  missingMarker?: string
 ) {
   const started = Date.now()
-  const deadline = started + timeoutMs
+  const deadline = started + config.timeout
   lastFailedConjuncts = undefined
   while (Date.now() < deadline) {
     const current = snapshot(config)
@@ -457,7 +456,7 @@ async function waitFor(
   }
   const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
   const diagnosis = lastFailedConjuncts ? `; failed: ${lastFailedConjuncts}` : ''
-  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}${diagnosis}`)
+  throw new Error(`${name} timed out after ${config.timeout}ms${marker}${diagnosis}`)
 }
 
 function tapFresh(
@@ -681,10 +680,6 @@ function nodeWidth(node: Node) {
   return node.bounds.right - node.bounds.left
 }
 
-function writeDensity(config: Config, value: string) {
-  adbText(config, ['shell', 'wm', 'density', value])
-}
-
 function lockRotation(config: Config, rotation: string) {
   adbText(config, ['shell', 'wm', 'user-rotation', 'lock', rotation])
 }
@@ -784,12 +779,6 @@ async function run(config: Config) {
     return result.snapshot
   }
 
-  const quarantined: Array<{
-    name: string
-    error: string
-    artifacts: Check['artifacts'] | undefined
-  }> = []
-
   try {
     preflight(config)
     relaunchApp(config)
@@ -801,80 +790,6 @@ async function run(config: Config) {
         textIncludes(nodes, '@vxrn/native Test Suite'),
       'home-screen'
     )
-    const homeDensityAfter = 560
-    try {
-      try {
-        writeDensity(config, String(homeDensityAfter))
-        await waitFor(
-          config,
-          'Home rotation marker returns',
-          (nodes) => exactlyOneId(nodes, 'home-screen'),
-          'home-screen',
-          60_000
-        )
-        await expect(
-          'home-rotation-stays-mounted',
-          (nodes) =>
-            diagnose(nodes, [
-              ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
-              ['suite title', (n) => textIncludes(n, '@vxrn/native Test Suite')],
-            ]),
-          'home-screen'
-        )
-      } finally {
-        writeDensity(config, 'reset')
-      }
-      await waitFor(
-        config,
-        'Home rotation reset marker returns',
-        (nodes) => exactlyOneId(nodes, 'home-screen'),
-        'home-screen',
-        60_000
-      )
-      await expect(
-        'home-rotation-reset-stays-mounted',
-        (nodes) =>
-          diagnose(nodes, [
-            ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
-            ['suite title', (n) => textIncludes(n, '@vxrn/native Test Suite')],
-          ]),
-        'home-screen'
-      )
-    } catch (homeError) {
-      const quarantineMessage =
-        homeError instanceof Error ? homeError.message : String(homeError)
-      let quarantineArtifacts: Check['artifacts'] | undefined
-      try {
-        quarantineArtifacts = capture(
-          'home-rotation-quarantined',
-          dumpNodes(config),
-          'failed',
-          quarantineMessage
-        )
-      } catch (captureError) {
-        console.error(
-          `FAIL one-native-android quarantine capture: ${
-            captureError instanceof Error ? captureError.message : String(captureError)
-          }`
-        )
-      }
-      quarantined.push({
-        name: 'home-rotation-density-recreate',
-        error: quarantineMessage,
-        artifacts: quarantineArtifacts,
-      })
-      console.log(`QUARANTINE home-rotation-density-recreate: ${quarantineMessage}`)
-      relaunchApp(config)
-      await waitFor(
-        config,
-        'Post-quarantine home returns',
-        (nodes) =>
-          exactlyOneId(nodes, 'home-screen') &&
-          textIncludes(nodes, '@vxrn/native Test Suite'),
-        'home-screen',
-        60_000
-      )
-    }
     await tapNavigation(config)
     await expect(
       'android-proof-mounted',
@@ -1232,8 +1147,7 @@ async function run(config: Config) {
         config,
         'Landscape marker persists',
         (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
-        'one-native-android-mounted',
-        60_000
+        'one-native-android-mounted'
       )
       await expect(
         'orientation-landscape-relayout',
@@ -1289,8 +1203,7 @@ async function run(config: Config) {
       config,
       'Portrait marker persists',
       (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
-      'one-native-android-mounted',
-      60_000
+      'one-native-android-mounted'
     )
     await expect(
       'orientation-portrait-revert',
@@ -1595,7 +1508,6 @@ async function run(config: Config) {
           packageId: config.packageId,
           checks,
           checkCount: checks.length,
-          quarantined,
           completedAt: new Date().toISOString(),
         },
         null,
@@ -1641,7 +1553,6 @@ async function run(config: Config) {
           packageId: config.packageId,
           error: failureMessage,
           checks,
-          quarantined,
           failureArtifacts,
           completedAt: new Date().toISOString(),
         },
