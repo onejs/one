@@ -251,8 +251,10 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
     listStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, so a
+  // list stretches by default and takes its viewport from the style.
   return (
-    <NativeList {...props} style={[{ flex: 1 }, style]} listStyle={listStyle}>
+    <NativeList {...props} style={[{ alignSelf: 'stretch' }, style]} listStyle={listStyle}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
   )
