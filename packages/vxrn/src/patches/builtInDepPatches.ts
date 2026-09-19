@@ -647,6 +647,27 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
       },
     },
   },
+  // react native 0.87 made ReactContextBaseJavaModule a Kotlin class, so the
+  // bare `currentActivity` property in @react-navigation/native's MaterialSymbolModule
+  // no longer resolves and the Android build fails to compile. upstream alpha.45
+  // changed exactly this line; the monorepo stays on alpha.44 because alpha.45
+  // also pulls a @react-navigation/core alpha that renames Tabs APIs.
+  {
+    module: '@react-navigation/native',
+    patchFiles: {
+      version: '8.0.0-alpha.44',
+      'android/src/main/java/org/reactnavigation/MaterialSymbolModule.kt': (contents) => {
+        assertString(contents)
+        bailIfExists(contents, 'reactApplicationContext.currentActivity')
+        const patched = contents.replace(
+          'colorValue, currentActivity ?: reactApplicationContext',
+          'colorValue, reactApplicationContext.currentActivity ?: reactApplicationContext'
+        )
+        bailIfUnchanged(patched, contents)
+        return patched
+      },
+    },
+  },
 ]
 
 function addNoCheck(contents?: string) {
