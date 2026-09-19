@@ -22,6 +22,8 @@ import type {
   ComposeSliderProps,
   ComposeSwitchProps,
   ComposeTextAlign,
+  ComposeTextFieldCapitalization,
+  ComposeTextFieldImeAction,
   ComposeTextFieldKeyboardType,
   ComposeTextFieldProps,
   ComposeTextFieldVariant,
@@ -82,6 +84,14 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   placeholder?: string
   keyboardType?: ComposeTextFieldKeyboardType
   secureText?: boolean
+  focused?: boolean
+  focusRevision?: number
+  acknowledgedFocusEvent?: number
+  imeAction?: ComposeTextFieldImeAction
+  maxLength?: number
+  multiline?: boolean
+  capitalization?: ComposeTextFieldCapitalization
+  autoCorrect?: boolean
   numberValue?: number
   minimumValue?: number
   maximumValue?: number
@@ -100,6 +110,10 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   onNativeComposeNodeTextValueChange?: (event: {
     nativeEvent: { text: string; eventCount: number; revision: number }
   }) => void
+  onNativeComposeNodeTextFieldFocusChange?: (event: {
+    nativeEvent: { value: boolean; eventCount: number; revision: number }
+  }) => void
+  onNativeComposeNodeTextFieldSubmit?: (event: unknown) => void
   onNativeComposeNodeNumberValueChange?: (event: {
     nativeEvent: { value: number; eventCount: number; revision: number }
   }) => void
@@ -281,6 +295,16 @@ function TextField({
   variant = 'filled',
   keyboardType = 'default',
   secureText = false,
+  focused,
+  focusRevision = 0,
+  onFocusChange,
+  imeAction,
+  onSubmit,
+  maxLength,
+  multiline = false,
+  capitalization,
+  autoCorrect,
+  textAlign,
   ...props
 }: ComposeTextFieldProps) {
   validateTextFieldProps({
@@ -293,6 +317,16 @@ function TextField({
     variant,
     keyboardType,
     secureText,
+    focused,
+    focusRevision,
+    onFocusChange,
+    imeAction,
+    onSubmit,
+    maxLength,
+    multiline,
+    capitalization,
+    autoCorrect,
+    textAlign,
   })
   const syncHandle = syncHandleOf<string>(text)
   const syncedText = useSyncValue<string>(text)
@@ -307,6 +341,11 @@ function TextField({
     },
     revision
   )
+  const controlledFocus = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onFocusChange?.(event.value), focusRevision)
   return (
     <ComposeNode
       {...props}
@@ -321,9 +360,24 @@ function TextField({
       variant={variant}
       keyboardType={keyboardType}
       secureText={secureText}
+      focused={focused}
+      focusRevision={focusRevision}
+      acknowledgedFocusEvent={
+        focused !== undefined ? controlledFocus.acknowledgedEvent : 0
+      }
+      imeAction={imeAction}
+      maxLength={maxLength}
+      multiline={multiline}
+      capitalization={capitalization}
+      autoCorrect={autoCorrect}
+      textAlign={textAlign}
       onNativeComposeNodeTextValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
       }
+      onNativeComposeNodeTextFieldFocusChange={(event) =>
+        controlledFocus.onNativeChange(event.nativeEvent)
+      }
+      onNativeComposeNodeTextFieldSubmit={() => onSubmit?.()}
     />
   )
 }

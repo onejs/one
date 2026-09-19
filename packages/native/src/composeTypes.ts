@@ -146,6 +146,22 @@ export type ComposeTextFieldKeyboardType =
   | 'phone'
   | 'url'
 
+export type ComposeTextFieldImeAction =
+  | 'default'
+  | 'none'
+  | 'go'
+  | 'search'
+  | 'send'
+  | 'previous'
+  | 'next'
+  | 'done'
+
+export type ComposeTextFieldCapitalization =
+  | 'none'
+  | 'characters'
+  | 'words'
+  | 'sentences'
+
 export interface ComposeTextFieldProps extends ComposeLeafProps {
   text: string | NativeState<string>
   onTextChange: (value: string) => void
@@ -156,6 +172,16 @@ export interface ComposeTextFieldProps extends ComposeLeafProps {
   variant?: ComposeTextFieldVariant
   keyboardType?: ComposeTextFieldKeyboardType
   secureText?: boolean
+  focused?: boolean
+  focusRevision?: number
+  onFocusChange?: (focused: boolean) => void
+  imeAction?: ComposeTextFieldImeAction
+  onSubmit?: () => void
+  maxLength?: number
+  multiline?: boolean
+  capitalization?: ComposeTextFieldCapitalization
+  autoCorrect?: boolean
+  textAlign?: ComposeTextAlign
 }
 
 export interface ComposeSliderProps extends ComposeLeafProps {
