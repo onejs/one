@@ -2,10 +2,111 @@
 
 ## Now
 
-Wiring done, committing. Next: closed-world implementation once the
-coordinator gives the explicit go (design stands; CI-lane review state is
-unclear after the present() merge overtook it). Constraint recorded: keep
-emitStyle open to a composable modifiers array; joint design note pending.
+New milestone queued (static view-config emission): study done, design note
+below, implementation starts on coordinator go. Closed-world implementation
+still awaits its explicit go. Constraint recorded: keep emitStyle open to a
+composable modifiers array; joint design note pending.
+
+## Design: static view-config emission (implementation on coordinator go)
+
+### Goal
+
+The published package must not depend on any bundler running
+@react-native/babel-plugin-codegen. Our own build emits static view configs
+byte-identical to the plugin's output; babel stays a fallback that never
+triggers for our files. src/specs stays raw (pod-install codegen reads it);
+the react-native->src export resolution stays until the coordinator
+device-validates the new dist output; the revert to dist is a separate
+sequenced step (not this milestone).
+
+### RAN findings (study)
+
+- The plugin (260-line wrapper) detects `export default
+  codegenNativeComponent<...>(...)`, runs @react-native/codegen's
+  TypeScriptParser.parseString + RNCodegen.generateViewConfig over the whole
+  file, and splices the re-parsed view-config block over the default export
+  (plus removing a `Commands` export). Our Menu spec produces the expected
+  `__INTERNAL_VIEW_CONFIG` + `NativeComponentRegistry.get` tail.
+- Dist failure mode, reproduced: the plugin on
+  `dist/esm/specs/OneNativeMenuNativeComponent.mjs` is a silent no-op (the
+  compiled `export { X as default }` has no call to match), so dist ships a
+  bare `codegenNativeComponent("X")` with no view config. Serving src is the
+  current workaround (exports map react-native->src).
+- Our specs use no `codegenNativeCommands` (grep, 0 hits); several specs use
+  `{ interfaceOnly: true }` (Tab, Label, Popover, Image, ...). Parity
+  fixtures must cover interfaceOnly; Commands needs only a synthetic fixture.
+- @vxrn/compiler verdict (asked): `transformReactNativeCodegen`
+  (oxc-based, babel-free) transforms all 53/53 src specs with 0 skips and
+  0 throws, so the rolldown path handles our src specs today. But it also
+  requires the type argument (no propsTypeName -> returns null, file left
+  alone), so dist needs the same static treatment. After that, both the
+  babel plugin and the vxrn transform skip static files safely (neither
+  matches without a remaining `codegenNativeComponent` call), and the Metro
+  worker path (metroNativeWorker.ts, same transform) is covered too. No
+  compiler changes needed.
+- Plugin-output bytes still contain TS types (Metro strips downstream), so
+  dist statics need a strip stage; tamagui-build emits per-file esm/cjs
+  mirrors (adapters import specs relatively, so mirrors resolve).
+- `files` publishes `src`, confirming the src-stays-raw constraint.
+
+### Approach
+
+New pure module `codegen/emitViewConfig.ts`: replicate the plugin's splice
+with the same underlying calls (parse spec with @babel/parser TS,
+TypeScriptParser.parseString + RNCodegen.generateViewConfig with the same
+libraryName rule, re-parse the view-config string, replace the default
+export, remap locs to it, remove Commands, print with @babel/generator
+defaults). Same parser + generator + printer as the plugin; only the splice
+is ours, which is exactly what the parity test pins.
+
+New build step `codegen/staticSpecs.ts`, wired as
+`tamagui-build && bun codegen/staticSpecs.ts` (build scripts are mine to
+touch; exports map untouched): for each src/specs/*.ts, emit plugin bytes,
+then strip + format per dist mirror with esbuild (.mjs ESM, .cjs CJS, all
+spec-derived mirrors by stem glob incl. .native.js variants) and regenerate
+sourcemaps (never leave stale maps). Fail loud if a src spec has no dist
+mirror. generate.ts is NOT extended: it emits committed sources, while
+statics are gitignored build artifacts with a different lifecycle.
+
+Rejected: running the babel plugin itself in our build (makes the parity
+test vacuous); reimplementing view-config semantics from recipes (duplicates
+upstream RNCodegen logic, brittle across upgrades); teaching tamagui-build a
+staging input (needs unknown cooperation; post-rewrite needs none).
+
+### Work plan
+
+Unit 1: `emitViewConfig.ts` + `tests/viewConfig.test.ts`: byte-parity of our
+emitter vs the real plugin (pinned babel options) over ALL src/specs
+(self-updating, covers interfaceOnly/events/objects/Double/Float) plus a
+synthetic Commands fixture. No pipeline changes.
+
+Unit 2: `staticSpecs.ts` + build-script wiring + devDeps (@babel/core,
+@react-native/codegen pinned with peer RN major) + never-triggers assertion
+(emitted output contains no codegen call) + README packaging paragraph.
+Validate by building and asserting dist specs carry view configs, strip
+cleanly, and map correctly. Device validation stays the coordinator's;
+revert-to-dist stays a separate step.
+
+### Risks
+
+- @react-native/codegen version skew: our statics pin our devDep version
+  while pod-install codegen uses the app's RN version. The view-config wire
+  format is stable across recent versions; pin the devDep major in line with
+  peer react-native. Flagged, not blocking.
+- tamagui-build layout drift (new mirrors/renames): the step globs by stem
+  and fails loud on unmapped specs instead of silently skipping.
+- @babel/* printer upgrades change bytes: both parity sides share the
+  installed printer, so parity holds; device behavior depends on semantics,
+  which are stable.
+
+### Open questions
+
+1. What consumes the dist `.native.js` spec mirrors, and must the static
+   step cover them identically (design assumes yes via stem glob)?
+2. Confirm the @react-native/codegen devDep pin policy vs peer RN (skew
+   risk above); who owns the bump cadence?
+3. Confirm sequencing: implementation starts on your go, device validation
+   of new dist output stays yours, revert-to-dist after that.
 
 ## Design: closed-world generation (pending CI-lane review)
 
