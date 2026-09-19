@@ -67,20 +67,22 @@ export function deriveLeafSwift(
   // provenance first: the recipe names an exact SDK signature, and SDK drift fails
   // here the same way it fails for hand-written recipes.
   const constructor = selectConstructor(inventory, leaf.constructor)
-  const types = new Map(constructor.parameters.map((parameter) => [parameter.label, parameter.type]))
   if (leaf.args.length !== constructor.parameters.length)
     throw new Error(
       `leaf ${leaf.constructor.type}: ${leaf.args.length} args for ${constructor.parameters.length} parameters`
     )
-  for (const arg of leaf.args) {
-    const type = types.get(arg.label)
-    if (type == null) throw new Error(`leaf ${leaf.constructor.type}: no parameter ${arg.label}`)
-    checkArg(arg, type, leaf.constructor.type)
-  }
-  const paren = leaf.args.filter((arg) => !isClosure(arg))
   const closures = leaf.args.filter(isClosure)
   if (closures.some((arg, index) => 'discard' in arg && index !== closures.length - 1))
     throw new Error(`leaf ${leaf.constructor.type}: a discarded closure must be last`)
+  for (const [index, arg] of leaf.args.entries()) {
+    const parameter = constructor.parameters[index]
+    if (arg.label !== parameter.label)
+      throw new Error(
+        `leaf ${leaf.constructor.type}: argument ${index + 1} is ${arg.label}, not ${parameter.label}`
+      )
+    checkArg(arg, parameter.type, leaf.constructor.type)
+  }
+  const paren = leaf.args.filter((arg) => !isClosure(arg))
   let body =
     `${leaf.constructor.type}(${paren
       .map((arg) => {
