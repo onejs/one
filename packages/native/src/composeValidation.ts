@@ -280,7 +280,24 @@ export function validateSliderProps(props: ComposeSliderProps) {
   assertFiniteNumber(step, 'Slider step')
   if (minimumValue >= maximumValue)
     throw new Error('Compose Slider minimumValue must be less than maximumValue')
+  if (
+    !Number.isFinite(Math.fround(minimumValue)) ||
+    !Number.isFinite(Math.fround(maximumValue)) ||
+    Math.fround(minimumValue) >= Math.fround(maximumValue)
+  )
+    throw new Error('Compose Slider range must be representable by Android Float values')
   if (step < 0) throw new Error('Compose Slider step must be a nonnegative finite number')
+  if (step > 0) {
+    const intervals = (maximumValue - minimumValue) / step
+    const roundedIntervals = Math.round(intervals)
+    if (
+      Math.abs(intervals - roundedIntervals) >
+      Number.EPSILON * Math.max(1, Math.abs(intervals)) * 8
+    )
+      throw new Error('Compose Slider step must evenly divide its range')
+    if (roundedIntervals > 1001)
+      throw new Error('Compose Slider step must produce at most 1001 intervals')
+  }
   if (props.value < minimumValue || props.value > maximumValue)
     throw new Error('Compose Slider value must be between minimumValue and maximumValue')
   assertFunction(props.onValueChange, 'Slider onValueChange')
