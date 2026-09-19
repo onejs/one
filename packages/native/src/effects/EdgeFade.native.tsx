@@ -92,6 +92,8 @@ export function EdgeFade(props: EdgeFadeProps) {
     curve: _curve,
     mode: _mode,
     color: _color,
+    blurRadius: _blurRadius,
+    frostProgression: _frostProgression,
     radius,
     style,
     children,
@@ -138,6 +140,10 @@ export function EdgeFade(props: EdgeFadeProps) {
       curveLeft={native.curveLeft}
       curveRight={native.curveRight}
       fadeRadius={native.fadeRadius}
+      mode={native.mode}
+      blurRadius={native.blurRadius}
+      frostProgression={native.frostProgression}
+      overlayColor={native.overlayColor}
     >
       {children}
     </NativeEdgeFade>

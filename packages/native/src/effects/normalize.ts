@@ -1,6 +1,7 @@
 import {
   I18nManager,
   StyleSheet,
+  processColor,
   type ColorValue,
   type StyleProp,
   type ViewStyle,
@@ -10,6 +11,7 @@ import type { EdgeConfig, EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './t
 
 const DEFAULT_SIZE = 80
 const DEFAULT_CURVE: EdgeFadeCurve = 'smooth'
+const DEFAULT_BLUR_RADIUS = 28
 
 export interface ResolvedEdge {
   size: number
@@ -46,6 +48,8 @@ export interface ResolvedEdgeFade {
   right: ResolvedEdge | null
   mode: EdgeFadeMode
   color?: ColorValue
+  blurRadius: number
+  frostProgression: number
 }
 
 export function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade {
@@ -73,7 +77,25 @@ export function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade {
         'either remove `color` or switch to `mode="overlay"`.'
     )
   }
-  return { top, bottom, left, right, mode, color: props.color }
+  if (
+    props.mode === 'blur' &&
+    (top?.color != null || bottom?.color != null || left?.color != null || right?.color != null)
+  ) {
+    console.warn(
+      '[EdgeFade] per-edge `color` is ignored in blur mode: the frost veil ' +
+        'uses the global `color` only.'
+    )
+  }
+  return {
+    top,
+    bottom,
+    left,
+    right,
+    mode,
+    color: props.color,
+    blurRadius: Math.max(0, props.blurRadius ?? DEFAULT_BLUR_RADIUS),
+    frostProgression: Math.max(0.05, Math.min(1, props.frostProgression ?? 1)),
+  }
 }
 
 export interface NativeEdgeFadeProps {
@@ -86,10 +108,22 @@ export interface NativeEdgeFadeProps {
   curveLeft: string
   curveRight: string
   fadeRadius: number
+  mode: string
+  blurRadius: number
+  frostProgression: number
+  overlayColor: number
 }
 
-// flat props for the OneNativeEdgeFade primitive. the primitive is
-// mask-only: overlay mode never reaches it (RN core gradients paint it).
+// the frost-veil color as 0xAARRGGBB for the primitive (0 = no veil).
+// opaque platform colors have no readable channels, so they resolve to 0.
+export function resolveVeilColor(color?: ColorValue): number {
+  if (color == null) return 0
+  const processed = processColor(color)
+  return typeof processed === 'number' ? processed : 0
+}
+
+// flat props for the OneNativeEdgeFade primitive. mask and blur modes reach
+// it; overlay never does (RN core gradients paint it).
 export function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number): NativeEdgeFadeProps {
   return {
     fadeTop: resolved.top?.size ?? 0,
@@ -101,6 +135,10 @@ export function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number):
     curveLeft: serializeCurve(resolved.left?.curve ?? DEFAULT_CURVE),
     curveRight: serializeCurve(resolved.right?.curve ?? DEFAULT_CURVE),
     fadeRadius: radius ?? 0,
+    mode: resolved.mode,
+    blurRadius: resolved.blurRadius,
+    frostProgression: resolved.frostProgression,
+    overlayColor: resolved.mode === 'blur' ? resolveVeilColor(resolved.color) : 0,
   }
 }
 

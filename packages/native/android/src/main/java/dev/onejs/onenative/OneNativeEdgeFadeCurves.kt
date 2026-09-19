@@ -54,6 +54,23 @@ internal object OneNativeEdgeFadeCurves {
     return if (n <= 2) floatArrayOf(0f, 1f) else FloatArray(n) { i -> i.toFloat() / (n - 1) }
   }
 
+  /**
+   * Presence (`1 − alpha`) of a curve at normalized position `t ∈ [0,1]`,
+   * inner→outer, with linear interpolation over the alpha table. For a monotone
+   * fade this is 0 at the inner edge and 1 at the outer edge — the shape the
+   * blur ramp follows so the Bézier curve reshapes the sharp→frost profile.
+   */
+  fun presenceAt(curve: String, t: Float): Float {
+    val a = alphas(curve)
+    val n = a.size
+    if (n == 1) return (1.0 - a[0]).toFloat().coerceIn(0f, 1f)
+    val pos = t.coerceIn(0f, 1f) * (n - 1)
+    val lo = pos.toInt().coerceIn(0, n - 2)
+    val frac = (pos - lo).toDouble()
+    val alpha = a[lo] * (1.0 - frac) + a[lo + 1] * frac
+    return (1.0 - alpha).toFloat().coerceIn(0f, 1f)
+  }
+
   // ── AGSL path ─────────────────────────────────────────────────────────────
 
   /**

@@ -630,6 +630,18 @@
         },
         "fadeRadius": {
           "type": "Double"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "blurRadius": {
+          "type": "Double"
+        },
+        "frostProgression": {
+          "type": "Double"
+        },
+        "overlayColor": {
+          "type": "Int32"
         }
       },
       "events": {},

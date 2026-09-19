@@ -18,5 +18,9 @@ interface NativeProps extends ViewProps {
   curveLeft: string
   curveRight: string
   fadeRadius: Double
+  mode: string
+  blurRadius: Double
+  frostProgression: Double
+  overlayColor: Int32
 }
 export default codegenNativeComponent<NativeProps>('OneNativeEdgeFade')

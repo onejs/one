@@ -156,6 +156,38 @@ describe('resolveEdges', () => {
   })
 })
 
+describe('resolveEdges blur', () => {
+  it('keeps blur explicit with clamped radius and progression', () => {
+    expect(normalize.resolveEdges({ bottom: 80 }).mode).toBe('mask')
+    const blur = normalize.resolveEdges({ bottom: 80, mode: 'blur' })
+    expect(blur.mode).toBe('blur')
+    expect(blur.blurRadius).toBe(28)
+    expect(blur.frostProgression).toBe(1)
+    const clamped = normalize.resolveEdges({ bottom: 80, mode: 'blur', blurRadius: -4, frostProgression: 9 })
+    expect(clamped.blurRadius).toBe(0)
+    expect(clamped.frostProgression).toBe(1)
+    expect(
+      normalize.resolveEdges({ bottom: 80, mode: 'blur', frostProgression: 0 }).frostProgression
+    ).toBe(0.05)
+  })
+
+  it('warns when a per-edge color meets the global-only veil', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    normalize.resolveEdges({ bottom: { size: 80, color: '#fff' }, mode: 'blur' })
+    expect(warn).toHaveBeenCalledOnce()
+    expect(warn.mock.calls[0]?.[0]).toContain('frost veil')
+  })
+})
+
+describe('resolveVeilColor', () => {
+  it('resolves to 0xAARRGGBB with 0 for absent or opaque colors', () => {
+    expect(normalize.resolveVeilColor(undefined)).toBe(0)
+    expect(normalize.resolveVeilColor('#ff0000')).toBe((0xffff0000 as number) | 0)
+    expect(normalize.resolveVeilColor(0x80000000 | 0)).toBe(0x80000000 | 0)
+    expect(normalize.resolveVeilColor('not-a-color')).toBe(0)
+  })
+})
+
 describe('resolveNativeProps', () => {
   it('flattens edges with smooth/zero defaults', () => {
     const native = normalize.resolveNativeProps(normalize.resolveEdges({ bottom: 96 }), 12)
@@ -167,6 +199,10 @@ describe('resolveNativeProps', () => {
       curveTop: 'smooth',
       curveBottom: 'smooth',
       fadeRadius: 12,
+      mode: 'mask',
+      blurRadius: 28,
+      frostProgression: 1,
+      overlayColor: 0,
     })
     const custom = normalize.resolveNativeProps(
       normalize.resolveEdges({ top: { size: 40, curve: { type: 'stops', values: [1, 0] } } })
@@ -204,6 +240,34 @@ describe('EdgeFade mask mode', () => {
   it('forwards radius as fadeRadius', () => {
     const element = EdgeFade({ top: 40, radius: 14 } as never)
     expect(element.props.fadeRadius).toBe(14)
+  })
+})
+
+describe('EdgeFade blur mode', () => {
+  it('renders the primitive with blur props and no veil by default', () => {
+    const element = EdgeFade({ bottom: 120, mode: 'blur', blurRadius: 24, curve: 'gentle' } as never)
+    expect(element.type).toEqual({ __component: 'OneNativeEdgeFade' })
+    expect(element.props).toMatchObject({
+      fadeBottom: 120,
+      curveBottom: 'gentle',
+      mode: 'blur',
+      blurRadius: 24,
+      frostProgression: 1,
+      overlayColor: 0,
+    })
+  })
+
+  it('forwards the veil color and clamps the progression', () => {
+    const element = EdgeFade({
+      top: 160,
+      mode: 'blur',
+      color: '#0a0a0a',
+      frostProgression: 0.5,
+    } as never)
+    expect(element.props.overlayColor).toBe((0xff0a0a0a as number) | 0)
+    expect(element.props.frostProgression).toBe(0.5)
+    const clamped = EdgeFade({ top: 160, mode: 'blur', frostProgression: 40 } as never)
+    expect(clamped.props.frostProgression).toBe(1)
   })
 })
 

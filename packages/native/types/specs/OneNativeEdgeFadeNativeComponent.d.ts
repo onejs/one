@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-import type { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import type { Int32, Double } from 'react-native/Libraries/Types/CodegenTypes';
 interface NativeProps extends ViewProps {
     fadeTop: Double;
     fadeBottom: Double;
@@ -10,6 +10,10 @@ interface NativeProps extends ViewProps {
     curveLeft: string;
     curveRight: string;
     fadeRadius: Double;
+    mode: string;
+    blurRadius: Double;
+    frostProgression: Double;
+    overlayColor: Int32;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

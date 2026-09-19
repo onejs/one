@@ -79,6 +79,26 @@ class OneNativeEdgeFadeManager :
         view.fadeRadius = px(view, value)
     }
 
+    @ReactProp(name = "mode")
+    override fun setMode(view: OneNativeEdgeFadeView, value: String?) {
+        view.mode = value ?: "mask"
+    }
+
+    @ReactProp(name = "blurRadius")
+    override fun setBlurRadius(view: OneNativeEdgeFadeView, value: Double) {
+        view.blurRadius = px(view, value)
+    }
+
+    @ReactProp(name = "frostProgression")
+    override fun setFrostProgression(view: OneNativeEdgeFadeView, value: Double) {
+        view.frostProgression = value.toFloat()
+    }
+
+    @ReactProp(name = "overlayColor")
+    override fun setOverlayColor(view: OneNativeEdgeFadeView, value: Int) {
+        view.overlayColor = value
+    }
+
     companion object {
         const val REACT_CLASS = "OneNativeEdgeFade"
     }

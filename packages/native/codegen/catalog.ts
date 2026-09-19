@@ -802,11 +802,14 @@ export const components = [
     interfaceOnly: false,
   },
   {
-    // owned edge-fade primitive (UI.EdgeFade mask mode). a Yoga container
-    // that alpha-fades its children toward any edge. sizes are dp (0 =
-    // disabled); curves are preset names or serialized alpha stops. overlay
-    // mode never reaches this view: RN core backgroundImage gradients paint
-    // it in JS. no events: a fade is pure presentation, never state.
+    // owned edge-fade primitive (UI.EdgeFade mask and blur modes). a Yoga
+    // container that alpha-fades its children toward any edge (mask) or
+    // progressively blurs them toward the edge (blur). sizes are dp (0 =
+    // disabled); curves are preset names or serialized alpha stops.
+    // overlayColor is 0xAARRGGBB resolved in JS (0 = no frost veil), so the
+    // main emitter needs no color support and both platforms read one int.
+    // overlay mode never reaches this view: RN core backgroundImage
+    // gradients paint it in JS. no events: a fade is pure presentation.
     name: 'OneNativeEdgeFade',
     publicName: 'EdgeFade',
     props: {
@@ -819,6 +822,10 @@ export const components = [
       curveLeft: 'string',
       curveRight: 'string',
       fadeRadius: 'Double',
+      mode: 'string',
+      blurRadius: 'Double',
+      frostProgression: 'Double',
+      overlayColor: 'Int32',
     },
     events: {},
     enumProps: {},
