@@ -7,6 +7,7 @@ export type SyncState<T> = {
     set(value: T): void;
     onChange: SyncStateListener<T> | null;
     subscribe(listener: SyncStateListener<T>): () => void;
+    release(): void;
     getSnapshot(): T;
     readonly [SYNC_STATE_BRAND]: true;
     readonly [SYNC_STATE_ID_KEY]: number;

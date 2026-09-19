@@ -25,6 +25,8 @@ export type SyncState<T> = {
   onChange: SyncStateListener<T> | null
   // subscribe a JS listener; returns an unsubscribe function.
   subscribe(listener: SyncStateListener<T>): () => void
+  // destroys the native entry. manual: see NativeSyncHost.release.
+  release(): void
   // stable snapshot for useSyncExternalStore: same reference until set().
   getSnapshot(): T
   readonly [SYNC_STATE_BRAND]: true
@@ -85,6 +87,11 @@ export function createSyncState<T>(initial: T): SyncState<T> {
       return () => {
         listeners.delete(listener)
       }
+    },
+    release(): void {
+      listeners.clear()
+      onChange = null
+      host.release()
     },
     getSnapshot(): T {
       return host.get()

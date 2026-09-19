@@ -172,15 +172,27 @@ describe('native-owned storage', () => {
     expect(a.getSnapshot()).toBe('a2')
   })
 
-  it('requires the native module, with no fallback', () => {
+  it('releases the native entry on demand', () => {
+    const state = createSyncState('doomed')
+    const listener = vi.fn()
+    state.subscribe(listener)
+    state.onChange = listener
+    state.release()
+    expect(() => state.get()).toThrow('OneNativeSyncState was released')
+    expect(() => state.set('x')).toThrow('OneNativeSyncState was released')
+    expect(listener).not.toHaveBeenCalled()
+  })
+
+  it('installs the platform host where there is no native module', () => {
+    // web/node resolve the base installer, which provides the in-memory
+    // platform host: there is no native entry to fall back from there. the
+    // native-throw path (installer null) is pinned in syncFactory.test.ts.
     const key = '__OneNativeSyncState'
     const globals = globalThis as Record<string, unknown>
     const saved = globals[key]
     delete globals[key]
     try {
-      expect(() => createSyncState('x')).toThrow(
-        'useNativeState requires the OneNative native module'
-      )
+      expect(createSyncState('x').get()).toBe('x')
     } finally {
       if (saved !== undefined) globals[key] = saved
       else installMockNativeSync()
