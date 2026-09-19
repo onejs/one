@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,12 +44,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -618,11 +621,18 @@ private fun RenderComposeButton(
 private fun RowScope.ComposeButtonContent(props: OneNativeComposeNodeProps) {
     val icon = props.icon
     if (!icon.isNullOrEmpty()) {
-        Text(
-            text = icon,
-            fontFamily = materialSymbolsFontFamily(props.iconFilled),
-            fontSize = ButtonDefaults.IconSize.value.sp,
-        )
+        val iconSize = ButtonDefaults.IconSize
+        val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+        Box(
+            modifier = Modifier.size(iconSize),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = icon,
+                fontFamily = materialSymbolsFontFamily(props.iconFilled),
+                fontSize = (iconSize.value / fontScale).sp,
+            )
+        }
         Spacer(Modifier.width(ButtonDefaults.IconSpacing))
     }
     Text(props.label.orEmpty())
@@ -721,6 +731,7 @@ private fun Modifier.applyReactSemantics(
     if (!testId.isNullOrEmpty()) result = result.testTag(testId)
     val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch"
     return result.semantics(mergeDescendants = mergeDescendants) {
+        if (node.renderedNodeKind == "icon" && label.isNullOrEmpty()) invisibleToUser()
         if (!label.isNullOrEmpty()) contentDescription = label
         if (!valueText.isNullOrEmpty()) stateDescription = valueText
         if (props.disabled || stateDisabled || !node.isEnabled) disabled()

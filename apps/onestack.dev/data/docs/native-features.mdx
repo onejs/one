@@ -226,9 +226,9 @@ import { Compose } from '@vxrn/native'
 </Compose.Column>
 ```
 
-Names are Material Symbols snake_case names from fonts.google.com/icons, such as `star` or `arrow_forward`. There is no mapping to SF Symbols: iOS keeps `systemImage`/`systemName` and web renders nothing.
+Names are Material Symbols snake_case names from fonts.google.com/icons, such as `star` or `arrow_forward`. There is no mapping to SF Symbols: iOS keeps `systemImage`/`systemName`. Web renders nothing, and unlike the null-returning toolbar and zoom components, the `Compose` components throw when rendered off Android.
 
-`size` defaults to 24. `filled` picks the bundled filled font instead of outlined. `Compose.Button` takes a leading icon with `icon` and `iconFilled`. Tint with `composeStyle.foregroundColor`. Fonts are bundled, so rendering is offline and synchronous. Unknown names throw at mount.
+`size` defaults to 24. `filled` picks the bundled filled font instead of outlined. `Compose.Button` takes a leading icon with `icon` and `iconFilled`; a standalone icon tints with `composeStyle.foregroundColor`, while a Button icon follows the button's content color. Fonts are bundled, so rendering is offline and synchronous. Unknown names throw when the icon renders, and an icon with no `accessibilityLabel` is decorative.
 
 ### Compose.Icon Props
 

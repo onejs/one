@@ -63,12 +63,14 @@ arrangement. `Box` accepts `contentAlignment`.
 
 `Icon` renders a Material Symbols glyph. `name` is the snake_case Google icon name
 (`star`, `arrow_forward`), checked against the codepoint map generated from
-`codegen/material-symbols.codepoints`, so a typo throws at mount instead of
-rendering nothing. `size` defaults to 24 and `filled` picks between the bundled
-outlined and filled static fonts. `Button` takes the same `icon` and `iconFilled`
-and draws the glyph at the Material 3 icon size before its label. Both fonts live
-in `android/src/main/res/font`, so rendering is synchronous and offline.
-`composeStyle.foregroundColor` tints an icon the way it colors text.
+`codegen/material-symbols.codepoints`, so a typo throws when the icon renders
+instead of drawing nothing. `size` defaults to 24 and `filled` picks between the
+bundled outlined and filled static fonts. `Button` takes the same `icon` and
+`iconFilled` and draws the glyph at the Material 3 icon size before its label.
+Both fonts live in `android/src/main/res/font`, so rendering is synchronous and
+offline. `composeStyle.foregroundColor` tints a standalone icon the way it colors
+text; a Button icon follows the button's content color. An icon with no
+`accessibilityLabel` is decorative, and one with a label announces as an image.
 
 ### Android toolchain pins and device proof
 
