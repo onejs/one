@@ -20,6 +20,7 @@ import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOption
 import { createRouteIndex } from '../utils/routeIndex'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
+import { resolveNativeBundler } from './nativeBundler'
 import { bundledDevPlugin } from './plugins/bundledDevPlugin'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
@@ -87,7 +88,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     | (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions)
     | null = (() => {
     if (nativeDisabled) return null
-    if (nativeOptions?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) {
+    if (resolveNativeBundler({ bundler: nativeOptions?.bundler }) !== 'metro') {
       // the vite native bundler runs no babel and has nowhere to put a babel
       // plugin, so anything configured here is dropped. that is silent by
       // default, and a dropped plugin usually means a broken bundle rather than
