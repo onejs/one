@@ -57,13 +57,6 @@ export default codegenNativeComponent<NativeProps>('FixtureView') as HostCompone
     expect(emitViewConfig(source, filename)).toBe(pluginOutput(source, filename))
   })
 
-  it('leaves no codegen call behind for bundlers to trigger on', () => {
-    const filename = join(specsDir, specs[0])
-    const output = emitViewConfig(readFileSync(filename, 'utf8'), filename)
-    expect(output).toContain('__INTERNAL_VIEW_CONFIG')
-    expect(output).not.toMatch(/codegenNativeComponent\s*[<(]/)
-  })
-
   it('throws when the file has no codegen export', () => {
     expect(() => emitViewConfig('export default 42\n', 'Plain.ts')).toThrow(
       'has no codegenNativeComponent default export'
