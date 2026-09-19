@@ -12,6 +12,7 @@ import type {
   ComposeTextFieldProps,
   ComposeTextProps,
 } from './composeTypes'
+import { isSyncState } from './syncStore'
 
 export const horizontalAlignments = ['start', 'centerHorizontally', 'end'] as const
 export const verticalAlignments = ['top', 'centerVertically', 'bottom'] as const
@@ -258,7 +259,8 @@ export function validateSwitchProps(props: ComposeSwitchProps) {
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {
-  assertString(props.text, 'TextField text')
+  if (typeof props.text !== 'string' && !isSyncState(props.text))
+    throw new Error('Compose TextField text must be a string or NativeState handle')
   assertFunction(props.onTextChange, 'TextField onTextChange')
   assertOptionalString(props.label, 'TextField label')
   assertOptionalString(props.placeholder, 'TextField placeholder')
