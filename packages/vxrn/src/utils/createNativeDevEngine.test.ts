@@ -973,6 +973,52 @@ describe('native production import.meta lowering', () => {
   })
 })
 
+describe('native production react-native deep imports', () => {
+  it('resolves react native subpaths that are missing from its exports map', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-deep-import-'))
+    const reactNativeRoot = join(testRoot, 'node_modules', 'react-native')
+    await mkdir(join(reactNativeRoot, 'src', 'private', 'featureflags'), {
+      recursive: true,
+    })
+    // react native 0.87 narrowed package.json exports to explicit subpaths and
+    // dropped the old `./*` / `./src/*` patterns, so a deep import like
+    // `react-native/src/private/featureflags/Flags` no longer matches the export
+    // map. metro still resolves it from the filesystem, and so must we —
+    // @react-native/virtualized-lists itself imports RN that way.
+    await writeFile(
+      join(reactNativeRoot, 'package.json'),
+      JSON.stringify({
+        name: 'react-native',
+        version: '0.0.0',
+        main: './index.js',
+        exports: { '.': './index.js', './package.json': './package.json' },
+      })
+    )
+    await writeFile(
+      join(reactNativeRoot, 'src', 'private', 'featureflags', 'Flags.js'),
+      `module.exports.deepImportResolved = true`
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `globalThis.__vxrnNativeDeepImportProbe = require('react-native/src/private/featureflags/Flags').deepImportResolved`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+
+      const context = { globalThis: {}, process: { env: {} } }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context.globalThis, '__vxrnNativeDeepImportProbe')).toBe(true)
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native animated guard transform', () => {
   it('preserves line count and returns a composable source map', async () => {
     const plugin = nativeAnimatedGuardPlugin()

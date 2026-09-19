@@ -469,6 +469,8 @@ extension View {
     switch value {
     case "automatic":
       self.textFieldStyle(.automatic)
+    case "roundedBorder":
+      self.textFieldStyle(.roundedBorder)
     case "plain":
       self.textFieldStyle(.plain)
     default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self
