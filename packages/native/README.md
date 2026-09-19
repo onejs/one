@@ -142,13 +142,7 @@ The suite preflights the attached device and the `tcp:8081` reverse before
 running anything. When Metro listens on another port, pass
 `--metro-port <PORT>` (or set `RCT_METRO_PORT`) to match the reverse.
 
-The suite first attempts a density rotation on the home screen with no native
-views mounted. That path is quarantined: the recreate-driven JS re-run lands
-on `App entry not found` even with zero native views (a manual dev-menu reload
-recovers, so the bundle and Metro are fine and the automatic re-run is what is
-broken), which exonerates native init. A quarantine failure is recorded with
-artifacts in `status.json`, the app relaunches, and the suite continues. The
-suite then drives `tests/native-features/app/one-native-android.tsx` through
+The suite drives `tests/native-features/app/one-native-android.tsx` through
 `uiautomator` dumps and coordinate taps: mount marker, accessibility and order,
 prop mutation with fresh bounds, two button taps, controlled Switch reject,
 accept, and revision reset, keyed reorder, optional unmount and remount,
@@ -162,8 +156,8 @@ state intact and the fill-width button row remeasured wider, taps through one
 live interaction, then frees the rotation lock and proves the screen stays
 mounted with bounds reverted. A second screen then proves the TextField,
 Slider, AlertDialog, Dialog, and ProgressIndicator nodes the same way. The
-suite runs 41 checks on the standard emulator (plus 2 conditional
-IME-renavigate checks, minus any quarantined home-rotation checks).
+suite runs 39 checks on the standard emulator, plus 2 conditional
+IME-renavigate checks.
 
 Two behaviors are worth knowing when reading the artifacts. A non-scrollable
 `Column` taller than the window keeps composing its tail, but the short
