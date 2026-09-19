@@ -1,7 +1,7 @@
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaView } from '@vxrn/safe-area'
 
 import type { ErrorBoundaryProps } from './Try'
 
