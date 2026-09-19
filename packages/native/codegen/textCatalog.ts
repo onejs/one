@@ -51,7 +51,7 @@ const textModifiers = `      .oneNativeTextFieldStyle(model.textFieldStyle)
 export const textControls: Control[] = [
   {
     name: 'TextField',
-    value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '' },
+    value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '', sync: true },
     focus: true,
     actions: [{ prop: 'onSubmit', event: 'Submit' }],
     fields: {
@@ -77,11 +77,11 @@ export const textControls: Control[] = [
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string') throw new Error('TextField text must be a string')`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextField text must be a string or NativeState handle')`,
   },
   {
     name: 'SecureField',
-    value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '' },
+    value: { type: 'string', prop: 'text', event: 'onTextChange', initial: '', sync: true },
     focus: true,
     actions: [{ prop: 'onSubmit', event: 'Submit' }],
     fields: textFields,
@@ -103,6 +103,6 @@ ${textModifiers}`,
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string') throw new Error('SecureField text must be a string')`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('SecureField text must be a string or NativeState handle')`,
   },
 ]

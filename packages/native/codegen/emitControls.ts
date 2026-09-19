@@ -1,7 +1,7 @@
 import { controls } from './controlCatalog'
 import { styleFields } from './catalog'
 import type { StyleField } from './catalog'
-import type { Control, ControlField, ScalarType } from './controlTypes'
+import type { Control, ControlField, ControlValue, ScalarType } from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { Declaration } from './inventory'
 
@@ -24,6 +24,14 @@ const nativeType = (field: ControlField) =>
 const literal = (value: string | boolean | number) => JSON.stringify(value)
 const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
+// a sync value resolves its handle to a plain scalar before reaching native.
+// nativeValue expressions name the public prop, so re-point them at the
+// resolved binding on word boundaries.
+const syncNativeValue = (value: ControlValue, synced: string) =>
+  (value.nativeValue ?? value.prop).replace(
+    new RegExp(`\\b${value.prop}\\b`, 'g'),
+    synced
+  )
 // an enum field defaulting to the empty string means unset; the Swift helper passes self through.
 const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.default === ''
 // a style field that lists its values gets a named alias, so Swift.Glass can take the same
@@ -45,6 +53,7 @@ export function emitControls(
   inventory: readonly Declaration[]
 ) {
   if (!controls.length) return
+  const hasSync = controls.some((control) => control.value?.sync)
   const payloads: Record<string, NonNullable<ControlField['payload']>> = {}
   for (const control of controls)
     for (const field of Object.values(control.fields))
@@ -64,6 +73,7 @@ export function emitControls(
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
+${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
 ${styleFields
   .filter((field) => field.values)
@@ -98,7 +108,10 @@ export type OneNativeViewProps = Pick<
       .join('')
   let adapters =
     header +
-    "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n"
+    "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n" +
+    (hasSync
+      ? "import { isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
+      : '')
   const schema = []
   for (const control of controls) {
     const { name, fields, value, actions = [] } = control
@@ -139,7 +152,7 @@ export type OneNativeViewProps = Pick<
     types += `export interface ${name}Props extends OneNativeViewProps {
 ${
   value
-    ? `  ${value.prop}: ${publicValueType}
+    ? `  ${value.prop}: ${publicValueType}${value.sync ? ` | NativeState<${publicValueType}>` : ''}
   ${value.event}: (value: ${publicValueType}) => void
   revision?: number
 `
@@ -201,7 +214,11 @@ ${
         fieldEntries.flatMap(([key, field]) => (field.enum ? [[key, field.enum]] : []))
       ),
       controlled: value
-        ? { value: 'value', event: `onNative${name}ValueChange` }
+        ? {
+            value: 'value',
+            event: `onNative${name}ValueChange`,
+            ...(value.sync ? { sync: true as const } : {}),
+          }
         : undefined,
       focus: control.focus
         ? { value: 'focused', event: `onNative${name}FocusChange` }
@@ -284,8 +301,12 @@ export function ${name}({ ${parameters.join(', ')} }: Types.${name}Props) {
 ${control.validate}
 ${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
+  value?.sync
+    ? `  const syncHandle = syncHandleOf<${publicValueType}>(${value.prop})\n  const synced${upper(value.prop)} = useSyncValue<${publicValueType}>(${value.prop})\n`
+    : ''
+}${
   value
-    ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
+    ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
     : ''
 }${
       control.focus
@@ -293,7 +314,7 @@ ${
         : ''
     }  return <Native${name} {...props} ${styleProp}
     swiftStyle={swiftStyle}
-${value ? `    value={${value.nativeValue ?? value.prop}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
+${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
       control.focus
         ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
         : ''

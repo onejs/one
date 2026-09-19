@@ -1483,7 +1483,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeTextFieldValueChange"
+        "event": "onNativeTextFieldValueChange",
+        "sync": true
       },
       "actions": [
         {
@@ -1581,7 +1582,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeSecureFieldValueChange"
+        "event": "onNativeSecureFieldValueChange",
+        "sync": true
       },
       "actions": [
         {
