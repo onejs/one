@@ -346,6 +346,14 @@ export namespace One {
       | false
       | ({
           /**
+           * Typed native app manifest. `name` is the native target and the
+           * AppRegistry key. This replaces Expo-shaped `app.json`: prebuild
+           * rejects missing platform ids and invalid target names before
+           * writing either platform project.
+           */
+          app?: import('../native-platform/nativeApp').OneNativeAppConfig
+
+          /**
            * The uid of your native app, this will be used internally in one to call
            * `AppRegistry.registerComponent(key)`
            */
