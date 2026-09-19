@@ -5,9 +5,9 @@ import { resolveEdges, resolveNativeProps, resolveRadius, type ResolvedEdge } fr
 import type { EdgeFadeProps } from './types'
 
 // overlay fades paint through RN core backgroundImage gradients (no native
-// code). the experimental key exists on 0.86 (Soot) through 0.87 (here);
-// the stable key is 0.87-only, so the experimental one is the portable read.
-const BACKGROUND_IMAGE_KEY = 'experimental_backgroundImage' as const
+// code). the stable key is promoted in 0.87, the integration target; 0.86
+// only processes the experimental alias, so this is 0.87+.
+const BACKGROUND_IMAGE_KEY = 'backgroundImage' as const
 
 type EdgeName = 'top' | 'bottom' | 'left' | 'right'
 

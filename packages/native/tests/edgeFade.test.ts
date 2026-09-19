@@ -224,12 +224,12 @@ describe('EdgeFade overlay mode', () => {
     expect(strips).toHaveLength(1)
     const [layout, paint] = strips[0] as [
       { height: number; bottom: number },
-      { experimental_backgroundImage: Array<{ direction: string; colorStops: Array<{ color: string; positions: string[] }> }> },
+      { backgroundImage: Array<{ direction: string; colorStops: Array<{ color: string; positions: string[] }> }> },
     ]
     expect(layout.height).toBe(100)
     expect(layout.bottom).toBe(0)
-    expect(paint.experimental_backgroundImage).toHaveLength(1)
-    const [gradient] = paint.experimental_backgroundImage
+    expect(paint.backgroundImage).toHaveLength(1)
+    const [gradient] = paint.backgroundImage
     expect(gradient?.direction).toBe('to top')
     expect(gradient?.colorStops).toHaveLength(32)
     // outer edge (0%) opaque black, inner edge (100%) transparent.
@@ -249,7 +249,7 @@ describe('EdgeFade overlay mode', () => {
     const left = stripsOf(EdgeFade({ left: 40, color: '#000' } as never))
     const right = stripsOf(EdgeFade({ right: 40, color: '#000' } as never))
     const directionOf = (strip: Array<Record<string, unknown>>) =>
-      (strip[1]?.['experimental_backgroundImage'] as Array<{ direction: string }>)?.[0]?.direction
+      (strip[1]?.['backgroundImage'] as Array<{ direction: string }>)?.[0]?.direction
     expect(directionOf(top[0]!)).toBe('to bottom')
     expect(directionOf(left[0]!)).toBe('to right')
     expect(directionOf(right[0]!)).toBe('to left')
@@ -264,7 +264,7 @@ describe('EdgeFade overlay mode', () => {
     const strips = stripsOf(element)
     expect(strips).toHaveLength(2)
     const rgbOf = (strip: Array<Record<string, unknown>>) => {
-      const stops = (strip[1]?.['experimental_backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>)?.[0]
+      const stops = (strip[1]?.['backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>)?.[0]
         ?.colorStops
       return stops?.[0]?.color.match(/rgba\((\d+,\d+,\d+),/)?.[1]
     }
@@ -277,7 +277,7 @@ describe('EdgeFade overlay mode', () => {
     expect(element.props.style).toEqual([{}, { borderRadius: 10, overflow: 'hidden' }])
     const strips = stripsOf(element)
     const stops = (
-      strips[0]?.[1]?.['experimental_backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>
+      strips[0]?.[1]?.['backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>
     )?.[0]?.colorStops
     expect(stops?.[0]?.color).toBe('rgba(0,0,0,1)')
   })
