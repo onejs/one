@@ -92,6 +92,37 @@ describe('generic leaf emitter', () => {
     expect(body).toBe('FakeView(axis: OneNativeGenerated.axis(model.axis))')
   })
 
+  it('matches repeated unlabeled arguments by position', () => {
+    const parameters = [
+      { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+      { label: '_', type: 'Swift.Bool' },
+    ]
+    expect(
+      deriveLeafSwift(
+        [
+          declaration({
+            module: 'SwiftUI',
+            owner: 'FakeView',
+            kind: 'init',
+            name: 'init',
+            parameters: parameters.map((parameter, index) => ({
+              ...parameter,
+              name: `value${index}`,
+            })),
+          }),
+        ],
+        {
+          constructor: { type: 'FakeView', parameters },
+          args: [
+            { label: '_', localizedKey: 'label' },
+            { label: '_', field: 'enabled' },
+          ],
+        },
+        []
+      )
+    ).toBe('FakeView(LocalizedStringKey(model.label), model.enabled)')
+  })
+
   it('rejects arg lists that do not match the signature', () => {
     const control = byName([...leafControls], 'Text')
     const inventory = inventoryFor(control)
@@ -105,7 +136,7 @@ describe('generic leaf emitter', () => {
         { constructor, args: [{ label: 'content', field: 'text' }] },
         []
       )
-    ).toThrow('no parameter content')
+    ).toThrow('argument 1 is content, not verbatim')
     expect(() =>
       deriveLeafSwift(
         inventory,
