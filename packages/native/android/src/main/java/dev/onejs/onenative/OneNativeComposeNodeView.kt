@@ -50,10 +50,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.dialog
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -73,6 +76,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.ReadableType
 import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.views.view.ReactViewGroup
+import kotlin.math.roundToInt
 
 internal data class OneNativeComposeStyle(
     val backgroundColor: Int? = null,
@@ -854,24 +858,36 @@ private fun RenderComposeSlider(
     modifier: Modifier,
 ) {
     val enabled = !props.disabled && node.isEnabled
+    val suppliedMinimum = props.minimumValue.takeIf { it.isFinite() } ?: 0.0
+    val suppliedMaximum = props.maximumValue.takeIf { it.isFinite() } ?: 1.0
     val minimum =
-        props.minimumValue.takeIf { it.isFinite() }?.toFloat() ?: 0f
+        suppliedMinimum.toFloat()
     val maximum =
-        props.maximumValue.takeIf { it.isFinite() }?.toFloat() ?: 1f
+        suppliedMaximum.toFloat()
     val range = if (minimum < maximum) minimum..maximum else 0f..1f
     val coerced = node.renderedNumberValue.toFloat().coerceIn(range)
     val step = props.step.takeIf { it.isFinite() } ?: 0.0
-    val steps =
+    val intervalCount =
         if (step > 0) {
-            (((range.endInclusive - range.start) / step).coerceIn(0.0, 1001.0).toInt())
-                .minus(1)
-                .coerceAtLeast(0)
+            ((suppliedMaximum - suppliedMinimum) / step).roundToInt().coerceIn(1, 1001)
         } else {
-            0
+            1
         }
+    val steps =
+        if (step > 0) intervalCount - 1 else 0
     Slider(
         value = coerced,
-        onValueChange = { node.handleNumberChanged(it.toDouble()) },
+        onValueChange = { value ->
+            val next =
+                if (step > 0) {
+                    val offset = value.toDouble() - suppliedMinimum
+                    (suppliedMinimum + (offset / step).roundToInt() * step)
+                        .coerceIn(suppliedMinimum, suppliedMaximum)
+                } else {
+                    value.toDouble()
+                }
+            node.handleNumberChanged(next)
+        },
         modifier = modifier,
         enabled = enabled,
         valueRange = range,
@@ -993,16 +1009,22 @@ private fun Modifier.applyReactSemantics(
         accessibilityState?.takeIf { it.hasKey("disabled") && !it.isNull("disabled") }?.getBoolean("disabled") == true
     val explicitRole = node.getTag(R.id.accessibility_role)?.toString()
         ?: node.getTag(R.id.role)?.toString()
+    val normalizedRole = explicitRole?.lowercase()?.substringAfterLast('.')
     val semanticRole =
-        composeRole(explicitRole)
+        composeRole(normalizedRole)
             ?: when (node.renderedNodeKind) {
                 "button" -> Role.Button
                 "switch" -> Role.Switch
-                // dialogs and progress publish their own semantics; Role has no
-                // Dialog or ProgressBar entry in the pinned compose ui version.
                 else -> null
             }
-    val isHeading = explicitRole?.lowercase()?.substringAfterLast('.') == "header"
+    val isDialog =
+        node.renderedNodeKind == "alertdialog" ||
+            node.renderedNodeKind == "dialog" ||
+            normalizedRole == "dialog" ||
+            normalizedRole == "alert"
+    val isProgressBar =
+        node.renderedNodeKind == "progressindicator" || normalizedRole == "progressbar"
+    val isHeading = normalizedRole == "header"
 
     var result = this
     if (!testId.isNullOrEmpty()) result = result.testTag(testId)
@@ -1012,15 +1034,23 @@ private fun Modifier.applyReactSemantics(
         if (!valueText.isNullOrEmpty()) stateDescription = valueText
         if (props.disabled || stateDisabled || !node.isEnabled) disabled()
         if (semanticRole != null) role = semanticRole
+        if (isDialog) dialog()
+        if (isProgressBar) {
+            progressBarRangeInfo =
+                props.progress.takeIf { it.isFinite() && it >= 0 }
+                    ?.let { ProgressBarRangeInfo(it.toFloat().coerceIn(0f, 1f), 0f..1f) }
+                    ?: ProgressBarRangeInfo.Indeterminate
+        }
         if (isHeading) heading()
         if (!testId.isNullOrEmpty()) testTagsAsResourceId = true
     }
 }
 
 private fun composeRole(value: String?): Role? =
-    when (value?.lowercase()?.substringAfterLast('.')) {
+    when (value) {
         "button", "link" -> Role.Button
-        "switch", "checkbox" -> Role.Switch
+        "switch" -> Role.Switch
+        "checkbox" -> Role.Checkbox
         else -> null
     }
 
