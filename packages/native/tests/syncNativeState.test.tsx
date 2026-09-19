@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { act, create } from 'react-test-renderer'
 import { describe, expect, it } from 'vitest'
 
+globalThis.IS_REACT_ACT_ENVIRONMENT = true
+
 import { isSyncState } from '../src/syncStore'
 import { useNativeState, type NativeState } from '../src/syncNativeState'
 
@@ -81,10 +83,12 @@ describe('useNativeState', () => {
     act(() => {
       create(<Parent />)
     })
-    // write outside React entirely: the value is readable synchronously, and
-    // both views converge on the next render without any prop drilling.
-    handle.set('updated')
-    expect(handle.get()).toBe('updated')
+    // the value is readable synchronously, before React commits the
+    // re-render, and both views converge without any prop drilling.
+    act(() => {
+      handle.set('updated')
+      expect(handle.get()).toBe('updated')
+    })
     act(() => {
       handle.set('updated-again')
     })
