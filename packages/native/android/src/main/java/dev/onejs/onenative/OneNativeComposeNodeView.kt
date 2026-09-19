@@ -998,8 +998,8 @@ private fun Modifier.applyReactSemantics(
             ?: when (node.renderedNodeKind) {
                 "button" -> Role.Button
                 "switch" -> Role.Switch
-                "alertdialog", "dialog" -> Role.Dialog
-                "progressindicator" -> Role.ProgressBar
+                // dialogs and progress publish their own semantics; Role has no
+                // Dialog or ProgressBar entry in the pinned compose ui version.
                 else -> null
             }
     val isHeading = explicitRole?.lowercase()?.substringAfterLast('.') == "header"
@@ -1021,8 +1021,6 @@ private fun composeRole(value: String?): Role? =
     when (value?.lowercase()?.substringAfterLast('.')) {
         "button", "link" -> Role.Button
         "switch", "checkbox" -> Role.Switch
-        "dialog", "alert" -> Role.Dialog
-        "progressbar" -> Role.ProgressBar
         else -> null
     }
 
