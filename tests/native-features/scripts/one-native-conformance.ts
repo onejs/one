@@ -1522,14 +1522,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // a swipe anchored to a visible row stays inside its own scroll view: starting one
     // on a neighboring list would scroll that instead.
-    const swipeRows = async (prefix: string, target: string, horizontal: boolean) => {
+    const swipeRows = async (prefix: string | string[], target: string, horizontal: boolean) => {
+      const prefixes = Array.isArray(prefix) ? prefix : [prefix]
       for (let attempt = 0; attempt < 10; attempt++) {
         const nodes = snapshot(config.simulatorId)
         if (labels(nodes).includes(target)) return
         const frame = nodes.find(
-          (node) => node.AXLabel?.startsWith(prefix) && node.frame
+          (node) =>
+            node.AXLabel &&
+            prefixes.some((candidate) => node.AXLabel!.startsWith(candidate)) &&
+            node.frame
         )?.frame
-        if (!frame) throw new Error(`no ${prefix}row to swipe over`)
+        if (!frame)
+          throw new Error(
+            Array.isArray(prefix)
+              ? 'no list row to swipe over'
+              : `no ${prefix}row to swipe over`
+          )
         const x = Math.round(frame.x + frame.width / 2)
         const y = Math.round(frame.y + frame.height / 2)
         command(
@@ -1573,17 +1582,35 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('a Toggle composed into a List emits', (n) => status(n, 'IsOn', 'true'))
 
     // each style change re-resolves the list style natively; the rows surviving it is
-    // what proves the prop flowed without dropping the content.
+    // what proves the prop flowed without dropping the content. a style relayout can
+    // shift section 2 below the fold, so section 2 is asserted after swiping it in;
+    // the list is lazy, so section 1 is only asserted before that swipe.
+    const listRow = [
+      'Fruits',
+      'Apple',
+      'Banana',
+      'Orange',
+      'List button',
+      'Ripe',
+      'Vegetables',
+      'Carrot',
+      'Broccoli',
+    ]
     tap({ id: 'one-native-list-style' })
-    await wait('a List takes the plain style', (n) =>
-      status(n, 'List style', 'plain') &&
-      labels(n).includes('Apple') &&
+    await wait(
+      'a List takes the plain style',
+      (n) => status(n, 'List style', 'plain') && labels(n).includes('Apple')
+    )
+    await swipeRows(listRow, 'Carrot', false)
+    await wait('a plain List keeps its second section', (n) =>
       labels(n).includes('Carrot')
     )
     tap({ id: 'one-native-list-style' })
     await wait('a List takes the grouped style', (n) =>
-      status(n, 'List style', 'grouped') &&
-      labels(n).includes('Apple') &&
+      status(n, 'List style', 'grouped')
+    )
+    await swipeRows(listRow, 'Carrot', false)
+    await wait('a grouped List keeps its second section', (n) =>
       labels(n).includes('Carrot')
     )
     screenshot('lists-grouped.png')
