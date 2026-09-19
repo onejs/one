@@ -24,7 +24,13 @@ export const SafeAreaView = React.forwardRef<
   const appliedStyle = React.useMemo(
     () => ({
       ...StyleSheet.flatten(style),
-      ...buildSafeAreaInsetStyle({ insets, edges, mode, style }),
+      ...buildSafeAreaInsetStyle({
+        insets,
+        edges,
+        mode,
+        style,
+        resolveStyle: StyleSheet.flatten,
+      }),
     }),
     [style, insets, edges, mode]
   )

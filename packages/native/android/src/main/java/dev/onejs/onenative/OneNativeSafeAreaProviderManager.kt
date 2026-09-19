@@ -2,6 +2,7 @@ package dev.onejs.onenative
 
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
+import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.ViewManagerDelegate
 import com.facebook.react.viewmanagers.OneNativeSafeAreaProviderManagerDelegate
@@ -21,6 +22,32 @@ class OneNativeSafeAreaProviderManager :
         OneNativeSafeAreaProviderView(reactContext)
 
     override fun getDelegate(): ViewManagerDelegate<OneNativeSafeAreaProviderView> = delegate
+
+    override fun addEventEmitters(
+        reactContext: ThemedReactContext,
+        view: OneNativeSafeAreaProviderView
+    ) {
+        super.addEventEmitters(reactContext, view)
+        view.setOnInsetsChangeHandler { insetsPx, framePx ->
+            val dispatcher =
+                UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.id)
+                    ?: return@setOnInsetsChangeHandler false
+            val density = view.resources.displayMetrics.density.toDouble()
+            dispatcher.dispatchEvent(
+                OneNativeSafeAreaInsetsChangeEvent(
+                    UIManagerHelper.getSurfaceId(view),
+                    view.id,
+                    insetsPx[0] / density,
+                    insetsPx[1] / density,
+                    insetsPx[2] / density,
+                    insetsPx[3] / density,
+                    framePx[0] / density,
+                    framePx[1] / density,
+                    framePx[2] / density,
+                    framePx[3] / density))
+            true
+        }
+    }
 
     override fun prepareToRecycleView(
         reactContext: ThemedReactContext,

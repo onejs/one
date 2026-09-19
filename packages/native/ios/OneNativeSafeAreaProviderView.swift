@@ -7,8 +7,11 @@ import UIKit
 // frames and unchanged values never emit.
 @objcMembers
 public final class OneNativeSafeAreaProviderView: UIView {
+  // reports whether the adapter delivered the reading. values cache only on
+  // confirmation, so a first reading that arrives before the Fabric event
+  // emitter exists retries on the next trigger instead of sticking at zero.
   public var onInsets:
-    ((Double, Double, Double, Double, Double, Double, Double, Double) -> Void)?
+    ((Double, Double, Double, Double, Double, Double, Double, Double) -> Bool)?
 
   private var currentInsets = UIEdgeInsets.zero
   private var currentFrame = CGRect.zero
@@ -70,12 +73,15 @@ public final class OneNativeSafeAreaProviderView: UIView {
     {
       return
     }
-    initialInsetsSent = true
-    currentInsets = insets
-    currentFrame = frame
-    onInsets?(
-      insets.top, insets.right, insets.bottom, insets.left,
-      frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)
+    let delivered =
+      onInsets?(
+        insets.top, insets.right, insets.bottom, insets.left,
+        frame.origin.x, frame.origin.y, frame.size.width, frame.size.height) ?? false
+    if delivered {
+      initialInsetsSent = true
+      currentInsets = insets
+      currentFrame = frame
+    }
   }
 
   public func reset() {

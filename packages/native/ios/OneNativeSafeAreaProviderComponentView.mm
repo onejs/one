@@ -20,11 +20,11 @@ using namespace facebook::react;
     _providerView = [OneNativeSafeAreaProviderView new];
     self.contentView = _providerView;
     __weak OneNativeSafeAreaProviderComponentView *weakSelf = self;
-    _providerView.onInsets = ^(
+    _providerView.onInsets = ^BOOL(
         double top, double right, double bottom, double left, double x, double y, double width,
         double height) {
       OneNativeSafeAreaProviderComponentView *strongSelf = weakSelf;
-      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      if (!strongSelf || !strongSelf->_eventEmitter) return NO;
       auto emitter = std::static_pointer_cast<const OneNativeSafeAreaProviderEventEmitter>(
           strongSelf->_eventEmitter);
       emitter->onNativeInsetsChange(
@@ -36,6 +36,7 @@ using namespace facebook::react;
            .frameY = y,
            .frameWidth = width,
            .frameHeight = height});
+      return YES;
     };
   }
   return self;

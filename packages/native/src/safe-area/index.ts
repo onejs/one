@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import type { Metrics, NativeSafeAreaProviderProps } from './types'
 
 // web entry. only the pure inset math and types live here; the provider
@@ -8,7 +9,9 @@ import type { Metrics, NativeSafeAreaProviderProps } from './types'
 export type * from './types'
 export {
   buildSafeAreaInsetStyle,
+  keyboardSafeBottom,
   providerEventToMetrics,
+  resolveOverlappingInsets,
   resolveSafeAreaEdgeModes,
 } from './insets'
 
@@ -16,7 +19,11 @@ export function getInitialWindowMetrics(): Metrics | null {
   return null
 }
 
-export function NativeSafeAreaProvider(_props: NativeSafeAreaProviderProps): never {
+// renders nothing on web: rendering throws, but the declaration returns an
+// element so native consumers typecheck against the host component shape.
+export function NativeSafeAreaProvider(
+  _props: NativeSafeAreaProviderProps
+): ReactElement {
   throw new Error(
     'NativeSafeAreaProvider requires a native build with @vxrn/native installed'
   )
