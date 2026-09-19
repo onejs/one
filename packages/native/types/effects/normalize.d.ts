@@ -12,6 +12,8 @@ export interface ResolvedEdgeFade {
     right: ResolvedEdge | null;
     mode: EdgeFadeMode;
     color?: ColorValue;
+    blurRadius: number;
+    frostProgression: number;
 }
 export declare function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade;
 export interface NativeEdgeFadeProps {
@@ -24,7 +26,12 @@ export interface NativeEdgeFadeProps {
     curveLeft: string;
     curveRight: string;
     fadeRadius: number;
+    mode: string;
+    blurRadius: number;
+    frostProgression: number;
+    overlayColor: number;
 }
+export declare function resolveVeilColor(color?: ColorValue): number;
 export declare function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number): NativeEdgeFadeProps;
 /**
  * the `radius` prop is the only corner source: it feeds the native mask on

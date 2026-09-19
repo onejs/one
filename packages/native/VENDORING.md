@@ -6,26 +6,40 @@ Vendored from `react-native-edge-fade@0.2.0` (MIT, Copyright (c) 2026 Giulio
 Amato), owned in-tree under `OneNative*` names so the symbols never collide
 with the upstream package if an app also links it.
 
-What we took (slice 1, mask path only):
+What we took (mask + blur; slice 1 mask, slice 2 blur):
 
 - ios/OneNativeEdgeFadeCurves.{h,mm} — preset tables + custom parsing
-  (overlay `LocationsForCurve` and blur `PresenceAt` dropped)
+  (overlay `LocationsForCurve` and blur `PresenceAt` dropped; the blur
+  mask layer inlines its own presence sampling)
 - ios/OneNativeEdgeFadeMaskLayer.{h,mm} — whole file
-- ios/OneNativeEdgeFadeComponentView.{h,mm} — mask wiring + radius;
-  overlay/blur/veil layers, bench macros, and color props dropped
-- android/.../OneNativeEdgeFadeCurves.kt — whole object minus blur-only
-  `presenceAt`
+- ios/OneNativeEdgeFadeBlurMaskLayer.{h,mm} — whole file
+- ios/OneNativeEdgeFadeComponentView.{h,mm} — mask wiring + blur stack +
+  frost veil + saturation compensation; overlay layers and bench macros
+  dropped
+- android/.../OneNativeEdgeFadeCurves.kt — whole object
 - android/.../OneNativeEdgeFadeShader.kt — AGSL + fallback trimmed to
   mask-only (overlay uniforms/branches deleted, not stubbed)
-- android/.../OneNativeEdgeFadeView.kt — mask render + clip + scroll sync;
-  overlay/blur/lens/vibrancy deleted
+- android/.../OneNativeEdgeFadeView.kt — mask render + UNIFORM blur stack +
+  veil + clip + scroll sync; overlay, LAYERED pipeline, and lens deleted
 - android/.../OneNativeEdgeFadeManager.kt — rewritten for our codegen spec
-  (Double props) following the file's dp/px + invalidate pattern
+  following the file's dp/px + invalidate pattern
 
 Deliberately NOT carried: overlay strip rendering (RN core
 `backgroundImage` gradients paint it in `src/effects/EdgeFade.native.tsx`
 with identical stacked semantics), the Reanimated variant, the web
 implementation, and the lens mode.
+
+One divergences from upstream, all tightening:
+
+- Frost grades (`frostSaturation`/`frostLift`) are not props: upstream JS
+  never forwarded them, so both platforms use the upstream defaults as
+  constants (Android) / internal compensation (iOS).
+- The frost veil is global-color-only on both platforms (matching upstream
+  behavior); per-edge color in blur mode warns in JS.
+- The veil color crosses the spec as Int32 0xAARRGGBB resolved in JS (0 =
+  no veil), so the main codegen emitter needs no color support.
+- Android hardcodes the UNIFORM blur pipeline (upstream default); the
+  LAYERED compile-time flag and its exclusive helpers are deleted.
 
 The JS side (`src/effects/`) is a fresh implementation of the same prop
 surface, not a copy.

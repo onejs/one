@@ -18,7 +18,7 @@ export interface StopsCurve {
 
 export type EdgeFadeCurve = CurvePreset | CubicBezierCurve | StopsCurve
 
-export type EdgeFadeMode = 'mask' | 'overlay'
+export type EdgeFadeMode = 'mask' | 'overlay' | 'blur'
 
 export interface EdgeConfig {
   /** fade depth in dp. overrides the component-level `size`. */
@@ -46,15 +46,29 @@ export interface EdgeFadeProps extends ViewProps {
    * 'mask' paints no color: children alpha-fade to transparent (native
    * primitive, the only way to alpha-mask on native). 'overlay' paints a
    * color gradient over the children (RN core backgroundImage gradients,
-   * no native code). inferred from `color` when omitted.
+   * no native code). 'blur' progressively blurs the children toward the
+   * enabled edges (native primitive). inferred from `color` when omitted:
+   * color means overlay, otherwise mask; blur is always explicit.
    */
   mode?: EdgeFadeMode
   /**
    * overlay mode: gradient target color, opaque at the outer edge fading to
    * transparent at the inner edge. per-edge `EdgeConfig.color` overrides it.
+   * blur mode: optional frost-veil tint over the blur (omit for pure blur).
    * ignored in mask mode.
    */
   color?: ColorValue
+  /**
+   * blur mode only: maximum blur radius in dp at the outer edge, ramping
+   * from sharp at the inner edge along each edge's curve.
+   */
+  blurRadius?: number
+  /**
+   * blur mode only: fraction of the band (inner to outer, clamped 0.05-1)
+   * over which the curve's blur envelope completes. smaller values reach
+   * full blur sooner and hold it for the rest of the band.
+   */
+  frostProgression?: number
   /**
    * corner radius in dp, applied with the fade (mask mode) or as a clipped
    * container (overlay mode). use this instead of `style.borderRadius`,
