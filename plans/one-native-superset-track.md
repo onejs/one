@@ -55,6 +55,8 @@ status file; the coordinator resolves.
    SearchBar, DropdownMenu + declarative registry. [android]
 9. Targeted imperative UIKit wrappers, auto-generated where the SDK allows
    (document picker, Safari view, StoreKit flows, haptics...). Later milestone.
+   Sequenced by the Expo top-50 + soot-template survey (worker
+   expo-supersede-survey, doc lives in the soot repo, never here).
 
 ## Protocols
 
