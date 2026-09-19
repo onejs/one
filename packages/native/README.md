@@ -142,12 +142,14 @@ a bounded stress block: six rapid unmount/remount toggles plus four rapid
 reorders with a duplicate-node sweep over every proof testID, single-handler
 taps proving no duplicate event delivery, and a configuration-change block
 that sets `wm density 560` (density is not in the activity's `configChanges`,
-so the activity recreates), re-navigates from the reloaded home screen, proves
-a single remount with default state, proves a single post-recreation button
-event, proves the expanded bounds width scales with the density ratio
-(619px at 420dpi to 826px at 560dpi, ratio 1.334 against 1.333 expected),
-then resets the density and proves the remount once more. 24 checks pass on
-the standard emulator.
+so the activity recreates while React state persists), proves the proof screen
+stays mounted with its taps-3 / switch-on state intact, proves the expanded
+bounds width scales with the density ratio (619px at 420dpi to 826px at 560dpi,
+ratio 1.334 against 1.333 expected), taps through one live post-recreation
+interaction, then resets the density and proves the screen stays mounted with
+bounds reverted. A second screen then proves the TextField, Slider,
+AlertDialog, Dialog, and ProgressIndicator nodes the same way. The suite runs
+40 checks on the standard emulator (plus 2 conditional IME-renavigate checks).
 
 Two behaviors are worth knowing when reading the artifacts. A non-scrollable
 `Column` taller than the window keeps composing its tail, but at 560dpi the

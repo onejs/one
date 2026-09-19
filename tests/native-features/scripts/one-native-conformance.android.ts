@@ -1033,47 +1033,22 @@ async function run(config: Config) {
     try {
       writeDensity(config, String(densityAfter))
       await expect(
-        'configuration-change-home-reload',
-        (nodes) =>
-          exactlyOneId(nodes, 'home-screen') &&
-          textIncludes(nodes, '@vxrn/native Test Suite'),
-        'home-screen'
-      )
-      await tapNavigation(config)
-      await expect(
-        'configuration-change-remount',
+        'configuration-change-stays-mounted',
         (nodes) =>
           exactlyOneId(nodes, 'one-native-android-mounted') &&
           textIncludes(nodes, 'Android proof mounted') &&
-          textIncludes(nodes, 'Button taps: 0') &&
-          textIncludes(nodes, 'Switch: off · Request: off · Revision: 0') &&
+          textIncludes(nodes, 'Button taps: 3') &&
+          textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
           textIncludes(nodes, 'Optional: mounted') &&
+          textIncludes(nodes, 'Prop: expanded') &&
           duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
         'one-native-android-mounted',
         (nodes) => ({
           duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall),
         })
       )
-      tapFresh(config, 'Post-rotation real button tap', {
-        id: 'one-native-android-real-button',
-        role: 'button',
-        clickable: true,
-      })
       await expect(
-        'post-rotation-single-handler',
-        (nodes) =>
-          textIncludes(nodes, 'Button taps: 1') &&
-          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
-        'one-native-android-mounted',
-        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall) })
-      )
-      tapFresh(config, 'Post-rotation prop mutation', {
-        id: 'one-native-android-prop-mutate',
-        role: 'button',
-        clickable: true,
-      })
-      await expect(
-        'post-rotation-density-bounds',
+        'configuration-change-density-bounds',
         (nodes) => {
           const box = nodeById(nodes, 'one-native-android-bounds-box')
           const width = nodeWidth(box)
@@ -1097,25 +1072,55 @@ async function run(config: Config) {
           ),
         })
       )
+      tapFresh(config, 'Post-rotation real button tap', {
+        id: 'one-native-android-real-button',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        'configuration-change-live-interaction',
+        (nodes) =>
+          textIncludes(nodes, 'Button taps: 4') &&
+          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+        'one-native-android-mounted',
+        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall) })
+      )
     } finally {
       writeDensity(config, 'reset')
     }
     await expect(
-      'configuration-change-density-reset',
-      (nodes) =>
-        exactlyOneId(nodes, 'home-screen') &&
-        textIncludes(nodes, '@vxrn/native Test Suite'),
-      'home-screen'
-    )
-    await tapNavigation(config)
-    await expect(
-      'density-reset-remount',
+      'density-reset-stays-mounted',
       (nodes) =>
         exactlyOneId(nodes, 'one-native-android-mounted') &&
         textIncludes(nodes, 'Android proof mounted') &&
+        textIncludes(nodes, 'Button taps: 4') &&
+        textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
+        textIncludes(nodes, 'Optional: mounted') &&
         duplicateIds(nodes).length === 0,
       'one-native-android-mounted',
       (nodes) => ({ duplicates: duplicateIds(nodes) })
+    )
+    await expect(
+      'density-reset-bounds-revert',
+      (nodes) => {
+        const box = nodeById(nodes, 'one-native-android-bounds-box')
+        const width = nodeWidth(box)
+        const ratio = width / expandedBefore
+        return (
+          textIncludes(nodes, 'Prop: expanded') &&
+          ratio > 0.9 &&
+          ratio < 1.1 &&
+          duplicateIds(nodes).length === 0
+        )
+      },
+      'one-native-android-mounted',
+      (nodes) => ({
+        expandedBefore,
+        revertedWidth: nodeWidth(
+          nodeById(nodes, 'one-native-android-bounds-box')
+        ),
+        duplicates: duplicateIds(nodes),
+      })
     )
 
     pressBack(config)
