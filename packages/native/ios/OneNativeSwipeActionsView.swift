@@ -42,6 +42,7 @@ public final class OneNativeSwipeActionsActionsView: OneNativeContainerView {
   // than published: changing edges mid-life is restructuring, not an update.
   public var edge = "trailing"
   public var allowsFullSwipe = true
+  fileprivate var onConfigurationChange: (() -> Void)?
 
   public init() {
     super.init(wrap: { children, _ in
@@ -52,8 +53,10 @@ public final class OneNativeSwipeActionsActionsView: OneNativeContainerView {
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   public func configure(edge: String, allowsFullSwipe: Bool) {
+    let changed = self.edge != edge || self.allowsFullSwipe != allowsFullSwipe
     if self.edge != edge { self.edge = edge }
     if self.allowsFullSwipe != allowsFullSwipe { self.allowsFullSwipe = allowsFullSwipe }
+    if changed { onConfigurationChange?() }
   }
 }
 
@@ -93,6 +96,7 @@ public final class OneNativeSwipeActionsView: OneNativeContainerView {
       return
     }
     markers.append(marker)
+    marker.onConfigurationChange = { [weak self] in self?.republish() }
     marker.composeInto(self)
     publish(marker)
   }
@@ -103,12 +107,16 @@ public final class OneNativeSwipeActionsView: OneNativeContainerView {
       return
     }
     markers.removeAll { $0 === child }
+    (child as? OneNativeSwipeActionsActionsView)?.onConfigurationChange = nil
     (child as? OneNativeComposable)?.decompose()
     republish()
   }
 
   public override func reset() {
-    for marker in markers { marker.decompose() }
+    for marker in markers {
+      marker.onConfigurationChange = nil
+      marker.decompose()
+    }
     markers.removeAll()
     model.leading = nil
     model.trailing = nil
