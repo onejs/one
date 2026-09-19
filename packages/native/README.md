@@ -133,6 +133,10 @@ bun tests/native-features/scripts/one-native-conformance.android.ts \
   --artifact-dir /tmp/one-native-android-proof
 ```
 
+The suite preflights the attached device and the `tcp:8081` reverse before
+running anything. When Metro listens on another port, pass
+`--metro-port <PORT>` (or set `RCT_METRO_PORT`) to match the reverse.
+
 The suite first attempts a density rotation on the home screen with no native
 views mounted. That path is quarantined: the recreate-driven JS re-run lands
 on `App entry not found` even with zero native views (a manual dev-menu reload
