@@ -56,7 +56,9 @@ export function Pager({
   return (
     <NativePager
       {...props}
-      style={[{ flex: 1 }, style]}
+      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, so a
+      // pager stretches by default and takes its viewport from the style.
+      style={[{ alignSelf: 'stretch' }, style]}
       selection={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
