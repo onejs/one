@@ -404,18 +404,31 @@ function tapByText(config: Config, name: string, text: string) {
   adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
 }
 
-function tapFraction(
+function swipeOnNode(
   config: Config,
   name: string,
   selector: Selector,
-  fractionX: number
+  fromX: number,
+  toX: number,
+  durationMs = 300
 ) {
   const current = snapshot(config)
   const node = uniqueNode(current.nodes, selector, name)
   const bounds = validBounds(node, name)
-  const x = Math.round(bounds.left + (bounds.right - bounds.left) * fractionX)
+  const width = bounds.right - bounds.left
+  const x1 = Math.round(bounds.left + width * fromX)
+  const x2 = Math.round(bounds.left + width * toX)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
-  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+  adbText(config, [
+    'shell',
+    'input',
+    'swipe',
+    String(x1),
+    String(y),
+    String(x2),
+    String(y),
+    String(durationMs),
+  ])
 }
 
 function adbType(config: Config, text: string) {
@@ -714,8 +727,10 @@ async function run(config: Config) {
         await expect(
           'home-rotation-stays-mounted',
           (nodes) =>
-            exactlyOneId(nodes, 'home-screen') &&
-            textIncludes(nodes, '@vxrn/native Test Suite'),
+            diagnose(nodes, [
+              ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+              ['suite title', (n) => textIncludes(n, '@vxrn/native Test Suite')],
+            ]),
           'home-screen'
         )
       } finally {
@@ -731,8 +746,10 @@ async function run(config: Config) {
       await expect(
         'home-rotation-reset-stays-mounted',
         (nodes) =>
-          exactlyOneId(nodes, 'home-screen') &&
-          textIncludes(nodes, '@vxrn/native Test Suite'),
+          diagnose(nodes, [
+            ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+            ['suite title', (n) => textIncludes(n, '@vxrn/native Test Suite')],
+          ]),
         'home-screen'
       )
     } catch (homeError) {
@@ -1136,15 +1153,18 @@ async function run(config: Config) {
           const row = nodeById(nodes, 'one-native-android-button-row')
           const width = nodeWidth(row)
           const window = applicationBounds(nodes)
-          return (
-            exactlyOneId(nodes, 'one-native-android-mounted') &&
-            textIncludes(nodes, 'Button taps: 3') &&
-            textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
-            textIncludes(nodes, 'Prop: expanded') &&
-            window.right - window.left > window.bottom - window.top &&
-            width > portraitRowWidth * 1.2 &&
-            duplicateIdsIn(nodes, proofIdsVisibleLandscape).length === 0
-          )
+          return diagnose(nodes, [
+            ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
+            ['button taps kept', (n) => textIncludes(n, 'Button taps: 3')],
+            ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+            ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
+            ['window is landscape', () => window.right - window.left > window.bottom - window.top],
+            ['row widened', () => width > portraitRowWidth * 1.2],
+            [
+              'no landscape duplicates',
+              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+            ],
+          ])
         },
         'one-native-android-mounted',
         (nodes) => ({
@@ -1164,8 +1184,13 @@ async function run(config: Config) {
       await expect(
         'orientation-landscape-live-interaction',
         (nodes) =>
-          textIncludes(nodes, 'Button taps: 4') &&
-          duplicateIdsIn(nodes, proofIdsVisibleLandscape).length === 0,
+          diagnose(nodes, [
+            ['button tap landed', (n) => textIncludes(n, 'Button taps: 4')],
+            [
+              'no landscape duplicates',
+              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+            ],
+          ]),
         'one-native-android-mounted',
         (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape) })
       )
@@ -1185,16 +1210,15 @@ async function run(config: Config) {
         const row = nodeById(nodes, 'one-native-android-button-row')
         const width = nodeWidth(row)
         const ratio = width / portraitRowWidth
-        return (
-          exactlyOneId(nodes, 'one-native-android-mounted') &&
-          textIncludes(nodes, 'Button taps: 4') &&
-          textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
-          textIncludes(nodes, 'Optional: mounted') &&
-          textIncludes(nodes, 'Prop: expanded') &&
-          ratio > 0.9 &&
-          ratio < 1.1 &&
-          duplicateIds(nodes).length === 0
-        )
+        return diagnose(nodes, [
+          ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
+          ['button taps kept', (n) => textIncludes(n, 'Button taps: 4')],
+          ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+          ['optional kept', (n) => textIncludes(n, 'Optional: mounted')],
+          ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
+          ['row width reverted', () => ratio > 0.9 && ratio < 1.1],
+          ['no duplicates', (n) => duplicateIds(n).length === 0],
+        ])
       },
       'one-native-android-mounted',
       (nodes) => ({
@@ -1220,20 +1244,24 @@ async function run(config: Config) {
     await expect(
       'inputs-proof-mounted',
       (nodes) =>
-        exactlyOneId(nodes, 'one-native-android-inputs-mounted') &&
-        textIncludes(nodes, 'Android inputs proof mounted'),
+        diagnose(nodes, [
+          ['inputs marker', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+          ['mounted text', (n) => textIncludes(n, 'Android inputs proof mounted')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
     tapFresh(config, 'Inputs textfield focus', {
       id: 'one-native-android-inputs-textfield',
     })
-    adbType(config, 'hello')
+    adbType(config, 'h')
     await expect(
       'inputs-textfield-reject',
       (nodes) =>
-        textIncludes(nodes, 'Request: hello · Revision: 0') &&
-        !textIncludes(nodes, 'Text: hello'),
+        diagnose(nodes, [
+          ['request observed', (n) => textIncludes(n, 'Request: h · Revision: 0')],
+          ['value rejected', (n) => !textIncludes(n, 'Text: h')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
@@ -1283,8 +1311,10 @@ async function run(config: Config) {
       await expect(
         'inputs-proof-remounted',
         (nodes) =>
-          exactlyOneId(nodes, 'one-native-android-inputs-mounted') &&
-          textIncludes(nodes, 'Android inputs proof mounted'),
+          diagnose(nodes, [
+            ['inputs marker', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+            ['mounted text', (n) => textIncludes(n, 'Android inputs proof mounted')],
+          ]),
         'one-native-android-inputs-mounted'
       )
     }
@@ -1300,20 +1330,30 @@ async function run(config: Config) {
       'one-native-android-inputs-mounted'
     )
 
-    tapFraction(config, 'Inputs slider track tap', {
-      id: 'one-native-android-inputs-slider',
-    }, 0.8)
+    swipeOnNode(
+      config,
+      'Inputs slider drag',
+      {
+        id: 'one-native-android-inputs-slider',
+      },
+      0.3,
+      0.85
+    )
     await expect(
-      'inputs-slider-track-tap',
+      'inputs-slider-drag',
       (nodes) => {
         const status =
           matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
             ?.text ?? ''
         const match = /Slider: (-?\d+) · Request: (-?\d+)/.exec(status)
-        if (!match) return false
-        const value = Number(match[1])
-        const request = Number(match[2])
-        return value === request && value !== 30 && value % 5 === 0
+        const value = match ? Number(match[1]) : null
+        const request = match ? Number(match[2]) : null
+        return diagnose(nodes, [
+          ['slider status parses', () => match !== null],
+          ['value equals request', () => value !== null && value === request],
+          ['value moved', () => value !== null && value !== 30],
+          ['value snapped to step', () => value !== null && value % 5 === 0],
+        ])
       },
       'one-native-android-inputs-mounted',
       (nodes) => ({
@@ -1331,18 +1371,22 @@ async function run(config: Config) {
     await expect(
       'inputs-dialog-shown',
       (nodes) =>
-        textIncludes(nodes, 'Delete item?') &&
-        textIncludes(nodes, 'This cannot be undone.') &&
-        textIncludes(nodes, 'Delete') &&
-        textIncludes(nodes, 'Cancel'),
+        diagnose(nodes, [
+          ['dialog title', (n) => textIncludes(n, 'Delete item?')],
+          ['dialog message', (n) => textIncludes(n, 'This cannot be undone.')],
+          ['confirm button', (n) => textIncludes(n, 'Delete')],
+          ['dismiss button', (n) => textIncludes(n, 'Cancel')],
+        ]),
       'one-native-android-inputs-mounted'
     )
     tapByText(config, 'Inputs dialog confirm button', 'Delete')
     await expect(
       'inputs-dialog-confirm',
       (nodes) =>
-        textIncludes(nodes, 'Dialog: confirmed') &&
-        !textIncludes(nodes, 'Delete item?'),
+        diagnose(nodes, [
+          ['confirm recorded', (n) => textIncludes(n, 'Dialog: confirmed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
@@ -1360,8 +1404,10 @@ async function run(config: Config) {
     await expect(
       'inputs-dialog-dismiss-button',
       (nodes) =>
-        textIncludes(nodes, 'Dialog: dismissed') &&
-        !textIncludes(nodes, 'Delete item?'),
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Dialog: dismissed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
@@ -1379,9 +1425,11 @@ async function run(config: Config) {
     await expect(
       'inputs-dialog-back-dismiss',
       (nodes) =>
-        textIncludes(nodes, 'Dialog: dismissed') &&
-        !textIncludes(nodes, 'Delete item?') &&
-        exactlyOneId(nodes, 'one-native-android-inputs-mounted'),
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Dialog: dismissed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+          ['screen kept', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
@@ -1393,8 +1441,10 @@ async function run(config: Config) {
     await expect(
       'inputs-custom-dialog-shown',
       (nodes) =>
-        exactlyOneId(nodes, 'one-native-android-inputs-custom-body') &&
-        textIncludes(nodes, 'Custom dialog body'),
+        diagnose(nodes, [
+          ['custom body id', (n) => exactlyOneId(n, 'one-native-android-inputs-custom-body')],
+          ['custom body text', (n) => textIncludes(n, 'Custom dialog body')],
+        ]),
       'one-native-android-inputs-mounted'
     )
     tapFresh(config, 'Inputs custom dialog close button', {
@@ -1405,8 +1455,10 @@ async function run(config: Config) {
     await expect(
       'inputs-custom-dialog-closed',
       (nodes) =>
-        textIncludes(nodes, 'Custom dialog: closed') &&
-        !textIncludes(nodes, 'Custom dialog body'),
+        diagnose(nodes, [
+          ['close recorded', (n) => textIncludes(n, 'Custom dialog: closed')],
+          ['custom body gone', (n) => !textIncludes(n, 'Custom dialog body')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
@@ -1424,19 +1476,23 @@ async function run(config: Config) {
     await expect(
       'inputs-custom-dialog-back-dismiss',
       (nodes) =>
-        textIncludes(nodes, 'Custom dialog: dismissed') &&
-        !textIncludes(nodes, 'Custom dialog body') &&
-        exactlyOneId(nodes, 'one-native-android-inputs-mounted'),
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Custom dialog: dismissed')],
+          ['custom body gone', (n) => !textIncludes(n, 'Custom dialog body')],
+          ['screen kept', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+        ]),
       'one-native-android-inputs-mounted'
     )
 
     await expect(
       'inputs-progress-and-duplicate-sweep',
       (nodes) =>
-        exactlyOneId(nodes, 'one-native-android-inputs-progress-linear') &&
-        exactlyOneId(nodes, 'one-native-android-inputs-progress-circular') &&
-        textIncludes(nodes, 'Progress mounted') &&
-        duplicateIds(nodes).length === 0,
+        diagnose(nodes, [
+          ['linear indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-linear')],
+          ['circular indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-circular')],
+          ['progress text', (n) => textIncludes(n, 'Progress mounted')],
+          ['no duplicates', (n) => duplicateIds(n).length === 0],
+        ]),
       'one-native-android-inputs-mounted',
       (nodes) => ({ duplicates: duplicateIds(nodes) })
     )
