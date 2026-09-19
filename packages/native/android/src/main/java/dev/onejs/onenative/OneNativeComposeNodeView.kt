@@ -1027,7 +1027,10 @@ private fun Modifier.applyReactSemantics(
     val isHeading = normalizedRole == "header"
 
     var result = this
-    if (!testId.isNullOrEmpty()) result = result.testTag(testId)
+    // natively mounted nodes already expose testID as the view resource-id via
+    // Fabric; only logical-only children need the compose testTag.
+    val needsComposeTag = !testId.isNullOrEmpty() && node.parent == null
+    if (needsComposeTag) result = result.testTag(testId)
     val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch"
     return result.semantics(mergeDescendants = mergeDescendants) {
         if (!label.isNullOrEmpty()) contentDescription = label
@@ -1042,7 +1045,7 @@ private fun Modifier.applyReactSemantics(
                     ?: ProgressBarRangeInfo.Indeterminate
         }
         if (isHeading) heading()
-        if (!testId.isNullOrEmpty()) testTagsAsResourceId = true
+        if (needsComposeTag) testTagsAsResourceId = true
     }
 }
 
