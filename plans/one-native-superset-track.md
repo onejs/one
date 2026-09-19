@@ -72,6 +72,13 @@ status file; the coordinator resolves.
   polls status files and transcripts.
 - REVIEW: none per slice. Coordinator validates assembled work with builds +
   conformance before anything merges anywhere.
+- Standing review rule (coordinator): assembled work gets a DeepSeek review
+  before it lands. Spawn tm run --runner opencode-deepseek-v4.1-flash with
+  the brief pointing at skills/code-review.md (Staffing section), demanding
+  maximum-depth reasoning plus in-source verification of every finding.
+  Revalidate agreed findings, land, then stop the reviewer. Applied at track
+  merge time (and to the closed-world + static-config milestones when they
+  land), not per green slice.
 
 ## Design findings (from rnx lane)
 
