@@ -41,6 +41,11 @@ TextField, ToggleButton, Tooltip, useNativeState.
     No new committed test: Kotlin-only compile fix, no JVM harness in repo;
     coordinator assembleDebug is the gate; existing dialog/progress
     conformance checks cover the paths at runtime.
+  - ANDROIDFIX2 `9e606c87c`: rewrote the rotation block for state-preserving
+    recreate (stays mounted, taps-3/switch-on intact, bounds rescale vs
+    expandedBefore, one live tap, bounds revert after reset; try/finally
+    kept). README proof paragraph + count refreshed (40 checks + 2
+    conditional). Script typechecks; coordinator reruns the full suite.
 
 ## NEEDS-BUILD
 
