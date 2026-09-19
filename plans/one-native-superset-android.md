@@ -156,13 +156,15 @@ TextField, ToggleButton, Tooltip, useNativeState.
 
 ## NEEDS-BUILD
 
-- `656360dc6` (root testTag dedup): `:app:assembleDebug` plus the full
-  android suite. Unblocks the final `inputs-progress-and-duplicate-sweep`
-  check: the root testID is currently exposed twice (Fabric native
-  resource-id plus compose testTag). Script half (`dbe3e74c1`, no rebuild
-  needed) already corrects the sweep to inputs ids with duplicates-only
-  semantics. Worker gates RAN: tsc clean, vitest 15/15, suite script
-  transpiles.
+- `656360dc6` (root testTag dedup) + `a43ff87c3` (sweep exact-one root):
+  `:app:assembleDebug` plus the full android suite. Unblocks the final
+  `inputs-progress-and-duplicate-sweep` check: the root testID is currently
+  exposed twice (Fabric native resource-id plus compose testTag). Script
+  half (`dbe3e74c1` + `a43ff87c3`, no rebuild needed) corrects the sweep to
+  inputs ids with duplicates-only semantics plus an exact-one screen-root
+  conjunct (closes Sol's vacuous-green hole: dropping the root id entirely
+  would otherwise pass). Worker gates RAN: tsc clean, vitest 15/15, suite
+  script transpiles.
 - `7f353e64e` (review integration): superseded by the above (same code
   plus fixes); FIX8 dialog taps verified below on the pre-fix APK.
 - `a01574299` + `40ed4020f`: superseded by the above (same code plus fixes).
