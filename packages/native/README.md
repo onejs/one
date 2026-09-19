@@ -1119,7 +1119,8 @@ bun run test
 
 Generation requires Xcode and its macOS/iPhoneSimulator SDKs. The checked-in
 manifest records the target SDK ceiling, which tracks the Xcode CI pins; any
-newer toolchain produces identical output.
+newer toolchain produces identical output. Enum cases stay mapped while the SDK
+ships them, even when a newer SDK deprecates them.
 The generator matches constructors by full parameter labels and types, and matches
 modifiers by those signatures plus generic constraints. It derives enum cases and
 iOS availability from SDK declarations, then emits:

@@ -2198,6 +2198,7 @@
     },
     "TextFieldStyle": {
       "automatic": 13,
+      "roundedBorder": 13,
       "plain": 13
     },
     "SubmitLabel": {

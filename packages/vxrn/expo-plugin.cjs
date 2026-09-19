@@ -448,6 +448,40 @@ react {
 }
 `.trim()
 
+const SET_CLI_PATH_MARKER = '# [vxrn/one] React Native now defaults CLI_PATH'
+
+/**
+ * The bundle phase ends by running React Native's own `scripts/react-native-xcode.sh`
+ * through a backtick-wrapped `"$NODE_BINARY" ...` invocation. The patchers below
+ * insert their exports right before that line so `react-native-xcode.sh` sees them.
+ *
+ * Expo's template has changed the quoting of that line between SDK versions:
+ *
+ *   SDK 57: `"$NODE_BINARY" --print ".../scripts/react-native-xcode.sh"`
+ *   SDK 58: "`"$NODE_BINARY" --print ".../scripts/react-native-xcode.sh"`"
+ *
+ * so match any leading quote characters and re-emit whatever matched. Matching
+ * only the exact SDK 57 shape made every patch below a silent no-op on SDK 58.
+ */
+const BUNDLE_PHASE_RUNNER_ANCHOR = /^[ \t]*["'`]*`"\$NODE_BINARY"/m
+
+let warnedMissingBundlePhaseRunnerAnchor = false
+
+function insertBeforeBundlePhaseRunner(input, codeToAdd) {
+  const patched = input.replace(BUNDLE_PHASE_RUNNER_ANCHOR, (match) => {
+    return `${codeToAdd}\n\n${match}`
+  })
+
+  if (patched === input && !warnedMissingBundlePhaseRunnerAnchor) {
+    warnedMissingBundlePhaseRunnerAnchor = true
+    console.warn(
+      '[vxrn] could not find the `"$NODE_BINARY" .../scripts/react-native-xcode.sh` line in the iOS bundle phase — vxrn bundle phase patches (CLI_PATH, hermesc) were not applied. This usually means the Expo template changed shape; please report it.'
+    )
+  }
+
+  return patched
+}
+
 /**
  * React Native v0.76 defaults the CLI_PATH to an internal scripts/bundle.js for iOS (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L93), which loads the bundle command directly from `@react-native/community-cli-plugin`, and will ignore the override of the bundle command in `react-native.config.cjs`.
  * We need to set it back to the main CLI endpoint so the override of the bundle command in `react-native.config.cjs` can take effect.
@@ -455,16 +489,16 @@ react {
  * Note: The Android build process seems to be using the main CLI endpoint, so we only need to fix iOS.
  */
 function addSetCliPathToBundleReactNativeShellScript(input) {
-  if (input.includes('CLI_PATH="')) {
+  if (input.includes(SET_CLI_PATH_MARKER)) {
     return input
   }
 
   const codeToAdd = `
-# [vxrn/one] React Native now defaults CLI_PATH to scripts/bundle.js, which loads the bundle command directly from @react-native/community-cli-plugin, we need to set it back to the main CLI endpoint so the override of the bundle command in react-native.config.cjs can take effect
+${SET_CLI_PATH_MARKER}
 export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
 `.trim()
 
-  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
+  return insertBeforeBundlePhaseRunner(input, codeToAdd)
 }
 
 /**
@@ -493,7 +527,7 @@ if [ -f "\${PODS_ROOT}/hermes-engine/destroot/bin/hermesc" ]; then
 fi
 `.trim()
 
-  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
+  return insertBeforeBundlePhaseRunner(input, codeToAdd)
 }
 
 /**
@@ -922,3 +956,4 @@ module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
   injectExpoUpdatesIosResourcesPatchIntoPodfile
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
 module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
+module.exports.SET_CLI_PATH_MARKER = SET_CLI_PATH_MARKER

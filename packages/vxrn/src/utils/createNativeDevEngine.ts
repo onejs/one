@@ -277,7 +277,16 @@ function getNativePlugins(
         }
       },
     } satisfies Plugin,
-    ...(dev ? [reactNativeDedupePlugin(root)] : []),
+    // route every `react-native/*` import through the app's react native copy.
+    // two reasons: package managers can install the same react native version at
+    // multiple physical paths and rolldown assigns each path its own module
+    // identity (resolving to one copy keeps initializeCore from running twice),
+    // and react native 0.87 narrowed its package.json `exports` (dropping `./*`
+    // and `./src/*`), so deep imports such as
+    // `react-native/src/private/featureflags/ReactNativeFeatureFlags` — which
+    // @react-native/virtualized-lists itself makes — fail resolution against
+    // the export map. metro resolves those from the filesystem, so do the same.
+    reactNativeDedupePlugin(root),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -1306,16 +1315,32 @@ function reactNativeDedupePlugin(root: string): Plugin {
   // package managers can install the same react native version at multiple
   // physical paths. rolldown assigns each path a module identity, so resolving
   // every entry through the app's instance prevents initializeCore from running twice.
-  let reactNativeRoot: string | undefined
+  //
+  // resolving through the filesystem also keeps react native 0.87's narrow
+  // package.json `exports` (it dropped `./*` and `./src/*`) from rejecting deep
+  // imports such as `react-native/src/private/featureflags/*`, which
+  // @react-native/virtualized-lists makes and metro resolves off disk.
+  let reactNativeRoot: string | null | undefined
 
   return {
     name: 'vxrn:react-native-dedupe',
     async resolveId(source, importer) {
       if (source !== 'react-native' && !source.startsWith('react-native/')) return
 
-      reactNativeRoot ||= realpathSync(
-        dirname(resolvePath('react-native/package.json', root))
-      )
+      if (reactNativeRoot === undefined) {
+        try {
+          reactNativeRoot = realpathSync(
+            dirname(resolvePath('react-native/package.json', root))
+          )
+        } catch {
+          // no react native to resolve (for example a project that only stubs
+          // `react-native/asset-registry`). fall through to rolldown's own
+          // resolution instead of failing the build.
+          reactNativeRoot = null
+        }
+      }
+      if (!reactNativeRoot) return
+
       const subpath =
         source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
       return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
