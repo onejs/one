@@ -1,6 +1,8 @@
 import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { useControlled } from './controlled'
+import { getSyncStateId } from './syncStore'
+import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
@@ -76,6 +78,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
+  syncStateId?: number
   placeholder?: string
   keyboardType?: ComposeTextFieldKeyboardType
   secureText?: boolean
@@ -291,16 +294,25 @@ function TextField({
     keyboardType,
     secureText,
   })
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     text: string
     eventCount: number
     revision: number
-  }>((event) => onTextChange(event.text), revision)
+  }>(
+    (event) => {
+      syncHandle?.set(event.text)
+      onTextChange(event.text)
+    },
+    revision
+  )
   return (
     <ComposeNode
       {...props}
       nodeType="textfield"
-      textValue={text}
+      textValue={syncedText}
+      syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}

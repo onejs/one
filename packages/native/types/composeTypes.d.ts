@@ -1,5 +1,6 @@
 import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 import type { ReactNode } from 'react';
+import type { NativeState } from './syncNativeState';
 export type ComposeStyle = Readonly<{
     backgroundColor?: ColorValue;
     foregroundColor?: ColorValue;
@@ -71,7 +72,7 @@ export interface ComposeSwitchProps extends ComposeLeafProps {
 export type ComposeTextFieldVariant = 'filled' | 'outlined';
 export type ComposeTextFieldKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';
 export interface ComposeTextFieldProps extends ComposeLeafProps {
-    text: string;
+    text: string | NativeState<string>;
     onTextChange: (value: string) => void;
     revision?: number;
     label?: string;

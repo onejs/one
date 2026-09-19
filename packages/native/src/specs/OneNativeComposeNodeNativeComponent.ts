@@ -43,6 +43,7 @@ interface NativeProps extends ViewProps {
   arrangement?: string
   spacing?: WithDefault<Double, -1>
   textValue?: string
+  syncStateId?: Int32
   placeholder?: string
   keyboardType?: string
   secureText?: boolean

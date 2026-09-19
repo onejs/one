@@ -9,12 +9,14 @@ import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
+import dev.onejs.onenative.OneNativeSyncModule
 
 class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
+            OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             else -> null
         }
     }
@@ -32,6 +34,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSafeAreaModule.NAME to ReactModuleInfo(
                 name = OneNativeSafeAreaModule.NAME,
                 className = OneNativeSafeAreaModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeSyncModule.NAME to ReactModuleInfo(
+                name = OneNativeSyncModule.NAME,
+                className = OneNativeSyncModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

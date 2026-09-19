@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Compose } from '../src/compose'
+import { createSyncState } from '../src/syncStore'
 import {
   validateAlertDialogProps,
   validateBoxProps,
@@ -124,7 +125,13 @@ describe('compose textfield validation', () => {
   it('rejects non-string text, missing handler, and unknown variants', () => {
     expect(() =>
       validateTextFieldProps({ text: undefined as never, onTextChange: () => {} })
-    ).toThrow('Compose TextField text must be string')
+    ).toThrow('Compose TextField text must be a string or NativeState handle')
+    expect(() =>
+      validateTextFieldProps({
+        text: createSyncState('held'),
+        onTextChange: () => {},
+      })
+    ).not.toThrow()
     expect(() =>
       validateTextFieldProps({ text: '', onTextChange: undefined as never })
     ).toThrow('Compose TextField onTextChange must be a function')

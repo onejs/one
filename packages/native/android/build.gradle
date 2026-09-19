@@ -26,10 +26,23 @@ android {
     defaultConfig {
         minSdkVersion safeExtGet("minSdkVersion", 23)
         targetSdkVersion safeExtGet("targetSdkVersion", 35)
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
     }
 
     buildFeatures {
         compose true
+        prefab true
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
     }
 
     compileOptions {
@@ -68,4 +81,9 @@ dependencies {
     implementation "androidx.compose.ui:ui:$composeUiVersion"
     implementation "androidx.compose.foundation:foundation:$composeUiVersion"
     implementation "androidx.compose.material3:material3:$material3Version"
+    if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
+        implementation project(":react-native-worklets")
+    } else {
+        throw new GradleException("[OneNative] `react-native-worklets` is a required peer: install it so autolinking provides the native project.")
+    }
 }

@@ -162,6 +162,10 @@ class OneNativeComposeNodeManager :
         view.stageTextValue(value)
     }
 
+    override fun setSyncStateId(view: OneNativeComposeNodeView, value: Int) {
+        view.stageSyncStateId(value)
+    }
+
     override fun setPlaceholder(view: OneNativeComposeNodeView, value: String?) {
         view.stagePlaceholder(value)
     }

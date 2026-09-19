@@ -35,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
@@ -162,6 +163,7 @@ internal data class OneNativeComposeNodeProps(
     val arrangement: String? = null,
     val spacing: Double = -1.0,
     val textValue: String? = null,
+    val syncStateId: Int = 0,
     val placeholder: String? = null,
     val keyboardType: String? = null,
     val secureText: Boolean = false,
@@ -206,6 +208,14 @@ private class OneNativeControlledValue<T>(initial: T) {
         return eventCount
     }
 
+    // a write arriving through a bound sync state: the value converges without
+    // counting a native interaction, so no event echoes back to JavaScript.
+    fun adopt(nextValue: T): Boolean {
+        if (nextValue == value) return false
+        value = nextValue
+        return true
+    }
+
     fun reset(to: T) {
         value = to
         eventCount = 0
@@ -229,6 +239,8 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private val controlledSwitch = OneNativeControlledValue(false)
     private val controlledText = OneNativeControlledValue("")
     private val controlledNumber = OneNativeControlledValue(0.0)
+    private var boundSyncText: MutableState<Any>? = null
+    private var boundSyncId: Int = 0
     private var pendingProps = OneNativeComposeNodeProps()
     private var committedProps by mutableStateOf(OneNativeComposeNodeProps())
     private var semanticsVersion by mutableIntStateOf(0)
@@ -262,7 +274,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         get() = controlledSwitch.value
 
     internal val renderedTextValue: String
-        get() = controlledText.value
+        get() = boundSyncText?.value as? String ?: controlledText.value
 
     internal val renderedNumberValue: Double
         get() = controlledNumber.value
@@ -321,6 +333,15 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
         )
+        bindSyncText(next.syncStateId)
+    }
+
+    private fun bindSyncText(id: Int) {
+        if (id == boundSyncId) return
+        boundSyncId = id
+        val bound = if (id == 0) null else OneNativeSyncRegistry.stateOf(id)
+        boundSyncText = bound
+        (bound?.value as? String)?.let { controlledText.adopt(it) }
     }
 
     internal fun invalidateComposeSemantics() {
@@ -397,6 +418,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageTextValue(value: String?) {
         pendingProps = pendingProps.copy(textValue = value)
+    }
+
+    internal fun stageSyncStateId(value: Int) {
+        pendingProps = pendingProps.copy(syncStateId = value)
     }
 
     internal fun stagePlaceholder(value: String?) {
@@ -488,6 +513,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     internal fun handleTextChanged(nextValue: String) {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
         val eventCount = controlledText.change(nextValue) ?: return
+        if (boundSyncId != 0) {
+            OneNativeSyncRegistry.set(boundSyncId, nextValue)
+            OneNativeSyncJni.nativeDidSetExternally(boundSyncId)
+        }
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
             OneNativeComposeNodeTextValueChangeEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
