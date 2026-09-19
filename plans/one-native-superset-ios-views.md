@@ -80,6 +80,18 @@ the shape lands.
   viewport ends ~591 with Carrot starting ~577-579 (Orange precedent:
   partial rows appear in AX); if Carrot still misses, trim the
   fixture vertical height (170->150) as the known fallback.
+- LISTSFIX2 87bee7abd (finding 2 rediagnosed: no trait split exists;
+  sim is dark + plist Automatic, so window and hosting are both dark
+  and the bridge correctly synced dark-to-dark. the defect was the
+  fixture's hardcoded light chrome ('#fff' screen) against adaptive
+  SwiftUI (white rows in dark mode): white-on-white. RN Text defaults
+  to fixed black, which is why the footer stayed readable and the
+  split theory looked plausible. fixture now adapts via
+  useColorScheme in both modes; vertical trimmed 170->150 per the
+  fallback, giving the List 388 and Carrot ~17-34pt in the viewport.
+  the scheme bridge stays: inert when traits agree, and it guards a
+  real split such as presented overlay content. gate: esbuild
+  transpile clean; package gates untouched by a fixture-only change).
 
 ## NEEDS-BUILD
 
