@@ -15,8 +15,7 @@ steps, not one shot.
 - SDK ceiling: MAXIMUM_IOS=26 (CI lane commit 7cc558e69; CI pins Xcode 26.4).
   Never bump it or commit post-26 symbols without a CI Xcode bump, or the
   branch re-reds. Regen output must be identical on any newer toolchain.
-- HOLD: no merges from v2-beta until the CI lane confirms green on 1c5f1aa5e
-  (Metro-config prod fix). Coordinator merges after their verdict.
+- v2-beta 1c5f1aa5e (green) merged in; merge hold lifted.
 - Coordinator (Muse session `fallow-suhail`) runs all heavy builds
   (xcodebuild, gradle, conformance suites) and validates assembled work.
   Workers run cheap gates only: `generate:check`, `tsc --noEmit`, `vitest`.
