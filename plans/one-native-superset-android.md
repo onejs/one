@@ -51,6 +51,15 @@ TextField, ToggleButton, Tooltip, useNativeState.
     recorded) before each stays-mounted state assert, covering both the
     density-560 and the density-reset recreations. No product change,
     check count unchanged, script typechecks.
+  - ANDROIDFIX4 `9ac282e54`: (1) home-screen rotation discriminator (2 new
+    checks, 42 total): rotate to 560 and back on home with no native views
+    before entering the proof screen; home-survives-plus-proof-dies means a
+    real native-init-on-recreate product bug, both-die means fixture/env.
+    (2) failure capture takes a FRESH dump via new `dumpNodes` (no RedBox
+    assert, so error screens capture instead of throwing), appends any
+    RedBox text to the failure error, and the stale `lastSnapshot`/
+    `mostRecentSnapshot` plumbing is removed. Script typechecks; awaiting
+    coordinator rerun verdict before milestone 2.
 
 ## NEEDS-BUILD
 
