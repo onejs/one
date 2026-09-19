@@ -142,30 +142,28 @@ final class OneNativeSchemeBridge: ObservableObject {
   // fabric mounts children one at a time, so publication is incremental: rebuilding the
   // whole array per insertion would ask every sibling for its content again, N times over.
   public func insertChild(_ child: UIView, at index: Int) {
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure(
+        "One Native containers only accept One Native controls; wrap React Native content in Swift.Slot")
+    }
     let at = min(index, childViews.count)
     childViews.insert(child, at: at)
-    guard let composable = child as? OneNativeComposable else { return }
     composable.composeInto(self)
     published.items.insert(
       OneNativeComposedChild(
         id: ObjectIdentifier(child), content: composable.compositionContent()),
-      at: publishedIndex(before: at))
+      at: at)
   }
 
   public func removeChild(_ child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
     childViews.remove(at: index)
-    guard let composable = child as? OneNativeComposable else { return }
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native container child lost its composition capability")
+    }
     composable.decompose()
     let id = ObjectIdentifier(child)
     published.items.removeAll { $0.id == id }
-  }
-
-  // a non-composable child occupies a slot in childViews but never reaches published.items.
-  private func publishedIndex(before index: Int) -> Int {
-    childViews.prefix(index).reduce(into: 0) { count, view in
-      if view is OneNativeComposable { count += 1 }
-    }
   }
 
   public func compositionContent() -> AnyView { wrap(published, false) }
