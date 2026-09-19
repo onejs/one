@@ -251,10 +251,15 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
     listStyle,
     Number.parseFloat(String(Platform.Version))
   )
-  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, so a
-  // list stretches by default and takes its viewport from the style.
+  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
+  // stretch alone collapses a bare list to zero height. height 100% fills the
+  // box by default and still yields to an explicit height later in the array.
   return (
-    <NativeList {...props} style={[{ alignSelf: 'stretch' }, style]} listStyle={listStyle}>
+    <NativeList
+      {...props}
+      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
+      listStyle={listStyle}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
   )
@@ -274,9 +279,10 @@ export function ScrollView({
   return (
     <NativeScrollView
       {...props}
-      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, so a
-      // scroll view stretches by default and takes its viewport from the style.
-      style={[{ alignSelf: 'stretch' }, style]}
+      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
+      // stretch alone collapses a bare scroll view to zero height. height 100%
+      // fills the box by default and still yields to an explicit height.
+      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
       axes={axes}
       showsIndicators={showsIndicators}
     >

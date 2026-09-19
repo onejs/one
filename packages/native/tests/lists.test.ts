@@ -2,6 +2,7 @@ import { createElement } from 'react'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
+import Yoga from 'yoga-layout'
 import {
   lazyHStackAlignments,
   lazyVStackAlignments,
@@ -143,6 +144,39 @@ describe('lazy stacks', () => {
         render(Containers.LazyHStack, { children: null, spacing: value })
       ).toThrow('Swift.LazyHStack spacing must be a non-negative number')
     }
+  })
+})
+
+describe('fill viewport defaults', () => {
+  it('fills height by default and yields to an explicit style', () => {
+    const style = { height: 150 }
+    for (const C of [Containers.List, Containers.ScrollView]) {
+      const fallback = render(C, { children: null }).props.style
+      expect(fallback[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      const explicit = render(C, { children: null, style }).props.style
+      expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      expect(explicit[1]).toBe(style)
+    }
+  })
+
+  it('computes the fill contract in yoga', () => {
+    const layout = (height: number | '100%' | undefined) => {
+      const root = Yoga.Node.create()
+      root.setWidth(300)
+      root.setHeight(600)
+      const node = Yoga.Node.create()
+      if (height === undefined) node.setAlignSelf(Yoga.ALIGN_STRETCH)
+      else if (height === '100%') node.setHeightPercent(100)
+      else node.setHeight(height)
+      root.insertChild(node, 0)
+      root.calculateLayout(300, 600, Yoga.DIRECTION_LTR)
+      const computed = node.getComputedHeight()
+      root.freeRecursive()
+      return computed
+    }
+    expect(layout('100%')).toBe(600)
+    expect(layout(150)).toBe(150)
+    expect(layout(undefined)).toBe(0)
   })
 })
 
