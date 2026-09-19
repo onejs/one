@@ -78,6 +78,14 @@ TextField, ToggleButton, Tooltip, useNativeState.
     path is out of scope; say the word if you wanted the hard gate instead.
     41 checks + 2 conditional; script typechecks. Device left clean
     (density 420, rotation free, app force-stopped).
+  - ANDROIDFIX6 `521140f80`: back-pop home expects (`inputs-navigate-home`
+    and conditional `inputs-renavigate-home`) no longer require the
+    `@vxrn/native Test Suite` title text, which expo-router replaces with
+    `index` after a pop; marker plus any visible `nav-` row suffices. New
+    `diagnose()` helper names each conjunct and `waitFor` appends the
+    last-failed set to timeout errors, so the next multi-conjunct failure
+    says which part failed instead of blaming the mount marker. Applied to
+    the two edited expects; wider rollout on request. Script typechecks.
 
 ## NEEDS-BUILD
 
