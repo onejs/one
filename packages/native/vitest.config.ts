@@ -8,6 +8,9 @@ export default defineConfig({
     'process.env.EXPO_OS': JSON.stringify('web'),
   },
   resolve: {
+    // a workspace package can carry its own nested react copy, which breaks hooks in tests
+    // that render through react-test-renderer, so both resolve to a single instance.
+    dedupe: ['react'],
     conditions: ['module', 'browser', 'development|production'],
     extensions: [
       '.web.mjs',
