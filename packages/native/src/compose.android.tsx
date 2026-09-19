@@ -212,12 +212,11 @@ const buttonTones = ['default', 'danger'] as const
 const ComposeContext = createContext(false)
 
 function materialSymbolGlyph(owner: string, name: string) {
-  const codepoint = composeIconCodepoints[name as ComposeIconName]
-  if (codepoint === undefined)
+  if (!Object.hasOwn(composeIconCodepoints, name))
     throw new Error(
       `Compose ${owner} must be a Material Symbols name, got ${JSON.stringify(name)}`
     )
-  return String.fromCodePoint(codepoint)
+  return String.fromCodePoint(composeIconCodepoints[name as ComposeIconName])
 }
 
 function ComposeNode({

@@ -535,13 +535,15 @@ private fun RenderComposeNodeBody(
                 textAlign = composeTextAlign(props.textAlign),
                 maxLines = props.maxLines.coerceAtLeast(1).takeIf { props.maxLines > 0 } ?: Int.MAX_VALUE,
             )
-        "icon" ->
+        "icon" -> {
+            val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
             Text(
                 text = props.text.orEmpty(),
                 modifier = modifier,
                 fontFamily = materialSymbolsFontFamily(props.iconFilled),
-                fontSize = props.fontSize.composeTextUnit(),
+                fontSize = props.fontSize.composeIconTextUnit(fontScale),
             )
+        }
         "button" -> RenderComposeButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         else ->
@@ -630,7 +632,7 @@ private fun RowScope.ComposeButtonContent(props: OneNativeComposeNodeProps) {
             Text(
                 text = icon,
                 fontFamily = materialSymbolsFontFamily(props.iconFilled),
-                fontSize = (iconSize.value / fontScale).sp,
+                fontSize = iconSize.value.toDouble().composeIconTextUnit(fontScale),
             )
         }
         Spacer(Modifier.width(ButtonDefaults.IconSpacing))
@@ -851,6 +853,10 @@ private fun composeTextAlign(value: String?): TextAlign? =
 
 private fun Double.composeTextUnit(): TextUnit =
     if (isFinite() && this > 0) toFloat().sp else TextUnit.Unspecified
+
+// icon sizes are dp, not text, so a size stays the same physical box at every font scale
+private fun Double.composeIconTextUnit(fontScale: Float): TextUnit =
+    if (isFinite() && this > 0) (this / fontScale).toFloat().sp else TextUnit.Unspecified
 
 private fun Double.nonNegativeDp() = nonNegative().toFloat().dp
 
