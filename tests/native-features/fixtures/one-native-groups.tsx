@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Swift } from '@vxrn/native'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native'
 
 export default function OneNativeGroups() {
   const [refuse, setRefuse] = useState(false)
@@ -10,16 +10,31 @@ export default function OneNativeGroups() {
   const [pinTaps, setPinTaps] = useState(0)
   const [deleteTaps, setDeleteTaps] = useState(0)
   const [iconTaps, setIconTaps] = useState(0)
+  // swiftui content adapts to the scheme, so the react chrome around it must too:
+  // a hardcoded white screen leaves dark-mode rows as white text on white.
+  const dark = useColorScheme() === 'dark'
+  const screenColor = dark ? '#000' : '#fff'
+  const textColor = dark ? '#fff' : '#000'
+  const chipColor = dark ? '#1c1c1e' : '#eee'
+  const chipOnColor = dark ? '#1e3a5f' : '#cfe2ff'
 
   return (
-    <View style={styles.screen} testID="one-native-groups-screen">
+    <View
+      style={[styles.screen, { backgroundColor: screenColor }]}
+      testID="one-native-groups-screen"
+    >
       <View style={styles.row}>
         <Pressable
           testID="one-native-groups-refuse"
-          style={[styles.chip, refuse && styles.chipOn]}
+          style={[
+            styles.chip,
+            { backgroundColor: refuse ? chipOnColor : chipColor },
+          ]}
           onPress={() => setRefuse((value) => !value)}
         >
-          <Text>{refuse ? 'Refusing' : 'Accepting'}</Text>
+          <Text style={{ color: textColor }}>
+            {refuse ? 'Refusing' : 'Accepting'}
+          </Text>
         </Pressable>
       </View>
 
@@ -68,13 +83,19 @@ export default function OneNativeGroups() {
 
       <Swift.Pager selection={page} onSelectionChange={setPage} style={styles.pager}>
         <Swift.Page id="a">
-          <Text testID="one-native-pager-a">Page A</Text>
+          <Text testID="one-native-pager-a" style={{ color: textColor }}>
+            Page A
+          </Text>
         </Swift.Page>
         <Swift.Page id="b">
-          <Text testID="one-native-pager-b">Page B</Text>
+          <Text testID="one-native-pager-b" style={{ color: textColor }}>
+            Page B
+          </Text>
         </Swift.Page>
         <Swift.Page id="c">
-          <Text testID="one-native-pager-c">Page C</Text>
+          <Text testID="one-native-pager-c" style={{ color: textColor }}>
+            Page C
+          </Text>
         </Swift.Page>
       </Swift.Pager>
 
@@ -104,27 +125,27 @@ export default function OneNativeGroups() {
       <View style={styles.row}>
         <Text
           testID="one-native-groups-expanded"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Expanded: ${expanded}`}</Text>
         <Text
           testID="one-native-groups-taps"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Group taps: ${groupTaps}`}</Text>
         <Text
           testID="one-native-groups-pager"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Pager: ${page}`}</Text>
         <Text
           testID="one-native-groups-pin"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Pin taps: ${pinTaps}`}</Text>
         <Text
           testID="one-native-groups-delete"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Delete taps: ${deleteTaps}`}</Text>
         <Text
           testID="one-native-groups-icon"
-          style={styles.line}
+          style={[styles.line, { color: textColor }]}
         >{`Icon taps: ${iconTaps}`}</Text>
       </View>
     </View>
@@ -132,15 +153,13 @@ export default function OneNativeGroups() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, paddingTop: 70, gap: 6, backgroundColor: '#fff' },
+  screen: { flex: 1, padding: 16, paddingTop: 70, gap: 6 },
   row: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
   chip: {
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 8,
-    backgroundColor: '#eee',
   },
-  chipOn: { backgroundColor: '#cfe2ff' },
   pager: { height: 100 },
   list: { height: 150 },
   line: { fontSize: 14 },
