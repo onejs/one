@@ -51,6 +51,13 @@ the shape lands.
   (`text={handle}` needs generated-adapter support, emitter-side),
   native-direct view-to-view sync (registry + lifecycle follow-up).
   Gates: tsc clean, vitest 108/108, driver transpile clean.
+- IOSFIX 85c925c51 (hand-written slot cpp shadow nodes for the two
+  interfaceOnly M2 markers OverlayContent + SwipeActionsActions, mirror
+  of the SheetContent pattern, byte-verified modulo names; .mm imports
+  added). Audit: all 3 interfaceOnly specs (Tab pre-existing +
+  these 2) now have cpp; every other M2/M1a .mm references only
+  codegen-emitted descriptors. No JS/codegen inputs changed, so no
+  JS gates apply; coordinator rebuilds + reruns lists.
 
 ## NEEDS-BUILD
 
