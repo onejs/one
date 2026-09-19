@@ -24,8 +24,8 @@ interface OneEnvVariables {
   VITE_ENVIRONMENT: 'client' | 'ssr' | 'ios' | 'android'
   /** "1" for native platforms (iOS and Android), "" for web (client and SSR). Truthy/falsy for tree-shaking native-only code. */
   VITE_NATIVE: '' | '1'
-  /** "web" for web builds, "ios" or "android" for native. Matches Expo convention. */
-  EXPO_OS: 'web' | 'ios' | 'android'
+  /** "web" for web builds, "ios" or "android" for native. The One platform contract. */
+  ONE_PLATFORM: 'web' | 'ios' | 'android'
   /** "web" for web builds, "native" for native builds. Used by Tamagui and One native route branches. */
   TAMAGUI_TARGET: 'web' | 'native'
 
