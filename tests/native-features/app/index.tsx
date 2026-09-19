@@ -62,6 +62,11 @@ const testScreens = [
     label: 'One Native Lists',
     testID: 'nav-one-native-lists',
   },
+  {
+    href: '/one-native-groups',
+    label: 'One Native Groups',
+    testID: 'nav-one-native-groups',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-android',

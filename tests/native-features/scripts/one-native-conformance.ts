@@ -32,6 +32,7 @@ const suites = [
   'host',
   'containers',
   'lists',
+  'groups',
   'popover',
   'accessibility',
   'media',
@@ -203,6 +204,10 @@ const listsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-style')) &&
   has(nodes, 'List style: ')
+const groupsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-groups-refuse')) &&
+  has(nodes, 'Expanded: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -237,6 +242,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   host: hostLoaded,
   containers: containersLoaded,
   lists: listsLoaded,
+  groups: groupsLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -252,6 +258,7 @@ const suiteHome: Record<Suite, string> = {
   host: 'nav-one-native-host',
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
+  groups: 'nav-one-native-groups',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1611,6 +1618,189 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await pressSwitch('Ripe')
       await wait(`lists recycle ${cycle}: the composed Toggle still emits`, (n) =>
         status(n, 'IsOn', 'true')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'groups') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const box = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    // a short horizontal swipe over a frame: reveals swipe actions or turns a pager
+    // page without travelling far enough to trigger a full swipe.
+    const swipeOver = (
+      frame: { x: number; y: number; width: number; height: number },
+      left: boolean
+    ) => {
+      const x = Math.round(frame.x + frame.width / 2)
+      const y = Math.round(frame.y + frame.height / 2)
+      command(
+        [
+          'ui-automation',
+          'swipe',
+          '--x1',
+          String(left ? x + 40 : x - 40),
+          '--y1',
+          String(y),
+          '--x2',
+          String(left ? x - 40 : x + 40),
+          '--y2',
+          String(y),
+          '--duration',
+          '0.3',
+        ],
+        config.simulatorId
+      )
+    }
+    // the icon-only button is a button frame holding an image frame. its label is
+    // whatever SwiftUI derives from the symbol, so the lookup is geometric: the
+    // image whose frame sits inside a button frame.
+    const iconButton = (nodes: Node[]) => {
+      const image = nodes.find(
+        (node) =>
+          node.type === 'Image' &&
+          node.frame &&
+          nodes.some(
+            (other) =>
+              other.type === 'Button' &&
+              other.frame &&
+              node.frame!.x >= other.frame.x &&
+              node.frame!.y >= other.frame.y &&
+              node.frame!.x + node.frame!.width <=
+                other.frame.x + other.frame.width &&
+              node.frame!.y + node.frame!.height <=
+                other.frame.y + other.frame.height
+          )
+      )
+      const button = nodes.find(
+        (node) =>
+          node.type === 'Button' &&
+          node.frame &&
+          image?.frame &&
+          image.frame.x >= node.frame.x &&
+          image.frame.y >= node.frame.y &&
+          image.frame.x + image.frame.width <= node.frame.x + node.frame.width &&
+          image.frame.y + image.frame.height <=
+            node.frame.y + node.frame.height
+      )
+      if (!image?.frame || !button?.frame) return undefined
+      return { image: image.frame, button: button.frame }
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-groups')
+    await wait(
+      'groups, links, dividers, and overlays render their content',
+      (n) =>
+        labels(n).includes('Details') &&
+        labels(n).includes('Above') &&
+        labels(n).includes('Below') &&
+        labels(n).includes('Visit example') &&
+        labels(n).includes('Grouped') &&
+        labels(n).includes('3') &&
+        labels(n).includes('Swipe me')
+    )
+
+    tap({ label: 'Add' })
+    await wait('a Button composed into a ControlGroup emits', (n) =>
+      status(n, 'Group taps', 1)
+    )
+
+    tap({ label: 'Details' })
+    await wait('a DisclosureGroup expands and emits', (n) =>
+      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    )
+    // refusing the collapse in React rolls the native value back and keeps the
+    // content disclosed, the container case of the controlled protocol.
+    tap({ id: 'one-native-groups-refuse' })
+    tap({ label: 'Details' })
+    await wait('a refused collapse rolls back to expanded', (n) =>
+      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    )
+    tap({ id: 'one-native-groups-refuse' })
+    tap({ label: 'Details' })
+    await wait('an accepted collapse hides the content', (n) =>
+      status(n, 'Expanded', 'false') && !labels(n).includes('Hidden detail')
+    )
+
+    await wait('a Pager mounts on its selection', (n) =>
+      status(n, 'Pager', 'a') && Boolean(id(n, 'one-native-pager-a')?.frame)
+    )
+    {
+      const nodes = await wait('a pager page is ready to swipe', (n) =>
+        Boolean(id(n, 'one-native-pager-a')?.frame)
+      )
+      swipeOver(id(nodes, 'one-native-pager-a')!.frame!, true)
+    }
+    await wait('swiping a Pager selects the next page', (n) =>
+      status(n, 'Pager', 'b') && Boolean(id(n, 'one-native-pager-b')?.frame)
+    )
+    {
+      const nodes = await wait('the second pager page is ready', (n) =>
+        Boolean(id(n, 'one-native-pager-b')?.frame)
+      )
+      swipeOver(id(nodes, 'one-native-pager-b')!.frame!, false)
+    }
+    await wait('swiping back selects the first page again', (n) =>
+      status(n, 'Pager', 'a')
+    )
+
+    {
+      const nodes = await wait('a swipe row is ready', (n) =>
+        Boolean(box(n, 'Swipe me'))
+      )
+      swipeOver(box(nodes, 'Swipe me')!, true)
+    }
+    await wait('swiping a row reveals its trailing actions', (n) =>
+      labels(n).includes('Delete')
+    )
+    tap({ label: 'Delete' })
+    await wait('a trailing swipe action emits', (n) => status(n, 'Delete taps', 1))
+    {
+      const nodes = await wait('the row is ready again', (n) =>
+        Boolean(box(n, 'Swipe me'))
+      )
+      swipeOver(box(nodes, 'Swipe me')!, false)
+    }
+    await wait('swiping back reveals its leading actions', (n) =>
+      labels(n).includes('Pin')
+    )
+    tap({ label: 'Pin' })
+    await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
+
+    // an icon-only button renders the bare image with no title spacing reserved, so
+    // the symbol sits at the center of the button frame.
+    await wait('an icon-only button centers its symbol', (n) => {
+      const found = iconButton(n)
+      if (!found) return false
+      const { image, button } = found
+      const dx = image.x + image.width / 2 - (button.x + button.width / 2)
+      const dy = image.y + image.height / 2 - (button.y + button.height / 2)
+      return Math.abs(dx) <= 1 && Math.abs(dy) <= 1
+    })
+    {
+      const found = iconButton(snapshot(config.simulatorId))
+      if (!found) throw new Error('no image found inside a button frame')
+      const { button } = found
+      point(button.x + button.width / 2, button.y + button.height / 2)
+    }
+    await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
+    screenshot('groups-icon-button.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`groups recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-groups')
+      await wait(
+        `groups recycle ${cycle}: a fresh screen rebuilds`,
+        (n) =>
+          status(n, 'Expanded', 'false') &&
+          status(n, 'Group taps', 0) &&
+          status(n, 'Pager', 'a') &&
+          labels(n).includes('Swipe me')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
