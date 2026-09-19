@@ -100,6 +100,21 @@ TextField, ToggleButton, Tooltip, useNativeState.
     failed conjunct; `nodeById` fail-fast throws preserved outside the
     diagnosed booleans. Pre-rotation green checks untouched. No fixture
     change needed. Script typechecks.
+  - ANDROIDFIX8 `a45852430`: (1) `parseXml` now records parent links and
+    `tapByText` climbs text leaf to nearest clickable ancestor (taps the
+    label center, inside the target). Verified against the real
+    `30-inputs-dialog-shown.xml`: node parity 16/16 with the old parser,
+    Delete/Cancel unique, each climbs to a clickable View; parity plus
+    parent integrity also hold on full-screen dumps (50/50, 61/61). Audit:
+    the two `tapByText` uses (Delete, Cancel) are fixed centrally; custom
+    dialog taps by testID on merged clickable button nodes, unaffected.
+    (2) startup preflight fails fast: adb runnable, device attached and
+    `device` state, `tcp:8081` reverse to the Metro host port, each with
+    the exact fix command; `--metro-port` flag (default `RCT_METRO_PORT`,
+    else 8081). All branches exercised live read-only (pass on 8091 and
+    8081, exact messages for bogus device and unmapped port). Noted: your
+    emulator is session-managed; I used read-only queries only and will
+    boot my own AVD if I need a device.
 
 ## NEEDS-BUILD
 
