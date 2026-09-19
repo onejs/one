@@ -3,6 +3,7 @@ import { Children, isValidElement, useMemo } from 'react'
 import type { PageProps, PagerProps } from './groupTypes'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativePager from './specs/OneNativePagerNativeComponent'
+import { viewportStyle } from './viewportStyle'
 
 const PAGE_STYLE = {
   position: 'absolute',
@@ -56,10 +57,7 @@ export function Pager({
   return (
     <NativePager
       {...props}
-      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
-      // stretch alone collapses a bare pager to zero height. height 100% fills
-      // the box by default and still yields to an explicit height.
-      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
+      style={viewportStyle(style)}
       selection={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}

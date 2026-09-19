@@ -51,13 +51,24 @@ describe('pager viewport', () => {
       selection: 'a',
       onSelectionChange: () => {},
     }
-    expect(pagerStyle(base)[0]).toEqual({
-      height: '100%',
-      alignSelf: 'stretch',
-    })
+    expect(pagerStyle(base)[0]).toEqual({ flex: 1, alignSelf: 'stretch' })
     const style = { height: 100 }
     const explicit = pagerStyle({ ...base, style })
-    expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+    expect(explicit[0]).toEqual({ alignSelf: 'stretch' })
+    expect(explicit[1]).toBe(style)
+  })
+
+  it('sees explicit sizing through nested style arrays', () => {
+    // StyleSheet.flatten recurses, so a height buried in a nested array still
+    // counts as caller sizing and the flex default stays off.
+    const base = {
+      children: pages(),
+      selection: 'a',
+      onSelectionChange: () => {},
+    }
+    const style = [[{ height: 100 }]]
+    const explicit = pagerStyle({ ...base, style })
+    expect(explicit[0]).toEqual({ alignSelf: 'stretch' })
     expect(explicit[1]).toBe(style)
   })
 })
