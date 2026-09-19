@@ -5,7 +5,7 @@ export default defineConfig({
   clearScreen: false,
   define: {
     __DEV__: true,
-    'process.env.EXPO_OS': JSON.stringify('web'),
+    'process.env.ONE_PLATFORM': JSON.stringify('web'),
   },
   resolve: {
     conditions: ['module', 'browser', 'development|production'],

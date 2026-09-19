@@ -124,16 +124,17 @@ export declare function resolveAliasSpecifier(specifier: string, filename: strin
  */
 export declare function applyModuleResolverAliases(code: string, filename: string, projectRoot: string, aliases: Record<string, string>): string;
 /**
- * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
- * one's `babel-plugin-inline-one-server-url`. In production every
- * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
- * one is routed through the `expo/virtual/env` module so edits to .env take
- * effect without a full rebuild. Without this the reads survive into the bundle
- * and every EXPO_PUBLIC_ value is undefined at runtime.
+ * Native port of one's `babel-plugin-inline-one-server-url` for public env.
+ * Every `process.env.ONE_PUBLIC_*` read is inlined as a literal in both modes,
+ * matching the rolldown native defines: a native runtime has no `process.env`
+ * to read it back out of, and without this the reads survive into the bundle
+ * and every ONE_PUBLIC_ value is undefined at runtime.
  *
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
- * it is how a native bundle knows where to fetch loader data from, and a native
- * runtime has no `process.env` to read it back out of.
+ * it is how a native bundle knows where to fetch loader data from.
+ *
+ * `process.env.EXPO_PUBLIC_*` reads fail with a migration error instead of
+ * being copied, ignored, or aliased.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
