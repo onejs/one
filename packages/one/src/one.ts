@@ -2,10 +2,7 @@
 // implementation installed. native namespaces stay undefined until a
 // build-time platform entrypoint selects one adapter.
 
-import type { One as OneNamespace } from './interfaces/router'
 import { selectOneNativePlatform, type OnePlatformName } from './native/platform'
-
-export type One = OneNamespace
 
 export type OneEnvironment = {
   platform: OnePlatformName
@@ -24,13 +21,14 @@ export const One = {
   get platform(): OnePlatformName {
     return currentPlatform()
   },
-  // generated platform-faithful namespaces. populated only by explicit
-  // platform entrypoints; never eagerly resolved from the root.
+  // generated platform-faithful namespaces. resolved from the build-time
+  // platform define (ONE_PLATFORM), never eagerly imported from the root,
+  // so web and server imports work with no native implementation installed.
   get iOS(): unknown {
-    return undefined
+    return selectOneNativePlatform(currentPlatform()).platformBindings.iOS
   },
   get Android(): unknown {
-    return undefined
+    return selectOneNativePlatform(currentPlatform()).platformBindings.Android
   },
   UI: {},
   selectAdapter(name: OnePlatformName) {
