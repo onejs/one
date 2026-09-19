@@ -2,8 +2,10 @@
 
 ## Now
 
-Milestone 2: ControlGroup, DisclosureGroup, Divider, Link, Group, Overlay,
-SwipeActions, pager-style tabs.
+Milestone 3: useNativeState equivalent for TextField + Toggle (read Expo
+docs first, smallest controlled-protocol fit). M4 implementation waits on
+the agreed modifier shape (coordinator sequencing); slotting it the
+moment the shape lands.
 
 ## Done
 
@@ -31,6 +33,15 @@ SwipeActions, pager-style tabs.
   removed) + 7bffa1186 (WebView comment fix). generate:check green,
   vitest 84/84. Note: derive.test.ts edit is shared-test upkeep for the
   adoption, not a codegen behavior change.
+- M2 shipped: COMMITTED e15ce32b8 (catalog: 10 components + icon-only
+  Button leaf, regen), e9db157a5 (ControlGroup/Divider/Link/Group/
+  Overlay/SwipeActions native), 40d930a15 (DisclosureGroup controlled +
+  Pager reusing Tab pages via OneNativePageHost), ec37c087c (JS +
+  compounds + 22 vitest), fcc1b9da5 (groups fixture + suite + nav),
+  f324d1415 (README). Gates: generate:check clean, tsc clean, vitest
+  106/106. Pager is a Tabs-twin (tag-based, no availability splits)
+  rather than a Tabs style, so no tab-bar props go dead. Greedy-parent
+  rejection now covers DisclosureGroup, Tabs, and Pager too.
 
 ## NEEDS-BUILD
 
@@ -39,6 +50,12 @@ SwipeActions, pager-style tabs.
   (`--suite lists`). The suite is unverified: swipe-anchoring and
   lazy-materialization assertions were written blind. Fixture rows use
   composed Text/Button/Toggle/Section only.
+- e9db157a5 + 40d930a15: xcodebuild the M2 views (Overlay/SwipeActions
+  marker intercept, DisclosureGroup controlled events, Pager Tab reuse
+  + host protocol, Tabs header protocol) and run `--suite groups`
+  (unverified blind write; the icon-centering lookup is geometric and
+  may need the real a11y shape). Suite never taps the Link (leaves the
+  app) by design.
 
 ## Blocked
 
@@ -51,7 +68,8 @@ SwipeActions, pager-style tabs.
   protocol our view-driven composition lacks: children arrive as views,
   not tagged data. Cleanest after milestone 4 lands the `tag` plumbing;
   index-based selection is the fallback subset. Not started.
-- Rnx lane finding, slot into milestone 2/3:
+- Rnx lane finding, done in M2 (icon-only Button branch + centering
+  proof in the groups suite):
 
 - Icon-only Button: today `label` is required non-empty and `systemImage`
   only renders inside the Label branch, so Expo-compatible icon-only usage
@@ -133,3 +151,7 @@ shape. No implementation until the shape is agreed.
    (`generate.ts` components loop only imports `DirectEventHandler, Int32`).
    Workaround: Lazy stacks ship alignment-only with platform-default spacing;
    `spacing` lands once the template carries the import.
+2. Empty `configure` call in emitControls: a Control with zero fields emits
+   `call[0].expression` on an empty array and crashes generate. Divider
+   wants to be that Control (measured leaf); shipped the container route
+   instead, same names, so it migrates cleanly once the emitter guards it.
