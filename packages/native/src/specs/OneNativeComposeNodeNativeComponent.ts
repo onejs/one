@@ -36,6 +36,8 @@ interface NativeProps extends ViewProps {
   disabled?: boolean
   variant?: string
   tone?: string
+  icon?: string
+  iconFilled?: boolean
   value?: boolean
   acknowledgedEvent?: Int32
   revision?: Int32

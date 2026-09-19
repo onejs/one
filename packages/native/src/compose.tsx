@@ -2,6 +2,7 @@ import type {
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeColumnProps,
+  ComposeIconProps,
   ComposeRowProps,
   ComposeSwitchProps,
   ComposeTextProps,
@@ -29,6 +30,10 @@ function Text(_props: ComposeTextProps): never {
   return unsupported('Text')
 }
 
+function Icon(_props: ComposeIconProps): never {
+  return unsupported('Icon')
+}
+
 function Button(_props: ComposeButtonProps): never {
   return unsupported('Button')
 }
@@ -37,4 +42,4 @@ function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
 
-export const Compose = { Column, Row, Box, Text, Button, Switch }
+export const Compose = { Column, Row, Box, Text, Icon, Button, Switch }

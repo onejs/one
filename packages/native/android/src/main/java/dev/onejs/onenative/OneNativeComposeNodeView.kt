@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -41,16 +44,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
@@ -62,6 +69,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.ReadableType
 import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.views.view.ReactViewGroup
+import dev.vxrn.nativebridge.R as VxrnR
 
 internal data class OneNativeComposeStyle(
     val backgroundColor: Int? = null,
@@ -140,6 +148,8 @@ internal data class OneNativeComposeNodeProps(
     val disabled: Boolean = false,
     val variant: String? = null,
     val tone: String? = null,
+    val icon: String? = null,
+    val iconFilled: Boolean = false,
     val value: Boolean = false,
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
@@ -320,6 +330,14 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageTone(value: String?) {
         pendingProps = pendingProps.copy(tone = value)
+    }
+
+    internal fun stageIcon(value: String?) {
+        pendingProps = pendingProps.copy(icon = value)
+    }
+
+    internal fun stageIconFilled(value: Boolean) {
+        pendingProps = pendingProps.copy(iconFilled = value)
     }
 
     internal fun stageValue(value: Boolean) {
@@ -517,6 +535,13 @@ private fun RenderComposeNodeBody(
                 textAlign = composeTextAlign(props.textAlign),
                 maxLines = props.maxLines.coerceAtLeast(1).takeIf { props.maxLines > 0 } ?: Int.MAX_VALUE,
             )
+        "icon" ->
+            Text(
+                text = props.text.orEmpty(),
+                modifier = modifier,
+                fontFamily = materialSymbolsFontFamily(props.iconFilled),
+                fontSize = props.fontSize.composeTextUnit(),
+            )
         "button" -> RenderComposeButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         else ->
@@ -556,7 +581,7 @@ private fun RenderComposeButton(
                         ButtonDefaults.outlinedButtonColors()
                     },
             ) {
-                Text(props.label.orEmpty())
+                ComposeButtonContent(props)
             }
         "text" ->
             TextButton(
@@ -570,7 +595,7 @@ private fun RenderComposeButton(
                         ButtonDefaults.textButtonColors()
                     },
             ) {
-                Text(props.label.orEmpty())
+                ComposeButtonContent(props)
             }
         else ->
             Button(
@@ -587,9 +612,30 @@ private fun RenderComposeButton(
                         ButtonDefaults.buttonColors()
                     },
             ) {
-                Text(props.label.orEmpty())
+                ComposeButtonContent(props)
             }
     }
+}
+
+@Composable
+private fun RowScope.ComposeButtonContent(props: OneNativeComposeNodeProps) {
+    val icon = props.icon
+    if (!icon.isNullOrEmpty()) {
+        val iconSize = ButtonDefaults.IconSize
+        val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+        Box(
+            modifier = Modifier.size(iconSize),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = icon,
+                fontFamily = materialSymbolsFontFamily(props.iconFilled),
+                fontSize = (iconSize.value / fontScale).sp,
+            )
+        }
+        Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+    }
+    Text(props.label.orEmpty())
 }
 
 @Composable
@@ -676,6 +722,7 @@ private fun Modifier.applyReactSemantics(
             ?: when (node.renderedNodeKind) {
                 "button" -> Role.Button
                 "switch" -> Role.Switch
+                "icon" -> Role.Image
                 else -> null
             }
     val isHeading = explicitRole?.lowercase()?.substringAfterLast('.') == "header"
@@ -684,6 +731,7 @@ private fun Modifier.applyReactSemantics(
     if (!testId.isNullOrEmpty()) result = result.testTag(testId)
     val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch"
     return result.semantics(mergeDescendants = mergeDescendants) {
+        if (node.renderedNodeKind == "icon" && label.isNullOrEmpty()) invisibleToUser()
         if (!label.isNullOrEmpty()) contentDescription = label
         if (!valueText.isNullOrEmpty()) stateDescription = valueText
         if (props.disabled || stateDisabled || !node.isEnabled) disabled()
@@ -809,5 +857,11 @@ private fun Double.nonNegativeDp() = nonNegative().toFloat().dp
 private fun Double.nonNegative(): Double = if (isFinite()) coerceAtLeast(0.0) else 0.0
 
 private fun OneNativeComposeStyle.paddingValue(value: Double): Double = value.nonNegative()
+
+private val MaterialSymbolsOutlined = FontFamily(Font(VxrnR.font.material_symbols_outlined))
+private val MaterialSymbolsFilled = FontFamily(Font(VxrnR.font.material_symbols_filled))
+
+private fun materialSymbolsFontFamily(filled: Boolean): FontFamily =
+    if (filled) MaterialSymbolsFilled else MaterialSymbolsOutlined
 
 private val DangerColor = Color(AndroidColor.rgb(186, 26, 26))
