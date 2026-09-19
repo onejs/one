@@ -119,14 +119,27 @@ the shape lands.
   (one swipe moved chips 1-13 to 3-15 with rows untouched; the list
   band moved the list both directions without toggling Ripe).
   attempts stay 24 with early exit. gate: bun build clean).
+- LISTS GREEN 24/24 on simulator (coordinator verdict): both
+  sections, styles, Button/Toggle emission, lazy materialization
+  both axes, both recycle loops. M1 NEEDS-BUILD cdebd0595 cleared.
+  Per the coordinator, the only real view bug this round was the
+  missing cpp shadow nodes; the rest was suite mechanics plus their
+  packaging fix.
+- M2 hardening ahead of the groups verdict (lists lessons applied
+  preemptively): 0272b7f53 gives List and Pager stretch defaults,
+  since the groups fixture sizes both explicitly (height 150/100)
+  and flex:1 would discard those heights exactly as it did the
+  ScrollViews'; the lists fixture passes flex:1 explicitly so it
+  still fills by construction (worth a lists rerun alongside groups
+  since the List default changed). bb6213fdf adapts the groups fixture
+  chrome via useColorScheme (screen/chip/chipOn/footer/page texts),
+  mirroring the lists fixture. Audited clean: all other M2 wrappers
+  already stretch; groups suite swipes are frame-anchored, no seek
+  loops. Gates: tsc clean, vitest 108/108, esbuild transpile clean.
 
 ## NEEDS-BUILD
 
-- cdebd0595: ComponentViews compile under CI (branch run 35414353719
-  green); `--suite lists` now running on coordinator simulator, verdict
-  pending. Suite was an unverified blind write: swipe-anchoring and
-  lazy-materialization assertions. Fixture rows use composed
-  Text/Button/Toggle/Section only.
+- cdebd0595: CLEARED. `--suite lists` green 24/24 on simulator.
 - e9db157a5 + 40d930a15: xcodebuild the M2 views (Overlay/SwipeActions
   marker intercept, DisclosureGroup controlled events, Pager Tab reuse
   + host protocol, Tabs header protocol) and run `--suite groups`
