@@ -60,6 +60,73 @@ SwipeActions, pager-style tabs.
   open question of whether Label reserves icon-to-title spacing for empty
   titles) and prove symbol centering in conformance.
 
+## Design: modifier expansion (pulled forward, after M2)
+
+Reference: Expo `modifiers={[...]}` — an ORDERED array of ModifierConfig
+(`{$type, ...params, eventListener?}`), typed builder per modifier
+(`padding({all: 16})`, `frame({...})`, `onTapGesture(fn)`), open set via
+`createModifier`. Order is semantic in SwiftUI (padding-then-background vs
+the reverse differ); value, enum, event, and state-carrying modifiers all
+ride the one array.
+
+Today: `swiftStyle` is a FIXED codegen struct (OneNativeStyle, 20ish scalar
+fields from `styleFields`) applied in a FIXED chain order by
+`.oneNativeStyle()`, controls only, no containers. Value-only: no
+callbacks, no state refs, no ordering.
+
+Option A (extend swiftStyle): new fields + per-field apply code. Rejected
+for growth: fixed order bakes semantics forever, struct-per-field codegen
+cannot cover 130 heterogeneous modifiers (EdgeInsets, UnitPoint,
+Animation shapes are not scalars), and gestures/lifecycle/scroll-position
+cannot cross as struct scalars at all.
+
+Option B (recommended): an ordered `modifiers` array prop on controls AND
+containers, Expo-compatible builder names and `$type` strings where the
+SDK shape matches. Wire shape: `objects` payload, one row per modifier
+(`$type` + params + optional event slot), applied IN ORDER by a generated
+Swift applier that folds the chain (AnyView per link, the standard
+data-driven-chain shape) calling the REAL SDK modifier per branch.
+
+How generation drives it from the inventory (all existing machinery):
+
+- New catalog surface (mine): one entry per modifier — SDK selector
+  (name/parameters/requirements, exactly like `methods`/`styleModifiers`
+  today), `$type`, param schema, kind (value/enum/event/state), floor
+  behavior. Enum params reuse the existing `oneNative*` resolvers;
+  new enums arrive via `enumTypes` (regen only, no emitter change).
+- Emitter (codegen worker, emitStyle): payload + ordered applier +
+  TS builders + per-`$type` validation, generated from the catalog.
+- Provenance per modifier: `selectModifier` against the real SDK
+  (throws on ambiguity/absence, the established rule); the swiftc
+  typecheck gate compiles every applier branch against the SDK; the
+  manifest records mapped modifier + iOS version; post-floor modifiers
+  get the existing `#available` + JS version-assert treatment (needs a
+  generated modifier-versions table beside `swiftUIValues`).
+- Marginal cost per modifier after the applier exists: one catalog
+  entry. That is the end state the track wants.
+
+swiftStyle: freeze (no new fields), array is canonical. Two paddings with
+different order semantics is two ways to do a thing; removal needs a
+major bump, so: freeze now, deprecate in docs, removal tracked separately
+(coordinator call, not this milestone).
+
+Phasing: (0) array transport + applier + value/enum modifiers; text
+styling proves it. (1) modifier events unlock gestures: one generic
+modifier event (index, name, data) per spec — needs emitter + spec
+surface agreement, and a ruling that DISCRETE events only ride it
+(tap/long-press/appear/phase-change yes; continuous geometry no).
+scrollPosition waits on useNativeState identity (M3); refreshable's
+async completion is a protocol addition, phases last. Presentation
+detents ride the sheet fixture, not the array.
+
+Open questions for the codegen worker (emitStyle theirs; coordinator to
+sequence): (a) payload column shape — fixed scalar columns (menu-nodes
+precedent) vs `$type` + params-JSON with per-`$type` Codable decode;
+(b) containers need the `modifiers` prop + applier call too
+(emitContainers + hand-written views I own); (c) generic modifier event
+on every spec vs narrower gesture surface; (d) modifier-versions table
+shape. No implementation until the shape is agreed.
+
 ## Emitter features needed (codegen worker)
 
 1. `Double`/`Float` prop import in the `catalog.ts` components spec template
