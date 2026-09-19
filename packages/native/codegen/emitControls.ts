@@ -110,7 +110,7 @@ export type OneNativeViewProps = Pick<
     header +
     "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n" +
     (hasSync
-      ? "import { isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
+      ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
   const schema = []
   for (const control of controls) {
@@ -168,7 +168,12 @@ ${
 }\n`
     const props = {
       ...(value
-        ? { value: value.type, acknowledgedEvent: 'Int32', revision: 'Int32' }
+        ? {
+            value: value.type,
+            acknowledgedEvent: 'Int32',
+            revision: 'Int32',
+            ...(value.sync ? { syncStateId: 'Int32' } : {}),
+          }
         : {}),
       ...(control.focus
         ? {
@@ -314,7 +319,7 @@ ${
         : ''
     }  return <Native${name} {...props} ${styleProp}
     swiftStyle={swiftStyle}
-${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${
+${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
         ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
         : ''
@@ -349,6 +354,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
             { label: 'revision', type: 'Int' },
           ]
         : []),
+      ...(value?.sync ? [{ label: 'syncStateId', type: 'Int' }] : []),
       ...(control.focus
         ? [
             { label: 'focused', type: 'Bool' },
@@ -377,14 +383,29 @@ ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value
   @Published var swiftStyle = OneNativeStyle()
   var active = false
 ${
-  value
-    ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?
-  func change(_ value: ${swiftScalar(value.type)}) {
-    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }
-    controlled.change(value)
-    onChange?(value, controlled.eventCount, controlled.revision)
+  value?.sync
+    ? `  var syncStateId: Int = 0
+  private var syncToken: Int = 0
+  func bindSyncState(_ id: Int) {
+    if id == syncStateId { return }
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
+    syncStateId = id
+    syncToken = 0
+    if id == 0 { return }
+    if let current = OneNativeSyncRegistry.get(Int32(id)) as? ${swiftScalar(value.type)} { controlled.adopt(current) }
+    syncToken = OneNativeSyncRegistry.observe(Int32(id)) { [weak self] value in
+      guard let self, let next = value as? ${swiftScalar(value.type)} else { return }
+      self.controlled.adopt(next)
+    }
+  }
+  deinit {
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
   }
 `
+    : ''
+}${
+  value
+    ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n  func change(_ value: ${swiftScalar(value.type)}) {\n    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }\n    controlled.change(value)\n${value.sync ? `    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }\n` : ''}    onChange?(value, controlled.eventCount, controlled.revision)\n  }\n`
     : ''
 }${
           control.focus
@@ -431,7 +452,7 @@ ${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var 
     if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(${configure.map((parameter) => `${parameter.label}: ${parameter.type}`).join(', ')}) {
-${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${
+${value ? '    if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }\n' : ''}${value?.sync ? '    model.bindSyncState(syncStateId)\n' : ''}${
           control.focus
             ? '    if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }\n'
             : ''
@@ -576,6 +597,9 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
             { label: 'revision', expression: 'next.revision' },
           ]
         : []),
+      ...(value?.sync
+        ? [{ label: 'syncStateId', expression: 'next.syncStateId' }]
+        : []),
       ...(control.focus
         ? [
             { label: 'focused', expression: 'next.focused' },
@@ -597,11 +621,11 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
         `#import "${nativeName}ComponentView.h"
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
-${measured ? `#import "${nativeName}ShadowNode.h"\n#import "OneNativeMeasuredHeight.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
+${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "${nativeName}ShadowNode.h"\n#import "OneNativeMeasuredHeight.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')} }
+@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${
           measured
             ? `
@@ -623,7 +647,7 @@ ${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}$
           value
             ? `    _nativeView.onChange = ^(${objcScalar(value.type)}value, NSInteger eventCount, NSInteger revision) {
       ${nativeName}ComponentView *strongSelf = weakSelf;
-      if (!strongSelf || !strongSelf->_eventEmitter) return;
+${value.sync ? `      if (strongSelf && strongSelf->_syncStateId != 0) { OneNativeSyncDidSetExternally(strongSelf->_syncStateId); }\n` : ''}      if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
       emitter->onNative${name}ValueChange({.value = ${cppScalar(value.type, 'value')}, .eventCount = (int)eventCount, .revision = (int)revision});
     };
@@ -696,7 +720,7 @@ ${styleFields
   })
   .join('\n')}
   [_nativeView configureStyle:style];
-  [_nativeView configure:${call[0].expression}
+${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}  [_nativeView configure:${call[0].expression}
     ${call
       .slice(1)
       .map((argument) => `${argument.label}:${argument.expression}`)

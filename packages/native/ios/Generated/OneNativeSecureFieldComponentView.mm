@@ -3,12 +3,13 @@
 #import "OneNativeSecureFieldComponentView.h"
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
+#import "OneNativeSyncBridge.h"
 #import "OneNativeSecureFieldShadowNode.h"
 #import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation OneNativeSecureFieldComponentView { OneNativeSecureFieldView *_nativeView; OneNativeMeasuredHeight *_measured; }
+@implementation OneNativeSecureFieldComponentView { OneNativeSecureFieldView *_nativeView; OneNativeMeasuredHeight *_measured; int32_t _syncStateId; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeSecureFieldComponentDescriptor>(); }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -23,6 +24,7 @@ using namespace facebook::react;
     };
     _nativeView.onChange = ^(NSString *value, NSInteger eventCount, NSInteger revision) {
       OneNativeSecureFieldComponentView *strongSelf = weakSelf;
+      if (strongSelf && strongSelf->_syncStateId != 0) { OneNativeSyncDidSetExternally(strongSelf->_syncStateId); }
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeSecureFieldEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSecureFieldValueChange({.value = std::string(value.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
@@ -78,8 +80,9 @@ using namespace facebook::react;
   if (!next.swiftStyle.glassEffect.empty()) style[@"glassEffect"] = RCTNSStringFromString(next.swiftStyle.glassEffect);
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
+  _syncStateId = next.syncStateId;
   [_nativeView configure:RCTNSStringFromString(next.value)
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled keyboardType:RCTNSStringFromString(next.keyboardType) textContentType:RCTNSStringFromString(next.textContentType)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId focused:next.focused acknowledgedFocusEvent:next.acknowledgedFocusEvent focusRevision:next.focusRevision label:RCTNSStringFromString(next.label) disabled:next.disabled prompt:RCTNSStringFromString(next.prompt) textFieldStyle:RCTNSStringFromString(next.textFieldStyle) submitLabel:RCTNSStringFromString(next.submitLabel) textInputAutocapitalization:RCTNSStringFromString(next.textInputAutocapitalization) autocorrectionDisabled:next.autocorrectionDisabled keyboardType:RCTNSStringFromString(next.keyboardType) textContentType:RCTNSStringFromString(next.textContentType)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }

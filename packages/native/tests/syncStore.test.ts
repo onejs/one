@@ -5,10 +5,11 @@ import {
   getSyncStateId,
   isSyncState,
 } from '../src/syncStore'
+import { installMockNativeSync } from './setupNativeState'
 
-// react-native-worklets resolves to tests/mockWorklets.ts under vitest (see
-// vitest.config.ts): the real module needs the Metro runtime. the double honors
-// the Synchronizable contract, so these tests pin the store against it.
+// the native handle resolves to the mock registry (tests/setupNativeState.ts,
+// loaded as a setup file): the real host object needs the device runtime. the
+// mock honors the host contract, so these tests pin the facade against it.
 describe('sync store write path', () => {
   it('writes synchronously with no React involvement', () => {
     const state = createSyncState('')
@@ -160,16 +161,31 @@ describe('sync state identity', () => {
   })
 })
 
-describe('worklets source of truth', () => {
-  it('stores the value in the Synchronizable, not in React', async () => {
-    const worklets = await import('react-native-worklets')
-    const spy = vi.spyOn(worklets, 'createSynchronizable')
-    const state = createSyncState('initial')
-    expect(spy).toHaveBeenCalledWith('initial')
-    state.set('written')
-    // the store reads straight from shared memory: no JS cell, no fallback.
-    expect(state.get()).toBe('written')
-    expect(state.getSnapshot()).toBe('written')
-    spy.mockRestore()
+describe('native-owned storage', () => {
+  it('binds each handle to its own native entry', () => {
+    const a = createSyncState('a')
+    const b = createSyncState('b')
+    expect(getSyncStateId(a)).not.toBe(getSyncStateId(b))
+    a.set('a2')
+    expect(a.get()).toBe('a2')
+    expect(b.get()).toBe('b')
+    expect(a.getSnapshot()).toBe('a2')
+  })
+
+  it('requires the native module, with no fallback', () => {
+    const key = '__OneNativeSyncState'
+    const globals = globalThis as Record<string, unknown>
+    const saved = globals[key]
+    delete globals[key]
+    try {
+      expect(() => createSyncState('x')).toThrow(
+        'useNativeState requires the OneNative native module'
+      )
+    } finally {
+      if (saved !== undefined) globals[key] = saved
+      else installMockNativeSync()
+    }
+    // the mock restores cleanly for whatever runs next in this file.
+    expect(createSyncState('y').get()).toBe('y')
   })
 })

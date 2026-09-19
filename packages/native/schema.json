@@ -1408,6 +1408,9 @@
         "revision": {
           "type": "Int32"
         },
+        "syncStateId": {
+          "type": "Int32"
+        },
         "focused": {
           "type": "boolean"
         },
@@ -1509,6 +1512,9 @@
           "type": "Int32"
         },
         "revision": {
+          "type": "Int32"
+        },
+        "syncStateId": {
           "type": "Int32"
         },
         "focused": {
