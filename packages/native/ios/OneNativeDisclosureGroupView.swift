@@ -17,6 +17,8 @@ private final class DisclosureGroupModel: ObservableObject {
 private struct DisclosureGroupContent: View {
   @ObservedObject var model: DisclosureGroupModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     DisclosureGroup(isExpanded: Binding(
@@ -27,6 +29,7 @@ private struct DisclosureGroupContent: View {
     } label: {
       Text(model.label)
     }
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
@@ -34,19 +37,32 @@ private struct DisclosureGroupContent: View {
 public final class OneNativeDisclosureGroupView: OneNativeContainerView {
   public var onChange: ((Bool, Int, Int) -> Void)?
   private let model: DisclosureGroupModel
+  private let bridge: OneNativeSchemeBridge
+  private var traitRegistration: NSObjectProtocol?
 
   public init() {
     let model = DisclosureGroupModel()
+    let bridge = OneNativeSchemeBridge()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(DisclosureGroupContent(model: model, children: children))
+    self.bridge = bridge
+    super.init(wrap: { children, standalone in
+      AnyView(DisclosureGroupContent(model: model, children: children, standalone: standalone, bridge: bridge))
     })
     model.onChange = { [weak self] value, count, revision in
       self?.onChange?(value, count, revision)
     }
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativeDisclosureGroupView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public override func didMoveToWindow() {
+    bridge.sync(traitCollection)
+    super.didMoveToWindow()
+  }
 
   public func configure(
     label: String, isExpanded: Bool, acknowledgedEvent: Int, revision: Int

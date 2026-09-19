@@ -10,6 +10,8 @@ private final class ControlGroupModel: ObservableObject {
 private struct ControlGroupContent: View {
   @ObservedObject var model: ControlGroupModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     ControlGroup {
@@ -24,22 +26,36 @@ private struct ControlGroupContent: View {
       }
     }
     .oneNativeControlGroupStyle(model.controlGroupStyle)
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
 @objcMembers
 public final class OneNativeControlGroupView: OneNativeContainerView {
   private let model: ControlGroupModel
+  private let bridge: OneNativeSchemeBridge
+  private var traitRegistration: NSObjectProtocol?
 
   public init() {
     let model = ControlGroupModel()
+    let bridge = OneNativeSchemeBridge()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(ControlGroupContent(model: model, children: children))
+    self.bridge = bridge
+    super.init(wrap: { children, standalone in
+      AnyView(ControlGroupContent(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativeControlGroupView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public override func didMoveToWindow() {
+    bridge.sync(traitCollection)
+    super.didMoveToWindow()
+  }
 
   public func configure(label: String, systemImage: String, controlGroupStyle: String) {
     if model.label != label { model.label = label }

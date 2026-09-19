@@ -11,6 +11,8 @@ private final class SwipeActionsModel: ObservableObject {
 private struct SwipeActionsContent: View {
   @ObservedObject var model: SwipeActionsModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
+  @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     Group {
@@ -22,6 +24,7 @@ private struct SwipeActionsContent: View {
     .swipeActions(edge: .trailing, allowsFullSwipe: model.trailingFullSwipe) {
       if let trailing = model.trailing { trailing }
     }
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
@@ -57,17 +60,30 @@ public final class OneNativeSwipeActionsActionsView: OneNativeContainerView {
 @objcMembers
 public final class OneNativeSwipeActionsView: OneNativeContainerView {
   private let model: SwipeActionsModel
+  private let bridge: OneNativeSchemeBridge
+  private var traitRegistration: NSObjectProtocol?
   private var markers: [OneNativeSwipeActionsActionsView] = []
 
   public init() {
     let model = SwipeActionsModel()
+    let bridge = OneNativeSchemeBridge()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(SwipeActionsContent(model: model, children: children))
+    self.bridge = bridge
+    super.init(wrap: { children, standalone in
+      AnyView(SwipeActionsContent(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+      [weak bridge] (view: OneNativeSwipeActionsView, _: UITraitCollection) in
+      bridge?.sync(view.traitCollection)
+    }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public override func didMoveToWindow() {
+    bridge.sync(traitCollection)
+    super.didMoveToWindow()
+  }
 
   // an actions marker carries one edge's buttons, so it is captured into that edge's
   // slot rather than published with the row content. anything else is row content.
