@@ -1,6 +1,6 @@
-import { expoRun } from '../utils/expoRun'
+import { nativeRun } from '../utils/nativeRun'
 
 export const runIos = async ({ root, port }: { root: string; port?: number }) => {
   console.info('› one run:ios')
-  return await expoRun({ root, platform: 'ios', port })
+  return await nativeRun({ root, platform: 'ios', port })
 }
