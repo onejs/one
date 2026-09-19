@@ -86,6 +86,20 @@ TextField, ToggleButton, Tooltip, useNativeState.
     last-failed set to timeout errors, so the next multi-conjunct failure
     says which part failed instead of blaming the mount marker. Applied to
     the two edited expects; wider rollout on request. Script typechecks.
+  - ANDROIDFIX7 `48c27ffa4`: (a) reject now types one char and expects
+    `Request: h` with no `Text: h` (chose coordinator option (a): option (b)
+    races because rapid key events can coalesce before reject-acks land;
+    multi-char coverage stays in accept, where the final event carries full
+    text deterministically). Audited the whole tail: accept/reset/slider-step
+    are timing-sound; slider tap replaced with a thumb drag
+    (`swipeOnNode`, new helper; dead `tapFraction` removed) since M3
+    tap-to-jump is the unverified behavior and drag is core; dialog/custom/
+    progress predicates sound modulo M3 semantics the run will adjudicate.
+    `diagnose()` rolled out to every multi-conjunct tail predicate (home
+    rotation, orientation, all inputs checks) so the next timeout names the
+    failed conjunct; `nodeById` fail-fast throws preserved outside the
+    diagnosed booleans. Pre-rotation green checks untouched. No fixture
+    change needed. Script typechecks.
 
 ## NEEDS-BUILD
 
