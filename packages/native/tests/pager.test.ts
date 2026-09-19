@@ -2,6 +2,20 @@ import { createElement } from 'react'
 import TestRenderer from 'react-test-renderer'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
+vi.mock('react-native', () => ({
+  Platform: { OS: 'ios', Version: '26.4' },
+  // later entries win, like the real flatten; registered ids never appear here.
+  StyleSheet: {
+    flatten: (function flatten(
+      style: unknown,
+      into: Record<string, unknown> = {}
+    ): Record<string, unknown> {
+      if (Array.isArray(style)) style.forEach((entry) => flatten(entry, into))
+      else if (style && typeof style === 'object') Object.assign(into, style)
+      return into
+    }) as (style: unknown) => Record<string, unknown>,
+  },
+}))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => `host-${name}`,
 }))
@@ -31,19 +45,20 @@ const pagerStyle = (props: object) => {
 }
 
 describe('pager viewport', () => {
-  it('fills height by default and yields to an explicit style', () => {
+  it('fills with flex by default and passes an explicit style through untouched', () => {
     const base = {
       children: pages(),
       selection: 'a',
       onSelectionChange: () => {},
     }
-    expect(pagerStyle(base)[0]).toEqual({
-      height: '100%',
-      alignSelf: 'stretch',
-    })
-    const style = { height: 100 }
-    const explicit = pagerStyle({ ...base, style })
-    expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
-    expect(explicit[1]).toBe(style)
+    expect(pagerStyle(base)[0]).toEqual({ flex: 1 })
+    for (const style of [
+      { height: 100 },
+      { flex: 2 },
+      { flexGrow: 1, flexShrink: 1 },
+      { flexShrink: 0 },
+      { flexBasis: 100 },
+    ])
+      expect(pagerStyle({ ...base, style })).toEqual([style])
   })
 })

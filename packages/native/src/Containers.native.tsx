@@ -1,11 +1,19 @@
 import {
   Children,
+  Fragment,
   createContext,
   isValidElement,
   useContext,
   type ReactNode,
 } from 'react'
-import { Platform } from 'react-native'
+import {
+  Image,
+  Platform,
+  ScrollView as RNScrollView,
+  Text as RNText,
+  TextInput,
+  View,
+} from 'react-native'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
 import NativeDisclosureGroup from './specs/OneNativeDisclosureGroupNativeComponent'
@@ -29,6 +37,7 @@ import NativeSpacer from './specs/OneNativeSpacerNativeComponent'
 import NativeZStack from './specs/OneNativeZStackNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
 import { useControlled } from './controlled'
+import { fillViewportStyle } from './fillViewport'
 import { labeledContentProps } from './labeledContent'
 import { Pager } from './Pager.native'
 import { Tabs } from './Tabs.native'
@@ -122,6 +131,32 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
   }
 }
 
+// the native insertChild preconditions on non-composable children, so the wrappers
+// fail first with a JavaScript stack: a denylist, because a custom component that
+// renders SwiftUI inside is a function too and must stay legal. composite and
+// third-party native views fall through to the native gate.
+const reactNativeChildren = new Set<unknown>(
+  [View, RNText, Image, RNScrollView, TextInput].filter(Boolean)
+)
+
+export function assertOneNativeChildren(children: ReactNode, owner: string) {
+  for (const child of Children.toArray(children)) {
+    if (child === null || child === undefined || typeof child === 'boolean') continue
+    if (typeof child === 'string' || typeof child === 'number')
+      throw new Error(`${owner} takes SwiftUI children, not raw text or numbers`)
+    if (!isValidElement<{ children?: ReactNode }>(child)) continue
+    // a fragment mounts its contents directly, so its children are checked too.
+    if (child.type === Fragment) {
+      assertOneNativeChildren(child.props.children, owner)
+      continue
+    }
+    if (typeof child.type === 'string' || reactNativeChildren.has(child.type))
+      throw new Error(
+        `${owner} takes SwiftUI children; move React Native content into Swift.Slot`
+      )
+  }
+}
+
 type HostStackProps = HostProps & { name: string; axis: HostAxis }
 
 function HostStack({
@@ -145,6 +180,7 @@ function HostStack({
   if (!Number.isFinite(spacing) || spacing < 0)
     throw new Error(`${name} spacing must be a non-negative number`)
   assertNoGreedyContainer(children, name)
+  assertOneNativeChildren(children, name)
   return (
     <NativeHost
       {...props}
@@ -183,6 +219,7 @@ export function ZStack({ alignment = 'center', children, style, ...props }: ZSta
       `Swift.ZStack alignment must be one of ${zStackAlignments.join(', ')}`
     )
   assertNoGreedyContainer(children, 'Swift.ZStack')
+  assertOneNativeChildren(children, 'Swift.ZStack')
   return (
     <NativeZStack
       {...props}
@@ -212,6 +249,7 @@ export function Form({
   isEnabled,
   ...props
 }: FormProps) {
+  assertOneNativeChildren(children, 'Swift.Form')
   return (
     <NativeForm
       {...props}
@@ -238,6 +276,7 @@ export function Section({
 }: SectionProps) {
   if (typeof title !== 'string' || typeof footer !== 'string')
     throw new Error('Swift.Section title and footer must be strings')
+  assertOneNativeChildren(children, 'Swift.Section')
   return (
     <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -251,13 +290,13 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
     listStyle,
     Number.parseFloat(String(Platform.Version))
   )
-  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
-  // stretch alone collapses a bare list to zero height. height 100% fills the
-  // box by default and still yields to an explicit height later in the array.
+  assertOneNativeChildren(children, 'Swift.List')
+  // a bare list fills the space it is given; an explicit height or flex sizing in
+  // the style turns the default off instead of fighting it.
   return (
     <NativeList
       {...props}
-      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
+      style={fillViewportStyle(style)}
       listStyle={listStyle}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -276,13 +315,13 @@ export function ScrollView({
     throw new Error(
       `Swift.ScrollView axes must be one of ${scrollViewAxes.join(', ')}`
     )
+  assertOneNativeChildren(children, 'Swift.ScrollView')
   return (
     <NativeScrollView
       {...props}
-      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
-      // stretch alone collapses a bare scroll view to zero height. height 100%
-      // fills the box by default and still yields to an explicit height.
-      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
+      // a bare scroll view fills the space it is given; an explicit height or flex
+      // sizing in the style turns the default off instead of fighting it.
+      style={fillViewportStyle(style)}
       axes={axes}
       showsIndicators={showsIndicators}
     >
@@ -304,6 +343,7 @@ export function LazyVStack({
     )
   if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
     throw new Error('Swift.LazyVStack spacing must be a non-negative number')
+  assertOneNativeChildren(children, 'Swift.LazyVStack')
   return (
     <NativeLazyVStack
       {...props}
@@ -329,6 +369,7 @@ export function LazyHStack({
     )
   if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
     throw new Error('Swift.LazyHStack spacing must be a non-negative number')
+  assertOneNativeChildren(children, 'Swift.LazyHStack')
   return (
     <NativeLazyHStack
       {...props}
@@ -355,6 +396,7 @@ export function LabeledContent({
     systemImage,
     hasChildren: Children.toArray(children).length > 0,
   })
+  assertOneNativeChildren(children, 'Swift.LabeledContent')
   return (
     <NativeLabeledContent
       {...props}
@@ -377,6 +419,7 @@ export function Glass({
   style,
   ...props
 }: GlassProps) {
+  assertOneNativeChildren(children, 'Swift.Glass')
   return (
     <NativeGlass
       {...props}
@@ -406,6 +449,7 @@ export function ControlGroup({
     controlGroupStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  assertOneNativeChildren(children, 'Swift.ControlGroup')
   return (
     <NativeControlGroup
       {...props}
@@ -432,6 +476,7 @@ export function DisclosureGroup({
     throw new Error('Swift.DisclosureGroup label must be a non-empty string')
   if (typeof isExpanded !== 'boolean')
     throw new Error('Swift.DisclosureGroup isExpanded must be a boolean')
+  assertOneNativeChildren(children, 'Swift.DisclosureGroup')
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -480,6 +525,7 @@ export function Link({
   // back to the label when it is absent.
   if (Children.toArray(children).length === 0 && !label)
     throw new Error('Swift.Link needs a label or children')
+  assertOneNativeChildren(children, 'Swift.Link')
   return (
     <NativeLink
       {...props}
@@ -493,6 +539,7 @@ export function Link({
 }
 
 export function Group({ children, style, ...props }: GroupProps) {
+  assertOneNativeChildren(children, 'Swift.Group')
   return (
     <NativeGroup {...props} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -501,6 +548,7 @@ export function Group({ children, style, ...props }: GroupProps) {
 }
 
 export function OverlayContent({ children, style, ...props }: OverlayContentProps) {
+  assertOneNativeChildren(children, 'Swift.Overlay.Content')
   return (
     <NativeOverlayContent {...props} style={style}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -518,6 +566,7 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
   )
   if (markers.length > 1)
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
+  assertOneNativeChildren(children, 'Swift.Overlay')
   return (
     <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -538,6 +587,7 @@ export function SwipeActionsActions({
     throw new Error(
       `Swift.SwipeActions edge must be one of ${swipeActionsEdges.join(', ')}`
     )
+  assertOneNativeChildren(children, 'Swift.SwipeActions.Actions')
   return (
     <NativeSwipeActionsActions
       {...props}
@@ -559,6 +609,7 @@ function SwipeActionsFn({ children, style, ...props }: SwipeActionsProps) {
   )
   if (new Set(edges).size !== edges.length)
     throw new Error('Swift.SwipeActions takes at most one Actions group per edge')
+  assertOneNativeChildren(children, 'Swift.SwipeActions')
   return (
     <NativeSwipeActions {...props} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
