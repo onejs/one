@@ -34,6 +34,13 @@ TextField, ToggleButton, Tooltip, useNativeState.
     confirm/dismiss-button/back-dismiss, custom dialog close/back-dismiss,
     progress presence + duplicate sweep). `tapNavigation` takes a nav id.
     Existing 24 checks untouched. Rebuilt tracked `types/compose*.d.ts`.
+  - ANDROIDFIX `bb84a4b38`: dropped `Role.Dialog`/`Role.ProgressBar` (do not
+    exist in compose ui 1.11.4; verified via javap on the cached AAR —
+    dialogs/progress publish their own semantics, no behavior change).
+    Also verified M3 1.4.0 progress lambda + indeterminate overloads exist.
+    No new committed test: Kotlin-only compile fix, no JVM harness in repo;
+    coordinator assembleDebug is the gate; existing dialog/progress
+    conformance checks cover the paths at runtime.
 
 ## NEEDS-BUILD
 
