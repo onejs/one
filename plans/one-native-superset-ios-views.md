@@ -92,6 +92,13 @@ the shape lands.
   the scheme bridge stays: inert when traits agree, and it guards a
   real split such as presented overlay content. gate: esbuild
   transpile clean; package gates untouched by a fixture-only change).
+- LISTSFIX3 f4beedfdd (suite-side: plain/grouped style assertions
+  assumed Carrot visible without scrolling, but the style relayout
+  shifts section 2 below the fold. swipeRows now takes a prefix list
+  so list swipes anchor to any visible list row; each style asserts
+  status (+ Apple pre-swipe for plain), swipes Carrot in, then
+  asserts Carrot. recycle assertions need no change: fresh mounts
+  start at the top with section 1 visible. gate: bun build clean).
 
 ## NEEDS-BUILD
 
