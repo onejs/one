@@ -101,8 +101,11 @@ private struct ButtonContent: View {
 }
 private extension ButtonModel {
   // the label is the same whether or not a disclosure indicator follows it, so the
-  // image-or-text rule is written once.
+  // image-or-text rule is written once. an icon-only button renders the image alone
+  // rather than a label with an empty title, so no title spacing is reserved.
   @ViewBuilder var oneNativeLabel: some View {
-    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
+    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
+    else if !systemImage.isEmpty { Image(systemName: systemImage) }
+    else { Text(label) }
   }
 }
