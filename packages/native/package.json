@@ -127,6 +127,7 @@
         "OneNativeSwipeActionsActions": "OneNativeSwipeActionsActionsComponentView",
         "OneNativePager": "OneNativePagerComponentView",
         "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
+        "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",

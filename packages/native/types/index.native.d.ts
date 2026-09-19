@@ -69,4 +69,5 @@ export { Compose };
 export { useNativeState, type NativeState } from './nativeState';
 export type * from './types';
 export type * from './composeTypes';
+export * as UI from './effects';
 //# sourceMappingURL=index.native.d.ts.map

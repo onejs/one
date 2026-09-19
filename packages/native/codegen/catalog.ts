@@ -801,4 +801,36 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    // owned edge-fade primitive (UI.EdgeFade mask mode). a Yoga container
+    // that alpha-fades its children toward any edge. sizes are dp (0 =
+    // disabled); curves are preset names or serialized alpha stops. overlay
+    // mode never reaches this view: RN core backgroundImage gradients paint
+    // it in JS. no events: a fade is pure presentation, never state.
+    name: 'OneNativeEdgeFade',
+    publicName: 'EdgeFade',
+    props: {
+      fadeTop: 'Double',
+      fadeBottom: 'Double',
+      fadeLeft: 'Double',
+      fadeRight: 'Double',
+      curveTop: 'string',
+      curveBottom: 'string',
+      curveLeft: 'string',
+      curveRight: 'string',
+      fadeRadius: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
 ] as const
