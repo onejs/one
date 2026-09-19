@@ -1,5 +1,4 @@
 import { useControlled } from './controlled'
-import { fillViewportStyle } from './fillViewport'
 import { Children, isValidElement, useMemo } from 'react'
 import type { PageProps, PagerProps } from './groupTypes'
 import NativeTab from './specs/OneNativeTabNativeComponent'
@@ -57,9 +56,10 @@ export function Pager({
   return (
     <NativePager
       {...props}
-      // a bare pager fills the space it is given; an explicit height or flex
-      // sizing in the style turns the default off instead of fighting it.
-      style={fillViewportStyle(style)}
+      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
+      // stretch alone collapses a bare pager to zero height. height 100% fills
+      // the box by default and still yields to an explicit height.
+      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
       selection={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}

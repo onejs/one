@@ -37,7 +37,6 @@ import NativeSpacer from './specs/OneNativeSpacerNativeComponent'
 import NativeZStack from './specs/OneNativeZStackNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
 import { useControlled } from './controlled'
-import { fillViewportStyle } from './fillViewport'
 import { labeledContentProps } from './labeledContent'
 import { Pager } from './Pager.native'
 import { Tabs } from './Tabs.native'
@@ -291,12 +290,13 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
     Number.parseFloat(String(Platform.Version))
   )
   assertOneNativeChildren(children, 'Swift.List')
-  // a bare list fills the space it is given; an explicit height or flex sizing in
-  // the style turns the default off instead of fighting it.
+  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
+  // stretch alone collapses a bare list to zero height. height 100% fills the
+  // box by default and still yields to an explicit height later in the array.
   return (
     <NativeList
       {...props}
-      style={fillViewportStyle(style)}
+      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
       listStyle={listStyle}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -319,9 +319,10 @@ export function ScrollView({
   return (
     <NativeScrollView
       {...props}
-      // a bare scroll view fills the space it is given; an explicit height or flex
-      // sizing in the style turns the default off instead of fighting it.
-      style={fillViewportStyle(style)}
+      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
+      // stretch alone collapses a bare scroll view to zero height. height 100%
+      // fills the box by default and still yields to an explicit height.
+      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
       axes={axes}
       showsIndicators={showsIndicators}
     >
