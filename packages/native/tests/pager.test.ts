@@ -2,6 +2,15 @@ import { createElement } from 'react'
 import TestRenderer from 'react-test-renderer'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
+vi.mock('react-native', () => ({
+  StyleSheet: {
+    flatten: (style: unknown): object | undefined =>
+      Array.isArray(style)
+        ? Object.assign({}, ...style.filter(Boolean))
+        : (style as object),
+  },
+}))
+
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => `host-${name}`,
 }))
@@ -37,13 +46,10 @@ describe('pager viewport', () => {
       selection: 'a',
       onSelectionChange: () => {},
     }
-    expect(pagerStyle(base)[0]).toEqual({
-      height: '100%',
-      alignSelf: 'stretch',
-    })
+    expect(pagerStyle(base)[0]).toEqual({ flex: 1, alignSelf: 'stretch' })
     const style = { height: 100 }
     const explicit = pagerStyle({ ...base, style })
-    expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+    expect(explicit[0]).toEqual({ alignSelf: 'stretch' })
     expect(explicit[1]).toBe(style)
   })
 })
