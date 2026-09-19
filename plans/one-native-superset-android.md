@@ -127,4 +127,14 @@ TextField, ToggleButton, Tooltip, useNativeState.
 
 ## Blocked
 
-- (none)
+- FIX8 verification run aborted: my emulator (pid 48414) was SIGTERMed
+  mid-run — log shows graceful shutdown plus snapshot save plus exit 0, the
+  same signature as both coordinator deaths (a crash or OOM would not save
+  a snapshot and exit 0). I never issue lifecycle commands; Q1 answer is no.
+  At 21:05 a FOREIGN live run owns emulator-5554: qemu pid 72596 plus the
+  conformance suite pid 75205, parented to an opencode-harness session
+  (ses_f49c7191..., 9h55m old; r41417 matches by harness and recent
+  activity), not the coordinator's Muse session. I stood down to avoid a
+  collision: no second emulator, no run. Verification needs a clear window
+  plus a single-owner protocol (no broad pkill, kill by PID, mind the 5554
+  serial-reuse trap). Evidence kept at /tmp/androidfix8-emulator.log.
