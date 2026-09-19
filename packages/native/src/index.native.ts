@@ -70,5 +70,6 @@ export const Swift =
       }
     : UnsupportedSwift
 export { Compose }
+export { useNativeState, type NativeState } from './nativeState'
 export type * from './types'
 export type * from './composeTypes'
