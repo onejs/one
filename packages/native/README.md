@@ -269,6 +269,26 @@ functional state update to preserve every change. Button actions call `onAction`
 Unsupported enum values, and values above the runtime iOS version, are rejected
 before submitting native props.
 
+`Swift.Pager` is a tab bar without the bar: keyed React Native pages under the
+same controlled `selection`, swiped rather than tapped, with the page dots
+SwiftUI draws for the page style. Pages reuse the `Tab` component, so they
+mount through the same slot machinery; a page carries only an `id`, since tab
+chrome has nothing to attach to.
+
+```tsx
+<Swift.Pager selection={page} onSelectionChange={setPage}>
+  <Swift.Page id="a">
+    <Text>Page A</Text>
+  </Swift.Page>
+  <Swift.Page id="b">
+    <Text>Page B</Text>
+  </Swift.Page>
+</Swift.Pager>
+```
+
+Like a tab bar, a pager takes the box it is given, so it needs its own box
+rather than a seat inside a `Swift.Host` or `Swift.ZStack`.
+
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
 as its content. Put independent interactive controls outside the trigger.
@@ -446,7 +466,9 @@ SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRe
 `symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
 and no controlled value, and they are most useful as rows inside a container.
 
-`Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
+`Button` needs a `label`, a `systemImage`, or both. With only a `systemImage` it
+renders the bare symbol with no title spacing reserved, centered in the button
+frame. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
 accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
@@ -970,6 +992,54 @@ screen, so a long list inside a scroll view mounts fast. `alignment` is
 default; spacing is the SwiftUI platform default. They belong inside a scroll
 view: outside one there is nothing to be lazy about, and a standalone lazy
 stack takes the box it is given instead of measuring.
+
+### Groups, links, and swipe actions
+
+`Swift.ControlGroup` gathers controls into one labeled cluster with the
+SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
+`menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
+an empty label renders no title.
+
+`Swift.DisclosureGroup` is the controlled expandable section: `label` names
+it, `isExpanded` with `onIsExpandedChange` owns its state under the same
+acknowledgement and `revision` reset as the other controlled values, so
+keeping the old value in the callback refuses the toggle and rolls the
+native state back. It takes the box it is given, so like a form it cannot
+be a child of a `Swift.Host` or `Swift.ZStack`.
+
+`Swift.Divider` draws the hairline between rows and holds nothing, so it
+must live inside a container and takes no children. `Swift.Group` is the
+opposite: it holds children and draws nothing, for grouping rows without a
+box of their own. `Swift.Link` opens `destination` (a parseable URL, checked
+before the props cross); its label is either composed children or the
+`label` string, with children winning when both are present.
+
+`Swift.Overlay` lays a single `Swift.Overlay.Content` group over its base
+content at `alignment` (the nine stack alignments, `center` by default),
+sized to the base. `Swift.SwipeActions` wraps one list row and up to two
+`Swift.SwipeActions.Actions` groups, one per edge; each group holds the
+buttons for that edge, `allowsFullSwipe` (default true) decides whether a
+full swipe fires the first one, and a second group on the same edge is
+rejected. Swipe actions only act inside a list, so the row belongs in a
+`Swift.List`.
+
+```tsx
+<Swift.List style={{ flex: 1 }}>
+  <Swift.Section>
+    <Swift.SwipeActions>
+      <Swift.Text text="Swipe me" />
+      <Swift.SwipeActions.Actions edge="trailing">
+        <Swift.Button
+          label="Delete"
+          systemImage="trash"
+          buttonRole="destructive"
+          onPress={remove}
+        />
+      </Swift.SwipeActions.Actions>
+    </Swift.SwipeActions>
+  </Swift.Section>
+</Swift.List>
+```
 
 ### Labeled content
 
