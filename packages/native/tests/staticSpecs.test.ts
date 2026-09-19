@@ -1,13 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { transformSync } from 'esbuild'
-import { emitViewConfig } from '../codegen/emitViewConfig'
+import { join } from 'node:path'
 import { formatForMirror, mirrorPaths } from '../codegen/staticSpecs'
-
-const specsDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'specs')
 
 describe('staticSpecs', () => {
   it('maps a spec stem to its existing dist mirrors', () => {
@@ -28,16 +23,10 @@ describe('staticSpecs', () => {
     ['dist/cjs/specs/S.cjs', 'cjs'],
     ['dist/cjs/specs/S.native.cjs', 'cjs'],
     ['dist/cjs/specs/S.native.js', 'cjs'],
+    ['dist\\cjs\\specs\\S.cjs', 'cjs'],
+    ['dist\\esm\\specs\\S.mjs', 'esm'],
   ] as const)('formats %s as %s', (mirror, format) => {
     expect(formatForMirror(mirror)).toBe(format)
   })
 
-  it.each(['esm', 'cjs'] as const)('stripped %s keeps the view config and no codegen call', (format) => {
-    const filename = join(specsDir, 'OneNativeMenuNativeComponent.ts')
-    const pluginBytes = emitViewConfig(readFileSync(filename, 'utf8'), filename)
-    const { code } = transformSync(pluginBytes, { loader: 'ts', format })
-    expect(code).toContain('__INTERNAL_VIEW_CONFIG')
-    expect(code).not.toMatch(/codegenNativeComponent\s*[<(]/)
-    expect(code).not.toContain('interface NativeProps')
-  })
 })

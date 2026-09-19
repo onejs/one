@@ -31,13 +31,14 @@ export function mirrorPaths(distDir: string, stem: string): string[] {
 }
 
 export function formatForMirror(mirrorPath: string): 'esm' | 'cjs' {
-  return mirrorPath.split('/').includes('cjs') ? 'cjs' : 'esm'
+  return mirrorPath.split(/[\\/]/).includes('cjs') ? 'cjs' : 'esm'
 }
 
-if (import.meta.main) {
-  const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-  const specsDir = join(root, 'src', 'specs')
-  const distDir = join(root, 'dist')
+export function rewriteDistSpecs(
+  specsDir: string,
+  distDir: string
+): { specs: number; mirrors: number } {
+  const root = dirname(distDir)
   const specs = readdirSync(specsDir)
     .filter((name) => name.endsWith('.ts'))
     .sort()
@@ -81,5 +82,11 @@ if (import.meta.main) {
       mirrors++
     }
   }
-  console.log(`staticSpecs: ${specs.length} specs, ${mirrors} dist mirrors rewritten`)
+  return { specs: specs.length, mirrors }
+}
+
+if (import.meta.main) {
+  const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+  const { specs, mirrors } = rewriteDistSpecs(join(root, 'src', 'specs'), join(root, 'dist'))
+  console.log(`staticSpecs: ${specs} specs, ${mirrors} dist mirrors rewritten`)
 }

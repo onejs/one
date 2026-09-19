@@ -2,9 +2,9 @@
 
 ## Now
 
-Unit 2 done, committing. Static emission complete through artifact-test;
-dist-export restore waits on coordinator device validation. Closed-world
-stays behind the CI-owner gate.
+Merge-gate items done, committing. Behavioral bundle probe green; string
+tests removed; Windows fix in. Dist-export restore still waits on
+coordinator device validation. Closed-world stays behind the CI-owner gate.
 
 ## Design: static view-config emission (implementation on coordinator go)
 
@@ -327,6 +327,16 @@ or adapter changes in either unit.
   and 0 TS leftovers across all mirrors, both formats parse, maps valid.
   generate:check verified, vitest 176/176, tsc clean (ios-views fixed their
   call sites mid-flight).
+- Types regen committed as dbebce71e (25 files, verified 25/25
+  byte-identical to Sol's aa65497d7 before committing).
+- Merge gate (p47830) done: (1) formatForMirror splits both separators +
+  backslash tests; (2) removed the forbidden string-existence tests from
+  viewConfig/staticSpecs suites (byte-parity + throws + mapping tests stay);
+  (3) tests/nativeBundle.test.ts is the behavioral gate: real rewrite over a
+  hermetic stage, bundled by real buildNativeBundle (resolver observed
+  picking .native.js), executed in VM, asserts registry name + config. RN
+  leaves stubbed at load (device provides them); require() output kept per
+  reviewer. Runner fail-loud guards kept (build errors, not weak tests).
 
 - MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
   Merge a95cd0206 landed with MAXIMUM_IOS=26; freeze over.
@@ -412,3 +422,6 @@ or adapter changes in either unit.
 - (resolved) the containers.test.ts OneNativeListComponentView failure cleared
   when ios-views landed the native views; suite is 84/84 green.
 - (resolved) ios-views fixed the spacing call sites mid-flight; tsc clean.
+- 3 red suites are ios-views' assembly (not mine): groups/lists fail on a
+  broken react-native mock (no View export), components on a wrapper test.
+  Their test files + adapters are dirty in the tree; flagged.
