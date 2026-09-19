@@ -133,7 +133,10 @@ bun tests/native-features/scripts/one-native-conformance.android.ts \
   --artifact-dir /tmp/one-native-android-proof
 ```
 
-The suite drives `tests/native-features/app/one-native-android.tsx` through
+The suite first rotates the home screen with no native views mounted as a
+discriminator: home surviving while the proof screen dies would implicate
+native init on activity recreate. It then drives
+`tests/native-features/app/one-native-android.tsx` through
 `uiautomator` dumps and coordinate taps: mount marker, accessibility and order,
 prop mutation with fresh bounds, two button taps, controlled Switch reject,
 accept, and revision reset, keyed reorder, optional unmount and remount,
@@ -149,7 +152,7 @@ ratio 1.334 against 1.333 expected), taps through one live post-recreation
 interaction, then resets the density and proves the screen stays mounted with
 bounds reverted. A second screen then proves the TextField, Slider,
 AlertDialog, Dialog, and ProgressIndicator nodes the same way. The suite runs
-40 checks on the standard emulator (plus 2 conditional IME-renavigate checks).
+42 checks on the standard emulator (plus 2 conditional IME-renavigate checks).
 
 Two behaviors are worth knowing when reading the artifacts. A non-scrollable
 `Column` taller than the window keeps composing its tail, but at 560dpi the
