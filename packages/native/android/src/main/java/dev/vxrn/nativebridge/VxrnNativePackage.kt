@@ -7,6 +7,7 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
+import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 
@@ -43,5 +44,9 @@ class VxrnNativePackage : BaseReactPackage() {
     override fun createViewManagers(
         reactContext: ReactApplicationContext,
     ): List<ViewManager<*, *>> =
-        listOf(OneNativeComposeNodeManager(), OneNativeSafeAreaProviderManager())
+        listOf(
+            OneNativeComposeNodeManager(),
+            OneNativeSafeAreaProviderManager(),
+            OneNativeEdgeFadeManager(),
+        )
 }
