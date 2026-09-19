@@ -2,10 +2,11 @@
 
 ## Now
 
-New milestone queued (static view-config emission): study done, design note
-below, implementation starts on coordinator go. Closed-world implementation
-still awaits its explicit go. Constraint recorded: keep emitStyle open to a
-composable modifiers array; joint design note pending.
+Unit 1 done, committing. Next: Unit 2 staticSpecs build step, then
+artifact-test packed ESM/CJS per review sequencing. Closed-world stays
+behind the CI-owner gate. Deconflict answered: the staged swift + dirty kt
+were not mine (landed as d0f0fb5e4 + 7f353e64e by their owners); my only
+dirt is Unit 1 files.
 
 ## Design: static view-config emission (implementation on coordinator go)
 
@@ -314,6 +315,13 @@ or adapter changes in either unit.
   verified, tsc clean, vitest 108/108.
 - CI green on the branch (run 35414353719): generate:check, Dev + Prod
   builds, 4-way e2e. The present() merge fixed the roundedBorder red.
+- Review fix taken: cherry-picked 4c8f55b59 (positional leaf-arg validation
+  + proof test) as da07a7161; derive 14/14, generate:check verified.
+- Unit 1 static view-config done: codegen/emitViewConfig.ts replicates the
+  babel plugin splice (same parser/generator/printer); tests/viewConfig.test.ts
+  proves byte-parity over all 53 src specs plus Commands/removal/negative
+  cases (56/56). generate:check verified, vitest 166/166. tsc is red on
+  ios-views' assembly (see Blocked); zero errors in Unit 1 files.
 
 - MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
   Merge a95cd0206 landed with MAXIMUM_IOS=26; freeze over.
@@ -398,3 +406,8 @@ or adapter changes in either unit.
 - (dropped per coordinator: release-history posts are not touched.)
 - (resolved) the containers.test.ts OneNativeListComponentView failure cleared
   when ios-views landed the native views; suite is 84/84 green.
+- tsc red on ios-views' assembly (not mine, cannot fix: both sides outside
+  my boundary): src/Containers.native.tsx:299,320 omit the required
+  `spacing` prop the Lazy specs demand (catalog.ts + .native.tsx are
+  ios-views'). My spec-template import fix did its job (no Double import
+  error); the adapter call sites are behind. Flagged for coordinator.
