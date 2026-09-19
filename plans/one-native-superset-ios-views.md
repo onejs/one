@@ -99,6 +99,13 @@ the shape lands.
   status (+ Apple pre-swipe for plain), swipes Carrot in, then
   asserts Carrot. recycle assertions need no change: fresh mounts
   start at the top with section 1 visible. gate: bun build clean).
+- LISTSFIX4 e935aee15 (suite-side: 10x80pt swipes move ~11 rows,
+  never reaching Row 30. attempts 10->24, drag half-length 40->80,
+  and the anchor is now the median match instead of the first:
+  first-materialized can sit in the off-viewport buffer, where the
+  drag lands on a neighbor and the attempt is wasted. both seeks
+  share the helper, so Row 30 and Chip 20 are covered together;
+  the loop exits early on success. gate: bun build clean).
 
 ## NEEDS-BUILD
 
