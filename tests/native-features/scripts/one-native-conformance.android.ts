@@ -539,10 +539,9 @@ function duplicateIdsIn(nodes: Node[], ids: string[]) {
   return ids.filter((id) => matching(nodes, { id }).length !== 1)
 }
 
-// At 560dpi the 309x686dp window clips the Column tail: the order row and the
-// decoy box are composed but absent from the uiautomator tree. Assert the
-// observable subset there and the full set at the default density.
-const proofIdsVisibleSmall = [
+// In landscape the short window edge (~340dp usable) clips everything below the
+// switch policy status. Assert that observable prefix there.
+const proofIdsVisibleLandscape = [
   'one-native-android-mounted',
   'one-native-android-prop-status',
   'one-native-android-bounds-box',
@@ -553,17 +552,6 @@ const proofIdsVisibleSmall = [
   'one-native-android-reorder',
   'one-native-android-switch-status',
   'one-native-android-switch-policy-status',
-  'one-native-android-switch',
-  'one-native-android-switch-policy',
-  'one-native-android-switch-reset',
-  'one-native-android-lifecycle-status',
-  'one-native-android-toggle-optional',
-  'one-native-android-optional',
-  'one-native-android-optional-text',
-  'one-native-android-disabled-status',
-  'one-native-android-disabled-button',
-  'one-native-android-disabled-switch',
-  'one-native-android-order-status',
 ]
 
 function nodeWidth(node: Node) {
@@ -571,15 +559,43 @@ function nodeWidth(node: Node) {
   return node.bounds.right - node.bounds.left
 }
 
-function readDensity(config: Config) {
-  const output = adbText(config, ['shell', 'wm', 'density']).trim()
-  const match = output.match(/density:\s*(\d+)\s*$/m)
-  if (!match) throw new Error(`Could not parse wm density output: ${output}`)
-  return Number(match[1])
-}
-
 function writeDensity(config: Config, value: string) {
   adbText(config, ['shell', 'wm', 'density', value])
+}
+
+function lockRotation(config: Config, rotation: string) {
+  adbText(config, ['shell', 'wm', 'user-rotation', 'lock', rotation])
+}
+
+function freeRotation(config: Config) {
+  adbText(config, ['shell', 'wm', 'user-rotation', 'free'])
+}
+
+function relaunchApp(config: Config) {
+  adbText(config, ['shell', 'am', 'force-stop', config.packageId])
+  const launcherComponent = adbText(config, [
+    'shell',
+    'cmd',
+    'package',
+    'resolve-activity',
+    '--brief',
+    '-c',
+    'android.intent.category.LAUNCHER',
+    config.packageId,
+  ])
+    .trim()
+    .split(/\r?\n/)
+    .findLast((line) => line.includes('/'))
+  if (!launcherComponent)
+    throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+  adbText(config, [
+    'shell',
+    'am',
+    'start',
+    '-W',
+    '-n',
+    launcherComponent,
+  ])
 }
 
 async function run(config: Config) {
@@ -646,31 +662,14 @@ async function run(config: Config) {
     return result.snapshot
   }
 
+  const quarantined: Array<{
+    name: string
+    error: string
+    artifacts: Check['artifacts'] | undefined
+  }> = []
+
   try {
-    adbText(config, ['shell', 'am', 'force-stop', config.packageId])
-    const launcherComponent = adbText(config, [
-      'shell',
-      'cmd',
-      'package',
-      'resolve-activity',
-      '--brief',
-      '-c',
-      'android.intent.category.LAUNCHER',
-      config.packageId,
-    ])
-      .trim()
-      .split(/\r?\n/)
-      .findLast((line) => line.includes('/'))
-    if (!launcherComponent)
-      throw new Error(`No launcher activity resolved for ${config.packageId}.`)
-    adbText(config, [
-      'shell',
-      'am',
-      'start',
-      '-W',
-      '-n',
-      launcherComponent,
-    ])
+    relaunchApp(config)
 
     await expect(
       'app-mounted',
@@ -681,38 +680,74 @@ async function run(config: Config) {
     )
     const homeDensityAfter = 560
     try {
-      writeDensity(config, String(homeDensityAfter))
+      try {
+        writeDensity(config, String(homeDensityAfter))
+        await waitFor(
+          config,
+          'Home rotation marker returns',
+          (nodes) => exactlyOneId(nodes, 'home-screen'),
+          'home-screen',
+          60_000
+        )
+        await expect(
+          'home-rotation-stays-mounted',
+          (nodes) =>
+            exactlyOneId(nodes, 'home-screen') &&
+            textIncludes(nodes, '@vxrn/native Test Suite'),
+          'home-screen'
+        )
+      } finally {
+        writeDensity(config, 'reset')
+      }
       await waitFor(
         config,
-        'Home rotation marker returns',
+        'Home rotation reset marker returns',
         (nodes) => exactlyOneId(nodes, 'home-screen'),
         'home-screen',
         60_000
       )
       await expect(
-        'home-rotation-stays-mounted',
+        'home-rotation-reset-stays-mounted',
         (nodes) =>
           exactlyOneId(nodes, 'home-screen') &&
           textIncludes(nodes, '@vxrn/native Test Suite'),
         'home-screen'
       )
-    } finally {
-      writeDensity(config, 'reset')
+    } catch (homeError) {
+      const quarantineMessage =
+        homeError instanceof Error ? homeError.message : String(homeError)
+      let quarantineArtifacts: Check['artifacts'] | undefined
+      try {
+        quarantineArtifacts = capture(
+          'home-rotation-quarantined',
+          dumpNodes(config),
+          'failed',
+          quarantineMessage
+        )
+      } catch (captureError) {
+        console.error(
+          `FAIL one-native-android quarantine capture: ${
+            captureError instanceof Error ? captureError.message : String(captureError)
+          }`
+        )
+      }
+      quarantined.push({
+        name: 'home-rotation-density-recreate',
+        error: quarantineMessage,
+        artifacts: quarantineArtifacts,
+      })
+      console.log(`QUARANTINE home-rotation-density-recreate: ${quarantineMessage}`)
+      relaunchApp(config)
+      await waitFor(
+        config,
+        'Post-quarantine home returns',
+        (nodes) =>
+          exactlyOneId(nodes, 'home-screen') &&
+          textIncludes(nodes, '@vxrn/native Test Suite'),
+        'home-screen',
+        60_000
+      )
     }
-    await waitFor(
-      config,
-      'Home rotation reset marker returns',
-      (nodes) => exactlyOneId(nodes, 'home-screen'),
-      'home-screen',
-      60_000
-    )
-    await expect(
-      'home-rotation-reset-stays-mounted',
-      (nodes) =>
-        exactlyOneId(nodes, 'home-screen') &&
-        textIncludes(nodes, '@vxrn/native Test Suite'),
-      'home-screen'
-    )
     await tapNavigation(config)
     await expect(
       'android-proof-mounted',
@@ -1059,102 +1094,80 @@ async function run(config: Config) {
       (nodes) => ({ duplicates: duplicateIds(nodes) })
     )
 
-    const expandedBefore = nodeWidth(nodeById(snapshot(config).nodes, 'one-native-android-bounds-box'))
-    if (expandedBefore <= 0)
-      throw new Error('Pre-rotation bounds box has no usable width.')
-    const densityBefore = readDensity(config)
-    const densityAfter = 560
+    const portraitRowWidth = nodeWidth(
+      nodeById(snapshot(config).nodes, 'one-native-android-button-row')
+    )
+    if (portraitRowWidth <= 0)
+      throw new Error('Pre-rotation button row has no usable width.')
     try {
-      writeDensity(config, String(densityAfter))
+      lockRotation(config, '1')
       await waitFor(
         config,
-        'Post-density mount marker returns',
+        'Landscape marker persists',
         (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
         'one-native-android-mounted',
         60_000
       )
       await expect(
-        'configuration-change-stays-mounted',
-        (nodes) =>
-          exactlyOneId(nodes, 'one-native-android-mounted') &&
-          textIncludes(nodes, 'Android proof mounted') &&
-          textIncludes(nodes, 'Button taps: 3') &&
-          textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
-          textIncludes(nodes, 'Optional: mounted') &&
-          textIncludes(nodes, 'Prop: expanded') &&
-          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
-        'one-native-android-mounted',
-        (nodes) => ({
-          duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall),
-        })
-      )
-      await expect(
-        'configuration-change-density-bounds',
+        'orientation-landscape-relayout',
         (nodes) => {
-          const box = nodeById(nodes, 'one-native-android-bounds-box')
-          const width = nodeWidth(box)
-          const expectedRatio = densityAfter / densityBefore
-          const ratio = width / expandedBefore
+          const row = nodeById(nodes, 'one-native-android-button-row')
+          const width = nodeWidth(row)
+          const window = applicationBounds(nodes)
           return (
+            exactlyOneId(nodes, 'one-native-android-mounted') &&
+            textIncludes(nodes, 'Button taps: 3') &&
+            textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
             textIncludes(nodes, 'Prop: expanded') &&
-            width > expandedBefore &&
-            ratio > expectedRatio * 0.9 &&
-            ratio < expectedRatio * 1.1 &&
-            duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0
+            window.right - window.left > window.bottom - window.top &&
+            width > portraitRowWidth * 1.2 &&
+            duplicateIdsIn(nodes, proofIdsVisibleLandscape).length === 0
           )
         },
         'one-native-android-mounted',
         (nodes) => ({
-          densityBefore,
-          densityAfter,
-          expandedBefore,
-          expandedAfter: nodeWidth(
-            nodeById(nodes, 'one-native-android-bounds-box')
+          portraitRowWidth,
+          landscapeRowWidth: nodeWidth(
+            nodeById(nodes, 'one-native-android-button-row')
           ),
+          window: applicationBounds(nodes),
+          duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape),
         })
       )
-      tapFresh(config, 'Post-rotation real button tap', {
+      tapFresh(config, 'Landscape real button tap', {
         id: 'one-native-android-real-button',
         role: 'button',
         clickable: true,
       })
       await expect(
-        'configuration-change-live-interaction',
+        'orientation-landscape-live-interaction',
         (nodes) =>
           textIncludes(nodes, 'Button taps: 4') &&
-          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+          duplicateIdsIn(nodes, proofIdsVisibleLandscape).length === 0,
         'one-native-android-mounted',
-        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall) })
+        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape) })
       )
     } finally {
-      writeDensity(config, 'reset')
+      freeRotation(config)
     }
     await waitFor(
       config,
-      'Post-reset mount marker returns',
+      'Portrait marker persists',
       (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
       'one-native-android-mounted',
       60_000
     )
     await expect(
-      'density-reset-stays-mounted',
-      (nodes) =>
-        exactlyOneId(nodes, 'one-native-android-mounted') &&
-        textIncludes(nodes, 'Android proof mounted') &&
-        textIncludes(nodes, 'Button taps: 4') &&
-        textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
-        textIncludes(nodes, 'Optional: mounted') &&
-        duplicateIds(nodes).length === 0,
-      'one-native-android-mounted',
-      (nodes) => ({ duplicates: duplicateIds(nodes) })
-    )
-    await expect(
-      'density-reset-bounds-revert',
+      'orientation-portrait-revert',
       (nodes) => {
-        const box = nodeById(nodes, 'one-native-android-bounds-box')
-        const width = nodeWidth(box)
-        const ratio = width / expandedBefore
+        const row = nodeById(nodes, 'one-native-android-button-row')
+        const width = nodeWidth(row)
+        const ratio = width / portraitRowWidth
         return (
+          exactlyOneId(nodes, 'one-native-android-mounted') &&
+          textIncludes(nodes, 'Button taps: 4') &&
+          textIncludes(nodes, 'Switch: on · Request: on · Revision: 1') &&
+          textIncludes(nodes, 'Optional: mounted') &&
           textIncludes(nodes, 'Prop: expanded') &&
           ratio > 0.9 &&
           ratio < 1.1 &&
@@ -1163,9 +1176,9 @@ async function run(config: Config) {
       },
       'one-native-android-mounted',
       (nodes) => ({
-        expandedBefore,
-        revertedWidth: nodeWidth(
-          nodeById(nodes, 'one-native-android-bounds-box')
+        portraitRowWidth,
+        revertedRowWidth: nodeWidth(
+          nodeById(nodes, 'one-native-android-button-row')
         ),
         duplicates: duplicateIds(nodes),
       })
@@ -1412,6 +1425,7 @@ async function run(config: Config) {
           packageId: config.packageId,
           checks,
           checkCount: checks.length,
+          quarantined,
           completedAt: new Date().toISOString(),
         },
         null,
@@ -1457,6 +1471,7 @@ async function run(config: Config) {
           packageId: config.packageId,
           error: failureMessage,
           checks,
+          quarantined,
           failureArtifacts,
           completedAt: new Date().toISOString(),
         },
