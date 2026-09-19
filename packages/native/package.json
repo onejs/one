@@ -83,7 +83,8 @@
     "react": ">=19",
     "react-native": "~0.87.1",
     "react-native-screens": ">=4.25.0",
-    "react-native-safe-area-context": ">=5.5.0"
+    "react-native-safe-area-context": ">=5.5.0",
+    "react-native-worklets": ">=0.12.2"
   },
   "peerDependenciesMeta": {
     "react-native-safe-area-context": {
@@ -98,6 +99,7 @@
     "@tamagui/build": "3.0.0-beta.1309.1",
     "esbuild": "0.28.1",
     "react-native-web": "^0.21.2",
+    "react-native-worklets": "~0.12.2",
     "react-test-renderer": "^19.2.0",
     "vitest": "^4.1.0"
   },

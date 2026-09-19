@@ -1,31 +1,31 @@
-// observable state shared between JavaScript and native views, in the shape of
-// Expo's useNativeState: one handle feeds any number of controlled props, so
-// every bound view converges on the same value.
+import {
+  createSynchronizable,
+  type Synchronizable,
+} from 'react-native-worklets'
+
+// observable state shared between JavaScript and native views: one handle feeds
+// any number of controlled props, so every bound view converges on the same value.
 //
-// the write path never traverses React: set() stores the value and notifies
-// every subscriber synchronously, in the same frame. React only re-renders
-// readers (via useSyncExternalStore in useNativeState); a second bound view,
-// an onChange listener, or any subscriber observes the write before commit.
-//
-// when react-native-worklets is installed the value is backed by a SharedValue,
-// so UI-runtime worklets holding the handle read the latest write synchronously
-// through JSI shared memory. without it the same API runs on a plain JS cell.
-// there is no hard dependency: the require is lazy and failure is silent.
+// the value lives in a worklets Synchronizable, shared memory readable and
+// writable synchronously from both the JS runtime and the UI worklet runtime.
+// React is never the source of truth: components only subscribe (see
+// useNativeState), and the write path never waits for a render. direct
+// UI-runtime access to the handle arrives with the native state module, which
+// observes this same storage from SwiftUI and Compose.
 export const SYNC_STATE_ID_KEY = '__one_sync_state_id__' as const
 export const SYNC_STATE_BRAND = '__one_sync_state__' as const
 
 export type SyncStateListener<T> = (value: T) => void
 
 export type SyncState<T> = {
-  // the current value. reads and writes are synchronous on the calling thread;
-  // with a worklets backing, writes are immediately visible to UI worklets.
+  // the current value, read synchronously from shared memory.
   value: T
   // React Compiler compliant read/write alternatives to `.value`.
   get(): T
   set(value: T): void
   // single listener invoked synchronously inside set(), before subscribers.
-  // assign a worklet when the write originates on the UI runtime; assign null
-  // to clear. the initial value does not fire onChange.
+  // assign null to clear. the initial value does not fire onChange, and
+  // setting the value it already holds is a no-op.
   onChange: SyncStateListener<T> | null
   // subscribe a JS listener; returns an unsubscribe function.
   subscribe(listener: SyncStateListener<T>): () => void
@@ -51,50 +51,30 @@ export function getSyncStateId(state: object | null | undefined): number | undef
   return (state as { [SYNC_STATE_ID_KEY]?: number })[SYNC_STATE_ID_KEY]
 }
 
-type SharedValue<T> = { value: T }
-type MakeMutable = <T>(initial: T) => SharedValue<T>
-
 let nextId = 1
-let makeMutable: MakeMutable | null | undefined
-
-function loadMakeMutable(): MakeMutable | null {
-  if (makeMutable !== undefined) return makeMutable
-  makeMutable = null
-  try {
-    const req = (globalThis as { require?: (id: string) => unknown }).require
-    const worklets = req?.('react-native-worklets') as
-      | { makeMutable?: unknown }
-      | undefined
-    if (worklets && typeof worklets.makeMutable === 'function') {
-      makeMutable = worklets.makeMutable as MakeMutable
-    }
-  } catch {
-    // worklets support is optional; fall through to the JS cell.
-  }
-  return makeMutable
-}
 
 export function createSyncState<T>(initial: T): SyncState<T> {
   const id = nextId++
-  const backing = loadMakeMutable()?.<T>(initial)
-  let current = initial
+  const shared: Synchronizable<T> = createSynchronizable(initial)
   let onChange: SyncStateListener<T> | null = null
   const listeners = new Set<SyncStateListener<T>>()
 
-  const read = (): T => (backing ? backing.value : current)
   const state = {
     get value(): T {
-      return read()
+      return shared.getBlocking()
     },
     set value(next: T) {
       state.set(next)
     },
     get(): T {
-      return read()
+      return shared.getBlocking()
     },
     set(next: T): void {
-      if (backing) backing.value = next
-      current = next
+      // React-style bailout: an identical write notifies nothing. this also
+      // absorbs the native-event echo, where the handle already holds the
+      // value the event carries.
+      if (Object.is(shared.getBlocking(), next)) return
+      shared.setBlocking(next)
       // onChange first: it is the UI-runtime listener, closest to native.
       onChange?.(next)
       // copy: listeners may subscribe/unsubscribe (or set) reentrantly.
@@ -113,15 +93,10 @@ export function createSyncState<T>(initial: T): SyncState<T> {
       }
     },
     getSnapshot(): T {
-      return read()
+      return shared.getBlocking()
     },
     [SYNC_STATE_BRAND]: true as const,
     [SYNC_STATE_ID_KEY]: id as number,
   } satisfies SyncState<T>
   return state
-}
-
-// test seam: reset the cached worklets binding after mutating global require.
-export function __resetSyncStoreForTests(): void {
-  makeMutable = undefined
 }
