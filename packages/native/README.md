@@ -61,6 +61,17 @@ arrangement. `Box` accepts `contentAlignment`.
 `disabled`, `variant` (`filled`, `outlined`, or `text`), and `tone` (`default` or
 `danger`). `Switch` is controlled with `isOn`, `onIsOnChange`, and optional `revision`.
 
+`Icon` renders a Material Symbols glyph. `name` is the snake_case Google icon name
+(`star`, `arrow_forward`), checked against the codepoint map generated from
+`codegen/material-symbols.codepoints`, so a typo throws when the icon renders
+instead of drawing nothing. `size` defaults to 24 and `filled` picks between the
+bundled outlined and filled static fonts. `Button` takes the same `icon` and
+`iconFilled` and draws the glyph at the Material 3 icon size before its label.
+Both fonts live in `android/src/main/res/font`, so rendering is synchronous and
+offline. `composeStyle.foregroundColor` tints a standalone icon the way it colors
+text; a Button icon follows the button's content color. An icon with no
+`accessibilityLabel` is decorative, and one with a label announces as an image.
+
 ### Android toolchain pins and device proof
 
 `android/build.gradle` pins the Compose toolchain with exact versions, not ranges:
@@ -103,7 +114,9 @@ The suite drives `tests/native-features/app/one-native-android.tsx` through
 `uiautomator` dumps and coordinate taps: mount marker, accessibility and order,
 prop mutation with fresh bounds, two button taps, controlled Switch reject,
 accept, and revision reset, keyed reorder, optional unmount and remount,
-disabled controls rejecting taps, and a decoy negative control. It then runs
+disabled controls rejecting taps, Material Symbols icons rendering as their
+codepoints with an outlined and a filled variant, an icon button tap, and a
+decoy negative control. It then runs
 a bounded stress block: six rapid unmount/remount toggles plus four rapid
 reorders with a duplicate-node sweep over every proof testID, single-handler
 taps proving no duplicate event delivery, and a configuration-change block

@@ -336,10 +336,11 @@ async function waitFor(
   config: Config,
   name: string,
   predicate: (nodes: Node[]) => boolean,
-  missingMarker?: string
+  missingMarker?: string,
+  timeoutMs = config.timeout
 ) {
   const started = Date.now()
-  const deadline = started + config.timeout
+  const deadline = started + timeoutMs
   while (Date.now() < deadline) {
     const current = snapshot(config)
     if (predicate(current.nodes))
@@ -347,7 +348,7 @@ async function waitFor(
     await Bun.sleep(250)
   }
   const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  throw new Error(`${name} timed out after ${config.timeout}ms${marker}`)
+  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}`)
 }
 
 function tapFresh(
@@ -431,13 +432,25 @@ async function tapNavigation(config: Config) {
       .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
       .join('|')
     swipeFresh(config, 'Home navigation scroll view')
-    await waitFor(config, 'Home navigation scroll position advances', (nodes) => {
-      const nextPositions = nodes
-        .filter((node) => node.resourceId.includes('nav-') && node.bounds)
-        .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
-        .join('|')
-      return nextPositions !== previousPositions
-    })
+    // a reload can absorb the first swipe while the list is still settling, so a swipe that
+    // moves nothing retries instead of blocking for the full timeout.
+    const advanced = await waitFor(
+      config,
+      'Home navigation scroll position advances',
+      (nodes) => {
+        const nextPositions = nodes
+          .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+          .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
+          .join('|')
+        return nextPositions !== previousPositions
+      },
+      undefined,
+      5_000
+    ).then(
+      () => true,
+      () => false
+    )
+    if (!advanced) continue
   }
   throw new Error('Could not bring nav-one-native-android into view on the home list.')
 }
@@ -470,6 +483,10 @@ const proofIds = [
   'one-native-android-button-status',
   'one-native-android-real-button',
   'one-native-android-reorder',
+  'one-native-android-icon-row',
+  'one-native-android-icon',
+  'one-native-android-icon-filled',
+  'one-native-android-icon-button',
   'one-native-android-switch-status',
   'one-native-android-switch-policy-status',
   'one-native-android-switch',
@@ -494,13 +511,17 @@ function duplicateIds(nodes: Node[]) {
   return duplicateIdsIn(nodes, proofIds)
 }
 
+// Material Symbols star (f09a) is what the app map resolves `name="star"` to.
+const MaterialSymbolsStar = String.fromCharCode(0xf09a)
+
 function duplicateIdsIn(nodes: Node[], ids: string[]) {
   return ids.filter((id) => matching(nodes, { id }).length !== 1)
 }
 
-// At 560dpi the 309x686dp window clips the Column tail: the order row and the
-// decoy box are composed but absent from the uiautomator tree. Assert the
-// observable subset there and the full set at the default density.
+// At 560dpi the 309x686dp window clips the Column tail: the order status, the
+// order row, and the decoy box sit at or past the window edge and duplicate or
+// vanish as the tree settles, so the post-rotation sweep covers the reliably
+// visible subset and the full set is asserted at the default density.
 const proofIdsVisibleSmall = [
   'one-native-android-mounted',
   'one-native-android-prop-status',
@@ -510,6 +531,10 @@ const proofIdsVisibleSmall = [
   'one-native-android-button-status',
   'one-native-android-real-button',
   'one-native-android-reorder',
+  'one-native-android-icon-row',
+  'one-native-android-icon',
+  'one-native-android-icon-filled',
+  'one-native-android-icon-button',
   'one-native-android-switch-status',
   'one-native-android-switch-policy-status',
   'one-native-android-switch',
@@ -522,7 +547,6 @@ const proofIdsVisibleSmall = [
   'one-native-android-disabled-status',
   'one-native-android-disabled-button',
   'one-native-android-disabled-switch',
-  'one-native-android-order-status',
 ]
 
 function nodeWidth(node: Node) {
@@ -919,6 +943,53 @@ async function run(config: Config) {
           1 &&
         textIncludes(nodes, 'Tap real button'),
       'one-native-android-mounted'
+    )
+
+    await expect(
+      'material-symbols-icons',
+      (nodes) => {
+        const outlined = nodeById(nodes, 'one-native-android-icon')
+        const filled = nodeById(nodes, 'one-native-android-icon-filled')
+        return (
+          outlined.text === MaterialSymbolsStar &&
+          filled.text === MaterialSymbolsStar &&
+          outlined.contentDescription === 'Star outline' &&
+          filled.contentDescription === 'Star filled' &&
+          nodeWidth(outlined) > 0 &&
+          nodeWidth(filled) > 0
+        )
+      },
+      'one-native-android-mounted',
+      (nodes) =>
+        runDetail(nodes, ['one-native-android-icon', 'one-native-android-icon-filled'])
+    )
+    const iconButtonSnapshot = snapshot(config)
+    const iconButton = nodeById(iconButtonSnapshot.nodes, 'one-native-android-icon-button')
+    const iconButtonBounds = validBounds(iconButton, 'Icon button')
+    const addGlyph = String.fromCodePoint(0xe145)
+    const glyphNodes = iconButtonSnapshot.nodes.filter(
+      (node) =>
+        node.text.includes(addGlyph) &&
+        node.bounds &&
+        node.bounds.left >= iconButtonBounds.left &&
+        node.bounds.right <= iconButtonBounds.right &&
+        node.bounds.top >= iconButtonBounds.top &&
+        node.bounds.bottom <= iconButtonBounds.bottom
+    )
+    if (glyphNodes.length !== 1)
+      throw new Error(
+        `Icon button published ${glyphNodes.length} add glyph nodes inside its bounds; exactly one is required.`
+      )
+    tapFresh(config, 'Icon button tap', {
+      id: 'one-native-android-icon-button',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'material-symbols-icon-button-tap',
+      (nodes) => textIncludes(nodes, 'Icon tapped'),
+      'one-native-android-mounted',
+      (nodes) => runDetail(nodes, ['one-native-android-icon-button'])
     )
 
     for (let cycle = 0; cycle < 6; cycle++)
