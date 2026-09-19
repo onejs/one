@@ -15,10 +15,14 @@ TextField, ToggleButton, Tooltip, useNativeState.
 
 ## Now
 
-- Milestone 2 next: LazyColumn + ListItem, Card, Chip, Checkbox, RadioButton.
-- Registry call: per-node TS is ~30 lines on shared validators and Kotlin
-  renderers cannot be data-driven, so the full milestone 4 registry stays
-  scheduled after milestone 2. `composeValidation.ts` is the first step.
+- FROZEN per review: no new handwritten nodes until the five-declaration
+  inventory plus recipe compiler gate lands. Milestone 2 (LazyColumn,
+  ListItem, Card, Chip, Checkbox, RadioButton) and the milestone 4 registry
+  are on hold; current code is the behavior oracle for the migration.
+- Composition boundary: Android already explicitly rejects non-Compose
+  children (`requireComposeChild` throws naming the host rule). The iOS
+  parity half (`insertChild` silent omission) belongs to native-ios-views;
+  flagging here, no Android change to make.
 
 ## Done
 
@@ -115,15 +119,26 @@ TextField, ToggleButton, Tooltip, useNativeState.
     8081, exact messages for bogus device and unmapped port). Noted: your
     emulator is session-managed; I used read-only queries only and will
     boot my own AVD if I need a device.
+  - REVIEW `7f353e64e`: integrated the non-overlapping parts of `2318d0468`
+    (overlap was only the Role.Dialog/ProgressBar removal, already done in
+    `bb84a4b38`): Double-grid slider steps with callback snapping, real
+    `dialog()`/`progressBarRangeInfo` semantics (symbols re-verified via
+    javap on ui-android 1.11.4), checkbox to `Role.Checkbox`, TS
+    Float-range plus step-divisibility plus 1001-interval validation with
+    tests. Gates RAN: tsc clean, vitest 110/110. `4c8f55b59` (codegen)
+    and `527b780ec` (ios) are outside Android ownership, left for their
+    lanes. Build plus full-suite verdict routed to coordinator per track
+    protocol and the emulator stand-down.
 
 ## NEEDS-BUILD
 
-- `a01574299` + `40ed4020f`: `:app:assembleDebug` + android conformance run.
-  Unverified-by-worker risks, in order: (1) M3 Slider track-tap jump used by
-  `inputs-slider-track-tap`; (2) emulator IME/autocorrect altering `adb input
-  text` words; (3) dialog-window testTags surfacing in uiautomator dumps.
-  After the run, README's "24 checks pass" paragraph needs a count refresh
-  (24 + 17, plus 2 conditional IME-renavigate checks) — left stale on purpose.
+- `7f353e64e` (review integration): `:app:assembleDebug` plus the full
+  android conformance suite on the exact assembled SHA once the coordinator
+  assembles with the other lanes. Covers the review gate: TextField
+  accept/reject, discrete slider values, both dialog dismissal paths,
+  progress semantics, rotation, remount, duplicate sweeps. Worker gates
+  RAN: `tsc --noEmit` clean, `vitest run` 110/110.
+- `a01574299` + `40ed4020f`: superseded by the above (same code plus fixes).
 
 ## Blocked
 
