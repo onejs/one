@@ -7,19 +7,31 @@ import {
 } from 'react'
 import { Platform } from 'react-native'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
+import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
+import NativeDisclosureGroup from './specs/OneNativeDisclosureGroupNativeComponent'
+import NativeDivider from './specs/OneNativeDividerNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
+import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeLazyHStack from './specs/OneNativeLazyHStackNativeComponent'
 import NativeLazyVStack from './specs/OneNativeLazyVStackNativeComponent'
+import NativeLink from './specs/OneNativeLinkNativeComponent'
 import NativeList from './specs/OneNativeListNativeComponent'
+import NativeOverlay from './specs/OneNativeOverlayNativeComponent'
+import NativeOverlayContent from './specs/OneNativeOverlayContentNativeComponent'
 import NativeScrollView from './specs/OneNativeScrollViewNativeComponent'
+import NativeSwipeActions from './specs/OneNativeSwipeActionsNativeComponent'
+import NativeSwipeActionsActions from './specs/OneNativeSwipeActionsActionsNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
 import NativeSpacer from './specs/OneNativeSpacerNativeComponent'
 import NativeZStack from './specs/OneNativeZStackNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
+import { useControlled } from './controlled'
 import { labeledContentProps } from './labeledContent'
+import { Pager } from './Pager.native'
+import { Tabs } from './Tabs.native'
 import {
   lazyHStackAlignments,
   lazyVStackAlignments,
@@ -29,6 +41,18 @@ import {
   type ListProps,
   type ScrollViewProps,
 } from './listTypes'
+import {
+  swipeActionsEdges,
+  type ControlGroupProps,
+  type DisclosureGroupProps,
+  type DividerProps,
+  type GroupProps,
+  type LinkProps,
+  type OverlayContentProps,
+  type OverlayProps,
+  type SwipeActionsActionsProps,
+  type SwipeActionsProps,
+} from './groupTypes'
 import {
   hostAlignments,
   hostAxes,
@@ -51,7 +75,7 @@ import {
 export const InsideContainer = createContext(false)
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, or Swift.LazyHStack'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, or Swift.SwipeActions'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -84,14 +108,17 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
           ? 'Swift.List'
           : child.type === ScrollView
             ? 'Swift.ScrollView'
-            : null
-    // a form, a list, and a scroll view all take the box they are given instead of
-    // reporting an ideal height, so a measured parent reads zero for one and renders
-    // nothing at all.
+            : child.type === DisclosureGroup
+              ? 'Swift.DisclosureGroup'
+              : child.type === Tabs
+                ? 'Swift.Tabs'
+                : child.type === Pager
+                  ? 'Swift.Pager'
+                  : null
+    // these all take the box they are given instead of reporting an ideal height,
+    // so a measured parent reads zero for one and renders nothing at all.
     if (name)
-      throw new Error(
-        `${name} cannot be a child of ${owner}; give the ${name.slice('Swift.'.length)} its own box`
-      )
+      throw new Error(`${name} cannot be a child of ${owner}; give it its own box`)
   }
 }
 
@@ -345,6 +372,185 @@ export function Glass({
     </NativeGlass>
   )
 }
+
+export function ControlGroup({
+  label = '',
+  systemImage = '',
+  controlGroupStyle = 'automatic',
+  children,
+  style,
+  ...props
+}: ControlGroupProps) {
+  if (typeof label !== 'string' || typeof systemImage !== 'string')
+    throw new Error('Swift.ControlGroup label and systemImage must be strings')
+  assertSwiftUIValue(
+    'ControlGroupStyle',
+    controlGroupStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeControlGroup
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      label={label}
+      systemImage={systemImage}
+      controlGroupStyle={controlGroupStyle}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeControlGroup>
+  )
+}
+
+export function DisclosureGroup({
+  label,
+  isExpanded,
+  onIsExpandedChange,
+  revision = 0,
+  children,
+  style,
+  ...props
+}: DisclosureGroupProps) {
+  if (typeof label !== 'string' || !label)
+    throw new Error('Swift.DisclosureGroup label must be a non-empty string')
+  if (typeof isExpanded !== 'boolean')
+    throw new Error('Swift.DisclosureGroup isExpanded must be a boolean')
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsExpandedChange(event.value), revision)
+  return (
+    <NativeDisclosureGroup
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      label={label}
+      isExpanded={isExpanded}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeDisclosureGroupIsExpandedChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeDisclosureGroup>
+  )
+}
+
+export function Divider({ children, style, ...props }: DividerProps) {
+  const inside = useContext(InsideContainer)
+  if (!inside) throw new Error(`Swift.Divider must be a child of ${containers}`)
+  if (Children.toArray(children).length > 0)
+    throw new Error('Swift.Divider holds no content')
+  return <NativeDivider {...props} style={style} />
+}
+
+export function Link({
+  destination,
+  label = '',
+  children,
+  style,
+  ...props
+}: LinkProps) {
+  if (typeof destination !== 'string' || !destination)
+    throw new Error('Swift.Link destination must be a non-empty string')
+  try {
+    new URL(destination)
+  } catch {
+    throw new Error('Swift.Link destination must be a parseable URL')
+  }
+  // composed children win over the label string, so a conditional label view falls
+  // back to the label when it is absent.
+  if (Children.toArray(children).length === 0 && !label)
+    throw new Error('Swift.Link needs a label or children')
+  return (
+    <NativeLink
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      destination={destination}
+      label={label}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLink>
+  )
+}
+
+export function Group({ children, style, ...props }: GroupProps) {
+  return (
+    <NativeGroup {...props} style={[{ alignSelf: 'stretch' }, style]}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGroup>
+  )
+}
+
+export function OverlayContent({ children, style, ...props }: OverlayContentProps) {
+  return (
+    <NativeOverlayContent {...props} style={style}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeOverlayContent>
+  )
+}
+
+function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayProps) {
+  if (!zStackAlignments.includes(alignment))
+    throw new Error(
+      `Swift.Overlay alignment must be one of ${zStackAlignments.join(', ')}`
+    )
+  const markers = Children.toArray(children).filter(
+    (child) => isValidElement(child) && child.type === OverlayContent
+  )
+  if (markers.length > 1)
+    throw new Error('Swift.Overlay takes a single Overlay.Content child')
+  return (
+    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeOverlay>
+  )
+}
+
+export const Overlay = Object.assign(OverlayFn, { Content: OverlayContent })
+
+export function SwipeActionsActions({
+  edge = 'trailing',
+  allowsFullSwipe = true,
+  children,
+  style,
+  ...props
+}: SwipeActionsActionsProps) {
+  if (!swipeActionsEdges.includes(edge))
+    throw new Error(
+      `Swift.SwipeActions edge must be one of ${swipeActionsEdges.join(', ')}`
+    )
+  return (
+    <NativeSwipeActionsActions
+      {...props}
+      style={style}
+      edge={edge}
+      allowsFullSwipe={allowsFullSwipe}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeSwipeActionsActions>
+  )
+}
+
+function SwipeActionsFn({ children, style, ...props }: SwipeActionsProps) {
+  const edges = Children.toArray(children).flatMap((child) =>
+    isValidElement<SwipeActionsActionsProps>(child) &&
+    child.type === SwipeActionsActions
+      ? [child.props.edge ?? 'trailing']
+      : []
+  )
+  if (new Set(edges).size !== edges.length)
+    throw new Error('Swift.SwipeActions takes at most one Actions group per edge')
+  return (
+    <NativeSwipeActions {...props} style={[{ alignSelf: 'stretch' }, style]}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeSwipeActions>
+  )
+}
+
+export const SwipeActions = Object.assign(SwipeActionsFn, {
+  Actions: SwipeActionsActions,
+})
 
 export function Slot({ height, width = 0, children, style, ...props }: SlotProps) {
   const inside = useContext(InsideContainer)
