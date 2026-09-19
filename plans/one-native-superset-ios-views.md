@@ -112,6 +112,13 @@ the shape lands.
   sits reliably at the viewport's leading edge, with the 24 attempts
   kept and a mid-length drag (half-length 60). gate: bun build
   clean).
+- LISTSFIX6 58f306538 (suite-side: row-anchored seeks retired for
+  fixed-band swipes. rows band x=200 y740->640 is the coordinator's
+  verified recipe; chips band y=805 x280->120 and list band x=200
+  y550->450 were verified by hand on the live sim before committing
+  (one swipe moved chips 1-13 to 3-15 with rows untouched; the list
+  band moved the list both directions without toggling Ripe).
+  attempts stay 24 with early exit. gate: bun build clean).
 
 ## NEEDS-BUILD
 
