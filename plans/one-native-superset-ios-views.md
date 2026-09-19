@@ -58,6 +58,11 @@ the shape lands.
   these 2) now have cpp; every other M2/M1a .mm references only
   codegen-emitted descriptors. No JS/codegen inputs changed, so no
   JS gates apply; coordinator rebuilds + reruns lists.
+- IOSFIX2: no new commit; both .cpp name definitions verified present
+  in 85c925c51 (git show, byte-correct SheetContent mirrors). The
+  undefined-symbol link error is Pods membership only: new .cpp files
+  enter the Xcode project on pod-install, which the coordinator runs
+  before rebuilding.
 
 ## NEEDS-BUILD
 
