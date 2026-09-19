@@ -64,6 +64,9 @@ describe('icon', () => {
     expect(() => render(Compose.Icon, { name: '' })).toThrow(
       'Compose Icon name must be a non-empty string'
     )
+    expect(() => render(Compose.Icon, { name: 'toString' })).toThrow(
+      'Compose Icon name must be a Material Symbols name, got "toString"'
+    )
   })
 
   it('rejects a size that is not positive', () => {
