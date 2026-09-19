@@ -80,9 +80,10 @@ an edit, update it synchronously to accept. It takes `label`, `placeholder`,
 for password masking.
 
 `Slider` is controlled with `value`, `onValueChange`, and optional `revision`.
-`minimumValue` and `maximumValue` default to 0 and 1; `step` defaults to 0 for a
-continuous slider, otherwise it snaps to that increment. `value` must sit inside
-the bounds.
+`minimumValue` and `maximumValue` default to 0 and 1 and must survive an
+Android Float round trip; `step` defaults to 0 for a continuous slider,
+otherwise it must evenly divide the range into at most 1001 intervals and the
+native callback snaps to that grid. `value` must sit inside the bounds.
 
 `AlertDialog` shows a Material alert while `visible` is true. `title` and
 `message` are optional, `confirmLabel` is required, `dismissLabel` adds a second

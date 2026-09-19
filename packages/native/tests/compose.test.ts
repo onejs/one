@@ -174,6 +174,23 @@ describe('compose slider validation', () => {
       validateSliderProps({ value: 0.5, onValueChange: undefined as never })
     ).toThrow('Compose Slider onValueChange must be a function')
   })
+
+  it('rejects step sizes Compose cannot represent exactly', () => {
+    expect(() =>
+      validateSliderProps({ value: 0.3, onValueChange: () => {}, step: 0.3 })
+    ).toThrow('Compose Slider step must evenly divide its range')
+    expect(() =>
+      validateSliderProps({ value: 0.5, onValueChange: () => {}, step: 0.0005 })
+    ).toThrow('Compose Slider step must produce at most 1001 intervals')
+    expect(() =>
+      validateSliderProps({
+        value: 1e12,
+        onValueChange: () => {},
+        minimumValue: 1e12,
+        maximumValue: 1e12 + 1,
+      })
+    ).toThrow('Compose Slider range must be representable by Android Float values')
+  })
 })
 
 describe('compose dialog validation', () => {
