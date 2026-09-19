@@ -85,6 +85,10 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "7.29.7",
+    "@babel/generator": "7.29.7",
+    "@react-native/babel-plugin-codegen": "0.87.1",
+    "@react-native/codegen": "0.87.1",
     "@tamagui/build": "3.0.0-beta.1309.1",
     "react-native-web": "^0.21.2",
     "vitest": "^4.1.0"
