@@ -27,6 +27,15 @@ TextField, ToggleButton, Tooltip, useNativeState.
   quarantine were removed from native conformance. The orientation block
   remains the hard configuration and layout gate, and every wait uses the
   suite timeout.
+- FIX8 dialog taps VERIFIED on clean HEAD `74b364411` (script == c6f2df38e,
+  APK native current): 38/39 checks pass, all dialog checks green
+  (shown/confirm/reshown/dismiss-button/back-dismiss, custom shown/closed/
+  reshown/back-dismiss). Artifacts: /tmp/one-native-android-fix8d.
+- Toolbar-detour mystery RESOLVED as live-tree churn, not product: fix8b/
+  fix8c ran while container/fill edits were being saved; taps fell through
+  the inputs screen to home rows (logcat NAV + adbd input history prove
+  suite-tap causality, 90-170ms). Clean tree passes. No density gate exists
+  in the script, so no RED baseline to report from this lane.
 
 ## Done
 
@@ -123,6 +132,17 @@ TextField, ToggleButton, Tooltip, useNativeState.
     8081, exact messages for bogus device and unmapped port). Noted: your
     emulator is session-managed; I used read-only queries only and will
     boot my own AVD if I need a device.
+  - ANDROIDFIX9 `dbe3e74c1` + `656360dc6`: inputs duplicate sweep failed
+    two ways. (1) script bug (mine, from `40ed4020f`): the sweep asserted
+    proof-screen ids with exact-one semantics while on the inputs screen,
+    where all 27 are absent; now uses a 19-id inputs list with
+    duplicates-only (`>1`) semantics plus a `hasDuplicates` helper.
+    (2) product double-tag: the screen root testID is exposed twice
+    (Fabric native resource-id on the ViewGroup plus compose testTag on
+    the column layout, confirmed in 39-failure.xml with distinct bounds);
+    compose testTag is now skipped on natively-mounted nodes
+    (`parent != null`; logical-only children keep it). Gates RAN: tsc
+    clean, vitest 15/15, script transpiles. Kotlin half needs rebuild.
   - REVIEW `7f353e64e`: integrated the non-overlapping parts of `2318d0468`
     (overlap was only the Role.Dialog/ProgressBar removal, already done in
     `bb84a4b38`): Double-grid slider steps with callback snapping, real
@@ -136,12 +156,15 @@ TextField, ToggleButton, Tooltip, useNativeState.
 
 ## NEEDS-BUILD
 
-- `7f353e64e` (review integration): `:app:assembleDebug` plus the full
-  android conformance suite on the exact assembled SHA once the coordinator
-  assembles with the other lanes. Covers the review gate: TextField
-  accept/reject, discrete slider values, both dialog dismissal paths,
-  progress semantics, rotation, remount, duplicate sweeps. Worker gates
-  RAN: `tsc --noEmit` clean, `vitest run` 110/110.
+- `656360dc6` (root testTag dedup): `:app:assembleDebug` plus the full
+  android suite. Unblocks the final `inputs-progress-and-duplicate-sweep`
+  check: the root testID is currently exposed twice (Fabric native
+  resource-id plus compose testTag). Script half (`dbe3e74c1`, no rebuild
+  needed) already corrects the sweep to inputs ids with duplicates-only
+  semantics. Worker gates RAN: tsc clean, vitest 15/15, suite script
+  transpiles.
+- `7f353e64e` (review integration): superseded by the above (same code
+  plus fixes); FIX8 dialog taps verified below on the pre-fix APK.
 - `a01574299` + `40ed4020f`: superseded by the above (same code plus fixes).
 
 ## Blocked
@@ -157,3 +180,6 @@ TextField, ToggleButton, Tooltip, useNativeState.
   collision: no second emulator, no run. Verification needs a clear window
   plus a single-owner protocol (no broad pkill, kill by PID, mind the 5554
   serial-reuse trap). Evidence kept at /tmp/androidfix8-emulator.log.
+  UPDATE: window cleared later; FIX8 verified on 74b364411 (38/39, all
+  dialogs green). Only remaining need is the `656360dc6` rebuild + rerun
+  for the final sweep check (see NEEDS-BUILD).
