@@ -56,6 +56,14 @@ extension View {
       self
     }
   }
+
+  @ViewBuilder func oneNativeScheme(_ standalone: Bool, _ scheme: ColorScheme) -> some View {
+    if standalone {
+      self.environment(\.colorScheme, scheme)
+    } else {
+      self
+    }
+  }
 }
 
 // Fabric gives insertion order, not keys, so identity is the child view itself: a
@@ -69,6 +77,18 @@ struct OneNativeComposedChild: Identifiable {
 // this rather than the container view.
 final class OneNativeChildren: ObservableObject {
   @Published var items: [OneNativeComposedChild] = []
+}
+
+// a hosting controller inherits its traits from the view controller it attaches to,
+// which can disagree with the window the react tree renders in. a standalone
+// container therefore carries its own view's scheme into its swiftui tree so content
+// matches the app; composed, the parent's environment wins and the bridge idles.
+final class OneNativeSchemeBridge: ObservableObject {
+  @Published var scheme: ColorScheme = .light
+  func sync(_ traits: UITraitCollection) {
+    let next: ColorScheme = traits.userInterfaceStyle == .dark ? .dark : .light
+    if scheme != next { scheme = next }
+  }
 }
 
 // every container composes children the same way and differs only in the SwiftUI
