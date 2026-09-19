@@ -157,6 +157,12 @@ describe('selectEnumModifier', () => {
     ).toBe('imageScale')
   })
 
+  it('resolves a soft-deprecated modifier the SDK still ships', () => {
+    const deprecated = styleModifier('toggleStyle', 'ToggleStyle')
+    deprecated.attributes = ['@available(iOS, introduced: 13.0, deprecated: 27.0)']
+    expect(selectEnumModifier([deprecated], 'ToggleStyle').name).toBe('toggleStyle')
+  })
+
   it('throws on ambiguity or absence instead of guessing', () => {
     expect(() =>
       selectEnumModifier(

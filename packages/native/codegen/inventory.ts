@@ -166,7 +166,9 @@ export function selectEnumModifier(inventory: readonly Declaration[], enumType: 
   const style = enumType.endsWith('Style')
   const matches = inventory.filter((declaration) => {
     if (declaration.kind !== 'func' || ownerName(declaration) !== 'View') return false
-    if (!available(declaration)) return false
+    // resolution follows present(), not available(): a soft-deprecated modifier the SDK
+    // still ships keeps resolving, so derivation does not depend on the toolchain.
+    if (!present(declaration)) return false
     // both shapes apply as `name(_:)`: a style through a generic parameter constrained
     // on it, a value through the parameter itself.
     if (declaration.parameters.length !== 1 || declaration.parameters[0].label !== '_')

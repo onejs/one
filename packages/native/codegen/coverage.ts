@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { available, ios, readInventory, type Declaration } from './inventory'
+import { ios, present, readInventory, type Declaration } from './inventory'
 
 export type ManifestCoverage = {
   views: Record<string, string[]>
@@ -29,17 +29,19 @@ const shortOwner = (declaration: Declaration) => declaration.owner.split('.').at
 // a view is a top-level struct declaration. SwiftSyntax is not a type checker, so View
 // conformance is not derivable from the interface; structs are the mining universe,
 // not a parity denominator. underscore-prefixed names are SPI, never bindable API.
+// shapes follow present(), not available(): soft-deprecated API the SDK still ships
+// counts, so the universe does not depend on the toolchain.
 const isViewShape = (declaration: Declaration) =>
   declaration.kind === 'struct' &&
   declaration.owner === '' &&
   !declaration.name.startsWith('_') &&
-  available(declaration)
+  present(declaration)
 
 const isViewModifierShape = (declaration: Declaration) =>
   declaration.kind === 'func' &&
   shortOwner(declaration) === 'View' &&
   !declaration.name.startsWith('_') &&
-  available(declaration)
+  present(declaration)
 
 const emptySet = (): SetCoverage => ({
   mapped: 0,
