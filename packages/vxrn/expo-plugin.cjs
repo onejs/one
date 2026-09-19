@@ -408,7 +408,9 @@ react {
     // the application has its own node_modules directory.
     reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
     codegenDir = file(resolveNodePackage("@react-native/codegen/package.json")).parentFile
-    cliFile = file(resolveNodePackage("react-native/cli.js"))
+    // [vxrn/one] cli.js is not in react-native's exports map since 0.87, so
+    // resolve the exported package.json and step to the sibling cli.js on disk
+    cliFile = new File(file(resolveNodePackage("react-native/package.json")).parentFile, "cli.js")
 
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to
@@ -957,3 +959,5 @@ module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
 module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
 module.exports.SET_CLI_PATH_MARKER = SET_CLI_PATH_MARKER
+module.exports.ANDROID_APP_BUILD_GRADLE_REACT_BLOCK =
+  ANDROID_APP_BUILD_GRADLE_REACT_BLOCK
