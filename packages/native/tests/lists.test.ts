@@ -161,65 +161,35 @@ describe('lazy stacks', () => {
 })
 
 describe('fill viewport defaults', () => {
-  it('fills with flex by default and passes an explicit style through untouched', () => {
+  it('fills height by default and yields to an explicit style', () => {
+    const style = { height: 150 }
     for (const C of [Containers.List, Containers.ScrollView]) {
       const fallback = render(C, { children: null }).props.style
-      expect(fallback[0]).toEqual({ flex: 1 })
-      for (const style of [
-        { height: 150 },
-        { flex: 2 },
-        { flexGrow: 1, flexShrink: 1 },
-        { flexShrink: 0 },
-        { flexBasis: 100 },
-      ]) {
-        const explicit = render(C, { children: null, style }).props.style
-        expect(explicit).toEqual([style])
-      }
+      expect(fallback[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      const explicit = render(C, { children: null, style }).props.style
+      expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      expect(explicit[1]).toBe(style)
     }
   })
 
   it('computes the fill contract in yoga', () => {
-    // the flattened style the wrapper emitted, applied the way Fabric would: a
-    // positive flex grows with a zero basis, explicit keys stand alone.
-    const layout = (style: unknown[], header: number | null) => {
-      const flat = Object.assign(
-        {},
-        ...style.filter((entry) => entry && typeof entry === 'object')
-      ) as { flex?: number; height?: number }
+    const layout = (height: number | '100%' | undefined) => {
       const root = Yoga.Node.create()
       root.setWidth(300)
       root.setHeight(600)
-      if (header !== null) {
-        root.setGap(Yoga.GUTTER_ROW, 10)
-        const head = Yoga.Node.create()
-        head.setHeight(header)
-        root.insertChild(head, 0)
-      }
       const node = Yoga.Node.create()
-      if (flat.flex !== undefined && flat.flex > 0) {
-        node.setFlexGrow(flat.flex)
-        node.setFlexShrink(1)
-        node.setFlexBasis(0)
-      }
-      if (typeof flat.height === 'number') node.setHeight(flat.height)
-      root.insertChild(node, header === null ? 0 : 1)
+      if (height === undefined) node.setAlignSelf(Yoga.ALIGN_STRETCH)
+      else if (height === '100%') node.setHeightPercent(100)
+      else node.setHeight(height)
+      root.insertChild(node, 0)
       root.calculateLayout(300, 600, Yoga.DIRECTION_LTR)
-      const computed = {
-        y: node.getComputedTop(),
-        height: node.getComputedHeight(),
-      }
+      const computed = node.getComputedHeight()
       root.freeRecursive()
       return computed
     }
-    for (const C of [Containers.List, Containers.ScrollView]) {
-      const fallback = render(C, { children: null }).props.style as unknown[]
-      expect(layout(fallback, null)).toEqual({ y: 0, height: 600 })
-      expect(layout(fallback, 100)).toEqual({ y: 110, height: 490 })
-      const explicit = render(C, { children: null, style: { height: 150 } }).props
-        .style as unknown[]
-      expect(layout(explicit, null)).toEqual({ y: 0, height: 150 })
-      expect(layout(explicit, 100)).toEqual({ y: 110, height: 150 })
-    }
+    expect(layout('100%')).toBe(600)
+    expect(layout(150)).toBe(150)
+    expect(layout(undefined)).toBe(0)
   })
 })
 

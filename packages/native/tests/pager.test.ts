@@ -45,20 +45,19 @@ const pagerStyle = (props: object) => {
 }
 
 describe('pager viewport', () => {
-  it('fills with flex by default and passes an explicit style through untouched', () => {
+  it('fills height by default and yields to an explicit style', () => {
     const base = {
       children: pages(),
       selection: 'a',
       onSelectionChange: () => {},
     }
-    expect(pagerStyle(base)[0]).toEqual({ flex: 1 })
-    for (const style of [
-      { height: 100 },
-      { flex: 2 },
-      { flexGrow: 1, flexShrink: 1 },
-      { flexShrink: 0 },
-      { flexBasis: 100 },
-    ])
-      expect(pagerStyle({ ...base, style })).toEqual([style])
+    expect(pagerStyle(base)[0]).toEqual({
+      height: '100%',
+      alignSelf: 'stretch',
+    })
+    const style = { height: 100 }
+    const explicit = pagerStyle({ ...base, style })
+    expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+    expect(explicit[1]).toBe(style)
   })
 })
