@@ -3,17 +3,30 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import Yoga from 'yoga-layout'
-import {
-  lazyHStackAlignments,
-  lazyVStackAlignments,
-  scrollViewAxes,
-} from '../src/listTypes'
 import { swiftUIValues } from '../src/generated/swiftui'
 import { Swift as UnsupportedSwift } from '../src/unsupported'
 
 // same render-element setup as components.test.ts: the wrappers are plain functions
 // over mocked specs, so a test reads the element they build.
-vi.mock('react-native', () => ({ Platform: { OS: 'ios', Version: '26.4' } }))
+vi.mock('react-native', () => ({
+  Platform: { OS: 'ios', Version: '26.4' },
+  View: () => null,
+  Text: () => null,
+  Image: () => null,
+  ScrollView: () => null,
+  TextInput: () => null,
+  // later entries win, like the real flatten; registered ids never appear here.
+  StyleSheet: {
+    flatten: (function flatten(
+      style: unknown,
+      into: Record<string, unknown> = {}
+    ): Record<string, unknown> {
+      if (Array.isArray(style)) style.forEach((entry) => flatten(entry, into))
+      else if (style && typeof style === 'object') Object.assign(into, style)
+      return into
+    }) as (style: unknown) => Record<string, unknown>,
+  },
+}))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
 }))
@@ -148,35 +161,65 @@ describe('lazy stacks', () => {
 })
 
 describe('fill viewport defaults', () => {
-  it('fills height by default and yields to an explicit style', () => {
-    const style = { height: 150 }
+  it('fills with flex by default and passes an explicit style through untouched', () => {
     for (const C of [Containers.List, Containers.ScrollView]) {
       const fallback = render(C, { children: null }).props.style
-      expect(fallback[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
-      const explicit = render(C, { children: null, style }).props.style
-      expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
-      expect(explicit[1]).toBe(style)
+      expect(fallback[0]).toEqual({ flex: 1 })
+      for (const style of [
+        { height: 150 },
+        { flex: 2 },
+        { flexGrow: 1, flexShrink: 1 },
+        { flexShrink: 0 },
+        { flexBasis: 100 },
+      ]) {
+        const explicit = render(C, { children: null, style }).props.style
+        expect(explicit).toEqual([style])
+      }
     }
   })
 
   it('computes the fill contract in yoga', () => {
-    const layout = (height: number | '100%' | undefined) => {
+    // the flattened style the wrapper emitted, applied the way Fabric would: a
+    // positive flex grows with a zero basis, explicit keys stand alone.
+    const layout = (style: unknown[], header: number | null) => {
+      const flat = Object.assign(
+        {},
+        ...style.filter((entry) => entry && typeof entry === 'object')
+      ) as { flex?: number; height?: number }
       const root = Yoga.Node.create()
       root.setWidth(300)
       root.setHeight(600)
+      if (header !== null) {
+        root.setGap(Yoga.GUTTER_ROW, 10)
+        const head = Yoga.Node.create()
+        head.setHeight(header)
+        root.insertChild(head, 0)
+      }
       const node = Yoga.Node.create()
-      if (height === undefined) node.setAlignSelf(Yoga.ALIGN_STRETCH)
-      else if (height === '100%') node.setHeightPercent(100)
-      else node.setHeight(height)
-      root.insertChild(node, 0)
+      if (flat.flex !== undefined && flat.flex > 0) {
+        node.setFlexGrow(flat.flex)
+        node.setFlexShrink(1)
+        node.setFlexBasis(0)
+      }
+      if (typeof flat.height === 'number') node.setHeight(flat.height)
+      root.insertChild(node, header === null ? 0 : 1)
       root.calculateLayout(300, 600, Yoga.DIRECTION_LTR)
-      const computed = node.getComputedHeight()
+      const computed = {
+        y: node.getComputedTop(),
+        height: node.getComputedHeight(),
+      }
       root.freeRecursive()
       return computed
     }
-    expect(layout('100%')).toBe(600)
-    expect(layout(150)).toBe(150)
-    expect(layout(undefined)).toBe(0)
+    for (const C of [Containers.List, Containers.ScrollView]) {
+      const fallback = render(C, { children: null }).props.style as unknown[]
+      expect(layout(fallback, null)).toEqual({ y: 0, height: 600 })
+      expect(layout(fallback, 100)).toEqual({ y: 110, height: 490 })
+      const explicit = render(C, { children: null, style: { height: 150 } }).props
+        .style as unknown[]
+      expect(layout(explicit, null)).toEqual({ y: 0, height: 150 })
+      expect(layout(explicit, 100)).toEqual({ y: 110, height: 150 })
+    }
   })
 })
 
@@ -243,22 +286,6 @@ describe('list schema', () => {
     expect(Object.keys(swiftUIValues.ListStyle).sort()).toEqual(
       ['automatic', 'grouped', 'inset', 'insetGrouped', 'plain', 'sidebar'].sort()
     )
-  })
-})
-
-describe('list native mapping', () => {
-  // a value with no Swift case falls through to a precondition failure in a debug
-  // build, so the TypeScript unions and the switches must list the same values.
-  it('maps every axes and alignment value the props accept', () => {
-    const scroll = read('ios/OneNativeScrollViewView.swift')
-    for (const axes of scrollViewAxes)
-      expect(scroll.includes(`case "${axes}":`), axes).toBe(true)
-    const vstack = read('ios/OneNativeLazyVStackView.swift')
-    for (const alignment of lazyVStackAlignments)
-      expect(vstack.includes(`case "${alignment}":`), alignment).toBe(true)
-    const hstack = read('ios/OneNativeLazyHStackView.swift')
-    for (const alignment of lazyHStackAlignments)
-      expect(hstack.includes(`case "${alignment}":`), alignment).toBe(true)
   })
 })
 

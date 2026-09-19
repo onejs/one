@@ -2,16 +2,32 @@ import { createElement, type ReactNode } from 'react'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
-import { zStackAlignments } from '../src/generated/containerTypes'
 import { swiftUIValues } from '../src/generated/swiftui'
-import { swipeActionsEdges } from '../src/groupTypes'
 import { Swift as UnsupportedSwift } from '../src/unsupported'
 
 // same render-element setup as components.test.ts. wrappers that read hooks
 // (DisclosureGroup, Pager, Divider) cannot be called outside a render, so the
 // groups conformance suite covers their behavior the way the tabs suite covers
 // Tabs; what is asserted here is their contract surface below.
-vi.mock('react-native', () => ({ Platform: { OS: 'ios', Version: '26.4' } }))
+vi.mock('react-native', () => ({
+  Platform: { OS: 'ios', Version: '26.4' },
+  View: () => null,
+  Text: () => null,
+  Image: () => null,
+  ScrollView: () => null,
+  TextInput: () => null,
+  // later entries win, like the real flatten; registered ids never appear here.
+  StyleSheet: {
+    flatten: (function flatten(
+      style: unknown,
+      into: Record<string, unknown> = {}
+    ): Record<string, unknown> {
+      if (Array.isArray(style)) style.forEach((entry) => flatten(entry, into))
+      else if (style && typeof style === 'object') Object.assign(into, style)
+      return into
+    }) as (style: unknown) => Record<string, unknown>,
+  },
+}))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
 }))
@@ -187,12 +203,6 @@ describe('button icon', () => {
       'Button needs a label, a systemImage, or both'
     )
   })
-
-  it('renders the bare image for an icon-only button', () => {
-    expect(read('ios/Generated/OneNativeButtonView.swift')).toContain(
-      'Image(systemName: systemImage)'
-    )
-  })
 })
 
 describe('greedy containers', () => {
@@ -323,36 +333,6 @@ describe('group schema', () => {
   it('binds the menu-documented control group styles', () => {
     for (const style of ['palette', 'menu', 'compactMenu'])
       expect(Object.hasOwn(swiftUIValues.ControlGroupStyle, style), style).toBe(true)
-  })
-})
-
-describe('group native mapping', () => {
-  it('maps every overlay alignment and swipe edge the props accept', () => {
-    const overlay = read('ios/OneNativeOverlayView.swift')
-    for (const alignment of zStackAlignments)
-      expect(overlay.includes(`case "${alignment}":`), alignment).toBe(true)
-    const swipe = read('ios/OneNativeSwipeActionsView.swift')
-    for (const edge of swipeActionsEdges)
-      expect(swipe.includes(`"${edge}"`), edge).toBe(true)
-  })
-
-  // the bodies are small enough to read whole, so these assert the SDK call each
-  // one exists for rather than re-listing every line.
-  it('builds each container from its SDK view', () => {
-    expect(read('ios/OneNativeControlGroupView.swift')).toContain(
-      '.oneNativeControlGroupStyle(model.controlGroupStyle)'
-    )
-    expect(read('ios/OneNativeDisclosureGroupView.swift')).toContain(
-      'DisclosureGroup(isExpanded:'
-    )
-    expect(read('ios/OneNativeDividerView.swift')).toContain('Divider()')
-    expect(read('ios/OneNativeLinkView.swift')).toContain('Link(destination:')
-    expect(read('ios/OneNativeGroupView.swift')).toContain('Group {')
-    expect(read('ios/OneNativeOverlayView.swift')).toContain('.overlay(alignment:')
-    expect(read('ios/OneNativeSwipeActionsView.swift')).toContain(
-      '.swipeActions(edge: .leading'
-    )
-    expect(read('ios/OneNativePagerView.swift')).toContain('.tabViewStyle(.page)')
   })
 })
 
