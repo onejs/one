@@ -220,12 +220,6 @@ const prebuild = defineCommand({
       description: 'ios or android',
     },
 
-    expo: {
-      type: 'boolean',
-      description: 'expo or non-expo folders',
-      default: true,
-    },
-
     'no-install': {
       type: 'boolean',
       description: 'skip installing native dependencies',
