@@ -35,20 +35,25 @@ status file; the coordinator resolves.
 ## Milestones
 
 1. Floor at 17 everywhere + coverage dashboard (mapped vs unmapped views and
-   modifiers per SDK overlay module). [codegen]
-2. iOS parity views: List, ScrollView, LazyHStack/LazyVStack. [ios-views]
+   modifiers per SDK overlay module). [codegen] (done)
+2. iOS parity views: List, ScrollView, LazyHStack/LazyVStack. [ios-views] (done)
 3. iOS round 2: ControlGroup, DisclosureGroup, Divider, Link, Group, Overlay,
-   SwipeActions, pager-style tabs. [ios-views]
+   SwipeActions, pager-style tabs. [ios-views] (in flight)
 4. Generic emitters: generic leaf emitter + generic enum-modifier emitter driven
-   by inventory; less per-control hand code. [codegen]
-5. `useNativeState` equivalent (observable shared state) + modifier expansion
-   toward the Expo modifier list. [ios-views, codegen supports]
-6. Overlay mining: LocationButton, Sign in with Apple, StoreKit, Translation,
+   by inventory; less per-control hand code. [codegen] (in flight)
+5. Modifier expansion toward the Expo modifier list (priority: first thing
+   after M3). Design note first: composable modifiers array vs swiftStyle
+   extension, agreed jointly since emitStyle is codegen's and catalogs are
+   ios-views'. Then groups in order: text styling, gestures, scroll +
+   list-row config, presentation detents, effects, accessibility.
+   [ios-views, codegen supports]
+6. `useNativeState` equivalent (observable shared state). [ios-views]
+7. Overlay mining: LocationButton, Sign in with Apple, StoreKit, Translation,
    MusicKit, Charts if parseable. [ios-views]
-7. Android: TextField, Slider, Dialog, LazyColumn, Card, Chip, Checkbox,
+8. Android: TextField, Slider, Dialog, LazyColumn, Card, Chip, Checkbox,
    RadioButton, ProgressIndicator, BottomSheet, NavigationBar, Icon, Snackbar,
    SearchBar, DropdownMenu + declarative registry. [android]
-8. Targeted imperative UIKit wrappers, auto-generated where the SDK allows
+9. Targeted imperative UIKit wrappers, auto-generated where the SDK allows
    (document picker, Safari view, StoreKit flows, haptics...). Later milestone.
 
 ## Protocols
