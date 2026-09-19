@@ -2,113 +2,90 @@ import { resolvePath } from '@vxrn/resolve'
 import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
 import colors from 'picocolors'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
-import { generateForPlatform } from './prebuildWithoutExpo'
+import {
+  generateForPlatform,
+  getNativeDependencyInventory,
+  installNativeDependencies,
+  validatePrebuildApp,
+  type PrebuildAppConfig,
+} from './prebuildWithoutExpo'
 
+// single non-expo prebuild: the installed react native community template is
+// the only generator. installed packages' community configuration is the only
+// dependency discovery protocol; no config-plugin execution api exists.
 export const prebuild = async ({
   root,
   platform,
   'no-install': noInstall = false,
-  expo = true,
+  app,
 }: {
   root: string
   platform?: 'ios' | 'android' | string
   'no-install'?: boolean
-  expo: boolean
+  app: PrebuildAppConfig
 }) => {
+  validatePrebuildApp(app, platform)
+
   const options = await fillOptions({ root })
 
   await applyBuiltInPatches(options)
 
-  const doesIOSExist = FSExtra.existsSync(path.resolve('ios'))
-  const doesAndroidExist = FSExtra.existsSync(path.resolve('android'))
-  const isMetro =
-    process.env.ONE_METRO_MODE ||
-    globalThis['__vxrnMetroOptions__'] ||
-    globalThis['__vxrnPluginConfig__']?.native?.bundler === 'metro'
-  const useRolldownIOS = (!platform || platform === 'ios') && !isMetro
-
-  if (expo) {
-    try {
-      // Import Expo from the user's project instead of from where vxrn is installed, since vxrn may be installed globally or at the root workspace.
-      const importPath = resolvePath('@expo/cli/build/src/prebuild/index.js', root)
-      const expoPrebuild = (await import(pathToFileURL(importPath).href)).default
-        .expoPrebuild
-      const previousNativeBuildEnvironment = useRolldownIOS
-        ? {
-            EXPO_USE_PRECOMPILED_MODULES: process.env.EXPO_USE_PRECOMPILED_MODULES,
-            RCT_HERMES_V1_ENABLED: process.env.RCT_HERMES_V1_ENABLED,
-            RCT_USE_PREBUILT_RNCORE: process.env.RCT_USE_PREBUILT_RNCORE,
-            RCT_USE_RN_DEP: process.env.RCT_USE_RN_DEP,
+  try {
+    const packageJsonPath = path.join(root, 'package.json')
+    const packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
+    const { devDependencies } = JSON.parse(packageJsonContents)
+    if (!devDependencies?.['@react-native-community/template']) {
+      const installCommand: `${PackageManagerName} ${'add' | 'install'} ${'-D'} ${'@react-native-community/template'}` =
+        await (async () => {
+          const found = await detectPackageManager()
+          switch (true) {
+            case found.bun:
+              return `bun add -D @react-native-community/template`
+            case found.pnpm:
+              return `pnpm install -D @react-native-community/template`
+            case found.yarn:
+              return `yarn add -D @react-native-community/template`
+            default:
+              return `npm install -D @react-native-community/template`
           }
-        : null
-      if (useRolldownIOS) {
-        process.env.EXPO_USE_PRECOMPILED_MODULES = '0'
-        process.env.RCT_HERMES_V1_ENABLED = '1'
-        process.env.RCT_USE_PREBUILT_RNCORE = '0'
-        process.env.RCT_USE_RN_DEP = '0'
-      }
-      try {
-        await expoPrebuild([
-          ...(platform ? ['--platform', platform] : []),
-          ...(noInstall ? ['--no-install'] : []),
-          '--skip-dependency-update',
-          'react,react-native,expo',
-        ])
-      } finally {
-        if (previousNativeBuildEnvironment) {
-          for (const [name, value] of Object.entries(previousNativeBuildEnvironment)) {
-            if (value === undefined) delete process.env[name]
-            else process.env[name] = value
-          }
-        }
-      }
-      try {
-        const packageJsonPath = path.join(root, 'package.json')
-        let packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
-
-        packageJsonContents = packageJsonContents.replace(/expo run:ios/g, 'one run:ios')
-        packageJsonContents = packageJsonContents.replace(
-          /expo run:android/g,
-          'one run:android'
-        )
-
-        await FSExtra.writeFile(packageJsonPath, packageJsonContents, 'utf8')
-      } catch (error) {
-        console.error('Error updating package.json', error)
-      }
-      // Remove the ios/.xcode.env.local file as it's causing problems `node: No such file or directory` during build
-      try {
-        FSExtra.removeSync(path.join(root, 'ios', '.xcode.env.local'))
-      } catch (e) {
-        // ignore
-      }
-    } catch (e) {
+        })()
       throw new Error(
-        `Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`
+        '"@react-native-community/template" is not found in package.json, please install "@react-native-community/template" as dev dependency:\n' +
+          `\`${installCommand}\``
       )
     }
+  } catch (error) {
+    throw new Error('package.json checks are failing:\n' + error)
+  }
 
-    // in rolldown mode (not metro), ensure Podfile.properties.json has the
-    // settings needed for hermes v1 with source-built react native
-    if (!platform || platform === 'ios') {
-      if (!isMetro) {
-        ensureRolldownPodfileProperties(root)
-      }
-    }
+  if (platform == 'ios' || !platform) {
+    await generateForPlatform(root, 'ios', app)
+  }
+  if (platform == 'android' || !platform) {
+    await generateForPlatform(root, 'android', app)
+  }
 
-    // validate swift 6 workaround was injected into Podfile (outside prebuild try/catch
-    // so a validation error doesn't produce a misleading "Is expo listed?" message)
-    if (!platform || platform === 'ios') {
-      validateSwift6Workaround(root)
-    }
+  // prove discovery sees the installed set before any install runs, so
+  // `--no-install` skips installation without faking a complete project.
+  const inventory = await getNativeDependencyInventory(root)
+  console.info(
+    `[vxrn] native dependencies discovered through community autolinking: ${inventory.map((entry) => entry.name).join(', ') || '(none)'}`
+  )
 
-    if (!platform || platform === 'ios') {
-      console.info(
-        `
+  if (!noInstall) {
+    installNativeDependencies({ root, platform })
+  } else if (!platform || platform === 'ios') {
+    console.info(`Run cd ios && pod install`)
+    console.info(
+      'Then run `open *.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
+    )
+  }
+  if (!platform || platform === 'ios') {
+    console.info(
+      `
 iOS:
 
  Run \`open ios/*.xcworkspace\` in your terminal to open the prebuilt iOS project.
@@ -118,66 +95,7 @@ iOS:
 
 ---
 `
-      )
-    }
-  } else {
-    try {
-      const packageJsonPath = path.join(root, 'package.json')
-      let packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
-      let { devDependencies } = JSON.parse(packageJsonContents)
-      if (!devDependencies['@react-native-community/template']) {
-        const installCommand: `${PackageManagerName} ${'add' | 'install'} ${'-D'} ${'@react-native-community/template'}` =
-          await (async () => {
-            const found = await detectPackageManager()
-            switch (true) {
-              case found.bun:
-                return `bun add -D @react-native-community/template`
-              case found.pnpm:
-                return `pnpm install -D @react-native-community/template`
-              case found.yarn:
-                return `yarn add -D @react-native-community/template`
-              default:
-                return `npm install -D @react-native-community/template`
-            }
-          })()
-        throw new Error(
-          '"@react-native-community/template" is not found in package.json, please install "@react-native-community/template" as dev dependency:\n' +
-            `\`${installCommand}\``
-        )
-      }
-    } catch (error) {
-      throw new Error('package.json checks are failing:\n' + error)
-    }
-
-    // any because we don't have access react-native config
-    let appConfig: any
-    try {
-      const appConfigPath = path.resolve('app.json')
-      const appConfigContents = await FSExtra.readFile(appConfigPath, 'utf8')
-      appConfig = JSON.parse(appConfigContents)
-    } catch (error) {
-      throw new Error('app.json checks are failing:\n' + error)
-    }
-    if (platform == 'ios' || !platform) {
-      if (!doesIOSExist) {
-        await generateForPlatform(root, 'ios', appConfig)
-      } else {
-        console.error('ios/ folder already exists')
-      }
-    }
-    if (platform == 'android' || !platform) {
-      if (!doesAndroidExist) {
-        await generateForPlatform(root, 'android', appConfig)
-      } else {
-        console.error('android/ folder already exists')
-      }
-    }
-    if (!platform || platform === 'ios') {
-      console.info(`Run cd ios && pod install`)
-      console.info(
-        'Then run `open *.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
-      )
-    }
+    )
   }
   if (!platform || platform === 'android') {
     console.info(
@@ -193,51 +111,6 @@ Android:
     )
   }
 
-  // huh... i needed this, then i didnt, for no apparent reason
-  // automatically fix build scripts for monorepos
-  // const reactNativeRoot = resolvePath('react-native', root)
-  // // in a monorepo if react-native is at root and current app is at apps/app
-  // // then this value will be "../..", if not it will be ""
-  // const monorepoRelativeRoot = relative(root, reactNativeRoot)
-  //   .split(sep)
-  //   .filter((x) => x === '..')
-  //   .join(sep)
-
-  // if (monorepoRelativeRoot) {
-  //   if (existsSync('ios')) {
-  //     const projectName = findXcworkspaceName('ios')?.replace('.xcworkspace', '')
-  //     if (projectName) {
-  //       // note: this is for older react-native, needs testing
-  //       await replaceInUTF8File(
-  //         `ios/${projectName}.xcodeproj/project.pbxproj`,
-  //         '../node_modules/react-native/scripts/',
-  //         `${monorepoRelativeRoot}/../node_modules/react-native/scripts/`
-  //       )
-  //       await replaceInUTF8File(
-  //         `ios/Pods/Pods.xcodeproj/project.pbxproj`,
-  //         `RCT_SCRIPT_POD_INSTALLATION_ROOT/../../../node_modules/react-native`,
-  //         `RCT_SCRIPT_POD_INSTALLATION_ROOT/${monorepoRelativeRoot}/../../../node_modules/react-native`
-  //       )
-  //     }
-  //   }
-
-  //   if (existsSync('android')) {
-  //     // TODO test this, leaving commented out since its likely not working
-  //     // await replaceInUTF8File(
-  //     //   'android/app/build.gradle',
-  //     //   '../../node_modules/',
-  //     //   `${monorepoRelativeRoot}/../../node_modules/`
-  //     // )
-  //     // await replaceInUTF8File(
-  //     //   'android/settings.gradle',
-  //     //   '../node_modules/',
-  //     //   `${monorepoRelativeRoot}/../node_modules/`
-  //     // )
-  //   }
-
-  //   console.info(`Note: detected monorepo and build adjusted scripts.`)
-  // }
-
   // See: https://github.com/facebook/react-native/pull/45464
   try {
     resolvePath('@react-native-community/cli', root)
@@ -247,45 +120,6 @@ Android:
     } else {
       throw e
     }
-  }
-}
-
-function validateSwift6Workaround(root: string) {
-  const podfilePath = path.join(root, 'ios', 'Podfile')
-  if (!FSExtra.existsSync(podfilePath)) return
-
-  // check opt-out
-  const propsPath = path.join(root, 'ios', 'Podfile.properties.json')
-  if (FSExtra.existsSync(propsPath)) {
-    try {
-      const props = JSON.parse(FSExtra.readFileSync(propsPath, 'utf8'))
-      if (props['one.disableSwift6Workaround'] === 'true') return
-    } catch {}
-  }
-
-  // check version — only needed for <56
-  try {
-    const emcPkgPath = resolvePath('expo-modules-core/package.json', root)
-    const emcVersion = JSON.parse(FSExtra.readFileSync(emcPkgPath, 'utf8')).version
-    const major = Number.parseInt(emcVersion.match(/^(\d+)/)?.[1] || '0', 10)
-    if (major >= 56) return
-  } catch {}
-
-  const podfile = FSExtra.readFileSync(podfilePath, 'utf8')
-  if (!podfile.includes('SWIFT_STRICT_CONCURRENCY')) {
-    console.warn(
-      colors.yellow(`
-⚠️  Your ios/Podfile is missing the Swift 6 workaround for expo-modules-core.
-   Without this, your iOS build will fail with Swift concurrency errors.
-
-   Fix: add "vxrn/expo-plugin" to your app.json plugins and re-run prebuild.
-
-   To disable this check: set "one.disableSwift6Workaround": "true"
-   in ios/Podfile.properties.json.
-
-   See: expo/expo#43199
-`)
-    )
   }
 }
 
@@ -314,61 +148,7 @@ export async function replaceInUTF8File(
 ) {
   const fileContent = await FSExtra.readFile(filePath, 'utf8')
   const replacedFileContent = fileContent.replace(findThis, replaceWith)
-  if (fileContent !== replacedFileContent) {
+  if (replacedFileContent !== fileContent) {
     await FSExtra.writeFile(filePath, replacedFileContent, 'utf8')
-  }
-}
-
-// Function to find the name of the .xcworkspace
-function findXcworkspaceName(directory: string): string | null {
-  const files = FSExtra.readdirSync(directory)
-  for (const file of files) {
-    if (file.endsWith('.xcworkspace')) {
-      return file
-    }
-  }
-  return null
-}
-
-/**
- * In rolldown mode the bundle contains class syntax that only hermes v1
- * can parse, and hermes v1 requires react native to be built from source
- * so the frameworks link against the correct hermes symbols.
- */
-function ensureRolldownPodfileProperties(root: string) {
-  const propsPath = path.join(root, 'ios', 'Podfile.properties.json')
-  if (!FSExtra.existsSync(path.join(root, 'ios'))) return
-
-  let props: Record<string, string> = {}
-  if (FSExtra.existsSync(propsPath)) {
-    try {
-      props = JSON.parse(FSExtra.readFileSync(propsPath, 'utf8'))
-    } catch {}
-  }
-
-  let changed = false
-
-  if (props['expo.useHermesV1'] !== 'true') {
-    props['expo.useHermesV1'] = 'true'
-    changed = true
-  }
-
-  if (props['ios.buildReactNativeFromSource'] !== 'true') {
-    props['ios.buildReactNativeFromSource'] = 'true'
-    changed = true
-  }
-
-  if (props['EXPO_USE_PRECOMPILED_MODULES'] !== 'false') {
-    props['EXPO_USE_PRECOMPILED_MODULES'] = 'false'
-    changed = true
-  }
-
-  if (changed) {
-    FSExtra.writeFileSync(propsPath, JSON.stringify(props, null, 2) + '\n', 'utf8')
-    console.info(
-      colors.cyan(
-        `[vxrn] Updated ios/Podfile.properties.json for rolldown mode (hermes v1 + React Native and Expo modules from source)`
-      )
-    )
   }
 }
