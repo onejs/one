@@ -1,5 +1,6 @@
 #import "OneNativeSwipeActionsComponentView.h"
 #import "OneNativeSwipeActionsActionsComponentView.h"
+#import "OneNativeSwipeActionsActionsShadowNode.h"
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>

@@ -1,5 +1,6 @@
 #import "OneNativeOverlayComponentView.h"
 #import "OneNativeOverlayContentComponentView.h"
+#import "OneNativeOverlayContentShadowNode.h"
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
