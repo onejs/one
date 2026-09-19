@@ -109,6 +109,18 @@ describe('computeCoverage', () => {
     expect(totals.modifiers.aboveCeiling).toBe(1)
   })
 
+  it('counts soft-deprecated declarations the SDK still ships', () => {
+    const inventory = [
+      view('SwiftUI', 'OldView', { attributes: ['@available(iOS, introduced: 13.0, deprecated: 27.0)'] }),
+      modifier('SwiftUI', 'oldModifier', {
+        attributes: ['@available(iOS, introduced: 13.0, deprecated: 27.0)'],
+      }),
+    ]
+    const { modules } = computeCoverage(inventory, { views: {}, modifiers: {} }, ['SwiftUI'], 26)
+    expect(modules.SwiftUI.views).toMatchObject({ total: 1, unmappedNames: ['OldView'] })
+    expect(modules.SwiftUI.modifiers).toMatchObject({ total: 1, unmappedNames: ['oldModifier'] })
+  })
+
   it('keeps a covered name that left the universe instead of dropping it', () => {
     const { modules } = computeCoverage(
       [view('SwiftUI', 'Button')],
