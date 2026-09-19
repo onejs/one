@@ -2,6 +2,8 @@ import { controls } from './controlCatalog'
 import { styleFields } from './catalog'
 import type { StyleField } from './catalog'
 import type { Control, ControlField, ScalarType } from './controlTypes'
+import { deriveLeafSwift } from './derive'
+import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ScalarType) =>
   ({ string: 'String', boolean: 'Bool', Double: 'Double' })[type]
@@ -37,7 +39,11 @@ const styleFieldType = (field: StyleField) =>
         ? styleAlias(field)
         : 'string'
 
-export function emitControls(header: string, outputs: Map<string, string>) {
+export function emitControls(
+  header: string,
+  outputs: Map<string, string>,
+  inventory: readonly Declaration[]
+) {
   if (!controls.length) return
   const payloads: Record<string, NonNullable<ControlField['payload']>> = {}
   for (const control of controls)
@@ -112,6 +118,19 @@ export type OneNativeViewProps = Pick<
     // weakSelf only exists for the blocks below it, so a control with none would declare it
     // and never read it.
     const callbacks = measured || !!value || actions.length > 0 || !!control.focus
+    // adopted leaves derive their body from the SDK signature; the hand-written body
+    // stays as the byte-equality oracle until migration deletes it.
+    let swiftBody = control.swift
+    if (control.leaf) {
+      const derived = deriveLeafSwift(
+        inventory,
+        control.leaf,
+        enumFields.map(([key, field]) => ({ field: key, enum: field.enum! }))
+      )
+      if (derived !== control.swift)
+        throw new Error(`OneNative ${name}: derived Swift differs from the hand-written body`)
+      swiftBody = derived
+    }
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
     const callbackType = (action: { payload?: Record<string, ScalarType> }) =>
       `(${Object.entries(action.payload ?? {})
@@ -456,7 +475,7 @@ ${presentation ? '    controller?.presentedViewController?.dismiss(animated: fal
 private struct ${name}Content: View {
   @ObservedObject var model: ${name}Model
 ${control.focus ? '  @FocusState private var focused: Bool\n' : ''}  var body: some View {
-    ${control.swift}
+    ${swiftBody}
 ${
   control.focus
     ? `      .focused($focused)

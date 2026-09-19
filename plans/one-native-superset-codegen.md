@@ -2,9 +2,10 @@
 
 ## Now
 
-Closed-world generation design written below; BLOCKED on CI-lane review.
-No implementation until the coordinator signals approval. Emitter wiring
-stays queued behind this milestone.
+Wiring done, committing. Next: closed-world implementation once the
+coordinator gives the explicit go (design stands; CI-lane review state is
+unclear after the present() merge overtook it). Constraint recorded: keep
+emitStyle open to a composable modifiers array; joint design note pending.
 
 ## Design: closed-world generation (pending CI-lane review)
 
@@ -194,6 +195,25 @@ or adapter changes in either unit.
 
 ## Done
 
+- MERGERESOLVED: generate.ts conflict resolved keeping both sides (my
+  coverage block + CI lane's requirements-omitted comment). `bun run generate`
+  reproduced the staged regen outputs exactly (no additional staging needed);
+  roundedBorder is back via present() semantics (225 mapped symbols).
+  generate:check verified, tsc clean, vitest 84/84. Staged generate.ts only;
+  coordinator commits the merge. Follow-up queued post-merge: switch my
+  selectEnumModifier + coverage shape predicates from available() to
+  present() (untouched: other files were frozen mid-merge).
+- present() follow-up done: selectEnumModifier and the coverage shape
+  predicates resolve/count present() declarations (soft-deprecated API the
+  SDK ships keeps working), with unit tests for both. tsc + vitest green.
+- Emitter wiring done: emitControls takes the inventory and derives the body
+  via deriveLeafSwift for the five adopted leaves (Text, Label, Gauge,
+  Toggle, Stepper), asserting byte-equality against the hand-written body as
+  oracle. Proof: regen after wiring changed zero outputs; generate:check
+  verified, tsc clean, vitest 108/108.
+- CI green on the branch (run 35414353719): generate:check, Dev + Prod
+  builds, 4-way e2e. The present() merge fixed the roundedBorder red.
+
 - MERGEREADY e17884bb4 (manifest coverage key + coverage script, one commit).
   Merge a95cd0206 landed with MAXIMUM_IOS=26; freeze over.
 - M3 V1 generic emitters done: codegen/derive.ts (deriveLeafSwift from SDK
@@ -243,8 +263,9 @@ or adapter changes in either unit.
 
 ## NEEDS-BUILD
 
-- 5f87b5782 (M1 floor fixes): app.json deploymentTarget 26.0 -> 17.0 wants a
-  coordinator xcodebuild + conformance run.
+- (M1 build half CLEARED by CI green run 35414353719.) Remaining:
+  floor-17 runtime behavior, which the coordinator folds into local
+  simulator runs.
 
 ## Catalog proposal (needs coordinator sequencing; not editable by me)
 
