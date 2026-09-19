@@ -9,6 +9,10 @@ toolbar, menu action, and split view exports. The Swift surface requires an iOS 
 native build, and the Swift and Compose surfaces require React Native's New
 Architecture. Beta releases are published to npm on the `beta` dist-tag.
 
+Packaging: `src/specs` stays raw (pod-install codegen reads it), and the build
+rewrites every dist spec mirror into a static view config identical to the
+babel plugin's output, so no bundler needs to run a codegen transform.
+
 The iOS floor is 17. API introduced later is availability-gated, never the
 deployment target: modern tabs need iOS 18 (a legacy `TabView` renders below
 it), `presentationSizing` needs iOS 18 and is ignored below it, and Liquid
