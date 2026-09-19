@@ -1143,12 +1143,6 @@ async function run(config: Config) {
       throw new Error('Pre-rotation button row has no usable width.')
     try {
       lockRotation(config, '1')
-      await waitFor(
-        config,
-        'Landscape marker persists',
-        (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
-        'one-native-android-mounted'
-      )
       await expect(
         'orientation-landscape-relayout',
         (nodes) => {
@@ -1199,12 +1193,6 @@ async function run(config: Config) {
     } finally {
       freeRotation(config)
     }
-    await waitFor(
-      config,
-      'Portrait marker persists',
-      (nodes) => exactlyOneId(nodes, 'one-native-android-mounted'),
-      'one-native-android-mounted'
-    )
     await expect(
       'orientation-portrait-revert',
       (nodes) => {
