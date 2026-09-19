@@ -565,4 +565,206 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    name: 'OneNativeControlGroup',
+    publicName: 'ControlGroup',
+    props: {
+      label: 'string',
+      systemImage: 'string',
+      controlGroupStyle: 'string',
+    },
+    events: {},
+    enumProps: { controlGroupStyle: 'ControlGroupStyle' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeDisclosureGroup',
+    publicName: 'DisclosureGroup',
+    props: {
+      label: 'string',
+      isExpanded: 'boolean',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativeDisclosureGroupIsExpandedChange: {
+        value: 'boolean',
+        eventCount: 'Int32',
+        revision: 'Int32',
+      },
+    },
+    enumProps: {},
+    controlled: {
+      value: 'isExpanded',
+      event: 'onNativeDisclosureGroupIsExpandedChange',
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeDivider',
+    publicName: 'Divider',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLink',
+    publicName: 'Link',
+    props: {
+      destination: 'string',
+      label: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeGroup',
+    publicName: 'Group',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOverlay',
+    publicName: 'Overlay',
+    props: {
+      alignment: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOverlayContent',
+    publicName: 'OverlayContent',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeSwipeActions',
+    publicName: 'SwipeActions',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeSwipeActionsActions',
+    publicName: 'SwipeActionsActions',
+    props: {
+      edge: 'string',
+      allowsFullSwipe: 'boolean',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativePager',
+    publicName: 'Pager',
+    props: {
+      selection: 'string',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativePagerSelectionChange: {
+        selection: 'string',
+        eventCount: 'Int32',
+        revision: 'Int32',
+      },
+    },
+    enumProps: {},
+    controlled: { value: 'selection', event: 'onNativePagerSelectionChange' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'pages',
+        content: 'OneNativeTab',
+        cardinality: 'many',
+        key: 'tabId',
+        layout: 'swiftui',
+      },
+    ],
+    interfaceOnly: false,
+  },
 ] as const

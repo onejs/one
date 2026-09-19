@@ -99,12 +99,16 @@ export const leafControls: Control[] = [
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)`,
-    validate: `  if (typeof label !== 'string' || !label) throw new Error('Button label must be a non-empty string')`,
+    validate: `  if (typeof label !== 'string') throw new Error('Button label must be a string')
+  if (!label && !systemImage) throw new Error('Button needs a label, a systemImage, or both')`,
     extraSwift: `private extension ButtonModel {
   // the label is the same whether or not a disclosure indicator follows it, so the
-  // image-or-text rule is written once.
+  // image-or-text rule is written once. an icon-only button renders the image alone
+  // rather than a label with an empty title, so no title spacing is reserved.
   @ViewBuilder var oneNativeLabel: some View {
-    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
+    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
+    else if !systemImage.isEmpty { Image(systemName: systemImage) }
+    else { Text(label) }
   }
 }`,
   },
