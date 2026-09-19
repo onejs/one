@@ -25,6 +25,7 @@ declare module 'one' {
         | `/one-native-map`
         | `/one-native-media`
         | `/one-native-popover`
+        | `/one-native-safe-area`
         | `/one-native-sheet`
         | `/one-native-state`
         | `/one-native-system`

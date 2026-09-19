@@ -555,6 +555,52 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeSafeAreaProvider",
+      "publicName": "SafeAreaProvider",
+      "props": {},
+      "events": {
+        "onNativeInsetsChange": {
+          "insetTop": {
+            "type": "Double"
+          },
+          "insetRight": {
+            "type": "Double"
+          },
+          "insetBottom": {
+            "type": "Double"
+          },
+          "insetLeft": {
+            "type": "Double"
+          },
+          "frameX": {
+            "type": "Double"
+          },
+          "frameY": {
+            "type": "Double"
+          },
+          "frameWidth": {
+            "type": "Double"
+          },
+          "frameHeight": {
+            "type": "Double"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {

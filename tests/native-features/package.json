@@ -17,6 +17,7 @@
     "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/native": "workspace:*",
+    "@vxrn/safe-area": "workspace:*",
     "expo": "58.0.0-canary-20260909-ea7a89a",
     "expo-build-properties": "58.0.0-canary-20260909-ea7a89a",
     "expo-clipboard": "58.0.0-canary-20260909-ea7a89a",

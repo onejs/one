@@ -1513,6 +1513,125 @@ async function run(config: Config) {
       (nodes) => ({ duplicates: hasDuplicates(nodes, inputsIds) })
     )
 
+    // first-party safe-area on Android: the same fixture as iOS, asserting
+    // live overlap-relative insets, a nested provider, and keyboard
+    // exclusion. the nested box sits below the status bar, so its top is 0
+    // while the outer top stays positive, which proves per-view overlap
+    // rather than forwarded window insets.
+    pressBack(config)
+    await expect(
+      'safe-area-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-safe-area')
+    const safeAreaNumbers = (nodes: Node[], prefix: string) => {
+      const label = nodes
+        .flatMap(nodeValues)
+        .find((value) => value.startsWith(prefix))
+      if (!label) return null
+      const values = label
+        .slice(prefix.length)
+        .split(/[\sx]+/)
+        .map(Number)
+      if (values.some((value) => !Number.isFinite(value))) return null
+      return values
+    }
+    await expect(
+      'safe-area-live-insets',
+      (nodes) =>
+        diagnose(nodes, [
+          ['edges control', (n) => exactlyOneId(n, 'one-native-safe-area-edges')],
+          [
+            'live outer insets',
+            (n) => {
+              const insets = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                insets &&
+                insets.length === 4 &&
+                insets[0] > 0 &&
+                insets.every((v) => v >= 0)
+              )
+            },
+          ],
+          [
+            'frame published',
+            (n) => {
+              const frame = safeAreaNumbers(n, 'Frame: ')
+              return Boolean(frame && frame.length === 2 && frame.every((v) => v > 0))
+            },
+          ],
+          ['initial metrics set', (n) => textIncludes(n, 'Initial: set')],
+        ]),
+      'one-native-safe-area-edges'
+    )
+    await expect(
+      'safe-area-nested-overlap',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'nested top is zero below the status bar',
+            (n) => {
+              const nested = safeAreaNumbers(n, 'NestedInsets: ')
+              const outer = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                nested &&
+                nested.length === 4 &&
+                nested[0] === 0 &&
+                nested.every((v) => Number.isFinite(v)) &&
+                outer &&
+                outer[2] >= nested[2]
+              )
+            },
+          ],
+        ]),
+      'one-native-safe-area-edges'
+    )
+
+    // focusing the input and typing must not move the bottom inset: the
+    // keyboard is capped by the stable inset. if this emulator shows no
+    // soft keyboard the bottom is trivially stable and the typed text
+    // still proves the input round-tripped.
+    const beforeIme = safeAreaNumbers(snapshot(config).nodes, 'Insets: ')
+    tapFresh(config, 'Safe-area input focus', { id: 'one-native-safe-area-input' })
+    adbType(config, 'ada')
+    await expect(
+      'safe-area-ime-excluded',
+      (nodes) =>
+        diagnose(nodes, [
+          ['typed text landed', (n) => textIncludes(n, 'ada')],
+          [
+            'bottom inset stable across input',
+            (n) => {
+              const insets = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                beforeIme &&
+                insets &&
+                insets.length === 4 &&
+                insets[2] === beforeIme[2] &&
+                insets.every((v) => Number.isFinite(v))
+              )
+            },
+          ],
+        ]),
+      'one-native-safe-area-edges'
+    )
+
+    tapFresh(config, 'Safe-area edges toggle', {
+      id: 'one-native-safe-area-edges',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'safe-area-edges-toggle',
+      (nodes) => textIncludes(nodes, 'Edges: top'),
+      'one-native-safe-area-edges'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(

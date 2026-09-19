@@ -67,6 +67,12 @@
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
     },
+    "./safe-area": {
+      "types": "./types/safe-area/index.d.ts",
+      "react-native": "./src/safe-area/index.native.ts",
+      "import": "./dist/esm/safe-area/index.mjs",
+      "require": "./dist/cjs/safe-area/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
@@ -120,6 +126,7 @@
         "OneNativeSwipeActions": "OneNativeSwipeActionsComponentView",
         "OneNativeSwipeActionsActions": "OneNativeSwipeActionsActionsComponentView",
         "OneNativePager": "OneNativePagerComponentView",
+        "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",

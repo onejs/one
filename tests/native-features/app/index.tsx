@@ -72,6 +72,11 @@ const testScreens = [
     label: 'One Native State',
     testID: 'nav-one-native-state',
   },
+  {
+    href: '/one-native-safe-area',
+    label: 'One Native Safe Area',
+    testID: 'nav-one-native-safe-area',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-android',
