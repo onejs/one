@@ -32,6 +32,7 @@ import { useControlled } from './controlled'
 import { labeledContentProps } from './labeledContent'
 import { Pager } from './Pager.native'
 import { Tabs } from './Tabs.native'
+import { viewportStyle } from './viewportStyle'
 import {
   lazyHStackAlignments,
   lazyVStackAlignments,
@@ -251,15 +252,8 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
     listStyle,
     Number.parseFloat(String(Platform.Version))
   )
-  // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
-  // stretch alone collapses a bare list to zero height. height 100% fills the
-  // box by default and still yields to an explicit height later in the array.
   return (
-    <NativeList
-      {...props}
-      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
-      listStyle={listStyle}
-    >
+    <NativeList {...props} style={viewportStyle(style)} listStyle={listStyle}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
   )
@@ -279,10 +273,7 @@ export function ScrollView({
   return (
     <NativeScrollView
       {...props}
-      // flex:1 sets flex-basis 0, which yoga honors over an explicit height, while
-      // stretch alone collapses a bare scroll view to zero height. height 100%
-      // fills the box by default and still yields to an explicit height.
-      style={[{ height: '100%', alignSelf: 'stretch' }, style]}
+      style={viewportStyle(style)}
       axes={axes}
       showsIndicators={showsIndicators}
     >

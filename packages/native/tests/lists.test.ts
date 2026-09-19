@@ -13,7 +13,22 @@ import { Swift as UnsupportedSwift } from '../src/unsupported'
 
 // same render-element setup as components.test.ts: the wrappers are plain functions
 // over mocked specs, so a test reads the element they build.
-vi.mock('react-native', () => ({ Platform: { OS: 'ios', Version: '26.4' } }))
+vi.mock('react-native', () => ({
+  Platform: { OS: 'ios', Version: '26.4' },
+  StyleSheet: {
+    flatten: (style: unknown): object | undefined =>
+      Array.isArray(style)
+        ? Object.assign(
+            {},
+            ...style
+              .filter(Boolean)
+              .map((item) =>
+                Array.isArray(item) ? Object.assign({}, ...item.filter(Boolean)) : item
+              )
+          )
+        : (style as object | undefined),
+  },
+}))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
 }))
@@ -152,31 +167,39 @@ describe('fill viewport defaults', () => {
     const style = { height: 150 }
     for (const C of [Containers.List, Containers.ScrollView]) {
       const fallback = render(C, { children: null }).props.style
-      expect(fallback[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      expect(fallback[0]).toEqual({ flex: 1, alignSelf: 'stretch' })
       const explicit = render(C, { children: null, style }).props.style
-      expect(explicit[0]).toEqual({ height: '100%', alignSelf: 'stretch' })
+      expect(explicit[0]).toEqual({ alignSelf: 'stretch' })
       expect(explicit[1]).toBe(style)
     }
   })
 
-  it('computes the fill contract in yoga', () => {
-    const layout = (height: number | '100%' | undefined) => {
+  it('fills the remaining height beside siblings without overriding explicit height', () => {
+    const layout = (style: Record<string, unknown>) => {
       const root = Yoga.Node.create()
       root.setWidth(300)
       root.setHeight(600)
+      root.setFlexDirection(Yoga.FLEX_DIRECTION_COLUMN)
+      root.setGap(Yoga.GUTTER_ALL, 10)
+      const header = Yoga.Node.create()
+      header.setHeight(100)
       const node = Yoga.Node.create()
-      if (height === undefined) node.setAlignSelf(Yoga.ALIGN_STRETCH)
-      else if (height === '100%') node.setHeightPercent(100)
-      else node.setHeight(height)
-      root.insertChild(node, 0)
+      if (style.flex === 1) node.setFlex(1)
+      if (typeof style.height === 'number') node.setHeight(style.height)
+      root.insertChild(header, 0)
+      root.insertChild(node, 1)
       root.calculateLayout(300, 600, Yoga.DIRECTION_LTR)
       const computed = node.getComputedHeight()
       root.freeRecursive()
       return computed
     }
-    expect(layout('100%')).toBe(600)
-    expect(layout(150)).toBe(150)
-    expect(layout(undefined)).toBe(0)
+    const fallback = render(Containers.List, { children: null }).props.style[0]
+    const explicit = render(Containers.List, {
+      children: null,
+      style: { height: 150 },
+    }).props.style
+    expect(layout(fallback)).toBe(490)
+    expect(layout({ ...explicit[0], ...explicit[1] })).toBe(150)
   })
 })
 
