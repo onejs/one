@@ -32,10 +32,12 @@ export interface ScrollViewProps extends ViewProps {
 
 export interface LazyVStackProps extends ViewProps {
   alignment?: LazyVStackAlignment
+  spacing?: number
   children: ReactNode
 }
 
 export interface LazyHStackProps extends ViewProps {
   alignment?: LazyHStackAlignment
+  spacing?: number
   children: ReactNode
 }

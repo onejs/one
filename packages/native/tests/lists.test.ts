@@ -118,6 +118,32 @@ describe('lazy stacks', () => {
       'Swift.LazyHStack alignment must be one of top, center, bottom, firstTextBaseline, lastTextBaseline'
     )
   })
+
+  it('sends -1 for omitted spacing and passes spacing it is given', () => {
+    expect(render(Containers.LazyVStack, { children: null }).props.spacing).toBe(
+      -1
+    )
+    expect(
+      render(Containers.LazyVStack, { children: null, spacing: 12 }).props.spacing
+    ).toBe(12)
+    expect(render(Containers.LazyHStack, { children: null }).props.spacing).toBe(
+      -1
+    )
+    expect(
+      render(Containers.LazyHStack, { children: null, spacing: 8 }).props.spacing
+    ).toBe(8)
+  })
+
+  it('rejects spacing that is not a non-negative number', () => {
+    for (const value of [Number.NaN, -1]) {
+      expect(() =>
+        render(Containers.LazyVStack, { children: null, spacing: value })
+      ).toThrow('Swift.LazyVStack spacing must be a non-negative number')
+      expect(() =>
+        render(Containers.LazyHStack, { children: null, spacing: value })
+      ).toThrow('Swift.LazyHStack spacing must be a non-negative number')
+    }
+  })
 })
 
 describe('greedy containers', () => {

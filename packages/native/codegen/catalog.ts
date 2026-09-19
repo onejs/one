@@ -532,6 +532,7 @@ export const components = [
     publicName: 'LazyVStack',
     props: {
       alignment: 'string',
+      spacing: 'Double',
     },
     events: {},
     enumProps: {},
@@ -551,6 +552,7 @@ export const components = [
     publicName: 'LazyHStack',
     props: {
       alignment: 'string',
+      spacing: 'Double',
     },
     events: {},
     enumProps: {},

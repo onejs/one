@@ -287,6 +287,7 @@ export function ScrollView({
 
 export function LazyVStack({
   alignment = 'center',
+  spacing,
   children,
   style,
   ...props
@@ -295,11 +296,14 @@ export function LazyVStack({
     throw new Error(
       `Swift.LazyVStack alignment must be one of ${lazyVStackAlignments.join(', ')}`
     )
+  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
+    throw new Error('Swift.LazyVStack spacing must be a non-negative number')
   return (
     <NativeLazyVStack
       {...props}
       style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
+      spacing={spacing ?? -1}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLazyVStack>
@@ -308,6 +312,7 @@ export function LazyVStack({
 
 export function LazyHStack({
   alignment = 'center',
+  spacing,
   children,
   style,
   ...props
@@ -316,11 +321,14 @@ export function LazyHStack({
     throw new Error(
       `Swift.LazyHStack alignment must be one of ${lazyHStackAlignments.join(', ')}`
     )
+  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
+    throw new Error('Swift.LazyHStack spacing must be a non-negative number')
   return (
     <NativeLazyHStack
       {...props}
       style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
+      spacing={spacing ?? -1}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLazyHStack>

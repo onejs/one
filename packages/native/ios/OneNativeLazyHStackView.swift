@@ -3,6 +3,7 @@ import UIKit
 
 private final class LazyHStackModel: ObservableObject {
   @Published var alignment = "center"
+  @Published var spacing = -1.0
 }
 
 private struct LazyHStackContent: View {
@@ -11,10 +12,10 @@ private struct LazyHStackContent: View {
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
-  // spacing is the platform default: the prop is waiting on a Double it can travel
-  // as, and a lazy stack with default spacing is what SwiftUI gives omitting it.
+  // negative is how React Native says the caller left spacing out, which keeps the
+  // stack on the platform default rather than an arbitrary constant.
   var body: some View {
-    LazyHStack(alignment: alignment, spacing: nil) {
+    LazyHStack(alignment: alignment, spacing: model.spacing >= 0 ? model.spacing : nil) {
       ForEach(children.items) { child in child.content }
     }
     .oneNativeScheme(standalone, bridge.scheme)
@@ -61,7 +62,8 @@ public final class OneNativeLazyHStackView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(alignment: String) {
+  public func configure(alignment: String, spacing: Double) {
     if model.alignment != alignment { model.alignment = alignment }
+    if model.spacing != spacing { model.spacing = spacing }
   }
 }

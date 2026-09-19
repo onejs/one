@@ -26,7 +26,8 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeLazyHStackProps>(props);
-  [_stackView configureWithAlignment:RCTNSStringFromString(next.alignment)];
+  [_stackView configureWithAlignment:RCTNSStringFromString(next.alignment)
+                                          spacing:next.spacing];
   [super updateProps:props oldProps:oldProps];
 }
 
