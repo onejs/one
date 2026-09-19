@@ -27,5 +27,7 @@ Pod::Spec.new do |s|
   s.exclude_files = 'ios/Tests/**/*'
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
 
+  s.dependency 'RNWorklets'
+
   install_modules_dependencies(s)
 end

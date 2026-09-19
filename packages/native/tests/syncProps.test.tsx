@@ -47,6 +47,13 @@ describe('sync schema contract', () => {
       event: 'onNativeTextFieldValueChange',
       sync: true,
     })
+    expect(component('TextField').props).toMatchObject({
+      syncStateId: { type: 'Int32' },
+    })
+    expect(component('SecureField').props).toMatchObject({
+      syncStateId: { type: 'Int32' },
+    })
+    expect(component('Slider').props).not.toHaveProperty('syncStateId')
     expect(component('SecureField').controlled).toMatchObject({
       value: 'value',
       event: 'onNativeSecureFieldValueChange',
@@ -82,6 +89,21 @@ describe('generated sync text bindings', () => {
       root = create(<Controls.TextField text={handle} onTextChange={() => {}} />)
     })
     expect(stubOf(root!, 'OneNativeTextField').props.value).toBe('held')
+  })
+
+  it('binds the native view by handle id, or zero for plain strings', () => {
+    const handle = store.createSyncState('held')
+    let root: ReturnType<typeof create>
+    act(() => {
+      root = create(<Controls.TextField text={handle} onTextChange={() => {}} />)
+    })
+    expect(stubOf(root!, 'OneNativeTextField').props.syncStateId).toBe(
+      store.getSyncStateId(handle)
+    )
+    act(() => {
+      root = create(<Controls.TextField text="plain" onTextChange={() => {}} />)
+    })
+    expect(stubOf(root!, 'OneNativeTextField').props.syncStateId).toBe(0)
   })
 
   it('writes native events into the handle in the same frame', () => {

@@ -7,6 +7,9 @@ export default defineConfig({
     __DEV__: true,
     'process.env.EXPO_OS': JSON.stringify('web'),
   },
+  test: {
+    setupFiles: [resolve(__dirname, 'tests/setupNativeState.ts')],
+  },
   resolve: {
     conditions: ['module', 'browser', 'development|production'],
     extensions: [
@@ -31,12 +34,6 @@ export default defineConfig({
           __dirname,
           '../../node_modules/react-native-web/dist/index.js'
         ),
-      },
-      // the real worklets module needs the Metro runtime; tests run against the
-      // contract double. devices resolve the real required peer.
-      {
-        find: /^react-native-worklets$/,
-        replacement: resolve(__dirname, 'tests/mockWorklets.ts'),
       },
     ],
   },

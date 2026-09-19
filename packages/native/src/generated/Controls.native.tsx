@@ -4,7 +4,7 @@ import { Platform } from 'react-native'
 import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import type * as Types from './controlTypes'
-import { isSyncState } from '../syncStore'
+import { getSyncStateId, isSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
 import NativePicker from '../specs/OneNativePickerNativeComponent'
 export function Picker({
@@ -863,6 +863,7 @@ export function TextField({
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       focused={focused ?? false}
       acknowledgedFocusEvent={
         focused !== undefined ? controlledFocus.acknowledgedEvent : 0
@@ -952,6 +953,7 @@ export function SecureField({
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       focused={focused ?? false}
       acknowledgedFocusEvent={
         focused !== undefined ? controlledFocus.acknowledgedEvent : 0
