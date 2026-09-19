@@ -2,10 +2,10 @@
 
 ## Now
 
-Milestone 3: useNativeState equivalent for TextField + Toggle (read Expo
-docs first, smallest controlled-protocol fit). M4 implementation waits on
-the agreed modifier shape (coordinator sequencing); slotting it the
-moment the shape lands.
+Milestone 5: overlay mining (LocationButton, Sign in with Apple, StoreKit,
+Translation, others the inventory covers). M4 implementation still waits on
+the agreed modifier shape (coordinator sequencing); slotting it the moment
+the shape lands.
 
 ## Done
 
@@ -42,6 +42,15 @@ moment the shape lands.
   106/106. Pager is a Tabs-twin (tag-based, no availability splits)
   rather than a Tabs style, so no tab-bar props go dead. Greedy-parent
   rejection now covers DisclosureGroup, Tabs, and Pager too.
+- M3 shipped: COMMITTED b8cca4537 (useNativeState handle + exports),
+  5e49223fb (state fixture + suite + nav), 68efaf5d4 (README). Design:
+  pure-JS shared handle (Expo-shaped .value/.set/.get, stable identity,
+  ref mirror) feeding controlled props; each view keeps its own ack
+  stream, coherent under sharing. Out of scope, recorded: UI-thread
+  sync writes (needs a worklets runtime we lack), object-as-prop
+  (`text={handle}` needs generated-adapter support, emitter-side),
+  native-direct view-to-view sync (registry + lifecycle follow-up).
+  Gates: tsc clean, vitest 108/108, driver transpile clean.
 
 ## NEEDS-BUILD
 
@@ -56,6 +65,10 @@ moment the shape lands.
   (unverified blind write; the icon-centering lookup is geometric and
   may need the real a11y shape). Suite never taps the Link (leaves the
   app) by design.
+- 5e49223fb: run `--suite state` (pure-JS feature, no native build
+  needed beyond the fixture compiling in). Unverified blind write;
+  toggle-flip sequencing proves shared convergence without depending
+  on CheckBox value shape.
 
 ## Blocked
 
