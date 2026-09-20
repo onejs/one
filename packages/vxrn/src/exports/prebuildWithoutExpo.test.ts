@@ -20,8 +20,8 @@ import {
 const app = {
   name: 'MyApp',
   displayName: 'My App',
-  ios: { bundleId: 'dev.one.myapp' },
-  android: { applicationId: 'dev.one.myapp' },
+  ios: { bundleId: 'dev.one.myapp', deploymentTarget: '17.0' },
+  android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 }
 
 describe('native.app prebuild validation', () => {
@@ -43,6 +43,15 @@ describe('native.app prebuild validation', () => {
         { name: 'MyApp', ios: { bundleId: 'not-an-id' }, android: app.android } as any
       )
     ).toThrow(/bundleId/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
+      } as any)
+    ).toThrow(/deploymentTarget/)
+    expect(() =>
+      validatePrebuildApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
+    ).toThrow(/minSdk/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -54,25 +63,36 @@ describe('native.app prebuild validation', () => {
 })
 
 describe('template rendering', () => {
-  it('applies names, display name, and platform ids', () => {
+  it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
-      content: 'PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; target HelloWorld',
+      content:
+        'PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; target HelloWorld',
       platform: 'ios',
       app,
     })
     expect(ios.destRelativePath).toBe('MyApp.xcodeproj/project.pbxproj')
     expect(ios.content).toContain('PRODUCT_BUNDLE_IDENTIFIER = "dev.one.myapp"')
+    expect(ios.content).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
     expect(ios.content).not.toContain('HelloWorld')
+
+    const podfile = renderPrebuildFile({
+      relativePath: 'Podfile',
+      content: 'platform :ios, min_ios_version_supported',
+      platform: 'ios',
+      app,
+    })
+    expect(podfile.content).toBe("platform :ios, '17.0'")
 
     const android = renderPrebuildFile({
       relativePath: 'app/src/main/java/com/helloworld/MainActivity.kt',
-      content: 'package com.helloworld\n// Hello App Display Name',
+      content: 'package com.helloworld\nminSdkVersion = 24\n// Hello App Display Name',
       platform: 'android',
       app,
     })
     expect(android.destRelativePath).toBe('app/src/main/java/dev/one/myapp/MainActivity.kt')
     expect(android.content).toContain('package dev.one.myapp')
+    expect(android.content).toContain('minSdkVersion = 28')
     expect(android.content).toContain('My App')
   })
 
@@ -186,10 +206,15 @@ describe('generateForPlatform determinism', () => {
       'utf8'
     )
     expect(pbxproj).toContain('PRODUCT_BUNDLE_IDENTIFIER = "dev.one.myapp"')
+    expect(pbxproj).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
+    const podfile = readFileSync(join(first, 'ios', 'Podfile'), 'utf8')
+    expect(podfile).toContain("platform :ios, '17.0'")
     const gradle = readFileSync(
       join(first, 'android', 'app', 'build.gradle'),
       'utf8'
     )
     expect(gradle).toContain('applicationId "dev.one.myapp"')
+    const rootGradle = readFileSync(join(first, 'android', 'build.gradle'), 'utf8')
+    expect(rootGradle).toContain('minSdkVersion = 28')
   }, 180000)
 })
