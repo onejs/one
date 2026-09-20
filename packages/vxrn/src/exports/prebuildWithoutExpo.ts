@@ -15,6 +15,7 @@ Copyright (c) Facebook, Inc. and its affiliates.
 export interface PrebuildAppConfig {
   name: string
   displayName?: string
+  scheme?: string | string[]
   ios?: {
     bundleId: string
     deploymentTarget?: string
@@ -26,10 +27,12 @@ export interface PrebuildAppConfig {
 }
 
 const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
+const SCHEME = /^[a-z][a-z0-9+.-]*$/i
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 
-const IOS_BUNDLE_PLACEHOLDER = 'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
+const IOS_BUNDLE_PLACEHOLDER =
+  'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
 const ANDROID_PACKAGE_PLACEHOLDER = 'com.helloworld'
 const ANDROID_PACKAGE_PATH = 'com/helloworld'
 
@@ -46,6 +49,13 @@ export function validatePrebuildApp(
     fail(
       `name "${app?.name}" must start with a letter and contain only letters, digits, and underscore`
     )
+  }
+  const schemes =
+    app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
+  for (const scheme of schemes) {
+    if (typeof scheme !== 'string' || !SCHEME.test(scheme)) {
+      fail(`scheme "${scheme}" must be a valid uri scheme`)
+    }
   }
   if (!platform || platform === 'ios') {
     if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
@@ -88,6 +98,8 @@ export function renderPrebuildFile(args: {
 }): RenderedPrebuildFile {
   const { relativePath, content, platform, app } = args
   const appName = app.name
+  const schemes =
+    app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
   let destRelativePath = transformPath(relativePath)
 
   // remap before the helloworld rename below, which would otherwise rewrite
@@ -120,6 +132,39 @@ export function renderPrebuildFile(args: {
     for (const [find, value] of replacements) {
       rendered = rendered.split(find).join(value)
     }
+    if (platform === 'ios' && relativePath.endsWith('/Info.plist') && schemes.length) {
+      rendered = rendered.replace(
+        '\t<key>LSRequiresIPhoneOS</key>',
+        `\t<key>CFBundleURLTypes</key>
+\t<array>
+\t\t<dict>
+\t\t\t<key>CFBundleTypeRole</key>
+\t\t\t<string>Editor</string>
+\t\t\t<key>CFBundleURLSchemes</key>
+\t\t\t<array>
+${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
+\t\t\t</array>
+\t\t</dict>
+\t</array>
+\t<key>LSRequiresIPhoneOS</key>`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      schemes.length
+    ) {
+      rendered = rendered.replace(
+        '      </activity>',
+        `        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).join('\n')}
+        </intent-filter>
+      </activity>`
+      )
+    }
     if (platform === 'ios' && app.ios?.deploymentTarget) {
       rendered = rendered
         .replace(
@@ -130,6 +175,20 @@ export function renderPrebuildFile(args: {
           /IPHONEOS_DEPLOYMENT_TARGET = \d+(?:\.\d+)?;/g,
           `IPHONEOS_DEPLOYMENT_TARGET = ${app.ios.deploymentTarget};`
         )
+      if (relativePath === 'Podfile') {
+        rendered = rendered.replace(
+          '    )\n  end\nend',
+          `    )
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '${app.ios.deploymentTarget}'
+      end
+    end
+  end
+end`
+        )
+      }
     }
     if (platform === 'android' && app.android?.minSdk !== undefined) {
       rendered = rendered.replace(
@@ -165,8 +224,7 @@ export const generateForPlatform = async (
   // cjs/esm interop differs between runtimes (node vs bundled workers), so
   // resolve the walk function defensively instead of assuming one shape.
   const walkModule = (await import(pathToFileURL(importPath).href)) as any
-  const walkFn =
-    walkModule?.default?.default ?? walkModule?.default ?? walkModule
+  const walkFn = walkModule?.default?.default ?? walkModule?.default ?? walkModule
   if (typeof walkFn !== 'function') {
     throw new Error('[vxrn] could not resolve the community template walker')
   }
@@ -181,10 +239,9 @@ export const generateForPlatform = async (
     if (stat.isDirectory()) continue
 
     const extension = path.extname(absoluteSrc)
-    const raw =
-      ['.png', '.jar', '.keystore'].includes(extension)
-        ? null
-        : FSExtra.readFileSync(absoluteSrc, 'utf8')
+    const raw = ['.png', '.jar', '.keystore'].includes(extension)
+      ? null
+      : FSExtra.readFileSync(absoluteSrc, 'utf8')
     const { destRelativePath, content } = renderPrebuildFile({
       relativePath: relativeFilePath,
       content: raw,
@@ -241,9 +298,7 @@ export async function getNativeDependencyInventory(
   for (const name of names) {
     let depRoot: string
     try {
-      depRoot = path.dirname(
-        require.resolve(name + '/package.json', { paths: [root] })
-      )
+      depRoot = path.dirname(require.resolve(name + '/package.json', { paths: [root] }))
     } catch {
       continue
     }

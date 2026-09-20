@@ -1,7 +1,6 @@
 import { useCallback, useState, useEffect } from 'react'
-import { Pressable } from 'react-native'
+import { Clipboard, Pressable } from 'react-native'
 import { useRouter } from 'one'
-import * as Clipboard from 'expo-clipboard'
 import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
 
 export function QuickNavigatePixel() {
@@ -24,7 +23,7 @@ export function QuickNavigatePixel() {
 
   const navigate = useCallback(async () => {
     try {
-      const target = await Clipboard.getStringAsync()
+      const target = await Clipboard.getString()
 
       if (!target) {
         console.warn('QuickNavigatePixel: nothing in clipboard')

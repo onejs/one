@@ -19,7 +19,6 @@ export default defineConfig({
             applicationId: 'dev.vxrn.nativefeatures.tests',
           },
         },
-        key: 'native-feature-tests',
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
       router: {

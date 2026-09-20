@@ -1114,10 +1114,12 @@ export function QuickLook({
 }: Types.QuickLookProps) {
   if (typeof url !== 'string' || !url)
     throw new Error('QuickLook url must be a non-empty string')
-  if (!url.startsWith('file://'))
-    throw new Error(
-      'QuickLook url must be a file:// URL; Quick Look previews local files'
-    )
+  if (
+    !url.startsWith('file://') &&
+    !url.startsWith('http://') &&
+    !url.startsWith('https://')
+  )
+    throw new Error('QuickLook url must use file, http, or https')
 
   const controlled = useControlled<{
     value: boolean

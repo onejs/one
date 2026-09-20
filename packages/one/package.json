@@ -207,8 +207,6 @@
     "core-js": "^3.38.1",
     "create-vxrn": "workspace:*",
     "escape-string-regexp": "^5.0.0",
-    "expo-linking": "58.0.0-canary-20260909-ea7a89a",
-    "expo-modules-core": "58.0.0-canary-20260909-ea7a89a",
     "fast-deep-equal": "^3.1.3",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",

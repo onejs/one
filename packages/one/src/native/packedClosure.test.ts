@@ -23,7 +23,7 @@ const oneDir = resolve(here, '../..')
 const vxrnDir = resolve(here, '../../../vxrn')
 const workspaceRoot = resolve(here, '../../..')
 
-const KNOWN_ONE_BLOCKERS = ['babel-preset-expo', 'expo-linking', 'expo-modules-core']
+const KNOWN_ONE_BLOCKERS = ['babel-preset-expo']
 const KNOWN_VXRN_BLOCKERS = ['@expo/config-plugins']
 
 function packToDir(packageDir: string, outDir: string): string {
@@ -48,7 +48,10 @@ describe('packed-artifact closure oracle', () => {
   it('names the current expo blockers from real packed manifests', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-closure-')))
     const onePkg = JSON.parse(
-      readFileSync(join(unpack(packToDir(oneDir, tmp), join(tmp, 'one')), 'package.json'), 'utf8')
+      readFileSync(
+        join(unpack(packToDir(oneDir, tmp), join(tmp, 'one')), 'package.json'),
+        'utf8'
+      )
     )
     expect(auditUnpackedManifest(onePkg)).toEqual(KNOWN_ONE_BLOCKERS)
     const vxrnPkg = JSON.parse(
