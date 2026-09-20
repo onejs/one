@@ -351,8 +351,9 @@ export function Button({
   style,
   ...props
 }: Types.ButtonProps) {
-  if (typeof label !== 'string' || !label)
-    throw new Error('Button label must be a non-empty string')
+  if (typeof label !== 'string') throw new Error('Button label must be a string')
+  if (!label && !systemImage)
+    throw new Error('Button needs a label, a systemImage, or both')
   if (buttonRole)
     assertSwiftUIValue(
       'ButtonRole',

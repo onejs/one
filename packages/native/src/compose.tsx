@@ -1,10 +1,15 @@
 import type {
+  ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeColumnProps,
+  ComposeDialogProps,
   ComposeIconProps,
+  ComposeProgressIndicatorProps,
   ComposeRowProps,
+  ComposeSliderProps,
   ComposeSwitchProps,
+  ComposeTextFieldProps,
   ComposeTextProps,
 } from './composeTypes'
 
@@ -42,4 +47,37 @@ function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
 
-export const Compose = { Column, Row, Box, Text, Icon, Button, Switch }
+function TextField(_props: ComposeTextFieldProps): never {
+  return unsupported('TextField')
+}
+
+function Slider(_props: ComposeSliderProps): never {
+  return unsupported('Slider')
+}
+
+function AlertDialog(_props: ComposeAlertDialogProps): never {
+  return unsupported('AlertDialog')
+}
+
+function Dialog(_props: ComposeDialogProps): never {
+  return unsupported('Dialog')
+}
+
+function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
+  return unsupported('ProgressIndicator')
+}
+
+export const Compose = {
+  Column,
+  Row,
+  Box,
+  Text,
+  Icon,
+  Button,
+  Switch,
+  TextField,
+  Slider,
+  AlertDialog,
+  Dialog,
+  ProgressIndicator,
+}

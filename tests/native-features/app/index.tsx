@@ -38,6 +38,11 @@ const testScreens = [
     testID: 'nav-one-native-containers',
   },
   {
+    href: '/one-native-effects',
+    label: 'One Native Effects',
+    testID: 'nav-one-native-effects',
+  },
+  {
     href: '/one-native-popover',
     label: 'One Native Popover',
     testID: 'nav-one-native-popover',
@@ -57,11 +62,36 @@ const testScreens = [
     label: 'One Native Map',
     testID: 'nav-one-native-map',
   },
+  {
+    href: '/one-native-lists',
+    label: 'One Native Lists',
+    testID: 'nav-one-native-lists',
+  },
+  {
+    href: '/one-native-groups',
+    label: 'One Native Groups',
+    testID: 'nav-one-native-groups',
+  },
+  {
+    href: '/one-native-state',
+    label: 'One Native State',
+    testID: 'nav-one-native-state',
+  },
+  {
+    href: '/one-native-safe-area',
+    label: 'One Native Safe Area',
+    testID: 'nav-one-native-safe-area',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-android',
     label: 'One Native Android Proof',
     testID: 'nav-one-native-android',
+  },
+  {
+    href: '/one-native-android-inputs',
+    label: 'One Native Android Inputs',
+    testID: 'nav-one-native-android-inputs',
   },
   {
     href: '/one-native-tab-oracle',

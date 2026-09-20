@@ -1,5 +1,6 @@
 export { createApp } from './createApp';
-export type { One, OneRouter } from './interfaces/router';
+export { One } from './one';
+export type { OneRouter } from './interfaces/router';
 /**
  * Image data returned by ?imagedata imports.
  * Install `sharp` to enable this feature: `npm install sharp`
@@ -34,7 +35,7 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
 export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
 export * from '@vxrn/color-scheme';
-export { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+export { SafeAreaView, useSafeAreaInsets } from '@vxrn/safe-area';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';

@@ -36,6 +36,21 @@ interface NativeProps extends ViewProps {
     alignment?: string;
     arrangement?: string;
     spacing?: WithDefault<Double, -1>;
+    textValue?: string;
+    placeholder?: string;
+    keyboardType?: string;
+    secureText?: boolean;
+    numberValue?: WithDefault<Double, 0>;
+    minimumValue?: WithDefault<Double, 0>;
+    maximumValue?: WithDefault<Double, 1>;
+    step?: WithDefault<Double, 0>;
+    visible?: boolean;
+    title?: string;
+    message?: string;
+    confirmLabel?: string;
+    dismissLabel?: string;
+    progress?: WithDefault<Double, -1>;
+    progressVariant?: string;
     composeStyle?: ComposeStyleNative;
     onNativeComposeNodeButtonPress?: DirectEventHandler<Readonly<{
         eventCount: Int32;
@@ -44,6 +59,22 @@ interface NativeProps extends ViewProps {
         value: boolean;
         eventCount: Int32;
         revision: Int32;
+    }>>;
+    onNativeComposeNodeTextValueChange?: DirectEventHandler<Readonly<{
+        text: string;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeComposeNodeNumberValueChange?: DirectEventHandler<Readonly<{
+        value: Double;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeComposeNodeDialogConfirm?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
+    }>>;
+    onNativeComposeNodeDialogDismiss?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

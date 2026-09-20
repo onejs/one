@@ -86,6 +86,13 @@ export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'd
 export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled'
 export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled'
 export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled'
+export type ListStyle =
+  | 'automatic'
+  | 'sidebar'
+  | 'inset'
+  | 'grouped'
+  | 'insetGrouped'
+  | 'plain'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -277,6 +284,14 @@ export const swiftUIValues = {
     automatic: 26,
     enabled: 26,
     disabled: 26,
+  },
+  ListStyle: {
+    automatic: 13,
+    sidebar: 14,
+    inset: 14,
+    grouped: 13,
+    insetGrouped: 14,
+    plain: 13,
   },
 } as const
 export function assertSwiftUIValue(

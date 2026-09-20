@@ -7,6 +7,7 @@ type Bounds = { left: number; top: number; right: number; bottom: number }
 
 type Node = {
   index: number
+  parent: number
   attrs: Record<string, string>
   text: string
   contentDescription: string
@@ -28,6 +29,7 @@ type Config = {
   packageId: string
   artifactDir: string
   timeout: number
+  metroPort: number
 }
 
 type Selector = {
@@ -46,11 +48,9 @@ type Check = {
   detail?: Record<string, unknown>
 }
 
-let mostRecentSnapshot: Snapshot | undefined
-
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>]'
   )
 
 function parse(args: string[]): Config {
@@ -58,6 +58,12 @@ function parse(args: string[]): Config {
   let packageId = ''
   let artifactDir = '/tmp/one-native-android-proof'
   let timeout = 15_000
+  let metroPort = 8081
+  if (
+    process.env.RCT_METRO_PORT !== undefined &&
+    process.env.RCT_METRO_PORT !== ''
+  )
+    metroPort = Number(process.env.RCT_METRO_PORT)
 
   for (let index = 0; index < args.length; index++) {
     const arg = args[index]
@@ -71,6 +77,7 @@ function parse(args: string[]): Config {
       packageId = args[++index] || ''
     else if (arg === '--artifact-dir') artifactDir = args[++index] || ''
     else if (arg === '--timeout') timeout = Number(args[++index])
+    else if (arg === '--metro-port') metroPort = Number(args[++index])
     else throw new Error(`Unknown argument: ${arg}`)
   }
 
@@ -85,7 +92,67 @@ function parse(args: string[]): Config {
       'A device id, package id, artifact directory, and positive integer timeout are required.'
     )
   }
-  return { deviceId, packageId, artifactDir, timeout }
+  if (!Number.isInteger(metroPort) || metroPort <= 0 || metroPort > 65535) {
+    throw new Error(
+      'A valid Metro port is required: --metro-port <PORT> or RCT_METRO_PORT.'
+    )
+  }
+  return { deviceId, packageId, artifactDir, timeout, metroPort }
+}
+
+function adbRaw(args: string[]): string {
+  return execFileSync('adb', args, {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: 30_000,
+  })
+}
+
+function preflight(config: Config) {
+  try {
+    adbRaw(['version'])
+  } catch {
+    throw new Error(
+      'Android preflight: adb is not runnable. Install the platform tools and add them to PATH, e.g. export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH".'
+    )
+  }
+  let devices = ''
+  try {
+    devices = adbRaw(['devices'])
+  } catch (error) {
+    throw new Error(
+      `Android preflight: 'adb devices' failed (${error instanceof Error ? error.message : String(error)}). Start the adb server with 'adb start-server' and retry.`
+    )
+  }
+  const line = devices
+    .split(/\r?\n/)
+    .find((entry) => entry.split(/\s+/)[0] === config.deviceId)
+  if (!line)
+    throw new Error(
+      `Android preflight: device '${config.deviceId}' is not attached. Boot one, e.g.: emulator -avd sootsim_pixel_8_android_17_api_37_r06 -no-window &   (list AVDs: emulator -list-avds; verify: adb devices)`
+    )
+  const state = line.split(/\s+/)[1]
+  if (state !== 'device')
+    throw new Error(
+      `Android preflight: device '${config.deviceId}' is '${state}', not ready. Reconnect it (offline), accept the RSA prompt (unauthorized), or cold-boot the emulator, then retry.`
+    )
+  const wantDevice = 'tcp:8081'
+  const wantHost = `tcp:${config.metroPort}`
+  let reverses = ''
+  try {
+    reverses = adbRaw(['-s', config.deviceId, 'reverse', '--list'])
+  } catch (error) {
+    throw new Error(
+      `Android preflight: 'adb reverse --list' failed (${error instanceof Error ? error.message : String(error)}). Reconnect the device and retry.`
+    )
+  }
+  const mapped = reverses
+    .split(/\r?\n/)
+    .some((entry) => entry.includes(wantDevice) && entry.includes(wantHost))
+  if (!mapped)
+    throw new Error(
+      `Android preflight: no adb reverse mapping device ${wantDevice} to host ${wantHost} (Metro port ${config.metroPort} from --metro-port or RCT_METRO_PORT). Run: adb -s ${config.deviceId} reverse ${wantDevice} ${wantHost}`
+    )
 }
 
 function commandError(command: string, args: string[], error: unknown) {
@@ -160,11 +227,18 @@ function parseBounds(value: string | undefined): Bounds | undefined {
 
 function parseXml(xml: string): Node[] {
   const nodes: Node[] = []
-  const pattern = /<node\b([\s\S]*?)(?:\/>|>)/g
-  for (const [index, match] of [...xml.matchAll(pattern)].entries()) {
+  const stack: number[] = []
+  const pattern = /<node\b([\s\S]*?)(\/)?>|<\/node>/g
+  for (const match of xml.matchAll(pattern)) {
+    if (match[0] === '</node>') {
+      stack.pop()
+      continue
+    }
     const attrs = attributes(match[1])
+    const index = nodes.length
     nodes.push({
       index,
+      parent: stack.length ? stack[stack.length - 1] : -1,
       attrs,
       text: attrs.text || '',
       contentDescription: attrs['content-desc'] || '',
@@ -178,19 +252,32 @@ function parseXml(xml: string): Node[] {
       scrollable: booleanAttribute(attrs, 'scrollable'),
       bounds: parseBounds(attrs.bounds),
     })
+    if (!match[2]) stack.push(index)
   }
   return nodes
 }
 
-function snapshot(config: Config): Snapshot {
+function clickableTarget(nodes: Node[], node: Node): Node | undefined {
+  let current: Node | undefined = node
+  while (current) {
+    if (current.clickable === true) return current
+    current = current.parent >= 0 ? nodes[current.parent] : undefined
+  }
+  return undefined
+}
+
+function dumpNodes(config: Config): Snapshot {
   const remote = `/sdcard/one-native-android-proof-${process.pid}.xml`
   adbText(config, ['shell', 'uiautomator', 'dump', remote])
   const xml = adbText(config, ['exec-out', 'cat', remote])
-  const nodes = parseXml(xml)
-  const current = { xml, nodes }
-  mostRecentSnapshot = current
-  assertNoRedBox(nodes)
-  if (!nodes.length) throw new Error('Android accessibility XML contained no nodes.')
+  return { xml, nodes: parseXml(xml) }
+}
+
+function snapshot(config: Config): Snapshot {
+  const current = dumpNodes(config)
+  assertNoRedBox(current.nodes)
+  if (!current.nodes.length)
+    throw new Error('Android accessibility XML contained no nodes.')
   return current
 }
 
@@ -332,6 +419,26 @@ function orderIds(nodes: Node[]) {
     .map(({ item }) => item)
 }
 
+let lastFailedConjuncts: string | undefined
+
+function diagnose(
+  nodes: Node[],
+  parts: Array<[label: string, test: (nodes: Node[]) => boolean]>
+): boolean {
+  const failed: string[] = []
+  for (const [label, test] of parts) {
+    let ok = false
+    try {
+      ok = test(nodes)
+    } catch {
+      ok = false
+    }
+    if (!ok) failed.push(label)
+  }
+  lastFailedConjuncts = failed.length ? failed.join(', ') : undefined
+  return failed.length === 0
+}
+
 async function waitFor(
   config: Config,
   name: string,
@@ -341,6 +448,7 @@ async function waitFor(
 ) {
   const started = Date.now()
   const deadline = started + timeoutMs
+  lastFailedConjuncts = undefined
   while (Date.now() < deadline) {
     const current = snapshot(config)
     if (predicate(current.nodes))
@@ -348,7 +456,8 @@ async function waitFor(
     await Bun.sleep(250)
   }
   const marker = missingMarker ? `; missing mount marker ${missingMarker}` : ''
-  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}`)
+  const diagnosis = lastFailedConjuncts ? `; failed: ${lastFailedConjuncts}` : ''
+  throw new Error(`${name} timed out after ${timeoutMs}ms${marker}${diagnosis}`)
 }
 
 function tapFresh(
@@ -364,6 +473,59 @@ function tapFresh(
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
   adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function tapByText(config: Config, name: string, text: string) {
+  const current = snapshot(config)
+  const labeled = current.nodes.filter((node) => node.text === text)
+  if (labeled.length !== 1)
+    throw new Error(
+      `${name} resolved ${labeled.length} nodes with text "${text}"; exactly one is required.`
+    )
+  const target = clickableTarget(current.nodes, labeled[0])
+  if (!target)
+    throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
+  const bounds = validBounds(labeled[0], name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function swipeOnNode(
+  config: Config,
+  name: string,
+  selector: Selector,
+  fromX: number,
+  toX: number,
+  durationMs = 300
+) {
+  const current = snapshot(config)
+  const node = uniqueNode(current.nodes, selector, name)
+  const bounds = validBounds(node, name)
+  const width = bounds.right - bounds.left
+  const x1 = Math.round(bounds.left + width * fromX)
+  const x2 = Math.round(bounds.left + width * toX)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, [
+    'shell',
+    'input',
+    'swipe',
+    String(x1),
+    String(y),
+    String(x2),
+    String(y),
+    String(durationMs),
+  ])
+}
+
+function adbType(config: Config, text: string) {
+  if (!/^[a-z0-9]+$/i.test(text))
+    throw new Error(`adbType only supports ASCII letters and digits, got "${text}".`)
+  adbText(config, ['shell', 'input', 'text', text])
+}
+
+function pressBack(config: Config) {
+  adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
 function swipeFresh(config: Config, name: string) {
@@ -390,11 +552,11 @@ function swipeFresh(config: Config, name: string) {
   ])
 }
 
-async function tapNavigation(config: Config) {
+async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
   for (let attempt = 0; attempt < 8; attempt++) {
     const current = snapshot(config)
     const rows = matching(current.nodes, {
-      id: 'nav-one-native-android',
+      id: navId,
       role: 'button',
       clickable: true,
     })
@@ -408,7 +570,7 @@ async function tapNavigation(config: Config) {
       const candidateBounds = rowBounds
       await waitFor(config, 'Android navigation row settles', (nodes) => {
         const settled = matching(nodes, {
-          id: 'nav-one-native-android',
+          id: navId,
           role: 'button',
           clickable: true,
         })
@@ -421,7 +583,7 @@ async function tapNavigation(config: Config) {
         )
       })
       tapFresh(config, 'Android proof navigation row', {
-        id: 'nav-one-native-android',
+        id: navId,
         role: 'button',
         clickable: true,
       })
@@ -452,7 +614,7 @@ async function tapNavigation(config: Config) {
     )
     if (!advanced) continue
   }
-  throw new Error('Could not bring nav-one-native-android into view on the home list.')
+  throw new Error(`Could not bring ${navId} into view on the home list.`)
 }
 
 function shortNode(node: Node | undefined) {
@@ -518,11 +680,35 @@ function duplicateIdsIn(nodes: Node[], ids: string[]) {
   return ids.filter((id) => matching(nodes, { id }).length !== 1)
 }
 
-// At 560dpi the 309x686dp window clips the Column tail: the order status, the
-// order row, and the decoy box sit at or past the window edge and duplicate or
-// vanish as the tree settles, so the post-rotation sweep covers the reliably
-// visible subset and the full set is asserted at the default density.
-const proofIdsVisibleSmall = [
+function hasDuplicates(nodes: Node[], ids: string[]) {
+  return ids.filter((id) => matching(nodes, { id }).length > 1)
+}
+
+// In landscape the short window edge (~340dp usable) clips everything below the
+// switch policy status. Assert that observable prefix there.
+const inputsIds = [
+  'one-native-android-inputs-screen',
+  'one-native-android-inputs-mounted',
+  'one-native-android-inputs-text-status',
+  'one-native-android-inputs-textfield',
+  'one-native-android-inputs-text-row',
+  'one-native-android-inputs-text-policy',
+  'one-native-android-inputs-text-reset',
+  'one-native-android-inputs-slider-status',
+  'one-native-android-inputs-slider',
+  'one-native-android-inputs-slider-row',
+  'one-native-android-inputs-slider-down',
+  'one-native-android-inputs-slider-up',
+  'one-native-android-inputs-dialog-status',
+  'one-native-android-inputs-dialog-show',
+  'one-native-android-inputs-custom-status',
+  'one-native-android-inputs-custom-show',
+  'one-native-android-inputs-progress-status',
+  'one-native-android-inputs-progress-linear',
+  'one-native-android-inputs-progress-circular',
+]
+
+const proofIdsVisibleLandscape = [
   'one-native-android-mounted',
   'one-native-android-prop-status',
   'one-native-android-bounds-box',
@@ -537,16 +723,6 @@ const proofIdsVisibleSmall = [
   'one-native-android-icon-button',
   'one-native-android-switch-status',
   'one-native-android-switch-policy-status',
-  'one-native-android-switch',
-  'one-native-android-switch-policy',
-  'one-native-android-switch-reset',
-  'one-native-android-lifecycle-status',
-  'one-native-android-toggle-optional',
-  'one-native-android-optional',
-  'one-native-android-optional-text',
-  'one-native-android-disabled-status',
-  'one-native-android-disabled-button',
-  'one-native-android-disabled-switch',
 ]
 
 function nodeWidth(node: Node) {
@@ -554,22 +730,45 @@ function nodeWidth(node: Node) {
   return node.bounds.right - node.bounds.left
 }
 
-function readDensity(config: Config) {
-  const output = adbText(config, ['shell', 'wm', 'density']).trim()
-  const match = output.match(/density:\s*(\d+)\s*$/m)
-  if (!match) throw new Error(`Could not parse wm density output: ${output}`)
-  return Number(match[1])
+function lockRotation(config: Config, rotation: string) {
+  adbText(config, ['shell', 'wm', 'user-rotation', 'lock', rotation])
 }
 
-function writeDensity(config: Config, value: string) {
-  adbText(config, ['shell', 'wm', 'density', value])
+function freeRotation(config: Config) {
+  adbText(config, ['shell', 'wm', 'user-rotation', 'free'])
+}
+
+function relaunchApp(config: Config) {
+  adbText(config, ['shell', 'am', 'force-stop', config.packageId])
+  const launcherComponent = adbText(config, [
+    'shell',
+    'cmd',
+    'package',
+    'resolve-activity',
+    '--brief',
+    '-c',
+    'android.intent.category.LAUNCHER',
+    config.packageId,
+  ])
+    .trim()
+    .split(/\r?\n/)
+    .findLast((line) => line.includes('/'))
+  if (!launcherComponent)
+    throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+  adbText(config, [
+    'shell',
+    'am',
+    'start',
+    '-W',
+    '-n',
+    launcherComponent,
+  ])
 }
 
 async function run(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   const checks: Check[] = []
   let captureNumber = 0
-  let lastSnapshot: Snapshot | undefined
 
   const capture = (
     name: string,
@@ -616,7 +815,6 @@ async function run(config: Config) {
     detail?: (nodes: Node[]) => Record<string, unknown>
   ) => {
     const result = await waitFor(config, name, predicate, missingMarker)
-    lastSnapshot = result.snapshot
     const observed = detail?.(result.snapshot.nodes)
     const artifacts = capture(name, result.snapshot, 'passed', undefined, observed)
     const check: Check = {
@@ -632,30 +830,8 @@ async function run(config: Config) {
   }
 
   try {
-    adbText(config, ['shell', 'am', 'force-stop', config.packageId])
-    const launcherComponent = adbText(config, [
-      'shell',
-      'cmd',
-      'package',
-      'resolve-activity',
-      '--brief',
-      '-c',
-      'android.intent.category.LAUNCHER',
-      config.packageId,
-    ])
-      .trim()
-      .split(/\r?\n/)
-      .findLast((line) => line.includes('/'))
-    if (!launcherComponent)
-      throw new Error(`No launcher activity resolved for ${config.packageId}.`)
-    adbText(config, [
-      'shell',
-      'am',
-      'start',
-      '-W',
-      '-n',
-      launcherComponent,
-    ])
+    preflight(config)
+    relaunchApp(config)
 
     await expect(
       'app-mounted',
@@ -1057,97 +1233,474 @@ async function run(config: Config) {
       (nodes) => ({ duplicates: duplicateIds(nodes) })
     )
 
-    const expandedBefore = nodeWidth(nodeById(snapshot(config).nodes, 'one-native-android-bounds-box'))
-    if (expandedBefore <= 0)
-      throw new Error('Pre-rotation bounds box has no usable width.')
-    const densityBefore = readDensity(config)
-    const densityAfter = 560
+    const portraitRowWidth = nodeWidth(
+      nodeById(snapshot(config).nodes, 'one-native-android-button-row')
+    )
+    if (portraitRowWidth <= 0)
+      throw new Error('Pre-rotation button row has no usable width.')
     try {
-      writeDensity(config, String(densityAfter))
+      lockRotation(config, '1')
       await expect(
-        'configuration-change-home-reload',
-        (nodes) =>
-          exactlyOneId(nodes, 'home-screen') &&
-          textIncludes(nodes, '@vxrn/native Test Suite'),
-        'home-screen'
-      )
-      await tapNavigation(config)
-      await expect(
-        'configuration-change-remount',
-        (nodes) =>
-          exactlyOneId(nodes, 'one-native-android-mounted') &&
-          textIncludes(nodes, 'Android proof mounted') &&
-          textIncludes(nodes, 'Button taps: 0') &&
-          textIncludes(nodes, 'Switch: off · Request: off · Revision: 0') &&
-          textIncludes(nodes, 'Optional: mounted') &&
-          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+        'orientation-landscape-relayout',
+        (nodes) => {
+          const row = nodeById(nodes, 'one-native-android-button-row')
+          const width = nodeWidth(row)
+          const window = applicationBounds(nodes)
+          return diagnose(nodes, [
+            ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
+            ['button taps kept', (n) => textIncludes(n, 'Button taps: 3')],
+            ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+            ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
+            ['window is landscape', () => window.right - window.left > window.bottom - window.top],
+            ['row widened', () => width > portraitRowWidth * 1.2],
+            [
+              'no landscape duplicates',
+              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+            ],
+          ])
+        },
         'one-native-android-mounted',
         (nodes) => ({
-          duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall),
+          portraitRowWidth,
+          landscapeRowWidth: nodeWidth(
+            nodeById(nodes, 'one-native-android-button-row')
+          ),
+          window: applicationBounds(nodes),
+          duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape),
         })
       )
-      tapFresh(config, 'Post-rotation real button tap', {
+      tapFresh(config, 'Landscape real button tap', {
         id: 'one-native-android-real-button',
         role: 'button',
         clickable: true,
       })
       await expect(
-        'post-rotation-single-handler',
+        'orientation-landscape-live-interaction',
         (nodes) =>
-          textIncludes(nodes, 'Button taps: 1') &&
-          duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0,
+          diagnose(nodes, [
+            ['button tap landed', (n) => textIncludes(n, 'Button taps: 4')],
+            [
+              'no landscape duplicates',
+              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+            ],
+          ]),
         'one-native-android-mounted',
-        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleSmall) })
-      )
-      tapFresh(config, 'Post-rotation prop mutation', {
-        id: 'one-native-android-prop-mutate',
-        role: 'button',
-        clickable: true,
-      })
-      await expect(
-        'post-rotation-density-bounds',
-        (nodes) => {
-          const box = nodeById(nodes, 'one-native-android-bounds-box')
-          const width = nodeWidth(box)
-          const expectedRatio = densityAfter / densityBefore
-          const ratio = width / expandedBefore
-          return (
-            textIncludes(nodes, 'Prop: expanded') &&
-            width > expandedBefore &&
-            ratio > expectedRatio * 0.9 &&
-            ratio < expectedRatio * 1.1 &&
-            duplicateIdsIn(nodes, proofIdsVisibleSmall).length === 0
-          )
-        },
-        'one-native-android-mounted',
-        (nodes) => ({
-          densityBefore,
-          densityAfter,
-          expandedBefore,
-          expandedAfter: nodeWidth(
-            nodeById(nodes, 'one-native-android-bounds-box')
-          ),
-        })
+        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape) })
       )
     } finally {
-      writeDensity(config, 'reset')
+      freeRotation(config)
     }
     await expect(
-      'configuration-change-density-reset',
+      'orientation-portrait-revert',
+      (nodes) => {
+        const row = nodeById(nodes, 'one-native-android-button-row')
+        const width = nodeWidth(row)
+        const ratio = width / portraitRowWidth
+        return diagnose(nodes, [
+          ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
+          ['button taps kept', (n) => textIncludes(n, 'Button taps: 4')],
+          ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+          ['optional kept', (n) => textIncludes(n, 'Optional: mounted')],
+          ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
+          ['row width reverted', () => ratio > 0.9 && ratio < 1.1],
+          ['no duplicates', (n) => duplicateIds(n).length === 0],
+        ])
+      },
+      'one-native-android-mounted',
+      (nodes) => ({
+        portraitRowWidth,
+        revertedRowWidth: nodeWidth(
+          nodeById(nodes, 'one-native-android-button-row')
+        ),
+        duplicates: duplicateIds(nodes),
+      })
+    )
+
+    pressBack(config)
+    await expect(
+      'inputs-navigate-home',
       (nodes) =>
-        exactlyOneId(nodes, 'home-screen') &&
-        textIncludes(nodes, '@vxrn/native Test Suite'),
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
       'home-screen'
     )
-    await tapNavigation(config)
+    await tapNavigation(config, 'nav-one-native-android-inputs')
     await expect(
-      'density-reset-remount',
+      'inputs-proof-mounted',
       (nodes) =>
-        exactlyOneId(nodes, 'one-native-android-mounted') &&
-        textIncludes(nodes, 'Android proof mounted') &&
-        duplicateIds(nodes).length === 0,
-      'one-native-android-mounted',
-      (nodes) => ({ duplicates: duplicateIds(nodes) })
+        diagnose(nodes, [
+          ['inputs marker', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+          ['mounted text', (n) => textIncludes(n, 'Android inputs proof mounted')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs textfield focus', {
+      id: 'one-native-android-inputs-textfield',
+    })
+    adbType(config, 'h')
+    await expect(
+      'inputs-textfield-reject',
+      (nodes) =>
+        diagnose(nodes, [
+          ['request observed', (n) => textIncludes(n, 'Request: h · Revision: 0')],
+          ['value rejected', (n) => !textIncludes(n, 'Text: h')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs text acceptance policy button', {
+      id: 'one-native-android-inputs-text-policy',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'Inputs textfield refocus', {
+      id: 'one-native-android-inputs-textfield',
+    })
+    adbType(config, 'hi')
+    await expect(
+      'inputs-textfield-accept',
+      (nodes) => textIncludes(nodes, 'Text: hi · Request: hi · Revision: 0'),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs text revision reset button', {
+      id: 'one-native-android-inputs-text-reset',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-textfield-revision-reset',
+      (nodes) => textIncludes(nodes, 'Text:  · Request:  · Revision: 1'),
+      'one-native-android-inputs-mounted'
+    )
+
+    pressBack(config)
+    if (
+      !exactlyOneId(
+        snapshot(config).nodes,
+        'one-native-android-inputs-mounted'
+      )
+    ) {
+      await expect(
+        'inputs-renavigate-home',
+        (nodes) =>
+          diagnose(nodes, [
+            ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+            ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+          ]),
+        'home-screen'
+      )
+      await tapNavigation(config, 'nav-one-native-android-inputs')
+      await expect(
+        'inputs-proof-remounted',
+        (nodes) =>
+          diagnose(nodes, [
+            ['inputs marker', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+            ['mounted text', (n) => textIncludes(n, 'Android inputs proof mounted')],
+          ]),
+        'one-native-android-inputs-mounted'
+      )
+    }
+
+    tapFresh(config, 'Inputs slider step up button', {
+      id: 'one-native-android-inputs-slider-up',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-slider-js-step',
+      (nodes) => textIncludes(nodes, 'Slider: 30 · Request: 25'),
+      'one-native-android-inputs-mounted'
+    )
+
+    swipeOnNode(
+      config,
+      'Inputs slider drag',
+      {
+        id: 'one-native-android-inputs-slider',
+      },
+      0.3,
+      0.85
+    )
+    await expect(
+      'inputs-slider-drag',
+      (nodes) => {
+        const status =
+          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
+            ?.text ?? ''
+        const match = /Slider: (-?\d+) · Request: (-?\d+)/.exec(status)
+        const value = match ? Number(match[1]) : null
+        const request = match ? Number(match[2]) : null
+        return diagnose(nodes, [
+          ['slider status parses', () => match !== null],
+          ['value equals request', () => value !== null && value === request],
+          ['value moved', () => value !== null && value !== 30],
+          ['value snapped to step', () => value !== null && value % 5 === 0],
+        ])
+      },
+      'one-native-android-inputs-mounted',
+      (nodes) => ({
+        slider: shortNode(
+          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
+        ),
+      })
+    )
+
+    tapFresh(config, 'Inputs show dialog button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-shown',
+      (nodes) =>
+        diagnose(nodes, [
+          ['dialog title', (n) => textIncludes(n, 'Delete item?')],
+          ['dialog message', (n) => textIncludes(n, 'This cannot be undone.')],
+          ['confirm button', (n) => textIncludes(n, 'Delete')],
+          ['dismiss button', (n) => textIncludes(n, 'Cancel')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+    tapByText(config, 'Inputs dialog confirm button', 'Delete')
+    await expect(
+      'inputs-dialog-confirm',
+      (nodes) =>
+        diagnose(nodes, [
+          ['confirm recorded', (n) => textIncludes(n, 'Dialog: confirmed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show dialog again button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-reshown',
+      (nodes) => textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+    tapByText(config, 'Inputs dialog dismiss button', 'Cancel')
+    await expect(
+      'inputs-dialog-dismiss-button',
+      (nodes) =>
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Dialog: dismissed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show dialog third button', {
+      id: 'one-native-android-inputs-dialog-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-dialog-reshown-again',
+      (nodes) => textIncludes(nodes, 'Delete item?'),
+      'one-native-android-inputs-mounted'
+    )
+    pressBack(config)
+    await expect(
+      'inputs-dialog-back-dismiss',
+      (nodes) =>
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Dialog: dismissed')],
+          ['dialog gone', (n) => !textIncludes(n, 'Delete item?')],
+          ['screen kept', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show custom dialog button', {
+      id: 'one-native-android-inputs-custom-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-shown',
+      (nodes) =>
+        diagnose(nodes, [
+          ['custom body id', (n) => exactlyOneId(n, 'one-native-android-inputs-custom-body')],
+          ['custom body text', (n) => textIncludes(n, 'Custom dialog body')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+    tapFresh(config, 'Inputs custom dialog close button', {
+      id: 'one-native-android-inputs-custom-close',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-closed',
+      (nodes) =>
+        diagnose(nodes, [
+          ['close recorded', (n) => textIncludes(n, 'Custom dialog: closed')],
+          ['custom body gone', (n) => !textIncludes(n, 'Custom dialog body')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    tapFresh(config, 'Inputs show custom dialog again button', {
+      id: 'one-native-android-inputs-custom-show',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'inputs-custom-dialog-reshown',
+      (nodes) => textIncludes(nodes, 'Custom dialog body'),
+      'one-native-android-inputs-mounted'
+    )
+    pressBack(config)
+    await expect(
+      'inputs-custom-dialog-back-dismiss',
+      (nodes) =>
+        diagnose(nodes, [
+          ['dismiss recorded', (n) => textIncludes(n, 'Custom dialog: dismissed')],
+          ['custom body gone', (n) => !textIncludes(n, 'Custom dialog body')],
+          ['screen kept', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+        ]),
+      'one-native-android-inputs-mounted'
+    )
+
+    await expect(
+      'inputs-progress-and-duplicate-sweep',
+      (nodes) =>
+        diagnose(nodes, [
+          ['linear indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-linear')],
+          ['circular indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-circular')],
+          ['progress text', (n) => textIncludes(n, 'Progress mounted')],
+          ['screen root', (n) => exactlyOneId(n, 'one-native-android-inputs-screen')],
+          ['no duplicates', (n) => hasDuplicates(n, inputsIds).length === 0],
+        ]),
+      'one-native-android-inputs-mounted',
+      (nodes) => ({ duplicates: hasDuplicates(nodes, inputsIds) })
+    )
+
+    // first-party safe-area on Android: the same fixture as iOS, asserting
+    // live overlap-relative insets, a nested provider, and keyboard
+    // exclusion. the nested box sits below the status bar, so its top is 0
+    // while the outer top stays positive, which proves per-view overlap
+    // rather than forwarded window insets.
+    pressBack(config)
+    await expect(
+      'safe-area-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-safe-area')
+    const safeAreaNumbers = (nodes: Node[], prefix: string) => {
+      const label = nodes
+        .flatMap(nodeValues)
+        .find((value) => value.startsWith(prefix))
+      if (!label) return null
+      const values = label
+        .slice(prefix.length)
+        .split(/[\sx]+/)
+        .map(Number)
+      if (values.some((value) => !Number.isFinite(value))) return null
+      return values
+    }
+    await expect(
+      'safe-area-live-insets',
+      (nodes) =>
+        diagnose(nodes, [
+          ['edges control', (n) => exactlyOneId(n, 'one-native-safe-area-edges')],
+          [
+            'live outer insets',
+            (n) => {
+              const insets = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                insets &&
+                insets.length === 4 &&
+                insets[0] > 0 &&
+                insets.every((v) => v >= 0)
+              )
+            },
+          ],
+          [
+            'frame published',
+            (n) => {
+              const frame = safeAreaNumbers(n, 'Frame: ')
+              return Boolean(frame && frame.length === 2 && frame.every((v) => v > 0))
+            },
+          ],
+          ['initial metrics set', (n) => textIncludes(n, 'Initial: set')],
+        ]),
+      'one-native-safe-area-edges'
+    )
+    await expect(
+      'safe-area-nested-overlap',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'nested top is zero below the status bar',
+            (n) => {
+              const nested = safeAreaNumbers(n, 'NestedInsets: ')
+              const outer = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                nested &&
+                nested.length === 4 &&
+                nested[0] === 0 &&
+                nested.every((v) => Number.isFinite(v)) &&
+                outer &&
+                outer[2] >= nested[2]
+              )
+            },
+          ],
+        ]),
+      'one-native-safe-area-edges'
+    )
+
+    // focusing the input and typing must not move the bottom inset: the
+    // keyboard is capped by the stable inset. if this emulator shows no
+    // soft keyboard the bottom is trivially stable and the typed text
+    // still proves the input round-tripped.
+    const beforeIme = safeAreaNumbers(snapshot(config).nodes, 'Insets: ')
+    tapFresh(config, 'Safe-area input focus', { id: 'one-native-safe-area-input' })
+    adbType(config, 'ada')
+    await expect(
+      'safe-area-ime-excluded',
+      (nodes) =>
+        diagnose(nodes, [
+          ['typed text landed', (n) => textIncludes(n, 'ada')],
+          [
+            'bottom inset stable across input',
+            (n) => {
+              const insets = safeAreaNumbers(n, 'Insets: ')
+              return Boolean(
+                beforeIme &&
+                insets &&
+                insets.length === 4 &&
+                insets[2] === beforeIme[2] &&
+                insets.every((v) => Number.isFinite(v))
+              )
+            },
+          ],
+        ]),
+      'one-native-safe-area-edges'
+    )
+
+    tapFresh(config, 'Safe-area edges toggle', {
+      id: 'one-native-safe-area-edges',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'safe-area-edges-toggle',
+      (nodes) => textIncludes(nodes, 'Edges: top'),
+      'one-native-safe-area-edges'
     )
 
     writeFileSync(
@@ -1170,10 +1723,23 @@ async function run(config: Config) {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     let failureArtifacts: Check['artifacts'] | undefined
-    const failureSnapshot = lastSnapshot || mostRecentSnapshot
+    let failureSnapshot: Snapshot | undefined
+    try {
+      failureSnapshot = dumpNodes(config)
+    } catch (snapshotError) {
+      console.error(
+        `FAIL one-native-android failure snapshot: ${
+          snapshotError instanceof Error ? snapshotError.message : String(snapshotError)
+        }`
+      )
+    }
+    const redbox = failureSnapshot ? redBoxMessage(failureSnapshot.nodes) : undefined
+    const failureMessage = redbox
+      ? `${message} | RedBox: ${redbox.slice(0, 500)}`
+      : message
     if (failureSnapshot) {
       try {
-        failureArtifacts = capture('failure', failureSnapshot, 'failed', message)
+        failureArtifacts = capture('failure', failureSnapshot, 'failed', failureMessage)
       } catch (captureError) {
         console.error(
           `FAIL one-native-android failure capture: ${
@@ -1190,7 +1756,7 @@ async function run(config: Config) {
           result: 'failed',
           deviceId: config.deviceId,
           packageId: config.packageId,
-          error: message,
+          error: failureMessage,
           checks,
           failureArtifacts,
           completedAt: new Date().toISOString(),

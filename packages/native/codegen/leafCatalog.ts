@@ -14,6 +14,13 @@ export const leafControls: Control[] = [
     constructors: [
       { type: 'Text', parameters: [{ label: 'verbatim', type: 'Swift.String' }] },
     ],
+    leaf: {
+      constructor: {
+        type: 'Text',
+        parameters: [{ label: 'verbatim', type: 'Swift.String' }],
+      },
+      args: [{ label: 'verbatim', field: 'text' }],
+    },
     swift: `Text(verbatim: model.text)`,
     validate: `  if (typeof text !== 'string') throw new Error('Text text must be a string')`,
   },
@@ -32,6 +39,19 @@ export const leafControls: Control[] = [
         ],
       },
     ],
+    leaf: {
+      constructor: {
+        type: 'Label',
+        parameters: [
+          { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+          { label: 'systemImage', type: 'Swift.String' },
+        ],
+      },
+      args: [
+        { label: '_', localizedKey: 'label' },
+        { label: 'systemImage', field: 'systemImage' },
+      ],
+    },
     swift: `Label(LocalizedStringKey(model.label), systemImage: model.systemImage)`,
     validate: `  if (typeof label !== 'string' || !label) throw new Error('Label label must be a non-empty string')
   if (typeof systemImage !== 'string' || !systemImage) throw new Error('Label systemImage must be a non-empty SF Symbol name')`,
@@ -79,12 +99,16 @@ export const leafControls: Control[] = [
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)`,
-    validate: `  if (typeof label !== 'string' || !label) throw new Error('Button label must be a non-empty string')`,
+    validate: `  if (typeof label !== 'string') throw new Error('Button label must be a string')
+  if (!label && !systemImage) throw new Error('Button needs a label, a systemImage, or both')`,
     extraSwift: `private extension ButtonModel {
   // the label is the same whether or not a disclosure indicator follows it, so the
-  // image-or-text rule is written once.
+  // image-or-text rule is written once. an icon-only button renders the image alone
+  // rather than a label with an empty title, so no title spacing is reserved.
   @ViewBuilder var oneNativeLabel: some View {
-    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
+    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
+    else if !systemImage.isEmpty { Image(systemName: systemImage) }
+    else { Text(label) }
   }
 }`,
   },
@@ -163,6 +187,27 @@ export const leafControls: Control[] = [
         ],
       },
     ],
+    leaf: {
+      constructor: {
+        type: 'Gauge',
+        parameters: [
+          { label: 'value', type: 'V' },
+          { label: 'in', type: 'Swift.ClosedRange<V>' },
+          { label: 'label', type: '() -> Label' },
+          { label: 'currentValueLabel', type: '() -> CurrentValueLabel' },
+          { label: 'minimumValueLabel', type: '() -> BoundsLabel' },
+          { label: 'maximumValueLabel', type: '() -> BoundsLabel' },
+        ],
+      },
+      args: [
+        { label: 'value', field: 'value' },
+        { label: 'in', range: ['minimumValue', 'maximumValue'] },
+        { label: 'label', text: 'label' },
+        { label: 'currentValueLabel', text: 'currentValueLabel' },
+        { label: 'minimumValueLabel', text: 'minimumValueLabel' },
+        { label: 'maximumValueLabel', text: 'maximumValueLabel' },
+      ],
+    },
     swift: `Gauge(value: model.value, in: model.minimumValue...model.maximumValue) {
         Text(model.label)
       } currentValueLabel: {

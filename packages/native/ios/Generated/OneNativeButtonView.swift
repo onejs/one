@@ -48,14 +48,16 @@ private final class ButtonModel: ObservableObject {
 
   private weak var compositionParent: OneNativeCompositionParent?
   public func compositionContent() -> AnyView { AnyView(ButtonContent(model: model)) }
-  // composed, there is no window to wait for, so publication is what activates it.
+  // composed, activation follows the parent: a subtree mounted before root attachment
+  // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
     controller?.detach(); controller = nil
     compositionParent = parent
     bindCallbacks()
-    model.active = true
+    model.active = parent.compositionActive
   }
   public func decompose() { compositionParent = nil; model.active = false }
+  public func propagateActive(_ active: Bool) { model.active = active }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
@@ -101,8 +103,11 @@ private struct ButtonContent: View {
 }
 private extension ButtonModel {
   // the label is the same whether or not a disclosure indicator follows it, so the
-  // image-or-text rule is written once.
+  // image-or-text rule is written once. an icon-only button renders the image alone
+  // rather than a label with an empty title, so no title spacing is reserved.
   @ViewBuilder var oneNativeLabel: some View {
-    if systemImage.isEmpty { Text(label) } else { Label(label, systemImage: systemImage) }
+    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
+    else if !systemImage.isEmpty { Image(systemName: systemImage) }
+    else { Text(label) }
   }
 }

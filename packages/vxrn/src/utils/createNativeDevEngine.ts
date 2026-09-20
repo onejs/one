@@ -171,11 +171,16 @@ export function getNativeTransformConfig(
 
   const mode = dev ? 'development' : 'production'
 
-  // Match One's Vite client contract: load public values from process.env and
-  // the mode-specific env files, with shell values taking precedence. Native
-  // apps commonly use Expo's EXPO_PUBLIC_ prefix; accepting only VITE_ here
-  // made the same source silently receive `undefined` after leaving Metro.
-  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'EXPO_PUBLIC_'])
+  // one-owned public contract: ONE_PUBLIC_* only. expo-prefixed input
+  // fails with a migration error instead of being copied or ignored.
+  for (const key of Object.keys(process.env)) {
+    if (key.startsWith('EXPO_PUBLIC_')) {
+      throw new Error(
+        `[one] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
+      )
+    }
+  }
+  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_'])
   const envDefines: Record<string, string> = {}
   for (const [key, value] of Object.entries(publicEnv)) {
     envDefines[`import.meta.env.${key}`] = JSON.stringify(value)
@@ -195,7 +200,7 @@ export function getNativeTransformConfig(
     SSR: false,
     VITE_ENVIRONMENT: platform,
     VITE_NATIVE: '1',
-    EXPO_OS: platform,
+    ONE_PLATFORM: platform,
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: platform,
   }
@@ -217,7 +222,7 @@ export function getNativeTransformConfig(
       'process.env.VXRN_REACT_19': 'false',
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
-      'process.env.EXPO_OS': JSON.stringify(platform),
+      'process.env.ONE_PLATFORM': JSON.stringify(platform),
       'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',
@@ -230,7 +235,7 @@ export function getNativeTransformConfig(
       'import.meta.env.SSR': 'false',
       'import.meta.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'import.meta.env.VITE_NATIVE': '"1"',
-      'import.meta.env.EXPO_OS': JSON.stringify(platform),
+      'import.meta.env.ONE_PLATFORM': JSON.stringify(platform),
       'import.meta.env.TAMAGUI_TARGET': '"native"',
       'import.meta.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       ...setupFileDefines,

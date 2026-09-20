@@ -10,6 +10,7 @@ import type {
 } from 'vxrn'
 import type { One as OneShared } from '../interfaces/router'
 import type { RouteNode } from '../router/Route'
+import type { NativeAppManifest } from '../native/appManifest'
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
@@ -350,6 +351,12 @@ export namespace One {
            * `AppRegistry.registerComponent(key)`
            */
           key?: string
+
+          /**
+           * Typed native app manifest. Replaces expo-shaped app.json.
+           * `name` is the native target and AppRegistry key.
+           */
+          app?: NativeAppManifest
 
           /**
            * Wrap each route screen in a React Suspense boundary on native.

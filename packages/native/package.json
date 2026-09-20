@@ -22,12 +22,13 @@
     "schema.json"
   ],
   "scripts": {
-    "build": "tamagui-build",
+    "build": "tamagui-build && bun codegen/staticSpecs.ts",
     "clean": "tamagui-build clean",
     "typecheck": "tsc --noEmit --composite false",
     "test": "vitest run",
     "generate": "bun codegen/generate.ts",
     "generate:check": "bun codegen/generate.ts --check",
+    "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
   "exports": {
@@ -67,6 +68,12 @@
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
     },
+    "./safe-area": {
+      "types": "./types/safe-area/index.d.ts",
+      "react-native": "./src/safe-area/index.native.ts",
+      "import": "./dist/esm/safe-area/index.mjs",
+      "require": "./dist/cjs/safe-area/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
@@ -85,6 +92,11 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "7.29.7",
+    "@babel/generator": "7.29.7",
+    "@react-native/babel-plugin-codegen": "0.87.1",
+    "@react-native/codegen": "0.87.1",
+    "esbuild": "0.28.1",
     "@tamagui/build": "3.0.0-beta.1309.1",
     "@types/react-test-renderer": "^19.1.0",
     "react-native-web": "^0.21.2",
@@ -103,6 +115,24 @@
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
+        "OneNativeList": "OneNativeListComponentView",
+        "OneNativeScrollView": "OneNativeScrollViewComponentView",
+        "OneNativeLazyVStack": "OneNativeLazyVStackComponentView",
+        "OneNativeLazyHStack": "OneNativeLazyHStackComponentView",
+        "OneNativeControlGroup": "OneNativeControlGroupComponentView",
+        "OneNativeDisclosureGroup": "OneNativeDisclosureGroupComponentView",
+        "OneNativeDivider": "OneNativeDividerComponentView",
+        "OneNativeLink": "OneNativeLinkComponentView",
+        "OneNativeGroup": "OneNativeGroupComponentView",
+        "OneNativeOverlay": "OneNativeOverlayComponentView",
+        "OneNativeOverlayContent": "OneNativeOverlayContentComponentView",
+        "OneNativeSwipeActions": "OneNativeSwipeActionsComponentView",
+        "OneNativeSwipeActionsActions": "OneNativeSwipeActionsActionsComponentView",
+        "OneNativePager": "OneNativePagerComponentView",
+        "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
+        "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
+        "OneNativeBlur": "OneNativeBlurComponentView",
+        "OneNativeMask": "OneNativeMaskComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",

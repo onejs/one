@@ -1,5 +1,6 @@
-import { Form, Glass, HStack, Host, LabeledContent, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, HStack, Host, LabeledContent, LazyHStack, LazyVStack, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu, Menu } from './Menu.native';
+import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
@@ -44,10 +45,29 @@ export declare const Swift: {
     Section: typeof Section;
     Glass: typeof Glass;
     LabeledContent: typeof LabeledContent;
+    List: typeof List;
+    ScrollView: typeof ScrollView;
+    LazyVStack: typeof LazyVStack;
+    LazyHStack: typeof LazyHStack;
+    ControlGroup: typeof ControlGroup;
+    DisclosureGroup: typeof DisclosureGroup;
+    Divider: typeof Divider;
+    Link: typeof Link;
+    Group: typeof Group;
+    Overlay: (({ alignment, children, style, ...props }: import("./groupTypes").OverlayProps) => import("react/jsx-runtime").JSX.Element) & {
+        Content: typeof import("./Containers.native").OverlayContent;
+    };
+    SwipeActions: (({ children, style, ...props }: import("./groupTypes").SwipeActionsProps) => import("react/jsx-runtime").JSX.Element) & {
+        Actions: typeof import("./Containers.native").SwipeActionsActions;
+    };
+    Pager: typeof Pager;
+    Page: typeof Page;
     Spacer: typeof Spacer;
     Slot: typeof Slot;
 };
 export { Compose };
+export { useNativeState, type NativeState } from './nativeState';
 export type * from './types';
 export type * from './composeTypes';
+export * as UI from './effects';
 //# sourceMappingURL=index.native.d.ts.map

@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -8,15 +9,114 @@ This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
 */
 
+// structural mirror of one({ native: { app } }). the one cli validates the
+// full manifest before passing it here; vxrn re-validates the fields it
+// writes so direct callers fail before touching either project.
+export interface PrebuildAppConfig {
+  name: string
+  displayName?: string
+  ios?: {
+    bundleId: string
+  }
+  android?: {
+    applicationId: string
+  }
+}
+
+const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
+const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
+
+const IOS_BUNDLE_PLACEHOLDER = 'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
+const ANDROID_PACKAGE_PLACEHOLDER = 'com.helloworld'
+const ANDROID_PACKAGE_PATH = 'com/helloworld'
+
+function fail(message: string): never {
+  throw new Error(`[vxrn] invalid native.app: ${message}`)
+}
+
+export function validatePrebuildApp(
+  app: PrebuildAppConfig,
+  platform?: 'ios' | 'android' | string
+): void {
+  if (!app || typeof app !== 'object') fail('manifest must be an object')
+  if (!app.name || !TARGET_NAME.test(app.name)) {
+    fail(
+      `name "${app?.name}" must start with a letter and contain only letters, digits, and underscore`
+    )
+  }
+  if (!platform || platform === 'ios') {
+    if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
+      fail(`ios.bundleId "${app.ios?.bundleId}" must be reverse-dns`)
+    }
+  }
+  if (!platform || platform === 'android') {
+    if (!app.android?.applicationId || !REVERSE_DNS.test(app.android.applicationId)) {
+      fail(`android.applicationId "${app.android?.applicationId}" must be reverse-dns`)
+    }
+  }
+}
+
+export interface RenderedPrebuildFile {
+  destRelativePath: string
+  content: string | null
+}
+
+// pure render of one template file: path renames plus content replacements.
+// `content: null` means binary copy.
+export function renderPrebuildFile(args: {
+  relativePath: string
+  content: string | null
+  platform: 'ios' | 'android'
+  app: PrebuildAppConfig
+}): RenderedPrebuildFile {
+  const { relativePath, content, platform, app } = args
+  const appName = app.name
+  let destRelativePath = transformPath(relativePath)
+
+  // remap before the helloworld rename below, which would otherwise rewrite
+  // the placeholder package path first.
+  if (platform === 'android' && app.android) {
+    const packagePath = app.android.applicationId.split('.').join('/')
+    destRelativePath = destRelativePath.split(ANDROID_PACKAGE_PATH).join(packagePath)
+  }
+
+  destRelativePath = destRelativePath
+    .replace(/HelloWorld/g, appName)
+    .replace(/helloworld/g, appName.toLowerCase())
+
+  let rendered = content
+  if (rendered !== null) {
+    // platform ids first: the generic helloworld rename below would
+    // otherwise rewrite the placeholder package before it is remapped.
+    const replacements: Array<[string, string]> = []
+    if (platform === 'ios' && app.ios) {
+      replacements.push([IOS_BUNDLE_PLACEHOLDER, app.ios.bundleId])
+    }
+    if (platform === 'android' && app.android) {
+      replacements.push([ANDROID_PACKAGE_PLACEHOLDER, app.android.applicationId])
+    }
+    replacements.push(
+      ['Hello App Display Name', app.displayName || appName],
+      ['HelloWorld', appName],
+      ['helloworld', appName.toLowerCase()]
+    )
+    for (const [find, value] of replacements) {
+      rendered = rendered.split(find).join(value)
+    }
+  }
+
+  return { destRelativePath, content: rendered }
+}
+
 export const generateForPlatform = async (
   root: string,
   platform: 'ios' | 'android',
-  appConfig: any
+  app: PrebuildAppConfig,
+  outDir: string = path.resolve(root, platform)
 ) => {
-  const dest = path.resolve(platform)
-  const appName = appConfig.name
-  const displayName = appConfig.displayName
-  const require = module.createRequire(root)
+  validatePrebuildApp(app, platform)
+  const dest = outDir
+  const require = module.createRequire(root + '/')
   const importPath = require.resolve('@react-native-community/cli/build/tools/walk.js', {
     paths: [root],
   })
@@ -28,45 +128,122 @@ export const generateForPlatform = async (
     ),
     platform
   )
-  const walk = (await import(pathToFileURL(importPath).href)).default.default
-  walk(src).forEach((absoluteSrc: string) => {
-    const relativeFilePath = transformPath(path.relative(src, absoluteSrc))
-      .replace(/HelloWorld/g, appName)
-      .replace(/helloworld/g, appName.toLowerCase())
-    const srcPath = absoluteSrc
-    const destPath = path.resolve(dest, relativeFilePath)
+  // cjs/esm interop differs between runtimes (node vs bundled workers), so
+  // resolve the walk function defensively instead of assuming one shape.
+  const walkModule = (await import(pathToFileURL(importPath).href)) as any
+  const walkFn =
+    walkModule?.default?.default ?? walkModule?.default ?? walkModule
+  if (typeof walkFn !== 'function') {
+    throw new Error('[vxrn] could not resolve the community template walker')
+  }
+  const files: string[] = [...walkFn(src)].sort()
 
-    console.info('copying', '"' + srcPath + '"', 'to', '"' + destPath + '"')
+  // owned output: regenerate from the manifest so reruns reproduce bytes.
+  FSExtra.removeSync(dest)
 
-    const replacements: Record<string, string> = {
-      'Hello App Display Name': displayName || appName,
-      HelloWorld: appName,
-      helloworld: appName,
-    }
+  for (const absoluteSrc of files) {
+    const relativeFilePath = path.relative(src, absoluteSrc)
+    const stat = FSExtra.lstatSync(absoluteSrc)
+    if (stat.isDirectory()) continue
 
-    if (FSExtra.lstatSync(srcPath).isDirectory()) {
-      if (!FSExtra.existsSync(destPath)) {
-        FSExtra.mkdirSync(destPath)
-      }
-      return
-    }
-
-    const extension = path.extname(srcPath)
-
-    if (['.png', '.jar', '.keystore'].includes(extension)) {
-      FSExtra.copyFileSync(srcPath, destPath)
-      return
-    }
-    const srcPermissions = FSExtra.statSync(srcPath).mode
-    let content = FSExtra.readFileSync(srcPath, 'utf8')
-    Object.entries(replacements).forEach(([regex, value]) => {
-      content = content.replace(new RegExp(regex, 'g'), value)
+    const extension = path.extname(absoluteSrc)
+    const raw =
+      ['.png', '.jar', '.keystore'].includes(extension)
+        ? null
+        : FSExtra.readFileSync(absoluteSrc, 'utf8')
+    const { destRelativePath, content } = renderPrebuildFile({
+      relativePath: relativeFilePath,
+      content: raw,
+      platform,
+      app,
     })
+    const destPath = path.resolve(dest, destRelativePath)
+    FSExtra.mkdirSync(path.dirname(destPath), { recursive: true })
+
+    console.info('copying', '"' + absoluteSrc + '"', 'to', '"' + destPath + '"')
+
+    if (content === null) {
+      FSExtra.copyFileSync(absoluteSrc, destPath)
+      continue
+    }
     FSExtra.writeFileSync(destPath, content, {
       encoding: 'utf8',
-      mode: srcPermissions,
+      mode: stat.mode,
     })
+  }
+}
+
+export interface NativeDependencyInventory {
+  name: string
+  version: string
+  platforms: string[]
+}
+
+// installed packages' react native community configuration is the only
+// dependency discovery protocol: the same detector functions the community
+// cli runs, executed per installed dependency. sorted for deterministic
+// output. no config-plugin execution api exists.
+export async function getNativeDependencyInventory(
+  root: string
+): Promise<NativeDependencyInventory[]> {
+  const require = module.createRequire(root + '/')
+  const applePath = require.resolve('@react-native-community/cli-config-apple', {
+    paths: [root],
   })
+  const androidPath = require.resolve('@react-native-community/cli-config-android', {
+    paths: [root],
+  })
+  const apple = (await import(pathToFileURL(applePath).href)) as {
+    getDependencyConfig: (folder: string, userConfig: object) => unknown
+  }
+  const android = (await import(pathToFileURL(androidPath).href)) as {
+    dependencyConfig: (folder: string, userConfig: object) => unknown
+  }
+  const packageJson = JSON.parse(
+    FSExtra.readFileSync(path.join(root, 'package.json'), 'utf8')
+  )
+  const names = Object.keys(packageJson.dependencies || {}).sort()
+  const inventory: NativeDependencyInventory[] = []
+  for (const name of names) {
+    let depRoot: string
+    try {
+      depRoot = path.dirname(
+        require.resolve(name + '/package.json', { paths: [root] })
+      )
+    } catch {
+      continue
+    }
+    let version = 'unknown'
+    try {
+      version =
+        JSON.parse(FSExtra.readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
+          .version ?? 'unknown'
+    } catch {}
+    const platforms: string[] = []
+    try {
+      if (apple.getDependencyConfig(depRoot, {})) platforms.push('ios')
+    } catch {}
+    try {
+      if (android.dependencyConfig(depRoot, {})) platforms.push('android')
+    } catch {}
+    inventory.push({ name, version, platforms: platforms.sort() })
+  }
+  return inventory
+}
+
+// installs through the selected tooling: cocoapods for ios (which also runs
+// native codegen), nothing extra for android (codegen runs at gradle build).
+// `--no-install` skips installation but never fakes discovery output.
+export function installNativeDependencies(args: {
+  root: string
+  platform?: 'ios' | 'android' | string
+}): void {
+  const { root, platform } = args
+  if (!platform || platform === 'ios') {
+    execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
+      stdio: 'inherit',
+    })
+  }
 }
 
 const transformPath = (filePath: string) => {

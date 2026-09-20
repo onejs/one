@@ -1,5 +1,5 @@
 import { Platform } from 'react-native'
-import { InsideContainer } from './Containers.native'
+import { InsideContainer, assertOneNativeChildren } from './Containers.native'
 import { useControlled } from './controlled'
 import { assertSwiftUIValue } from './generated/swiftui'
 import type { PopoverProps } from './generated/popoverTypes'
@@ -32,6 +32,8 @@ export function Popover({
   const iosVersion = Number.parseFloat(String(Platform.Version))
   if (arrowEdge !== undefined) assertSwiftUIValue('Edge', arrowEdge, iosVersion)
   assertSwiftUIValue('PresentationAdaptation', presentationCompactAdaptation, iosVersion)
+  // the trigger composes into SwiftUI; the presented content stays React Native.
+  assertOneNativeChildren(children, 'Swift.Popover')
   const controlled = useControlled<{
     isPresented: boolean
     eventCount: number

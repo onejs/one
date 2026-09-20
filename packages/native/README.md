@@ -5,15 +5,30 @@ The One Native iOS surface
 exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
 containers, popovers, video, maps, web views, sharing, the photo library, empty states,
 and Quick Look through `Swift`. The package also retains its platform colors, zoom,
-toolbar, menu action, and split view exports. The Swift surface requires an iOS 26+
+toolbar, menu action, and split view exports. The Swift surface requires an iOS 17+
 native build, and the Swift and Compose surfaces require React Native's New
 Architecture. Beta releases are published to npm on the `beta` dist-tag.
+
+Packaging: `src/specs` stays raw (pod-install codegen reads it), and the build
+rewrites every dist spec mirror into a static view config identical to the
+babel plugin's output, so no bundler needs to run a codegen transform.
+
+The iOS floor is 17. API introduced later is availability-gated, never the
+deployment target: modern tabs need iOS 18 (a legacy `TabView` renders below
+it), `presentationSizing` needs iOS 18 and is ignored below it, and Liquid
+Glass surfaces, `WebView`, `tabBarMinimizeBehavior`, the `glass` button
+styles, and the `confirm`/`close` button roles need iOS 26. Enum values above
+the runtime version throw a clear error from the adapter before reaching
+native code; `WebView` renders empty below 26 and glass falls back to the
+`material` surface, then to nothing.
 
 ## Android Compose
 
 Android builds expose a small Jetpack Compose namespace beside `Swift`:
 `Compose.Column`, `Compose.Row`, `Compose.Box`, `Compose.Text`, `Compose.Button`,
-and `Compose.Switch`. It requires an Android native build with @vxrn/native installed.
+`Compose.Switch`, `Compose.TextField`, `Compose.Slider`, `Compose.AlertDialog`,
+`Compose.Dialog`, and `Compose.ProgressIndicator`. It requires an Android native
+build with @vxrn/native installed.
 
 ```tsx
 import { useState } from 'react'
@@ -74,6 +89,30 @@ the way it colors text; a Button icon follows the button's content color. An ico
 with no `accessibilityLabel` is decorative, and one with a label announces as an
 image.
 
+`TextField` is controlled with `text`, `onTextChange`, and optional `revision`,
+using the same acknowledgement protocol as `Switch`: keep the old text to reject
+an edit, update it synchronously to accept. It takes `label`, `placeholder`,
+`disabled`, `variant` (`filled` or `outlined`), `keyboardType` (`default`,
+`number`, `decimal`, `email`, `password`, `phone`, or `url`), and `secureText`
+for password masking.
+
+`Slider` is controlled with `value`, `onValueChange`, and optional `revision`.
+`minimumValue` and `maximumValue` default to 0 and 1 and must survive an
+Android Float round trip; `step` defaults to 0 for a continuous slider,
+otherwise it must evenly divide the range into at most 1001 intervals and the
+native callback snaps to that grid. `value` must sit inside the bounds.
+
+`AlertDialog` shows a Material alert while `visible` is true. `title` and
+`message` are optional, `confirmLabel` is required, `dismissLabel` adds a second
+button. `onConfirm` fires from the confirm button; `onDismiss` fires from the
+dismiss button, an outside tap, or the system back button. React owns `visible`,
+so both callbacks should usually hide the dialog. `Dialog` is the custom-content
+form: while `visible`, its Compose children render inside a Material dialog
+window, and `onDismiss` fires on outside tap or back press.
+
+`ProgressIndicator` takes `variant` (`linear` or `circular`, default `circular`)
+and optional `progress` from 0 to 1. Omit `progress` for an indeterminate spinner.
+
 ### Android toolchain pins and device proof
 
 `android/build.gradle` pins the Compose toolchain with exact versions, not ranges:
@@ -112,6 +151,10 @@ bun tests/native-features/scripts/one-native-conformance.android.ts \
   --artifact-dir /tmp/one-native-android-proof
 ```
 
+The suite preflights the attached device and the `tcp:8081` reverse before
+running anything. When Metro listens on another port, pass
+`--metro-port <PORT>` (or set `RCT_METRO_PORT`) to match the reverse.
+
 The suite drives `tests/native-features/app/one-native-android.tsx` through
 `uiautomator` dumps and coordinate taps: mount marker, accessibility and order,
 prop mutation with fresh bounds, two button taps, controlled Switch reject,
@@ -121,21 +164,22 @@ codepoints with an outlined and a filled variant, an icon button tap, and a
 decoy negative control. It then runs
 a bounded stress block: six rapid unmount/remount toggles plus four rapid
 reorders with a duplicate-node sweep over every proof testID, single-handler
-taps proving no duplicate event delivery, and a configuration-change block
-that sets `wm density 560` (density is not in the activity's `configChanges`,
-so the activity recreates), re-navigates from the reloaded home screen, proves
-a single remount with default state, proves a single post-recreation button
-event, proves the expanded bounds width scales with the density ratio
-(619px at 420dpi to 826px at 560dpi, ratio 1.334 against 1.333 expected),
-then resets the density and proves the remount once more. 24 checks pass on
-the standard emulator.
+taps proving no duplicate event delivery, and an orientation block that locks
+landscape (orientation is in the activity's `configChanges`, so no recreate
+occurs), proves the proof screen stays mounted with its taps-3 / switch-on
+state intact and the fill-width button row remeasured wider, taps through one
+live interaction, then frees the rotation lock and proves the screen stays
+mounted with bounds reverted. A second screen then proves the TextField,
+Slider, AlertDialog, Dialog, and ProgressIndicator nodes the same way. The
+suite runs 46 checks on the standard emulator, plus 2 conditional
+IME-renavigate checks.
 
 Two behaviors are worth knowing when reading the artifacts. A non-scrollable
-`Column` taller than the window keeps composing its tail, but at 560dpi the
-309x686dp window leaves the order row and decoy box out of the uiautomator
-tree, so the post-rotation checks assert the observable subset and the full
-duplicate sweep runs again after the density reset. And process memory across
-24 optional-child remount cycles drifts up about 1.6% total (310.1MB to
+`Column` taller than the window keeps composing its tail, but the short
+landscape edge leaves everything below the switch policy status out of the
+uiautomator tree, so the landscape checks assert that observable prefix and
+the full duplicate sweep runs again after rotating back. And process memory
+across 24 optional-child remount cycles drifts up about 1.6% total (310.1MB to
 315.3MB PSS, roughly 190KB per cycle with Native Heap holding two thirds of
 the process); the run-to-run slope is unchanged, which is consistent with GC
 laziness on a debug process and proves no rapid leak, but a short sample
@@ -209,11 +253,14 @@ and the selection does not move. It never reaches the controlled protocol, so th
 optimistic selection to undo and no flash of an empty page. Every tab needs exactly one of
 `onPress` and `children`, and the selection may not name an action tab.
 
-Add `role="search"` to detach it from the main tab bar pill. On iOS 26 the search role is
+Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
 what moves a tab into its own capsule on the trailing side, which is the placement an action
 like Compose usually wants; without it the tab sits inside the pill alongside the pages.
-`search` is the only role SwiftUI 26 defines, so a non-search action borrows its placement,
-and only one tab can hold it.
+`search` is the only role the bindings carry (SDK symbols above iOS 26 are
+excluded until CI moves to a newer Xcode), so a non-search action borrows its
+placement, and only one tab can hold it. A role below its runtime version throws
+from the adapter; on iOS 17 tabs render through the legacy `TabView`, which has
+no roles.
 
 ```tsx
 <Swift.Tab
@@ -242,9 +289,30 @@ for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and upd
 that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
 
-`Swift.Tab` accepts `role="search"`. `Swift.Tabs` accepts the SDK-derived
-`tabBarMinimizeBehavior` values. Unsupported enum values are rejected before
-submitting native props.
+`Swift.Tab` accepts `role="search"` (iOS 18+).
+`Swift.Tabs` accepts the SDK-derived `tabBarMinimizeBehavior` values (iOS 26+).
+Unsupported enum values, and values above the runtime iOS version, are rejected
+before submitting native props.
+
+`Swift.Pager` is a tab bar without the bar: keyed React Native pages under the
+same controlled `selection`, swiped rather than tapped, with the page dots
+SwiftUI draws for the page style. Pages reuse the `Tab` component, so they
+mount through the same slot machinery; a page carries only an `id`, since tab
+chrome has nothing to attach to.
+
+```tsx
+<Swift.Pager selection={page} onSelectionChange={setPage}>
+  <Swift.Page id="a">
+    <Text>Page A</Text>
+  </Swift.Page>
+  <Swift.Page id="b">
+    <Text>Page B</Text>
+  </Swift.Page>
+</Swift.Pager>
+```
+
+Like a tab bar, a pager takes the box it is given, so it needs its own box
+rather than a seat inside a `Swift.Host` or `Swift.ZStack`.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
@@ -423,11 +491,15 @@ SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRe
 `symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
 and no controlled value, and they are most useful as rows inside a container.
 
-`Button` needs a non-empty `label`. `systemImage` adds an SF Symbol. `buttonRole`
+`Button` needs a `label`, a `systemImage`, or both. With only a `systemImage` it
+renders the bare symbol with no title spacing reserved, centered in the button
+frame. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
-accessibility role. `buttonStyle` is `automatic`, `plain`, `borderless`,
-`bordered`, `borderedProminent`, `glass`, or `glassProminent`. `onPress` does
+accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
+`automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
+or `glassProminent`; the two `glass` styles need iOS 26. Values above the
+runtime version throw from the adapter. `onPress` does
 not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
 for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
 filling the width the button is given. It is what makes a `Button` inside a `Swift.Form`
@@ -517,8 +589,8 @@ and coordinates must be finite, or the adapter throws.
 ## Web content
 
 `Swift.WebView` is SwiftUI's `WebView` from the `_WebKit_SwiftUI` overlay module. It is
-iOS 26 API, which is the package floor, so it needs no availability gate. Like video and
-maps it has no ideal height, so it takes the box React Native gives it.
+iOS 26 API, so below 26 it renders empty rather than raising the package floor. Like video
+and maps it has no ideal height, so it takes the box React Native gives it.
 
 ```tsx
 <Swift.WebView
@@ -750,7 +822,7 @@ event-count and `detentRevision` protocol used by other controlled values.
 `presentationBackground` accepts a React Native color. Background interaction is
 `automatic`, `enabled`, `disabled`, or `{ enabledUpThrough: detent }`. Content
 interaction is `automatic`, `resizes`, or `scrolls`. Presentation sizing is
-`automatic`, `fitted`, `form`, or `page`.
+`automatic`, `fitted`, `form`, or `page`; it needs iOS 18 and is ignored below it.
 
 `fitToContents` derives a height detent from the mounted React Native child's laid-out
 height. Use a fixed or intrinsically sized outer child and do not give it `flex: 1`;
@@ -901,6 +973,99 @@ describes the SwiftUI tree.
 
 An empty `title` or `footer` omits that header or footer.
 
+### Lists and scroll views
+
+`Swift.List` is a SwiftUI `List`. It holds rows directly or in `Swift.Section`
+groups, takes the box React Native gives it, and styles itself with the
+SDK-derived `listStyle`: `automatic` (the default), `plain`, `grouped`,
+`inset`, `insetGrouped`, or `sidebar`.
+
+```tsx
+<Swift.List listStyle="insetGrouped" style={{ flex: 1 }}>
+  <Swift.Section title="Fruits">
+    <Swift.Text text="Apple" />
+    <Swift.Toggle label="Ripe" isOn={ripe} onIsOnChange={setRipe} />
+  </Swift.Section>
+  <Swift.Section title="Vegetables">
+    <Swift.Text text="Carrot" />
+  </Swift.Section>
+</Swift.List>
+```
+
+Like a form, a list is greedy: it fills its box rather than reporting an ideal
+height, so it cannot be a child of a `Swift.Host` or `Swift.ZStack` either.
+
+`Swift.ScrollView` scrolls One Native content vertically by default,
+horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
+`showsIndicators` hides the scroll bars when false. It is greedy the same way
+a list is, so it also needs its own box.
+
+```tsx
+<Swift.ScrollView style={{ height: 200 }}>
+  <Swift.LazyVStack>
+    {items.map((item) => (
+      <Swift.Text key={item.id} text={item.title} />
+    ))}
+  </Swift.LazyVStack>
+</Swift.ScrollView>
+```
+
+`Swift.LazyVStack` and `Swift.LazyHStack` only build the rows that are on
+screen, so a long list inside a scroll view mounts fast. `alignment` is
+`leading`, `center`, or `trailing` down a column and `top`, `center`,
+`bottom`, `firstTextBaseline`, or `lastTextBaseline` across a row, `center` by
+default; spacing is the SwiftUI platform default. They belong inside a scroll
+view: outside one there is nothing to be lazy about, and a standalone lazy
+stack takes the box it is given instead of measuring.
+
+### Groups, links, and swipe actions
+
+`Swift.ControlGroup` gathers controls into one labeled cluster with the
+SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
+`menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
+an empty label renders no title.
+
+`Swift.DisclosureGroup` is the controlled expandable section: `label` names
+it, `isExpanded` with `onIsExpandedChange` owns its state under the same
+acknowledgement and `revision` reset as the other controlled values, so
+keeping the old value in the callback refuses the toggle and rolls the
+native state back. It takes the box it is given, so like a form it cannot
+be a child of a `Swift.Host` or `Swift.ZStack`.
+
+`Swift.Divider` draws the hairline between rows and holds nothing, so it
+must live inside a container and takes no children. `Swift.Group` is the
+opposite: it holds children and draws nothing, for grouping rows without a
+box of their own. `Swift.Link` opens `destination` (a parseable URL, checked
+before the props cross); its label is either composed children or the
+`label` string, with children winning when both are present.
+
+`Swift.Overlay` lays a single `Swift.Overlay.Content` group over its base
+content at `alignment` (the nine stack alignments, `center` by default),
+sized to the base. `Swift.SwipeActions` wraps one list row and up to two
+`Swift.SwipeActions.Actions` groups, one per edge; each group holds the
+buttons for that edge, `allowsFullSwipe` (default true) decides whether a
+full swipe fires the first one, and a second group on the same edge is
+rejected. Swipe actions only act inside a list, so the row belongs in a
+`Swift.List`.
+
+```tsx
+<Swift.List style={{ flex: 1 }}>
+  <Swift.Section>
+    <Swift.SwipeActions>
+      <Swift.Text text="Swipe me" />
+      <Swift.SwipeActions.Actions edge="trailing">
+        <Swift.Button
+          label="Delete"
+          systemImage="trash"
+          buttonRole="destructive"
+          onPress={remove}
+        />
+      </Swift.SwipeActions.Actions>
+    </Swift.SwipeActions>
+  </Swift.Section>
+</Swift.List>
+```
+
 ### Labeled content
 
 `Swift.LabeledContent` is the key-value row a form, a section, or a host holds. The
@@ -970,8 +1135,9 @@ so give it a height or a flex parent.
 `glassEffect` is the iOS 26 Liquid Glass surface: `regular`, `clear`, or `interactive`,
 where `interactive` is the one that reacts to touch. `material` is the iOS 15 material
 surface: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins when both
-are set. Every value is drawn with the matching SwiftUI API, so the surface is the real
-one rather than an approximation.
+are set. Below iOS 26 glass falls back to the `material` surface, or to no surface when
+none is set. Every value is drawn with the matching SwiftUI API, so the surface is the
+real one rather than an approximation.
 
 `cornerRadius` shapes the surface. Left out, glass keeps the shape SwiftUI picks for the
 size it was given, and a material fills the box squarely. `tint` colors the glass and
@@ -1128,6 +1294,33 @@ callback to accept an interaction. Keeping the prior value rejects it when the
 event is acknowledged. Increment `revision` to force a new value while earlier
 events are pending. Events from the previous revision are ignored. Revision is a
 nonnegative Int32 scoped to that component.
+
+`useNativeState` shares one value across any number of controlled props, in the
+shape of Expo's hook: the handle carries the current `value` plus `set` and
+`get`, has stable identity, and reads live, so a bound view re-renders over
+the value it spreads rather than the handle itself. Each view keeps its own
+acknowledgement stream, which stays coherent under sharing because an
+acknowledgement only ever advances its own view's event count.
+
+```tsx
+function NameForm() {
+  const name = useNativeState('')
+  const notify = useNativeState(false)
+  return (
+    <>
+      <Swift.TextField label="Name" text={name.value} onTextChange={name.set} />
+      <Swift.Text text={`Hello, ${name.value}`} />
+      <Swift.Toggle label="Notify" isOn={notify.value} onIsOnChange={notify.set} />
+      <Swift.Toggle label="Notify copy" isOn={notify.value} onIsOnChange={notify.set} />
+    </>
+  )
+}
+```
+
+Writes travel through the React render cycle: there is no worklets runtime here,
+so synchronous UI-thread updates are out of scope. The handle also does not pass
+as a prop itself yet (`text={name}`); spread the pair until the generated
+adapters learn the object shape.
 
 The shared RN slot has three policies. SwiftUI allocates tab bounds and reports
 them to Fabric for Yoga. Passive menu triggers retain Yoga's coordinates and

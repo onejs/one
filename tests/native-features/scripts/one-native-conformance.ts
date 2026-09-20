@@ -29,8 +29,13 @@ const suites = [
   'sheets',
   'leaves',
   'dialogs',
+  'dialogs-lifecycle',
   'host',
   'containers',
+  'lists',
+  'groups',
+  'state',
+  'safe-area',
   'popover',
   'accessibility',
   'media',
@@ -190,6 +195,10 @@ const dialogsLoaded = (nodes: Node[]) =>
     ['Cancel alert', 'Confirm alert', 'Cancel confirmation', 'Confirm confirmation'].some(
       (label) => labels(nodes).includes(label)
     ))
+// the lifecycle probe drives a nested presenter whose buttons own the tree while it
+// is up, so the fixture counts as loaded from its side of the presentation too.
+const dialogsLifecycleLoaded = (nodes: Node[]) =>
+  dialogsLoaded(nodes) || labels(nodes).includes('Cancel nested')
 const hostLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-host-expand')) &&
@@ -198,6 +207,22 @@ const containersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-container-extra')) &&
   has(nodes, 'Form: ')
+const listsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-style')) &&
+  has(nodes, 'List style: ')
+const groupsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-groups-refuse')) &&
+  has(nodes, 'Expanded: ')
+const stateLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-state-set')) &&
+  has(nodes, 'Flag: ')
+const safeAreaLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-safe-area-edges')) &&
+  has(nodes, 'Insets: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -229,8 +254,13 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   sheets: sheetsLoaded,
   leaves: leavesLoaded,
   dialogs: dialogsLoaded,
+  'dialogs-lifecycle': dialogsLifecycleLoaded,
   host: hostLoaded,
   containers: containersLoaded,
+  lists: listsLoaded,
+  groups: groupsLoaded,
+  state: stateLoaded,
+  'safe-area': safeAreaLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -243,8 +273,13 @@ const suiteHome: Record<Suite, string> = {
   sheets: 'nav-one-native-sheet',
   leaves: 'nav-one-native-leaves',
   dialogs: 'nav-one-native-dialogs',
+  'dialogs-lifecycle': 'nav-one-native-dialogs',
   host: 'nav-one-native-host',
   containers: 'nav-one-native-containers',
+  lists: 'nav-one-native-lists',
+  groups: 'nav-one-native-groups',
+  state: 'nav-one-native-state',
+  'safe-area': 'nav-one-native-safe-area',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1473,6 +1508,497 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'lists') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a composed Toggle would look like it never emitted.
+    const pressSwitch = async (label: string) => {
+      const nodes = await wait(`the ${label} switch is ready`, (n) =>
+        Boolean(control(n, 'CheckBox', label)?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', label)!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+    // a swipe anchored to a visible row stays inside its own scroll view: starting one
+    // on a neighboring list would scroll that instead.
+    // seeks swipe at fixed coordinates inside measured viewport bands. row-anchored
+    // seeks are flaky because buffer rows above/below the viewport poison anchor
+    // selection: first-match drags start in a neighbor, mid-content drags exit the
+    // viewport. every band below was verified by hand: one swipe observably moves
+    // its container and nothing else. the loop exits when the target materializes.
+    const swipeBand = async (
+      band: { x1: number; y1: number; x2: number; y2: number },
+      target: string
+    ) => {
+      for (let attempt = 0; attempt < 24; attempt++) {
+        if (labels(snapshot(config.simulatorId)).includes(target)) return
+        command(
+          [
+            'ui-automation',
+            'swipe',
+            '--x1',
+            String(band.x1),
+            '--y1',
+            String(band.y1),
+            '--x2',
+            String(band.x2),
+            '--y2',
+            String(band.y2),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`${target} never appeared while swiping`)
+    }
+    const listBand = { x1: 200, y1: 550, x2: 200, y2: 450 }
+    const rowsBand = { x1: 200, y1: 740, x2: 200, y2: 640 }
+    const chipsBand = { x1: 280, y1: 805, x2: 120, y2: 805 }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-lists')
+    await wait(
+      'a List renders rows from both sections',
+      (n) =>
+        labels(n).includes('Apple') &&
+        labels(n).includes('Banana') &&
+        labels(n).includes('Carrot') &&
+        Boolean(control(n, 'CheckBox', 'Ripe'))
+    )
+    tap({ label: 'List button' })
+    await wait('a Button composed into a List emits', (n) =>
+      status(n, 'List taps', 1)
+    )
+    await pressSwitch('Ripe')
+    await wait('a Toggle composed into a List emits', (n) => status(n, 'IsOn', 'true'))
+
+    // each style change re-resolves the list style natively; the rows surviving it is
+    // what proves the prop flowed without dropping the content. a style relayout can
+    // shift section 2 below the fold, so section 2 is asserted after swiping it in;
+    // the list is lazy, so section 1 is only asserted before that swipe.
+    tap({ id: 'one-native-list-style' })
+    await wait(
+      'a List takes the plain style',
+      (n) => status(n, 'List style', 'plain') && labels(n).includes('Apple')
+    )
+    await swipeBand(listBand, 'Carrot')
+    await wait('a plain List keeps its second section', (n) =>
+      labels(n).includes('Carrot')
+    )
+    tap({ id: 'one-native-list-style' })
+    await wait('a List takes the grouped style', (n) =>
+      status(n, 'List style', 'grouped')
+    )
+    await swipeBand(listBand, 'Carrot')
+    await wait('a grouped List keeps its second section', (n) =>
+      labels(n).includes('Carrot')
+    )
+    screenshot('lists-grouped.png')
+
+    // the first lazy rows mount; the last ones must not, because a LazyVStack that
+    // built all thirty up front would be a VStack with extra steps.
+    await wait('a LazyVStack mounts its first rows', (n) =>
+      labels(n).includes('Row 1')
+    )
+    if (labels(snapshot(config.simulatorId)).includes('Row 30'))
+      throw new Error('a LazyVStack mounted rows it cannot show yet')
+    await swipeBand(rowsBand, 'Row 30')
+    await wait('scrolling a LazyVStack materializes its last rows', (n) =>
+      labels(n).includes('Row 30')
+    )
+
+    await wait('a LazyHStack mounts its first chips', (n) =>
+      labels(n).includes('Chip 1')
+    )
+    if (labels(snapshot(config.simulatorId)).includes('Chip 20'))
+      throw new Error('a LazyHStack mounted chips it cannot show yet')
+    await swipeBand(chipsBand, 'Chip 20')
+    await wait('scrolling a LazyHStack materializes its last chips', (n) =>
+      labels(n).includes('Chip 20')
+    )
+    screenshot('lists-scrolled.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`lists recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-lists')
+      await wait(
+        `lists recycle ${cycle}: a fresh List rebuilds`,
+        (n) =>
+          status(n, 'IsOn', 'false') &&
+          status(n, 'List taps', 0) &&
+          labels(n).includes('Apple')
+      )
+      await pressSwitch('Ripe')
+      await wait(`lists recycle ${cycle}: the composed Toggle still emits`, (n) =>
+        status(n, 'IsOn', 'true')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'groups') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const box = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    // a short horizontal swipe over a frame: reveals swipe actions or turns a pager
+    // page without travelling far enough to trigger a full swipe.
+    const swipeOver = (
+      frame: { x: number; y: number; width: number; height: number },
+      left: boolean
+    ) => {
+      const x = Math.round(frame.x + frame.width / 2)
+      const y = Math.round(frame.y + frame.height / 2)
+      command(
+        [
+          'ui-automation',
+          'swipe',
+          '--x1',
+          String(left ? x + 40 : x - 40),
+          '--y1',
+          String(y),
+          '--x2',
+          String(left ? x - 40 : x + 40),
+          '--y2',
+          String(y),
+          '--duration',
+          '0.3',
+        ],
+        config.simulatorId
+      )
+    }
+    // the icon-only button is a button frame holding an image frame. its label is
+    // whatever SwiftUI derives from the symbol, so the lookup is geometric: the
+    // image whose frame sits inside a button frame.
+    const iconButton = (nodes: Node[]) => {
+      const image = nodes.find(
+        (node) =>
+          node.type === 'Image' &&
+          node.frame &&
+          nodes.some(
+            (other) =>
+              other.type === 'Button' &&
+              other.frame &&
+              node.frame!.x >= other.frame.x &&
+              node.frame!.y >= other.frame.y &&
+              node.frame!.x + node.frame!.width <=
+                other.frame.x + other.frame.width &&
+              node.frame!.y + node.frame!.height <=
+                other.frame.y + other.frame.height
+          )
+      )
+      const button = nodes.find(
+        (node) =>
+          node.type === 'Button' &&
+          node.frame &&
+          image?.frame &&
+          image.frame.x >= node.frame.x &&
+          image.frame.y >= node.frame.y &&
+          image.frame.x + image.frame.width <= node.frame.x + node.frame.width &&
+          image.frame.y + image.frame.height <=
+            node.frame.y + node.frame.height
+      )
+      if (!image?.frame || !button?.frame) return undefined
+      return { image: image.frame, button: button.frame }
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-groups')
+    await wait(
+      'groups, links, dividers, and overlays render their content',
+      (n) =>
+        labels(n).includes('Details') &&
+        labels(n).includes('Above') &&
+        labels(n).includes('Below') &&
+        labels(n).includes('Visit example') &&
+        labels(n).includes('Grouped') &&
+        labels(n).includes('3') &&
+        labels(n).includes('Swipe me')
+    )
+
+    tap({ label: 'Add' })
+    await wait('a Button composed into a ControlGroup emits', (n) =>
+      status(n, 'Group taps', 1)
+    )
+
+    tap({ label: 'Details' })
+    await wait('a DisclosureGroup expands and emits', (n) =>
+      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    )
+    // refusing the collapse in React rolls the native value back and keeps the
+    // content disclosed, the container case of the controlled protocol.
+    tap({ id: 'one-native-groups-refuse' })
+    tap({ label: 'Details' })
+    await wait('a refused collapse rolls back to expanded', (n) =>
+      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    )
+    tap({ id: 'one-native-groups-refuse' })
+    tap({ label: 'Details' })
+    await wait('an accepted collapse hides the content', (n) =>
+      status(n, 'Expanded', 'false') && !labels(n).includes('Hidden detail')
+    )
+
+    await wait('a Pager mounts on its selection', (n) =>
+      status(n, 'Pager', 'a') && Boolean(id(n, 'one-native-pager-a')?.frame)
+    )
+    {
+      const nodes = await wait('a pager page is ready to swipe', (n) =>
+        Boolean(id(n, 'one-native-pager-a')?.frame)
+      )
+      swipeOver(id(nodes, 'one-native-pager-a')!.frame!, true)
+    }
+    await wait('swiping a Pager selects the next page', (n) =>
+      status(n, 'Pager', 'b') && Boolean(id(n, 'one-native-pager-b')?.frame)
+    )
+    {
+      const nodes = await wait('the second pager page is ready', (n) =>
+        Boolean(id(n, 'one-native-pager-b')?.frame)
+      )
+      swipeOver(id(nodes, 'one-native-pager-b')!.frame!, false)
+    }
+    await wait('swiping back selects the first page again', (n) =>
+      status(n, 'Pager', 'a')
+    )
+
+    {
+      const nodes = await wait('a swipe row is ready', (n) =>
+        Boolean(box(n, 'Swipe me'))
+      )
+      swipeOver(box(nodes, 'Swipe me')!, true)
+    }
+    await wait('swiping a row reveals its trailing actions', (n) =>
+      labels(n).includes('Delete')
+    )
+    tap({ label: 'Delete' })
+    await wait('a trailing swipe action emits', (n) => status(n, 'Delete taps', 1))
+    {
+      const nodes = await wait('the row is ready again', (n) =>
+        Boolean(box(n, 'Swipe me'))
+      )
+      swipeOver(box(nodes, 'Swipe me')!, false)
+    }
+    await wait('swiping back reveals its leading actions', (n) =>
+      labels(n).includes('Pin')
+    )
+    tap({ label: 'Pin' })
+    await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
+
+    // an icon-only button renders the bare image with no title spacing reserved, so
+    // the symbol sits at the center of the button frame.
+    await wait('an icon-only button centers its symbol', (n) => {
+      const found = iconButton(n)
+      if (!found) return false
+      const { image, button } = found
+      const dx = image.x + image.width / 2 - (button.x + button.width / 2)
+      const dy = image.y + image.height / 2 - (button.y + button.height / 2)
+      return Math.abs(dx) <= 1 && Math.abs(dy) <= 1
+    })
+    {
+      const found = iconButton(snapshot(config.simulatorId))
+      if (!found) throw new Error('no image found inside a button frame')
+      const { button } = found
+      point(button.x + button.width / 2, button.y + button.height / 2)
+    }
+    await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
+    screenshot('groups-icon-button.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`groups recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-groups')
+      await wait(
+        `groups recycle ${cycle}: a fresh screen rebuilds`,
+        (n) =>
+          status(n, 'Expanded', 'false') &&
+          status(n, 'Group taps', 0) &&
+          status(n, 'Pager', 'a') &&
+          labels(n).includes('Swipe me')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'state') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const control = (nodes: Node[], type: string, label: string) =>
+      nodes.find((node) => node.type === type && node.AXLabel === label)
+    // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
+    // tracking, so a shared Toggle would look like it never emitted.
+    const pressSwitch = async (label: string) => {
+      const nodes = await wait(`the ${label} switch is ready`, (n) =>
+        Boolean(control(n, 'CheckBox', label)?.frame)
+      )
+      const frame = control(nodes, 'CheckBox', label)!.frame!
+      command(
+        [
+          'ui-automation',
+          'long-press',
+          '-x',
+          String(Math.round(frame.x + frame.width - 25)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--duration',
+          '0.15',
+        ],
+        config.simulatorId
+      )
+    }
+    const fieldValue = (nodes: Node[]) =>
+      id(nodes, 'one-native-state-field')?.AXValue
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-state')
+    await wait(
+      'a shared handle feeds a field, a mirror, and two toggles',
+      (n) =>
+        labels(n).includes('Mirror: empty') &&
+        Boolean(control(n, 'CheckBox', 'First')) &&
+        Boolean(control(n, 'CheckBox', 'Second')) &&
+        status(n, 'Flag', 'false')
+    )
+
+    // typing in the field updates the mirror through the one handle, with no other
+    // state in the fixture.
+    {
+      const nodes = await wait('the shared field is ready', (n) =>
+        Boolean(id(n, 'one-native-state-field')?.frame)
+      )
+      const bounds = id(nodes, 'one-native-state-field')!.frame!
+      point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+    }
+    await typeInto('shared TextField', 'ada', fieldValue)
+    await wait('field edits reach every view on the handle', (n) =>
+      fieldValue(n) === 'ada' && labels(n).includes('Mirror: ada')
+    )
+
+    // writing from JavaScript lands in the native field and the mirror together.
+    tap({ id: 'one-native-state-set' })
+    await wait('a handle write reaches the native field', (n) =>
+      fieldValue(n) === 'grace' &&
+      labels(n).includes('Mirror: grace') &&
+      status(n, 'Flag', 'true')
+    )
+
+    // each flip proves the tapped toggle had converged on the shared value: turning
+    // Second off proves it followed First on, and turning First on proves it
+    // followed Second off.
+    await pressSwitch('Second')
+    await wait('the second toggle followed the shared value on', (n) =>
+      status(n, 'Flag', 'false')
+    )
+    await pressSwitch('First')
+    await wait('the first toggle followed the shared value off', (n) =>
+      status(n, 'Flag', 'true')
+    )
+    screenshot('state-shared.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`state recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-state')
+      await wait(
+        `state recycle ${cycle}: a fresh handle starts over`,
+        (n) => status(n, 'Flag', 'false') && labels(n).includes('Mirror: empty')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'safe-area') {
+    const numbers = (label: string | undefined, prefix: string) => {
+      if (!label?.startsWith(prefix)) return null
+      const values = label
+        .slice(prefix.length)
+        .split(/[\sx]+/)
+        .map(Number)
+      if (values.some((value) => !Number.isFinite(value))) return null
+      return values
+    }
+    const labelStarting = (nodes: Node[], prefix: string) =>
+      labels(nodes).find((label) => label.startsWith(prefix))
+    const insetsOf = (nodes: Node[]) =>
+      numbers(labelStarting(nodes, 'Insets: '), 'Insets: ')
+    const frameOf = (nodes: Node[]) => numbers(labelStarting(nodes, 'Frame: '), 'Frame: ')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-safe-area')
+
+    // below the Stack header the provider overlaps no status bar, so the
+    // correct reading is top 0 with the live home indicator at the bottom.
+    // top 0 is the money assertion: a window reading would report 59, so 0
+    // proves provider-relative measurement, and 34 proves a live inset
+    // rather than the zero fallback. frame is the full width below the
+    // header on the pinned iPhone 16.
+    await wait('the provider publishes live insets', (n) => {
+      const insets = insetsOf(n)
+      return Boolean(
+        insets &&
+        insets.length === 4 &&
+        insets[0] === 0 &&
+        insets[1] === 0 &&
+        insets[2] === 34 &&
+        insets[3] === 0
+      )
+    })
+    await wait('frame and initial metrics are published', (n) => {
+      const frame = frameOf(n)
+      return (
+        Boolean(frame && frame.length === 2 && frame[0] === 393 && frame[1] === 739) &&
+        labels(n).includes('Initial: set')
+      )
+    })
+
+    // the edges toggle reaches the view and back.
+    tap({ id: 'one-native-safe-area-edges' })
+    await wait('the edges toggle reaches the view', (n) =>
+      labels(n).includes('Edges: top')
+    )
+    tap({ id: 'one-native-safe-area-edges' })
+    await wait('toggling back restores all edges', (n) =>
+      labels(n).includes('Edges: all')
+    )
+    screenshot('safe-area-insets.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`safe-area recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-safe-area')
+      await wait(`safe-area recycle ${cycle}: insets publish again`, (n) => {
+        const insets = insetsOf(n)
+        const frame = frameOf(n)
+        return (
+          Boolean(
+            insets && insets[0] === 0 && insets[2] === 34 && frame && frame[0] === 393
+          ) && labels(n).includes('Initial: set')
+        )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'popover') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
@@ -2287,6 +2813,105 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           status(n, 'Last', 'confirm')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'dialogs-lifecycle') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dialogButton = (nodes: Node[], label: string) =>
+      nodes.some((node) => node.AXLabel === label && node.type === 'Button')
+    const nestedPresented = (nodes: Node[]) =>
+      dialogButton(nodes, 'Cancel nested') && dialogButton(nodes, 'Confirm nested')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    // tapNav's scroll-to-fully-visible cannot settle on this row: synthetic flings
+    // overshoot it now that routes below keep them from bottoming out. fresh
+    // launches land it center-visible, so tap it by id with an on-screen guard.
+    const navNodes = await wait(
+      'home lists nav-one-native-dialogs',
+      (n) => Boolean(id(n, 'nav-one-native-dialogs')),
+      true
+    )
+    const navRow = id(navNodes, 'nav-one-native-dialogs')?.frame
+    const navApp = navNodes.find((n) => n.type === 'Application')?.frame
+    const navCenter = navRow ? navRow.y + navRow.height / 2 : -1
+    if (!navRow || !navApp || navCenter < 0 || navCenter > navApp.height)
+      throw new Error('nav-one-native-dialogs is not on screen for a direct tap')
+    tap({ id: 'nav-one-native-dialogs' })
+    // the fresh standalone state rides along: the lifecycle UI shares the fixture,
+    // so its mount proves the additions disturbed nothing.
+    await wait(
+      'nested lifecycle controls mounted',
+      (n) =>
+        status(n, 'Category', 'Alert') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Actions', 0) &&
+        status(n, 'Last', 'none') &&
+        status(n, 'Reject', 'off') &&
+        status(n, 'Revision', 0) &&
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 0) &&
+        status(n, 'Nested actions', 0) &&
+        status(n, 'Nested last', 'none') &&
+        Boolean(id(n, 'one-native-dialog-lifecycle-open'))
+    )
+    tap({ id: 'one-native-dialog-lifecycle-open' })
+    await wait('nested Alert presents under its attached root', nestedPresented)
+    screenshot('nested-attached.png')
+    // the fixture detaches itself: no tap can reach the toggle while the alert
+    // owns the screen. detaching must take the presentation down silently: React
+    // keeps presenting and the change count carries native events only, so any
+    // increment here is a phantom dismissal from the teardown. the Attach label
+    // proves the detach happened rather than the dialog closing itself.
+    await wait(
+      'detaching the root dismisses the nested Alert without events',
+      (n) =>
+        !dialogButton(n, 'Cancel nested') &&
+        labels(n).includes('Attach root') &&
+        status(n, 'Nested presented', 'true') &&
+        status(n, 'Nested changes', 0)
+    )
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait('reattach restores the presented nested Alert', nestedPresented)
+    screenshot('nested-reattached.png')
+    tap({ label: 'Cancel nested' })
+    await wait(
+      'cancel after reattach emits once',
+      (n) =>
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 1) &&
+        status(n, 'Nested actions', 1) &&
+        status(n, 'Nested last', 'cancel')
+    )
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait(
+      'root detaches while nothing presents',
+      (n) =>
+        labels(n).includes('Attach root') && status(n, 'Nested presented', 'false')
+    )
+    tap({ id: 'one-native-dialog-lifecycle-open' })
+    // a presenter mounted before root attachment stays silent: no dialog may appear
+    // while detached, and the pending presentation must not emit either.
+    await new Promise((resolve) => setTimeout(resolve, 2500))
+    const silent = snapshot(config.simulatorId)
+    if (dialogButton(silent, 'Cancel nested'))
+      throw new Error('a nested presenter presented while its root was detached')
+    if (!status(silent, 'Nested presented', 'true') || !status(silent, 'Nested changes', 1))
+      throw new Error('a detached root must hold React state without native events')
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait('pending presentation appears on attach', nestedPresented)
+    tap({ label: 'Cancel nested' })
+    await wait(
+      'cancel after attach emits once',
+      (n) =>
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 2) &&
+        status(n, 'Nested actions', 2) &&
+        status(n, 'Nested last', 'cancel')
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

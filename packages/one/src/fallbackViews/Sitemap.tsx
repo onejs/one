@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 
 // import React from 'react'
 // import { Platform, ScrollView, StatusBar, useWindowDimensions } from 'react-native'
-// import { useSafeAreaInsets } from 'react-native-safe-area-context'
+// import { useSafeAreaInsets } from '@vxrn/safe-area'
 
 // import { useOneRouter } from '../global-state/router-store'
 // import { router } from '../imperative-api'

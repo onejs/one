@@ -1,7 +1,7 @@
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
   addPodHermescToBundleReactNativeShellScript,
@@ -12,6 +12,7 @@ import {
   injectHermesMinificationPatchIntoPodfile,
   injectSwift6WorkaroundIntoPodfile,
   ANDROID_APP_BUILD_GRADLE_REACT_BLOCK,
+  removeExpoDefaultsFromAppBuildGradle,
   EXPO_UPDATES_METRO_SKIP_MARKER,
   FMT_CXX17_MARKER,
   HERMES_MINIFY_PATCH_MARKER,
@@ -311,5 +312,48 @@ describe('addPodHermescToBundleReactNativeShellScript', () => {
     expect(all.indexOf('HERMES_CLI_PATH')).toBeLessThan(
       all.indexOf('react-native-xcode.sh')
     )
+  })
+})
+
+const sampleAppBuildGradle = [
+  'apply plugin: "com.android.application"',
+  'apply plugin: "com.facebook.react"',
+  '',
+  'react {',
+  '    entryFile = file("../index.js")',
+  '}',
+  '',
+  'dependencies {',
+  '}',
+  '',
+].join('\n')
+
+describe('removeExpoDefaultsFromAppBuildGradle', () => {
+  it('replaces the react block and keeps the rest of the file', () => {
+    const out = removeExpoDefaultsFromAppBuildGradle(sampleAppBuildGradle)
+    expect(out).toContain('reactNativeDir = file(resolveNodePackage(')
+    expect(out).toContain('apply plugin: "com.android.application"')
+    expect(out).toContain('dependencies {')
+    expect(out).not.toContain('entryFile = file("../index.js")')
+  })
+
+  it('emits only node-resolvable package paths (gradle evaluates them eagerly)', () => {
+    const out = removeExpoDefaultsFromAppBuildGradle(sampleAppBuildGradle)
+    const specifiers = [...out.matchAll(/resolveNodePackage\("([^"]+)"\)/g)].map((m) => m[1])
+    expect(specifiers.length).toBeGreaterThan(0)
+    const require = createRequire(import.meta.url)
+    for (const specifier of specifiers) {
+      // an unexported subpath (react-native/cli.js on 0.87) fails gradle
+      // evaluation before any task runs; this is that failure in unit form.
+      expect(() => require.resolve(specifier)).not.toThrow()
+    }
+  })
+
+  it('points cliFile at the react-native cli.js on disk', () => {
+    const out = removeExpoDefaultsFromAppBuildGradle(sampleAppBuildGradle)
+    const require = createRequire(import.meta.url)
+    const cliJs = join(dirname(require.resolve('react-native/package.json')), 'cli.js')
+    expect(existsSync(cliJs)).toBe(true)
+    expect(out).toMatch(/cliFile = .*cli\.js/)
   })
 })

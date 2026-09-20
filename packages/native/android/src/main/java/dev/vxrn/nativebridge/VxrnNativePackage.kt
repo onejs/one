@@ -6,12 +6,18 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
+import dev.onejs.onenative.OneNativeEdgeFadeManager
+import dev.onejs.onenative.OneNativeMaskManager
+import dev.onejs.onenative.OneNativeSafeAreaModule
+import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 
 class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
+            OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             else -> null
         }
     }
@@ -25,11 +31,26 @@ class VxrnNativePackage : BaseReactPackage() {
                 needsEagerInit = false,
                 isCxxModule = false,
                 isTurboModule = false
+            ),
+            OneNativeSafeAreaModule.NAME to ReactModuleInfo(
+                name = OneNativeSafeAreaModule.NAME,
+                className = OneNativeSafeAreaModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
             )
         )
     }
 
     override fun createViewManagers(
         reactContext: ReactApplicationContext,
-    ): List<ViewManager<*, *>> = listOf(OneNativeComposeNodeManager())
+    ): List<ViewManager<*, *>> =
+        listOf(
+            OneNativeComposeNodeManager(),
+            OneNativeSafeAreaProviderManager(),
+            OneNativeEdgeFadeManager(),
+            OneNativeBlurManager(),
+            OneNativeMaskManager(),
+        )
 }

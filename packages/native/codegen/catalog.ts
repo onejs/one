@@ -21,6 +21,7 @@ export const modifiers = [
   { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
   { name: 'progressViewStyle', type: 'ProgressViewStyle' },
   { name: 'gaugeStyle', type: 'GaugeStyle' },
+  { name: 'listStyle', type: 'ListStyle' },
   { name: 'textFieldStyle', type: 'TextFieldStyle' },
   { name: 'submitLabel', type: 'SubmitLabel' },
   {
@@ -221,6 +222,7 @@ export const enumTypes = [
   'MagnificationGesturesBehavior',
   'LinkPreviewBehavior',
   'ElementFullscreenBehavior',
+  'ListStyle',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -485,5 +487,400 @@ export const components = [
       },
     ],
     interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeList',
+    publicName: 'List',
+    props: {
+      listStyle: 'string',
+    },
+    events: {},
+    enumProps: { listStyle: 'ListStyle' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeScrollView',
+    publicName: 'ScrollView',
+    props: {
+      axes: 'string',
+      showsIndicators: 'boolean',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLazyVStack',
+    publicName: 'LazyVStack',
+    props: {
+      alignment: 'string',
+      spacing: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLazyHStack',
+    publicName: 'LazyHStack',
+    props: {
+      alignment: 'string',
+      spacing: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeControlGroup',
+    publicName: 'ControlGroup',
+    props: {
+      label: 'string',
+      systemImage: 'string',
+      controlGroupStyle: 'string',
+    },
+    events: {},
+    enumProps: { controlGroupStyle: 'ControlGroupStyle' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeDisclosureGroup',
+    publicName: 'DisclosureGroup',
+    props: {
+      label: 'string',
+      isExpanded: 'boolean',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativeDisclosureGroupIsExpandedChange: {
+        value: 'boolean',
+        eventCount: 'Int32',
+        revision: 'Int32',
+      },
+    },
+    enumProps: {},
+    controlled: {
+      value: 'isExpanded',
+      event: 'onNativeDisclosureGroupIsExpandedChange',
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeDivider',
+    publicName: 'Divider',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLink',
+    publicName: 'Link',
+    props: {
+      destination: 'string',
+      label: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeGroup',
+    publicName: 'Group',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOverlay',
+    publicName: 'Overlay',
+    props: {
+      alignment: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOverlayContent',
+    publicName: 'OverlayContent',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeSwipeActions',
+    publicName: 'SwipeActions',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeSwipeActionsActions',
+    publicName: 'SwipeActionsActions',
+    props: {
+      edge: 'string',
+      allowsFullSwipe: 'boolean',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativePager',
+    publicName: 'Pager',
+    props: {
+      selection: 'string',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativePagerSelectionChange: {
+        selection: 'string',
+        eventCount: 'Int32',
+        revision: 'Int32',
+      },
+    },
+    enumProps: {},
+    controlled: { value: 'selection', event: 'onNativePagerSelectionChange' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'pages',
+        content: 'OneNativeTab',
+        cardinality: 'many',
+        key: 'tabId',
+        layout: 'swiftui',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // first-party safe-area boundary: a Yoga view that reports its own
+    // safe-area insets plus its frame to React. the insets source is UIKit
+    // on iOS and WindowInsets on Android; the adapter reshapes the flat
+    // event fields into EdgeInsets and a frame. no controlled protocol: an
+    // inset update is a sensor reading, never a state change to acknowledge.
+    name: 'OneNativeSafeAreaProvider',
+    publicName: 'SafeAreaProvider',
+    props: {},
+    events: {
+      onNativeInsetsChange: {
+        insetTop: 'Double',
+        insetRight: 'Double',
+        insetBottom: 'Double',
+        insetLeft: 'Double',
+        frameX: 'Double',
+        frameY: 'Double',
+        frameWidth: 'Double',
+        frameHeight: 'Double',
+      },
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned edge-fade primitive (UI.EdgeFade mask and blur modes). a Yoga
+    // container that alpha-fades its children toward any edge (mask) or
+    // progressively blurs them toward the edge (blur). sizes are dp (0 =
+    // disabled); curves are preset names or serialized alpha stops.
+    // overlayColor is 0xAARRGGBB resolved in JS (0 = no frost veil), so the
+    // main emitter needs no color support and both platforms read one int.
+    // overlay mode never reaches this view: RN core backgroundImage
+    // gradients paint it in JS. no events: a fade is pure presentation.
+    name: 'OneNativeEdgeFade',
+    publicName: 'EdgeFade',
+    props: {
+      fadeTop: 'Double',
+      fadeBottom: 'Double',
+      fadeLeft: 'Double',
+      fadeRight: 'Double',
+      curveTop: 'string',
+      curveBottom: 'string',
+      curveLeft: 'string',
+      curveRight: 'string',
+      fadeRadius: 'Double',
+      mode: 'string',
+      blurRadius: 'Double',
+      frostProgression: 'Double',
+      overlayColor: 'Int32',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned regular blur (UI.Blur, expo-blur compatible). blurs the backdrop
+    // behind the view; children mount sharp on top. tint is the expo tint
+    // name; intensity is 0-1 normalized in JS (expo units are 0-100).
+    name: 'OneNativeBlur',
+    publicName: 'Blur',
+    props: {
+      tint: 'string',
+      intensity: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned arbitrary mask (UI.Mask, masked-view compatible). the first
+    // child is the mask element (never displayed, only masks); the rest are
+    // content. no props: shape comes entirely from the subtrees.
+    name: 'OneNativeMask',
+    publicName: 'Mask',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
   },
 ] as const
