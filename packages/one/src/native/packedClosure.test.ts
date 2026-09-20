@@ -16,12 +16,14 @@ import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
+import { loadUserOneOptions } from '../vite/loadConfig'
 import { auditUnpackedManifest } from './closure'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const oneDir = resolve(here, '../..')
 const vxrnDir = resolve(here, '../../../vxrn')
 const workspaceRoot = resolve(here, '../../..')
+const basicStarterDir = resolve(workspaceRoot, '../examples/one-basic')
 
 const KNOWN_ONE_BLOCKERS = ['babel-preset-expo']
 const KNOWN_VXRN_BLOCKERS = ['@expo/config-plugins']
@@ -45,6 +47,38 @@ function unpack(tarball: string, destDir: string): string {
 }
 
 describe('packed-artifact closure oracle', () => {
+  it('keeps the generated Basic starter on the zero-Expo One contract', async () => {
+    const packageJson = JSON.parse(
+      readFileSync(join(basicStarterDir, 'package.json'), 'utf8')
+    )
+    expect(auditUnpackedManifest(packageJson)).toEqual([])
+    expect(existsSync(join(basicStarterDir, 'app.json'))).toBe(false)
+
+    const previousCwd = process.cwd()
+    const previousTestMetro = process.env.TEST_METRO
+    try {
+      process.chdir(basicStarterDir)
+      delete process.env.TEST_METRO
+      const rolldown = await loadUserOneOptions('build', true)
+      expect(rolldown.oneOptions.native).toMatchObject({
+        app: {
+          name: 'OneBasic',
+          ios: { bundleId: 'com.natew.oneexample' },
+          android: { applicationId: 'com.natew.oneexample' },
+        },
+      })
+      expect(rolldown.oneOptions.native).not.toHaveProperty('bundler')
+
+      process.env.TEST_METRO = '1'
+      const metro = await loadUserOneOptions('build', true)
+      expect(metro.oneOptions.native).toMatchObject({ bundler: 'metro' })
+    } finally {
+      process.chdir(previousCwd)
+      if (previousTestMetro === undefined) delete process.env.TEST_METRO
+      else process.env.TEST_METRO = previousTestMetro
+    }
+  })
+
   it('names the current expo blockers from real packed manifests', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-closure-')))
     const onePkg = JSON.parse(
