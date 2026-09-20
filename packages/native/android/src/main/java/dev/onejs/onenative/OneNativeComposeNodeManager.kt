@@ -146,6 +146,10 @@ class OneNativeComposeNodeManager :
         view.stageIconFilled(value)
     }
 
+    override fun setColorRole(view: OneNativeComposeNodeView, value: String?) {
+        view.stageColorRole(value)
+    }
+
     override fun setValue(view: OneNativeComposeNodeView, value: Boolean) {
         view.stageValue(value)
     }

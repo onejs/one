@@ -39,6 +39,7 @@ interface NativeProps extends ViewProps {
   imageScale: string
   variableValue: Double
   hasVariableValue: boolean
+  colorRole: string
   swiftStyle?: OneNativeStyleNative
 }
 export default codegenNativeComponent<NativeProps>('OneNativeImage', {

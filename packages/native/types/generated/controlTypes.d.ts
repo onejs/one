@@ -152,6 +152,7 @@ export interface ImageProps extends OneNativeViewProps {
     symbolVariant?: Styles.SymbolVariants | '';
     imageScale?: Styles.ImageScale | '';
     variableValue?: number;
+    colorRole?: string;
 }
 export interface ShareLinkProps extends OneNativeViewProps {
     label?: string;

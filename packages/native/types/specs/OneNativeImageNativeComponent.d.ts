@@ -35,6 +35,7 @@ interface NativeProps extends ViewProps {
     imageScale: string;
     variableValue: Double;
     hasVariableValue: boolean;
+    colorRole: string;
     swiftStyle?: OneNativeStyleNative;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

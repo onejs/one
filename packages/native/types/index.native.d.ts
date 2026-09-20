@@ -19,7 +19,7 @@ export declare const Swift: {
     Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
-    Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
+    Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
     ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react/jsx-runtime").JSX.Element;
     ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;

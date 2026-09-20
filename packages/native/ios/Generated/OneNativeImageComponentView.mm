@@ -61,7 +61,7 @@ using namespace facebook::react;
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.systemName)
-    symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue];
+    symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue colorRole:RCTNSStringFromString(next.colorRole)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }

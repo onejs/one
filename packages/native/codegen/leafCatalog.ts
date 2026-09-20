@@ -266,6 +266,7 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'variableValue !== undefined',
       },
+      colorRole: { type: 'string', default: '' },
     },
     constructors: [
       {
@@ -289,7 +290,8 @@ export const leafControls: Control[] = [
       }
       .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
       .oneNativeSymbolVariant(model.symbolVariant)
-      .oneNativeImageScale(model.imageScale)`,
+      .oneNativeImageScale(model.imageScale)
+      .oneNativeColorRole(model.colorRole)`,
     validate: `  if (typeof systemName !== 'string' || !systemName) throw new Error('Image systemName must be a non-empty SF Symbol name')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')`,

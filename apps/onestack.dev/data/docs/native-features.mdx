@@ -195,6 +195,52 @@ On iPhone, SplitView collapses to a single column automatically.
 
 ---
 
+## Shared Icons
+
+`One.UI.Icon` selects the icon element your app provides for the current platform
+and applies a responsive native system color on iOS and Android. Your app owns the
+glyph mapping, availability, size, variant, directionality, and accessibility.
+
+```tsx
+import { One } from 'one'
+
+const shareIcons = {
+  ios: (
+    <One.iOS.Image
+      systemName="square.and.arrow.up"
+      accessibilityLabel="Share"
+      swiftStyle={{ fontSize: 20 }}
+    />
+  ),
+  android: <One.Android.Icon name="share" size={20} accessibilityLabel="Share" />,
+  web: <ShareIcon color="$color" size={20} />,
+}
+
+<One.UI.Icon icons={shareIcons} colorRole="accent" />
+<One.UI.Icon icons={shareIcons} color="#E5484D" />
+```
+
+`colorRole` accepts `primary`, `secondary`, `tertiary`, `accent`, or `danger`.
+The role reaches SwiftUI or Compose unchanged and resolves from the active native
+color scheme. A light or dark mode change updates the mounted native icon without a
+React appearance subscription. If neither color prop is present, `primary` is the
+default. Use `color` for a React Native `ColorValue`, including an iOS dynamic color
+in iOS code or a regular color string. `color` and `colorRole` are mutually exclusive.
+
+One does not map these roles on web. When `icons.web` is present, One returns that
+React element unchanged so Tamagui or the app can style it. When it is absent, the
+component renders nothing on web.
+
+### One.UI.Icon Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `icons` | `{ ios: ReactElement; android: ReactElement; web?: ReactElement }` | App-owned platform icons |
+| `colorRole` | `'primary' \| 'secondary' \| 'tertiary' \| 'accent' \| 'danger'` | Responsive native system color |
+| `color` | `ColorValue` | Custom color, mutually exclusive with `colorRole` |
+
+---
+
 ## Compose Icons (Android)
 
 Native Material Symbols icons for the Android Compose surface.
@@ -231,12 +277,13 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 | Feature | iOS | Android | Web |
 |---------|-----|---------|-----|
-| Color API | UIKit semantic colors | not exposed until native responsive roles land | returns null |
+| Responsive icon colors | One.UI.Icon + UIKit semantic colors | One.UI.Icon + adaptive Material color scheme | app-provided element |
 | Zoom Transitions | iOS 18+ | unsupported | unsupported |
 | Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
 | Menu Actions | UIMenu / UIAction | unsupported | unsupported |
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
-| Icons | SF Symbols via systemImage/systemName | Material Symbols via One.Android.Icon | unsupported |
+| Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
+| Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

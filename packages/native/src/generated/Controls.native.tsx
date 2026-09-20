@@ -470,6 +470,7 @@ export function Image({
   symbolVariant = '',
   imageScale = '',
   variableValue = undefined,
+  colorRole = '',
   swiftStyle,
   style,
   ...props
@@ -509,6 +510,7 @@ export function Image({
       imageScale={imageScale}
       variableValue={variableValue ?? 0}
       hasVariableValue={variableValue !== undefined}
+      colorRole={colorRole}
     />
   )
 }

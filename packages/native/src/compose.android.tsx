@@ -82,6 +82,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   tone?: ComposeButtonTone
   icon?: string
   iconFilled?: boolean
+  colorRole?: string
   value?: boolean
   acknowledgedEvent?: number
   revision?: number

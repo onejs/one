@@ -13,6 +13,7 @@ describe('root One export', () => {
     expect(Object.hasOwn(One.Android, 'Color')).toBe(false)
     expect(One.UI.Blur).toBeTypeOf('function')
     expect(One.UI.EdgeFade).toBeTypeOf('function')
+    expect(One.UI.Icon).toBeTypeOf('function')
     expect(One.UI.Mask).toBeTypeOf('function')
     expect(One.UI.TextInput).toBeTypeOf('function')
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
