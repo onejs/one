@@ -29,6 +29,11 @@ export type ControlValue = {
   publicType?: string
   nativeValue?: string
   eventValue?: string
+  // when true, the public prop also accepts a NativeState handle: the generated
+  // adapter resolves it to a plain value for the native view and writes native
+  // events back into the handle synchronously, same frame, before forwarding
+  // to the event callback. the schema marks these values with `sync: true`.
+  sync?: true
 }
 // a one-way native signal with no value, numbered so a fixture can assert exact counts.
 export type ControlAction = {

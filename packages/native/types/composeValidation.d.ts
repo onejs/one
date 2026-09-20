@@ -10,6 +10,8 @@ export declare const buttonVariants: readonly ['filled', 'outlined', 'text'];
 export declare const buttonTones: readonly ['default', 'danger'];
 export declare const textFieldVariants: readonly ['filled', 'outlined'];
 export declare const textFieldKeyboardTypes: readonly ['default', 'number', 'decimal', 'email', 'password', 'phone', 'url'];
+export declare const textFieldImeActions: readonly ['default', 'none', 'go', 'search', 'send', 'previous', 'next', 'done'];
+export declare const textFieldCapitalizations: readonly ['none', 'characters', 'words', 'sentences'];
 export declare const progressVariants: readonly ['linear', 'circular'];
 export declare function assertComposeStyle(style: ComposeStyle | undefined): void;
 export declare function assertString(value: unknown, name: string, nonEmpty?: boolean): asserts value is string;

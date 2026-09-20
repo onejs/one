@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { transformSync } from '@babel/core'
-import { emitViewConfig } from '../codegen/emitViewConfig'
+import { emitViewConfig, isViewSpecFile } from '../codegen/emitViewConfig'
 
 const require = createRequire(import.meta.url)
 const codegenPlugin = require('@react-native/babel-plugin-codegen')
@@ -12,6 +12,7 @@ const codegenPlugin = require('@react-native/babel-plugin-codegen')
 const specsDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'specs')
 const specs = readdirSync(specsDir)
   .filter((name) => name.endsWith('.ts'))
+  .filter(isViewSpecFile)
   .sort()
 
 // The parity baseline: the real plugin with pinned options. Both sides share
@@ -61,5 +62,11 @@ export default codegenNativeComponent<NativeProps>('FixtureView') as HostCompone
     expect(() => emitViewConfig('export default 42\n', 'Plain.ts')).toThrow(
       'has no codegenNativeComponent default export'
     )
+  })
+
+  it('keeps TurboModule specs out of view-config parity', () => {
+    expect(isViewSpecFile('OneNativeTextFieldNativeComponent.ts')).toBe(true)
+    expect(isViewSpecFile('OneNativeSyncStateNativeModule.ts')).toBe(false)
+    expect(specs).not.toContain('OneNativeSyncStateNativeModule.ts')
   })
 })
