@@ -465,23 +465,26 @@ const SET_CLI_PATH_MARKER = '# [vxrn/one] React Native now defaults CLI_PATH'
  * so match any leading quote characters and re-emit whatever matched. Matching
  * only the exact SDK 57 shape made every patch below a silent no-op on SDK 58.
  */
-const BUNDLE_PHASE_RUNNER_ANCHOR = /^[ \t]*["'`]*`"\$NODE_BINARY"/m
+const BUNDLE_PHASE_RUNNER_ANCHORS = [
+  /^[ \t]*["'`]*`"\$NODE_BINARY"/m,
+  /^[ \t]*\/bin\/sh -c .*\$REACT_NATIVE_XCODE.*$/m,
+]
 
 let warnedMissingBundlePhaseRunnerAnchor = false
 
 function insertBeforeBundlePhaseRunner(input, codeToAdd) {
-  const patched = input.replace(BUNDLE_PHASE_RUNNER_ANCHOR, (match) => {
-    return `${codeToAdd}\n\n${match}`
-  })
+  for (const anchor of BUNDLE_PHASE_RUNNER_ANCHORS) {
+    const patched = input.replace(anchor, (match) => `${codeToAdd}\n\n${match}`)
+    if (patched !== input) return patched
+  }
 
-  if (patched === input && !warnedMissingBundlePhaseRunnerAnchor) {
+  if (!warnedMissingBundlePhaseRunnerAnchor) {
     warnedMissingBundlePhaseRunnerAnchor = true
     console.warn(
       '[vxrn] could not find the `"$NODE_BINARY" .../scripts/react-native-xcode.sh` line in the iOS bundle phase — vxrn bundle phase patches (CLI_PATH, hermesc) were not applied. This usually means the Expo template changed shape; please report it.'
     )
   }
-
-  return patched
+  return input
 }
 
 /**
@@ -497,7 +500,7 @@ function addSetCliPathToBundleReactNativeShellScript(input) {
 
   const codeToAdd = `
 ${SET_CLI_PATH_MARKER}
-export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+export CLI_PATH="$("\${NODE_BINARY:-node}" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
 `.trim()
 
   return insertBeforeBundlePhaseRunner(input, codeToAdd)
@@ -949,6 +952,9 @@ module.exports.addSetCliPathToBundleReactNativeShellScript =
   addSetCliPathToBundleReactNativeShellScript
 module.exports.addPodHermescToBundleReactNativeShellScript =
   addPodHermescToBundleReactNativeShellScript
+module.exports.addDepsPatchToBundleReactNativeShellScript =
+  addDepsPatchToBundleReactNativeShellScript
+module.exports.addDepsPatchToAppBuildGradle = addDepsPatchToAppBuildGradle
 module.exports.injectSwift6WorkaroundIntoPodfile = injectSwift6WorkaroundIntoPodfile
 module.exports.injectHermesMinificationPatchIntoPodfile =
   injectHermesMinificationPatchIntoPodfile
@@ -960,5 +966,4 @@ module.exports.removeExpoDefaultsFromAppBuildGradle = removeExpoDefaultsFromAppB
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
 module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
 module.exports.SET_CLI_PATH_MARKER = SET_CLI_PATH_MARKER
-module.exports.ANDROID_APP_BUILD_GRADLE_REACT_BLOCK =
-  ANDROID_APP_BUILD_GRADLE_REACT_BLOCK
+module.exports.ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = ANDROID_APP_BUILD_GRADLE_REACT_BLOCK
