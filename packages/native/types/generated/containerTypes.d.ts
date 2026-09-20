@@ -26,7 +26,9 @@ export interface ZStackProps extends ViewProps {
 export interface SpacerProps extends ViewProps {
     minLength?: number;
 }
+export type FormSizing = 'fill' | 'content';
 export interface FormProps extends ViewProps, EnvironmentProps {
+    sizing?: FormSizing;
     children: ReactNode;
 }
 export interface SectionProps extends ViewProps {

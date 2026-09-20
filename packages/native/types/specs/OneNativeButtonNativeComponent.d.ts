@@ -31,6 +31,7 @@ type OneNativeStyleNative = Readonly<{
 interface NativeProps extends ViewProps {
     label: string;
     disabled: boolean;
+    subtitle: string;
     systemImage: string;
     buttonRole: string;
     buttonStyle: string;

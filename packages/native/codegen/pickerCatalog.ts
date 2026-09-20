@@ -33,7 +33,16 @@ export const pickerControls: Control[] = [
       } label: {
         Text(model.label)
       }
-      .oneNativePickerStyle(model.pickerStyle)`,
+      .oneNativePickerStyle(model.pickerStyle)
+      .oneNativeSegmentedFill(model.pickerStyle)`,
+    extraSwift: `private extension View {
+  // a segmented picker spans its row the way Settings does instead of hugging its
+  // segments, so callers never have to encode the fill themselves.
+  @ViewBuilder func oneNativeSegmentedFill(_ style: String) -> some View {
+    if style == "segmented" { self.frame(maxWidth: .infinity) }
+    else { self }
+  }
+}`,
     validate: `  if (!Array.isArray(options) || options.some(option => typeof option?.value !== 'string' || typeof option?.label !== 'string')) throw new Error('Picker options must contain string value and label fields')
   if (!options.length) throw new Error('Picker options must not be empty')
   if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')

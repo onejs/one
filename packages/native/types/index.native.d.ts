@@ -15,7 +15,7 @@ export declare const Swift: {
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
     Text({ text, swiftStyle, style, ...props }: import("./types").TextProps): import("react/jsx-runtime").JSX.Element;
     Label({ label, disabled, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react/jsx-runtime").JSX.Element;
-    Button({ onPress, label, disabled, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
+    Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
     Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;

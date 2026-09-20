@@ -1088,9 +1088,11 @@ children throws where it is written. Compose a row out of controls rather than a
 `View`: the children are One Native controls, and React Native content goes in a
 `Swift.Slot`.
 
-A `Form` is height-greedy and reports no ideal height, so it fills the box React Native
-gives it: give it a height or a flex parent. That is also why a `Form` cannot be a child
-of a `Swift.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
+A `Form` is height-greedy by default and reports no ideal height, so it fills the box
+React Native gives it: give it a height or a flex parent. `sizing="content"` flips it:
+the form reports the height SwiftUI measured, so a form embedded in a sheet wraps its
+rows instead of filling the screen. Either way a `Form` cannot be a child of a
+`Swift.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
 the form then renders nothing at all; `Swift.Host` throws instead of rendering a blank.
 A host inside a form or a section works, and so does a section inside a host.
 

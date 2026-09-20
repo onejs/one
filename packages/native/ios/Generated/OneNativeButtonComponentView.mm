@@ -67,7 +67,7 @@ using namespace facebook::react;
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle) disclosureIndicator:next.disclosureIndicator];
+    disabled:next.disabled subtitle:RCTNSStringFromString(next.subtitle) systemImage:RCTNSStringFromString(next.systemImage) buttonRole:RCTNSStringFromString(next.buttonRole) buttonStyle:RCTNSStringFromString(next.buttonStyle) disclosureIndicator:next.disclosureIndicator];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }

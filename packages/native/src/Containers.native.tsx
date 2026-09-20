@@ -239,9 +239,12 @@ export function Spacer({ minLength = 0, style, ...props }: SpacerProps) {
   return <NativeSpacer {...props} style={style} minLength={minLength} />
 }
 
+const formSizings = ['fill', 'content'] as const
+
 export function Form({
   children,
   style,
+  sizing = 'fill',
   colorScheme,
   dynamicTypeSize,
   locale,
@@ -249,9 +252,14 @@ export function Form({
   isEnabled,
   ...props
 }: FormProps) {
+  if (!formSizings.includes(sizing))
+    throw new Error(`Swift.Form sizing must be one of ${formSizings.join(', ')}`)
   assertOneNativeChildren(children, 'Swift.Form')
   return (
+    // sizing is structural: a remount keeps a fill form from inheriting a content
+    // height Yoga pinned, and a content form from inheriting a fill box.
     <NativeForm
+      key={sizing}
       {...props}
       {...nativeEnvironmentProps({
         colorScheme,
@@ -260,7 +268,8 @@ export function Form({
         tint,
         isEnabled,
       })}
-      style={[{ flex: 1 }, style]}
+      sizing={sizing}
+      style={sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeForm>

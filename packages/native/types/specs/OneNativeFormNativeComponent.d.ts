@@ -1,5 +1,6 @@
 import type { ColorValue, ViewProps } from 'react-native';
 interface NativeProps extends ViewProps {
+    sizing: string;
     colorScheme: string;
     dynamicTypeSize: string;
     locale: string;

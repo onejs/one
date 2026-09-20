@@ -90,8 +90,17 @@ private struct PickerContent: View {
         Text(model.label)
       }
       .oneNativePickerStyle(model.pickerStyle)
+      .oneNativeSegmentedFill(model.pickerStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
+  }
+}
+private extension View {
+  // a segmented picker spans its row the way Settings does instead of hugging its
+  // segments, so callers never have to encode the fill themselves.
+  @ViewBuilder func oneNativeSegmentedFill(_ style: String) -> some View {
+    if style == "segmented" { self.frame(maxWidth: .infinity) }
+    else { self }
   }
 }

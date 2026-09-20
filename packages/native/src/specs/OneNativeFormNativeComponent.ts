@@ -3,10 +3,13 @@
 import type { ColorValue, ViewProps } from 'react-native'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 interface NativeProps extends ViewProps {
+  sizing: string
   colorScheme: string
   dynamicTypeSize: string
   locale: string
   tint?: ColorValue
   isEnabled: string
 }
-export default codegenNativeComponent<NativeProps>('OneNativeForm')
+export default codegenNativeComponent<NativeProps>('OneNativeForm', {
+  interfaceOnly: true,
+})
