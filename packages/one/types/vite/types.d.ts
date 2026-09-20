@@ -4,6 +4,7 @@ import type { Plugin as RolldownPlugin } from 'rolldown';
 import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
+import type { NativeAppManifest } from '../native/appManifest';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
@@ -300,6 +301,11 @@ export declare namespace One {
              * `AppRegistry.registerComponent(key)`
              */
             key?: string;
+            /**
+             * Typed native app manifest. Replaces expo-shaped app.json.
+             * `name` is the native target and AppRegistry key.
+             */
+            app?: NativeAppManifest;
             /**
              * Wrap each route screen in a React Suspense boundary on native.
              *

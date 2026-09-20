@@ -94,6 +94,11 @@
       "import": "./dist/esm/babel-preset/index.mjs",
       "require": "./dist/cjs/babel-preset/index.cjs"
     },
+    "./native": {
+      "types": "./types/native/index.d.ts",
+      "import": "./dist/esm/native/index.mjs",
+      "require": "./dist/cjs/native/index.cjs"
+    },
     "./native-transforms": {
       "types": "./types/native-transforms.d.ts",
       "import": "./dist/esm/native-transforms.mjs",
