@@ -932,9 +932,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...(nativeOptions?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
+            ...((nativeOptions?.app?.name || nativeOptions?.key) && {
+              'process.env.ONE_APP_NAME': JSON.stringify(
+                nativeOptions.app?.name || nativeOptions.key
+              ),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(
+                nativeOptions.app?.name || nativeOptions.key
+              ),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),

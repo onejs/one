@@ -34,6 +34,7 @@ export function buildOneMetroResolverOverrides({
   return <T extends MetroConfigLike>(defaultConfig: T): T => {
     const resolver: Record<string, any> = {
       ...defaultConfig?.resolver,
+      assetExts: [...new Set([...(defaultConfig?.resolver?.assetExts ?? []), 'txt'])],
       extraNodeModules: {
         ...defaultConfig?.resolver?.extraNodeModules,
       },

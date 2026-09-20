@@ -227,23 +227,17 @@ tab count. The badge's left edge sits 8.6pt right of its glyph's ink centre;
 `BADGE_LEFT_FROM_ICON_CENTER` is 13.5.
 
 **RETRACTED: "appearance does not move anything".** That claim came from five dark cells that
-were never dark. Expo writes `UIUserInterfaceStyle = Light` into `Info.plist` unless `app.json`
-sets `ios.userInterfaceStyle: "automatic"`, and it does not, so the app rendered light under a
-device set to dark and each "dark twin" was its own light cell wearing a dark id. The five rows
-and their captures have been dropped rather than left in place with a caveat. The driver now
-refuses to record an appearance switch it cannot see: `setAppearance` reads the device's current
-mode, skips a no-op, and then requires more than 20% of the screen to repaint, which the app in
-its shipped configuration cannot do. Nothing in this table currently measures appearance.
+were never dark. The old Expo-generated project forced `UIUserInterfaceStyle = Light`, so the app
+rendered light under a device set to dark and each "dark twin" was its own light cell wearing a
+dark id. The five rows and their captures have been dropped rather than left in place with a
+caveat. The driver now refuses to record an appearance switch it cannot see: `setAppearance`
+reads the device's current mode, skips a no-op, and then requires more than 20% of the screen to
+repaint. Nothing in this table currently measures appearance.
 
-`app.json` now sets `ios.userInterfaceStyle: "automatic"` and the app has been rebuilt, so dark is
-real: the bar renders a dark capsule with white glyphs and a blue selected label. `automatic` only
-changes behaviour when something switches the device, so a suite that never touches appearance
-sees the app it always saw.
-
-A trap for whoever regenerates the native project: `ios/` is not tracked, and the checked-out
-Xcode project builds `dev.one.native.tests` while `app.json` says `dev.vxrn.native.tests`. A
-prebuild would therefore change the bundle id that this README, `scripts/README.md` and every
-documented command use. The appearance key was set in both places by hand for that reason.
+The generated React Native project leaves `UIUserInterfaceStyle` unset, which is the automatic
+system behaviour: the bar renders a dark capsule with white glyphs and a blue selected label.
+Automatic appearance only changes behaviour when something switches the device, so a suite that
+never touches appearance sees the app it always saw.
 
 ### Measuring a bar that is darker than its background
 

@@ -27,9 +27,8 @@
     "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": ["node", "react"],
+    "types": ["bun", "node", "react"],
     "lib": ["dom", "esnext"]
   },
-  "exclude": ["node_modules", ".expo", "**/dist", "**/types"],
-  "extends": "expo/tsconfig.base.json"
+  "exclude": ["node_modules", ".expo", "**/dist", "**/types"]
 }

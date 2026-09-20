@@ -12,6 +12,7 @@ describe('buildOneMetroResolverOverrides', () => {
     const resolvedOrigins: string[] = []
     const config = buildOneMetroResolverOverrides({ projectRoot })({
       resolver: {
+        assetExts: ['png'],
         resolveRequest: (
           context: { originModulePath: string },
           moduleName: string,
@@ -23,6 +24,8 @@ describe('buildOneMetroResolverOverrides', () => {
       },
     })
     const resolveRequest = config.resolver?.resolveRequest
+
+    expect(config.resolver?.assetExts).toEqual(['png', 'txt'])
 
     if (!resolveRequest) {
       throw new Error('expected a Metro resolver override')

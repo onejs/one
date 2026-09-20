@@ -20,6 +20,7 @@ import {
 const app = {
   name: 'MyApp',
   displayName: 'My App',
+  scheme: ['myapp', 'myapp-dev'],
   ios: { bundleId: 'dev.one.myapp', deploymentTarget: '17.0' },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 }
@@ -34,14 +35,19 @@ describe('native.app prebuild validation', () => {
   it('rejects invalid target names and missing platform ids before writing', () => {
     expect(() => validatePrebuildApp({} as any)).toThrow(/name/)
     expect(() => validatePrebuildApp({ name: 'my-app' } as any)).toThrow(/name/)
+    expect(() => validatePrebuildApp({ ...app, scheme: 'not a scheme' })).toThrow(
+      /scheme/
+    )
     expect(() => validatePrebuildApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any)
     ).toThrow(/bundleId/)
     expect(() =>
-      validatePrebuildApp(
-        { name: 'MyApp', ios: { bundleId: 'not-an-id' }, android: app.android } as any
-      )
+      validatePrebuildApp({
+        name: 'MyApp',
+        ios: { bundleId: 'not-an-id' },
+        android: app.android,
+      } as any)
     ).toThrow(/bundleId/)
     expect(() =>
       validatePrebuildApp({
@@ -78,11 +84,37 @@ describe('template rendering', () => {
 
     const podfile = renderPrebuildFile({
       relativePath: 'Podfile',
-      content: 'platform :ios, min_ios_version_supported',
+      content:
+        'platform :ios, min_ios_version_supported\n  post_install do |installer|\n    react_native_post_install(\n      installer\n    )\n  end\nend',
       platform: 'ios',
       app,
     })
-    expect(podfile.content).toBe("platform :ios, '17.0'")
+    expect(podfile.content).toContain("platform :ios, '17.0'")
+    expect(podfile.content).toContain(
+      "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
+    )
+
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(infoPlist.content).toContain('<key>CFBundleURLSchemes</key>')
+    expect(infoPlist.content).toContain('<string>myapp</string>')
+    expect(infoPlist.content).toContain('<string>myapp-dev</string>')
+
+    const androidManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content: '<activity>\n      </activity>',
+      platform: 'android',
+      app,
+    })
+    expect(androidManifest.content).toContain(
+      '<action android:name="android.intent.action.VIEW" />'
+    )
+    expect(androidManifest.content).toContain('<data android:scheme="myapp" />')
+    expect(androidManifest.content).toContain('<data android:scheme="myapp-dev" />')
 
     const android = renderPrebuildFile({
       relativePath: 'app/src/main/java/com/helloworld/MainActivity.kt',
@@ -90,7 +122,9 @@ describe('template rendering', () => {
       platform: 'android',
       app,
     })
-    expect(android.destRelativePath).toBe('app/src/main/java/dev/one/myapp/MainActivity.kt')
+    expect(android.destRelativePath).toBe(
+      'app/src/main/java/dev/one/myapp/MainActivity.kt'
+    )
     expect(android.content).toContain('package dev.one.myapp')
     expect(android.content).toContain('minSdkVersion = 28')
     expect(android.content).toContain('My App')
@@ -122,7 +156,9 @@ describe('community autolink inventory', () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-autolink-'))
     // everything resolves from the fixture root, exactly as in a real app;
     // workspace installs are linked so the test needs no network.
-    const workspaceModules = fileURLToPath(new URL('../../../../node_modules', import.meta.url))
+    const workspaceModules = fileURLToPath(
+      new URL('../../../../node_modules', import.meta.url)
+    )
     mkdirSync(join(root, 'node_modules', '@react-native-community'), { recursive: true })
     const { symlinkSync } = await import('node:fs')
     for (const name of [
@@ -168,7 +204,8 @@ describe('community autolink inventory', () => {
       'react-native-safe-area-context',
     ])
     expect(
-      inventory.find((entry) => entry.name === 'react-native-safe-area-context')?.platforms
+      inventory.find((entry) => entry.name === 'react-native-safe-area-context')
+        ?.platforms
     ).toEqual(['android', 'ios'])
   }, 180000)
 })
@@ -209,10 +246,10 @@ describe('generateForPlatform determinism', () => {
     expect(pbxproj).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
     const podfile = readFileSync(join(first, 'ios', 'Podfile'), 'utf8')
     expect(podfile).toContain("platform :ios, '17.0'")
-    const gradle = readFileSync(
-      join(first, 'android', 'app', 'build.gradle'),
-      'utf8'
+    expect(podfile).toContain(
+      "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
     )
+    const gradle = readFileSync(join(first, 'android', 'app', 'build.gradle'), 'utf8')
     expect(gradle).toContain('applicationId "dev.one.myapp"')
     const rootGradle = readFileSync(join(first, 'android', 'build.gradle'), 'utf8')
     expect(rootGradle).toContain('minSdkVersion = 28')

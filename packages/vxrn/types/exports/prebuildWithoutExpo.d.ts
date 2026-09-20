@@ -1,6 +1,7 @@
 export interface PrebuildAppConfig {
     name: string;
     displayName?: string;
+    scheme?: string | string[];
     ios?: {
         bundleId: string;
         deploymentTarget?: string;

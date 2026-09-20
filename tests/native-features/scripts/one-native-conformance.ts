@@ -233,7 +233,7 @@ const accessibilityLoaded = (nodes: Node[]) =>
 const mediaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-media-category-player')) &&
-    has(nodes, 'Video bytes: ')) ||
+    has(nodes, 'Sources: ready')) ||
     Boolean(id(nodes, 'QLOverlayDoneButtonAccessibilityIdentifier')))
 const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
@@ -2554,14 +2554,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-media')
-    // the byte counts are the fixture reading back what it wrote, so they prove both files
-    // reached disk before either control was handed a url.
+    // both assets resolved before either native control was handed a url.
     await wait(
       'fixture wrote both media files',
       (n) =>
         status(n, 'Category', 'Player') &&
-        status(n, 'Video bytes', 2653) &&
-        status(n, 'Preview bytes', 171) &&
+        status(n, 'Sources', 'ready') &&
         status(n, 'Autoplay', 'off') &&
         status(n, 'Height', 220)
     )
@@ -2612,8 +2610,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('media-no-player.png')
     tap({ id: 'one-native-media-open' })
-    // the text search button is QuickLook having resolved the file:// url to a text
-    // preview, which a controller presented over a url it could not read would not carry.
+    // the text search button proves QuickLook resolved the local or downloaded asset to a
+    // readable text preview rather than presenting an empty controller.
     await wait(
       'QuickLook previews the file it was given',
       (n) =>

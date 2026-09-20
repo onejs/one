@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import QuickLook
+import Foundation
 
 private final class QuickLookModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
@@ -75,12 +76,57 @@ private final class QuickLookModel: ObservableObject {
 private struct QuickLookContent: View {
   @ObservedObject var model: QuickLookModel
   var body: some View {
-    Color.clear
-      .quickLookPreview(Binding(
-        get: { model.controlled.value ? URL(string: model.url) : nil },
-        set: { value in model.change(value != nil) }
-      ))
+    QuickLookSurface(model: model)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)
   }
+}
+private struct QuickLookSurface: View {
+  @ObservedObject var model: QuickLookModel
+  @State private var resolvedURL: URL?
+  var body: some View {
+    Color.clear
+      .quickLookPreview(Binding(
+        get: { model.controlled.value ? resolvedURL : nil },
+        set: { value in
+          if value == nil, resolvedURL != nil { model.change(false) }
+        }
+      ))
+      .task(id: model.url) {
+        let previous = resolvedURL
+        resolvedURL = await oneNativeQuickLookURL(model.url)
+        oneNativeRemoveQuickLookURL(previous)
+      }
+      .onDisappear {
+        oneNativeRemoveQuickLookURL(resolvedURL)
+        resolvedURL = nil
+      }
+  }
+}
+
+private let oneNativeQuickLookPrefix = "one-native-quick-look-"
+
+private func oneNativeQuickLookURL(_ source: String) async -> URL? {
+  guard let url = URL(string: source) else { return nil }
+  if url.isFileURL { return url }
+  guard url.scheme == "http" || url.scheme == "https" else { return nil }
+  do {
+    let (temporary, response) = try await URLSession.shared.download(from: url)
+    let suggested = response.suggestedFilename.flatMap { URL(fileURLWithPath: $0).pathExtension }
+    let pathExtension = url.pathExtension.isEmpty ? (suggested ?? "") : url.pathExtension
+    var destination = FileManager.default.temporaryDirectory
+      .appendingPathComponent(oneNativeQuickLookPrefix + UUID().uuidString)
+    if !pathExtension.isEmpty { destination.appendPathExtension(pathExtension) }
+    try FileManager.default.moveItem(at: temporary, to: destination)
+    return destination
+  } catch {
+    return nil
+  }
+}
+
+private func oneNativeRemoveQuickLookURL(_ url: URL?) {
+  guard let url, url.isFileURL, url.lastPathComponent.hasPrefix(oneNativeQuickLookPrefix) else {
+    return
+  }
+  try? FileManager.default.removeItem(at: url)
 }

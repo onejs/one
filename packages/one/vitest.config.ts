@@ -74,14 +74,6 @@ export default defineConfig({
           'src/__mocks__/@react-navigation/native-stack.ts'
         ),
       },
-      {
-        find: 'expo-modules-core',
-        replacement: resolve(__dirname, 'src/__mocks__/expo-modules-core.ts'),
-      },
-      {
-        find: 'expo-linking',
-        replacement: resolve(__dirname, 'src/__mocks__/expo-linking.ts'),
-      },
     ],
   },
 })

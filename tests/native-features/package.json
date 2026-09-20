@@ -6,7 +6,7 @@
   "scripts": {
     "build:web": "one build",
     "dev": "one dev",
-    "ios": "EXPO_NO_TELEMETRY=true one run:ios",
+    "ios": "one run:ios",
     "prebuild:native": "one prebuild",
     "test-rnx:one-native-android": "bun scripts/one-native-conformance.rnx.ts",
     "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
@@ -18,11 +18,6 @@
     "@react-navigation/native": "8.0.0-alpha.44",
     "@vxrn/native": "workspace:*",
     "@vxrn/safe-area": "workspace:*",
-    "expo": "58.0.0-canary-20260909-ea7a89a",
-    "expo-build-properties": "58.0.0-canary-20260909-ea7a89a",
-    "expo-clipboard": "58.0.0-canary-20260909-ea7a89a",
-    "expo-file-system": "58.0.0-canary-20260909-ea7a89a",
-    "expo-modules-core": "58.0.0-canary-20260909-ea7a89a",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
@@ -33,6 +28,7 @@
   },
   "devDependencies": {
     "@react-native-community/template": "^0.87.1",
+    "@types/bun": "^1.4.2",
     "vitest": "^4.1.0",
     "webdriverio": "^9.5.4"
   }

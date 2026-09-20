@@ -26,6 +26,7 @@ export const DEFAULT_ASSET_EXTS = [
   // Document formats
   'html',
   'pdf',
+  'txt',
   'yaml',
   'yml',
   // Font formats
