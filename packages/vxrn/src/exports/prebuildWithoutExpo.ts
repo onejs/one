@@ -17,14 +17,17 @@ export interface PrebuildAppConfig {
   displayName?: string
   ios?: {
     bundleId: string
+    deploymentTarget?: string
   }
   android?: {
     applicationId: string
+    minSdk?: number
   }
 }
 
 const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
+const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 
 const IOS_BUNDLE_PLACEHOLDER = 'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
 const ANDROID_PACKAGE_PLACEHOLDER = 'com.helloworld'
@@ -48,10 +51,24 @@ export function validatePrebuildApp(
     if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
       fail(`ios.bundleId "${app.ios?.bundleId}" must be reverse-dns`)
     }
+    if (
+      app.ios.deploymentTarget !== undefined &&
+      !DEPLOYMENT_TARGET.test(app.ios.deploymentTarget)
+    ) {
+      fail(`ios.deploymentTarget "${app.ios.deploymentTarget}" must look like "17.0"`)
+    }
   }
   if (!platform || platform === 'android') {
     if (!app.android?.applicationId || !REVERSE_DNS.test(app.android.applicationId)) {
       fail(`android.applicationId "${app.android?.applicationId}" must be reverse-dns`)
+    }
+    if (
+      app.android.minSdk !== undefined &&
+      (!Number.isInteger(app.android.minSdk) ||
+        app.android.minSdk < 21 ||
+        app.android.minSdk > 36)
+    ) {
+      fail(`android.minSdk "${app.android.minSdk}" must be an integer from 21 to 36`)
     }
   }
 }
@@ -102,6 +119,23 @@ export function renderPrebuildFile(args: {
     )
     for (const [find, value] of replacements) {
       rendered = rendered.split(find).join(value)
+    }
+    if (platform === 'ios' && app.ios?.deploymentTarget) {
+      rendered = rendered
+        .replace(
+          'platform :ios, min_ios_version_supported',
+          `platform :ios, '${app.ios.deploymentTarget}'`
+        )
+        .replace(
+          /IPHONEOS_DEPLOYMENT_TARGET = \d+(?:\.\d+)?;/g,
+          `IPHONEOS_DEPLOYMENT_TARGET = ${app.ios.deploymentTarget};`
+        )
+    }
+    if (platform === 'android' && app.android?.minSdk !== undefined) {
+      rendered = rendered.replace(
+        /minSdkVersion = \d+/g,
+        `minSdkVersion = ${app.android.minSdk}`
+      )
     }
   }
 

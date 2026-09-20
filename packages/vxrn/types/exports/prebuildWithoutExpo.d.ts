@@ -3,9 +3,11 @@ export interface PrebuildAppConfig {
     displayName?: string;
     ios?: {
         bundleId: string;
+        deploymentTarget?: string;
     };
     android?: {
         applicationId: string;
+        minSdk?: number;
     };
 }
 export declare function validatePrebuildApp(app: PrebuildAppConfig, platform?: 'ios' | 'android' | string): void;
