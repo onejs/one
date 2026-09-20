@@ -50,5 +50,8 @@ First, you'll need to generate the native code for your app:
 yarn prebuild:native
 ```
 
+The native app name, identifiers, iOS deployment target, and SplitView gamma mode
+are configured in `vite.config.ts` under `one({ native: { app } })`.
+
 Afterward, follow the instructions printed in the terminal to build and upload
 your iOS app for distribution.

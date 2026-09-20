@@ -10,6 +10,7 @@ type NativeProjectPatches = {
   addDepsPatchToBundleReactNativeShellScript(input: string): string
   injectFmtCxx17FixIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
+  injectReactNativeScreensGammaIntoPodfile(input: string): string
   replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
@@ -34,6 +35,7 @@ export interface PrebuildAppConfig {
   ios?: {
     bundleId: string
     deploymentTarget?: string
+    screensGamma?: boolean
   }
   android?: {
     applicationId: string
@@ -248,6 +250,9 @@ end`
       rendered = patchIosBundlePhase(rendered)
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
+      if (app.ios?.screensGamma) {
+        rendered = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(rendered)
+      }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
       if (

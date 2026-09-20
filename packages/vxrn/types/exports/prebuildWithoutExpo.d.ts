@@ -5,6 +5,7 @@ export interface PrebuildAppConfig {
     ios?: {
         bundleId: string;
         deploymentTarget?: string;
+        screensGamma?: boolean;
     };
     android?: {
         applicationId: string;
