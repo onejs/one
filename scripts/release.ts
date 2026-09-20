@@ -8,7 +8,11 @@ import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
 import blockedVersions from './blocked-versions.json'
-import { ensureNpmAuthentication, publishPackagesWithAuthProbe } from './release-publish'
+import {
+  ensureNpmAuthentication,
+  isExactVersionPublishedOnNpm,
+  publishPackagesWithAuthProbe,
+} from './release-publish'
 import {
   resolveBetaVersion,
   resolveCanaryVersion,
@@ -510,6 +514,8 @@ async function run() {
       const publishResult = await publishPackagesWithAuthProbe({
         packages: packageJsons,
         isPublished,
+        verifyPublished: ({ name }, attempt) =>
+          isExactVersionPublishedOnNpm({ name, version, attempt }),
         publish: async (pending) => {
           const workspaces = await pMap(pending, prepareOne, { concurrency: 8 })
           await writeJSON(

@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   ensureNpmAuthentication,
+  isExactVersionPublishedOnNpm,
   isGitHubTrustedPublishingEnvironment,
   publishPackagesWithAuthProbe,
 } from './release-publish'
@@ -93,6 +94,68 @@ describe('ensureNpmAuthentication', () => {
 })
 
 describe('publishPackagesWithAuthProbe', () => {
+  test('retries exact scoped-package registry checks with a fresh uncached URL', async () => {
+    const requests: { url: string; init?: RequestInit }[] = []
+    let registryCalls = 0
+
+    const registryFetch = async (url: string, init?: RequestInit) => {
+      requests.push({ url, init })
+      registryCalls++
+
+      if (registryCalls === 1) {
+        return new Response('unavailable', { status: 503 })
+      }
+      if (registryCalls === 2) {
+        throw new Error('connection reset')
+      }
+
+      return Response.json({
+        version: registryCalls === 3 ? '2.0.0-beta.50.1' : '2.0.0-beta.51.1',
+      })
+    }
+
+    const result = await publishPackagesWithAuthProbe({
+      packages: [{ name: '@vxrn/native', cwd: '/packages/native' }],
+      isPublished: async () => false,
+      verifyPublished: (pkg, attempt) =>
+        isExactVersionPublishedOnNpm({
+          name: pkg.name,
+          version: '2.0.0-beta.51.1',
+          attempt,
+          fetcher: registryFetch,
+        }),
+      publish: async () => {},
+      verifyTimeoutMs: 1_000,
+      verifyIntervalMs: 0,
+      wait: async () => {},
+    })
+
+    const urls = requests.map(({ url }) => new URL(url))
+    const cacheBusts = urls.map((url) => url.searchParams.get('cache-bust'))
+
+    expect(urls.map((url) => url.pathname)).toEqual([
+      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
+      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
+      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
+      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
+    ])
+    expect(new Set(cacheBusts).size).toBe(4)
+    expect(cacheBusts.map((value) => value?.split('-').at(-1))).toEqual([
+      '1',
+      '2',
+      '3',
+      '4',
+    ])
+    expect(
+      requests.map(({ init }) => new Headers(init?.headers).get('Cache-Control'))
+    ).toEqual(['no-cache', 'no-cache', 'no-cache', 'no-cache'])
+    expect(result).toEqual({
+      skipped: [],
+      published: ['@vxrn/native'],
+      failed: [],
+    })
+  })
+
   test('skips published versions and publishes every pending package in one batch', async () => {
     const batches: string[][] = []
     const onRegistry = new Set(['first'])
