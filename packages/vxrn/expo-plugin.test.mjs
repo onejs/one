@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
@@ -222,7 +223,7 @@ describe('addSetCliPathToBundleReactNativeShellScript', () => {
       const out = addSetCliPathToBundleReactNativeShellScript(script)
 
       expect(out).toContain(SET_CLI_PATH_MARKER)
-      expect(out).toContain(`export CLI_PATH="$("$NODE_BINARY" --print`)
+      expect(out).toContain('export CLI_PATH="$("${NODE_BINARY:-node}" --print')
       expect(out).toContain("+ '/cli.js'")
       // inserted before the runner, not after it
       expect(out.indexOf('CLI_PATH=')).toBeLessThan(
@@ -237,6 +238,22 @@ describe('addSetCliPathToBundleReactNativeShellScript', () => {
     const once = addSetCliPathToBundleReactNativeShellScript(sampleBundleScriptExpoSdk58)
     const twice = addSetCliPathToBundleReactNativeShellScript(once)
     expect(twice).toBe(once)
+  })
+
+  it('resolves CLI_PATH before NODE_BINARY is initialized', () => {
+    const script = addSetCliPathToBundleReactNativeShellScript(
+      'REACT_NATIVE_XCODE=/usr/bin/true\n/bin/sh -c "\\"$REACT_NATIVE_XCODE\\""\nprintf \'%s\\n\' "$CLI_PATH"\n'
+    )
+    const { NODE_BINARY: _, ...envWithoutNodeBinary } = process.env
+    const output = execFileSync('/bin/sh', ['-c', script], {
+      cwd: dirname(require.resolve('react-native/package.json')),
+      env: envWithoutNodeBinary,
+      encoding: 'utf8',
+    })
+
+    expect(output.trim()).toBe(
+      join(dirname(require.resolve('react-native/package.json')), 'cli.js')
+    )
   })
 })
 
@@ -339,7 +356,9 @@ describe('removeExpoDefaultsFromAppBuildGradle', () => {
 
   it('emits only node-resolvable package paths (gradle evaluates them eagerly)', () => {
     const out = removeExpoDefaultsFromAppBuildGradle(sampleAppBuildGradle)
-    const specifiers = [...out.matchAll(/resolveNodePackage\("([^"]+)"\)/g)].map((m) => m[1])
+    const specifiers = [...out.matchAll(/resolveNodePackage\("([^"]+)"\)/g)].map(
+      (m) => m[1]
+    )
     expect(specifiers.length).toBeGreaterThan(0)
     const require = createRequire(import.meta.url)
     for (const specifier of specifiers) {

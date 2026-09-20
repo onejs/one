@@ -4,6 +4,21 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import FSExtra from 'fs-extra'
 
+type NativeProjectPatches = {
+  addSetCliPathToBundleReactNativeShellScript(input: string): string
+  addPodHermescToBundleReactNativeShellScript(input: string): string
+  addDepsPatchToBundleReactNativeShellScript(input: string): string
+  injectFmtCxx17FixIntoPodfile(input: string): string
+  injectHermesMinificationPatchIntoPodfile(input: string): string
+  removeExpoDefaultsFromAppBuildGradle(input: string): string
+  addDepsPatchToAppBuildGradle(input: string): string
+  addReactNativeScreensFix(input: string): string
+}
+
+const nativeProjectPatches = module.createRequire(import.meta.url)(
+  '../../expo-plugin.cjs'
+) as NativeProjectPatches
+
 /*
 This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
@@ -35,6 +50,45 @@ const IOS_BUNDLE_PLACEHOLDER =
   'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
 const ANDROID_PACKAGE_PLACEHOLDER = 'com.helloworld'
 const ANDROID_PACKAGE_PATH = 'com/helloworld'
+
+function patchIosBundlePhase(project: string): string {
+  let patchedBundlePhases = 0
+  const patchedProject = project.replace(
+    /shellScript = ("(?:\\.|[^"\\])*");/g,
+    (assignment, serializedScript: string) => {
+      let script: unknown
+      try {
+        script = JSON.parse(serializedScript)
+      } catch {
+        return assignment
+      }
+      if (typeof script !== 'string' || !script.includes('react-native-xcode.sh')) {
+        return assignment
+      }
+
+      let patched = script
+      patched = nativeProjectPatches.addSetCliPathToBundleReactNativeShellScript(patched)
+      patched = nativeProjectPatches.addPodHermescToBundleReactNativeShellScript(patched)
+      patched = nativeProjectPatches.addDepsPatchToBundleReactNativeShellScript(patched)
+      if (
+        !patched.includes('[vxrn/one] React Native now defaults CLI_PATH') ||
+        !patched.includes('[vxrn/one] use the hermes-engine pod') ||
+        !patched.includes('[vxrn/one] ensure patches are applied')
+      ) {
+        throw new Error('[vxrn] failed to apply required iOS bundle phase patches')
+      }
+      patchedBundlePhases++
+      return `shellScript = ${JSON.stringify(patched)};`
+    }
+  )
+
+  if (patchedBundlePhases !== 1) {
+    throw new Error(
+      `[vxrn] expected one iOS React Native bundle phase, found ${patchedBundlePhases}`
+    )
+  }
+  return patchedProject
+}
 
 function fail(message: string): never {
   throw new Error(`[vxrn] invalid native.app: ${message}`)
@@ -188,6 +242,35 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
   end
 end`
         )
+      }
+    }
+    if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
+      rendered = patchIosBundlePhase(rendered)
+    }
+    if (platform === 'ios' && relativePath === 'Podfile') {
+      rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
+      rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
+      if (
+        !rendered.includes('[vxrn/one] fmt c++17 fix') ||
+        !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')
+      ) {
+        throw new Error('[vxrn] failed to apply required iOS Podfile patches')
+      }
+    }
+    if (platform === 'android' && relativePath === 'app/build.gradle') {
+      rendered = nativeProjectPatches.removeExpoDefaultsFromAppBuildGradle(rendered)
+      rendered = nativeProjectPatches.addDepsPatchToAppBuildGradle(rendered)
+      if (
+        !rendered.includes('entryFile = file("../../package.json")') ||
+        !rendered.includes('[vxrn/one] ensure patches are applied')
+      ) {
+        throw new Error('[vxrn] failed to apply required Android Gradle patches')
+      }
+    }
+    if (platform === 'android' && relativePath.endsWith('/MainActivity.kt')) {
+      rendered = nativeProjectPatches.addReactNativeScreensFix(rendered)
+      if (!rendered.includes('RNScreensFragmentFactory')) {
+        throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
       }
     }
     if (platform === 'android' && app.android?.minSdk !== undefined) {

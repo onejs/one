@@ -72,8 +72,8 @@ describe('template rendering', () => {
   it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
-      content:
-        'PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; target HelloWorld',
+      content: `PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; target HelloWorld
+shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
       platform: 'ios',
       app,
     })
@@ -118,7 +118,8 @@ describe('template rendering', () => {
 
     const android = renderPrebuildFile({
       relativePath: 'app/src/main/java/com/helloworld/MainActivity.kt',
-      content: 'package com.helloworld\nminSdkVersion = 24\n// Hello App Display Name',
+      content:
+        'package com.helloworld\n\nimport com.facebook.react.ReactActivity\n\nclass MainActivity : ReactActivity() {\n}\n\nminSdkVersion = 24\n// Hello App Display Name',
       platform: 'android',
       app,
     })
@@ -143,7 +144,8 @@ describe('template rendering', () => {
   it('renders byte-identically across runs', () => {
     const args = {
       relativePath: 'app/build.gradle',
-      content: 'namespace "com.helloworld"\napplicationId "com.helloworld"',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\nnamespace "com.helloworld"\napplicationId "com.helloworld"',
       platform: 'android' as const,
       app,
     }
@@ -244,14 +246,37 @@ describe('generateForPlatform determinism', () => {
     )
     expect(pbxproj).toContain('PRODUCT_BUNDLE_IDENTIFIER = "dev.one.myapp"')
     expect(pbxproj).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
+    expect(pbxproj).toContain('[vxrn/one] React Native now defaults CLI_PATH')
+    expect(pbxproj).toContain('[vxrn/one] use the hermes-engine pod')
+    expect(pbxproj).toContain('[vxrn/one] ensure patches are applied')
     const podfile = readFileSync(join(first, 'ios', 'Podfile'), 'utf8')
     expect(podfile).toContain("platform :ios, '17.0'")
     expect(podfile).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
     )
+    expect(podfile).toContain('[vxrn/one] fmt c++17 fix')
+    expect(podfile).toContain('[vxrn/one] minify iOS Hermes Release bundle input')
     const gradle = readFileSync(join(first, 'android', 'app', 'build.gradle'), 'utf8')
     expect(gradle).toContain('applicationId "dev.one.myapp"')
+    expect(gradle).toContain('entryFile = file("../../package.json")')
+    expect(gradle).toContain('[vxrn/one] ensure patches are applied')
     const rootGradle = readFileSync(join(first, 'android', 'build.gradle'), 'utf8')
     expect(rootGradle).toContain('minSdkVersion = 28')
+    const mainActivity = readFileSync(
+      join(
+        first,
+        'android',
+        'app',
+        'src',
+        'main',
+        'java',
+        'dev',
+        'one',
+        'myapp',
+        'MainActivity.kt'
+      ),
+      'utf8'
+    )
+    expect(mainActivity).toContain('RNScreensFragmentFactory')
   }, 180000)
 })
