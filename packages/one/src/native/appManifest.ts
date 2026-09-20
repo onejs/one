@@ -15,6 +15,7 @@ export interface NativeAppManifest {
     bundleId: string
     tablet?: boolean
     deploymentTarget?: string
+    screensGamma?: boolean
   }
   android?: {
     applicationId: string

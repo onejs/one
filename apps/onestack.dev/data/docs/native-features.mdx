@@ -166,13 +166,26 @@ import { One } from 'one'
 Native `UISplitViewController` for iPad multi-column layouts.
 
 <Notice theme="yellow">
-  SplitView requires `react-native-screens` gamma mode. Add this to the top of your Podfile:
+  SplitView requires `react-native-screens` gamma mode. Enable it in the One native app manifest:
 
-  ```ruby
-  ENV['RNS_GAMMA_ENABLED'] ||= '1'
+  ```ts
+  one({
+    native: {
+      app: {
+        name: 'MyApp',
+        ios: {
+          bundleId: 'com.example.myapp',
+          screensGamma: true,
+        },
+        android: { applicationId: 'com.example.myapp' },
+      },
+    },
+  })
   ```
 
-  Then run `pod install`. The `SplitView.Column` markers must be direct children of
+  `one prebuild` adds the Podfile setting before CocoaPods runs. For an existing
+  native project that One did not generate, add `ENV['RNS_GAMMA_ENABLED'] ||= '1'`
+  to the top of its Podfile. The `SplitView.Column` markers must be direct children of
   `SplitView`; One maps them to the native screen columns and supplies the routed
   detail through `slot`.
 </Notice>

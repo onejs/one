@@ -107,6 +107,16 @@ function injectHermesMinificationPatchIntoPodfile(podfile) {
   return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
 }
 
+const RNS_SCREENS_GAMMA_MARKER = '# [vxrn/one] enable react-native-screens gamma'
+
+function injectReactNativeScreensGammaIntoPodfile(podfile) {
+  if (podfile.includes("ENV['RNS_GAMMA_ENABLED']")) {
+    return podfile
+  }
+
+  return `${RNS_SCREENS_GAMMA_MARKER}\nENV['RNS_GAMMA_ENABLED'] ||= '1'\n${podfile}`
+}
+
 /**
  * replace android/app/build.gradle's react block with one's generated settings.
  */
@@ -495,4 +505,4 @@ function addReactNativeScreensFix(input) {
   return input
 }
 
-module.exports = { addSetCliPathToBundleReactNativeShellScript, addPodHermescToBundleReactNativeShellScript, addDepsPatchToBundleReactNativeShellScript, injectFmtCxx17FixIntoPodfile, injectHermesMinificationPatchIntoPodfile, replaceAppBuildGradleReactBlock, addDepsPatchToAppBuildGradle, addReactNativeScreensFix }
+module.exports = { addSetCliPathToBundleReactNativeShellScript, addPodHermescToBundleReactNativeShellScript, addDepsPatchToBundleReactNativeShellScript, injectFmtCxx17FixIntoPodfile, injectHermesMinificationPatchIntoPodfile, injectReactNativeScreensGammaIntoPodfile, replaceAppBuildGradleReactBlock, addDepsPatchToAppBuildGradle, addReactNativeScreensFix }

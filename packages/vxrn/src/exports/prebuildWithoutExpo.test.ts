@@ -21,7 +21,7 @@ const app = {
   name: 'MyApp',
   displayName: 'My App',
   scheme: ['myapp', 'myapp-dev'],
-  ios: { bundleId: 'dev.one.myapp', deploymentTarget: '17.0' },
+  ios: { bundleId: 'dev.one.myapp', deploymentTarget: '17.0', screensGamma: true },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 }
 
@@ -93,6 +93,7 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(podfile.content).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
     )
+    expect(podfile.content).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
 
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',

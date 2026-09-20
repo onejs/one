@@ -11,7 +11,18 @@ export default {
       },
 
       native: {
-        key: 'one-example',
+        app: {
+          name: 'OneSocialDemo',
+          displayName: 'One Social Demo',
+          ios: {
+            bundleId: 'dev.onestack.demo.social',
+            deploymentTarget: '26.0',
+            screensGamma: true,
+          },
+          android: {
+            applicationId: 'dev.onestack.demo.social',
+          },
+        },
       },
     }),
 
