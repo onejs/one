@@ -6,8 +6,10 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
+import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 
@@ -48,5 +50,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeComposeNodeManager(),
             OneNativeSafeAreaProviderManager(),
             OneNativeEdgeFadeManager(),
+            OneNativeBlurManager(),
+            OneNativeMaskManager(),
         )
 }

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native';
 export type CurvePreset = 'smooth' | 'smoother' | 'sharp' | 'gentle' | 'soft' | 'linear';
 export interface CubicBezierCurve {
@@ -68,6 +69,24 @@ export interface EdgeFadeProps extends ViewProps {
      * which is ignored with a dev warning.
      */
     radius?: number;
+    style?: StyleProp<ViewStyle>;
+}
+export type BlurTint = 'light' | 'dark' | 'default' | 'extraLight' | 'regular' | 'prominent' | 'systemUltraThinMaterial' | 'systemThinMaterial' | 'systemMaterial' | 'systemThickMaterial' | 'systemChromeMaterial' | 'systemUltraThinMaterialLight' | 'systemThinMaterialLight' | 'systemMaterialLight' | 'systemThickMaterialLight' | 'systemChromeMaterialLight' | 'systemUltraThinMaterialDark' | 'systemThinMaterialDark' | 'systemMaterialDark' | 'systemThickMaterialDark' | 'systemChromeMaterialDark';
+export interface BlurProps extends ViewProps {
+    /** blur strength, expo units 0-100. default 50. */
+    intensity?: number;
+    /** material tint. default 'default'. */
+    tint?: BlurTint;
+    style?: StyleProp<ViewStyle>;
+}
+export interface MaskProps extends ViewProps {
+    /**
+     * the mask subtree: opaque pixels show the content, transparent pixels
+     * hide it. rendered offscreen (never displayed) and must fill the whole
+     * view to mask it. anything but an element warns once and renders the
+     * children unmasked.
+     */
+    maskElement?: ReactNode;
     style?: StyleProp<ViewStyle>;
 }
 //# sourceMappingURL=types.d.ts.map

@@ -840,4 +840,47 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    // owned regular blur (UI.Blur, expo-blur compatible). blurs the backdrop
+    // behind the view; children mount sharp on top. tint is the expo tint
+    // name; intensity is 0-1 normalized in JS (expo units are 0-100).
+    name: 'OneNativeBlur',
+    publicName: 'Blur',
+    props: {
+      tint: 'string',
+      intensity: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned arbitrary mask (UI.Mask, masked-view compatible). the first
+    // child is the mask element (never displayed, only masks); the rest are
+    // content. no props: shape comes entirely from the subtrees.
+    name: 'OneNativeMask',
+    publicName: 'Mask',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
 ] as const
