@@ -75,6 +75,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // and all native-only globals — One runs as a pure web framework.
   const nativeDisabled = options.native === false
   const nativeOptions = options.native === false ? undefined : options.native
+  const nativeAppName = nativeOptions?.app?.name || nativeOptions?.key
 
   if (nativeDisabled) {
     // tamagui compiler reads this to decide whether to process the native env
@@ -869,7 +870,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
     ]
-    ;(globalThis as any).__vxrnNativeUserDefine = viteBundlerOptions?.define
+    ;(globalThis as any).__vxrnNativeUserDefine = {
+      ...viteBundlerOptions?.define,
+      ...(nativeAppName && {
+        'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+        'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+      }),
+    }
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
@@ -932,13 +939,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...((nativeOptions?.app?.name || nativeOptions?.key) && {
-              'process.env.ONE_APP_NAME': JSON.stringify(
-                nativeOptions.app?.name || nativeOptions.key
-              ),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(
-                nativeOptions.app?.name || nativeOptions.key
-              ),
+            ...(nativeAppName && {
+              'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
