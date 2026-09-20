@@ -15,10 +15,7 @@ export function Icon({ icons, colorRole, color }: IconProps) {
 
   return cloneElement(icons.android, {
     colorRole: color === undefined ? (colorRole ?? 'primary') : undefined,
-    composeStyle:
-      color === undefined
-        ? icons.android.props.composeStyle
-        : { ...icons.android.props.composeStyle, foregroundColor: color },
+    composeStyle: { ...icons.android.props.composeStyle, foregroundColor: color },
   })
 }
 

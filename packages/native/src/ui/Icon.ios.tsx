@@ -15,10 +15,7 @@ export function Icon({ icons, colorRole, color }: IconProps) {
 
   return cloneElement(icons.ios, {
     colorRole: color === undefined ? (colorRole ?? 'primary') : undefined,
-    swiftStyle:
-      color === undefined
-        ? icons.ios.props.swiftStyle
-        : { ...icons.ios.props.swiftStyle, foregroundStyle: color },
+    swiftStyle: { ...icons.ios.props.swiftStyle, foregroundStyle: color },
   })
 }
 

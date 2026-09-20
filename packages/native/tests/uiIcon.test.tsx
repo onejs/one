@@ -15,8 +15,12 @@ function TestIcon(_props: TestIconProps): ReactElement | null {
 }
 
 const elements = {
-  ios: createElement(TestIcon, { swiftStyle: { fontSize: 20 } }),
-  android: createElement(TestIcon, { composeStyle: { width: 20 } }),
+  ios: createElement(TestIcon, {
+    swiftStyle: { fontSize: 20, foregroundStyle: '#000000' },
+  }),
+  android: createElement(TestIcon, {
+    composeStyle: { width: 20, foregroundColor: '#000000' },
+  }),
   web: createElement(TestIcon),
 }
 
@@ -29,10 +33,16 @@ describe('One.UI.Icon', () => {
 
     expect(ios.type).toBe(TestIcon)
     expect(ios.props.colorRole).toBe('accent')
-    expect(ios.props.swiftStyle).toEqual({ fontSize: 20 })
+    expect(ios.props.swiftStyle).toEqual({
+      fontSize: 20,
+      foregroundStyle: undefined,
+    })
     expect(android.type).toBe(TestIcon)
     expect(android.props.colorRole).toBe('secondary')
-    expect(android.props.composeStyle).toEqual({ width: 20 })
+    expect(android.props.composeStyle).toEqual({
+      width: 20,
+      foregroundColor: undefined,
+    })
   })
 
   test('applies a literal color through each native style and leaves web unchanged', () => {
