@@ -9,7 +9,7 @@ export declare function HStack(props: StackProps): import("react/jsx-runtime").J
 export declare function VStack(props: StackProps): import("react/jsx-runtime").JSX.Element;
 export declare function ZStack({ alignment, children, style, ...props }: ZStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function Spacer({ minLength, style, ...props }: SpacerProps): import("react/jsx-runtime").JSX.Element;
-export declare function Form({ children, style, colorScheme, dynamicTypeSize, locale, tint, isEnabled, ...props }: FormProps): import("react/jsx-runtime").JSX.Element;
+export declare function Form({ children, style, sizing, colorScheme, dynamicTypeSize, locale, tint, isEnabled, ...props }: FormProps): import("react/jsx-runtime").JSX.Element;
 export declare function Section({ title, footer, children, style, ...props }: SectionProps): import("react/jsx-runtime").JSX.Element;
 export declare function List({ listStyle, children, style, ...props }: ListProps): import("react/jsx-runtime").JSX.Element;
 export declare function ScrollView({ axes, showsIndicators, children, style, ...props }: ScrollViewProps): import("react/jsx-runtime").JSX.Element;

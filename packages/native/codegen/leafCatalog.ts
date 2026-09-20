@@ -61,6 +61,8 @@ export const leafControls: Control[] = [
     actions: [{ prop: 'onPress', event: 'Press' }],
     fields: {
       ...commonFields,
+      // the second line of a two-line row, under the label in secondary style.
+      subtitle: { type: 'string', default: '' },
       systemImage: { type: 'string', default: '' },
       // react-native's ViewProps already owns `role` for the accessibility role.
       buttonRole: { type: 'string', default: '', enum: 'ButtonRole' },
@@ -87,15 +89,13 @@ export const leafControls: Control[] = [
       },
     ],
     swift: `Button(role: OneNativeGenerated.buttonRole(model.buttonRole), action: { model.press() }) {
-        if model.disclosureIndicator {
-          HStack {
-            model.oneNativeLabel
-            Spacer()
-            Image(systemName: "chevron.right").foregroundStyle(.secondary)
-          }
-          .frame(maxWidth: .infinity)
+        if model.subtitle.isEmpty {
+          model.oneNativePrimary
         } else {
-          model.oneNativeLabel
+          VStack(alignment: .leading, spacing: 2) {
+            model.oneNativePrimary
+            Text(model.subtitle).font(.subheadline).foregroundStyle(.secondary)
+          }
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)`,
@@ -109,6 +109,19 @@ export const leafControls: Control[] = [
     if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
     else if !systemImage.isEmpty { Image(systemName: systemImage) }
     else { Text(label) }
+  }
+  // the primary line is the same with or without a subtitle under it.
+  @ViewBuilder var oneNativePrimary: some View {
+    if disclosureIndicator {
+      HStack {
+        oneNativeLabel
+        Spacer()
+        Image(systemName: "chevron.right").foregroundStyle(.secondary)
+      }
+      .frame(maxWidth: .infinity)
+    } else {
+      oneNativeLabel
+    }
   }
 }`,
   },

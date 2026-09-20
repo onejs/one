@@ -134,6 +134,39 @@ describe('button', () => {
     ).toBe(true)
     expect(render(Button, { label: 'Save' }).props.disclosureIndicator).toBe(false)
   })
+
+  // the subtitle is the second line of a two-line settings row.
+  it('carries the subtitle to the native props, empty by default', () => {
+    expect(
+      render(Button, { label: 'Account', subtitle: 'Signed in' }).props.subtitle
+    ).toBe('Signed in')
+    expect(render(Button, { label: 'Save' }).props.subtitle).toBe('')
+  })
+})
+
+describe('form', () => {
+  it('fills its box by default', () => {
+    const element = render(Containers.Form, { children: null })
+    expect(element.props.sizing).toBe('fill')
+    expect(element.props.style[0]).toEqual({ flex: 1 })
+    expect(element.key).toBe('fill')
+  })
+
+  it('stretches without flexing in content mode and remounts across modes', () => {
+    const element = render(Containers.Form, { children: null, sizing: 'content' })
+    expect(element).toMatchObject({
+      key: 'content',
+      type: { __component: 'OneNativeForm' },
+      props: { sizing: 'content' },
+    })
+    expect(element.props.style[0]).toEqual({ alignSelf: 'stretch' })
+  })
+
+  it('rejects a sizing it cannot map', () => {
+    expect(() => render(Containers.Form, { children: null, sizing: 'tall' })).toThrow(
+      'Swift.Form sizing must be one of fill, content'
+    )
+  })
 })
 
 describe('one-native children', () => {

@@ -38,6 +38,24 @@ describe('container surface', () => {
 
 })
 
+// a form in a sheet wraps its content instead of filling the screen, so sizing is a
+// real native prop and the component measures through a hand-written shadow node.
+describe('form sizing', () => {
+  it('declares sizing and measures through a hand-written shadow node', () => {
+    const form = schema.components.find(
+      (entry: { publicName: string }) => entry.publicName === 'Form'
+    )
+    expect(form).toMatchObject({
+      name: 'OneNativeForm',
+      interfaceOnly: true,
+      layout: { kind: 'measured' },
+      props: {
+        sizing: { type: 'string' },
+      },
+    })
+  })
+})
+
 // a control field the emitted schema drops is a prop that does nothing at all, so the
 // catalog and the generated schema must agree field for field.
 describe('control fields', () => {

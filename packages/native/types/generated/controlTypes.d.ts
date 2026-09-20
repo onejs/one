@@ -122,6 +122,7 @@ export interface ButtonProps extends OneNativeViewProps {
     onPress?: () => void;
     label?: string;
     disabled?: boolean;
+    subtitle?: string;
     systemImage?: string;
     buttonRole?: Styles.ButtonRole | '';
     buttonStyle?: Styles.PrimitiveButtonStyle;

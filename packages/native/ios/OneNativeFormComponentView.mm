@@ -1,7 +1,7 @@
 #import "OneNativeFormComponentView.h"
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeFormShadowNode.h"
 #import <React/RCTConversions.h>
 
 using namespace facebook::react;
@@ -21,12 +21,17 @@ using namespace facebook::react;
     _formView = [OneNativeFormView new];
     self.container = _formView;
     self.contentView = _formView;
+    __weak OneNativeFormComponentView *weakSelf = self;
+    _formView.onMeasure = ^(CGFloat height) {
+      [weakSelf updateMeasuredHeight:height];
+    };
   }
   return self;
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeFormProps>(props);
+  [_formView configureWithSizing:RCTNSStringFromString(next.sizing)];
   [_formView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
                                  dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
                                           locale:RCTNSStringFromString(next.locale)

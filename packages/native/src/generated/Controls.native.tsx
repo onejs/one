@@ -345,6 +345,7 @@ export function Button({
   onPress,
   label = '',
   disabled = false,
+  subtitle = '',
   systemImage = '',
   buttonRole = '',
   buttonStyle = 'automatic',
@@ -374,6 +375,7 @@ export function Button({
       swiftStyle={swiftStyle}
       label={label}
       disabled={disabled}
+      subtitle={subtitle}
       systemImage={systemImage}
       buttonRole={buttonRole}
       buttonStyle={buttonStyle}

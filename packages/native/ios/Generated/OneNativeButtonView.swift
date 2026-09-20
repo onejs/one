@@ -6,6 +6,7 @@ import UIKit
 private final class ButtonModel: ObservableObject {
   @Published var label: String = ""
   @Published var disabled: Bool = false
+  @Published var subtitle: String = ""
   @Published var systemImage: String = ""
   @Published var buttonRole: String = ""
   @Published var buttonStyle: String = "automatic"
@@ -36,9 +37,10 @@ private final class ButtonModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ label: String, disabled: Bool, systemImage: String, buttonRole: String, buttonStyle: String, disclosureIndicator: Bool) {
+  public func configure(_ label: String, disabled: Bool, subtitle: String, systemImage: String, buttonRole: String, buttonStyle: String, disclosureIndicator: Bool) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
+    if model.subtitle != subtitle { model.subtitle = subtitle }
     if model.systemImage != systemImage { model.systemImage = systemImage }
     if model.buttonRole != buttonRole { model.buttonRole = buttonRole }
     if model.buttonStyle != buttonStyle { model.buttonStyle = buttonStyle }
@@ -84,15 +86,13 @@ private struct ButtonContent: View {
   @ObservedObject var model: ButtonModel
   var body: some View {
     Button(role: OneNativeGenerated.buttonRole(model.buttonRole), action: { model.press() }) {
-        if model.disclosureIndicator {
-          HStack {
-            model.oneNativeLabel
-            Spacer()
-            Image(systemName: "chevron.right").foregroundStyle(.secondary)
-          }
-          .frame(maxWidth: .infinity)
+        if model.subtitle.isEmpty {
+          model.oneNativePrimary
         } else {
-          model.oneNativeLabel
+          VStack(alignment: .leading, spacing: 2) {
+            model.oneNativePrimary
+            Text(model.subtitle).font(.subheadline).foregroundStyle(.secondary)
+          }
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)
@@ -109,5 +109,18 @@ private extension ButtonModel {
     if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
     else if !systemImage.isEmpty { Image(systemName: systemImage) }
     else { Text(label) }
+  }
+  // the primary line is the same with or without a subtitle under it.
+  @ViewBuilder var oneNativePrimary: some View {
+    if disclosureIndicator {
+      HStack {
+        oneNativeLabel
+        Spacer()
+        Image(systemName: "chevron.right").foregroundStyle(.secondary)
+      }
+      .frame(maxWidth: .infinity)
+    } else {
+      oneNativeLabel
+    }
   }
 }
