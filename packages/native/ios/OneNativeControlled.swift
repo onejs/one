@@ -25,4 +25,13 @@ struct OneNativeControlled<Value: Equatable>: Equatable {
     self.value = value
     return true
   }
+
+  // a write arriving through a bound sync state: the value converges without
+  // counting a native interaction, so no event echoes back to JavaScript.
+  @discardableResult
+  mutating func adopt(_ value: Value) -> Bool {
+    guard value != self.value else { return false }
+    self.value = value
+    return true
+  }
 }

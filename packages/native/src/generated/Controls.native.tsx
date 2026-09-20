@@ -4,6 +4,8 @@ import { Platform } from 'react-native'
 import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import type * as Types from './controlTypes'
+import { getSyncStateId, isSyncState } from '../syncStore'
+import { syncHandleOf, useSyncValue } from '../syncNativeState'
 import NativePicker from '../specs/OneNativePickerNativeComponent'
 export function Picker({
   selection,
@@ -818,7 +820,8 @@ export function TextField({
   style,
   ...props
 }: Types.TextFieldProps) {
-  if (typeof text !== 'string') throw new Error('TextField text must be a string')
+  if (typeof text !== 'string' && !isSyncState(text))
+    throw new Error('TextField text must be a string or NativeState handle')
   assertSwiftUIValue(
     'TextFieldStyle',
     textFieldStyle,
@@ -837,11 +840,16 @@ export function TextField({
       Number.parseFloat(String(Platform.Version))
     )
   assertSwiftUIValue('Axis', axis, Number.parseFloat(String(Platform.Version)))
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     value: string
     eventCount: number
     revision: number
-  }>((event) => onTextChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onTextChange(event.value)
+  }, revision)
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
@@ -852,9 +860,10 @@ export function TextField({
       {...props}
       style={style}
       swiftStyle={swiftStyle}
-      value={text}
+      value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       focused={focused ?? false}
       acknowledgedFocusEvent={
         focused !== undefined ? controlledFocus.acknowledgedEvent : 0
@@ -902,7 +911,8 @@ export function SecureField({
   style,
   ...props
 }: Types.SecureFieldProps) {
-  if (typeof text !== 'string') throw new Error('SecureField text must be a string')
+  if (typeof text !== 'string' && !isSyncState(text))
+    throw new Error('SecureField text must be a string or NativeState handle')
   assertSwiftUIValue(
     'TextFieldStyle',
     textFieldStyle,
@@ -920,11 +930,16 @@ export function SecureField({
       textInputAutocapitalization,
       Number.parseFloat(String(Platform.Version))
     )
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     value: string
     eventCount: number
     revision: number
-  }>((event) => onTextChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onTextChange(event.value)
+  }, revision)
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
@@ -935,9 +950,10 @@ export function SecureField({
       {...props}
       style={style}
       swiftStyle={swiftStyle}
-      value={text}
+      value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       focused={focused ?? false}
       acknowledgedFocusEvent={
         focused !== undefined ? controlledFocus.acknowledgedEvent : 0

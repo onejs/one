@@ -7,6 +7,9 @@ export default defineConfig({
     __DEV__: true,
     'process.env.ONE_PLATFORM': JSON.stringify('web'),
   },
+  test: {
+    setupFiles: [resolve(__dirname, 'tests/setupNativeState.ts')],
+  },
   resolve: {
     conditions: ['module', 'browser', 'development|production'],
     extensions: [

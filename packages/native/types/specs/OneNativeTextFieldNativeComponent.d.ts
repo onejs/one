@@ -32,6 +32,7 @@ interface NativeProps extends ViewProps {
     value: string;
     acknowledgedEvent: Int32;
     revision: Int32;
+    syncStateId: Int32;
     focused: boolean;
     acknowledgedFocusEvent: Int32;
     focusRevision: Int32;

@@ -14,6 +14,7 @@ import type {
   ComposeTextProps,
 } from './composeTypes'
 import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
+import { isSyncState } from './syncStore'
 
 export const horizontalAlignments = ['start', 'centerHorizontally', 'end'] as const
 export const verticalAlignments = ['top', 'centerVertically', 'bottom'] as const
@@ -79,6 +80,22 @@ export const textFieldKeyboardTypes = [
   'password',
   'phone',
   'url',
+] as const
+export const textFieldImeActions = [
+  'default',
+  'none',
+  'go',
+  'search',
+  'send',
+  'previous',
+  'next',
+  'done',
+] as const
+export const textFieldCapitalizations = [
+  'none',
+  'characters',
+  'words',
+  'sentences',
 ] as const
 export const progressVariants = ['linear', 'circular'] as const
 
@@ -278,7 +295,8 @@ export function validateSwitchProps(props: ComposeSwitchProps) {
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {
-  assertString(props.text, 'TextField text')
+  if (typeof props.text !== 'string' && !isSyncState(props.text))
+    throw new Error('Compose TextField text must be a string or NativeState handle')
   assertFunction(props.onTextChange, 'TextField onTextChange')
   assertOptionalString(props.label, 'TextField label')
   assertOptionalString(props.placeholder, 'TextField placeholder')
@@ -288,6 +306,23 @@ export function validateTextFieldProps(props: ComposeTextFieldProps) {
   if (props.keyboardType !== undefined)
     assertOneOf(props.keyboardType, 'TextField keyboardType', textFieldKeyboardTypes)
   assertOptionalBoolean(props.secureText, 'TextField secureText')
+  assertOptionalBoolean(props.focused, 'TextField focused')
+  if (props.onFocusChange !== undefined)
+    assertFunction(props.onFocusChange, 'TextField onFocusChange')
+  if (props.imeAction !== undefined)
+    assertOneOf(props.imeAction, 'TextField imeAction', textFieldImeActions)
+  if (props.onSubmit !== undefined) assertFunction(props.onSubmit, 'TextField onSubmit')
+  if (
+    props.maxLength !== undefined &&
+    (!Number.isInteger(props.maxLength) || props.maxLength < 0)
+  )
+    throw new Error('Compose TextField maxLength must be a nonnegative integer')
+  assertOptionalBoolean(props.multiline, 'TextField multiline')
+  if (props.capitalization !== undefined)
+    assertOneOf(props.capitalization, 'TextField capitalization', textFieldCapitalizations)
+  assertOptionalBoolean(props.autoCorrect, 'TextField autoCorrect')
+  if (props.textAlign !== undefined)
+    assertOneOf(props.textAlign, 'TextField textAlign', textAlignments)
 }
 
 export function validateSliderProps(props: ComposeSliderProps) {

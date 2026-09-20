@@ -124,6 +124,13 @@ function remapLocs(node: Node, loc: unknown, start: number, end: number): void {
   }
 }
 
+// TurboModule specs live in src/specs for pod-install and gradle codegen but
+// carry no view: the babel plugin passes them through untouched, and so does
+// everything downstream of emitViewConfig.
+export function isViewSpecFile(name: string): boolean {
+  return !name.endsWith('NativeModule.ts')
+}
+
 export function emitViewConfig(source: string, filename: string): string {
   const file = parseSync(source, {
     filename,

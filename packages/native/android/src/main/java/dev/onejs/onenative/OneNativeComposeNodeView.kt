@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -29,6 +30,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -38,20 +40,27 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
@@ -68,7 +77,10 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -172,9 +184,18 @@ internal data class OneNativeComposeNodeProps(
     val arrangement: String? = null,
     val spacing: Double = -1.0,
     val textValue: String? = null,
+    val syncStateId: Int = 0,
     val placeholder: String? = null,
     val keyboardType: String? = null,
     val secureText: Boolean = false,
+    val focused: Boolean = false,
+    val focusRevision: Int = 0,
+    val acknowledgedFocusEvent: Int = 0,
+    val imeAction: String? = null,
+    val maxLength: Int = 0,
+    val multiline: Boolean = false,
+    val capitalization: String? = null,
+    val autoCorrect: Boolean? = null,
     val numberValue: Double = 0.0,
     val minimumValue: Double = 0.0,
     val maximumValue: Double = 1.0,
@@ -216,6 +237,14 @@ private class OneNativeControlledValue<T>(initial: T) {
         return eventCount
     }
 
+    // a write arriving through a bound sync state: the value converges without
+    // counting a native interaction, so no event echoes back to JavaScript.
+    fun adopt(nextValue: T): Boolean {
+        if (nextValue == value) return false
+        value = nextValue
+        return true
+    }
+
     fun reset(to: T) {
         value = to
         eventCount = 0
@@ -238,13 +267,17 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private val logicalChildren = mutableStateListOf<OneNativeComposeNodeView>()
     private val controlledSwitch = OneNativeControlledValue(false)
     private val controlledText = OneNativeControlledValue("")
+    private val controlledFocus = OneNativeControlledValue(false)
     private val controlledNumber = OneNativeControlledValue(0.0)
+    private var boundSyncText: MutableState<Any>? = null
+    private var boundSyncId: Int = 0
     private var pendingProps = OneNativeComposeNodeProps()
     private var committedProps by mutableStateOf(OneNativeComposeNodeProps())
     private var semanticsVersion by mutableIntStateOf(0)
     private var compositionActive = false
     private var pressEventCount = 0
     private var dialogEventCount = 0
+    private var submitEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
 
     init {
@@ -272,7 +305,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         get() = controlledSwitch.value
 
     internal val renderedTextValue: String
-        get() = controlledText.value
+        get() = boundSyncText?.value as? String ?: controlledText.value
+
+    internal val renderedFocusValue: Boolean
+        get() = controlledFocus.value
 
     internal val renderedNumberValue: Double
         get() = controlledNumber.value
@@ -326,11 +362,25 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
         )
+        controlledFocus.applyProps(
+            suppliedValue = next.focused,
+            acknowledgedEvent = next.acknowledgedFocusEvent,
+            suppliedRevision = next.focusRevision,
+        )
         controlledNumber.applyProps(
             suppliedValue = next.numberValue.takeIf { it.isFinite() } ?: 0.0,
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
         )
+        bindSyncText(next.syncStateId)
+    }
+
+    private fun bindSyncText(id: Int) {
+        if (id == boundSyncId) return
+        boundSyncId = id
+        val bound = if (id == 0) null else OneNativeSyncRegistry.stateOf(id)
+        boundSyncText = bound
+        (bound?.value as? String)?.let { controlledText.adopt(it) }
     }
 
     internal fun invalidateComposeSemantics() {
@@ -417,6 +467,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(textValue = value)
     }
 
+    internal fun stageSyncStateId(value: Int) {
+        pendingProps = pendingProps.copy(syncStateId = value)
+    }
+
     internal fun stagePlaceholder(value: String?) {
         pendingProps = pendingProps.copy(placeholder = value)
     }
@@ -427,6 +481,38 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageSecureText(value: Boolean) {
         pendingProps = pendingProps.copy(secureText = value)
+    }
+
+    internal fun stageFocused(value: Boolean) {
+        pendingProps = pendingProps.copy(focused = value)
+    }
+
+    internal fun stageFocusRevision(value: Int) {
+        pendingProps = pendingProps.copy(focusRevision = value)
+    }
+
+    internal fun stageAcknowledgedFocusEvent(value: Int) {
+        pendingProps = pendingProps.copy(acknowledgedFocusEvent = value)
+    }
+
+    internal fun stageImeAction(value: String?) {
+        pendingProps = pendingProps.copy(imeAction = value)
+    }
+
+    internal fun stageMaxLength(value: Int) {
+        pendingProps = pendingProps.copy(maxLength = value)
+    }
+
+    internal fun stageMultiline(value: Boolean) {
+        pendingProps = pendingProps.copy(multiline = value)
+    }
+
+    internal fun stageCapitalization(value: String?) {
+        pendingProps = pendingProps.copy(capitalization = value)
+    }
+
+    internal fun stageAutoCorrect(value: Boolean?) {
+        pendingProps = pendingProps.copy(autoCorrect = value)
     }
 
     internal fun stageNumberValue(value: Double) {
@@ -506,6 +592,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     internal fun handleTextChanged(nextValue: String) {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
         val eventCount = controlledText.change(nextValue) ?: return
+        if (boundSyncId != 0) {
+            OneNativeSyncRegistry.set(boundSyncId, nextValue)
+            OneNativeSyncJni.nativeDidSetExternally(boundSyncId)
+        }
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
             OneNativeComposeNodeTextValueChangeEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
@@ -513,6 +603,32 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
                 text = nextValue,
                 eventCount = eventCount,
                 revision = controlledText.revision,
+            )
+        )
+    }
+
+    internal fun handleFocusChanged(nextValue: Boolean) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledFocus.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextFieldFocusChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledFocus.revision,
+            )
+        )
+    }
+
+    internal fun handleSubmit() {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        submitEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextFieldSubmitEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = submitEventCount,
             )
         )
     }
@@ -628,9 +744,11 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         committedProps = OneNativeComposeNodeProps()
         controlledSwitch.reset(false)
         controlledText.reset("")
+        controlledFocus.reset(false)
         controlledNumber.reset(0.0)
         pressEventCount = 0
         dialogEventCount = 0
+        submitEventCount = 0
         semanticsVersion = 0
     }
 
@@ -865,36 +983,79 @@ private fun RenderComposeTextField(
         if (label == null) null else ({ Text(label) })
     val placeholderContent: (@Composable () -> Unit)? =
         if (placeholder == null) null else ({ Text(placeholder) })
-    val keyboardOptions = KeyboardOptions(keyboardType = composeKeyboardType(props.keyboardType))
+    val keyboardOptions =
+        KeyboardOptions(
+            keyboardType = composeKeyboardType(props.keyboardType),
+            imeAction = composeImeAction(props.imeAction),
+            capitalization = composeCapitalization(props.capitalization),
+            autoCorrectEnabled = props.autoCorrect ?: true,
+        )
+    val keyboardActions =
+        KeyboardActions(
+            onDone = { node.handleSubmit() },
+            onGo = { node.handleSubmit() },
+            onSearch = { node.handleSubmit() },
+            onSend = { node.handleSubmit() },
+        )
     val visualTransformation =
         if (props.secureText || props.keyboardType.equals("password", ignoreCase = true)) {
             PasswordVisualTransformation()
         } else {
             VisualTransformation.None
         }
+    val textStyle =
+        LocalTextStyle.current.merge(
+            TextStyle(textAlign = composeTextAlign(props.textAlign) ?: TextAlign.Unspecified),
+        )
+    val focusRequester = remember { FocusRequester() }
+    val focusManager = LocalFocusManager.current
+    var fieldHasFocus by remember { mutableStateOf(false) }
+    val wantFocus = node.renderedFocusValue
+    LaunchedEffect(wantFocus) {
+        if (wantFocus) {
+            focusRequester.requestFocus()
+        } else if (fieldHasFocus) {
+            focusManager.clearFocus()
+        }
+    }
+    val fieldModifier =
+        modifier
+            .focusRequester(focusRequester)
+            .onFocusChanged { focusState ->
+                fieldHasFocus = focusState.isFocused
+                node.handleFocusChanged(focusState.isFocused)
+            }
+    val onValueChange: (String) -> Unit = { next ->
+        val limit = props.maxLength
+        node.handleTextChanged(if (limit > 0 && next.length > limit) next.take(limit) else next)
+    }
     if (props.variant.equals("outlined", ignoreCase = true)) {
         OutlinedTextField(
             value = node.renderedTextValue,
-            onValueChange = node::handleTextChanged,
-            modifier = modifier,
+            onValueChange = onValueChange,
+            modifier = fieldModifier,
             enabled = enabled,
             label = labelContent,
             placeholder = placeholderContent,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
-            singleLine = true,
+            keyboardActions = keyboardActions,
+            singleLine = !props.multiline,
+            textStyle = textStyle,
         )
     } else {
         TextField(
             value = node.renderedTextValue,
-            onValueChange = node::handleTextChanged,
-            modifier = modifier,
+            onValueChange = onValueChange,
+            modifier = fieldModifier,
             enabled = enabled,
             label = labelContent,
             placeholder = placeholderContent,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
-            singleLine = true,
+            keyboardActions = keyboardActions,
+            singleLine = !props.multiline,
+            textStyle = textStyle,
         )
     }
 }
@@ -1012,6 +1173,27 @@ private fun composeKeyboardType(value: String?): KeyboardType =
         "phone" -> KeyboardType.Phone
         "url" -> KeyboardType.Uri
         else -> KeyboardType.Text
+    }
+
+private fun composeImeAction(value: String?): ImeAction =
+    when (value?.trim()?.lowercase()) {
+        "none" -> ImeAction.None
+        "go" -> ImeAction.Go
+        "search" -> ImeAction.Search
+        "send" -> ImeAction.Send
+        "previous" -> ImeAction.Previous
+        "next" -> ImeAction.Next
+        "done" -> ImeAction.Done
+        else -> ImeAction.Default
+    }
+
+private fun composeCapitalization(value: String?): KeyboardCapitalization =
+    when (value?.trim()?.lowercase()) {
+        "none" -> KeyboardCapitalization.None
+        "characters" -> KeyboardCapitalization.Characters
+        "words" -> KeyboardCapitalization.Words
+        "sentences" -> KeyboardCapitalization.Sentences
+        else -> KeyboardCapitalization.Unspecified
     }
 
 private fun Modifier.applyComposeStyle(style: OneNativeComposeStyle): Modifier {
