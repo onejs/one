@@ -64,7 +64,7 @@ export function serializeWorkletForUI(
 
   const transformed = transformSync('worklet.ts', fullFn)
   assertTransformed(transformed, name, 'serialized')
-  return transformed.code.trim()
+  return `(${transformed.code.trim().replace(/;$/, '')})`
 }
 
 /**
