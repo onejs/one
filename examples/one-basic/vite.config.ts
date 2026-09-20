@@ -20,11 +20,16 @@ export default defineConfig({
         server: { unified: true },
       },
 
-      ...(process.env.TEST_METRO && {
-        native: {
-          bundler: 'metro',
+      native: {
+        app: {
+          name: 'OneBasic',
+          ios: { bundleId: 'com.natew.oneexample' },
+          android: { applicationId: 'com.natew.oneexample' },
         },
-      }),
+        ...(process.env.TEST_METRO && {
+          bundler: 'metro',
+        }),
+      },
     }),
   ],
 })

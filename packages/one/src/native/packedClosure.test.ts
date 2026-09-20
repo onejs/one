@@ -17,12 +17,14 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { auditUnpackedManifest, findForbiddenDependencies } from './closure'
+import { loadUserOneOptions } from '../vite/loadConfig'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const oneDir = resolve(here, '../..')
 const vxrnDir = resolve(here, '../../../vxrn')
 const vitePluginMetroDir = resolve(here, '../../../vite-plugin-metro')
 const workspaceRoot = resolve(here, '../../..')
+const basicStarterDir = resolve(workspaceRoot, '../examples/one-basic')
 
 const KNOWN_ONE_BLOCKERS: string[] = []
 const KNOWN_VXRN_BLOCKERS: string[] = []
@@ -277,6 +279,40 @@ for (const specifier of [
         { cwd: appDir, encoding: 'utf8', timeout: 180_000 }
       )
       expect(readFileSync(bundlePath).byteLength).toBeGreaterThan(1_000_000)
+    }
+  })
+
+  it('keeps the generated Basic starter on the zero-Expo One contract', async () => {
+    const packageJson = JSON.parse(
+      readFileSync(join(basicStarterDir, 'package.json'), 'utf8')
+    )
+    expect(auditUnpackedManifest(packageJson)).toEqual([])
+    expect(packageJson.dependencies).not.toHaveProperty('react-native-safe-area-context')
+    expect(packageJson.devDependencies).toHaveProperty('@react-native-community/template')
+    expect(existsSync(join(basicStarterDir, 'app.json'))).toBe(false)
+
+    const previousCwd = process.cwd()
+    const previousTestMetro = process.env.TEST_METRO
+    try {
+      process.chdir(basicStarterDir)
+      delete process.env.TEST_METRO
+      const rolldown = await loadUserOneOptions('build', true)
+      expect(rolldown.oneOptions.native).toMatchObject({
+        app: {
+          name: 'OneBasic',
+          ios: { bundleId: 'com.natew.oneexample' },
+          android: { applicationId: 'com.natew.oneexample' },
+        },
+      })
+      expect(rolldown.oneOptions.native).not.toHaveProperty('bundler')
+
+      process.env.TEST_METRO = '1'
+      const metro = await loadUserOneOptions('build', true)
+      expect(metro.oneOptions.native).toMatchObject({ bundler: 'metro' })
+    } finally {
+      process.chdir(previousCwd)
+      if (previousTestMetro === undefined) delete process.env.TEST_METRO
+      else process.env.TEST_METRO = previousTestMetro
     }
   })
 }, 180000)
