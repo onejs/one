@@ -73,7 +73,6 @@ export { Compose }
 export { useNativeState, type NativeState } from './nativeState'
 export type * from './types'
 export type * from './composeTypes'
-// One.UI components live here physically: UI.EdgeFade today, UI.Blur and
-// UI.Mask follow in this track. the One package re-exports this namespace
-// as One.UI.
+// One.UI components live here physically: UI.EdgeFade, UI.Blur, UI.Mask.
+// the One package re-exports this namespace as One.UI.
 export * as UI from './effects'

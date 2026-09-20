@@ -128,6 +128,8 @@
         "OneNativePager": "OneNativePagerComponentView",
         "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
         "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
+        "OneNativeBlur": "OneNativeBlurComponentView",
+        "OneNativeMask": "OneNativeMaskComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",

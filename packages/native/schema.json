@@ -660,6 +660,51 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeBlur",
+      "publicName": "Blur",
+      "props": {
+        "tint": {
+          "type": "string"
+        },
+        "intensity": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeMask",
+      "publicName": "Mask",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
