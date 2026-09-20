@@ -408,7 +408,10 @@ react {
     // the application has its own node_modules directory.
     reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
     codegenDir = file(resolveNodePackage("@react-native/codegen/package.json")).parentFile
-    cliFile = file(resolveNodePackage("react-native/cli.js"))
+    // [vxrn/one] react-native/cli.js is not in the 0.87 exports map, so it
+    // cannot be require.resolved; resolve the package dir (exported) and
+    // append the file, which the gradle plugin default expects on disk.
+    cliFile = new File(file(resolveNodePackage("react-native/package.json")).parentFile, "cli.js")
 
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to
@@ -954,6 +957,7 @@ module.exports.injectFmtCxx17FixIntoPodfile = injectFmtCxx17FixIntoPodfile
 module.exports.FMT_CXX17_MARKER = FMT_CXX17_MARKER
 module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
   injectExpoUpdatesIosResourcesPatchIntoPodfile
+module.exports.removeExpoDefaultsFromAppBuildGradle = removeExpoDefaultsFromAppBuildGradle
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
 module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
 module.exports.SET_CLI_PATH_MARKER = SET_CLI_PATH_MARKER

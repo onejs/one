@@ -38,6 +38,11 @@ const testScreens = [
     testID: 'nav-one-native-containers',
   },
   {
+    href: '/one-native-effects',
+    label: 'One Native Effects',
+    testID: 'nav-one-native-effects',
+  },
+  {
     href: '/one-native-popover',
     label: 'One Native Popover',
     testID: 'nav-one-native-popover',

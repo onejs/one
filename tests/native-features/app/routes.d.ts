@@ -18,6 +18,7 @@ declare module 'one' {
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-dialogs`
+        | `/one-native-effects`
         | `/one-native-groups`
         | `/one-native-host`
         | `/one-native-leaves`

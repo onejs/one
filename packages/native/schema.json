@@ -601,6 +601,110 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeEdgeFade",
+      "publicName": "EdgeFade",
+      "props": {
+        "fadeTop": {
+          "type": "Double"
+        },
+        "fadeBottom": {
+          "type": "Double"
+        },
+        "fadeLeft": {
+          "type": "Double"
+        },
+        "fadeRight": {
+          "type": "Double"
+        },
+        "curveTop": {
+          "type": "string"
+        },
+        "curveBottom": {
+          "type": "string"
+        },
+        "curveLeft": {
+          "type": "string"
+        },
+        "curveRight": {
+          "type": "string"
+        },
+        "fadeRadius": {
+          "type": "Double"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "blurRadius": {
+          "type": "Double"
+        },
+        "frostProgression": {
+          "type": "Double"
+        },
+        "overlayColor": {
+          "type": "Int32"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeBlur",
+      "publicName": "Blur",
+      "props": {
+        "tint": {
+          "type": "string"
+        },
+        "intensity": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeMask",
+      "publicName": "Mask",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
