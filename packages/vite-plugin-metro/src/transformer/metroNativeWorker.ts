@@ -515,16 +515,17 @@ export function applyModuleResolverAliases(
 }
 
 /**
- * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
- * one's `babel-plugin-inline-one-server-url`. In production every
- * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
- * one is routed through the `expo/virtual/env` module so edits to .env take
- * effect without a full rebuild. Without this the reads survive into the bundle
- * and every EXPO_PUBLIC_ value is undefined at runtime.
+ * Native port of one's `babel-plugin-inline-one-server-url` for public env.
+ * Every `process.env.ONE_PUBLIC_*` read is inlined as a literal in both modes,
+ * matching the rolldown native defines: a native runtime has no `process.env`
+ * to read it back out of, and without this the reads survive into the bundle
+ * and every ONE_PUBLIC_ value is undefined at runtime.
  *
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
- * it is how a native bundle knows where to fetch loader data from, and a native
- * runtime has no `process.env` to read it back out of.
+ * it is how a native bundle knows where to fetch loader data from.
+ *
+ * `process.env.EXPO_PUBLIC_*` reads fail with a migration error instead of
+ * being copied, ignored, or aliased.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
@@ -544,7 +545,6 @@ export function applyInlineEnvVars(
   if (!parsed?.program) return code
 
   const ms = new MagicString(code)
-  let needsEnvImport = false
 
   // edits are collected rather than written straight through, because a folded
   // dead branch swallows the range an inner edit sits in and MagicString throws
@@ -598,12 +598,13 @@ export function applyInlineEnvVars(
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
-        if (isProduction) {
-          replace(node, process.env[key] ?? undefined)
-        } else {
-          edits.push({ start: node.start, end: node.end, text: `_$$_EXPO_ENV.${key}` })
-          needsEnvImport = true
-        }
+        throw new Error(
+          `[vxrn/metro] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
+        )
+      }
+
+      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('ONE_PUBLIC_')) {
+        replace(node, env[key] ?? process.env[key] ?? undefined)
         return
       }
 
@@ -627,7 +628,7 @@ export function applyInlineEnvVars(
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
-      // two branches above so ONE_SERVER_URL and EXPO_PUBLIC_ keep their own
+      // branches above so ONE_SERVER_URL and ONE_PUBLIC_* keep their own
       // handling.
       if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
         replace(node, env[key])
@@ -726,9 +727,6 @@ export function applyInlineEnvVars(
     ms.overwrite(edit.start, edit.end, edit.text)
   }
 
-  if (needsEnvImport) {
-    ms.prepend(`import { env as _$$_EXPO_ENV } from "expo/virtual/env";\n`)
-  }
   return ms.hasChanged() ? ms.toString() : code
 }
 
@@ -2177,9 +2175,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     }
   }
 
-  // Step A2: expo public env vars, one's server url, and `import.meta.env`.
-  // after flow stripping so the parse succeeds, before extraction so both the
-  // injected `expo/virtual/env` import and any folded-away dead branch are seen.
+  // Step A2: one public env vars, one's server url, and `import.meta.env`.
+  // after flow stripping so the parse succeeds, before extraction so any
+  // folded-away dead branch is seen.
   // the substring guards keep the extra parse off files with no such read at all.
   if (code.includes('process.env') || code.includes('import.meta')) {
     code = applyInlineEnvVars(code, filename, !options.dev, getImportMetaEnv(options))

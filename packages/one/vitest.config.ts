@@ -6,7 +6,7 @@ export default defineConfig({
   assetsInclude: ['**/*.png'],
   define: {
     __DEV__: true,
-    'process.env.EXPO_OS': JSON.stringify('web'),
+    'process.env.ONE_PLATFORM': JSON.stringify('web'),
   },
   test: {
     include: ['./src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],

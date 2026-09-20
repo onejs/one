@@ -1516,3 +1516,43 @@ describe('metro babel fallback config names', () => {
     }
   })
 })
+
+describe('one public env contract in the metro worker', () => {
+  it('inlines ONE_PUBLIC_ reads in dev and prod with no virtual module', () => {
+    for (const isProduction of [false, true]) {
+      const out = applyInlineEnvVars(
+        'export const api = process.env.ONE_PUBLIC_API;',
+        'env.ts',
+        isProduction,
+        { ONE_PUBLIC_API: 'https://api.test' }
+      )
+      expect(out).toBe('export const api = "https://api.test";')
+      expect(out).not.toContain('expo/virtual/env')
+      expect(out).not.toContain('_$$_EXPO_ENV')
+    }
+  })
+
+  it('rejects EXPO_PUBLIC_ reads instead of copying or ignoring them', () => {
+    for (const isProduction of [false, true]) {
+      expect(() =>
+        applyInlineEnvVars(
+          'export const api = process.env.EXPO_PUBLIC_API;',
+          'env.ts',
+          isProduction,
+          {}
+        )
+      ).toThrow(/rename it to ONE_PUBLIC_\*/)
+    }
+  })
+
+  it('carries ONE_PLATFORM through the whole import.meta.env object', () => {
+    const out = applyInlineEnvVars(
+      'export const all = { ...import.meta.env };',
+      'env.ts',
+      true,
+      { ONE_PLATFORM: 'android' }
+    )
+    expect(out).toContain('"ONE_PLATFORM":"android"')
+    expect(out).not.toContain('EXPO_OS')
+  })
+})
