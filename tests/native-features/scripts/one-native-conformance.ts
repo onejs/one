@@ -29,6 +29,7 @@ const suites = [
   'sheets',
   'leaves',
   'dialogs',
+  'dialogs-lifecycle',
   'host',
   'containers',
   'lists',
@@ -194,6 +195,10 @@ const dialogsLoaded = (nodes: Node[]) =>
     ['Cancel alert', 'Confirm alert', 'Cancel confirmation', 'Confirm confirmation'].some(
       (label) => labels(nodes).includes(label)
     ))
+// the lifecycle probe drives a nested presenter whose buttons own the tree while it
+// is up, so the fixture counts as loaded from its side of the presentation too.
+const dialogsLifecycleLoaded = (nodes: Node[]) =>
+  dialogsLoaded(nodes) || labels(nodes).includes('Cancel nested')
 const hostLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-host-expand')) &&
@@ -249,6 +254,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   sheets: sheetsLoaded,
   leaves: leavesLoaded,
   dialogs: dialogsLoaded,
+  'dialogs-lifecycle': dialogsLifecycleLoaded,
   host: hostLoaded,
   containers: containersLoaded,
   lists: listsLoaded,
@@ -267,6 +273,7 @@ const suiteHome: Record<Suite, string> = {
   sheets: 'nav-one-native-sheet',
   leaves: 'nav-one-native-leaves',
   dialogs: 'nav-one-native-dialogs',
+  'dialogs-lifecycle': 'nav-one-native-dialogs',
   host: 'nav-one-native-host',
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
@@ -2806,6 +2813,105 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           status(n, 'Last', 'confirm')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'dialogs-lifecycle') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dialogButton = (nodes: Node[], label: string) =>
+      nodes.some((node) => node.AXLabel === label && node.type === 'Button')
+    const nestedPresented = (nodes: Node[]) =>
+      dialogButton(nodes, 'Cancel nested') && dialogButton(nodes, 'Confirm nested')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    // tapNav's scroll-to-fully-visible cannot settle on this row: synthetic flings
+    // overshoot it now that routes below keep them from bottoming out. fresh
+    // launches land it center-visible, so tap it by id with an on-screen guard.
+    const navNodes = await wait(
+      'home lists nav-one-native-dialogs',
+      (n) => Boolean(id(n, 'nav-one-native-dialogs')),
+      true
+    )
+    const navRow = id(navNodes, 'nav-one-native-dialogs')?.frame
+    const navApp = navNodes.find((n) => n.type === 'Application')?.frame
+    const navCenter = navRow ? navRow.y + navRow.height / 2 : -1
+    if (!navRow || !navApp || navCenter < 0 || navCenter > navApp.height)
+      throw new Error('nav-one-native-dialogs is not on screen for a direct tap')
+    tap({ id: 'nav-one-native-dialogs' })
+    // the fresh standalone state rides along: the lifecycle UI shares the fixture,
+    // so its mount proves the additions disturbed nothing.
+    await wait(
+      'nested lifecycle controls mounted',
+      (n) =>
+        status(n, 'Category', 'Alert') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Actions', 0) &&
+        status(n, 'Last', 'none') &&
+        status(n, 'Reject', 'off') &&
+        status(n, 'Revision', 0) &&
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 0) &&
+        status(n, 'Nested actions', 0) &&
+        status(n, 'Nested last', 'none') &&
+        Boolean(id(n, 'one-native-dialog-lifecycle-open'))
+    )
+    tap({ id: 'one-native-dialog-lifecycle-open' })
+    await wait('nested Alert presents under its attached root', nestedPresented)
+    screenshot('nested-attached.png')
+    // the fixture detaches itself: no tap can reach the toggle while the alert
+    // owns the screen. detaching must take the presentation down silently: React
+    // keeps presenting and the change count carries native events only, so any
+    // increment here is a phantom dismissal from the teardown. the Attach label
+    // proves the detach happened rather than the dialog closing itself.
+    await wait(
+      'detaching the root dismisses the nested Alert without events',
+      (n) =>
+        !dialogButton(n, 'Cancel nested') &&
+        labels(n).includes('Attach root') &&
+        status(n, 'Nested presented', 'true') &&
+        status(n, 'Nested changes', 0)
+    )
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait('reattach restores the presented nested Alert', nestedPresented)
+    screenshot('nested-reattached.png')
+    tap({ label: 'Cancel nested' })
+    await wait(
+      'cancel after reattach emits once',
+      (n) =>
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 1) &&
+        status(n, 'Nested actions', 1) &&
+        status(n, 'Nested last', 'cancel')
+    )
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait(
+      'root detaches while nothing presents',
+      (n) =>
+        labels(n).includes('Attach root') && status(n, 'Nested presented', 'false')
+    )
+    tap({ id: 'one-native-dialog-lifecycle-open' })
+    // a presenter mounted before root attachment stays silent: no dialog may appear
+    // while detached, and the pending presentation must not emit either.
+    await new Promise((resolve) => setTimeout(resolve, 2500))
+    const silent = snapshot(config.simulatorId)
+    if (dialogButton(silent, 'Cancel nested'))
+      throw new Error('a nested presenter presented while its root was detached')
+    if (!status(silent, 'Nested presented', 'true') || !status(silent, 'Nested changes', 1))
+      throw new Error('a detached root must hold React state without native events')
+    tap({ id: 'one-native-dialog-lifecycle-toggle' })
+    await wait('pending presentation appears on attach', nestedPresented)
+    tap({ label: 'Cancel nested' })
+    await wait(
+      'cancel after attach emits once',
+      (n) =>
+        status(n, 'Nested presented', 'false') &&
+        status(n, 'Nested changes', 2) &&
+        status(n, 'Nested actions', 2) &&
+        status(n, 'Nested last', 'cancel')
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
