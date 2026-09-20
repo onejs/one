@@ -85,6 +85,10 @@ class OneNativeComposeNodeManager :
             mapOf("registrationName" to "onNativeComposeNodeSwitchValueChange")
         events["topNativeComposeNodeTextValueChange"] =
             mapOf("registrationName" to "onNativeComposeNodeTextValueChange")
+        events["topNativeComposeNodeTextFieldFocusChange"] =
+            mapOf("registrationName" to "onNativeComposeNodeTextFieldFocusChange")
+        events["topNativeComposeNodeTextFieldSubmit"] =
+            mapOf("registrationName" to "onNativeComposeNodeTextFieldSubmit")
         events["topNativeComposeNodeNumberValueChange"] =
             mapOf("registrationName" to "onNativeComposeNodeNumberValueChange")
         events["topNativeComposeNodeDialogConfirm"] =
@@ -162,6 +166,10 @@ class OneNativeComposeNodeManager :
         view.stageTextValue(value)
     }
 
+    override fun setSyncStateId(view: OneNativeComposeNodeView, value: Int) {
+        view.stageSyncStateId(value)
+    }
+
     override fun setPlaceholder(view: OneNativeComposeNodeView, value: String?) {
         view.stagePlaceholder(value)
     }
@@ -172,6 +180,38 @@ class OneNativeComposeNodeManager :
 
     override fun setSecureText(view: OneNativeComposeNodeView, value: Boolean) {
         view.stageSecureText(value)
+    }
+
+    override fun setFocused(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageFocused(value)
+    }
+
+    override fun setFocusRevision(view: OneNativeComposeNodeView, value: Int) {
+        view.stageFocusRevision(value)
+    }
+
+    override fun setAcknowledgedFocusEvent(view: OneNativeComposeNodeView, value: Int) {
+        view.stageAcknowledgedFocusEvent(value)
+    }
+
+    override fun setImeAction(view: OneNativeComposeNodeView, value: String?) {
+        view.stageImeAction(value)
+    }
+
+    override fun setMaxLength(view: OneNativeComposeNodeView, value: Int) {
+        view.stageMaxLength(value)
+    }
+
+    override fun setMultiline(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageMultiline(value)
+    }
+
+    override fun setCapitalization(view: OneNativeComposeNodeView, value: String?) {
+        view.stageCapitalization(value)
+    }
+
+    override fun setAutoCorrect(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageAutoCorrect(value)
     }
 
     override fun setNumberValue(view: OneNativeComposeNodeView, value: Double) {

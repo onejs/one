@@ -1512,6 +1512,9 @@
         "revision": {
           "type": "Int32"
         },
+        "syncStateId": {
+          "type": "Int32"
+        },
         "focused": {
           "type": "boolean"
         },
@@ -1587,7 +1590,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeTextFieldValueChange"
+        "event": "onNativeTextFieldValueChange",
+        "sync": true
       },
       "actions": [
         {
@@ -1612,6 +1616,9 @@
           "type": "Int32"
         },
         "revision": {
+          "type": "Int32"
+        },
+        "syncStateId": {
           "type": "Int32"
         },
         "focused": {
@@ -1685,7 +1692,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeSecureFieldValueChange"
+        "event": "onNativeSecureFieldValueChange",
+        "sync": true
       },
       "actions": [
         {

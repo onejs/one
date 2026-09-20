@@ -67,6 +67,8 @@ export declare const Swift: {
 };
 export { Compose };
 export { useNativeState, type NativeState } from './nativeState';
+export { TextInput } from './universal/TextInput/index';
+export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
 export * as UI from './effects';

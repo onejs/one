@@ -7,6 +7,9 @@ export default defineConfig({
     __DEV__: true,
     'process.env.EXPO_OS': JSON.stringify('web'),
   },
+  test: {
+    setupFiles: [resolve(__dirname, 'tests/setupNativeState.ts')],
+  },
   resolve: {
     conditions: ['module', 'browser', 'development|production'],
     extensions: [

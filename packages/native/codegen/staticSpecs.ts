@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { transformSync } from 'esbuild'
-import { emitViewConfig } from './emitViewConfig'
+import { emitViewConfig, isViewSpecFile } from './emitViewConfig'
 
 // Post-build rewrite: every dist mirror of a src spec becomes a static view
 // config, so no bundler needs @react-native/babel-plugin-codegen (or any
@@ -41,6 +41,7 @@ export function rewriteDistSpecs(
   const root = dirname(distDir)
   const specs = readdirSync(specsDir)
     .filter((name) => name.endsWith('.ts'))
+    .filter(isViewSpecFile)
     .sort()
   let mirrors = 0
   for (const name of specs) {

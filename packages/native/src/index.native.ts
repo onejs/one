@@ -71,6 +71,12 @@ export const Swift =
     : UnsupportedSwift
 export { Compose }
 export { useNativeState, type NativeState } from './nativeState'
+export { TextInput } from './universal/TextInput/index'
+export type {
+  TextInputProps,
+  TextInputRef,
+  TextInputSelection,
+} from './universal/TextInput/textInputTypes'
 export type * from './types'
 export type * from './composeTypes'
 // One.UI components live here physically: UI.EdgeFade, UI.Blur, UI.Mask.

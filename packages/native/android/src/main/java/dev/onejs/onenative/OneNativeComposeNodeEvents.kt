@@ -19,6 +19,40 @@ internal class OneNativeComposeNodeButtonPressEvent(
         }
 }
 
+internal class OneNativeComposeNodeTextFieldFocusChangeEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val value: Boolean,
+    private val eventCount: Int,
+    private val revision: Int,
+) : Event<OneNativeComposeNodeTextFieldFocusChangeEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeTextFieldFocusChange"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putBoolean("value", value)
+            putInt("eventCount", eventCount)
+            putInt("revision", revision)
+        }
+}
+
+internal class OneNativeComposeNodeTextFieldSubmitEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeTextFieldSubmitEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeTextFieldSubmit"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putInt("eventCount", eventCount)
+        }
+}
+
 internal class OneNativeComposeNodeTextValueChangeEvent(
     surfaceId: Int,
     viewTag: Int,
