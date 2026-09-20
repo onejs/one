@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import pMap from 'p-map'
 
 type NpmAuthenticationOptions = {
@@ -48,9 +49,41 @@ export type PublishPackage = {
   cwd: string
 }
 
+type RegistryFetcher = (url: string, init?: RequestInit) => Promise<Response>
+
+const registryVerificationRun = randomUUID()
+
+export async function isExactVersionPublishedOnNpm({
+  name,
+  version,
+  attempt,
+  fetcher = fetch,
+}: {
+  name: string
+  version: string
+  attempt: number
+  fetcher?: RegistryFetcher
+}) {
+  const url = new URL(
+    `https://registry.npmjs.org/${encodeURIComponent(name)}/${encodeURIComponent(version)}`
+  )
+  url.searchParams.set('cache-bust', `${registryVerificationRun}-${attempt}`)
+
+  const response = await fetcher(url.toString(), {
+    headers: { 'Cache-Control': 'no-cache' },
+  })
+  if (!response.ok) {
+    return false
+  }
+
+  const metadata = (await response.json()) as { version?: unknown }
+  return metadata.version === version
+}
+
 type PublishPackagesOptions<T extends PublishPackage> = {
   packages: T[]
   isPublished: (pkg: T) => Promise<boolean>
+  verifyPublished?: (pkg: T, attempt: number) => Promise<boolean>
   publish: (packages: T[]) => Promise<void>
   verifyTimeoutMs?: number
   verifyIntervalMs?: number
@@ -66,11 +99,13 @@ type PublishPackagesOptions<T extends PublishPackage> = {
 const VERIFY_TIMEOUT_MS = 15 * 60_000
 const VERIFY_INTERVAL_MS = 15_000
 
-const defaultWait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
+const defaultWait = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
   packages,
   isPublished,
+  verifyPublished = isPublished,
   publish,
   verifyTimeoutMs = VERIFY_TIMEOUT_MS,
   verifyIntervalMs = VERIFY_INTERVAL_MS,
@@ -116,13 +151,15 @@ export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
 
   console.info(`Verifying ${pending.length} package versions on npm...`)
 
+  let verifyAttempt = 0
   while (true) {
+    verifyAttempt++
     const checks = await pMap(
       [...missing.values()],
       async (pkg) => ({
         pkg,
         // a registry hiccup mid-poll is not a verdict, only the deadline is
-        published: await isPublished(pkg).catch(() => false),
+        published: await verifyPublished(pkg, verifyAttempt).catch(() => false),
       }),
       { concurrency: 8 }
     )
