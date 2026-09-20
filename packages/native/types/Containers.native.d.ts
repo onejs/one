@@ -1,7 +1,9 @@
+import { type ReactNode } from 'react';
 import { type LazyHStackProps, type LazyVStackProps, type ListProps, type ScrollViewProps } from './listTypes';
 import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type LinkProps, type OverlayContentProps, type OverlayProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
 import { type FormProps, type GlassProps, type HostProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type StackProps, type ZStackProps } from './generated/containerTypes';
 export declare const InsideContainer: import("react").Context<boolean>;
+export declare function assertOneNativeChildren(children: ReactNode, owner: string): void;
 export declare function Host({ axis, ...props }: HostProps): import("react/jsx-runtime").JSX.Element;
 export declare function HStack(props: StackProps): import("react/jsx-runtime").JSX.Element;
 export declare function VStack(props: StackProps): import("react/jsx-runtime").JSX.Element;
