@@ -5,6 +5,7 @@ import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
 import { Compose } from './compose';
+import * as UI from './effects';
 export * from './extras';
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
@@ -71,5 +72,5 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
-export * as UI from './effects';
+export { UI };
 //# sourceMappingURL=index.native.d.ts.map

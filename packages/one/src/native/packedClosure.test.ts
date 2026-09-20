@@ -21,6 +21,8 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const oneDir = resolve(here, '../..')
+const nativeDir = resolve(here, '../../../native')
+const safeAreaDir = resolve(here, '../../../safe-area')
 const vxrnDir = resolve(here, '../../../vxrn')
 const vitePluginMetroDir = resolve(here, '../../../vite-plugin-metro')
 const workspaceRoot = resolve(here, '../../..')
@@ -92,6 +94,27 @@ describe('packed-artifact closure oracle', () => {
       )
     )
     expect(auditUnpackedManifest(onePkg)).toEqual(KNOWN_ONE_BLOCKERS)
+    expect(onePkg.dependencies).not.toHaveProperty(
+      '@react-native-masked-view/masked-view'
+    )
+    expect(onePkg.peerDependencies).not.toHaveProperty('react-native-safe-area-context')
+    for (const { packageDir, name } of [
+      { packageDir: nativeDir, name: 'native' },
+      { packageDir: safeAreaDir, name: 'safe-area' },
+    ]) {
+      const manifest = JSON.parse(
+        readFileSync(
+          join(unpack(packToDir(packageDir, tmp), join(tmp, name)), 'package.json'),
+          'utf8'
+        )
+      )
+      expect(auditUnpackedManifest(manifest)).toEqual([])
+      if (name === 'native') {
+        expect(manifest.peerDependencies).not.toHaveProperty(
+          'react-native-safe-area-context'
+        )
+      }
+    }
     const vxrnPkg = JSON.parse(
       readFileSync(
         join(unpack(packToDir(vxrnDir, tmp), join(tmp, 'vxrn')), 'package.json'),
@@ -125,7 +148,6 @@ describe('packed-artifact closure oracle', () => {
     }
     const dts = readFileSync(join(extracted, 'types/native/index.d.ts'), 'utf8')
     for (const name of [
-      'OneNativePlatform',
       'NativeAppManifest',
       'ONE_PUBLIC_PREFIX',
       'createResolutionRecorder',
@@ -149,7 +171,6 @@ const url = await import.meta.resolve('one/native');
 if (url.includes(${JSON.stringify(workspaceRoot)})) throw new Error('resolved into the workspace: ' + url);
 const m = await import('one/native');
 m.validateNativeApp({ name: 'T', ios: { bundleId: 'a.b' }, android: { applicationId: 'a.b' } });
-if (m.selectOneNativePlatform('ios').name !== 'ios') throw new Error('adapter selection broken');
 if (m.pickOnePublicEnv({ ONE_PUBLIC_A: '1' }).ONE_PUBLIC_A !== '1') throw new Error('env contract broken');
 const r = m.createResolutionRecorder();
 r.record('one', 'app/index.ts');
@@ -169,6 +190,8 @@ console.log('one/native ok ' + url);
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
     const oneTarball = packToDir(oneDir, tarballs)
+    const nativeTarball = packToDir(nativeDir, tarballs)
+    const safeAreaTarball = packToDir(safeAreaDir, tarballs)
     const vxrnTarball = packToDir(vxrnDir, tarballs)
     const metroPluginTarball = packToDir(vitePluginMetroDir, tarballs)
     const appDir = join(tmp, 'app')
@@ -183,6 +206,8 @@ console.log('one/native ok ' + url);
           type: 'module',
           dependencies: {
             one: `file:${oneTarball}`,
+            '@vxrn/native': `file:${nativeTarball}`,
+            '@vxrn/safe-area': `file:${safeAreaTarball}`,
             vxrn: `file:${vxrnTarball}`,
             '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
             react: '19.2.3',
@@ -194,6 +219,8 @@ console.log('one/native ok ' + url);
           },
           overrides: {
             vxrn: `file:${vxrnTarball}`,
+            '@vxrn/native': `file:${nativeTarball}`,
+            '@vxrn/safe-area': `file:${safeAreaTarball}`,
             '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
           },
         },
@@ -224,7 +251,12 @@ module.exports = withOne(__dirname, { loadViteConfig: false })
       join(appDir, 'app/index.tsx'),
       `import React from 'react'
 import { Text } from 'react-native'
+import { One } from 'one'
 export default function App() {
+  void One.iOS.Button
+  void One.Android.Button
+  void One.UI.Blur
+  void One.UI.SafeArea.View
   return <Text>packed metro ok</Text>
 }
 `
@@ -242,6 +274,8 @@ export default function App() {
     const resolutionScript = `
 for (const specifier of [
   'one/package.json',
+  '@vxrn/native/package.json',
+  '@vxrn/safe-area/package.json',
   'vxrn/package.json',
   '@vxrn/vite-plugin-metro/package.json',
   '@react-native/metro-config/package.json',

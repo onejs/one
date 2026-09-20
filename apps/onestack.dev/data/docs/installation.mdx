@@ -39,20 +39,25 @@ Let's begin with our package.json:
   "scripts": {
     "dev": "one dev",
     "build": "one build",
-    "serve": "one serve"
+    "serve": "one serve",
+    "prebuild:native": "one prebuild",
+    "ios": "one run:ios",
+    "android": "one run:android"
   },
   "dependencies": {
     "one": "latest",
-    "expo": "~57.0.11",
     "react": "19.2.3",
-    "react-native": "0.86.2",
+    "react-native": "0.87.1",
     "react-native-web": "^0.21.2",
-    "@react-navigation/native": "~7.3.16",
-    "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0"
+    "@react-navigation/native": "8.0.0-alpha.44",
+    "react-native-screens": "~4.27.0",
+    "react-native-reanimated": "~4.6.0",
+    "react-native-worklets": "~0.12.2"
   },
   "devDependencies": {
-    "vite": "^7"
+    "@react-native-community/cli": "^20.2.0",
+    "@react-native-community/template": "^0.87.1",
+    "vite": "^8"
   }
 }
 ```
@@ -94,7 +99,17 @@ import type { UserConfig } from 'vite'
 import { one } from 'one/vite'
 
 export default {
-  plugins: [one()],
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'OneApp',
+          ios: { bundleId: 'com.example.oneapp' },
+          android: { applicationId: 'com.example.oneapp' },
+        },
+      },
+    }),
+  ],
 } satisfies UserConfig
 ```
 
@@ -120,7 +135,7 @@ One will create a TSConfig for you when you first start the dev server, with som
     "types": ["node", "react", "vite/client"],
     "lib": ["dom", "esnext"]
   },
-  "exclude": ["node_modules", ".expo", "**/test", "**/dist", "**/types", "**/__tests__"]
+  "exclude": ["node_modules", "**/test", "**/dist", "**/types", "**/__tests__"]
 }
 ```
 
@@ -180,16 +195,36 @@ bun install && bun run dev
 
 If the port isn't taken, you should be able to load [http://localhost:8081](http://localhost:8081) and to see your website (use `--port` to change the port).
 
-On native, you can use an [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779) development app and load your app with [exp://0.0.0.0:8081](exp://0.0.0.0.:8081). Press the key combination <kbd>q</kbd>, <kbd>r</kbd> in your terminal which is running the dev server, and scan the QR code with your iPhone's camera if your computer and iPhone are connected to the same WiFi network.
+For native, generate the React Native projects once and launch the platform you want:
+
+```bash
+bun run prebuild:native
+bun run ios
+# or
+bun run android
+```
+
+One's default native path uses its Vite and Rolldown pipeline and does not require Expo or
+a Babel config.
 
 Note that for web-only projects you don't need `react-native`, and further note that if you want something that has a much broader styling featureset and much lighter bundle-size on web, you can use [Tamagui](https://tamagui.dev), which has no dependency on React Native.
 
 ### About Metro Mode
 
-In the configuration above, we've enabled Metro mode by setting `bundler: 'metro'`. This is the recommended setting for production React Native apps as it provides:
+Metro remains available for packages that require it. Set `bundler: 'metro'` in the native
+configuration and generate its explicit config:
+
+```bash
+bunx one metro-eject
+```
+
+The generated Metro project uses `@react-native/babel-preset` and `one/babel-preset`.
+Those Babel settings belong to the Metro path and are not part of One's default bundler.
+
+Metro provides:
 
 - **Stability**: Metro is the battle-tested bundler used by React Native
 - **Compatibility**: Works with all React Native packages without modification
-- **Production-ready**: Used by thousands of production apps
+- **Production compatibility**: A familiar path for packages designed around Metro
 
-While One's experimental Vite native bundler offers faster build times, Metro mode ensures maximum stability and compatibility. See the [Metro Mode documentation](/docs/metro-mode) for more details.
+Use Metro when a dependency requires it. See the [Metro Mode documentation](/docs/metro-mode) for more details.
