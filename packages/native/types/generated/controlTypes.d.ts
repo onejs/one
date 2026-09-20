@@ -1,6 +1,7 @@
 import type { ColorValue, ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
 import type { KeyboardType, TextContentType } from '../textTypes';
+import type { NativeState } from '../syncNativeState';
 export type GlassEffect = 'regular' | 'clear' | 'interactive';
 export type Material = 'ultraThin' | 'thin' | 'regular' | 'thick' | 'ultraThick';
 export interface OneNativeStyle {
@@ -202,7 +203,7 @@ export interface MapProps extends OneNativeViewProps {
     markers: readonly MapMarker[];
 }
 export interface TextFieldProps extends OneNativeViewProps {
-    text: string;
+    text: string | NativeState<string>;
     onTextChange: (value: string) => void;
     revision?: number;
     focused?: boolean;
@@ -221,7 +222,7 @@ export interface TextFieldProps extends OneNativeViewProps {
     axis?: Styles.Axis;
 }
 export interface SecureFieldProps extends OneNativeViewProps {
-    text: string;
+    text: string | NativeState<string>;
     onTextChange: (value: string) => void;
     revision?: number;
     focused?: boolean;

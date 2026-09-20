@@ -4,6 +4,8 @@ import type { ComposeIconName } from './generated/composeIcons'
 
 export type { ComposeIconName } from './generated/composeIcons'
 
+import type { NativeState } from './syncNativeState'
+
 export type ComposeStyle = Readonly<{
   backgroundColor?: ColorValue
   foregroundColor?: ColorValue
@@ -155,8 +157,24 @@ export type ComposeTextFieldKeyboardType =
   | 'phone'
   | 'url'
 
+export type ComposeTextFieldImeAction =
+  | 'default'
+  | 'none'
+  | 'go'
+  | 'search'
+  | 'send'
+  | 'previous'
+  | 'next'
+  | 'done'
+
+export type ComposeTextFieldCapitalization =
+  | 'none'
+  | 'characters'
+  | 'words'
+  | 'sentences'
+
 export interface ComposeTextFieldProps extends ComposeLeafProps {
-  text: string
+  text: string | NativeState<string>
   onTextChange: (value: string) => void
   revision?: number
   label?: string
@@ -165,6 +183,16 @@ export interface ComposeTextFieldProps extends ComposeLeafProps {
   variant?: ComposeTextFieldVariant
   keyboardType?: ComposeTextFieldKeyboardType
   secureText?: boolean
+  focused?: boolean
+  focusRevision?: number
+  onFocusChange?: (focused: boolean) => void
+  imeAction?: ComposeTextFieldImeAction
+  onSubmit?: () => void
+  maxLength?: number
+  multiline?: boolean
+  capitalization?: ComposeTextFieldCapitalization
+  autoCorrect?: boolean
+  textAlign?: ComposeTextAlign
 }
 
 export interface ComposeSliderProps extends ComposeLeafProps {

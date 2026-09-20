@@ -45,9 +45,18 @@ interface NativeProps extends ViewProps {
   arrangement?: string
   spacing?: WithDefault<Double, -1>
   textValue?: string
+  syncStateId?: Int32
   placeholder?: string
   keyboardType?: string
   secureText?: boolean
+  focused?: boolean
+  focusRevision?: Int32
+  acknowledgedFocusEvent?: Int32
+  imeAction?: string
+  maxLength?: Int32
+  multiline?: boolean
+  capitalization?: string
+  autoCorrect?: boolean
   numberValue?: WithDefault<Double, 0>
   minimumValue?: WithDefault<Double, 0>
   maximumValue?: WithDefault<Double, 1>
@@ -66,6 +75,12 @@ interface NativeProps extends ViewProps {
   >
   onNativeComposeNodeTextValueChange?: DirectEventHandler<
     Readonly<{ text: string; eventCount: Int32; revision: Int32 }>
+  >
+  onNativeComposeNodeTextFieldFocusChange?: DirectEventHandler<
+    Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
+  >
+  onNativeComposeNodeTextFieldSubmit?: DirectEventHandler<
+    Readonly<{ eventCount: Int32 }>
   >
   onNativeComposeNodeNumberValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>

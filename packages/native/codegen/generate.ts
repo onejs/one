@@ -138,6 +138,21 @@ emitSheet(header, outputs)
 emitContainers(header, outputs)
 emitPopover(header, outputs)
 emitStyle(header, outputs)
+// the sync-state TurboModule spec: pod-install and gradle codegen read it from
+// src/specs alongside the view specs. emitted here so --check guards the JSI
+// contract byte for byte. it carries no view config (see isViewSpecFile).
+outputs.set(
+  'src/specs/OneNativeSyncStateNativeModule.ts',
+  `${header}import type { TurboModule } from 'react-native'
+import { TurboModuleRegistry } from 'react-native'
+
+export interface Spec extends TurboModule {
+  install(): boolean
+}
+
+export default TurboModuleRegistry.getEnforcing<Spec>('OneNativeSyncState')
+`
+)
 for (const method of [
   ...sheetMethods,
   ...popoverMethods,

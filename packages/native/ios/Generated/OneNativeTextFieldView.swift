@@ -19,10 +19,28 @@ private final class TextFieldModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var syncStateId: Int = 0
+  private var syncToken: Int = 0
+  func bindSyncState(_ id: Int) {
+    if id == syncStateId { return }
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
+    syncStateId = id
+    syncToken = 0
+    if id == 0 { return }
+    if let current = OneNativeSyncRegistry.get(Int32(id)) as? String { controlled.adopt(current) }
+    syncToken = OneNativeSyncRegistry.observe(Int32(id)) { [weak self] value in
+      guard let self, let next = value as? String else { return }
+      self.controlled.adopt(next)
+    }
+  }
+  deinit {
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
+  }
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
     guard active, !disabled, controlled.value != value else { return }
     controlled.change(value)
+    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
   }
   var onFocusChange: ((Bool, Int, Int) -> Void)?
@@ -56,8 +74,9 @@ private final class TextFieldModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool, keyboardType: String, textContentType: String, axis: String) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, syncStateId: Int, focused: Bool, acknowledgedFocusEvent: Int, focusRevision: Int, label: String, disabled: Bool, prompt: String, textFieldStyle: String, submitLabel: String, textInputAutocapitalization: String, autocorrectionDisabled: Bool, keyboardType: String, textContentType: String, axis: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    model.bindSyncState(syncStateId)
     if let next = model.controlledFocus.applying(focused, acknowledged: acknowledgedFocusEvent, revision: focusRevision) { model.controlledFocus = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
