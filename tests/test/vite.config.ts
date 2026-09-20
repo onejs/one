@@ -31,6 +31,7 @@ export default {
       },
 
       native: {
+        key: 'RNTestContainer',
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },
 
