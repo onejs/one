@@ -272,6 +272,8 @@ export default function App() {
     expect(findForbiddenDependencies(installedNames)).toEqual([])
 
     const resolutionScript = `
+import { createRequire } from 'node:module'
+const require = createRequire(import.meta.url)
 for (const specifier of [
   'one/package.json',
   '@vxrn/native/package.json',
@@ -285,6 +287,14 @@ for (const specifier of [
   if (url.includes(${JSON.stringify(workspaceRoot)})) {
     throw new Error('resolved into the workspace: ' + url)
   }
+}
+const config = require('one/react-native-config')
+const nativeRoot = config.dependencies['@vxrn/native'].root
+if (nativeRoot.includes(${JSON.stringify(workspaceRoot)})) {
+  throw new Error('react-native config resolved into the workspace: ' + nativeRoot)
+}
+if (require(nativeRoot + '/package.json').name !== '@vxrn/native') {
+  throw new Error('react-native config did not resolve the packed native package')
 }
 `
     execFileSync(process.execPath, ['--input-type=module', '--eval', resolutionScript], {

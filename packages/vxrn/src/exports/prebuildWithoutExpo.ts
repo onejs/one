@@ -353,52 +353,42 @@ export interface NativeDependencyInventory {
   platforms: string[]
 }
 
-// installed packages' react native community configuration is the only
-// dependency discovery protocol: the same detector functions the community
-// cli runs, executed per installed dependency. sorted for deterministic
-// output. no config-plugin execution api exists.
+// use the community cli's final configuration so project-owned dependency
+// roots and platform overrides match what cocoapods and gradle will link.
 export async function getNativeDependencyInventory(
   root: string
 ): Promise<NativeDependencyInventory[]> {
   const require = module.createRequire(root + '/')
-  const applePath = require.resolve('@react-native-community/cli-config-apple', {
+  const cliConfigPath = require.resolve('@react-native-community/cli-config', {
     paths: [root],
   })
-  const androidPath = require.resolve('@react-native-community/cli-config-android', {
-    paths: [root],
-  })
-  const apple = (await import(pathToFileURL(applePath).href)) as {
-    getDependencyConfig: (folder: string, userConfig: object) => unknown
+  const cliConfig = (await import(pathToFileURL(cliConfigPath).href)) as {
+    loadConfigAsync: (options: { projectRoot: string }) => Promise<{
+      dependencies: Record<
+        string,
+        {
+          root: string
+          platforms: Record<string, unknown>
+        }
+      >
+    }>
   }
-  const android = (await import(pathToFileURL(androidPath).href)) as {
-    dependencyConfig: (folder: string, userConfig: object) => unknown
-  }
-  const packageJson = JSON.parse(
-    FSExtra.readFileSync(path.join(root, 'package.json'), 'utf8')
-  )
-  const names = Object.keys(packageJson.dependencies || {}).sort()
+  const config = await cliConfig.loadConfigAsync({ projectRoot: root })
   const inventory: NativeDependencyInventory[] = []
-  for (const name of names) {
-    let depRoot: string
-    try {
-      depRoot = path.dirname(require.resolve(name + '/package.json', { paths: [root] }))
-    } catch {
-      continue
-    }
+  for (const name of Object.keys(config.dependencies).sort()) {
+    const dependency = config.dependencies[name]
+    const depRoot = dependency.root
     let version = 'unknown'
     try {
       version =
         JSON.parse(FSExtra.readFileSync(path.join(depRoot, 'package.json'), 'utf8'))
           .version ?? 'unknown'
     } catch {}
-    const platforms: string[] = []
-    try {
-      if (apple.getDependencyConfig(depRoot, {})) platforms.push('ios')
-    } catch {}
-    try {
-      if (android.dependencyConfig(depRoot, {})) platforms.push('android')
-    } catch {}
-    inventory.push({ name, version, platforms: platforms.sort() })
+    const platforms = Object.entries(dependency.platforms)
+      .filter(([, platformConfig]) => platformConfig !== null)
+      .map(([platform]) => platform)
+      .sort()
+    if (platforms.length > 0) inventory.push({ name, version, platforms })
   }
   return inventory
 }

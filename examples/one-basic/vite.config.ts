@@ -23,7 +23,7 @@ export default defineConfig({
       native: {
         app: {
           name: 'OneBasic',
-          ios: { bundleId: 'com.natew.oneexample' },
+          ios: { bundleId: 'com.natew.oneexample', deploymentTarget: '17.0' },
           android: { applicationId: 'com.natew.oneexample' },
         },
         ...(process.env.TEST_METRO && {

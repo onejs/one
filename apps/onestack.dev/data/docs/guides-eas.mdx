@@ -58,10 +58,7 @@ EAS Build supports existing React Native projects without the Expo package. One 
 3. Add a `react-native.config.cjs` to your project root with the following content:
 
    ```js
-   module.exports = {
-     // use One's bundle commands during native builds
-     commands: [...require('one/react-native-commands')],
-   }
+   module.exports = require('one/react-native-config')
    ```
 
 4. Add a `postinstall` script to your `package.json` that runs `one patch` so dependency patches are present on the build worker:

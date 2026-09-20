@@ -181,15 +181,37 @@ describe('community autolink inventory', () => {
       join(workspaceModules, 'react-native-safe-area-context'),
       join(root, 'node_modules', 'react-native-safe-area-context')
     )
+    symlinkSync(
+      join(workspaceModules, 'react-native'),
+      join(root, 'node_modules', 'react-native')
+    )
     writeFileSync(
       join(root, 'package.json'),
       JSON.stringify({
         name: 'fixture',
         dependencies: {
+          'react-native': '*',
           'react-native-safe-area-context': '*',
           plain: '1.0.0',
         },
       })
+    )
+    const configured = join(root, 'node_modules', 'configured')
+    mkdirSync(configured, { recursive: true })
+    writeFileSync(
+      join(configured, 'package.json'),
+      JSON.stringify({ name: 'configured', version: '2.0.0' })
+    )
+    writeFileSync(
+      join(root, 'react-native.config.cjs'),
+      `module.exports = {
+  dependencies: {
+    configured: {
+      root: ${JSON.stringify(configured)},
+      platforms: { ios: {}, android: {} },
+    },
+  },
+}\n`
     )
     const plain = join(root, 'node_modules', 'plain')
     mkdirSync(plain, { recursive: true })
@@ -202,9 +224,14 @@ describe('community autolink inventory', () => {
 
     const inventory = await getNativeDependencyInventory(root)
     expect(inventory.map((entry) => entry.name)).toEqual([
-      'plain',
+      'configured',
       'react-native-safe-area-context',
     ])
+    expect(inventory.find((entry) => entry.name === 'configured')).toEqual({
+      name: 'configured',
+      version: '2.0.0',
+      platforms: ['android', 'ios'],
+    })
     expect(
       inventory.find((entry) => entry.name === 'react-native-safe-area-context')
         ?.platforms
