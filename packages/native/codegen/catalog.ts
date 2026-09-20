@@ -801,4 +801,86 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    // owned edge-fade primitive (UI.EdgeFade mask and blur modes). a Yoga
+    // container that alpha-fades its children toward any edge (mask) or
+    // progressively blurs them toward the edge (blur). sizes are dp (0 =
+    // disabled); curves are preset names or serialized alpha stops.
+    // overlayColor is 0xAARRGGBB resolved in JS (0 = no frost veil), so the
+    // main emitter needs no color support and both platforms read one int.
+    // overlay mode never reaches this view: RN core backgroundImage
+    // gradients paint it in JS. no events: a fade is pure presentation.
+    name: 'OneNativeEdgeFade',
+    publicName: 'EdgeFade',
+    props: {
+      fadeTop: 'Double',
+      fadeBottom: 'Double',
+      fadeLeft: 'Double',
+      fadeRight: 'Double',
+      curveTop: 'string',
+      curveBottom: 'string',
+      curveLeft: 'string',
+      curveRight: 'string',
+      fadeRadius: 'Double',
+      mode: 'string',
+      blurRadius: 'Double',
+      frostProgression: 'Double',
+      overlayColor: 'Int32',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned regular blur (UI.Blur, expo-blur compatible). blurs the backdrop
+    // behind the view; children mount sharp on top. tint is the expo tint
+    // name; intensity is 0-1 normalized in JS (expo units are 0-100).
+    name: 'OneNativeBlur',
+    publicName: 'Blur',
+    props: {
+      tint: 'string',
+      intensity: 'Double',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // owned arbitrary mask (UI.Mask, masked-view compatible). the first
+    // child is the mask element (never displayed, only masks); the rest are
+    // content. no props: shape comes entirely from the subtrees.
+    name: 'OneNativeMask',
+    publicName: 'Mask',
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
 ] as const

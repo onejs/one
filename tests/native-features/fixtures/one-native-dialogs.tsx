@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Swift, type DialogAction } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
@@ -13,6 +13,10 @@ const confirmationActions: readonly DialogAction[] = [
   { id: 'cancel', label: 'Cancel confirmation', role: 'cancel' },
   { id: 'confirm', label: 'Confirm confirmation', role: 'confirm' },
 ]
+const nestedActions: readonly DialogAction[] = [
+  { id: 'cancel', label: 'Cancel nested', role: 'cancel' },
+  { id: 'confirm', label: 'Confirm nested', role: 'confirm' },
+]
 
 export default function OneNativeDialogs() {
   const [category, setCategory] = useState<(typeof categories)[number]>('Alert')
@@ -26,6 +30,37 @@ export default function OneNativeDialogs() {
   const [titleVisibilityIndex, setTitleVisibilityIndex] = useState(0)
   const titleVisibility =
     titleVisibilities[titleVisibilityIndex % titleVisibilities.length]
+  // lifecycle probe: a presenter nested under a detachable root. the open button
+  // writes React state directly so the change count carries native events only.
+  const [rootAttached, setRootAttached] = useState(true)
+  const [nestedPresented, setNestedPresented] = useState(false)
+  const [nestedChanges, setNestedChanges] = useState(0)
+  const [nestedActionsCount, setNestedActionsCount] = useState(0)
+  const [nestedLast, setNestedLast] = useState('none')
+  const handleNestedChange = (value: boolean) => {
+    setNestedChanges((count) => count + 1)
+    setNestedPresented(value)
+  }
+  const handleNestedAction = (id: string) => {
+    setNestedActionsCount((count) => count + 1)
+    setNestedLast(id)
+  }
+  // a presented alert owns the screen, so no tap can reach the toggle while it is
+  // up: the root detaches itself once, after the first presentation has settled,
+  // and the suite polls for the settled state. the delay clears first-present
+  // latency with margin; a race here reads as Attach plus no buttons at the
+  // presents step.
+  const detachedOnce = useRef(false)
+  useEffect(() => {
+    if (!nestedPresented || detachedOnce.current) return
+    // the latch lives in the callback: dev double-effects clear a timer set in
+    // setup, which would otherwise disarm the only detach.
+    const timer = setTimeout(() => {
+      detachedOnce.current = true
+      setRootAttached(false)
+    }, 6000)
+    return () => clearTimeout(timer)
+  }, [nestedPresented])
 
   const handlePresentationChange = (value: boolean) => {
     setChanges((count) => count + 1)
@@ -147,6 +182,58 @@ export default function OneNativeDialogs() {
           onIsPresentedChange={handlePresentationChange}
         />
       )}
+      <View style={styles.actions}>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-dialog-lifecycle-toggle"
+          onPress={() => setRootAttached((value) => !value)}
+        >
+          <Text style={styles.actionText}>
+            {rootAttached ? 'Detach root' : 'Attach root'}
+          </Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-dialog-lifecycle-open"
+          onPress={() => setNestedPresented(true)}
+        >
+          <Text style={styles.actionText}>Open nested</Text>
+        </Pressable>
+      </View>
+      <View style={styles.status}>
+        <Text
+          style={styles.statusText}
+          testID="one-native-dialog-nested-presented"
+        >{`Nested presented: ${nestedPresented}`}</Text>
+        <Text
+          style={styles.statusText}
+          testID="one-native-dialog-nested-changes"
+        >{`Nested changes: ${nestedChanges}`}</Text>
+        <Text
+          style={styles.statusText}
+          testID="one-native-dialog-nested-actions"
+        >{`Nested actions: ${nestedActionsCount}`}</Text>
+        <Text
+          style={styles.statusText}
+          testID="one-native-dialog-nested-last"
+        >{`Nested last: ${nestedLast}`}</Text>
+      </View>
+      {rootAttached ? (
+        <Swift.Host>
+          <Swift.Alert
+            actions={nestedActions}
+            isPresented={nestedPresented}
+            message="Nested actions report under a detachable root."
+            presenting="nested-item"
+            revision={0}
+            title="Nested Alert"
+            onAction={handleNestedAction}
+            onIsPresentedChange={handleNestedChange}
+          />
+        </Swift.Host>
+      ) : null}
     </View>
   )
 }
