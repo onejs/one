@@ -8,6 +8,17 @@ export default defineConfig({
         native: './setup.native.ts',
       },
       native: {
+        app: {
+          name: 'NativeFeatureTests',
+          scheme: 'nativefeatures',
+          ios: {
+            bundleId: 'dev.vxrn.native.tests',
+            deploymentTarget: '17.0',
+          },
+          android: {
+            applicationId: 'dev.vxrn.nativefeatures.tests',
+          },
+        },
         key: 'native-feature-tests',
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
       },

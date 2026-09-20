@@ -362,13 +362,13 @@
       "name": "@vxrn/native",
       "version": "1.27.1",
       "devDependencies": {
-        "@babel/core": "7.29.7",
+        "@babel/core": "^7.28.5",
         "@babel/generator": "7.29.7",
         "@react-native/babel-plugin-codegen": "0.87.1",
-        "@react-native/codegen": "0.87.1",
+        "@react-native/codegen": "^0.87.1",
         "@tamagui/build": "3.0.0-beta.1309.1",
         "@types/react-test-renderer": "^19.1.0",
-        "esbuild": "0.28.1",
+        "esbuild": "^0.25.12",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
         "react-test-renderer": "^19.2.0",
@@ -394,7 +394,7 @@
       "dependencies": {
         "@azure/core-asynciterator-polyfill": "^1.0.2",
         "@babel/core": "^7.28.5",
-        "@babel/generator": "^7.28.5",
+        "@babel/generator": "7.29.7",
         "@babel/parser": "^7.28.5",
         "@babel/traverse": "^7.28.5",
         "@babel/types": "^7.28.5",
@@ -811,6 +811,7 @@
         "vite": "^8.2.2",
       },
       "devDependencies": {
+        "@react-native-community/template": "^0.87.1",
         "vitest": "^4.1.0",
         "webdriverio": "^9.5.4",
       },
@@ -839,6 +840,7 @@
         "vite": "^8.2.2",
       },
       "devDependencies": {
+        "@react-native-community/template": "^0.87.1",
         "vitest": "^4.1.0",
         "webdriverio": "^9.5.4",
       },
