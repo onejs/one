@@ -102,7 +102,9 @@ export function TextInput({
       autoCorrect={autoCorrect}
       textAlign={textAlign === 'auto' ? undefined : textAlign}
       testID={testID}
-      style={style}
+      // Fabric gives custom views no intrinsic size, so an unstyled field
+      // would collapse to zero; the caller style wins over this default.
+      style={[{ width: '100%', minHeight: 56 }, style]}
     />
   )
 }

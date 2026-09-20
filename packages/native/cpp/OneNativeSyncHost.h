@@ -1,5 +1,8 @@
 #pragma once
 
+// C++-only: the pod module map also compiles this header in C, where the
+// includes below do not exist. every consumer is .cpp/.mm.
+#ifdef __cplusplus
 #include <jsi/jsi.h>
 #include <memory>
 
@@ -15,6 +18,7 @@ class WorkletRuntime;
 // worklets UI runtime. create() binds a Swift registry entry; the returned
 // handle reads and writes it synchronously from either runtime.
 void installOneNativeSyncState(
-    jsi::Runtime &rnRuntime,
+    facebook::jsi::Runtime &rnRuntime,
     std::shared_ptr<worklets::WorkletRuntime> uiRuntime,
     std::shared_ptr<facebook::react::CallInvoker> jsInvoker);
+#endif
