@@ -957,7 +957,7 @@ private fun RenderComposeTextField(
         }
     val textStyle =
         LocalTextStyle.current.merge(
-            TextStyle(textAlign = composeTextAlign(props.textAlign)),
+            TextStyle(textAlign = composeTextAlign(props.textAlign) ?: TextAlign.Unspecified),
         )
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current

@@ -46,6 +46,7 @@ export type TextInputProps = Omit<
   autoFocus?: boolean
   editable?: boolean
   readOnly?: boolean
+  // native multiline scrolls inside the field height (default 56); web grows.
   multiline?: boolean
   // web only: native multiline grows without a line cap.
   numberOfLines?: number

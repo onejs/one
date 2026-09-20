@@ -1,8 +1,10 @@
+#import <React/RCTAssert.h>
 #import <React/RCTBridge+Private.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTCallInvoker.h>
 #import <React/RCTCallInvokerModule.h>
 #import <React/RCTConversions.h>
+#import <React/RCTView.h>
 
 #import <worklets/NativeModules/WorkletsModuleProxy.h>
 #import <worklets/apple/WorkletsModule.h>
@@ -72,6 +74,7 @@ void OneNativeSyncSet(jsi::Runtime &runtime, int32_t stateId, const jsi::Value &
 
 @implementation OneNativeSyncModule
 
+@synthesize bridge = _bridge;
 @synthesize callInvoker = callInvoker_;
 
 RCT_EXPORT_MODULE(OneNativeSyncState)

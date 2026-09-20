@@ -2,6 +2,7 @@ package dev.onejs.onenative
 
 import com.facebook.jni.HybridData
 import com.facebook.proguard.annotations.DoNotStrip
+import com.facebook.react.common.annotations.FrameworkAPI
 import com.facebook.react.turbomodule.core.CallInvokerHolderImpl
 import com.facebook.soloader.SoLoader
 
@@ -9,7 +10,11 @@ import com.facebook.soloader.SoLoader
 // object on the RN runtime and the worklets UI runtime. writes that bypass
 // every host object (user typing in a bound field) re-enter through
 // nativeDidSetExternally so the JSI listener still fires.
+//
+// CallInvokerHolderImpl is a framework-only API; the installer cannot reach
+// the JS invoker without it, so this host opts in explicitly.
 @Suppress("KotlinJniMissingFunction")
+@OptIn(FrameworkAPI::class)
 internal class OneNativeSyncJni {
     companion object {
         init {

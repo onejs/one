@@ -25,6 +25,7 @@ target_link_libraries(
   onenativesync
   fbjni::fbjni
   ReactAndroid::jsi
+  ReactAndroid::reactnative
   react-native-worklets::worklets
   android
   log)

@@ -147,8 +147,8 @@ class OneNativeSyncJni : public jni::HybridClass<OneNativeSyncJni> {
   OneNativeSyncJni() = default;
 };
 
-jni::local_ref<jhybriddata> OneNativeSyncJni::initHybrid(
-    jni::alias_ref<jhybridobject> jThis,
+jni::local_ref<OneNativeSyncJni::jhybriddata> OneNativeSyncJni::initHybrid(
+    jni::alias_ref<OneNativeSyncJni::jhybridobject> jThis,
     jlong jsContext,
     jni::alias_ref<react::CallInvokerHolder::javaobject> jsCallInvokerHolder) {
   auto jsCallInvoker = jsCallInvokerHolder->cthis()->getCallInvoker();
@@ -177,7 +177,7 @@ jni::local_ref<jhybriddata> OneNativeSyncJni::initHybrid(
   g_booleanValue = env->GetMethodID(g_booleanClass, "booleanValue", "()Z");
   g_numberClass = globalClassRef(env, "java/lang/Number");
   g_doubleValue = env->GetMethodID(g_numberClass, "doubleValue", "()D");
-  return makeCxxInstance(jThis);
+  return makeCxxInstance();
 }
 
 void OneNativeSyncJni::registerNatives() {
