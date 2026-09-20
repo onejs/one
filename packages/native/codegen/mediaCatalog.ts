@@ -182,7 +182,7 @@ private struct PhotosPickerSurface: View {
   if (!['any', 'images', 'videos', 'livePhotos', 'screenshots', 'screenRecordings', 'slomoVideos', 'timelapseVideos', 'cinematicVideos', 'depthEffectPhotos', 'bursts', 'panoramas'].includes(filter)) throw new Error('Unknown PhotosPicker filter: ' + filter)`,
   },
   {
-    // WebView is iOS 26 only, which is the package floor, so it needs no availability gate.
+    // WebView is iOS 26 only, so the recipe gates on availability and renders clear on 17 through 25.
     // it renders a WebPage, the observable navigation state WebKit's SwiftUI surface owns,
     // which is what makes the current url, the title and load progress readable from React.
     name: 'WebView',

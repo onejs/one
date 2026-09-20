@@ -956,6 +956,7 @@ module.exports.injectFmtCxx17FixIntoPodfile = injectFmtCxx17FixIntoPodfile
 module.exports.FMT_CXX17_MARKER = FMT_CXX17_MARKER
 module.exports.injectExpoUpdatesIosResourcesPatchIntoPodfile =
   injectExpoUpdatesIosResourcesPatchIntoPodfile
+module.exports.removeExpoDefaultsFromAppBuildGradle = removeExpoDefaultsFromAppBuildGradle
 module.exports.HERMES_MINIFY_PATCH_MARKER = HERMES_MINIFY_PATCH_MARKER
 module.exports.EXPO_UPDATES_METRO_SKIP_MARKER = EXPO_UPDATES_METRO_SKIP_MARKER
 module.exports.SET_CLI_PATH_MARKER = SET_CLI_PATH_MARKER

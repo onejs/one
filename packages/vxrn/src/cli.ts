@@ -194,10 +194,21 @@ const prebuild = defineCommand({
       type: 'string',
       description: 'ios or android',
     },
-    expo: {
-      type: 'boolean',
-      description: 'expo or non-expo folders',
-      default: true,
+    'app-name': {
+      type: 'string',
+      description: 'native target and AppRegistry key',
+    },
+    'display-name': {
+      type: 'string',
+      description: 'user-visible app name',
+    },
+    'bundle-id': {
+      type: 'string',
+      description: 'ios bundle id (reverse-dns)',
+    },
+    'application-id': {
+      type: 'string',
+      description: 'android application id (reverse-dns)',
     },
     'no-install': {
       type: 'boolean',
@@ -212,9 +223,21 @@ const prebuild = defineCommand({
       './exports/prebuild.mjs'
     )
     const root = process.cwd()
-    const { platform, expo } = args
+    const { platform } = args
 
-    await prebuild({ root, platform, expo })
+    await prebuild({
+      root,
+      platform,
+      'no-install': args['no-install'],
+      app: {
+        name: args['app-name'],
+        displayName: args['display-name'],
+        ios: args['bundle-id'] ? { bundleId: args['bundle-id'] } : undefined,
+        android: args['application-id']
+          ? { applicationId: args['application-id'] }
+          : undefined,
+      },
+    })
   },
 })
 

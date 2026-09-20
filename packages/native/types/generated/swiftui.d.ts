@@ -29,6 +29,7 @@ export type BackForwardNavigationGesturesBehavior = 'automatic' | 'enabled' | 'd
 export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled';
 export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
+export type ListStyle = 'automatic' | 'sidebar' | 'inset' | 'grouped' | 'insetGrouped' | 'plain';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -220,6 +221,14 @@ export declare const swiftUIValues: {
         readonly automatic: 26;
         readonly enabled: 26;
         readonly disabled: 26;
+    };
+    readonly ListStyle: {
+        readonly automatic: 13;
+        readonly sidebar: 14;
+        readonly inset: 14;
+        readonly grouped: 13;
+        readonly insetGrouped: 14;
+        readonly plain: 13;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

@@ -448,6 +448,23 @@ extension View {
     default: let _ = preconditionFailure("invalid GaugeStyle: \(value)"); self
     }
   }
+  @ViewBuilder func oneNativeListStyle(_ value: String) -> some View {
+    switch value {
+    case "automatic":
+      self.listStyle(.automatic)
+    case "sidebar":
+      self.listStyle(.sidebar)
+    case "inset":
+      self.listStyle(.inset)
+    case "grouped":
+      self.listStyle(.grouped)
+    case "insetGrouped":
+      self.listStyle(.insetGrouped)
+    case "plain":
+      self.listStyle(.plain)
+    default: let _ = preconditionFailure("invalid ListStyle: \(value)"); self
+    }
+  }
   @ViewBuilder func oneNativeTextFieldStyle(_ value: String) -> some View {
     switch value {
     case "automatic":

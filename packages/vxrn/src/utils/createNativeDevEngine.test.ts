@@ -1071,7 +1071,10 @@ describe('getNativeTransformConfig platform env defines', () => {
         // sibling platform vars that already worked — guard against accidental removal
         expect(define['import.meta.env.VITE_ENVIRONMENT']).toBe(JSON.stringify(platform))
         expect(define['import.meta.env.VITE_NATIVE']).toBe('"1"')
-        expect(define['import.meta.env.EXPO_OS']).toBe(JSON.stringify(platform))
+        expect(define['import.meta.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
+        expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
+        expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
+        expect(define).not.toHaveProperty('process.env.EXPO_OS')
 
         // the whole import.meta.env object (used by JSON.stringify(import.meta.env)) must carry it too
         const envObject = JSON.parse(define['import.meta.env'] as string)
@@ -1081,8 +1084,8 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   }
 
-  it('inlines EXPO_PUBLIC values supplied by the native build environment', () => {
-    const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
+  it('inlines ONE_PUBLIC values supplied by the native build environment', () => {
+    const key = 'ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
 
@@ -1092,6 +1095,21 @@ describe('getNativeTransformConfig platform env defines', () => {
       expect(define[`import.meta.env.${key}`]).toBe('"native-env-value"')
       expect(JSON.parse(define['import.meta.env'] as string)[key]).toBe(
         'native-env-value'
+      )
+    } finally {
+      if (previous === undefined) delete process.env[key]
+      else process.env[key] = previous
+    }
+  })
+
+  it('fails on EXPO_PUBLIC input with a migration error', () => {
+    const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
+    const previous = process.env[key]
+    process.env[key] = 'native-env-value'
+
+    try {
+      expect(() => getNativeTransformConfig('ios', false, root)).toThrow(
+        /rename it to ONE_PUBLIC_\*/
       )
     } finally {
       if (previous === undefined) delete process.env[key]

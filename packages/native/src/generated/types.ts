@@ -34,6 +34,7 @@ import type {
   MagnificationGesturesBehavior,
   LinkPreviewBehavior,
   ElementFullscreenBehavior,
+  ListStyle,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -67,6 +68,7 @@ export type {
   MagnificationGesturesBehavior,
   LinkPreviewBehavior,
   ElementFullscreenBehavior,
+  ListStyle,
 } from './swiftui'
 export interface SwiftMenuAction {
   type: 'action'

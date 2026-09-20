@@ -1,4 +1,4 @@
-import type { ContextMenuProps, FormProps, FullScreenCoverProps, GlassProps, HostProps, LabeledContentProps, MenuProps, PopoverProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, TabProps, TabsProps, ZStackProps } from './types';
+import type { ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabsProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function Menu(_props: MenuProps): never;
@@ -16,6 +16,21 @@ declare function Section(_props: SectionProps): never;
 declare function LabeledContent(_props: LabeledContentProps): never;
 declare function Glass(_props: GlassProps): never;
 declare function Slot(_props: SlotProps): never;
+declare function List(_props: ListProps): never;
+declare function ScrollView(_props: ScrollViewProps): never;
+declare function LazyVStack(_props: LazyVStackProps): never;
+declare function LazyHStack(_props: LazyHStackProps): never;
+declare function ControlGroup(_props: ControlGroupProps): never;
+declare function DisclosureGroup(_props: DisclosureGroupProps): never;
+declare function Divider(_props: DividerProps): never;
+declare function Link(_props: LinkProps): never;
+declare function Group(_props: GroupProps): never;
+declare function OverlayContent(_props: OverlayContentProps): never;
+declare function OverlayFn(_props: OverlayProps): never;
+declare function SwipeActionsActions(_props: SwipeActionsActionsProps): never;
+declare function SwipeActionsFn(_props: SwipeActionsProps): never;
+declare function Page(_props: PageProps): never;
+declare function Pager(_props: PagerProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -57,6 +72,23 @@ export declare const Swift: {
     LabeledContent: typeof LabeledContent;
     Spacer: typeof Spacer;
     Slot: typeof Slot;
+    List: typeof List;
+    ScrollView: typeof ScrollView;
+    LazyVStack: typeof LazyVStack;
+    LazyHStack: typeof LazyHStack;
+    ControlGroup: typeof ControlGroup;
+    DisclosureGroup: typeof DisclosureGroup;
+    Divider: typeof Divider;
+    Link: typeof Link;
+    Group: typeof Group;
+    Overlay: typeof OverlayFn & {
+        Content: typeof OverlayContent;
+    };
+    SwipeActions: typeof SwipeActionsFn & {
+        Actions: typeof SwipeActionsActions;
+    };
+    Pager: typeof Pager;
+    Page: typeof Page;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

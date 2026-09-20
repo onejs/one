@@ -185,6 +185,526 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeList",
+      "publicName": "List",
+      "props": {
+        "listStyle": {
+          "type": "string",
+          "enum": "ListStyle"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeScrollView",
+      "publicName": "ScrollView",
+      "props": {
+        "axes": {
+          "type": "string"
+        },
+        "showsIndicators": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLazyVStack",
+      "publicName": "LazyVStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLazyHStack",
+      "publicName": "LazyHStack",
+      "props": {
+        "alignment": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeControlGroup",
+      "publicName": "ControlGroup",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "controlGroupStyle": {
+          "type": "string",
+          "enum": "ControlGroupStyle"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeDisclosureGroup",
+      "publicName": "DisclosureGroup",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "isExpanded": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeDisclosureGroupIsExpandedChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "isExpanded",
+        "event": "onNativeDisclosureGroupIsExpandedChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeDivider",
+      "publicName": "Divider",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLink",
+      "publicName": "Link",
+      "props": {
+        "destination": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeGroup",
+      "publicName": "Group",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeOverlay",
+      "publicName": "Overlay",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeOverlayContent",
+      "publicName": "OverlayContent",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSwipeActions",
+      "publicName": "SwipeActions",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSwipeActionsActions",
+      "publicName": "SwipeActionsActions",
+      "props": {
+        "edge": {
+          "type": "string"
+        },
+        "allowsFullSwipe": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePager",
+      "publicName": "Pager",
+      "props": {
+        "selection": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativePagerSelectionChange": {
+          "selection": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "selection",
+        "event": "onNativePagerSelectionChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "pages",
+          "content": "OneNativeTab",
+          "cardinality": "many",
+          "key": "tabId",
+          "layout": "swiftui"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSafeAreaProvider",
+      "publicName": "SafeAreaProvider",
+      "props": {},
+      "events": {
+        "onNativeInsetsChange": {
+          "insetTop": {
+            "type": "Double"
+          },
+          "insetRight": {
+            "type": "Double"
+          },
+          "insetBottom": {
+            "type": "Double"
+          },
+          "insetLeft": {
+            "type": "Double"
+          },
+          "frameX": {
+            "type": "Double"
+          },
+          "frameY": {
+            "type": "Double"
+          },
+          "frameWidth": {
+            "type": "Double"
+          },
+          "frameHeight": {
+            "type": "Double"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeEdgeFade",
+      "publicName": "EdgeFade",
+      "props": {
+        "fadeTop": {
+          "type": "Double"
+        },
+        "fadeBottom": {
+          "type": "Double"
+        },
+        "fadeLeft": {
+          "type": "Double"
+        },
+        "fadeRight": {
+          "type": "Double"
+        },
+        "curveTop": {
+          "type": "string"
+        },
+        "curveBottom": {
+          "type": "string"
+        },
+        "curveLeft": {
+          "type": "string"
+        },
+        "curveRight": {
+          "type": "string"
+        },
+        "fadeRadius": {
+          "type": "Double"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "blurRadius": {
+          "type": "Double"
+        },
+        "frostProgression": {
+          "type": "Double"
+        },
+        "overlayColor": {
+          "type": "Int32"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeBlur",
+      "publicName": "Blur",
+      "props": {
+        "tint": {
+          "type": "string"
+        },
+        "intensity": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeMask",
+      "publicName": "Mask",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
@@ -2211,6 +2731,14 @@
       "automatic": 26,
       "enabled": 26,
       "disabled": 26
+    },
+    "ListStyle": {
+      "automatic": 13,
+      "sidebar": 14,
+      "inset": 14,
+      "grouped": 13,
+      "insetGrouped": 14,
+      "plain": 13
     }
   }
 }

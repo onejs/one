@@ -1,6 +1,7 @@
 export { createApp } from './createApp'
 
-export type { One, OneRouter } from './interfaces/router'
+export { One } from './one'
+export type { OneRouter } from './interfaces/router'
 
 /**
  * Image data returned by ?imagedata imports.
@@ -47,7 +48,7 @@ export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'
-export { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
+export { SafeAreaView, useSafeAreaInsets } from '@vxrn/safe-area'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware

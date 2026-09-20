@@ -220,7 +220,8 @@ export function buildOneBabelPlugins({
 /**
  * Build the `import.meta.env` substitution map for standalone Metro use.
  * Mirrors Vite's default `define`: MODE/BASE_URL/PROD/DEV/SSR plus any
- * `EXPO_PUBLIC_*` / `ONE_*` / `VITE_*` env var from `process.env`.
+ * `ONE_PUBLIC_*` / `ONE_*` / `VITE_*` env var from `process.env`.
+ * Expo-prefixed input is never copied; it fails upstream with a migration error.
  */
 function buildStandaloneImportMetaEnv(): Record<string, unknown> {
   const isProduction = process.env.NODE_ENV !== 'development'
@@ -230,10 +231,11 @@ function buildStandaloneImportMetaEnv(): Record<string, unknown> {
     PROD: isProduction,
     DEV: !isProduction,
     SSR: false,
+    ONE_PLATFORM: process.env.ONE_PLATFORM ?? 'web',
   }
   for (const [key, value] of Object.entries(process.env)) {
     if (
-      key.startsWith('EXPO_PUBLIC_') ||
+      key.startsWith('ONE_PUBLIC_') ||
       key.startsWith('ONE_') ||
       key.startsWith('VITE_')
     ) {

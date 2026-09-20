@@ -83,6 +83,14 @@ class OneNativeComposeNodeManager :
             mapOf("registrationName" to "onNativeComposeNodeButtonPress")
         events["topNativeComposeNodeSwitchValueChange"] =
             mapOf("registrationName" to "onNativeComposeNodeSwitchValueChange")
+        events["topNativeComposeNodeTextValueChange"] =
+            mapOf("registrationName" to "onNativeComposeNodeTextValueChange")
+        events["topNativeComposeNodeNumberValueChange"] =
+            mapOf("registrationName" to "onNativeComposeNodeNumberValueChange")
+        events["topNativeComposeNodeDialogConfirm"] =
+            mapOf("registrationName" to "onNativeComposeNodeDialogConfirm")
+        events["topNativeComposeNodeDialogDismiss"] =
+            mapOf("registrationName" to "onNativeComposeNodeDialogDismiss")
         return events
     }
 
@@ -156,6 +164,66 @@ class OneNativeComposeNodeManager :
 
     override fun setSpacing(view: OneNativeComposeNodeView, value: Double) {
         view.stageSpacing(value)
+    }
+
+    override fun setTextValue(view: OneNativeComposeNodeView, value: String?) {
+        view.stageTextValue(value)
+    }
+
+    override fun setPlaceholder(view: OneNativeComposeNodeView, value: String?) {
+        view.stagePlaceholder(value)
+    }
+
+    override fun setKeyboardType(view: OneNativeComposeNodeView, value: String?) {
+        view.stageKeyboardType(value)
+    }
+
+    override fun setSecureText(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageSecureText(value)
+    }
+
+    override fun setNumberValue(view: OneNativeComposeNodeView, value: Double) {
+        view.stageNumberValue(value)
+    }
+
+    override fun setMinimumValue(view: OneNativeComposeNodeView, value: Double) {
+        view.stageMinimumValue(value)
+    }
+
+    override fun setMaximumValue(view: OneNativeComposeNodeView, value: Double) {
+        view.stageMaximumValue(value)
+    }
+
+    override fun setStep(view: OneNativeComposeNodeView, value: Double) {
+        view.stageStep(value)
+    }
+
+    override fun setVisible(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageVisible(value)
+    }
+
+    override fun setTitle(view: OneNativeComposeNodeView, value: String?) {
+        view.stageTitle(value)
+    }
+
+    override fun setMessage(view: OneNativeComposeNodeView, value: String?) {
+        view.stageMessage(value)
+    }
+
+    override fun setConfirmLabel(view: OneNativeComposeNodeView, value: String?) {
+        view.stageConfirmLabel(value)
+    }
+
+    override fun setDismissLabel(view: OneNativeComposeNodeView, value: String?) {
+        view.stageDismissLabel(value)
+    }
+
+    override fun setProgress(view: OneNativeComposeNodeView, value: Double) {
+        view.stageProgress(value)
+    }
+
+    override fun setProgressVariant(view: OneNativeComposeNodeView, value: String?) {
+        view.stageProgressVariant(value)
     }
 
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {

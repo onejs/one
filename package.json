@@ -210,6 +210,8 @@
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "image-size@1.2.1": "patches/image-size@1.2.1.patch",
     "@react-navigation/bottom-tabs@8.0.0-alpha.50": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.50.patch",
-    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch"
+    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
+    "@react-navigation/native@8.0.0-alpha.44": "patches/@react-navigation%2Fnative@8.0.0-alpha.44.patch",
+    "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch"
   }
 }

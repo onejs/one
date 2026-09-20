@@ -17,6 +17,19 @@ export const formControls: Control[] = [
         ],
       },
     ],
+    leaf: {
+      constructor: {
+        type: 'Toggle',
+        parameters: [
+          { label: 'isOn', type: 'SwiftUICore.Binding<Swift.Bool>' },
+          { label: 'label', type: '() -> Label' },
+        ],
+      },
+      args: [
+        { label: 'isOn', binding: 'controlled' },
+        { label: 'label', text: 'label' },
+      ],
+    },
     swift: `Toggle(isOn: Binding(
         get: { model.controlled.value },
         set: { value in model.change(value) }
@@ -117,6 +130,25 @@ export const formControls: Control[] = [
         ],
       },
     ],
+    leaf: {
+      constructor: {
+        type: 'Stepper',
+        parameters: [
+          { label: 'value', type: 'SwiftUICore.Binding<V>' },
+          { label: 'in', type: 'Swift.ClosedRange<V>' },
+          { label: 'step', type: 'V.Stride' },
+          { label: 'label', type: '() -> Label' },
+          { label: 'onEditingChanged', type: '@escaping (Swift.Bool) -> Swift.Void' },
+        ],
+      },
+      args: [
+        { label: 'value', binding: 'controlled' },
+        { label: 'in', range: ['minimumValue', 'maximumValue'] },
+        { label: 'step', field: 'step' },
+        { label: 'label', text: 'label' },
+        { label: 'onEditingChanged', discard: true },
+      ],
+    },
     swift: `Stepper(value: Binding(
         get: { model.controlled.value },
         set: { value in model.change(value) }

@@ -5,12 +5,24 @@ import UIKit
 // one, so it never joins the view hierarchy and never gets a window. it activates on
 // publication instead. the parent measures from SwiftUI, so a model change reaches the
 // parent's height through SwiftUI's own update pass and needs no notification here.
-public protocol OneNativeCompositionParent: AnyObject {}
+public protocol OneNativeCompositionParent: AnyObject {
+  // root-propagated visibility: a composed child is active exactly when its parent
+  // is, so a subtree mounted before root attachment stays silent until the root
+  // attaches, and detach/reinsertion walks the whole subtree exactly once.
+  var compositionActive: Bool { get }
+}
 
 public protocol OneNativeComposable: UIView {
   func compositionContent() -> AnyView
   func composeInto(_ parent: OneNativeCompositionParent)
   func decompose()
+  func propagateActive(_ active: Bool)
+}
+
+extension OneNativeComposable {
+  // containers override this to recurse; controls keep publication-time activation
+  // until the emitter wires their models to propagation.
+  public func propagateActive(_ active: Bool) {}
 }
 
 // standalone, a control fills the Fabric view it was given. composed, it must take its
@@ -56,6 +68,14 @@ extension View {
       self
     }
   }
+
+  @ViewBuilder func oneNativeScheme(_ standalone: Bool, _ scheme: ColorScheme) -> some View {
+    if standalone {
+      self.environment(\.colorScheme, scheme)
+    } else {
+      self
+    }
+  }
 }
 
 // Fabric gives insertion order, not keys, so identity is the child view itself: a
@@ -71,6 +91,18 @@ final class OneNativeChildren: ObservableObject {
   @Published var items: [OneNativeComposedChild] = []
 }
 
+// a hosting controller inherits its traits from the view controller it attaches to,
+// which can disagree with the window the react tree renders in. a standalone
+// container therefore carries its own view's scheme into its swiftui tree so content
+// matches the app; composed, the parent's environment wins and the bridge idles.
+final class OneNativeSchemeBridge: ObservableObject {
+  @Published var scheme: ColorScheme = .light
+  func sync(_ traits: UITraitCollection) {
+    let next: ColorScheme = traits.userInterfaceStyle == .dark ? .dark : .light
+    if scheme != next { scheme = next }
+  }
+}
+
 // every container composes children the same way and differs only in the SwiftUI
 // container it wraps them in, which it supplies at init. a container is composable
 // itself, so containers nest.
@@ -82,6 +114,9 @@ final class OneNativeChildren: ObservableObject {
   private var childViews: [UIView] = []
   private var controller: OneNativeHostingController<AnyView>?
   private weak var compositionParent: OneNativeCompositionParent?
+  private var active = false
+
+  public var compositionActive: Bool { active }
 
   @nonobjc init(wrap: @escaping (OneNativeChildren, _ standalone: Bool) -> AnyView) {
     self.wrap = wrap
@@ -91,37 +126,44 @@ final class OneNativeChildren: ObservableObject {
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   // a container that presents something tells React about it, and must not while it is
-  // detached. composed it is active on publication, standalone once its hosting
-  // controller has a parent, which is the rule a composed control follows.
+  // detached. composed it inherits its parent's state, standalone it is active once
+  // its hosting controller has a parent, which is the rule a composed control follows.
   public func setActive(_ active: Bool) {}
+
+  public func propagateActive(_ active: Bool) {
+    guard self.active != active else { return }
+    self.active = active
+    setActive(active)
+    for child in childViews {
+      (child as? OneNativeComposable)?.propagateActive(active)
+    }
+  }
 
   // fabric mounts children one at a time, so publication is incremental: rebuilding the
   // whole array per insertion would ask every sibling for its content again, N times over.
   public func insertChild(_ child: UIView, at index: Int) {
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure(
+        "One Native containers only accept One Native controls; wrap React Native content in Swift.Slot")
+    }
     let at = min(index, childViews.count)
     childViews.insert(child, at: at)
-    guard let composable = child as? OneNativeComposable else { return }
     composable.composeInto(self)
     published.items.insert(
       OneNativeComposedChild(
         id: ObjectIdentifier(child), content: composable.compositionContent()),
-      at: publishedIndex(before: at))
+      at: at)
   }
 
   public func removeChild(_ child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
     childViews.remove(at: index)
-    guard let composable = child as? OneNativeComposable else { return }
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native container child lost its composition capability")
+    }
     composable.decompose()
     let id = ObjectIdentifier(child)
     published.items.removeAll { $0.id == id }
-  }
-
-  // a non-composable child occupies a slot in childViews but never reaches published.items.
-  private func publishedIndex(before index: Int) -> Int {
-    childViews.prefix(index).reduce(into: 0) { count, view in
-      if view is OneNativeComposable { count += 1 }
-    }
   }
 
   public func compositionContent() -> AnyView { wrap(published, false) }
@@ -130,12 +172,12 @@ final class OneNativeChildren: ObservableObject {
     controller?.detach()
     controller = nil
     compositionParent = parent
-    setActive(true)
+    propagateActive(parent.compositionActive)
   }
 
   public func decompose() {
     compositionParent = nil
-    setActive(false)
+    propagateActive(false)
   }
 
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
@@ -143,18 +185,17 @@ final class OneNativeChildren: ObservableObject {
 
   private func updateHost() {
     guard compositionParent == nil else { return }
-    setActive(false)
-    guard window != nil else { controller?.detach(); return }
+    guard window != nil else { controller?.detach(); propagateActive(false); return }
     if controller == nil {
       controller = OneNativeHostingController(rootView: wrap(published, true))
     }
     controller?.attach(to: self)
-    setActive(controller?.parent != nil)
+    propagateActive(controller?.parent != nil)
   }
 
   public func reset() {
     compositionParent = nil
-    setActive(false)
+    propagateActive(false)
     for child in childViews { (child as? OneNativeComposable)?.decompose() }
     childViews.removeAll()
     published.items = []

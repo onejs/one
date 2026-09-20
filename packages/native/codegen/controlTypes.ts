@@ -44,6 +44,27 @@ export type ModifierSelector = {
   parameters: readonly { label: string; type: string }[]
   requirements: readonly string[]
 }
+// a declarative leaf: the generic emitter builds the Swift body from the SDK signature
+// plus these argument descriptors, instead of the recipe spelling the body out. enum
+// fields the args do not consume are chained as modifiers automatically, resolved
+// through the SDK by their enum type. controls with conditional constructors,
+// converted bindings, or custom surfaces keep hand-written `swift`.
+export type LeafArg =
+  | { label: string; field: string }
+  | { label: string; enum: string; field: string }
+  | { label: string; localizedKey: string }
+  | { label: string; text: string }
+  | { label: string; binding: 'controlled' }
+  | { label: string; range: readonly [string, string] }
+  // an event closure the control ignores, rendered as a trailing `{ _ in }`.
+  | { label: string; discard: true }
+export type LeafRecipe = {
+  constructor: {
+    type: string
+    parameters: readonly { label: string; type: string }[]
+  }
+  args: readonly LeafArg[]
+}
 export type Control = {
   name: string
   value?: ControlValue
@@ -56,6 +77,9 @@ export type Control = {
   }[]
   // modifiers the recipe applies directly, selected from the SDK for provenance.
   methods?: readonly ModifierSelector[]
+  // when present, the generic leaf emitter derives `swift` from this recipe and the
+  // SDK; the hand-written body stays as the byte-for-byte oracle until migration.
+  leaf?: LeafRecipe
   swift: string
   extraSwift?: string
   validate: string
