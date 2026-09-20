@@ -12,7 +12,7 @@ export type MetroConfigLike = { resolver?: Record<string, any> } | undefined
  *
  * Used by getViteMetroPluginOptions, which feeds these into the same
  * getMetroConfigFromViteConfig pipeline both production native bundles and
- * standalone Metro invocations (expo export, eas update) go through. The
+ * standalone Metro invocations go through. The
  * overrides handle One-specific concerns: server-only stripping, .css → empty,
  * _middleware → empty, native singleton ownership, and react-native-svg's
  * compiled entry point.

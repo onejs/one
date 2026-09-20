@@ -223,9 +223,6 @@ export function getNativeTransformConfig(
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
       'process.env.ONE_PLATFORM': JSON.stringify(platform),
-      // expo modules read this compile-time value internally. keep the one-owned
-      // app contract on ONE_PLATFORM without breaking upstream package behavior.
-      'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',

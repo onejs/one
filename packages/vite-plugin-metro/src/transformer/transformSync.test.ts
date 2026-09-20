@@ -47,4 +47,26 @@ describe('transformSync', () => {
       )
     ).toThrow('use `importForwarding.moduleNames`')
   })
+
+  it('parses the readonly Flow interfaces shipped by React Native 0.87', () => {
+    const result = transformSync(
+      `// @flow strict
+interface Registration<TArgs> {
+  readonly context: unknown;
+  readonly listener: (...args: TArgs) => unknown;
+}
+export function readContext(registration: Registration<[]>): unknown {
+  return registration.context;
+}`,
+      {
+        filename: '/project/node_modules/react-native/EventEmitter.js',
+        babelrc: false,
+        configFile: false,
+        presets: [require('@react-native/babel-preset')],
+      },
+      { hermesParser: true }
+    )
+
+    expect(result?.code).toContain('function readContext(registration)')
+  })
 })

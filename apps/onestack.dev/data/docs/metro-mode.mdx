@@ -57,7 +57,7 @@ Only the following Vite features and configurations are supported in Metro mode 
 
 ## Configuration
 
-By default, the Metro bundler is configured with [Expo's defaults](https://docs.expo.dev/versions/latest/config/metro/).
+By default, One starts from React Native's Metro configuration and applies the same One router, environment, and server transforms used by the native Rolldown path.
 
 <Notice theme="green">
   We recommend using the standard Vite way for configuring if possible, as it provides a more consistent experience across web and native builds, and will be more future-proof to switch between bundlers.
@@ -66,24 +66,22 @@ By default, the Metro bundler is configured with [Expo's defaults](https://docs.
 Like ordinary React Native apps, you can still configure Metro using `metro.config.js` for more advanced settings, such as resolver or watcher options:
 
 ```js fileName=metro.config.js
-const { getDefaultConfig } = require('expo/metro-config');
+const { withOne } = require('one/metro-config')
 
-const config = getDefaultConfig(__dirname);
-
-module.exports = config;
+module.exports = withOne(__dirname)
 ```
 
 `metro.config.js` works exactly as it would in a standard React Native project, giving you full control over the bundling process.
 
 ### No Babel
 
-By default, One replaces Expo's Babel transformer with its own worker built around Oxc. The worker combines Oxc's Rust parser and transforms with TypeScript implementations of One's native transforms, Hermes parsing for Flow, and esbuild for syntax lowering. This pipeline runs without Babel; it is not a standalone Rust bundler. `babel.config.js` and `babel-preset-expo` do not configure this worker.
+By default, One uses its own Metro worker built around Oxc. The worker combines Oxc's Rust parser and transforms with TypeScript implementations of One's native transforms, Hermes parsing for Flow, and esbuild for syntax lowering. This pipeline runs without Babel.
 
 A Babel plugin One has no port for would silently do nothing, so instead the build fails and names it. You have three options:
 
 - Port it and list it in `native.bundlerOptions.nativeTransformModules`. Each entry is a module id (Metro runs transforms in separate worker processes, so it has to be serializable) that default-exports `(code, ctx) => string | null`. Your transforms run first, on the original source, with an absolute `ctx.filename`.
 - Remove it from `native.bundlerOptions.babelConfigOverrides`.
-- Set `native.bundlerOptions.nativeTransforms: false` to go back to the Babel transformer, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run.
+- Set `native.bundlerOptions.nativeTransforms: false` to use Babel, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run. Install `@react-native/babel-preset`, then run `one metro-eject` to create a Babel config that composes React Native's preset with `one/babel-preset`. Expo presets are optional app configuration and are never loaded by One.
 
 A native transform receives source text and returns updated source text. It can use Oxc or another tool suited to the transformation:
 

@@ -6,7 +6,7 @@ export async function getServerOptionsFilled(
   mode: Mode
 ): Promise<VXRNServeOptionsFilled> {
   const {
-    host = '0.0.0.0' /* TODO: Better default to 127.0.0.1 due to security reasons, and only dynamically change to 0.0.0.0 if the user is requesting an Expo QR code */,
+    host = '0.0.0.0' /* TODO: default to 127.0.0.1 unless a remote device needs the server */,
     port: requestedPort,
     https,
   } = serverOptions || {}

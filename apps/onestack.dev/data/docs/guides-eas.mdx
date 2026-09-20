@@ -4,14 +4,14 @@ title: Build and Deliver Native Apps with EAS
 
 [Expo Application Services (EAS)](https://expo.dev/eas) is a service that helps you build and deploy your React Native apps without the hassle of managing code signing, provisioning profiles, and other complexities of native development by yourself.
 
-Native apps built with One can be deployed using EAS. If you created your One app using one of our templates, it would already work with EAS out of the box. If not, refer to the "Setup Your One App for EAS" section below.
+Native apps built with One can be deployed using EAS as existing React Native projects. Generate the native projects with `one prebuild` before configuring EAS.
 
 After the initial EAS setup (`eas build:configure`), you will be able to run `eas build` to build your app, and `eas submit` to submit it to the App Store or Google Play directly in your One project.
 
 For more instructions, see the ["Create your first build" guide in the EAS documentation](https://docs.expo.dev/build/setup/).
 
 <Notice>
-  It's possible that you'll need to configure your app for distribution, such as setting an unused bundle identifier in `app.json` for your app. Generally, following the instructions you saw in the terminal and the [EAS documentation](https://docs.expo.dev/build/setup/) should be sufficient to resolve most issues.
+  Configure distribution identifiers under `native.app` in `vite.config.ts`. Generally, following the instructions in the terminal and the [EAS documentation](https://docs.expo.dev/build/setup/) should be sufficient to resolve most issues.
   <br /><br />
   A common type of error you'll probably see in an EAS build is:
 
@@ -49,32 +49,22 @@ This is because EAS defaults to a relatively old version of Node.js. To fix this
 
 ## Setup Your One App for EAS
 
-While our templates are configured in a way that works with EAS, if you're starting from scratch or migrating an existing project, some setup will be required to make your One app deployable with EAS.
+EAS Build supports existing React Native projects without the Expo package. One generates those projects directly, so no One Expo config plugin is involved.
 
-1. Ensure `expo` is installed in your project.
+1. Configure `native.app` in `vite.config.ts` with the app name, iOS bundle ID, and Android application ID.
 
-2. Add a `react-native.config.cjs` to your project root (next to your `package.json`) with the following content:
+2. Install `@react-native-community/template` as a development dependency and run `one prebuild`.
+
+3. Add a `react-native.config.cjs` to your project root with the following content:
 
    ```js
    module.exports = {
-     // Setting up and overriding some react-native CLI commands.
-     // Necessary for building native iOS and Android apps,
-     // where Vite shall be used instead of Metro for JS bundling during the build process.
+     // use One's bundle commands during native builds
      commands: [...require('one/react-native-commands')],
    }
    ```
 
-3. Modify your `app.json` (or `app.config.js`) and add `one/expo-plugin` to `expo.plugins`. This plugin will hook into the Expo build process running on EAS to ensure your One app is built correctly:
-
-   ```json
-   {
-     "expo": {
-       "plugins": ["one/expo-plugin"]
-     }
-   }
-   ```
-
-4. Add a `postinstall` script to your `package.json` that runs `one patch`. This applies necessary patches to Expo's CLI to ensure compatibility with One's build process:
+4. Add a `postinstall` script to your `package.json` that runs `one patch` so dependency patches are present on the build worker:
 
    ```json
    {
@@ -84,4 +74,4 @@ While our templates are configured in a way that works with EAS, if you're start
    }
    ```
 
-   One attempts to patch this but there can be timing issues, so this is a safer setup.
+5. Run `eas build:configure`, then build the checked-in iOS and Android projects as an existing React Native app.

@@ -1,13 +1,8 @@
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import {
-  generateBundlerConfig,
-  isCiEnvironment,
-  maybeGenerateBundlerConfigOnInstall,
-  ONE_GENERATED_MARKER,
-} from './generateBundlerConfig'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { generateBundlerConfig, ONE_GENERATED_MARKER } from './generateBundlerConfig'
 
 describe('generateBundlerConfig', () => {
   let tmpDir: string
@@ -28,7 +23,8 @@ describe('generateBundlerConfig', () => {
 
     const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
     expect(babel).toContain(ONE_GENERATED_MARKER)
-    expect(babel).toContain("require('one/babel-preset')")
+    expect(babel).toContain("'one/babel-preset'")
+    expect(babel).toContain("'@react-native/babel-preset'")
     expect(babel).toContain('oneBundlerOptions')
 
     const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
@@ -95,7 +91,7 @@ describe('generateBundlerConfig', () => {
 
     expect(babelResult.action).toBe('wrote')
     const after = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
-    expect(after).toContain("require('one/babel-preset')")
+    expect(after).toContain("'one/babel-preset'")
     expect(after).not.toContain('old content from previous version')
   })
 
@@ -153,18 +149,18 @@ describe('generateBundlerConfig', () => {
       const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
       expect(babel).not.toContain(ONE_GENERATED_MARKER)
       expect(babel).toContain('you own this file')
-      expect(babel).toContain("require('one/babel-preset')")
+      expect(babel).toContain("'one/babel-preset'")
 
       const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')
       expect(metro).not.toContain(ONE_GENERATED_MARKER)
       expect(metro).toContain('withOne')
     })
 
-    it('subsequent auto-gen run (no --eject) treats ejected files as customized', () => {
+    it('subsequent generation treats ejected files as customized', () => {
       generateBundlerConfig({ cwd: tmpDir, eject: true, quiet: true })
       const before = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
 
-      // simulate CI postinstall: regular generateBundlerConfig should skip these
+      // regular generation leaves user-owned files alone
       const { results } = generateBundlerConfig({ cwd: tmpDir, quiet: true })
       expect(results.every((r) => r.action === 'skipped-customized')).toBe(true)
 
@@ -233,112 +229,5 @@ describe('generateBundlerConfig', () => {
         },
       })
     ).toThrow(/JSON-serializable/)
-  })
-})
-
-describe('isCiEnvironment', () => {
-  const originalCi = process.env.CI
-  const originalEasBuild = process.env.EAS_BUILD
-
-  afterEach(() => {
-    if (originalCi === undefined) delete process.env.CI
-    else process.env.CI = originalCi
-    if (originalEasBuild === undefined) delete process.env.EAS_BUILD
-    else process.env.EAS_BUILD = originalEasBuild
-  })
-
-  it('is true when CI=true', () => {
-    process.env.CI = 'true'
-    delete process.env.EAS_BUILD
-    expect(isCiEnvironment()).toBe(true)
-  })
-
-  it('is true when CI=1', () => {
-    process.env.CI = '1'
-    delete process.env.EAS_BUILD
-    expect(isCiEnvironment()).toBe(true)
-  })
-
-  it('is true when EAS_BUILD=true', () => {
-    delete process.env.CI
-    process.env.EAS_BUILD = 'true'
-    expect(isCiEnvironment()).toBe(true)
-  })
-
-  it('is false when neither is set', () => {
-    delete process.env.CI
-    delete process.env.EAS_BUILD
-    expect(isCiEnvironment()).toBe(false)
-  })
-
-  it('is false when CI=false or CI=0', () => {
-    delete process.env.EAS_BUILD
-    process.env.CI = 'false'
-    expect(isCiEnvironment()).toBe(false)
-    process.env.CI = '0'
-    expect(isCiEnvironment()).toBe(false)
-  })
-})
-
-describe('maybeGenerateBundlerConfigOnInstall', () => {
-  let tmpDir: string
-  const originalCi = process.env.CI
-
-  beforeEach(() => {
-    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'one-gen-bundler-ci-test-'))
-  })
-
-  afterEach(() => {
-    fs.rmSync(tmpDir, { recursive: true, force: true })
-    if (originalCi === undefined) delete process.env.CI
-    else process.env.CI = originalCi
-    delete process.env.EAS_BUILD
-  })
-
-  it('does NOT generate files when not in CI even if expo-updates is present', () => {
-    delete process.env.CI
-    delete process.env.EAS_BUILD
-    // fake expo-updates in node_modules
-    const fakeUpdates = path.join(tmpDir, 'node_modules/expo-updates')
-    fs.mkdirSync(fakeUpdates, { recursive: true })
-    fs.writeFileSync(
-      path.join(fakeUpdates, 'package.json'),
-      JSON.stringify({ name: 'expo-updates' })
-    )
-
-    maybeGenerateBundlerConfigOnInstall(tmpDir)
-
-    expect(fs.existsSync(path.join(tmpDir, 'babel.config.cjs'))).toBe(false)
-    expect(fs.existsSync(path.join(tmpDir, 'metro.config.cjs'))).toBe(false)
-  })
-
-  it('does NOT generate files in CI when expo-updates is absent', () => {
-    process.env.CI = 'true'
-    // no expo-updates installed
-    maybeGenerateBundlerConfigOnInstall(tmpDir)
-
-    expect(fs.existsSync(path.join(tmpDir, 'babel.config.cjs'))).toBe(false)
-    expect(fs.existsSync(path.join(tmpDir, 'metro.config.cjs'))).toBe(false)
-  })
-
-  it('generates files in CI when expo-updates is present', () => {
-    process.env.CI = 'true'
-    const fakeUpdates = path.join(tmpDir, 'node_modules/expo-updates')
-    fs.mkdirSync(fakeUpdates, { recursive: true })
-    fs.writeFileSync(
-      path.join(fakeUpdates, 'package.json'),
-      JSON.stringify({ name: 'expo-updates' })
-    )
-
-    // suppress info logs
-    const consoleInfo = vi.spyOn(console, 'info').mockImplementation(() => {})
-    try {
-      maybeGenerateBundlerConfigOnInstall(tmpDir)
-    } finally {
-      consoleInfo.mockRestore()
-    }
-
-    expect(fs.existsSync(path.join(tmpDir, 'babel.config.cjs'))).toBe(true)
-    expect(fs.existsSync(path.join(tmpDir, 'metro.config.cjs'))).toBe(true)
   })
 })

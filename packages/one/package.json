@@ -67,7 +67,6 @@
       "require": "./vendor/react-dom/cjs/react-dom.development.js",
       "import": "./vendor/react-dom/cjs/react-dom.development.js"
     },
-    "./expo-plugin": "./expo-plugin.cjs",
     "./react-native-commands": "./react-native-commands.cjs",
     "./babel-plugin-one-router-metro": {
       "types": "./types/babel-plugins/one-router-metro.d.ts",
@@ -162,7 +161,6 @@
     "server.js",
     "metro-entry.js",
     "metro-entry-ctx.js",
-    "expo-plugin.cjs",
     "react-native-commands.cjs",
     "LICENSE",
     "README.md"
@@ -202,7 +200,6 @@
     "@vxrn/vite-plugin-metro": "workspace:*",
     "babel-dead-code-elimination": "1.0.10",
     "babel-plugin-module-resolver": "^5.0.2",
-    "babel-preset-expo": "58.0.0-canary-20260909-ea7a89a",
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
     "create-vxrn": "workspace:*",

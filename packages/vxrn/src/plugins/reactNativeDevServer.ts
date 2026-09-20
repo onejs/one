@@ -377,7 +377,7 @@ export function createReactNativeDevServerPlugin(
         }
       }
 
-      // handle any .bundle request (expo sdk 55 may use /packages/one/metro-entry.bundle)
+      // handle any metro bundle request
       server.middlewares.use((req, res, next) => {
         if (req.url?.split('?')[0].endsWith('.bundle')) {
           handleRNBundle(req, res, next)

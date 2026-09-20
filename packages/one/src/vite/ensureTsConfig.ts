@@ -37,7 +37,6 @@ export function ensureTSConfig() {
 },
 "exclude": [
   "node_modules",
-  ".expo",
   "**/test",
   "**/dist",
   "**/types",

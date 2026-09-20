@@ -1074,7 +1074,7 @@ describe('getNativeTransformConfig platform env defines', () => {
         expect(define['import.meta.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
-        expect(define['process.env.EXPO_OS']).toBe(JSON.stringify(platform))
+        expect(define).not.toHaveProperty('process.env.EXPO_OS')
 
         // the whole import.meta.env object (used by JSON.stringify(import.meta.env)) must carry it too
         const envObject = JSON.parse(define['import.meta.env'] as string)

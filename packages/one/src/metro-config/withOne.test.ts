@@ -124,9 +124,6 @@ describe('withOne', () => {
     // how `one` is linked (`node_modules/one` when installed, a workspace path in a
     // monorepo). only the entry itself and the preserved query are meaningful here.
     expect(
-      rewriteRequestUrl('/.expo/.virtual-metro-entry.bundle?platform=ios&dev=true')
-    ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true$/)
-    expect(
       rewriteRequestUrl('/index.bundle?platform=ios&dev=true&hot=true&minify=false')
     ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true&hot=true&minify=false$/)
   })

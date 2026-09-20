@@ -11,7 +11,6 @@
     "platforms": ["ios", "android"],
     "plugins": [
       "./config/with-react-native-screens-gamma.cjs",
-      "one/expo-plugin",
       [
         "expo-build-properties",
         {

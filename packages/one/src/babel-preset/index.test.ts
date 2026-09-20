@@ -11,12 +11,7 @@ const fakeApi = (cwd: string) => ({
 
 describe('one/babel-preset', () => {
   it('returns presets and plugins', () => {
-    const result = oneBabelPreset(fakeApi(projectRoot), {
-      projectRoot,
-      // skip the babel-preset-expo lookup so this test runs without the
-      // expo SDK installed in the workspace root
-      includeExpoPreset: false,
-    })
+    const result = oneBabelPreset(fakeApi(projectRoot), { projectRoot })
 
     expect(result).toHaveProperty('plugins')
     expect(Array.isArray(result.plugins)).toBe(true)
@@ -27,7 +22,6 @@ describe('one/babel-preset', () => {
   it('orders the plugin chain so server code is removed before router transforms', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
-      includeExpoPreset: false,
     })
 
     const names = (plugins ?? []).map((p) => (Array.isArray(p) ? p[0] : p))
@@ -44,7 +38,6 @@ describe('one/babel-preset', () => {
   it('defaults routerRoot to "app"', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
-      includeExpoPreset: false,
     })
 
     const removeServer = (plugins ?? []).find(
@@ -59,7 +52,6 @@ describe('one/babel-preset', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
       routerRoot: 'src/routes',
-      includeExpoPreset: false,
     })
 
     const removeServer = (plugins ?? []).find(
@@ -80,7 +72,6 @@ describe('one/babel-preset', () => {
       },
       {
         projectRoot,
-        includeExpoPreset: false,
       }
     )
 

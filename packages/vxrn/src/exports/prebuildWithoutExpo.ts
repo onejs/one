@@ -10,13 +10,13 @@ type NativeProjectPatches = {
   addDepsPatchToBundleReactNativeShellScript(input: string): string
   injectFmtCxx17FixIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
-  removeExpoDefaultsFromAppBuildGradle(input: string): string
+  replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
 }
 
 const nativeProjectPatches = module.createRequire(import.meta.url)(
-  '../../expo-plugin.cjs'
+  '../../native-project-patches.cjs'
 ) as NativeProjectPatches
 
 /*
@@ -258,7 +258,7 @@ end`
       }
     }
     if (platform === 'android' && relativePath === 'app/build.gradle') {
-      rendered = nativeProjectPatches.removeExpoDefaultsFromAppBuildGradle(rendered)
+      rendered = nativeProjectPatches.replaceAppBuildGradleReactBlock(rendered)
       rendered = nativeProjectPatches.addDepsPatchToAppBuildGradle(rendered)
       if (
         !rendered.includes('entryFile = file("../../package.json")') ||

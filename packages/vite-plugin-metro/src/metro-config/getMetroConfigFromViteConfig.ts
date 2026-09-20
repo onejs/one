@@ -2,17 +2,15 @@ import type { ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import micromatch from 'micromatch'
+import { getDefaultConfig } from '@react-native/metro-config'
 
-// For Metro and Expo, we only import types here.
-// We use `projectImport` to dynamically import the actual modules
-// at runtime to ensure they are loaded from the user's project root.
+// metro itself is loaded from the app so its cli and config stay aligned.
+// the base config belongs to this package and matches its react-native peer.
 import type { loadConfig as loadConfigT } from 'metro'
-import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
-import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import type { ExtraConfig, MetroConfigExtended } from './types'
 
@@ -44,10 +42,6 @@ function rewriteMainModuleBundleUrl(
   const resolvedMainModulePath = resolveMainModuleName({
     platform: getPlatformFromBundleUrl(url),
   })
-
-  if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
-    return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
-  }
 
   return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
 }
@@ -135,7 +129,7 @@ function resolveNativeTransforms(
  * Build the Metro config input WITHOUT calling Metro's `loadConfig`. Returns
  * the same shape Metro `loadConfig` expects as its second argument. Use this
  * from a project's `metro.config.cjs` so the outer `loadConfig` (driven by
- * Expo CLI / Metro CLI) is the only one that runs — avoids infinite
+ * the Metro CLI) is the only one that runs. this avoids infinite
  * recursion that would happen if the inner pipeline also called `loadConfig`
  * and re-read the same metro.config.cjs.
  */
@@ -156,53 +150,20 @@ export async function buildMetroConfigInputFromViteConfig(
     )
   }
 
-  const { getDefaultConfig } = await projectImport<{
-    getDefaultConfig: typeof getDefaultConfigT
-  }>(projectRoot, '@expo/metro-config')
-
   const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
 
   if (mainModuleName) {
-    const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
-
-    const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
-      await (async () => {
-        const ExpoGoManifestHandlerMiddleware = (
-          await projectImport(
-            projectRoot,
-            '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
-          )
-        ).default.ExpoGoManifestHandlerMiddleware
-
-        const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(
-          projectRoot,
-          {}
-        )
-
-        patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
-          manifestHandlerMiddleware,
-          mainModuleName
-        )
-
-        return (p) => {
-          return manifestHandlerMiddleware.resolveMainModuleName({
-            pkg: { main: mainModuleName },
-            platform: p.platform,
-          })
-        }
-      })()
+    const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
+    const resolveMainModuleName = () => mainModuleName
 
     extraConfig.getResolveMainModuleName = resolveMainModuleName
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (
-        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
-        rootIndexBundleRequestPattern.test(url)
-      ) {
+      if (rootIndexBundleRequestPattern.test(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
-      return origRewriteRequestUrl(url)
+      return origRewriteRequestUrl?.(url) ?? url
     }
   }
 
@@ -313,60 +274,21 @@ export async function getMetroConfigFromViteConfig(
   const { loadConfig } = await projectImport<{
     loadConfig: typeof loadConfigT
   }>(projectRoot, 'metro')
-  const { getDefaultConfig } = await projectImport<{
-    getDefaultConfig: typeof getDefaultConfigT
-  }>(projectRoot, '@expo/metro-config')
-
   const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
 
   if (mainModuleName) {
-    const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
-
-    // We need to patch Expo's default `config.server.rewriteRequestUrl`
-    // to change how URLs like '/.expo/.virtual-metro-entry.bundle?' are
-    // rewritten.
-    // But since that function is difficult to override, here we borrow
-    // the ExpoGoManifestHandlerMiddleware and use it to resolve the
-    // URL to the main module name.
-    const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
-      await (async () => {
-        const ExpoGoManifestHandlerMiddleware = (
-          await projectImport(
-            projectRoot,
-            '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
-          )
-        ).default.ExpoGoManifestHandlerMiddleware
-
-        const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(
-          projectRoot,
-          {}
-        )
-
-        patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
-          manifestHandlerMiddleware,
-          mainModuleName
-        )
-
-        return (p) => {
-          return manifestHandlerMiddleware.resolveMainModuleName({
-            pkg: { main: mainModuleName },
-            platform: p.platform,
-          })
-        }
-      })()
+    const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
+    const resolveMainModuleName = () => mainModuleName
 
     extraConfig.getResolveMainModuleName = resolveMainModuleName
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (
-        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
-        rootIndexBundleRequestPattern.test(url)
-      ) {
+      if (rootIndexBundleRequestPattern.test(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
 
-      return origRewriteRequestUrl(url)
+      return origRewriteRequestUrl?.(url) ?? url
     }
   }
 
