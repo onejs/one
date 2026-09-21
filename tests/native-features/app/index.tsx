@@ -103,6 +103,11 @@ const testScreens = [
     label: 'One Native System',
     testID: 'nav-one-native-system',
   },
+  {
+    href: '/one-native-apple-file',
+    label: 'One Native Apple File',
+    testID: 'nav-one-native-apple-file',
+  },
 ] as const
 
 export default function HomeScreen() {
