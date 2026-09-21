@@ -20,6 +20,7 @@ declare module 'one' {
         | `/one-native-dialogs`
         | `/one-native-effects`
         | `/one-native-groups`
+        | `/one-native-haptics`
         | `/one-native-host`
         | `/one-native-leaves`
         | `/one-native-lists`
