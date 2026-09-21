@@ -1,6 +1,6 @@
 import { TurboModuleRegistry, type TurboModule } from 'react-native'
 
-import { createRequestGuard, resolveCameraOptions, resolveImagePickerOptions } from './options'
+import { resolveCameraOptions, resolveImagePickerOptions } from './options'
 import type {
   ImagePickerOptions,
   ImagePickerPermissionResponse,
@@ -38,18 +38,17 @@ function native(verb: string): ImagePickerSpec {
   return cached
 }
 
-const guarded = createRequestGuard()
-
 // present the system photo picker. ios uses PHPickerViewController, which
 // needs no permission prompt; android uses the system photo picker with a
 // documents fallback on devices without it. picked assets are copied into
 // the app cache and returned as file uris. backing out resolves
-// { canceled: true, assets: null }.
-async function launchLibrary(
+// { canceled: true, assets: null }. plain, not async, so bad options throw
+// synchronously; the one-in-flight slot lives in native.
+function launchLibrary(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   const resolved = resolveImagePickerOptions(options)
-  return guarded('launchLibrary', () => native('launchLibrary').launchLibrary(resolved))
+  return native('launchLibrary').launchLibrary(resolved)
 }
 
 // capture one still photo with the system camera. a denied permission, a
@@ -57,25 +56,22 @@ async function launchLibrary(
 // null }; check getCameraPermissions first when the distinction matters.
 // needs the camera permission declared through native.app imagePicker and
 // rerun through one prebuild; without it the call rejects.
-async function launchCamera(
+function launchCamera(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   resolveCameraOptions(options)
-  return guarded('launchCamera', () => native('launchCamera').launchCamera())
+  return native('launchCamera').launchCamera()
 }
 
-// read the camera permission without prompting.
+// read the camera permission without prompting. outside the native pending
+// slot, so it answers during a pick.
 async function getCameraPermissions(): Promise<ImagePickerPermissionResponse> {
-  return guarded('getCameraPermissions', () =>
-    native('getCameraPermissions').getCameraPermissions()
-  )
+  return native('getCameraPermissions').getCameraPermissions()
 }
 
 // prompt for the camera permission unless it is already decided.
 async function requestCameraPermissions(): Promise<ImagePickerPermissionResponse> {
-  return guarded('requestCameraPermissions', () =>
-    native('requestCameraPermissions').requestCameraPermissions()
-  )
+  return native('requestCameraPermissions').requestCameraPermissions()
 }
 
 export const ImagePicker = Object.freeze({

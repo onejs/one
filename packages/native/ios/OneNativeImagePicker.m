@@ -70,6 +70,11 @@ RCT_EXPORT_METHOD(launchLibrary:(NSDictionary *)options
   // zero is unlimited on both sides of the bridge, so the value passes through.
   config.selectionLimit = [options[@"selectionLimit"] integerValue];
   config.selection = PHPickerConfigurationSelectionOrdered;
+  if (@available(iOS 17.0, *)) {
+    // compatible transcodes modern captures (heic) to the widely readable
+    // representation, so the provider yields public.jpeg.
+    config.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeCompatible;
+  }
   PHPickerViewController *picker = [[PHPickerViewController alloc] initWithConfiguration:config];
   picker.delegate = self;
   picker.presentationController.delegate = self;
@@ -207,7 +212,7 @@ RCT_EXPORT_METHOD(requestCameraPermissions:(RCTPromiseResolveBlock)resolve
                                                      message:@"the camera returned no image"];
                                  return;
                                }
-                               NSData *data = UIImageJPEGRepresentation(image, 1.0);
+                               NSData *data = UIImageJPEGRepresentation(image, 0.9);
                                if (data == nil) {
                                  [self rejectPendingWithVerb:@"launchCamera"
                                                      message:@"could not encode the photo"];
@@ -225,10 +230,27 @@ RCT_EXPORT_METHOD(requestCameraPermissions:(RCTPromiseResolveBlock)resolve
                                                              ?: @"could not save the photo"];
                                  return;
                                }
+                               CGSize size = CGSizeMake(
+                                   CGImageGetWidth(image.CGImage),
+                                   CGImageGetHeight(image.CGImage));
+                               // left and right orientations (exif 5 to 8)
+                               // store the pixels transposed to the display
+                               // axes, so the reported size swaps to match
+                               // what renders.
+                               switch (image.imageOrientation) {
+                                 case UIImageOrientationLeft:
+                                 case UIImageOrientationLeftMirrored:
+                                 case UIImageOrientationRight:
+                                 case UIImageOrientationRightMirrored:
+                                   size = CGSizeMake(size.height, size.width);
+                                   break;
+                                 default:
+                                   break;
+                               }
                                [self resolvePendingWithAssets:@[ @{
                                  @"uri" : destination.absoluteString,
-                                 @"width" : @(CGImageGetWidth(image.CGImage)),
-                                 @"height" : @(CGImageGetHeight(image.CGImage)),
+                                 @"width" : @(size.width),
+                                 @"height" : @(size.height),
                                  @"mimeType" : @"image/jpeg",
                                  @"fileName" : destination.lastPathComponent,
                                  @"fileSize" : @(data.length),
@@ -470,15 +492,25 @@ RCT_EXPORT_METHOD(requestCameraPermissions:(RCTPromiseResolveBlock)resolve
   if (![properties isKindOfClass:[NSDictionary class]]) {
     return CGSizeZero;
   }
-  return CGSizeMake(
-      [properties[(__bridge NSString *)kCGImagePropertyPixelWidth] doubleValue],
-      [properties[(__bridge NSString *)kCGImagePropertyPixelHeight] doubleValue]);
+  CGFloat width =
+      [properties[(__bridge NSString *)kCGImagePropertyPixelWidth] doubleValue];
+  CGFloat height =
+      [properties[(__bridge NSString *)kCGImagePropertyPixelHeight] doubleValue];
+  // exif orientations 5 to 8 store the pixels transposed to the display
+  // axes, so the reported size swaps to match what renders. a missing
+  // orientation reads 0 and falls through unswapped.
+  NSInteger orientation =
+      [properties[(__bridge NSString *)kCGImagePropertyOrientation] integerValue];
+  if (orientation >= 5 && orientation <= 8) {
+    return CGSizeMake(height, width);
+  }
+  return CGSizeMake(width, height);
 }
 
 #pragma mark - promise plumbing
 
-// one launch in flight: the js entries throw before a second launch, so
-// this only settles direct callers instead of clobbering the pending promise.
+// one launch in flight: native owns the slot, so a second launch rejects
+// instead of clobbering the pending promise.
 - (BOOL)takePendingWithVerb:(NSString *)verb
                      resolve:(RCTPromiseResolveBlock)resolve
                       reject:(RCTPromiseRejectBlock)reject

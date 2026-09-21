@@ -386,9 +386,15 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.imagePicker?.camera !== undefined
     ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
       rendered = rendered.replace(
-        '<uses-permission android:name="android.permission.INTERNET" />',
-        '<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.CAMERA" />'
+        anchor,
+        `${anchor}\n    <uses-permission android:name="android.permission.CAMERA" />`
       )
     }
     if (
@@ -421,9 +427,15 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         )
       }
       if (app.imagePicker?.camera !== undefined) {
+        const anchor = '\t<key>LSRequiresIPhoneOS</key>'
+        if (!rendered.includes(anchor)) {
+          throw new Error(
+            '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
+          )
+        }
         rendered = rendered.replace(
-          '\t<key>LSRequiresIPhoneOS</key>',
-          `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n\t<key>LSRequiresIPhoneOS</key>`
+          anchor,
+          `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n${anchor}`
         )
       }
     }

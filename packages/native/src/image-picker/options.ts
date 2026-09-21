@@ -45,24 +45,3 @@ export function resolveCameraOptions(
   }
   return resolved
 }
-
-// one image picker request at a time: a second call while a picker, a
-// camera capture, or a permission prompt is outstanding is a caller bug and
-// throws synchronously instead of queuing behind user input.
-export function createRequestGuard(): <T>(
-  verb: string,
-  run: () => Promise<T>
-) => Promise<T> {
-  let inFlight = false
-  return async (verb, run) => {
-    if (inFlight) {
-      throw new Error(`ImagePicker.${verb}: another request is already in flight`)
-    }
-    inFlight = true
-    try {
-      return await run()
-    } finally {
-      inFlight = false
-    }
-  }
-}
