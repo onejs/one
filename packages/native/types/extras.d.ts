@@ -9,4 +9,5 @@ export { SplitView } from './split-view';
 export type { SplitViewProps, SplitViewColumnProps } from './split-view';
 export * as Clipboard from './clipboard';
 export * as Network from './network';
+export * as WebBrowser from './web-browser';
 //# sourceMappingURL=extras.d.ts.map

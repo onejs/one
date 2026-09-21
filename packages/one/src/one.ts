@@ -13,6 +13,7 @@ import {
   ToolbarHost,
   ToolbarItem,
   UI as NativeUI,
+  WebBrowser as NativeWebBrowser,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
@@ -63,6 +64,7 @@ export type OneAPI = {
   readonly UI: Readonly<OneUI>
   readonly Clipboard: typeof NativeClipboard
   readonly Network: typeof NativeNetwork
+  readonly WebBrowser: typeof NativeWebBrowser
 }
 
 function currentPlatform(): OnePlatform {
@@ -112,4 +114,5 @@ export const One: OneAPI = Object.freeze({
   UI,
   Clipboard: NativeClipboard,
   Network: NativeNetwork,
+  WebBrowser: NativeWebBrowser,
 })

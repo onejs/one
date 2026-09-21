@@ -26,6 +26,10 @@ describe('root One export', () => {
     expect(One.Network.addNetworkStateListener).toBeTypeOf('function')
     expect(One.Network.useNetworkState).toBeTypeOf('function')
     expect(One.Network.NetworkStateType.WIFI).toBe('WIFI')
+    expect(One.WebBrowser.openBrowserAsync).toBeTypeOf('function')
+    expect(One.WebBrowser.dismissBrowser).toBeTypeOf('function')
+    expect(One.WebBrowser.openAuthSessionAsync).toBeTypeOf('function')
+    expect(One.WebBrowser.WebBrowserResultType.DISMISS).toBe('dismiss')
   })
 
   test('reports the build-time platform without reshaping the API', () => {

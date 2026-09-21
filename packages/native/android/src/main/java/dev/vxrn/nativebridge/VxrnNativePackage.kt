@@ -13,6 +13,7 @@ import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
+import dev.onejs.onenative.OneNativeWebBrowserModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
 
@@ -24,6 +25,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
             OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
+            OneNativeWebBrowserModule.NAME -> OneNativeWebBrowserModule(reactContext)
             else -> null
         }
     }
@@ -65,6 +67,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeNetworkModule.NAME to ReactModuleInfo(
                 name = OneNativeNetworkModule.NAME,
                 className = OneNativeNetworkModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeWebBrowserModule.NAME to ReactModuleInfo(
+                name = OneNativeWebBrowserModule.NAME,
+                className = OneNativeWebBrowserModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
