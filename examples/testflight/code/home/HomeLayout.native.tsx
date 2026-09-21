@@ -48,6 +48,16 @@ export function HomeLayout() {
         />
       ) : null}
 
+      {Platform.OS === 'ios' ? (
+        <Tabs.Screen
+          name="stack-toolbar"
+          options={{
+            title: 'Toolbar oracle',
+            tabBarButton: () => null,
+          }}
+        />
+      ) : null}
+
       {Platform.OS === 'ios' && Platform.isPad ? (
         <Tabs.Screen
           name="split/index"
