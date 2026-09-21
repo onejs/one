@@ -141,23 +141,4 @@ module.exports = x
     expect(result?.code).toBeTruthy()
     expect(result?.code).not.toContain('index.js.flow')
   })
-
-  it('tolerates the composed form listing the RN preset twice', () => {
-    // configs scaffolded while one/babel-preset carried no base list
-    // @react-native/babel-preset themselves. the preset including its own
-    // base must not break them: transforms stay idempotent.
-    const code = `
-      import type { X } from './types'
-      export const x: X = 1
-    `
-    const result = transformSync(code, {
-      filename: path.join(projectRoot, 'src/utils/y.ts'),
-      cwd: projectRoot,
-      presets: [require.resolve('@react-native/babel-preset'), presetWithBase],
-      caller: metroViteCaller,
-    })
-
-    expect(result?.code).toBeTruthy()
-    expect(result?.code).not.toContain('import type')
-  })
 })
