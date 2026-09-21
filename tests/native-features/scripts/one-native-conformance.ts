@@ -50,11 +50,12 @@ type Config = {
   timeout: number
   suite: Suite
   appPath: string
+  jsLocation: string
 }
 
 function usage() {
   console.log(
-    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>] [--app-path <PATH>]`
+    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>] [--app-path <PATH>] [--js-location <HOST:PORT>]`
   )
 }
 
@@ -65,6 +66,7 @@ function parse(args: string[]): Config {
   let timeout = 15_000
   let suite: Suite = 'tabs-menu'
   let appPath = ''
+  let jsLocation = ''
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
     if (arg === '--help' || arg === '-h') {
@@ -77,6 +79,7 @@ function parse(args: string[]): Config {
     else if (arg === '--artifact-dir') artifactDir = args[++i] || ''
     else if (arg === '--timeout') timeout = Number(args[++i])
     else if (arg === '--app-path') appPath = args[++i] || ''
+    else if (arg === '--js-location') jsLocation = args[++i] || ''
     else if (arg === '--suite') {
       const value = args[++i] || ''
       if (!(suites as readonly string[]).includes(value))
@@ -95,7 +98,7 @@ function parse(args: string[]): Config {
       'A simulator id, bundle id, artifact directory, and positive integer timeout are required.'
     )
   }
-  return { simulatorId, bundleId, artifactDir, timeout, suite, appPath }
+  return { simulatorId, bundleId, artifactDir, timeout, suite, appPath, jsLocation }
 }
 
 function command(args: string[], simulatorId: string) {
@@ -369,6 +372,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
       config.simulatorId
     )
+  // launch-app drops --args, so a non-default packager port launches through
+  // simctl, which forwards -RCT_jsLocation into nsuserdefaults. without the
+  // flag the app keeps the baked localhost:8081.
+  const launchApp = () => {
+    if (!config.jsLocation)
+      return command(
+        ['simulator', 'launch-app', '--bundle-id', config.bundleId],
+        config.simulatorId
+      )
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'launch',
+        config.simulatorId,
+        config.bundleId,
+        '-RCT_jsLocation',
+        config.jsLocation,
+      ],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000 }
+    )
+  }
   // a field does not become first responder the moment the tap returns, the snapshot carries
   // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
   // firing the whole string blind drops the leading characters, and iOS then autocorrects what
@@ -537,7 +562,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
   }
-  command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
+  launchApp()
   if (config.suite === 'notifications') {
     // simctl privacy has no notifications service on this xcode, so a
     // reinstall stands in for reset: it returns permission to undetermined.
@@ -551,7 +576,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       stdio: 'ignore',
       timeout: 60_000,
     })
-    command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
+    launchApp()
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-notifications')
