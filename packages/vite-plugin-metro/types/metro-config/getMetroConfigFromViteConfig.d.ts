@@ -1,4 +1,4 @@
-import type { ResolvedConfig } from 'vite';
+import { type ResolvedConfig } from 'vite';
 import type { MetroPluginOptions } from '../plugins/metroPlugin';
 import type { ExtraConfig, MetroConfigExtended } from './types';
 /**
