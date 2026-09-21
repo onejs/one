@@ -239,44 +239,11 @@ async function prepareTestApp() {
   copySync(copyTestContainerFrom, appPath)
 
   if (TEST_ENV === 'dev') {
-    // TODO: Dynamically set the server URL in the app
-
-    const serverUrl = `http://127.0.0.1:8081`
-
-    // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
-    console.info(`Checking dev server ${serverUrl}...`)
+    // the container requests the community template's `index` bundle root, which
+    // the dev server maps to the app entry in both bundler modes. the first build
+    // can take a while, so wait for it before appium starts.
+    const bundleUrl = `http://127.0.0.1:8081/index.bundle?platform=ios&dev=true&minify=false`
     const startedAt = performance.now()
-    const bundleUrl = await new Promise<string>((resolve, reject) => {
-      let retries = 0
-      const checkUrl = async () => {
-        try {
-          const response = await fetch(serverUrl, {
-            method: 'GET',
-            headers: {
-              'Expo-Platform': 'ios',
-            },
-          })
-          if (response.ok) {
-            const json = await response.json()
-            resolve(json.launchAsset.url)
-          } else {
-            throw new Error(`${response.status}`)
-          }
-        } catch (error) {
-          if (retries >= 5) {
-            reject(
-              new Error(
-                `Expo manifest request didn't get respond within the expected time.`
-              )
-            )
-          } else {
-            retries++
-            setTimeout(checkUrl, 1000)
-          }
-        }
-      }
-      checkUrl()
-    })
     console.info(`Waiting for the initial RN bundle to be ready from ${bundleUrl}...`)
     await new Promise<void>((resolve, reject) => {
       let retries = 0
