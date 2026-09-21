@@ -9,8 +9,15 @@
 // environments via `isServer` on the babel caller.
 // See:
 // * https://github.com/facebook/metro/blob/main/packages/metro-babel-transformer/src/index.js
-import type { BabelTransformer, BabelTransformerArgs } from 'metro-babel-transformer'
+import type {
+  BabelTransformer,
+  BabelTransformerArgs,
+  BabelTransformerCacheKeyOptions,
+} from 'metro-babel-transformer'
 import assert from 'node:assert'
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
 
 import type { TransformOptions } from './babel-core'
 import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
@@ -249,8 +256,57 @@ const transform: BabelTransformer['transform'] = ({
   }
 }
 
+export function getCacheKey(options?: BabelTransformerCacheKeyOptions): string {
+  const hash = createHash('sha256')
+  hash.update('vxrn-metro-babel-transformer-v1')
+
+  const projectRoot = options?.projectRoot
+  if (!projectRoot) {
+    return hash.digest('hex')
+  }
+
+  hash.update(projectRoot)
+
+  for (const file of [
+    '.env',
+    '.env.development',
+    '.env.local',
+    '.env.development.local',
+  ]) {
+    const filename = path.join(projectRoot, file)
+    hash.update(filename)
+    try {
+      hash.update(readFileSync(filename))
+    } catch (error) {
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'code' in error &&
+        error.code === 'ENOENT'
+      ) {
+        continue
+      }
+      throw error
+    }
+  }
+
+  hash.update(
+    JSON.stringify(
+      Object.entries(process.env)
+        .filter(
+          ([key]) =>
+            key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
+        )
+        .sort(([left], [right]) => left.localeCompare(right))
+    )
+  )
+
+  return hash.digest('hex')
+}
+
 const babelTransformer: BabelTransformer = {
   transform,
+  getCacheKey,
 }
 
 module.exports = babelTransformer

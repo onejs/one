@@ -17,6 +17,7 @@ import type { ExtraConfig, MetroConfigExtended } from './types'
 type MetroInputConfig = NonNullable<Parameters<typeof loadConfigT>[1]>
 
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
+const expoEnvAdditionalExts = ['env', 'local', 'development']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
@@ -258,6 +259,15 @@ export async function buildMetroConfigInputFromViteConfig(
 
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
+    watcher: {
+      ..._defaultConfig?.watcher,
+      additionalExts: [
+        ...new Set([
+          ...(_defaultConfig?.watcher?.additionalExts ?? []),
+          ...expoEnvAdditionalExts,
+        ]),
+      ],
+    },
     resolver: {
       ..._defaultConfig?.resolver,
       useWatchman,
@@ -294,6 +304,10 @@ export async function buildMetroConfigInputFromViteConfig(
     },
     transformer: {
       ..._defaultConfig?.transformer,
+      // one's router and Expo's optional development env module both use
+      // require.context. Metro installs a throwing runtime stub unless this
+      // graph feature is enabled.
+      unstable_allowRequireContext: true,
       babelTransformerPath: projectResolve(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
@@ -390,6 +404,15 @@ export async function getMetroConfigFromViteConfig(
 
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
+    watcher: {
+      ..._defaultConfig?.watcher,
+      additionalExts: [
+        ...new Set([
+          ...(_defaultConfig?.watcher?.additionalExts ?? []),
+          ...expoEnvAdditionalExts,
+        ]),
+      ],
+    },
     resolver: {
       ..._defaultConfig?.resolver,
       useWatchman,
@@ -434,6 +457,10 @@ export async function getMetroConfigFromViteConfig(
     },
     transformer: {
       ..._defaultConfig?.transformer,
+      // one's router and Expo's optional development env module both use
+      // require.context. Metro installs a throwing runtime stub unless this
+      // graph feature is enabled.
+      unstable_allowRequireContext: true,
       babelTransformerPath: projectResolve(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'

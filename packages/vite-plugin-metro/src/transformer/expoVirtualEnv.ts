@@ -1,4 +1,5 @@
 import { createRequire } from 'node:module'
+import { readFileSync } from 'node:fs'
 import path from 'node:path'
 
 /**
@@ -34,6 +35,12 @@ function loadExpoParseEnvFile(projectRoot: string): ParseEnvFile | null {
 
 const virtualEnvPattern = /[\\/]expo[\\/]virtual[\\/]env\.js$/
 const dotEnvPattern = /(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/
+const developmentEnvFiles = [
+  '.env',
+  '.env.development',
+  '.env.local',
+  '.env.development.local',
+]
 
 export function substituteExpoVirtualEnvSource({
   filename,
@@ -54,11 +61,37 @@ export function substituteExpoVirtualEnvSource({
   if (isClientEnvironment && virtualEnvPattern.test(filename)) {
     if (dev) {
       // variables are merged at runtime so HMR can pick up .env edits.
+      // standard Metro's Node crawler does not index `.env` because the file
+      // has no extension, so seed the module with the same public-only merge.
+      // context modules override this snapshot when the active watcher exposes
+      // the files, preserving Expo's live-update path.
+      const fileEnv: Record<string, string> = {}
+      const parseEnvFile = loadExpoParseEnvFile(projectRoot)
+      if (parseEnvFile) {
+        for (const file of developmentEnvFiles) {
+          try {
+            Object.assign(
+              fileEnv,
+              parseEnvFile(readFileSync(path.join(projectRoot, file), 'utf8'), true)
+            )
+          } catch (error) {
+            if (
+              typeof error === 'object' &&
+              error !== null &&
+              'code' in error &&
+              error.code === 'ENOENT'
+            ) {
+              continue
+            }
+            throw error
+          }
+        }
+      }
       const relativePath = path
         .relative(path.dirname(filename), projectRoot)
         .split(path.sep)
         .join('/')
-      return `const dotEnvModules = require.context(${JSON.stringify(relativePath)},false,/^\\.\\/\\.env/);\n\nexport const env = !dotEnvModules.keys().length ? process.env : { ...process.env, ...['.env', '.env.development', '.env.local', '.env.development.local'].reduce((acc, file) => {\n  return { ...acc, ...(dotEnvModules(file)?.default ?? {}) };\n}, {}) };`
+      return `const dotEnvModules = require.context(${JSON.stringify(relativePath)},false,/^\\.\\/\\.env/);\n\nexport const env = { ...process.env, ...${JSON.stringify(fileEnv)}, ...${JSON.stringify(developmentEnvFiles)}.reduce((acc, file) => {\n  const key = './' + file;\n  return { ...acc, ...(dotEnvModules.keys().includes(key) ? dotEnvModules(key)?.default : {}) };\n}, {}) };`
     }
     // production inlines every value at its use site, so reaching this
     // module at all is a bug worth naming rather than silently undefined.
