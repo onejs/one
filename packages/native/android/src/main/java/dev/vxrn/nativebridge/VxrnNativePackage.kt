@@ -6,6 +6,8 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeAdaptivePanelContentManager
+import dev.onejs.onenative.OneNativeAdaptivePanelManager
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
@@ -62,5 +64,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeEdgeFadeManager(),
             OneNativeBlurManager(),
             OneNativeMaskManager(),
+            OneNativeAdaptivePanelManager(),
+            OneNativeAdaptivePanelContentManager(),
         )
 }

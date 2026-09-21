@@ -614,6 +614,8 @@
         "datePickerStyle",
         "fullScreenCover",
         "gaugeStyle",
+        "inspector",
+        "inspectorColumnWidth",
         "interactiveDismissDisabled",
         "listStyle",
         "menuActionDismissBehavior",

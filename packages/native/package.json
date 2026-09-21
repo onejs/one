@@ -164,7 +164,9 @@
         "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
+        "OneNativeAdaptivePanel": "OneNativeAdaptivePanelComponentView",
+        "OneNativeAdaptivePanelContent": "OneNativeAdaptivePanelContentComponentView"
       }
     }
   }
