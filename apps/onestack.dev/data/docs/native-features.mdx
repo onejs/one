@@ -579,6 +579,25 @@ state. Both platforms honor the system haptics settings without extra code.
 
 ---
 
+## Crypto
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android
+(synchronous, importable as `getSecureRandomBytes` from
+`@vxrn/native/crypto`).
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -598,6 +617,7 @@ state. Both platforms honor the system haptics settings without extra code.
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`

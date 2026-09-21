@@ -8,6 +8,7 @@ import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
+import dev.onejs.onenative.OneNativeCryptoModule
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeHapticsModule
 import dev.onejs.onenative.OneNativeMaskManager
@@ -20,6 +21,7 @@ class VxrnNativePackage : BaseReactPackage() {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeHapticsModule.NAME -> OneNativeHapticsModule(reactContext)
+            OneNativeCryptoModule.NAME -> OneNativeCryptoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             else -> null
@@ -39,6 +41,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeHapticsModule.NAME to ReactModuleInfo(
                 name = OneNativeHapticsModule.NAME,
                 className = OneNativeHapticsModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeCryptoModule.NAME to ReactModuleInfo(
+                name = OneNativeCryptoModule.NAME,
+                className = OneNativeCryptoModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

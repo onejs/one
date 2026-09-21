@@ -1746,6 +1746,70 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Error: none'),
       'one-native-haptics-selection'
     )
+    // crypto on Android: presence (the native module resolved), two uuids
+    // off the device that match rfc 4122 v4 and differ, a 16-byte
+    // getRandomValues fill, regeneration keeping all of it valid, and an
+    // Error: none sweep proving no js throw escaped. redbox detection
+    // rides in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-crypto')
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const cryptoValue = (nodes: Node[], prefix: string) =>
+      nodes
+        .flatMap(nodeValues)
+        .find((value) => value.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = cryptoValue(nodes, 'UUID1: ')
+      const second = cryptoValue(nodes, 'UUID2: ')
+      const random = cryptoValue(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await expect(
+      'crypto-module-present',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'regenerate control',
+            (n) => exactlyOneId(n, 'one-native-crypto-regenerate'),
+          ],
+          ['module marker', (n) => textIncludes(n, 'Module: available')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
+    await expect(
+      'crypto-uuids-valid',
+      (nodes) =>
+        diagnose(nodes, [
+          ['two distinct v4 uuids plus a 16-byte fill', cryptoValid],
+          ['no js error', (n) => textIncludes(n, 'Error: none')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
+    tapFresh(config, 'Crypto regenerate', {
+      id: 'one-native-crypto-regenerate',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'crypto-regenerate-valid',
+      (nodes) =>
+        diagnose(nodes, [
+          ['regenerated values stay valid', cryptoValid],
+          ['no js error after regenerate', (n) => textIncludes(n, 'Error: none')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
 
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
