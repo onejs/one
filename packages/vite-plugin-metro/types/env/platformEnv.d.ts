@@ -4,7 +4,7 @@ export type PlatformEnv = {
     VITE_ENVIRONMENT: ViteEnvironment;
     VITE_NATIVE: '' | '1';
     ONE_PLATFORM: 'web' | 'ios' | 'android';
-    EXPO_OS: 'web' | 'ios' | 'android';
+    EXPO_OS?: 'ios' | 'android';
     TAMAGUI_TARGET: 'web' | 'native';
     TAMAGUI_ENVIRONMENT: ViteEnvironment;
 };

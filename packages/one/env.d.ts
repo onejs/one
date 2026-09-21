@@ -26,8 +26,8 @@ interface OneEnvVariables {
   VITE_NATIVE: '' | '1'
   /** "web" for web builds, "ios" or "android" for native. The One platform contract. */
   ONE_PLATFORM: 'web' | 'ios' | 'android'
-  /** Expo-compatible alias for ONE_PLATFORM. */
-  EXPO_OS: 'web' | 'ios' | 'android'
+  /** Expo-compatible native platform. Undefined on web. */
+  EXPO_OS: 'ios' | 'android'
   /** "web" for web builds, "native" for native builds. Used by Tamagui and One native route branches. */
   TAMAGUI_TARGET: 'web' | 'native'
 

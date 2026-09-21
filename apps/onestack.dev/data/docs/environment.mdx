@@ -45,7 +45,7 @@ Port priority (highest wins):
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
 - `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
-- `ONE_PLATFORM` and its Expo-compatible alias `EXPO_OS` are set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms.
+- `ONE_PLATFORM` is `"web"`, `"ios"`, or `"android"`. Expo packages also receive `EXPO_OS` as `"ios"` or `"android"` in native builds; One does not define it on web.
 
 #### React Native
 

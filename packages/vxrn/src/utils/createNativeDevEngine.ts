@@ -27,7 +27,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
-import { withPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -173,8 +173,8 @@ export function getNativeTransformConfig(
   const mode = dev ? 'development' : 'production'
 
   // One defaults to ONE_PUBLIC_ while retaining Expo's established public env
-  // contract. Missing counterparts are aliases; explicit values stay distinct.
-  const publicEnv = withPublicEnvAliases(
+  // contract. Missing Expo names receive exact One values; explicit values stay distinct.
+  const publicEnv = withExpoPublicEnvAliases(
     loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
   )
   const envDefines: Record<string, string> = {}

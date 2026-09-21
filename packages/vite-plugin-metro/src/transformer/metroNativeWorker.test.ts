@@ -1521,12 +1521,16 @@ describe('one public env contract in the metro worker', () => {
   it('inlines One and Expo public reads in dev and prod with no virtual module', () => {
     for (const isProduction of [false, true]) {
       const out = applyInlineEnvVars(
-        'export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API];',
+        `export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API, import.meta.env.EXPO_PUBLIC_API];
+export const all = { ...import.meta.env };`,
         'env.ts',
         isProduction,
         { ONE_PUBLIC_API: 'https://api.test' }
       )
-      expect(out).toBe('export const values = ["https://api.test", "https://api.test"];')
+      expect(out).toContain(
+        'export const values = ["https://api.test", "https://api.test", "https://api.test"];'
+      )
+      expect(out).toContain('"EXPO_PUBLIC_API":"https://api.test"')
       expect(out).not.toContain('expo/virtual/env')
       expect(out).not.toContain('_$$_EXPO_ENV')
     }

@@ -13,7 +13,7 @@ import {
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
-import { withPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
@@ -548,7 +548,7 @@ export function applyInlineEnvVars(
       ([key]) => key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
     )
   )
-  const effectiveEnv = withPublicEnvAliases({ ...processPublicEnv, ...env })
+  const effectiveEnv = withExpoPublicEnvAliases({ ...processPublicEnv, ...env })
 
   const ms = new MagicString(code)
 
