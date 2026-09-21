@@ -7,5 +7,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './composeTypes';
 export type * from './types';
+export { Haptics, isHapticsAvailable } from './haptics/index';
+export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
 export { UI };
 //# sourceMappingURL=index.d.ts.map

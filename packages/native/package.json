@@ -75,6 +75,12 @@
       "import": "./dist/esm/safe-area/index.mjs",
       "require": "./dist/cjs/safe-area/index.cjs"
     },
+    "./haptics": {
+      "types": "./types/haptics/index.d.ts",
+      "react-native": "./src/haptics/index.native.ts",
+      "import": "./dist/esm/haptics/index.mjs",
+      "require": "./dist/cjs/haptics/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },

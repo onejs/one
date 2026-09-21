@@ -4,6 +4,7 @@
 import {
   Color,
   Compose,
+  Haptics,
   MenuAction,
   SplitView,
   Swift,
@@ -50,6 +51,7 @@ export type OneSafeArea = {
 
 export type OneUI = typeof NativeUI & {
   readonly SafeArea: Readonly<OneSafeArea>
+  readonly Haptics: typeof Haptics
   readonly TextInput: typeof TextInput
   readonly useNativeState: typeof useNativeState
 }
@@ -95,6 +97,7 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
 const UI: Readonly<OneUI> = Object.freeze({
   ...NativeUI,
   SafeArea,
+  Haptics,
   TextInput,
   useNativeState,
 })
