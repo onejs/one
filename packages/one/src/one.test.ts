@@ -19,6 +19,9 @@ describe('root One export', () => {
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
     expect(One.UI.SafeArea.useInsets).toBeTypeOf('function')
+    expect(One.UI.Haptics.selection).toBeTypeOf('function')
+    expect(One.UI.Haptics.impact).toBeTypeOf('function')
+    expect(One.UI.Haptics.notification).toBeTypeOf('function')
   })
 
   test('reports the build-time platform without reshaping the API', () => {
