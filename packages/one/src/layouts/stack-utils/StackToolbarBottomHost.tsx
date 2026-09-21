@@ -18,6 +18,8 @@ function BottomItemElement({ data }: { data: BottomToolbarItemData }) {
       systemImageName={data.systemImageName}
       tintColor={data.tintColor}
       disabled={data.disabled}
+      sharesBackground={data.sharesBackground}
+      hidesSharedBackground={data.hidesSharedBackground}
       hidden={data.hidden}
       selected={data.selected}
       accessibilityLabel={data.accessibilityLabel}
@@ -56,6 +58,8 @@ function BottomMenuElement({ data }: { data: BottomToolbarMenuData }) {
       icon={data.icon}
       tintColor={data.tintColor}
       disabled={data.disabled}
+      sharesBackground={data.sharesBackground}
+      hidesSharedBackground={data.hidesSharedBackground}
       hidden={data.hidden}
       accessibilityLabel={data.accessibilityLabel}
       accessibilityHint={data.accessibilityHint}

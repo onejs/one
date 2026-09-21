@@ -19,6 +19,7 @@ declare module 'one' {
         | `/split`
         | `/stack-toolbar`
         | `/stack-toolbar/`
+        | `/stack-toolbar/detail`
       DynamicRoutes:
         | `/notifications/post/${OneRouter.SingleRoutePart<T>}`
         | `/post/${OneRouter.SingleRoutePart<T>}`
