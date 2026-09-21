@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import oneBabelPreset, { buildOneBabelPlugins } from './index'
 
 const projectRoot = path.resolve(__dirname, '../../')
@@ -10,6 +10,10 @@ const fakeApi = (cwd: string) => ({
 })
 
 describe('one/babel-preset', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
   it('returns presets and plugins', () => {
     const result = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
@@ -98,6 +102,50 @@ describe('one/babel-preset', () => {
     )
 
     expect(result).toEqual({ presets: [], plugins: [] })
+  })
+
+  it('builds the standalone Metro environment with one-way Expo aliases', () => {
+    vi.stubEnv('ONE_PUBLIC_FROM_ONE', 'one')
+    vi.stubEnv('ONE_PUBLIC_CONFLICT', 'one-conflict')
+    vi.stubEnv('EXPO_PUBLIC_CONFLICT', 'expo-conflict')
+    vi.stubEnv('EXPO_PUBLIC_EXPO_ONLY', 'expo-only')
+    vi.stubEnv('ONE_PLATFORM', 'web')
+    vi.stubEnv('EXPO_OS', 'web')
+
+    const webResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+      includeExpoPreset: false,
+    })
+
+    expect(webResult.plugins?.[0]).toEqual([
+      '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
+      {
+        env: expect.objectContaining({
+          ONE_PUBLIC_FROM_ONE: 'one',
+          EXPO_PUBLIC_FROM_ONE: 'one',
+          ONE_PUBLIC_CONFLICT: 'one-conflict',
+          EXPO_PUBLIC_CONFLICT: 'expo-conflict',
+          EXPO_PUBLIC_EXPO_ONLY: 'expo-only',
+          ONE_PLATFORM: 'web',
+        }),
+      },
+    ])
+    expect(webResult.plugins?.[0]).not.toHaveProperty('1.env.ONE_PUBLIC_EXPO_ONLY')
+    expect(webResult.plugins?.[0]).not.toHaveProperty('1.env.EXPO_OS')
+
+    vi.stubEnv('ONE_PLATFORM', 'ios')
+    const iosResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+      includeExpoPreset: false,
+    })
+    expect(iosResult.plugins?.[0]).toHaveProperty('1.env.EXPO_OS', 'ios')
+
+    vi.stubEnv('ONE_PLATFORM', 'android')
+    const androidResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+      includeExpoPreset: false,
+    })
+    expect(androidResult.plugins?.[0]).toHaveProperty('1.env.EXPO_OS', 'android')
   })
 })
 
