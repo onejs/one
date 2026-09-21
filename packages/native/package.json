@@ -87,6 +87,12 @@
       "import": "./dist/esm/crypto/index.mjs",
       "require": "./dist/cjs/crypto/index.cjs"
     },
+    "./app-info": {
+      "types": "./types/app-info/index.d.ts",
+      "react-native": "./src/app-info/index.native.ts",
+      "import": "./dist/esm/app-info/index.mjs",
+      "require": "./dist/cjs/app-info/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },

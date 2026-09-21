@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeAppInfoModule
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeCryptoModule
@@ -22,6 +23,7 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeHapticsModule.NAME -> OneNativeHapticsModule(reactContext)
             OneNativeCryptoModule.NAME -> OneNativeCryptoModule(reactContext)
+            OneNativeAppInfoModule.NAME -> OneNativeAppInfoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             else -> null
@@ -49,6 +51,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeCryptoModule.NAME to ReactModuleInfo(
                 name = OneNativeCryptoModule.NAME,
                 className = OneNativeCryptoModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeAppInfoModule.NAME to ReactModuleInfo(
+                name = OneNativeAppInfoModule.NAME,
+                className = OneNativeAppInfoModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

@@ -598,10 +598,47 @@ module throws instead of returning weak bytes.
 
 ---
 
+## App info
+
+Installed-binary identity, exposed as `One.AppInfo` (importable from
+`@vxrn/native/app-info`). Three fields, read synchronously from the native
+constants: `version` is the user-visible marketing version
+(`CFBundleShortVersionString` / `versionName`), `build` the binary build
+(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
+and comparison code stays platform-blind), and `applicationId` the install
+identity (`CFBundleIdentifier` / `applicationId`).
+
+```tsx
+import { One } from 'one'
+
+One.AppInfo.version // '2.4.6' | null
+One.AppInfo.build // '891' | null
+One.AppInfo.applicationId // 'dev.app.id' | null
+```
+
+The values are a snapshot read once at import and frozen: the binary cannot
+change under a running process. `null` means unknown (a host that failed to
+stamp, or an old build without the native module), never guessed. On native
+the snapshot always describes the installed binary, never bundle-time values:
+after an over-the-air update the JavaScript bundle and the binary disagree,
+which is exactly when a build comparison must read the binary. On web there
+is no installed binary, so the fields come from the build-time manifest
+values One injects (`version`, `ios.buildNumber` then `android.versionCode`,
+`android.applicationId` then `ios.bundleId`).
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
+`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
+Missing fields keep the template defaults (`1.0` / `1`), so a store build
+must set all three.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
 |---------|-----|---------|-----|
+| App info | NSBundle info dictionary | PackageManager constants | build-time manifest values |
 | Responsive icon colors | One.UI.Icon + UIKit semantic colors | One.UI.Icon + adaptive Material color scheme | app-provided element |
 | Zoom Transitions | iOS 18+ | unsupported | unsupported |
 | Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |

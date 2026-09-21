@@ -14,6 +14,8 @@ export type * from './composeTypes'
 export type * from './types'
 export { Haptics, isHapticsAvailable } from './haptics/index'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index'
+export { AppInfo } from './app-info/index'
+export type { AppInfoApi } from './app-info/index'
 // web subset of the UI namespace (pure curve math, types, throwing
 // component stubs). mirrors index.native.ts; see effects/index.ts.
 export { UI }
