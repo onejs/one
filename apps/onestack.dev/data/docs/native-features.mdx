@@ -642,6 +642,96 @@ On web, `open` opens a blank-target tab and a blocked popup rejects with code `E
 
 ---
 
+## Haptics
+
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics` (importable from
+`@vxrn/native/haptics`). The names follow Apple's feedback generators, not a
+hardware spec: `selection` for picking among options, `impact` for physical
+commits, `notification` for completion and failure the user cares about.
+
+```tsx
+import { One } from 'one'
+
+One.UI.Haptics.selection()
+One.UI.Haptics.impact('medium')
+One.UI.Haptics.notification('success')
+```
+
+The calls are synchronous `void`, not promises: haptics have no meaningful
+completion, so awaiting them would only serialize feedback behind bridge
+latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
+A missing module (old build, web bundler resolving the native file) degrades
+to a silent no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
+selection/impact/notification feedback.
+
+`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
+`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
+its `UIFeedbackGenerator` directly. On Android the mapping uses
+`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
+onto the nearest grade and pre-30 devices fall back: selection uses
+`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
+`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
+error feel distinct on API 24-29).
+
+Feedback is never the sole success/error signal: pair every call with visual
+state. Both platforms honor the system haptics settings without extra code.
+
+---
+
+## Crypto
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android,
+both synchronous over the bridge.
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.
+
+---
+
+## App info
+
+Installed-binary identity, exposed as `One.AppInfo` (importable from
+`@vxrn/native/app-info`). Three fields, read synchronously from the native
+constants: `version` is the user-visible marketing version
+(`CFBundleShortVersionString` / `versionName`), `build` the binary build
+(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
+and comparison code stays platform-blind), and `applicationId` the install
+identity (`CFBundleIdentifier` / `applicationId`).
+
+```tsx
+import { One } from 'one'
+
+One.AppInfo.version // '2.4.6' | null
+One.AppInfo.build // '891' | null
+One.AppInfo.applicationId // 'dev.app.id' | null
+```
+
+The values are a snapshot read once at import and frozen: the binary cannot
+change under a running process. `null` means unknown (a host that failed to
+stamp, or an old build without the native module), never guessed. On native
+the snapshot always describes the installed binary, never bundle-time values:
+after an over-the-air update the JavaScript bundle and the binary disagree,
+which is exactly when a build comparison must read the binary. On web there
+is no installed binary, so the fields come from the build-time manifest
+values One injects (`version`, `ios.buildNumber` then `android.versionCode`,
+`android.applicationId` then `ios.bundleId`).
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
+`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
+Missing fields keep the template defaults (`1.0` / `1`), so a store build
+must set all three.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -663,6 +753,8 @@ On web, `open` opens a blank-target tab and a blocked popup rejects with code `E
 | Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
 | Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
 | Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
+| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`
