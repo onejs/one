@@ -287,6 +287,43 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## Haptics
+
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics` (importable from
+`@vxrn/native/haptics`). The names follow Apple's feedback generators, not a
+hardware spec: `selection` for picking among options, `impact` for physical
+commits, `notification` for completion and failure the user cares about.
+
+```tsx
+import { One } from 'one'
+
+One.UI.Haptics.selection()
+One.UI.Haptics.impact('medium')
+One.UI.Haptics.notification('success')
+```
+
+The calls are synchronous `void`, not promises: haptics have no meaningful
+completion, so awaiting them would only serialize feedback behind bridge
+latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
+`isHapticsAvailable()` reports whether the native module resolved; a missing
+module (old build, web bundler resolving the native file) degrades to a silent
+no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
+selection/impact/notification feedback.
+
+`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
+`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
+its `UIFeedbackGenerator` directly. On Android the mapping uses
+`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
+onto the nearest grade and pre-30 devices fall back: selection uses
+`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
+`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
+error feel distinct on API 24-29).
+
+Feedback is never the sole success/error signal: pair every call with visual
+state. Both platforms honor the system haptics settings without extra code.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,6 +335,7 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

@@ -1,4 +1,4 @@
-import { Compose, MenuAction, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
+import { Compose, Haptics, MenuAction, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -21,6 +21,7 @@ export type OneSafeArea = {
 };
 export type OneUI = typeof NativeUI & {
     readonly SafeArea: Readonly<OneSafeArea>;
+    readonly Haptics: typeof Haptics;
     readonly TextInput: typeof TextInput;
     readonly useNativeState: typeof useNativeState;
 };
