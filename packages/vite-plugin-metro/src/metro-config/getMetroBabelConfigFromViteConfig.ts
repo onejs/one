@@ -1,10 +1,11 @@
 import type { ResolvedConfig } from 'vite'
 import type { TransformOptions } from '@babel/core'
+import { withPublicEnvAliases } from '@vxrn/utils'
 
 /**
  * Creates babel config for Metro transforms from Vite config.
  *
- * Platform-specific env vars (VITE_ENVIRONMENT, VITE_NATIVE, ONE_PLATFORM, TAMAGUI_ENVIRONMENT)
+ * Platform-specific env vars (VITE_ENVIRONMENT, VITE_NATIVE, ONE_PLATFORM, EXPO_OS, TAMAGUI_ENVIRONMENT)
  * are handled by the import-meta-env-plugin based on caller.platform and always take precedence.
  */
 export function getMetroBabelConfigFromViteConfig(
@@ -18,48 +19,28 @@ export function getMetroBabelConfigFromViteConfig(
     SSR: false,
   }
 
-  const envPrefix = config.envPrefix || ['VITE_', 'ONE_PUBLIC_']
+  const envPrefix = config.envPrefix || ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_']
   const prefixes = Array.isArray(envPrefix) ? envPrefix : [envPrefix]
 
-  // expo-prefixed public vars fail with a migration error instead of being
-  // copied, ignored, or aliased into the bundle.
-  for (const prefix of prefixes) {
-    if (prefix.startsWith('EXPO_')) {
-      throw new Error(
-        `[vxrn/metro] env prefix "${prefix}" is removed. rename it to ONE_PUBLIC_*`
-      )
-    }
-  }
-
   for (const key of Object.keys(config.env)) {
-    if (key.startsWith('EXPO_PUBLIC_')) {
-      throw new Error(
-        `[vxrn/metro] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
-      )
-    }
     if (prefixes.some((p) => key.startsWith(p))) {
-      importMetaEnv[key] = process.env[key]
+      importMetaEnv[key] = process.env[key] ?? config.env[key]
     }
   }
 
   // also harvest keys from config.define (populated by env-defining plugins like one's).
   // we union the user's envPrefix with framework-level defaults so we still pick up
-  // VITE_/ONE_PUBLIC_/ONE_ even when another plugin replaces envPrefix wholesale
+  // VITE_/ONE_PUBLIC_/EXPO_PUBLIC_/ONE_ even when another plugin replaces envPrefix wholesale
   // (e.g. some plugins set it to a single project-specific prefix).
   const definePrefixes = Array.from(
-    new Set([...prefixes, 'VITE_', 'ONE_PUBLIC_', 'ONE_'])
+    new Set([...prefixes, 'VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_', 'ONE_'])
   )
   for (const defineKey of Object.keys(config.define || {})) {
     const m = defineKey.match(/^process\.env\.([A-Z][A-Z0-9_]*)$/)
     if (!m) continue
     const key = m[1]
-    if (key.startsWith('EXPO_PUBLIC_') || key === 'EXPO_OS') {
-      throw new Error(
-        `[vxrn/metro] ${key} uses the removed expo contract. rename it to ONE_PUBLIC_* or ONE_PLATFORM`
-      )
-    }
     if (key in importMetaEnv) continue
-    if (!definePrefixes.some((p) => key.startsWith(p))) continue
+    if (key !== 'EXPO_OS' && !definePrefixes.some((p) => key.startsWith(p))) continue
     const raw = config.define![defineKey]
     try {
       importMetaEnv[key] = typeof raw === 'string' ? JSON.parse(raw) : raw
@@ -72,7 +53,7 @@ export function getMetroBabelConfigFromViteConfig(
     plugins: [
       [
         '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
-        { env: importMetaEnv },
+        { env: withPublicEnvAliases(importMetaEnv) },
       ],
     ],
   }

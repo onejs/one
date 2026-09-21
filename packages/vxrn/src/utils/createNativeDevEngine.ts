@@ -27,6 +27,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import { withPublicEnvAliases } from '@vxrn/utils'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -171,16 +172,11 @@ export function getNativeTransformConfig(
 
   const mode = dev ? 'development' : 'production'
 
-  // one-owned public contract: ONE_PUBLIC_* only. expo-prefixed input
-  // fails with a migration error instead of being copied or ignored.
-  for (const key of Object.keys(process.env)) {
-    if (key.startsWith('EXPO_PUBLIC_')) {
-      throw new Error(
-        `[one] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
-      )
-    }
-  }
-  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_'])
+  // One defaults to ONE_PUBLIC_ while retaining Expo's established public env
+  // contract. Missing counterparts are aliases; explicit values stay distinct.
+  const publicEnv = withPublicEnvAliases(
+    loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
+  )
   const envDefines: Record<string, string> = {}
   for (const [key, value] of Object.entries(publicEnv)) {
     envDefines[`import.meta.env.${key}`] = JSON.stringify(value)
@@ -201,6 +197,7 @@ export function getNativeTransformConfig(
     VITE_ENVIRONMENT: platform,
     VITE_NATIVE: '1',
     ONE_PLATFORM: platform,
+    EXPO_OS: platform,
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: platform,
   }
@@ -223,8 +220,6 @@ export function getNativeTransformConfig(
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
       'process.env.ONE_PLATFORM': JSON.stringify(platform),
-      // expo modules read this compile-time value internally. keep the one-owned
-      // app contract on ONE_PLATFORM without breaking upstream package behavior.
       'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
@@ -239,6 +234,7 @@ export function getNativeTransformConfig(
       'import.meta.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'import.meta.env.VITE_NATIVE': '"1"',
       'import.meta.env.ONE_PLATFORM': JSON.stringify(platform),
+      'import.meta.env.EXPO_OS': JSON.stringify(platform),
       'import.meta.env.TAMAGUI_TARGET': '"native"',
       'import.meta.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       ...setupFileDefines,

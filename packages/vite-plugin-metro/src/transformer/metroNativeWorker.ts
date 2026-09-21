@@ -13,6 +13,7 @@ import {
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
+import { withPublicEnvAliases } from '@vxrn/utils'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
@@ -516,16 +517,14 @@ export function applyModuleResolverAliases(
 
 /**
  * Native port of one's `babel-plugin-inline-one-server-url` for public env.
- * Every `process.env.ONE_PUBLIC_*` read is inlined as a literal in both modes,
+ * Every `process.env.ONE_PUBLIC_*` or `process.env.EXPO_PUBLIC_*` read is
+ * inlined as a literal in both modes,
  * matching the rolldown native defines: a native runtime has no `process.env`
  * to read it back out of, and without this the reads survive into the bundle
- * and every ONE_PUBLIC_ value is undefined at runtime.
+ * and every public value is undefined at runtime.
  *
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
  * it is how a native bundle knows where to fetch loader data from.
- *
- * `process.env.EXPO_PUBLIC_*` reads fail with a migration error instead of
- * being copied, ignored, or aliased.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
@@ -543,6 +542,13 @@ export function applyInlineEnvVars(
     )
   }
   if (!parsed?.program) return code
+
+  const processPublicEnv = Object.fromEntries(
+    Object.entries(process.env).filter(
+      ([key]) => key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
+    )
+  )
+  const effectiveEnv = withPublicEnvAliases({ ...processPublicEnv, ...env })
 
   const ms = new MagicString(code)
 
@@ -597,14 +603,12 @@ export function applyInlineEnvVars(
         return
       }
 
-      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
-        throw new Error(
-          `[vxrn/metro] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
-        )
-      }
-
-      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('ONE_PUBLIC_')) {
-        replace(node, env[key] ?? process.env[key] ?? undefined)
+      if (
+        isProcessEnv &&
+        !isAssignmentTarget &&
+        (key?.startsWith('ONE_PUBLIC_') || key?.startsWith('EXPO_PUBLIC_'))
+      ) {
+        replace(node, effectiveEnv[key] ?? undefined)
         return
       }
 
@@ -617,21 +621,30 @@ export function applyInlineEnvVars(
         keyOf(obj.property, obj.computed) === 'env' &&
         key !== undefined
       ) {
-        replace(node, env[key])
+        replace(node, effectiveEnv[key])
         return
       }
 
       // bare `import.meta.env`, spread or passed around whole.
       if (!isAssignmentTarget && isImportMeta(obj) && key === 'env') {
-        edits.push({ start: node.start, end: node.end, text: JSON.stringify(env) })
+        edits.push({
+          start: node.start,
+          end: node.end,
+          text: JSON.stringify(effectiveEnv),
+        })
         return
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
-      // branches above so ONE_SERVER_URL and ONE_PUBLIC_* keep their own
+      // branches above so ONE_SERVER_URL and public env keep their own
       // handling.
-      if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
-        replace(node, env[key])
+      if (
+        isProcessEnv &&
+        !isAssignmentTarget &&
+        key !== undefined &&
+        key in effectiveEnv
+      ) {
+        replace(node, effectiveEnv[key])
         return
       }
     }
