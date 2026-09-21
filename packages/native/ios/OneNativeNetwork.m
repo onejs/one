@@ -21,19 +21,6 @@ RCT_EXPORT_MODULE()
   return @[ @"oneNativeNetworkStateChanged" ];
 }
 
-RCT_EXPORT_METHOD(addListener:(NSString *)eventName)
-{
-  // super keeps the emitter's listener count; without it every event warns
-  // and never reaches js. the first add runs startObserving, which starts
-  // the monitor, so the first path can never race the subscription.
-  [super addListener:eventName];
-}
-
-RCT_EXPORT_METHOD(removeListeners:(double)count)
-{
-  [super removeListeners:count];
-}
-
 + (NSDictionary *)stateForPath:(nw_path_t)path
 {
   // expo-network mapping: only a satisfied path is connected, anything
