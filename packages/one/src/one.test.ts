@@ -22,6 +22,10 @@ describe('root One export', () => {
     expect(One.Clipboard.getStringAsync).toBeTypeOf('function')
     expect(One.Clipboard.setStringAsync).toBeTypeOf('function')
     expect(One.Clipboard.hasStringAsync).toBeTypeOf('function')
+    expect(One.Network.getNetworkStateAsync).toBeTypeOf('function')
+    expect(One.Network.addNetworkStateListener).toBeTypeOf('function')
+    expect(One.Network.useNetworkState).toBeTypeOf('function')
+    expect(One.Network.NetworkStateType.WIFI).toBe('WIFI')
   })
 
   test('reports the build-time platform without reshaping the API', () => {

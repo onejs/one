@@ -8,4 +8,5 @@ export type { MenuActionProps } from './menu/index';
 export { SplitView } from './split-view';
 export type { SplitViewProps, SplitViewColumnProps } from './split-view';
 export * as Clipboard from './clipboard';
+export * as Network from './network';
 //# sourceMappingURL=extras.d.ts.map

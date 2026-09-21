@@ -11,6 +11,7 @@ import dev.onejs.onenative.OneNativeClipboardModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
+import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
@@ -22,6 +23,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
+            OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
             else -> null
         }
     }
@@ -55,6 +57,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeClipboardModule.NAME to ReactModuleInfo(
                 name = OneNativeClipboardModule.NAME,
                 className = OneNativeClipboardModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeNetworkModule.NAME to ReactModuleInfo(
+                name = OneNativeNetworkModule.NAME,
+                className = OneNativeNetworkModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

@@ -6,6 +6,7 @@ import {
   Color,
   Compose,
   MenuAction,
+  Network as NativeNetwork,
   SplitView,
   Swift,
   TextInput,
@@ -61,6 +62,7 @@ export type OneAPI = {
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
   readonly Clipboard: typeof NativeClipboard
+  readonly Network: typeof NativeNetwork
 }
 
 function currentPlatform(): OnePlatform {
@@ -109,4 +111,5 @@ export const One: OneAPI = Object.freeze({
   Android,
   UI,
   Clipboard: NativeClipboard,
+  Network: NativeNetwork,
 })

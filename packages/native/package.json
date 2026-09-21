@@ -81,6 +81,12 @@
       "import": "./dist/esm/clipboard/index.mjs",
       "require": "./dist/cjs/clipboard/index.cjs"
     },
+    "./network": {
+      "types": "./types/network/index.d.ts",
+      "react-native": "./src/network/index.native.ts",
+      "import": "./dist/esm/network/index.mjs",
+      "require": "./dist/cjs/network/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
