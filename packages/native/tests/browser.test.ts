@@ -62,6 +62,9 @@ describe('browser web', () => {
       Browser.open('https://example.com', { presentationStyle: 'huge' as never })
     ).toThrow('Browser.open: unknown presentationStyle "huge"')
     expect(() =>
+      Browser.open('https://example.com', { presentationStyle: 'popover' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "popover"')
+    expect(() =>
       Browser.open('https://example.com', { browserPackage: 7 as never })
     ).toThrow('Browser.open: browserPackage must be a string')
     expect(() =>
@@ -134,6 +137,9 @@ describe('browser native entry', () => {
     expect(() =>
       native.open('https://example.com', { presentationStyle: 'huge' as never })
     ).toThrow('Browser.open: unknown presentationStyle "huge"')
+    expect(() =>
+      native.open('https://example.com', { presentationStyle: 'popover' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "popover"')
     expect(() => native.openAuthSession('https://example.com', 7 as never)).toThrow(
       'Browser.openAuthSession: redirectUrl must be a string or null'
     )

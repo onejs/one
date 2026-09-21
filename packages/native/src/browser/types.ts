@@ -22,7 +22,6 @@ export type BrowserPresentationStyle =
   | 'overCurrentContext'
   | 'overFullScreen'
   | 'pageSheet'
-  | 'popover'
 
 export interface BrowserOpenOptions {
   // ios only: the modal presentation of the safari sheet.

@@ -8,7 +8,6 @@ const knownPresentationStyles: readonly string[] = [
   'overCurrentContext',
   'overFullScreen',
   'pageSheet',
-  'popover',
 ]
 
 // shared argument checks: identical checks and messages on web and native.
