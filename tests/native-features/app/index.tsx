@@ -63,6 +63,11 @@ const testScreens = [
     testID: 'nav-one-native-map',
   },
   {
+    href: '/one-native-ui-map',
+    label: 'One Native UI Map',
+    testID: 'nav-one-native-ui-map',
+  },
+  {
     href: '/one-native-lists',
     label: 'One Native Lists',
     testID: 'nav-one-native-lists',

@@ -10,6 +10,16 @@ export { sampleCurve, serializeCurve } from './curves'
 export type * from './types'
 export { Icon } from '../ui/Icon'
 export type { IconColorRole, IconElements, IconProps } from '../ui/Icon'
+export { Map } from '../ui/Map'
+export type {
+  CameraPosition,
+  Coordinates,
+  MapCircle,
+  MapMarker,
+  MapPolygon,
+  MapPolyline,
+  MapProps,
+} from '../ui/Map'
 
 // renders nothing on web: rendering throws, but the declarations return an
 // element so native consumers typecheck against the component shape.
