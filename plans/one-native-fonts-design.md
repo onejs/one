@@ -7,8 +7,9 @@ part that matters most, because a Contrast generated app runs on a prebuilt temp
 binary and picks its fonts after that binary exists. One rule covers both paths and both
 platforms: a font is addressed by its PostScript name, one file per cut.
 
-Scope: written design against `origin/v2-next` at `29fa071d1`. Nothing was built or run
-on a device for this document.
+Scope: written design against `29fa071d1`, which was the head of both `origin/v2-beta`
+and `origin/v2-next` when this was written. Nothing was built or run on a device for this
+document. Reviewed once by another model; its required changes are folded in below.
 
 ## Evidence
 
@@ -45,7 +46,14 @@ on a device for this document.
   `CTFontManagerRegisterGraphicsFont` is deprecated since iOS 18 (`CTFontManager.h:171,216-218`).
 - **RAN (read):** the community template 0.87.2 has a plain resources phase with two
   entries and no synchronized folder groups (`HelloWorld.xcodeproj/project.pbxproj:11,18,44,160-161`),
-  so a new bundle resource needs four pbxproj lines.
+  so a new bundle resource would need four pbxproj lines. Prebuild already rewrites the
+  React Native bundle script phase and throws when it cannot (`prebuildWithoutExpo.ts:78-115`).
+- **RAN (read):** Android modules are registered by hand in `VxrnNativePackage.kt`:
+  `getModule` (`:18`) and one `ReactModuleInfo` each with `isTurboModule = false`
+  (`:29-51`, SafeArea and Sync). `@vxrn/native` already embeds fonts of its own as
+  `res/font` resources read through Compose `Font(R.font...)`
+  (`OneNativeComposeNodeView.kt:1449-1450`); that path serves Compose text only and does
+  not reach React Native `fontFamily`, so it is no substitute for `assets/fonts`.
 
 ## The one rule
 
@@ -68,8 +76,12 @@ silently fall back on the other:
 - prebuild reads the PostScript name out of each listed file (the sfnt `name` table,
   name id 6, about 35 lines, no dependency) and fails when the file name differs, saying
   what to rename it to.
-- Android `load` cannot check: `Typeface` has no name query. It registers under the key
-  it is given. The iOS rejection is what catches a wrong key.
+- Android `load` cannot check: `Typeface` has no name query, so it registers under
+  whatever key it is given. **Accepted limitation:** a wrong key works on Android and is
+  rejected on iOS. One does not parse the font file on Android to close this, because the
+  iOS rejection and the prebuild check already stop a wrong key from shipping in any app
+  that runs on both. The docs state it, and the Android suite asserts the documented
+  behaviour (a wrong key resolves and renders the font) so a later change to it is seen.
 
 ## API (exact surface)
 
@@ -98,8 +110,11 @@ function useFonts(fonts: FontMap): readonly [loaded: boolean, error: Error | nul
 - Migration from `expo-font`: `loadAsync(map)` becomes `Fonts.load(map)`,
   `isLoaded` and `useFonts` keep their names.
 
-**Spec.** One legacy module `OneNativeFonts`, resolved with one lazy cached
-`TurboModuleRegistry.get<Spec>()`:
+**Spec.** One legacy module `OneNativeFonts`, spec file
+`src/specs/OneNativeFontsNativeModule.ts`, resolved with one lazy cached
+`TurboModuleRegistry.get<Spec>()`. On Android it is added to `VxrnNativePackage.kt` in
+both `getModule` and `getReactModuleInfoProvider` with `isTurboModule = false`, like
+SafeArea and Sync:
 
 ```ts
 interface Spec extends TurboModule {
@@ -108,20 +123,25 @@ interface Spec extends TurboModule {
 }
 ```
 
-**JS.** The only JS logic is turning a source into a uri:
-`typeof source === 'number' ? Image.resolveAssetSource(source).uri : source`, then one
-`load` call per entry under `Promise.all`. React Native core already owns that
-resolution, so One needs no `expo-asset`. With the native module missing, `load` rejects
+**JS.** The only JS logic is turning a source into a uri. A string is used as is. A
+number goes through `Image.resolveAssetSource(source)`, which returns null for an id
+that is not a registered asset; that case throws `Fonts.load: "<name>" is not a font
+asset` before any native call. Then one `load` call per entry under `Promise.all`. React
+Native core already owns that resolution, so One needs no `expo-asset`. With the native module missing, `load` rejects
 with `fonts need a native build that includes @vxrn/native` and `isLoaded` returns
 `false`.
 
 **Native, one path on each platform:** make the uri a local file, register it, check it.
 
-- The uri is one of three things. `file://` is used as is (iOS release, and any app
-  supplied file). `http(s)://` is downloaded to `Caches/one-fonts/<sha256 of url>.<ext>`
-  (every dev build, and remote fonts). A bare name with no scheme is an Android release
-  resource: look it up with `resources.getIdentifier(name, "raw", packageName)` and copy
-  the stream to the same cache directory.
+- Two schemes are certain because the app can pass them directly: `file://` is used as
+  is, and `http(s)://` is downloaded to `Caches/one-fonts/<sha256 of url>.<ext>`. What
+  an imported font asset resolves to is not assumed. F1 starts by logging the real
+  `Image.resolveAssetSource(fontId).uri` for dev and release on iOS and Android, and the
+  module implements only the schemes that log shows. **INFERRED** expectation, to be
+  replaced by the log: http in dev, a bundle `file://` on iOS release, a bare `raw`
+  resource name on Android release (which would mean
+  `resources.getIdentifier(name, "raw", packageName)` and a stream copy to the cache
+  directory). No branch ships for a scheme nobody observed.
 - iOS registers with `CTFontManagerRegisterFontsForURL(url, .process, &error)`.
   `kCTFontManagerErrorAlreadyRegistered` and `kCTFontManagerErrorDuplicatedName` count as
   success, then the name check above decides.
@@ -149,19 +169,20 @@ base name equals the file's PostScript name. A new `generateFonts` step runs nex
 
 - **Android:** copy each file to `app/src/main/assets/fonts/`. Nothing else: React
   Native finds it by name.
-- **iOS:** copy each file to `<App>/Fonts/`, add `UIAppFonts` to `Info.plist` with one
-  `Fonts/<file>` string per font (inserted before `LSRequiresIPhoneOS`, the anchor the
-  scheme stamp already uses at `prebuildWithoutExpo.ts:456-470`), and add `Fonts` to the
-  Xcode project once as a folder reference, so the pbxproj change is four lines however
-  many fonts there are. Each line goes after its `Images.xcassets` sibling
-  (build file `:11`, file reference `:18`, group child `:44`, resources phase `:161`)
-  with two fixed ids, and prebuild throws when any of the four anchors is missing, the
-  way `patchIosBundlePhase` already does. A template bump that moves them fails the
-  build instead of shipping an app without its fonts.
-- **GUESSED:** `UIAppFonts` accepts a `Fonts/<file>` subpath for a folder reference.
-  F2 proves it on device. If it does not, the fallback keeps the folder reference and
-  has `OneNativeFonts` register every file in `Bundle.main/Fonts` from `+load`; do not
-  switch to per-file pbxproj entries.
+- **iOS:** copy each file to `<App>/Fonts/`, and have `OneNativeFonts` register every
+  `.ttf` and `.otf` in `Bundle.main/Fonts` from its ObjC `+load`, with the same
+  `CTFontManagerRegisterFontsForURL` call `load` uses. No `UIAppFonts` stamp and no
+  pbxproj file entries. The folder reaches the app bundle through one line appended to
+  the React Native bundle script phase that prebuild already patches
+  (`cp -R "$PROJECT_DIR/<App>/Fonts" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/"`),
+  added inside `patchIosBundlePhase` so it inherits that function's throw when the phase
+  is missing. With no fonts listed, neither the folder nor the line exists and `+load`
+  finds nothing.
+- **GUESSED:** a copy made in that script phase lands before code signing and is present
+  in Debug simulator builds, where the script skips bundling but still runs. F2 proves it
+  on device. `UIAppFonts` with a folder reference stays a rejected alternative unless F2
+  shows the script copy cannot work, and then only after `Fonts/<file>` is proven on a
+  device.
 
 Embedded fonts are usable before the first frame, so an app that lists its fonts needs no
 `load` call and no loading state. The docs lead with that for ordinary apps and with
@@ -181,9 +202,10 @@ be added later without breaking anything above.
 
 ## Size
 
-Spec and JS about 70 lines, iOS about 90, Android about 110, prebuild about 125 with the
-name reader, fixture and suite about 250, docs about 60: roughly 700, the size of haptics
-or crypto. No subsystem.
+Spec and JS about 70 lines, iOS about 100, Android about 110, prebuild about 100 with the
+name reader, fixture and suite about 250, docs about 60: roughly 700. **INFERRED:** that
+is the order of the approved haptics and crypto branches (`one-native-haptics`,
+`one-native-random-uuid`), which are not on `v2-beta` or `v2-next` yet. No subsystem.
 
 ## Slices
 
@@ -194,23 +216,24 @@ or crypto. No subsystem.
    step. The fixture ships one test font with a glyph shape no system font has (a solid
    block for `A` is enough) and renders the same string before and after `load`. The
    suite asserts, through the existing pixel gate, that the text pixels change after
-   `load` resolves, that `isLoaded` flips from `false` to `true`, and that a wrong key
-   rejects on iOS with the font's real names in the message. Negative control: the same
+   `load` resolves, that `isLoaded` flips from `false` to `true`, that a wrong key
+   rejects on iOS with the font's real names in the message, and that the same wrong key
+   resolves on Android (the accepted limitation, pinned). Negative control: the same
    pixel assertion fails when `load` is skipped.
-   **Probes inside F1, each a go or no-go:**
-   - dev build on both platforms: `Image.resolveAssetSource(fontId).uri` is an http url
-     the module can download (**INFERRED** from the asset plugin; font assets have no
-     width or height, confirm the resolver does not need them);
-   - release build on both platforms: the uri is a bundle `file://` on iOS and a bare
-     `raw` resource name on Android (**INFERRED** from `copyNativeAssetFiles`). If the
-     release copy does not produce what the resolver names, fix the asset plugin, since
-     images share that path.
+   **First step of F1, before any native code:** log
+   `Image.resolveAssetSource(fontId)` for dev and release on iOS and Android, four
+   values, quoted in the hand-off. Font assets have no width or height, so a null here is
+   possible and is itself a result. Implement exactly the schemes observed. If a release
+   build does not produce a file the logged uri names, stop and send the four values
+   back for a rethink. Changing the asset plugin is out of scope for this slice, since
+   images share that path.
 2. **F2 prebuild.** Manifest field, both validators, `generateFonts`, the name reader,
-   unit tests for the reader and for the rendered `Info.plist` and pbxproj in
-   `prebuildWithoutExpo.test.ts`, which already covers rendered files. The fixture app
+   the `+load` registration, unit tests for the reader and for the patched bundle phase
+   in `prebuildWithoutExpo.test.ts`, which already covers rendered files. The fixture app
    lists a second test font in `native.app.fonts` and the suite asserts it renders and
    `isLoaded` is `true` with no `load` call, on both platforms, from a fresh prebuild.
-   This slice settles the `UIAppFonts` subpath guess.
+   This slice settles the script-phase copy guess, in a Debug simulator build and a
+   Release build.
 3. **F3 docs and hand-off.** A `## Fonts` section in
    `apps/onestack.dev/data/docs/native-features.mdx`: the one rule first, embedded fonts,
    runtime `load`, the web note, the exclusions. Then send Contrast's owner the change
