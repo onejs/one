@@ -15,6 +15,8 @@ declare module 'one' {
         | `/one-native-accessibility`
         | `/one-native-android`
         | `/one-native-android-inputs`
+        | `/one-native-browser`
+        | `/one-native-clipboard`
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-dialogs`
@@ -26,6 +28,7 @@ declare module 'one' {
         | `/one-native-lists`
         | `/one-native-map`
         | `/one-native-media`
+        | `/one-native-network`
         | `/one-native-popover`
         | `/one-native-safe-area`
         | `/one-native-sheet`

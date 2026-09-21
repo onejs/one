@@ -87,6 +87,7 @@ def kotlinVersion = safeExtGet("kotlinVersion", "2.1.20")
 
 dependencies {
     implementation "com.facebook.react:react-android"
+    implementation "androidx.browser:browser:1.8.0"
     implementation "com.google.android.material:material:1.13.0"
     implementation "androidx.activity:activity:1.9.3"
     implementation "androidx.core:core:1.13.1"

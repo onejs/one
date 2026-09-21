@@ -7,10 +7,13 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeBlurManager
+import dev.onejs.onenative.OneNativeBrowserModule
+import dev.onejs.onenative.OneNativeClipboardModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
+import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
@@ -21,6 +24,9 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
+            OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
+            OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
+            OneNativeBrowserModule.NAME -> OneNativeBrowserModule(reactContext)
             OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
             else -> null
         }
@@ -47,6 +53,30 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeClipboardModule.NAME to ReactModuleInfo(
+                name = OneNativeClipboardModule.NAME,
+                className = OneNativeClipboardModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeNetworkModule.NAME to ReactModuleInfo(
+                name = OneNativeNetworkModule.NAME,
+                className = OneNativeNetworkModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeBrowserModule.NAME to ReactModuleInfo(
+                name = OneNativeBrowserModule.NAME,
+                className = OneNativeBrowserModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

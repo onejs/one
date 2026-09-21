@@ -41,6 +41,9 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'clipboard',
+  'network',
+  'browser',
   'image-picker',
 ] as const
 type Suite = (typeof suites)[number]
@@ -241,6 +244,26 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+const clipboardLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-clipboard-set')) &&
+  has(nodes, 'Written: ')
+const networkLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-network-refresh')) &&
+  has(nodes, 'State: ')
+// a presented safari sheet takes the whole accessibility tree and exposes no
+// children through this snapshot api, so the suite counts a collapsed tree
+// as the presented side of loaded. home rows carry nav ids, which keeps a
+// mid-navigation tree from counting.
+const browserPresented = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  !labels(nodes).some((label) => label.includes('Result: ')) &&
+  !nodes.some((node) => node.AXUniqueId?.startsWith('nav-'))
+const browserLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
+    browserPresented(nodes))
 // a presented photo picker covers the fixture and publishes no accessibility
 // tree of its own, so the screen counts as loaded from the fixture side, the
 // camera prompt, or the bare application node.
@@ -276,6 +299,9 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  clipboard: clipboardLoaded,
+  network: networkLoaded,
+  browser: browserLoaded,
   'image-picker': imagePickerLoaded,
 }
 const suiteHome: Record<Suite, string> = {
@@ -296,6 +322,9 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  clipboard: 'nav-one-native-clipboard',
+  network: 'nav-one-native-network',
+  browser: 'nav-one-native-browser',
   'image-picker': 'nav-one-native-image-picker',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
@@ -3153,6 +3182,163 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'clipboard') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-clipboard')
+    await wait('clipboard fixture mounted', (n) =>
+      labels(n).includes('Written: none')
+    )
+    tap({ id: 'one-native-clipboard-set' })
+    await wait('setString reports true', (n) =>
+      labels(n).includes('Written: true')
+    )
+    tap({ id: 'one-native-clipboard-get' })
+    await wait('getString reads the write back', (n) =>
+      labels(n).includes('Read: one-native-clipboard-probe')
+    )
+    tap({ id: 'one-native-clipboard-has' })
+    await wait('hasString sees the string', (n) =>
+      labels(n).includes('Has: true')
+    )
+    screenshot('clipboard-roundtrip.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`clipboard recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-clipboard')
+      await wait(`clipboard recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Written: none')
+      )
+      tap({ id: 'one-native-clipboard-get' })
+      await wait(
+        `clipboard recycle ${cycle}: the pasteboard outlives the fixture`,
+        (n) => labels(n).includes('Read: one-native-clipboard-probe')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'network') {
+    const stateOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('State: '))
+      if (!label) return null
+      const [, type, connected, reachable] = label.split(' ')
+      return { type, connected, reachable }
+    }
+    const eventsOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('Events: '))
+      return label ? Number(label.slice('Events: '.length)) : NaN
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-network')
+
+    // the simulator has a live host route, so the correct reading is a named
+    // type with both flags true. none would prove the monitor never started.
+    await wait('the one-shot read publishes live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state &&
+          state.type &&
+          state.type !== 'none' &&
+          state.connected === 'true' &&
+          state.reachable === 'true'
+      )
+    })
+    await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
+    tap({ id: 'one-native-network-refresh' })
+    await wait('a refresh re-reads live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state && state.connected === 'true' && state.reachable === 'true'
+      )
+    })
+    screenshot('network-state.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`network recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-network')
+      await wait(`network recycle ${cycle}: state publishes again`, (n) => {
+        const state = stateOf(n)
+        return (
+          Boolean(state && state.type !== 'none' && state.connected === 'true') &&
+          eventsOf(n) >= 1
+        )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'browser') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-browser')
+    await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
+
+    // a user dismiss resolves cancel. the sheet exposes no accessibility
+    // children, so presentation is the collapsed tree and the close tap
+    // lands on the measured button point, guarded by the pinned display.
+    tap({ id: 'one-native-browser-open' })
+    const presented = await wait('the safari sheet presents', browserPresented)
+    const app = presented.find((n) => n.type === 'Application')?.frame
+    if (!app || app.width !== 393 || app.height !== 852)
+      throw new Error(
+        `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`
+      )
+    screenshot('browser-open.png')
+    point(38, 81)
+    await wait('a user dismiss resolves cancel', (n) =>
+      labels(n).includes('Result: cancel')
+    )
+
+    // a programmatic dismiss resolves dismiss on both promises.
+    tap({ id: 'one-native-browser-open-dismiss' })
+    await wait('dismiss resolves dismiss', (n) =>
+      labels(n).includes('Opened: dismiss') &&
+      labels(n).includes('Dismissed: dismiss')
+    )
+    screenshot('browser-dismiss.png')
+
+    // dismissing a pending auth session resolves its promise as dismiss.
+    // the consent alert lives outside the app tree, so no tap can reach
+    // it; the session is canceled and settled programmatically.
+    tap({ id: 'one-native-browser-auth-dismiss' })
+    await wait('dismissAuthSession dismisses the auth session', (n) =>
+      labels(n).includes('Auth: dismiss')
+    )
+    screenshot('browser-auth.png')
+
+    // a redirect to the app scheme completes the session with the url.
+    // the runner serves the 302 locally; ephemeral mode skips the
+    // consent alert, which lives outside the app tree.
+    const redirectServer = Bun.serve({
+      port: 8123,
+      fetch: () => Response.redirect('nativefeatures://auth?code=ios1', 302),
+    })
+    try {
+      tap({ id: 'one-native-browser-auth-redirect' })
+      await wait('the redirect completes the auth session', (n) =>
+        labels(n).includes('Auth: success nativefeatures://auth?code=ios1')
+      )
+    } finally {
+      redirectServer.stop()
+    }
+    screenshot('browser-auth-redirect.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`browser recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-browser')
+      await wait(`browser recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Result: none')
+      )
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

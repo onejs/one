@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- normal install-time permission, merged into the app manifest;
+         the api-conventions section 6 exception for install-time permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- camera captures write into the app cache through this provider; the
     manifest merger carries it into the app, with the app's own id. -->
     <application>

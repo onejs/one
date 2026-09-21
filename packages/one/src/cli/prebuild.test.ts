@@ -1,4 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from './prebuild'
 
 const { loadUserOneOptionsMock, prebuildMock } = vi.hoisted(() => ({
@@ -21,9 +24,20 @@ const app = {
 }
 
 describe('one prebuild', () => {
+  const originalCwd = process.cwd()
+  let projectRoot: string
+
   beforeEach(() => {
+    projectRoot = mkdtempSync(join(tmpdir(), 'one-prebuild-'))
+    writeFileSync(join(projectRoot, 'package.json'), '{"private":true}')
+    process.chdir(projectRoot)
     loadUserOneOptionsMock.mockReset()
     prebuildMock.mockReset()
+  })
+
+  afterEach(() => {
+    process.chdir(originalCwd)
+    rmSync(projectRoot, { recursive: true, force: true })
   })
 
   it('passes the loaded, validated native.app into vxrn', async () => {
@@ -63,6 +77,21 @@ describe('one prebuild', () => {
     loadUserOneOptionsMock.mockRejectedValueOnce(new Error('invalid vite config'))
 
     await expect(run({ platform: 'ios' })).rejects.toThrow('invalid vite config')
+    expect(prebuildMock).not.toHaveBeenCalled()
+  })
+
+  it('directs Expo module apps to Expo prebuild before loading One config', async () => {
+    const expoModulesCore = join(projectRoot, 'node_modules', 'expo-modules-core')
+    mkdirSync(expoModulesCore, { recursive: true })
+    writeFileSync(
+      join(expoModulesCore, 'package.json'),
+      '{"name":"expo-modules-core","version":"1.0.0"}'
+    )
+
+    await expect(run({ platform: 'ios' })).rejects.toThrow(
+      'run Expo prebuild and list "vxrn/expo-plugin" in the Expo config'
+    )
+    expect(loadUserOneOptionsMock).not.toHaveBeenCalled()
     expect(prebuildMock).not.toHaveBeenCalled()
   })
 })
