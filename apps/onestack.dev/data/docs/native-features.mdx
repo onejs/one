@@ -347,7 +347,7 @@ const auth = await One.WebBrowser.openAuthSessionAsync(
 // { type: 'cancel' } when the user backs out
 ```
 
-`openBrowserAsync` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSessionAsync` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up.
+`openBrowserAsync` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSessionAsync` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissBrowser` also cancels a pending auth session, whose promise then resolves `dismiss`.
 
 On web, `openBrowserAsync` opens a blank-target tab and `openAuthSessionAsync` resolves `cancel` when its popup closes; redirect capture is not implemented there.
 

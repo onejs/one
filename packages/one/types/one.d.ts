@@ -1,4 +1,4 @@
-import { Compose, MenuAction, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
+import { Clipboard as NativeClipboard, Compose, MenuAction, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, WebBrowser as NativeWebBrowser, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -29,6 +29,9 @@ export type OneAPI = {
     readonly iOS: Readonly<OneIOS>;
     readonly Android: Readonly<OneAndroid>;
     readonly UI: Readonly<OneUI>;
+    readonly Clipboard: typeof NativeClipboard;
+    readonly Network: typeof NativeNetwork;
+    readonly WebBrowser: typeof NativeWebBrowser;
 };
 export declare const One: OneAPI;
 //# sourceMappingURL=one.d.ts.map
