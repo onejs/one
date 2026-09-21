@@ -8,10 +8,6 @@ export type { HapticImpact, HapticNotification, HapticsApi }
 // produce selection/impact/notification feedback, needs a user gesture, and
 // is a no-op on ios safari and most desktops, so calling it would fake an
 // affordance the platform cannot honor.
-export function isHapticsAvailable(): boolean {
-  return false
-}
-
 export const Haptics: HapticsApi = Object.freeze({
   selection() {},
 

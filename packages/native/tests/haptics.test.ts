@@ -6,10 +6,7 @@ vi.mock('react-native', () => ({
   TurboModuleRegistry: { get: getMock },
 }))
 
-import {
-  Haptics as WebHaptics,
-  isHapticsAvailable as isWebHapticsAvailable,
-} from '../src/haptics/index'
+import { Haptics as WebHaptics } from '../src/haptics/index'
 
 async function loadNative() {
   // the native entry caches the module lookup at module scope, so each
@@ -52,8 +49,7 @@ describe('haptics native dispatch', () => {
   it('dispatches to the native module when present', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
-    const { Haptics, isHapticsAvailable } = await loadNative()
-    expect(isHapticsAvailable()).toBe(true)
+    const { Haptics } = await loadNative()
     Haptics.selection()
     Haptics.impact('rigid')
     Haptics.notification('error')
@@ -65,8 +61,7 @@ describe('haptics native dispatch', () => {
   it('resolves the native module once', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
-    const { Haptics, isHapticsAvailable } = await loadNative()
-    expect(isHapticsAvailable()).toBe(true)
+    const { Haptics } = await loadNative()
     Haptics.selection()
     Haptics.impact('light')
     Haptics.notification('success')
@@ -76,8 +71,7 @@ describe('haptics native dispatch', () => {
 
   it('no-ops when the native module is missing', async () => {
     getMock.mockReturnValue(null)
-    const { Haptics, isHapticsAvailable } = await loadNative()
-    expect(isHapticsAvailable()).toBe(false)
+    const { Haptics } = await loadNative()
     expect(() => Haptics.selection()).not.toThrow()
     expect(() => Haptics.impact('light')).not.toThrow()
     expect(() => Haptics.notification('success')).not.toThrow()
@@ -94,7 +88,6 @@ describe('haptics native dispatch', () => {
   })
 
   it('the web entry is a no-op that still validates', () => {
-    expect(isWebHapticsAvailable()).toBe(false)
     expect(() => WebHaptics.selection()).not.toThrow()
     expect(() => WebHaptics.impact('soft')).not.toThrow()
     expect(() => WebHaptics.notification('warning')).not.toThrow()

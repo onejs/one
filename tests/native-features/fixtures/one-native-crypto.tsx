@@ -1,6 +1,6 @@
-import { isSecureRandomAvailable } from '@vxrn/native/crypto'
 import { useCallback, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TurboModuleRegistry, View } from 'react-native'
+import type { TurboModule } from 'react-native'
 
 // exercises the One crypto polyfill end to end: two randomUUIDs plus a
 // getRandomValues fill, all rendered as labels because RN Text testIDs
@@ -46,9 +46,12 @@ function readState() {
 }
 
 export default function OneNativeCrypto() {
+  // the public api has no availability probe by convention, so the fixture
+  // reads the registry directly for its marker. a web bundle has no
+  // TurboModuleRegistry, which throws and reads unavailable, correctly.
   const [available] = useState(() => {
     try {
-      return isSecureRandomAvailable()
+      return TurboModuleRegistry.get<TurboModule>('OneNativeCrypto') != null
     } catch {
       return false
     }

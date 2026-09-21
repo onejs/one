@@ -1,6 +1,7 @@
-import { Haptics, isHapticsAvailable } from '@vxrn/native/haptics'
+import { Haptics } from '@vxrn/native/haptics'
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TurboModuleRegistry, View } from 'react-native'
+import type { TurboModule } from 'react-native'
 
 // exercises One.UI.Haptics end to end: the module-present marker proves the
 // native module resolved, and one button per verb proves each call crosses
@@ -20,9 +21,12 @@ const verbs = [
 ] as const
 
 export default function OneNativeHaptics() {
+  // the public api has no availability probe by convention, so the fixture
+  // reads the registry directly for its marker. a web bundle has no
+  // TurboModuleRegistry, which throws and reads unavailable, correctly.
   const [available] = useState(() => {
     try {
-      return isHapticsAvailable()
+      return TurboModuleRegistry.get<TurboModule>('OneNativeHaptics') != null
     } catch {
       return false
     }

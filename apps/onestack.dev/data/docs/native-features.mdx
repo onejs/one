@@ -560,9 +560,8 @@ One.UI.Haptics.notification('success')
 The calls are synchronous `void`, not promises: haptics have no meaningful
 completion, so awaiting them would only serialize feedback behind bridge
 latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
-`isHapticsAvailable()` reports whether the native module resolved; a missing
-module (old build, web bundler resolving the native file) degrades to a silent
-no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
+A missing module (old build, web bundler resolving the native file) degrades
+to a silent no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
 selection/impact/notification feedback.
 
 `impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.

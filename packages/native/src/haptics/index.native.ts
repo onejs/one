@@ -26,10 +26,6 @@ function nativeModule(): HapticsSpec | null {
   return cachedModule
 }
 
-export function isHapticsAvailable(): boolean {
-  return nativeModule() !== null
-}
-
 // fire-and-forget: haptics have no meaningful completion, so awaiting them
 // would only serialize feedback behind bridge latency. unknown style/type
 // strings throw at this JS boundary; the native side no-ops defensively.
