@@ -36,6 +36,7 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'haptics',
   'popover',
   'accessibility',
   'media',
@@ -223,6 +224,10 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const hapticsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-haptics-selection')) &&
+  has(nodes, 'Module: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -261,6 +266,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  haptics: hapticsLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -280,6 +286,7 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  haptics: 'nav-one-native-haptics',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1995,6 +2002,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           ) && labels(n).includes('Initial: set')
         )
       })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'haptics') {
+    // presence: the native module resolved. tap-through: every verb crosses
+    // the bridge and records into Last. no-redbox comes from the shared wait,
+    // which throws on a RedBox before any predicate can pass. the Error: none
+    // wait is the console-error sweep: any js throw during the taps lands in
+    // the fixture's error label instead of passing silently.
+    const verbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-haptics')
+    await wait('the haptics module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    for (const verb of verbs) {
+      tap({ id: `one-native-haptics-${verb}` })
+      await wait(`tapping ${verb} reaches the native module`, (n) =>
+        labels(n).includes(`Last: ${verb}`)
+      )
+    }
+    await wait('no tap raised a js error', (n) => labels(n).includes('Error: none'))
+    screenshot('haptics-verbs.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`haptics recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-haptics')
+      await wait(`haptics recycle ${cycle}: the module is present again`, (n) =>
+        labels(n).includes('Module: available')
+      )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

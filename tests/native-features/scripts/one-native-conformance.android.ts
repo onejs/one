@@ -1703,6 +1703,50 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // haptics on Android: presence (the native module resolved), tap-through
+    // of every verb with the Last label proving each call returned, and an
+    // Error: none sweep proving no js throw escaped. redbox detection rides
+    // in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-haptics')
+    await expect(
+      'haptics-module-present',
+      (nodes) =>
+        diagnose(nodes, [
+          ['selection control', (n) => exactlyOneId(n, 'one-native-haptics-selection')],
+          ['module marker', (n) => textIncludes(n, 'Module: available')],
+        ]),
+      'one-native-haptics-selection'
+    )
+    const hapticsVerbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    for (const verb of hapticsVerbs) {
+      tapFresh(config, `Haptics ${verb}`, {
+        id: `one-native-haptics-${verb}`,
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `haptics-tap-${verb}`,
+        (nodes) => textIncludes(nodes, `Last: ${verb}`),
+        `one-native-haptics-${verb}`
+      )
+    }
+    await expect(
+      'haptics-error-clean',
+      (nodes) => textIncludes(nodes, 'Error: none'),
+      'one-native-haptics-selection'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(
