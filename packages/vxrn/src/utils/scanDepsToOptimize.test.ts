@@ -53,4 +53,49 @@ describe('scanDepsToOptimize codegenConfig', () => {
     expect(result.prebundleDeps).toContain('fake-js-lib')
     expect(result.prebundleDeps).not.toContain('fake-native-tabs')
   })
+
+  test('prebundles installed Expo modules without requiring Expo in the app', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-scan-expo-')))
+
+    writePkg(root, {
+      name: 'optional-expo-fixture',
+      private: true,
+      dependencies: {
+        'expo-crypto': '1.0.0',
+        '@expo/example': '1.0.0',
+        'community-expo-module': '1.0.0',
+        'plain-js-lib': '1.0.0',
+      },
+    })
+
+    writePkg(join(root, 'node_modules', 'expo-crypto'), {
+      name: 'expo-crypto',
+      version: '1.0.0',
+      main: './index.js',
+      peerDependencies: { expo: '*' },
+    })
+    writePkg(join(root, 'node_modules', '@expo', 'example'), {
+      name: '@expo/example',
+      version: '1.0.0',
+      main: './index.js',
+    })
+    writePkg(join(root, 'node_modules', 'community-expo-module'), {
+      name: 'community-expo-module',
+      version: '1.0.0',
+      main: './index.js',
+      peerDependencies: { 'expo-modules-core': '*' },
+    })
+    writePkg(join(root, 'node_modules', 'plain-js-lib'), {
+      name: 'plain-js-lib',
+      version: '1.0.0',
+      main: './index.js',
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+
+    expect(result.prebundleDeps).toEqual(
+      expect.arrayContaining(['expo-crypto', '@expo/example', 'community-expo-module'])
+    )
+    expect(result.prebundleDeps).not.toContain('plain-js-lib')
+  })
 })

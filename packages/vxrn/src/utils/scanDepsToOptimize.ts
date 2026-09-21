@@ -215,7 +215,13 @@ export async function scanDepsToOptimize(
           // entrypoints (e.g. better-auth/react). left external, those load a
           // second react copy in SSR and crash hooks with a null dispatcher.
           !!depPkgJson.peerDependencies?.react ||
-          hasRequiredDep(depPkgJson, 'react-native')
+          hasRequiredDep(depPkgJson, 'react-native') ||
+          hasRequiredDep(depPkgJson, 'expo-modules-core') ||
+          // expo packages publish extensionless ESM imports that Node cannot
+          // execute directly. Keep installed Expo modules inside Vite's SSR
+          // graph without making Expo a framework dependency.
+          dep.startsWith('@expo/') ||
+          dep.startsWith('expo-')
 
         debug?.(`${dep} shouldPreBundle? ${shouldPreBundle}`)
 
