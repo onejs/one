@@ -1048,12 +1048,14 @@ function nativeVirtualEntryPlugin(
     ? `
 // react-refresh/runtime MUST initialize before React loads
 import RefreshRuntime from 'react-refresh/runtime';
-RefreshRuntime.injectIntoGlobalHook(globalThis);
-globalThis.__ReactRefresh = RefreshRuntime;
-globalThis.$RefreshReg$ = function(type, id) {
-  RefreshRuntime.register(type, id);
-};
-globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+if (!globalThis.__ReactRefresh) {
+  RefreshRuntime.injectIntoGlobalHook(globalThis);
+  globalThis.__ReactRefresh = RefreshRuntime;
+  globalThis.$RefreshReg$ = function(type, id) {
+    RefreshRuntime.register(type, id);
+  };
+  globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
 `
     : ''
 
