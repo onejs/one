@@ -2411,7 +2411,7 @@
         },
         "onNativeAdaptivePanelLayoutChange": {
           "placement": {
-            "type": "string"
+            "type": "\"hidden\" | \"compact\" | \"regular\""
           },
           "frameX": {
             "type": "Double"

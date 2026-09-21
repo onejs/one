@@ -8,18 +8,13 @@ struct OneNativeAdaptivePanelRoot: View {
     guard model.controlled.value, model.content != nil else { return "hidden" }
     return sizeClass == .regular ? "regular" : "compact"
   }
-  // adaptation flips placement, not open: each binding only closes when its
-  // own presentation dismisses while it is the active placement.
+  // adaptation flips placement, not open: the sheet binding only closes when its
+  // own presentation dismisses while compact is the active placement. regular is
+  // inline, not a presentation, so it has no dismiss binding.
   private var sheetPresented: Binding<Bool> {
     Binding(
       get: { model.controlled.value && model.content != nil && placement == "compact" },
       set: { value in if !value && placement == "compact" { model.change(false) } }
-    )
-  }
-  private var inspectorPresented: Binding<Bool> {
-    Binding(
-      get: { model.controlled.value && model.content != nil && placement == "regular" },
-      set: { value in if !value && placement == "regular" { model.change(false) } }
     )
   }
   @ViewBuilder private var content: some View {
@@ -38,29 +33,49 @@ struct OneNativeAdaptivePanelRoot: View {
       }
     }
   }
+  @ViewBuilder private var sidebar: some View {
+    // absent width omits the modifier so the system picks the sidebar width.
+    if let width = model.regularWidth {
+      content.navigationSplitViewColumnWidth(CGFloat(width))
+    } else {
+      content
+    }
+  }
   var body: some View {
-    // one content view, two native presentations: a nonmodal sheet in compact
-    // and a nonmodal inspector in regular. only one binding is true at a
-    // time, so adaptation dismisses one and presents the other with the same
-    // react native view, preserving react state.
-    Color.clear
-      .sheet(isPresented: sheetPresented) {
-        content
-          .presentationDetents(model.detents, selection: Binding(
-            get: { model.selectedPresentationDetent },
-            set: { model.changeDetent($0) }
-          ))
-          .presentationBackgroundInteraction(.enabled)
+    // one content view, two native forms: a nonmodal sheet in compact and a
+    // leading navigation split sidebar in regular (maps-style floating panel on
+    // ipad). only one is active at a time, so adaptation moves the same react
+    // native view, preserving react state.
+    if placement == "regular" {
+      NavigationSplitView {
+        sidebar
+      } detail: {
+        Color.clear.allowsHitTesting(false)
       }
-      .inspector(isPresented: inspectorPresented) {
-        content
-          .inspectorColumnWidth(model.regularWidth)
-      }
+      .navigationSplitViewStyle(.automatic)
+      .background(Color.clear)
       .onChange(of: model.controlled.value) { _, open in
         if model.active && !open { model.reportLayout("hidden", .zero) }
       }
       .task(id: placement) {
         if model.active && placement == "hidden" { model.reportLayout("hidden", .zero) }
       }
+    } else {
+      Color.clear
+        .sheet(isPresented: sheetPresented) {
+          content
+            .presentationDetents(model.detents, selection: Binding(
+              get: { model.selectedPresentationDetent },
+              set: { model.changeDetent($0) }
+            ))
+            .presentationBackgroundInteraction(.enabled)
+        }
+        .onChange(of: model.controlled.value) { _, open in
+          if model.active && !open { model.reportLayout("hidden", .zero) }
+        }
+        .task(id: placement) {
+          if model.active && placement == "hidden" { model.reportLayout("hidden", .zero) }
+        }
+    }
   }
 }

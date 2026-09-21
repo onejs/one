@@ -55,7 +55,9 @@ internal data class AdaptivePanelProps(
     val selectedValue: Double = 0.0,
     val acknowledgedDetentEvent: Int = 0,
     val detentRevision: Int = 0,
-    val regularWidth: Double = 320.0,
+    // material 3 side sheet default preferred width, max 400dp. js sends -1 for
+    // system default, which the stager ignores so this stays.
+    val regularWidth: Double = 360.0,
 )
 
 class OneNativeAdaptivePanelView(context: Context) : CoordinatorLayout(context) {
@@ -194,8 +196,10 @@ class OneNativeAdaptivePanelView(context: Context) : CoordinatorLayout(context) 
     }
 
     internal fun stageRegularWidth(value: Double) {
+        // -1 means system default: ignore so the 360dp default stays. positive
+        // overrides clamp to the material 3 side sheet max of 400dp.
         if (value.isFinite() && value > 0) {
-            pendingProps = pendingProps.copy(regularWidth = value)
+            pendingProps = pendingProps.copy(regularWidth = value.coerceAtMost(400.0))
         }
     }
 

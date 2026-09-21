@@ -12,6 +12,7 @@ declare module 'one' {
         | `/action`
         | `/action/`
         | `/adaptive-panel`
+        | `/adaptive-panel/`
         | `/native`
         | `/notifications`
         | `/notifications/`

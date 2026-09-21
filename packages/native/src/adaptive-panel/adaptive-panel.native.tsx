@@ -1,4 +1,5 @@
-import { Platform } from 'react-native'
+import { useRef } from 'react'
+
 import { useControlled } from '../controlled'
 import NativeContent from '../specs/OneNativeAdaptivePanelContentNativeComponent'
 import NativePanel from '../specs/OneNativeAdaptivePanelNativeComponent'
@@ -10,7 +11,10 @@ import type {
 } from './types'
 
 const DEFAULT_DETENTS = ['large'] as const
-const DEFAULT_REGULAR_WIDTH = 320
+// absent regularWidth means the system picks the sidebar width: navigation split
+// view default on ios, material 3 side sheet default (360dp, max 400dp) on
+// android. -1 is the native sentinel for that system default.
+const SYSTEM_REGULAR_WIDTH = -1
 type NativeDetent = { type: string; value: number }
 
 function nativeDetent(detent: AdaptivePanelDetent): NativeDetent {
@@ -42,24 +46,18 @@ function sameDetent(a: NativeDetent, b: NativeDetent) {
   return a.type === b.type && a.value === b.value
 }
 
-const placements: readonly AdaptivePanelPlacement[] = ['hidden', 'compact', 'regular']
-
+// native layout events are trusted (from our own swift/kotlin): no validation,
+// just rename frame fields. placement arrives as the native string which the
+// native side guarantees is hidden/compact/regular.
 function publicLayout(event: {
-  placement: string
+  placement: AdaptivePanelPlacement
   frameX: number
   frameY: number
   frameWidth: number
   frameHeight: number
 }): { placement: AdaptivePanelPlacement; frame: AdaptivePanelFrame } {
-  if (!placements.includes(event.placement as AdaptivePanelPlacement))
-    throw new Error(`Unknown native adaptive panel placement: ${event.placement}`)
-  for (const [key, value] of Object.entries(event)) {
-    if (key === 'placement') continue
-    if (typeof value !== 'number' || !Number.isFinite(value))
-      throw new Error(`Invalid native adaptive panel frame: ${key}`)
-  }
   return {
-    placement: event.placement as AdaptivePanelPlacement,
+    placement: event.placement,
     frame: {
       x: event.frameX,
       y: event.frameY,
@@ -77,7 +75,7 @@ export function AdaptivePanel({
   selectedDetent,
   onSelectedDetentChange,
   detentRevision = 0,
-  regularWidth = DEFAULT_REGULAR_WIDTH,
+  regularWidth,
   onPlacementChange,
   onFrameChange,
   children,
@@ -101,7 +99,7 @@ export function AdaptivePanel({
   const nativeSelection = selectedDetent ? nativeDetent(selectedDetent) : null
   if (nativeSelection && !detents.some((detent) => sameDetent(detent, nativeSelection)))
     throw new Error('One.UI.AdaptivePanel selectedDetent must be in compactDetents')
-  if (!Number.isFinite(regularWidth) || regularWidth <= 0)
+  if (regularWidth !== undefined && (!Number.isFinite(regularWidth) || regularWidth <= 0))
     throw new Error('One.UI.AdaptivePanel regularWidth must be a positive number')
   const controlled = useControlled<{
     open: boolean
@@ -114,23 +112,29 @@ export function AdaptivePanel({
     eventCount: number
     revision: number
   }>((event) => onSelectedDetentChange?.(publicDetent(event)), detentRevision)
-  const baseStyle =
-    Platform.OS === 'android'
-      ? {
-          position: 'absolute' as const,
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          backgroundColor: 'transparent',
-        }
-      : { position: 'absolute' as const, width: 0, height: 0 }
+  // native reports layout on every geometry change (including every frame of a
+  // detent drag). frame must update every frame so a map camera can follow, but
+  // placement must fire only when it actually changes. filter here so the spam
+  // stops now; TODO: split placement and frame into separate native events so
+  // the filtering happens in native per review (b).
+  const previousPlacement = useRef<AdaptivePanelPlacement | null>(null)
+  // full-screen transparent host on both platforms: compact uses a system sheet
+  // presentation (host stays passthrough), regular shows an inline leading
+  // sidebar. box-none lets canvas touches fall through outside the panel.
+  const baseStyle = {
+    position: 'absolute' as const,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+  }
   return (
     <NativePanel
       {...props}
       style={[baseStyle, style]}
       collapsable={false}
-      pointerEvents={Platform.OS === 'android' ? 'box-none' : undefined}
+      pointerEvents="box-none"
       open={open}
       revision={revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
@@ -139,7 +143,7 @@ export function AdaptivePanel({
       selectedDetentValue={nativeSelection?.value ?? 0}
       acknowledgedDetentEvent={controlledDetent.acknowledgedEvent}
       detentRevision={detentRevision}
-      regularWidth={regularWidth}
+      regularWidth={regularWidth ?? SYSTEM_REGULAR_WIDTH}
       onNativeAdaptivePanelOpenChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -148,7 +152,10 @@ export function AdaptivePanel({
       }
       onNativeAdaptivePanelLayoutChange={({ nativeEvent }) => {
         const { placement, frame } = publicLayout(nativeEvent)
-        onPlacementChange?.(placement)
+        if (placement !== previousPlacement.current) {
+          previousPlacement.current = placement
+          onPlacementChange?.(placement)
+        }
         onFrameChange?.(frame)
       }}
     >

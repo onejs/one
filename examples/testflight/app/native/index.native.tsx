@@ -65,6 +65,16 @@ function NativeCapabilitiesScreen({
           </Pressable>
         </Link>
 
+        <Link href="/adaptive-panel" asChild>
+          <Pressable
+            accessibilityRole="button"
+            testID="native-open-adaptive-panel-oracle"
+            style={styles.action}
+          >
+            <Text style={styles.actionText}>Open adaptive panel oracle</Text>
+          </Pressable>
+        </Link>
+
         <View
           testID="native-color-swatch"
           style={[styles.colorSwatch, { backgroundColor: One.iOS.Color.systemBlue }]}

@@ -28,7 +28,7 @@ const render = (props: object): any => {
 }
 
 describe('adaptive panel contract', () => {
-  it('renders open state with default detents and width', () => {
+  it('renders open state with default detents and system width', () => {
     expect(render({ open: false, onOpenChange: () => {} })).toMatchObject({
       type: 'div',
       props: {
@@ -39,7 +39,7 @@ describe('adaptive panel contract', () => {
         selectedDetentType: '',
         selectedDetentValue: 0,
         detentRevision: 0,
-        regularWidth: 320,
+        regularWidth: -1,
       },
     })
   })
@@ -164,21 +164,6 @@ describe('adaptive panel contract', () => {
     ],
   ])('rejects %j', (overrides, message) => {
     expect(() => render({ onOpenChange: () => {}, ...overrides })).toThrow(message)
-  })
-
-  it('rejects an unknown native placement', () => {
-    const props = render({ open: true, onOpenChange: () => {} }).props
-    expect(() =>
-      props.onNativeAdaptivePanelLayoutChange({
-        nativeEvent: {
-          placement: 'floating',
-          frameX: 0,
-          frameY: 0,
-          frameWidth: 0,
-          frameHeight: 0,
-        },
-      })
-    ).toThrow('Unknown native adaptive panel placement: floating')
   })
 
   it('requires a native build on web', () => {

@@ -58,6 +58,17 @@ export function HomeLayout() {
         />
       ) : null}
 
+      {Platform.OS === 'ios' ? (
+        <Tabs.Screen
+          name="adaptive-panel"
+          options={{
+            title: 'Adaptive panel oracle',
+            tabBarButton: () => null,
+            tabBarStyle: { display: 'none' },
+          }}
+        />
+      ) : null}
+
       {Platform.OS === 'ios' && Platform.isPad ? (
         <Tabs.Screen
           name="split/index"

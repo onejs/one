@@ -1,20 +1,14 @@
-// adaptive panel: compact bottom sheet to regular trailing sidebar, one caller api.
+// adaptive panel: compact bottom sheet to regular leading sidebar, one caller api.
 // ios presents a nonmodal sheet (.presentationBackgroundInteraction(.enabled)) in
-// compact and a nonmodal inspector in regular, switching on horizontalSizeClass
-// with one react native content view so react state survives adaptation.
-// android mirrors it with a coordinatorlayout host: bottomsheetbehavior in
-// compact (window width < 600dp) and a trailing sidebar in regular.
+// compact and a nonmodal navigation split sidebar in regular, switching on
+// horizontalSizeClass with one react native content view so react state survives
+// adaptation. regularWidth is optional: absent means the system picks the sidebar
+// width, present overrides it. android mirrors it with a coordinatorlayout host:
+// bottomsheetbehavior in compact (window width < 600dp) and a material 3 side
+// sheet in regular (default 360dp, max 400dp per material 3).
 export const adaptivePanelMethods = [
   {
-    name: 'inspector',
-    parameters: [
-      { label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
-      { label: 'content', type: '() -> V' },
-    ],
-    requirements: ['V : SwiftUICore.View'],
-  },
-  {
-    name: 'inspectorColumnWidth',
+    name: 'navigationSplitViewColumnWidth',
     parameters: [{ label: '_', type: 'CoreFoundation.CGFloat' }],
     requirements: [],
   },
@@ -32,7 +26,7 @@ export const adaptivePanelComponents = [
       selectedDetentValue: 'Double',
       acknowledgedDetentEvent: 'Int32',
       detentRevision: 'Int32',
-      regularWidth: 'Double',
+      regularWidth: 'Double?',
     },
     events: {
       onNativeAdaptivePanelOpenChange: {
@@ -47,7 +41,7 @@ export const adaptivePanelComponents = [
         revision: 'Int32',
       },
       onNativeAdaptivePanelLayoutChange: {
-        placement: 'string',
+        placement: '"hidden" | "compact" | "regular"',
         frameX: 'Double',
         frameY: 'Double',
         frameWidth: 'Double',
@@ -87,6 +81,11 @@ export const adaptivePanelComponents = [
 
 export function emitAdaptivePanel(header: string, outputs: Map<string, string>) {
   for (const component of adaptivePanelComponents) {
+    const props = Object.entries(component.props).map(([key, declared]) => ({
+      key,
+      optional: (declared as string).endsWith('?'),
+      type: (declared as string).replace('?', ''),
+    }))
     outputs.set(
       `src/specs/${component.name}NativeComponent.ts`,
       header +
@@ -95,9 +94,7 @@ import type { DirectEventHandler, Int32, Double } from 'react-native/Libraries/T
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 ${component.name === 'OneNativeAdaptivePanel' ? 'type NativeAdaptivePanelDetent = Readonly<{ type: string; value: Double }>' : ''}
 interface NativeProps extends ViewProps {
-${Object.entries(component.props)
-  .map(([key, type]) => `  ${key}: ${type}`)
-  .join('\n')}
+${props.map(({ key, optional, type }) => `  ${key}${optional ? '?' : ''}: ${type}`).join('\n')}
 ${Object.entries(component.events)
   .map(
     ([key, fields]) =>

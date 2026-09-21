@@ -17,7 +17,7 @@ interface NativeProps extends ViewProps {
   selectedDetentValue: Double
   acknowledgedDetentEvent: Int32
   detentRevision: Int32
-  regularWidth: Double
+  regularWidth?: Double
   onNativeAdaptivePanelOpenChange?: DirectEventHandler<
     Readonly<{ open: boolean; eventCount: Int32; revision: Int32 }>
   >
@@ -26,7 +26,7 @@ interface NativeProps extends ViewProps {
   >
   onNativeAdaptivePanelLayoutChange?: DirectEventHandler<
     Readonly<{
-      placement: string
+      placement: 'hidden' | 'compact' | 'regular'
       frameX: Double
       frameY: Double
       frameWidth: Double

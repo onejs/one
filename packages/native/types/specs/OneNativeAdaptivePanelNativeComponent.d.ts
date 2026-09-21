@@ -13,7 +13,7 @@ interface NativeProps extends ViewProps {
     selectedDetentValue: Double;
     acknowledgedDetentEvent: Int32;
     detentRevision: Int32;
-    regularWidth: Double;
+    regularWidth?: Double;
     onNativeAdaptivePanelOpenChange?: DirectEventHandler<Readonly<{
         open: boolean;
         eventCount: Int32;

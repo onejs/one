@@ -1,8 +1,14 @@
-import { One } from 'one'
+import { One, Stack } from 'one'
 import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
-type Detent = 'medium' | 'large'
+type Detent = 'medium' | { fraction: number }
+
+const panelRows = Array.from({ length: 30 }, (_, index) => `Panel row ${index + 1}`)
+
+function detentLabel(detent: Detent) {
+  return typeof detent === 'string' ? detent : `${Math.round(detent.fraction * 100)}%`
+}
 
 export default function AdaptivePanelOracle() {
   const [open, setOpen] = useState(false)
@@ -14,10 +20,26 @@ export default function AdaptivePanelOracle() {
   const [canvasCount, setCanvasCount] = useState(0)
   const [panelCount, setPanelCount] = useState(0)
   const [panelText, setPanelText] = useState('')
+  const [toolbarCount, setToolbarCount] = useState(0)
+  const [bottomCount, setBottomCount] = useState(0)
   const insets = One.UI.SafeArea.useInsets()
 
   return (
     <View style={styles.container} testID="adaptive-panel-screen">
+      <Stack.Screen>
+        <Stack.Toolbar>
+          <Stack.Toolbar.Trailing>
+            <Stack.Toolbar.Item
+              identifier="adaptive-panel-probe"
+              title="Probe"
+              systemImageName="magnifyingglass"
+              accessibilityLabel="Adaptive panel toolbar probe"
+              onPress={() => setToolbarCount((count) => count + 1)}
+            />
+          </Stack.Toolbar.Trailing>
+        </Stack.Toolbar>
+      </Stack.Screen>
+
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.title}>Adaptive panel oracle</Text>
 
@@ -39,7 +61,19 @@ export default function AdaptivePanelOracle() {
           Frame: {Math.round(frame.x)},{Math.round(frame.y)} {Math.round(frame.width)}x
           {Math.round(frame.height)} ({frameCount})
         </Text>
-        <Text testID="adaptive-panel-detent">Detent: {selectedDetent}</Text>
+        <Text testID="adaptive-panel-detent">Detent: {detentLabel(selectedDetent)}</Text>
+        <Text testID="adaptive-panel-toolbar-count">Toolbar taps: {toolbarCount}</Text>
+        <Text testID="adaptive-panel-bottom-count">Bottom taps: {bottomCount}</Text>
+
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Canvas tap target"
+          testID="adaptive-panel-canvas-tap"
+          style={styles.action}
+          onPress={() => setCanvasCount((count) => count + 1)}
+        >
+          <Text style={styles.actionText}>Canvas tap: {canvasCount}</Text>
+        </Pressable>
 
         <Pressable
           accessibilityRole="button"
@@ -52,22 +86,12 @@ export default function AdaptivePanelOracle() {
         </Pressable>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Select large detent"
+          accessibilityLabel="Select 75 percent detent"
           testID="adaptive-panel-detent-large"
           style={styles.action}
-          onPress={() => setSelectedDetent('large')}
+          onPress={() => setSelectedDetent({ fraction: 0.75 })}
         >
-          <Text style={styles.actionText}>Large</Text>
-        </Pressable>
-
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Canvas tap target"
-          testID="adaptive-panel-canvas-tap"
-          style={styles.action}
-          onPress={() => setCanvasCount((count) => count + 1)}
-        >
-          <Text style={styles.actionText}>Canvas tap: {canvasCount}</Text>
+          <Text style={styles.actionText}>75%</Text>
         </Pressable>
 
         <Text testID="adaptive-panel-insets">
@@ -75,15 +99,26 @@ export default function AdaptivePanelOracle() {
         </Text>
       </ScrollView>
 
+      <Stack.Toolbar.Bottom>
+        <Stack.Toolbar.Item
+          identifier="adaptive-panel-bottom-probe"
+          title="Bottom"
+          systemImageName="plus"
+          accessibilityLabel="Adaptive panel bottom probe"
+          onSelected={() => setBottomCount((count) => count + 1)}
+        />
+      </Stack.Toolbar.Bottom>
+
       <One.UI.AdaptivePanel
         open={open}
         onOpenChange={setOpen}
-        compactDetents={['medium', 'large']}
+        compactDetents={['medium', { fraction: 0.75 }]}
         selectedDetent={selectedDetent}
         onSelectedDetentChange={(detent) => {
-          if (detent === 'medium' || detent === 'large') setSelectedDetent(detent)
+          if (detent === 'medium') setSelectedDetent(detent)
+          else if (typeof detent === 'object' && detent.fraction === 0.75)
+            setSelectedDetent(detent)
         }}
-        regularWidth={320}
         onPlacementChange={(next) => {
           setPlacement(next)
           setPlacementCount((count) => count + 1)
@@ -114,6 +149,37 @@ export default function AdaptivePanelOracle() {
             placeholder="Type to test keyboard and state"
           />
           <Text testID="adaptive-panel-text">Text: {panelText}</Text>
+          <View style={styles.panelDetents}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Panel medium detent"
+              testID="adaptive-panel-panel-medium"
+              style={styles.panelDetent}
+              onPress={() => setSelectedDetent('medium')}
+            >
+              <Text style={styles.actionText}>Medium</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Panel 75 percent detent"
+              testID="adaptive-panel-panel-large"
+              style={styles.panelDetent}
+              onPress={() => setSelectedDetent({ fraction: 0.75 })}
+            >
+              <Text style={styles.actionText}>75%</Text>
+            </Pressable>
+          </View>
+          <ScrollView
+            testID="adaptive-panel-scroll"
+            style={styles.panelScroll}
+            contentContainerStyle={styles.panelScrollContent}
+          >
+            {panelRows.map((row) => (
+              <Text key={row} style={styles.panelRow}>
+                {row}
+              </Text>
+            ))}
+          </ScrollView>
           <Pressable
             accessibilityRole="button"
             accessibilityLabel="Close panel from inside"
@@ -148,5 +214,17 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 8,
     paddingHorizontal: 12,
+  },
+  panelScroll: { flex: 1, minHeight: 120 },
+  panelScrollContent: { gap: 8, paddingBottom: 20 },
+  panelRow: { fontSize: 15, color: '#333' },
+  panelDetents: { flexDirection: 'row', gap: 12 },
+  panelDetent: {
+    flex: 1,
+    minHeight: 44,
+    borderRadius: 10,
+    backgroundColor: '#f0f4f8',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })

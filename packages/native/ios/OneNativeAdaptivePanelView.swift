@@ -6,7 +6,8 @@ final class OneNativeAdaptivePanelModel: ObservableObject {
   @Published var content: UIView?
   @Published var detents: Set<PresentationDetent> = [.large]
   @Published var selectedDetent = OneNativeControlled("")
-  @Published var regularWidth: Double = 320
+  // nil means the system picks the sidebar width; non-nil overrides it.
+  @Published var regularWidth: Double?
   var detentValues: [(key: String, type: String, value: Double, detent: PresentationDetent)] = [
     ("large:0", "large", 0, .large)
   ]
@@ -119,7 +120,26 @@ final class OneNativeAdaptivePanelModel: ObservableObject {
       }
     }
     model.controlsSelectedDetent = controlsSelectedDetent
-    if model.regularWidth != regularWidth { model.regularWidth = regularWidth }
+    // js sends -1 for system default; swift keeps nil so the sidebar modifier is omitted.
+    let width: Double? = regularWidth > 0 ? regularWidth : nil
+    if model.regularWidth != width { model.regularWidth = width }
+  }
+
+  // last reported placement and frame in global coordinates, for hit testing.
+  private var lastPlacement = ""
+  private var lastFrame = CGRect.zero
+
+  public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    // compact uses a system sheet presentation in its own view controller, so the
+    // full-screen host never takes touches there. regular shows an inline leading
+    // sidebar: only touches inside its reported frame hit, everything else falls
+    // through to the canvas and toolbar underneath.
+    guard lastPlacement == "regular" else { return nil }
+    if lastFrame == .zero { return super.hitTest(point, with: event) }
+    let global = convert(point, to: nil)
+    // global frame is in screen coordinates; window origin is zero for full-screen.
+    guard lastFrame.insetBy(dx: -1, dy: -1).contains(global) else { return nil }
+    return super.hitTest(point, with: event)
   }
 
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
@@ -127,12 +147,16 @@ final class OneNativeAdaptivePanelModel: ObservableObject {
   private func updateHost() {
     model.active = false
     guard window != nil else { controller?.detach(); return }
+    backgroundColor = .clear
+    isUserInteractionEnabled = true
     if controller == nil {
       model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
       model.onDetentChange = { [weak self] type, value, count, revision in
         self?.onDetentChange?(type, value, count, revision)
       }
       model.onPanelLayout = { [weak self] placement, frame in
+        self?.lastPlacement = placement
+        self?.lastFrame = frame
         self?.onPanelLayout?(placement, frame)
       }
       controller = OneNativeHostingController(rootView: OneNativeAdaptivePanelRoot(model: model))
@@ -142,6 +166,7 @@ final class OneNativeAdaptivePanelModel: ObservableObject {
   }
   public func reset() {
     model.active = false; model.onChange = nil; model.onDetentChange = nil; model.onLayout = nil; model.onPanelLayout = nil
+    lastPlacement = ""; lastFrame = .zero
     controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach(); controller = nil; model = OneNativeAdaptivePanelModel()
   }

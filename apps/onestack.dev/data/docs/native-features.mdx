@@ -206,6 +206,57 @@ On iPhone, SplitView collapses to a single column automatically.
 
 ---
 
+## AdaptivePanel
+
+`One.UI.AdaptivePanel` is a nonmodal panel that adapts to width: an in-screen sheet with detents on compact width, a leading sidebar on regular width. The background stays interactive in both placements, and the same React content view moves between them so scroll position, text input, and component state survive compact to regular changes.
+
+On iOS the compact form is a SwiftUI sheet with `presentationBackgroundInteraction(.enabled)`; the regular form is a `NavigationSplitView` sidebar, the same leading floating panel Maps uses on iPad. On Android the compact form is a Material 3 bottom sheet and the regular form is a Material 3 side sheet. The panel never takes over the navigation bar or toolbar: it floats alongside canvas content and reports its placement and frame so the app can move a map camera or canvas around it.
+
+```tsx
+import { One } from 'one'
+
+function MapScreen() {
+  const [open, setOpen] = useState(true)
+  const [detent, setDetent] = useState<'medium' | 'large'>('medium')
+
+  return (
+    <>
+      <MapView />
+      <One.UI.AdaptivePanel
+        open={open}
+        onOpenChange={setOpen}
+        compactDetents={['medium', 'large']}
+        selectedDetent={detent}
+        onSelectedDetentChange={setDetent}
+        onPlacementChange={(placement) => console.log(placement)}
+        onFrameChange={(frame) => mapCamera.avoidRect(frame)}
+      >
+        <SearchResults />
+      </One.UI.AdaptivePanel>
+    </>
+  )
+}
+```
+
+`regularWidth` is optional. When omitted the system picks the sidebar width (the split view default on iOS, the Material 3 side sheet default of 360dp clamped to 400dp on Android). Pass a positive number to override it.
+
+### One.UI.AdaptivePanel Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `open` | `boolean` | Whether the panel is visible (required) |
+| `onOpenChange` | `(open: boolean) => void` | Called when the panel opens or closes (required) |
+| `compactDetents` | `readonly AdaptivePanelDetent[]` | Sheet detents on compact width, defaults to `['large']` |
+| `selectedDetent` | `AdaptivePanelDetent` | Controlled detent, requires `onSelectedDetentChange` |
+| `onSelectedDetentChange` | `(detent: AdaptivePanelDetent) => void` | Called when the detent changes |
+| `regularWidth` | `number` | Sidebar width on regular width, system default when omitted |
+| `onPlacementChange` | `(placement: 'hidden' \| 'compact' \| 'regular') => void` | Called when placement changes |
+| `onFrameChange` | `(frame: { x, y, width, height }) => void` | Called with the panel frame in screen points |
+
+Detents are `'medium'`, `'large'`, `{ fraction: number }` in (0, 1], or `{ height: number }` in points.
+
+---
+
 ## Shared Icons
 
 `One.UI.Icon` selects the icon element your app provides for the current platform
@@ -296,6 +347,7 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
 | Menu Actions | UIMenu / UIAction | unsupported | unsupported |
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
+| AdaptivePanel | Sheet (compact) + NavigationSplitView sidebar (regular) | Bottom sheet + side sheet | unsupported stub |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
 
