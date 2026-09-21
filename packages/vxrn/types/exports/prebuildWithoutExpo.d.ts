@@ -19,6 +19,7 @@ export interface PrebuildAppConfig {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        fileSharing?: boolean;
     };
     android?: {
         applicationId: string;

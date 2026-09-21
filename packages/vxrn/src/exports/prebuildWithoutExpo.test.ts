@@ -34,6 +34,7 @@ const app = {
     useFrameworks: 'static',
     ccache: true,
     usesNonExemptEncryption: false,
+    fileSharing: true,
   },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 } satisfies PrebuildAppConfig
@@ -146,6 +147,8 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(infoPlist.content).toContain('<string>myapp-dev</string>')
     expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
     expect(infoPlist.content).toContain('<false/>')
+    expect(infoPlist.content).toContain('<key>UIFileSharingEnabled</key>')
+    expect(infoPlist.content).toContain('<key>LSSupportsOpeningDocumentsInPlace</key>')
 
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',

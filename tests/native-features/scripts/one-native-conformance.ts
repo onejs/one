@@ -240,13 +240,13 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
-// a presented document picker takes the whole accessibility tree like QuickLook,
-// leaving the fixture behind it out, so the fixture counts as loaded from either
-// side of the presentation.
+// a presented document picker runs out of process: the snapshot carries only the
+// application node on both snapshot paths, leaving the fixture behind it out,
+// so the fixture counts as loaded from either side of the presentation.
 const appleFileLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   (Boolean(id(nodes, 'one-native-apple-file-category-signin')) ||
-    nodes.some((n) => n.type === 'Button' && n.AXLabel === 'Cancel'))
+    nodes.every((n) => n.type === 'Application'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -3153,11 +3153,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       nodes.find(
         (node) => node.type === 'Button' && node.AXLabel === 'Sign in with Apple'
       )
-    // the document picker takes the whole accessibility tree like QuickLook, so the
-    // fixture behind it is unreadable while it is up; its Cancel button is the stable
-    // chrome to assert on.
-    const pickerCancel = (nodes: Node[]) =>
-      nodes.find((node) => node.type === 'Button' && node.AXLabel === 'Cancel')
+    // the picker answers no accessibility query while it is up, so presentation
+    // is the bare tree and dismissal is the fixture coming back.
+    const pickerUp = (nodes: Node[]) =>
+      nodes.length > 0 && nodes.every((node) => node.type === 'Application')
+    // calibrated on a 402x874 iPhone 17 Pro (asserted from the app frame below).
+    // rows only answer on content, so every point lands on text or an icon: the
+    // close button top-right in Recents and folder views (top-left only on the
+    // Browse root, which a fresh presentation never opens on), the Browse tab,
+    // the expandable Locations header, the On My iPhone row text, the app
+    // folder icon, and the seeded file thumbnail. Browse restores its last
+    // location, so it lands in the folder or on the root; the taps converge
+    // either way, since the root path drills down to the same file.
+    const closePoint = { x: 328, y: 100 }
+    const browsePoint = { x: 307, y: 835 }
+    const locationsPoint = { x: 150, y: 230 }
+    const onMyIPhonePoint = { x: 120, y: 344 }
+    const folderPoint = { x: 79, y: 243 }
+    const filePoint = { x: 77, y: 231 }
+    const seedName = 'one-native-seed.txt'
+    const seedContent = 'one-native fileImporter seed\n'
+    const seedPickerFile = () => {
+      const container = execFileSync(
+        'xcrun',
+        ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+        { encoding: 'utf8' }
+      ).trim()
+      const documents = path.join(container, 'Documents')
+      fs.mkdirSync(documents, { recursive: true })
+      fs.writeFileSync(path.join(documents, seedName), seedContent)
+      return container
+    }
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -3186,21 +3212,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('apple-file-signin-completion.png')
 
     tap({ id: 'one-native-apple-file-category-files' })
-    await wait(
+    const filesNodes = await wait(
       'fresh FileImporter mounted',
       (n) =>
         status(n, 'Category', 'Files') &&
         status(n, 'Presented', 'false') &&
         status(n, 'Changes', 0) &&
         status(n, 'Completions', 0) &&
-        !pickerCancel(n)
+        !pickerUp(n)
     )
+    const appFrame = filesNodes.find((n) => n.type === 'Application')?.frame
+    if (appFrame?.width !== 402 || appFrame?.height !== 874)
+      throw new Error(
+        `Expected a 402x874 iPhone 17 Pro display, got ${JSON.stringify(appFrame)}`
+      )
+    const container = seedPickerFile()
     tap({ id: 'one-native-apple-file-open' })
-    await wait('fileImporter presents the document picker', (n) =>
-      Boolean(pickerCancel(n))
-    )
+    await wait('fileImporter presents the document picker', (n) => pickerUp(n))
     screenshot('apple-file-picker-open.png')
-    tap({ label: 'Cancel' })
+    point(closePoint.x, closePoint.y)
+    // a previous run that died mid-navigation restores the Browse root, whose
+    // close button sits top-left; the second tap only fires when the first
+    // missed, which the bare tree proves.
+    await Bun.sleep(2000)
+    if (pickerUp(snapshot(config.simulatorId))) point(28, 100)
     await wait(
       'cancel reports dismissal and a cancelled completion',
       (n) =>
@@ -3209,6 +3244,107 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Completions', 1) &&
         status(n, 'Message', 'cancelled')
     )
+    screenshot('apple-file-picker-cancelled.png')
+
+    // the picker is AX-blind but its states read off pixels: the folder title
+    // spans the left nav area only in the folder view, the Locations header
+    // text only on the Browse root, and the On My iPhone phone icon only
+    // when Locations is expanded. calibrated off device captures with at
+    // least 3x margin on every probe. Browse restores its last location and
+    // the sections keep their expansion across presentations, so the pick
+    // drives closed-loop: classify, tap, re-shot, and fail loud instead of
+    // tapping blind into the wrong state.
+    const pickerShot = (name: string) => readPng(screenshot(name))
+    const countWhere = (
+      image: ReturnType<typeof readPng>,
+      x0: number,
+      y0: number,
+      x1: number,
+      y1: number,
+      match: (r: number, g: number, b: number) => boolean
+    ) => {
+      const scale = image.width / 402
+      let found = 0
+      for (let y = Math.floor(y0 * scale); y <= Math.ceil(y1 * scale); y++)
+        for (let x = Math.floor(x0 * scale); x <= Math.ceil(x1 * scale); x++) {
+          const i = (y * image.width + x) * 4
+          if (match(image.data[i], image.data[i + 1], image.data[i + 2])) found++
+        }
+      return found
+    }
+    const isDark = (r: number, g: number, b: number) => r < 100 && g < 100 && b < 100
+    const isBlue = (r: number, g: number, b: number) =>
+      b > 180 && b > r + 60 && b > g + 40
+    const isRed = (r: number, g: number, b: number) =>
+      r > 180 && r > g + 60 && r > b + 60
+    const pickerState = (image: ReturnType<typeof readPng>) => {
+      if (countWhere(image, 70, 90, 130, 110, isDark) > 200) return 'folder' as const
+      if (countWhere(image, 34, 229, 46, 241, isDark) > 50) return 'root' as const
+      return 'elsewhere' as const
+    }
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents for the pick', (n) => pickerUp(n))
+    // reach the Browse root or the folder from wherever the presentation
+    // restored: Recents enters Browse, a pushed view pops back to the root.
+    let state: 'folder' | 'root' | 'elsewhere' = 'elsewhere'
+    for (let attempt = 0; attempt < 4 && state === 'elsewhere'; attempt++) {
+      point(browsePoint.x, browsePoint.y)
+      await Bun.sleep(1500)
+      state = pickerState(pickerShot(`apple-file-nav-browse-${attempt}.png`))
+      if (state !== 'elsewhere') break
+      point(30, 100)
+      await Bun.sleep(1500)
+      state = pickerState(pickerShot(`apple-file-nav-back-${attempt}.png`))
+    }
+    if (state === 'elsewhere')
+      throw new Error('Pick navigation never reached the Browse tree')
+    if (state === 'root') {
+      // expand Locations from either state: the phone icon proves expanded,
+      // the tag dot proves collapsed, anything else is a collapsed Tags
+      // section hiding the rows below it.
+      for (let attempt = 0; ; attempt++) {
+        const image = pickerShot(`apple-file-nav-sections-${attempt}.png`)
+        if (countWhere(image, 34, 314, 46, 326, isBlue) > 40) break
+        if (attempt === 4) throw new Error('Pick navigation never expanded Locations')
+        if (countWhere(image, 32, 332, 48, 348, isRed) > 40)
+          point(locationsPoint.x, locationsPoint.y)
+        else point(200, 280)
+        await Bun.sleep(1500)
+      }
+      point(onMyIPhonePoint.x, onMyIPhonePoint.y)
+      await Bun.sleep(1500)
+      point(folderPoint.x, folderPoint.y)
+      await Bun.sleep(1500)
+    }
+    screenshot('apple-file-picker-file.png')
+    point(filePoint.x, filePoint.y)
+    const picked = await wait(
+      'picking reports the copied file',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 4) &&
+        status(n, 'Completions', 2) &&
+        status(n, 'Index', 0) &&
+        status(n, 'Count', 1) &&
+        status(n, 'Message', 'none') &&
+        labels(n).some(
+          (label) =>
+            label.startsWith('Url: file://') &&
+            label.includes('one-native-file-importer') &&
+            label.endsWith(`/${seedName}`)
+        )
+    )
+    screenshot('apple-file-pick-completion.png')
+    const url = labels(picked)
+      .find((label) => label.startsWith('Url: file://'))!
+      .slice('Url: file://'.length)
+    if (!url.startsWith(`${container}/Library/Caches/one-native-file-importer/`))
+      throw new Error(`Pick reported a url outside the importer copies: ${url}`)
+    const copied = fs.readFileSync(decodeURIComponent(url), 'utf8')
+    if (copied !== seedContent)
+      throw new Error(`Pick copy holds ${JSON.stringify(copied)} instead of the seed`)
+    checks.push({ name: 'pick copy is readable on disk', durationMs: 0 })
+    console.log('PASS pick copy is readable on disk')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

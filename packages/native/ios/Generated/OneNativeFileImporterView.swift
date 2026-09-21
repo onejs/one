@@ -116,27 +116,60 @@ private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
   return destination
 }
 
+// backing out of the picker never calls the result closure on current iOS: the
+// binding flipping to false is the only signal. but on a pick the binding
+// flips ~2ms BEFORE the result arrives, so a dismissal cannot report cancel
+// synchronously. instead it schedules the cancelled completion past a grace
+// window, and a result that lands first disarms it; the generation guards a
+// re-present inside the window. when another iOS does call the closure for a
+// cancel, the arrival flag disarms the timer the same way, so each dismissal
+// reports exactly one cancelled completion either way.
+private final class FileImporterDismissalTracker: ObservableObject {
+  var presentationId = 0
+  var resultArrived = false
+}
+
 private struct FileImporterSurface: View {
   @ObservedObject var model: FileImporterModel
+  @StateObject private var dismissal = FileImporterDismissalTracker()
   var body: some View {
     Color.clear
       .fileImporter(
         isPresented: Binding(
           get: { model.controlled.value },
-          set: { value in model.change(value) }
+          set: { value in
+            model.change(value)
+            if value {
+              dismissal.presentationId += 1
+              dismissal.resultArrived = false
+            } else if !dismissal.resultArrived {
+              let id = dismissal.presentationId
+              DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                guard dismissal.presentationId == id, !dismissal.resultArrived else { return }
+                model.completion("", 0, 0, "cancelled")
+              }
+            }
+          }
         ),
         allowedContentTypes: oneNativeContentTypes(model.allowedContentTypes),
         allowsMultipleSelection: model.allowsMultipleSelection
       ) { result in
+        dismissal.resultArrived = true
         switch result {
         case .success(let urls):
-          let count = urls.count
-          for (index, url) in urls.enumerated() {
-            do {
-              let copy = try oneNativeCopyToCaches(url)
-              model.completion(copy.absoluteString, Double(index), Double(count), "")
-            } catch {
-              model.completion("", Double(index), Double(count), error.localizedDescription)
+          // an empty success is the cancelled completion on iOS versions that
+          // report backing out this way; a real pick always carries a url.
+          if urls.isEmpty {
+            model.completion("", 0, 0, "cancelled")
+          } else {
+            let count = urls.count
+            for (index, url) in urls.enumerated() {
+              do {
+                let copy = try oneNativeCopyToCaches(url)
+                model.completion(copy.absoluteString, Double(index), Double(count), "")
+              } catch {
+                model.completion("", Double(index), Double(count), error.localizedDescription)
+              }
             }
           }
         case .failure(let error):
