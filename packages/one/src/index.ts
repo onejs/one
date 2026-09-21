@@ -107,6 +107,18 @@ export type {
   StackScreenOptions,
   StackScreenProps,
 } from './layouts/stack-utils'
+// Stack toolbar compositional API types
+export type {
+  BottomToolbarData,
+  BottomToolbarItemData,
+  BottomToolbarMenuData,
+  StackToolbarBottomProps,
+  StackToolbarItemProps,
+  StackToolbarMenuProps,
+  StackToolbarPlacement,
+  StackToolbarProps,
+  StackToolbarSlotProps,
+} from './layouts/stack-utils'
 export { useTabs } from './headless/useTabs'
 export { useDrawer } from './headless/useDrawer'
 export type { UseTabsResult, UseDrawerResult } from './headless/types'

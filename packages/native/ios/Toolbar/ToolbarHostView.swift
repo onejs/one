@@ -12,6 +12,14 @@ class ToolbarHostView: RCTView, MenuUpdatable {
   var menuItemsMap: [String: MenuActionView] = [:]
   private var hasPendingToolbarUpdate = false
 
+  // remapped from the JS `hidden` prop to avoid UIView.isHidden conflicts.
+  // drives navigationController toolbar visibility with animation.
+  @objc var toolbarHidden: Bool = false {
+    didSet { updateToolbarItems() }
+  }
+
+  @objc var animated: Bool = true
+
   private func addToolbarItemAtIndex(_ item: ToolbarItemView, index: Int) {
     let identifier = item.itemIdentifier
     toolbarItemsArray.insert(identifier, at: index)
@@ -73,8 +81,8 @@ class ToolbarHostView: RCTView, MenuUpdatable {
           }
           return nil
         }
-        controller.setToolbarItems(items, animated: true)
-        controller.navigationController?.setToolbarHidden(false, animated: true)
+        controller.setToolbarItems(items, animated: animated)
+        controller.navigationController?.setToolbarHidden(toolbarHidden, animated: animated)
       }
     }
   }

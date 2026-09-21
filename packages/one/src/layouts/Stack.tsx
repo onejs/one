@@ -14,8 +14,17 @@ import {
   StackHeaderComponent,
   StackHeaderSearchBar,
   StackScreen,
+  StackToolbarComponent,
+  StackToolbarItem,
+  StackToolbarLeading,
+  StackToolbarMenu,
+  StackToolbarTrailing,
+  appendStackToolbarPropsToOptions,
+  type StackScreenOptions,
   type StackScreenProps,
+  type StackToolbarProps,
 } from './stack-utils'
+import { StackToolbarBottom } from './stack-utils/StackToolbarBottomHost'
 import { withLayoutContext } from './withLayoutContext'
 
 const NativeStackNavigator = createStackNavigator().Navigator
@@ -55,6 +64,11 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
         return null
       }
 
+      if (isChildOfType(child, StackToolbarComponent)) {
+        // Stack.Toolbar at the Stack level is used for screenOptions, handled separately
+        return null
+      }
+
       if (isChildOfType(child, Screen)) {
         return child
       }
@@ -71,27 +85,44 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
 const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNStack>>(
   (props, ref) => {
     const { children, screenOptions, ...rest } = props
-    // extract Stack.Header from children for screenOptions
+    // extract Stack.Header / Stack.Toolbar from children for screenOptions
     const screenOptionsWithHeader = useMemo(() => {
       const stackHeader = Children.toArray(children).find((child) =>
         isChildOfType(child, StackHeaderComponent)
       )
+      const stackToolbar = Children.toArray(children).find((child) =>
+        isChildOfType(child, StackToolbarComponent)
+      )
 
-      if (stackHeader && isChildOfType(stackHeader, StackHeaderComponent)) {
-        const headerProps: StackScreenProps = { children: stackHeader }
-        if (screenOptions) {
-          if (typeof screenOptions === 'function') {
-            return (...args: Parameters<typeof screenOptions>) => {
-              const opts = screenOptions(...args)
-              return appendScreenStackPropsToOptions(opts, headerProps)
-            }
-          }
-          return appendScreenStackPropsToOptions(screenOptions, headerProps)
+      if (!stackHeader && !stackToolbar) return screenOptions
+
+      const applyComposition = (opts: StackScreenOptions) => {
+        let result = appendStackToolbarPropsToOptions(
+          opts as NativeStackNavigationOptions,
+          stackToolbar && isChildOfType(stackToolbar, StackToolbarComponent)
+            ? (stackToolbar.props as StackToolbarProps)
+            : {}
+        )
+        if (stackHeader && isChildOfType(stackHeader, StackHeaderComponent)) {
+          const headerProps: StackScreenProps = { children: stackHeader }
+          result = appendScreenStackPropsToOptions(
+            result as StackScreenOptions,
+            headerProps
+          ) as NativeStackNavigationOptions
         }
-        return appendScreenStackPropsToOptions({}, headerProps)
+        return result
       }
 
-      return screenOptions
+      if (screenOptions) {
+        if (typeof screenOptions === 'function') {
+          return (...args: Parameters<typeof screenOptions>) => {
+            const opts = screenOptions(...args)
+            return applyComposition(opts as StackScreenOptions)
+          }
+        }
+        return applyComposition(screenOptions as StackScreenOptions)
+      }
+      return applyComposition({})
     }, [children, screenOptions])
 
     // pre-process children to convert StackScreen to Screen
@@ -113,16 +144,40 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
   }
 )
 
+type StackToolbarCompound = typeof StackToolbarComponent & {
+  Leading: typeof StackToolbarLeading
+  /** One Header-convention alias of Leading. */
+  Left: typeof StackToolbarLeading
+  Trailing: typeof StackToolbarTrailing
+  /** One Header-convention alias of Trailing. */
+  Right: typeof StackToolbarTrailing
+  Bottom: typeof StackToolbarBottom
+  Item: typeof StackToolbarItem
+  Menu: typeof StackToolbarMenu
+}
+
 type StackType = ReturnType<typeof withLayoutContext> & {
   Screen: typeof StackScreen
   Header: typeof StackHeader
+  Toolbar: StackToolbarCompound
   Protected: typeof Protected
   SearchBar: typeof StackHeaderSearchBar
 }
 
+const StackToolbar = Object.assign(StackToolbarComponent, {
+  Leading: StackToolbarLeading,
+  Left: StackToolbarLeading,
+  Trailing: StackToolbarTrailing,
+  Right: StackToolbarTrailing,
+  Bottom: StackToolbarBottom,
+  Item: StackToolbarItem,
+  Menu: StackToolbarMenu,
+}) as StackToolbarCompound
+
 export const Stack: StackType = Object.assign(StackWithComposition, {
   Screen: StackScreen,
   Header: StackHeader,
+  Toolbar: StackToolbar,
   Protected,
   SearchBar: StackHeaderSearchBar,
 }) as StackType

@@ -18,4 +18,5 @@ export declare const StackHeader: typeof StackHeaderComponent & {
 };
 export { StackHeaderBackButton, type StackHeaderBackButtonProps, StackHeaderComponent, type StackHeaderProps, StackHeaderLeft, type StackHeaderLeftProps, StackHeaderRight, type StackHeaderRightProps, StackHeaderSearchBar, type StackHeaderSearchBarProps, StackHeaderTitle, type StackHeaderTitleProps, };
 export { StackScreen, appendScreenStackPropsToOptions, validateStackPresentation, type StackScreenProps, type StackScreenOptions, } from './StackScreen';
+export { StackToolbarComponent, StackToolbarItem, StackToolbarLeading, StackToolbarMenu, StackToolbarTrailing, appendStackToolbarPropsToOptions, type BottomToolbarData, type BottomToolbarItemData, type BottomToolbarMenuData, type StackToolbarBottomProps, type StackToolbarItemProps, type StackToolbarMenuProps, type StackToolbarPlacement, type StackToolbarProps, type StackToolbarSlotProps, } from './StackToolbar';
 //# sourceMappingURL=index.d.ts.map
