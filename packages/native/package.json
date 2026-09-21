@@ -75,6 +75,12 @@
       "import": "./dist/esm/safe-area/index.mjs",
       "require": "./dist/cjs/safe-area/index.cjs"
     },
+    "./image-picker": {
+      "types": "./types/image-picker/index.d.ts",
+      "react-native": "./src/image-picker/index.native.ts",
+      "import": "./dist/esm/image-picker/index.mjs",
+      "require": "./dist/cjs/image-picker/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },

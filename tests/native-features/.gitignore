@@ -20,3 +20,7 @@ fail-snapshot.json
 # the two captures the measurement controls run against: one bar painted lighter than its
 # background and one painted darker. they are fixtures, so they are committed.
 !oracle/controls/*.png
+
+# the known photo the image picker suite seeds into the library: 120x80 red png.
+# it is a fixture, so it is committed.
+!assets/one-native-picker.png

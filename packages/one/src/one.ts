@@ -4,6 +4,7 @@
 import {
   Color,
   Compose,
+  ImagePicker,
   MenuAction,
   SplitView,
   Swift,
@@ -59,6 +60,7 @@ export type OneAPI = {
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
+  readonly ImagePicker: typeof ImagePicker
 }
 
 function currentPlatform(): OnePlatform {
@@ -106,4 +108,5 @@ export const One: OneAPI = Object.freeze({
   iOS,
   Android,
   UI,
+  ImagePicker,
 })

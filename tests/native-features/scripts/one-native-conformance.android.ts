@@ -1703,6 +1703,76 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // the system picker (or the documents fallback on devices without it)
+    // opens outside our tree, so back dismisses it and the canceled result
+    // must round-trip through the bridge. the camera leg stays manual: the
+    // runtime permission dialog and the camera app are outside this
+    // harness's contract.
+    pressBack(config)
+    await expect(
+      'image-picker-navigate-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-image-picker')
+    await expect(
+      'image-picker-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'library button',
+            (n) => exactlyOneId(n, 'one-native-image-picker-library'),
+          ],
+          ['idle result', (n) => textIncludes(n, 'Result: idle')],
+        ]),
+      'one-native-image-picker-library'
+    )
+    // precondition: the camera permission must be undecided on this
+    // device. reinstall or clear the app when a manual prompt probe
+    // tainted it.
+    tapFresh(config, 'Image picker permissions button', {
+      id: 'one-native-image-picker-permissions',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'image-picker-permissions',
+      (nodes) =>
+        diagnose(nodes, [
+          ['undecided status', (n) => textIncludes(n, 'PermStatus: undetermined')],
+          ['not granted', (n) => textIncludes(n, 'PermGranted: false')],
+          ['askable', (n) => textIncludes(n, 'PermCanAsk: true')],
+        ]),
+      'one-native-image-picker-permissions'
+    )
+    tapFresh(config, 'Image picker library button', {
+      id: 'one-native-image-picker-library',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(
+      config,
+      'system picker foregrounds',
+      (nodes) => !exactlyOneId(nodes, 'one-native-image-picker-library')
+    )
+    pressBack(config)
+    await expect(
+      'image-picker-cancel',
+      (nodes) =>
+        diagnose(nodes, [
+          ['cancel reported', (n) => textIncludes(n, 'Result: canceled')],
+          [
+            'library button back',
+            (n) => exactlyOneId(n, 'one-native-image-picker-library'),
+          ],
+        ]),
+      'one-native-image-picker-library'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(

@@ -11,6 +11,9 @@ export default defineConfig({
         app: {
           name: 'NativeFeatureTests',
           scheme: 'nativefeatures',
+          imagePicker: {
+            camera: 'NativeFeatureTests verifies photo capture.',
+          },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
             deploymentTarget: '17.0',
