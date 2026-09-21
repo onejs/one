@@ -826,16 +826,6 @@ async function run(config: Config) {
 
   try {
     preflight(config)
-    // the ime leg must run against a raised keyboard to mean anything; force
-    // the soft keyboard on even with a hard keyboard attached.
-    adbText(config, [
-      'shell',
-      'settings',
-      'put',
-      'secure',
-      'show_ime_with_hard_keyboard',
-      '1',
-    ])
     relaunchApp(config)
 
     await expect(
@@ -1673,8 +1663,18 @@ async function run(config: Config) {
     )
 
     // focusing the input and typing must not move the bottom inset: the
-    // keyboard is capped by the stable inset. the suite forces the soft
-    // keyboard on at start, and the leg fails unless it actually raised.
+    // keyboard is capped by the stable inset. the leg forces the soft
+    // keyboard on for itself only: forcing it suite-wide breaks the inputs
+    // textfield legs, whose typed text stops reaching the field. the leg
+    // fails unless the keyboard actually raised.
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'show_ime_with_hard_keyboard',
+      '1',
+    ])
     const beforeIme = safeAreaNumbers(snapshot(config).nodes, 'Insets: ')
     tapFresh(config, 'Safe-area input focus', { id: 'one-native-safe-area-input' })
     adbType(config, 'ada')
@@ -1714,6 +1714,8 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Edges: top'),
       'one-native-safe-area-edges'
     )
+    // restore the emulator default so later legs run unmodified.
+    adbText(config, ['shell', 'settings', 'delete', 'secure', 'show_ime_with_hard_keyboard'])
 
     // haptics on Android: presence (the native module resolved), tap-through
     // of every verb with the Last label proving each call returned, and an
