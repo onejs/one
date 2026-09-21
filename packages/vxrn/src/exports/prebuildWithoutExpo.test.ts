@@ -18,6 +18,7 @@ import {
   generateForPlatform,
   getNativeDependencyInventory,
   renderPrebuildFile,
+  renderSceneDelegateSwift,
   type PrebuildAppConfig,
   validatePrebuildApp,
 } from './prebuildWithoutExpo'
@@ -110,7 +111,11 @@ describe('template rendering', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
       content: `PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; TARGETED_DEVICE_FAMILY = "1,2"; target HelloWorld
-shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
+shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};
+\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+\t\t761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HelloWorld/AppDelegate.swift; sourceTree = "<group>"; };
+\t\t\t\t761780EC2CA45674006654EE /* AppDelegate.swift */,
+\t\t\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,`,
       platform: 'ios',
       app,
     })
@@ -119,6 +124,12 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(ios.content).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
     expect(ios.content).toContain('TARGETED_DEVICE_FAMILY = "1,2";')
     expect(ios.content).not.toContain('HelloWorld')
+    expect(ios.content).toContain(
+      '/* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile;'
+    )
+    expect(ios.content).toContain('path = MyApp/SceneDelegate.swift')
+    expect(ios.content).toContain('/* SceneDelegate.swift */,')
+    expect(ios.content).toContain('/* SceneDelegate.swift in Sources */,')
 
     const podfile = renderPrebuildFile({
       relativePath: 'Podfile',
@@ -298,6 +309,139 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     }
     expect(renderPrebuildFile(args)).toEqual(renderPrebuildFile(args))
   })
+})
+
+describe('ios scene lifecycle', () => {
+  const templateAppDelegate = `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}
+`
+
+  it('trims the AppDelegate to app-level work and keeps the RN delegate', () => {
+    const rendered = renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: `${templateAppDelegate}
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+}`,
+      platform: 'ios',
+      app,
+    })
+    expect(rendered.content).toContain('@main')
+    expect(rendered.content).toContain('class ReactNativeDelegate')
+    expect(rendered.content).not.toContain('startReactNative')
+    expect(rendered.content).not.toContain('UIWindow(frame:')
+    expect(rendered.content).not.toContain('var window')
+    expect(rendered.content).not.toContain('var reactNativeFactory')
+  })
+
+  it('throws instead of shipping a non-scene AppDelegate', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/AppDelegate.swift',
+        content: '@main\nclass AppDelegate: UIResponder, UIApplicationDelegate {\n}\n',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('changed shape')
+  })
+
+  it('stamps the scene manifest and delegate into the project', () => {
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(infoPlist.content).toContain('<key>UIApplicationSceneManifest</key>')
+    expect(infoPlist.content).toContain(
+      '<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>'
+    )
+    expect(infoPlist.content).toContain('<key>UIWindowSceneSessionRoleApplication</key>')
+
+    const sceneDelegate = renderSceneDelegateSwift('MyApp')
+    expect(sceneDelegate).toContain('class SceneDelegate')
+    expect(sceneDelegate).toContain('UIWindowSceneDelegate')
+    expect(sceneDelegate).toContain('withModuleName: "MyApp"')
+    expect(sceneDelegate).toContain('willConnectTo')
+    expect(sceneDelegate).toContain('openURLContexts')
+    expect(sceneDelegate).toContain('continue userActivity')
+    expect(sceneDelegate).toContain('RCTLinkingManager')
+  })
+
+  it('throws when the template loses a scene anchor', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('LSRequiresIPhoneOS')
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+        content: `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\nno app delegate here`,
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('AppDelegate.swift anchor')
+  })
+
+  it('generates a scene project from the real template', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))
+    await generateForPlatform(workspaceRoot, 'ios', app, join(output, 'ios'))
+
+    const sceneDelegate = readFileSync(
+      join(output, 'ios', 'MyApp', 'SceneDelegate.swift'),
+      'utf8'
+    )
+    expect(sceneDelegate).toContain('withModuleName: "MyApp"')
+    expect(sceneDelegate).not.toContain('HelloWorld')
+
+    const appDelegate = readFileSync(
+      join(output, 'ios', 'MyApp', 'AppDelegate.swift'),
+      'utf8'
+    )
+    expect(appDelegate).not.toContain('startReactNative')
+    expect(appDelegate).toContain('class ReactNativeDelegate')
+
+    const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(project).toContain('path = MyApp/SceneDelegate.swift')
+    expect(project).toContain('/* SceneDelegate.swift in Sources */,')
+  }, 180000)
 })
 
 describe('community autolink inventory', () => {

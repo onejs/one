@@ -25,6 +25,7 @@ export interface PrebuildAppConfig {
         minSdk?: number;
     };
 }
+export declare function renderSceneDelegateSwift(appName: string): string;
 export declare function validatePrebuildApp(app: PrebuildAppConfig, platform?: 'ios' | 'android' | string): void;
 export interface RenderedPrebuildFile {
     destRelativePath: string;
