@@ -1,12 +1,17 @@
 import type {
+  Notification,
   NotificationChannel,
   NotificationChannelInput,
+  NotificationHandlerInput,
   NotificationPermissionRequest,
   NotificationPermissionResponse,
+  NotificationResponse,
+  NotificationScheduleInput,
+  NotificationSubscription,
 } from './types'
 
 export type * from './types'
-export { AndroidImportance } from './types'
+export { AndroidImportance, DEFAULT_ACTION_IDENTIFIER } from './types'
 
 // web behavior: permission reads resolve denied, everything else is inert.
 // browser push is out of scope.
@@ -52,3 +57,31 @@ export async function getNotificationChannelsAsync(): Promise<NotificationChanne
 }
 
 export async function deleteNotificationChannelAsync(_channelId: string): Promise<void> {}
+
+const inert: NotificationSubscription = { remove: () => {} }
+
+export function addNotificationReceivedListener(
+  _listener: (notification: Notification) => void
+): NotificationSubscription {
+  return inert
+}
+
+export function addNotificationResponseReceivedListener(
+  _listener: (response: NotificationResponse) => void
+): NotificationSubscription {
+  return inert
+}
+
+export function setNotificationHandler(_handler: NotificationHandlerInput | null): void {}
+
+export function getLastNotificationResponse(): NotificationResponse | null {
+  return null
+}
+
+export function clearLastNotificationResponse(): void {}
+
+export async function scheduleNotificationAsync(
+  _request: NotificationScheduleInput
+): Promise<string> {
+  throw new Error('Notifications.schedule needs an iOS or Android build')
+}

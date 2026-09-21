@@ -1,15 +1,21 @@
-import { Platform, TurboModuleRegistry } from 'react-native'
+import { NativeEventEmitter, Platform, TurboModuleRegistry } from 'react-native'
 
 import type { Spec as NotificationsSpec } from '../specs/OneNativeNotificationsNativeModule'
+import { ForegroundHandler } from './handlerState'
 import type {
+  Notification,
   NotificationChannel,
   NotificationChannelInput,
+  NotificationHandlerInput,
   NotificationPermissionRequest,
   NotificationPermissionResponse,
+  NotificationResponse,
+  NotificationScheduleInput,
+  NotificationSubscription,
 } from './types'
 
 export type * from './types'
-export { AndroidImportance } from './types'
+export { AndroidImportance, DEFAULT_ACTION_IDENTIFIER } from './types'
 
 // the native module is resolved once and lazily. null until the app links
 // @vxrn/native, exactly like the other native modules in this package.
@@ -77,4 +83,91 @@ export async function getNotificationChannelsAsync(): Promise<NotificationChanne
 export async function deleteNotificationChannelAsync(channelId: string): Promise<void> {
   if (Platform.OS !== 'android') return
   return native().deleteNotificationChannel(channelId)
+}
+
+// one native subscription per event, fanned out to js listeners, plus the
+// foreground runner that answers native's presentation round trip.
+const receivedListeners = new Set<(notification: Notification) => void>()
+const responseListeners = new Set<(response: NotificationResponse) => void>()
+let sharedEmitter: NativeEventEmitter | null = null
+let sharedRunner: ForegroundHandler | null = null
+
+function events(): { emitter: NativeEventEmitter; runner: ForegroundHandler } {
+  if (!sharedEmitter || !sharedRunner) {
+    const module = native()
+    const runner = new ForegroundHandler((requestId, behavior) => {
+      // native drops unknown ids and shows everything after 3s on its own,
+      // so a rejection here only means the bridge is gone.
+      module.presentNotification(requestId, behavior).catch(() => {})
+    })
+    const emitter = new NativeEventEmitter(module)
+    emitter.addListener(
+      'oneNativeNotificationsReceived',
+      (event: { requestId: string; notification: Notification }) => {
+        if (!runner.receive(event.requestId, event.notification)) return
+        receivedListeners.forEach((listener) => listener(event.notification))
+      }
+    )
+    emitter.addListener('oneNativeNotificationsResponse', (response: NotificationResponse) => {
+      responseListeners.forEach((listener) => listener(response))
+    })
+    sharedEmitter = emitter
+    sharedRunner = runner
+  }
+  return { emitter: sharedEmitter, runner: sharedRunner }
+}
+
+function subscribe<T>(
+  listeners: Set<(value: T) => void>,
+  listener: (value: T) => void
+): NotificationSubscription {
+  events()
+  listeners.add(listener)
+  return {
+    remove: () => {
+      listeners.delete(listener)
+    },
+  }
+}
+
+// fire when a notification arrives while the app runs in the foreground.
+export function addNotificationReceivedListener(
+  listener: (notification: Notification) => void
+): NotificationSubscription {
+  return subscribe(receivedListeners, listener)
+}
+
+// fire when the user taps a notification while the app runs. a tap that
+// cold-starts the app surfaces through getLastNotificationResponse instead.
+export function addNotificationResponseReceivedListener(
+  listener: (response: NotificationResponse) => void
+): NotificationSubscription {
+  return subscribe(responseListeners, listener)
+}
+
+// decide how an arriving foreground notification presents. until the app
+// sets a handler the notification shows fully, like expo. setting null
+// leaves native undecided, which hides it on both platforms.
+export function setNotificationHandler(handler: NotificationHandlerInput | null): void {
+  events().runner.setHandler(handler)
+}
+
+// the response that last tapped the app awake, if any. synchronous, like expo.
+export function getLastNotificationResponse(): NotificationResponse | null {
+  return native().getLastNotificationResponse()
+}
+
+export function clearLastNotificationResponse(): void {
+  native().clearLastNotificationResponse()
+}
+
+// schedule a local notification. this slice delivers trigger null
+// immediately; interval and date triggers land in n4.
+export async function scheduleNotificationAsync(
+  request: NotificationScheduleInput
+): Promise<string> {
+  if (request.trigger !== null) {
+    throw new Error('only trigger null is supported: interval and date triggers land in n4')
+  }
+  return native().scheduleNotification(request)
 }

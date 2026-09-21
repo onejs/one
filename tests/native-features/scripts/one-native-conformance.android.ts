@@ -1814,6 +1814,108 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Channel: null'),
       'one-native-notifications-channel-get'
     )
+    // slice n3: no handler was set yet, so the first arrival shows by
+    // default. background the app, tap the banner in the shade, and the
+    // response lands back in the fixture.
+    tapNotif('Notifications schedule now', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-default',
+      (nodes) => textIncludes(nodes, 'Received: n3-1'),
+      'one-native-notifications-schedule-now'
+    )
+    const tapShade = (name: string, text: string) => {
+      adbText(config, ['shell', 'input', 'keyevent', '3'])
+      adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+      const current = snapshot(config)
+      const target = current.nodes.find(
+        (node) => node.text === text || node.contentDescription === text
+      )
+      if (!target) throw new Error(`${name}: no shade node with text ${text}.`)
+      const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+    const foregroundApp = () => {
+      const launcherComponent = adbText(config, [
+        'shell',
+        'cmd',
+        'package',
+        'resolve-activity',
+        '--brief',
+        '-c',
+        'android.intent.category.LAUNCHER',
+        config.packageId,
+      ])
+        .trim()
+        .split(/\r?\n/)
+        .findLast((line) => line.includes('/'))
+      if (!launcherComponent)
+        throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+      adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
+    }
+    tapShade('Notifications warm tap', 'N3 ping')
+    await expect(
+      'notifications-response-warm',
+      (nodes) => textIncludes(nodes, 'Response: n3-1/'),
+      'one-native-notifications-schedule-now'
+    )
+    tapNotif('Notifications last refresh', 'one-native-notifications-last-refresh')
+    await expect(
+      'notifications-last-warm',
+      (nodes) => textIncludes(nodes, 'Last: n3-1/N3 ping'),
+      'one-native-notifications-last-refresh'
+    )
+    // a suppressing handler still fires received but posts nothing: the
+    // expanded shade holds no banner. the tapped n3-1 auto-cancelled, so
+    // any N3 ping in the shade is a failure.
+    tapNotif('Notifications handler suppress', 'one-native-notifications-handler-suppress')
+    await expect(
+      'notifications-handler-suppress',
+      (nodes) => textIncludes(nodes, 'Handler: suppress'),
+      'one-native-notifications-handler-suppress'
+    )
+    tapNotif('Notifications schedule suppressed', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-suppressed',
+      (nodes) => textIncludes(nodes, 'Received: n3-2'),
+      'one-native-notifications-schedule-now'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    if (textIncludes(snapshot(config).nodes, 'N3 ping'))
+      throw new Error('a suppressed notification reached the shade')
+    adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+    foregroundApp()
+    await expect(
+      'notifications-foregrounded-after-suppress',
+      (nodes) => textIncludes(nodes, 'Received: n3-2'),
+      'one-native-notifications-schedule-now'
+    )
+    // a nulled handler behaves the same way.
+    tapNotif('Notifications handler null', 'one-native-notifications-handler-null')
+    await expect(
+      'notifications-handler-null',
+      (nodes) => textIncludes(nodes, 'Handler: null'),
+      'one-native-notifications-handler-null'
+    )
+    tapNotif('Notifications schedule nulled', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-nulled',
+      (nodes) => textIncludes(nodes, 'Received: n3-3'),
+      'one-native-notifications-schedule-now'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    if (textIncludes(snapshot(config).nodes, 'N3 ping'))
+      throw new Error('a nulled handler reached the shade')
+    adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+    foregroundApp()
+    await expect(
+      'notifications-foregrounded-after-null',
+      (nodes) => textIncludes(nodes, 'Received: n3-3'),
+      'one-native-notifications-schedule-now'
+    )
 
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),

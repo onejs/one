@@ -1,10 +1,13 @@
 import type { TurboModule } from 'react-native'
 
 import type {
+  NotificationBehavior,
   NotificationChannel,
   NotificationChannelInput,
   NotificationPermissionRequest,
   NotificationPermissionResponse,
+  NotificationResponse,
+  NotificationScheduleInput,
 } from '../notifications/types'
 
 // type-only contract for the OneNativeNotifications legacy native module.
@@ -25,4 +28,10 @@ export interface Spec extends TurboModule {
   getNotificationChannel(channelId: string): Promise<NotificationChannel | null>
   getNotificationChannels(): Promise<NotificationChannel[]>
   deleteNotificationChannel(channelId: string): Promise<void>
+  scheduleNotification(request: NotificationScheduleInput): Promise<string>
+  presentNotification(requestId: string, behavior: NotificationBehavior): Promise<void>
+  getLastNotificationResponse(): NotificationResponse | null
+  clearLastNotificationResponse(): void
+  addListener(eventName: string): void
+  removeListeners(count: number): void
 }

@@ -591,6 +591,51 @@ await setNotificationChannelAsync('reminders', {
 `deleteNotificationChannelAsync` round out the set. On iOS they resolve
 `null`, `[]`, and nothing: there are no channels there.
 
+`scheduleNotificationAsync` delivers a local notification; `trigger: null`
+shows it immediately. Every arrival fires `addNotificationReceivedListener`
+while the app runs in the foreground, and every tap fires
+`addNotificationResponseReceivedListener` with the notification and the
+default action identifier:
+
+```tsx
+import {
+  addNotificationReceivedListener,
+  addNotificationResponseReceivedListener,
+  scheduleNotificationAsync,
+  setNotificationHandler,
+} from '@vxrn/native/notifications'
+
+setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+})
+
+const id = await scheduleNotificationAsync({
+  content: { title: 'Hello', body: 'world' },
+  trigger: null,
+})
+```
+
+Until the app sets a handler the notification shows fully: banner, list,
+sound, and badge. That matches `expo-notifications`, whose default handler
+asks for everything and whose 3 s timeout presents rather than drops; this
+module does the same, answering from JS within 2.5 s and from native at 3 s.
+Setting the handler to `null` leaves native undecided, which hides the
+notification on both platforms while listeners still fire. On Android the
+banner flag raises the priority but the channel importance governs what the
+system actually shows, and `shouldSetBadge` is ignored: launcher badges are
+out of scope.
+
+A tap that cold-starts the app cannot reach a listener: JS is not running
+yet. It surfaces through the synchronous `getLastNotificationResponse`
+instead, which the app reads on launch; `clearLastNotificationResponse`
+dismisses it. The iOS delegate installs at launch, before the bridge loads,
+so the cold-start tap is cached no matter how early it arrives.
+
 Declare the capability in `native.app` so prebuild stamps the Android
 `POST_NOTIFICATIONS` permission. iOS needs nothing for local notifications.
 
@@ -624,7 +669,7 @@ one({
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
-| Notifications | permission, badge | permission, channels | denied, inert |
+| Notifications | permission, badge, events, handler, immediate schedule | permission, channels, events, handler, immediate schedule | denied, inert |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`

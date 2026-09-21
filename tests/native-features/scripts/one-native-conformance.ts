@@ -601,6 +601,86 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('channel create resolves null on ios', (n) => has(n, 'Channel: null'))
     await tapFixture('one-native-notifications-channel-list')
     await wait('channel list is empty on ios', (n) => has(n, 'Channels: 0'))
+    // slice n3: no handler was set yet, so the first arrival shows by default.
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))
+    // the banner covers the top center below the island; tapping it while
+    // the app is foregrounded delivers the response without leaving the
+    // screen. coordinates are calibrated for the 393x852 display.
+    point(196, 110)
+    await wait('banner tap fires response', (n) => has(n, 'Response: n3-1/'))
+    await tapFixture('one-native-notifications-last-refresh')
+    await wait('tap is cached as last response', (n) => has(n, 'Last: n3-1/N3 ping'))
+    screenshot('notifications-warm-tap.png')
+    // suppression taps must land on bare app chrome, never on a
+    // fixture button the earlier scrolling left under the point, so the
+    // fixture goes back to the top before each one.
+    const scrollTop = async () => {
+      for (let i = 0; i < 3; i++) {
+        command(
+          [
+            'ui-automation',
+            'swipe',
+            '--x1',
+            '196',
+            '--y1',
+            '300',
+            '--x2',
+            '196',
+            '--y2',
+            '700',
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 300))
+      }
+    }
+    // a suppressing handler still fires received but shows no banner: the
+    // same tap lands in the app and no second response arrives.
+    await tapFixture('one-native-notifications-handler-suppress')
+    await wait('suppressing handler set', (n) => has(n, 'Handler: suppress'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('suppressed arrival still fires received', (n) => has(n, 'Received: n3-2'))
+    await scrollTop()
+    point(196, 110)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    if (has(snapshot(config.simulatorId), 'Response: n3-2'))
+      throw new Error('a suppressed notification produced a response on tap')
+    // a nulled handler behaves the same way.
+    await tapFixture('one-native-notifications-handler-null')
+    await wait('nulled handler set', (n) => has(n, 'Handler: null'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('nulled arrival still fires received', (n) => has(n, 'Received: n3-3'))
+    await scrollTop()
+    point(196, 110)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    if (has(snapshot(config.simulatorId), 'Response: n3-3'))
+      throw new Error('a nulled handler produced a response on tap')
+    // cold start: terminate, push a banner onto the home screen, tap it.
+    // the simctl push is the probe vehicle for the launch-timing question;
+    // the delegate path it exercises is the same one local taps take.
+    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    const pushPayload = path.join(config.artifactDir, 'n3-cold-push.apns')
+    fs.writeFileSync(
+      pushPayload,
+      JSON.stringify({ aps: { alert: { title: 'N3 cold', body: 'tap me' } } })
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'push', config.simulatorId, config.bundleId, pushPayload],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    await new Promise((resolve) => setTimeout(resolve, 3000))
+    screenshot('notifications-cold-banner.png')
+    point(196, 130)
+    await wait('cold start shows home', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-notifications')
+    await wait('cold-start tap delivered last response', (n) =>
+      labels(n).some((label) => label.startsWith('Last: ') && label.includes('N3 cold'))
+    )
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
