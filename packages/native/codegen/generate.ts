@@ -1,6 +1,11 @@
 import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
+import {
+  adaptivePanelComponents,
+  adaptivePanelMethods,
+  emitAdaptivePanel,
+} from './emitAdaptivePanel'
 import { controls } from './controlCatalog'
 import { emitControls } from './emitControls'
 import { emitStyle } from './emitStyle'
@@ -137,6 +142,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 emitSheet(header, outputs)
 emitContainers(header, outputs)
 emitPopover(header, outputs)
+emitAdaptivePanel(header, outputs)
 emitStyle(header, outputs)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
 // src/specs alongside the view specs. emitted here so --check guards the JSI
@@ -156,6 +162,7 @@ export default TurboModuleRegistry.getEnforcing<Spec>('OneNativeSyncState')
 for (const method of [
   ...sheetMethods,
   ...popoverMethods,
+  ...adaptivePanelMethods,
   ...environmentMethods,
   ...menuMethods,
   ...styleModifiers,
@@ -335,6 +342,7 @@ outputs.set(
         ...sheetComponents,
         ...containerComponents,
         ...popoverComponents,
+        ...adaptivePanelComponents,
       ].map((component) => {
         const enumProps: Record<string, string> =
           'enumProps' in component ? component.enumProps : {}
@@ -377,6 +385,9 @@ outputs.set(
           ])
         ),
         NativeSheetDetent: {
+          fields: { type: { type: 'string' }, value: { type: 'Double' } },
+        },
+        NativeAdaptivePanelDetent: {
           fields: { type: { type: 'string' }, value: { type: 'Double' } },
         },
         NativeMenuItem: {
@@ -600,6 +611,7 @@ packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
     ...sheetComponents,
     ...containerComponents,
     ...popoverComponents,
+    ...adaptivePanelComponents,
   ].map((component) => [component.name, component.name + 'ComponentView'])
 )
 outputs.set('package.json', JSON.stringify(packageMetadata, null, 2) + '\n')
