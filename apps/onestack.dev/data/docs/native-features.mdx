@@ -45,7 +45,7 @@ Native iOS 18+ zoom transitions. The destination screen expands from a source el
 ```tsx
 import { One } from 'one'
 
-// source screen — wrap the tappable element
+// source screen: wrap the tappable element
 function ListScreen() {
   const router = useRouter()
   return (
@@ -57,7 +57,7 @@ function ListScreen() {
   )
 }
 
-// destination screen — place the enabler anywhere
+// destination screen: place the enabler anywhere
 function DetailScreen() {
   const { id } = useParams()
   return (
@@ -136,7 +136,8 @@ Options are route-local and dynamic: render a nameless `Stack.Screen` with a `St
 
 ## Menu Actions
 
-Native iOS `UIMenu` and `UIAction` for context menus in toolbars.
+Native iOS `UIMenu` and `UIAction` for context menus in toolbars. `icon`
+takes an SF Symbol name.
 
 ```tsx
 import { One } from 'one'
@@ -203,6 +204,8 @@ function Layout() {
 ```
 
 On iPhone, SplitView collapses to a single column automatically.
+`SplitView.Inspector` marks an inspector column the same way `SplitView.Column`
+marks a sidebar column.
 
 ---
 
@@ -287,6 +290,258 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## iOS Controls
+
+Generated SwiftUI controls under `One.iOS`. Interactive controls follow one
+pattern: a controlled value, an `onXChange` callback, and a `revision` number
+for external resets. Every control accepts `accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
+`swiftStyle`. A control composed inside a SwiftUI parent is measured by that
+parent; `style` describes the outer box only when the control stands alone.
+
+| Component | Key props |
+|-----------|-----------|
+| `Picker` | `selection`, `onSelectionChange`, `options` (`{ value, label }`), `pickerStyle` |
+| `DatePicker` | `selection` (Date), `onSelectionChange`, `minimumDate`, `maximumDate`, `displayedComponents`, `datePickerStyle` |
+| `ColorPicker` | `selection` (`#RRGGBB` or `#RRGGBBAA`), `onSelectionChange`, `supportsOpacity` |
+| `Toggle` | `isOn`, `onIsOnChange`, `toggleStyle` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step`, `minimumValueLabel`, `maximumValueLabel`, `minimumValueImage`, `maximumValueImage` |
+| `Stepper` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `Text` | `text` |
+| `Label` | `label`, `systemImage` |
+| `Button` | `label`, `systemImage`, `subtitle`, `buttonRole`, `buttonStyle`, `disclosureIndicator`, `onPress` |
+| `ProgressView` | `value` (undefined renders indeterminate), `total`, `progressViewStyle` |
+| `Gauge` | `value`, `minimumValue`, `maximumValue`, `currentValueLabel`, `minimumValueLabel`, `maximumValueLabel`, `gaugeStyle` |
+| `Image` | `systemName`, `symbolRenderingMode`, `symbolVariant`, `imageScale`, `variableValue`, `colorRole` |
+| `ShareLink` | `label`, `systemImage`, `item`, `itemType` (`text` or `url`), `subject`, `message` |
+| `ContentUnavailableView` | `title`, `systemImage`, `description`, `actions`, `onAction` |
+| `VideoPlayer` | `url`, `autoplay` |
+| `PhotosPicker` | `onPick`, `onPickError`, `maxSelectionCount`, `selectionBehavior`, `filter`, `preferredItemEncoding` |
+| `WebView` | `url` or `html`, `onNavigate`, `onTitleChange`, `onLoadingChange` |
+| `Map` | `latitude`, `longitude`, `distance`, `markers` (`{ id, label, latitude, longitude }`), `onRegionChange` |
+| `TextField` | `text` (string or native state), `onTextChange`, `prompt`, `keyboardType`, `focused`, `onFocusChange`, `onSubmit` |
+| `SecureField` | same as `TextField`, for passwords |
+| `Alert` | `isPresented`, `onIsPresentedChange`, `title`, `message`, `actions`, `onAction` |
+| `ConfirmationDialog` | same as `Alert`, plus `titleVisibility` |
+| `QuickLook` | `isPresented`, `onIsPresentedChange`, `url` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+<One.iOS.Slider
+  label="Volume"
+  value={volume}
+  onValueChange={setVolume}
+  minimumValue={0}
+  maximumValue={100}
+/>
+```
+
+---
+
+## iOS Containers
+
+Layout and grouping views under `One.iOS`. `HStack`, `VStack`, `Form`, and
+`Host` also take environment values: `colorScheme`, `dynamicTypeSize`,
+`locale`, `tint`, and `isEnabled`.
+
+| Component | Key props |
+|-----------|-----------|
+| `HStack`, `VStack` | `spacing`, `alignment` |
+| `ZStack` | `alignment` |
+| `Form` | `sizing` (`fill` or `content`) |
+| `Section` | `title`, `footer` |
+| `Glass` | `material`, `glassEffect`, `interactive`, `shape`, `cornerRadius`, `tint` |
+| `LabeledContent` | `label`, `value`, `systemImage` |
+| `List` | `listStyle` |
+| `ScrollView` | `axes` (`vertical`, `horizontal`, `both`), `showsIndicators` |
+| `LazyVStack`, `LazyHStack` | `alignment`, `spacing` |
+| `ControlGroup` | `label`, `systemImage`, `controlGroupStyle` |
+| `DisclosureGroup` | `label`, `isExpanded`, `onIsExpandedChange` |
+| `Divider` | view props only |
+| `Link` | `destination`, `label` |
+| `Group` | view props only |
+| `Overlay`, `Overlay.Content` | `alignment` |
+| `SwipeActions`, `SwipeActions.Actions` | `edge` (`leading` or `trailing`), `allowsFullSwipe` |
+| `Pager`, `Page` | `selection`, `onSelectionChange`; pages carry `id` |
+| `Spacer` | `minLength` |
+| `Slot` | `height`, `width` |
+| `Host` | `axis`, `spacing`, `alignment`; carries a React Native subtree into a SwiftUI container |
+
+---
+
+## iOS Presentation and Tabs
+
+Sheets, popovers, menus, and tabs under `One.iOS`.
+
+| Component | Key props |
+|-----------|-----------|
+| `Sheet` | `isPresented`, `onIsPresentedChange`, `presentationDetents`, `selectedDetent`, `onSelectedDetentChange`, `fitToContents`, `presentationDragIndicator`, `interactiveDismissDisabled`, `presentationBackground` |
+| `FullScreenCover` | `isPresented`, `onIsPresentedChange`, `onDismiss` |
+| `Popover` | `isPresented`, `onIsPresentedChange`, `arrowEdge`, `contentWidth`, `contentHeight`, `content` |
+| `Menu` | `items`, `onAction`, `accessibilityLabel`; children render the trigger |
+| `ContextMenu` | same as `Menu`; the trigger keeps its own touches |
+| `Tabs`, `Tab` | `selection`, `onSelectionChange`, `sidebarAdaptable`, `tabBarMinimizeBehavior`; tabs carry `id`, `title`, `systemImage`, `badge`, `role` |
+
+A `Tab` carries either `onPress` or children, never both. An action tab runs
+its handler and never becomes the selection. `selection` must identify a
+mounted page tab.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+    <FeedScreen />
+  </One.iOS.Tab>
+  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+</One.iOS.Tabs>
+```
+
+---
+
+## Android Compose
+
+Jetpack Compose views under `One.Android`. Containers take children;
+`Text`, `Icon`, `Button`, `Switch`, `TextField`, `Slider`, `AlertDialog`,
+and `ProgressIndicator` are leaves and reject children. A node nested in a
+Compose tree styles through `composeStyle`; `style` applies only at the root
+of the tree.
+
+| Component | Key props |
+|-----------|-----------|
+| `Column` | `horizontalAlignment`, `verticalArrangement`, `spacing` |
+| `Row` | `verticalAlignment`, `horizontalArrangement`, `spacing` |
+| `Box` | `contentAlignment` |
+| `Text` | `text`, `fontSize`, `fontWeight`, `textAlign`, `maxLines` |
+| `Icon` | `name`, `size` (default 24), `filled` |
+| `Button` | `label`, `variant` (`filled`, `outlined`, `text`), `tone` (`default`, `danger`), `icon`, `iconFilled`, `onPress` |
+| `Switch` | `isOn`, `onIsOnChange`, `label` |
+| `TextField` | `text` (string or native state), `onTextChange`, `label`, `placeholder`, `variant` (`filled`, `outlined`), `keyboardType`, `secureText`, `focused`, `onFocusChange`, `imeAction`, `onSubmit`, `maxLength`, `multiline`, `capitalization`, `autoCorrect`, `textAlign` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `AlertDialog` | `visible`, `title`, `message`, `confirmLabel`, `dismissLabel`, `onConfirm`, `onDismiss` |
+| `Dialog` | `visible`, `onDismiss` |
+| `ProgressIndicator` | `variant` (`linear` or `circular`), `progress` |
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Column spacing={12}>
+  <One.Android.Text text="Airplane mode" />
+  <One.Android.Switch isOn={on} onIsOnChange={setOn} />
+</One.Android.Column>
+```
+
+---
+
+## Shared Effects
+
+Cross-platform effects under `One.UI`. They render through the native
+primitives on iOS and Android and throw on web.
+
+`EdgeFade` fades children toward the enabled edges. Each edge takes `true`,
+a size in dp, or `{ size, curve, color }`. `curve` is a preset (`smooth`,
+`smoother`, `sharp`, `gentle`, `soft`, `linear`), a cubic bezier, or an
+alpha stop list. `mode` is `mask` (alpha fade, no color), `overlay` (color
+gradient over the children), or `blur` (progressive blur); the mode follows
+`color` when omitted, except `blur` which stays explicit. `radius` sets the
+corner radius; `style.borderRadius` is ignored.
+
+`Blur` takes `intensity` (0 to 100, default 50) and `tint`. `Mask` takes a
+`maskElement` subtree whose opaque pixels show the content.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.EdgeFade bottom={64} curve="smooth">
+  <LongList />
+</One.UI.EdgeFade>
+
+<One.UI.Blur intensity={60} tint="systemMaterial">
+  <OverlayCard />
+</One.UI.Blur>
+```
+
+---
+
+## Text Input and Native State
+
+`One.UI.useNativeState` creates one observable handle shared between
+JavaScript and the bound native views. Pass the handle as `value` to
+`One.UI.TextInput`: keystrokes land in every bound view without a React
+render. The ref carries `focus`, `blur`, `clear`, `isFocused`, and
+`setSelection`.
+
+```tsx
+import { One } from 'one'
+
+function NameField() {
+  const name = One.UI.useNativeState('')
+
+  return (
+    <One.UI.TextInput
+      value={name}
+      placeholder="Name"
+      onSubmitEditing={(text) => save(text)}
+    />
+  )
+}
+```
+
+`One.UI.SafeArea` is documented under
+[SafeAreaView](/docs/components-SafeAreaView).
+
+---
+
+## Gradients
+
+The supported gradient answer is the React Native 0.87 `backgroundImage`
+style prop with linear gradients. No extra component is needed.
+
+```tsx
+import { View } from 'react-native'
+
+<View
+  style={{
+    backgroundImage: [
+      {
+        type: 'linear-gradient',
+        direction: 'to bottom',
+        colorStops: [
+          { color: 'rgba(0,0,0,1)', positions: ['0%'] },
+          { color: 'rgba(0,0,0,0)', positions: ['100%'] },
+        ],
+      },
+    ],
+  }}
+/>
+```
+
+One's own `EdgeFade` overlay mode paints this exact shape, sampling its edge
+curve into gradient stops. See `packages/native/src/effects/EdgeFade.native.tsx`
+for the prior art. The stable `backgroundImage` key needs React Native 0.87;
+0.86 only processes the experimental alias.
+
+---
+
+## Android Color
+
+Adaptive Material colors through `Color.android` from `@vxrn/native`:
+
+```tsx
+import { Color } from '@vxrn/native'
+
+<View style={{ backgroundColor: Color.android.material.primary }} />
+<Text style={{ color: Color.android.dynamic.onSurface }} />
+```
+
+`material` carries the static Material 3 palette, `dynamic` follows the
+system wallpaper colors on Android 12 and later. Like the iOS colors, these
+stay native values and follow theme changes without a React subscription.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,7 +553,16 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| SwiftUI controls and containers | One.iOS.* | unsupported (throws) | unsupported (throws) |
+| Compose views | unsupported (throws) | One.Android.* | unsupported (throws) |
+| EdgeFade, Blur, Mask | native primitive | native primitive | throws |
+| Gradients | RN 0.87 `backgroundImage` (see Gradients) | RN 0.87 `backgroundImage` (see Gradients) | see Gradients |
+| TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
+| Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
+| Colors | One.iOS.Color | Color.android | null |
 
-Unsupported toolbar and zoom components return `null`, so they are safe to keep in
-cross-platform component trees. SplitView renders its routed `slot` without native
-columns on Android and web.
+Unsupported toolbar, menu, and zoom components return `null`, so they are safe
+to keep in cross-platform component trees. SplitView renders its routed `slot`
+without native columns on Android and web. SwiftUI components throw outside
+iOS builds and Compose components throw outside Android builds, so keep those
+branches behind platform checks.

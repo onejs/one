@@ -1,18 +1,16 @@
 ---
 title: 'One v2 Beta'
 publishedAt: '2026-09-17'
-description: 'Native SwiftUI and Compose interfaces, React Navigation 8, and a year of framework work since the v1 beta.'
+description: 'Native SwiftUI and Compose interfaces, React Navigation 8 alphas, a zero-Expo native toolchain, and a year of framework work since the v1 beta.'
 by: nate
 draft: true
 ---
 
-{/* draft: covers v1.2 through the v2 beta cut, confirm version numbers before publish */}
-
 <IntroParagraph>
   The v2 beta line is available on the npm `beta` dist-tag. It collects
   everything since the v1 beta: the v1 stable line through 1.27, a new native
-  interface library, React Navigation 8, and a reworked native bundling
-  pipeline. This post summarizes the changes as recorded in git history and the
+  interface library, React Navigation 8 alphas, a zero-Expo native toolchain,
+  and a reworked native bundling pipeline. This post summarizes the changes as recorded in git history and the
   per-release notes.
 </IntroParagraph>
 
@@ -26,10 +24,11 @@ npx one@beta
 
 One native is a library of real platform interfaces for React Native apps,
 shipped in the existing `@vxrn/native` package. The iOS surface is generated
-SwiftUI, exposed through a `Swift` export: tabs, menus, pickers, form controls,
-sheets, full screen covers, containers, popovers, video, maps, web views,
-sharing, the photo library, empty states, and Quick Look. The Android surface
-is Jetpack Compose, exposed through a `Compose` export backed by a
+SwiftUI, exposed through a `Swift` export and as `One.iOS` in app code: tabs,
+menus, pickers, form controls, sheets, full screen covers, containers,
+popovers, video, maps, web views, sharing, the photo library, empty states,
+and Quick Look. The Android surface is Jetpack Compose, exposed through a
+`Compose` export and as `One.Android`, backed by a
 `OneNativeComposeNodeManager`.
 
 The bindings are generated from the platform SDKs rather than handwritten. The
@@ -41,20 +40,50 @@ hosting and presentation hosts that carry a React Native subtree into a
 SwiftUI container. Later additions include Map, QuickLook, VideoPlayer, an
 Image binding, action tabs, Liquid Glass and Material surfaces, stacks,
 spacers, labeled content, slider labels, and a `swiftStyle` styling surface.
-Every control is measured and carries accessibility into composed content.
 
-One's router integrates with the library: routed tabs and `Swift.Tabs` keep
-separate state, with React Navigation remaining the application navigator and
-`Swift.Tabs` available as a low-level `TabView` for explicit composition.
+Shared cross-platform primitives live under `One.UI`: `EdgeFade`, `Blur`,
+`Mask`, `Icon`, `TextInput`, `useNativeState`, and `SafeArea`.
+`One.UI.Icon` takes one element per platform (`icons.ios` as `One.iOS.Image`,
+`icons.android` as `One.Android.Icon`, optional `icons.web`) and a single
+color source: `colorRole` with `primary`, `secondary`, `tertiary`, `accent`,
+or `danger`, resolved by the active native color scheme, or a React Native
+`ColorValue` `color`, including iOS dynamic colors. The role defaults to
+`primary` when neither prop is present. `TextInput` and `useNativeState`
+share one observable store between JavaScript and the bound SwiftUI and
+Compose views, so keystrokes land without a React render.
+
+Native tabs come in two layers. The file router's `Tabs` stays on React
+Navigation native tabs. `Swift.Tabs` with `Swift.Tab` children is a separate
+low-level `TabView` for explicit composition: controlled `selection` with
+`onSelectionChange`, badges, roles, and action tabs that carry `onPress`
+instead of a page.
 
 During development the library lived in a separate `one-native` workspace
 package. It was folded into `@vxrn/native`, so consumers install and import
-one package. There is no `one-native` package on npm. The fold also raised the
-floors for the whole package: React Native 0.86.2 with the New Architecture,
-and an iOS 26 deployment target.
+one package. The fold raised the floor for the whole package: React Native
+0.87 with the New Architecture, since the library ships Fabric components.
+The iOS floor stays at 17, with iOS 26 features gated at runtime.
 
 See [native features](/docs/native-features) and the
 [iOS native guide](/docs/guides-ios-native).
+
+## Native toolchain
+
+Native projects no longer go through Expo tooling. `one prebuild` generates
+the iOS and Android projects from the validated `native.app` manifest in
+`vite.config.ts`: app icons and launch screens from shared sources, bundle
+ids, and deployment settings in one code path, with no Expo app config or
+config plugin. `one run:ios` and `one run:android` launch through the React
+Native community CLI against the running dev server. Bundler selection is
+explicit: the Rolldown pipeline is the default, Metro mode stays available.
+
+Expo compatibility is optional. Expo modules keep working where projects
+install them, and the environment contract accepts both prefixes:
+`ONE_PUBLIC_` is the default naming convention, `EXPO_PUBLIC_` stays fully
+supported, and a `ONE_PUBLIC_X` value is also exposed as `EXPO_PUBLIC_X`
+when that Expo variable is absent. An explicitly defined Expo variable keeps
+its own value, and Expo variables never create `ONE_PUBLIC_` names. See
+[environment](/docs/environment).
 
 ## Native bundling
 
@@ -64,8 +93,7 @@ file change, and full reload fallback, and production native bundles build
 through rolldown as well. Native transforms moved to Babel-free Oxc and
 Rolldown transforms, with selected pure imports bundled for worklet runtimes.
 
-Around that pipeline: support for React Native 0.87 and Expo 58, a
-pre-minified iOS Hermes release bundle in the expo plugin, a real EXUpdates
+Around that pipeline: support for React Native 0.87, a real EXUpdates
 manifest for project-local assets, precompressed `.br`/`.zst`/`.gz` siblings
 served with an mtime guard, and static asset cache headers through
 `server.cacheControl`. Metro mode stays available with shared config through
@@ -76,14 +104,14 @@ and `process.env` support in the babel plugin. See
 
 ## Navigation
 
-One moved to React Navigation 8. `Presentations` replaces `NavigationRender`,
-and Stack, Tabs, and Drawer render through pluggable web rendering with
-headless web navigators, so `react-native` stays out of the web module graph.
-The Stack gained a header composition API with child processing, and the
-router added toolbar support, suspense, protected redirects, `Tabs.Protected`,
-an option to suspend on route load for native and web, deep linking config
-with a `getLinking` helper and `useSitemap` hook, and redirects through
-loaders.
+One moved to React Navigation 8 alphas. `Presentations` replaces
+`NavigationRender`, and Stack, Tabs, and Drawer render through pluggable web
+rendering with headless web navigators, so `react-native` stays out of the
+web module graph. The Stack gained a header composition API with child
+processing, and the router added toolbar support, suspense, protected
+redirects, `Tabs.Protected`, an option to suspend on route load for native
+and web, deep linking config with a `getLinking` helper and `useSitemap`
+hook, and redirects through loaders.
 
 From the v1 line, also included: [route masks](/docs/hooks-useRouter),
 [scroll position groups](/docs/hooks-useScrollGroup),
@@ -96,9 +124,9 @@ imports (`server-only`, `client-only`, `native-only`, `web-only`) with an
 
 Rendering and build work since the v1 beta:
 
-- [Render modes](/docs/render-modes) per page or globally, with
-  `web.renderRootLayout` to fix the root layout to SSG or SSR regardless of
-  the child page mode, and `.server.ts` platform extension support.
+- [Render modes](/docs/render-modes) per page or globally, with layout
+  render modes through `_layout+ssg.tsx` and `_layout+ssr.tsx` root layouts,
+  and `.server.ts` platform extension support.
 - [Skew protection](/docs/guides-skew-protection) with an optional proactive
   mode, CDN edge caching for SSG and SPA pages, and retry of transient
   dynamic-import failures before reloading.
@@ -132,11 +160,11 @@ overrides.
 ## Developer experience
 
 DevTools became a unified panel with SEO preview, route debugging, loader
-timing, error tracking, and a source inspector with picker UI, input
-recording, component enter and leave events, and an Under tab. Editor
-detection and configuration improved, MDX gained smart typography and
-automatic loader HMR, `EXPO_PUBLIC_` joined the default env prefix for Expo
-compatibility, and `--skip-env` skips env loading. See
+timing, error tracking, and a source inspector with picker UI and input
+recording. Editor detection and configuration improved, MDX gained smart
+typography and automatic loader HMR, `EXPO_PUBLIC_` stays accepted next to
+the default `ONE_PUBLIC_` prefix with one-way aliasing, and `--skip-env`
+skips env loading. See
 [DevTools](/docs/dev-tools) and [environment](/docs/environment).
 
 The site itself added build-time open graph images for posts and an RSS feed
@@ -144,8 +172,8 @@ for this blog.
 
 ## Requirements
 
-The v2 line requires React 19.2 or later and React Native 0.86 or later, with
-0.86.2 for `@vxrn/native`. Apps using `@vxrn/native` build for iOS 26 and
-must use the New Architecture on native. Navigation peers moved to React
-Navigation 8. Metro mode remains the compatibility path for apps that need
-it.
+The v2 line requires React 19 (19.2.3 or later) and React Native 0.87, with
+0.87.1 for `@vxrn/native`. Apps using `@vxrn/native` build for iOS 17 and
+later and use the New Architecture on native, since the library ships Fabric
+components. Navigation peers moved to React Navigation 8 alphas. Metro mode
+remains the compatibility path for apps that need it.
