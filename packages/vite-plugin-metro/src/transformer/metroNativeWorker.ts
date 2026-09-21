@@ -516,17 +516,21 @@ export function applyModuleResolverAliases(
 
 /**
  * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
- * one's `babel-plugin-inline-one-server-url`. In production every
- * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
- * one is routed through the `expo/virtual/env` module so edits to .env take
- * effect without a full rebuild. Without this the reads survive into the bundle
- * and every EXPO_PUBLIC_ value is undefined at runtime.
+ * one's public env inlining. In production every `process.env.EXPO_PUBLIC_*`
+ * read is inlined as a literal; in development each one is routed through the
+ * `expo/virtual/env` module so edits to .env take effect without a full
+ * rebuild. Without this the reads survive into the bundle and every
+ * EXPO_PUBLIC_ value is undefined at runtime.
+ *
+ * `process.env.ONE_PUBLIC_*` reads inline in both modes, matching one's
+ * rolldown native defines: a native runtime has no `process.env` to read back
+ * out of. Each prefix keeps its own values; no cross-aliasing.
  *
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
  * it is how a native bundle knows where to fetch loader data from, and a native
  * runtime has no `process.env` to read it back out of.
  *
- * Both live in one pass because they are the same rewrite over the same walk,
+ * All live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
  */
 export function applyInlineEnvVars(
@@ -599,11 +603,16 @@ export function applyInlineEnvVars(
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
         if (isProduction) {
-          replace(node, process.env[key] ?? undefined)
+          replace(node, env[key] ?? process.env[key] ?? undefined)
         } else {
           edits.push({ start: node.start, end: node.end, text: `_$$_EXPO_ENV.${key}` })
           needsEnvImport = true
         }
+        return
+      }
+
+      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('ONE_PUBLIC_')) {
+        replace(node, env[key] ?? process.env[key] ?? undefined)
         return
       }
 
@@ -627,8 +636,8 @@ export function applyInlineEnvVars(
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
-      // two branches above so ONE_SERVER_URL and EXPO_PUBLIC_ keep their own
-      // handling.
+      // branches above so ONE_SERVER_URL, ONE_PUBLIC_*, and EXPO_PUBLIC_ keep
+      // their own handling.
       if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
         replace(node, env[key])
         return

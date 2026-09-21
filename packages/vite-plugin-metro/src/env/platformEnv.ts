@@ -4,7 +4,8 @@ export type ViteEnvironment = 'client' | 'ssr' | 'ios' | 'android'
 export type PlatformEnv = {
   VITE_ENVIRONMENT: ViteEnvironment
   VITE_NATIVE: '' | '1'
-  EXPO_OS: 'web' | 'ios' | 'android'
+  ONE_PLATFORM: 'web' | 'ios' | 'android'
+  EXPO_OS?: 'ios' | 'android'
   TAMAGUI_TARGET: 'web' | 'native'
   TAMAGUI_ENVIRONMENT: ViteEnvironment
 }
@@ -13,20 +14,21 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
   client: {
     VITE_ENVIRONMENT: 'client',
     VITE_NATIVE: '',
-    EXPO_OS: 'web',
+    ONE_PLATFORM: 'web',
     TAMAGUI_TARGET: 'web',
     TAMAGUI_ENVIRONMENT: 'client',
   },
   ssr: {
     VITE_ENVIRONMENT: 'ssr',
     VITE_NATIVE: '',
-    EXPO_OS: 'web',
+    ONE_PLATFORM: 'web',
     TAMAGUI_TARGET: 'web',
     TAMAGUI_ENVIRONMENT: 'ssr',
   },
   ios: {
     VITE_ENVIRONMENT: 'ios',
     VITE_NATIVE: '1',
+    ONE_PLATFORM: 'ios',
     EXPO_OS: 'ios',
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: 'ios',
@@ -34,6 +36,7 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
   android: {
     VITE_ENVIRONMENT: 'android',
     VITE_NATIVE: '1',
+    ONE_PLATFORM: 'android',
     EXPO_OS: 'android',
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: 'android',
@@ -56,6 +59,8 @@ export function metroPlatformToViteEnvironment(
  * Format platform env for Vite's define config.
  * Returns both process.env.* and import.meta.env.* definitions.
  * VITE_NATIVE is "1" or "" (truthy/falsy string) to avoid polluting process.env types.
+ * EXPO_OS is a native-only alias of ONE_PLATFORM for upstream expo modules;
+ * web never synthesizes it so ssr does not invent an expo runtime value.
  */
 export function getPlatformEnvDefine(
   environment: ViteEnvironment
@@ -64,6 +69,7 @@ export function getPlatformEnvDefine(
   const define: Record<string, string> = {}
 
   for (const [key, value] of Object.entries(env)) {
+    if (value === undefined) continue
     define[`process.env.${key}`] = JSON.stringify(value)
     define[`import.meta.env.${key}`] = JSON.stringify(value)
   }

@@ -15,6 +15,7 @@ import {
   rewriteDependencyCalls,
   countLinesAndTerminateMap,
   applyInlineEnvVars,
+  getImportMetaEnv,
   assertNoUnportedBabelPlugins,
   applyEnvironmentGuard,
   getRemoveServerCodeRouterRoot,
@@ -1514,5 +1515,73 @@ describe('metro babel fallback config names', () => {
     } finally {
       fs.rmSync(tempDir, { recursive: true, force: true })
     }
+  })
+})
+
+describe('one and expo public env compat in the metro worker', () => {
+  it('inlines ONE_PUBLIC_ reads in dev and prod with no virtual module', () => {
+    for (const isProduction of [false, true]) {
+      const out = applyInlineEnvVars(
+        'export const api = process.env.ONE_PUBLIC_API;',
+        'env.ts',
+        isProduction,
+        { ONE_PUBLIC_API: 'https://api.test' }
+      )
+      expect(out).toBe('export const api = "https://api.test";')
+      expect(out).not.toContain('expo/virtual/env')
+      expect(out).not.toContain('_$$_EXPO_ENV')
+    }
+  })
+
+  it('accepts EXPO_PUBLIC_ reads: prod inlines, dev routes through expo virtual env', () => {
+    const prod = applyInlineEnvVars(
+      'export const api = process.env.EXPO_PUBLIC_API;',
+      'env.ts',
+      true,
+      { EXPO_PUBLIC_API: 'https://expo.test' }
+    )
+    expect(prod).toBe('export const api = "https://expo.test";')
+
+    const dev = applyInlineEnvVars(
+      'export const api = process.env.EXPO_PUBLIC_API;',
+      'env.ts',
+      false,
+      { EXPO_PUBLIC_API: 'https://expo.test' }
+    )
+    expect(dev).toContain('_$$_EXPO_ENV.EXPO_PUBLIC_API')
+    expect(dev).toContain('expo/virtual/env')
+  })
+
+  it('keeps each public prefix on its own values', () => {
+    const out = applyInlineEnvVars(
+      'export const a = process.env.ONE_PUBLIC_API; export const b = process.env.EXPO_PUBLIC_API;',
+      'env.ts',
+      true,
+      { ONE_PUBLIC_API: 'one-value', EXPO_PUBLIC_API: 'expo-value' }
+    )
+    expect(out).toContain('"one-value"')
+    expect(out).toContain('"expo-value"')
+  })
+
+  it('merges platform env so native keeps EXPO_OS and web does not invent it', () => {
+    const iosPlugins: any[] = [
+      [
+        '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
+        { env: { ONE_PUBLIC_API: 'x' } },
+      ],
+    ]
+    const iosEnv = getImportMetaEnv({ platform: 'ios', customTransformOptions: { vite: { babelConfig: { plugins: iosPlugins } } } } as any)
+    expect(iosEnv.ONE_PLATFORM).toBe('ios')
+    expect(iosEnv.EXPO_OS).toBe('ios')
+
+    const clientPlugins: any[] = [
+      [
+        '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
+        { env: { ONE_PUBLIC_API: 'x' } },
+      ],
+    ]
+    const clientEnv = getImportMetaEnv({ platform: undefined, customTransformOptions: { vite: { babelConfig: { plugins: clientPlugins } } } } as any)
+    expect(clientEnv.ONE_PLATFORM).toBe('web')
+    expect(clientEnv).not.toHaveProperty('EXPO_OS')
   })
 })
