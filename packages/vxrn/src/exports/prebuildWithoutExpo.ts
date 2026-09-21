@@ -506,6 +506,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         '    <uses-permission android:name="android.permission.INTERNET" />',
         '    <uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />'
       )
+      if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
+        throw new Error('[vxrn] failed to stamp notification permissions into app manifest')
+      }
       // the alarm and boot receiver lives in the app manifest, never the
       // library one, so apps without notifications gain nothing. alarms
       // arrive as explicit intents; only boot needs the filter.
@@ -513,6 +516,25 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         '      </activity>\n    </application>',
         '      </activity>\n      <receiver android:name="dev.onejs.onenative.OneNativeNotificationsReceiver" android:exported="false">\n          <intent-filter>\n              <action android:name="android.intent.action.BOOT_COMPLETED" />\n          </intent-filter>\n      </receiver>\n    </application>'
       )
+      if (!rendered.includes('OneNativeNotificationsReceiver')) {
+        throw new Error('[vxrn] failed to stamp the notification receiver into app manifest')
+      }
+    }
+    if (
+      platform === 'ios' &&
+      relativePath.endsWith('/Info.plist') &&
+      app.notifications !== undefined
+    ) {
+      // gates the UNUserNotificationCenter delegate install: apps that link
+      // @vxrn/native without notifications keep whatever delegate their own
+      // push library sets.
+      rendered = rendered.replace(
+        '\t<key>LSRequiresIPhoneOS</key>',
+        '\t<key>OneNativeNotificationsEnabled</key>\n\t<true/>\n\t<key>LSRequiresIPhoneOS</key>'
+      )
+      if (!rendered.includes('OneNativeNotificationsEnabled')) {
+        throw new Error('[vxrn] failed to stamp the notifications key into Info.plist')
+      }
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = rendered.replace(

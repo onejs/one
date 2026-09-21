@@ -83,7 +83,9 @@ static NSDictionary *NotificationPayload(UNNotification *notification)
 @interface OneNativeNotificationsDelegate : NSObject <UNUserNotificationCenterDelegate>
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id> *pendingCompletions;
 @property (nonatomic, strong, nullable) NSDictionary *lastResponse;
+@property (atomic, assign) BOOL hasObservers;
 + (instancetype)shared;
++ (BOOL)notificationsEnabled;
 - (void)presentRequest:(NSString *)requestId
                banner:(BOOL)banner
                  list:(BOOL)list
@@ -93,12 +95,25 @@ static NSDictionary *NotificationPayload(UNNotification *notification)
 
 @implementation OneNativeNotificationsDelegate
 
+// prebuild stamps OneNativeNotificationsEnabled into Info.plist only when
+// native.app.notifications is set. without it the delegate never installs,
+// so apps linking @vxrn/native for other modules keep whatever delegate
+// their own push library sets.
++ (BOOL)notificationsEnabled
+{
+  return [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"OneNativeNotificationsEnabled"]
+      boolValue];
+}
+
 // installed before didFinishLaunching returns, so the delegate is in place
 // when a cold-start tap response arrives. slice n3 proves the timing on
 // device with a terminated-app tap. this lives on the delegate class
 // because RCT_EXPORT_MODULE already defines +load on the module.
 + (void)load
 {
+  if (![self notificationsEnabled]) {
+    return;
+  }
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(didFinishLaunching:)
                                                name:UIApplicationDidFinishLaunchingNotification
@@ -130,8 +145,17 @@ static NSDictionary *NotificationPayload(UNNotification *notification)
   // delegate callbacks may arrive off the main queue; everything below
   // touches the module on main.
   dispatch_async(dispatch_get_main_queue(), ^{
-    NSString *requestId = [[NSUUID UUID] UUIDString];
     OneNativeNotificationsDelegate *delegate = [OneNativeNotificationsDelegate shared];
+    if (!delegate.hasObservers) {
+      // nobody listens: show immediately instead of emitting to no one and
+      // waiting out the timeout below.
+      completionHandler(UNNotificationPresentationOptionBanner |
+                        UNNotificationPresentationOptionList |
+                        UNNotificationPresentationOptionSound |
+                        UNNotificationPresentationOptionBadge);
+      return;
+    }
+    NSString *requestId = [[NSUUID UUID] UUIDString];
     delegate.pendingCompletions[requestId] = completionHandler;
     [[NSNotificationCenter defaultCenter]
         postNotificationName:OneNativeNotificationsWillPresent
@@ -218,7 +242,8 @@ RCT_EXPORT_MODULE()
   if (self = [super init]) {
     // backstop for hosts that load the module without the launch
     // notification, without stomping another library's delegate.
-    if ([UNUserNotificationCenter currentNotificationCenter].delegate == nil) {
+    if ([UNUserNotificationCenter currentNotificationCenter].delegate == nil &&
+        [OneNativeNotificationsDelegate notificationsEnabled]) {
       [UNUserNotificationCenter currentNotificationCenter].delegate =
           [OneNativeNotificationsDelegate shared];
     }
@@ -252,6 +277,16 @@ RCT_EXPORT_MODULE()
 - (NSArray<NSString *> *)supportedEvents
 {
   return @[ OneNativeNotificationsReceived, OneNativeNotificationsResponse ];
+}
+
+- (void)startObserving
+{
+  [OneNativeNotificationsDelegate shared].hasObservers = YES;
+}
+
+- (void)stopObserving
+{
+  [OneNativeNotificationsDelegate shared].hasObservers = NO;
 }
 
 - (void)handleWillPresent:(NSNotification *)note

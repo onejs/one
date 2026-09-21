@@ -41,6 +41,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
     private var permissionPromise: Promise? = null
     private var lastResponse: TapResponse? = null
     private val pending = mutableMapOf<String, PendingDelivery>()
+    private var listenerCount = 0
     private val mainHandler = Handler(Looper.getMainLooper())
 
     private data class PendingDelivery(
@@ -301,12 +302,17 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         promise.resolve(null)
     }
 
-    // the NativeEventEmitter calls these; delivery fan-out lives in js.
+    // the NativeEventEmitter calls these; the count tells deliverNow
+    // whether emitting would reach anyone. fan-out lives in js.
     @ReactMethod
-    fun addListener(eventName: String) {}
+    fun addListener(eventName: String) {
+        synchronized(pending) { listenerCount++ }
+    }
 
     @ReactMethod
-    fun removeListeners(count: Int) {}
+    fun removeListeners(count: Int) {
+        synchronized(pending) { listenerCount = (listenerCount - count).coerceAtLeast(0) }
+    }
 
     private fun emit(name: String, params: WritableMap?) {
         if (!reactApplicationContext.hasActiveCatalystInstance()) return
@@ -351,10 +357,12 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         }
 
     // one delivery path for immediate posts and alarm fires: foreground with
-    // a live bridge goes through the js handler round trip, everything else
-    // posts straight to the shade.
+    // a live bridge and someone listening goes through the js handler round
+    // trip, everything else posts straight to the shade.
     private fun deliverNow(delivery: StoredSchedule, dateMs: Long) {
-        if (isForeground(reactApplicationContext) &&
+        val observed = synchronized(pending) { listenerCount > 0 }
+        if (observed &&
+            isForeground(reactApplicationContext) &&
             reactApplicationContext.hasActiveCatalystInstance()
         ) {
             val requestId = UUID.randomUUID().toString()
