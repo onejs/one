@@ -1,4 +1,5 @@
 export type NotificationPermissionStatus = 'granted' | 'denied' | 'undetermined';
+export type IosAuthorizationStatus = 'not-determined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral';
 export interface NotificationPermissionRequest {
     ios?: {
         allowAlert?: boolean;
@@ -12,21 +13,16 @@ export interface NotificationPermissionResponse {
     granted: boolean;
     canAskAgain: boolean;
     ios?: {
-        status: number;
+        status: IosAuthorizationStatus;
     };
 }
-export declare const AndroidImportance: {
-    readonly NONE: 0;
-    readonly MIN: 1;
-    readonly LOW: 2;
-    readonly DEFAULT: 3;
-    readonly HIGH: 4;
-    readonly MAX: 5;
-};
-export type AndroidImportance = (typeof AndroidImportance)[keyof typeof AndroidImportance];
+export declare function fromNativeAuthorizationStatus(status: number | IosAuthorizationStatus): IosAuthorizationStatus;
+export type NotificationImportance = 'none' | 'min' | 'low' | 'default' | 'high' | 'max';
+export declare function toNativeImportance(value: NotificationImportance | number): number;
+export declare function fromNativeImportance(value: number): NotificationImportance;
 export interface NotificationChannelInput {
     name: string;
-    importance: AndroidImportance;
+    importance: NotificationImportance;
     description?: string;
     sound?: boolean;
     vibrationPattern?: number[];
@@ -35,7 +31,7 @@ export interface NotificationChannelInput {
 export interface NotificationChannel {
     id: string;
     name: string;
-    importance: AndroidImportance;
+    importance: NotificationImportance;
     description?: string;
     sound: boolean;
     vibrationPattern?: number[];

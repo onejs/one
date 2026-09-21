@@ -3,6 +3,7 @@ import * as UI from './effects'
 export * from './extras'
 export * from './unsupported'
 export { Compose } from './compose'
+export { Notifications } from './notifications'
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {

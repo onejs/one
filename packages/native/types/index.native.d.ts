@@ -67,6 +67,7 @@ export declare const Swift: {
     Slot: typeof Slot;
 };
 export { Compose };
+export { Notifications } from './notifications';
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';

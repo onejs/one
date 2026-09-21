@@ -601,7 +601,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('channel create resolves null on ios', (n) => has(n, 'Channel: null'))
     await tapFixture('one-native-notifications-channel-list')
     await wait('channel list is empty on ios', (n) => has(n, 'Channels: 0'))
-    // slice n3: no handler was set yet, so the first arrival shows by default.
+    // slice n3: with no listeners mounted, native presents the arrival
+    // itself instead of waiting out the 3s backstop.
+    await tapFixture('one-native-notifications-schedule-unobserved')
+    await wait('unobserved arrival presents fast', (n) =>
+      has(n, 'Unobserved: presented in ')
+    )
+    await tapFixture('one-native-notifications-subscribe')
+    await wait('listeners subscribed', (n) => has(n, 'Subscribed: yes'))
+    // no handler was set yet, so the first observed arrival shows by default.
     await tapFixture('one-native-notifications-schedule-now')
     await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))
     // the banner covers the top center below the island; tapping it while

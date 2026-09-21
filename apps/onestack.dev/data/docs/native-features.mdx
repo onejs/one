@@ -544,31 +544,29 @@ stay native values and follow theme changes without a React subscription.
 
 ## Notifications
 
-Local notifications through `@vxrn/native/notifications`, a name-for-name
-subset of `expo-notifications`, so migrating means changing the import:
+Local notifications through the `Notifications` namespace, available as
+`One.Notifications` and from `@vxrn/native/notifications`. Payload shapes
+follow `expo-notifications`; platform enums are string unions.
 
 ```tsx
-import {
-  getPermissionsAsync,
-  requestPermissionsAsync,
-  setBadgeCountAsync,
-} from '@vxrn/native/notifications'
+import { One } from 'one'
 
-const current = await getPermissionsAsync()
+const current = await One.Notifications.getPermissions()
 if (!current.granted) {
-  await requestPermissionsAsync()
+  await One.Notifications.requestPermissions()
 }
-await setBadgeCountAsync(3)
+await One.Notifications.setBadgeCount(3)
 ```
 
 Permission reads resolve
 `{ status: 'granted' | 'denied' | 'undetermined', granted, canAskAgain }`,
-with an `ios.status` carrying the raw `UNAuthorizationStatus` (0-4) on iOS.
-`requestPermissionsAsync` accepts
+with an `ios.status` carrying the authorization as
+`'not-determined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral'`
+on iOS. `requestPermissions` accepts
 `{ ios: { allowAlert, allowBadge, allowSound, allowProvisional } }`; unset
 fields default to true except `allowProvisional`. On Android below 13 there is
-no runtime prompt, so requesting resolves the current status. `setBadgeCountAsync`
-resolves `false` and `getBadgeCountAsync` resolves `0` on Android: the launcher
+no runtime prompt, so requesting resolves the current status. `setBadgeCount`
+resolves `false` and `getBadgeCount` resolves `0` on Android: the launcher
 owns badges there.
 
 Android delivery targets notification channels. Create one before
@@ -576,36 +574,24 @@ scheduling onto it; settings apply on first create, afterwards the user owns
 them in system settings.
 
 ```tsx
-import {
-  AndroidImportance,
-  setNotificationChannelAsync,
-} from '@vxrn/native/notifications'
-
-await setNotificationChannelAsync('reminders', {
+await One.Notifications.setChannel('reminders', {
   name: 'Reminders',
-  importance: AndroidImportance.DEFAULT,
+  importance: 'default',
 })
 ```
 
-`getNotificationChannelAsync`, `getNotificationChannelsAsync`, and
-`deleteNotificationChannelAsync` round out the set. On iOS they resolve
-`null`, `[]`, and nothing: there are no channels there.
+`getChannel`, `getChannels`, and `deleteChannel` round out the set. On iOS
+they resolve `null`, `[]`, and nothing: there are no channels there.
+Importance is `'none' | 'min' | 'low' | 'default' | 'high' | 'max'`; the
+legacy expo numbers 0-5 still map.
 
-`scheduleNotificationAsync` delivers a local notification; `trigger: null`
-shows it immediately. Every arrival fires `addNotificationReceivedListener`
-while the app runs in the foreground, and every tap fires
-`addNotificationResponseReceivedListener` with the notification and the
-default action identifier:
+`schedule` delivers a local notification; `trigger: null` shows it
+immediately. Every arrival fires `addReceivedListener` while the app runs in
+the foreground, and every tap fires `addResponseReceivedListener` with the
+notification and the default action identifier:
 
 ```tsx
-import {
-  addNotificationReceivedListener,
-  addNotificationResponseReceivedListener,
-  scheduleNotificationAsync,
-  setNotificationHandler,
-} from '@vxrn/native/notifications'
-
-setNotificationHandler({
+One.Notifications.setHandler({
   handleNotification: async () => ({
     shouldShowBanner: true,
     shouldShowList: true,
@@ -614,7 +600,7 @@ setNotificationHandler({
   }),
 })
 
-const id = await scheduleNotificationAsync({
+const id = await One.Notifications.schedule({
   content: { title: 'Hello', body: 'world' },
   trigger: null,
 })
@@ -624,17 +610,18 @@ Until the app sets a handler the notification shows fully: banner, list,
 sound, and badge. That matches `expo-notifications`, whose default handler
 asks for everything and whose 3 s timeout presents rather than drops; this
 module does the same, answering from JS within 2.5 s and from native at 3 s.
-Setting the handler to `null` leaves native undecided, which hides the
-notification on both platforms while listeners still fire. On Android the
-banner flag raises the priority but the channel importance governs what the
-system actually shows, and `shouldSetBadge` is ignored: launcher badges are
-out of scope.
+With no listeners mounted at all native presents immediately instead of
+waiting out the backstop. Setting the handler to `null` leaves native
+undecided, which hides the notification on both platforms while listeners
+still fire. On Android the banner flag raises the priority but the channel
+importance governs what the system actually shows, and `shouldSetBadge` is
+ignored: launcher badges are out of scope.
 
 A tap that cold-starts the app cannot reach a listener: JS is not running
-yet. It surfaces through the synchronous `getLastNotificationResponse`
-instead, which the app reads on launch; `clearLastNotificationResponse`
-dismisses it. The iOS delegate installs at launch, before the bridge loads,
-so the cold-start tap is cached no matter how early it arrives.
+yet. It surfaces through the synchronous `getLastResponse` instead, which
+the app reads on launch; `clearLastResponse` dismisses it. The iOS delegate
+installs at launch, before the bridge loads, so the cold-start tap is cached
+no matter how early it arrives.
 
 Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
 repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
@@ -643,17 +630,16 @@ unknown ids fall back to an owned Default channel rather than posting
 nowhere. Rescheduling an identifier replaces it.
 
 ```tsx
-await scheduleNotificationAsync({
+await One.Notifications.schedule({
   identifier: 'tea',
   content: { title: 'Tea', body: 'ready' },
   trigger: { type: 'timeInterval', seconds: 300 },
 })
 ```
 
-`cancelScheduledNotificationAsync`, `cancelAllScheduledNotificationsAsync`,
-and `getAllScheduledNotificationsAsync` manage the pending list;
-`getPresentedNotificationsAsync`, `dismissNotificationAsync`, and
-`dismissAllNotificationsAsync` manage what is on screen.
+`cancelScheduled`, `cancelAllScheduled`, and `getAllScheduled` manage the
+pending list; `getPresented`, `dismiss`, and `dismissAll` manage what is on
+screen.
 
 On Android the triggers ride `AlarmManager.setAndAllowWhileIdle`: one inexact
 path, no `SCHEDULE_EXACT_ALARM`, so a delivery deferred by doze is expected,
@@ -664,7 +650,9 @@ interval must be at least 60 seconds, and the calendar trigger resolves to
 whole seconds.
 
 Declare the capability in `native.app` so prebuild stamps the Android
-`POST_NOTIFICATIONS` permission. iOS needs nothing for local notifications.
+permissions and receiver plus the iOS delegate gate. Without it the iOS
+delegate never installs, so apps linking `@vxrn/native` for other modules
+keep whatever delegate their own push library sets.
 
 ```ts
 one({

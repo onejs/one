@@ -5,6 +5,7 @@ import {
   Color,
   Compose,
   MenuAction,
+  Notifications,
   SplitView,
   Swift,
   TextInput,
@@ -54,11 +55,14 @@ export type OneUI = typeof NativeUI & {
   readonly useNativeState: typeof useNativeState
 }
 
+export type OneNotifications = typeof Notifications
+
 export type OneAPI = {
   readonly platform: OnePlatform
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
+  readonly Notifications: Readonly<OneNotifications>
 }
 
 function currentPlatform(): OnePlatform {
@@ -106,4 +110,5 @@ export const One: OneAPI = Object.freeze({
   iOS,
   Android,
   UI,
+  Notifications,
 })

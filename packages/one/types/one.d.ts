@@ -1,4 +1,4 @@
-import { Compose, MenuAction, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
+import { Compose, MenuAction, Notifications, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useNativeState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -24,11 +24,13 @@ export type OneUI = typeof NativeUI & {
     readonly TextInput: typeof TextInput;
     readonly useNativeState: typeof useNativeState;
 };
+export type OneNotifications = typeof Notifications;
 export type OneAPI = {
     readonly platform: OnePlatform;
     readonly iOS: Readonly<OneIOS>;
     readonly Android: Readonly<OneAndroid>;
     readonly UI: Readonly<OneUI>;
+    readonly Notifications: Readonly<OneNotifications>;
 };
 export declare const One: OneAPI;
 //# sourceMappingURL=one.d.ts.map

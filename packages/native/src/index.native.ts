@@ -71,6 +71,7 @@ export const Swift =
       }
     : UnsupportedSwift
 export { Compose }
+export { Notifications } from './notifications'
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {

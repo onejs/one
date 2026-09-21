@@ -1,6 +1,14 @@
-// permission types for @vxrn/native/notifications, a name-for-name subset
-// of expo-notifications: migrating means changing the import.
+// public types for the Notifications namespace. payload shapes follow
+// expo-notifications; platform enums are string unions, with native ints
+// and legacy numbers mapped at the js boundary below.
 export type NotificationPermissionStatus = 'granted' | 'denied' | 'undetermined'
+
+export type IosAuthorizationStatus =
+  | 'not-determined'
+  | 'denied'
+  | 'authorized'
+  | 'provisional'
+  | 'ephemeral'
 
 export interface NotificationPermissionRequest {
   ios?: {
@@ -15,26 +23,85 @@ export interface NotificationPermissionResponse {
   status: NotificationPermissionStatus
   granted: boolean
   canAskAgain: boolean
-  ios?: { status: number }
+  ios?: { status: IosAuthorizationStatus }
 }
 
-// android channel importances, matching expo's numeric enum and the
-// platform importance_none through importance_max.
-export const AndroidImportance = {
-  NONE: 0,
-  MIN: 1,
-  LOW: 2,
-  DEFAULT: 3,
-  HIGH: 4,
-  MAX: 5,
-} as const
+// UNAuthorizationStatus 0 not determined, 1 denied, 2 authorized,
+// 3 provisional, 4 ephemeral. strings pass through for forward
+// compatibility with newer natives.
+export function fromNativeAuthorizationStatus(
+  status: number | IosAuthorizationStatus
+): IosAuthorizationStatus {
+  if (typeof status === 'string') return status
+  switch (status) {
+    case 0:
+      return 'not-determined'
+    case 1:
+      return 'denied'
+    case 2:
+      return 'authorized'
+    case 3:
+      return 'provisional'
+    case 4:
+      return 'ephemeral'
+    default:
+      return 'not-determined'
+  }
+}
 
-export type AndroidImportance =
-  (typeof AndroidImportance)[keyof typeof AndroidImportance]
+export type NotificationImportance = 'none' | 'min' | 'low' | 'default' | 'high' | 'max'
+
+const importanceToInt: Record<NotificationImportance, number> = {
+  none: 0,
+  min: 1,
+  low: 2,
+  default: 3,
+  high: 4,
+  max: 5,
+}
+
+// legacy expo numbers 0-5 still map; anything else is a caller error, thrown
+// with the same message on web and native.
+export function toNativeImportance(value: NotificationImportance | number): number {
+  if (typeof value === 'number') {
+    if (!Number.isInteger(value) || value < 0 || value > 5) {
+      throw new Error(
+        'Notifications.setChannel: importance must be one of none, min, low, default, high, max'
+      )
+    }
+    return value
+  }
+  const mapped = importanceToInt[value]
+  if (mapped === undefined) {
+    throw new Error(
+      'Notifications.setChannel: importance must be one of none, min, low, default, high, max'
+    )
+  }
+  return mapped
+}
+
+export function fromNativeImportance(value: number): NotificationImportance {
+  switch (value) {
+    case 0:
+      return 'none'
+    case 1:
+      return 'min'
+    case 2:
+      return 'low'
+    case 3:
+      return 'default'
+    case 4:
+      return 'high'
+    case 5:
+      return 'max'
+    default:
+      return 'default'
+  }
+}
 
 export interface NotificationChannelInput {
   name: string
-  importance: AndroidImportance
+  importance: NotificationImportance
   description?: string
   sound?: boolean
   vibrationPattern?: number[]
@@ -44,7 +111,7 @@ export interface NotificationChannelInput {
 export interface NotificationChannel {
   id: string
   name: string
-  importance: AndroidImportance
+  importance: NotificationImportance
   description?: string
   sound: boolean
   vibrationPattern?: number[]

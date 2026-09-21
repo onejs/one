@@ -10,99 +10,116 @@ import type {
   NotificationSubscription,
   ScheduledNotification,
 } from './types'
+import { DEFAULT_ACTION_IDENTIFIER, toNativeImportance } from './types'
 
 export type * from './types'
-export { AndroidImportance, DEFAULT_ACTION_IDENTIFIER } from './types'
 
-// web behavior: permission reads resolve denied, everything else is inert.
-// browser push is out of scope.
+// web behavior: permission reads resolve denied, lists are empty, listeners
+// are inert, and schedule rejects. input checks match native exactly.
 const denied: NotificationPermissionResponse = {
   status: 'denied',
   granted: false,
   canAskAgain: false,
 }
 
-export async function getPermissionsAsync(): Promise<NotificationPermissionResponse> {
+async function getPermissions(): Promise<NotificationPermissionResponse> {
   return { ...denied }
 }
 
-export async function requestPermissionsAsync(
+async function requestPermissions(
   _options: NotificationPermissionRequest = {}
 ): Promise<NotificationPermissionResponse> {
   return { ...denied }
 }
 
-export async function getBadgeCountAsync(): Promise<number> {
+async function getBadgeCount(): Promise<number> {
   return 0
 }
 
-export async function setBadgeCountAsync(_count: number): Promise<boolean> {
+async function setBadgeCount(_count: number): Promise<boolean> {
   return false
 }
 
-export async function setNotificationChannelAsync(
+async function setChannel(
   _channelId: string,
-  _channel: NotificationChannelInput
+  channel: NotificationChannelInput
 ): Promise<NotificationChannel | null> {
+  toNativeImportance(channel.importance)
   return null
 }
 
-export async function getNotificationChannelAsync(
-  _channelId: string
-): Promise<NotificationChannel | null> {
+async function getChannel(_channelId: string): Promise<NotificationChannel | null> {
   return null
 }
 
-export async function getNotificationChannelsAsync(): Promise<NotificationChannel[]> {
+async function getChannels(): Promise<NotificationChannel[]> {
   return []
 }
 
-export async function deleteNotificationChannelAsync(_channelId: string): Promise<void> {}
+async function deleteChannel(_channelId: string): Promise<void> {}
 
 const inert: NotificationSubscription = { remove: () => {} }
 
-export function addNotificationReceivedListener(
+function addReceivedListener(
   _listener: (notification: Notification) => void
 ): NotificationSubscription {
   return inert
 }
 
-export function addNotificationResponseReceivedListener(
+function addResponseReceivedListener(
   _listener: (response: NotificationResponse) => void
 ): NotificationSubscription {
   return inert
 }
 
-export function setNotificationHandler(_handler: NotificationHandlerInput | null): void {}
+function setHandler(_handler: NotificationHandlerInput | null): void {}
 
-export function getLastNotificationResponse(): NotificationResponse | null {
+function getLastResponse(): NotificationResponse | null {
   return null
 }
 
-export function clearLastNotificationResponse(): void {}
+function clearLastResponse(): void {}
 
-export async function scheduleNotificationAsync(
-  _request: NotificationScheduleInput
-): Promise<string> {
+async function schedule(_request: NotificationScheduleInput): Promise<string> {
   throw new Error('Notifications.schedule needs an iOS or Android build')
 }
 
-export async function cancelScheduledNotificationAsync(
-  _identifier: string
-): Promise<void> {}
+async function cancelScheduled(_identifier: string): Promise<void> {}
 
-export async function cancelAllScheduledNotificationsAsync(): Promise<void> {}
+async function cancelAllScheduled(): Promise<void> {}
 
-export async function getAllScheduledNotificationsAsync(): Promise<
-  ScheduledNotification[]
-> {
+async function getAllScheduled(): Promise<ScheduledNotification[]> {
   return []
 }
 
-export async function getPresentedNotificationsAsync(): Promise<Notification[]> {
+async function getPresented(): Promise<Notification[]> {
   return []
 }
 
-export async function dismissNotificationAsync(_identifier: string): Promise<void> {}
+async function dismiss(_identifier: string): Promise<void> {}
 
-export async function dismissAllNotificationsAsync(): Promise<void> {}
+async function dismissAll(): Promise<void> {}
+
+export const Notifications = Object.freeze({
+  getPermissions,
+  requestPermissions,
+  getBadgeCount,
+  setBadgeCount,
+  setChannel,
+  getChannel,
+  getChannels,
+  deleteChannel,
+  addReceivedListener,
+  addResponseReceivedListener,
+  setHandler,
+  getLastResponse,
+  clearLastResponse,
+  schedule,
+  cancelScheduled,
+  cancelAllScheduled,
+  getAllScheduled,
+  getPresented,
+  dismiss,
+  dismissAll,
+  DEFAULT_ACTION_IDENTIFIER,
+})

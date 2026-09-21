@@ -1787,13 +1787,13 @@ async function run(config: Config) {
     tapNotif('Notifications channel create', 'one-native-notifications-channel-create')
     await expect(
       'notifications-channel-created',
-      (nodes) => textIncludes(nodes, 'Channel: Test Channel/3'),
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/default'),
       'one-native-notifications-channel-create'
     )
     tapNotif('Notifications channel get', 'one-native-notifications-channel-get')
     await expect(
       'notifications-channel-read-back',
-      (nodes) => textIncludes(nodes, 'Channel: Test Channel/3'),
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/default'),
       'one-native-notifications-channel-get'
     )
     tapNotif('Notifications channel list', 'one-native-notifications-channel-list')
@@ -1814,7 +1814,24 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Channel: null'),
       'one-native-notifications-channel-get'
     )
-    // slice n3: no handler was set yet, so the first arrival shows by
+    // slice n3: with no listeners mounted, native presents the arrival
+    // itself instead of waiting out the 3s backstop.
+    tapNotif(
+      'Notifications schedule unobserved',
+      'one-native-notifications-schedule-unobserved'
+    )
+    await expect(
+      'notifications-unobserved-presented',
+      (nodes) => textIncludes(nodes, 'Unobserved: presented in '),
+      'one-native-notifications-schedule-unobserved'
+    )
+    tapNotif('Notifications subscribe', 'one-native-notifications-subscribe')
+    await expect(
+      'notifications-subscribed',
+      (nodes) => textIncludes(nodes, 'Subscribed: yes'),
+      'one-native-notifications-subscribe'
+    )
+    // no handler was set yet, so the first observed arrival shows by
     // default. background the app, tap the banner in the shade, and the
     // response lands back in the fixture.
     tapNotif('Notifications schedule now', 'one-native-notifications-schedule-now')

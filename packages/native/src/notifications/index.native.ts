@@ -1,6 +1,10 @@
 import { NativeEventEmitter, Platform, TurboModuleRegistry } from 'react-native'
 
-import type { Spec as NotificationsSpec } from '../specs/OneNativeNotificationsNativeModule'
+import type {
+  NativeChannel,
+  NativePermissionResponse,
+  Spec as NotificationsSpec,
+} from '../specs/OneNativeNotificationsNativeModule'
 import { ForegroundHandler } from './handlerState'
 import type {
   Notification,
@@ -14,76 +18,115 @@ import type {
   NotificationSubscription,
   ScheduledNotification,
 } from './types'
+import {
+  DEFAULT_ACTION_IDENTIFIER,
+  fromNativeAuthorizationStatus,
+  fromNativeImportance,
+  toNativeImportance,
+} from './types'
 
 export type * from './types'
-export { AndroidImportance, DEFAULT_ACTION_IDENTIFIER } from './types'
 
 // the native module is resolved once and lazily. null until the app links
-// @vxrn/native, exactly like the other native modules in this package.
+// @vxrn/native; every method below degrades to its web behavior then,
+// instead of throwing.
 let cached: NotificationsSpec | null | undefined
 
-function native(): NotificationsSpec {
+function native(): NotificationsSpec | null {
   if (cached === undefined) {
     cached = TurboModuleRegistry.get<NotificationsSpec>('OneNativeNotifications')
-  }
-  if (!cached) {
-    throw new Error(
-      'OneNativeNotifications is not installed: rebuild the native app with @vxrn/native linked'
-    )
   }
   return cached
 }
 
+const denied: NotificationPermissionResponse = {
+  status: 'denied',
+  granted: false,
+  canAskAgain: false,
+}
+
+function mapPermissionResponse(
+  response: NativePermissionResponse | null | undefined
+): NotificationPermissionResponse {
+  if (!response) return { ...denied }
+  return {
+    status: response.status,
+    granted: response.granted,
+    canAskAgain: response.canAskAgain,
+    ...(response.ios
+      ? { ios: { status: fromNativeAuthorizationStatus(response.ios.status) } }
+      : {}),
+  }
+}
+
 // the current notification authorization, without prompting.
-export async function getPermissionsAsync(): Promise<NotificationPermissionResponse> {
-  return native().getPermissions()
+async function getPermissions(): Promise<NotificationPermissionResponse> {
+  const module = native()
+  if (!module) return { ...denied }
+  return mapPermissionResponse(await module.getPermissions())
 }
 
 // prompt for notification authorization. on android below 13 there is no
 // runtime prompt, so this resolves the current status instead.
-export async function requestPermissionsAsync(
+async function requestPermissions(
   options: NotificationPermissionRequest = {}
 ): Promise<NotificationPermissionResponse> {
-  return native().requestPermissions(options)
+  const module = native()
+  if (!module) return { ...denied }
+  return mapPermissionResponse(await module.requestPermissions(options))
 }
 
 // the app icon badge count. always 0 on android.
-export async function getBadgeCountAsync(): Promise<number> {
-  return native().getBadgeCount()
+async function getBadgeCount(): Promise<number> {
+  return (await native()?.getBadgeCount()) ?? 0
 }
 
 // set the app icon badge count. resolves false on android: the launcher
 // owns badges there.
-export async function setBadgeCountAsync(count: number): Promise<boolean> {
-  return native().setBadgeCount(count)
+async function setBadgeCount(count: number): Promise<boolean> {
+  return (await native()?.setBadgeCount(count)) ?? false
 }
 
-// create or update an android notification channel. settings apply on first
-// create; afterwards the user owns them in system settings. resolves null
-// on ios, which has no channels.
-export async function setNotificationChannelAsync(
+function mapChannel(channel: NativeChannel): NotificationChannel {
+  return {
+    id: channel.id,
+    name: channel.name,
+    importance: fromNativeImportance(channel.importance),
+    description: channel.description,
+    sound: channel.sound,
+    vibrationPattern: channel.vibrationPattern,
+    showBadge: channel.showBadge,
+  }
+}
+
+// create an android notification channel. settings apply on first create;
+// afterwards the user owns them in system settings. resolves null on ios,
+// which has no channels.
+async function setChannel(
   channelId: string,
   channel: NotificationChannelInput
 ): Promise<NotificationChannel | null> {
+  const importance = toNativeImportance(channel.importance)
   if (Platform.OS !== 'android') return null
-  return native().setNotificationChannel(channelId, channel)
+  const created = await native()?.setNotificationChannel(channelId, {
+    ...channel,
+    importance,
+  })
+  return created ? mapChannel(created) : null
 }
 
-export async function getNotificationChannelAsync(
-  channelId: string
-): Promise<NotificationChannel | null> {
-  if (Platform.OS !== 'android') return null
-  return native().getNotificationChannel(channelId)
+async function getChannel(channelId: string): Promise<NotificationChannel | null> {
+  const found = await native()?.getNotificationChannel(channelId)
+  return found ? mapChannel(found) : null
 }
 
-export async function getNotificationChannelsAsync(): Promise<NotificationChannel[]> {
-  if (Platform.OS !== 'android') return []
-  return native().getNotificationChannels()
+async function getChannels(): Promise<NotificationChannel[]> {
+  const channels = await native()?.getNotificationChannels()
+  return channels ? channels.map(mapChannel) : []
 }
 
-export async function deleteNotificationChannelAsync(channelId: string): Promise<void> {
-  if (Platform.OS !== 'android') return
-  return native().deleteNotificationChannel(channelId)
+async function deleteChannel(channelId: string): Promise<void> {
+  await native()?.deleteNotificationChannel(channelId)
 }
 
 // one native subscription per event, fanned out to js listeners, plus the
@@ -93,9 +136,11 @@ const responseListeners = new Set<(response: NotificationResponse) => void>()
 let sharedEmitter: NativeEventEmitter | null = null
 let sharedRunner: ForegroundHandler | null = null
 
-function events(): { emitter: NativeEventEmitter; runner: ForegroundHandler } {
+function events(module: NotificationsSpec): {
+  emitter: NativeEventEmitter
+  runner: ForegroundHandler
+} {
   if (!sharedEmitter || !sharedRunner) {
-    const module = native()
     const runner = new ForegroundHandler((requestId, behavior) => {
       // native drops unknown ids and shows everything after 3s on its own,
       // so a rejection here only means the bridge is gone.
@@ -122,7 +167,9 @@ function subscribe<T>(
   listeners: Set<(value: T) => void>,
   listener: (value: T) => void
 ): NotificationSubscription {
-  events()
+  const module = native()
+  if (!module) return { remove: () => {} }
+  events(module)
   listeners.add(listener)
   return {
     remove: () => {
@@ -132,15 +179,15 @@ function subscribe<T>(
 }
 
 // fire when a notification arrives while the app runs in the foreground.
-export function addNotificationReceivedListener(
+function addReceivedListener(
   listener: (notification: Notification) => void
 ): NotificationSubscription {
   return subscribe(receivedListeners, listener)
 }
 
 // fire when the user taps a notification while the app runs. a tap that
-// cold-starts the app surfaces through getLastNotificationResponse instead.
-export function addNotificationResponseReceivedListener(
+// cold-starts the app surfaces through getLastResponse instead.
+function addResponseReceivedListener(
   listener: (response: NotificationResponse) => void
 ): NotificationSubscription {
   return subscribe(responseListeners, listener)
@@ -149,25 +196,27 @@ export function addNotificationResponseReceivedListener(
 // decide how an arriving foreground notification presents. until the app
 // sets a handler the notification shows fully, like expo. setting null
 // leaves native undecided, which hides it on both platforms.
-export function setNotificationHandler(handler: NotificationHandlerInput | null): void {
-  events().runner.setHandler(handler)
+function setHandler(handler: NotificationHandlerInput | null): void {
+  const module = native()
+  if (!module) return
+  events(module).runner.setHandler(handler)
 }
 
 // the response that last tapped the app awake, if any. synchronous, like expo.
-export function getLastNotificationResponse(): NotificationResponse | null {
-  return native().getLastNotificationResponse()
+function getLastResponse(): NotificationResponse | null {
+  return native()?.getLastNotificationResponse() ?? null
 }
 
-export function clearLastNotificationResponse(): void {
-  native().clearLastNotificationResponse()
+function clearLastResponse(): void {
+  native()?.clearLastNotificationResponse()
 }
 
 // schedule a local notification. trigger null delivers immediately,
 // a timeInterval waits seconds, a date fires at the timestamp. a past date
 // delivers immediately on both platforms.
-export async function scheduleNotificationAsync(
-  request: NotificationScheduleInput
-): Promise<string> {
+async function schedule(request: NotificationScheduleInput): Promise<string> {
+  const module = native()
+  if (!module) throw new Error('Notifications.schedule needs an iOS or Android build')
   const trigger = request.trigger
   if (
     trigger !== null &&
@@ -175,34 +224,58 @@ export async function scheduleNotificationAsync(
     trigger.type === 'date' &&
     trigger.date instanceof Date
   ) {
-    return native().scheduleNotification({
+    return module.scheduleNotification({
       ...request,
       trigger: { ...trigger, date: trigger.date.getTime() },
     })
   }
-  return native().scheduleNotification(request)
+  return module.scheduleNotification(request)
 }
 
-export async function cancelScheduledNotificationAsync(identifier: string): Promise<void> {
-  return native().cancelScheduledNotification(identifier)
+async function cancelScheduled(identifier: string): Promise<void> {
+  await native()?.cancelScheduledNotification(identifier)
 }
 
-export async function cancelAllScheduledNotificationsAsync(): Promise<void> {
-  return native().cancelAllScheduledNotifications()
+async function cancelAllScheduled(): Promise<void> {
+  await native()?.cancelAllScheduledNotifications()
 }
 
-export async function getAllScheduledNotificationsAsync(): Promise<ScheduledNotification[]> {
-  return native().getAllScheduledNotifications()
+async function getAllScheduled(): Promise<ScheduledNotification[]> {
+  return (await native()?.getAllScheduledNotifications()) ?? []
 }
 
-export async function getPresentedNotificationsAsync(): Promise<Notification[]> {
-  return native().getPresentedNotifications()
+async function getPresented(): Promise<Notification[]> {
+  return (await native()?.getPresentedNotifications()) ?? []
 }
 
-export async function dismissNotificationAsync(identifier: string): Promise<void> {
-  return native().dismissNotification(identifier)
+async function dismiss(identifier: string): Promise<void> {
+  await native()?.dismissNotification(identifier)
 }
 
-export async function dismissAllNotificationsAsync(): Promise<void> {
-  return native().dismissAllNotifications()
+async function dismissAll(): Promise<void> {
+  await native()?.dismissAllNotifications()
 }
+
+export const Notifications = Object.freeze({
+  getPermissions,
+  requestPermissions,
+  getBadgeCount,
+  setBadgeCount,
+  setChannel,
+  getChannel,
+  getChannels,
+  deleteChannel,
+  addReceivedListener,
+  addResponseReceivedListener,
+  setHandler,
+  getLastResponse,
+  clearLastResponse,
+  schedule,
+  cancelScheduled,
+  cancelAllScheduled,
+  getAllScheduled,
+  getPresented,
+  dismiss,
+  dismissAll,
+  DEFAULT_ACTION_IDENTIFIER,
+})
