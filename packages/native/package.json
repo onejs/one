@@ -75,6 +75,12 @@
       "import": "./dist/esm/safe-area/index.mjs",
       "require": "./dist/cjs/safe-area/index.cjs"
     },
+    "./notifications": {
+      "types": "./types/notifications/index.d.ts",
+      "react-native": "./src/notifications/index.native.ts",
+      "import": "./dist/esm/notifications/index.mjs",
+      "require": "./dist/cjs/notifications/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },

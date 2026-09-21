@@ -1703,6 +1703,65 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // notifications slice n1: clear app data so the permission starts
+    // undetermined like a fresh install, then grant and read back.
+    adbText(config, ['shell', 'pm', 'clear', config.packageId])
+    relaunchApp(config)
+    await expect(
+      'notifications-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-notifications')
+    await expect(
+      'notifications-mounted',
+      (nodes) => textIncludes(nodes, 'Notifications: mounted'),
+      'one-native-notifications-permission-refresh'
+    )
+    tapFresh(config, 'Notifications permission refresh', {
+      id: 'one-native-notifications-permission-refresh',
+    })
+    await expect(
+      'notifications-permission-undetermined',
+      (nodes) => textIncludes(nodes, 'Permission: undetermined'),
+      'one-native-notifications-permission-refresh'
+    )
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.POST_NOTIFICATIONS',
+    ])
+    tapFresh(config, 'Notifications permission refresh granted', {
+      id: 'one-native-notifications-permission-refresh',
+    })
+    await expect(
+      'notifications-permission-granted',
+      (nodes) => textIncludes(nodes, 'Permission: granted'),
+      'one-native-notifications-permission-refresh'
+    )
+    tapFresh(config, 'Notifications badge set', {
+      id: 'one-native-notifications-badge-set',
+    })
+    await expect(
+      'notifications-badge-set-resolves-false',
+      (nodes) => textIncludes(nodes, 'Badge: set:no'),
+      'one-native-notifications-badge-set'
+    )
+    tapFresh(config, 'Notifications badge get', {
+      id: 'one-native-notifications-badge-get',
+    })
+    await expect(
+      'notifications-badge-is-zero',
+      (nodes) => textIncludes(nodes, 'Badge: 0'),
+      'one-native-notifications-badge-get'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(

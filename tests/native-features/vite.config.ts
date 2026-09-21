@@ -11,6 +11,7 @@ export default defineConfig({
         app: {
           name: 'NativeFeatureTests',
           scheme: 'nativefeatures',
+          notifications: {},
           ios: {
             bundleId: 'dev.vxrn.native.tests',
             deploymentTarget: '17.0',

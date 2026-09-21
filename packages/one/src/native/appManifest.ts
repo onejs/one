@@ -15,6 +15,12 @@ export interface NativeAppManifest {
     backgroundColor: string
     width?: number
   }
+  // present when the app uses local notifications. prebuild stamps the
+  // android notification permission; ios needs nothing for local delivery.
+  // push is reserved for a later slice and changes nothing yet.
+  notifications?: {
+    push?: boolean
+  }
   ios?: {
     bundleId: string
     tablet?: boolean
@@ -85,6 +91,15 @@ export function validateNativeApp(manifest: NativeAppManifest): NativeAppManifes
     fail(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
+  }
+  if (manifest.notifications !== undefined) {
+    if (
+      typeof manifest.notifications !== 'object' ||
+      (manifest.notifications.push !== undefined &&
+        typeof manifest.notifications.push !== 'boolean')
+    ) {
+      fail('notifications.push must be a boolean')
+    }
   }
   if (manifest.ios !== undefined) {
     if (!manifest.ios.bundleId || !REVERSE_DNS.test(manifest.ios.bundleId)) {

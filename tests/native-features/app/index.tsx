@@ -103,6 +103,11 @@ const testScreens = [
     label: 'One Native System',
     testID: 'nav-one-native-system',
   },
+  {
+    href: '/one-native-notifications',
+    label: 'One Native Notifications',
+    testID: 'nav-one-native-notifications',
+  },
 ] as const
 
 export default function HomeScreen() {

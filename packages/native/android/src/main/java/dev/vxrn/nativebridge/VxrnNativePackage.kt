@@ -10,6 +10,7 @@ import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
+import dev.onejs.onenative.OneNativeNotificationsModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
@@ -20,6 +21,7 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
+            OneNativeNotificationsModule.NAME -> OneNativeNotificationsModule(reactContext)
             else -> null
         }
     }
@@ -45,6 +47,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeNotificationsModule.NAME to ReactModuleInfo(
+                name = OneNativeNotificationsModule.NAME,
+                className = OneNativeNotificationsModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

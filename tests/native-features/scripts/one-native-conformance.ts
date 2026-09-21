@@ -40,6 +40,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'notifications',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -239,6 +240,10 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+const notificationsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-notifications-permission-refresh')) &&
+  has(nodes, 'Notifications: mounted')
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -265,6 +270,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  notifications: notificationsLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -284,6 +290,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  notifications: 'nav-one-native-notifications',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -528,6 +535,42 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('App was not running.')
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
+  if (config.suite === 'notifications') {
+    // reset first so reruns start undetermined like a fresh install.
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'notifications', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-notifications')
+    await wait('notifications fixture mounted', (n) =>
+      has(n, 'Notifications: mounted')
+    )
+    tap({ id: 'one-native-notifications-permission-refresh' })
+    await wait('permission starts undetermined', (n) =>
+      has(n, 'Permission: undetermined')
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'grant', 'notifications', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    tap({ id: 'one-native-notifications-permission-refresh' })
+    await wait('simctl grant reads back granted', (n) => has(n, 'Permission: granted'))
+    tap({ id: 'one-native-notifications-badge-set' })
+    await wait('badge set resolves', (n) => has(n, 'Badge: set:yes'))
+    tap({ id: 'one-native-notifications-badge-get' })
+    await wait('badge round-trips', (n) => has(n, 'Badge: 5'))
+    tap({ id: 'one-native-notifications-badge-clear' })
+    await wait('badge clear resolves', (n) => has(n, 'Badge: set:yes'))
+    tap({ id: 'one-native-notifications-badge-get' })
+    await wait('badge clears', (n) => has(n, 'Badge: 0'))
+
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'sheets') {
     let expectedCount = 1
     const retained = (nodes: Node[]) =>

@@ -42,6 +42,9 @@ export interface PrebuildAppConfig {
     backgroundColor: string
     width?: number
   }
+  notifications?: {
+    push?: boolean
+  }
   ios?: {
     bundleId: string
     tablet?: boolean
@@ -153,6 +156,14 @@ export function validatePrebuildApp(
     fail(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
+  }
+  if (app.notifications !== undefined) {
+    if (
+      typeof app.notifications !== 'object' ||
+      (app.notifications.push !== undefined && typeof app.notifications.push !== 'boolean')
+    ) {
+      fail('notifications.push must be a boolean')
+    }
   }
   if (!platform || platform === 'ios') {
     if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
@@ -484,6 +495,16 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
 ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).join('\n')}
         </intent-filter>
       </activity>`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.notifications !== undefined
+    ) {
+      rendered = rendered.replace(
+        '    <uses-permission android:name="android.permission.INTERNET" />',
+        '    <uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />'
       )
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {

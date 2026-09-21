@@ -542,6 +542,50 @@ stay native values and follow theme changes without a React subscription.
 
 ---
 
+## Notifications
+
+Local notifications through `@vxrn/native/notifications`, a name-for-name
+subset of `expo-notifications`, so migrating means changing the import:
+
+```tsx
+import {
+  getPermissionsAsync,
+  requestPermissionsAsync,
+  setBadgeCountAsync,
+} from '@vxrn/native/notifications'
+
+const current = await getPermissionsAsync()
+if (!current.granted) {
+  await requestPermissionsAsync()
+}
+await setBadgeCountAsync(3)
+```
+
+Permission reads resolve
+`{ status: 'granted' | 'denied' | 'undetermined', granted, canAskAgain }`,
+with an `ios.status` carrying the raw `UNAuthorizationStatus` (0-4) on iOS.
+`requestPermissionsAsync` accepts
+`{ ios: { allowAlert, allowBadge, allowSound, allowProvisional } }`; unset
+fields default to true except `allowProvisional`. On Android below 13 there is
+no runtime prompt, so requesting resolves the current status. `setBadgeCountAsync`
+resolves `false` and `getBadgeCountAsync` resolves `0` on Android: the launcher
+owns badges there.
+
+Declare the capability in `native.app` so prebuild stamps the Android
+`POST_NOTIFICATIONS` permission. iOS needs nothing for local notifications.
+
+```ts
+one({
+  native: {
+    app: {
+      notifications: {},
+    },
+  },
+})
+```
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -560,6 +604,7 @@ stay native values and follow theme changes without a React subscription.
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
+| Notifications | permission, badge | permission | denied, inert |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`
