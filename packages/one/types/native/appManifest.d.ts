@@ -20,6 +20,7 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        fileSharing?: boolean;
     };
     android?: {
         applicationId: string;

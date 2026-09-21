@@ -50,6 +50,7 @@ export interface PrebuildAppConfig {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     usesNonExemptEncryption?: boolean
+    fileSharing?: boolean
   }
   android?: {
     applicationId: string
@@ -497,6 +498,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         rendered = rendered.replace(
           '\t<key>LSRequiresIPhoneOS</key>',
           `\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<${app.ios.usesNonExemptEncryption ? 'true' : 'false'}/>\n\t<key>LSRequiresIPhoneOS</key>`
+        )
+      }
+      if (app.ios?.fileSharing) {
+        rendered = rendered.replace(
+          '\t<key>LSRequiresIPhoneOS</key>',
+          `\t<key>UIFileSharingEnabled</key>\n\t<true/>\n\t<key>LSSupportsOpeningDocumentsInPlace</key>\n\t<true/>\n\t<key>LSRequiresIPhoneOS</key>`
         )
       }
     }
