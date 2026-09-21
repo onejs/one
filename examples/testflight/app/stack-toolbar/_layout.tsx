@@ -1,4 +1,4 @@
-import { Stack } from 'one'
+import { One, Stack } from 'one'
 
 /**
  * Direct oracle for the declarative Stack.Toolbar API. No Leading slot is
@@ -10,7 +10,8 @@ import { Stack } from 'one'
  */
 export default function StackToolbarOracleLayout() {
   return (
-    <Stack>
+    <One.UI.SafeArea.Provider>
+      <Stack>
       <Stack.Screen name="index" options={{ title: 'Toolbar oracle' }} />
       <Stack.Screen name="detail" options={{ title: 'Toolbar detail' }}>
         <Stack.Toolbar>
@@ -30,6 +31,7 @@ export default function StackToolbarOracleLayout() {
           </Stack.Toolbar.Trailing>
         </Stack.Toolbar>
       </Stack.Screen>
-    </Stack>
+      </Stack>
+    </One.UI.SafeArea.Provider>
   )
 }
