@@ -24,7 +24,7 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
@@ -78,14 +78,16 @@ class OneNativeImagePickerModule(
     // results through the activity event listener.
     @Suppress("DEPRECATION")
     @ReactMethod
-    fun launchLibrary(mediaTypes: ReadableArray, selectionLimit: Int, promise: Promise) {
+    fun launchLibrary(options: ReadableMap, promise: Promise) {
         if (!takePickerPending("launchLibrary", promise)) return
         val activity = reactApplicationContext.currentActivity
         if (activity == null) {
             rejectPickerPending("launchLibrary", "found no activity to present from")
             return
         }
-        val kinds = mediaTypes.toArrayList().mapNotNull { it as? String }
+        val kinds =
+            options.getArray("mediaTypes")?.toArrayList()?.mapNotNull { it as? String }
+                ?: emptyList()
         val allowsImages = kinds.contains("images")
         val allowsVideos = kinds.contains("videos")
         if (!allowsImages && !allowsVideos) {
@@ -94,7 +96,10 @@ class OneNativeImagePickerModule(
             rejectPickerPending("launchLibrary", "mediaTypes must list at least one media type")
             return
         }
-        pendingLimit = selectionLimit
+        // zero is unlimited on both sides of the bridge, so the value passes through.
+        pendingLimit =
+            if (options.hasKey("selectionLimit")) options.getInt("selectionLimit") else 1
+        val selectionLimit = pendingLimit
         val mediaType =
             when {
                 allowsImages && allowsVideos -> PickVisualMedia.ImageAndVideo

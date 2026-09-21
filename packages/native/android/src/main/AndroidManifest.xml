@@ -3,7 +3,7 @@
     manifest merger carries it into the app, with the app's own id. -->
     <application>
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name="dev.onejs.onenative.OneNativeFileProvider"
             android:authorities="${applicationId}.one-native.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
