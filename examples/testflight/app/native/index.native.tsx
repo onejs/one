@@ -2,7 +2,7 @@ import {
   createNativeStackNavigator,
   type NativeStackScreenProps,
 } from '@react-navigation/native-stack'
-import { One } from 'one'
+import { Link, One } from 'one'
 import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
@@ -54,6 +54,16 @@ function NativeCapabilitiesScreen({
         >
           <Text style={styles.actionText}>Return to tabs</Text>
         </Pressable>
+
+        <Link href="/stack-toolbar" asChild>
+          <Pressable
+            accessibilityRole="button"
+            testID="native-open-stack-toolbar-oracle"
+            style={styles.action}
+          >
+            <Text style={styles.actionText}>Open toolbar oracle</Text>
+          </Pressable>
+        </Link>
 
         <View
           testID="native-color-swatch"

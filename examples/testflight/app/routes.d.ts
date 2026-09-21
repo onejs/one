@@ -17,6 +17,8 @@ declare module 'one' {
         | `/profile`
         | `/profile/`
         | `/split`
+        | `/stack-toolbar`
+        | `/stack-toolbar/`
       DynamicRoutes:
         | `/notifications/post/${OneRouter.SingleRoutePart<T>}`
         | `/post/${OneRouter.SingleRoutePart<T>}`

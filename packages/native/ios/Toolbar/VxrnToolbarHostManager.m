@@ -13,4 +13,7 @@ RCT_EXPORT_MODULE(VxrnToolbarHost)
   return [ToolbarHostView new];
 }
 
+RCT_REMAP_VIEW_PROPERTY(hidden, toolbarHidden, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(animated, BOOL)
+
 @end
