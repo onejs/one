@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { parse } from 'dotenv'
 import { type DotenvPopulateInput, expand } from 'dotenv-expand'
 import { normalizePath } from 'vite'
-import { withExpoPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 
 type Mode = 'development' | 'production' | string
 

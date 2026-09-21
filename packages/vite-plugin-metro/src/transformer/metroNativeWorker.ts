@@ -13,7 +13,7 @@ import {
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
-import { withExpoPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
