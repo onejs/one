@@ -13,8 +13,11 @@ export {
 export { ToolbarHost, ToolbarItem } from './toolbar'
 export type { ToolbarHostProps, ToolbarItemProps } from './toolbar'
 
-export { MenuAction } from './menu'
-export type { MenuActionProps } from './menu'
+// './menu/index', not './menu': Menu.native.tsx (the SwiftUI Menu) shadows
+// the menu/ directory for case-insensitive resolvers, which leaves
+// MenuAction undefined at runtime.
+export { MenuAction } from './menu/index'
+export type { MenuActionProps } from './menu/index'
 
 export { SplitView } from './split-view'
 export type { SplitViewProps, SplitViewColumnProps } from './split-view'
