@@ -36,6 +36,12 @@ export interface StackToolbarItemProps {
   tintColor?: ColorValue
   disabled?: boolean
   /**
+   * Liquid-glass background sharing (iOS 26+). Passed to header items and
+   * bottom toolbar items alike.
+   */
+  sharesBackground?: boolean
+  hidesSharedBackground?: boolean
+  /**
    * Top-level header items have no hidden slot in react-navigation, so hidden
    * leading/trailing items are omitted. Bottom items pass hidden through to
    * the toolbar item.
@@ -68,6 +74,9 @@ export interface StackToolbarMenuProps {
   systemImageName?: string
   tintColor?: ColorValue
   disabled?: boolean
+  /** Liquid-glass background sharing (iOS 26+). */
+  sharesBackground?: boolean
+  hidesSharedBackground?: boolean
   hidden?: boolean
   accessibilityLabel?: string
   accessibilityHint?: string
@@ -157,6 +166,12 @@ export function itemPropsToHeaderButton(
     ...(props.tintColor !== undefined && { tintColor: props.tintColor }),
     ...(props.disabled && { disabled: true }),
     ...(props.selected && { selected: true }),
+    ...(props.sharesBackground !== undefined && {
+      sharesBackground: props.sharesBackground,
+    }),
+    ...(props.hidesSharedBackground !== undefined && {
+      hidesSharedBackground: props.hidesSharedBackground,
+    }),
     ...(props.identifier
       ? { identifier: props.identifier }
       : { identifier: fallbackIdentifier(slot, index, props.title) }),
@@ -259,6 +274,12 @@ export function menuPropsToHeaderMenu(
     ...(headerIcon(props.systemImageName) && { icon: headerIcon(props.systemImageName) }),
     ...(props.tintColor !== undefined && { tintColor: props.tintColor }),
     ...(props.disabled && { disabled: true }),
+    ...(props.sharesBackground !== undefined && {
+      sharesBackground: props.sharesBackground,
+    }),
+    ...(props.hidesSharedBackground !== undefined && {
+      hidesSharedBackground: props.hidesSharedBackground,
+    }),
     ...(props.identifier
       ? { identifier: props.identifier }
       : { identifier: fallbackIdentifier(slot, index, props.title) }),
@@ -301,6 +322,8 @@ export interface BottomToolbarItemData {
   systemImageName?: string
   tintColor?: ColorValue
   disabled?: boolean
+  sharesBackground?: boolean
+  hidesSharedBackground?: boolean
   hidden?: boolean
   selected?: boolean
   /** Carried for menu children; maps to the MenuAction destructive flag. */
@@ -318,6 +341,8 @@ export interface BottomToolbarMenuData {
   icon?: string
   tintColor?: ColorValue
   disabled?: boolean
+  sharesBackground?: boolean
+  hidesSharedBackground?: boolean
   hidden?: boolean
   accessibilityLabel?: string
   accessibilityHint?: string
@@ -338,6 +363,8 @@ function bottomItemData(
     systemImageName: props.systemImageName,
     tintColor: props.tintColor,
     disabled: props.disabled,
+    sharesBackground: props.sharesBackground,
+    hidesSharedBackground: props.hidesSharedBackground,
     hidden: props.hidden,
     selected: props.selected,
     accessibilityLabel: props.accessibilityLabel,
@@ -389,6 +416,8 @@ function bottomMenuData(
     icon: props.systemImageName,
     tintColor: props.tintColor,
     disabled: props.disabled,
+    sharesBackground: props.sharesBackground,
+    hidesSharedBackground: props.hidesSharedBackground,
     hidden: props.hidden,
     accessibilityLabel: props.accessibilityLabel,
     accessibilityHint: props.accessibilityHint,
@@ -433,10 +462,12 @@ function findSlot(
 /**
  * Map Stack.Toolbar children to native-stack screen options. Leading maps to
  * unstable_headerLeftItems and trailing to unstable_headerRightItems, the
- * genuine iOS header-item path in react-navigation 8 alpha. Bottom has no
- * options equivalent (the toolbar is owned by the screen view controller, so
- * Stack.Toolbar.Bottom must mount in screen content); a bottom slot in layout
- * config warns and is ignored.
+ * genuine iOS header-item path in react-navigation 8 alpha. An explicitly
+ * declared slot always wins over incoming options: an empty slot (for
+ * example, all items hidden) clears inherited items, while an absent slot
+ * preserves them. Bottom has no options equivalent (the toolbar is owned by
+ * the screen view controller, so Stack.Toolbar.Bottom must mount in screen
+ * content); a bottom slot in layout config warns and is ignored.
  */
 export function appendStackToolbarPropsToOptions(
   options: NativeStackNavigationOptions,
@@ -460,9 +491,7 @@ export function appendStackToolbarPropsToOptions(
       (leading.props as StackToolbarSlotProps).children,
       'leading'
     )
-    if (items.length) {
-      updated = { ...updated, unstable_headerLeftItems: () => items }
-    }
+    updated = { ...updated, unstable_headerLeftItems: () => items }
   }
 
   const trailing = findSlot(props.children, ['trailing'])
@@ -471,9 +500,7 @@ export function appendStackToolbarPropsToOptions(
       (trailing.props as StackToolbarSlotProps).children,
       'trailing'
     )
-    if (items.length) {
-      updated = { ...updated, unstable_headerRightItems: () => items }
-    }
+    updated = { ...updated, unstable_headerRightItems: () => items }
   }
 
   if (findSlot(props.children, ['bottom'])) {

@@ -101,7 +101,57 @@ describe('Stack.Toolbar composition', () => {
     })
   })
 
-  it('omits hidden header items and skips title-less icon-less items', () => {
+  it('passes background sharing through to header buttons and menus, including false', () => {
+    const options = appendStackToolbarPropsToOptions(
+      {},
+      toolbarProps([
+        <StackToolbarLeading key="leading">
+          <StackToolbarItem
+            title="Edit"
+            sharesBackground={false}
+            hidesSharedBackground
+            onPress={() => {}}
+          />
+        </StackToolbarLeading>,
+        <StackToolbarTrailing key="trailing">
+          <StackToolbarMenu title="More" sharesBackground>
+            <StackToolbarItem title="Share" onPress={() => {}} />
+          </StackToolbarMenu>
+
+        </StackToolbarTrailing>,
+      ])
+    )
+    expect(options.unstable_headerLeftItems?.({} as never)?.[0]).toMatchObject({
+      sharesBackground: false,
+      hidesSharedBackground: true,
+    })
+    expect(options.unstable_headerRightItems?.({} as never)?.[0]).toMatchObject({
+      sharesBackground: true,
+    })
+  })
+
+  it('carries background sharing in bottom descriptors', () => {
+    const data = slotChildrenToBottomData([
+      <StackToolbarItem
+        key="add"
+        title="Add"
+        sharesBackground={false}
+        hidesSharedBackground
+        onPress={() => {}}
+      />,
+      <StackToolbarMenu key="more" title="More" sharesBackground>
+        <StackToolbarItem title="Share" onPress={() => {}} />
+      </StackToolbarMenu>,
+    ])
+    expect(data[0]).toMatchObject({
+      kind: 'item',
+      sharesBackground: false,
+      hidesSharedBackground: true,
+    })
+    expect(data[1]).toMatchObject({ kind: 'menu', sharesBackground: true })
+  })
+
+  it('clears header items when an explicit slot has no visible items', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     try {
       const options = appendStackToolbarPropsToOptions(
@@ -113,11 +163,70 @@ describe('Stack.Toolbar composition', () => {
           </StackToolbarLeading>
         )
       )
-      expect(options.unstable_headerLeftItems).toBeUndefined()
+      // explicit slot wins: empty array clears inherited items.
+      expect(options.unstable_headerLeftItems?.({} as never)).toEqual([])
       expect(warn).toHaveBeenCalled()
     } finally {
       warn.mockRestore()
     }
+  })
+
+  it('clears stale incoming items on both sides while absent slots preserve', () => {
+    const staleLeft = { type: 'button', label: 'stale-left', onPress: () => {} }
+    const staleRight = { type: 'button', label: 'stale-right', onPress: () => {} }
+    const incoming = {
+      unstable_headerLeftItems: () => [staleLeft],
+      unstable_headerRightItems: () => [staleRight],
+    }
+
+    const cleared = appendStackToolbarPropsToOptions(
+      incoming as never,
+      toolbarProps([
+        <StackToolbarLeading key="leading">
+          <StackToolbarItem title="Hidden" hidden onPress={() => {}} />
+        </StackToolbarLeading>,
+        <StackToolbarTrailing key="trailing">
+          <StackToolbarItem title="Also hidden" hidden onPress={() => {}} />
+        </StackToolbarTrailing>,
+      ])
+    )
+    expect(cleared.unstable_headerLeftItems?.({} as never)).toEqual([])
+    expect(cleared.unstable_headerRightItems?.({} as never)).toEqual([])
+
+    const preserved = appendStackToolbarPropsToOptions(
+      incoming as never,
+      toolbarProps(undefined)
+    )
+    expect(preserved.unstable_headerLeftItems?.({} as never)).toEqual([staleLeft])
+    expect(preserved.unstable_headerRightItems?.({} as never)).toEqual([staleRight])
+  })
+
+  it('drives visible-to-hidden through actual setOptions transitions', () => {
+    const calls: unknown[][] = []
+    const navigation = { setOptions: (...args: unknown[]) => void calls.push(args) }
+
+    const visibleToolbar = (
+      <StackToolbarTrailing>
+        <StackToolbarItem title="Probe" systemImageName="magnifyingglass" onPress={() => {}} />
+      </StackToolbarTrailing>
+    )
+    navigation.setOptions(appendStackToolbarPropsToOptions({}, toolbarProps(visibleToolbar)))
+    const hiddenToolbar = (
+      <StackToolbarTrailing>
+        <StackToolbarItem title="Probe" systemImageName="magnifyingglass" hidden onPress={() => {}} />
+      </StackToolbarTrailing>
+    )
+    navigation.setOptions(appendStackToolbarPropsToOptions({}, toolbarProps(hiddenToolbar)))
+
+    expect(calls).toHaveLength(2)
+    const first = calls[0][0] as {
+      unstable_headerRightItems?: (props: never) => unknown[]
+    }
+    const second = calls[1][0] as {
+      unstable_headerRightItems?: (props: never) => unknown[]
+    }
+    expect(first.unstable_headerRightItems?.({} as never)).toHaveLength(1)
+    expect(second.unstable_headerRightItems?.({} as never)).toEqual([])
   })
 
   it('maps menus to header menu items with actions and submenus', () => {
