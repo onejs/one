@@ -9,7 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeQuickLookComponentView { OneNativeQuickLookView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeQuickLookComponentDescriptor>(); }
-+- (NSObject *)accessibilityElement { return _nativeView; }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeQuickLookProps>();
