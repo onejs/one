@@ -528,6 +528,23 @@ function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
+function clearDocumentsUi(config: Config) {
+  // the documents fallback remembers its last location, which flaked the
+  // cancel leg once, so start it cold. the package is aosp or gms flavored
+  // per device, so clear whichever the device reports; when neither exists
+  // the system picker path needs no documentsui and there is nothing to do.
+  const packages = adbText(config, ['shell', 'pm', 'list', 'packages'])
+  const match = packages
+    .split(/\r?\n/)
+    .map((line) => line.replace(/^package:/, '').trim())
+    .find(
+      (name) =>
+        name === 'com.android.documentsui' || name === 'com.google.android.documentsui'
+    )
+  if (!match) return
+  adbText(config, ['shell', 'pm', 'clear', match])
+}
+
 function swipeFresh(config: Config, name: string) {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
@@ -1749,6 +1766,7 @@ async function run(config: Config) {
         ]),
       'one-native-image-picker-permissions'
     )
+    clearDocumentsUi(config)
     tapFresh(config, 'Image picker library button', {
       id: 'one-native-image-picker-library',
       role: 'button',
