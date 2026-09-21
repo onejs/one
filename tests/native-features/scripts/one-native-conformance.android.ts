@@ -528,17 +528,16 @@ function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
-// a back press with the keyboard up dismisses the keyboard; with it down it
-// leaves the screen. only the first is wanted after the ime probe, so gate
-// on the input method's own shown flag.
-function dismissKeyboardIfShown(config: Config) {
-  // grep on-device: the full dumpsys exceeds execFileSync's buffer. the
-  // trailing true keeps a missing line (rather than a missing adb) quiet.
+// the ime leg is vacuous unless the keyboard is actually raised, so fail
+// loudly when it is not. grep runs on-device: the full dumpsys exceeds
+// execFileSync's buffer.
+function requireKeyboardShown(config: Config) {
   const shown = adbText(config, [
     'shell',
     'dumpsys input_method | grep -m1 mInputShown || true',
   ])
-  if (/mInputShown\s*=\s*true/.test(shown)) pressBack(config)
+  if (!/mInputShown\s*=\s*true/.test(shown))
+    throw new Error('safe-area-ime-excluded: the soft keyboard never raised')
 }
 
 function swipeFresh(config: Config, name: string) {
@@ -827,6 +826,16 @@ async function run(config: Config) {
 
   try {
     preflight(config)
+    // the ime leg must run against a raised keyboard to mean anything; force
+    // the soft keyboard on even with a hard keyboard attached.
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'show_ime_with_hard_keyboard',
+      '1',
+    ])
     relaunchApp(config)
 
     await expect(
@@ -1664,12 +1673,12 @@ async function run(config: Config) {
     )
 
     // focusing the input and typing must not move the bottom inset: the
-    // keyboard is capped by the stable inset. if this emulator shows no
-    // soft keyboard the bottom is trivially stable and the typed text
-    // still proves the input round-tripped.
+    // keyboard is capped by the stable inset. the suite forces the soft
+    // keyboard on at start, and the leg fails unless it actually raised.
     const beforeIme = safeAreaNumbers(snapshot(config).nodes, 'Insets: ')
     tapFresh(config, 'Safe-area input focus', { id: 'one-native-safe-area-input' })
     adbType(config, 'ada')
+    requireKeyboardShown(config)
     await expect(
       'safe-area-ime-excluded',
       (nodes) =>
@@ -1692,9 +1701,9 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
-    // the ime probe leaves the keyboard over the edges toggle; clear it so
-    // the toggle tap lands on the button instead of the keys.
-    dismissKeyboardIfShown(config)
+    // the ime probe leaves the keyboard over the edges toggle; it is proven
+    // up, so one back press can only dismiss it, never leave the screen.
+    pressBack(config)
     tapFresh(config, 'Safe-area edges toggle', {
       id: 'one-native-safe-area-edges',
       role: 'button',
