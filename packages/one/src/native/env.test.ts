@@ -1,13 +1,19 @@
 import { describe, expect, test } from 'vitest'
-import { assertNoExpoPublicEnv, pickOnePublicEnv } from './env'
+import { pickOnePublicEnv } from './env'
 
 describe('ONE_PUBLIC_* and ONE_PLATFORM contract', () => {
-  test('picks one-public values and rejects expo-prefixed input', () => {
-    expect(
-      pickOnePublicEnv({ ONE_PUBLIC_API: '1', VITE_X: '2' })
-    ).toEqual({ ONE_PUBLIC_API: '1' })
-    expect(() =>
-      assertNoExpoPublicEnv({ EXPO_PUBLIC_API: '1' })
-    ).toThrow(/rename it to ONE_PUBLIC_\*/)
+  test('aliases One and Expo public values without overwriting explicit values', () => {
+    expect(pickOnePublicEnv({ ONE_PUBLIC_API: '1', VITE_X: '2' })).toEqual({
+      ONE_PUBLIC_API: '1',
+      EXPO_PUBLIC_API: '1',
+    })
+    expect(pickOnePublicEnv({ EXPO_PUBLIC_API: '2' })).toEqual({
+      EXPO_PUBLIC_API: '2',
+      ONE_PUBLIC_API: '2',
+    })
+    expect(pickOnePublicEnv({ ONE_PUBLIC_API: 'one', EXPO_PUBLIC_API: 'expo' })).toEqual({
+      ONE_PUBLIC_API: 'one',
+      EXPO_PUBLIC_API: 'expo',
+    })
   })
 })

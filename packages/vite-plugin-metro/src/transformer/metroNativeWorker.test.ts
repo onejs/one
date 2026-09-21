@@ -1518,41 +1518,50 @@ describe('metro babel fallback config names', () => {
 })
 
 describe('one public env contract in the metro worker', () => {
-  it('inlines ONE_PUBLIC_ reads in dev and prod with no virtual module', () => {
+  it('inlines One and Expo public reads in dev and prod with no virtual module', () => {
     for (const isProduction of [false, true]) {
       const out = applyInlineEnvVars(
-        'export const api = process.env.ONE_PUBLIC_API;',
+        'export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API];',
         'env.ts',
         isProduction,
         { ONE_PUBLIC_API: 'https://api.test' }
       )
-      expect(out).toBe('export const api = "https://api.test";')
+      expect(out).toBe('export const values = ["https://api.test", "https://api.test"];')
       expect(out).not.toContain('expo/virtual/env')
       expect(out).not.toContain('_$$_EXPO_ENV')
     }
   })
 
-  it('rejects EXPO_PUBLIC_ reads instead of copying or ignoring them', () => {
+  it('preserves explicit conflicting values', () => {
     for (const isProduction of [false, true]) {
-      expect(() =>
-        applyInlineEnvVars(
-          'export const api = process.env.EXPO_PUBLIC_API;',
-          'env.ts',
-          isProduction,
-          {}
-        )
-      ).toThrow(/rename it to ONE_PUBLIC_\*/)
+      const out = applyInlineEnvVars(
+        'export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API];',
+        'env.ts',
+        isProduction,
+        { ONE_PUBLIC_API: 'one', EXPO_PUBLIC_API: 'expo' }
+      )
+      expect(out).toBe('export const values = ["one", "expo"];')
     }
   })
 
-  it('carries ONE_PLATFORM through the whole import.meta.env object', () => {
+  it('accepts Expo runtime feature flags that are not configured', () => {
+    const out = applyInlineEnvVars(
+      'export const useRnFetch = process.env.EXPO_PUBLIC_USE_RN_FETCH;',
+      '/app/node_modules/expo/build/winter/runtime.native.js',
+      false,
+      { EXPO_PUBLIC_USE_RN_FETCH: undefined }
+    )
+    expect(out).toBe('export const useRnFetch = undefined;')
+  })
+
+  it('carries public aliases through the whole import.meta.env object', () => {
     const out = applyInlineEnvVars(
       'export const all = { ...import.meta.env };',
       'env.ts',
       true,
-      { ONE_PLATFORM: 'android' }
+      { ONE_PUBLIC_API: 'one' }
     )
-    expect(out).toContain('"ONE_PLATFORM":"android"')
-    expect(out).not.toContain('EXPO_OS')
+    expect(out).toContain('"ONE_PUBLIC_API":"one"')
+    expect(out).toContain('"EXPO_PUBLIC_API":"one"')
   })
 })

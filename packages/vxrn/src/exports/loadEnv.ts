@@ -4,10 +4,11 @@ import { join } from 'node:path'
 import { parse } from 'dotenv'
 import { type DotenvPopulateInput, expand } from 'dotenv-expand'
 import { normalizePath } from 'vite'
+import { withPublicEnvAliases } from '@vxrn/utils'
 
 type Mode = 'development' | 'production' | string
 
-const DEFAULT_PREFIX = /^(ONE|VITE|TAMAGUI)_/
+const DEFAULT_PREFIX = /^(ONE|VITE|TAMAGUI)_|^EXPO_PUBLIC_/
 
 export async function loadEnv(
   mode: Mode,
@@ -29,17 +30,25 @@ export async function loadEnv(
     process.env[key] = val
   }
 
-  const clientEnv = Object.fromEntries(
-    Object.entries({
-      ...process.env,
-      ...loaded,
-    }).flatMap(([key, value]) => {
-      if (isPublicKey(key)) {
-        return [[key, value]]
-      }
-      return []
-    })
+  const clientEnv = withPublicEnvAliases(
+    Object.fromEntries(
+      Object.entries({
+        ...process.env,
+        ...loaded,
+      }).flatMap(([key, value]) => {
+        if (isPublicKey(key)) {
+          return [[key, value]]
+        }
+        return []
+      })
+    )
   )
+
+  for (const [key, value] of Object.entries(clientEnv)) {
+    if (process.env[key] === undefined && value !== undefined) {
+      process.env[key] = value
+    }
+  }
 
   return {
     serverEnv: loadedEnv,

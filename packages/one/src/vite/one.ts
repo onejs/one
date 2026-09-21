@@ -307,7 +307,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         // only set default if user hasn't configured envPrefix
         if (userConfig.envPrefix) return
         return {
-          envPrefix: ['VITE_', 'ONE_PUBLIC_'],
+          envPrefix: ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'],
         }
       },
     },

@@ -399,6 +399,16 @@ async function createWorkletsProject(throwOnTransform = true) {
 }
 
 describe('native prelude', () => {
+  it('sets matching One and Expo platform values', () => {
+    const context = {}
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'android' }), context)
+
+    const runtimeProcess = Reflect.get(context, 'process')
+    expect(runtimeProcess.env.ONE_PLATFORM).toBe('android')
+    expect(runtimeProcess.env.EXPO_OS).toBe('android')
+  })
+
   it('does not advertise a host event API that cannot remove listeners', () => {
     const context = {
       addEventListener() {},
@@ -1073,7 +1083,7 @@ describe('getNativeTransformConfig platform env defines', () => {
         expect(define['import.meta.env.VITE_NATIVE']).toBe('"1"')
         expect(define['import.meta.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
-        expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
+        expect(define['import.meta.env.EXPO_OS']).toBe(JSON.stringify(platform))
         expect(define['process.env.EXPO_OS']).toBe(JSON.stringify(platform))
 
         // the whole import.meta.env object (used by JSON.stringify(import.meta.env)) must carry it too
@@ -1084,7 +1094,7 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   }
 
-  it('inlines ONE_PUBLIC values supplied by the native build environment', () => {
+  it('inlines One and Expo aliases supplied by the native build environment', () => {
     const key = 'ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
@@ -1093,6 +1103,12 @@ describe('getNativeTransformConfig platform env defines', () => {
       const { define } = getNativeTransformConfig('ios', false, root)
       expect(define[`process.env.${key}`]).toBe('"native-env-value"')
       expect(define[`import.meta.env.${key}`]).toBe('"native-env-value"')
+      expect(define['process.env.EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
+        '"native-env-value"'
+      )
+      expect(define['import.meta.env.EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
+        '"native-env-value"'
+      )
       expect(JSON.parse(define['import.meta.env'] as string)[key]).toBe(
         'native-env-value'
       )
@@ -1102,14 +1118,16 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   })
 
-  it('fails on EXPO_PUBLIC input with a migration error', () => {
+  it('accepts Expo public input and creates the One alias', () => {
     const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
 
     try {
-      expect(() => getNativeTransformConfig('ios', false, root)).toThrow(
-        /rename it to ONE_PUBLIC_\*/
+      const { define } = getNativeTransformConfig('ios', false, root)
+      expect(define[`process.env.${key}`]).toBe('"native-env-value"')
+      expect(define['process.env.ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
+        '"native-env-value"'
       )
     } finally {
       if (previous === undefined) delete process.env[key]

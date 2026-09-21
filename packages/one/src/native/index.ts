@@ -13,14 +13,12 @@ export {
   type PlatformBindingEntry,
   type PlatformBindingRegistry,
 } from './platform'
+export { validateNativeApp, type NativeAppManifest } from './appManifest'
 export {
-  validateNativeApp,
-  type NativeAppManifest,
-} from './appManifest'
-export {
+  EXPO_PLATFORM_ENV,
+  EXPO_PUBLIC_PREFIX,
   ONE_PLATFORM_ENV,
   ONE_PUBLIC_PREFIX,
-  assertNoExpoPublicEnv,
   pickOnePublicEnv,
   type OnePlatformKey,
 } from './env'

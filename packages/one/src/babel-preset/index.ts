@@ -3,6 +3,7 @@ import path from 'node:path'
 import type { PluginItem, TransformOptions } from '@babel/core'
 import mm from 'micromatch'
 import tsconfigPaths from 'tsconfig-paths'
+import { pickOnePublicEnv } from '../native/env'
 import {
   API_ROUTE_GLOB_PATTERN,
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
@@ -220,25 +221,23 @@ export function buildOneBabelPlugins({
 /**
  * Build the `import.meta.env` substitution map for standalone Metro use.
  * Mirrors Vite's default `define`: MODE/BASE_URL/PROD/DEV/SSR plus any
- * `ONE_PUBLIC_*` / `ONE_*` / `VITE_*` env var from `process.env`.
- * Expo-prefixed input is never copied; it fails upstream with a migration error.
+ * `ONE_PUBLIC_*` / `EXPO_PUBLIC_*` / `ONE_*` / `VITE_*` env var from
+ * `process.env`.
  */
 function buildStandaloneImportMetaEnv(): Record<string, unknown> {
   const isProduction = process.env.NODE_ENV !== 'development'
   const env: Record<string, unknown> = {
+    ...pickOnePublicEnv(process.env),
     MODE: isProduction ? 'production' : 'development',
     BASE_URL: '/',
     PROD: isProduction,
     DEV: !isProduction,
     SSR: false,
     ONE_PLATFORM: process.env.ONE_PLATFORM ?? 'web',
+    EXPO_OS: process.env.ONE_PLATFORM ?? process.env.EXPO_OS ?? 'web',
   }
   for (const [key, value] of Object.entries(process.env)) {
-    if (
-      key.startsWith('ONE_PUBLIC_') ||
-      key.startsWith('ONE_') ||
-      key.startsWith('VITE_')
-    ) {
+    if (key.startsWith('ONE_') || key.startsWith('VITE_')) {
       env[key] = value
     }
   }
