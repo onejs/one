@@ -25,3 +25,4 @@ export type { SplitViewProps, SplitViewColumnProps } from './split-view'
 // small uniform device apis matching their expo module shapes, so migration
 // is a mechanical import swap. surfaced top-level on One, never under One.UI.
 export * as Clipboard from './clipboard'
+export * as Network from './network'
